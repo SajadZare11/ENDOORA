@@ -1,0 +1,89 @@
+﻿feature_id,feature,primary_role,route_family,data_domain,data_sensitivity,maturity,launch_status
+PUB-001,Home,Visitor,/,public_content,Public,Production V1,Launch
+PUB-002,How Endoora Works,Visitor,/how-it-works,public_content,Public,Production V1,Launch
+PUB-003,Pricing,Visitor,/pricing,public_content,Public,Production V1,Launch
+PUB-004,FAQ / Help,Visitor,/help,public_content,Public,Production V1,Launch
+PUB-005,About,Visitor,/about,public_content,Public,Production V1,Launch
+PUB-006,Contact / Support Entry,Visitor,/contact,public_content,Low,Production V1,Launch
+PUB-007,Privacy / Terms / Accessibility / Copyright / Refund / AI Limitations,Visitor,/legal/*,public_content,Public,Production V1,Launch
+PUB-008,Teachers Directory,Visitor,/teachers,public_content,Public,Production V1,Launch
+PUB-009,Fixed Classes Directory,Visitor,/classes,public_content,Public,Validated Beta,Beta
+PUB-010,Courses / Skills / Culture Content,Visitor,/learn/*,public_content,Public,Production V1,Launch
+PUB-011,IELTS Hub,Visitor,/ielts,public_content,Public,Production V1,Launch
+ACC-001,Registration / Login / Password Recovery,Learner/Teacher,/auth/*,accounts_profiles,High,Production V1,Launch
+ACC-002,Email / Iranian Mobile Verification,Learner/Teacher,/auth/verify,accounts_profiles,High,Production V1,Launch
+ACC-003,Role Selection,Learner/Teacher,/onboarding/role,accounts_profiles,Medium,Production V1,Launch
+ACC-004,Consent History,Learner/Teacher,/account/privacy,accounts_profiles,High,Production V1,Launch
+ACC-005,Profile / Sessions / Data Controls,Learner/Teacher,/account/*,accounts_profiles,High,Production V1,Launch
+LEARN-001,Learner Dashboard / Today,Learner,/learner,learning_evidence,High,Production V1,Launch
+LEARN-002,Placement Test,Learner,/placement,learning_evidence,High,Production V1,Launch
+LEARN-003,Placement Report / CEFR Estimate,Learner,/placement/report,learning_evidence,High,Production V1,Launch
+LEARN-004,Learner Twin,Learner,/learner/twin,learning_evidence,High,Validated Beta,Beta
+LEARN-005,Personal Learning Path,Learner,/learner/path,learning_evidence,High,Production V1,Launch
+LEARN-006,Daily Mission,Learner,/learner/today,learning_evidence,High,Production V1,Launch
+LEARN-007,AI Practice Engine,Learner,/learner/practice,learning_evidence,High,Production V1,Launch
+LEARN-008,Vocabulary / SRS,Learner,/learner/vocabulary,learning_evidence,High,Production V1,Launch
+LEARN-009,Mistake Genome,Learner,/learner/mistakes,learning_evidence,High,Validated Beta,Beta
+LEARN-010,Writing Mentor,Learner,/learner/writing,learning_evidence,Very High,Validated Beta,Beta
+LEARN-011,Text Roleplay,Learner,/learner/roleplay,learning_evidence,High,Validated Beta,Beta
+LEARN-012,Conversation History / Controlled AI Memory,Learner,/learner/conversations,learning_evidence,Very High,Foundation,Off by default
+LEARN-013,Voice Conversation,Learner,/learner/voice,learning_evidence,Very High,Validated Beta,Beta
+LEARN-014,Pronunciation Lab,Learner,/learner/pronunciation,learning_evidence,Very High,Validated Beta,Beta
+LEARN-015,Progress Analytics,Learner,/learner/progress,learning_evidence,High,Production V1,Launch
+LEARN-016,XP / Levels / Streaks,Learner,/learner/achievements,learning_evidence,Medium,Production V1,Launch
+LEARN-017,Badges / Challenges,Learner,/learner/achievements,learning_evidence,Medium,Validated Beta,Beta
+LEARN-018,Leaderboards / Clubs,Learner,/learner/community,learning_evidence,Medium,Foundation,Off by default
+TEACH-001,Teacher Dashboard,Teacher,/teacher,teacher_workspace,High,Production V1,Launch
+TEACH-002,Teacher Profile / Verification,Teacher,/teacher/profile,teacher_workspace,Very High,Production V1,Launch
+TEACH-003,Students / Linked Learners,Teacher,/teacher/students,teacher_workspace,Very High,Production V1,Launch
+TEACH-004,Classes / Teaching History / Hours,Teacher,/teacher/classes,teacher_workspace,High,Production V1,Launch
+TEACH-005,Question Bank Upload,Teacher,/teacher/questions,teacher_workspace,High,Production V1,Launch
+TEACH-006,Assignments,Teacher,/teacher/assignments,teacher_workspace,High,Production V1,Launch
+TEACH-007,Submission / Grading / Feedback,Teacher,/teacher/grading,teacher_workspace,Very High,Production V1,Launch
+TEACH-008,Teacher Resources / Experiences,Teacher,/teacher/resources,teacher_workspace,Medium,Validated Beta,Beta
+MKT-001,Teacher Directory / Follow,Learner/Teacher,/teachers,marketplace_bookings,Medium,Production V1,Launch
+MKT-002,Learn Now Requests / Matching,Learner/Teacher,/marketplace/requests,marketplace_bookings,High,Validated Beta,Beta
+MKT-003,Teacher Offers,Teacher,/marketplace/offers,marketplace_bookings,High,Validated Beta,Beta
+MKT-004,Booking / Schedule,Learner/Teacher,/bookings,marketplace_bookings,High,Production V1,Launch
+MKT-005,Controlled Session Messaging,Learner/Teacher,/bookings/*/messages,marketplace_bookings,Very High,Foundation,Limited
+MKT-006,Reviews / Disputes,Learner/Teacher,/bookings/*/review,marketplace_bookings,High,Validated Beta,Beta
+MKT-007,Fixed Classes,Learner/Teacher,/classes,marketplace_bookings,High,Validated Beta,Beta
+COM-001,Plans / Entitlements,Learner,/account/plan,payments_subscriptions,High,Production V1,Launch
+COM-002,Orders / Billing / Receipts,Learner,/account/billing,payments_subscriptions,Very High,Production V1,Launch
+COM-003,ZarinPal Payment,Learner,/checkout,payments_subscriptions,Very High,Production V1,Launch gate
+COM-004,Refunds,Admin/Support,/operations/refunds,payments_subscriptions,Very High,Production V1,Launch
+COM-005,Teacher Earnings Ledger,Teacher/Admin,/teacher/account/earnings,payments_subscriptions,Very High,Production V1,Launch
+COM-006,Teacher Payout Requests,Teacher/Admin,/teacher/account/payouts,payments_subscriptions,Very High,Foundation,Manual review
+IELTS-001,IELTS Content Model / Review,Editor/Admin,/operations/ielts,ielts_assessment,High,Production V1,Launch
+IELTS-002,Listening / Reading Simulation,Learner,/ielts/practice,ielts_assessment,High,Production V1,Launch
+IELTS-003,Writing Simulation,Learner,/ielts/writing,ielts_assessment,Very High,Production V1,Launch
+IELTS-004,Writing Evaluation,Learner,/ielts/writing/report,ielts_assessment,Very High,Validated Beta,Beta
+IELTS-005,Speaking Simulation / Evaluation,Learner,/ielts/speaking,ielts_assessment,Very High,Validated Beta,Beta
+CONTENT-001,Taxonomy,Editor/Admin,/operations/taxonomy,content_taxonomy,Medium,Production V1,Launch
+CONTENT-002,Versioned Question Bank,Editor/Admin,/operations/questions,content_taxonomy,High,Production V1,Launch
+CONTENT-003,Course CMS,Editor/Admin,/operations/courses,content_taxonomy,Medium,Production V1,Launch
+CONTENT-004,Culture / Blog / Skills Content,Editor/Admin,/operations/content,content_taxonomy,Medium,Production V1,Launch
+COMM-001,Learner Posts,Learner,/community,community_moderation,High,Foundation,Off by default
+COMM-002,Comments / Reactions,Learner/Teacher,/community/*,community_moderation,High,Foundation,Off by default
+COMM-003,Reports / Moderation,Learner/Teacher/Admin,/community/report,community_moderation,High,Production V1,Launch foundation
+OPS-001,Django Admin / Operations Console,Admin,/admin,operations_audit,Very High,Production V1,Launch
+OPS-002,Feature Flags,Admin,/operations/flags,operations_audit,High,Production V1,Launch
+OPS-003,Audit Logs,Admin,/operations/audit,operations_audit,Very High,Production V1,Launch
+OPS-004,Support Tickets,Support/Admin,/support,operations_audit,Very High,Production V1,Launch
+OPS-005,AI Model / Prompt Registry,Admin,/operations/ai,operations_audit,High,Production V1,Launch
+OPS-006,Notifications,Learner/Teacher,/account/notifications,operations_audit,High,Production V1,Launch
+OPS-007,Product Analytics,Admin,/operations/analytics,operations_audit,Medium,Production V1,Launch
+OPS-008,PWA / Low-bandwidth / Offline-safe Drafts,Learner/Teacher,Application-wide,operations_audit,High,Production V1,Launch
+OPS-009,Backups / Restore / Monitoring / Incident Response,Admin,Operations,operations_audit,Very High,Production V1,Launch gate
+OPS-010,Staging / DNS / HTTPS,Admin,Infrastructure,operations_audit,Very High,Production V1,Launch gate
+POST-001,Scientifically Validated Official CEFR Placement Claims,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-002,Official IELTS Examiner-equivalent Scoring,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-003,Robust Phoneme-level Pronunciation Diagnosis,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-004,Native iOS / Android Apps,N/A,N/A,future_scope,Medium,Post-60 Scale,Do not ship
+POST-005,Real-time Multiplayer Games,N/A,N/A,future_scope,Medium,Post-60 Scale,Do not ship
+POST-006,Unrestricted Direct Messaging / Public Chat,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-007,Webcam Proctoring,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-008,Full School ERP / Attendance Management,N/A,N/A,future_scope,High,Post-60 Scale,Do not ship
+POST-009,Copyright-heavy Book Download Catalogue,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-010,Externally Accredited Certificates,N/A,N/A,future_scope,Very High,Post-60 Scale,Do not ship
+POST-011,Large-city Instant Marketplace Promise,N/A,N/A,future_scope,High,Post-60 Scale,Do not ship

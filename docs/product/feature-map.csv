@@ -1,0 +1,89 @@
+﻿feature_id,family,feature,primary_role,route_family,maturity,launch_status,data_sensitivity,notes
+PUB-001,Public,Home,Visitor,/,Production V1,Launch,Public,Primary acquisition page; one clear CTA hierarchy.
+PUB-002,Public,How Endoora Works,Visitor,/how-it-works,Production V1,Launch,Public,Explain connected learning loop honestly.
+PUB-003,Public,Pricing,Visitor,/pricing,Production V1,Launch,Public,"Premium 90 days / 420,000 toman; configurable backend value."
+PUB-004,Public,FAQ / Help,Visitor,/help,Production V1,Launch,Public,Support and product limitation explanations.
+PUB-005,Public,About,Visitor,/about,Production V1,Launch,Public,"Brand, mission, trust."
+PUB-006,Public,Contact / Support Entry,Visitor,/contact,Production V1,Launch,Low,No sensitive support details in public forms.
+PUB-007,Public,Privacy / Terms / Accessibility / Copyright / Refund / AI Limitations,Visitor,/legal/*,Production V1,Launch,Public,Launch-gate legal/trust pages; draft until reviewed.
+PUB-008,Public,Teachers Directory,Visitor,/teachers,Production V1,Launch,Public,Public teacher discovery with verified status.
+PUB-009,Public,Fixed Classes Directory,Visitor,/classes,Validated Beta,Beta,Public,Do not promise large marketplace liquidity.
+PUB-010,Public,Courses / Skills / Culture Content,Visitor,/learn/*,Production V1,Launch,Public,Original/licensed content only.
+PUB-011,Public,IELTS Hub,Visitor,/ielts,Production V1,Launch,Public,No official IELTS claims.
+ACC-001,Accounts,Registration / Login / Password Recovery,Learner/Teacher,/auth/*,Production V1,Launch,High,Secure identity foundation.
+ACC-002,Accounts,Email / Iranian Mobile Verification,Learner/Teacher,/auth/verify,Production V1,Launch,High,OTP abstraction; throttled and short-lived.
+ACC-003,Accounts,Role Selection,Learner/Teacher,/onboarding/role,Production V1,Launch,Medium,Role selection never grants elevated capabilities by itself.
+ACC-004,Accounts,Consent History,Learner/Teacher,/account/privacy,Production V1,Launch,High,Versioned consent records.
+ACC-005,Accounts,Profile / Sessions / Data Controls,Learner/Teacher,/account/*,Production V1,Launch,High,Export/delete/deactivate entry points.
+LEARN-001,Learner,Learner Dashboard / Today,Learner,/learner,Production V1,Launch,High,One primary next action.
+LEARN-002,Learner,Placement Test,Learner,/placement,Production V1,Launch,High,Resumable multi-stage assessment.
+LEARN-003,Learner,Placement Report / CEFR Estimate,Learner,/placement/report,Production V1,Launch,High,Transparent provisional estimate with confidence/limitations.
+LEARN-004,Learner,Learner Twin,Learner,/learner/twin,Validated Beta,Beta,High,"Explainable, correctable, evidence-linked."
+LEARN-005,Learner,Personal Learning Path,Learner,/learner/path,Production V1,Launch,High,Editable path; dependency aware.
+LEARN-006,Learner,Daily Mission,Learner,/learner/today,Production V1,Launch,High,Adaptive but bounded by explicit rules.
+LEARN-007,Learner,AI Practice Engine,Learner,/learner/practice,Production V1,Launch,High,Schema-validated backend-only AI generation.
+LEARN-008,Learner,Vocabulary / SRS,Learner,/learner/vocabulary,Production V1,Launch,High,Transparent scheduling; learner approval for saved items.
+LEARN-009,Learner,Mistake Genome,Learner,/learner/mistakes,Validated Beta,Beta,High,Recurring pattern threshold; dispute/correction path.
+LEARN-010,Learner,Writing Mentor,Learner,/learner/writing,Validated Beta,Beta,Very High,AI feedback and estimates; preserve learner voice.
+LEARN-011,Learner,Text Roleplay,Learner,/learner/roleplay,Validated Beta,Beta,High,Bounded scenarios and post-session feedback.
+LEARN-012,Learner,Conversation History / Controlled AI Memory,Learner,/learner/conversations,Foundation,Off by default,Very High,"Bounded, inspectable, deletable; raw history separated from evidence."
+LEARN-013,Learner,Voice Conversation,Learner,/learner/voice,Validated Beta,Beta,Very High,Consent-based audio and retention controls.
+LEARN-014,Learner,Pronunciation Lab,Learner,/learner/pronunciation,Validated Beta,Beta,Very High,Trend/intelligibility feedback only; no unvalidated phoneme claims.
+LEARN-015,Learner,Progress Analytics,Learner,/learner/progress,Production V1,Launch,High,Evidence-backed charts plus accessible tables.
+LEARN-016,Learner,XP / Levels / Streaks,Learner,/learner/achievements,Production V1,Launch,Medium,Immutable ledger; anti-abuse rules.
+LEARN-017,Learner,Badges / Challenges,Learner,/learner/achievements,Validated Beta,Beta,Medium,Meaningful learning actions only.
+LEARN-018,Learner,Leaderboards / Clubs,Learner,/learner/community,Foundation,Off by default,Medium,"Opt-in, privacy thresholds; city leaderboards off by default."
+TEACH-001,Teacher,Teacher Dashboard,Teacher,/teacher,Production V1,Launch,High,Urgency-based next action.
+TEACH-002,Teacher,Teacher Profile / Verification,Teacher,/teacher/profile,Production V1,Launch,Very High,Verification distinct from role.
+TEACH-003,Teacher,Students / Linked Learners,Teacher,/teacher/students,Production V1,Launch,Very High,Object-level access only.
+TEACH-004,Teacher,Classes / Teaching History / Hours,Teacher,/teacher/classes,Production V1,Launch,High,Structured class and session records.
+TEACH-005,Teacher,Question Bank Upload,Teacher,/teacher/questions,Production V1,Launch,High,Teacher-private by default; public requires review.
+TEACH-006,Teacher,Assignments,Teacher,/teacher/assignments,Production V1,Launch,High,"Autosave, due dates, attempts, accommodations."
+TEACH-007,Teacher,Submission / Grading / Feedback,Teacher,/teacher/grading,Production V1,Launch,Very High,Teacher grading and objective auto-grading where safe.
+TEACH-008,Teacher,Teacher Resources / Experiences,Teacher,/teacher/resources,Validated Beta,Beta,Medium,Moderated contributions.
+MKT-001,Marketplace,Teacher Directory / Follow,Learner/Teacher,/teachers,Production V1,Launch,Medium,Verified status and safe visibility.
+MKT-002,Marketplace,Learn Now Requests / Matching,Learner/Teacher,/marketplace/requests,Validated Beta,Beta,High,Asynchronous matching; no instant-dispatch promise.
+MKT-003,Marketplace,Teacher Offers,Teacher,/marketplace/offers,Validated Beta,Beta,High,Eligibility and audit controls.
+MKT-004,Marketplace,Booking / Schedule,Learner/Teacher,/bookings,Production V1,Launch,High,"State machine, idempotency, timezone-safe."
+MKT-005,Marketplace,Controlled Session Messaging,Learner/Teacher,/bookings/*/messages,Foundation,Limited,Very High,No unrestricted direct chat at launch.
+MKT-006,Marketplace,Reviews / Disputes,Learner/Teacher,/bookings/*/review,Validated Beta,Beta,High,Moderation and support escalation.
+MKT-007,Marketplace,Fixed Classes,Learner/Teacher,/classes,Validated Beta,Beta,High,"Capacity, waitlist, teacher verification."
+COM-001,Commerce,Plans / Entitlements,Learner,/account/plan,Production V1,Launch,High,Premium 90-day plan; effective-dated pricing.
+COM-002,Commerce,Orders / Billing / Receipts,Learner,/account/billing,Production V1,Launch,Very High,Immutable financial history.
+COM-003,Commerce,ZarinPal Payment,Learner,/checkout,Production V1,Launch gate,Very High,Server-side request and verification; duplicate callbacks harmless.
+COM-004,Commerce,Refunds,Admin/Support,/operations/refunds,Production V1,Launch,Very High,Audited workflow; no direct payment-status edits.
+COM-005,Commerce,Teacher Earnings Ledger,Teacher/Admin,/teacher/account/earnings,Production V1,Launch,Very High,Immutable ledger.
+COM-006,Commerce,Teacher Payout Requests,Teacher/Admin,/teacher/account/payouts,Foundation,Manual review,Very High,Automated payouts not launch-critical.
+IELTS-001,IELTS,IELTS Content Model / Review,Editor/Admin,/operations/ielts,Production V1,Launch,High,Original/licensed/human-reviewed only.
+IELTS-002,IELTS,Listening / Reading Simulation,Learner,/ielts/practice,Production V1,Launch,High,Exam-like UX and objective scoring.
+IELTS-003,IELTS,Writing Simulation,Learner,/ielts/writing,Production V1,Launch,Very High,"Autosave, word count, telemetry."
+IELTS-004,IELTS,Writing Evaluation,Learner,/ielts/writing/report,Validated Beta,Beta,Very High,AI estimate with range and uncertainty.
+IELTS-005,IELTS,Speaking Simulation / Evaluation,Learner,/ielts/speaking,Validated Beta,Beta,Very High,Recording consent and cautious estimate.
+CONTENT-001,Content,Taxonomy,Editor/Admin,/operations/taxonomy,Production V1,Launch,Medium,Stable objective IDs and localization.
+CONTENT-002,Content,Versioned Question Bank,Editor/Admin,/operations/questions,Production V1,Launch,High,Immutable published versions and licensing metadata.
+CONTENT-003,Content,Course CMS,Editor/Admin,/operations/courses,Production V1,Launch,Medium,Original/licensed content.
+CONTENT-004,Content,Culture / Blog / Skills Content,Editor/Admin,/operations/content,Production V1,Launch,Medium,Editorial review and rights tracking.
+COMM-001,Community,Learner Posts,Learner,/community,Foundation,Off by default,High,Moderation required; not launch-critical.
+COMM-002,Community,Comments / Reactions,Learner/Teacher,/community/*,Foundation,Off by default,High,Broad public comments remain off by default.
+COMM-003,Community,Reports / Moderation,Learner/Teacher/Admin,/community/report,Production V1,Launch foundation,High,Required before any community feature is enabled.
+OPS-001,Operations,Django Admin / Operations Console,Admin,/admin,Production V1,Launch,Very High,Least privilege and audit trail.
+OPS-002,Operations,Feature Flags,Admin,/operations/flags,Production V1,Launch,High,Kill switches for beta/high-risk features.
+OPS-003,Operations,Audit Logs,Admin,/operations/audit,Production V1,Launch,Very High,Append-only privileged action history.
+OPS-004,Operations,Support Tickets,Support/Admin,/support,Production V1,Launch,Very High,Least-privilege case access.
+OPS-005,Operations,AI Model / Prompt Registry,Admin,/operations/ai,Production V1,Launch,High,"Backend-only routing, budgets, evaluation status."
+OPS-006,Operations,Notifications,Learner/Teacher,/account/notifications,Production V1,Launch,High,In-app/email/Iranian SMS with preferences.
+OPS-007,Operations,Product Analytics,Admin,/operations/analytics,Production V1,Launch,Medium,Privacy-aware events; no raw learner content.
+OPS-008,Operations,PWA / Low-bandwidth / Offline-safe Drafts,Learner/Teacher,Application-wide,Production V1,Launch,High,Resumable workflows and degraded states.
+OPS-009,Operations,Backups / Restore / Monitoring / Incident Response,Admin,Operations,Production V1,Launch gate,Very High,Required before paid production.
+OPS-010,Operations,Staging / DNS / HTTPS,Admin,Infrastructure,Production V1,Launch gate,Very High,IRNIC changes only after staging exists.
+POST-001,Post-60,Scientifically Validated Official CEFR Placement Claims,N/A,N/A,Post-60 Scale,Do not ship,Very High,Requires expert calibration and validation.
+POST-002,Post-60,Official IELTS Examiner-equivalent Scoring,N/A,N/A,Post-60 Scale,Do not ship,Very High,No official-score claims without validation/authorization.
+POST-003,Post-60,Robust Phoneme-level Pronunciation Diagnosis,N/A,N/A,Post-60 Scale,Do not ship,Very High,Requires validation across accents.
+POST-004,Post-60,Native iOS / Android Apps,N/A,N/A,Post-60 Scale,Do not ship,Medium,PWA first.
+POST-005,Post-60,Real-time Multiplayer Games,N/A,N/A,Post-60 Scale,Do not ship,Medium,Not core launch retention.
+POST-006,Post-60,Unrestricted Direct Messaging / Public Chat,N/A,N/A,Post-60 Scale,Do not ship,Very High,Child-safety and moderation risk.
+POST-007,Post-60,Webcam Proctoring,N/A,N/A,Post-60 Scale,Do not ship,Very High,Privacy/high-stakes risk.
+POST-008,Post-60,Full School ERP / Attendance Management,N/A,N/A,Post-60 Scale,Do not ship,High,Outside core product loop.
+POST-009,Post-60,Copyright-heavy Book Download Catalogue,N/A,N/A,Post-60 Scale,Do not ship,Very High,Licensing risk.
+POST-010,Post-60,Externally Accredited Certificates,N/A,N/A,Post-60 Scale,Do not ship,Very High,Requires authorization.
+POST-011,Post-60,Large-city Instant Marketplace Promise,N/A,N/A,Post-60 Scale,Do not ship,High,Requires proven supply/liquidity.
