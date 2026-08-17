@@ -1,0 +1,20 @@
+{
+  "name": "endoora",
+  "version": "0.2.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/ui",
+    "packages/contracts"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace @endoora/web",
+    "build": "npm run build --workspace @endoora/web",
+    "lint": "npm run lint --workspace @endoora/web",
+    "typecheck": "npm run typecheck --workspace @endoora/ui && npm run typecheck --workspace @endoora/contracts && npm run typecheck --workspace @endoora/web"
+  },
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=10"
+  }
+}
