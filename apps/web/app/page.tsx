@@ -29,11 +29,14 @@ export default async function Home() {
   const health = await getApiHealth();
 
   return (
-    <main>
+    <main className="local-home font-latin" dir="ltr" lang="en">
       <section className="card" aria-labelledby="page-title">
         <EndooraWordmark />
         <h1 id="page-title">Local development environment</h1>
-        <p className="muted">Day 02 foundation: web + API + PostgreSQL + Redis.</p>
+        <p className="muted">Day 03 foundation: bilingual design tokens + web + API + PostgreSQL + Redis.</p>
+        <p>
+          Design-system preview: <a href="/design-system">open the token gallery</a>.
+        </p>
 
         <div className="status" role="status" aria-live="polite">
           <strong>{health ? "API connected" : "API unavailable"}</strong>

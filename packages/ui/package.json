@@ -1,9 +1,11 @@
 {
   "name": "@endoora/ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "exports": {
-    ".": "./src/index.tsx"
+    ".": "./src/index.tsx",
+    "./theme": "./src/theme.ts",
+    "./tokens.css": "./src/tokens.css"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

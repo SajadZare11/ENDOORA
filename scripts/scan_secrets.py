@@ -7,11 +7,27 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_TRACKED_NAMES = {".env", "id_rsa", "id_ed25519"}
-PATTERNS = [
+FIXED_PATTERNS = [
     ("private key", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")),
     ("OpenRouter key", re.compile(r"sk-or-v1-[A-Za-z0-9_-]{20,}")),
-    ("generic API secret assignment", re.compile(r"(?i)(api[_-]?key|secret[_-]?key|merchant[_-]?id)\s*[:=]\s*['\"]?[A-Za-z0-9_-]{24,}")),
 ]
+GENERIC_SECRET_ASSIGNMENT = re.compile(
+    r"(?im)\b(api[_-]?key|secret[_-]?key|merchant[_-]?id)\s*[:=]\s*['\"]?([^\s'\"#]+)"
+)
+PLACEHOLDER_MARKERS = {
+    "placeholder",
+    "replace-me",
+    "change-me",
+    "example",
+    "dummy",
+    "fake",
+    "local-development",
+    "ci-only",
+    "not-a-production-secret",
+    "your-",
+    "<",
+    ">",
+}
 
 
 def tracked_files() -> list[Path]:
@@ -23,6 +39,28 @@ def tracked_files() -> list[Path]:
         text=True,
     )
     return [ROOT / line for line in result.stdout.splitlines() if line.strip()]
+
+
+def is_obvious_placeholder(value: str) -> bool:
+    normalized = value.strip().lower()
+    if not normalized:
+        return True
+    return any(marker in normalized for marker in PLACEHOLDER_MARKERS)
+
+
+def scan_text(text: str) -> list[str]:
+    findings: list[str] = []
+    for label, pattern in FIXED_PATTERNS:
+        if pattern.search(text):
+            findings.append(label)
+
+    for match in GENERIC_SECRET_ASSIGNMENT.finditer(text):
+        value = match.group(2).rstrip(",;)")
+        if len(value) >= 24 and not is_obvious_placeholder(value):
+            findings.append("generic API secret assignment")
+            break
+
+    return findings
 
 
 def main() -> int:
@@ -37,9 +75,8 @@ def main() -> int:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
-        for label, pattern in PATTERNS:
-            if pattern.search(text):
-                problems.append(f"possible {label}: {path.relative_to(ROOT)}")
+        for label in scan_text(text):
+            problems.append(f"possible {label}: {path.relative_to(ROOT)}")
 
     if problems:
         print("Secret scan FAILED")

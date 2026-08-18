@@ -163,3 +163,41 @@ docker compose stop
 ```
 
 Do not use `docker compose down -v`; `-v` deletes local database/Redis volumes.
+
+## Day 03 design system
+
+After the Day 02 services are running, open:
+
+```text
+http://localhost:3000/design-system
+```
+
+The preview contains Endoora color/type/spacing tokens, a bilingual mixed-content card, light/dark mode controls, RTL/LTR controls, semantic states, and keyboard-focus examples.
+
+Run the Day 03 design smoke check from the repository root:
+
+```powershell
+npm run check:design
+```
+
+Expected result:
+
+```text
+Design token checks passed: 14 AA contrast pairs, focus, reduced motion, logical CSS, and centralized colors.
+```
+
+Then run the normal frontend regression checks:
+
+```powershell
+npm run lint
+```
+
+```powershell
+npm run typecheck
+```
+
+```powershell
+npm run build
+```
+
+The complete manual Day 03 gate is in `docs/operations/DAY_03_ACCEPTANCE_GATE.md`.

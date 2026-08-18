@@ -1,0 +1,218 @@
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Brand palette */
+  --color-deep-navy: #0f172a;
+  --color-endoora-blue: #2563eb;
+  --color-learning-teal: #14b8a6;
+  --color-achievement-amber: #f59e0b;
+  --color-success-green: #16a34a;
+  --color-warning-orange: #d97706;
+  --color-error-red: #dc2626;
+
+  /* Surfaces and text */
+  --color-canvas: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-action: #2563eb;
+  --color-action-text: #ffffff;
+  --color-link: #1d4ed8;
+  --color-focus: #2563eb;
+
+  /* Accessible semantic support tokens */
+  --color-success-bg: #dcfce7;
+  --color-success-text: #14532d;
+  --color-warning-bg: #ffedd5;
+  --color-warning-text: #7c2d12;
+  --color-error-bg: #fee2e2;
+  --color-error-text: #991b1b;
+  --color-info-bg: #dbeafe;
+  --color-info-text: #1e3a8a;
+
+  /* Typography */
+  --font-family-persian: var(--font-vazirmatn, "Vazirmatn"), Tahoma, Arial, sans-serif;
+  --font-family-latin: var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-size-hero: 2.5rem;
+  --line-height-hero: 1.2;
+  --font-size-page-title: 2rem;
+  --line-height-page-title: 1.25;
+  --font-size-section-title: 1.5rem;
+  --line-height-section-title: 1.333;
+  --font-size-card-title: 1.25rem;
+  --line-height-card-title: 1.4;
+  --font-size-body: 1rem;
+  --line-height-body-latin: 1.5;
+  --line-height-body-persian: 1.6;
+  --font-size-meta: 0.875rem;
+  --line-height-meta: 1.429;
+
+  /* Spacing: 8px base with intentional half-steps */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Shape and elevation */
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+  --shadow-subtle: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px rgb(15 23 42 / 0.06);
+  --shadow-raised: 0 12px 30px rgb(15 23 42 / 0.12);
+
+  /* Layout */
+  --content-width: 78rem;
+  --reading-width: 46rem;
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --target-min: 2.75rem;
+
+  /* Motion and focus */
+  --motion-fast: 150ms;
+  --motion-normal: 200ms;
+  --motion-slow: 250ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 3px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-canvas: #08111f;
+  --color-surface: #111c2e;
+  --color-text: #f8fafc;
+  --color-muted: #cbd5e1;
+  --color-border: #334155;
+  --color-action: #2563eb;
+  --color-action-text: #ffffff;
+  --color-link: #93c5fd;
+  --color-focus: #60a5fa;
+  --color-success-bg: #123b26;
+  --color-success-text: #bbf7d0;
+  --color-warning-bg: #422006;
+  --color-warning-text: #fed7aa;
+  --color-error-bg: #450a0a;
+  --color-error-text: #fecaca;
+  --color-info-bg: #172554;
+  --color-info-text: #bfdbfe;
+  --shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.22), 0 8px 24px rgb(0 0 0 / 0.18);
+  --shadow-raised: 0 12px 30px rgb(0 0 0 / 0.3);
+}
+
+.font-persian {
+  font-family: var(--font-family-persian);
+  line-height: var(--line-height-body-persian);
+}
+
+.font-latin {
+  font-family: var(--font-family-latin);
+  line-height: var(--line-height-body-latin);
+}
+
+.text-hero {
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-hero);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.text-page-title {
+  font-size: var(--font-size-page-title);
+  line-height: var(--line-height-page-title);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.text-section-title {
+  font-size: var(--font-size-section-title);
+  line-height: var(--line-height-section-title);
+  font-weight: 750;
+}
+
+.text-card-title {
+  font-size: var(--font-size-card-title);
+  line-height: var(--line-height-card-title);
+  font-weight: 700;
+}
+
+.text-body {
+  font-size: var(--font-size-body);
+}
+
+.text-meta {
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+}
+
+.ltr-isolate {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
+.rtl-isolate {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
+.endoora-wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--color-text);
+}
+
+.endoora-wordmark__name {
+  font-family: var(--font-family-latin);
+  font-size: 2.25rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.endoora-wordmark__motto {
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body-latin);
+  color: var(--color-muted);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  [data-theme] {
+    --motion-fast: 0.001ms;
+    --motion-normal: 0.001ms;
+    --motion-slow: 0.001ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root,
+  [data-theme] {
+    --font-size-hero: 2rem;
+    --font-size-page-title: 1.75rem;
+    --font-size-section-title: 1.375rem;
+  }
+}

@@ -1,28 +1,15 @@
-import type { CSSProperties } from "react";
+export { tokens, themeDataAttributes, themeNames, textDirections } from "./theme";
+export type { EndooraTheme, TextDirection } from "./theme";
 
-const containerStyle: CSSProperties = {
-  display: "inline-flex",
-  flexDirection: "column",
-  gap: 4,
+export type EndooraWordmarkProps = {
+  compact?: boolean;
 };
 
-const nameStyle: CSSProperties = {
-  fontSize: 36,
-  lineHeight: 1.1,
-  fontWeight: 800,
-  letterSpacing: "-0.03em",
-};
-
-const mottoStyle: CSSProperties = {
-  fontSize: 16,
-  lineHeight: 1.5,
-};
-
-export function EndooraWordmark() {
+export function EndooraWordmark({ compact = false }: EndooraWordmarkProps) {
   return (
-    <div style={containerStyle} aria-label="Endoora — A new door to your English">
-      <span style={nameStyle}>Endoora</span>
-      <span style={mottoStyle}>A new door to your English</span>
+    <div className="endoora-wordmark" aria-label="Endoora — A new door to your English">
+      <span className="endoora-wordmark__name">Endoora</span>
+      {!compact && <span className="endoora-wordmark__motto">A new door to your English</span>}
     </div>
   );
 }
