@@ -97,6 +97,8 @@ const cssFiles = [
   tokenPath,
   path.join(root, "apps", "web", "app", "globals.css"),
   path.join(root, "apps", "web", "app", "design-system", "design-system.module.css"),
+  path.join(root, "packages", "ui", "src", "components.css"),
+  path.join(root, "apps", "web", "app", "design-system", "components", "components-preview.module.css"),
 ];
 
 for (const file of cssFiles) {

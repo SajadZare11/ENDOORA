@@ -201,3 +201,45 @@ npm run build
 ```
 
 The complete manual Day 03 gate is in `docs/operations/DAY_03_ACCEPTANCE_GATE.md`.
+
+## Day 04 accessible component library
+
+Open the component preview after starting the web app:
+
+```text
+http://localhost:3000/design-system/components
+```
+
+The page demonstrates the shared Endoora buttons, labelled forms, tabs, cards, dialog/drawer, toast, loading/progress states, resumable stepper, responsive data table, accessible chart, AI result card, standardized recovery states, provider-status messaging, Account navigation, and role-aware desktop/mobile shell.
+
+Run the Day 04 static accessibility/component smoke check from the repository root:
+
+```powershell
+npm run check:components
+```
+
+Expected result:
+
+```text
+Day 04 component checks passed: 29 visual examples, labels/errors, keyboard tabs, modal focus semantics, 44px targets, responsive table/cards, chart table fallback, recovery states, and logical CSS.
+```
+
+Then repeat the normal regression checks:
+
+```powershell
+npm run lint
+```
+
+```powershell
+npm run typecheck
+```
+
+```powershell
+npm run check:design
+```
+
+```powershell
+npm run build
+```
+
+The complete Day 04 manual gate is in `docs/operations/DAY_04_ACCEPTANCE_GATE.md`.

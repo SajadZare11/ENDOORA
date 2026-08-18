@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "@endoora/ui/tokens.css";
+import "@endoora/ui/components.css";
 import "./globals.css";
 
 const inter = Inter({

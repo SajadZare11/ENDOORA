@@ -21,6 +21,7 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run check:design
+      - run: npm run check:components
       - run: npm run build
 
   backend:

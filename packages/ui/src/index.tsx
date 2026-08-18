@@ -1,3 +1,4 @@
+export * from "./components";
 export { tokens, themeDataAttributes, themeNames, textDirections } from "./theme";
 export type { EndooraTheme, TextDirection } from "./theme";
 

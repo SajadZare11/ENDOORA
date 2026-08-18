@@ -1,5 +1,35 @@
 # Endoora Changelog
 
+## Day 04 — Accessible component library
+
+### Added
+- More than 25 reusable visual component examples at `/design-system/components`
+- Action primitives: Button variants and IconButton
+- Labelled form controls plus linked ErrorSummary
+- Keyboard Tabs with Arrow/Home/End behavior
+- Card and semantic Badge components
+- Native Dialog and Drawer with focus restoration
+- Toast live region, Skeleton, ProgressBar, and StatusMessage
+- Resumable Stepper with Back/Save/Cancel/refresh recovery
+- Responsive DataTable with mobile cards
+- AccessibleChart with textual summary and data table
+- AIResultCard with evidence, confidence, limitations, retry/report/save/human-review controls
+- Empty, PermissionDenied, Offline, Retry, and ProviderStatus states
+- AccountNavigation and role-aware responsive RoleShell
+- Day 04 automated component/accessibility static smoke check
+- Component-library usage documentation and acceptance gate
+
+### Changed
+- UI/web package version moved to `0.4.0`.
+- Root web layout now imports shared component styles from `@endoora/ui/components.css`.
+- Day 03 token check now also guards Day 04 component styles against raw colors and physical left/right CSS properties.
+- Local home now links to both token and component previews.
+
+### Runtime/data changes
+- No database migration.
+- No backend API contract change.
+- No authentication, payment, storage, permission, or user-data change.
+
 ## Day 03 — Bilingual design-token and brand system
 
 ### Added

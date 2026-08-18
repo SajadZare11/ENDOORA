@@ -33,9 +33,9 @@ export default async function Home() {
       <section className="card" aria-labelledby="page-title">
         <EndooraWordmark />
         <h1 id="page-title">Local development environment</h1>
-        <p className="muted">Day 03 foundation: bilingual design tokens + web + API + PostgreSQL + Redis.</p>
+        <p className="muted">Day 04 foundation: bilingual design tokens + accessible component library + web + API + PostgreSQL + Redis.</p>
         <p>
-          Design-system preview: <a href="/design-system">open the token gallery</a>.
+          Design-system previews: <a href="/design-system">tokens</a> · <a href="/design-system/components">components</a>.
         </p>
 
         <div className="status" role="status" aria-live="polite">
