@@ -1,0 +1,126 @@
+.site {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--color-learning-teal) 10%, transparent), transparent 38%),
+    var(--color-canvas);
+  color: var(--color-text);
+}
+
+.skipLink {
+  position: fixed;
+  inset-block-start: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 100;
+  transform: translateY(-180%);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-subtle);
+}
+
+.skipLink:focus { transform: translateY(0); }
+
+.header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 40;
+  border-block-end: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.headerInner {
+  width: min(var(--content-width), calc(100% - (2 * var(--space-4))));
+  min-height: 76px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.brandName,
+.footerBrand {
+  font-family: var(--font-family-latin);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.brandName { font-size: 1.35rem; }
+.motto { color: var(--color-muted); font: 500 0.72rem/1.2 var(--font-family-latin); }
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--space-2), 1.7vw, var(--space-5));
+}
+
+.desktopNav a,
+.footer a,
+.mobileMenu a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.desktopNav a:hover,
+.footer a:hover,
+.mobileMenu a:hover { color: var(--color-link); }
+
+.actions { display: flex; align-items: center; gap: var(--space-2); }
+.language,
+.primaryCta {
+  display: inline-flex;
+  min-block-size: 44px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  font-weight: 700;
+}
+.language { border: 1px solid var(--color-border); color: var(--color-text); background: var(--color-surface); }
+.primaryCta { background: var(--color-action); color: #fff; }
+
+.mobileMenu { display: none; width: min(var(--content-width), calc(100% - (2 * var(--space-4)))); margin-inline: auto; padding-block-end: var(--space-3); }
+.mobileMenu summary { cursor: pointer; font-weight: 700; }
+.mobileMenu nav { display: grid; gap: var(--space-2); padding-block-start: var(--space-3); }
+.mobileMenu a { padding: var(--space-2) 0; }
+
+.main { width: min(var(--content-width), calc(100% - (2 * var(--space-4)))); margin-inline: auto; padding-block: clamp(var(--space-8), 7vw, var(--space-16)); }
+
+.footer { margin-block-start: var(--space-16); border-block-start: 1px solid var(--color-border); background: var(--color-surface); }
+.footerGrid { width: min(var(--content-width), calc(100% - (2 * var(--space-4)))); margin-inline: auto; padding-block: var(--space-10); display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: var(--space-8); }
+.footerGrid > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.footerText { max-width: 34rem; color: var(--color-muted); }
+.copyright { width: min(var(--content-width), calc(100% - (2 * var(--space-4)))); margin: 0 auto; padding-block: var(--space-4); border-block-start: 1px solid var(--color-border); color: var(--color-muted); font-size: 0.875rem; }
+
+@media (max-width: 70rem) {
+  .desktopNav { display: none; }
+  .headerInner { grid-template-columns: 1fr auto; }
+  .mobileMenu { display: block; }
+}
+
+@media (max-width: 44rem) {
+  .headerInner { min-height: 68px; }
+  .primaryCta { display: none; }
+  .motto { display: none; }
+  .footerGrid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 28rem) {
+  .footerGrid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skipLink { transition: none; }
+}

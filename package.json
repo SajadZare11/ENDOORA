@@ -13,7 +13,8 @@
     "lint": "npm run lint --workspace @endoora/web",
     "typecheck": "npm run typecheck --workspace @endoora/ui && npm run typecheck --workspace @endoora/contracts && npm run typecheck --workspace @endoora/web",
     "check:design": "node scripts/check-design-tokens.mjs",
-    "check:components": "node scripts/check-components.mjs"
+    "check:components": "node scripts/check-components.mjs",
+    "check:public": "node scripts/check-public-site.mjs"
   },
   "engines": {
     "node": ">=24 <25",

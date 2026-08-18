@@ -16,14 +16,22 @@ const vazirmatn = Vazirmatn({
   display: "swap",
 });
 
+const publicUrl = new URL(process.env.ENDOORA_PUBLIC_URL ?? "https://endoora.ir");
+
 export const metadata: Metadata = {
-  title: "Endoora — Local Development",
-  description: "Endoora local development environment",
+  metadataBase: publicUrl,
+  title: {
+    default: "Endoora | A new door to your English",
+    template: "%s | Endoora",
+  },
+  description: "Endoora is a Persian-first English learning system for Iranian learners.",
+  applicationName: "Endoora",
+  category: "education",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body className={`${vazirmatn.variable} ${inter.variable}`}>{children}</body>
     </html>
   );

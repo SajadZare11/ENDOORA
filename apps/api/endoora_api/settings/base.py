@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "core",
+    "waitlist",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -57,7 +57,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "endoora_api.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -72,10 +71,8 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = "endoora_api.wsgi.application"
 ASGI_APPLICATION = "endoora_api.asgi.application"
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -87,7 +84,6 @@ DATABASES = {
         "CONN_MAX_AGE": 60,
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -100,7 +96,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 ENDOORA_DISPLAY_TIMEZONE = validated_timezone()
-
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -109,4 +104,7 @@ ENDOORA_REDIS_URL = os.getenv("ENDOORA_REDIS_URL", "redis://127.0.0.1:6379/0")
 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+    "DEFAULT_THROTTLE_RATES": {
+        "waitlist": "20/hour",
+    },
 }
