@@ -121,3 +121,18 @@ None. No Endoora domain data existed yet.
 - No backend API change.
 - No authentication/payment/storage/user-data change.
 - No dependency or lock-file change.
+
+## Day 05 localization correction
+
+- Made Persian (`fa`) the default language of the Day 05 IA prototype.
+- Added an English language switch.
+- Kept `Endoora` and `A new door to your English` unchanged in English.
+- Added explicit RTL/LTR switching.
+- Added the permanent Persian-first localization contract.
+- Added regression/acceptance requirements for Persian default UI and isolated English LTR content.
+
+## Day 05 root locale correction
+
+- Synchronized the actual document root `<html lang>` and `<html dir>` attributes with the Day 05 Persian/English language switch.
+- Added a regression check so an inner-container-only locale change cannot pass.
+- Clarified that the mobile acceptance gate must be tested at exactly 360 px, not merely a nearby responsive width.

@@ -126,3 +126,68 @@ git diff --cached
 git commit -m "Day 05: Freeze information architecture, Account hub, and critical user flows"
 git push
 ```
+
+## 8. Persian-first localization correction
+
+Before Day 05 is committed, verify the IA prototype again.
+
+Open:
+
+`http://localhost:3000/design-system/information-architecture`
+
+### Default load
+
+- [ ] The initial/default interface is Persian.
+- [ ] The main container is RTL.
+- [ ] `Endoora` remains English.
+- [ ] `A new door to your English` remains English.
+- [ ] Navigation labels such as خانه, تعیین سطح, مدرس‌ها, حساب کاربری and صورتحساب are Persian.
+- [ ] Technical routes such as `/placement` remain LTR/English.
+- [ ] `IELTS` remains readable as an isolated English term where appropriate.
+
+### English switch
+
+Click **English**.
+
+- [ ] UI labels switch to English.
+- [ ] Layout direction becomes LTR.
+- [ ] Endoora title/motto remain unchanged.
+- [ ] No horizontal overflow appears at 360 px.
+
+Click **فارسی** again.
+
+- [ ] UI returns to Persian.
+- [ ] Layout direction returns to RTL.
+
+Day 05 does not pass if English is the default user-facing interface.
+
+## 9. Root HTML language/direction verification
+
+The language switch must update the real document root, not only an inner container.
+
+With the page in Persian, open DevTools -> Elements and inspect the first `<html>` element:
+
+```html
+<html lang="fa" dir="rtl">
+```
+
+Switch to English and inspect the same `<html>` element:
+
+```html
+<html lang="en" dir="ltr">
+```
+
+Then switch back to Persian before continuing.
+
+This matters for screen readers, browser language behavior, direction-aware global CSS, and accessibility tooling.
+
+### Mobile width
+
+Set Chrome DevTools responsive width to **360** exactly. A 400 px test is useful but does not satisfy the Day 05 360 px gate.
+
+- [ ] Width reads `360`.
+- [ ] No horizontal page overflow.
+- [ ] Brand, language switch and developer links remain usable.
+- [ ] Role cards stack to one column.
+- [ ] Persian default remains RTL.
+- [ ] English option remains LTR.

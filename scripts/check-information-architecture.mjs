@@ -9,6 +9,7 @@ const requiredFiles = [
   "docs/product/account-hub.md",
   "docs/product/navigation-matrix.md",
   "docs/product/workflow-state-contracts.md",
+  "docs/product/localization-contract.md",
   "docs/product/route-inventory.csv",
   "docs/product/wireframes/README.md",
   "docs/product/wireframes/placement-to-path.md",
@@ -38,6 +39,7 @@ if (failures.length === 0) {
   const page = read("apps/web/app/design-system/information-architecture/page.tsx");
   const account = read("docs/product/account-hub.md");
   const states = read("docs/product/workflow-state-contracts.md");
+  const localization = read("docs/product/localization-contract.md");
   const inventory = read("docs/product/route-inventory.csv");
   const css = read("apps/web/app/design-system/information-architecture/information-architecture.module.css");
 
@@ -66,6 +68,34 @@ if (failures.length === 0) {
     if (!states.toLowerCase().includes(label.toLowerCase())) failures.push(`State contract missing: ${label}`);
   }
 
+  const persianRequired = ["خانه", "تعیین سطح", "مدرس‌ها", "حساب کاربری", "صورتحساب", "فارسی"];
+  for (const label of persianRequired) {
+    if (!page.includes(label)) failures.push(`Persian-first prototype missing label: ${label}`);
+  }
+
+  if (!page.includes('useState<Locale>("fa")')) {
+    failures.push("Persian is not the default locale in the Day 05 IA prototype");
+  }
+  if (!page.includes('dir={locale === "fa" ? "rtl" : "ltr"}')) {
+    failures.push("IA prototype does not switch RTL/LTR with locale");
+  }
+  if (
+    !page.includes("document.documentElement") ||
+    !page.includes("root.lang = locale") ||
+    !page.includes('root.dir = locale === "fa" ? "rtl" : "ltr"')
+  ) {
+    failures.push("Visible locale changes do not update the actual HTML lang/dir attributes");
+  }
+  if (!page.includes("A new door to your English") || !page.includes("EndooraWordmark")) {
+    failures.push("English Endoora title/motto brand exception is missing");
+  }
+  if (!localization.includes("default user-facing language is **Persian (fa)**")) {
+    failures.push("Localization contract does not declare Persian as the default UI");
+  }
+  if (!localization.includes("English") || !localization.includes("RTL") || !localization.includes("LTR")) {
+    failures.push("Localization contract is missing English switch or RTL/LTR rules");
+  }
+
   const routeLines = inventory.split(/\r?\n/).filter(Boolean);
   if (routeLines.length < 80) failures.push(`Route inventory too small: ${routeLines.length - 1} data rows`);
   if (!inventory.includes("route_guard") || !inventory.includes("primary_cta") || !inventory.includes("deep_link_contract")) {
@@ -91,6 +121,7 @@ if (failures.length) {
 }
 
 console.log(
-  "Day 05 IA checks passed: role navigation, Account hub, 6 critical wireframes, " +
-  "route ownership/deep-link contracts, required recovery states, 5 findability targets, and logical token CSS."
+  "Day 05 IA checks passed: Persian-first RTL default + English switch, root HTML lang/dir synchronization, Endoora title/motto preserved in English, " +
+  "role navigation, Account hub, 6 critical wireframes, route ownership/deep-link contracts, required recovery states, " +
+  "5 findability targets, and logical token CSS."
 );

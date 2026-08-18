@@ -15,6 +15,7 @@
 
 Day 01–Day 04 foundations remain intact, plus:
 
+- Persian-first RTL default interface contract with an English switch
 - Frozen public, learner, teacher and operations sitemap
 - Learner primary nav: Home, Learn, Practice, Teachers & Classes, Account
 - Teacher primary nav: Home, Teach, Marketplace, Resources, Account
@@ -24,7 +25,7 @@ Day 01–Day 04 foundations remain intact, plus:
 - Save/Back/Cancel/refresh/reconnect route-state convention
 - Six critical journey wireframes
 - ADR-002 navigation decision
-- `/design-system/information-architecture` developer findability prototype
+- `/design-system/information-architecture` developer findability prototype; Persian/RTL by default with English/LTR switch
 - Day 05 static IA smoke check
 
 ## Features behind flags
@@ -35,7 +36,7 @@ Later beta/foundation destinations in the IA are specifications, not enabled pro
 ## Known defects / pending verification
 
 - Five-person hallway/findability test is human-only and cannot be truthfully marked passed by generated code.
-- Founder must verify `/design-system/information-architecture` at 360 px and desktop.
+- Founder must verify `/design-system/information-architecture` at 360 px and desktop in Persian/RTL and English/LTR, including the actual root `<html lang>` and `<html dir>` attributes.
 - Founder must run the complete frontend regression/build suite after applying Day 05.
 - Planned product routes shown in the IA prototype are not necessarily implemented yet; the prototype uses in-page destinations to test findability.
 - Record the actual Day 05 Git commit hash only after the successful local commit; do not invent it.

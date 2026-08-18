@@ -53,3 +53,18 @@ Loading, empty, error/retry, offline/interrupted, expired-session and permission
 - Marketplace and learning-path concepts do not become one ambiguous destination.
 - Later dashboards cannot become a feature catalogue without changing this ADR.
 - Backend authorization remains mandatory even when a link is hidden.
+
+## Day 05 localization amendment
+
+All navigation labels described by this ADR are **display concepts**, not hardcoded English UI copy.
+
+The production rule is:
+
+- Persian (`fa`) is the default interface.
+- The page direction is RTL by default.
+- English is available through a language switch.
+- `Endoora` and `A new door to your English` remain English.
+- Route slugs and technical identifiers remain stable rather than being translated.
+- English-learning material is isolated LTR within Persian pages.
+
+Canonical localized navigation examples are documented in `docs/product/localization-contract.md`.
