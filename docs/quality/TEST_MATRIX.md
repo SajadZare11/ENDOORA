@@ -62,3 +62,24 @@
 | Secret scan | PENDING founder repeat | No Day 04 secret-bearing feature added |
 | API logs | PENDING founder machine | No backend change; confirm no regression |
 | Worker logs | N/A | No background worker feature added by Day 04 |
+
+## Day 05 status
+
+| Layer | Status | Evidence / next action |
+|---|---|---|
+| IA required-file/static check | PASS in generated package | `node scripts\check-information-architecture.mjs` |
+| Public/learner/teacher sitemap | STATIC PASS | canonical role navigation present |
+| Account consolidation | STATIC PASS | low-frequency tools grouped under Account |
+| Six critical wireframes | STATIC PASS | exactly six files |
+| Route inventory | STATIC PASS | route owner/guard/CTA/deep-link/state columns present |
+| Day 05 IA prototype | SOURCE PASS / browser pending | `/design-system/information-architecture` |
+| Frontend lint/typecheck | PENDING founder after copy | run normal regression |
+| Day 03/04 regression checks | PENDING founder after copy | `check:design`, `check:components` |
+| Next.js production build | PENDING founder Windows | `npm run build` |
+| Backend regression | PENDING founder confirmation | Day 05 has no backend change |
+| Migration drift | PENDING founder confirmation | expect no changes |
+| 360 px browser | PENDING founder | IA prototype must not overflow |
+| Desktop browser | PENDING founder | role hierarchy and anchors usable |
+| Five-person hallway test | HUMAN PENDING | all five tasks ≤3 navigation decisions |
+| Browser console | PENDING founder | no new errors |
+| Secret scan | PENDING founder repeat | no secret-bearing feature added |

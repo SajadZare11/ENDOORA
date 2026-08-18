@@ -51,3 +51,20 @@ Apply as features appear:
 - [ ] ProviderStatus does not expose provider credentials, IDs, callback URLs, or other implementation secrets.
 - [ ] RoleShell desktop/sidebar and mobile/bottom-nav variants preserve the same authorized destinations.
 - [ ] AccountNavigation keeps Library, Usage, Plan/Premium, Billing, Privacy/Data, Settings, and Support grouped away from the primary dashboard action.
+
+## Day 05 information-architecture regression additions
+
+- [ ] Learner primary navigation remains Home, Learn, Practice, Teachers & Classes, Account.
+- [ ] Teacher primary navigation remains Home, Teach, Marketplace, Resources, Account.
+- [ ] Mobile signed-in primary navigation stays at five destinations per role.
+- [ ] Placement remains discoverable without opening Account.
+- [ ] Library, Usage, Premium/Plan, Billing, Profile, Privacy/Data, Settings and Support do not become equal Home dashboard tiles.
+- [ ] Teacher Earnings/Payout administration stays outside the urgent Home action hierarchy.
+- [ ] Public, learner, teacher and operations routes have explicit ownership/guard expectations.
+- [ ] Deep links authenticate/authorize and then return to the requested route or explicit permission denial.
+- [ ] Multi-step flows provide Back, Save and Continue Later, Cancel and refresh/reconnect recovery where meaningful.
+- [ ] Sensitive drafts are not persisted in browser storage just to support navigation recovery.
+- [ ] Loading, empty, error/retry, offline/interrupted, expired-session and permission-denied states are specified where relevant.
+- [ ] The six critical journeys remain placement-to-path, daily mission, Learn Now, teacher assignment, fixed-class enrollment and IELTS attempt.
+- [ ] The five findability tasks remain reachable in three or fewer navigation decisions.
+- [ ] Home remains action-oriented rather than a feature catalogue.

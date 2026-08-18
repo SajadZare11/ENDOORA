@@ -94,3 +94,30 @@ None. Application code begins Day 02.
 
 ### Data changes
 None. No Endoora domain data existed yet.
+
+## Day 05 — Information architecture, Account hub and critical flows
+
+### Added
+
+- Frozen public, learner, teacher and operations sitemap
+- Role-specific primary navigation matrix
+- Learner/teacher Account hub specification
+- Route inventory with owner, guard, CTA, sensitivity, offline need, analytics event and deep-link contract
+- Global multi-step save/back/cancel/recovery convention
+- Six critical user-flow wireframes
+- ADR-002 navigation decision
+- Developer-only `/design-system/information-architecture` findability prototype
+- Day 05 static information-architecture smoke check
+- Human five-person hallway-test acceptance sheet
+
+### Changed
+
+- Project state, roadmap progress, test matrix, regression checklist and README now describe the Day 05 gate.
+- No existing feature-map CSV is overwritten by the Day 05 package.
+
+### Runtime/data changes
+
+- No Django model migration.
+- No backend API change.
+- No authentication/payment/storage/user-data change.
+- No dependency or lock-file change.

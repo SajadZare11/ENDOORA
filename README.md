@@ -243,3 +243,29 @@ npm run build
 ```
 
 The complete Day 04 manual gate is in `docs/operations/DAY_04_ACCEPTANCE_GATE.md`.
+
+## Day 05 information architecture
+
+After applying the Day 05 changed-files package and starting the web app, open:
+
+```text
+http://localhost:3000/design-system/information-architecture
+```
+
+This developer-only prototype freezes the public, learner and teacher navigation model, Account consolidation and six critical journeys. Planned routes shown there are IA contracts, not claims that later features are implemented.
+
+Run the Day 05 static check from the repository root:
+
+```powershell
+node scripts\check-information-architecture.mjs
+```
+
+Expected result:
+
+```text
+Day 05 IA checks passed: role navigation, Account hub, 6 critical wireframes, route ownership/deep-link contracts, required recovery states, 5 findability targets, and logical token CSS.
+```
+
+Then run the normal frontend/backend regression checks and complete the five-person findability test in:
+
+`docs/operations/DAY_05_ACCEPTANCE_GATE.md`

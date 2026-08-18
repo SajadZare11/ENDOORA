@@ -1,0 +1,37 @@
+$ErrorActionPreference = "Stop"
+
+$paths = @(
+  "apps/web/app/design-system/information-architecture/page.tsx"
+  "apps/web/app/design-system/information-architecture/information-architecture.module.css"
+  "docs/product/sitemap.md"
+  "docs/product/user-flows.md"
+  "docs/product/account-hub.md"
+  "docs/product/navigation-matrix.md"
+  "docs/product/workflow-state-contracts.md"
+  "docs/product/route-inventory.csv"
+  "docs/product/wireframes/README.md"
+  "docs/product/wireframes/placement-to-path.md"
+  "docs/product/wireframes/daily-mission.md"
+  "docs/product/wireframes/learn-now.md"
+  "docs/product/wireframes/teacher-assignment.md"
+  "docs/product/wireframes/fixed-class-enrollment.md"
+  "docs/product/wireframes/ielts-attempt.md"
+  "docs/decisions/ADR-002-navigation.md"
+  "docs/operations/DAY_05_ACCEPTANCE_GATE.md"
+  "scripts/check-information-architecture.mjs"
+  "scripts/stage_day05.ps1"
+  "README.md"
+  "docs/product/PROJECT_STATE.md"
+  "docs/product/ROADMAP_PROGRESS.md"
+  "docs/product/CHANGELOG.md"
+  "docs/product/KNOWN_LIMITATIONS.md"
+  "docs/quality/TEST_MATRIX.md"
+  "docs/quality/REGRESSION_CHECKLIST.md"
+  "DAY05_PACKAGE_MANIFEST.md"
+)
+
+Write-Host "Staging only Day 05 files..."
+git add -- $paths
+Write-Host ""
+Write-Host "Staged Day 05 changes:"
+git status --short

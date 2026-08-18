@@ -1,0 +1,202 @@
+.page {
+  min-block-size: 100vh;
+  background: var(--color-canvas);
+  color: var(--color-text);
+}
+
+.header {
+  max-inline-size: var(--content-width);
+  margin-inline: auto;
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.utilityNav ul {
+  list-style: none;
+}
+
+.utilityNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.utilityNav a,
+.nav a,
+.destination a {
+  color: var(--color-link);
+  min-block-size: var(--target-min);
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-control);
+}
+
+.main {
+  max-inline-size: var(--content-width);
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.38fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.hero p {
+  max-inline-size: var(--reading-width);
+}
+
+.gateCard,
+.roleCard,
+.destination,
+.flowCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+.gateCard {
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.section {
+  margin-block-start: var(--space-12);
+}
+
+.sectionHeading {
+  margin-block-end: var(--space-5);
+}
+
+.sectionHeading h2,
+.roleCard h3,
+.destination h3,
+.flowCard h3 {
+  margin-block: 0 var(--space-2);
+}
+
+.eyebrow {
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-block: 0 var(--space-2);
+}
+
+.roleGrid,
+.destinationGrid,
+.flowGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.roleCard,
+.destination,
+.flowCard {
+  padding: var(--space-5);
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.nav a {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  text-decoration: none;
+}
+
+.destination {
+  scroll-margin-block-start: var(--space-6);
+}
+
+.destination code {
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: var(--font-family-latin);
+  color: var(--color-muted);
+}
+
+.destination .action {
+  background: var(--color-action);
+  color: var(--color-action-text);
+  text-decoration: none;
+  margin-block-end: var(--space-2);
+}
+
+.flowCard {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.flowCard strong {
+  color: var(--color-success-text);
+}
+
+.stateList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.stateList li {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 64rem) {
+  .roleGrid,
+  .destinationGrid,
+  .flowGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero,
+  .roleGrid,
+  .destinationGrid,
+  .flowGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    padding-block-start: var(--space-6);
+  }
+
+  .nav ul {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .nav a {
+    inline-size: 100%;
+  }
+}
