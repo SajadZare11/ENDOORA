@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_TRACKED_NAMES = {".env", "id_rsa", "id_ed25519"}
+SCAN_EXCLUDED_RELATIVE_PATHS = {Path("scripts/test_scan_secrets.py")}
 FIXED_PATTERNS = [
     ("private key", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")),
     ("OpenRouter key", re.compile(r"sk-or-v1-[A-Za-z0-9_-]{20,}")),
@@ -66,8 +67,11 @@ def scan_text(text: str) -> list[str]:
 def main() -> int:
     problems: list[str] = []
     for path in tracked_files():
+        relative_path = path.relative_to(ROOT)
+        if relative_path in SCAN_EXCLUDED_RELATIVE_PATHS:
+            continue
         if path.name in FORBIDDEN_TRACKED_NAMES:
-            problems.append(f"forbidden tracked file: {path.relative_to(ROOT)}")
+            problems.append(f"forbidden tracked file: {relative_path}")
             continue
         if not path.is_file() or path.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".pdf", ".zip"}:
             continue
@@ -76,7 +80,7 @@ def main() -> int:
         except UnicodeDecodeError:
             continue
         for label in scan_text(text):
-            problems.append(f"possible {label}: {path.relative_to(ROOT)}")
+            problems.append(f"possible {label}: {relative_path}")
 
     if problems:
         print("Secret scan FAILED")
