@@ -1,11 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-
-- **Roadmap day implemented:** Day 10 — teacher application shell and simplified teacher navigation
-- **Day 10 status:** Complete when this final Day 10 documentation/implementation checkpoint is successfully committed and pushed to `origin/main`
-- **Inherited state:** Days 01–09 remain in place, including the Persian-first public/auth/account experience and the Day 09 learner dashboard
-- **Schema version:** Day 10 adds no model and no migration; it reuses the existing custom user capability fields and `TeacherProfile`
+- **Roadmap day completed:** Day 12 — Build the CEFR skill and content taxonomy
+- **Day 12 status:** Local acceptance complete; final repository gate is commit/push to `origin/main`
+- **Inherited state:** Days 01–11 remain in place, including Persian-first RTL/English-LTR application foundations and Endoora Operations
+- **Schema version:** Day 12 adds `taxonomy.0001_initial`; prior account/profile/core/audit schema remains in place
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -14,7 +13,7 @@
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features working through Day 10
+## Features working through Day 12
 
 ### Foundation and public experience
 
@@ -193,10 +192,69 @@ Planned commit message:
 
 Do not begin Day 11 until the Day 10 commit is pushed successfully and `git status --short --branch` shows `main` synchronized with `origin/main` and no unintended working-tree changes.
 
-## Day 11 — Operations implementation staged
-- Day 11 source files are installed but this section does not claim acceptance yet.
+## Day 11 — Operations completed
+- Day 11 operations/admin/audit work was completed and pushed before Day 12 began.
 - Added append-only privileged-change audit events with secret/private-content redaction.
 - Added typed SystemSetting and FeatureFlag models with validation and operational ownership metadata.
 - Added Endoora Operations admin branding, Persian-first operational summary, least-privilege staff policy, and role bootstrap command.
 - Database migration required: core.0001_initial and audit.0001_initial.
-- Day 11 becomes complete only after backup, migrate, automated tests, manual admin/support journey, secret scan, regression checks, commit and push.
+- Day 11 acceptance passed before the Day 12 taxonomy migration was started.
+
+## Day 12 — CEFR skill and content taxonomy (complete locally)
+
+- Added stable UUID/slug taxonomy nodes for skills, subskills, objectives, grammar/vocabulary topics, age tags, and exam tags.
+- Persian labels are the default user-facing taxonomy representation; English labels remain available as an explicit option.
+- Added release/import history, node revisions, deprecation traceability, prerequisite history, and cycle validation.
+- Added versioned seed data and an idempotent `import_taxonomy` command.
+- Added read-only public lookup API foundation at `/api/taxonomy/`.
+- Added Django admin taxonomy browsing/editing with stable-slug and delete protections.
+- Day 12 local acceptance passed: verified backup, migration, idempotent import, backend tests, Persian/English API checks, admin checks, frontend regression, 360 px/desktop review, secret scan, and diff check.
+
+## Day 12 verification evidence
+
+### Database and taxonomy
+- Pre-Day-12 PostgreSQL backup verified: `E:\0\Work\Website\The General Website\Endoora\PRIVATE_DO_NOT_COPY_TO_GIT\backups\day12\20260820-000631\endoora-pre-day12.dump`
+- Backup size: `69383` bytes; backup remains outside Git
+- `taxonomy.0001_initial` — applied successfully
+- Taxonomy release: `day12-v1`
+- Imported nodes: `62`
+- Node revisions: `62`
+- Active prerequisite relationships: `9`
+- Second import produced zero creates/updates/revisions/prerequisite changes, proving idempotency
+- `python manage.py makemigrations --check --dry-run` — PASS; no changes detected
+
+### Backend
+- `python manage.py check` — PASS
+- `python manage.py test taxonomy` — PASS, 10 tests
+- `python manage.py test` — PASS, 80 tests
+- `python scripts/check_day12.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS
+
+### API/admin/manual
+- Persian taxonomy labels are the API default — PASS
+- Explicit English taxonomy labels (`lang=en`) — PASS
+- Django admin taxonomy protections — PASS
+- Stable slug/UUID behavior — PASS
+- Desktop manual regression — PASS
+- 360 px manual regression — PASS
+- Persian RTL / English LTR regression — PASS
+
+### Frontend
+- `npm run lint` — PASS
+- `npm run typecheck` — PASS
+- `npm run build` — PASS
+
+## Git checkpoint
+
+This file is part of the Day 12 Git checkpoint. The commit hash is intentionally not hardcoded inside the commit that creates it.
+
+Planned commit message:
+
+`Day 12: Build the CEFR skill and content taxonomy`
+
+## Exact next day
+
+**Day 13 — Build the versioned question bank schema.**
+
+Do not begin Day 13 until the Day 12 commit is pushed successfully and `git status --short --branch` shows `main` synchronized with `origin/main` and no unintended working-tree changes.

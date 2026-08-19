@@ -295,9 +295,29 @@ None. No Endoora domain data existed yet.
 - Day 10 intentionally renders truthful empty/foundation states rather than fabricated records.
 - Automated browser E2E/Playwright coverage remains future work.
 
-## Day 11 — staged, pending acceptance
+## Day 11 — Configure Django admin, audit logs, and safe settings
 - Added Endoora Operations Django-admin foundation.
 - Added immutable audit trail with sensitive-field redaction.
 - Added typed system settings and feature flags.
 - Added least-privilege operational role policy and support restrictions.
 - No payment state editor or secret database setting was introduced.
+
+## Day 12 — CEFR skill and content taxonomy
+
+- Added the `taxonomy` Django app and initial schema.
+- Added Persian-first bilingual taxonomy seed data.
+- Added stable UUID/slugs, release history, node revisions, deprecation and prerequisite history.
+- Added idempotent/cycle-safe taxonomy import and public read-only lookup endpoints.
+- Added admin editors with destructive-delete protection.
+
+## Day 12 verification
+- Applied `taxonomy.0001_initial`.
+- Imported `day12-v1`: 62 nodes, 62 revisions, 9 active prerequisite relationships.
+- Verified idempotent re-import with zero duplicate changes.
+- `python manage.py test taxonomy` — PASS, 10 tests.
+- `python manage.py test` — PASS, 80 tests.
+- `npm run lint`, `npm run typecheck`, and `npm run build` — PASS.
+- Persian-default and explicit-English taxonomy API checks — PASS.
+- Django admin protection checks — PASS.
+- 360 px and desktop regression checks — PASS.
+- Secret scan and `git diff --check` — PASS.

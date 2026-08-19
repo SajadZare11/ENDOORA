@@ -12,7 +12,9 @@
 | 08 | Registration, login, onboarding, profile and Account UX | Complete | Account/onboarding acceptance passed |
 | 09 | Learner application shell and simplified navigation | Complete | Learner next-action shell and aggregated API implemented |
 | 10 | Teacher application shell and simplified navigation | Complete* | Automated/local acceptance passed; final Day 10 checkpoint is this commit/push |
-| 11-60 | Remaining roadmap | Not started | Sequential |
+| 11 | Django admin, audit logs, and safe settings | Complete | Operations acceptance passed |
+| 12 | CEFR skill and content taxonomy | Complete* | Taxonomy acceptance passed; final Git push remains |
+| 13-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -167,5 +169,28 @@ Success gate: a learner can answer “What should I do now?” within five secon
 **Next day after Git push:** Day 11 — Configure Django admin, audit logs, and safe settings.
 
 ## Day 11 — Configure Django admin, audit logs, and safe settings
-Status: implementation staged; acceptance gate pending.
-Required before completion: database backup, migrations, Django/static/regression tests, admin/support manual checks, secret scan, Git checkpoint.
+Status: complete and inherited by Day 12.
+
+## Day 12 — CEFR skill and content taxonomy
+
+Status: local acceptance complete; final Git push remains.
+
+- [x] verified pre-Day-12 PostgreSQL backup
+- [x] `taxonomy.0001_initial` applied
+- [x] 62 nodes / 62 revisions / 9 active prerequisites
+- [x] idempotent second import
+- [x] taxonomy tests — 10 PASS
+- [x] full backend suite — 80 PASS
+- [x] migration drift check
+- [x] Persian-default API
+- [x] English API option
+- [x] Django admin protection
+- [x] frontend lint/typecheck/build
+- [x] 360 px + desktop
+- [x] Persian RTL + English LTR
+- [x] secret scan
+- [x] `git diff --check`
+
+**Success gate:** a content editor can select a stable objective ID while Persian/English wording can evolve without changing that identifier.
+
+**Next day after Git push:** Day 13 — Build the versioned question bank schema.

@@ -184,3 +184,40 @@
 - OneTimeCode hash hidden in admin — static + manual
 - Endoora Operations mobile/Persian summary — manual 360 px
 - Day 10 regression — `node scripts\check-day10.mjs`
+
+## Day 12 taxonomy tests
+
+- Import is idempotent.
+- A new release can change a Persian label without changing the node UUID.
+- Rewriting an existing release version with different content is rejected.
+- Prerequisite cycles are rejected.
+- Slugs are unique at the database boundary.
+- Taxonomy API defaults to Persian and supports explicit English.
+- Objective filtering by CEFR works.
+- Deprecated nodes remain traceable but are hidden from default selectors.
+
+## Day 12 taxonomy acceptance
+| Layer | Status | Evidence |
+|---|---|---|
+| Pre-migration backup | PASS | 69,383-byte PostgreSQL custom-format backup verified and Git-ignored |
+| Django migration | PASS | `taxonomy.0001_initial` |
+| Dry-run import | PASS | 62 nodes / 62 revisions / 9 prerequisites; transaction rolled back |
+| Real import | PASS | `day12-v1` imported |
+| Idempotent re-import | PASS | 0 creates / 0 updates / 0 revisions / 0 prerequisite changes |
+| Database counts | PASS | 1 release / 62 nodes / 62 revisions / 9 active prerequisites |
+| Taxonomy-focused tests | PASS | `python manage.py test taxonomy` — 10 tests |
+| Full backend regression | PASS | `python manage.py test` — 80 tests |
+| Migration drift | PASS | `makemigrations --check --dry-run` — no changes |
+| Static Day 12 gate | PASS | `python scripts/check_day12.py` |
+| Persian-default API | PASS | manual API verification |
+| Explicit English API | PASS | manual `lang=en` verification |
+| Django admin protections | PASS | stable identifiers/read-only protections verified |
+| Frontend lint | PASS | `npm run lint` |
+| TypeScript | PASS | `npm run typecheck` |
+| Next.js production build | PASS | `npm run build` |
+| 360 px browser | PASS | manual regression |
+| Desktop browser | PASS | manual regression |
+| Persian RTL | PASS | manual regression |
+| English LTR | PASS | manual regression |
+| Secret scan | PASS | `python scripts/scan_secrets.py` |
+| Whitespace diff gate | PASS | `git diff --check` |

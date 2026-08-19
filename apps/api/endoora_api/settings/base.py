@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "teachers",
     "core",
     "audit.apps.AuditConfig",
+    "taxonomy",
     "waitlist",
 ]
 MIDDLEWARE = [
