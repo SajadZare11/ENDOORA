@@ -136,3 +136,93 @@ None. No Endoora domain data existed yet.
 - Synchronized the actual document root `<html lang>` and `<html dir>` attributes with the Day 05 Persian/English language switch.
 - Added a regression check so an inner-container-only locale change cannot pass.
 - Clarified that the mobile acceptance gate must be tested at exactly 360 px, not merely a nearby responsive width.
+
+
+## Day 08 — Registration, onboarding, profile and Account UX
+
+### Added
+
+- Persian-first registration UX with English switch
+- Learner and teacher self-registration
+- Explicit Terms and Privacy consent during registration
+- Password-reset confirmation endpoint and browser workflow
+- `profiles` Django application
+- `LearnerProfile`
+- `TeacherProfile`
+- `OnboardingProgress`
+- `DataExportRequest`
+- Learner onboarding flow with server-side save/resume
+- Teacher onboarding flow with server-side save/resume
+- Teacher verification-intent capture without capability escalation
+- Profile completeness calculation
+- `/onboarding`
+- `/account`
+- `/account/profile`
+- `/account/sessions`
+- `/account/data-controls`
+- `/account/library`
+- `/account/usage`
+- `/account/plan`
+- `/account/billing`
+- Account Summary API
+- Current-session UI
+- Data-export request UI and history
+- Guarded account-deletion entry point
+- Library, Usage, Plan, and Billing foundation pages
+- Day 08 authentication/profile/onboarding backend regression tests
+
+### Changed
+
+- Next.js development proxy now preserves Django API trailing slashes and avoids the Next.js/Django redirect loop.
+- Registration success leads toward onboarding.
+- Login success provides a path into account/onboarding UX.
+- Account hub specification is now represented by real runtime routes.
+- Preferred interface locale can be persisted through account settings.
+- Teacher account UX exposes capability state without conflating teacher role with verification.
+
+### Security and privacy
+
+- Self-registration is limited to learner and teacher roles.
+- Registration requires explicit Terms and Privacy acceptance.
+- Onboarding draft data rejects password, OTP, token, secret, API-key and other sensitive-key patterns.
+- Learner and teacher profile endpoints enforce role separation.
+- Cross-user learner profile isolation is covered by backend tests.
+- Teacher onboarding cannot grant `is_teacher_verified`.
+- Teacher onboarding cannot grant `marketplace_eligible`.
+- Teacher onboarding cannot grant `paid_class_eligible`.
+- Data-export creation is idempotent while an existing request is pending or processing.
+- Account-deletion UX requires exact `DELETE` confirmation before submission is enabled.
+
+### Verification
+
+- `python manage.py check` — PASS
+- `python manage.py test` — PASS, 41 tests
+- `python manage.py makemigrations --check --dry-run` — PASS
+- `npm run lint` — PASS
+- `npm run typecheck` — PASS
+- `npm run build` — PASS
+- Learner onboarding refresh/resume — PASS
+- Teacher privilege separation — PASS
+- Profile/settings persistence — PASS
+- Current-session UX — PASS
+- Data-export persistence — PASS
+- Account deletion confirmation guard — PASS
+- Account foundation routes — PASS
+- 360 px browser smoke test — PASS
+- Keyboard-only smoke test — PASS
+
+### Known limitations
+
+- Multi-device session listing and remote session revocation are not yet implemented.
+- Data-export processing/download delivery is future work.
+- Library, Usage, Plan, and Billing are foundation pages only.
+- Actual teacher verification is future work.
+- Manual Day 08 verification did not submit a destructive account-deletion request.
+- Automated browser E2E coverage is future work.
+
+### Runtime/data changes
+
+- Added the initial `profiles` database migration.
+- Added persistent learner profile, teacher profile, onboarding progress, and data-export request records.
+- Reused the existing account-deletion request foundation from the `accounts` application.
+- 

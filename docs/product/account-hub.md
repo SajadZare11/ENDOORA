@@ -69,3 +69,97 @@ A compact status can appear on Home only when it creates an urgent next action. 
 - Offline: saved/local-safe settings may be readable; payment/security mutations do not pretend to succeed.
 - Expired session: require re-authentication and return to the requested Account sub-route.
 - Permission denied: show why the section is unavailable without leaking another user's data.
+
+## Day 08 runtime implementation
+
+Day 08 turns the Account hub from an information-architecture specification into a working runtime foundation.
+
+### Implemented canonical Account route
+
+`/account`
+
+The Day 08 runtime Account hub is shared by authenticated learner and teacher accounts.
+
+It exposes role-aware account state without duplicating administrative tools onto the primary learner/teacher Home experience.
+
+### Runtime destinations available on Day 08
+
+Fully functional Day 08 destinations:
+
+1. **Profile & Settings** — `/account/profile`
+2. **Devices & Sessions** — `/account/sessions`
+3. **Privacy & Data Controls** — `/account/data-controls`
+
+Real foundation routes for later roadmap functionality:
+
+4. **Library** — `/account/library`
+5. **Usage** — `/account/usage`
+6. **Plan** — `/account/plan`
+7. **Billing** — `/account/billing`
+
+The foundation pages are intentionally labelled as incomplete rather than pretending later functionality exists.
+
+### Account hub status information
+
+The runtime hub can display:
+
+- authenticated email
+- learner/teacher role
+- profile completeness
+- onboarding completion
+- teacher verification capability
+- teacher marketplace capability
+- teacher paid-class capability
+
+For teacher accounts, role and capability remain explicitly separate.
+
+### Profile & Settings
+
+Day 08 supports:
+
+- persisted interface locale
+- optional phone update
+- learner profile editing
+- teacher profile editing
+- read-only email
+- read-only role
+
+### Sessions
+
+Day 08 exposes the current authenticated session:
+
+- current/not-current state
+- expiry
+- session fingerprint when available
+
+Multi-device inventory and remote session revocation are not simulated because the backend does not yet expose those capabilities.
+
+### Privacy & Data Controls
+
+Day 08 supports:
+
+- viewing data-export requests
+- creating a data-export request
+- persistence of export-request state
+- discovering account deletion
+- exact `DELETE` confirmation guard before deletion request submission
+
+Manual Day 08 acceptance intentionally did not submit a destructive deletion request.
+
+### Localization and accessibility
+
+Verified on Day 08:
+
+- Persian-first interface
+- RTL Persian layout
+- English language option
+- LTR isolation for account/email/system values where appropriate
+- 360 px layout
+- keyboard navigation
+- visible focus behavior
+
+### Deferred destinations from the original specification
+
+The earlier Account specification includes later destinations such as notifications, support, teacher earnings and payout workflows.
+
+Those are not falsely represented as complete on Day 08 and remain owned by their dedicated roadmap days.

@@ -1,0 +1,140 @@
+.header {
+  display: grid;
+  gap: var(--space-4);
+  margin-block-end: var(--space-6);
+}
+
+.identity {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.email {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2rem;
+  padding-inline: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: var(--font-size-meta);
+}
+
+.progress {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.progressTrack {
+  block-size: 0.6rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.progressValue {
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--color-action);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  min-block-size: 10rem;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+}
+
+.card[href] {
+  cursor: pointer;
+}
+
+.card[href]:hover {
+  border-color: var(--color-action);
+}
+
+.card[href]:focus-visible {
+  outline: 3px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--font-size-heading-sm);
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.cardFooter {
+  margin-block-start: auto;
+  font-weight: 700;
+}
+
+.foundation {
+  opacity: 0.75;
+}
+
+.capabilities {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.capability {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.capability dt {
+  font-weight: 600;
+}
+
+.capability dd {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-block-size: 8rem;
+  }
+
+  .capability {
+    display: grid;
+  }
+}

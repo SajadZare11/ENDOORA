@@ -83,3 +83,50 @@
 | Five-person hallway test | HUMAN PENDING | all five tasks ≤3 navigation decisions |
 | Browser console | PENDING founder | no new errors |
 | Secret scan | PENDING founder repeat | no secret-bearing feature added |
+
+
+## Day 08 status
+
+| Layer | Status | Evidence |
+|---|---|---|
+| Django system check | PASS | `python manage.py check` — no issues |
+| Backend regression suite | PASS | `python manage.py test` — 41 tests passed |
+| Migration drift | PASS | `python manage.py makemigrations --check --dry-run` — no changes detected |
+| Registration API | PASS | Browser registration created persisted learner account |
+| Login API | PASS | Browser login established authenticated session |
+| Password reset | PASS | OTP-based reset completed; new password authenticated successfully |
+| Learner/teacher role separation | PASS | Role-specific profile tests reject wrong-role access |
+| Cross-user isolation | PASS | Backend test prevents unrelated learner-profile access |
+| Registration privilege safety | PASS | Self-registration cannot create administrative role |
+| Teacher capability separation | PASS | Verification intent leaves verified/marketplace/paid-class capabilities false |
+| Consent requirement | PASS | Terms and Privacy required during registration/onboarding completion |
+| Sensitive onboarding drafts | PASS | Sensitive-key patterns rejected |
+| Learner onboarding | PASS | Profile saved, resumed and completed |
+| Learner refresh persistence | PASS | Saved onboarding data remained after browser refresh |
+| Teacher onboarding | PASS | Profile completed with verification intent |
+| Account Summary API | PASS | Returned account/profile/onboarding/session/data-control/section state |
+| Profile/settings page | PASS | Profile update persisted after refresh |
+| Preferred locale | PASS | Persian/English preference persisted after refresh |
+| Current-session page | PASS | Current session and expiry displayed |
+| Data export | PASS | Request created and persisted after refresh |
+| Data-export idempotency | PASS | Backend test covers pending/processing request reuse |
+| Deletion UX guard | PASS | Button disabled until exact `DELETE` entered |
+| Destructive deletion execution | NOT RUN | Intentionally not submitted during Day 08 manual verification |
+| Account hub | PASS | Seven Account destinations reachable |
+| Library foundation | PASS | Real route, explicitly marked foundation |
+| Usage foundation | PASS | Real route, explicitly marked foundation |
+| Plan foundation | PASS | Real route, explicitly marked foundation |
+| Billing foundation | PASS | Real route, explicitly marked foundation |
+| Frontend lint | PASS | `npm run lint` |
+| TypeScript | PASS | `npm run typecheck` |
+| Next.js production build | PASS | `npm run build`; all Day 08 routes generated successfully |
+| 360 px browser | PASS | Auth/onboarding/Account pages tested without horizontal overflow |
+| Keyboard navigation | PASS | Account/profile/session/data-control controls reachable without mouse |
+| Persian RTL | PASS | Manual Day 08 smoke test |
+| English LTR | PASS | Language switch and persisted locale verified |
+| Browser/API redirect regression | PASS | `/api/auth/csrf/` and `/backend/api/auth/csrf/` return HTTP 200 |
+| Multi-device session management | DEFERRED | Current-session endpoint only |
+| Export file generation/download | DEFERRED | Day 08 tracks requests only |
+| Automated browser E2E | DEFERRED | Manual browser acceptance used for Day 08 |
+| Secret scanner | PENDING final repository gate | Run immediately before commit |
+

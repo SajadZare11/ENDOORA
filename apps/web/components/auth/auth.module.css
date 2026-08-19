@@ -1,0 +1,163 @@
+.page {
+  min-block-size: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--color-learning-teal) 10%, transparent),
+      transparent 26rem
+    ),
+    var(--color-canvas);
+}
+
+.container {
+  inline-size: min(34rem, calc(100% - (2 * var(--space-4))));
+  margin-inline: auto;
+  padding-block: var(--space-8) var(--space-16);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.brandName {
+  font-family: var(--font-family-latin);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.brandMotto {
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+  color: var(--color-muted);
+}
+
+.card {
+  overflow: visible;
+}
+
+.body,
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.footer {
+  margin-block-start: var(--space-6);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.footer a {
+  font-weight: 700;
+}
+
+.ltrInput {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  font-family: var(--font-family-latin);
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.roleChoice {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  min-block-size: 5.5rem;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+.roleChoice:has(input:checked) {
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--color-action) 18%, transparent);
+}
+
+.roleChoice input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+}
+
+.roleTitle {
+  font-weight: 800;
+}
+
+.roleDescription {
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.actions .endoora-button {
+  inline-size: 100%;
+}
+
+.secondaryLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.success {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.success p {
+  margin: 0;
+}
+
+@media (max-width: 36rem) {
+  .container {
+    inline-size: min(100% - (2 * var(--space-3)), 34rem);
+    padding-block-start: var(--space-5);
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .brandMotto {
+    max-inline-size: 12rem;
+  }
+
+  .roleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .secondaryLinks {
+    display: grid;
+  }
+}

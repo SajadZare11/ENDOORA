@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "accounts",
     "permissions",
+    "profiles",
     "core",
     "waitlist",
 ]

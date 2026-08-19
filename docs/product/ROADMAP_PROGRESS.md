@@ -2,33 +2,111 @@
 
 | Day | Title | Status | Gate |
 |---|---|---|---|
-| 01 | Freeze scope, brand, domain, product constitution | Complete | Git checkpoint previously recorded; private IRNIC record remains founder-only |
-| 02 | Monorepo and reproducible local environment | Repository implementation complete | Repeat local acceptance checks when environment changes |
-| 03 | Bilingual design-token and brand system | Implementation complete | Preserve verified token system |
-| 04 | Accessible component library | Implementation present in current GitHub | Founder-only browser/build/checkpoint items should be satisfied before Day 05 commit |
-| 05 | Information architecture, Account hub, critical flows | Implementation/static package complete | Browser + five-person findability + regression + Git push pending |
-| 06-60 | Remaining roadmap | Not started | Sequential |
+| 01 | Freeze scope, brand, domain, product constitution | Complete | Foundation recorded |
+| 02 | Monorepo and reproducible local environment | Complete | Local environment established |
+| 03 | Bilingual design-token and brand system | Complete | Persian-first RTL foundation preserved |
+| 04 | Accessible component library | Complete | Shared accessible UI foundation preserved |
+| 05 | Information architecture, Account hub, critical flows | Implementation complete | Historical human hallway-test evidence is not reconstructed if it was not recorded |
+| 06 | Public website shell and SEO foundation | Complete | Public shell/routes exist in current production build |
+| 07 | Authentication, roles, permissions, consent, OTP, deletion foundation | Complete | Day 07 backend foundation inherited by Day 08 |
+| 08 | Registration, login, onboarding, profile and Account UX | Verified — Git checkpoint pending | Documentation + secret/diff checks + commit/push remain |
+| 09-60 | Remaining roadmap | Not started | Sequential |
 
-## Day 05 deliverables
+## Day 08 deliverables
 
-- [x] Public sitemap
-- [x] Learner sitemap
-- [x] Teacher sitemap
-- [x] Admin/operations sitemap
-- [x] Mobile navigation rules
-- [x] Six critical journey wireframes
-- [x] Account hub specification
-- [x] Role-specific navigation matrix
-- [x] Save/Back/Cancel/recovery convention
-- [x] Route ownership/guard/deep-link inventory
-- [x] ADR-002 navigation decision
-- [x] Developer IA/findability prototype
-- [x] Static IA smoke check
-- [ ] Founder runs full frontend regression + production build
-- [ ] Founder confirms backend regression remains green
-- [ ] Founder verifies desktop + 360 px IA prototype
-- [ ] Five target users complete findability test
-- [ ] Every core task is found within three navigation decisions
-- [ ] Day 05 Git checkpoint pushed
+### Authentication
 
-Do not start Day 06 until the remaining founder-verification items pass.
+- [x] Persian-first registration page
+- [x] English language option
+- [x] Learner/teacher role selection
+- [x] Explicit Terms consent
+- [x] Explicit Privacy consent
+- [x] Login page
+- [x] Password-reset request page
+- [x] Password-reset confirmation flow
+- [x] End-to-end browser registration
+- [x] End-to-end browser login
+- [x] End-to-end password reset
+
+### Learner onboarding
+
+- [x] Goal
+- [x] Age band
+- [x] Current level estimate
+- [x] Preferred daily minutes
+- [x] Preferred learning days
+- [x] Timezone
+- [x] Save and continue later
+- [x] Server-side refresh/resume persistence
+- [x] Profile completeness
+- [x] Completion state
+
+### Teacher onboarding
+
+- [x] Public name
+- [x] Bio
+- [x] Experience
+- [x] Specialties
+- [x] City
+- [x] Languages
+- [x] Availability intent
+- [x] Verification intent
+- [x] Save/resume
+- [x] Profile completeness
+- [x] Completion state
+- [x] Verification intent does not grant verified-teacher capability
+- [x] Verification intent does not grant marketplace capability
+- [x] Verification intent does not grant paid-class capability
+
+### Profile / Account hub
+
+- [x] `/account`
+- [x] `/account/profile`
+- [x] `/account/sessions`
+- [x] `/account/data-controls`
+- [x] `/account/library`
+- [x] `/account/usage`
+- [x] `/account/plan`
+- [x] `/account/billing`
+- [x] Profile completeness
+- [x] Interface-language persistence
+- [x] Learner profile editing
+- [x] Teacher profile editing
+- [x] Current-session view
+- [x] Data-export request
+- [x] Export request persistence
+- [x] Guarded account-deletion entry point
+
+### Automated verification
+
+- [x] `python manage.py check`
+- [x] `python manage.py test` — 41 tests PASS
+- [x] `python manage.py makemigrations --check --dry-run`
+- [x] `npm run lint`
+- [x] `npm run typecheck`
+- [x] `npm run build`
+
+### Manual acceptance
+
+- [x] learner onboarding refresh persistence
+- [x] teacher privilege separation
+- [x] profile edit survives refresh
+- [x] preferred locale survives refresh
+- [x] sessions page works
+- [x] data-export request survives refresh
+- [x] deletion action requires exact `DELETE`
+- [x] all Account hub routes reachable
+- [x] 360 px responsive smoke test
+- [x] keyboard navigation smoke test
+
+### Final repository gate
+
+- [ ] synchronize remaining Day 08 documentation
+- [ ] secret scanner unit tests
+- [ ] secret scan
+- [ ] `git diff --check`
+- [ ] review `git status`
+- [ ] commit Day 08
+- [ ] push Day 08 to `origin/main`
+
+Do not start Day 09 until every final repository-gate item above passes.

@@ -1,0 +1,129 @@
+.progress {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-end: var(--space-6);
+}
+
+.progressList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progressItem {
+  min-block-size: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.progressItemActive,
+.progressItemComplete {
+  background: var(--color-action);
+}
+
+.progressText {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.textarea {
+  min-block-size: 8rem;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: space-between;
+  margin-block-start: var(--space-3);
+}
+
+.actionsPrimary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.review {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.reviewItem {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.8fr) minmax(0, 1.5fr);
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.reviewItem dt {
+  font-weight: 700;
+}
+
+.reviewItem dd {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+}
+
+.saved {
+  margin-block-end: var(--space-4);
+}
+
+@media (max-width: 40rem) {
+  .grid,
+  .days {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewItem {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .actionsPrimary {
+    display: grid;
+  }
+
+  .actions button {
+    inline-size: 100%;
+  }
+}
