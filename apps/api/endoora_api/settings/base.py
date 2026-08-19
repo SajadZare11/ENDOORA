@@ -36,7 +36,6 @@ SECRET_KEY = os.getenv("ENDOORA_DJANGO_SECRET_KEY", "unsafe-local-development-ke
 DEBUG = env_bool("ENDOORA_DEBUG", default=False)
 
 ALLOWED_HOSTS = env_list("ENDOORA_ALLOWED_HOSTS", "localhost,127.0.0.1")
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -48,12 +47,12 @@ INSTALLED_APPS = [
     "rest_framework",
     "accounts",
     "permissions",
-    "dashboard",
     "profiles",
+    "dashboard",
+    "teachers",
     "core",
     "waitlist",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -66,7 +65,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "endoora_api.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -81,10 +79,8 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = "endoora_api.wsgi.application"
 ASGI_APPLICATION = "endoora_api.asgi.application"
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -98,7 +94,6 @@ DATABASES = {
 }
 
 AUTH_USER_MODEL = "accounts.User"
-
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -111,7 +106,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 ENDOORA_DISPLAY_TIMEZONE = validated_timezone()
-
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -122,7 +116,6 @@ ENDOORA_OTP_TTL_SECONDS = int(os.getenv("ENDOORA_OTP_TTL_SECONDS", "300"))
 ENDOORA_ACCOUNT_DELETE_DELAY_DAYS = int(
     os.getenv("ENDOORA_ACCOUNT_DELETE_DELAY_DAYS", "7")
 )
-
 CORS_ALLOWED_ORIGINS = env_list(
     "ENDOORA_CORS_ALLOWED_ORIGINS",
     "http://localhost:3000,http://127.0.0.1:3000",
@@ -136,12 +129,10 @@ CSRF_TRUSTED_ORIGINS = env_list(
 CSRF_COOKIE_NAME = "endoora_csrftoken"
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = "Lax"
-
 SESSION_COOKIE_NAME = "endoora_sessionid"
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
-
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_AUTHENTICATION_CLASSES": [

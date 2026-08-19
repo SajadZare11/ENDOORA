@@ -142,3 +142,34 @@
 - 360 px -> mobile bottom navigation and dominant Today action.
 - Offline/retry -> visible recovery behavior.
 - Persian/English -> RTL/LTR switch verified.
+
+## Day 10 teacher dashboard
+
+| Layer | Status | Evidence |
+|---|---|---|
+| Django system check | PASS | `python manage.py check` |
+| Teacher-focused backend tests | PASS | `python manage.py test teachers` |
+| Full backend regression suite | PASS | `python manage.py test` |
+| Migration drift | PASS | `python manage.py makemigrations --check --dry-run` — no changes detected |
+| Anonymous teacher dashboard access | PASS | Backend test expects HTTP 401 |
+| Non-teacher access | PASS | Backend test expects HTTP 403 |
+| Unverified capability gating | PASS | Marketplace and paid-class effective capabilities remain false; fixed class locked |
+| Verified teacher empty workspace | PASS | Verified capability state allowed without fabricated class/earnings data |
+| Dashboard privacy redaction | PASS | Forbidden learner-content keys absent from API payload |
+| Dashboard query bound | PASS | Service assertion uses one domain query |
+| Analytics event bounds | PASS | Known action accepted; unknown/raw identifier rejected |
+| Primary-action priority | PASS | Verification > session > request > grading > safe first-class action |
+| Frontend lint | PASS | `npm run lint` |
+| TypeScript | PASS | `npm run typecheck` |
+| Next.js production build | PASS | `npm run build`; teacher route family generated |
+| Day 10 static source gate | PASS | `node scripts/check-day10.mjs` |
+| Secret scan | PASS | `python scripts/scan_secrets.py` |
+| Whitespace diff gate | PASS | `git diff --check`; line-ending conversion warnings only |
+| Persian-first locale | PASS static / local shell reported working | Day 10 checker + founder local run |
+| English option | PASS static / local shell reported working | Teacher shell implements locale switch |
+| 360 px teacher navigation | PASS static; final manual gate retained | Mobile bottom-nav rule verified by checker; acceptance checklist remains authoritative |
+| Raw writing/audio/conversation disclosure | PASS automated | API payload forbidden-key regression test |
+| Payment/finance behavior | N/A | Day 10 has no payment/earnings transaction domain |
+| Worker/Celery behavior | N/A | Day 10 adds no background job |
+| Database migration | N/A | No Day 10 model change |
+| Automated browser E2E | DEFERRED | Future Playwright coverage |

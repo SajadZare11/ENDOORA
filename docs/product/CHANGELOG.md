@@ -235,3 +235,62 @@ None. No Endoora domain data existed yet.
 - Added first-time, login-required, permission-denied, loading, offline, error, and retry states.
 - Added the aggregated learner-home API and bounded primary-CTA analytics event.
 - Added negative role tests and assertions that prevent fabricated progress values.
+
+## Day 10 — Teacher application shell and simplified navigation
+
+### Added
+
+- Protected Persian-first teacher dashboard with English interface switch
+- Five-destination teacher shell: Home, Teach, Marketplace, Resources, Account
+- `teachers` Django application for teacher-dashboard API ownership
+- `GET /api/teachers/dashboard/` aggregated dashboard endpoint
+- `POST /api/teachers/dashboard/events/` bounded action-analytics endpoint
+- Verification-first teacher primary-action resolver
+- Safe empty/foundation summaries for classes, students, Learn Now requests, grading, schedule, and earnings
+- Teacher question-bank and fixed-class foundation shortcuts
+- Responsive desktop sidebar and 360 px mobile teacher navigation
+- Login-required, wrong-role, loading, offline, error, retry, and empty/foundation states
+- Teacher dashboard privacy-redaction rules and documentation
+- Day 10 static acceptance checker
+- Backend permission, capability, privacy, bounded-query, analytics, and urgency-priority tests
+
+### Changed
+
+- Root Django settings now register the existing Day 09 `dashboard` app and the new Day 10 `teachers` app.
+- Root Django URLs now expose the Day 09 learner dashboard routes and Day 10 teacher dashboard routes.
+- Teacher role and verified/marketplace/paid-class capabilities remain separate and are surfaced safely in the teacher workspace.
+- Teacher home keeps earnings, billing/plan/settings/support in Account rather than crowding the primary dashboard.
+
+### Security and privacy
+
+- Anonymous teacher-dashboard API requests are rejected.
+- Authenticated non-teacher requests are rejected server-side.
+- Unverified teachers do not receive effective marketplace or paid-class access from underlying flags alone.
+- Dashboard summaries prohibit raw learner writing, audio, transcript, AI conversation history, answer text, and private messages.
+- Dashboard analytics accepts only known event/action identifiers.
+- No secret-bearing provider integration was added.
+
+### Verification
+
+- `python manage.py check` — PASS
+- `python manage.py test teachers` — PASS
+- `python manage.py test` — PASS
+- `python manage.py makemigrations --check --dry-run` — PASS, no changes detected
+- `npm run lint` — PASS
+- `npm run typecheck` — PASS
+- `npm run build` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS; line-ending conversion warnings only
+
+### Runtime/data changes
+
+- No Day 10 database model or migration.
+- No payment, storage, SMS, AI-provider, or financial-data integration.
+- Reuses existing `TeacherProfile` and custom-user capability fields.
+
+### Known limitations
+
+- Actual teacher verification, class/student domain records, assignment grading records, marketplace requests, schedules, earnings, payouts, and paid fixed classes remain later roadmap work.
+- Day 10 intentionally renders truthful empty/foundation states rather than fabricated records.
+- Automated browser E2E/Playwright coverage remains future work.

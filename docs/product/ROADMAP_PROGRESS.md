@@ -8,9 +8,11 @@
 | 04 | Accessible component library | Complete | Shared accessible UI foundation preserved |
 | 05 | Information architecture, Account hub, critical flows | Implementation complete | Historical human hallway-test evidence is not reconstructed if it was not recorded |
 | 06 | Public website shell and SEO foundation | Complete | Public shell/routes exist in current production build |
-| 07 | Authentication, roles, permissions, consent, OTP, deletion foundation | Complete | Day 07 backend foundation inherited by Day 08 |
-| 08 | Registration, login, onboarding, profile and Account UX | Complete | Implementation and acceptance checkpoint pushed |
-| 09-60 | Remaining roadmap | Not started | Sequential |
+| 07 | Authentication, roles, permissions, consent, OTP, deletion foundation | Complete | Security/role foundation active |
+| 08 | Registration, login, onboarding, profile and Account UX | Complete | Account/onboarding acceptance passed |
+| 09 | Learner application shell and simplified navigation | Complete | Learner next-action shell and aggregated API implemented |
+| 10 | Teacher application shell and simplified navigation | Complete* | Automated/local acceptance passed; final Day 10 checkpoint is this commit/push |
+| 11-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -116,3 +118,50 @@ Day 08 complete. Day 09 may begin after this final documentation record is commi
 Status: complete only after the Day 09 automated and manual acceptance gate has passed.
 
 Success gate: a learner can answer “What should I do now?” within five seconds, using one aggregated endpoint, with clear 360 px mobile hierarchy and no unsupported scores.
+
+## Day 10 — Teacher application shell
+
+### Deliverables
+
+- [x] protected teacher layout
+- [x] Persian-first RTL teacher UI
+- [x] English interface switch
+- [x] five teacher destinations: Home, Teach, Marketplace, Resources, Account
+- [x] teacher dashboard aggregated API
+- [x] verified/unverified capability separation
+- [x] verification-first urgency resolver
+- [x] safe class/student/request/grading/schedule/earnings summaries
+- [x] question-bank foundation shortcut
+- [x] fixed-class foundation shortcut
+- [x] privacy redaction rules
+- [x] bounded domain-query regression test
+- [x] Day 09 dashboard registration repair
+
+### Automated verification
+
+- [x] `python manage.py check`
+- [x] `python manage.py test teachers`
+- [x] `python manage.py test`
+- [x] `python manage.py makemigrations --check --dry-run`
+- [x] `npm run lint`
+- [x] `npm run typecheck`
+- [x] `npm run build`
+- [x] `node scripts/check-day10.mjs`
+- [x] secret scan
+- [x] `git diff --check`
+
+### Acceptance / repository gate
+
+- [x] teacher shell reported working locally
+- [x] no Day 10 migration required
+- [x] no fabricated future-domain counts or earnings
+- [x] backend permission/privacy tests cover 401/403 and sensitive-key redaction
+- [x] final `git status` reviewed before staging
+- [x] Day 10 documentation prepared for the final checkpoint
+- [x] final commit/push commands documented
+
+`*` Day 10 is only operationally complete after the final commit is pushed successfully and the working tree is clean.
+
+**Success gate:** the teacher can identify the most urgent next action immediately, while unverified capabilities stay locked and dashboard summaries do not expose raw learner evidence.
+
+**Next day after Git push:** Day 11 — Configure Django admin, audit logs, and safe settings.

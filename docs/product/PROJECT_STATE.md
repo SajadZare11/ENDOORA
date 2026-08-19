@@ -2,210 +2,146 @@
 
 ## Current checkpoint
 
-- **Roadmap day implemented:** Day 08 — registration, login, password reset, onboarding, profile/settings, sessions, privacy/data controls, and Account hub UX
-- **Day 08 status:** Complete — implementation, acceptance, documentation, repository safety checks, commit, and push are complete- **Day 07 inherited foundation:** custom account/authentication system, role/capability separation, consent records, OTP/password-recovery foundation, session handling, account-deletion request foundation, and permission tests
-- **Schema version:** Day 08 adds the `profiles` application and its initial migration
+- **Roadmap day implemented:** Day 10 — teacher application shell and simplified teacher navigation
+- **Day 10 status:** Complete when this final Day 10 documentation/implementation checkpoint is successfully committed and pushed to `origin/main`
+- **Inherited state:** Days 01–09 remain in place, including the Persian-first public/auth/account experience and the Day 09 learner dashboard
+- **Schema version:** Day 10 adds no model and no migration; it reuses the existing custom user capability fields and `TeacherProfile`
 - **Frontend/UI package version:** `0.4.0`
-- **Backend:** Django 5.2.17 / DRF 3.18.0
+- **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
 - **Canonical domain:** https://endoora.ir
 - **Default display timezone:** Asia/Tehran
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features / contracts working after Day 08
+## Features working through Day 10
 
-Day 01–Day 07 foundations remain intact, plus:
+### Foundation and public experience
 
-### Authentication UX
+- Reproducible monorepo with Next.js, Django/DRF, shared UI/contracts, PostgreSQL/Redis development services, CI, health checks, and secret scanning
+- Centralized bilingual design tokens and accessible component foundation
+- Persian-first RTL public website with English option
+- Public SEO/metadata, public feature routes, waitlist foundation, and legal/support placeholders
+- Role-specific navigation and Account hub architecture
 
-- Persian-first registration page with English switch
-- Learner and teacher role selection
-- Explicit Terms and Privacy consent during registration
-- Session-based login
-- Password-reset OTP request and confirmation flow
-- Local-development reset-code workflow without exposing production OTP behavior
-- Registration and login verified end-to-end through Next.js -> Django
-- CSRF endpoint proxied correctly through Next.js
-- Django API trailing-slash handling preserved without redirect loops
+### Identity and account foundation
 
-### Learner onboarding
+- Custom user model and learner/teacher role separation
+- Consent, authentication, OTP/password-reset foundation, session handling, and account-deletion request foundation
+- Learner and teacher onboarding with server-side save/resume
+- `LearnerProfile` and `TeacherProfile`
+- Profile/settings and persisted locale preference
+- Current-session view
+- Data-export request foundation
+- Account hub routes for Profile, Sessions, Data Controls, Library, Usage, Plan, and Billing
+- Teacher role is separate from verified-teacher, marketplace, and paid-class capabilities
 
-- Separate learner onboarding route
-- Goal
-- Age band
-- Current CEFR estimate
-- Preferred daily study minutes
-- Preferred learning days
-- Timezone
-- Save and continue later
-- Server-side refresh/resume persistence
-- Profile completeness
-- Completion state
+### Day 09 learner application shell
 
-### Teacher onboarding
+- Protected Persian-first learner dashboard with English switch
+- One aggregated learner-home endpoint: `GET /api/dashboard/home/`
+- One dominant next-best-action / Today card
+- First-time learner guidance to Placement
+- Safe empty/loading/error/offline/permission-denied states
+- No fabricated CEFR, skill, path, SRS, assignment, class, XP, or notification values
+- Server-side learner-role enforcement
 
-- Separate teacher onboarding behavior
-- Public name
-- Bio
-- Experience years
-- Specialties
-- City
-- Languages
-- Availability intent
-- Verification intent
-- Save/resume support
-- Profile completeness
-- Completion state
-- Teacher onboarding does not grant verification, marketplace, or paid-class capability
+### Day 10 teacher application shell
 
-### Profile and settings
+- Protected Persian-first teacher workspace with English switch
+- Five teacher destinations: Home, Teach, Marketplace, Resources, Account
+- Aggregated teacher dashboard endpoint: `GET /api/teachers/dashboard/`
+- Privacy-safe dashboard event endpoint: `POST /api/teachers/dashboard/events/`
+- Prominent verified/unverified teacher state
+- Capability separation for teacher role, verified teacher, marketplace eligibility, and paid-class eligibility
+- Urgency resolver for verification, next session, Learn Now request, grading, and first-class preparation
+- Safe summaries for classes, students, requests, grading, schedule, and earnings
+- No invented counts, money, sessions, or future-domain activity when those domains do not yet exist
+- Question-bank and fixed-class foundation shortcuts without prematurely implementing later roadmap features
+- Responsive teacher sidebar / 360 px mobile bottom navigation
+- Teacher loading, login-required, wrong-role, offline, API-error, retry, and empty/foundation states
+- Dashboard payload redaction rules that exclude raw learner writing, audio, transcripts, AI conversation history, answers, and private messages
+- Bounded dashboard-domain query regression test
+- Day 09 Django dashboard registration repaired in root settings and URL wiring
 
-- `/account/profile`
-- Account email and role are read-only
-- Preferred locale can be persisted
-- Phone field can be updated through the existing account API
-- Learner profile can be edited
-- Teacher profile can be edited
-- Persian/English setting survives refresh
-
-### Account hub
-
-- `/account`
-- Profile & Settings
-- Devices & Sessions
-- Privacy & Data Controls
-- Library foundation
-- Usage foundation
-- Plan foundation
-- Billing foundation
-- Profile completeness visible
-- Teacher capability state visible
-
-### Sessions
-
-- `/account/sessions`
-- Current session state
-- Session expiry
-- Session fingerprint shown when available
-- UI explicitly avoids pretending multi-device management exists when the backend only exposes the current session
-
-### Privacy and data controls
-
-- `/account/data-controls`
-- Data-export request creation
-- Export request history
-- Export requests survive refresh
-- Account-deletion entry point
-- Exact `DELETE` confirmation guard before the deletion action becomes available
-- Manual Day 08 verification intentionally did not submit a destructive deletion request
-
-### Account foundation routes
-
-- `/account/library`
-- `/account/usage`
-- `/account/plan`
-- `/account/billing`
-
-These routes are real and reachable but explicitly labelled as foundation functionality for later roadmap days.
-
-## Day 08 backend additions
+## Day 10 backend modules
 
 Django app:
 
-- `profiles`
+- `teachers`
 
-Implemented persistent models:
+Key files:
 
-- `LearnerProfile`
-- `TeacherProfile`
-- `OnboardingProgress`
-- `DataExportRequest`
+- `apps/api/teachers/dashboard.py`
+- `apps/api/teachers/serializers.py`
+- `apps/api/teachers/views.py`
+- `apps/api/teachers/urls.py`
+- `apps/api/teachers/tests.py`
 
-Day 08 reuses the existing account-deletion request model from `accounts` rather than duplicating deletion state.
+Day 10 deliberately introduces no persistent model.
 
-## Day 08 API surface
+## Day 10 frontend surface
 
-Authentication/account:
+Primary route:
 
-- `GET /api/auth/csrf/`
-- `POST /api/auth/register/`
-- `POST /api/auth/login/`
-- `POST /api/auth/logout/`
-- `GET/PATCH /api/auth/me/`
-- `POST /api/auth/otp/request/`
-- `POST /api/auth/otp/verify/`
-- `POST /api/auth/password-reset/confirm/`
-- `GET /api/auth/sessions/current/`
-- `POST /api/auth/deactivate/`
-- `POST /api/auth/deletion-request/`
+- `/teacher`
 
-Profiles/account hub:
+Foundation routes:
 
-- `GET/PATCH /api/profiles/learner/`
-- `GET/PATCH /api/profiles/teacher/`
-- `GET/PATCH /api/profiles/onboarding/`
-- `POST /api/profiles/onboarding/complete/`
-- `GET/POST /api/profiles/data-exports/`
-- `GET /api/profiles/account-summary/`
+- `/teacher/classes`
+- `/teacher/resources`
+- `/teacher/question-bank`
+- `/teacher/fixed-classes/new`
+- `/teacher/account`
+- `/marketplace/requests`
 
-## Day 08 verified safety properties
+The production build generated these routes successfully.
 
-- Learner cannot access the teacher profile endpoint.
-- Teacher cannot access the learner profile endpoint.
-- One learner cannot read or mutate another learner's profile.
-- Sensitive values are rejected from onboarding draft data.
-- Registration cannot self-assign an administrative role.
-- Required Terms and Privacy consent are explicit.
-- Teacher verification intent does not set `is_teacher_verified`.
-- Teacher verification intent does not set `marketplace_eligible`.
-- Teacher verification intent does not set `paid_class_eligible`.
-- Data-export creation is idempotent while a request is pending/processing.
-- Account deletion is guarded by exact `DELETE` confirmation in the UI.
+## Day 10 security and privacy properties
 
-## Day 08 verification evidence
+- Anonymous access to the teacher dashboard API is rejected.
+- Authenticated non-teachers are rejected server-side.
+- An unverified teacher cannot gain effective marketplace or paid-class capability merely because underlying flags are present.
+- Verification has the highest primary-action priority for an unverified teacher.
+- Raw learner writing, audio, transcript, conversation, answer text, and private-message fields are prohibited from teacher dashboard summaries.
+- Teacher dashboard analytics accepts only bounded known event/action identifiers.
+- No new secret-bearing provider integration is introduced on Day 10.
 
-Backend:
+## Day 10 verification evidence
+
+### Backend
 
 - `python manage.py check` — PASS
-- `python manage.py test` — PASS, 41 tests
-- `python manage.py makemigrations --check --dry-run` — PASS, no changes detected
+- `python manage.py test teachers` — PASS
+- `python manage.py test` — PASS
+- `python manage.py makemigrations --check --dry-run` — PASS; no changes detected
 
-Frontend:
+### Frontend
 
 - `npm run lint` — PASS
 - `npm run typecheck` — PASS
 - `npm run build` — PASS
-- Next.js production build generated all Day 08 routes successfully
+- Next.js production build generated the teacher route family successfully
 
-Manual:
+### Repository / security
 
-- registration — PASS
-- login — PASS
-- password reset — PASS
-- learner onboarding completion — PASS
-- learner server-side refresh persistence — PASS
-- teacher onboarding completion — PASS
-- teacher privilege separation — PASS
-- profile edit persistence — PASS
-- preferred-language persistence — PASS
-- current-session page — PASS
-- data-export persistence — PASS
-- account deletion `DELETE` guard — PASS
-- all Account hub routes reachable — PASS
-- 360 px mobile smoke test — PASS
-- keyboard navigation smoke test — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS; only Git line-ending conversion warnings were reported for two Django wiring files
+
+### Manual acceptance
+
+- Teacher application shell reported working locally by the founder.
+- Before the final commit, keep the Day 10 acceptance gate in `docs/operations/DAY_10_ACCEPTANCE_GATE.md` as the authoritative manual checklist for verified/unverified behavior, 360 px layout, and response-payload inspection.
 
 ## Known limitations / intentionally deferred work
 
-- Multi-device session inventory and remote session revocation are not yet implemented; Day 08 exposes the current session only.
-- Data-export processing/download delivery is not yet implemented; Day 08 creates and tracks export requests.
-- Library, Usage, Plan, and Billing are foundation routes and do not yet contain their later roadmap functionality.
-- Teacher verification intent does not perform actual verification.
-- Teacher marketplace and paid-class capabilities remain disabled until their dedicated roadmap work.
-- Age-aware guardian/legal workflow requires later product/legal policy work; Day 08 records age band but does not invent jurisdiction-specific legal rules.
-- Account deletion was not manually submitted during Day 08 verification to avoid scheduling destructive test-account removal.
-- Automated browser E2E/Playwright coverage remains future work; Day 08 used automated backend checks plus manual browser acceptance.
+- Actual teacher verification workflow is not implemented yet; Day 10 only consumes existing verification state.
+- Real teacher classes/students, Learn Now marketplace records, grading records, schedules, and earnings are later roadmap domains. Day 10 intentionally renders safe empty/foundation states rather than fake data.
+- Fixed-class creation and paid teaching remain later roadmap work even when a verified teacher has the relevant capability flags.
+- Teacher earnings and payout operations are not implemented on Day 10.
+- Full automated browser E2E/Playwright coverage remains future work.
+- Multi-device session inventory, export-file generation, and other Day 08 deferred items remain deferred.
 
 ## Environment requirements
 
@@ -219,53 +155,40 @@ Manual:
 - Django 5.2.17
 - Django REST Framework 3.18.0
 
-## Day 08 final verification commands
+## Last successful Day 10 verification commands
 
 Repository root:
 
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
+- `node scripts/check-day10.mjs`
 - `python -m unittest scripts.test_scan_secrets`
-- `python scripts\scan_secrets.py`
+- `python scripts/scan_secrets.py`
 - `git diff --check`
 - `git status --short --branch`
 
-Backend (`apps\api`, virtual environment active):
+Backend (`apps/api`, virtual environment active):
 
 - `python manage.py check`
+- `python manage.py test teachers`
 - `python manage.py test`
 - `python manage.py makemigrations --check --dry-run`
 
 ## Last backup path
 
-A pre-Day-08 database checkpoint was taken before persistent Day 08 profile/onboarding schema work.
+Day 10 has no database schema change and does not require a new migration backup. The existing pre-Day-08 private database checkpoint remains the latest documented schema-risk backup.
 
-The backup remains private and outside intended Git tracking.
+## Git checkpoint
 
-## Last Git commit hash
+This file is part of the final Day 10 Git checkpoint. Day 10 is considered complete only if the commit and push commands below succeed and the final working tree is clean. The commit hash can only be known after the commit is created; do not invent or hardcode a self-referential hash inside this file.
 
-**Pending Day 08 final repository checks, commit, and push.**
+Planned commit message:
 
-Do not invent a hash before the commit succeeds.
+`Day 10: Build the teacher application shell and simplified navigation`
 
 ## Exact next day
 
-Day 09 begins only after:
+**Day 11 — Configure Django admin, audit logs, and safe settings.**
 
-1. Day 08 documentation is synchronized.
-2. Secret scanning passes.
-3. Repository diff/status is reviewed.
-4. Day 08 commit succeeds.
-5. Day 08 commit is pushed to `origin/main`.
-
-## Day 09 — Learner application shell
-
-- Current roadmap day completed: Day 09, after the local acceptance gate passed.
-- Learner Home is Persian-first with an English switch.
-- Learner Home uses one aggregated endpoint: `GET /api/dashboard/home/`.
-- First-time learners receive one primary next action: Placement.
-- Unsupported CEFR, skill, path, SRS, assignment, class, XP, and notification values are not invented.
-- Authentication and learner-role access are enforced server-side.
-- Day 09 added no database model and required no migration.
-- Exact next roadmap day: Day 10 — Build the teacher application shell and simplified navigation.
+Do not begin Day 11 until the Day 10 commit is pushed successfully and `git status --short --branch` shows `main` synchronized with `origin/main` and no unintended working-tree changes.
