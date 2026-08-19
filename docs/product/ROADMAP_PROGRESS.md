@@ -165,3 +165,7 @@ Success gate: a learner can answer “What should I do now?” within five secon
 **Success gate:** the teacher can identify the most urgent next action immediately, while unverified capabilities stay locked and dashboard summaries do not expose raw learner evidence.
 
 **Next day after Git push:** Day 11 — Configure Django admin, audit logs, and safe settings.
+
+## Day 11 — Configure Django admin, audit logs, and safe settings
+Status: implementation staged; acceptance gate pending.
+Required before completion: database backup, migrations, Django/static/regression tests, admin/support manual checks, secret scan, Git checkpoint.

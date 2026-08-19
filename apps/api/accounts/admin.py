@@ -107,13 +107,13 @@ class ConsentRecordAdmin(admin.ModelAdmin):
 
 @admin.register(OneTimeCode)
 class OneTimeCodeAdmin(admin.ModelAdmin):
+    exclude = ("code_hash",)
     list_display = ("identifier", "purpose", "created_at", "expires_at", "consumed_at", "attempts")
     list_filter = ("purpose",)
     search_fields = ("identifier",)
     readonly_fields = (
         "identifier",
         "purpose",
-        "code_hash",
         "requested_by",
         "expires_at",
         "consumed_at",

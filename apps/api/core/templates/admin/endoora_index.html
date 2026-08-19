@@ -1,0 +1,28 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content %}
+<section dir="rtl" style="margin-block-end:24px;padding:20px;border:1px solid var(--border-color,#e2e8f0);border-radius:12px;">
+  <h1 style="margin-block-start:0;">عملیات Endoora</h1>
+  <p>
+    کنسول داخلی برای مدیریت امن تنظیمات، فلگ‌های قابلیت و رویدادهای ممیزی.
+    <span dir="ltr">Endoora Operations</span>
+  </p>
+
+  {% if endoora_summary.scope == "administrator" %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
+      <div><strong>{{ endoora_summary.users }}</strong><br>کاربران</div>
+      <div><strong>{{ endoora_summary.settings }}</strong><br>تنظیمات سیستم</div>
+      <div><strong>{{ endoora_summary.enabled_flags }}</strong><br>فلگ فعال</div>
+      <div><strong>{{ endoora_summary.audit_events }}</strong><br>رویداد ممیزی</div>
+    </div>
+  {% else %}
+    <p>
+      دسترسی شما محدود به وظایف مجاز نقش عملیاتی شماست. اطلاعات حساس و
+      عملیات خارج از نقش نمایش داده نمی‌شود.
+    </p>
+  {% endif %}
+</section>
+
+{{ block.super }}
+{% endblock %}

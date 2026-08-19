@@ -173,3 +173,14 @@
 | Worker/Celery behavior | N/A | Day 10 adds no background job |
 | Database migration | N/A | No Day 10 model change |
 | Automated browser E2E | DEFERRED | Future Playwright coverage |
+
+## Day 11 operations coverage
+- Audit event creation for privileged changes — automated
+- Audit ORM immutability — automated
+- Sensitive snapshot redaction — automated
+- SystemSetting type/secret/bypass validation — automated
+- FeatureFlag environment/rollout/dependency validation — automated
+- Support cross-domain/profile restriction — automated policy test + manual admin check
+- OneTimeCode hash hidden in admin — static + manual
+- Endoora Operations mobile/Persian summary — manual 360 px
+- Day 10 regression — `node scripts\check-day10.mjs`
