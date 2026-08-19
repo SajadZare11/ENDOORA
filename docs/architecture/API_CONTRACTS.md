@@ -288,3 +288,19 @@ Verified locally:
 - current-session retrieval
 - data-export request creation
 - account-summary aggregation
+
+## Day 09 learner dashboard API
+
+### `GET /api/dashboard/home/`
+
+Session-authenticated, learner-only aggregated dashboard response.
+
+It contains one next-best action plus bounded dashboard summaries. Until later learning domains exist, unavailable values remain empty, `false`, or `null`; they are never populated with invented learning evidence.
+
+### `POST /api/dashboard/events/`
+
+Session-authenticated, learner-only bounded analytics event.
+
+Accepted event: `primary_cta_click`.
+
+Raw learner content and arbitrary analytics event names are rejected.

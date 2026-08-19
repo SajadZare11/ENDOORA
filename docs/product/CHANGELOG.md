@@ -225,4 +225,13 @@ None. No Endoora domain data existed yet.
 - Added the initial `profiles` database migration.
 - Added persistent learner profile, teacher profile, onboarding progress, and data-export request records.
 - Reused the existing account-deletion request foundation from the `accounts` application.
-- 
+-
+
+## Day 09 — Learner application shell
+
+- Added the protected learner dashboard and responsive learner shell.
+- Added Persian-first learner navigation with an English interface switch.
+- Added one dominant Today / next-best-action card with a “why this action?” explanation.
+- Added first-time, login-required, permission-denied, loading, offline, error, and retry states.
+- Added the aggregated learner-home API and bounded primary-CTA analytics event.
+- Added negative role tests and assertions that prevent fabricated progress values.

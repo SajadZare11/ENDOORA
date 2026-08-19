@@ -28,3 +28,11 @@ Endoora/
 ## Status
 
 Architecture is approved as a Day 01 baseline. No runtime scaffold exists until Day 02.
+
+## Day 09 learner-home aggregation boundary
+
+The learner dashboard reads from one dashboard service boundary rather than making one frontend request per future feature.
+
+The next-best-action resolver is deterministic. Later Placement, Mission, SRS, Assignment, and Class services will supply real signals to it.
+
+Authorization remains a Django server responsibility; the Next.js learner shell is presentation and recovery UX, not the security boundary.

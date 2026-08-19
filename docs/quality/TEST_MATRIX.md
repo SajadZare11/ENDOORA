@@ -130,3 +130,15 @@
 | Automated browser E2E | DEFERRED | Manual browser acceptance used for Day 08 |
 | Secret scanner | PENDING final repository gate | Run immediately before commit |
 
+## Day 09 learner dashboard
+
+- Anonymous -> learner dashboard: denied.
+- Teacher -> learner dashboard: denied server-side.
+- Learner -> learner dashboard: allowed.
+- First-time learner -> Placement is the single primary action.
+- No learning evidence -> no skill estimate and no path percentage.
+- Next-best-action resolver priority: urgent assignment > mission > SRS > placement > class > general learning.
+- Dashboard analytics -> bounded event/action identifiers only.
+- 360 px -> mobile bottom navigation and dominant Today action.
+- Offline/retry -> visible recovery behavior.
+- Persian/English -> RTL/LTR switch verified.

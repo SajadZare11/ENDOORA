@@ -194,4 +194,10 @@ Later governance work must define:
 - deletion execution and grace-period policy
 - audit retention
 - teacher verification-document retention if verification documents are introduced
-- 
+-
+
+## Day 09 dashboard data
+
+Day 09 creates no persistent dashboard model.
+
+The dashboard response is derived from the authenticated user plus bounded learning signals. No CEFR estimate, progress percentage, XP amount, assignment, class, SRS count, or notification count is fabricated or persisted by this module.

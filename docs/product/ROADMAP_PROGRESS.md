@@ -109,4 +109,10 @@
 - [ ] commit Day 08
 - [ ] push Day 08 to `origin/main`
 Day 08 complete. Day 09 may begin after this final documentation record is committed and pushed.
-- 
+-
+
+## Day 09 — Learner application shell
+
+Status: complete only after the Day 09 automated and manual acceptance gate has passed.
+
+Success gate: a learner can answer “What should I do now?” within five seconds, using one aggregated endpoint, with clear 360 px mobile hierarchy and no unsupported scores.

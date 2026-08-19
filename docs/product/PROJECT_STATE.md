@@ -258,3 +258,14 @@ Day 09 begins only after:
 3. Repository diff/status is reviewed.
 4. Day 08 commit succeeds.
 5. Day 08 commit is pushed to `origin/main`.
+
+## Day 09 — Learner application shell
+
+- Current roadmap day completed: Day 09, after the local acceptance gate passed.
+- Learner Home is Persian-first with an English switch.
+- Learner Home uses one aggregated endpoint: `GET /api/dashboard/home/`.
+- First-time learners receive one primary next action: Placement.
+- Unsupported CEFR, skill, path, SRS, assignment, class, XP, and notification values are not invented.
+- Authentication and learner-role access are enforced server-side.
+- Day 09 added no database model and required no migration.
+- Exact next roadmap day: Day 10 — Build the teacher application shell and simplified navigation.

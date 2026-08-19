@@ -17,3 +17,9 @@
 - Many destinations documented by Day 05 are planned routes for later roadmap days and must not be presented as already implemented.
 - Five-person findability/usability evidence remains a founder-run human acceptance item.
 - The project still has no runtime feature-flag system; beta/foundation labels are documentation until Day 11.
+
+## Day 09
+
+- Placement scoring, missions, SRS, assignments, classes, courses, XP, and notifications are not implemented by the Day 09 shell.
+- Their dashboard areas remain explicitly unavailable or empty until their owning roadmap days provide real evidence.
+- The Day 09 Placement destination is a safe foundation page, not the final placement engine.
