@@ -3,8 +3,7 @@
 ## Current checkpoint
 
 - **Roadmap day implemented:** Day 08 — registration, login, password reset, onboarding, profile/settings, sessions, privacy/data controls, and Account hub UX
-- **Day 08 implementation status:** implementation and founder verification complete; documentation synchronization, repository safety checks, Git commit, and push remain
-- **Day 07 inherited foundation:** custom account/authentication system, role/capability separation, consent records, OTP/password-recovery foundation, session handling, account-deletion request foundation, and permission tests
+- **Day 08 status:** Complete — implementation, acceptance, documentation, repository safety checks, commit, and push are complete- **Day 07 inherited foundation:** custom account/authentication system, role/capability separation, consent records, OTP/password-recovery foundation, session handling, account-deletion request foundation, and permission tests
 - **Schema version:** Day 08 adds the `profiles` application and its initial migration
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / DRF 3.18.0

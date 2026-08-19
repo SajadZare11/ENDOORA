@@ -9,7 +9,7 @@
 | 05 | Information architecture, Account hub, critical flows | Implementation complete | Historical human hallway-test evidence is not reconstructed if it was not recorded |
 | 06 | Public website shell and SEO foundation | Complete | Public shell/routes exist in current production build |
 | 07 | Authentication, roles, permissions, consent, OTP, deletion foundation | Complete | Day 07 backend foundation inherited by Day 08 |
-| 08 | Registration, login, onboarding, profile and Account UX | Verified — Git checkpoint pending | Documentation + secret/diff checks + commit/push remain |
+| 08 | Registration, login, onboarding, profile and Account UX | Complete | Implementation and acceptance checkpoint pushed |
 | 09-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
@@ -108,5 +108,5 @@
 - [ ] review `git status`
 - [ ] commit Day 08
 - [ ] push Day 08 to `origin/main`
-
-Do not start Day 09 until every final repository-gate item above passes.
+Day 08 complete. Day 09 may begin after this final documentation record is committed and pushed.
+- 
