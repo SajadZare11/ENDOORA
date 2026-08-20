@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "accounts",
     "placement",
+    "learner_twin",
     "assessment",
     "permissions",
     "profiles",
