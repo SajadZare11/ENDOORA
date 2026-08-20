@@ -1,0 +1,30 @@
+[
+  {
+    "id": "grammar-a1-001",
+    "section": "grammar",
+    "difficulty": "easy",
+    "objective": "grammar.present_simple",
+    "question": "She ___ to school every day.",
+    "options": ["go", "goes", "going", "gone"],
+    "correct_option": "goes"
+  },
+  {
+    "id": "vocabulary-a1-001",
+    "section": "vocabulary",
+    "difficulty": "easy",
+    "objective": "vocabulary.daily_routine",
+    "question": "A place where you borrow books is a...",
+    "options": ["library", "kitchen", "station", "garden"],
+    "correct_option": "library"
+  },
+  {
+    "id": "reading-a1-001",
+    "section": "reading",
+    "difficulty": "medium",
+    "objective": "reading.main_idea",
+    "passage": "Ali studies English every evening because he wants to travel.",
+    "question": "Why does Ali study English?",
+    "options": ["Travel", "Work", "Cooking", "Sports"],
+    "correct_option": "Travel"
+  }
+]

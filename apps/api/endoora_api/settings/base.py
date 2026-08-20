@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "accounts",
     "placement",
+    "assessment",
     "permissions",
     "profiles",
     "dashboard",

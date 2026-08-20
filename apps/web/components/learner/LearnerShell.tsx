@@ -76,7 +76,7 @@ function Gate({
         <h1>{content[0]}</h1>
         <p>{content[1]}</p>
         {kind === "login" && (
-          <Link className="learner-button learner-button--primary" href="/login">
+          <Link className="learner-button learner-button--primary" href="/auth/login">
             ورود
           </Link>
         )}
