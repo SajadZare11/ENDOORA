@@ -1,0 +1,96 @@
+{
+  "version": "day13-samples-v1",
+  "items": [
+    {
+      "slug": "day13-sample-reading-gist-a1",
+      "version_number": 1,
+      "question_type": "mcq",
+      "title_fa": "درک مفهوم کلی",
+      "title_en": "Reading for gist",
+      "prompt_fa": "متن انگلیسی را بخوانید و بهترین پاسخ را انتخاب کنید.",
+      "prompt_en": "Mina takes the bus to school every morning. She usually reads a short book during the journey. What is this text mainly about?",
+      "instructions_fa": "یک گزینه را انتخاب کنید.",
+      "instructions_en": "Choose one option.",
+      "cefr_level": "A1",
+      "difficulty": 1,
+      "learner_payload": {
+        "options": [
+          {
+            "id": "a",
+            "text": "Mina's morning journey to school"
+          },
+          {
+            "id": "b",
+            "text": "How to buy a bus ticket"
+          },
+          {
+            "id": "c",
+            "text": "A difficult school exam"
+          }
+        ]
+      },
+      "answer_key": {
+        "correct_option": "a"
+      },
+      "accepted_variants": [],
+      "explanation_fa": "متن درباره رفت‌وآمد صبحگاهی مینا به مدرسه است.",
+      "explanation_en": "The text is mainly about Mina's morning journey to school.",
+      "rubric": {},
+      "objective_slugs": [
+        "objective-reading-gist-a1"
+      ],
+      "source": {
+        "origin": "original",
+        "title": "Endoora Day 13 original sample item",
+        "url": "",
+        "license_type": "original",
+        "license_reference": "Endoora-owned original training content",
+        "rights_holder": "Endoora"
+      },
+      "media": []
+    },
+    {
+      "slug": "day13-sample-reading-main-idea-a2",
+      "version_number": 1,
+      "question_type": "short_answer",
+      "title_fa": "ایده اصلی",
+      "title_en": "Main idea",
+      "prompt_fa": "متن انگلیسی را بخوانید و ایده اصلی را با یک عبارت کوتاه بنویسید.",
+      "prompt_en": "Sara started taking a reusable bottle to work. After a month, she noticed she was buying far fewer plastic bottles. What change helped Sara reduce plastic waste?",
+      "instructions_fa": "یک پاسخ کوتاه انگلیسی بنویسید.",
+      "instructions_en": "Write a short answer in English.",
+      "cefr_level": "A2",
+      "difficulty": 2,
+      "learner_payload": {},
+      "answer_key": {
+        "accepted": [
+          "using a reusable bottle",
+          "taking a reusable bottle to work",
+          "reusable bottle"
+        ],
+        "case_sensitive": false,
+        "strip_punctuation": true
+      },
+      "accepted_variants": [
+        "using a reusable bottle",
+        "taking a reusable bottle to work",
+        "reusable bottle"
+      ],
+      "explanation_fa": "استفاده از بطری چندبارمصرف باعث شد مصرف بطری پلاستیکی کمتر شود.",
+      "explanation_en": "Using a reusable bottle reduced the number of plastic bottles she bought.",
+      "rubric": {},
+      "objective_slugs": [
+        "objective-reading-main-idea-a2"
+      ],
+      "source": {
+        "origin": "original",
+        "title": "Endoora Day 13 original sample item",
+        "url": "",
+        "license_type": "original",
+        "license_reference": "Endoora-owned original training content",
+        "rights_holder": "Endoora"
+      },
+      "media": []
+    }
+  ]
+}

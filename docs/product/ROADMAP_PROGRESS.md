@@ -194,3 +194,32 @@ Status: local acceptance complete; final Git push remains.
 **Success gate:** a content editor can select a stable objective ID while Persian/English wording can evolve without changing that identifier.
 
 **Next day after Git push:** Day 13 — Build the versioned question bank schema.
+
+## Day 13 implementation checkpoint
+
+Status: implementation applied; acceptance pending.
+
+Success gate: question bank supports placement and teacher assignment without duplicating content, while published versions stay immutable and learner pre-submission payloads contain no answer keys.
+
+## Day 13 — Build the versioned question bank schema
+
+Status: local acceptance complete; final Git push remains.
+
+- [x] verified pre-Day-13 PostgreSQL backup
+- [x] `questions.0001_initial`
+- [x] nine question types
+- [x] immutable published/retired versions
+- [x] source/license/reviewer publication gate
+- [x] stable taxonomy objective links
+- [x] safe answer normalization
+- [x] learner answer-key redaction
+- [x] support/editor permission boundary
+- [x] draft-only idempotent JSON import
+- [x] Persian-first RTL + English option
+- [x] 360 px + desktop
+- [x] backend/frontend regression
+- [x] secret scan + diff gate
+
+**Success gate:** question bank supports placement and teacher assignment without duplicating content.
+
+**Next day after Git push:** Day 14 — Build the multi-stage placement-test session engine.

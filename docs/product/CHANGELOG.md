@@ -321,3 +321,20 @@ None. No Endoora domain data existed yet.
 - Django admin protection checks — PASS.
 - 360 px and desktop regression checks — PASS.
 - Secret scan and `git diff --check` — PASS.
+
+## Day 13 — Versioned question bank implementation applied
+- Added `questions` Django domain and `questions.0001_initial`.
+- Added immutable versions, review/retirement, copyright metadata, taxonomy objective links, answer normalization, and media metadata.
+- Added learner-safe and editor-only APIs.
+- Added Persian-first preview with English option and isolated English LTR content.
+- Added draft-only JSON import/export, tests, backup/check/finalize scripts, governance, and acceptance gate.
+
+## Day 13 verification
+- Applied `questions.0001_initial`.
+- Verified nine question types and stable parent/version separation.
+- Verified immutable published/retired content and publication rights requirements.
+- Verified learner answer-key redaction and editor/support permission separation.
+- Verified conservative normalization and post-submission explanation flow.
+- Verified draft-only idempotent JSON import.
+- Verified Persian-first RTL preview, English option, and English LTR isolation.
+- Backend regression, frontend lint/typecheck/build, secret scan, and diff gate passed.

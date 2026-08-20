@@ -10,4 +10,5 @@ urlpatterns = [
     path("api/dashboard/", include("dashboard.urls")),
     path("api/teachers/", include("teachers.urls")),
     path("api/taxonomy/", include("taxonomy.urls")),
+    path("api/questions/", include("questions.urls")),
 ]

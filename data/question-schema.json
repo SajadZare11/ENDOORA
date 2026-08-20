@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://endoora.ir/schemas/question-bank/day13-v1",
+  "title": "Endoora Day 13 Question Bank Import",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "items"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slug",
+          "version_number",
+          "question_type",
+          "prompt_en",
+          "cefr_level",
+          "difficulty",
+          "objective_slugs",
+          "source"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "version_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "question_type": {
+            "enum": [
+              "mcq",
+              "multi_select",
+              "gap",
+              "matching",
+              "ordering",
+              "short_answer",
+              "long_writing",
+              "audio",
+              "speaking"
+            ]
+          },
+          "title_fa": {
+            "type": "string"
+          },
+          "title_en": {
+            "type": "string"
+          },
+          "prompt_fa": {
+            "type": "string"
+          },
+          "prompt_en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "instructions_fa": {
+            "type": "string"
+          },
+          "instructions_en": {
+            "type": "string"
+          },
+          "cefr_level": {
+            "enum": [
+              "A1",
+              "A2",
+              "B1",
+              "B2",
+              "C1",
+              "C2"
+            ]
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "learner_payload": {
+            "type": "object"
+          },
+          "answer_key": {
+            "type": "object"
+          },
+          "accepted_variants": {
+            "type": "array"
+          },
+          "explanation_fa": {
+            "type": "string"
+          },
+          "explanation_en": {
+            "type": "string"
+          },
+          "rubric": {
+            "type": "object"
+          },
+          "objective_slugs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origin",
+              "title",
+              "license_type"
+            ],
+            "properties": {
+              "origin": {
+                "enum": [
+                  "original",
+                  "licensed",
+                  "public_domain",
+                  "ai_assisted"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string"
+              },
+              "license_type": {
+                "enum": [
+                  "original",
+                  "public_domain",
+                  "cc_by",
+                  "cc_by_sa",
+                  "commercial",
+                  "other"
+                ]
+              },
+              "license_reference": {
+                "type": "string"
+              },
+              "rights_holder": {
+                "type": "string"
+              }
+            }
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "in_review",
+              "published",
+              "retired"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

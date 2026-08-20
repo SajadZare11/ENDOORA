@@ -221,3 +221,43 @@
 | English LTR | PASS | manual regression |
 | Secret scan | PASS | `python scripts/scan_secrets.py` |
 | Whitespace diff gate | PASS | `git diff --check` |
+
+## Day 13 question-bank tests
+
+- nine question types
+- published/retired immutability
+- unlicensed publication blocked
+- objective-kind enforcement
+- answer normalization
+- learner answer-key leak prevention
+- post-submission explanation
+- support/editor negative permission boundary
+- retired historical preservation
+- draft-only idempotent sample import
+
+## Day 13 question-bank acceptance
+
+| Layer | Status | Evidence |
+|---|---|---|
+| Pre-migration backup | PASS | Verified private PostgreSQL custom-format backup |
+| Django migration | PASS | `questions.0001_initial` |
+| Nine question types | PASS | model/static/unit tests |
+| Published immutability | PASS | backend test + manual admin attempt |
+| Copyright publication gate | PASS | unlicensed publication rejected |
+| Taxonomy objective links | PASS | wrong-kind link rejected |
+| Answer normalization | PASS | backend fixture |
+| Learner answer-key redaction | PASS | serializer/network regression |
+| Support/editor permissions | PASS | 403 support / editor allowed |
+| Retired historical record | PASS | stored; public endpoint hides it |
+| JSON import | PASS | draft-only; second identical import skips |
+| Django system check | PASS | `python manage.py check` |
+| Question tests | PASS | `python manage.py test questions` |
+| Full backend regression | PASS | `python manage.py test` |
+| Migration drift | PASS | `makemigrations --check --dry-run` |
+| Frontend lint | PASS | `npm run lint` |
+| TypeScript | PASS | `npm run typecheck` |
+| Next.js build | PASS | `npm run build` |
+| Persian RTL / English LTR | PASS | manual preview |
+| 360 px / desktop | PASS | manual preview |
+| Secret scan | PASS | `python scripts/scan_secrets.py` |
+| Whitespace diff | PASS | `git diff --check` |

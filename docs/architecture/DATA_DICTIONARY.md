@@ -201,3 +201,11 @@ Later governance work must define:
 Day 09 creates no persistent dashboard model.
 
 The dashboard response is derived from the authenticated user plus bounded learning signals. No CEFR estimate, progress percentage, XP amount, assignment, class, SRS count, or notification count is fabricated or persisted by this module.
+
+## Day 13 question-bank data
+
+- `Question`: stable UUID/slug identity.
+- `QuestionVersion`: immutable content snapshot after publication.
+- `QuestionObjective`: protected link to a stable Day 12 objective.
+- `QuestionMedia`: media metadata/reference; upload pipeline remains later work.
+- `QuestionReview`: append-only review/publication/retirement event.

@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@endoora/ui"],
   poweredByHeader: false,
 
+  // Allow development access through 127.0.0.1.
+  // This keeps the frontend host consistent with the local Django API/admin.
+  allowedDevOrigins: ["127.0.0.1"],
+
   // Django API routes intentionally use trailing slashes.
   // Preserve them instead of letting Next normalize the URL.
   skipTrailingSlashRedirect: true,

@@ -304,3 +304,18 @@ Session-authenticated, learner-only bounded analytics event.
 Accepted event: `primary_cta_click`.
 
 Raw learner content and arbitrary analytics event names are rejected.
+
+## Day 13 question-bank API contracts
+
+Learner-safe:
+- `GET /api/questions/meta/`
+- `GET /api/questions/published/`
+- `GET /api/questions/published/<question_version_uuid>/`
+
+Authenticated submission:
+- `POST /api/questions/published/<question_version_uuid>/check/`
+
+Editor/administrator:
+- `/api/questions/editor/*`
+
+Pre-submission learner payloads never contain answer keys, accepted variants, rubrics, or explanations.

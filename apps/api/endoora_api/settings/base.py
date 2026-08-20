@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "core",
     "audit.apps.AuditConfig",
     "taxonomy",
+    "questions",
     "waitlist",
 ]
 MIDDLEWARE = [

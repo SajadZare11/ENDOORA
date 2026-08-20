@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 12 — Build the CEFR skill and content taxonomy
-- **Day 12 status:** Local acceptance complete; final repository gate is commit/push to `origin/main`
-- **Inherited state:** Days 01–11 remain in place, including Persian-first RTL/English-LTR application foundations and Endoora Operations
-- **Schema version:** Day 12 adds `taxonomy.0001_initial`; prior account/profile/core/audit schema remains in place
+- **Roadmap day completed:** Day 13 — Build the versioned question bank schema
+- **Day 13 status:** Local acceptance complete; final repository gate is commit/push to `origin/main`
+- **Inherited state:** Days 01–12 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, and stable CEFR taxonomy
+- **Schema version:** Day 13 adds `questions.0001_initial` on top of `taxonomy.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -13,7 +13,7 @@
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features working through Day 12
+## Features working through Day 13
 
 ### Foundation and public experience
 
@@ -258,3 +258,55 @@ Planned commit message:
 **Day 13 — Build the versioned question bank schema.**
 
 Do not begin Day 13 until the Day 12 commit is pushed successfully and `git status --short --branch` shows `main` synchronized with `origin/main` and no unintended working-tree changes.
+
+## Day 13 — Versioned question bank schema (implementation applied; acceptance pending)
+
+- Added stable `Question` identities and immutable `QuestionVersion` records.
+- Added nine question types, answer normalization, rubrics, media metadata, review events, licensing, and Day 12 objective links.
+- Added Persian-first learner-safe preview with English option.
+- Added serializer split so protected answer data is absent before submission.
+- Added draft-only idempotent JSON import and protected export.
+- Database migration required: `questions.0001_initial`.
+- Day 13 is not complete until backup, migration, focused/full tests, network answer-key inspection, mobile/desktop bilingual review, secret scan, and Git checkpoint pass.
+
+## Day 13 verification evidence
+
+### Database and question bank
+- Pre-Day-13 PostgreSQL backup verified: `E:\0\Work\Website\The General Website\Endoora\PRIVATE_DO_NOT_COPY_TO_GIT\backups\day13\20260820-120500\endoora-pre-day13.dump`
+- `questions.0001_initial` applied successfully
+- Question versions reference stable Day 12 taxonomy objectives
+- Sample import is draft-only and idempotent
+- Published/retired content and links are immutable
+- Retired versions remain stored for historical references
+
+### Backend/security
+- `python manage.py check` — PASS
+- `python manage.py test questions` — PASS
+- `python manage.py test` — PASS
+- `python manage.py makemigrations --check --dry-run` — PASS
+- pre-submission learner payload contains no answer keys/accepted variants/rubrics/explanations
+- support/editor negative permission boundary — PASS
+- `python scripts/check_day13.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS
+
+### Frontend/manual
+- Persian-first RTL question preview — PASS
+- English interface option — PASS
+- English learning content isolated LTR — PASS
+- 360 px and desktop — PASS
+- loading/empty/error/retry/permission states — PASS
+- publish -> learner-safe preview -> submit -> explanation -> retire journey — PASS
+
+## Git checkpoint
+
+Planned commit message:
+
+`Day 13: Build the versioned question bank schema`
+
+## Exact next day
+
+**Day 14 — Build the multi-stage placement-test session engine.**
+
+Do not begin Day 14 until the Day 13 commit is pushed and `git status --short --branch`
+shows `main` synchronized with `origin/main` and no unintended changes.
