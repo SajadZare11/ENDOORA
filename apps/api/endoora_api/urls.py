@@ -13,20 +13,7 @@ urlpatterns = [
     path("api/profiles/", include("profiles.urls")),
     path("api/dashboard/", include("dashboard.urls")),
     path("api/teachers/", include("teachers.urls")),
-    path(
-        "api/writing/",
-        include("writing_mentor.urls")
-    ),
 
-    path(
-        "api/roleplay/",
-        include("roleplay.urls")
-    ),
-
-    path(
-        "api/voice/",
-        include("voice_lab.urls")
-    ),
     path(
         "api/mistakes/",
         include("mistake_genome.urls")

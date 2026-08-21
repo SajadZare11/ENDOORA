@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { HomePage } from "../components/marketing/HomePage";
-import { buildMetadata } from "../lib/public-site";
+import { HomePage } from "@/components/marketing/HomePage";
+import { buildMetadata } from "@/lib/public-site";
 
 export const metadata: Metadata = buildMetadata(
   "fa",
