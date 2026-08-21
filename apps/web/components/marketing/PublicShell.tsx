@@ -51,8 +51,8 @@ export function PublicShell({
             <Link className={styles.language} href={alternatePath(locale, currentPath)} hrefLang={isFa ? "en" : "fa-IR"}>
               {isFa ? "English" : "فارسی"}
             </Link>
-            <Link className={styles.primaryCta} href={localizedPath(locale, "/placement")}>
-              {isFa ? "تعیین سطح" : "Placement"}
+            <Link className={styles.primaryCta} href={localizedPath(locale, "/auth/login")}>
+              {isFa ? "ورود" : "Login"}
             </Link>
           </div>
         </div>
