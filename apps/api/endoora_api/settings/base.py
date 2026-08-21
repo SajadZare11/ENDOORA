@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "missions",
     "srs",
     "ai_gateway",
+    "mistake_genome",
     "rest_framework",
     "accounts",
     "placement",
