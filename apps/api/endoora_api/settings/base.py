@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "missions",
     "srs",
+    "ai_gateway",
     "rest_framework",
     "accounts",
     "placement",
