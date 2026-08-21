@@ -1,1 +1,8 @@
-export default function Roleplay(){return <main dir='rtl'><h1>مکالمه تمرینی</h1></main>}
+export default function RoleplayPage() {
+  return (
+    <main dir="rtl" className="p-8">
+      <h1>تمرین مکالمه</h1>
+      <p>سناریوهای واقعی برای تقویت Speaking.</p>
+    </main>
+  );
+}
