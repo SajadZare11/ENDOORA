@@ -55,6 +55,36 @@ Open `http://localhost:3000/design-system/components`.
 - The demo stepper stores only a non-sensitive current-step ID in browser local storage.
 - Provider status components accept public-safe labels/messages only; no API keys, provider IDs, callbacks, or secrets belong in their props.
 
+## Current implementation evidence — 2026-08-24
+
+Automated frontend/security checks:
+
+- `npm run check:design` — PASS; 14 WCAG AA contrast pairs plus focus, reduced motion, logical CSS, and centralized colors.
+- `npm run check:components` — PASS; all 29 required component examples and accessibility contracts.
+- `npm run lint` — PASS.
+- `npm run typecheck` — PASS across UI, contracts, and web workspaces.
+- `npm run build` — PASS; `/design-system` and `/design-system/components` generated successfully.
+- secret-scanner unit tests — PASS, 5 tests.
+- secret scan — PASS.
+- `git diff --check` — PASS; only line-ending conversion warnings were reported.
+
+In-app Browser evidence:
+
+- Page identity, non-blank content, and framework-overlay checks — PASS.
+- Console error/warning check — PASS; no relevant entries.
+- Primary-button status update — PASS.
+- RTL tab Arrow-key selection — PASS.
+- Dialog focus entry, Escape close, and opener-focus restoration — PASS.
+- Stepper progression from Step 1 to Step 2 — PASS.
+- 360px table-to-card and sidebar-to-bottom-navigation fallbacks — PASS.
+- 360px horizontal overflow check — PASS.
+- Five mobile navigation labels receive non-overlapping grid cells — PASS.
+
+Remaining acceptance work:
+
+- Complete the founder keyboard-only/manual visual checklist above.
+- Recreate the Python 3.10 virtual environment and run the Django regression commands. The existing `.venv` points to a removed Python installation; the bundled Python 3.12 runtime cannot load its Python 3.10 `psycopg` binary.
+
 ## Success gate
 
 At least 25 core components have visual examples, keyboard-only completion works for the sample long form and overlays, 44px targets are present, the mobile table fallback works, and no automated check fails.

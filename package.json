@@ -14,7 +14,9 @@
     "typecheck": "npm run typecheck --workspace @endoora/ui && npm run typecheck --workspace @endoora/contracts && npm run typecheck --workspace @endoora/web",
     "check:design": "node scripts/check-design-tokens.mjs",
     "check:components": "node scripts/check-components.mjs",
-    "check:public": "node scripts/check-public-site.mjs"
+    "check:public": "node --experimental-strip-types scripts/check-public-site.mjs",
+    "check:public:routes": "node --experimental-strip-types scripts/check-public-routes.mjs",
+    "check:ia": "node scripts/check-information-architecture.mjs"
   },
   "engines": {
     "node": ">=24 <25",

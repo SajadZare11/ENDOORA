@@ -14,13 +14,13 @@ Before the Day 05 Git checkpoint, make sure any still-pending Day 04 founder-onl
 From the repository root:
 
 ```powershell
-node scripts\check-information-architecture.mjs
+npm run check:ia
 ```
 
 Expected:
 
 ```text
-Day 05 IA checks passed: role navigation, Account hub, 6 critical wireframes, route ownership/deep-link contracts, required recovery states, 5 findability targets, and logical token CSS.
+Day 05 IA checks passed: Persian-first localization, four role maps, exact five-item learner/teacher mobile navigation, six clickable flow prototypes, decision counts, recovery contracts, current/planned route labels, honest homepage preview data, and logical token CSS.
 ```
 
 ## 2. Frontend regression
@@ -73,6 +73,10 @@ Check desktop and a **360 px** responsive viewport.
 - [ ] Account tools are not presented as equal Home tiles.
 - [ ] Placement is prominent.
 - [ ] The six flow cards are present.
+- [ ] Each flow can be selected and every numbered step can be opened.
+- [ ] Previous/Next controls stop safely at the first/last step.
+- [ ] Current, Planned, and Foundation/Beta route labels are visible.
+- [ ] Admin/operations navigation is separate from learner and teacher navigation.
 - [ ] Required recovery states are visible.
 - [ ] Keyboard focus is visible for prototype links.
 - [ ] Browser console has no new errors.
@@ -160,6 +164,22 @@ Click **فارسی** again.
 - [ ] Layout direction returns to RTL.
 
 Day 05 does not pass if English is the default user-facing interface.
+
+## Current execution evidence — 2026-08-24
+
+- **PASS** — `npm run check:ia`, `check:design`, `check:components`, and `check:public`.
+- **PASS** — workspace lint and TypeScript checks.
+- **PASS** — production build; 105 static/dynamic route outputs generated with no metadata-base warning.
+- **PASS** — secret-scanner unit tests (5) and tracked-file scan.
+- **PASS** — rendered desktop and exact 360 px checks in Persian/RTL and English/LTR; no horizontal overflow or console warning/error.
+- **PASS** — all six flow selectors, numbered steps, and bounded Previous/Next controls exercised at 360 px.
+- **PASS** — Persian and English homepage shells, one Placement primary action, localized feature copy, and evidence-neutral Learner Twin preview.
+- **BLOCKED (environment, not Day 05 code)** — the repository's `apps/api/.venv` launcher points to a removed Python 3.10 installation. The bundled Python runtime has no Django packages, so Django `check`, tests, and migration-drift commands cannot run until the project virtual environment is recreated.
+- **PENDING HUMAN EVIDENCE** — the five-person hallway-test table remains intentionally blank.
+
+## Human-test honesty rule
+
+The five tester rows above must be completed by real people. Automated checks and browser QA do not count as hallway testers, and blank rows must remain blank until the sessions occur. Do not mark Day 05 fully accepted or create its Git checkpoint before this evidence exists.
 
 ## 9. Root HTML language/direction verification
 

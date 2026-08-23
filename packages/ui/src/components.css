@@ -7,13 +7,16 @@
   min-block-size: var(--target-min);
   border: 1px solid transparent;
   border-radius: var(--radius-control);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform var(--motion-fast) var(--motion-ease), background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
+}
+
+.endoora-button {
+  min-inline-size: var(--target-min);
   padding-block: var(--space-2);
   padding-inline: var(--space-4);
-  font: inherit;
-  font-weight: 700;
-  line-height: 1.25;
-  cursor: pointer;
-  transition: background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
 }
 
 .endoora-icon-button {
@@ -21,39 +24,49 @@
   padding: 0;
 }
 
-.endoora-button:disabled,
-.endoora-icon-button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
+.endoora-button:hover:not(:disabled),
+.endoora-icon-button:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
-.endoora-button:not(:disabled):hover,
-.endoora-icon-button:not(:disabled):hover {
-  transform: translateY(-1px);
+.endoora-button:active:not(:disabled),
+.endoora-icon-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.endoora-button:disabled,
+.endoora-icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .endoora-button--primary {
   background: var(--color-action);
-  border-color: var(--color-action);
   color: var(--color-action-text);
 }
 
+.endoora-button--primary:hover:not(:disabled) {
+  background: var(--color-action-hover);
+}
+
 .endoora-button--secondary {
+  border-color: var(--color-action);
   background: var(--color-surface);
-  border-color: var(--color-border);
-  color: var(--color-text);
+  color: var(--color-link);
 }
 
 .endoora-button--tertiary {
   background: transparent;
-  border-color: transparent;
-  color: var(--color-link);
+  color: var(--color-text);
+}
+
+.endoora-button--secondary:hover:not(:disabled),
+.endoora-button--tertiary:hover:not(:disabled) {
+  background: var(--color-info-bg);
 }
 
 .endoora-button--destructive {
   background: var(--color-error-red);
-  border-color: var(--color-error-red);
   color: var(--color-action-text);
 }
 
@@ -61,167 +74,22 @@
   inline-size: 1rem;
   block-size: 1rem;
   border: 2px solid currentColor;
-  border-inline-end-color: transparent;
+  border-block-start-color: transparent;
   border-radius: var(--radius-pill);
-  animation: endoora-spin 800ms linear infinite;
+  animation: endoora-spin 700ms linear infinite;
 }
 
 @keyframes endoora-spin {
-  to { transform: rotate(360deg); }
-}
-
-.endoora-field,
-.endoora-fieldset {
-  display: grid;
-  gap: var(--space-2);
-  min-inline-size: 0;
-}
-
-.endoora-fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.endoora-field__label,
-.endoora-check-row__label {
-  color: var(--color-text);
-  font-weight: 700;
-}
-
-.endoora-field__required,
-.endoora-field__error {
-  color: var(--color-error-text);
-}
-
-.endoora-field__help,
-.endoora-field__error {
-  margin: 0;
-  font-size: var(--font-size-meta);
-  line-height: var(--line-height-meta);
-}
-
-.endoora-field__help {
-  color: var(--color-muted);
-}
-
-.endoora-input {
-  inline-size: 100%;
-  min-block-size: var(--target-min);
-  padding-block: var(--space-2);
-  padding-inline: var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-  color: var(--color-text);
-}
-
-.endoora-input::placeholder {
-  color: var(--color-muted);
-}
-
-.endoora-input--error {
-  border-color: var(--color-error-red);
-}
-
-.endoora-textarea {
-  min-block-size: 7rem;
-  resize: vertical;
-}
-
-.endoora-multiselect {
-  min-block-size: 8rem;
-}
-
-.endoora-choice-list {
-  display: grid;
-  gap: var(--space-2);
-}
-
-.endoora-check-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-3);
-  align-items: start;
-  min-block-size: var(--target-min);
-  padding-block: var(--space-2);
-}
-
-.endoora-check {
-  inline-size: 1.25rem;
-  block-size: 1.25rem;
-  margin-block-start: var(--space-1);
-  accent-color: var(--color-action);
-}
-
-.endoora-error-summary {
-  padding: var(--space-4);
-  border: 1px solid var(--color-error-red);
-  border-radius: var(--radius-control);
-  background: var(--color-error-bg);
-  color: var(--color-error-text);
-}
-
-.endoora-error-summary h3 {
-  margin-block: 0 var(--space-2);
-}
-
-.endoora-error-summary ul {
-  margin: 0;
-  padding-inline-start: var(--space-6);
-}
-
-.endoora-error-summary a {
-  color: currentColor;
-}
-
-.endoora-tabs {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.endoora-tabs__list {
-  display: flex;
-  gap: var(--space-1);
-  overflow-x: auto;
-  border-block-end: 1px solid var(--color-border);
-}
-
-.endoora-tabs__list button {
-  min-block-size: var(--target-min);
-  padding-block: var(--space-2);
-  padding-inline: var(--space-4);
-  border: 0;
-  border-block-end: 3px solid transparent;
-  background: transparent;
-  color: var(--color-muted);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.endoora-tabs__list button[aria-selected="true"] {
-  border-block-end-color: var(--color-action);
-  color: var(--color-text);
-}
-
-.endoora-tabs__list button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.endoora-tabs__panel {
-  min-inline-size: 0;
+  to { transform: rotate(1turn); }
 }
 
 .endoora-card {
-  background: var(--color-surface);
-  color: var(--color-text);
+  padding: var(--space-6);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text);
   box-shadow: var(--shadow-subtle);
-  overflow: hidden;
 }
 
 .endoora-card__header {
@@ -229,8 +97,7 @@
   align-items: start;
   justify-content: space-between;
   gap: var(--space-4);
-  padding: var(--space-6);
-  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-4);
 }
 
 .endoora-card__title,
@@ -248,73 +115,163 @@
   color: var(--color-muted);
 }
 
-.endoora-card__actions {
-  flex: 0 0 auto;
-}
-
-.endoora-card__body {
-  padding: var(--space-6);
-}
+.endoora-card__body > :first-child { margin-block-start: 0; }
+.endoora-card__body > :last-child { margin-block-end: 0; }
 
 .endoora-badge {
   display: inline-flex;
   align-items: center;
   min-block-size: 1.75rem;
   padding-inline: var(--space-2);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  font-size: var(--font-size-meta);
-  line-height: var(--line-height-meta);
-  font-weight: 800;
-}
-
-.endoora-badge--neutral {
   background: var(--color-canvas);
   color: var(--color-text);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+  font-weight: 750;
+}
+
+.endoora-badge--info { background: var(--color-info-bg); color: var(--color-info-text); border-color: transparent; }
+.endoora-badge--success { background: var(--color-success-bg); color: var(--color-success-text); border-color: transparent; }
+.endoora-badge--warning { background: var(--color-warning-bg); color: var(--color-warning-text); border-color: transparent; }
+.endoora-badge--error { background: var(--color-error-bg); color: var(--color-error-text); border-color: transparent; }
+
+.endoora-field,
+.endoora-fieldset,
+.endoora-choice-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.endoora-field__label,
+.endoora-fieldset legend {
+  color: var(--color-text);
+  font-weight: 750;
+}
+
+.endoora-field__required,
+.endoora-field__error {
+  color: var(--color-error-text);
+}
+
+.endoora-field__help,
+.endoora-field__error {
+  margin: 0;
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-meta);
+}
+
+.endoora-field__help { color: var(--color-muted); }
+
+.endoora-input {
+  inline-size: 100%;
+  min-block-size: var(--target-min);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
 }
 
-.endoora-badge--info {
-  background: var(--color-info-bg);
-  color: var(--color-info-text);
+.endoora-input::placeholder { color: var(--color-muted); opacity: 1; }
+.endoora-input--error { border-color: var(--color-error-red); }
+.endoora-textarea { min-block-size: 8rem; resize: vertical; }
+.endoora-multiselect { min-block-size: 8.5rem; }
+
+.endoora-check-row {
+  display: grid;
+  grid-template-columns: var(--target-min) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
 }
 
-.endoora-badge--success {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
+.endoora-check {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  min-block-size: auto;
+  margin: var(--space-2);
+  accent-color: var(--color-action);
 }
 
-.endoora-badge--warning {
-  background: var(--color-warning-bg);
-  color: var(--color-warning-text);
+.endoora-check-row__label {
+  display: block;
+  padding-block-start: var(--space-2);
+  font-weight: 650;
 }
 
-.endoora-badge--error {
+.endoora-check-row p {
+  margin-block: var(--space-1) 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+}
+
+.endoora-fieldset {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.endoora-error-summary {
+  padding: var(--space-4);
+  border: 1px solid var(--color-error-red);
+  border-radius: var(--radius-control);
   background: var(--color-error-bg);
   color: var(--color-error-text);
 }
 
-.endoora-dialog {
-  inline-size: min(38rem, calc(100% - (2 * var(--space-4))));
-  max-block-size: min(42rem, calc(100dvh - (2 * var(--space-4))));
-  padding: 0;
+.endoora-error-summary h3 { margin-block-start: 0; }
+.endoora-error-summary a { color: inherit; font-weight: 700; }
+
+.endoora-tabs__list {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.endoora-tabs__list button {
+  min-block-size: var(--target-min);
+  padding-inline: var(--space-3);
   border: 0;
-  border-radius: var(--radius-card);
+  border-block-end: 3px solid transparent;
   background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.endoora-tabs__list button[aria-selected="true"] {
+  border-block-end-color: var(--color-action);
   color: var(--color-text);
 }
 
-.endoora-dialog::backdrop {
-  background: color-mix(in srgb, var(--color-deep-navy) 62%, transparent);
+.endoora-tabs__list button:disabled { cursor: not-allowed; opacity: 0.5; }
+.endoora-tabs__panel { padding-block: var(--space-4); }
+
+.endoora-dialog {
+  inline-size: min(36rem, calc(100% - (2 * var(--space-4))));
+  max-block-size: calc(100vh - (2 * var(--space-4)));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: var(--shadow-raised);
 }
+
+.endoora-dialog::backdrop { background: color-mix(in srgb, var(--color-deep-navy) 70%, transparent); }
 
 .endoora-dialog__surface {
   display: grid;
   max-block-size: inherit;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-raised);
-  overflow: hidden;
 }
 
 .endoora-dialog__header,
@@ -323,120 +280,66 @@
   align-items: start;
   justify-content: space-between;
   gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-4);
 }
 
-.endoora-dialog__header {
-  border-block-end: 1px solid var(--color-border);
-}
-
+.endoora-dialog__header { border-block-end: 1px solid var(--color-border); }
+.endoora-dialog__footer { border-block-start: 1px solid var(--color-border); }
 .endoora-dialog__header h2,
-.endoora-dialog__description {
-  margin: 0;
-}
-
-.endoora-dialog__description {
-  margin-block-start: var(--space-1);
-  color: var(--color-muted);
-}
-
-.endoora-dialog__body {
-  padding: var(--space-6);
-  overflow: auto;
-}
-
-.endoora-dialog__footer {
-  border-block-start: 1px solid var(--color-border);
-}
-
-.endoora-dialog-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  inline-size: 100%;
-}
+.endoora-dialog__description { margin: 0; }
+.endoora-dialog__description { margin-block-start: var(--space-1); color: var(--color-muted); }
+.endoora-dialog__body { padding: var(--space-4); overflow-y: auto; }
+.endoora-dialog-actions { display: flex; justify-content: end; gap: var(--space-2); inline-size: 100%; }
 
 .endoora-dialog--drawer {
-  inline-size: min(30rem, 100%);
-  max-block-size: 100dvh;
+  block-size: 100vh;
+  max-block-size: 100vh;
   margin-block: 0;
-  margin-inline-start: auto;
-  margin-inline-end: 0;
-  block-size: 100dvh;
+  margin-inline: auto 0;
   border-radius: 0;
 }
 
-.endoora-dialog--drawer .endoora-dialog__surface {
-  block-size: 100%;
-  border-radius: 0;
-}
+.endoora-dialog--drawer .endoora-dialog__surface { min-block-size: 100%; }
 
 .endoora-toast-region {
-  position: fixed;
-  inset-block-start: var(--space-4);
-  inset-inline-end: var(--space-4);
-  z-index: 100;
   display: grid;
   gap: var(--space-2);
-  inline-size: min(24rem, calc(100% - (2 * var(--space-4))));
-  pointer-events: none;
+  margin-block-start: var(--space-4);
 }
 
 .endoora-toast {
-  padding: var(--space-4);
+  padding: var(--space-3);
   border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--color-action);
   border-radius: var(--radius-control);
   background: var(--color-surface);
-  color: var(--color-text);
-  box-shadow: var(--shadow-raised);
+  box-shadow: var(--shadow-subtle);
 }
 
-.endoora-toast strong {
-  display: block;
-  margin-block-end: var(--space-1);
-}
-
-.endoora-toast--info { border-inline-start: 4px solid var(--color-action); }
-.endoora-toast--success { border-inline-start: 4px solid var(--color-success-green); }
-.endoora-toast--warning { border-inline-start: 4px solid var(--color-warning-orange); }
-.endoora-toast--error { border-inline-start: 4px solid var(--color-error-red); }
+.endoora-toast--success { border-inline-start-color: var(--color-success-green); }
+.endoora-toast--warning { border-inline-start-color: var(--color-warning-orange); }
+.endoora-toast--error { border-inline-start-color: var(--color-error-red); }
 
 .endoora-skeleton {
   display: block;
   inline-size: var(--skeleton-width);
   block-size: var(--skeleton-height);
   border-radius: var(--radius-control);
-  background: linear-gradient(90deg, var(--color-border), var(--color-canvas), var(--color-border));
+  background: linear-gradient(100deg, var(--color-border) 25%, var(--color-canvas) 45%, var(--color-border) 65%);
   background-size: 200% 100%;
-  animation: endoora-skeleton 1.4s ease-in-out infinite;
+  animation: endoora-shimmer 1.4s infinite;
 }
 
-@keyframes endoora-skeleton {
+@keyframes endoora-shimmer {
   to { background-position: -200% 0; }
 }
 
-.endoora-progress {
-  display: grid;
-  gap: var(--space-2);
-}
-
-.endoora-progress__label {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-.endoora-progress progress {
-  inline-size: 100%;
-  block-size: 0.75rem;
-  accent-color: var(--color-learning-teal);
-}
+.endoora-progress { display: grid; gap: var(--space-2); }
+.endoora-progress__label { display: flex; justify-content: space-between; gap: var(--space-3); }
+.endoora-progress progress { inline-size: 100%; block-size: 0.75rem; accent-color: var(--color-learning-teal); }
 
 .endoora-status-message {
-  display: grid;
-  gap: var(--space-1);
-  padding: var(--space-4);
+  padding: var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
 }
@@ -446,36 +349,13 @@
 .endoora-status-message--warning { background: var(--color-warning-bg); color: var(--color-warning-text); }
 .endoora-status-message--error { background: var(--color-error-bg); color: var(--color-error-text); }
 
-.endoora-stepper {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.endoora-stepper__status {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-2);
-  color: var(--color-muted);
-  font-size: var(--font-size-meta);
-}
-
-.endoora-stepper__saved {
-  color: var(--color-success-text);
-}
-
-.endoora-stepper__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+.endoora-stepper { display: grid; gap: var(--space-4); }
+.endoora-stepper__status { display: flex; justify-content: space-between; gap: var(--space-3); color: var(--color-muted); }
+.endoora-stepper__saved { font-size: var(--font-size-meta); }
+.endoora-stepper__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
 
 .endoora-stepper__list li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
   gap: var(--space-2);
   min-block-size: var(--target-min);
@@ -490,21 +370,13 @@
   place-items: center;
   inline-size: 1.75rem;
   block-size: 1.75rem;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   background: var(--color-canvas);
-  border: 1px solid var(--color-border);
 }
 
-.endoora-stepper__list li[data-state="current"] {
-  border-color: var(--color-action);
-  color: var(--color-text);
-}
-
-.endoora-stepper__list li[data-state="complete"] > span:first-child {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-  border-color: var(--color-success-green);
-}
+.endoora-stepper__list li[data-state="current"] { border-color: var(--color-action); color: var(--color-text); }
+.endoora-stepper__list li[data-state="complete"] > span:first-child { border-color: var(--color-success-green); background: var(--color-success-bg); color: var(--color-success-text); }
 
 .endoora-stepper__content {
   padding: var(--space-6);
@@ -514,41 +386,17 @@
 }
 
 .endoora-stepper__content h3,
-.endoora-stepper__description {
-  margin-block-start: 0;
-}
-
-.endoora-stepper__description {
-  color: var(--color-muted);
-}
-
+.endoora-stepper__description { margin-block-start: 0; }
+.endoora-stepper__description { color: var(--color-muted); }
 .endoora-stepper__actions,
-.endoora-stepper__advance {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
+.endoora-stepper__advance { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.endoora-stepper__actions { justify-content: space-between; }
 
-.endoora-stepper__actions {
-  justify-content: space-between;
-}
-
-.endoora-data-table__desktop {
-  overflow-x: auto;
-}
-
+.endoora-data-table__desktop { overflow-x: auto; }
 .endoora-data-table table,
-.endoora-chart table {
-  inline-size: 100%;
-  border-collapse: collapse;
-}
-
+.endoora-chart table { inline-size: 100%; border-collapse: collapse; }
 .endoora-data-table caption,
-.endoora-chart caption {
-  text-align: start;
-  font-weight: 800;
-  margin-block-end: var(--space-2);
-}
+.endoora-chart caption { margin-block-end: var(--space-2); text-align: start; font-weight: 800; }
 
 .endoora-data-table th,
 .endoora-data-table td,
@@ -561,120 +409,29 @@
   vertical-align: top;
 }
 
-.endoora-data-table thead th {
-  background: var(--color-canvas);
-}
+.endoora-data-table thead th { background: var(--color-canvas); }
+.endoora-data-table__cards { display: none; }
+.endoora-data-card { display: grid; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.endoora-data-card__row { display: grid; grid-template-columns: minmax(6rem, 0.5fr) minmax(0, 1fr); gap: var(--space-3); }
+.endoora-table-empty { padding: var(--space-6); border: 1px dashed var(--color-border); border-radius: var(--radius-control); color: var(--color-muted); text-align: center; }
 
-.endoora-data-table__cards {
-  display: none;
-}
-
-.endoora-data-card {
-  display: grid;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-}
-
-.endoora-data-card__row {
-  display: grid;
-  grid-template-columns: minmax(6rem, 0.5fr) minmax(0, 1fr);
-  gap: var(--space-3);
-}
-
-.endoora-table-empty {
-  padding: var(--space-6);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-control);
-  color: var(--color-muted);
-  text-align: center;
-}
-
-.endoora-chart {
-  display: grid;
-  gap: var(--space-4);
-  margin: 0;
-}
-
+.endoora-chart { display: grid; gap: var(--space-4); margin: 0; }
 .endoora-chart figcaption h3,
-.endoora-chart figcaption p {
-  margin-block-start: 0;
-}
+.endoora-chart figcaption p { margin-block-start: 0; }
+.endoora-chart figcaption p { color: var(--color-muted); }
+.endoora-chart__bars { display: grid; gap: var(--space-3); }
+.endoora-chart__bar-row { display: grid; grid-template-columns: minmax(6rem, 0.6fr) minmax(8rem, 1fr) auto; align-items: center; gap: var(--space-3); }
+.endoora-chart__track { overflow: hidden; block-size: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-pill); background: var(--color-canvas); }
+.endoora-chart__track > span { display: block; inline-size: var(--chart-percent); block-size: 100%; background: var(--color-learning-teal); }
 
-.endoora-chart figcaption p {
-  color: var(--color-muted);
-}
-
-.endoora-chart__bars {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.endoora-chart__bar-row {
-  display: grid;
-  grid-template-columns: minmax(6rem, 0.6fr) minmax(8rem, 1fr) auto;
-  gap: var(--space-3);
-  align-items: center;
-}
-
-.endoora-chart__track {
-  overflow: hidden;
-  block-size: 0.75rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-canvas);
-  border: 1px solid var(--color-border);
-}
-
-.endoora-chart__track > span {
-  display: block;
-  inline-size: var(--chart-percent);
-  block-size: 100%;
-  background: var(--color-learning-teal);
-}
-
-.endoora-ai-result {
-  border-block-start: 4px solid var(--color-learning-teal);
-}
-
-.endoora-ai-result__title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.endoora-ai-result__content {
-  margin-block-end: var(--space-4);
-}
-
-.endoora-ai-result__meta {
-  display: grid;
-  gap: var(--space-3);
-  margin: 0;
-}
-
-.endoora-ai-result__meta > div {
-  display: grid;
-  grid-template-columns: minmax(7rem, 0.3fr) minmax(0, 1fr);
-  gap: var(--space-3);
-}
-
-.endoora-ai-result__meta dt {
-  font-weight: 800;
-}
-
-.endoora-ai-result__meta dd {
-  margin: 0;
-}
-
-.endoora-ai-result__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-block-start: var(--space-6);
-}
+.endoora-ai-result { border-block-start: 4px solid var(--color-intelligence-purple); }
+.endoora-ai-result__title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.endoora-ai-result__content { margin-block-end: var(--space-4); }
+.endoora-ai-result__meta { display: grid; gap: var(--space-3); margin: 0; }
+.endoora-ai-result__meta > div { display: grid; grid-template-columns: minmax(7rem, 0.3fr) minmax(0, 1fr); gap: var(--space-3); }
+.endoora-ai-result__meta dt { font-weight: 800; }
+.endoora-ai-result__meta dd { margin: 0; }
+.endoora-ai-result__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-6); }
 
 .endoora-state-panel {
   display: grid;
@@ -686,109 +443,30 @@
   background: var(--color-surface);
 }
 
-.endoora-state-panel h3 {
-  margin: 0;
-}
+.endoora-state-panel h3 { margin: 0; }
+.endoora-state-panel__icon { display: grid; place-items: center; inline-size: var(--target-min); block-size: var(--target-min); border: 1px solid var(--color-border); border-radius: var(--radius-pill); background: var(--color-canvas); font-weight: 900; }
+.endoora-state-panel__description { color: var(--color-muted); }
+.endoora-state-panel__action { margin-block-start: var(--space-2); }
+.endoora-state-panel--warning { border-style: solid; border-color: var(--color-warning-orange); }
+.endoora-state-panel--error { border-style: solid; border-color: var(--color-error-red); }
 
-.endoora-state-panel__icon {
-  display: grid;
-  place-items: center;
-  inline-size: var(--target-min);
-  block-size: var(--target-min);
-  border-radius: var(--radius-pill);
-  background: var(--color-canvas);
-  border: 1px solid var(--color-border);
-  font-weight: 900;
-}
-
-.endoora-state-panel__description {
-  color: var(--color-muted);
-}
-
-.endoora-state-panel__action {
-  margin-block-start: var(--space-2);
-}
-
-.endoora-state-panel--warning {
-  border-style: solid;
-  border-color: var(--color-warning-orange);
-}
-
-.endoora-state-panel--error {
-  border-style: solid;
-  border-color: var(--color-error-red);
-}
-
-.endoora-provider-status {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.endoora-provider-status h3 {
-  margin: 0;
-}
-
-.endoora-provider-status ul {
-  display: grid;
-  gap: var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.endoora-provider-status li {
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-}
-
-.endoora-provider-status__heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-
-.endoora-provider-status p {
-  margin-block: var(--space-1) 0;
-  color: var(--color-muted);
-}
+.endoora-provider-status { display: grid; gap: var(--space-4); }
+.endoora-provider-status h3 { margin: 0; }
+.endoora-provider-status ul { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.endoora-provider-status li { padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-control); }
+.endoora-provider-status__heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.endoora-provider-status p { margin-block: var(--space-1) 0; color: var(--color-muted); }
 
 .endoora-account-nav ul,
-.endoora-role-shell nav ul {
-  display: grid;
-  gap: var(--space-1);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
+.endoora-role-shell nav ul { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
 .endoora-account-nav a,
-.endoora-role-shell nav a {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-block-size: var(--target-min);
-  padding-block: var(--space-2);
-  padding-inline: var(--space-3);
-  border-radius: var(--radius-control);
-  color: var(--color-text);
-  text-decoration: none;
-}
-
+.endoora-role-shell nav a { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--target-min); padding-block: var(--space-2); padding-inline: var(--space-3); border-radius: var(--radius-control); color: var(--color-text); text-decoration: none; }
 .endoora-account-nav a:hover,
 .endoora-role-shell nav a:hover,
 .endoora-account-nav a[aria-current="page"],
-.endoora-role-shell nav a[aria-current="page"] {
-  background: var(--color-info-bg);
-  color: var(--color-info-text);
-}
-
+.endoora-role-shell nav a[aria-current="page"] { background: var(--color-info-bg); color: var(--color-info-text); }
 .endoora-account-nav__badge,
-.endoora-role-shell__badge {
-  margin-inline-start: auto;
-}
+.endoora-role-shell__badge { margin-inline-start: auto; }
 
 .endoora-role-shell {
   position: relative;
@@ -801,38 +479,23 @@
   background: var(--color-canvas);
 }
 
-.endoora-role-shell__sidebar {
-  padding: var(--space-4);
-  border-inline-end: 1px solid var(--color-border);
-  background: var(--color-surface);
-}
+.endoora-role-shell__sidebar { padding: var(--space-4); border-inline-end: 1px solid var(--color-border); background: var(--color-surface); }
+.endoora-role-shell__brand { margin-block-end: var(--space-4); font-family: var(--font-family-latin); font-size: var(--font-size-card-title); font-weight: 900; }
+.endoora-role-shell__main { min-inline-size: 0; }
+.endoora-role-shell__topbar { display: flex; align-items: center; min-block-size: 4rem; padding-inline: var(--space-4); border-block-end: 1px solid var(--color-border); background: var(--color-surface); }
+.endoora-role-shell__content { padding: var(--space-6); }
+.endoora-role-shell__bottom { display: none; }
 
-.endoora-role-shell__brand {
-  margin-block-end: var(--space-4);
-  font-family: var(--font-family-latin);
-  font-size: var(--font-size-card-title);
-  font-weight: 900;
-}
-
-.endoora-role-shell__main {
-  min-inline-size: 0;
-}
-
-.endoora-role-shell__topbar {
-  display: flex;
-  align-items: center;
-  min-block-size: 4rem;
-  padding-inline: var(--space-4);
-  border-block-end: 1px solid var(--color-border);
-  background: var(--color-surface);
-}
-
-.endoora-role-shell__content {
-  padding: var(--space-6);
-}
-
-.endoora-role-shell__bottom {
-  display: none;
+.endoora-world-object {
+  display: grid;
+  place-items: center;
+  min-block-size: 8rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, var(--glass-background), color-mix(in srgb, var(--color-intelligence-purple) 18%, transparent));
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .endoora-visually-hidden {
@@ -848,80 +511,28 @@
 }
 
 @media (max-width: 48rem) {
-  .endoora-data-table__desktop {
-    display: none;
-  }
-
-  .endoora-data-table__cards {
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .endoora-role-shell {
-    display: block;
-    padding-block-end: 5rem;
-  }
-
-  .endoora-role-shell__sidebar {
-    display: none;
-  }
-
-  .endoora-role-shell__bottom {
-    position: absolute;
-    inset-inline: 0;
-    inset-block-end: 0;
-    display: block;
-    padding: var(--space-2);
-    border-block-start: 1px solid var(--color-border);
-    background: var(--color-surface);
-  }
-
-  .endoora-role-shell__bottom ul {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .endoora-role-shell__bottom a {
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-1);
-    min-inline-size: 0;
-    padding-inline: var(--space-1);
-    font-size: var(--font-size-meta);
-    text-align: center;
-  }
-
-  .endoora-dialog--drawer {
-    inline-size: 100%;
-  }
-
+  .endoora-data-table__desktop { display: none; }
+  .endoora-data-table__cards { display: grid; gap: var(--space-3); }
+  .endoora-role-shell { display: block; padding-block-end: 5rem; }
+  .endoora-role-shell__sidebar { display: none; }
+  .endoora-role-shell__bottom { position: absolute; inset-inline: 0; inset-block-end: 0; display: block; padding: var(--space-2); border-block-start: 1px solid var(--color-border); background: var(--color-surface); }
+  .endoora-role-shell__bottom ul { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-1); }
+  .endoora-role-shell__bottom li { min-inline-size: 0; }
+  .endoora-role-shell nav.endoora-role-shell__bottom a { align-items: stretch; flex-direction: column; justify-content: center; gap: var(--space-1); min-inline-size: 0; overflow: hidden; padding-inline: 0; font-size: 0.625rem; line-height: 1.15; text-align: center; }
+  .endoora-role-shell__bottom a > span:first-child { align-self: center; }
+  .endoora-role-shell__bottom a > span:last-child { display: block; inline-size: 100%; overflow-wrap: anywhere; unicode-bidi: plaintext; white-space: normal; }
+  .endoora-dialog--drawer { inline-size: 100%; }
   .endoora-card__header,
-  .endoora-stepper__actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .endoora-stepper__advance {
-    inline-size: 100%;
-  }
-
-  .endoora-stepper__advance .endoora-button {
-    flex: 1;
-  }
+  .endoora-stepper__actions { align-items: stretch; flex-direction: column; }
+  .endoora-stepper__advance { inline-size: 100%; }
+  .endoora-stepper__advance .endoora-button { flex: 1; }
 }
 
 @media (max-width: 36rem) {
   .endoora-data-card__row,
   .endoora-ai-result__meta > div,
-  .endoora-chart__bar-row {
-    grid-template-columns: 1fr;
-  }
-
-  .endoora-dialog {
-    inline-size: calc(100% - (2 * var(--space-2)));
-  }
-
+  .endoora-chart__bar-row { grid-template-columns: 1fr; }
+  .endoora-dialog { inline-size: calc(100% - (2 * var(--space-2))); }
   .endoora-dialog-actions .endoora-button,
-  .endoora-stepper__actions > .endoora-button {
-    inline-size: 100%;
-  }
+  .endoora-stepper__actions > .endoora-button { inline-size: 100%; }
 }

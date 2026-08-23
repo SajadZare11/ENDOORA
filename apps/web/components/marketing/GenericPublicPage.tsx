@@ -8,6 +8,7 @@ import {
   type PublicPageKey,
 } from "../../lib/public-site";
 import styles from "./marketing.module.css";
+import { PublicFaq } from "./PublicFaq";
 
 export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; pageKey: PublicPageKey }) {
   const copy = publicPages[pageKey][locale];
@@ -52,6 +53,11 @@ export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; p
           </article>
         ))}
       </section>
+      {pageKey === "help" ? (
+        <section className={styles.supportFaq} aria-label={isFa ? "پرسش‌های متداول محصول" : "Product frequently asked questions"}>
+          <PublicFaq locale={locale} compact />
+        </section>
+      ) : null}
     </PublicShell>
   );
 }

@@ -56,7 +56,8 @@
 .gateCard,
 .roleCard,
 .destination,
-.flowCard {
+.flowDetail,
+.phonePreview {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -94,15 +95,14 @@
 
 .roleGrid,
 .destinationGrid,
-.flowGrid {
+.routeGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
 }
 
 .roleCard,
-.destination,
-.flowCard {
+.destination {
   padding: var(--space-5);
 }
 
@@ -142,13 +142,301 @@
   margin-block-end: var(--space-2);
 }
 
-.flowCard {
+.routeGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.routeBadge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-3);
+}
+
+.routeBadge code {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: var(--font-family-latin);
+  color: var(--color-muted);
+}
+
+.routeBadge span,
+.decisionBadge {
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.routeBadge span[data-status="current"] {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.routeBadge span[data-status="planned"] {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.routeBadge span[data-status="foundation"] {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.mobilePreviewGrid {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 22.5rem));
+  gap: var(--space-5);
+}
+
+.phonePreview {
+  overflow: hidden;
+}
+
+.phoneTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.phonePreview .nav {
+  padding: var(--space-3);
+}
+
+.phonePreview .nav ul {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.phonePreview .nav a {
+  min-inline-size: 0;
+  min-block-size: calc(var(--target-min) + var(--space-5));
+  padding: var(--space-1);
+  justify-content: center;
+  text-align: center;
+  font-size: var(--font-size-meta);
+  line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.flowWorkbench {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.flowSelector {
+  display: grid;
+  gap: var(--space-2);
+  position: sticky;
+  inset-block-start: var(--space-4);
+}
+
+.flowSelector button,
+.stepList button,
+.stepControls button {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.flowSelector button {
+  min-block-size: var(--target-min);
+  padding: var(--space-3);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-1) var(--space-3);
+  text-align: start;
+}
+
+.flowSelector button > span {
+  grid-row: span 2;
+  color: var(--color-muted);
+  font-family: var(--font-family-latin);
+}
+
+.flowSelector button > strong,
+.flowSelector button > small {
+  min-inline-size: 0;
+}
+
+.flowSelector button > small {
+  color: var(--color-muted);
+}
+
+.flowSelector button[aria-pressed="true"] {
+  border-color: var(--color-action);
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.flowDetail {
+  padding: var(--space-6);
+  min-inline-size: 0;
+}
+
+.flowDetailHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.flowDetailHeader h3,
+.flowDetail h4,
+.recoveryPanel p {
+  margin-block: 0;
+}
+
+.decisionBadge {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.flowMeta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-block: var(--space-5);
+}
+
+.flowMeta div {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: var(--space-3);
+}
+
+.flowMeta dt {
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+}
+
+.flowMeta dd {
+  margin: var(--space-1) 0 0;
+  font-weight: 700;
+}
+
+.stepCounter {
+  margin-block-end: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+}
+
+.stepList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: var(--space-2);
 }
 
-.flowCard strong {
-  color: var(--color-success-text);
+.stepList button {
+  inline-size: 100%;
+  min-block-size: calc(var(--target-min) + var(--space-4));
+  padding: var(--space-2);
+  display: grid;
+  place-items: center;
+  gap: var(--space-1);
+  text-align: center;
+  font-size: var(--font-size-meta);
+}
+
+.stepList button span {
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--color-canvas);
+  font-family: var(--font-family-latin);
+}
+
+.stepList button[aria-current="step"] {
+  border-color: var(--color-action);
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.stepPanel {
+  margin-block-start: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-canvas);
+}
+
+.primaryAction {
+  display: grid;
+  gap: var(--space-1);
+  margin-block: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: var(--space-1) solid var(--color-action);
+  background: var(--color-surface);
+}
+
+.primaryAction span,
+.saveHint {
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+}
+
+.stepControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.stepControls button {
+  min-block-size: var(--target-min);
+  padding-inline: var(--space-4);
+}
+
+.stepControls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.saveHint {
+  margin-block: var(--space-3) 0;
+}
+
+.recoveryPanel {
+  margin-block-start: var(--space-6);
+}
+
+.recoveryPanel > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-block-start: var(--space-3);
+}
+
+.recoveryPanel article {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+}
+
+.recoveryPanel article strong {
+  display: block;
+  margin-block-end: var(--space-2);
 }
 
 .stateList {
@@ -167,9 +455,17 @@
 }
 
 @media (max-width: 64rem) {
-  .roleGrid,
   .destinationGrid,
-  .flowGrid {
+  .routeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flowWorkbench {
+    grid-template-columns: 1fr;
+  }
+
+  .flowSelector {
+    position: static;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -183,7 +479,8 @@
   .hero,
   .roleGrid,
   .destinationGrid,
-  .flowGrid {
+  .routeGrid,
+  .mobilePreviewGrid {
     grid-template-columns: 1fr;
   }
 
@@ -198,6 +495,33 @@
 
   .nav a {
     inline-size: 100%;
+  }
+
+  .phonePreview .nav ul {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .phonePreview .nav a {
+    padding-inline: var(--space-1);
+  }
+
+  .flowSelector,
+  .flowMeta,
+  .recoveryPanel > div {
+    grid-template-columns: 1fr;
+  }
+
+  .stepList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flowDetail {
+    padding: var(--space-4);
+  }
+
+  .flowDetailHeader {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
 
@@ -241,6 +565,14 @@
 }
 
 .languageSwitcher button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.page a:focus-visible,
+.flowSelector button:focus-visible,
+.stepList button:focus-visible,
+.stepControls button:focus-visible {
   outline: var(--focus-ring-width) solid var(--color-focus);
   outline-offset: var(--focus-ring-offset);
 }

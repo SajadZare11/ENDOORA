@@ -82,3 +82,25 @@ Do not invent a target pass score on Day 06; the baseline is for Day 55 comparis
 ## Success gate
 
 The public shell is deployable, Persian-first, bilingual, SEO-ready, honest about limitations, and a visitor can understand the product and next step in under 30 seconds.
+
+## Verification record — 2026-08-24
+
+Passed in the current workspace:
+
+- `npm run check:design`
+- `npm run check:components`
+- `npm run check:ia`
+- `npm run check:public`
+- `npm run check:public:routes` — 58 localized public pages, 3 SEO infrastructure routes, and 3 CTA/support routes returned 200; one unknown route returned 404
+- `npm run typecheck`
+- `npm run lint`
+- `npm run build` — 106 static pages generated
+- bundled-Python `python -m unittest scripts.test_scan_secrets`
+- bundled-Python `python scripts/scan_secrets.py`
+
+Still open and therefore intentionally unchecked above:
+
+- Django checks/migration/database waitlist journeys: `apps/api/.venv` points to removed `C:\Users\acer\AppData\Local\Programs\Python\Python310\python.exe`.
+- Browser desktop/360 interaction and screenshot review: localhost control was rejected by the in-app browser URL safety policy.
+- Lighthouse baseline: Lighthouse is not installed in the local dependency tree; no package was downloaded and no score was invented.
+- Database backup/migration and Git checkpoint require the founder's environment and explicit acceptance.

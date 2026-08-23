@@ -1,7 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { alternatePath, localizedPath, type PublicLocale } from "../../lib/public-site";
+import {
+  accountPath,
+  alternatePath,
+  localizedPath,
+  type PublicLocale,
+} from "../../lib/public-site";
 import styles from "./public-shell.module.css";
+import { AnalyticsConsent } from "./AnalyticsConsent";
 import { DocumentLocaleSync } from "./DocumentLocaleSync";
 
 const nav = [
@@ -16,6 +22,11 @@ const nav = [
   { path: "/help", fa: "راهنما", en: "Help" },
 ] as const;
 
+function isCurrentRoute(currentPath: string, path: string) {
+  if (path === "/") return currentPath === "/";
+  return currentPath === path || currentPath.startsWith(`${path}/`);
+}
+
 export function PublicShell({
   locale,
   currentPath,
@@ -29,6 +40,7 @@ export function PublicShell({
   return (
     <div className={styles.site} lang={locale} dir={isFa ? "rtl" : "ltr"}>
       <DocumentLocaleSync locale={locale} />
+      <AnalyticsConsent locale={locale} />
       <a className={styles.skipLink} href="#main-content">
         {isFa ? "رفتن به محتوای اصلی" : "Skip to main content"}
       </a>
@@ -41,7 +53,11 @@ export function PublicShell({
 
           <nav className={styles.desktopNav} aria-label={isFa ? "ناوبری اصلی" : "Primary navigation"}>
             {nav.map((item) => (
-              <Link key={item.path} href={localizedPath(locale, item.path)}>
+              <Link
+                key={item.path}
+                href={localizedPath(locale, item.path)}
+                aria-current={isCurrentRoute(currentPath, item.path) ? "page" : undefined}
+              >
                 {isFa ? item.fa : item.en}
               </Link>
             ))}
@@ -51,21 +67,28 @@ export function PublicShell({
             <Link className={styles.language} href={alternatePath(locale, currentPath)} hrefLang={isFa ? "en" : "fa-IR"}>
               {isFa ? "English" : "فارسی"}
             </Link>
-            <Link className={styles.primaryCta} href={localizedPath(locale, "/auth/login")}>
+            <Link className={styles.primaryCta} href={accountPath(locale, "/auth/login")}>
               {isFa ? "ورود" : "Login"}
             </Link>
+            <details className={styles.mobileMenu}>
+              <summary aria-label={isFa ? "باز کردن منوی اصلی" : "Open main menu"}>
+                <span aria-hidden="true" className={styles.menuIcon} />
+                <span>{isFa ? "منو" : "Menu"}</span>
+              </summary>
+              <nav aria-label={isFa ? "ناوبری موبایل" : "Mobile navigation"}>
+                {nav.map((item) => (
+                  <Link
+                    key={item.path}
+                    href={localizedPath(locale, item.path)}
+                    aria-current={isCurrentRoute(currentPath, item.path) ? "page" : undefined}
+                  >
+                    {isFa ? item.fa : item.en}
+                  </Link>
+                ))}
+              </nav>
+            </details>
           </div>
         </div>
-        <details className={styles.mobileMenu}>
-          <summary>{isFa ? "منو" : "Menu"}</summary>
-          <nav aria-label={isFa ? "ناوبری موبایل" : "Mobile navigation"}>
-            {nav.map((item) => (
-              <Link key={item.path} href={localizedPath(locale, item.path)}>
-                {isFa ? item.fa : item.en}
-              </Link>
-            ))}
-          </nav>
-        </details>
       </header>
 
       <main id="main-content" className={styles.main}>

@@ -22,7 +22,7 @@ Order:
 6. **Profile** — `/account/profile`
 7. **Sessions** — `/account/sessions`
 8. **Notifications** — `/account/notifications`
-9. **Privacy / Data Controls** — `/account/privacy`
+9. **Privacy / Data Controls** — `/account/data-controls` (current route)
 10. **Settings** — `/account/settings`
 11. **Support** — `/support`
 

@@ -431,8 +431,30 @@ export const featurePages: Record<FeatureKey, Localized<CopyBlock>> = {
       { title: "Auditable booking", body: "Request, offer, booking, cancellation, and dispute states are explicit." },
     ]},
   },
-  "ielts-practice": publicPages.ielts,
-  premium: publicPages.pricing,
+  "ielts-practice": {
+    fa: { eyebrow: "Validated Beta", title: "IELTS Practice با برآورد محدود و شفاف", summary: "شبیه‌سازی IELTS به چرخه تمرین و تحلیل اشتباه وصل می‌شود، بدون کپی محتوای تجاری یا معرفی بازخورد AI به‌عنوان نمره رسمی.", sections: [
+      { title: "محتوای اصل یا مجاز", body: "متن، صدا و سوال باید تولید Endoora، دارای مجوز یا در مالکیت عمومی باشند." },
+      { title: "بازه به‌جای قطعیت", body: "بازخورد Writing و Speaking معیار، شواهد، بازه و محدودیت را کنار هم نشان می‌دهد." },
+      { title: "اقدام بعدی", body: "الگوهای تأییدشده به تمرین هدفمند بعدی متصل می‌شوند، نه صرفاً یک صفحه نتیجه." },
+    ]},
+    en: { eyebrow: "Validated Beta", title: "IELTS Practice with bounded, transparent estimates", summary: "IELTS simulation connects to practice and mistake evidence without copying commercial material or presenting AI feedback as an official score.", sections: [
+      { title: "Original or licensed", body: "Text, audio, and questions must be Endoora originals, licensed, or public-domain." },
+      { title: "Ranges over certainty", body: "Writing and Speaking feedback displays criteria, evidence, a range, and limitations together." },
+      { title: "A useful next action", body: "Approved patterns lead to targeted follow-up practice rather than a dead-end result page." },
+    ]},
+  },
+  premium: {
+    fa: { eyebrow: "Production V1", title: "Premium Endoora با قیمت و مصرف قابل توضیح", summary: "Premium به یک منبع قیمت مدیریتی، استحقاق سروری و سیاست مصرف منصفانه متصل می‌شود؛ متن بازاریابی به‌تنهایی دسترسی ایجاد نمی‌کند.", sections: [
+      { title: "منبع واحد قیمت", body: "مبلغ نمایش، سفارش و تأیید پرداخت از یک منبع داده می‌آیند." },
+      { title: "استحقاق سروری", body: "دسترسی فقط پس از تأیید پرداخت یا اعطای مدیریتی معتبر فعال می‌شود." },
+      { title: "مصرف منصفانه", body: "استفاده عادی آموزشی نامحدود از سوءاستفاده خودکار و هزینه کنترل‌نشده جدا می‌شود." },
+    ]},
+    en: { eyebrow: "Production V1", title: "Endoora Premium with explainable price and usage", summary: "Premium connects to admin-managed pricing, server-side entitlement, and a fair-use policy; marketing copy alone never grants access.", sections: [
+      { title: "One price source", body: "Display, order, and payment verification read from one managed data source." },
+      { title: "Server-side entitlement", body: "Access activates only after verified payment or a valid administrative grant." },
+      { title: "Fair use", body: "Unlimited normal educational use remains distinct from automation abuse and uncontrolled provider cost." },
+    ]},
+  },
 };
 
 export const legalPages: Record<LegalKey, Localized<CopyBlock>> = {
@@ -518,6 +540,13 @@ export function localizedPath(locale: PublicLocale, path: string): string {
   const normalized = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
   if (locale === "fa") return normalized || "/";
   return `/en${normalized}` || "/en";
+}
+
+export function accountPath(
+  locale: PublicLocale,
+  path: "/auth/login" | "/auth/register",
+): string {
+  return locale === "fa" ? path : `${path}?locale=en`;
 }
 
 export function alternatePath(locale: PublicLocale, path: string): string {

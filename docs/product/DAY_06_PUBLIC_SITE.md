@@ -26,6 +26,8 @@ Persian default:
 
 English alternatives use `/en` before the same path.
 
+The earlier non-functional placement UI is preserved at `/placement/demo` with `noindex`; `/placement` is the canonical public explanation until the real assessment engine is implemented on Days 14–17. Teacher resources remain at `/teacher/resources`, while `/resources` is the public learning-resources route.
+
 Feature landing pages:
 
 - `/features/learner-twin`
@@ -64,6 +66,10 @@ It does not store raw referrer history, browsing behavior, or third-party analyt
 ## Analytics consent foundation
 
 Day 06 loads no third-party analytics script. The consent component stores the visitor's optional-analytics preference only in that browser. Actual analytics integration belongs to its roadmap day and must respect this choice.
+
+## Visual direction
+
+The accepted visual references and copy constraints live in `docs/uiux/day06-public-site/README.md`. Generated concept boards are retained as design evidence only; the product uses code-native, evidence-neutral previews and does not publish synthetic learner data from those boards.
 
 ## Pricing note
 

@@ -37,16 +37,16 @@ Primary public navigation is intentionally limited to:
 
 Primary navigation:
 
-- **Home** → `/learner`
+- **Home** → `/dashboard` (current route)
   - Today / next best action
   - first-time placement prompt
   - urgent assignment / next class summary when relevant
-- **Learn** → `/learner/path`
+- **Learn** → `/path` (current route)
   - personal path
   - vocabulary / SRS
   - progress
   - learner twin (beta)
-- **Practice** → `/learner/practice`
+- **Practice** → `/practice-ai` (current route; Today is `/today`)
   - daily mission
   - writing mentor (beta)
   - text roleplay (beta)
@@ -130,9 +130,30 @@ Teacher: **Home · Teach · Marketplace · Resources · Account**
 
 Administrative secondary tools do not become bottom-navigation items.
 
+At 360 px the visible English labels may use the compact forms **Teachers** and **Market**. Their accessible names and destination ownership remain **Teachers & Classes** and **Marketplace**; compact copy must not change the route or role boundary.
+
 ## Route status convention
 
 - **Current** — route already exists in the repository.
 - **Planned** — IA is frozen here but implementation belongs to a later roadmap day.
 - **Beta/Foundation** — route may exist later but is governed by its maturity/feature flag.
 - **Post-60** — not part of the Day-60 critical path.
+
+## Current route reconciliation
+
+Next.js route-group folders such as `(learner)`, `(teacher)`, and `(admin)` organize source code but do not add a URL segment. Day 05 therefore records the URL a browser can actually open and does not invent a `/learner/*` prefix.
+
+| Destination | Current browser route | Notes |
+|---|---|---|
+| Learner Home | `/dashboard` | current foundation screen |
+| Personal Path | `/path` | current foundation screen |
+| Today | `/today` | current foundation screen |
+| AI Practice | `/practice-ai` | current foundation screen |
+| Learner Twin | `/twin` | current foundation screen |
+| Progress | `/progress` | current foundation screen |
+| Teacher Home | `/teacher` | current foundation screen |
+| Teacher Classes | `/teacher/classes` | current foundation screen |
+| Teacher Marketplace Requests | `/marketplace/requests` | current foundation screen |
+| Operations question queue | `/content/questions` | current admin-group foundation screen |
+
+Routes labelled **Planned** in the prototype are wireframe contracts only. They must not be linked as if implemented or described as launch-ready.

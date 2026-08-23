@@ -63,6 +63,12 @@ export function Dialog({
         event.preventDefault();
         close();
       }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          close();
+        }
+      }}
       onClose={() => {
         if (open) onOpenChange(false);
         previousFocusRef.current?.focus();

@@ -15,9 +15,9 @@
 
 | Destination | Canonical route | Primary purpose | Common secondary actions |
 |---|---|---|---|
-| Home | `/learner` | What should I do now? | Resume placement, mission, urgent assignment, class |
-| Learn | `/learner/path` | Follow personal path | Vocabulary, progress, learner twin |
-| Practice | `/learner/practice` | Do practice now | Mission, writing, roleplay, voice |
+| Home | `/dashboard` | What should I do now? | Resume placement, mission, urgent assignment, class |
+| Learn | `/path` | Follow personal path | Vocabulary, progress, learner twin |
+| Practice | `/practice-ai` | Do practice now | Today (`/today`), writing, roleplay, voice |
 | Teachers & Classes | `/teachers` | Human-learning connection | Learn Now, bookings, fixed classes |
 | Account | `/account` | Administration and personal controls | Library, Usage, Premium, Billing, Profile, Privacy, Settings, Support |
 
@@ -30,6 +30,8 @@
 | Marketplace | `/marketplace/requests` | Handle eligible requests/bookings | Offers, booking state |
 | Resources | `/teacher/resources` | Reusable teaching material | Reviewed contributions |
 | Account | `/teacher/account` | Administrative/financial/personal controls | Verification, history, Usage, Earnings, Privacy, Settings, Support |
+
+The browser routes above reflect the repository. Next.js route-group names such as `(learner)` are source-organization details and do not appear in the URL. Future routes in the sitemap remain explicitly **Planned** until implemented.
 
 ## Role guard rule
 

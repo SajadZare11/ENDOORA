@@ -4,20 +4,27 @@
 
   /* Brand palette */
   --color-deep-navy: #0f172a;
+  --color-deep-space: #030712;
+  --color-midnight-blue: #071a2b;
+  --color-ocean-surface: #102a43;
   --color-endoora-blue: #2563eb;
   --color-learning-teal: #14b8a6;
+  --color-intelligence-purple: #8b5cf6;
   --color-achievement-amber: #f59e0b;
+  --color-achievement-gold: #fbbf24;
   --color-success-green: #16a34a;
   --color-warning-orange: #d97706;
   --color-error-red: #dc2626;
 
   /* Surfaces and text */
   --color-canvas: #f8fafc;
+  --color-background: var(--color-canvas);
   --color-surface: #ffffff;
   --color-text: #0f172a;
   --color-muted: #475569;
   --color-border: #e2e8f0;
   --color-action: #2563eb;
+  --color-action-hover: #1d4ed8;
   --color-action-text: #ffffff;
   --color-link: #1d4ed8;
   --color-focus: #2563eb;
@@ -60,12 +67,19 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  /* Shape and elevation */
-  --radius-control: 0.75rem;
-  --radius-card: 1rem;
+  /* Shape, elevation and glass */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-control: var(--radius-sm);
+  --radius-card: var(--radius-md);
   --radius-pill: 999px;
   --shadow-subtle: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px rgb(15 23 42 / 0.06);
   --shadow-raised: 0 12px 30px rgb(15 23 42 / 0.12);
+  --shadow-soft: var(--shadow-raised);
+  --glass-background: rgb(255 255 255 / 0.76);
+  --glass-border: rgb(255 255 255 / 0.88);
+  --glass-blur: 20px;
 
   /* Layout */
   --content-width: 78rem;
@@ -87,11 +101,13 @@
 [data-theme="dark"] {
   color-scheme: dark;
   --color-canvas: #08111f;
+  --color-background: var(--color-canvas);
   --color-surface: #111c2e;
   --color-text: #f8fafc;
   --color-muted: #cbd5e1;
   --color-border: #334155;
   --color-action: #2563eb;
+  --color-action-hover: #3b82f6;
   --color-action-text: #ffffff;
   --color-link: #93c5fd;
   --color-focus: #60a5fa;
@@ -105,6 +121,9 @@
   --color-info-text: #bfdbfe;
   --shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.22), 0 8px 24px rgb(0 0 0 / 0.18);
   --shadow-raised: 0 12px 30px rgb(0 0 0 / 0.3);
+  --shadow-soft: var(--shadow-raised);
+  --glass-background: rgb(17 28 46 / 0.76);
+  --glass-border: rgb(255 255 255 / 0.14);
 }
 
 .font-persian {

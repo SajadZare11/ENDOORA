@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import type { PublicLocale } from "../../lib/public-site";
 import styles from "./marketing.module.css";
 
@@ -57,6 +57,9 @@ export function WaitlistForm({
   source: string;
 }) {
   const isFa = locale === "fa";
+  const emailId = useId();
+  const consentId = useId();
+  const statusId = useId();
 
   const [state, setState] = useState<SubmitState>("idle");
   const [error, setError] = useState("");
@@ -167,17 +170,19 @@ export function WaitlistForm({
   }
 
   return (
-    <form className={styles.form} onSubmit={submit}>
-      <label htmlFor="waitlist-email">
+    <form className={styles.form} onSubmit={submit} aria-busy={state === "submitting"}>
+      <label htmlFor={emailId}>
         {isFa ? "ایمیل" : "Email"}
       </label>
 
       <input
-        id="waitlist-email"
+        id={emailId}
         name="email"
         type="email"
         inputMode="email"
         autoComplete="email"
+        autoCapitalize="none"
+        aria-describedby={statusId}
         dir="ltr"
         required
         placeholder="name@example.com"
@@ -185,10 +190,10 @@ export function WaitlistForm({
 
       <label
         className={styles.checkboxLabel}
-        htmlFor="waitlist-consent"
+        htmlFor={consentId}
       >
         <input
-          id="waitlist-consent"
+          id={consentId}
           name="consent"
           type="checkbox"
           required
@@ -216,7 +221,9 @@ export function WaitlistForm({
       </button>
 
       <div
+        id={statusId}
         className={styles.formStatus}
+        data-state={state}
         role="status"
         aria-live="polite"
       >

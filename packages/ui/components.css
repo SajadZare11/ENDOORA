@@ -1,0 +1,2 @@
+/* Compatibility import for early Day 4 package paths. */
+@import "./src/components.css";

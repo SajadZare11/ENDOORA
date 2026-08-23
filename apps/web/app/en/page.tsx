@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HomePage } from "../../components/marketing/HomePage";
+import { PublicShell } from "../../components/marketing/PublicShell";
 import { buildMetadata } from "../../lib/public-site";
 
 export const metadata: Metadata = buildMetadata(
@@ -10,5 +11,9 @@ export const metadata: Metadata = buildMetadata(
 );
 
 export default function EnglishHome() {
-  return <HomePage locale="en" />;
+  return (
+    <PublicShell locale="en" currentPath="/">
+      <HomePage locale="en" />
+    </PublicShell>
+  );
 }

@@ -54,6 +54,10 @@ Loading, empty, error/retry, offline/interrupted, expired-session and permission
 - Later dashboards cannot become a feature catalogue without changing this ADR.
 - Backend authorization remains mandatory even when a link is hidden.
 
+### Route-group clarification
+
+The navigation labels are stable concepts, while browser routes follow the implementation. Next.js route groups do not become URL prefixes: the current learner destinations are `/dashboard`, `/path`, `/today`, and `/practice-ai`, not `/learner/*`. Planned destinations remain visibly labelled as planned in the Day 05 prototype.
+
 ## Day 05 localization amendment
 
 All navigation labels described by this ADR are **display concepts**, not hardcoded English UI copy.
