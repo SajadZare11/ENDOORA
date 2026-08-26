@@ -23,10 +23,33 @@ export type LearnerHome = {
     reason_fa: string;
     reason_en: string;
   };
+  today_mission: {
+    id: string;
+    mission_date: string;
+    status: "ready" | "in_progress" | "completed";
+    title_fa: string;
+    title_en: string;
+    description_fa: string;
+    description_en: string;
+    reason_fa: string;
+    reason_en: string;
+  } | null;
   path_progress_percent: number | null;
+  path_steps: Array<{
+    id: "placement" | "personal_path" | "daily_growth";
+    label_fa: string;
+    label_en: string;
+    state: "complete" | "current" | "locked";
+  }>;
   path_message_fa: string;
   path_message_en: string;
-  skills: Array<Record<string, unknown>>;
+  skills: Array<{
+    id: "speaking" | "listening" | "reading" | "writing" | "grammar" | "vocabulary";
+    label_fa: string;
+    label_en: string;
+    status_fa: string;
+    status_en: string;
+  }>;
   srs_available: boolean;
   srs_due_count: number;
   assignment: Record<string, unknown> | null;

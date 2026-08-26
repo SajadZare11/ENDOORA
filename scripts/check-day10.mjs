@@ -38,6 +38,7 @@ const requiredFiles = [
   "apps/web/app/(teacher)/teacher/fixed-classes/new/page.tsx",
   "apps/web/app/(teacher)/teacher/account/page.tsx",
   "apps/web/app/(teacher)/marketplace/requests/page.tsx",
+  "apps/web/public/images/teacher/teacher-verification.png",
 ];
 
 for (const file of requiredFiles) read(file);
@@ -52,6 +53,11 @@ requireText("apps/web/components/teacher/TeacherShell.tsx", 'href: "/marketplace
 requireText("apps/web/components/teacher/TeacherShell.tsx", 'href: "/teacher/resources"', "Teacher Resources nav");
 requireText("apps/web/components/teacher/TeacherShell.tsx", 'href: "/teacher/account"', "Teacher Account nav");
 requireText("apps/web/components/teacher/TeacherShell.tsx", 'const [locale, setLocale] = useState<TeacherLocale>("fa")', "Persian-first locale");
+requireText("apps/web/components/teacher/TeacherShell.tsx", "persistPreferredLocale", "Persistent bilingual preference");
+requireText("apps/web/components/teacher/TeacherShell.tsx", "TeacherIcon", "Accessible teacher navigation icons");
+requireText("apps/web/components/teacher/TeacherDashboard.tsx", "/images/teacher/teacher-verification.png", "Purpose-built verification artwork");
+requireText("apps/web/components/teacher/TeacherDashboard.tsx", "teacher-profile-progress", "Real teacher profile completeness");
+requireText("apps/web/components/teacher/TeacherDashboard.tsx", "teacher-account-rail", "Finance and settings Account destination");
 requireText("apps/api/teachers/dashboard.py", '"amount_toman": None', "No invented earnings");
 requireText("apps/api/teachers/dashboard.py", '"count": None', "No invented future-domain counts");
 requireText("apps/api/teachers/tests.py", "assertNumQueries(1)", "Bounded dashboard query test");
@@ -74,7 +80,22 @@ if (!css.includes("grid-template-columns: repeat(5")) {
 if (!css.includes("inset-inline") || !css.includes("margin-inline")) {
   throw new Error("Teacher CSS must use logical RTL/LTR properties.");
 }
+if (!css.includes("prefers-reduced-motion") || !css.includes(":focus-visible")) {
+  throw new Error("Teacher shell must preserve keyboard focus and reduced-motion support.");
+}
+
+const teacherLayout = read("apps/web/app/(teacher)/layout.tsx");
+if (teacherLayout.includes("EndooraShell")) {
+  throw new Error("Teacher routes must not be wrapped in the public marketing shell.");
+}
+
+const teacherDashboard = read("apps/web/components/teacher/TeacherDashboard.tsx");
+for (const sensitive of ["raw_writing", "audio_blob", "conversation_history", "private_message"]) {
+  if (teacherDashboard.includes(sensitive)) {
+    throw new Error(`Sensitive learner evidence surfaced in teacher UI: ${sensitive}`);
+  }
+}
 
 console.log(
-  "Day 10 static checks passed: teacher role shell, 5-item navigation, Persian-first locale, capability gates, privacy redaction, bounded query test, safe future-domain placeholders, mobile layout, and Day 09 API registration repair.",
+  "Day 10 static checks passed: separate teacher role shell, persistent bilingual preference, five-item navigation, urgency-first action, capability gates, privacy redaction, bounded query test, safe future-domain states, responsive layout, and production verification artwork.",
 );

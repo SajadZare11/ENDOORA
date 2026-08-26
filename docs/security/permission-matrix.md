@@ -9,6 +9,7 @@ Endoora enforces authorization on the Django/DRF server. Hiding a button is neve
 | Change own role | No | No | No | No | No | No |
 | Accept own consent version | No | Yes | Yes | Yes | Yes | Yes |
 | Request own deactivation/deletion | No | Yes | Yes | Yes | Yes | Yes |
+| Cancel own pending deletion request | No | Yes | Yes | Yes | Yes | Yes |
 | Read another user's private account | No | No | No | No | No by default | Only scoped admin workflows |
 | Teacher marketplace capability | No | No | Verified only | No | No | Operational override only |
 | Paid-class capability | No | No | Verified + explicitly eligible | No | No | Operational override only |
@@ -27,3 +28,7 @@ Every later object-bearing API must test at least:
 5. administrator.
 
 Unrelated users must receive a denial without leaking whether sensitive objects exist.
+
+## Day 07 login strategy
+
+Endoora is email-and-password first. An Iranian mobile number is an optional verified fallback identifier; it is normalized to E.164 before storage. Public OTP login is deliberately disabled until a complete login flow and production delivery provider exist. Password recovery returns the same acknowledgement for known and unknown active accounts.

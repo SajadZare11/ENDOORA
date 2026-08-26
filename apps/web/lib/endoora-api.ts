@@ -131,6 +131,49 @@ export function apiErrorMessages(
     "message_en",
   ]);
 
+  const localizedFieldFallbacks: Record<string, Record<EndooraLocale, string>> = {
+    email: {
+      fa: "ایمیل واردشده معتبر نیست یا قبلاً استفاده شده است.",
+      en: "The email address is invalid or already in use.",
+    },
+    password: {
+      fa: "رمز عبور با الزامات امنیتی Endoora هماهنگ نیست.",
+      en: "The password does not meet Endoora's security requirements.",
+    },
+    new_password: {
+      fa: "رمز عبور جدید با الزامات امنیتی Endoora هماهنگ نیست.",
+      en: "The new password does not meet Endoora's security requirements.",
+    },
+    role: {
+      fa: "نقش حساب انتخاب‌شده معتبر نیست.",
+      en: "The selected account role is not valid.",
+    },
+    preferred_locale: {
+      fa: "زبان رابط انتخاب‌شده معتبر نیست.",
+      en: "The selected interface language is not valid.",
+    },
+    accept_terms: {
+      fa: "پذیرش شرایط استفاده الزامی است.",
+      en: "You must accept the Terms of Use.",
+    },
+    accept_privacy: {
+      fa: "پذیرش سیاست حریم خصوصی الزامی است.",
+      en: "You must accept the Privacy Policy.",
+    },
+    phone: {
+      fa: "شماره موبایل ایران معتبر نیست.",
+      en: "Enter a valid Iranian mobile number.",
+    },
+    timezone: {
+      fa: "منطقه زمانی انتخاب‌شده معتبر نیست.",
+      en: "The selected timezone is not valid.",
+    },
+    draft_data: {
+      fa: "اطلاعات ذخیره موقت معتبر نیست یا شامل داده حساس است.",
+      en: "The saved draft is invalid or contains sensitive data.",
+    },
+  };
+
   const messages: string[] = [];
 
   for (const [field, value] of Object.entries(error.data)) {
@@ -139,6 +182,13 @@ export function apiErrorMessages(
     }
 
     if (Array.isArray(value)) {
+      const localizedFallback = localizedFieldFallbacks[field]?.[locale];
+
+      if (localizedFallback) {
+        messages.push(localizedFallback);
+        continue;
+      }
+
       for (const item of value) {
         if (typeof item === "string") {
           messages.push(item);
@@ -148,7 +198,9 @@ export function apiErrorMessages(
     }
 
     if (typeof value === "string") {
-      messages.push(value);
+      messages.push(
+        localizedFieldFallbacks[field]?.[locale] ?? value,
+      );
     }
   }
 
@@ -161,4 +213,13 @@ export function apiErrorMessages(
       ? "درخواست انجام نشد. اطلاعات واردشده را بررسی کنید."
       : "The request could not be completed. Check the information you entered.",
   ];
+}
+
+export async function persistPreferredLocale(
+  locale: EndooraLocale,
+): Promise<void> {
+  await endooraApi("/auth/me/", {
+    method: "PATCH",
+    json: { preferred_locale: locale },
+  });
 }

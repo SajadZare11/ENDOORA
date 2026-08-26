@@ -39,6 +39,12 @@ def issue_otp(
                 "The phone number must match the authenticated account."
             )
 
+    if purpose == OneTimeCode.Purpose.EMAIL_VERIFY:
+        if requested_by is None or requested_by.email != normalized:
+            raise ValidationError(
+                "The email address must match the authenticated account."
+            )
+
     now = timezone.now()
     OneTimeCode.objects.filter(
         identifier=normalized,
@@ -69,7 +75,13 @@ def issue_otp(
 
 
 @transaction.atomic
-def verify_otp(identifier: str, purpose: str, raw_code: str) -> OneTimeCode:
+def verify_otp(
+    identifier: str,
+    purpose: str,
+    raw_code: str,
+    *,
+    expected_user: User | None = None,
+) -> OneTimeCode:
     normalized = normalize_identifier(identifier)
 
     record = (
@@ -82,6 +94,11 @@ def verify_otp(identifier: str, purpose: str, raw_code: str) -> OneTimeCode:
         .order_by("-created_at")
         .first()
     )
+    if expected_user is not None and (
+        record is None or record.requested_by_id != expected_user.pk
+    ):
+        raise ValidationError("The code does not belong to this account.")
+
     if record is None or not record.verify(raw_code):
         raise ValidationError("The code is invalid, expired, consumed, or has too many attempts.")
 
@@ -90,6 +107,12 @@ def verify_otp(identifier: str, purpose: str, raw_code: str) -> OneTimeCode:
         if user.phone == normalized:
             user.phone_verified_at = timezone.now()
             user.save(update_fields=["phone_verified_at"])
+
+    if purpose == OneTimeCode.Purpose.EMAIL_VERIFY and record.requested_by_id:
+        user = User.objects.select_for_update().get(pk=record.requested_by_id)
+        if user.email == normalized:
+            user.email_verified_at = timezone.now()
+            user.save(update_fields=["email_verified_at"])
 
     return record
 
@@ -115,3 +138,19 @@ def request_account_deletion(user: User, reason_code: str = "") -> AccountDeleti
         reason_code=reason_code.strip()[:64],
         scheduled_for=timezone.now() + timedelta(days=delay_days),
     )
+
+
+@transaction.atomic
+def cancel_account_deletion(user: User) -> AccountDeletionRequest | None:
+    pending = (
+        user.deletion_requests.select_for_update()
+        .filter(status=AccountDeletionRequest.Status.PENDING)
+        .first()
+    )
+    if pending is None:
+        return None
+
+    pending.status = AccountDeletionRequest.Status.CANCELLED
+    pending.cancelled_at = timezone.now()
+    pending.save(update_fields=["status", "cancelled_at"])
+    return pending

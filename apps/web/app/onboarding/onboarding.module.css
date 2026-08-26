@@ -31,6 +31,22 @@
   line-height: var(--line-height-meta);
 }
 
+.autosave {
+  inline-size: fit-content;
+  color: var(--color-success-text);
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.autosaveError { color: var(--color-error-text); }
+
+.completionLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
 .form {
   display: grid;
   gap: var(--space-5);

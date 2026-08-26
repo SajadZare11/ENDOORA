@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
+import { PasswordField } from "../../../components/auth/PasswordField";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -34,7 +35,8 @@ const copy = {
     emailHelp: "همان ایمیلی را وارد کنید که با آن در Endoora ثبت‌نام کرده‌اید.",
     sendCode: "دریافت کد بازیابی",
     sendingCode: "در حال ایجاد کد…",
-    codeSent: "کد بازیابی ایجاد شد.",
+    codeSent:
+      "اگر حساب فعالی با این ایمیل وجود داشته باشد، کد بازیابی برای آن ایجاد شده است.",
     code: "کد ۶ رقمی",
     codeHelp: "کد بازیابی را وارد کنید.",
     developmentCode: "کد آزمایشی محیط توسعه",
@@ -42,6 +44,8 @@ const copy = {
       "این کد فقط در محیط توسعه محلی نمایش داده می‌شود.",
     newPassword: "رمز عبور جدید",
     confirmPassword: "تکرار رمز عبور جدید",
+    showPassword: "نمایش رمز عبور",
+    hidePassword: "پنهان کردن رمز عبور",
     reset: "تغییر رمز عبور",
     resetting: "در حال تغییر رمز…",
     resend: "دریافت کد جدید",
@@ -66,7 +70,8 @@ const copy = {
     emailHelp: "Use the email address registered with your Endoora account.",
     sendCode: "Get reset code",
     sendingCode: "Creating code…",
-    codeSent: "A reset code has been created.",
+    codeSent:
+      "If an active account matches this email, a reset code has been created for it.",
     code: "6-digit code",
     codeHelp: "Enter your password-reset code.",
     developmentCode: "Local development code",
@@ -74,6 +79,8 @@ const copy = {
       "This code is displayed only in the local development environment.",
     newPassword: "New password",
     confirmPassword: "Confirm new password",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     reset: "Change password",
     resetting: "Changing password…",
     resend: "Get a new code",
@@ -278,7 +285,7 @@ export default function ForgotPasswordPage() {
               id="reset-email"
               type="email"
               autoComplete="email"
-              className={`endoora-input ${styles.ltrInput}`}
+              className={`endoora-input ${styles.ltrInput} ${styles.codeInput}`}
               value={email}
               onChange={(event) =>
                 setEmail(event.target.value)
@@ -365,49 +372,25 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
 
-          <div className="endoora-field">
-            <label
-              className="endoora-field__label"
-              htmlFor="new-password"
-            >
-              {t.newPassword}
-            </label>
+          <PasswordField
+            id="new-password"
+            label={t.newPassword}
+            showLabel={t.showPassword}
+            hideLabel={t.hidePassword}
+            autoComplete="new-password"
+            value={newPassword}
+            onChange={(event) => setNewPassword(event.target.value)}
+          />
 
-            <input
-              id="new-password"
-              type="password"
-              autoComplete="new-password"
-              className={`endoora-input ${styles.ltrInput}`}
-              value={newPassword}
-              onChange={(event) =>
-                setNewPassword(
-                  event.target.value,
-                )
-              }
-            />
-          </div>
-
-          <div className="endoora-field">
-            <label
-              className="endoora-field__label"
-              htmlFor="confirm-new-password"
-            >
-              {t.confirmPassword}
-            </label>
-
-            <input
-              id="confirm-new-password"
-              type="password"
-              autoComplete="new-password"
-              className={`endoora-input ${styles.ltrInput}`}
-              value={confirmPassword}
-              onChange={(event) =>
-                setConfirmPassword(
-                  event.target.value,
-                )
-              }
-            />
-          </div>
+          <PasswordField
+            id="confirm-new-password"
+            label={t.confirmPassword}
+            showLabel={t.showPassword}
+            hideLabel={t.hidePassword}
+            autoComplete="new-password"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
 
           <div className={styles.actions}>
             <button

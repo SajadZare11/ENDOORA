@@ -22,6 +22,37 @@ class PrimaryActionSerializer(serializers.Serializer):
     reason_en = serializers.CharField(max_length=300)
 
 
+class TodayMissionSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+    mission_date = serializers.DateField()
+    status = serializers.ChoiceField(choices=("ready", "in_progress", "completed"))
+    title_fa = serializers.CharField(max_length=200)
+    title_en = serializers.CharField(max_length=200)
+    description_fa = serializers.CharField()
+    description_en = serializers.CharField()
+    reason_fa = serializers.CharField(allow_blank=True, max_length=300)
+    reason_en = serializers.CharField(allow_blank=True, max_length=300)
+
+
+class PathStepSerializer(serializers.Serializer):
+    id = serializers.ChoiceField(
+        choices=("placement", "personal_path", "daily_growth")
+    )
+    label_fa = serializers.CharField(max_length=120)
+    label_en = serializers.CharField(max_length=120)
+    state = serializers.ChoiceField(choices=("complete", "current", "locked"))
+
+
+class SkillSnapshotSerializer(serializers.Serializer):
+    id = serializers.ChoiceField(
+        choices=("speaking", "listening", "reading", "writing", "grammar", "vocabulary")
+    )
+    label_fa = serializers.CharField(max_length=80)
+    label_en = serializers.CharField(max_length=80)
+    status_fa = serializers.CharField(max_length=120)
+    status_en = serializers.CharField(max_length=120)
+
+
 class LearnerHomeSerializer(serializers.Serializer):
     user_id = serializers.UUIDField()
     greeting_name = serializers.CharField(max_length=150)
@@ -30,12 +61,14 @@ class LearnerHomeSerializer(serializers.Serializer):
         choices=("first_time", "returning", "assignment_due", "mission_ready")
     )
     primary_action = PrimaryActionSerializer()
+    today_mission = TodayMissionSerializer(allow_null=True)
     path_progress_percent = serializers.IntegerField(
         min_value=0, max_value=100, allow_null=True
     )
+    path_steps = PathStepSerializer(many=True)
     path_message_fa = serializers.CharField(max_length=240)
     path_message_en = serializers.CharField(max_length=240)
-    skills = serializers.ListField(child=serializers.DictField())
+    skills = SkillSnapshotSerializer(many=True)
     srs_available = serializers.BooleanField()
     srs_due_count = serializers.IntegerField(min_value=0)
     assignment = serializers.DictField(allow_null=True)

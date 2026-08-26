@@ -29,7 +29,13 @@ class UserAdmin(BaseUserAdmin):
         "is_superuser",
     )
     search_fields = ("email", "phone", "first_name", "last_name")
-    readonly_fields = ("phone_verified_at", "deactivated_at", "last_login", "date_joined")
+    readonly_fields = (
+        "email_verified_at",
+        "phone_verified_at",
+        "deactivated_at",
+        "last_login",
+        "date_joined",
+    )
 
     fieldsets = (
         (None, {"fields": ("email", "password")}),
@@ -78,6 +84,7 @@ class UserAdmin(BaseUserAdmin):
                 "classes": ("wide",),
                 "fields": (
                     "email",
+                    "email_verified_at",
                     "phone",
                     "role",
                     "preferred_locale",

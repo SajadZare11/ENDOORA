@@ -11,6 +11,7 @@ import { AuthShell } from "../../../components/auth/AuthShell";
 import {
   apiErrorMessages,
   endooraApi,
+  persistPreferredLocale,
   type EndooraLocale,
 } from "../../../lib/endoora-api";
 import styles from "./data-controls.module.css";
@@ -94,6 +95,10 @@ const copy = {
     requestingDeletion: "در حال ثبت درخواست…",
     deletionSuccess:
       "درخواست حذف حساب ثبت شد.",
+    cancelDeletion: "لغو درخواست حذف",
+    cancellingDeletion: "در حال لغو درخواست…",
+    cancellationSuccess:
+      "درخواست حذف لغو شد و حساب شما حفظ می‌شود.",
 
     back: "بازگشت به حساب کاربری",
   },
@@ -148,6 +153,10 @@ const copy = {
     requestingDeletion: "Submitting…",
     deletionSuccess:
       "Your account-deletion request was submitted.",
+    cancelDeletion: "Cancel deletion request",
+    cancellingDeletion: "Cancelling…",
+    cancellationSuccess:
+      "The deletion request was cancelled and your account will be kept.",
 
     back: "Back to account",
   },
@@ -198,10 +207,14 @@ export default function DataControlsPage() {
     useState(false);
   const [deleteBusy, setDeleteBusy] =
     useState(false);
+  const [cancelBusy, setCancelBusy] =
+    useState(false);
 
   const [exportSuccess, setExportSuccess] =
     useState(false);
   const [deleteSuccess, setDeleteSuccess] =
+    useState(false);
+  const [cancelSuccess, setCancelSuccess] =
     useState(false);
 
   const [errors, setErrors] =
@@ -242,9 +255,12 @@ export default function DataControlsPage() {
           setLocale(accountLocale);
           setAccount(accountResult);
           setExports(exportResults);
+          const latestDeletion =
+            summaryResult.data_controls.latest_deletion_request;
           setDeletion(
-            summaryResult.data_controls
-              .latest_deletion_request,
+            latestDeletion?.status === "pending"
+              ? latestDeletion
+              : null,
           );
         },
       )
@@ -268,6 +284,26 @@ export default function DataControlsPage() {
       cancelled = true;
     };
   }, []);
+
+  async function handleLocaleChange(nextLocale: EndooraLocale) {
+    const previousLocale = locale;
+    setLocale(nextLocale);
+
+    if (!account || nextLocale === previousLocale) {
+      return;
+    }
+
+    try {
+      await persistPreferredLocale(nextLocale);
+      setAccount((current) => current ? {
+        ...current,
+        preferred_locale: nextLocale,
+      } : current);
+    } catch (error) {
+      setLocale(previousLocale);
+      setErrors(apiErrorMessages(error, previousLocale));
+    }
+  }
 
   async function requestExport() {
     setExportBusy(true);
@@ -348,6 +384,28 @@ export default function DataControlsPage() {
     }
   }
 
+  async function cancelDeletion() {
+    setCancelBusy(true);
+    setCancelSuccess(false);
+    setErrors([]);
+
+    try {
+      await endooraApi<DeletionRequest>(
+        "/auth/deletion-request/cancel/",
+        {
+          method: "POST",
+          json: { confirm: "KEEP" },
+        },
+      );
+      setDeletion(null);
+      setCancelSuccess(true);
+    } catch (error) {
+      setErrors(apiErrorMessages(error, locale));
+    } finally {
+      setCancelBusy(false);
+    }
+  }
+
   if (loading) {
     return (
       <AuthShell
@@ -355,6 +413,7 @@ export default function DataControlsPage() {
         onLocaleChange={setLocale}
         title={t.title}
         description={t.loading}
+        variant="wide"
       >
         <div
           className="endoora-status-message"
@@ -373,6 +432,7 @@ export default function DataControlsPage() {
         onLocaleChange={setLocale}
         title={t.title}
         description={t.errorTitle}
+        variant="wide"
         footer={
           <Link href="/auth/login">
             {t.signIn}
@@ -400,9 +460,10 @@ export default function DataControlsPage() {
   return (
     <AuthShell
       locale={locale}
-      onLocaleChange={setLocale}
+      onLocaleChange={handleLocaleChange}
       title={t.title}
       description={t.description}
+      variant="wide"
       footer={
         <Link
           href="/account"
@@ -554,6 +615,15 @@ export default function DataControlsPage() {
             </div>
           ) : null}
 
+          {cancelSuccess ? (
+            <div
+              className="endoora-status-message endoora-status-message--success"
+              role="status"
+            >
+              {t.cancellationSuccess}
+            </div>
+          ) : null}
+
           {deletion ? (
             <div className={styles.item}>
               <strong>
@@ -577,6 +647,19 @@ export default function DataControlsPage() {
                     locale,
                   )}
                 </span>
+              </div>
+
+              <div className={styles.actions}>
+                <button
+                  type="button"
+                  className="endoora-button endoora-button--secondary"
+                  disabled={cancelBusy}
+                  onClick={() => void cancelDeletion()}
+                >
+                  {cancelBusy
+                    ? t.cancellingDeletion
+                    : t.cancelDeletion}
+                </button>
               </div>
             </div>
           ) : (

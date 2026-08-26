@@ -1,4 +1,5 @@
 from django.test import override_settings
+from django.conf import settings
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -58,6 +59,18 @@ class Day08RegistrationTests(APITestCase):
             user.consent_records.count(),
             2,
         )
+        self.assertSetEqual(
+            set(
+                user.consent_records.values_list(
+                    "version",
+                    flat=True,
+                )
+            ),
+            {
+                settings.ENDOORA_TERMS_VERSION,
+                settings.ENDOORA_PRIVACY_VERSION,
+            },
+        )
 
     def test_registration_cannot_create_admin(self):
         token = self.csrf()
@@ -114,6 +127,34 @@ class Day08RegistrationTests(APITestCase):
                 email="nonsense@example.com"
             ).exists()
         )
+
+    def test_registration_validation_error_is_bilingual(self):
+        token = self.csrf()
+
+        response = self.client.post(
+            "/api/auth/register/",
+            {
+                "email": "not-an-email",
+                "password": "short",
+                "role": "learner",
+                "preferred_locale": "fa",
+                "accept_terms": True,
+                "accept_privacy": True,
+            },
+            format="json",
+            HTTP_X_CSRFTOKEN=token,
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST,
+        )
+        self.assertEqual(
+            response.data["code"],
+            "registration_validation_failed",
+        )
+        self.assertTrue(response.data["message_fa"])
+        self.assertTrue(response.data["message_en"])
 
 
 @override_settings(

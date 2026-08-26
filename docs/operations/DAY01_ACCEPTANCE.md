@@ -16,7 +16,7 @@
 - [x] Architecture/security/AI/operations baseline files
 - [x] Obvious brand-conflict precheck recorded
 - [ ] Founder privately verifies IRNIC account/domain facts
-- [ ] Local Day 01 Git checkpoint created, or explicitly deferred because Git is unavailable
+- [x] Local Day 01 Git checkpoint created (`5a9f259`)
 
 ## Runtime checks
 
@@ -29,8 +29,6 @@ These are not recorded as “passed”; they are intentionally not applicable to
 
 ## Day 01 success gate
 
-Day 01 may be marked complete after:
-1. the founder performs the private IRNIC check;
-2. a local Git checkpoint is created if Git is available (GitHub remote/push is created on Day 02 in this clean-slate sequence).
+The repository implementation and Git checkpoint are complete. Formal founder acceptance still requires the private IRNIC account/domain verification; this cannot be inferred from source code or public DNS.
 
 Next: Day 02 — monorepo and reproducible development environment.

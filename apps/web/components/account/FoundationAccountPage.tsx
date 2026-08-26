@@ -7,6 +7,7 @@ import { AuthShell } from "../auth/AuthShell";
 import {
   apiErrorMessages,
   endooraApi,
+  persistPreferredLocale,
   type EndooraLocale,
 } from "../../lib/endoora-api";
 import styles from "./foundation-account-page.module.css";
@@ -163,6 +164,26 @@ export function FoundationAccountPage({
     };
   }, []);
 
+  async function handleLocaleChange(nextLocale: EndooraLocale) {
+    const previousLocale = locale;
+    setLocale(nextLocale);
+
+    if (!account || nextLocale === previousLocale) {
+      return;
+    }
+
+    try {
+      await persistPreferredLocale(nextLocale);
+      setAccount((current) => current ? {
+        ...current,
+        preferred_locale: nextLocale,
+      } : current);
+    } catch (error) {
+      setLocale(previousLocale);
+      setErrors(apiErrorMessages(error, previousLocale));
+    }
+  }
+
   if (loading) {
     return (
       <AuthShell
@@ -215,7 +236,7 @@ export function FoundationAccountPage({
   return (
     <AuthShell
       locale={locale}
-      onLocaleChange={setLocale}
+      onLocaleChange={handleLocaleChange}
       title={sectionCopy.title}
       description={sectionCopy.description}
       footer={

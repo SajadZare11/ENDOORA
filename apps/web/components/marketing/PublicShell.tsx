@@ -11,15 +11,12 @@ import { AnalyticsConsent } from "./AnalyticsConsent";
 import { DocumentLocaleSync } from "./DocumentLocaleSync";
 
 const nav = [
-  { path: "/", fa: "خانه", en: "Home" },
-  { path: "/how-it-works", fa: "چطور کار می‌کند", en: "How it works" },
   { path: "/placement", fa: "تعیین سطح", en: "Placement" },
   { path: "/teachers", fa: "مدرس‌ها", en: "Teachers" },
   { path: "/classes", fa: "کلاس‌ها", en: "Classes" },
   { path: "/learn", fa: "دوره‌ها", en: "Courses" },
   { path: "/ielts", fa: "IELTS", en: "IELTS" },
-  { path: "/pricing", fa: "قیمت", en: "Pricing" },
-  { path: "/help", fa: "راهنما", en: "Help" },
+  { path: "/pricing", fa: "اشتراک", en: "Membership" },
 ] as const;
 
 function isCurrentRoute(currentPath: string, path: string) {

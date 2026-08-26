@@ -25,14 +25,10 @@ class RegisterSerializer(serializers.Serializer):
     accept_privacy = serializers.BooleanField(write_only=True)
 
     def validate_email(self, value):
-        email = value.strip().lower()
-
-        if User.objects.filter(email__iexact=email).exists():
-            raise serializers.ValidationError(
-                "An account with this email already exists."
-            )
-
-        return email
+        # The database unique constraint is the authoritative duplicate check.
+        # RegisterView converts the resulting IntegrityError into a bilingual,
+        # race-safe conflict response.
+        return value.strip().lower()
 
     def validate(self, attrs):
         errors = {}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
+import { PasswordField } from "../../../components/auth/PasswordField";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -25,10 +26,12 @@ const copy = {
       "برای ادامه مسیر یادگیری یا تدریس وارد حساب خود شوید.",
     email: "ایمیل",
     password: "رمز عبور",
-    submit: "ورود",
+    submit: "ورود امن",
     submitting: "در حال ورود…",
     requiredEmail: "ایمیل را وارد کنید.",
     requiredPassword: "رمز عبور را وارد کنید.",
+    showPassword: "نمایش رمز عبور",
+    hidePassword: "پنهان کردن رمز عبور",
     errorTitle: "ورود انجام نشد",
     successTitle: "با موفقیت وارد شدید.",
     successBody:
@@ -44,10 +47,12 @@ const copy = {
       "Sign in to continue learning or teaching.",
     email: "Email",
     password: "Password",
-    submit: "Log in",
+    submit: "Secure login",
     submitting: "Signing in…",
     requiredEmail: "Enter your email address.",
     requiredPassword: "Enter your password.",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     errorTitle: "Login failed",
     successTitle: "You are signed in.",
     successBody:
@@ -210,26 +215,16 @@ export default function LoginPage() {
           />
         </div>
 
-        <div className="endoora-field">
-          <label
-            className="endoora-field__label"
-            htmlFor="login-password"
-          >
-            {t.password}
-          </label>
-
-          <input
-            id="login-password"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            className={`endoora-input ${styles.ltrInput}`}
-            value={password}
-            onChange={(event) =>
-              setPassword(event.target.value)
-            }
-          />
-        </div>
+        <PasswordField
+          id="login-password"
+          name="password"
+          label={t.password}
+          showLabel={t.showPassword}
+          hideLabel={t.hidePassword}
+          autoComplete="current-password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
 
         <div className={styles.actions}>
           <button
@@ -246,10 +241,6 @@ export default function LoginPage() {
         <div className={styles.secondaryLinks}>
           <Link href="/auth/forgot-password">
             {t.forgot}
-          </Link>
-
-          <Link href="/auth/register">
-            {t.register}
           </Link>
         </div>
       </form>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 import hashlib
 
+from django.conf import settings
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
@@ -86,19 +87,16 @@ def get_onboarding_progress(user):
 
 
 def required_consents_exist(user) -> bool:
-    consent_types = set(
-        user.consent_records.filter(
-            consent_type__in=[
-                ConsentRecord.ConsentType.TERMS,
-                ConsentRecord.ConsentType.PRIVACY,
-            ]
-        ).values_list("consent_type", flat=True)
-    )
+    has_current_terms = user.consent_records.filter(
+        consent_type=ConsentRecord.ConsentType.TERMS,
+        version=settings.ENDOORA_TERMS_VERSION,
+    ).exists()
+    has_current_privacy = user.consent_records.filter(
+        consent_type=ConsentRecord.ConsentType.PRIVACY,
+        version=settings.ENDOORA_PRIVACY_VERSION,
+    ).exists()
 
-    return {
-        ConsentRecord.ConsentType.TERMS,
-        ConsentRecord.ConsentType.PRIVACY,
-    }.issubset(consent_types)
+    return has_current_terms and has_current_privacy
 
 
 class LearnerProfileView(APIView):

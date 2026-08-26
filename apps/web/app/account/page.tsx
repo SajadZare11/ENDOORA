@@ -7,6 +7,7 @@ import { AuthShell } from "../../components/auth/AuthShell";
 import {
   apiErrorMessages,
   endooraApi,
+  persistPreferredLocale,
   type EndooraLocale,
 } from "../../lib/endoora-api";
 import styles from "./account.module.css";
@@ -247,6 +248,26 @@ export default function AccountPage() {
     };
   }, []);
 
+  async function handleLocaleChange(nextLocale: EndooraLocale) {
+    const previousLocale = locale;
+    setLocale(nextLocale);
+
+    if (!summary || nextLocale === previousLocale) {
+      return;
+    }
+
+    try {
+      await persistPreferredLocale(nextLocale);
+      setSummary((current) => current ? {
+        ...current,
+        account: { ...current.account, preferred_locale: nextLocale },
+      } : current);
+    } catch (error) {
+      setLocale(previousLocale);
+      setErrors(apiErrorMessages(error, previousLocale));
+    }
+  }
+
   if (loading) {
     return (
       <AuthShell
@@ -352,7 +373,7 @@ export default function AccountPage() {
   return (
     <AuthShell
       locale={locale}
-      onLocaleChange={setLocale}
+      onLocaleChange={handleLocaleChange}
       title={t.title}
       description={t.description}
       footer={

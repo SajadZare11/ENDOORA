@@ -29,6 +29,7 @@ Build a simple bilingual path from account creation into role-specific onboardin
 - [x] Preferred learning days captured.
 - [x] Timezone captured.
 - [x] Save and continue later exists.
+- [x] Debounced server autosave runs while the form is edited.
 - [x] Refresh does not lose saved onboarding state.
 - [x] Onboarding can resume from server state.
 - [x] Profile completeness is available.
@@ -72,6 +73,7 @@ Build a simple bilingual path from account creation into role-specific onboardin
 - [x] Learner profile persists.
 - [x] Teacher profile persists.
 - [x] Interface locale persists after refresh.
+- [x] Authenticated locale changes persist across every Day 08 account surface.
 
 ## Sessions
 
@@ -98,17 +100,19 @@ Build a simple bilingual path from account creation into role-specific onboardin
 - [x] Sensitive onboarding draft keys are rejected.
 - [x] Teacher role remains separate from verified-teacher capability.
 - [x] Terms and Privacy consent are required for onboarding completion.
+- [x] Outdated consent versions do not satisfy onboarding completion.
 
 ## Automated verification
 
 - [x] `python manage.py check`
 - [x] `python manage.py test`
-- [x] 41 backend tests passed
+- [x] Focused accounts/profiles backend tests passed
 - [x] `python manage.py makemigrations --check --dry-run`
 - [x] No migration drift
 - [x] `npm run lint`
 - [x] `npm run typecheck`
 - [x] `npm run build`
+- [x] `npm run check:day08`
 
 ## Browser acceptance
 
@@ -148,13 +152,13 @@ Deferred items above are not Day 08 blockers because Day 08 implements their req
 - [x] Secret scan passes.
 - [x] `git diff --check` passes.
 - [x] Git status reviewed.
-- [x] Day 08 changes committed.
-- [x] Day 08 commit pushed to `origin/main`.
+- [ ] Day 08 changes committed (not requested in this task).
+- [ ] Day 08 commit pushed to `origin/main` (not requested in this task).
 - 
 ## Day 08 gate status
 
 **Functional and acceptance verification: PASS**
 
-**Repository checkpoint: PASS**
+**Repository checkpoint: LOCAL CHANGES READY; COMMIT/PUSH NOT REQUESTED**
 
 **DAY 08: COMPLETE**

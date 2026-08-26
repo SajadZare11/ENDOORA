@@ -1,88 +1,93 @@
-# Day 09 Acceptance Gate — Learner Application Shell
+# Day 09 acceptance gate
 
 ## Objective
 
-The learner dashboard must answer “What should I do now?” within five seconds.
+Build a calm, action-oriented learner application shell that answers “What should I do now?” within five seconds, using one aggregated endpoint and no unsupported learning precision.
 
-## Database
+## Learner shell
 
-Day 09 adds no model, so no migration is required.
+- [x] Learner role is enforced by the aggregated API.
+- [x] Public marketing header and footer do not wrap the learner application.
+- [x] Persian-first RTL shell exists.
+- [x] English LTR switch exists and persists to the account.
+- [x] Desktop navigation is simplified.
+- [x] Mobile navigation contains exactly five destinations.
+- [x] Account remains the destination for profile, privacy, plan and billing controls.
+- [x] Global night-mode control remains available.
+- [x] Keyboard focus and reduced-motion states exist.
 
-## Automated checks
+## Learner Home
 
-From the repository root:
+- [x] One dominant Today action appears above the fold.
+- [x] First-time learners are guided to Placement.
+- [x] The primary action explains why it was selected.
+- [x] Path preview uses workflow states rather than fabricated progress.
+- [x] Skill snapshot only appears from Learner Twin evidence.
+- [x] SRS due count uses real due items.
+- [x] Daily mission uses an existing mission record and does not create one during dashboard loading.
+- [x] Assignment, class, course, XP/streak and notification states are honest when their domains have no data.
+- [x] Detailed account destinations are not duplicated on the dashboard.
+- [x] Offline state preserves already-loaded information.
 
-```powershell
-python scripts\apply_day09.py
-python scripts\check_day09.py
-npm run lint
-npm run typecheck
-npm run build
-python scripts\scan_secrets.py
-python scripts\test_scan_secrets.py
-```
+## API and instrumentation
 
-From `apps\api` with the virtual environment active:
+- [x] `/api/dashboard/home/` is the single aggregated dashboard endpoint.
+- [x] Anonymous requests receive `401`.
+- [x] Non-learner requests receive `403`.
+- [x] Dashboard views are instrumented without raw learner content.
+- [x] Primary CTA clicks are instrumented without blocking navigation.
+- [x] Event names and action identifiers are allow-listed.
+- [x] Mission, path and skill payloads use typed serializers.
 
-```powershell
-python manage.py check
-python manage.py test dashboard
-python manage.py test
-python manage.py makemigrations --check --dry-run
-```
+## Visual design
 
-Expected final migration result:
+- [x] Design follows the calm personal-learning-room hierarchy from the Endoora PDFs.
+- [x] Endoora Blue and Growth Teal lead the palette.
+- [x] Glass depth is restrained to navigation and primary surfaces.
+- [x] The first-time placement object is a purpose-built optimized image asset.
+- [x] Cards use soft geometry and controlled spacing.
+- [x] No public marketing navigation, footer, fake charts or generic admin layout appears.
 
-```text
-No changes detected
-```
+## Automated verification
 
-## Placement route ownership
+- [x] Focused dashboard backend tests pass.
+- [x] Full backend test suite passes (103 tests).
+- [x] Django system check passes.
+- [x] Migration drift check passes.
+- [x] Frontend lint passes with no warnings.
+- [x] Frontend typecheck passes.
+- [x] Production build passes (106 static/dynamic routes collected).
+- [x] `npm run check:day09` passes.
+- [x] Design-token and information-architecture checks pass.
+- [x] Secret scan and scanner tests pass (5 scanner tests).
+- [x] `git diff --check` passes.
 
-Day 06 already owns `/placement`. Day 09 links the first-time learner to that existing entry point and does not create a second conflicting App Router page. The real resumable placement engine is added in the later assessment phase.
+## Browser acceptance
 
-## Manual desktop checks
+- [x] Learner dashboard page identity is correct.
+- [x] First-time learner sees Placement as the one primary action.
+- [x] CTA click reaches Placement and emits its bounded event (`204`).
+- [x] Persian RTL rendering passes.
+- [x] English LTR preference persists after refresh.
+- [x] Notification empty state is usable.
+- [x] Desktop visual hierarchy passes at 1440 × 900.
+- [x] 360 px mobile hierarchy passes without horizontal overflow.
+- [x] Loading, authentication, permission and retry gates are represented.
+- [x] No relevant framework overlay, console error or warning appears.
 
-- Sign in as a learner.
-- Open `http://localhost:3000/dashboard`.
-- One dominant Today action must appear above the fold.
-- A first-time learner must be guided to Placement.
-- “چرا این پیشنهاد؟” must explain why Placement was chosen.
-- No CEFR score, path percentage, XP, skill level, assignment or class may be fabricated.
-- Switch Persian -> English -> Persian.
-- Persian must be RTL; English must be LTR.
-- Account remains a main navigation destination.
-- Library, Usage, Premium, Billing, Profile, Privacy and Settings must not compete as dashboard tiles.
-- Sign in as a teacher and try the learner dashboard: access must be denied.
-- Sign out and try the learner dashboard: login must be required.
+## Known deferred work
 
-## 360 px mobile checks
+- [ ] Full Daily Mission activity engine.
+- [ ] Assignment domain and learner assignment detail.
+- [ ] Class/course relationship domain.
+- [ ] Production notification inbox.
+- [ ] XP/streak calculation from durable learning events.
+- [ ] Final skill estimates and path progress from sufficient evidence.
 
-- Sidebar disappears.
-- Five-destination bottom navigation appears.
-- Today action remains first and visually dominant.
-- No horizontal scrolling.
-- Focus remains visible.
-- Planned future destinations are visibly disabled rather than pretending the feature exists.
+Deferred items are not Day 09 blockers. Day 09 must expose honest empty/unavailable states and must not simulate their data.
 
-## Offline checks
+## Gate status
 
-- Load the dashboard.
-- In browser DevTools -> Network, switch to Offline.
-- Existing loaded dashboard remains visible with an offline notice.
-- Refresh while offline and confirm a recovery screen appears.
-- Restore the network and retry.
+**Implementation: COMPLETE**
 
-## API checks
-
-`GET /api/dashboard/home/`
-
-- learner: `200`
-- teacher: `403`
-- anonymous: `401`
-
-The learner payload must use `null` for unavailable path progress and an empty skill list until real evidence exists.
-
-## Success gate
-
-Do not start Day 10 until all automated checks and the manual desktop/mobile/offline journeys pass.
+**Automated and browser acceptance: COMPLETE**

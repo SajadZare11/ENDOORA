@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.conf import settings
 
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -34,7 +35,7 @@ class ProfileApiTests(APITestCase):
         ConsentRecord.objects.create(
             user=user,
             consent_type=ConsentRecord.ConsentType.TERMS,
-            version="2026-08-day8",
+            version=settings.ENDOORA_TERMS_VERSION,
             locale=User.Locale.PERSIAN,
             source="day8_test",
         )
@@ -42,7 +43,7 @@ class ProfileApiTests(APITestCase):
         ConsentRecord.objects.create(
             user=user,
             consent_type=ConsentRecord.ConsentType.PRIVACY,
-            version="2026-08-day8",
+            version=settings.ENDOORA_PRIVACY_VERSION,
             locale=User.Locale.PERSIAN,
             source="day8_test",
         )
@@ -299,6 +300,39 @@ class ProfileApiTests(APITestCase):
 
     def test_onboarding_completion_requires_terms_and_privacy_consent(self):
         self.create_complete_learner_profile()
+        self.authenticate(self.learner)
+
+        response = self.client.post(
+            "/api/profiles/onboarding/complete/",
+            {},
+            format="json",
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST,
+        )
+        self.assertEqual(
+            response.data["code"],
+            "required_consents_missing",
+        )
+
+    def test_onboarding_completion_rejects_outdated_consents(self):
+        self.create_complete_learner_profile()
+        ConsentRecord.objects.create(
+            user=self.learner,
+            consent_type=ConsentRecord.ConsentType.TERMS,
+            version="outdated-terms",
+            locale=User.Locale.PERSIAN,
+            source="day8_test",
+        )
+        ConsentRecord.objects.create(
+            user=self.learner,
+            consent_type=ConsentRecord.ConsentType.PRIVACY,
+            version="outdated-privacy",
+            locale=User.Locale.PERSIAN,
+            source="day8_test",
+        )
         self.authenticate(self.learner)
 
         response = self.client.post(

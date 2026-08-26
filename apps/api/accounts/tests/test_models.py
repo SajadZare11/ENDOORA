@@ -45,3 +45,25 @@ class AccountModelTests(TestCase):
         )
         self.assertNotEqual(otp.code_hash, "654321")
         self.assertNotIn("654321", otp.code_hash)
+
+    def test_otp_is_one_time_and_stops_after_attempt_cap(self):
+        replay = OneTimeCode.objects.create(
+            identifier="person@example.com",
+            purpose=OneTimeCode.Purpose.EMAIL_VERIFY,
+            code_hash=make_password("123456"),
+            expires_at=timezone.now() + timedelta(minutes=5),
+        )
+        self.assertTrue(replay.verify("123456"))
+        self.assertFalse(replay.verify("123456"))
+
+        capped = OneTimeCode.objects.create(
+            identifier="person@example.com",
+            purpose=OneTimeCode.Purpose.EMAIL_VERIFY,
+            code_hash=make_password("654321"),
+            expires_at=timezone.now() + timedelta(minutes=5),
+            max_attempts=2,
+        )
+        self.assertFalse(capped.verify("000000"))
+        self.assertFalse(capped.verify("000000"))
+        self.assertEqual(capped.attempts, 2)
+        self.assertFalse(capped.verify("654321"))

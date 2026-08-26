@@ -80,10 +80,12 @@ In-app Browser evidence:
 - 360px horizontal overflow check — PASS.
 - Five mobile navigation labels receive non-overlapping grid cells — PASS.
 
-Remaining acceptance work:
+Current follow-up audit — 2026-08-26:
 
-- Complete the founder keyboard-only/manual visual checklist above.
-- Recreate the Python 3.10 virtual environment and run the Django regression commands. The existing `.venv` points to a removed Python installation; the bundled Python 3.12 runtime cannot load its Python 3.10 `psycopg` binary.
+- The complete Django regression now passes: system check, 103 tests, and no migration drift.
+- Representative keyboard behavior was exercised in-browser: tab selection with Arrow keys, dialog initial focus, Escape dismissal, and focus restoration.
+- Save/resume was confirmed across refresh, the 360 px table/card fallback and five-item bottom navigation were visible, and there was no horizontal overflow or console error.
+- The static checker still accounts for all 29 component examples, exceeding the 25-component roadmap minimum.
 
 ## Success gate
 

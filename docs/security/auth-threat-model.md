@@ -15,13 +15,15 @@ Day 07 establishes authentication, roles, consent history, Iranian mobile normal
 | OTP database leak | only Django password hashes of OTP values are stored |
 | OTP replay | successful OTP is marked consumed |
 | OTP brute force | short expiry, attempt cap, request/verify throttles |
+| Cross-account OTP consumption | authenticated email/phone verification is bound to the OTP's requesting account |
 | OTP log leak | mock provider does not print the raw code; debug code is returned only when DEBUG + mock mode |
-| User enumeration | login failure message is generic |
+| User enumeration | login failure is generic; recovery returns the same HTTP status and acknowledgement for known and unknown active accounts; unknown accounts create no OTP |
 | CSRF on cookie-based login | CSRF token endpoint + protected login endpoint + trusted origins |
 | Cross-origin credential abuse | explicit CORS allow-list and credentials setting |
 | Stolen session cookie | HttpOnly session cookie, SameSite policy, key rotation on login; production Secure cookies already enabled |
+| Shared-device session remains open | the session surface exposes an explicit sign-out-current-device action |
 | Deactivated account continues authenticating | `is_active=False`; Django ModelBackend rejects inactive users |
-| Destructive deletion | deletion is a request record with delay; no hard-delete job is executed on Day 07 |
+| Destructive deletion | deletion is a delayed request record, a pending request can be cancelled by its owner, and no hard-delete job is executed on Day 07 |
 | Minor-account unsafe messaging | no messaging is enabled; Day 08 collects age band and later messaging requires age-aware policy |
 
 ## Important limitation

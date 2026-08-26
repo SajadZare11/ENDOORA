@@ -1,7 +1,7 @@
 .shell {
   min-height: 100vh;
-  background: #f7fbfc;
-  color: #101828;
+  background: var(--color-canvas);
+  color: var(--color-text);
 }
 
 .header {
@@ -13,9 +13,9 @@
   justify-content: space-between;
   gap: 32px;
   padding: 18px 7%;
-  background: rgba(255,255,255,.88);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .brand {
@@ -30,7 +30,7 @@
 
 .brand span {
   font-size:13px;
-  color:#475467;
+  color:var(--color-muted);
 }
 
 .nav {
@@ -41,7 +41,7 @@
 
 .nav a {
   text-decoration:none;
-  color:#344054;
+  color:var(--color-text);
 }
 
 .actions {
@@ -56,12 +56,13 @@
 }
 
 .language {
-  border:1px solid #d0d5dd;
+  border:1px solid var(--color-border);
+  color:var(--color-text);
 }
 
 .cta {
-  background:#2563eb;
-  color:white;
+  background:var(--color-action);
+  color:var(--color-action-text);
 }
 
 .main {
@@ -75,12 +76,12 @@
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:30px;
-  background:white;
-  border-top:1px solid #e5e7eb;
+  background:var(--color-surface);
+  border-top:1px solid var(--color-border);
 }
 
 .footer p {
-  color:#475467;
+  color:var(--color-muted);
 }
 
 @media(max-width:900px){

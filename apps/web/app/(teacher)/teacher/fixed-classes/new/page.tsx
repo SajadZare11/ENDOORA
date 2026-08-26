@@ -11,7 +11,6 @@ export default function NewFixedClassFoundationPage() {
 
   return (
     <section className="teacher-foundation-page">
-      <p className="teacher-eyebrow">{locale === "fa" ? "کلاس ثابت" : "Fixed class"}</p>
       <h1>{locale === "fa" ? "ایجاد کلاس ثابت" : "Create fixed class"}</h1>
       <p>
         {verified

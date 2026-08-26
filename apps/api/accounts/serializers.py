@@ -12,6 +12,7 @@ class LoginSerializer(serializers.Serializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    email_verified = serializers.BooleanField(read_only=True)
     phone_verified = serializers.BooleanField(read_only=True)
     capabilities = serializers.DictField(read_only=True)
 
@@ -20,6 +21,7 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "email",
+            "email_verified",
             "phone",
             "phone_verified",
             "role",
@@ -106,4 +108,13 @@ class DeleteRequestSerializer(serializers.Serializer):
     def validate_confirm(self, value):
         if value != "DELETE":
             raise serializers.ValidationError('Type exactly "DELETE".')
+        return value
+
+
+class DeleteCancellationSerializer(serializers.Serializer):
+    confirm = serializers.CharField()
+
+    def validate_confirm(self, value):
+        if value != "KEEP":
+            raise serializers.ValidationError('Type exactly "KEEP".')
         return value

@@ -1,145 +1,78 @@
 # Day 10 acceptance gate — Teacher application shell
 
-Do not begin Day 11 until every required check below passes.
+Status: **COMPLETE — implementation, automated checks, and local browser acceptance passed.**
 
-## Automated backend checks
+Day 10 follows the roadmap priority order `verification > next session > unanswered request > grading`, gives teachers a separate role workspace, and keeps unavailable future domains explicit rather than fabricating data.
 
-From `E:\0\Work\Website\The General Website\Endoora\apps\api` with the project virtual environment active:
+## Delivered experience
 
-```powershell
-python manage.py check
-```
+- [x] Dedicated Persian-first teacher shell; the public marketing shell is not reused.
+- [x] Exactly five teacher destinations on desktop and mobile: Home, Teach, Teacher marketplace, Resources, and Account.
+- [x] One dominant action selected by the aggregated dashboard service.
+- [x] Verified and unverified teachers receive different, server-derived capability states.
+- [x] Classes, learners, Learn Now requests, grading, and schedule use honest operational empty states.
+- [x] First-class journey, question-bank shortcut, and capability-gated fixed-class shortcut are visible without claiming unfinished functionality.
+- [x] Earnings, billing, settings, and support remain under Account.
+- [x] Raw learner writing, audio, transcripts, AI conversations, answers, and private messages are excluded from the summary contract.
+- [x] Loading, unauthenticated, wrong-role, offline, API-error, retry, empty, and verified states are handled.
+- [x] Persian/English preference persists through the authenticated profile endpoint and rolls back on failure.
+- [x] Keyboard focus, reduced motion, tokenized contrast, RTL/LTR logical layout, and 360 px behavior are covered.
 
-Expected: `System check identified no issues`.
+## Automated evidence
 
-```powershell
-python manage.py test teachers
-```
+Run from the repository root unless noted otherwise.
 
-Expected: all Day 10 teacher tests pass.
+| Check | Result |
+| --- | --- |
+| `npm run lint` | Pass |
+| `npm run typecheck` | Pass |
+| `npm run build` | Pass; 106 static pages generated and teacher routes included |
+| `npm run check:day10` | Pass |
+| `npm run check:design` | Pass; 14 AA pairs plus focus, reduced motion, logical CSS, and centralized colors |
+| `npm run check:day09` | Pass; learner shell regression covered |
+| `npm run check:ia` | Pass; exact five-item role navigation covered |
+| Django `check` with isolated SQLite | Pass; no issues |
+| Django `makemigrations --check --dry-run` with isolated SQLite | Pass; no changes detected |
+| Full Django suite with isolated SQLite | Pass; 103 tests |
+| `python -m unittest scripts.test_scan_secrets` | Pass; 5 tests |
+| `python scripts/scan_secrets.py` | Pass |
+| `git diff --check` | Pass; line-ending notices only |
 
-```powershell
-python manage.py test
-```
+The isolated SQLite override is local test infrastructure only. Production database settings were not changed.
 
-Expected: the full backend suite passes.
+## Browser acceptance evidence
 
-```powershell
-python manage.py makemigrations --check --dry-run
-```
+Tested through the in-app browser against the real Next.js and Django applications.
 
-Expected: `No changes detected` because Day 10 adds no database model.
+- [x] Anonymous dashboard request returns HTTP 401 and displays the sign-in gate.
+- [x] Fresh unverified teacher sees identity verification as the single primary action.
+- [x] Primary verification action reaches `/account/profile`.
+- [x] Locked fixed-class capability cannot be opened by an unverified teacher.
+- [x] A controlled locally verified teacher receives the verified state and can open `/teacher/fixed-classes/new`.
+- [x] The fixed-class route clearly states that Day 10 creates no price, capacity, schedule, or class record.
+- [x] Question-bank shortcut reaches its honest foundation route without invented questions.
+- [x] English selection persists after reload; Persian remains the default for the final state.
+- [x] `POST /api/teachers/dashboard/events/` returns HTTP 204 for instrumented actions.
+- [x] Browser console contains no warnings or errors; Django log contains no traceback or sensitive payload.
+- [x] Desktop accepted at 1440 × 900.
+- [x] Mobile accepted at 360 × 844 with five usable destinations and no horizontal overflow (`345 px` client and scroll width inside the scrollbar viewport).
 
-## Static Day 10 source check
+## Privacy and query contract
 
-From the repository root:
+- [x] API tests enforce teacher-only access and 401/403 boundaries.
+- [x] Sensitive learner-evidence keys are rejected from the serialized payload.
+- [x] Dashboard aggregation has a bounded service query count.
+- [x] Capabilities come from verified account state, not client assumptions.
+- [x] Dashboard actions use an allowlisted event contract.
 
-```powershell
-node scripts\check-day10.mjs
-```
+## Deliberately deferred after Day 10
 
-Expected output begins with:
+Real class rosters, requests, assignment/grading queues, schedules, earnings ledgers, and teacher-development intelligence require their roadmap domain models. Their present states are explicit, non-clickable where appropriate, and are not Day 10 blockers.
 
-`Day 10 static checks passed:`
+## Success gate
 
-## Frontend checks
-
-From the repository root:
-
-```powershell
-npm run lint
-```
-
-```powershell
-npm run typecheck
-```
-
-```powershell
-npm run build
-```
-
-All three commands must finish successfully.
-
-## Repository and secret checks
-
-From the repository root:
-
-```powershell
-python -m unittest scripts.test_scan_secrets
-```
-
-```powershell
-python scripts\scan_secrets.py
-```
-
-```powershell
-git diff --check
-```
-
-None of these commands should report a secret or whitespace error.
-
-## Manual browser journey — unverified teacher
-
-1. Start Django and Next.js normally.
-2. Sign in with a teacher account whose `is_teacher_verified` value is false.
-3. Open `http://localhost:3000/teacher`.
-4. Confirm the page starts in Persian/RTL and the English switch works.
-5. Confirm the verification warning is prominent.
-6. Confirm the single primary action is teacher verification/profile completion.
-7. Confirm paid-class capability and marketplace capability are not presented as enabled.
-8. Confirm the fixed-class shortcut is locked.
-9. Confirm Classes, Students, Learn Now, Pending grading, Schedule, and Earnings do not invent counts or money.
-10. Resize the browser to 360 px width and confirm all five teacher navigation destinations remain usable without horizontal overflow.
-
-## Manual browser journey — verified teacher
-
-Use a safe local test teacher account only.
-
-1. Set the local test account to verified through a controlled Django shell/admin action; do not change production data.
-2. Reload `/teacher`.
-3. Confirm the verification state changes to verified.
-4. Confirm the fixed-class foundation route becomes reachable but does not yet create a paid class.
-5. Confirm the primary action falls back to preparing the first class workspace when there are no real sessions, requests, or grading items.
-6. Open Teach, Marketplace, Resources, and Account from desktop and 360 px mobile navigation.
-7. Confirm every route resolves and explains its foundation status rather than producing a 404.
-
-## API privacy inspection
-
-While signed in as the teacher, open the browser Network panel and inspect the response from:
-
-`GET /api/teachers/dashboard/`
-
-Confirm that the payload does not contain raw learner writing, audio URLs, transcripts, AI conversation history, private messages, answer text, or unrelated learner details.
-
-## Permission failure check
-
-1. Sign in as a learner.
-2. Request `/api/teachers/dashboard/` in the browser or API client.
-3. Confirm HTTP 403.
-4. Sign out and repeat.
-5. Confirm HTTP 401.
-
-## Console/log review
-
-During both journeys:
-
-- Browser Console: no new red unhandled error.
-- Django terminal: no traceback.
-- Worker/Redis: Day 10 has no required background job, so no worker action is expected.
-- Logs: no learner evidence or secrets should be printed.
-
-## Day 10 success gate
-
-Day 10 is complete only when all of these are true:
-
-- [ ] Teacher Home has one immediately identifiable primary action.
-- [ ] Unverified and verified teachers receive different capability states safely.
-- [ ] Five-item teacher navigation works on desktop and 360 px mobile.
-- [ ] Empty states explain first-class/first-assignment/marketplace foundations without fake data.
-- [ ] The aggregated teacher API has a bounded service query count.
-- [ ] Teacher summary payload does not expose raw learner evidence.
-- [ ] Django checks and full tests pass.
-- [ ] Frontend lint, typecheck, and build pass.
-- [ ] Migration drift check reports no changes.
-- [ ] Secret scan and `git diff --check` pass.
-- [ ] Browser console and API logs contain no unhandled error or sensitive content.
+- [x] The teacher can identify the most urgent next action immediately.
+- [x] Unverified capabilities stay locked.
+- [x] Dashboard summaries expose no raw learner evidence.
+- [x] Responsive, localization, permission, empty, error, and retry states pass.
+- [x] Automated, browser, security, and repository checks pass.

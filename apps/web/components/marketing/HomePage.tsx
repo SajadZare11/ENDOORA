@@ -94,17 +94,18 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
       />
       <section className={styles.heroNext}>
         <div className={styles.heroCopy}>
-          <h1>{isFa ? "یادگیری انگلیسی که مسیر مخصوص تو را می‌سازد." : "English learning that builds a path around you."}</h1>
-          <p>{isFa ? "Endoora سطح، هدف و الگوهای یادگیری تو را به یک مسیر متصل تبدیل می‌کند؛ از تعیین سطح تا تمرین روزانه و بازخورد مدرس." : "Endoora connects your level, goals, and learning patterns into one path—from placement to daily practice and teacher feedback."}</p>
+          <h1>
+            {isFa ? <>یادگیری انگلیسی را به مسیری شخصی برای <span className={styles.heroAccent}>فرصت‌های واقعی</span> تبدیل کن.</> : <>Turn English learning into a personal path toward <span className={styles.heroAccent}>real opportunities.</span></>}
+          </h1>
+          <p>{isFa ? "Endoora از سطح، هدف و الگوهای یادگیری تو یک مسیر روشن می‌سازد؛ از تعیین سطح تا تمرین روزانه و همراهی مدرس." : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
           <div className={styles.heroActions}>
             <Link className={styles.primaryButton} href={localizedPath(locale, "/placement")}>
               <span>{isFa ? "شروع تعیین سطح رایگان" : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
-            <Link className={styles.secondaryButton} href={accountPath(locale, "/auth/register")}>
-              <span>{isFa ? "شروع یادگیری" : "Start learning"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
+            <Link className={styles.secondaryButton} href={localizedPath(locale, "/how-it-works")}>
+              <span>{isFa ? "مشاهده مسیر یادگیری" : "See how the path works"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
           </div>
-          <p className={styles.heroNote}>{isFa ? "در حال ساخت · بدون ادعای نمره یا نتیجه تضمینی" : "In development · no guaranteed score or outcome claims"}</p>
         </div>
 
         <div className={styles.twinCard} aria-label={isFa ? "پیش‌نمایش محصول Learner Twin" : "Learner Twin product preview"}>
@@ -112,6 +113,14 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
           <div className={styles.previewBody}>
             <aside className={styles.previewRail} aria-hidden="true"><b>E</b><span /><span /><span /><span /></aside>
             <div className={styles.previewContent}>
+              <div className={styles.previewIntro}>
+                <div>
+                  <span>Learner Twin</span>
+                  <h2>{isFa ? "مسیر یادگیری شما" : "Your learning path"}</h2>
+                  <p>{isFa ? "یک نمای زنده و قابل اصلاح از پیشرفت تو" : "A living, correctable view of your progress"}</p>
+                </div>
+                <Link href={localizedPath(locale, "/features/learner-twin")}>{isFa ? "جزئیات" : "Details"}</Link>
+              </div>
               <div className={styles.twinIdentity}>
                 <div className={styles.orb}><span /></div>
                 <div><strong>Learner Twin</strong><small>{isFa ? "تصویری قابل اصلاح از مسیر تو" : "A correctable view of your path"}</small></div>
@@ -194,7 +203,10 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
 
       <section id="waitlist" className={styles.waitlist}>
         <div className={styles.waitlistCopy}><span className={styles.sectionLabel}>{isFa ? "دسترسی اولیه" : "Early access"}</span><h2>{isFa ? "وقتی آماده شد، از اولین نفرها باش" : "Be among the first when it is ready"}</h2><p>{isFa ? "فقط خبرهای پیش‌راه‌اندازی؛ بدون خبرنامه ناخواسته و بدون فروش اطلاعات تماس." : "Prelaunch updates only—no unwanted newsletter and no sale of contact information."}</p></div>
-        <WaitlistForm locale={locale} source="homepage" />
+        <div className={styles.waitlistActions}>
+          <WaitlistForm locale={locale} source="homepage" />
+          <Link href={accountPath(locale, "/auth/register")}>{isFa ? "همین حالا حساب Endoora را بساز" : "Create your Endoora account now"}<span aria-hidden="true">{isFa ? "←" : "→"}</span></Link>
+        </div>
       </section>
     </>
   );

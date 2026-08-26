@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
+import { PasswordField } from "../../../components/auth/PasswordField";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -36,6 +37,8 @@ const copy = {
     password: "رمز عبور",
     passwordHelp:
       "یک رمز عبور قوی و منحصربه‌فرد انتخاب کنید.",
+    showPassword: "نمایش رمز عبور",
+    hidePassword: "پنهان کردن رمز عبور",
     role: "می‌خواهید چگونه از Endoora استفاده کنید؟",
     learner: "زبان‌آموز",
     learnerDescription:
@@ -43,8 +46,9 @@ const copy = {
     teacher: "مدرس",
     teacherDescription:
       "تدریس، کلاس‌ها و ابزارهای آموزشی",
-    terms: "شرایط استفاده را می‌پذیرم.",
-    privacy: "سیاست حریم خصوصی را می‌پذیرم.",
+    terms: "شرایط استفاده",
+    privacy: "سیاست حریم خصوصی",
+    consentPrefix: "مطالعه کردم و می‌پذیرم:",
     submit: "ساخت حساب",
     submitting: "در حال ساخت حساب…",
     already: "از قبل حساب دارید؟",
@@ -71,6 +75,8 @@ const copy = {
     password: "Password",
     passwordHelp:
       "Choose a strong password that you do not reuse elsewhere.",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     role: "How will you use Endoora?",
     learner: "Learner",
     learnerDescription:
@@ -78,8 +84,9 @@ const copy = {
     teacher: "Teacher",
     teacherDescription:
       "Teach, manage classes and use teaching tools",
-    terms: "I accept the Terms of Use.",
-    privacy: "I accept the Privacy Policy.",
+    terms: "Terms of Use",
+    privacy: "Privacy Policy",
+    consentPrefix: "I have read and accept the",
     submit: "Create account",
     submitting: "Creating account…",
     already: "Already have an account?",
@@ -315,54 +322,18 @@ export default function RegisterPage() {
           )}
         </div>
 
-        <div className="endoora-field">
-          <label
-            className="endoora-field__label"
-            htmlFor="register-password"
-          >
-            {t.password}
-          </label>
-
-          <input
-            id="register-password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            className={`endoora-input ${styles.ltrInput} ${
-              errors.password
-                ? "endoora-input--error"
-                : ""
-            }`}
-            value={password}
-            onChange={(event) =>
-              setPassword(event.target.value)
-            }
-            aria-invalid={
-              errors.password ? "true" : "false"
-            }
-            aria-describedby={
-              errors.password
-                ? "register-password-error"
-                : "register-password-help"
-            }
-          />
-
-          {errors.password ? (
-            <p
-              id="register-password-error"
-              className="endoora-field__error"
-            >
-              {errors.password}
-            </p>
-          ) : (
-            <p
-              id="register-password-help"
-              className="endoora-field__help"
-            >
-              {t.passwordHelp}
-            </p>
-          )}
-        </div>
+        <PasswordField
+          id="register-password"
+          name="password"
+          label={t.password}
+          showLabel={t.showPassword}
+          hideLabel={t.hidePassword}
+          autoComplete="new-password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          error={errors.password}
+          help={t.passwordHelp}
+        />
 
         <fieldset className="endoora-fieldset">
           <legend className="endoora-field__label">
@@ -434,7 +405,8 @@ export default function RegisterPage() {
             />
 
             <span className="endoora-check-row__label">
-              {t.terms}
+              {t.consentPrefix}{" "}
+              <Link href="/legal/terms">{t.terms}</Link>
             </span>
           </label>
 
@@ -451,7 +423,8 @@ export default function RegisterPage() {
             />
 
             <span className="endoora-check-row__label">
-              {t.privacy}
+              {t.consentPrefix}{" "}
+              <Link href="/legal/privacy">{t.privacy}</Link>
             </span>
           </label>
 

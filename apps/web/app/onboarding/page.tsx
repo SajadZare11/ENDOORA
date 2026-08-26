@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   FormEvent,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -12,6 +13,7 @@ import authStyles from "../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
   endooraApi,
+  persistPreferredLocale,
   type EndooraLocale,
 } from "../../lib/endoora-api";
 import styles from "./onboarding.module.css";
@@ -160,6 +162,9 @@ const copy = {
     saveLater: "ذخیره و ادامه در آینده",
     saving: "در حال ذخیره…",
     saved: "اطلاعات شما با موفقیت روی سرور ذخیره شد.",
+    autosaving: "ذخیره خودکار…",
+    autosaved: "ذخیره خودکار انجام شد",
+    autosaveError: "ذخیره خودکار انجام نشد؛ از دکمه ذخیره استفاده کنید.",
     back: "مرحله قبل",
     next: "ادامه",
     complete: "تکمیل شروع حساب",
@@ -181,6 +186,9 @@ const copy = {
     finishedTeacher:
       "پروفایل اولیه مدرس ذخیره شد. تأیید مدرس و دسترسی‌های حرفه‌ای در مراحل جداگانه بررسی می‌شوند.",
     home: "بازگشت به صفحه اصلی",
+    continueLearner: "ورود به داشبورد زبان‌آموز",
+    continueTeacher: "ادامه به فضای مدرس و تأیید",
+    accountHub: "مشاهده حساب کاربری",
     login: "ورود به حساب",
     notSignedIn:
       "برای ادامه ثبت‌نام باید وارد حساب Endoora شوید.",
@@ -252,6 +260,9 @@ const copy = {
     saveLater: "Save and continue later",
     saving: "Saving…",
     saved: "Your information has been saved on the server.",
+    autosaving: "Autosaving…",
+    autosaved: "Autosaved",
+    autosaveError: "Autosave failed; use the save button before leaving.",
     back: "Back",
     next: "Continue",
     complete: "Complete account setup",
@@ -273,6 +284,9 @@ const copy = {
     finishedTeacher:
       "Your initial teacher profile is saved. Verification and professional capabilities are reviewed separately.",
     home: "Return to home",
+    continueLearner: "Continue to learner dashboard",
+    continueTeacher: "Continue to teacher setup and verification",
+    accountHub: "Open Account hub",
     login: "Log in",
     notSignedIn:
       "You must be signed in to continue Endoora onboarding.",
@@ -319,6 +333,10 @@ export default function OnboardingPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [autosaveState, setAutosaveState] = useState<
+    "idle" | "saving" | "saved" | "error"
+  >("idle");
+  const autosaveReady = useRef(false);
 
   const [errors, setErrors] =
     useState<string[]>([]);
@@ -375,6 +393,7 @@ export default function OnboardingPage() {
 
         if (!cancelled) {
           setLearner(profile);
+          autosaveReady.current = true;
         }
 
         return;
@@ -395,6 +414,7 @@ export default function OnboardingPage() {
         setLanguagesText(
           displayList(profile.languages),
         );
+        autosaveReady.current = true;
       }
     })
     .catch((error: unknown) => {
@@ -417,6 +437,96 @@ export default function OnboardingPage() {
     cancelled = true;
   };
 }, []);
+
+  useEffect(() => {
+    if (
+      !autosaveReady.current ||
+      !summary ||
+      loading ||
+      finished
+    ) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(async () => {
+      setAutosaveState("saving");
+
+      try {
+        const profileRequest = summary.account.role === "learner"
+          ? endooraApi<LearnerProfile>("/profiles/learner/", {
+              method: "PATCH",
+              json: learner,
+              signal: controller.signal,
+            })
+          : endooraApi<TeacherProfile>("/profiles/teacher/", {
+              method: "PATCH",
+              json: {
+                ...teacher,
+                specialties: commaList(specialtiesText),
+                languages: commaList(languagesText),
+              },
+              signal: controller.signal,
+            });
+
+        await Promise.all([
+          profileRequest,
+          endooraApi<OnboardingProgress>("/profiles/onboarding/", {
+            method: "PATCH",
+            json: {
+              current_step: step,
+              completed_steps: completedSteps,
+              draft_data: {
+                last_saved_step: step,
+                autosaved: true,
+              },
+            },
+          }),
+        ]);
+
+        setAutosaveState("saved");
+      } catch (error) {
+        if (!(error instanceof DOMException && error.name === "AbortError")) {
+          setAutosaveState("error");
+        }
+      }
+    }, 900);
+
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [
+    completedSteps,
+    finished,
+    languagesText,
+    learner,
+    loading,
+    specialtiesText,
+    step,
+    summary,
+    teacher,
+  ]);
+
+  async function handleLocaleChange(nextLocale: EndooraLocale) {
+    const previousLocale = locale;
+    setLocale(nextLocale);
+
+    if (!summary || nextLocale === previousLocale) {
+      return;
+    }
+
+    try {
+      await persistPreferredLocale(nextLocale);
+      setSummary((current) => current ? {
+        ...current,
+        account: { ...current.account, preferred_locale: nextLocale },
+      } : current);
+    } catch (error) {
+      setLocale(previousLocale);
+      setErrors(apiErrorMessages(error, previousLocale));
+    }
+  }
 
   function validateCurrentStep(): string[] {
     const nextErrors: string[] = [];
@@ -764,7 +874,7 @@ export default function OnboardingPage() {
     return (
       <AuthShell
         locale={locale}
-        onLocaleChange={setLocale}
+        onLocaleChange={handleLocaleChange}
         title="Endoora"
         description={t.loading}
       >
@@ -826,7 +936,7 @@ export default function OnboardingPage() {
     return (
       <AuthShell
         locale={locale}
-        onLocaleChange={setLocale}
+        onLocaleChange={handleLocaleChange}
         title={
           t.finishedTitle
         }
@@ -836,9 +946,12 @@ export default function OnboardingPage() {
             : t.finishedTeacher
         }
         footer={
-          <Link href="/">
-            {t.home}
-          </Link>
+          <span className={styles.completionLinks}>
+            <Link href={isLearner ? "/dashboard" : "/teacher"}>
+              {isLearner ? t.continueLearner : t.continueTeacher}
+            </Link>
+            <Link href="/account">{t.accountHub}</Link>
+          </span>
         }
       >
         <div
@@ -871,9 +984,7 @@ export default function OnboardingPage() {
   return (
     <AuthShell
       locale={locale}
-      onLocaleChange={
-        setLocale
-      }
+      onLocaleChange={handleLocaleChange}
       title={title}
       description={
         description
@@ -938,6 +1049,22 @@ export default function OnboardingPage() {
             ),
           )}
         </ol>
+
+        {autosaveState !== "idle" ? (
+          <span
+            className={`${styles.autosave} ${
+              autosaveState === "error" ? styles.autosaveError : ""
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            {autosaveState === "saving"
+              ? t.autosaving
+              : autosaveState === "saved"
+                ? t.autosaved
+                : t.autosaveError}
+          </span>
+        ) : null}
       </div>
 
       {saved ? (

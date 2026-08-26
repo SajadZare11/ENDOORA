@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
 import {
   apiErrorMessages,
   endooraApi,
+  persistPreferredLocale,
   type EndooraLocale,
 } from "../../../lib/endoora-api";
 import styles from "./sessions.module.css";
@@ -43,6 +45,8 @@ const copy = {
     fingerprintUnavailable:
       "برای این نشست شناسه دستگاهی ثبت نشده است.",
     expires: "زمان انقضای نشست",
+    signOutCurrent: "خروج امن از این دستگاه",
+    signingOut: "در حال خروج…",
 
     securityTitle: "درباره نشست‌های حساب",
     securityBody:
@@ -74,6 +78,8 @@ const copy = {
     fingerprintUnavailable:
       "No device/session fingerprint is available for this session.",
     expires: "Session expires",
+    signOutCurrent: "Securely sign out this device",
+    signingOut: "Signing out…",
 
     securityTitle: "About account sessions",
     securityBody:
@@ -107,6 +113,7 @@ function formatDate(
 }
 
 export default function SessionsPage() {
+  const router = useRouter();
   const [locale, setLocale] =
     useState<EndooraLocale>("fa");
 
@@ -117,11 +124,29 @@ export default function SessionsPage() {
     useState<CurrentSession | null>(null);
 
   const [loading, setLoading] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
 
   const [errors, setErrors] =
     useState<string[]>([]);
 
   const t = copy[locale];
+
+  async function signOutCurrentSession() {
+    setSigningOut(true);
+    setErrors([]);
+
+    try {
+      await endooraApi<null>("/auth/logout/", {
+        method: "POST",
+        json: {},
+      });
+      router.push("/auth/login");
+      router.refresh();
+    } catch (error) {
+      setErrors(apiErrorMessages(error, locale));
+      setSigningOut(false);
+    }
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -173,6 +198,26 @@ export default function SessionsPage() {
     };
   }, []);
 
+  async function handleLocaleChange(nextLocale: EndooraLocale) {
+    const previousLocale = locale;
+    setLocale(nextLocale);
+
+    if (!account || nextLocale === previousLocale) {
+      return;
+    }
+
+    try {
+      await persistPreferredLocale(nextLocale);
+      setAccount((current) => current ? {
+        ...current,
+        preferred_locale: nextLocale,
+      } : current);
+    } catch (error) {
+      setLocale(previousLocale);
+      setErrors(apiErrorMessages(error, previousLocale));
+    }
+  }
+
   if (loading) {
     return (
       <AuthShell
@@ -180,6 +225,7 @@ export default function SessionsPage() {
         onLocaleChange={setLocale}
         title={t.title}
         description={t.loading}
+        variant="wide"
       >
         <div
           className="endoora-status-message"
@@ -198,6 +244,7 @@ export default function SessionsPage() {
         onLocaleChange={setLocale}
         title={t.title}
         description={t.errorTitle}
+        variant="wide"
         footer={
           <Link href="/auth/login">
             {t.signIn}
@@ -225,9 +272,10 @@ export default function SessionsPage() {
   return (
     <AuthShell
       locale={locale}
-      onLocaleChange={setLocale}
+      onLocaleChange={handleLocaleChange}
       title={t.title}
       description={t.description}
+      variant="wide"
       footer={
         <Link
           href="/account"
@@ -296,7 +344,26 @@ export default function SessionsPage() {
               </dd>
             </div>
           </dl>
+
+          <button
+            type="button"
+            className="endoora-button endoora-button--secondary"
+            disabled={signingOut}
+            onClick={() => void signOutCurrentSession()}
+          >
+            {signingOut ? t.signingOut : t.signOutCurrent}
+          </button>
         </section>
+
+        {errors.length > 0 ? (
+          <div className="endoora-error-summary" role="alert">
+            <ul>
+              {errors.map((message, index) => (
+                <li key={`${message}-${index}`}>{message}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <section className={styles.notice}>
           <strong>{t.securityTitle}</strong>

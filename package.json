@@ -16,7 +16,12 @@
     "check:components": "node scripts/check-components.mjs",
     "check:public": "node --experimental-strip-types scripts/check-public-site.mjs",
     "check:public:routes": "node --experimental-strip-types scripts/check-public-routes.mjs",
-    "check:ia": "node scripts/check-information-architecture.mjs"
+    "check:ia": "node scripts/check-information-architecture.mjs",
+    "check:day07": "node scripts/check-day07.mjs",
+    "check:day08": "node scripts/check-day08.mjs",
+    "check:day09": "node scripts/check-day09.mjs",
+    "check:day10": "node scripts/check-day10.mjs",
+    "check:day01-10": "node scripts/check-day01-10.mjs"
   },
   "engines": {
     "node": ">=24 <25",

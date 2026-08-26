@@ -205,7 +205,7 @@
 .footerGrid > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
 .footerGrid > div > strong:not(.footerBrand) { margin-block-end: var(--space-2); font-size: 0.9rem; }
 .footerGrid a { min-block-size: 34px; color: var(--color-muted); font-size: 0.9rem; }
-.footerBrand { color: var(--color-deep-navy); font-size: 1.55rem; }
+.footerBrand { color: var(--color-text); font-size: 1.55rem; }
 .footerText { max-width: 31rem; margin-block: var(--space-3) 0; color: var(--color-muted); }
 
 .copyright {

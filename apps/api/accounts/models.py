@@ -27,6 +27,7 @@ class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = None
     email = models.EmailField(unique=True)
+    email_verified_at = models.DateTimeField(null=True, blank=True)
     phone = models.CharField(max_length=13, unique=True, null=True, blank=True)
     phone_verified_at = models.DateTimeField(null=True, blank=True)
     role = models.CharField(max_length=24, choices=Role.choices, default=Role.LEARNER)
@@ -59,6 +60,10 @@ class User(AbstractUser):
     @property
     def phone_verified(self) -> bool:
         return self.phone_verified_at is not None
+
+    @property
+    def email_verified(self) -> bool:
+        return self.email_verified_at is not None
 
     @property
     def capabilities(self) -> dict[str, bool]:

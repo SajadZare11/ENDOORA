@@ -1,0 +1,70 @@
+.toggle {
+  position: fixed;
+  z-index: 90;
+  inset-inline-end: clamp(var(--space-3), 2vw, var(--space-6));
+  inset-block-end: clamp(var(--space-3), 2vw, var(--space-6));
+  min-block-size: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.3rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 74%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--glass-background) 92%, transparent);
+  color: var(--color-text);
+  box-shadow: var(--shadow-raised);
+  backdrop-filter: blur(var(--glass-blur));
+  cursor: pointer;
+  transition: border-color var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+}
+
+.toggle:hover { border-color: color-mix(in srgb, var(--color-action) 58%, var(--color-border)); transform: translateY(-2px); }
+
+.icon {
+  inline-size: 2.35rem;
+  block-size: 2.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--color-muted);
+  transition: background var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+}
+
+:global(html[data-theme="light"]) .sun,
+:global(html[data-theme="dark"]) .moon {
+  background: var(--color-action);
+  color: var(--color-action-text);
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--color-action) 28%, transparent);
+  transform: scale(1.02);
+}
+
+.darkLabel { display: none; }
+:global(html[data-theme="dark"]) .lightLabel { display: none; }
+:global(html[data-theme="dark"]) .darkLabel { display: inline; }
+
+.icon svg {
+  inline-size: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.label {
+  padding-inline: var(--space-1);
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 36rem) {
+  .toggle { gap: 0; }
+  .label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .icon { inline-size: 2.15rem; block-size: 2.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .icon { transition: none; }
+}

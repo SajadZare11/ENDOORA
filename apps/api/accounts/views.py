@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import hashlib
+from datetime import timedelta
 
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
@@ -14,7 +17,7 @@ from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
-from .models import ConsentRecord, OneTimeCode
+from .models import ConsentRecord, OneTimeCode, User
 from .serializers import (
     AccountSerializer,
     AccountUpdateSerializer,
@@ -22,13 +25,16 @@ from .serializers import (
     ConsentRecordSerializer,
     DeactivateSerializer,
     DeleteRequestSerializer,
+    DeleteCancellationSerializer,
     LoginSerializer,
     OtpRequestSerializer,
     OtpVerifySerializer,
 )
 from .services import (
     deactivate_account,
+    cancel_account_deletion,
     issue_otp,
+    normalize_identifier,
     request_account_deletion,
     verify_otp,
 )
@@ -58,7 +64,14 @@ class LoginView(APIView):
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+
+        if not serializer.is_valid():
+            return bilingual_error(
+                "login_validation_failed",
+                "ایمیل و رمز عبور را به شکل معتبر وارد کنید.",
+                "Enter a valid email address and password.",
+                http_status=status.HTTP_400_BAD_REQUEST,
+            )
 
         email = serializer.validated_data["email"].strip().lower()
         password = serializer.validated_data["password"]
@@ -146,14 +159,27 @@ class OtpRequestView(APIView):
         identifier = serializer.validated_data["identifier"]
 
         requested_by = request.user if request.user.is_authenticated else None
-        if purpose == OneTimeCode.Purpose.PHONE_VERIFY:
+        if purpose in {
+            OneTimeCode.Purpose.PHONE_VERIFY,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+        }:
             if requested_by is None:
                 return bilingual_error(
                     "authentication_required",
-                    "برای تأیید شماره موبایل ابتدا وارد حساب شوید.",
-                    "Sign in before verifying a mobile number.",
+                    "برای تأیید اطلاعات تماس ابتدا وارد حساب شوید.",
+                    "Sign in before verifying contact information.",
                     http_status=status.HTTP_401_UNAUTHORIZED,
                 )
+
+        if purpose == OneTimeCode.Purpose.LOGIN:
+            return bilingual_error(
+                "otp_login_unavailable",
+                "ورود با کد یک‌بارمصرف هنوز فعال نیست. از ایمیل و رمز عبور استفاده کنید.",
+                "One-time-code login is not enabled yet. Use email and password.",
+                http_status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if purpose == OneTimeCode.Purpose.PHONE_VERIFY:
             if requested_by.phone is None:
                 return bilingual_error(
                     "phone_missing",
@@ -162,9 +188,47 @@ class OtpRequestView(APIView):
                     http_status=status.HTTP_400_BAD_REQUEST,
                 )
 
+        if (
+            purpose == OneTimeCode.Purpose.EMAIL_VERIFY
+            and identifier.strip().lower() != requested_by.email
+        ):
+            return bilingual_error(
+                "identifier_mismatch",
+                "ایمیل باید با حساب واردشده یکسان باشد.",
+                "The email must match the signed-in account.",
+                http_status=status.HTTP_400_BAD_REQUEST,
+            )
+
         try:
+            normalized = normalize_identifier(identifier)
+
+            if purpose == OneTimeCode.Purpose.PASSWORD_RESET:
+                if "@" in normalized:
+                    account_exists = User.objects.filter(
+                        email__iexact=normalized,
+                        is_active=True,
+                    ).exists()
+                else:
+                    account_exists = User.objects.filter(
+                        phone=normalized,
+                        is_active=True,
+                    ).exists()
+
+                if not account_exists:
+                    ttl_seconds = int(
+                        getattr(settings, "ENDOORA_OTP_TTL_SECONDS", 300)
+                    )
+                    return Response(
+                        {
+                            "status": "sent",
+                            "expires_at": timezone.now()
+                            + timedelta(seconds=ttl_seconds),
+                        },
+                        status=status.HTTP_201_CREATED,
+                    )
+
             record, debug_code = issue_otp(
-                identifier,
+                normalized,
                 purpose,
                 requested_by=requested_by,
             )
@@ -196,12 +260,26 @@ class OtpVerifyView(APIView):
         serializer.is_valid(raise_exception=True)
 
         purpose = serializer.validated_data["purpose"]
-        if purpose == OneTimeCode.Purpose.PHONE_VERIFY and not request.user.is_authenticated:
+        if purpose in {
+            OneTimeCode.Purpose.PHONE_VERIFY,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+        } and not request.user.is_authenticated:
             return bilingual_error(
                 "authentication_required",
-                "برای تأیید شماره موبایل ابتدا وارد حساب شوید.",
-                "Sign in before verifying a mobile number.",
+                "برای تأیید اطلاعات تماس ابتدا وارد حساب شوید.",
+                "Sign in before verifying contact information.",
                 http_status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        if purpose in {
+            OneTimeCode.Purpose.PASSWORD_RESET,
+            OneTimeCode.Purpose.LOGIN,
+        }:
+            return bilingual_error(
+                "verification_flow_required",
+                "برای این کد از مسیر کامل بازیابی یا ورود استفاده کنید.",
+                "Use the complete password-recovery or login flow for this code.",
+                http_status=status.HTTP_400_BAD_REQUEST,
             )
 
         try:
@@ -209,6 +287,7 @@ class OtpVerifyView(APIView):
                 serializer.validated_data["identifier"],
                 purpose,
                 serializer.validated_data["code"],
+                expected_user=request.user,
             )
         except (ValueError, DjangoValidationError):
             return bilingual_error(
@@ -269,4 +348,30 @@ class AccountDeletionRequestView(APIView):
                 "scheduled_for": deletion_request.scheduled_for,
             },
             status=status.HTTP_201_CREATED,
+        )
+
+
+class AccountDeletionCancellationView(APIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = DeleteCancellationSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        deletion_request = cancel_account_deletion(request.user)
+        if deletion_request is None:
+            return bilingual_error(
+                "no_pending_deletion",
+                "درخواست حذف فعالی برای لغو وجود ندارد.",
+                "There is no pending deletion request to cancel.",
+                http_status=status.HTTP_404_NOT_FOUND,
+            )
+
+        return Response(
+            {
+                "id": deletion_request.id,
+                "status": deletion_request.status,
+                "cancelled_at": deletion_request.cancelled_at,
+            }
         )

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -17,10 +18,6 @@ from .day08_serializers import (
 from .models import ConsentRecord, OneTimeCode, User
 from .serializers import AccountSerializer
 from .services import normalize_identifier, verify_otp
-
-
-TERMS_VERSION = "day08-draft-1"
-PRIVACY_VERSION = "day08-draft-1"
 
 
 def bilingual_error(
@@ -51,7 +48,14 @@ class RegisterView(APIView):
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+
+        if not serializer.is_valid():
+            return bilingual_error(
+                "registration_validation_failed",
+                "اطلاعات ساخت حساب کامل یا معتبر نیست. فیلدهای مشخص‌شده را بررسی کنید.",
+                "The registration details are incomplete or invalid. Check the highlighted fields.",
+                http_status=status.HTTP_400_BAD_REQUEST,
+            )
 
         data = serializer.validated_data
 
@@ -69,7 +73,7 @@ class RegisterView(APIView):
                 ConsentRecord.objects.create(
                     user=user,
                     consent_type=ConsentRecord.ConsentType.TERMS,
-                    version=TERMS_VERSION,
+                    version=settings.ENDOORA_TERMS_VERSION,
                     locale=data["preferred_locale"],
                     source="registration",
                 )
@@ -77,7 +81,7 @@ class RegisterView(APIView):
                 ConsentRecord.objects.create(
                     user=user,
                     consent_type=ConsentRecord.ConsentType.PRIVACY,
-                    version=PRIVACY_VERSION,
+                    version=settings.ENDOORA_PRIVACY_VERSION,
                     locale=data["preferred_locale"],
                     source="registration",
                 )
@@ -116,7 +120,14 @@ class PasswordResetConfirmView(APIView):
         serializer = PasswordResetConfirmSerializer(
             data=request.data
         )
-        serializer.is_valid(raise_exception=True)
+
+        if not serializer.is_valid():
+            return bilingual_error(
+                "password_reset_validation_failed",
+                "کد بازیابی یا رمز عبور جدید معتبر نیست.",
+                "The recovery code or new password is invalid.",
+                http_status=status.HTTP_400_BAD_REQUEST,
+            )
 
         identifier = serializer.validated_data[
             "identifier"
@@ -165,12 +176,12 @@ class PasswordResetConfirmView(APIView):
                 new_password,
                 user=user,
             )
-        except DjangoValidationError as exc:
-            return Response(
-                {
-                    "new_password": list(exc.messages),
-                },
-                status=status.HTTP_400_BAD_REQUEST,
+        except DjangoValidationError:
+            return bilingual_error(
+                "password_policy_failed",
+                "رمز عبور جدید با الزامات امنیتی Endoora هماهنگ نیست.",
+                "The new password does not meet Endoora's security requirements.",
+                http_status=status.HTTP_400_BAD_REQUEST,
             )
 
         user.set_password(new_password)

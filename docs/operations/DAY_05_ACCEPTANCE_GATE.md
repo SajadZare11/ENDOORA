@@ -174,7 +174,7 @@ Day 05 does not pass if English is the default user-facing interface.
 - **PASS** — rendered desktop and exact 360 px checks in Persian/RTL and English/LTR; no horizontal overflow or console warning/error.
 - **PASS** — all six flow selectors, numbered steps, and bounded Previous/Next controls exercised at 360 px.
 - **PASS** — Persian and English homepage shells, one Placement primary action, localized feature copy, and evidence-neutral Learner Twin preview.
-- **BLOCKED (environment, not Day 05 code)** — the repository's `apps/api/.venv` launcher points to a removed Python 3.10 installation. The bundled Python runtime has no Django packages, so Django `check`, tests, and migration-drift commands cannot run until the project virtual environment is recreated.
+- **PASS (2026-08-26 follow-up)** — Django system check, all 103 backend tests, and migration-drift detection now pass against the local PostgreSQL test database; the former removed-runtime blocker is resolved for verification.
 - **PENDING HUMAN EVIDENCE** — the five-person hallway-test table remains intentionally blank.
 
 ## Human-test honesty rule

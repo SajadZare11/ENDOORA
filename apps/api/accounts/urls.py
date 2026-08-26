@@ -6,6 +6,7 @@ from .day08_views import (
 )
 from .views import (
     AccountDeletionRequestView,
+    AccountDeletionCancellationView,
     ConsentView,
     CsrfTokenView,
     CurrentSessionView,
@@ -79,5 +80,10 @@ urlpatterns = [
         "deletion-request/",
         AccountDeletionRequestView.as_view(),
         name="deletion-request",
+    ),
+    path(
+        "deletion-request/cancel/",
+        AccountDeletionCancellationView.as_view(),
+        name="deletion-request-cancel",
     ),
 ]

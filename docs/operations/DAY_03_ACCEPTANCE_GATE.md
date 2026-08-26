@@ -45,3 +45,14 @@ Before commit, `git status` must not show `.env`, virtual environments, `node_mo
 Recommended commit message:
 
 `Day 03: Build the Endoora bilingual design-token and brand system`
+
+## Current audit evidence — 2026-08-26
+
+- **PASS** — design checker validated 14 WCAG AA color pairs, visible focus treatment, reduced-motion support, logical CSS, and centralized tokens.
+- **PASS** — light/dark × Persian RTL/English LTR at desktop, 768 px, and exact 360 px; no horizontal overflow.
+- **PASS** — mixed-direction email, URL, score, IPA, and English examples remain directionally isolated.
+- **PASS** — semantic status examples remain understandable without color alone.
+- **PASS** — browser console and framework-overlay inspection found no relevant runtime error.
+- **PASS** — lint, clean generated-route typecheck, production build, backend regression, migration drift, and secret scan.
+
+The Day 02 developer landing was intentionally replaced by the Day 06 public site and Day 09/10 role shells, so the three obsolete developer-home regression items are evaluated through their current successor surfaces.
