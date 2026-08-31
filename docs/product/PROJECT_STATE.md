@@ -200,6 +200,15 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 - Database migration required: core.0001_initial and audit.0001_initial.
 - Day 11 acceptance passed before the Day 12 taxonomy migration was started.
 
+### Day 11 hardening checkpoint — 2026-09-01
+
+- Hardened audit snapshots so sensitive keys nested in JSON values are redacted.
+- Hardened audit reasons so credential-like values supplied through request context are redacted before persistence.
+- Hardened unsafe boolean setting validation to reject bypass/debug aliases, plus expanded secret-key detection.
+- Verification: `python scripts\\check_day11.py` (PASS); `python manage.py check` (PASS); `python manage.py test` (PASS, 106 tests under an isolated SQLite test database because Docker/PostgreSQL is unavailable on this host); `node scripts\\check-day10.mjs` (PASS); `npm run lint` (PASS); `npm run typecheck` (PASS); `npm run build` (PASS); `python scripts\\scan_secrets.py` (PASS); `git diff --check` (PASS).
+- Git checkpoint: `8cb1176` (`Day 11: Harden audit redaction and safe settings`), pushed to `origin/main`.
+- Latest verified private PostgreSQL backup remains `E:\\0\\Work\\Website\\The General Website\\Endoora\\PRIVATE_DO_NOT_COPY_TO_GIT\\backups\\day12\\20260820-000631\\endoora-pre-day12.dump` (69,383 bytes; captured after Day 11 and retained outside Git). A new pre-Day-11 dump could not be created on this host because Docker/PostgreSQL is unavailable.
+
 ## Day 12 — CEFR skill and content taxonomy (complete locally)
 
 - Added stable UUID/slug taxonomy nodes for skills, subskills, objectives, grammar/vocabulary topics, age tags, and exam tags.
