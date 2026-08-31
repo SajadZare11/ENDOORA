@@ -5,6 +5,8 @@ from contextvars import ContextVar
 from dataclasses import dataclass
 from typing import Any, Iterator
 
+from .redaction import redact_audit_reason
+
 
 @dataclass(frozen=True)
 class AuditRequestContext:
@@ -39,7 +41,7 @@ def audit_context(
 ) -> Iterator[AuditRequestContext]:
     context = AuditRequestContext(
         actor=actor,
-        reason=reason.strip()[:500],
+        reason=redact_audit_reason(reason),
         request_method=request_method.strip().upper()[:16],
         request_path=request_path.strip()[:500],
         environment=environment.strip()[:32] or "development",

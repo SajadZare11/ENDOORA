@@ -5,7 +5,7 @@ from django.test import RequestFactory, TestCase
 from audit.admin_policy import is_action_allowed
 from audit.context import audit_context
 from audit.models import AuditEvent
-from audit.redaction import safe_model_snapshot
+from audit.redaction import _json_safe, redact_audit_reason, safe_model_snapshot
 from core.models import SystemSetting
 
 
@@ -92,6 +92,31 @@ class AuditEventTests(TestCase):
         snapshot = safe_model_snapshot(self.admin_user)
         self.assertEqual(snapshot["email"], "<redacted-personal>")
         self.assertEqual(snapshot["password"], "<redacted-secret>")
+
+    def test_snapshot_redacts_sensitive_keys_nested_in_json(self):
+        value = {
+            "safe": "visible",
+            "details": {"api_key": "do-not-store", "email": "private@example.test"},
+            "items": [{"transcript": "private audio text"}],
+        }
+
+        self.assertEqual(
+            _json_safe(value),
+            {
+                "safe": "visible",
+                "details": {
+                    "api_key": "<redacted-secret>",
+                    "email": "<redacted-personal>",
+                },
+                "items": [{"transcript": "<redacted-private-content>"}],
+            },
+        )
+
+    def test_audit_reason_redacts_credential_like_values(self):
+        reason = redact_audit_reason("manual change api_key=super-secret-123 token:abc123")
+        self.assertNotIn("super-secret-123", reason)
+        self.assertNotIn("abc123", reason)
+        self.assertIn("<redacted-secret>", reason)
 
 
 class LeastPrivilegePolicyTests(TestCase):

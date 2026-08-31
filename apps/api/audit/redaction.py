@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date, datetime
 from decimal import Decimal
+import re
 from uuid import UUID
 
 from django.db import models
@@ -49,6 +50,11 @@ _PAYMENT_PARTS = {
     "sheba",
 }
 
+_REASON_SECRET_PATTERN = re.compile(
+    r"(?i)(?P<key>password|passcode|secret|token|credential|api[_-]?key|private[_-]?key|"
+    r"merchant[_-]?id|otp|code[_-]?hash|authorization)\s*[:=]\s*(?P<value>[^\s,;]+)"
+)
+
 
 def _field_category(name: str) -> str | None:
     lowered = name.lower()
@@ -73,8 +79,23 @@ def _json_safe(value):
     if isinstance(value, (list, tuple, set)):
         return [_json_safe(item) for item in value]
     if isinstance(value, dict):
-        return {str(key): _json_safe(item) for key, item in value.items()}
+        safe = {}
+        for key, item in value.items():
+            key_text = str(key)
+            category = _field_category(key_text)
+            safe[key_text] = category if category is not None else _json_safe(item)
+        return safe
     return str(value)
+
+
+def redact_audit_reason(reason: str | None) -> str:
+    """Keep operator context useful without persisting credential-like values."""
+
+    text = (reason or "").strip()[:500]
+    return _REASON_SECRET_PATTERN.sub(
+        lambda match: f"{match.group('key')}=<redacted-secret>",
+        text,
+    )
 
 
 def safe_model_snapshot(instance: models.Model | None) -> dict:

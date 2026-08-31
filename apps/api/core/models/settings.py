@@ -10,13 +10,20 @@ from django.db import models
 _SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 
 _SENSITIVE_KEY_FRAGMENTS = {
+    "access_token",
+    "apikey",
     "password",
+    "client_secret",
     "secret",
     "token",
     "credential",
     "api_key",
+    "api-key",
     "private_key",
+    "private-key",
     "merchant_id",
+    "merchant-id",
+    "merchantid",
     "otp",
 }
 
@@ -88,7 +95,10 @@ class SystemSetting(models.Model):
         elif not isinstance(self.value, expected_type):
             errors["value"] = f"This setting requires a {self.value_type} value."
 
-        if lowered in _UNSAFE_BOOLEAN_KEYS and self.value is True:
+        if (
+            self.value is True
+            and any(fragment in lowered for fragment in _UNSAFE_BOOLEAN_KEYS)
+        ):
             errors["value"] = (
                 "This unsafe bypass/debug setting cannot be enabled through the database."
             )

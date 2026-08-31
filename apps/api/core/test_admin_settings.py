@@ -29,6 +29,18 @@ class SystemSettingValidationTests(TestCase):
         with self.assertRaises(ValidationError):
             setting.full_clean()
 
+    def test_unsafe_bypass_alias_is_rejected(self):
+        setting = SystemSetting(
+            key="debug_mode_enabled",
+            value_type=SystemSetting.ValueType.BOOLEAN,
+            value=True,
+            environment_scope=SystemSetting.EnvironmentScope.DEVELOPMENT,
+            owner="security",
+            rationale="test",
+        )
+        with self.assertRaises(ValidationError):
+            setting.full_clean()
+
     def test_typed_value_is_required(self):
         setting = SystemSetting(
             key="homepage_item_limit",
