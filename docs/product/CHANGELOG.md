@@ -316,7 +316,7 @@ None. No Endoora domain data existed yet.
 - Verified idempotent re-import with zero duplicate changes.
 - `python manage.py test taxonomy` — PASS, 12 tests.
 - Taxonomy hardening: deprecated detail records are hidden by default, prerequisite cycles are rejected at model validation, and revisions are immutable.
-- `python manage.py test` — PASS, 107 tests in the current regression suite.
+- `python manage.py test` — PASS, 108 tests in the current regression suite.
 - `npm run lint`, `npm run typecheck`, and `npm run build` — PASS.
 - Persian-default and explicit-English taxonomy API checks — PASS.
 - Django admin protection checks — PASS.

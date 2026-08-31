@@ -200,7 +200,7 @@ Status: complete; taxonomy acceptance and hardening pushed in `6a496b5`.
 - [x] 62 nodes / 62 revisions / 9 active prerequisites
 - [x] idempotent second import
 - [x] taxonomy tests — 12 PASS
-- [x] full backend suite — 107 PASS in the current regression suite
+- [x] full backend suite — 108 PASS in the current regression suite
 - [x] migration drift check
 - [x] Persian-default API
 - [x] English API option

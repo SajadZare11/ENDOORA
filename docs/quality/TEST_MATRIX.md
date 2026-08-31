@@ -206,7 +206,7 @@
 | Idempotent re-import | PASS | 0 creates / 0 updates / 0 revisions / 0 prerequisite changes |
 | Database counts | PASS | 1 release / 62 nodes / 62 revisions / 9 active prerequisites |
 | Taxonomy-focused tests | PASS | `python manage.py test taxonomy` — 12 tests |
-| Full backend regression | PASS | `python manage.py test` — 107 tests in the current regression suite |
+| Full backend regression | PASS | `python manage.py test` — 108 tests in the current regression suite |
 | Migration drift | PASS | `makemigrations --check --dry-run` — no changes |
 | Static Day 12 gate | PASS | `python scripts/check_day12.py` |
 | Persian-default API | PASS | manual API verification |

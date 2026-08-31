@@ -236,7 +236,7 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 ### Backend
 - `python manage.py check` — PASS
 - `python manage.py test taxonomy` — PASS, 12 tests
-- `python manage.py test` — PASS, 107 tests in the current regression suite
+- `python manage.py test` — PASS, 108 tests in the current regression suite
 - `python scripts/check_day12.py` — PASS
 - Day 12 hardening commit `6a496b5` (`Day 12: Harden taxonomy visibility and history`) pushed to `origin/main`.
 - `python scripts/scan_secrets.py` — PASS
