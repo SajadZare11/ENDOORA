@@ -13,7 +13,7 @@
 | 09 | Learner application shell and simplified navigation | Complete | Learner next-action shell, aggregated API, responsive QA and acceptance passed |
 | 10 | Teacher application shell and simplified navigation | Complete | Teacher urgency shell, capability gating, responsive browser QA, and local acceptance passed |
 | 11 | Django admin, audit logs, and safe settings | Complete | Operations acceptance passed |
-| 12 | CEFR skill and content taxonomy | Complete* | Taxonomy acceptance passed; final Git push remains |
+| 12 | CEFR skill and content taxonomy | Complete | Taxonomy acceptance and hardening passed; pushed in `6a496b5` |
 | 13-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
@@ -193,14 +193,14 @@ Status: complete and inherited by Day 12.
 
 ## Day 12 — CEFR skill and content taxonomy
 
-Status: local acceptance complete; final Git push remains.
+Status: complete; taxonomy acceptance and hardening pushed in `6a496b5`.
 
 - [x] verified pre-Day-12 PostgreSQL backup
 - [x] `taxonomy.0001_initial` applied
 - [x] 62 nodes / 62 revisions / 9 active prerequisites
 - [x] idempotent second import
-- [x] taxonomy tests — 10 PASS
-- [x] full backend suite — 80 PASS
+- [x] taxonomy tests — 12 PASS
+- [x] full backend suite — 107 PASS in the current regression suite
 - [x] migration drift check
 - [x] Persian-default API
 - [x] English API option

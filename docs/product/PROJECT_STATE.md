@@ -209,7 +209,7 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 - Git checkpoint: `8cb1176` (`Day 11: Harden audit redaction and safe settings`), pushed to `origin/main`.
 - Latest verified private PostgreSQL backup remains `E:\\0\\Work\\Website\\The General Website\\Endoora\\PRIVATE_DO_NOT_COPY_TO_GIT\\backups\\day12\\20260820-000631\\endoora-pre-day12.dump` (69,383 bytes; captured after Day 11 and retained outside Git). A new pre-Day-11 dump could not be created on this host because Docker/PostgreSQL is unavailable.
 
-## Day 12 — CEFR skill and content taxonomy (complete locally)
+## Day 12 — CEFR skill and content taxonomy (complete and inherited by Day 13)
 
 - Added stable UUID/slug taxonomy nodes for skills, subskills, objectives, grammar/vocabulary topics, age tags, and exam tags.
 - Persian labels are the default user-facing taxonomy representation; English labels remain available as an explicit option.
@@ -218,6 +218,7 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 - Added read-only public lookup API foundation at `/api/taxonomy/`.
 - Added Django admin taxonomy browsing/editing with stable-slug and delete protections.
 - Day 12 local acceptance passed: verified backup, migration, idempotent import, backend tests, Persian/English API checks, admin checks, frontend regression, 360 px/desktop review, secret scan, and diff check.
+- Day 12 hardening fixed deprecated-node detail leakage, enforced model-level prerequisite cycle checks, and made taxonomy revisions immutable.
 
 ## Day 12 verification evidence
 
@@ -234,9 +235,10 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 
 ### Backend
 - `python manage.py check` — PASS
-- `python manage.py test taxonomy` — PASS, 10 tests
-- `python manage.py test` — PASS, 80 tests
+- `python manage.py test taxonomy` — PASS, 12 tests
+- `python manage.py test` — PASS, 107 tests in the current regression suite
 - `python scripts/check_day12.py` — PASS
+- Day 12 hardening commit `6a496b5` (`Day 12: Harden taxonomy visibility and history`) pushed to `origin/main`.
 - `python scripts/scan_secrets.py` — PASS
 - `git diff --check` — PASS
 
