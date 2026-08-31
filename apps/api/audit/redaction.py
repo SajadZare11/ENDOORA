@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import re
 from datetime import date, datetime
 from decimal import Decimal
-import re
 from uuid import UUID
 
 from django.db import models
