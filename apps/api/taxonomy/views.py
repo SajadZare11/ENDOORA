@@ -125,7 +125,10 @@ class TaxonomyNodeDetailAPIView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        node = get_object_or_404(_base_queryset(), pk=pk)
+        queryset = _base_queryset()
+        if request.query_params.get("include_deprecated") != "1":
+            queryset = queryset.filter(status=TaxonomyNode.Status.ACTIVE)
+        node = get_object_or_404(queryset, pk=pk)
         serializer = TaxonomyNodeSerializer(
             node,
             context={"lang": _language(request)},

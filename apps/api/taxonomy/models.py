@@ -192,6 +192,14 @@ class TaxonomyNodeRevision(models.Model):
     def __str__(self) -> str:
         return f"{self.node.slug} @ {self.release.version}"
 
+    def save(self, *args, **kwargs):
+        if self.pk and TaxonomyNodeRevision.objects.filter(pk=self.pk).exists():
+            raise ValidationError("Taxonomy revisions are immutable historical records.")
+        return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise ValidationError("Taxonomy revisions are historical records and cannot be deleted.")
+
 
 class TaxonomyPrerequisite(models.Model):
     node = models.ForeignKey(
@@ -239,3 +247,26 @@ class TaxonomyPrerequisite(models.Model):
     def clean(self):
         if self.node_id and self.node_id == self.prerequisite_id:
             raise ValidationError("A node cannot require itself.")
+        if not self.node_id or not self.prerequisite_id:
+            return
+
+        # A prerequisite points from a node to an earlier requirement. Walk
+        # existing active links from the proposed prerequisite; reaching the
+        # proposed node would create a cycle.
+        pending = [self.prerequisite_id]
+        visited: set[object] = set()
+        while pending:
+            current = pending.pop()
+            if current == self.node_id:
+                raise ValidationError(
+                    "Prerequisite relationships must form an acyclic graph."
+                )
+            if current in visited:
+                continue
+            visited.add(current)
+            pending.extend(
+                TaxonomyPrerequisite.objects.filter(
+                    node_id=current,
+                    retired_in__isnull=True,
+                ).values_list("prerequisite_id", flat=True)
+            )

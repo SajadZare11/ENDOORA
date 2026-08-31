@@ -44,6 +44,7 @@ admin_text = (
 import_text = (
     ROOT / "apps/api/taxonomy/management/commands/import_taxonomy.py"
 ).read_text(encoding="utf-8")
+views_text = (ROOT / "apps/api/taxonomy/views.py").read_text(encoding="utf-8")
 
 require('"taxonomy"' in settings_text, "taxonomy is not in INSTALLED_APPS")
 require(
@@ -66,6 +67,10 @@ require(
 require(
     "different checksum" in import_text,
     "immutable release protection is missing",
+)
+require(
+    "include_deprecated" in views_text,
+    "deprecated detail/list visibility control is missing",
 )
 
 seed_path = ROOT / "data/taxonomy/endoora_core_taxonomy.v1.json"

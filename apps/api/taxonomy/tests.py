@@ -8,6 +8,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 from django.test import TestCase
 from rest_framework.test import APIClient
@@ -98,6 +99,19 @@ class TaxonomyImportTests(TestCase):
         with self.assertRaises(CommandError):
             call_command("import_taxonomy", path=self.write_temp_dataset(data))
 
+    def test_model_prerequisite_cycle_is_rejected(self):
+        call_command("import_taxonomy")
+        first = TaxonomyNode.objects.get(slug="objective-reading-main-idea-a2")
+        second = TaxonomyNode.objects.get(slug="objective-reading-gist-a1")
+        release = TaxonomyRelease.objects.get(version="day12-v1")
+        reverse = TaxonomyPrerequisite(
+            node=second,
+            prerequisite=first,
+            introduced_in=release,
+        )
+        with self.assertRaises(ValidationError):
+            reverse.full_clean()
+
     def test_slug_is_unique_at_database_boundary(self):
         call_command("import_taxonomy")
         release = TaxonomyRelease.objects.get(version="day12-v1")
@@ -110,6 +124,15 @@ class TaxonomyImportTests(TestCase):
                     label_en="Duplicate",
                     current_release=release,
                 )
+
+    def test_node_revisions_are_immutable_historical_records(self):
+        call_command("import_taxonomy")
+        revision = TaxonomyNode.objects.get(slug="skill-reading").revisions.first()
+        revision.checksum = "tampered"
+        with self.assertRaises(ValidationError):
+            revision.save()
+        with self.assertRaises(ValidationError):
+            revision.delete()
 
 
 class TaxonomyApiTests(TestCase):
@@ -177,6 +200,13 @@ class TaxonomyApiTests(TestCase):
             str(node.id),
             [item["id"] for item in history_response.data["results"]],
         )
+
+        detail_response = self.client.get(f"/api/taxonomy/nodes/{node.id}/")
+        self.assertEqual(detail_response.status_code, 404)
+        history_detail_response = self.client.get(
+            f"/api/taxonomy/nodes/{node.id}/?include_deprecated=1"
+        )
+        self.assertEqual(history_detail_response.status_code, 200)
 
     def test_seed_contains_active_prerequisites(self):
         self.assertGreater(
