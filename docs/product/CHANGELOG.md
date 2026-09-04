@@ -454,3 +454,25 @@ None. No Endoora domain data existed yet.
 - User isolation verified: User B cannot access or summarize User A's placement session.
 - Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
 - Automated static checks `check_day18.py`, `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+
+## Day 19 — Personal Learning Path Engine & Interactive Path Experience
+- Implemented dynamic, evidence-grounded learning path engine in `apps/api/learner_twin/path.py`.
+- Connected learning path directly to submitted 6-section placement session evidence, analyzing Grammar, Vocabulary, Reading, Listening, Speaking, and Writing.
+- Ranked skills by score ascending to identify priority growth areas, generating tailored pedagogical recommendations and direct practice links (`/writing`, `/voice`, `/review`, `/listening`, `/practice-ai`).
+- Derived explainable 5-phase progress timeline with semantic states (`complete`, `current`, `upcoming`, `planned`, `locked`) without fake precision or arbitrary completion percentages.
+- Derived dominant next-best action (`next_best_step`, `next_best_step_fa`, `next_best_step_en`, `next_best_step_href`) directing learners to targeted skill practice or daily missions.
+- Strictly observed Product Constitution Rule #8: transparent educational estimate disclaimers in both Persian and English with zero premature or certified CEFR claims.
+- Extended `LearningPathSerializer` in `apps/api/learner_twin/serializers.py` to validate `placement_completed`, `estimated_cefr_level`, `overall_percentage`, `focus_areas`, `section_scores`, and `timeline`.
+- Routed `api/path/` alongside `api/learner-twin/` in `endoora_api/urls.py` and cleaned redundant routes.
+- Wrote comprehensive unit and regression tests in `apps/api/learner_twin/tests.py` verifying unplaced onboarding, placed evidence derivation, user isolation, and permissions.
+- Upgraded `apps/web/app/(learner)/path/page.tsx` into a professional, responsive, bilingual learner experience supporting unplaced onboarding cards and placed personalized path dashboards.
+- Styled with 100% tokenized CSS in `apps/web/app/(learner)/path/path.module.css` with zero raw hex colors and complete logical property support.
+- Completed Wireframe 1 flow: `/placement/report` primary CTA navigates directly to `/path` ("ساخت و مشاهده مسیر یادگیری شخصی"), and `/dashboard` path card links directly to `/path`.
+
+## Day 19 verification
+- Pre-Day-19 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day19\20260820-190000\endoora-pre-day19.dump`.
+- Backend unit tests pass: 4 learner_twin tests, 7 dashboard tests, and 140 full regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero transcripts, answer keys, or rubrics leaked.
+- User isolation verified: User B cannot access or view User A's learning path.
+- Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
+- Automated static checks `check_day19.py`, `check_day18.py`, `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

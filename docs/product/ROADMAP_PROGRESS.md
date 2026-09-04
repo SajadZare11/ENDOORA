@@ -346,7 +346,7 @@ Status: Complete and verified; pushed to GitHub.
 
 ## Day 18 — Implement writing placement section with rich text editor and automated evaluation
 
-Status: Complete and verified; ready for Git commit and push.
+Status: Complete and verified; pushed to GitHub.
 
 - [x] verified pre-Day-18 PostgreSQL backup outside Git
 - [x] calibrated 23 core placement items including 4 Writing items in `data/placement/core-items.json`
@@ -371,3 +371,28 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** learners can complete interactive writing placement questions with rich text formatting, live word counters and progress meters against CEFR requirements, and receive transparent multi-stage section scoring and provisional CEFR estimates without leaked rubrics or false certification claims.
 
 **Next day after Git push:** Day 19 — Personal Learning Path.
+
+## Day 19 — Personal Learning Path Engine & Interactive Path Experience
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-19 PostgreSQL backup outside Git
+- [x] implemented dynamic learning path engine in `apps/api/learner_twin/path.py`
+- [x] connected learning path to verified 6-section placement session evidence
+- [x] derived provisional CEFR level estimate and ranked priority growth skills by score
+- [x] generated targeted pedagogical recommendations and direct practice links (`/writing`, `/voice`, `/review`, `/listening`, `/practice-ai`)
+- [x] derived explainable 5-phase progress timeline with semantic states (`complete`, `current`, `upcoming`, `planned`, `locked`) without fake precision
+- [x] strictly adhered to Product Constitution Rule #8 on honest assessment without premature or certified CEFR claims
+- [x] extended `LearningPathSerializer` in `apps/api/learner_twin/serializers.py`
+- [x] dual-routed API at `/api/learner-twin/path/` and `/api/path/`
+- [x] 4 unit tests in `apps/api/learner_twin/tests.py` passing
+- [x] upgraded `/path` in `apps/web/app/(learner)/path/page.tsx` with unplaced onboarding and placed personalized dashboards
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/path/path.module.css` with 0 raw hex colors
+- [x] completed Wireframe 1 flow linking `/placement/report` and `/dashboard` directly to `/path`
+- [x] 140 backend regression tests passing
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `check_day19.py` and secret scan passing
+
+**Success gate:** learners can receive a personalized, evidence-grounded learning path directly calibrated from their 6-skill placement results, featuring prioritized growth skills, explainable progress timelines, dominant next actions, and honest educational disclosures without fabricated progress percentages or premature certification claims.
+
+**Next day after Git push:** Day 20 — Daily Mission.

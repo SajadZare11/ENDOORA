@@ -61,6 +61,7 @@ const copy = {
     nextStepTitle: "گام‌های بعدی یادگیری",
     nextStepDesc: "بر اساس عملکرد شما، تمرین‌های روزانه، مرور اشتباهات و مسیرهای آموزشی هدفمند در داشبورد پیشنهاد شده‌اند.",
     goToDashboard: "ورود به داشبورد و شروع تمرین",
+    buildPersonalPath: "مشاهده و ساخت مسیر یادگیری شخصی",
     retakePlacement: "مرور یا شرکت مجدد در آزمون",
     viewTwin: "مشاهده دوقلوی یادگیری",
     noticeHeader: "اصل شفافیت آموزشی Endoora (Honest Assessment)",
@@ -88,7 +89,8 @@ const copy = {
     nextStepTitle: "Next Learning Steps",
     nextStepDesc: "Based on your verified evidence, tailored daily missions, error genome review, and adaptive practice are ready in your dashboard.",
     goToDashboard: "Go to learning dashboard",
-    retakePlacement: "Retake or review test",
+    buildPersonalPath: "Build My Personal Learning Path",
+    retakePlacement: "Retake or review placement",
     viewTwin: "View learner twin",
     noticeHeader: "Endoora Educational Transparency (Honest Assessment)",
     honestDisclaimer: "This report is an educational estimate grounded in verified assessment evidence and does not claim official CEFR certification.",
@@ -352,7 +354,10 @@ export default function PlacementReportPage() {
           <h2>{t.nextStepTitle}</h2>
           <p style={{ marginBlock: "var(--space-3)", color: "var(--color-text-muted)" }}>{t.nextStepDesc}</p>
           <div className={styles.actionsRow}>
-            <Link href="/dashboard" className={styles.button}>
+            <Link href="/path" className={styles.button}>
+              {t.buildPersonalPath}
+            </Link>
+            <Link href="/dashboard" className={styles.button} style={{ background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}>
               {t.goToDashboard}
             </Link>
             <Link href="/placement/demo" className={styles.button} style={{ background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}>

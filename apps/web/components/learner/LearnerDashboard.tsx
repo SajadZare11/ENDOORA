@@ -241,6 +241,11 @@ export function LearnerDashboard() {
               );
             })}
           </ol>
+          <div style={{ marginTop: "var(--space-3)" }}>
+            <Link href="/path" className="learner-button learner-button--secondary" style={{ width: "100%", justifyContent: "center" }}>
+              <span>{locale === "fa" ? "مشاهده جزئیات مسیر شخصی" : "View Personal Path Details"}</span>
+            </Link>
+          </div>
         </section>
 
         <section className="learner-card learner-skills-card" aria-labelledby="learner-skills-title">

@@ -29,12 +29,9 @@ urlpatterns = [
         include("srs.urls")
     ),
     path("api/learner-twin/", include("learner_twin.urls")),
+    path("api/path/", include("learner_twin.urls")),
     path(
         "api/missions/",
         include("missions.urls")
-    ),
-    path(
-        "api/learner-twin/",
-        include("learner_twin.urls")
     ),
 ]

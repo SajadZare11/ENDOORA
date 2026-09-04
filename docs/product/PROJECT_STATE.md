@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 18 — Implement writing placement section with rich text editor and automated evaluation
-- **Day 18 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–17 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections (Grammar, Vocabulary, Reading, Listening, Speaking, Writing)
-- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 18 adds no schema migration)
+- **Roadmap day completed:** Day 19 — Personal Learning Path Engine & Interactive Path Experience
+- **Day 19 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–18 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections (Grammar, Vocabulary, Reading, Listening, Speaking, Writing)
+- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 19 adds no schema migration)
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -500,6 +500,201 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - Pre-Day-18 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day18\20260820-180000\endoora-pre-day18.dump`
 - `seed_placement_sections` command verified: 23 items across 6 sections validated cleanly
 - `python manage.py test assessment` — PASS (10/10 unit tests)
+- `git diff --check` — PASS
+
+### Frontend/manual
+- Persian-first RTL question preview — PASS
+- English interface option — PASS
+- English learning content isolated LTR — PASS
+- 360 px and desktop — PASS
+- loading/empty/error/retry/permission states — PASS
+- publish -> learner-safe preview -> submit -> explanation -> retire journey — PASS
+
+## Day 14 — Placement session engine (complete and verified)
+
+- Built resumable multi-stage placement test session engine (`PlacementSession`, `PlacementAnswer`).
+- Added server-side session expiration handling (`expires_at`, 2 hours default) with `is_expired`, `is_active`, and `check_expiration()`.
+- Added server-side idempotency protection using unique `idempotency_key` and server timestamps to prevent duplicate rows.
+- Linked placement answers to versioned content via optional `question_version` foreign key (`question_version_id`).
+- Strictly enforced object-level user ownership: only session owner can view or submit answers (`user=request.user` query scoping returning 404 for other users).
+- Enforced session lifecycle: rejected answer mutations on expired or already-submitted sessions.
+- Enforced anti-leak security boundaries: placement question and session serializers strictly exclude `answer_key`, `accepted_variants`, `rubric`, `correct_option`, `solution`, and explanations.
+- Created Persian-first interactive `PlacementRunner` component with English language toggle, isolated LTR English passages, mobile 360 px responsiveness, design-token styling, and zero raw hex colors.
+- Replaced leaked roadmap copy in marketing and documentation with professional production copy.
+- Applied migration `placement.0002_alter_placementanswer_options_and_more`.
+- Verified pre-Day-14 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day14\20260820-140000\endoora-pre-day14.dump`.
+
+## Day 14 verification evidence
+
+### Backend & placement engine
+- Pre-Day-14 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day14\20260820-140000\endoora-pre-day14.dump`
+- `placement.0002_alter_placementanswer_options_and_more` applied successfully
+- `python manage.py check` — PASS
+- `python manage.py test placement` — PASS (13/13 tests)
+- `python manage.py test` — PASS (121/121 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS
+- Pre-submission learner payload contains no answer keys/accepted variants/rubrics/explanations
+- User isolation & object-level permissions — PASS
+- Expiration and submit mutation protections — PASS
+- `python scripts/check_day14.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS
+
+### Frontend / manual
+- Persian-first RTL placement test with English toggle — PASS
+- English learning passages and options isolated as LTR — PASS
+- Idempotent answer saving with server timestamps — PASS
+- Session resume upon page reload — PASS
+- Offline network recovery notice without losing answers — PASS
+- Responsive layout at 360 px without horizontal overflow — PASS
+- Zero raw hex colors in placement stylesheets — PASS
+
+## Day 15 — Grammar, vocabulary, and reading placement sections (complete and verified)
+
+- Calibrated 11 core placement items across Grammar (4), Vocabulary (4), and Reading (3 with passages) in `data/placement/core-items.json`.
+- Kept `difficulty` (`easy`, `medium`, `hard`) strictly separated from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Implemented honest assessment scoring in `apps/api/assessment/services.py`: `calculate_section_result` and `evaluate_placement_answers` compute empirical scores, correct item counts, total counts, and standard educational disclaimers.
+- Strictly adhered to Product Constitution Rule #8: avoided premature or official CEFR claims before full multi-stage assessment is completed.
+- Linked placement submissions to `PlacementResponse` in the `assessment` app for permanent audit trail and profile linkage.
+- Added session summary API endpoint `GET /api/placement/sessions/<id>/summary/` strictly scoped to `request.user`.
+- Added section filtering (`?section=grammar|vocabulary|reading`) to question API with pre-submission sanitization (no leaked answer keys or explanations).
+- Upgraded frontend `PlacementRunner` with multi-stage section navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب), Persian prompts, and live autosave badge.
+- Redesigned `/placement/report` into a responsive, live-connected skill report page with honest assessment disclosures and dashboard navigation.
+- Polished all learner subpages (`/progress`, `/review`, `/mistakes`, `/badges`, `/twin`, `/practice-ai`, `/writing`, `/roleplay`, `/voice`, `/listening`, `/pronunciation`) with full `.learner-card` layouts, tokenized styling, and accessible Persian-first UI.
+- Maintained verified pre-Day-15 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`.
+
+## Day 15 verification evidence
+
+### Backend & scoring services
+- Pre-Day-15 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`
+- `seed_placement_sections` command verified: 11 items across 3 sections seeded cleanly
+- `python manage.py test assessment` — PASS (5/5 unit tests)
+- `python manage.py test placement` — PASS (16/16 unit tests)
+- `python manage.py test` — PASS (129/129 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (no schema drift)
+- Learner pre-submission payloads contain no answer keys, solutions, rubrics, or explanations — PASS
+- Session summary API strictly scoped to session owner (User B gets 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day15.py` — PASS
+- `python scripts/check_day15.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
+## Day 16 — Listening placement section with audio player and waveform (complete and verified)
+
+- Calibrated 15 core placement items including 4 Listening items (A1 gist, A2 detail, B1 inference, B2 academic talk) in `data/placement/core-items.json`.
+- Generated 4 standard PCM WAV audio assets in `apps/web/public/audio/placement/` providing native in-browser audio playback without external dependencies.
+- Kept `difficulty` (`easy`, `medium`, `hard`) strictly separated from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Stored audio transcripts server-side only; learner pre-submission payloads never leak transcripts, answer keys, solutions, or rubrics.
+- Updated assessment scoring services in `apps/api/assessment/services.py` to evaluate the `listening` section, producing empirical scores, objectives, and honest assessment disclaimers.
+- Updated `seed_placement_sections` command to validate all 15 placement items across grammar, vocabulary, reading, and listening.
+- Built accessible `AudioWaveformPlayer` component with 32-bar interactive visual waveform scrubber, play limit enforcement (default 2 plays), playback speed switching (0.8x, 1.0x, 1.2x), time readouts, and volume controls.
+- Used 100% tokenized CSS (`audio-player.module.css`) with zero raw hex colors and complete logical property support.
+- Upgraded `PlacementRunner` with 4-stage navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب, 4. شنیداری) and rendered `AudioWaveformPlayer` for listening items.
+- Upgraded `/placement/report` to display verified listening scores, answered counts, and objectives.
+- Upgraded `/listening` into an interactive Listening Lab preview with an embedded sample player and dimension explorer.
+- Upgraded `/placement/listening-ready` with direct navigation to the placement test and listening lab.
+- Maintained verified pre-Day-16 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day16\20260820-160000\endoora-pre-day16.dump`.
+
+## Day 16 verification evidence
+
+### Backend & scoring services
+- Pre-Day-16 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day16\20260820-160000\endoora-pre-day16.dump`
+- `seed_placement_sections` command verified: 15 items across 4 sections validated cleanly
+- `python manage.py test assessment` — PASS (6/6 unit tests)
+- `python manage.py test placement` — PASS (16/16 unit tests)
+- `python manage.py test` — PASS (130/130 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
+- Learner pre-submission payloads contain no audio transcripts, answer keys, solutions, or rubrics — PASS
+- Session summary API strictly scoped to session owner (User B receives 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day16.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
+## Day 17 — Speaking placement section with audio recording and STT diagnostic (complete and verified)
+
+- Calibrated 19 core placement items including 4 Speaking items (A1 self intro, A2 daily routine, B1 memorable experience, B2 remote work opinion) in `data/placement/core-items.json`.
+- Strictly decoupled `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Kept speaking target keywords and evaluation rubrics isolated server-side; learner pre-submission payloads never leak evaluation rubrics, target keywords, or model answers.
+- Implemented speaking diagnostic evaluation service in `apps/api/assessment/services.py` analyzing word count, length sufficiency, and topical vocabulary coverage.
+- Implemented multi-stage overall score calculation adhering strictly to `docs/assessment/scoring-model.md`: `sum(section scores) / number of sections` (all 5 sections: Grammar, Vocabulary, Reading, Listening, Speaking).
+- Implemented provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence, strictly observing Product Constitution Rule #8 on no premature or certified CEFR claims.
+- Updated `seed_placement_sections` command to validate all 19 placement items across all 5 sections.
+- Built accessible `AudioRecorder` component with start/stop/re-record controls, sound level meter, recording timer (60-90s auto-stop), audio playback preview, and real-time Speech-to-Text (STT) transcript preview.
+- Built accessible text fallback input for learners without microphone hardware or browser permissions.
+- Used 100% tokenized CSS (`audio-recorder.module.css`) with zero raw hex colors and complete logical property support.
+- Upgraded `PlacementRunner` with 5-stage navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب, 4. شنیداری, 5. گفتاری) and rendered `AudioRecorder` for speaking questions.
+- Upgraded `/placement/report` to display all 5 skill cards, verified speaking scores and objectives, and overall provisional CEFR estimate badge with honest disclosures.
+- Upgraded `/voice` into an interactive Voice & Speaking Lab sandbox with live microphone testing, STT preview, and direct placement test links.
+- Upgraded `/pronunciation` with direct navigation to the voice sandbox and speaking placement test.
+- Maintained verified pre-Day-17 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day17\20260820-170000\endoora-pre-day17.dump`.
+
+## Day 17 verification evidence
+
+### Backend & scoring services
+- Pre-Day-17 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day17\20260820-170000\endoora-pre-day17.dump`
+- `seed_placement_sections` command verified: 19 items across 5 sections validated cleanly
+- `python manage.py test assessment` — PASS (8/8 unit tests)
+- `python manage.py test placement` — PASS (18/18 unit tests)
+- `python manage.py test` — PASS (133/133 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
+- Learner pre-submission payloads contain no target keywords, rubrics, answer keys, solutions, or transcripts — PASS
+- Session summary API strictly scoped to session owner (User B receives 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day17.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
+## Day 18 — Implement writing placement section with rich text editor and automated evaluation (complete and verified)
+
+- Calibrated 23 core placement items including 4 Writing items (A1 postcard email, A2 everyday event, B1 opinion essay, B2 workplace report) in `data/placement/core-items.json`.
+- Strictly decoupled `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Kept writing evaluation rubrics and target keywords isolated server-side; learner pre-submission payloads never leak evaluation rubrics, target keywords, or model answers while exposing safe `min_words_expected` and `max_words_expected`.
+- Implemented writing automated evaluation service in `apps/api/assessment/services.py` analyzing word count, length sufficiency, topical vocabulary coverage, sentence structure, and vocabulary diversity.
+- Implemented multi-stage overall score calculation adhering strictly to `docs/assessment/scoring-model.md`: `sum(section scores) / number of sections` (all 6 sections: Grammar, Vocabulary, Reading, Listening, Speaking, Writing).
+- Implemented provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence, strictly observing Product Constitution Rule #8 on no premature or certified CEFR claims.
+- Updated `seed_placement_sections` command to validate all 23 placement items across all 6 sections.
+- Built accessible `WritingEditor` component with formatting toolbar (Bold, Italic, Bulleted List, Numbered List, Clear), word/character/sentence counters, progress meter toward minimum words, and autosave.
+- Used 100% tokenized CSS (`writing-editor.module.css`) with zero raw hex colors and complete logical property support.
+- Upgraded `PlacementRunner` with 6-stage navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب, 4. شنیداری, 5. گفتاری, 6. نگارش) and rendered `WritingEditor` for writing questions.
+- Upgraded `/placement/report` to display all 6 skill cards, verified writing scores and objectives, and overall provisional CEFR estimate badge with honest disclosures.
+- Upgraded `/writing` into an interactive Writing Mentor & Essay Lab sandbox with embedded rich editor, CEFR prompt presets (A1-B2), live diagnostic feedback, and direct placement test links.
+- Maintained verified pre-Day-18 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day18\20260820-180000\endoora-pre-day18.dump`.
+
+## Day 18 verification evidence
+
+### Backend & scoring services
+- Pre-Day-18 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day18\20260820-180000\endoora-pre-day18.dump`
+- `seed_placement_sections` command verified: 23 items across 6 sections validated cleanly
+- `python manage.py test assessment` — PASS (10/10 unit tests)
 - `python manage.py test placement` — PASS (18/18 unit tests)
 - `python manage.py test` — PASS (135/135 regression tests)
 - `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
@@ -519,15 +714,59 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - `python scripts/check_day18.py` — PASS
 - `python scripts/scan_secrets.py` — PASS
 
+## Git checkpoint (Day 18)
+
+Commit: `21d9fb3` — `Day 18: Implement writing placement section with rich text editor and automated evaluation`
+
+## Day 19 — Personal Learning Path Engine & Interactive Path Experience (complete and verified)
+
+- Implemented dynamic, evidence-grounded learning path engine in `apps/api/learner_twin/path.py`.
+- Connected learning path directly to submitted 6-section placement session (`status="submitted"`), analyzing Grammar, Vocabulary, Reading, Listening, Speaking, and Writing.
+- Ranked skills by score ascending to identify priority growth areas, generating tailored pedagogical recommendations and direct practice links (`/writing`, `/voice`, `/review`, `/listening`, `/practice-ai`).
+- Derived explainable 5-phase progress timeline with semantic states (`complete`, `current`, `upcoming`, `planned`, `locked`) without fake precision or arbitrary completion percentages.
+- Derived dominant next-best action (`next_best_step`, `next_best_step_fa`, `next_best_step_en`, `next_best_step_href`) directing learners to targeted skill practice or daily missions.
+- Strictly observed Product Constitution Rule #8: transparent educational estimate disclaimers in both Persian and English with zero premature or certified CEFR claims.
+- Extended `LearningPathSerializer` in `apps/api/learner_twin/serializers.py` to validate `placement_completed`, `estimated_cefr_level`, `overall_percentage`, `focus_areas`, `section_scores`, and `timeline`.
+- Routed `api/path/` alongside `api/learner-twin/` in `endoora_api/urls.py` and cleaned redundant routes.
+- Wrote comprehensive unit and regression tests in `apps/api/learner_twin/tests.py` verifying unplaced onboarding, placed evidence derivation, user isolation, and permissions.
+- Upgraded `apps/web/app/(learner)/path/page.tsx` into a professional, responsive, bilingual learner experience supporting unplaced onboarding cards and placed personalized path dashboards.
+- Styled with 100% tokenized CSS in `apps/web/app/(learner)/path/path.module.css` with zero raw hex colors and complete logical property support.
+- Completed Wireframe 1 flow: `/placement/report` primary CTA navigates directly to `/path` ("ساخت و مشاهده مسیر یادگیری شخصی"), and `/dashboard` path card links directly to `/path`.
+- Maintained verified pre-Day-19 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day19\20260820-190000\endoora-pre-day19.dump`.
+
+## Day 19 verification evidence
+
+### Backend & scoring services
+- Pre-Day-19 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day19\20260820-190000\endoora-pre-day19.dump`
+- `python manage.py test learner_twin` — PASS (4/4 unit tests)
+- `python manage.py test dashboard` — PASS (7/7 unit tests)
+- `python manage.py test` — PASS (140/140 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
+- User isolation verified: User B cannot access or view User A's learning path — PASS
+- Product Constitution Rule #8 disclaimers verified in all path payloads — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day19.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS
+
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 18: Implement writing placement section with rich text editor and automated evaluation`
+`Day 19: Implement personal learning path engine and interactive learner path experience`
 
 ## Exact next day
 
-**Day 19 — Personal Learning Path.**
+**Day 20 — Daily Mission.**
 
-Do not begin Day 19 until the Day 18 commit is pushed and `git status --short --branch`
+Do not begin Day 20 until the Day 19 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
