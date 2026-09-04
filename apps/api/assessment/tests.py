@@ -199,13 +199,82 @@ class AssessmentServicesTests(TestCase):
         self.assertEqual(res["estimated_cefr_level"], "C1")
         self.assertGreaterEqual(res["overall_percentage"], 90.0)
 
+    def test_evaluate_writing_response(self):
+        item = {
+            "id": "writing-a1-001",
+            "section": "writing",
+            "difficulty": "easy",
+            "cefr_level": "A1",
+            "objective": "writing.self_intro",
+            "min_words": 15,
+            "target_keywords": ["name", "live", "like", "free", "time"],
+            "rubric": "Can write simple personal introduction.",
+        }
+        # 1. Good response with sufficient words, structure, and keywords
+        good_response = {
+            "written_text": "Hello, my name is Sara and I live in Tehran. In my free time, I really like reading books.",
+        }
+        eval_good = evaluate_placement_answers([item], {"writing-a1-001": good_response})
+        self.assertIn("writing", eval_good["sections"])
+        wrt_sec = eval_good["sections"]["writing"]
+        self.assertEqual(wrt_sec["total"], 1)
+        self.assertEqual(wrt_sec["answered"], 1)
+        self.assertEqual(wrt_sec["correct"], 1)
+        self.assertGreaterEqual(wrt_sec["score_percentage"], 80.0)
+        self.assertIn("نگارش", eval_good["notice"])
+
+        # 2. Insufficient response (too few words)
+        short_response = {"written_text": "Hello Sara"}
+        eval_short = evaluate_placement_answers([item], {"writing-a1-001": short_response})
+        wrt_short_sec = eval_short["sections"]["writing"]
+        self.assertEqual(wrt_short_sec["correct"], 0)
+        self.assertLess(wrt_short_sec["score_percentage"], 50.0)
+
+    def test_cefr_estimate_mapping_and_six_sections(self):
+        items = [
+            {"id": "g-1", "section": "grammar", "correct_option": "a"},
+            {"id": "v-1", "section": "vocabulary", "correct_option": "b"},
+            {"id": "r-1", "section": "reading", "correct_option": "c"},
+            {"id": "l-1", "section": "listening", "correct_option": "d"},
+            {
+                "id": "s-1",
+                "section": "speaking",
+                "min_words": 10,
+                "target_keywords": ["work", "office", "remote"],
+            },
+            {
+                "id": "w-1",
+                "section": "writing",
+                "min_words": 15,
+                "target_keywords": ["technology", "school", "digital"],
+            },
+        ]
+        # Answer all correctly
+        answers = {
+            "g-1": "a",
+            "v-1": "b",
+            "r-1": "c",
+            "l-1": "d",
+            "s-1": {
+                "spoken_text": "I really enjoy remote work because it gives me flexibility away from the office environment.",
+            },
+            "w-1": {
+                "written_text": "Modern schools are increasingly adopting digital technology to enhance classroom interaction and learning efficiency across subjects.",
+            },
+        }
+        res = evaluate_placement_answers(items, answers)
+        self.assertEqual(len(res["sections"]), 6)
+        self.assertEqual(res["estimated_cefr_level"], "C1")
+        self.assertGreaterEqual(res["overall_percentage"], 90.0)
+
     def test_seed_placement_sections_command(self):
         out = StringIO()
         call_command("seed_placement_sections", stdout=out)
         output = out.getvalue()
-        self.assertIn("Validated 19 placement items across sections", output)
+        self.assertIn("Validated 23 placement items across sections", output)
         self.assertIn("grammar: 4", output)
         self.assertIn("vocabulary: 4", output)
         self.assertIn("reading: 3", output)
         self.assertIn("listening: 4", output)
         self.assertIn("speaking: 4", output)
+        self.assertIn("writing: 4", output)

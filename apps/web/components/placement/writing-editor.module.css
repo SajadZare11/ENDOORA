@@ -1,0 +1,242 @@
+﻿.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.editIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-primary);
+}
+
+.editorTitle {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill, 9999px);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+}
+
+.statusSufficient {
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.statusPending {
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toolBtn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.toolBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.separator {
+  width: 1px;
+  height: 1.25rem;
+  background: var(--color-border);
+  margin-inline: var(--space-1);
+}
+
+.textareaWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 10rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+  unicode-bidi: isolate;
+  direction: ltr;
+  text-align: left;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-surface-hover);
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 6px;
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-pill, 9999px);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: var(--radius-pill, 9999px);
+  background: var(--color-primary);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.progressBarFillComplete {
+  background: var(--color-success);
+}
+
+.metricsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+}
+
+.metricsGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.metricValue {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.actionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.autosaveNote {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+}
+
+.confirmBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast, var(--color-surface));
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background: var(--color-primary-hover, var(--color-primary));
+}
+
+.confirmBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-3);
+  }
+  .toolbar {
+    gap: var(--space-1);
+    padding: var(--space-1);
+  }
+  .toolBtn {
+    min-width: 1.75rem;
+    height: 1.75rem;
+    padding: 0 var(--space-1);
+    font-size: 0.75rem;
+  }
+}

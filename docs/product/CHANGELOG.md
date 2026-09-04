@@ -432,3 +432,25 @@ None. No Endoora domain data existed yet.
 - User isolation verified: User B cannot access or summarize User A's placement session.
 - Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
 - Automated static checks `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+
+## Day 18 — Implement writing placement section with rich text editor and automated evaluation
+- Added 4 calibrated Writing test items in `data/placement/core-items.json` across CEFR levels (A1 postcard email, A2 everyday event, B1 opinion essay, B2 workplace report), bringing total core placement items to 23 across all 6 sections (Grammar, Vocabulary, Reading, Listening, Speaking, Writing).
+- Strictly decoupled `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Kept writing target keywords, model answers, and evaluation rubrics isolated server-side; pre-submission serializers strictly purge keywords and rubrics while exposing safe `min_words_expected` and `max_words_expected`.
+- Implemented writing automated evaluation service in `apps/api/assessment/services.py` analyzing word count, length sufficiency, topical vocabulary coverage, sentence structure, and vocabulary diversity.
+- Implemented multi-stage overall score calculation adhering strictly to `docs/assessment/scoring-model.md`: `sum(section scores) / number of sections` (all 6 sections: Grammar, Vocabulary, Reading, Listening, Speaking, Writing).
+- Implemented provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence, strictly observing Product Constitution Rule #8 on no premature or certified CEFR claims.
+- Updated `seed_placement_sections` command to validate all 23 placement items across all 6 sections.
+- Created accessible `WritingEditor` component with formatting toolbar (Bold, Italic, Bulleted List, Numbered List, Clear), word/character/sentence counters, progress meter toward minimum words, and autosave.
+- Created `writing-editor.module.css` with 100% tokenized CSS and zero raw hex colors.
+- Enhanced `PlacementRunner` with 6-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening -> Speaking -> Writing) and rendered `WritingEditor` for writing questions.
+- Upgraded `/placement/report` to display all 6 skill cards, verified writing scores and objectives, and overall provisional CEFR estimate badge with honest disclosures.
+- Upgraded `/writing` into an interactive Writing Mentor & Essay Lab sandbox with embedded rich editor, CEFR prompt presets (A1-B2), live diagnostic feedback, and direct placement test links.
+
+## Day 18 verification
+- Pre-Day-18 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day18\20260820-180000\endoora-pre-day18.dump`.
+- Backend unit tests pass: 10 assessment tests, 18 placement tests, and 135 full regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero target keywords, rubrics, answer keys, or model texts leaked.
+- User isolation verified: User B cannot access or summarize User A's placement session.
+- Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
+- Automated static checks `check_day18.py`, `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

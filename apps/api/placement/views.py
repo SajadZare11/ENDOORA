@@ -212,7 +212,7 @@ class PlacementSessionSubmitView(APIView):
                 for ans in session.answers.all():
                     val = ans.answer_value
                     if isinstance(val, dict):
-                        answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val
+                        answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val.get("written_text") or val
                     else:
                         answers_map[ans.question_key] = val
                 eval_res = evaluate_placement_answers(raw_items, answers_map)
@@ -265,11 +265,24 @@ class PlacementQuestionsView(APIView):
                         "reading": "بخش درک مطلب (Reading)",
                         "listening": "بخش مهارت شنیداری (Listening)",
                         "speaking": "بخش مهارت گفتاری (Speaking)",
+                        "writing": "بخش مهارت نگارش (Writing)",
                     }
                     title_fa = sec_titles_fa.get(sec, f"بخش {sec}")
 
                     is_speaking = sec == "speaking"
-                    q_type = "speaking" if is_speaking else "single_choice"
+                    is_writing = sec == "writing"
+                    q_type = "speaking" if is_speaking else ("writing" if is_writing else "single_choice")
+
+                    default_instructions_fa = (
+                        "یک گزینه را انتخاب کنید."
+                        if not is_speaking and not is_writing
+                        else ("صدای خود را ضبط کنید." if is_speaking else "پاسخ نگارشی خود را در کادر متنی بنویسید.")
+                    )
+                    default_instructions_en = (
+                        "Choose one option."
+                        if not is_speaking and not is_writing
+                        else ("Record your spoken response." if is_speaking else "Compose your written response in the editor.")
+                    )
 
                     # Sanitize: never include correct_option, answer_key, target_keywords, rubric, or audio transcript
                     items.append({
@@ -280,8 +293,8 @@ class PlacementQuestionsView(APIView):
                         "title_en": f"{sec.capitalize()} Section",
                         "prompt_fa": raw_item.get("prompt_fa", "پاسخ دهید."),
                         "prompt_en": raw_item.get("question", ""),
-                        "instructions_fa": raw_item.get("instructions_fa", "یک گزینه را انتخاب کنید." if not is_speaking else "صدای خود را ضبط کنید."),
-                        "instructions_en": raw_item.get("instructions_en", "Choose one option." if not is_speaking else "Record your spoken response."),
+                        "instructions_fa": raw_item.get("instructions_fa", default_instructions_fa),
+                        "instructions_en": raw_item.get("instructions_en", default_instructions_en),
                         "cefr_level": raw_item.get("cefr_level", "A1"),
                         "difficulty": raw_item.get("difficulty", "easy"),
                         "passage": raw_item.get("passage", ""),
@@ -289,6 +302,7 @@ class PlacementQuestionsView(APIView):
                         "play_limit": raw_item.get("play_limit", 2),
                         "recording_time_limit_sec": raw_item.get("time_limit_sec", 60),
                         "min_words_expected": raw_item.get("min_words", 10),
+                        "max_words_expected": raw_item.get("max_words", 100),
                         "options": raw_item.get("options", []),
                         "question_version_id": qv.id if qv else None,
                     })
@@ -323,7 +337,7 @@ class PlacementSessionSummaryView(APIView):
         for ans in session.answers.all():
             val = ans.answer_value
             if isinstance(val, dict):
-                answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val
+                answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val.get("written_text") or val
             else:
                 answers_map[ans.question_key] = val
 
@@ -363,7 +377,7 @@ class PlacementSessionSummaryView(APIView):
             "evidence": evidence_payload,
             "notice": eval_result.get(
                 "notice",
-                "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان، درک مطلب، شنیداری و گفتاری است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
+                "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان، درک مطلب، شنیداری، گفتاری و نگارش است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
             ),
         }
 

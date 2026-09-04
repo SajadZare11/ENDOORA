@@ -67,7 +67,7 @@ class PlacementSessionSerializer(serializers.ModelSerializer):
 
 
 class PlacementSectionAdvanceSerializer(serializers.Serializer):
-    VALID_SECTIONS = {"grammar", "vocabulary", "reading", "listening", "speaking", "review"}
+    VALID_SECTIONS = {"grammar", "vocabulary", "reading", "listening", "speaking", "writing", "review"}
 
     section = serializers.CharField(max_length=50)
 
@@ -100,6 +100,7 @@ class PlacementQuestionItemSerializer(serializers.Serializer):
     play_limit = serializers.IntegerField(required=False, default=2)
     recording_time_limit_sec = serializers.IntegerField(required=False, default=60)
     min_words_expected = serializers.IntegerField(required=False, default=10)
+    max_words_expected = serializers.IntegerField(required=False, default=100)
     options = serializers.ListField(child=serializers.CharField(), required=False, default=list)
     question_version_id = serializers.UUIDField(required=False, allow_null=True)
 

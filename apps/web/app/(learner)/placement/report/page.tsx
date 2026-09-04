@@ -43,14 +43,15 @@ const copy = {
   fa: {
     kicker: "گزارش شفاف یادگیری Endoora",
     title: "کارنامه تحلیلی ارزیابی اولیه",
-    desc: "این کارنامه بر اساس شواهد واقعی شما در پنج بخش دستور زبان، واژگان، درک مطلب، شنیداری و گفتاری محاسبه شده است.",
+    desc: "این کارنامه بر اساس شواهد واقعی شما در شش بخش دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری و نگارش محاسبه شده است.",
     grammar: "دستور زبان (Grammar)",
     vocabulary: "واژگان (Vocabulary)",
     reading: "درک مطلب (Reading)",
     listening: "شنیداری (Listening)",
     speaking: "گفتاری (Speaking)",
+    writing: "نگارش (Writing)",
     overallEstimateLabel: "سطح یادگیری تخمینی شما",
-    overallScoreLabel: "میانگین کل ۵ مهارت",
+    overallScoreLabel: "میانگین کل ۶ مهارت",
     totalItems: "تعداد کل سوالات",
     answered: "پاسخ‌داده‌شده",
     accuracy: "دقت پاسخ‌ها",
@@ -69,14 +70,15 @@ const copy = {
   en: {
     kicker: "Endoora Transparent Learning Report",
     title: "Initial Diagnostic Skill Report",
-    desc: "This diagnostic report is computed from your verified answers across Grammar, Vocabulary, Reading, Listening, and Speaking.",
+    desc: "This diagnostic report is computed from your verified answers across Grammar, Vocabulary, Reading, Listening, Speaking, and Writing.",
     grammar: "Grammar",
     vocabulary: "Vocabulary",
     reading: "Reading Comprehension",
     listening: "Listening Comprehension",
     speaking: "Speaking",
+    writing: "Writing",
     overallEstimateLabel: "Your estimated learning level is",
-    overallScoreLabel: "Overall 5-Skill Score",
+    overallScoreLabel: "Overall 6-Skill Score",
     totalItems: "Total items",
     answered: "Answered",
     accuracy: "Accuracy",
@@ -135,6 +137,7 @@ export default function PlacementReportPage() {
   const reading = summary?.sections?.reading;
   const listening = summary?.sections?.listening;
   const speaking = summary?.sections?.speaking;
+  const writing = summary?.sections?.writing;
 
   return (
     <main className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
@@ -309,6 +312,28 @@ export default function PlacementReportPage() {
             ) : (
               <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)" }}>
                 {summary ? `${speaking?.answered || 0} / ${speaking?.total || 4} ${t.answered}` : t.pending}
+              </p>
+            )}
+          </div>
+
+          {/* Writing */}
+          <div className={styles.sectionCard}>
+            <h3>{t.writing}</h3>
+            {summary?.is_submitted && writing?.score_percentage !== undefined ? (
+              <div>
+                <span className={styles.sectionScore}>{writing.score_percentage}%</span>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
+                  {t.answered}: {writing.answered} / {writing.total}
+                </p>
+                {writing.objectives_covered && writing.objectives_covered.length > 0 && (
+                  <div style={{ marginTop: "var(--space-3)", fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
+                    <small dir="ltr" style={{ display: "block" }}>{writing.objectives_covered.join(", ")}</small>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)" }}>
+                {summary ? `${writing?.answered || 0} / ${writing?.total || 4} ${t.answered}` : t.pending}
               </p>
             )}
           </div>

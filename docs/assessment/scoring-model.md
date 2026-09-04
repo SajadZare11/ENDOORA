@@ -1,4 +1,4 @@
-# Day 17 - Transparent Placement Scoring Model
+# Day 18 - Transparent Placement Scoring Model
 
 ## Purpose
 
@@ -15,6 +15,7 @@ Current sections:
 - Reading
 - Listening
 - Speaking
+- Writing
 
 Overall score:
 

@@ -7,6 +7,7 @@ import GlassCard from "@/components/design/GlassCard";
 import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
 import { AudioWaveformPlayer } from "./AudioWaveformPlayer";
 import { AudioRecorder } from "./AudioRecorder";
+import { WritingEditor } from "./WritingEditor";
 import styles from "@/components/placement/placement.module.css";
 
 type Locale = "fa" | "en";
@@ -28,6 +29,7 @@ interface PlacementQuestionItem {
   play_limit?: number;
   recording_time_limit_sec?: number;
   min_words_expected?: number;
+  max_words_expected?: number;
   options: string[];
   question_version_id?: string | null;
 }
@@ -343,13 +345,77 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     min_words_expected: 40,
     options: [],
   },
+  {
+    id: "writing-a1-001",
+    section: "writing",
+    question_type: "writing",
+    title_fa: "بخش مهارت نگارش (Writing)",
+    title_en: "Writing Section",
+    prompt_fa: "یک یادداشت کوتاه برای معرفی خود بنویسید. نام، شهر یا کشور، و سرگرمی مورد علاقه خود را بیان کنید.",
+    prompt_en: "Write a short note introducing yourself. State your name, your city or country, and what you like to do in your free time.",
+    instructions_fa: "پاسخ خود را به انگلیسی در کادر متنی بنویسید (حداقل ۱۵ کلمه).",
+    instructions_en: "Write your response in English in the editor (at least 15 words).",
+    cefr_level: "A1",
+    difficulty: "easy",
+    min_words_expected: 15,
+    max_words_expected: 60,
+    options: [],
+  },
+  {
+    id: "writing-a2-001",
+    section: "writing",
+    question_type: "writing",
+    title_fa: "بخش مهارت نگارش (Writing)",
+    title_en: "Writing Section",
+    prompt_fa: "یک ایمیل کوتاه به یکی از دوستانتان بنویسید و او را برای آخر این هفته دعوت کنید. روز، ساعت و برنامه‌ها یا غذایی که در نظر دارید را بنویسید.",
+    prompt_en: "Write a short email to invite a friend to your home this weekend. Mention the day, the time, and what activities or food you have planned.",
+    instructions_fa: "متن دعوت خود را به انگلیسی بنویسید (حداقل ۲۵ کلمه).",
+    instructions_en: "Write your invitation email in English (at least 25 words).",
+    cefr_level: "A2",
+    difficulty: "easy",
+    min_words_expected: 25,
+    max_words_expected: 90,
+    options: [],
+  },
+  {
+    id: "writing-b1-001",
+    section: "writing",
+    question_type: "writing",
+    title_fa: "بخش مهارت نگارش (Writing)",
+    title_en: "Writing Section",
+    prompt_fa: "یک نقد یا مرور کوتاه درباره مکانی به‌یادماندنی که اخیراً دیده‌اید بنویسید. ویژگی‌های خاص آن و علت توصیه به دیگران را شرح دهید.",
+    prompt_en: "Write a short review of a memorable place you visited recently (such as a park, café, or city). Describe what made it special and why you would recommend it to others.",
+    instructions_fa: "متن مرور خود را با استفاده از افعال توصیفی و کلمات ربط بنویسید (حداقل ۴۵ کلمه).",
+    instructions_en: "Write a descriptive review using transitional connectors and personal evaluation (at least 45 words).",
+    cefr_level: "B1",
+    difficulty: "medium",
+    min_words_expected: 45,
+    max_words_expected: 140,
+    options: [],
+  },
+  {
+    id: "writing-b2-001",
+    section: "writing",
+    question_type: "writing",
+    title_fa: "بخش مهارت نگارش (Writing)",
+    title_en: "Writing Section",
+    prompt_fa: "آیا مدارس امروزی باید کتاب‌های چاپی را کاملاً با تبلت و کتاب‌های الکترونیکی جایگزین کنند؟ یک پاراگراف تحلیلی بنویسید که هر دو جنبه را بررسی کرده و نتیجه‌گیری کند.",
+    prompt_en: "Should modern schools replace physical printed textbooks entirely with digital tablets and e-books? Write a structured opinion paragraph weighing both sides and stating your clear conclusion.",
+    instructions_fa: "دیدگاه مستدل خود را با مقایسه مزایا و معایب در یک ساختار منسجم بنویسید (حداقل ۷۵ کلمه).",
+    instructions_en: "Write a structured argumentative text evaluating advantages and disadvantages with clear logical links (at least 75 words).",
+    cefr_level: "B2",
+    difficulty: "hard",
+    min_words_expected: 75,
+    max_words_expected: 200,
+    options: [],
+  },
 ];
 
 const t = {
   fa: {
     heroTag: "موتور هوشمند تعیین سطح Endoora",
     heroTitle: "شناخت دقیق نقطه شروع یادگیری",
-    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب، شنیداری و گفتاری) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
+    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری و نگارش) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
     questionCounter: "سوال",
     of: "از",
     section: "بخش",
@@ -358,6 +424,7 @@ const t = {
     reading: "درک مطلب",
     listening: "شنیداری",
     speaking: "گفتاری",
+    writing: "نگارش",
     next: "سوال بعدی",
     prev: "سوال قبلی",
     submit: "ثبت نهایی آزمون",
@@ -368,7 +435,7 @@ const t = {
     expiredAlert: "نشست آزمون شما منقضی شده است. برای حفظ اعتبار آموزشی، لطفا یک نشست جدید شروع کنید.",
     startNewSession: "شروع نشست جدید",
     completedTitle: "آزمون تعیین سطح با موفقیت ثبت شد!",
-    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب، شنیداری و گفتاری ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
+    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب، شنیداری، گفتاری و نگارش ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
     viewReport: "مشاهده کارنامه مهارتی",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
@@ -376,7 +443,7 @@ const t = {
   en: {
     heroTag: "Endoora Adaptive Placement Engine",
     heroTitle: "Discover Your True Starting Point",
-    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, Listening, and Speaking) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
+    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, Listening, Speaking, and Writing) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
     questionCounter: "Question",
     of: "of",
     section: "Section",
@@ -385,6 +452,7 @@ const t = {
     reading: "Reading Comprehension",
     listening: "Listening",
     speaking: "Speaking",
+    writing: "Writing",
     next: "Next question",
     prev: "Previous question",
     submit: "Submit test",
@@ -395,7 +463,7 @@ const t = {
     expiredAlert: "Your placement session has expired. Please start a new session to ensure accurate evaluation.",
     startNewSession: "Start new session",
     completedTitle: "Placement test submitted successfully!",
-    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, Listening, and Speaking. You can now inspect your skill report.",
+    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, Listening, Speaking, and Writing. You can now inspect your skill report.",
     viewReport: "View skill report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
@@ -560,6 +628,38 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     }
   }
 
+  // Save a writing answer idempotently
+  async function handleSaveWrittenAnswer(writtenText: string) {
+    if (isSubmitted || isExpired) return;
+
+    setAnswers((prev) => ({ ...prev, [question.id]: writtenText }));
+
+    if (!session || !session.id) return;
+
+    try {
+      const idempotencyKey = generateIdempotencyKey();
+      const res = await fetch(`/api/placement/sessions/${session.id}/answers/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idempotency_key: idempotencyKey,
+          question_key: question.id,
+          question_version_id: question.question_version_id || null,
+          answer_value: { written_text: writtenText },
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        if (errData.code === "session_expired" || errData.code === "session_inactive") {
+          setIsExpired(true);
+        }
+      }
+    } catch {
+      setIsOffline(true);
+    }
+  }
+
   // Next Question
   async function handleNext() {
     if (currentIndex < questions.length - 1) {
@@ -708,17 +808,20 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                   <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
                     {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (["reading", "listening", "speaking"].includes(question.section) ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (["reading", "listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (["listening", "speaking"].includes(question.section) ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (["listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : (question.section === "speaking" ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : (["speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۴. شنیداری" : "4. Listening"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "speaking" ? styles.sectionPillActive : ""}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "speaking" ? styles.sectionPillActive : (question.section === "writing" ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۵. گفتاری" : "5. Speaking"}
+                  </div>
+                  <div className={`${styles.sectionPill} ${question.section === "writing" ? styles.sectionPillActive : ""}`}>
+                    {locale === "fa" ? "۶. نگارش" : "6. Writing"}
                   </div>
                   <div className={styles.autosaveBadge}>
                     <span className={styles.autosaveDot} />
@@ -780,6 +883,22 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                       if (payload.spoken_text) {
                         handleSaveSpokenAnswer(payload.spoken_text);
                       }
+                    }}
+                  />
+                ) : question.section === "writing" ? (
+                  <WritingEditor
+                    key={question.id}
+                    minWordsExpected={question.min_words_expected || 15}
+                    maxWordsExpected={question.max_words_expected || 100}
+                    locale={locale}
+                    initialText={answers[question.id] || ""}
+                    onConfirmAnswer={(payload) => {
+                      if (payload.written_text) {
+                        handleSaveWrittenAnswer(payload.written_text);
+                      }
+                    }}
+                    onChangeText={(newText) => {
+                      setAnswers((prev) => ({ ...prev, [question.id]: newText }));
                     }}
                   />
                 ) : (

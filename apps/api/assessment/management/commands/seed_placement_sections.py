@@ -8,7 +8,7 @@ from questions.models import Question, QuestionVersion
 
 
 class Command(BaseCommand):
-    help = "Seed and validate Grammar, Vocabulary, Reading, Listening, and Speaking placement test items."
+    help = "Seed and validate Grammar, Vocabulary, Reading, Listening, Speaking, and Writing placement test items."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -30,7 +30,7 @@ class Command(BaseCommand):
             raise CommandError(f"Failed to parse placement items JSON: {exc}") from exc
 
         sections_count: dict[str, int] = {}
-        valid_sections = ("grammar", "vocabulary", "reading", "listening", "speaking")
+        valid_sections = ("grammar", "vocabulary", "reading", "listening", "speaking", "writing")
 
         for item in items:
             sec = item.get("section", "").lower()
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             for item in items:
                 slug = f"placement-{item['id']}"
                 sec = item.get("section", "").lower()
-                q_type = "speaking" if sec == "speaking" else "single_choice"
+                q_type = "speaking" if sec == "speaking" else ("writing" if sec == "writing" else "single_choice")
 
                 question, _ = Question.objects.get_or_create(
                     slug=slug,
@@ -78,6 +78,25 @@ class Command(BaseCommand):
                         "instructions_en": item.get("instructions_en", ""),
                         "recording_time_limit_sec": item.get("time_limit_sec", 60),
                         "min_words_expected": item.get("min_words", 10),
+                    }
+                elif sec == "writing":
+                    author_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "instructions_fa": item.get("instructions_fa", ""),
+                        "instructions_en": item.get("instructions_en", ""),
+                        "min_words": item.get("min_words", 15),
+                        "max_words": item.get("max_words", 100),
+                        "target_keywords": item.get("target_keywords", []),
+                        "rubric": item.get("rubric", ""),
+                    }
+                    learner_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "instructions_fa": item.get("instructions_fa", ""),
+                        "instructions_en": item.get("instructions_en", ""),
+                        "min_words_expected": item.get("min_words", 15),
+                        "max_words_expected": item.get("max_words", 100),
                     }
                 else:
                     author_payload = {

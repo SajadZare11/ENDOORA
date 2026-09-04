@@ -316,7 +316,7 @@ Status: Complete and verified; pushed to GitHub.
 
 ## Day 17 — Implement speaking placement section with audio recording and STT diagnostic
 
-Status: Complete and verified; ready for Git commit and push.
+Status: Complete and verified; pushed to GitHub.
 
 - [x] verified pre-Day-17 PostgreSQL backup outside Git
 - [x] calibrated 19 core placement items including 4 Speaking items in `data/placement/core-items.json`
@@ -343,3 +343,31 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** learners can complete interactive speaking placement questions with audio recording, real-time STT preview, accessible text fallback, and receive transparent multi-stage section scoring and provisional CEFR estimates without leaked rubrics or false certification claims.
 
 **Next day after Git push:** Day 18 — Implement writing placement section with rich text editor and automated evaluation.
+
+## Day 18 — Implement writing placement section with rich text editor and automated evaluation
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-18 PostgreSQL backup outside Git
+- [x] calibrated 23 core placement items including 4 Writing items in `data/placement/core-items.json`
+- [x] strictly separated `difficulty` from `cefr_level`
+- [x] server-side writing rubrics and target keywords isolated without leaks
+- [x] implemented writing automated evaluation service in `apps/api/assessment/services.py`
+- [x] multi-stage overall score calculated as 6-section average adhering to `docs/assessment/scoring-model.md`
+- [x] provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence
+- [x] adhered to Product Constitution Rule #8 on honest assessment without premature CEFR claims
+- [x] stored writing responses in `PlacementResponse` model for audit trail and learner profile
+- [x] updated session summary endpoint to compute writing section scores, objectives, and 6-section `estimated_cefr_level`
+- [x] added `?section=writing` query filtering and pre-submission payload protection
+- [x] built accessible `WritingEditor` component with formatting toolbar (Bold, Italic, Lists, Clear), word/character/sentence counters, progress meter toward minimum words, and autosave
+- [x] 100% tokenized CSS in `writing-editor.module.css` with 0 raw hex colors
+- [x] enhanced `PlacementRunner` with 6-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening -> Speaking -> Writing)
+- [x] live writing score, answered count, objectives, and overall provisional CEFR badge rendered in `/placement/report`
+- [x] upgraded `/writing` into an interactive Writing Mentor & Essay Lab sandbox with embedded rich editor, CEFR prompt presets (A1-B2), live diagnostic feedback, and direct placement test links
+- [x] 135 backend regression tests passing
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `check_day18.py` and secret scan passing
+
+**Success gate:** learners can complete interactive writing placement questions with rich text formatting, live word counters and progress meters against CEFR requirements, and receive transparent multi-stage section scoring and provisional CEFR estimates without leaked rubrics or false certification claims.
+
+**Next day after Git push:** Day 19 — Personal Learning Path.

@@ -285,11 +285,14 @@ class PlacementSessionEngineTests(APITestCase):
             if item["section"] == "speaking":
                 self.assertGreaterEqual(item.get("recording_time_limit_sec", 0), 30)
                 self.assertGreaterEqual(item.get("min_words_expected", 0), 10)
+            if item["section"] == "writing":
+                self.assertGreaterEqual(item.get("min_words_expected", 0), 15)
+                self.assertGreaterEqual(item.get("max_words_expected", 0), 50)
 
     def test_questions_filtered_by_section_grammar_vocab_reading(self):
         self.client.force_authenticate(user=self.user_a)
 
-        for sec in ("grammar", "vocabulary", "reading", "listening", "speaking"):
+        for sec in ("grammar", "vocabulary", "reading", "listening", "speaking", "writing"):
             res = self.client.get(f"/api/placement/questions/?section={sec}")
             self.assertEqual(res.status_code, status.HTTP_200_OK)
             items = res.json()
@@ -314,6 +317,19 @@ class PlacementSessionEngineTests(APITestCase):
         )
         self.assertEqual(advance_res.status_code, status.HTTP_200_OK)
         self.assertEqual(advance_res.json()["current_section"], "speaking")
+
+    def test_advance_to_writing_section(self):
+        self.client.force_authenticate(user=self.user_a)
+        res = self.client.post("/api/placement/sessions/")
+        session_id = res.json()["id"]
+
+        advance_res = self.client.post(
+            f"/api/placement/sessions/{session_id}/advance/",
+            {"section": "writing"},
+            format="json",
+        )
+        self.assertEqual(advance_res.status_code, status.HTTP_200_OK)
+        self.assertEqual(advance_res.json()["current_section"], "writing")
 
     def test_session_summary_endpoint_user_isolation(self):
         self.client.force_authenticate(user=self.user_a)
@@ -341,8 +357,9 @@ class PlacementSessionEngineTests(APITestCase):
         self.assertIn("reading", active_data["sections"])
         self.assertIn("listening", active_data["sections"])
         self.assertIn("speaking", active_data["sections"])
+        self.assertIn("writing", active_data["sections"])
 
-        # 2. Answer questions across sections including listening and speaking
+        # 2. Answer questions across sections including listening, speaking, and writing
         self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
             "idempotency_key": str(uuid.uuid4()),
             "question_key": "grammar-a1-001",
@@ -370,6 +387,14 @@ class PlacementSessionEngineTests(APITestCase):
             },
         }, format="json")
 
+        self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
+            "idempotency_key": str(uuid.uuid4()),
+            "question_key": "writing-a1-001",
+            "answer_value": {
+                "written_text": "Hello, my name is Sara and I live in Tehran. In my free time, I really like reading books.",
+            },
+        }, format="json")
+
         # 3. Submit session
         res_submit = self.client.post(f"/api/placement/sessions/{session_id}/submit/")
         self.assertEqual(res_submit.status_code, status.HTTP_200_OK)
@@ -389,6 +414,10 @@ class PlacementSessionEngineTests(APITestCase):
         self.assertIn("speaking", sub_data["sections"])
         spk_res = sub_data["sections"]["speaking"]
         self.assertEqual(spk_res["correct"], 1)
+
+        self.assertIn("writing", sub_data["sections"])
+        wrt_res = sub_data["sections"]["writing"]
+        self.assertEqual(wrt_res["correct"], 1)
 
         # No premature CEFR claims
         self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", sub_data["notice"])
