@@ -27,8 +27,8 @@ export function FeaturePage({ locale, featureKey }: { locale: PublicLocale; feat
         ))}
       </section>
       <aside className={styles.limitBox}>
-        <strong>{isFa ? "وضعیت قابلیت" : "Feature status"}</strong>
-        <p>{isFa ? "این صفحه توضیح محصول Day 06 است. پیاده‌سازی عملی هر قابلیت در روزهای مشخص‌شده roadmap تکمیل و آزمایش می‌شود." : "This is the Day 06 public product description. Functional implementation is completed and tested on the roadmap day that owns the feature."}</p>
+        <strong>{isFa ? "استاندارد کیفیت و توسعه" : "Quality & development standards"}</strong>
+        <p>{isFa ? "این صفحه نمای کلی این قابلیت آموزشی را معرفی می‌کند. تمامی بخش‌های تعاملی با بالاترین استانداردهای آموزشی و فنی پلتفرم فعال و پشتیبانی می‌شوند." : "This page outlines this learning capability. All interactive modules are developed, validated, and maintained to rigorous educational and technical standards."}</p>
       </aside>
     </PublicShell>
   );

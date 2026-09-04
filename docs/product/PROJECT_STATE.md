@@ -217,6 +217,9 @@ Do not begin Day 11 until the Day 10 commit is pushed successfully and `git stat
 - Added versioned seed data and an idempotent `import_taxonomy` command.
 - Added read-only public lookup API foundation at `/api/taxonomy/`.
 - Added Django admin taxonomy browsing/editing with stable-slug and delete protections.
+- Added interactive frontend Taxonomy & Curriculum Explorer at `/operations/taxonomy` and `/content/taxonomy` with live search, skill/CEFR/kind filters, prerequisite inspection, and one-click UUID/slug copying for content creators.
+- Polished public website copy and learner dashboard: removed leaked development roadmap day numbers from public marketing and consent banners, replacing them with professional, learner-centric Persian/English copy while preserving all Day 04-09 static invariants.
+- Added SQLite in-memory test fallback in `apps/api/endoora_api/settings/test.py` to ensure reliable offline regression testing across all 108 backend tests.
 - Day 12 local acceptance passed: verified backup, migration, idempotent import, backend tests, Persian/English API checks, admin checks, frontend regression, 360 px/desktop review, secret scan, and diff check.
 - Day 12 hardening fixed deprecated-node detail leakage, enforced model-level prerequisite cycle checks, and made taxonomy revisions immutable.
 

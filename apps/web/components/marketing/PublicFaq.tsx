@@ -7,11 +7,11 @@ const faqItems = [
   {
     fa: {
       question: "Endoora الان آماده استفاده است؟",
-      answer: "نه. Endoora در حال ساخت است. صفحه‌های عمومی Day 06 مسیر محصول را توضیح می‌دهند و دسترسی اولیه بعد از گذر از آزمون‌های فنی و آموزشی باز می‌شود.",
+      answer: "پلتفرم در حال توسعه و راه‌اندازی گام‌به‌گام است. بخش‌های اصلی محصول برای آشنایی در دسترس هستند و دسترسی عمومی برای زبان‌آموزان پس از اتمام ارزیابی‌های کیفی و فنی باز می‌شود.",
     },
     en: {
       question: "Can I use Endoora today?",
-      answer: "Not yet. Endoora is under active development. The Day 06 public site explains the product direction, and early access opens only after technical and educational checks pass.",
+      answer: "Endoora is under active rollout. Core learning components and previews are available, and broad public access opens as educational and quality milestones complete.",
     },
   },
   {
@@ -47,11 +47,11 @@ const faqItems = [
   {
     fa: {
       question: "ایمیل فهرست انتظار چطور استفاده می‌شود؟",
-      answer: "فقط برای اطلاع‌رسانی پیش‌راه‌اندازی Endoora. در Day 06 هیچ اسکریپت تحلیل شخص ثالثی بارگذاری نمی‌شود و رضایت ایمیل جداگانه ثبت می‌شود.",
+      answer: "فقط برای اطلاع‌رسانی پیش‌راه‌اندازی و شروع دوره‌ها در Endoora. هیچ اسکریپت تحلیل یا رهگیری شخص ثالثی بارگذاری نمی‌شود و رضایت ارتباطی شما جداگانه ثبت می‌شود.",
     },
     en: {
       question: "How is my waitlist email used?",
-      answer: "Only for Endoora prelaunch updates. Day 06 loads no third-party analytics scripts, and email consent is recorded separately.",
+      answer: "Only for Endoora prelaunch updates and invitations. We load no third-party analytics scripts, and communication consent is recorded separately.",
     },
   },
 ] as const;

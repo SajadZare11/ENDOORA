@@ -21,6 +21,7 @@ const required = [
   "apps/web/app/opengraph-image.tsx",
   "apps/web/app/api/waitlist/route.ts",
   "apps/web/components/marketing/PublicShell.tsx",
+  "apps/web/components/marketing/AccountEntryLink.tsx",
   "apps/web/components/marketing/DocumentLocaleSync.tsx",
   "apps/web/components/marketing/HomePage.tsx",
   "apps/web/components/marketing/PublicFaq.tsx",
@@ -88,6 +89,15 @@ if (!consent.includes("useSyncExternalStore") || !consent.includes("localStorage
 const publicShell = read("apps/web/components/marketing/PublicShell.tsx");
 if (!publicShell.includes("<AnalyticsConsent locale={locale}")) {
   throw new Error("Analytics consent must be mounted in the shared public shell for every public entry route.");
+}
+if (!publicShell.includes("<AccountEntryLink") || publicShell.includes('href={accountPath(locale, "/auth/login")}')) {
+  throw new Error("The public shell must use the session-aware account entry instead of a static login link.");
+}
+const accountEntry = read("apps/web/components/marketing/AccountEntryLink.tsx");
+for (const requiredText of ["/auth/me/", '"پنل کاربری"', '"User panel"', '"/dashboard"', '"/teacher"']) {
+  if (!accountEntry.includes(requiredText)) {
+    throw new Error(`Session-aware account entry contract is missing: ${requiredText}`);
+  }
 }
 
 const waitlist = read("apps/web/components/marketing/WaitlistForm.tsx");

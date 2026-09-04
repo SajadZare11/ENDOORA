@@ -34,8 +34,8 @@ export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; p
         <section className={styles.planSection}>
           <div>
             <span className={styles.kicker}>Premium</span>
-            <h2>{isFa ? "پیشنهاد فعلی عرضه" : "Current launch offer"}</h2>
-            <p>{isFa ? "این مقدار فقط برای نمایش بازاریابی Day 06 در منبع مرکزی نگهداری می‌شود؛ Day 41 آن را به Plan/Price مدیریتی منتقل می‌کند." : "This value is centralized for Day 06 marketing display only; Day 41 moves it to admin-managed Plan/Price data."}</p>
+            <h2>{isFa ? "پیشنهاد ویژه دوره راه‌اندازی" : "Launch subscription plan"}</h2>
+            <p>{isFa ? "شرایط اشتراک و دسترسی کامل به ویژگی‌های پلتفرم به صورت شفاف و مستقیم از طریق حساب کاربری قابل مدیریت است." : "Transparent subscription terms and full access to platform features, managed directly and securely through your account."}</p>
           </div>
           <div className={styles.priceCard}>
             <strong>{isFa ? LAUNCH_PLAN.displayPriceFa : LAUNCH_PLAN.displayPriceEn}</strong>

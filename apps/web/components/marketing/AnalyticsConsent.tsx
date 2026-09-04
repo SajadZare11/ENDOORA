@@ -76,9 +76,9 @@ export function AnalyticsConsent({ locale }: { locale: PublicLocale }) {
         </strong>
 
         <p>
-          {isFa
-            ? "Endoora در Day 06 هیچ اسکریپت تحلیل شخص ثالثی بارگذاری نمی‌کند. این انتخاب فقط در مرورگر شما ذخیره می‌شود تا مسیر رضایت از حالا شفاف باشد."
-            : "Day 06 loads no third-party analytics scripts. This preference is stored only in your browser so the consent path is explicit from the start."}
+          {locale === "fa"
+            ? "Endoora هیچ اسکریپت رهگیری شخص ثالثی بارگیری نمی‌کند. این انتخاب فقط در مرورگر شما ذخیره می‌شود تا حفظ حریم خصوصی از ابتدا شفاف و تضمین‌شده باشد."
+            : "Endoora loads no third-party analytics scripts. This preference is stored only in your browser so the consent path is explicit from the start."}
         </p>
       </div>
 

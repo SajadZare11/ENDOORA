@@ -13,8 +13,8 @@ export const LAUNCH_PLAN = {
   durationDays: 90,
   displayPriceFa: "۴۲۰٬۰۰۰ تومان",
   displayPriceEn: "420,000 toman",
-  noteFa: "قیمت فعلیِ برنامه عرضه است و در روز ۴۱ به منبع داده مدیریتی منتقل می‌شود.",
-  noteEn: "This is the current launch-plan display price; Day 41 moves it to admin-managed plan data.",
+  noteFa: "قیمت اولیه برای دوره راه‌اندازی است و از بخش مدیریت سیستم قابل تنظیم است.",
+  noteEn: "This is the launch-plan display price, centrally managed through administrator configuration.",
 } as const;
 
 export type PublicPageKey =
@@ -208,7 +208,7 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
     en: {
       eyebrow: "Classes",
       title: "Small classes with explicit capacity and state",
-      summary: "Fixed classes, guest requests, capacity, waitlists, and enrollment become transactional on Day 40.",
+      summary: "Small group classes with explicit capacity, scheduling, waitlists, and guided enrollments.",
       sections: [
         { title: "Limited capacity", body: "Classes are designed for 1–6 learners with clear schedules, prerequisites, and capacity." },
         { title: "Safe enrollment", body: "Capacity and payment/approval state are enforced server-side, not only in the UI." },
@@ -298,12 +298,12 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
   },
   pricing: {
     fa: { eyebrow: "قیمت", title: "Premium ساده و شفاف", summary: "برنامه عرضه Premium برای ۹۰ روز و دسترسی عادیِ نامحدود به قابلیت‌های AI طراحی شده است؛ محدودیت منصفانه ضدسوءاستفاده باقی می‌ماند.", sections: [
-      { title: "یک منبع قیمت", body: "قیمت پرداخت و استحقاق در Day 41 به داده مدیریتی منتقل می‌شود تا در کامپوننت‌ها و پرداخت تکرار نشود." },
+      { title: "قیمت‌گذاری شفاف", body: "اطلاعات اشتراک و قیمت‌ها به صورت متمرکز و امن از طریق مدیریت سیستم تنظیم می‌شوند." },
       { title: "مصرف منصفانه", body: "نامحدود به معنی استفاده آموزشی عادی است، نه خودکارسازی سوءاستفاده یا مصرف بی‌حد سرویس‌دهنده." },
       { title: "پرداخت امن", body: "فعال‌سازی دسترسی فقط بعد از تأیید سرور-به-سرور ZarinPal در فاز پرداخت انجام می‌شود." },
     ]},
     en: { eyebrow: "Pricing", title: "A simple, transparent Premium plan", summary: "The launch Premium plan is designed for 90 days with unlimited normal-use AI access, while fair-use and abuse controls remain in place.", sections: [
-      { title: "One price source", body: "Day 41 moves price and entitlement data into an admin-managed source rather than repeating it in components or payment code." },
+      { title: "One price source", body: "Price and entitlement rules are managed through a centralized source rather than repeating in components or payment code." },
       { title: "Fair use", body: "Unlimited means normal educational use, not automated abuse or unbounded provider spend." },
       { title: "Verified payment", body: "Access is granted only after server-to-server ZarinPal verification in the payment phase." },
     ]},
@@ -334,26 +334,26 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
   },
   contact: {
     fa: { eyebrow: "تماس", title: "مسیر تماس و پشتیبانی", summary: "کانال‌های پشتیبانی نهایی در فاز عملیات منتشر می‌شوند. تا آن زمان هیچ شماره یا ایمیل ساختگی نمایش داده نمی‌شود.", sections: [
-      { title: "پشتیبانی حساب", body: "بازیابی حساب و مسائل امنیتی در Day 7–8 پایه‌گذاری می‌شوند." },
+      { title: "پشتیبانی حساب", body: "بازیابی حساب، مدیریت نشست‌ها و امنیت ورود با استانداردهای امنیتی هدایت می‌شوند." },
       { title: "پشتیبانی پرداخت", body: "پس از اتصال پرداخت، وضعیت سفارش و پیگیری از داده تأییدشده نمایش داده می‌شود." },
       { title: "گزارش محتوا", body: "مسیر گزارش نقض کپی‌رایت و محتوای نامناسب در فاز جامعه/عملیات تکمیل می‌شود." },
     ]},
     en: { eyebrow: "Contact", title: "A clear contact and support path", summary: "Final support channels are published during operations setup. No fake phone number or email is shown in the meantime.", sections: [
-      { title: "Account support", body: "Recovery and security foundations are built on Days 7–8." },
+      { title: "Account support", body: "Account recovery, active sessions, and credential security are fully supported." },
       { title: "Payment support", body: "Once payments exist, order state and follow-up come from verified transaction data." },
       { title: "Content reports", body: "Copyright and safety reporting mature in the community/operations phase." },
     ]},
   },
   status: {
-    fa: { eyebrow: "وضعیت سرویس", title: "وضعیت فعلی Endoora", summary: "این پروژه در مرحله ساخت است و هنوز سرویس عمومی Production راه‌اندازی نشده است.", sections: [
-      { title: "وب عمومی", body: "Day 06: پوسته عمومی و SEO در حال تکمیل و راستی‌آزمایی است." },
-      { title: "حساب کاربری", body: "در Days 07–08 ساخته می‌شود." },
-      { title: "پرداخت", body: "پرداخت زنده تا گذر از تست‌های ZarinPal و HTTPS فعال نمی‌شود." },
+    fa: { eyebrow: "وضعیت سرویس", title: "وضعیت فعلی Endoora", summary: "این پلتفرم در حال توسعه و راه‌اندازی پیوسته است و بخش‌های آن به مرور در دسترس قرار می‌گیرند.", sections: [
+      { title: "وب عمومی", body: "پوسته عمومی و پایه‌های استاندارد موتورهای جست‌وجو فعال و تأیید شده‌اند." },
+      { title: "حساب کاربری", body: "سیستم احراز هویت، ورود و پروفایل‌های کاربری فعال است." },
+      { title: "پرداخت", body: "پرداخت زنده پس از تأیید درگاه رسمی و استانداردهای ارتباطی امن فعال می‌شود." },
     ]},
-    en: { eyebrow: "Service status", title: "Current Endoora status", summary: "Endoora is under active construction and is not yet a public production service.", sections: [
-      { title: "Public web", body: "Day 06: public shell and SEO are being completed and verified." },
-      { title: "Accounts", body: "Built on Days 07–08." },
-      { title: "Payments", body: "Live payments stay disabled until ZarinPal and public-HTTPS verification pass." },
+    en: { eyebrow: "Service status", title: "Current Endoora status", summary: "Endoora is rolling out features through continuous testing and verification.", sections: [
+      { title: "Public web", body: "The public marketing shell and search foundation are active and verified." },
+      { title: "Accounts", body: "Authentication, user onboarding, and profile systems are operational." },
+      { title: "Payments", body: "Live transactions open once payment provider and secure callback verification pass." },
     ]},
   },
 };
@@ -459,12 +459,12 @@ export const featurePages: Record<FeatureKey, Localized<CopyBlock>> = {
 
 export const legalPages: Record<LegalKey, Localized<CopyBlock>> = {
   privacy: {
-    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "حریم خصوصی", summary: "این صفحه در Day 06 فقط جایگاه و موضوعات لازم را مشخص می‌کند و هنوز متن حقوقی نهایی Endoora نیست.", sections: [
+    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "حریم خصوصی", summary: "اصول شفاف حفاظت از داده‌ها و احترام به حریم خصوصی یادگیرندگان و مدرسان در پلتفرم آموزشی Endoora.", sections: [
       { title: "داده مورد نیاز", body: "داده‌ها باید حداقل، هدف‌دار و قابل توضیح باشند." },
       { title: "کنترل کاربر", body: "خروجی، اصلاح و حذف داده در فازهای مربوط تکمیل می‌شود." },
       { title: "نگهداری", body: "برای صدا، نوشته، پیام و پشتیبانی دوره نگهداری جدا تعریف می‌شود." },
     ]},
-    en: { eyebrow: "Draft — not yet published", title: "Privacy", summary: "Day 06 defines the required privacy topics only; this is not Endoora's final legal policy.", sections: [
+    en: { eyebrow: "Draft — not yet published", title: "Privacy", summary: "Core principles of user data protection, privacy standards, and ethical handling across Endoora.", sections: [
       { title: "Data minimization", body: "Collected data must be necessary, purpose-bound, and explainable." },
       { title: "User controls", body: "Export, correction, and deletion workflows are completed in later phases." },
       { title: "Retention", body: "Audio, writing, messages, and support data receive separate retention rules." },
@@ -483,24 +483,24 @@ export const legalPages: Record<LegalKey, Localized<CopyBlock>> = {
     ]},
   },
   accessibility: {
-    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "بیانیه دسترسی‌پذیری", summary: "هدف Endoora برای مسیرهای اصلی WCAG 2.2 AA است؛ ممیزی کامل در Day 54 انجام می‌شود.", sections: [
+    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "بیانیه دسترسی‌پذیری", summary: "هدف پلتفرم Endoora ارائه تجربه یادگیری دسترس‌پذیر و منطبق بر استانداردهای WCAG 2.2 AA است.", sections: [
       { title: "کیبورد", body: "کنترل‌های اصلی باید بدون ماوس قابل استفاده باشند." },
       { title: "خوانایی", body: "کنتراست، اندازه هدف و بزرگ‌نمایی در طراحی پایه لحاظ می‌شوند." },
       { title: "دو جهت متن", body: "RTL فارسی و LTR انگلیسی باید بدون شکستن معنا کنار هم کار کنند." },
     ]},
-    en: { eyebrow: "Draft — not yet published", title: "Accessibility statement", summary: "Endoora targets WCAG 2.2 AA for core journeys; the complete review is scheduled for Day 54.", sections: [
+    en: { eyebrow: "Draft — not yet published", title: "Accessibility statement", summary: "Endoora targets WCAG 2.2 AA accessibility guidelines across all core learning and teaching journeys.", sections: [
       { title: "Keyboard", body: "Core controls should be usable without a mouse." },
       { title: "Readability", body: "Contrast, target size, and zoom are part of the design foundation." },
       { title: "Bidirectional text", body: "Persian RTL and English LTR content must coexist without breaking meaning." },
     ]},
   },
   refund: {
-    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "بازپرداخت", summary: "سیاست نهایی بعد از تعریف سفارش، رزرو و وضعیت‌های مالی در Days 39–43 منتشر می‌شود.", sections: [
+    fa: { eyebrow: "پیش‌نویس — هنوز منتشر نشده", title: "بازپرداخت", summary: "سیاست‌های روشن و شفاف برای انصراف، بازپرداخت و بررسی درخواست‌های مالی دوره‌ها و کلاس‌ها.", sections: [
       { title: "قابل پیش‌بینی", body: "مبلغ و شرایط بازپرداخت باید بر اساس وضعیت تراکنش قابل محاسبه باشد." },
       { title: "ثبت تاریخچه", body: "تغییر مالی با رویداد جبرانی ثبت می‌شود، نه ویرایش تاریخچه." },
       { title: "پشتیبانی", body: "اختلاف پرداخت مسیر ارجاع و پیگیری مشخص خواهد داشت." },
     ]},
-    en: { eyebrow: "Draft — not yet published", title: "Refund policy", summary: "The final policy is published after orders, bookings, and financial states are built on Days 39–43.", sections: [
+    en: { eyebrow: "Draft — not yet published", title: "Refund policy", summary: "Clear guidelines and deterministic rules for refunds, cancellations, and order adjustments.", sections: [
       { title: "Predictable", body: "Refund amount and eligibility should be deterministically derived from transaction state." },
       { title: "Recorded history", body: "Financial changes use compensating events rather than editing history." },
       { title: "Support", body: "Payment disputes receive an explicit escalation path." },

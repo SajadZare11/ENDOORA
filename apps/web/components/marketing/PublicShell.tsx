@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import {
-  accountPath,
   alternatePath,
   localizedPath,
   type PublicLocale,
 } from "../../lib/public-site";
 import styles from "./public-shell.module.css";
+import { AccountEntryLink } from "./AccountEntryLink";
 import { AnalyticsConsent } from "./AnalyticsConsent";
 import { DocumentLocaleSync } from "./DocumentLocaleSync";
 
@@ -64,9 +64,7 @@ export function PublicShell({
             <Link className={styles.language} href={alternatePath(locale, currentPath)} hrefLang={isFa ? "en" : "fa-IR"}>
               {isFa ? "English" : "فارسی"}
             </Link>
-            <Link className={styles.primaryCta} href={accountPath(locale, "/auth/login")}>
-              {isFa ? "ورود" : "Login"}
-            </Link>
+            <AccountEntryLink className={styles.primaryCta} locale={locale} />
             <details className={styles.mobileMenu}>
               <summary aria-label={isFa ? "باز کردن منوی اصلی" : "Open main menu"}>
                 <span aria-hidden="true" className={styles.menuIcon} />

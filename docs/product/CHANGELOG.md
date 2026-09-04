@@ -309,6 +309,9 @@ None. No Endoora domain data existed yet.
 - Added stable UUID/slugs, release history, node revisions, deprecation and prerequisite history.
 - Added idempotent/cycle-safe taxonomy import and public read-only lookup endpoints.
 - Added admin editors with destructive-delete protection.
+- Added interactive frontend Taxonomy & Curriculum Explorer at `/operations/taxonomy` and `/content/taxonomy` with live search, skill/CEFR/kind filtering, prerequisite inspection, and one-click UUID/slug copying.
+- Polished public website copy: removed internal roadmap day numbers across marketing pages and consent modals, replacing them with professional, learner-centric copy while preserving Day 04-09 contracts.
+- Configured backend in-memory SQLite test fallback in `apps/api/endoora_api/settings/test.py` for reliable offline test runs across all 108 regression tests.
 
 ## Day 12 verification
 - Applied `taxonomy.0001_initial`.

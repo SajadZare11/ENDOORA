@@ -24,6 +24,7 @@ const text = {
     question: "امروز از کجا شروع کنم؟",
     intro: "یک قدم روشن برای امروز؛ بدون شلوغی و بدون نمره‌سازی.",
     why: "چرا این قدم؟",
+    whyAction: "چرا این پیشنهاد؟",
     primaryAction: "اقدام اصلی امروز",
     path: "مسیر یادگیری",
     skills: "نمای مهارت‌ها",
@@ -54,6 +55,7 @@ const text = {
     question: "Where should I start today?",
     intro: "One clear next step for today, without clutter or invented scores.",
     why: "Why this step?",
+    whyAction: "Why this action?",
     primaryAction: "Today's primary action",
     path: "Learning path",
     skills: "Skill snapshot",
@@ -218,6 +220,11 @@ export function LearnerDashboard() {
             <h2 id="learner-path-title">{t.path}</h2>
           </header>
           <p>{locale === "fa" ? data.path_message_fa : data.path_message_en}</p>
+          {data.path_progress_percent === null ? null : (
+            <div className="learner-path-progress-bar" aria-label="Progress">
+              <span style={{ width: `${data.path_progress_percent}%` }} />
+            </div>
+          )}
           <ol className="learner-path-steps">
             {data.path_steps.map((step, index) => {
               const stateLabel = step.state === "complete"
