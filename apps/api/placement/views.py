@@ -208,7 +208,13 @@ class PlacementSessionSubmitView(APIView):
         if CORE_ITEMS_PATH.is_file():
             try:
                 raw_items = json.loads(CORE_ITEMS_PATH.read_text(encoding="utf-8-sig"))
-                answers_map = {ans.question_key: ans.answer_value.get("selected_option") for ans in session.answers.all()}
+                answers_map = {}
+                for ans in session.answers.all():
+                    val = ans.answer_value
+                    if isinstance(val, dict):
+                        answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val
+                    else:
+                        answers_map[ans.question_key] = val
                 eval_res = evaluate_placement_answers(raw_items, answers_map)
                 for ev in eval_res.get("evidence", []):
                     item_id_uuid = item_key_to_uuid(ev["item_id"])
@@ -218,7 +224,7 @@ class PlacementSessionSubmitView(APIView):
                         section=ev["section"],
                         item_id=item_id_uuid,
                         defaults={
-                            "answer": {"selected_option": raw_val} if isinstance(raw_val, str) else (raw_val or {}),
+                            "answer": raw_val if isinstance(raw_val, dict) else {"response": raw_val},
                             "is_correct": ev["is_correct"],
                         },
                     )
@@ -232,7 +238,7 @@ class PlacementQuestionsView(APIView):
     """
     GET /api/placement/questions/
     Returns learner-safe question items for placement test sections.
-    Guarantees that answer keys, rubrics, and correct solutions are never exposed.
+    Guarantees that answer keys, rubrics, target keywords, and correct solutions are never exposed.
     """
     permission_classes = [permissions.IsAuthenticated]
 
@@ -258,25 +264,31 @@ class PlacementQuestionsView(APIView):
                         "vocabulary": "بخش واژگان (Vocabulary)",
                         "reading": "بخش درک مطلب (Reading)",
                         "listening": "بخش مهارت شنیداری (Listening)",
+                        "speaking": "بخش مهارت گفتاری (Speaking)",
                     }
                     title_fa = sec_titles_fa.get(sec, f"بخش {sec}")
 
-                    # Sanitize: never include correct_option, answer_key, or audio transcript
+                    is_speaking = sec == "speaking"
+                    q_type = "speaking" if is_speaking else "single_choice"
+
+                    # Sanitize: never include correct_option, answer_key, target_keywords, rubric, or audio transcript
                     items.append({
                         "id": raw_item.get("id"),
                         "section": sec,
-                        "question_type": "single_choice",
+                        "question_type": q_type,
                         "title_fa": title_fa,
                         "title_en": f"{sec.capitalize()} Section",
-                        "prompt_fa": raw_item.get("prompt_fa", "بهترین گزینه را انتخاب کنید."),
+                        "prompt_fa": raw_item.get("prompt_fa", "پاسخ دهید."),
                         "prompt_en": raw_item.get("question", ""),
-                        "instructions_fa": "یک گزینه را انتخاب کنید.",
-                        "instructions_en": "Choose one option.",
+                        "instructions_fa": raw_item.get("instructions_fa", "یک گزینه را انتخاب کنید." if not is_speaking else "صدای خود را ضبط کنید."),
+                        "instructions_en": raw_item.get("instructions_en", "Choose one option." if not is_speaking else "Record your spoken response."),
                         "cefr_level": raw_item.get("cefr_level", "A1"),
                         "difficulty": raw_item.get("difficulty", "easy"),
                         "passage": raw_item.get("passage", ""),
                         "audio_url": raw_item.get("audio_url", ""),
                         "play_limit": raw_item.get("play_limit", 2),
+                        "recording_time_limit_sec": raw_item.get("time_limit_sec", 60),
+                        "min_words_expected": raw_item.get("min_words", 10),
                         "options": raw_item.get("options", []),
                         "question_version_id": qv.id if qv else None,
                     })
@@ -290,7 +302,7 @@ class PlacementQuestionsView(APIView):
 class PlacementSessionSummaryView(APIView):
     """
     GET /api/placement/sessions/<uuid:session_pk>/summary/
-    Retrieves section-by-section breakdown (Grammar, Vocabulary, Reading) and learner evidence.
+    Retrieves section-by-section breakdown (Grammar, Vocabulary, Reading, Listening, Speaking) and learner evidence.
     Enforces strict user isolation (returns 404 for unauthorized users).
     Adheres strictly to Product Constitution Rule #8: avoids premature or definitive CEFR claims.
     """
@@ -307,7 +319,14 @@ class PlacementSessionSummaryView(APIView):
             except Exception:
                 raw_items = []
 
-        answers_map = {ans.question_key: ans.answer_value.get("selected_option") for ans in session.answers.all()}
+        answers_map = {}
+        for ans in session.answers.all():
+            val = ans.answer_value
+            if isinstance(val, dict):
+                answers_map[ans.question_key] = val.get("selected_option") or val.get("spoken_text") or val
+            else:
+                answers_map[ans.question_key] = val
+
         eval_result = evaluate_placement_answers(raw_items, answers_map)
 
         is_sub = session.status == PlacementSession.Status.SUBMITTED
@@ -339,11 +358,12 @@ class PlacementSessionSummaryView(APIView):
             "total_questions": eval_result.get("total_questions", 0),
             "total_answered": eval_result.get("total_answered", 0),
             "overall_percentage": eval_result.get("overall_percentage") if is_sub else None,
+            "estimated_cefr_level": eval_result.get("estimated_cefr_level", "A1") if is_sub else None,
             "sections": sections_payload,
             "evidence": evidence_payload,
             "notice": eval_result.get(
                 "notice",
-                "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان و درک مطلب است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
+                "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان، درک مطلب، شنیداری و گفتاری است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
             ),
         }
 

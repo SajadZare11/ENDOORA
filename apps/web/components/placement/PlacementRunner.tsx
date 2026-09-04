@@ -6,6 +6,7 @@ import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
 import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
 import { AudioWaveformPlayer } from "./AudioWaveformPlayer";
+import { AudioRecorder } from "./AudioRecorder";
 import styles from "@/components/placement/placement.module.css";
 
 type Locale = "fa" | "en";
@@ -25,6 +26,8 @@ interface PlacementQuestionItem {
   passage?: string;
   audio_url?: string;
   play_limit?: number;
+  recording_time_limit_sec?: number;
+  min_words_expected?: number;
   options: string[];
   question_version_id?: string | null;
 }
@@ -276,13 +279,77 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     difficulty: "hard",
     options: ["Green corridors significantly mitigate habitat fragmentation", "Urban expansion has negligible ecological effects", "Rooftop gardens cannot support insect populations", "Artificial lighting replaces natural circadian rhythms"],
   },
+  {
+    id: "speaking-a1-001",
+    section: "speaking",
+    question_type: "speaking",
+    title_fa: "بخش مهارت گفتاری (Speaking)",
+    title_en: "Speaking Section",
+    prompt_fa: "خود را معرفی کنید. نام خود، محل زندگی و یکی از سرگرمی‌های مورد علاقه‌تان را بیان نمایید.",
+    prompt_en: "Introduce yourself. Mention your name, where you live, and one hobby you enjoy.",
+    instructions_fa: "دکمه ضبط صدا را فشار دهید و حداقل ۱۰ کلمه صحبت کنید. در صورت نیاز، می‌توانید پاسخ خود را تایپ نمایید.",
+    instructions_en: "Press the record button and speak at least 10 words. Alternatively, type your response if your microphone is unavailable.",
+    cefr_level: "A1",
+    difficulty: "easy",
+    recording_time_limit_sec: 60,
+    min_words_expected: 10,
+    options: [],
+  },
+  {
+    id: "speaking-a2-001",
+    section: "speaking",
+    question_type: "speaking",
+    title_fa: "بخش مهارت گفتاری (Speaking)",
+    title_en: "Speaking Section",
+    prompt_fa: "یک صبح معمول در آخر هفته خود را توصیف کنید. چه ساعتی بیدار می‌شوید و معمولاً چه کارهایی انجام می‌دهید؟",
+    prompt_en: "Describe your typical weekend morning. What time do you wake up and what activities do you usually do?",
+    instructions_fa: "دکمه ضبط را فشار دهید و در حدود ۲۰ تا ۴۰ ثانیه (حداقل ۱۵ کلمه) به انگلیسی صحبت کنید.",
+    instructions_en: "Press record and describe your routine in 20 to 40 seconds (at least 15 words).",
+    cefr_level: "A2",
+    difficulty: "easy",
+    recording_time_limit_sec: 60,
+    min_words_expected: 15,
+    options: [],
+  },
+  {
+    id: "speaking-b1-001",
+    section: "speaking",
+    question_type: "speaking",
+    title_fa: "بخش مهارت گفتاری (Speaking)",
+    title_en: "Speaking Section",
+    prompt_fa: "درباره یک سفر به‌یادماندنی در گذشته صحبت کنید. به کجا رفتید، با چه کسی بودید و چرا این سفر خاص بود؟",
+    prompt_en: "Talk about a memorable trip or journey you took in the past. Where did you go, who were you with, and why was it special?",
+    instructions_fa: "دکمه ضبط را فشار دهید و به مدت ۳۰ تا ۶۰ ثانیه (حداقل ۲۵ کلمه) درباره تجربه سفر خود صحبت نمایید.",
+    instructions_en: "Speak for 30 to 60 seconds (at least 25 words) about your travel experience using narrative tenses.",
+    cefr_level: "B1",
+    difficulty: "medium",
+    recording_time_limit_sec: 90,
+    min_words_expected: 25,
+    options: [],
+  },
+  {
+    id: "speaking-b2-001",
+    section: "speaking",
+    question_type: "speaking",
+    title_fa: "بخش مهارت گفتاری (Speaking)",
+    title_en: "Speaking Section",
+    prompt_fa: "برخی کار از راه دور در منزل را ترجیح می‌دهند، در حالی که برخی دیگر معتقدند کار در دفتر کار بهره‌ورتر است. از کدام دیدگاه حمایت می‌کنید و دلایل اصلی شما چیست؟",
+    prompt_en: "Some people prefer remote working from home, while others believe working in an office is more productive. Which viewpoint do you support, and what are the main reasons for your perspective?",
+    instructions_fa: "دیدگاه خود را با ارائه دلایل و مثال‌های منسجم در ۴۵ تا ۶۰ ثانیه (حداقل ۴۰ کلمه) بیان نمایید.",
+    instructions_en: "Express your reasoned viewpoint with supporting arguments in 45 to 60 seconds (at least 40 words).",
+    cefr_level: "B2",
+    difficulty: "hard",
+    recording_time_limit_sec: 90,
+    min_words_expected: 40,
+    options: [],
+  },
 ];
 
 const t = {
   fa: {
     heroTag: "موتور هوشمند تعیین سطح Endoora",
     heroTitle: "شناخت دقیق نقطه شروع یادگیری",
-    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب و شنیداری) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
+    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب، شنیداری و گفتاری) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
     questionCounter: "سوال",
     of: "از",
     section: "بخش",
@@ -290,6 +357,7 @@ const t = {
     vocabulary: "واژگان",
     reading: "درک مطلب",
     listening: "شنیداری",
+    speaking: "گفتاری",
     next: "سوال بعدی",
     prev: "سوال قبلی",
     submit: "ثبت نهایی آزمون",
@@ -300,7 +368,7 @@ const t = {
     expiredAlert: "نشست آزمون شما منقضی شده است. برای حفظ اعتبار آموزشی، لطفا یک نشست جدید شروع کنید.",
     startNewSession: "شروع نشست جدید",
     completedTitle: "آزمون تعیین سطح با موفقیت ثبت شد!",
-    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب و شنیداری ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
+    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب، شنیداری و گفتاری ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
     viewReport: "مشاهده کارنامه مهارتی",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
@@ -308,7 +376,7 @@ const t = {
   en: {
     heroTag: "Endoora Adaptive Placement Engine",
     heroTitle: "Discover Your True Starting Point",
-    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, and Listening) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
+    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, Listening, and Speaking) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
     questionCounter: "Question",
     of: "of",
     section: "Section",
@@ -316,6 +384,7 @@ const t = {
     vocabulary: "Vocabulary",
     reading: "Reading Comprehension",
     listening: "Listening",
+    speaking: "Speaking",
     next: "Next question",
     prev: "Previous question",
     submit: "Submit test",
@@ -326,7 +395,7 @@ const t = {
     expiredAlert: "Your placement session has expired. Please start a new session to ensure accurate evaluation.",
     startNewSession: "Start new session",
     completedTitle: "Placement test submitted successfully!",
-    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, and Listening. You can now inspect your skill report.",
+    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, Listening, and Speaking. You can now inspect your skill report.",
     viewReport: "View skill report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
@@ -455,6 +524,38 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
       }
     } catch {
       // Offline network catch
+      setIsOffline(true);
+    }
+  }
+
+  // Save a speaking answer idempotently
+  async function handleSaveSpokenAnswer(spokenText: string) {
+    if (isSubmitted || isExpired) return;
+
+    setAnswers((prev) => ({ ...prev, [question.id]: spokenText }));
+
+    if (!session || !session.id) return;
+
+    try {
+      const idempotencyKey = generateIdempotencyKey();
+      const res = await fetch(`/api/placement/sessions/${session.id}/answers/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idempotency_key: idempotencyKey,
+          question_key: question.id,
+          question_version_id: question.question_version_id || null,
+          answer_value: { spoken_text: spokenText },
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        if (errData.code === "session_expired" || errData.code === "session_inactive") {
+          setIsExpired(true);
+        }
+      }
+    } catch {
       setIsOffline(true);
     }
   }
@@ -607,14 +708,17 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                   <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
                     {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (question.section === "reading" || question.section === "listening" ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (["reading", "listening", "speaking"].includes(question.section) ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (question.section === "listening" ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (["listening", "speaking"].includes(question.section) ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : ""}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : (question.section === "speaking" ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۴. شنیداری" : "4. Listening"}
+                  </div>
+                  <div className={`${styles.sectionPill} ${question.section === "speaking" ? styles.sectionPillActive : ""}`}>
+                    {locale === "fa" ? "۵. گفتاری" : "5. Speaking"}
                   </div>
                   <div className={styles.autosaveBadge}>
                     <span className={styles.autosaveDot} />
@@ -665,19 +769,34 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                   {question.prompt_en}
                 </div>
 
-                <div className={styles.options}>
-                  {question.options.map((opt) => (
-                    <button
-                      key={opt}
-                      type="button"
-                      dir="ltr"
-                      className={`${styles.option} ${selectedOption === opt ? styles.optionActive : ""}`}
-                      onClick={() => handleSelectOption(opt)}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
+                {question.section === "speaking" ? (
+                  <AudioRecorder
+                    key={question.id}
+                    timeLimitSec={question.recording_time_limit_sec || 60}
+                    minWordsExpected={question.min_words_expected || 10}
+                    locale={locale}
+                    initialSpokenText={answers[question.id] || ""}
+                    onConfirmAnswer={(payload) => {
+                      if (payload.spoken_text) {
+                        handleSaveSpokenAnswer(payload.spoken_text);
+                      }
+                    }}
+                  />
+                ) : (
+                  <div className={styles.options}>
+                    {question.options.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        dir="ltr"
+                        className={`${styles.option} ${selectedOption === opt ? styles.optionActive : ""}`}
+                        onClick={() => handleSelectOption(opt)}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div className={styles.navRow}>
                   <button

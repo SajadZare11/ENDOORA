@@ -67,7 +67,7 @@ class PlacementSessionSerializer(serializers.ModelSerializer):
 
 
 class PlacementSectionAdvanceSerializer(serializers.Serializer):
-    VALID_SECTIONS = {"grammar", "vocabulary", "reading", "listening", "review"}
+    VALID_SECTIONS = {"grammar", "vocabulary", "reading", "listening", "speaking", "review"}
 
     section = serializers.CharField(max_length=50)
 
@@ -81,7 +81,7 @@ class PlacementSectionAdvanceSerializer(serializers.Serializer):
 class PlacementQuestionItemSerializer(serializers.Serializer):
     """
     Strictly learner-safe serializer for placement questions.
-    PROTECTED KEYS (answer_key, accepted_variants, rubric, correct_option, solution, explanation)
+    PROTECTED KEYS (answer_key, accepted_variants, rubric, target_keywords, correct_option, solution, explanation)
     are strictly excluded.
     """
     id = serializers.CharField()
@@ -98,6 +98,8 @@ class PlacementQuestionItemSerializer(serializers.Serializer):
     passage = serializers.CharField(required=False, default="")
     audio_url = serializers.CharField(required=False, default="", allow_blank=True)
     play_limit = serializers.IntegerField(required=False, default=2)
+    recording_time_limit_sec = serializers.IntegerField(required=False, default=60)
+    min_words_expected = serializers.IntegerField(required=False, default=10)
     options = serializers.ListField(child=serializers.CharField(), required=False, default=list)
     question_version_id = serializers.UUIDField(required=False, allow_null=True)
 
@@ -122,6 +124,7 @@ class PlacementSessionSummarySerializer(serializers.Serializer):
     total_questions = serializers.IntegerField()
     total_answered = serializers.IntegerField()
     overall_percentage = serializers.FloatField(allow_null=True, required=False)
+    estimated_cefr_level = serializers.CharField(allow_null=True, required=False, default="A1")
     sections = serializers.DictField(child=PlacementSectionSummaryItemSerializer())
     evidence = serializers.ListField(child=serializers.DictField(), required=False, default=list)
     notice = serializers.CharField()

@@ -139,12 +139,73 @@ class AssessmentServicesTests(TestCase):
         self.assertEqual(lis_sec["score_percentage"], 50.0)
         self.assertIn("شنیداری", eval_result["notice"])
 
+    def test_evaluate_speaking_placement_section(self):
+        item = {
+            "id": "speaking-a1-001",
+            "section": "speaking",
+            "difficulty": "easy",
+            "cefr_level": "A1",
+            "objective": "speaking.self_intro",
+            "min_words": 10,
+            "target_keywords": ["name", "live", "like", "hobby", "from"],
+            "rubric": "Can introduce oneself with basic personal details.",
+        }
+        # 1. Good response with sufficient words and keywords
+        good_response = {
+            "spoken_text": "Hello, my name is Sara and I live in Tehran. I like reading books as a hobby.",
+            "duration_sec": 18.5,
+        }
+        eval_good = evaluate_placement_answers([item], {"speaking-a1-001": good_response})
+        self.assertIn("speaking", eval_good["sections"])
+        spk_sec = eval_good["sections"]["speaking"]
+        self.assertEqual(spk_sec["total"], 1)
+        self.assertEqual(spk_sec["answered"], 1)
+        self.assertEqual(spk_sec["correct"], 1)
+        self.assertGreaterEqual(spk_sec["score_percentage"], 80.0)
+        self.assertIn("گفتاری", eval_good["notice"])
+
+        # 2. Insufficient response (too few words)
+        short_response = {"spoken_text": "Hi Sara"}
+        eval_short = evaluate_placement_answers([item], {"speaking-a1-001": short_response})
+        spk_short_sec = eval_short["sections"]["speaking"]
+        self.assertEqual(spk_short_sec["correct"], 0)
+        self.assertLess(spk_short_sec["score_percentage"], 50.0)
+
+    def test_cefr_estimate_mapping_and_five_sections(self):
+        items = [
+            {"id": "g-1", "section": "grammar", "correct_option": "a"},
+            {"id": "v-1", "section": "vocabulary", "correct_option": "b"},
+            {"id": "r-1", "section": "reading", "correct_option": "c"},
+            {"id": "l-1", "section": "listening", "correct_option": "d"},
+            {
+                "id": "s-1",
+                "section": "speaking",
+                "min_words": 10,
+                "target_keywords": ["work", "office", "remote"],
+            },
+        ]
+        # Answer all correctly
+        answers = {
+            "g-1": "a",
+            "v-1": "b",
+            "r-1": "c",
+            "l-1": "d",
+            "s-1": {
+                "spoken_text": "I really enjoy remote work because it gives me flexibility away from the office environment.",
+            },
+        }
+        res = evaluate_placement_answers(items, answers)
+        self.assertEqual(len(res["sections"]), 5)
+        self.assertEqual(res["estimated_cefr_level"], "C1")
+        self.assertGreaterEqual(res["overall_percentage"], 90.0)
+
     def test_seed_placement_sections_command(self):
         out = StringIO()
         call_command("seed_placement_sections", stdout=out)
         output = out.getvalue()
-        self.assertIn("Validated 15 placement items across sections", output)
+        self.assertIn("Validated 19 placement items across sections", output)
         self.assertIn("grammar: 4", output)
         self.assertIn("vocabulary: 4", output)
         self.assertIn("reading: 3", output)
         self.assertIn("listening: 4", output)
+        self.assertIn("speaking: 4", output)

@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 16 — Implement listening placement section with audio player and waveform
-- **Day 16 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–15 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections
-- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 16 adds no schema migration)
+- **Roadmap day completed:** Day 17 — Implement speaking placement section with audio recording and STT diagnostic
+- **Day 17 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–16 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections (Grammar, Vocabulary, Reading, Listening, Speaking)
+- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 17 adds no schema migration)
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -435,15 +435,58 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - `python scripts/check_day16.py` — PASS
 - `python scripts/scan_secrets.py` — PASS
 
+## Day 17 — Speaking placement section with audio recording and STT diagnostic (complete and verified)
+
+- Calibrated 19 core placement items including 4 Speaking items (A1 self intro, A2 daily routine, B1 memorable experience, B2 remote work opinion) in `data/placement/core-items.json`.
+- Strictly decoupled `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Kept speaking target keywords and evaluation rubrics isolated server-side; learner pre-submission payloads never leak evaluation rubrics, target keywords, or model answers.
+- Implemented speaking diagnostic evaluation service in `apps/api/assessment/services.py` analyzing word count, length sufficiency, and topical vocabulary coverage.
+- Implemented multi-stage overall score calculation adhering strictly to `docs/assessment/scoring-model.md`: `sum(section scores) / number of sections` (all 5 sections: Grammar, Vocabulary, Reading, Listening, Speaking).
+- Implemented provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence, strictly observing Product Constitution Rule #8 on no premature or certified CEFR claims.
+- Updated `seed_placement_sections` command to validate all 19 placement items across all 5 sections.
+- Built accessible `AudioRecorder` component with start/stop/re-record controls, sound level meter, recording timer (60-90s auto-stop), audio playback preview, and real-time Speech-to-Text (STT) transcript preview.
+- Built accessible text fallback input for learners without microphone hardware or browser permissions.
+- Used 100% tokenized CSS (`audio-recorder.module.css`) with zero raw hex colors and complete logical property support.
+- Upgraded `PlacementRunner` with 5-stage navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب, 4. شنیداری, 5. گفتاری) and rendered `AudioRecorder` for speaking questions.
+- Upgraded `/placement/report` to display all 5 skill cards, verified speaking scores and objectives, and overall provisional CEFR estimate badge with honest disclosures.
+- Upgraded `/voice` into an interactive Voice & Speaking Lab sandbox with live microphone testing, STT preview, and direct placement test links.
+- Upgraded `/pronunciation` with direct navigation to the voice sandbox and speaking placement test.
+- Maintained verified pre-Day-17 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day17\20260820-170000\endoora-pre-day17.dump`.
+
+## Day 17 verification evidence
+
+### Backend & scoring services
+- Pre-Day-17 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day17\20260820-170000\endoora-pre-day17.dump`
+- `seed_placement_sections` command verified: 19 items across 5 sections validated cleanly
+- `python manage.py test assessment` — PASS (8/8 unit tests)
+- `python manage.py test placement` — PASS (18/18 unit tests)
+- `python manage.py test` — PASS (133/133 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
+- Learner pre-submission payloads contain no target keywords, rubrics, answer keys, solutions, or transcripts — PASS
+- Session summary API strictly scoped to session owner (User B receives 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day17.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 16: Implement listening placement section with audio player and waveform and polish website`
+`Day 17: Implement speaking placement section with audio recording and STT diagnostic and polish website`
 
 ## Exact next day
 
-**Day 17 — Implement speaking placement section with audio recording and STT diagnostic.**
+**Day 18 — Implement writing placement section with rich text editor and automated evaluation.**
 
-Do not begin Day 17 until the Day 16 commit is pushed and `git status --short --branch`
+Do not begin Day 18 until the Day 17 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

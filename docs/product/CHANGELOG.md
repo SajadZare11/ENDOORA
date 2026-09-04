@@ -408,3 +408,27 @@ None. No Endoora domain data existed yet.
 - User isolation verified: User B cannot access or summarize User A's placement session.
 - Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
 - Automated static checks `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+
+## Day 17 — Implement speaking placement section with audio recording and STT diagnostic
+- Added 4 calibrated Speaking test items in `data/placement/core-items.json` across CEFR levels (A1 self intro, A2 daily routine, B1 memorable experience, B2 remote work opinion), bringing total core placement items to 19 across all 5 sections.
+- Strictly decoupled `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Kept speaking target keywords and evaluation rubrics isolated server-side; pre-submission serializers strictly purge keywords, rubrics, and model answers while exposing safe `recording_time_limit_sec` and `min_words_expected`.
+- Implemented speaking diagnostic evaluation service in `apps/api/assessment/services.py` analyzing word count, sufficiency against `min_words`, and topical keyword coverage.
+- Implemented multi-stage overall score calculation adhering strictly to `docs/assessment/scoring-model.md`: `sum(section scores) / number of sections` (all 5 sections: Grammar, Vocabulary, Reading, Listening, Speaking).
+- Implemented provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence, strictly observing Product Constitution Rule #8 on no premature or certified CEFR claims.
+- Updated `seed_placement_sections` command to validate all 19 placement items across all 5 sections.
+- Created accessible `AudioRecorder` component with start/stop/re-record controls, sound level meter, recording timer (60-90s auto-stop), audio playback preview, and real-time Speech-to-Text (STT) transcript preview using browser SpeechRecognition API.
+- Created accessible text fallback input for learners without microphone permissions or hardware support.
+- Created `audio-recorder.module.css` with 100% tokenized CSS and zero raw hex colors.
+- Enhanced `PlacementRunner` with 5-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening -> Speaking) and rendered `AudioRecorder` for speaking questions.
+- Upgraded `/placement/report` to display all 5 skill cards, verified speaking scores and objectives, and overall provisional CEFR estimate badge with honest disclosures.
+- Upgraded `/voice` into an interactive Voice & Speaking Lab sandbox with live mic testing, STT preview, and direct placement test links.
+- Upgraded `/pronunciation` with direct navigation to the voice sandbox and speaking placement test.
+
+## Day 17 verification
+- Pre-Day-17 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day17\20260820-170000\endoora-pre-day17.dump`.
+- Backend unit tests pass: 8 assessment tests, 18 placement tests, and 133 full regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero target keywords, rubrics, answer keys, or transcripts leaked.
+- User isolation verified: User B cannot access or summarize User A's placement session.
+- Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
+- Automated static checks `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

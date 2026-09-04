@@ -25,6 +25,7 @@ interface SessionSummaryData {
   total_questions: number;
   total_answered: number;
   overall_percentage: number | null;
+  estimated_cefr_level?: string | null;
   sections: Record<string, SectionSummary>;
   evidence: Array<{
     item_id: string;
@@ -42,12 +43,14 @@ const copy = {
   fa: {
     kicker: "گزارش شفاف یادگیری Endoora",
     title: "کارنامه تحلیلی ارزیابی اولیه",
-    desc: "این کارنامه بر اساس شواهد واقعی شما در سه بخش دستور زبان، واژگان و درک مطلب محاسبه شده است.",
+    desc: "این کارنامه بر اساس شواهد واقعی شما در پنج بخش دستور زبان، واژگان، درک مطلب، شنیداری و گفتاری محاسبه شده است.",
     grammar: "دستور زبان (Grammar)",
     vocabulary: "واژگان (Vocabulary)",
     reading: "درک مطلب (Reading)",
     listening: "شنیداری (Listening)",
-    listeningNotice: "این بخش در فاز شنیداری تکمیلی فعال خواهد شد.",
+    speaking: "گفتاری (Speaking)",
+    overallEstimateLabel: "سطح یادگیری تخمینی شما",
+    overallScoreLabel: "میانگین کل ۵ مهارت",
     totalItems: "تعداد کل سوالات",
     answered: "پاسخ‌داده‌شده",
     accuracy: "دقت پاسخ‌ها",
@@ -60,18 +63,20 @@ const copy = {
     retakePlacement: "مرور یا شرکت مجدد در آزمون",
     viewTwin: "مشاهده دوقلوی یادگیری",
     noticeHeader: "اصل شفافیت آموزشی Endoora (Honest Assessment)",
-    honestDisclaimer: "این کارنامه یک برآورد آموزشی بر اساس شواهد ثبت‌شده در این آزمون است و ادعای مدرک رسمی یا تضمین سطح CEFR را ندارد.",
+    honestDisclaimer: "این کارنامه یک برآورد آموزشی اولیه بر اساس شواهد ثبت‌شده در این آزمون است و ادعای مدرک رسمی یا تضمین سطح CEFR را ندارد.",
     loading: "در حال دریافت و ارزیابی شواهد آزمون...",
   },
   en: {
     kicker: "Endoora Transparent Learning Report",
     title: "Initial Diagnostic Skill Report",
-    desc: "This diagnostic report is computed from your verified answers across Grammar, Vocabulary, and Reading.",
+    desc: "This diagnostic report is computed from your verified answers across Grammar, Vocabulary, Reading, Listening, and Speaking.",
     grammar: "Grammar",
     vocabulary: "Vocabulary",
     reading: "Reading Comprehension",
     listening: "Listening Comprehension",
-    listeningNotice: "This section will be enabled in the upcoming listening phase.",
+    speaking: "Speaking",
+    overallEstimateLabel: "Your estimated learning level is",
+    overallScoreLabel: "Overall 5-Skill Score",
     totalItems: "Total items",
     answered: "Answered",
     accuracy: "Accuracy",
@@ -129,6 +134,7 @@ export default function PlacementReportPage() {
   const vocabulary = summary?.sections?.vocabulary;
   const reading = summary?.sections?.reading;
   const listening = summary?.sections?.listening;
+  const speaking = summary?.sections?.speaking;
 
   return (
     <main className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
@@ -166,7 +172,36 @@ export default function PlacementReportPage() {
           </div>
         )}
 
-        {/* 4 Section Cards Grid */}
+        {/* Overall Provisional CEFR Estimate Card */}
+        {summary?.is_submitted && summary?.overall_percentage !== null && summary?.overall_percentage !== undefined && (
+          <div
+            className={styles.card}
+            style={{
+              marginBlock: "var(--space-4)",
+              background: "var(--color-surface)",
+              border: "2px solid var(--color-primary)",
+              textAlign: "center",
+              padding: "var(--space-4)",
+            }}
+          >
+            <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginBottom: "var(--space-1)" }}>
+              {t.overallEstimateLabel}
+            </p>
+            <div style={{ display: "inline-flex", alignItems: "baseline", gap: "var(--space-2)" }}>
+              <span style={{ fontSize: "2.25rem", fontWeight: 800, color: "var(--color-primary)" }}>
+                {summary.estimated_cefr_level || "A1"}
+              </span>
+              <span style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-body)" }}>
+                ({t.overallScoreLabel}: {summary.overall_percentage}%)
+              </span>
+            </div>
+            <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
+              {t.honestDisclaimer}
+            </p>
+          </div>
+        )}
+
+        {/* 5 Section Cards Grid */}
         <div className={styles.reportGrid}>
           {/* Grammar */}
           <div className={styles.sectionCard}>
@@ -252,6 +287,28 @@ export default function PlacementReportPage() {
             ) : (
               <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)" }}>
                 {summary ? `${listening?.answered || 0} / ${listening?.total || 4} ${t.answered}` : t.pending}
+              </p>
+            )}
+          </div>
+
+          {/* Speaking */}
+          <div className={styles.sectionCard}>
+            <h3>{t.speaking}</h3>
+            {summary?.is_submitted && speaking?.score_percentage !== undefined ? (
+              <div>
+                <span className={styles.sectionScore}>{speaking.score_percentage}%</span>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
+                  {t.answered}: {speaking.answered} / {speaking.total}
+                </p>
+                {speaking.objectives_covered && speaking.objectives_covered.length > 0 && (
+                  <div style={{ marginTop: "var(--space-3)", fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
+                    <small dir="ltr" style={{ display: "block" }}>{speaking.objectives_covered.join(", ")}</small>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)" }}>
+                {summary ? `${speaking?.answered || 0} / ${speaking?.total || 4} ${t.answered}` : t.pending}
               </p>
             )}
           </div>

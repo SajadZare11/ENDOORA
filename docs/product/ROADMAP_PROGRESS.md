@@ -290,7 +290,7 @@ Status: Complete and verified; ready for Git commit and push.
 
 ## Day 16 — Implement listening placement section with audio player and waveform
 
-Status: Complete and verified; ready for Git commit and push.
+Status: Complete and verified; pushed to GitHub.
 
 - [x] verified pre-Day-16 PostgreSQL backup outside Git
 - [x] calibrated 15 core placement items including 4 Listening items in `data/placement/core-items.json`
@@ -313,3 +313,33 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** learners can complete interactive listening placement questions with standard in-browser audio playback, waveform scrubbing, play limit tracking, and receive empirical section scoring without leaked transcripts or false certification claims.
 
 **Next day after Git push:** Day 17 — Implement speaking placement section with audio recording and STT diagnostic.
+
+## Day 17 — Implement speaking placement section with audio recording and STT diagnostic
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-17 PostgreSQL backup outside Git
+- [x] calibrated 19 core placement items including 4 Speaking items in `data/placement/core-items.json`
+- [x] strictly separated `difficulty` from `cefr_level`
+- [x] server-side speaking rubrics and target keywords isolated without leaks
+- [x] implemented speaking diagnostic evaluation service in `apps/api/assessment/services.py`
+- [x] multi-stage overall score calculated as 5-section average adhering to `docs/assessment/scoring-model.md`
+- [x] provisional CEFR level estimate mapping (A1 to C1) grounded in verified evidence
+- [x] adhered to Product Constitution Rule #8 on honest assessment without premature CEFR claims
+- [x] stored speaking responses in `PlacementResponse` model for audit trail and learner profile
+- [x] updated session summary endpoint to compute speaking section scores, objectives, and `estimated_cefr_level`
+- [x] added `?section=speaking` query filtering and pre-submission payload protection
+- [x] built accessible `AudioRecorder` component with sound level meter, timer, audio review playback, and Web Speech STT preview
+- [x] built accessible text fallback input for learners without microphone permissions
+- [x] 100% tokenized CSS in `audio-recorder.module.css` with 0 raw hex colors
+- [x] enhanced `PlacementRunner` with 5-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening -> Speaking)
+- [x] live speaking score, answered count, objectives, and overall provisional CEFR badge rendered in `/placement/report`
+- [x] upgraded `/voice` into an interactive Voice & Speaking Lab sandbox with live mic testing and STT preview
+- [x] upgraded `/pronunciation` with direct navigation to voice sandbox and speaking placement test
+- [x] 133 backend regression tests passing
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `check_day17.py` and secret scan passing
+
+**Success gate:** learners can complete interactive speaking placement questions with audio recording, real-time STT preview, accessible text fallback, and receive transparent multi-stage section scoring and provisional CEFR estimates without leaked rubrics or false certification claims.
+
+**Next day after Git push:** Day 18 — Implement writing placement section with rich text editor and automated evaluation.

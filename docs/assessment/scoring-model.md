@@ -14,6 +14,7 @@ Current sections:
 - Vocabulary
 - Reading
 - Listening
+- Speaking
 
 Overall score:
 

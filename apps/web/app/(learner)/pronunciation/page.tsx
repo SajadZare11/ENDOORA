@@ -55,11 +55,11 @@ export default function PronunciationPage() {
         </div>
 
         <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
-          <Link className="learner-button learner-button--primary" href="/placement/listening-ready">
-            {isFa ? "بررسی دسترسی صوتی مرورگر" : "Check browser audio setup"}
+          <Link className="learner-button learner-button--primary" href="/voice">
+            {isFa ? "آزمایش زنده میکروفون در آزمایشگاه صدا" : "Live Mic & STT Sandbox"}
           </Link>
-          <Link className="learner-button learner-button--secondary" href="/dashboard">
-            {isFa ? "ورود به داشبورد" : "Go to dashboard"}
+          <Link className="learner-button learner-button--secondary" href="/placement/demo">
+            {isFa ? "شرکت در آزمون تعیین سطح گفتاری" : "Take Speaking Placement"}
           </Link>
         </div>
       </div>

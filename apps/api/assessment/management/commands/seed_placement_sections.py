@@ -8,7 +8,7 @@ from questions.models import Question, QuestionVersion
 
 
 class Command(BaseCommand):
-    help = "Seed and validate Grammar, Vocabulary, Reading, and Listening placement test items."
+    help = "Seed and validate Grammar, Vocabulary, Reading, Listening, and Speaking placement test items."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -30,9 +30,11 @@ class Command(BaseCommand):
             raise CommandError(f"Failed to parse placement items JSON: {exc}") from exc
 
         sections_count: dict[str, int] = {}
+        valid_sections = ("grammar", "vocabulary", "reading", "listening", "speaking")
+
         for item in items:
             sec = item.get("section", "").lower()
-            if sec not in ("grammar", "vocabulary", "reading", "listening"):
+            if sec not in valid_sections:
                 raise CommandError(f"Invalid placement section in item {item.get('id')}: {sec}")
             sections_count[sec] = sections_count.get(sec, 0) + 1
 
@@ -47,37 +49,64 @@ class Command(BaseCommand):
             created_q = 0
             for item in items:
                 slug = f"placement-{item['id']}"
+                sec = item.get("section", "").lower()
+                q_type = "speaking" if sec == "speaking" else "single_choice"
+
                 question, _ = Question.objects.get_or_create(
                     slug=slug,
                     defaults={
                         "cefr_level": item.get("cefr_level", "A1").lower(),
-                        "question_type": "single_choice",
+                        "question_type": q_type,
                     },
                 )
+
+                if sec == "speaking":
+                    author_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "instructions_fa": item.get("instructions_fa", ""),
+                        "instructions_en": item.get("instructions_en", ""),
+                        "time_limit_sec": item.get("time_limit_sec", 60),
+                        "min_words": item.get("min_words", 10),
+                        "target_keywords": item.get("target_keywords", []),
+                        "rubric": item.get("rubric", ""),
+                    }
+                    learner_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "instructions_fa": item.get("instructions_fa", ""),
+                        "instructions_en": item.get("instructions_en", ""),
+                        "recording_time_limit_sec": item.get("time_limit_sec", 60),
+                        "min_words_expected": item.get("min_words", 10),
+                    }
+                else:
+                    author_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "options": item.get("options", []),
+                        "correct_option": item.get("correct_option"),
+                        "passage": item.get("passage", ""),
+                        "audio_url": item.get("audio_url", ""),
+                        "play_limit": item.get("play_limit", 2),
+                        "transcript": item.get("transcript", ""),
+                    }
+                    learner_payload = {
+                        "prompt_en": item.get("question"),
+                        "prompt_fa": item.get("prompt_fa", ""),
+                        "options": item.get("options", []),
+                        "passage": item.get("passage", ""),
+                        "audio_url": item.get("audio_url", ""),
+                        "play_limit": item.get("play_limit", 2),
+                    }
+
                 qv, qv_created = QuestionVersion.objects.get_or_create(
                     question=question,
                     version_number=1,
                     defaults={
                         "status": QuestionVersion.Status.PUBLISHED,
                         "difficulty": 1 if item.get("difficulty") == "easy" else (3 if item.get("difficulty") == "medium" else 5),
-                        "author_payload": {
-                            "prompt_en": item.get("question"),
-                            "prompt_fa": item.get("prompt_fa", ""),
-                            "options": item.get("options", []),
-                            "correct_option": item.get("correct_option"),
-                            "passage": item.get("passage", ""),
-                            "audio_url": item.get("audio_url", ""),
-                            "play_limit": item.get("play_limit", 2),
-                            "transcript": item.get("transcript", ""),
-                        },
-                        "learner_payload": {
-                            "prompt_en": item.get("question"),
-                            "prompt_fa": item.get("prompt_fa", ""),
-                            "options": item.get("options", []),
-                            "passage": item.get("passage", ""),
-                            "audio_url": item.get("audio_url", ""),
-                            "play_limit": item.get("play_limit", 2),
-                        },
+                        "author_payload": author_payload,
+                        "learner_payload": learner_payload,
                     },
                 )
                 if qv_created:
