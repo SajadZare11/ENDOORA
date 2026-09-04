@@ -14,8 +14,9 @@
 | 10 | Teacher application shell and simplified navigation | Complete | Teacher urgency shell, capability gating, responsive browser QA, and local acceptance passed |
 | 11 | Django admin, audit logs, and safe settings | Complete | Operations acceptance passed |
 | 12 | CEFR skill and content taxonomy | Complete | Taxonomy acceptance and explorer passed; pushed |
-| 13 | Versioned question bank schema | Complete | Question-bank acceptance passed; final Git push remains |
-| 14-60 | Remaining roadmap | Not started | Sequential |
+| 13 | Versioned question bank schema | Complete | Question-bank acceptance passed; pushed |
+| 14 | Multi-stage placement session engine | Complete | Placement session acceptance passed; ready for push |
+| 15-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -238,3 +239,27 @@ Status: local acceptance complete; final Git push remains.
 **Success gate:** question bank supports placement and teacher assignment without duplicating content.
 
 **Next day after Git push:** Day 14 — Build the multi-stage placement-test session engine.
+
+## Day 14 — Multi-stage placement-test session engine
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-14 PostgreSQL backup
+- [x] `placement.0002_alter_placementanswer_options_and_more`
+- [x] `PlacementSession` and `PlacementAnswer` models with lifecycle states
+- [x] server-side expiration handling (`expires_at`, 2 hours default)
+- [x] server-side idempotency protection with unique `idempotency_key`
+- [x] question version linkage (`question_version_id`)
+- [x] object-level user ownership isolation
+- [x] session finalization (`submitted`) and mutation protection
+- [x] pre-submission answer-key redaction in learner endpoints
+- [x] Persian-first interactive `PlacementRunner` with English switch
+- [x] English learning text isolated as LTR
+- [x] responsive 360 px layout without overflow
+- [x] tokenized styling without raw hex colors
+- [x] backend/frontend regression suite (121 tests pass)
+- [x] static check `check_day14.py` passes
+
+**Success gate:** multi-stage placement session engine provides secure, resumable, and idempotent test sessions linked to versioned content.
+
+**Next day after Git push:** Day 15 — Implement grammar, vocabulary, and reading placement sections.

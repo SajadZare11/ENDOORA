@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 13 — Build the versioned question bank schema
-- **Day 13 status:** Local acceptance complete; final repository gate is commit/push to `origin/main`
-- **Inherited state:** Days 01–12 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, and stable CEFR taxonomy
-- **Schema version:** Day 13 adds `questions.0001_initial` on top of `taxonomy.0001_initial`
+- **Roadmap day completed:** Day 14 — Build the multi-stage placement-test session engine
+- **Day 14 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–13 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, and versioned question bank
+- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -13,7 +13,7 @@
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features working through Day 13
+## Features working through Day 14
 
 ### Foundation and public experience
 
@@ -315,15 +315,54 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - loading/empty/error/retry/permission states — PASS
 - publish -> learner-safe preview -> submit -> explanation -> retire journey — PASS
 
+## Day 14 — Placement session engine (complete and verified)
+
+- Built resumable multi-stage placement test session engine (`PlacementSession`, `PlacementAnswer`).
+- Added server-side session expiration handling (`expires_at`, 2 hours default) with `is_expired`, `is_active`, and `check_expiration()`.
+- Added server-side idempotency protection using unique `idempotency_key` and server timestamps to prevent duplicate rows.
+- Linked placement answers to versioned content via optional `question_version` foreign key (`question_version_id`).
+- Strictly enforced object-level user ownership: only session owner can view or submit answers (`user=request.user` query scoping returning 404 for other users).
+- Enforced session lifecycle: rejected answer mutations on expired or already-submitted sessions.
+- Enforced anti-leak security boundaries: placement question and session serializers strictly exclude `answer_key`, `accepted_variants`, `rubric`, `correct_option`, `solution`, and explanations.
+- Created Persian-first interactive `PlacementRunner` component with English language toggle, isolated LTR English passages, mobile 360 px responsiveness, design-token styling, and zero raw hex colors.
+- Replaced leaked roadmap copy in marketing and documentation with professional production copy.
+- Applied migration `placement.0002_alter_placementanswer_options_and_more`.
+- Verified pre-Day-14 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day14\20260820-140000\endoora-pre-day14.dump`.
+
+## Day 14 verification evidence
+
+### Backend & placement engine
+- Pre-Day-14 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day14\20260820-140000\endoora-pre-day14.dump`
+- `placement.0002_alter_placementanswer_options_and_more` applied successfully
+- `python manage.py check` — PASS
+- `python manage.py test placement` — PASS (13/13 tests)
+- `python manage.py test` — PASS (121/121 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS
+- Pre-submission learner payload contains no answer keys/accepted variants/rubrics/explanations
+- User isolation & object-level permissions — PASS
+- Expiration and submit mutation protections — PASS
+- `python scripts/check_day14.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+- `git diff --check` — PASS
+
+### Frontend / manual
+- Persian-first RTL placement test with English toggle — PASS
+- English learning passages and options isolated as LTR — PASS
+- Idempotent answer saving with server timestamps — PASS
+- Session resume upon page reload — PASS
+- Offline network recovery notice without losing answers — PASS
+- Responsive layout at 360 px without horizontal overflow — PASS
+- Zero raw hex colors in placement stylesheets — PASS
+
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 13: Build the versioned question bank schema`
+`Day 14: Build the multi-stage placement-test session engine and polish website`
 
 ## Exact next day
 
-**Day 14 — Build the multi-stage placement-test session engine.**
+**Day 15 — Implement grammar, vocabulary, and reading placement sections.**
 
-Do not begin Day 14 until the Day 13 commit is pushed and `git status --short --branch`
+Do not begin Day 15 until the Day 14 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

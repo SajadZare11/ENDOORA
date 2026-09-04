@@ -345,3 +345,26 @@ None. No Endoora domain data existed yet.
 - Verified draft-only idempotent JSON import.
 - Verified Persian-first RTL preview, English option, and English LTR isolation.
 - Backend regression (108 tests), frontend lint/typecheck/build (108 static routes), secret scan, and diff gate passed.
+
+## Day 14 — Multi-stage placement-test session engine
+- Built resumable placement test session engine (`PlacementSession` and `PlacementAnswer`).
+- Added server-side session expiration (`expires_at`, 2 hours default) with active status management.
+- Added server-side answer idempotency protection via unique `idempotency_key` and server timestamps.
+- Added optional `question_version` foreign key on `PlacementAnswer` linking to Day 13 question bank version.
+- Enforced object-level user ownership: only session owner can view or submit answers (`user=request.user` query scoping returning 404 for other users).
+- Enforced session lifecycle: rejected answer mutations on expired or already-submitted sessions.
+- Enforced anti-leak security boundaries: placement question and session serializers strictly exclude answer keys, correct options, rubrics, solutions, and explanations.
+- Created Persian-first interactive `PlacementRunner` component with English language toggle, isolated LTR English passages, mobile 360 px responsiveness, design-token styling, and zero raw hex colors.
+- Replaced leaked roadmap copy in marketing and documentation with professional production copy.
+- Applied database migration `placement.0002_alter_placementanswer_options_and_more`.
+
+## Day 14 verification
+- Applied `placement.0002_alter_placementanswer_options_and_more`.
+- Verified pre-Day-14 PostgreSQL backup outside Git (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day14\20260820-140000\endoora-pre-day14.dump`).
+- Verified all 13 placement unit tests and 121 total backend regression tests pass with 0 errors.
+- Verified pre-submission question payload contains no answer keys, rubrics, or explanations.
+- Verified user isolation: User B cannot view or submit answers to User A's session.
+- Verified expired and submitted session mutation rejections.
+- Verified idempotent answer saving on network retries.
+- Verified Next.js production build (108 static routes generated), typecheck, and lint pass with 0 errors.
+- Static check `scripts/check_day14.py`, secret scan, and git diff cleanliness pass.

@@ -154,7 +154,7 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
     fa: {
       eyebrow: "تعیین سطح",
       title: "برآورد شفاف سطح، نه ادعای مدرک رسمی",
-      summary: "هسته تعیین سطح در روزهای ۱۴ تا ۱۷ ساخته می‌شود و نتیجه آن با شواهد، پوشش مهارت‌ها و میزان اطمینان نمایش داده خواهد شد.",
+      summary: "هسته تعیین سطح اندورا با رویکرد چندمرحله‌ای، شواهد مهارت‌ها و میزان اطمینان برآورد را به صورت شفاف و زنده ارائه می‌دهد.",
       sections: [
         { title: "مهارت‌های چندگانه", body: "گرامر، واژگان، خواندن، شنیدن و تعامل متنی بررسی می‌شوند؛ صدا اختیاری خواهد بود." },
         { title: "قابل ادامه", body: "پاسخ‌ها ذخیره می‌شوند تا قطع اینترنت یا تازه‌سازی صفحه باعث از دست رفتن مسیر نشود." },
@@ -164,7 +164,7 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
     en: {
       eyebrow: "Placement",
       title: "A transparent level estimate, not an official certificate",
-      summary: "The placement engine is scheduled for Days 14–17 and will report evidence, skill coverage, and uncertainty alongside the estimate.",
+      summary: "Endoora's multi-stage placement engine assesses skills interactively and reports evidence, skill coverage, and confidence levels alongside your estimate.",
       sections: [
         { title: "Multiple skills", body: "Grammar, vocabulary, reading, listening, and text interaction are covered; voice evidence remains optional." },
         { title: "Resumable", body: "Answers are saved so refreshes and weak connections do not destroy progress." },
