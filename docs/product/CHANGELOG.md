@@ -476,3 +476,26 @@ None. No Endoora domain data existed yet.
 - User isolation verified: User B cannot access or view User A's learning path.
 - Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
 - Automated static checks `check_day19.py`, `check_day18.py`, `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+
+## Day 20 — Adaptive Daily Mission Engine & Wireframe 2 Interactive Experience
+- Implemented `DailyMission` helper methods in `apps/api/missions/models.py` (`get_tasks`, `get_target_skill`, `get_current_task_index`, `get_completed_task_ids`, `is_all_completed`).
+- Implemented evidence-driven adaptive mission generation engine in `apps/api/missions/services.py`:
+  - Dynamically evaluates placement results across all 6 sections (Grammar, Vocabulary, Reading, Listening, Speaking, Writing) to prioritize the lowest-scoring skill.
+  - Serves diagnostic readiness onboarding mission for unplaced learners with direct CTA to `/placement`.
+  - Generates 3 curated pedagogical micro-tasks per skill (Grammar, Vocabulary, Reading, Listening, Writing, Speaking, and Readiness).
+- Implemented mission lifecycle methods: `start_daily_mission`, `submit_mission_step`, and `resolve_mission_next_action`.
+- Enforced pre-submission payload protection in `DailyMissionSerializer` (`apps/api/missions/serializers.py`): correct answer keys and explanations are withheld until learner submits each step.
+- Routed `/api/missions/` with `today/`, `today/start/`, `today/submit-step/`, and `today/reset/`.
+- Wrote 8 unit tests in `apps/api/missions/tests.py` testing authentication, unplaced onboarding, placed skill adaptivity, start transitions, step submissions, instant feedback, completion, and strict user isolation.
+- Rebuilt `/today` in `apps/web/app/(learner)/today/page.tsx` implementing full Wireframe 2 flow: Overview -> Active Task -> Instant Feedback -> Complete.
+- Styled with 100% tokenized CSS in `apps/web/app/(learner)/today/today.module.css` with 0 raw hex colors and strict English LTR isolation (`unicode-bidi: isolate; direction: ltr;`).
+- Added Next.js redirect in `apps/web/next.config.ts`: `/learner/today` -> `/today`.
+- Strictly observed Product Constitution Rule #8 transparent educational claims without artificial gamification or premature CEFR claims.
+
+## Day 20 verification
+- Pre-Day-20 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day20\20260821-120000\endoora-pre-day20.dump` (107,603 bytes).
+- Backend unit tests pass: 8 missions unit tests and 148 full regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero answer keys leaked before submission.
+- User isolation verified: User B cannot access or mutate User A's mission.
+- Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
+- Automated static checks `check_day20.py`, `check_day19.py`, `check_day18.py`, `check_day17.py`, `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

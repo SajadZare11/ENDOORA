@@ -374,7 +374,7 @@ Status: Complete and verified; pushed to GitHub.
 
 ## Day 19 — Personal Learning Path Engine & Interactive Path Experience
 
-Status: Complete and verified; ready for Git commit and push.
+Status: Pushed to GitHub (`95f3b71`).
 
 - [x] verified pre-Day-19 PostgreSQL backup outside Git
 - [x] implemented dynamic learning path engine in `apps/api/learner_twin/path.py`
@@ -395,4 +395,27 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** learners can receive a personalized, evidence-grounded learning path directly calibrated from their 6-skill placement results, featuring prioritized growth skills, explainable progress timelines, dominant next actions, and honest educational disclosures without fabricated progress percentages or premature certification claims.
 
-**Next day after Git push:** Day 20 — Daily Mission.
+## Day 20 — Adaptive Daily Mission Engine & Wireframe 2 Interactive Experience
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-20 PostgreSQL backup outside Git (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day20\20260821-120000\endoora-pre-day20.dump`)
+- [x] implemented `DailyMission` helper methods in `apps/api/missions/models.py`
+- [x] implemented evidence-driven adaptive mission generator in `apps/api/missions/services.py` targeting lowest scoring skill across 6 sections
+- [x] implemented diagnostic readiness onboarding mission for unplaced learners driving to `/placement`
+- [x] implemented 3 curated pedagogical micro-tasks per skill (Grammar, Vocabulary, Reading, Listening, Writing, Speaking, and Readiness)
+- [x] implemented `start_daily_mission`, `submit_mission_step`, and `resolve_mission_next_action`
+- [x] enforced pre-submission payload protection in `DailyMissionSerializer` (omitting answer keys before submission)
+- [x] routed `/api/missions/` with `today/`, `today/start/`, `today/submit-step/`, and `today/reset/`
+- [x] 8 automated unit tests in `apps/api/missions/tests.py` passing with 0 errors
+- [x] 148 full backend regression tests passing
+- [x] rebuilt `/today` in `apps/web/app/(learner)/today/page.tsx` implementing full Wireframe 2 flow (overview -> task -> instant feedback -> complete)
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/today/today.module.css` with 0 raw hex colors
+- [x] configured redirect from `/learner/today` to `/today` in `apps/web/next.config.ts`
+- [x] adhered strictly to Product Constitution Rule #8 transparent educational claims
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `scripts/check_day20.py` and secret scan passing
+
+**Success gate:** returning learners answer "What should I do now?" in 5 seconds via a dominant Today mission on Home, proceed through an explainable 3-step interactive practice flow, receive instant pedagogical feedback without answer leaks, and finish with a clear next best action.
+
+**Next day after Git push:** Day 21 — Spaced Repetition System (SRS) Vocabulary Foundation.

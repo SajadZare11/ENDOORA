@@ -20,5 +20,32 @@ class DailyMission(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together=("user","mission_date")
-        ordering=("-mission_date",)
+        unique_together = ("user", "mission_date")
+        ordering = ("-mission_date",)
+
+    def get_tasks(self) -> list[dict]:
+        if isinstance(self.evidence_reason, dict):
+            return self.evidence_reason.get("tasks", [])
+        return []
+
+    def get_target_skill(self) -> str:
+        if isinstance(self.evidence_reason, dict):
+            return self.evidence_reason.get("target_skill", "general")
+        return "general"
+
+    def get_current_task_index(self) -> int:
+        if isinstance(self.evidence_reason, dict):
+            return int(self.evidence_reason.get("current_task_index", 0))
+        return 0
+
+    def get_completed_task_ids(self) -> list[str]:
+        if isinstance(self.evidence_reason, dict):
+            return list(self.evidence_reason.get("completed_task_ids", []))
+        return []
+
+    def is_all_completed(self) -> bool:
+        tasks = self.get_tasks()
+        if not tasks:
+            return False
+        completed_ids = set(self.get_completed_task_ids())
+        return all(str(t.get("id")) in completed_ids for t in tasks)

@@ -758,15 +758,48 @@ Commit: `21d9fb3` — `Day 18: Implement writing placement section with rich tex
 - `python scripts/scan_secrets.py` — PASS
 - `git diff --check` — PASS
 
+## Day 20: Adaptive Daily Mission Engine & Wireframe 2 Interactive Experience (2026-08-21)
+
+### Daily Mission Engine & Architecture
+- Implemented `DailyMission` helper methods in `apps/api/missions/models.py` (`get_tasks`, `get_target_skill`, `get_current_task_index`, `get_completed_task_ids`, `is_all_completed`).
+- Implemented adaptive daily mission builder `build_daily_mission(user)` in `apps/api/missions/services.py`:
+  - Dynamically evaluates placement results across 6 sections to target learner's lowest scoring skill.
+  - Serves diagnostic readiness onboarding mission for unplaced learners with clear CTA to `/placement`.
+  - Generates 3 curated pedagogical micro-tasks per skill (Grammar, Vocabulary, Reading, Listening, Writing, Speaking, and Readiness).
+- Implemented `start_daily_mission(user)` transitioning status from `ready` to `in_progress`.
+- Implemented `submit_mission_step(user, task_id, selected_option_id)` with instant evaluation, feedback, explanation, and progress advancement.
+- Implemented `resolve_mission_next_action(user, mission)` deriving dominant next best action upon completion (`/placement`, `/review`, or `/path`).
+
+### Pre-Submission Payload Protection & Serializers
+- `DailyMissionSerializer` in `apps/api/missions/serializers.py` enforces payload protection: answer keys and explanations are omitted from uncompleted tasks.
+- `MissionStepSubmitSerializer` and `MissionStepFeedbackSerializer` validate step submission and instant feedback payloads.
+
+### Interactive Frontend Wireframe 2 Implementation
+- Rebuilt `/today` in `apps/web/app/(learner)/today/page.tsx` with Wireframe 2 multi-stage flow:
+  - Mission Overview: title, focus skill badge, "Why this mission?" explanation, 3-task roadmap preview, and start/continue CTA.
+  - Active Task View: step progress bar (`گام ۱ از ۳`), prompt with LTR isolation, radio option selector, check answer CTA.
+  - Instant Feedback: correct/warning badge, answer reveal, pedagogical rule explanation, and next task button.
+  - Complete Screen: celebration badge, practice summary, Rule #8 educational disclosure, and prominent Next Best Action card.
+- 100% tokenized CSS in `apps/web/app/(learner)/today/today.module.css` with 0 raw hex colors and logical CSS properties.
+- Added Next.js redirect from `/learner/today` to `/today` in `apps/web/next.config.ts`.
+
+### Day 20 Verification Evidence
+- Pre-Day-20 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day20\20260821-120000\endoora-pre-day20.dump` (107,603 bytes).
+- Unit tests pass: 8 missions unit tests (`apps/api/missions/tests.py`) pass.
+- Regression tests pass: 148 full backend tests pass with 0 errors.
+- Pre-submission payload protection verified: zero answer keys leaked prior to submission.
+- Frontend build passes (108/108 static routes generated), 0 lint errors/warnings, 0 typecheck errors.
+- Static checks pass: `scripts/check_day20.py`, `check_day19.py`, `check_day18.py`, ..., `check-public-site.mjs`, `check-design-tokens.mjs`, `scan_secrets.py`.
+
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 19: Implement personal learning path engine and interactive learner path experience`
+`Day 20: Build adaptive daily mission engine, payload protection, and Wireframe 2 interactive experience`
 
 ## Exact next day
 
-**Day 20 — Daily Mission.**
+**Day 21 — Spaced Repetition System (SRS) Vocabulary Foundation.**
 
-Do not begin Day 20 until the Day 19 commit is pushed and `git status --short --branch`
+Do not begin Day 21 until the Day 20 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
