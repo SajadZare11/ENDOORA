@@ -56,7 +56,7 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     id: "grammar-a1-001",
     section: "grammar",
     question_type: "single_choice",
-    title_fa: "بخش دستور زبان",
+    title_fa: "بخش دستور زبان (Grammar)",
     title_en: "Grammar Section",
     prompt_fa: "جای خالی را با شکل درست فعل کامل کنید.",
     prompt_en: "She ___ to school every day.",
@@ -67,10 +67,52 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     options: ["go", "goes", "going", "gone"],
   },
   {
+    id: "grammar-a2-001",
+    section: "grammar",
+    question_type: "single_choice",
+    title_fa: "بخش دستور زبان (Grammar)",
+    title_en: "Grammar Section",
+    prompt_fa: "جای خالی را با زمان گذشته مناسب کامل کنید.",
+    prompt_en: "Yesterday, they ___ to the national museum.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "A2",
+    difficulty: "easy",
+    options: ["went", "gone", "go", "goes"],
+  },
+  {
+    id: "grammar-b1-001",
+    section: "grammar",
+    question_type: "single_choice",
+    title_fa: "بخش دستور زبان (Grammar)",
+    title_en: "Grammar Section",
+    prompt_fa: "جای خالی را با ساختار زمان مناسب کامل کنید.",
+    prompt_en: "I ___ in this city since 2018.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "B1",
+    difficulty: "medium",
+    options: ["live", "have lived", "lived", "was living"],
+  },
+  {
+    id: "grammar-b2-001",
+    section: "grammar",
+    question_type: "single_choice",
+    title_fa: "بخش دستور زبان (Grammar)",
+    title_en: "Grammar Section",
+    prompt_fa: "جمله شرطی را کامل کنید.",
+    prompt_en: "If she had prepared earlier, she ___ the challenging examination.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "B2",
+    difficulty: "hard",
+    options: ["passed", "would pass", "would have passed", "will pass"],
+  },
+  {
     id: "vocabulary-a1-001",
     section: "vocabulary",
     question_type: "single_choice",
-    title_fa: "بخش واژگان",
+    title_fa: "بخش واژگان (Vocabulary)",
     title_en: "Vocabulary Section",
     prompt_fa: "کلمه مناسب با تعریف را انتخاب کنید.",
     prompt_en: "A place where you borrow books is a...",
@@ -81,19 +123,91 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     options: ["library", "kitchen", "station", "garden"],
   },
   {
+    id: "vocabulary-a2-001",
+    section: "vocabulary",
+    question_type: "single_choice",
+    title_fa: "بخش واژگان (Vocabulary)",
+    title_en: "Vocabulary Section",
+    prompt_fa: "واژه مناسب سفر بین‌المللی را انتخاب کنید.",
+    prompt_en: "You need to present a valid ___ when traveling across international borders.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "A2",
+    difficulty: "easy",
+    options: ["passport", "receipt", "menu", "pillow"],
+  },
+  {
+    id: "vocabulary-b1-001",
+    section: "vocabulary",
+    question_type: "single_choice",
+    title_fa: "بخش واژگان (Vocabulary)",
+    title_en: "Vocabulary Section",
+    prompt_fa: "هم‌آیی واژگانی مناسب را انتخاب کنید.",
+    prompt_en: "The research team made an extraordinary ___ that accelerated scientific progress.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "B1",
+    difficulty: "medium",
+    options: ["discovery", "destination", "departure", "discount"],
+  },
+  {
+    id: "vocabulary-b2-001",
+    section: "vocabulary",
+    question_type: "single_choice",
+    title_fa: "بخش واژگان (Vocabulary)",
+    title_en: "Vocabulary Section",
+    prompt_fa: "صفت دقیق متناسب با موقعیت را انتخاب کنید.",
+    prompt_en: "The instructions were somewhat ___, leaving team members unsure of next steps.",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    cefr_level: "B2",
+    difficulty: "hard",
+    options: ["ambiguous", "ancient", "abundant", "accurate"],
+  },
+  {
     id: "reading-a1-001",
     section: "reading",
     question_type: "single_choice",
-    title_fa: "بخش خواندن و درک مطلب",
+    title_fa: "بخش درک مطلب (Reading)",
     title_en: "Reading Section",
-    prompt_fa: "متن زیر را بخوانید و به سوال پاسخ دهید.",
+    prompt_fa: "متن کوتاه را بخوانید و به سوال پاسخ دهید.",
     prompt_en: "Why does Ali study English?",
     instructions_fa: "یک گزینه را انتخاب کنید.",
     instructions_en: "Choose one option.",
-    passage: "Ali studies English every evening because he wants to travel.",
+    passage: "Ali studies English every evening because he wants to travel the world next summer.",
     cefr_level: "A1",
-    difficulty: "medium",
+    difficulty: "easy",
     options: ["Travel", "Work", "Cooking", "Sports"],
+  },
+  {
+    id: "reading-a2-001",
+    section: "reading",
+    question_type: "single_choice",
+    title_fa: "بخش درک مطلب (Reading)",
+    title_en: "Reading Section",
+    prompt_fa: "بر اساس جدول زمانی متن، به سوال پاسخ دهید.",
+    prompt_en: "When can visitors use the library on Saturdays?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    passage: "The city library is open from 8:00 AM to 6:00 PM on weekdays, and from 9:00 AM to 1:00 PM on Saturdays. It remains closed on Sundays.",
+    cefr_level: "A2",
+    difficulty: "medium",
+    options: ["9:00 AM to 1:00 PM", "8:00 AM to 6:00 PM", "Closed all day", "Until 8:00 PM"],
+  },
+  {
+    id: "reading-b1-001",
+    section: "reading",
+    question_type: "single_choice",
+    title_fa: "بخش درک مطلب (Reading)",
+    title_en: "Reading Section",
+    prompt_fa: "بر اساس مفهوم متن، پاسخ صحیح را انتخاب کنید.",
+    prompt_en: "According to the text, what is a primary social benefit of community gardens?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    passage: "Urban community gardens have expanded across many cities in recent years. Beyond providing fresh produce, they foster meaningful neighborhood connections and offer a calming green environment for residents.",
+    cefr_level: "B1",
+    difficulty: "hard",
+    options: ["Strengthening neighborhood connections", "Lowering property taxes", "Eliminating local markets", "Reducing automobile traffic"],
   },
 ];
 
@@ -101,31 +215,32 @@ const t = {
   fa: {
     heroTag: "موتور هوشمند تعیین سطح Endoora",
     heroTitle: "شناخت دقیق نقطه شروع یادگیری",
-    heroDesc: "این آزمون چندمرحله‌ای به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
+    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان و درک مطلب) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
     questionCounter: "سوال",
     of: "از",
     section: "بخش",
-    grammar: "گرامر",
+    grammar: "دستور زبان",
     vocabulary: "واژگان",
-    reading: "خواندن و درک مطلب",
+    reading: "درک مطلب",
     next: "سوال بعدی",
     prev: "سوال قبلی",
     submit: "ثبت نهایی آزمون",
     submitting: "در حال ثبت نهایی...",
     savedStatus: "پاسخ‌ها به صورت خودکار با مهر زمانی سرور ذخیره می‌شوند.",
+    savedStatusShort: "ذخیره خودکار زنده",
     offlineWarning: "اتصال اینترنت قطع است. آخرین پاسخ تأییدشده حفظ می‌شود؛ نگران از دست رفتن اطلاعات نباشید.",
     expiredAlert: "نشست آزمون شما منقضی شده است. برای حفظ اعتبار آموزشی، لطفا یک نشست جدید شروع کنید.",
     startNewSession: "شروع نشست جدید",
     completedTitle: "آزمون تعیین سطح با موفقیت ثبت شد!",
-    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری ثبت گردیدند. اکنون می‌توانید گزارش شفاف سطح خود را مشاهده کرده یا به داشبورد بروید.",
-    viewReport: "مشاهده گزارش شفاف سطح",
+    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان و درک مطلب ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
+    viewReport: "مشاهده کارنامه مهارتی",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
   },
   en: {
     heroTag: "Endoora Adaptive Placement Engine",
     heroTitle: "Discover Your True Starting Point",
-    heroDesc: "This multi-stage test is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
+    heroDesc: "This multi-stage test (Grammar, Vocabulary, and Reading) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
     questionCounter: "Question",
     of: "of",
     section: "Section",
@@ -137,11 +252,12 @@ const t = {
     submit: "Submit test",
     submitting: "Submitting...",
     savedStatus: "Answers are saved automatically with server timestamps.",
+    savedStatusShort: "Live Autosave",
     offlineWarning: "You are currently offline. Your last confirmed answers are preserved.",
     expiredAlert: "Your placement session has expired. Please start a new session to ensure accurate evaluation.",
     startNewSession: "Start new session",
     completedTitle: "Placement test submitted successfully!",
-    completedDesc: "Your answers have been securely recorded. You can now inspect your transparent skill report or return to your dashboard.",
+    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, and Reading. You can now inspect your skill report.",
     viewReport: "View skill report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
@@ -417,11 +533,30 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
             <div className={styles.grid}>
               {/* Question Card */}
               <div className={styles.questionCard}>
+                {/* Multi-stage Section Tabs */}
+                <div className={styles.sectionNav} role="tablist" aria-label={locale === "fa" ? "مراحل آزمون" : "Test sections"}>
+                  <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
+                    {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
+                  </div>
+                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (question.section === "reading" ? styles.sectionPillDone : "")}`}>
+                    {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
+                  </div>
+                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : ""}`}>
+                    {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
+                  </div>
+                  <div className={styles.autosaveBadge}>
+                    <span className={styles.autosaveDot} />
+                    {copy.savedStatusShort}
+                  </div>
+                </div>
+
                 <div className={styles.counter}>
                   <span>
                     {copy.questionCounter} {currentIndex + 1} {copy.of} {questions.length}
                   </span>
-                  <span className={styles.sectionBadge}>{question.section}</span>
+                  <span className={styles.sectionBadge}>
+                    {locale === "fa" ? (question.title_fa || question.section) : (question.title_en || question.section)}
+                  </span>
                 </div>
 
                 <div className={styles.progressBarContainer}>
@@ -430,6 +565,12 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                     style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
                   />
                 </div>
+
+                {question.prompt_fa && (
+                  <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginBlockEnd: "var(--space-2)" }}>
+                    {question.prompt_fa}
+                  </p>
+                )}
 
                 {question.passage && (
                   <div className={styles.passage} dir="ltr">

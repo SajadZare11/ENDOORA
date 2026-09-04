@@ -23,10 +23,12 @@ export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; p
         <h1>{copy.title}</h1>
         <p>{copy.summary}</p>
         <div className={styles.heroActions}>
-          <Link className={styles.primaryButton} href={localizedPath(locale, pageKey === "placement" ? "/#waitlist" : "/placement")}>
-            {pageKey === "placement" ? (isFa ? "ثبت علاقه‌مندی" : "Join early access") : (isFa ? "تعیین سطح" : "Placement")}
+          <Link className={styles.primaryButton} href={pageKey === "placement" ? "/placement/demo" : localizedPath(locale, "/placement")}>
+            {pageKey === "placement" ? (isFa ? "شروع آزمون تعیین سطح" : "Start placement test") : (isFa ? "تعیین سطح" : "Placement")}
           </Link>
-          <Link className={styles.secondaryButton} href={localizedPath(locale, "/how-it-works")}>{isFa ? "چرخه Endoora" : "How Endoora works"}</Link>
+          <Link className={styles.secondaryButton} href={localizedPath(locale, pageKey === "placement" ? "/placement/report" : "/how-it-works")}>
+            {pageKey === "placement" ? (isFa ? "مشاهده کارنامه مهارتی" : "View skill report") : (isFa ? "چرخه Endoora" : "How Endoora works")}
+          </Link>
         </div>
       </section>
 

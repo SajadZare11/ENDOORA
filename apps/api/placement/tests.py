@@ -268,3 +268,72 @@ class PlacementSessionEngineTests(APITestCase):
             self.assertIn("prompt_en", item)
             self.assertIn("options", item)
             self.assertIn("section", item)
+
+    def test_questions_filtered_by_section_grammar_vocab_reading(self):
+        self.client.force_authenticate(user=self.user_a)
+
+        for sec in ("grammar", "vocabulary", "reading"):
+            res = self.client.get(f"/api/placement/questions/?section={sec}")
+            self.assertEqual(res.status_code, status.HTTP_200_OK)
+            items = res.json()
+            self.assertGreater(len(items), 0)
+            for itm in items:
+                self.assertEqual(itm["section"], sec)
+                self.assertIn("difficulty", itm)
+                self.assertIn("cefr_level", itm)
+                # Ensure difficulty is separate from CEFR
+                self.assertIn(itm["difficulty"], ("easy", "medium", "hard"))
+                self.assertIn(itm["cefr_level"], ("A1", "A2", "B1", "B2"))
+
+    def test_session_summary_endpoint_user_isolation(self):
+        self.client.force_authenticate(user=self.user_a)
+        res = self.client.post("/api/placement/sessions/")
+        session_id = res.json()["id"]
+
+        # User B cannot access User A's session summary
+        self.client.force_authenticate(user=self.user_b)
+        res_b = self.client.get(f"/api/placement/sessions/{session_id}/summary/")
+        self.assertEqual(res_b.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_session_summary_active_and_submitted_evaluation(self):
+        self.client.force_authenticate(user=self.user_a)
+        res = self.client.post("/api/placement/sessions/")
+        session_id = res.json()["id"]
+
+        # 1. Active summary: shows answered progress without scoring
+        res_summary_active = self.client.get(f"/api/placement/sessions/{session_id}/summary/")
+        self.assertEqual(res_summary_active.status_code, status.HTTP_200_OK)
+        active_data = res_summary_active.json()
+        self.assertFalse(active_data["is_submitted"])
+        self.assertIsNone(active_data["overall_percentage"])
+        self.assertIn("grammar", active_data["sections"])
+        self.assertIn("vocabulary", active_data["sections"])
+        self.assertIn("reading", active_data["sections"])
+
+        # 2. Answer questions across sections
+        self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
+            "idempotency_key": str(uuid.uuid4()),
+            "question_key": "grammar-a1-001",
+            "answer_value": {"selected_option": "goes"},
+        }, format="json")
+
+        self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
+            "idempotency_key": str(uuid.uuid4()),
+            "question_key": "vocabulary-a1-001",
+            "answer_value": {"selected_option": "library"},
+        }, format="json")
+
+        # 3. Submit session
+        res_submit = self.client.post(f"/api/placement/sessions/{session_id}/submit/")
+        self.assertEqual(res_submit.status_code, status.HTTP_200_OK)
+
+        # 4. Submitted summary: provides evaluated section breakdown and evidence
+        res_summary_sub = self.client.get(f"/api/placement/sessions/{session_id}/summary/")
+        self.assertEqual(res_summary_sub.status_code, status.HTTP_200_OK)
+        sub_data = res_summary_sub.json()
+        self.assertTrue(sub_data["is_submitted"])
+        self.assertIsNotNone(sub_data["overall_percentage"])
+        self.assertGreater(len(sub_data["evidence"]), 0)
+
+        # No premature CEFR claims
+        self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", sub_data["notice"])

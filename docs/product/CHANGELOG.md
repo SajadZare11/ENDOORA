@@ -368,3 +368,23 @@ None. No Endoora domain data existed yet.
 - Verified idempotent answer saving on network retries.
 - Verified Next.js production build (108 static routes generated), typecheck, and lint pass with 0 errors.
 - Static check `scripts/check_day14.py`, secret scan, and git diff cleanliness pass.
+
+## Day 15 — Implement grammar, vocabulary, and reading placement sections
+- Calibrated 11 core placement items in `data/placement/core-items.json`: 4 Grammar, 4 Vocabulary, and 3 Reading with passages.
+- Separated `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Implemented honest assessment scoring services in `apps/api/assessment/services.py` producing empirical section results, accurate score breakdowns, and transparent educational disclaimers.
+- Adhered strictly to Product Constitution Rule #8: no premature, definitive, or official CEFR claims before full multi-stage assessment completion.
+- Connected placement submission flow to store learner responses in `PlacementResponse` model for permanent audit records.
+- Added session summary API endpoint `GET /api/placement/sessions/<id>/summary/` strictly scoped to session owner.
+- Added section filtering to questions endpoint (`?section=grammar|vocabulary|reading`) with pre-submission sanitization preventing answer leaks.
+- Upgraded `PlacementRunner` component with multi-stage section pills, Persian prompt support, and live autosave badge.
+- Redesigned `/placement/report` into a responsive, live-connected skill report page.
+- Polished all 11 learner subpages (`/progress`, `/review`, `/mistakes`, `/badges`, `/twin`, `/practice-ai`, `/writing`, `/roleplay`, `/voice`, `/listening`, `/pronunciation`) into full `.learner-card` layouts with design-token styling and accessible Persian-first UI.
+
+## Day 15 verification
+- Pre-Day-15 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`.
+- Backend unit tests pass: 5 assessment tests, 16 placement tests, and all 129 regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero answer keys, solutions, rubrics, or explanations exposed.
+- User isolation verified: User B cannot access or summarize User A's placement session.
+- Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
+- Automated static checks `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

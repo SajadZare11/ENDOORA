@@ -263,3 +263,27 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** multi-stage placement session engine provides secure, resumable, and idempotent test sessions linked to versioned content.
 
 **Next day after Git push:** Day 15 — Implement grammar, vocabulary, and reading placement sections.
+
+## Day 15 — Implement grammar, vocabulary, and reading placement sections
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-15 PostgreSQL backup outside Git
+- [x] calibrated 11 core placement items in `data/placement/core-items.json` across Grammar, Vocabulary, and Reading
+- [x] strictly separated `difficulty` from `cefr_level`
+- [x] implemented honest section scoring in `apps/api/assessment/services.py`
+- [x] adhered to Product Constitution Rule #8 on no premature CEFR claims
+- [x] stored responses in `PlacementResponse` model for audit trail and learner profile
+- [x] created user-isolated `PlacementSessionSummaryView` (`GET /api/placement/sessions/<id>/summary/`)
+- [x] section filtering on question endpoints (`?section=grammar|vocabulary|reading`)
+- [x] pre-submission anti-leak payload protection across API endpoints
+- [x] enhanced `PlacementRunner` with multi-stage section pills, Persian prompts, and live autosave badge
+- [x] responsive, live-connected `/placement/report` with honest assessment disclosures
+- [x] polished all learner subpages into functional, tokenized, accessible layouts
+- [x] 129 backend regression tests passing
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `check_day15.py` and secret scan passing
+
+**Success gate:** learners can complete multi-stage Grammar, Vocabulary, and Reading placement sections with autosave, server-side scoring, and honest evidence-based reports without leaked answers or premature CEFR claims.
+
+**Next day after Git push:** Day 16 — Implement listening placement section with audio player and waveform.

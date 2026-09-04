@@ -1,0 +1,113 @@
+﻿import uuid
+from io import StringIO
+from django.core.management import call_command
+from django.test import TestCase
+
+from assessment.services import (
+    PlacementSectionResult,
+    calculate_section_result,
+    evaluate_placement_answers,
+    item_key_to_uuid,
+    normalize_answer,
+)
+
+
+class AssessmentServicesTests(TestCase):
+    def test_item_key_to_uuid_is_deterministic(self):
+        uid1 = item_key_to_uuid("grammar-a1-001")
+        uid2 = item_key_to_uuid("grammar-a1-001")
+        self.assertEqual(uid1, uid2)
+        self.assertIsInstance(uid1, uuid.UUID)
+
+        # Existing valid UUID string passes through
+        raw_uuid = str(uuid.uuid4())
+        self.assertEqual(str(item_key_to_uuid(raw_uuid)), raw_uuid)
+
+    def test_normalize_answer(self):
+        self.assertEqual(normalize_answer("  Goes "), "goes")
+        self.assertEqual(normalize_answer({"selected_option": "Travel "}), "travel")
+        self.assertEqual(normalize_answer(None), "")
+
+    def test_calculate_section_result(self):
+        answers = [
+            {"is_correct": True, "objective": "grammar.present_simple"},
+            {"is_correct": False, "objective": "grammar.past_simple"},
+            {"is_correct": True, "objective": "grammar.present_simple"},
+        ]
+        res = calculate_section_result("grammar", answers, total=4)
+        self.assertEqual(res.section, "grammar")
+        self.assertEqual(res.answered, 3)
+        self.assertEqual(res.total, 4)
+        self.assertEqual(res.correct, 2)
+        self.assertEqual(res.score_percentage, 50.0)
+        self.assertEqual(res.objectives_covered, ["grammar.past_simple", "grammar.present_simple"])
+
+    def test_evaluate_placement_answers_all_sections(self):
+        items = [
+            {
+                "id": "grammar-a1-001",
+                "section": "grammar",
+                "difficulty": "easy",
+                "cefr_level": "A1",
+                "objective": "grammar.present_simple",
+                "correct_option": "goes",
+            },
+            {
+                "id": "grammar-a2-001",
+                "section": "grammar",
+                "difficulty": "easy",
+                "cefr_level": "A2",
+                "objective": "grammar.past_simple",
+                "correct_option": "went",
+            },
+            {
+                "id": "vocab-a1-001",
+                "section": "vocabulary",
+                "difficulty": "easy",
+                "cefr_level": "A1",
+                "objective": "vocabulary.daily_routine",
+                "correct_option": "library",
+            },
+            {
+                "id": "reading-a1-001",
+                "section": "reading",
+                "difficulty": "medium",
+                "cefr_level": "A1",
+                "objective": "reading.main_idea",
+                "correct_option": "Travel",
+            },
+        ]
+        learner_answers = {
+            "grammar-a1-001": "goes",
+            "grammar-a2-001": "go",  # wrong
+            "vocab-a1-001": "library",
+            # reading not answered
+        }
+
+        eval_result = evaluate_placement_answers(items, learner_answers)
+        self.assertEqual(eval_result["total_questions"], 4)
+        self.assertEqual(eval_result["total_answered"], 3)
+        self.assertEqual(eval_result["total_correct"], 2)
+        self.assertEqual(eval_result["overall_percentage"], 50.0)
+
+        # Evidence records
+        self.assertEqual(len(eval_result["evidence"]), 4)
+
+        # Grammar section checks
+        grammar_sec = eval_result["sections"]["grammar"]
+        self.assertEqual(grammar_sec["total"], 2)
+        self.assertEqual(grammar_sec["answered"], 2)
+        self.assertEqual(grammar_sec["correct"], 1)
+        self.assertEqual(grammar_sec["score_percentage"], 50.0)
+
+        # Notice does not make premature CEFR claims
+        self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", eval_result["notice"])
+
+    def test_seed_placement_sections_command(self):
+        out = StringIO()
+        call_command("seed_placement_sections", stdout=out)
+        output = out.getvalue()
+        self.assertIn("Validated 11 placement items across sections", output)
+        self.assertIn("grammar: 4", output)
+        self.assertIn("vocabulary: 4", output)
+        self.assertIn("reading: 3", output)

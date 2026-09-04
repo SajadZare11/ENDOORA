@@ -8,6 +8,8 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from assessment.models import PlacementResponse
+from assessment.services import evaluate_placement_answers, item_key_to_uuid
 from questions.models import QuestionVersion
 from .models import PlacementAnswer, PlacementSession
 from .serializers import (
@@ -16,9 +18,11 @@ from .serializers import (
     PlacementQuestionItemSerializer,
     PlacementSectionAdvanceSerializer,
     PlacementSessionSerializer,
+    PlacementSessionSummarySerializer,
 )
 
 CORE_ITEMS_PATH = getattr(settings, "REPO_ROOT", Path(__file__).resolve().parents[3]) / "data" / "placement" / "core-items.json"
+
 
 
 class PlacementSessionListCreateView(APIView):
@@ -200,6 +204,27 @@ class PlacementSessionSubmitView(APIView):
         session.status = PlacementSession.Status.SUBMITTED
         session.save(update_fields=["status", "updated_at"])
 
+        # Record learner evidence into PlacementResponse for audit & learning profile
+        if CORE_ITEMS_PATH.is_file():
+            try:
+                raw_items = json.loads(CORE_ITEMS_PATH.read_text(encoding="utf-8-sig"))
+                answers_map = {ans.question_key: ans.answer_value.get("selected_option") for ans in session.answers.all()}
+                eval_res = evaluate_placement_answers(raw_items, answers_map)
+                for ev in eval_res.get("evidence", []):
+                    item_id_uuid = item_key_to_uuid(ev["item_id"])
+                    raw_val = answers_map.get(ev["item_id"], {})
+                    PlacementResponse.objects.update_or_create(
+                        user_id=request.user.id,
+                        section=ev["section"],
+                        item_id=item_id_uuid,
+                        defaults={
+                            "answer": {"selected_option": raw_val} if isinstance(raw_val, str) else (raw_val or {}),
+                            "is_correct": ev["is_correct"],
+                        },
+                    )
+            except Exception:
+                pass
+
         return Response(PlacementSessionSerializer(session).data, status=status.HTTP_200_OK)
 
 
@@ -217,7 +242,7 @@ class PlacementQuestionsView(APIView):
         items = []
         if CORE_ITEMS_PATH.is_file():
             try:
-                raw_data = json.loads(CORE_ITEMS_PATH.read_text(encoding="utf-8"))
+                raw_data = json.loads(CORE_ITEMS_PATH.read_text(encoding="utf-8-sig"))
                 for raw_item in raw_data:
                     sec = raw_item.get("section", "").lower()
                     if section_filter and sec != section_filter:
@@ -228,18 +253,25 @@ class PlacementQuestionsView(APIView):
                         status=QuestionVersion.Status.PUBLISHED,
                     ).first()
 
+                    sec_titles_fa = {
+                        "grammar": "بخش دستور زبان (Grammar)",
+                        "vocabulary": "بخش واژگان (Vocabulary)",
+                        "reading": "بخش درک مطلب (Reading)",
+                    }
+                    title_fa = sec_titles_fa.get(sec, f"بخش {sec}")
+
                     # Sanitize: never include correct_option or answer_key
                     items.append({
                         "id": raw_item.get("id"),
                         "section": sec,
                         "question_type": "single_choice",
-                        "title_fa": f"بخش {sec}",
-                        "title_en": f"{sec.capitalize()} section",
-                        "prompt_fa": "بهترین گزینه را انتخاب کنید.",
+                        "title_fa": title_fa,
+                        "title_en": f"{sec.capitalize()} Section",
+                        "prompt_fa": raw_item.get("prompt_fa", "بهترین گزینه را انتخاب کنید."),
                         "prompt_en": raw_item.get("question", ""),
                         "instructions_fa": "یک گزینه را انتخاب کنید.",
                         "instructions_en": "Choose one option.",
-                        "cefr_level": "A1",
+                        "cefr_level": raw_item.get("cefr_level", "A1"),
                         "difficulty": raw_item.get("difficulty", "easy"),
                         "passage": raw_item.get("passage", ""),
                         "options": raw_item.get("options", []),
@@ -249,4 +281,68 @@ class PlacementQuestionsView(APIView):
                 items = []
 
         serializer = PlacementQuestionItemSerializer(items, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class PlacementSessionSummaryView(APIView):
+    """
+    GET /api/placement/sessions/<uuid:session_pk>/summary/
+    Retrieves section-by-section breakdown (Grammar, Vocabulary, Reading) and learner evidence.
+    Enforces strict user isolation (returns 404 for unauthorized users).
+    Adheres strictly to Product Constitution Rule #8: avoids premature or definitive CEFR claims.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, session_pk):
+        session = get_object_or_404(PlacementSession, pk=session_pk, user=request.user)
+        session.check_expiration()
+
+        raw_items = []
+        if CORE_ITEMS_PATH.is_file():
+            try:
+                raw_items = json.loads(CORE_ITEMS_PATH.read_text(encoding="utf-8-sig"))
+            except Exception:
+                raw_items = []
+
+        answers_map = {ans.question_key: ans.answer_value.get("selected_option") for ans in session.answers.all()}
+        eval_result = evaluate_placement_answers(raw_items, answers_map)
+
+        is_sub = session.status == PlacementSession.Status.SUBMITTED
+
+        # Redact exact answers from active sessions to avoid leakage before submission
+        sections_payload = {}
+        for sec_name, sec_data in eval_result.get("sections", {}).items():
+            sections_payload[sec_name] = {
+                "section": sec_name,
+                "total": sec_data["total"],
+                "answered": sec_data["answered"],
+                "correct": sec_data["correct"] if is_sub else 0,
+                "score_percentage": sec_data["score_percentage"] if is_sub else 0.0,
+                "objectives_covered": sec_data["objectives_covered"],
+            }
+
+        evidence_payload = []
+        if is_sub:
+            evidence_payload = eval_result.get("evidence", [])
+
+        payload = {
+            "session_id": session.id,
+            "status": session.status,
+            "is_submitted": is_sub,
+            "current_section": session.current_section,
+            "started_at": session.started_at,
+            "expires_at": session.expires_at,
+            "is_expired": session.is_expired,
+            "total_questions": eval_result.get("total_questions", 0),
+            "total_answered": eval_result.get("total_answered", 0),
+            "overall_percentage": eval_result.get("overall_percentage") if is_sub else None,
+            "sections": sections_payload,
+            "evidence": evidence_payload,
+            "notice": eval_result.get(
+                "notice",
+                "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان و درک مطلب است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
+            ),
+        }
+
+        serializer = PlacementSessionSummarySerializer(payload)
         return Response(serializer.data, status=status.HTTP_200_OK)

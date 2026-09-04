@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 14 — Build the multi-stage placement-test session engine
-- **Day 14 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–13 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, and versioned question bank
-- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more`
+- **Roadmap day completed:** Day 15 — Implement grammar, vocabulary, and reading placement sections
+- **Day 15 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–14 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, and placement session engine
+- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 15 adds no schema migration)
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -13,7 +13,7 @@
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features working through Day 14
+## Features working through Day 15
 
 ### Foundation and public experience
 
@@ -354,15 +354,54 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - Responsive layout at 360 px without horizontal overflow — PASS
 - Zero raw hex colors in placement stylesheets — PASS
 
+## Day 15 — Grammar, vocabulary, and reading placement sections (complete and verified)
+
+- Calibrated 11 core placement items across Grammar (4), Vocabulary (4), and Reading (3 with passages) in `data/placement/core-items.json`.
+- Kept `difficulty` (`easy`, `medium`, `hard`) strictly separated from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Implemented honest assessment scoring in `apps/api/assessment/services.py`: `calculate_section_result` and `evaluate_placement_answers` compute empirical scores, correct item counts, total counts, and standard educational disclaimers.
+- Strictly adhered to Product Constitution Rule #8: avoided premature or official CEFR claims before full multi-stage assessment is completed.
+- Linked placement submissions to `PlacementResponse` in the `assessment` app for permanent audit trail and profile linkage.
+- Added session summary API endpoint `GET /api/placement/sessions/<id>/summary/` strictly scoped to `request.user`.
+- Added section filtering (`?section=grammar|vocabulary|reading`) to question API with pre-submission sanitization (no leaked answer keys or explanations).
+- Upgraded frontend `PlacementRunner` with multi-stage section navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب), Persian prompts, and live autosave badge.
+- Redesigned `/placement/report` into a responsive, live-connected skill report page with honest assessment disclosures and dashboard navigation.
+- Polished all learner subpages (`/progress`, `/review`, `/mistakes`, `/badges`, `/twin`, `/practice-ai`, `/writing`, `/roleplay`, `/voice`, `/listening`, `/pronunciation`) with full `.learner-card` layouts, tokenized styling, and accessible Persian-first UI.
+- Maintained verified pre-Day-15 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`.
+
+## Day 15 verification evidence
+
+### Backend & scoring services
+- Pre-Day-15 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`
+- `seed_placement_sections` command verified: 11 items across 3 sections seeded cleanly
+- `python manage.py test assessment` — PASS (5/5 unit tests)
+- `python manage.py test placement` — PASS (16/16 unit tests)
+- `python manage.py test` — PASS (129/129 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (no schema drift)
+- Learner pre-submission payloads contain no answer keys, solutions, rubrics, or explanations — PASS
+- Session summary API strictly scoped to session owner (User B gets 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day15.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 14: Build the multi-stage placement-test session engine and polish website`
+`Day 15: Implement grammar, vocabulary, and reading placement sections and polish website`
 
 ## Exact next day
 
-**Day 15 — Implement grammar, vocabulary, and reading placement sections.**
+**Day 16 — Implement listening placement section with audio player and waveform.**
 
-Do not begin Day 15 until the Day 14 commit is pushed and `git status --short --branch`
+Do not begin Day 16 until the Day 15 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
