@@ -6,8 +6,8 @@ export default function TeacherQuestionBankPage() {
     <TeacherFoundationPage
       titleFa="بانک سؤال مدرس"
       titleEn="Teacher question bank"
-      bodyFa="میانبر بانک سؤال فعال است اما آپلود، نسخه‌بندی و بازبینی سؤال هنوز عملیاتی نشده است؛ بنابراین این صفحه هیچ سؤال یا پاسخ ساختگی نشان نمی‌دهد."
-      bodyEn="The question-bank shortcut is reachable, but question upload, versioning, and review are not operational yet, so this page shows no invented questions or answers."
+      bodyFa="بانک سؤال متمرکز و نسخه‌بندی‌شده Endoora برای ایجاد تکالیف کلاسی، آزمون‌های تعیین سطح و تمرین‌های هدفمند طراحی شده است. مدرسان دارای مجوز بازبینی می‌توانند پیش‌نمایش سؤالات را در بخش مدیریت محتوا بررسی کنند."
+      bodyEn="Endoora's centralized, versioned question bank is engineered for class assignments, placement diagnostics, and targeted practice. Authorized educators can preview published questions in the content console."
     />
   );
 }

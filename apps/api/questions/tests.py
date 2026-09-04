@@ -198,6 +198,11 @@ class QuestionBankTests(TestCase):
         with self.assertRaises(ValidationError):
             version.full_clean()
 
+        for forbidden_key in ("correct_option", "solution", "explanation", "pairs", "order"):
+            version.learner_payload = {"data": {forbidden_key: "leaked_value"}}
+            with self.assertRaises(ValidationError):
+                version.full_clean()
+
     def test_submission_reveals_feedback_without_raw_answer_key(self):
         version = self.make_version(slug="day13-submit-feedback")
         version.publish(self.editor)

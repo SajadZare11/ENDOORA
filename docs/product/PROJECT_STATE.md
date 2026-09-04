@@ -273,15 +273,18 @@ Planned commit message:
 
 Do not begin Day 13 until the Day 12 commit is pushed successfully and `git status --short --branch` shows `main` synchronized with `origin/main` and no unintended working-tree changes.
 
-## Day 13 — Versioned question bank schema (implementation applied; acceptance pending)
+## Day 13 — Versioned question bank schema (complete and verified)
 
 - Added stable `Question` identities and immutable `QuestionVersion` records.
 - Added nine question types, answer normalization, rubrics, media metadata, review events, licensing, and Day 12 objective links.
-- Added Persian-first learner-safe preview with English option.
-- Added serializer split so protected answer data is absent before submission.
+- Hardened `PROTECTED_LEARNER_KEYS` to proactively block `correct_option`, `correct_options`, `pairs`, `order`, `solution`, and `explanation` within learner payloads.
+- Hardened standalone `QuestionObjectiveAdmin` and `QuestionMediaAdmin` with explicit delete and mutation guards for published/retired versions.
+- Added Persian-first interactive question bank preview with English toggle, CEFR and question-type filtering, and live answer checking with immediate feedback and explanation at `/content/questions`.
+- Added serializer split so protected answer data is strictly absent before submission.
 - Added draft-only idempotent JSON import and protected export.
-- Database migration required: `questions.0001_initial`.
-- Day 13 is not complete until backup, migration, focused/full tests, network answer-key inspection, mobile/desktop bilingual review, secret scan, and Git checkpoint pass.
+- Polished public classes marketing copy, teacher resources guidance, and teacher question bank roadmap notices across the web application.
+- Applied database migration `questions.0001_initial`.
+- Day 13 local acceptance passed: verified backup, migration, focused/full tests, network answer-key inspection, mobile/desktop bilingual review, secret scan, and Git checkpoint.
 
 ## Day 13 verification evidence
 

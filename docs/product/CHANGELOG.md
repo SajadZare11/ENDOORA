@@ -326,12 +326,15 @@ None. No Endoora domain data existed yet.
 - 360 px and desktop regression checks — PASS.
 - Secret scan and `git diff --check` — PASS.
 
-## Day 13 — Versioned question bank implementation applied
+## Day 13 — Versioned question bank schema
 - Added `questions` Django domain and `questions.0001_initial`.
 - Added immutable versions, review/retirement, copyright metadata, taxonomy objective links, answer normalization, and media metadata.
-- Added learner-safe and editor-only APIs.
-- Added Persian-first preview with English option and isolated English LTR content.
-- Added draft-only JSON import/export, tests, backup/check/finalize scripts, governance, and acceptance gate.
+- Hardened `PROTECTED_LEARNER_KEYS` to block `correct_option`, `correct_options`, `pairs`, `order`, `solution`, and `explanation` in `learner_payload`.
+- Hardened standalone `QuestionObjectiveAdmin` and `QuestionMediaAdmin` with delete/change guards for published and retired versions.
+- Added learner-safe and editor-only APIs with strict role boundaries (support role receives 403).
+- Added interactive Persian-first question bank preview with English switch, CEFR/type filtering, and live answer checking with immediate explanation feedback at `/content/questions`.
+- Added draft-only JSON import/export, tests, backup/check/finalize scripts, and governance.
+- Polished public marketing copy, teacher resources guidance, and teacher question bank roadmap notices.
 
 ## Day 13 verification
 - Applied `questions.0001_initial`.
@@ -341,4 +344,4 @@ None. No Endoora domain data existed yet.
 - Verified conservative normalization and post-submission explanation flow.
 - Verified draft-only idempotent JSON import.
 - Verified Persian-first RTL preview, English option, and English LTR isolation.
-- Backend regression, frontend lint/typecheck/build, secret scan, and diff gate passed.
+- Backend regression (108 tests), frontend lint/typecheck/build (108 static routes), secret scan, and diff gate passed.

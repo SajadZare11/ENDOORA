@@ -20,8 +20,17 @@ PROTECTED_LEARNER_KEYS = {
     "accepted_variants",
     "correct_answer",
     "correct_answers",
+    "correct_option",
+    "correct_options",
     "is_correct",
     "rubric",
+    "pairs",
+    "order",
+    "solution",
+    "solutions",
+    "explanation",
+    "explanation_fa",
+    "explanation_en",
 }
 
 

@@ -23,8 +23,8 @@ export default function NewFixedClassFoundationPage() {
       </p>
       <div className="teacher-foundation-notice" role="status">
         {locale === "fa"
-          ? "هیچ قیمت، ظرفیت، زمان‌بندی یا کلاس ساختگی در روز ۱۰ ذخیره نمی‌شود."
-          : "Day 10 stores no invented price, capacity, schedule, or class record."}
+          ? "قیمت‌گذاری، ظرفیت و زمان‌بندی کلاس‌ها پس از احراز هویت و تأیید نهایی پروفایل مدرس فعال می‌شوند."
+          : "Class pricing, capacity, and scheduling will be configured once teacher verification is complete."}
       </div>
       <Link className="teacher-button teacher-button--secondary" href={verified ? "/teacher" : "/account/profile"}>
         {verified

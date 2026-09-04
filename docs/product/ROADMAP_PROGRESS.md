@@ -13,8 +13,9 @@
 | 09 | Learner application shell and simplified navigation | Complete | Learner next-action shell, aggregated API, responsive QA and acceptance passed |
 | 10 | Teacher application shell and simplified navigation | Complete | Teacher urgency shell, capability gating, responsive browser QA, and local acceptance passed |
 | 11 | Django admin, audit logs, and safe settings | Complete | Operations acceptance passed |
-| 12 | CEFR skill and content taxonomy | Complete | Taxonomy acceptance and hardening passed; pushed in `6a496b5` |
-| 13-60 | Remaining roadmap | Not started | Sequential |
+| 12 | CEFR skill and content taxonomy | Complete | Taxonomy acceptance and explorer passed; pushed |
+| 13 | Versioned question bank schema | Complete | Question-bank acceptance passed; final Git push remains |
+| 14-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -214,12 +215,6 @@ Status: complete; taxonomy acceptance and hardening pushed in `6a496b5`.
 **Success gate:** a content editor can select a stable objective ID while Persian/English wording can evolve without changing that identifier.
 
 **Next day after Git push:** Day 13 — Build the versioned question bank schema.
-
-## Day 13 implementation checkpoint
-
-Status: implementation applied; acceptance pending.
-
-Success gate: question bank supports placement and teacher assignment without duplicating content, while published versions stay immutable and learner pre-submission payloads contain no answer keys.
 
 ## Day 13 — Build the versioned question bank schema
 

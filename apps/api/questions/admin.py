@@ -167,6 +167,22 @@ class QuestionObjectiveAdmin(admin.ModelAdmin):
     search_fields = ("version__question__slug", "objective__slug")
     autocomplete_fields = ("version", "objective")
 
+    def has_delete_permission(self, request, obj=None):
+        if obj and obj.version.status in {
+            QuestionVersion.Status.PUBLISHED,
+            QuestionVersion.Status.RETIRED,
+        }:
+            return False
+        return super().has_delete_permission(request, obj)
+
+    def has_change_permission(self, request, obj=None):
+        if obj and obj.version.status in {
+            QuestionVersion.Status.PUBLISHED,
+            QuestionVersion.Status.RETIRED,
+        }:
+            return False
+        return super().has_change_permission(request, obj)
+
 
 @admin.register(QuestionMedia)
 class QuestionMediaAdmin(admin.ModelAdmin):
@@ -174,3 +190,19 @@ class QuestionMediaAdmin(admin.ModelAdmin):
     list_filter = ("media_type", "is_learner_visible", "license_type")
     search_fields = ("version__question__slug", "asset_url", "storage_key", "source_title")
     autocomplete_fields = ("version",)
+
+    def has_delete_permission(self, request, obj=None):
+        if obj and obj.version.status in {
+            QuestionVersion.Status.PUBLISHED,
+            QuestionVersion.Status.RETIRED,
+        }:
+            return False
+        return super().has_delete_permission(request, obj)
+
+    def has_change_permission(self, request, obj=None):
+        if obj and obj.version.status in {
+            QuestionVersion.Status.PUBLISHED,
+            QuestionVersion.Status.RETIRED,
+        }:
+            return False
+        return super().has_change_permission(request, obj)
