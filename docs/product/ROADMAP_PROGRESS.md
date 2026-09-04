@@ -287,3 +287,29 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** learners can complete multi-stage Grammar, Vocabulary, and Reading placement sections with autosave, server-side scoring, and honest evidence-based reports without leaked answers or premature CEFR claims.
 
 **Next day after Git push:** Day 16 — Implement listening placement section with audio player and waveform.
+
+## Day 16 — Implement listening placement section with audio player and waveform
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-16 PostgreSQL backup outside Git
+- [x] calibrated 15 core placement items including 4 Listening items in `data/placement/core-items.json`
+- [x] generated standard PCM WAV audio assets in `apps/web/public/audio/placement/`
+- [x] strictly separated `difficulty` from `cefr_level`
+- [x] implemented server-side listening evaluation in `apps/api/assessment/services.py`
+- [x] adhered to Product Constitution Rule #8 on no premature CEFR claims
+- [x] stored listening responses in `PlacementResponse` model for audit trail and learner profile
+- [x] updated session summary endpoint to compute listening section scores and evidence
+- [x] added `?section=listening` query filtering and pre-submission payload protection (no transcript leaks)
+- [x] built `AudioWaveformPlayer` component with 32-bar visual waveform scrubber, speed control, play limit counter
+- [x] 100% tokenized CSS in `audio-player.module.css` with 0 raw hex colors
+- [x] enhanced `PlacementRunner` with 4-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening)
+- [x] live listening score, answered count, and objectives rendered in `/placement/report`
+- [x] upgraded `/listening` page with interactive sample player and dimension explorer
+- [x] 130 backend regression tests passing
+- [x] Next.js 108 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `check_day16.py` and secret scan passing
+
+**Success gate:** learners can complete interactive listening placement questions with standard in-browser audio playback, waveform scrubbing, play limit tracking, and receive empirical section scoring without leaked transcripts or false certification claims.
+
+**Next day after Git push:** Day 17 — Implement speaking placement section with audio recording and STT diagnostic.

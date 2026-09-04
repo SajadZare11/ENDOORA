@@ -385,6 +385,26 @@ None. No Endoora domain data existed yet.
 - Pre-Day-15 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day15\20260820-150000\endoora-pre-day15.dump`.
 - Backend unit tests pass: 5 assessment tests, 16 placement tests, and all 129 regression tests pass with 0 errors.
 - Pre-submission payload protection verified: zero answer keys, solutions, rubrics, or explanations exposed.
+- Automated static checks `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+
+## Day 16 — Implement listening placement section with audio player and waveform
+- Added 4 calibrated Listening test items in `data/placement/core-items.json` across CEFR levels (A1 gist, A2 detail, B1 inference, B2 academic talk), bringing total core placement items to 15.
+- Generated lightweight, standard PCM WAV audio assets in `apps/web/public/audio/placement/` for reliable client-side playback without external network latency.
+- Separated `difficulty` (`easy`, `medium`, `hard`) from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Stored audio transcripts server-side only; learner pre-submission serializers strictly purge transcripts, answer keys, solutions, and rubrics.
+- Updated assessment scoring services in `apps/api/assessment/services.py` to evaluate listening section responses and produce empirical diagnostic evidence and honest disclaimers.
+- Updated `seed_placement_sections` command to validate all 15 placement items across grammar, vocabulary, reading, and listening sections.
+- Created accessible `AudioWaveformPlayer` component with 32-bar visual amplitude scrubber, play limit enforcement (default 2 plays), speed toggle (0.8x, 1.0x, 1.2x), time display, volume controls, and keyboard navigation.
+- Created `audio-player.module.css` with 100% tokenized CSS and zero raw hex colors.
+- Enhanced `PlacementRunner` with 4-stage navigation pills (Grammar -> Vocabulary -> Reading -> Listening) and rendered `AudioWaveformPlayer` for listening items.
+- Upgraded `/placement/report` to display verified listening scores, answered counts, and target objectives.
+- Upgraded `/listening` into an interactive Listening Lab preview with an embedded sample player and CEFR dimension cards.
+- Upgraded `/placement/listening-ready` with direct navigation to placement test and listening lab.
+
+## Day 16 verification
+- Pre-Day-16 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day16\20260820-160000\endoora-pre-day16.dump`.
+- Backend unit tests pass: 6 assessment tests, 16 placement tests, and 130 full regression tests pass with 0 errors.
+- Pre-submission payload protection verified: zero transcripts, answer keys, or solutions leaked.
 - User isolation verified: User B cannot access or summarize User A's placement session.
 - Frontend Next.js production build passes (108/108 static routes generated), 0 lint warnings/errors, and 0 typecheck errors.
-- Automated static checks `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.
+- Automated static checks `check_day16.py`, `check_day15.py`, `check_day14.py`, `check_day13.py`, `check_day12.py`, `check_day11.py`, `check_day09.py`, `check-public-site.mjs`, `check-day10.mjs`, `check-day01-10.mjs`, `check-components.mjs`, `check-design-tokens.mjs`, and `scan_secrets.py` all pass.

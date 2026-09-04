@@ -8,7 +8,7 @@ from questions.models import Question, QuestionVersion
 
 
 class Command(BaseCommand):
-    help = "Seed and validate Day 15 Grammar, Vocabulary, and Reading placement test items."
+    help = "Seed and validate Grammar, Vocabulary, Reading, and Listening placement test items."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -32,7 +32,7 @@ class Command(BaseCommand):
         sections_count: dict[str, int] = {}
         for item in items:
             sec = item.get("section", "").lower()
-            if sec not in ("grammar", "vocabulary", "reading"):
+            if sec not in ("grammar", "vocabulary", "reading", "listening"):
                 raise CommandError(f"Invalid placement section in item {item.get('id')}: {sec}")
             sections_count[sec] = sections_count.get(sec, 0) + 1
 
@@ -66,12 +66,17 @@ class Command(BaseCommand):
                             "options": item.get("options", []),
                             "correct_option": item.get("correct_option"),
                             "passage": item.get("passage", ""),
+                            "audio_url": item.get("audio_url", ""),
+                            "play_limit": item.get("play_limit", 2),
+                            "transcript": item.get("transcript", ""),
                         },
                         "learner_payload": {
                             "prompt_en": item.get("question"),
                             "prompt_fa": item.get("prompt_fa", ""),
                             "options": item.get("options", []),
                             "passage": item.get("passage", ""),
+                            "audio_url": item.get("audio_url", ""),
+                            "play_limit": item.get("play_limit", 2),
                         },
                     },
                 )

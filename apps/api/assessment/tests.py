@@ -1,4 +1,4 @@
-﻿import uuid
+import uuid
 from io import StringIO
 from django.core.management import call_command
 from django.test import TestCase
@@ -103,11 +103,48 @@ class AssessmentServicesTests(TestCase):
         # Notice does not make premature CEFR claims
         self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", eval_result["notice"])
 
+    def test_evaluate_listening_placement_section(self):
+        items = [
+            {
+                "id": "listening-a1-001",
+                "section": "listening",
+                "difficulty": "easy",
+                "cefr_level": "A1",
+                "objective": "listening.gist",
+                "audio_url": "/audio/placement/listening-a1-001.wav",
+                "play_limit": 2,
+                "correct_option": "A train departure delay",
+            },
+            {
+                "id": "listening-a2-001",
+                "section": "listening",
+                "difficulty": "easy",
+                "cefr_level": "A2",
+                "objective": "listening.detail",
+                "audio_url": "/audio/placement/listening-a2-001.wav",
+                "play_limit": 2,
+                "correct_option": "9:30 AM",
+            },
+        ]
+        learner_answers = {
+            "listening-a1-001": "A train departure delay",
+            "listening-a2-001": "10:00 AM",  # wrong
+        }
+        eval_result = evaluate_placement_answers(items, learner_answers)
+        self.assertIn("listening", eval_result["sections"])
+        lis_sec = eval_result["sections"]["listening"]
+        self.assertEqual(lis_sec["total"], 2)
+        self.assertEqual(lis_sec["answered"], 2)
+        self.assertEqual(lis_sec["correct"], 1)
+        self.assertEqual(lis_sec["score_percentage"], 50.0)
+        self.assertIn("شنیداری", eval_result["notice"])
+
     def test_seed_placement_sections_command(self):
         out = StringIO()
         call_command("seed_placement_sections", stdout=out)
         output = out.getvalue()
-        self.assertIn("Validated 11 placement items across sections", output)
+        self.assertIn("Validated 15 placement items across sections", output)
         self.assertIn("grammar: 4", output)
         self.assertIn("vocabulary: 4", output)
         self.assertIn("reading: 3", output)
+        self.assertIn("listening: 4", output)

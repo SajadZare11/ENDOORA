@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
 import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
+import { AudioWaveformPlayer } from "./AudioWaveformPlayer";
 import styles from "@/components/placement/placement.module.css";
 
 type Locale = "fa" | "en";
@@ -22,6 +23,8 @@ interface PlacementQuestionItem {
   cefr_level?: string;
   difficulty?: string;
   passage?: string;
+  audio_url?: string;
+  play_limit?: number;
   options: string[];
   question_version_id?: string | null;
 }
@@ -209,19 +212,84 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
     difficulty: "hard",
     options: ["Strengthening neighborhood connections", "Lowering property taxes", "Eliminating local markets", "Reducing automobile traffic"],
   },
+  {
+    id: "listening-a1-001",
+    section: "listening",
+    question_type: "single_choice",
+    title_fa: "بخش مهارت شنیداری (Listening)",
+    title_en: "Listening Section",
+    prompt_fa: "به فایل صوتی کوتاه گوش دهید و هدف گوینده را انتخاب کنید.",
+    prompt_en: "What is the speaker announcing?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    audio_url: "/audio/placement/listening-a1-001.wav",
+    play_limit: 2,
+    cefr_level: "A1",
+    difficulty: "easy",
+    options: ["A train departure delay", "A library book return", "A dinner invitation", "A weather forecast"],
+  },
+  {
+    id: "listening-a2-001",
+    section: "listening",
+    question_type: "single_choice",
+    title_fa: "بخش مهارت شنیداری (Listening)",
+    title_en: "Listening Section",
+    prompt_fa: "بر اساس فایل صوتی، زمان شروع جلسه را مشخص کنید.",
+    prompt_en: "At what time does the meeting start tomorrow morning?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    audio_url: "/audio/placement/listening-a2-001.wav",
+    play_limit: 2,
+    cefr_level: "A2",
+    difficulty: "easy",
+    options: ["9:30 AM", "10:00 AM", "8:15 AM", "11:45 AM"],
+  },
+  {
+    id: "listening-b1-001",
+    section: "listening",
+    question_type: "single_choice",
+    title_fa: "بخش مهارت شنیداری (Listening)",
+    title_en: "Listening Section",
+    prompt_fa: "با توجه به توضیحات گوینده، نگرش او نسبت به شیوه کاری ترکیبی چیست؟",
+    prompt_en: "How does the speaker feel about the new hybrid work schedule?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    audio_url: "/audio/placement/listening-b1-001.wav",
+    play_limit: 2,
+    cefr_level: "B1",
+    difficulty: "medium",
+    options: ["Cautiously optimistic about productivity", "Completely opposed to remote work", "Indifferent to team changes", "Confused about daily commuting"],
+  },
+  {
+    id: "listening-b2-001",
+    section: "listening",
+    question_type: "single_choice",
+    title_fa: "بخش مهارت شنیداری (Listening)",
+    title_en: "Listening Section",
+    prompt_fa: "نکته اصلی مورد تاکید سخنران در این سخنرانی علمی چیست؟",
+    prompt_en: "What main point does the speaker emphasize regarding urban biodiversity?",
+    instructions_fa: "یک گزینه را انتخاب کنید.",
+    instructions_en: "Choose one option.",
+    audio_url: "/audio/placement/listening-b2-001.wav",
+    play_limit: 2,
+    cefr_level: "B2",
+    difficulty: "hard",
+    options: ["Green corridors significantly mitigate habitat fragmentation", "Urban expansion has negligible ecological effects", "Rooftop gardens cannot support insect populations", "Artificial lighting replaces natural circadian rhythms"],
+  },
 ];
 
 const t = {
   fa: {
     heroTag: "موتور هوشمند تعیین سطح Endoora",
     heroTitle: "شناخت دقیق نقطه شروع یادگیری",
-    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان و درک مطلب) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
+    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب و شنیداری) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
     questionCounter: "سوال",
     of: "از",
     section: "بخش",
     grammar: "دستور زبان",
     vocabulary: "واژگان",
     reading: "درک مطلب",
+    listening: "شنیداری",
     next: "سوال بعدی",
     prev: "سوال قبلی",
     submit: "ثبت نهایی آزمون",
@@ -232,7 +300,7 @@ const t = {
     expiredAlert: "نشست آزمون شما منقضی شده است. برای حفظ اعتبار آموزشی، لطفا یک نشست جدید شروع کنید.",
     startNewSession: "شروع نشست جدید",
     completedTitle: "آزمون تعیین سطح با موفقیت ثبت شد!",
-    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان و درک مطلب ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
+    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب و شنیداری ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
     viewReport: "مشاهده کارنامه مهارتی",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
@@ -240,13 +308,14 @@ const t = {
   en: {
     heroTag: "Endoora Adaptive Placement Engine",
     heroTitle: "Discover Your True Starting Point",
-    heroDesc: "This multi-stage test (Grammar, Vocabulary, and Reading) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
+    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, and Listening) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
     questionCounter: "Question",
     of: "of",
     section: "Section",
     grammar: "Grammar",
     vocabulary: "Vocabulary",
     reading: "Reading Comprehension",
+    listening: "Listening",
     next: "Next question",
     prev: "Previous question",
     submit: "Submit test",
@@ -257,7 +326,7 @@ const t = {
     expiredAlert: "Your placement session has expired. Please start a new session to ensure accurate evaluation.",
     startNewSession: "Start new session",
     completedTitle: "Placement test submitted successfully!",
-    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, and Reading. You can now inspect your skill report.",
+    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, and Listening. You can now inspect your skill report.",
     viewReport: "View skill report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
@@ -538,11 +607,14 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                   <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
                     {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (question.section === "reading" ? styles.sectionPillDone : "")}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (question.section === "reading" || question.section === "listening" ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
                   </div>
-                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : ""}`}>
+                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (question.section === "listening" ? styles.sectionPillDone : "")}`}>
                     {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
+                  </div>
+                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : ""}`}>
+                    {locale === "fa" ? "۴. شنیداری" : "4. Listening"}
                   </div>
                   <div className={styles.autosaveBadge}>
                     <span className={styles.autosaveDot} />
@@ -570,6 +642,17 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                   <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginBlockEnd: "var(--space-2)" }}>
                     {question.prompt_fa}
                   </p>
+                )}
+
+                {question.audio_url && (
+                  <AudioWaveformPlayer
+                    key={question.id}
+                    src={question.audio_url}
+                    playLimit={question.play_limit || 2}
+                    title_fa={question.title_fa || "فایل صوتی سوال"}
+                    title_en={question.title_en || "Question Audio"}
+                    locale={locale}
+                  />
                 )}
 
                 {question.passage && (

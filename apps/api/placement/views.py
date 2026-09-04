@@ -257,10 +257,11 @@ class PlacementQuestionsView(APIView):
                         "grammar": "بخش دستور زبان (Grammar)",
                         "vocabulary": "بخش واژگان (Vocabulary)",
                         "reading": "بخش درک مطلب (Reading)",
+                        "listening": "بخش مهارت شنیداری (Listening)",
                     }
                     title_fa = sec_titles_fa.get(sec, f"بخش {sec}")
 
-                    # Sanitize: never include correct_option or answer_key
+                    # Sanitize: never include correct_option, answer_key, or audio transcript
                     items.append({
                         "id": raw_item.get("id"),
                         "section": sec,
@@ -274,6 +275,8 @@ class PlacementQuestionsView(APIView):
                         "cefr_level": raw_item.get("cefr_level", "A1"),
                         "difficulty": raw_item.get("difficulty", "easy"),
                         "passage": raw_item.get("passage", ""),
+                        "audio_url": raw_item.get("audio_url", ""),
+                        "play_limit": raw_item.get("play_limit", 2),
                         "options": raw_item.get("options", []),
                         "question_version_id": qv.id if qv else None,
                     })

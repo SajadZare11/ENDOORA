@@ -96,6 +96,8 @@ class PlacementQuestionItemSerializer(serializers.Serializer):
     cefr_level = serializers.CharField(default="A1")
     difficulty = serializers.CharField(default="easy")
     passage = serializers.CharField(required=False, default="")
+    audio_url = serializers.CharField(required=False, default="", allow_blank=True)
+    play_limit = serializers.IntegerField(required=False, default=2)
     options = serializers.ListField(child=serializers.CharField(), required=False, default=list)
     question_version_id = serializers.UUIDField(required=False, allow_null=True)
 

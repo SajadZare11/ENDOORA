@@ -1,0 +1,222 @@
+.playerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  margin-block-end: var(--space-4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-control);
+}
+
+.limitBadge {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-control);
+}
+
+.limitExhausted {
+  color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-text);
+}
+
+.waveformWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  height: 3rem;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  user-select: none;
+}
+
+.waveformBar {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--color-border);
+  transition: height 0.15s ease, background 0.15s ease;
+  min-height: 4px;
+}
+
+.waveformBarActive {
+  background: var(--color-primary);
+}
+
+.waveformBarCurrent {
+  background: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
+}
+
+.timeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-1);
+}
+
+.mainControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 7rem;
+  height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-control);
+  font-weight: 700;
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.playButton:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.playButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.playButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.speedGroup {
+  display: inline-flex;
+  gap: var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 2px;
+  border-radius: var(--radius-control);
+}
+
+.speedButton {
+  background: transparent;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.speedButtonActive {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 700;
+}
+
+.speedButton:hover:not(.speedButtonActive) {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.speedButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
+.volumeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.volumeButton:hover {
+  background: var(--color-surface-hover);
+}
+
+.volumeButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
+.exhaustedAlert {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  border: 1px dashed var(--color-border);
+  text-align: center;
+}
+
+.errorBox {
+  padding: var(--space-3);
+  border-radius: var(--radius-control);
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-text);
+  color: var(--color-error-text);
+  font-size: var(--font-size-meta);
+  text-align: center;
+}

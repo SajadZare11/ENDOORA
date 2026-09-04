@@ -40,7 +40,7 @@ export default function ListeningReadyPage() {
                 بررسی آمادگی صوتی
               </h1>
               <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBlockEnd: "var(--space-6)" }}>
-                برای شرکت در بخش‌های شنیداری و تعاملی گفتاری در فازهای بعدی، می‌توانید اکنون وضعیت ضبط مرورگر خود را بسنجید.
+                برای شرکت در بخش‌های شنیداری آزمون تعیین سطح و تعاملات گفتاری، می‌توانید اکنون وضعیت ضبط و پخش صوتی مرورگر خود را بسنجید.
               </p>
 
               <div
@@ -70,7 +70,14 @@ export default function ListeningReadyPage() {
                   className={styles.button}
                   style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
                 >
-                  بازگشت به آزمون تعیین سطح
+                  ورود به آزمون تعیین سطح
+                </Link>
+                <Link
+                  href="/listening"
+                  className={styles.button}
+                  style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
+                >
+                  آزمایشگاه شنیداری
                 </Link>
               </div>
             </div>

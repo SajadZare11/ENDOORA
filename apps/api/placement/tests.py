@@ -261,18 +261,31 @@ class PlacementSessionEngineTests(APITestCase):
         items = res.json()
         self.assertGreater(len(items), 0)
 
-        forbidden_keys = {"correct_option", "correct_options", "answer_key", "accepted_variants", "rubric", "solution", "explanation"}
+        forbidden_keys = {
+            "correct_option",
+            "correct_options",
+            "answer_key",
+            "accepted_variants",
+            "rubric",
+            "solution",
+            "explanation",
+            "transcript",
+            "audio_script",
+        }
         for item in items:
             for forbidden in forbidden_keys:
                 self.assertNotIn(forbidden, item)
             self.assertIn("prompt_en", item)
             self.assertIn("options", item)
             self.assertIn("section", item)
+            if item["section"] == "listening":
+                self.assertTrue(item.get("audio_url", "").startswith("/audio/placement/"))
+                self.assertGreater(item.get("play_limit", 0), 0)
 
-    def test_questions_filtered_by_section_grammar_vocab_reading(self):
+    def test_questions_filtered_by_section_grammar_vocab_reading_listening(self):
         self.client.force_authenticate(user=self.user_a)
 
-        for sec in ("grammar", "vocabulary", "reading"):
+        for sec in ("grammar", "vocabulary", "reading", "listening"):
             res = self.client.get(f"/api/placement/questions/?section={sec}")
             self.assertEqual(res.status_code, status.HTTP_200_OK)
             items = res.json()
@@ -309,8 +322,9 @@ class PlacementSessionEngineTests(APITestCase):
         self.assertIn("grammar", active_data["sections"])
         self.assertIn("vocabulary", active_data["sections"])
         self.assertIn("reading", active_data["sections"])
+        self.assertIn("listening", active_data["sections"])
 
-        # 2. Answer questions across sections
+        # 2. Answer questions across sections including listening
         self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
             "idempotency_key": str(uuid.uuid4()),
             "question_key": "grammar-a1-001",
@@ -321,6 +335,12 @@ class PlacementSessionEngineTests(APITestCase):
             "idempotency_key": str(uuid.uuid4()),
             "question_key": "vocabulary-a1-001",
             "answer_value": {"selected_option": "library"},
+        }, format="json")
+
+        self.client.post(f"/api/placement/sessions/{session_id}/answers/", {
+            "idempotency_key": str(uuid.uuid4()),
+            "question_key": "listening-a1-001",
+            "answer_value": {"selected_option": "A train departure delay"},
         }, format="json")
 
         # 3. Submit session
@@ -334,6 +354,9 @@ class PlacementSessionEngineTests(APITestCase):
         self.assertTrue(sub_data["is_submitted"])
         self.assertIsNotNone(sub_data["overall_percentage"])
         self.assertGreater(len(sub_data["evidence"]), 0)
+        self.assertIn("listening", sub_data["sections"])
+        lis_res = sub_data["sections"]["listening"]
+        self.assertEqual(lis_res["correct"], 1)
 
         # No premature CEFR claims
         self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", sub_data["notice"])

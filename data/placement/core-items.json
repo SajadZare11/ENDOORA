@@ -122,5 +122,81 @@
     "prompt_fa": "بر اساس مفهوم متن، پاسخ صحیح را انتخاب کنید.",
     "options": ["Strengthening neighborhood connections", "Lowering property taxes", "Eliminating local markets", "Reducing automobile traffic"],
     "correct_option": "Strengthening neighborhood connections"
+  },
+  {
+    "id": "listening-a1-001",
+    "section": "listening",
+    "difficulty": "easy",
+    "cefr_level": "A1",
+    "objective": "listening.gist",
+    "audio_url": "/audio/placement/listening-a1-001.wav",
+    "play_limit": 2,
+    "question": "What is the speaker announcing?",
+    "prompt_fa": "به فایل صوتی کوتاه گوش دهید و هدف گوینده را انتخاب کنید.",
+    "options": [
+      "A train departure delay",
+      "A library book return",
+      "A dinner invitation",
+      "A weather forecast"
+    ],
+    "correct_option": "A train departure delay",
+    "transcript": "Attention passengers, the 3:15 train to Central Station has been delayed by fifteen minutes."
+  },
+  {
+    "id": "listening-a2-001",
+    "section": "listening",
+    "difficulty": "easy",
+    "cefr_level": "A2",
+    "objective": "listening.detail",
+    "audio_url": "/audio/placement/listening-a2-001.wav",
+    "play_limit": 2,
+    "question": "At what time does the meeting start tomorrow morning?",
+    "prompt_fa": "بر اساس فایل صوتی، زمان شروع جلسه را مشخص کنید.",
+    "options": [
+      "9:30 AM",
+      "10:00 AM",
+      "8:15 AM",
+      "11:45 AM"
+    ],
+    "correct_option": "9:30 AM",
+    "transcript": "Hi Sarah, please be reminded that our quarterly project review starts at 9:30 AM tomorrow in Conference Room B."
+  },
+  {
+    "id": "listening-b1-001",
+    "section": "listening",
+    "difficulty": "medium",
+    "cefr_level": "B1",
+    "objective": "listening.inference",
+    "audio_url": "/audio/placement/listening-b1-001.wav",
+    "play_limit": 2,
+    "question": "How does the speaker feel about the new hybrid work schedule?",
+    "prompt_fa": "با توجه به توضیحات گوینده، نگرش او نسبت به شیوه کاری ترکیبی چیست؟",
+    "options": [
+      "Cautiously optimistic about productivity",
+      "Completely opposed to remote work",
+      "Indifferent to team changes",
+      "Confused about daily commuting"
+    ],
+    "correct_option": "Cautiously optimistic about productivity",
+    "transcript": "While shifting to hybrid work required adjusting our communication routines, the flexibility has actually helped our team stay more focused and productive throughout the week."
+  },
+  {
+    "id": "listening-b2-001",
+    "section": "listening",
+    "difficulty": "hard",
+    "cefr_level": "B2",
+    "objective": "listening.academic",
+    "audio_url": "/audio/placement/listening-b2-001.wav",
+    "play_limit": 2,
+    "question": "What main point does the speaker emphasize regarding urban biodiversity?",
+    "prompt_fa": "نکته اصلی مورد تاکید سخنران در این سخنرانی علمی چیست؟",
+    "options": [
+      "Green corridors significantly mitigate habitat fragmentation",
+      "Urban expansion has negligible ecological effects",
+      "Rooftop gardens cannot support insect populations",
+      "Artificial lighting replaces natural circadian rhythms"
+    ],
+    "correct_option": "Green corridors significantly mitigate habitat fragmentation",
+    "transcript": "Urban biodiversity hinges not merely on isolated parks, but on interconnected green corridors that effectively mitigate habitat fragmentation across metropolitan zones."
   }
 ]

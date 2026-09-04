@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 15 — Implement grammar, vocabulary, and reading placement sections
-- **Day 15 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–14 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, and placement session engine
-- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 15 adds no schema migration)
+- **Roadmap day completed:** Day 16 — Implement listening placement section with audio player and waveform
+- **Day 16 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–15 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections
+- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 16 adds no schema migration)
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -13,7 +13,7 @@
 - **Default product locale:** Persian (`fa`) / RTL
 - **Optional product locale:** English (`en`) / LTR
 
-## Features working through Day 15
+## Features working through Day 16
 
 ### Foundation and public experience
 
@@ -391,17 +391,59 @@ Do not begin Day 13 until the Day 12 commit is pushed successfully and `git stat
 - `node scripts/check-components.mjs` — PASS
 - `node scripts/check-design-tokens.mjs` — PASS
 - `python scripts/check_day15.py` — PASS
+- `python scripts/check_day15.py` — PASS
+- `python scripts/scan_secrets.py` — PASS
+
+## Day 16 — Listening placement section with audio player and waveform (complete and verified)
+
+- Calibrated 15 core placement items including 4 Listening items (A1 gist, A2 detail, B1 inference, B2 academic talk) in `data/placement/core-items.json`.
+- Generated 4 standard PCM WAV audio assets in `apps/web/public/audio/placement/` providing native in-browser audio playback without external dependencies.
+- Kept `difficulty` (`easy`, `medium`, `hard`) strictly separated from `cefr_level` (`A1`, `A2`, `B1`, `B2`).
+- Stored audio transcripts server-side only; learner pre-submission payloads never leak transcripts, answer keys, solutions, or rubrics.
+- Updated assessment scoring services in `apps/api/assessment/services.py` to evaluate the `listening` section, producing empirical scores, objectives, and honest assessment disclaimers.
+- Updated `seed_placement_sections` command to validate all 15 placement items across grammar, vocabulary, reading, and listening.
+- Built accessible `AudioWaveformPlayer` component with 32-bar interactive visual waveform scrubber, play limit enforcement (default 2 plays), playback speed switching (0.8x, 1.0x, 1.2x), time readouts, and volume controls.
+- Used 100% tokenized CSS (`audio-player.module.css`) with zero raw hex colors and complete logical property support.
+- Upgraded `PlacementRunner` with 4-stage navigation pills (1. دستور زبان, 2. واژگان, 3. درک مطلب, 4. شنیداری) and rendered `AudioWaveformPlayer` for listening items.
+- Upgraded `/placement/report` to display verified listening scores, answered counts, and objectives.
+- Upgraded `/listening` into an interactive Listening Lab preview with an embedded sample player and dimension explorer.
+- Upgraded `/placement/listening-ready` with direct navigation to the placement test and listening lab.
+- Maintained verified pre-Day-16 backup at `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day16\20260820-160000\endoora-pre-day16.dump`.
+
+## Day 16 verification evidence
+
+### Backend & scoring services
+- Pre-Day-16 backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day16\20260820-160000\endoora-pre-day16.dump`
+- `seed_placement_sections` command verified: 15 items across 4 sections validated cleanly
+- `python manage.py test assessment` — PASS (6/6 unit tests)
+- `python manage.py test placement` — PASS (16/16 unit tests)
+- `python manage.py test` — PASS (130/130 regression tests)
+- `python manage.py makemigrations --check --dry-run` — PASS (0 schema drift)
+- Learner pre-submission payloads contain no audio transcripts, answer keys, solutions, or rubrics — PASS
+- Session summary API strictly scoped to session owner (User B receives 404) — PASS
+- Honest assessment disclaimer returned in all summary responses — PASS
+
+### Frontend & static gates
+- `npm run lint` — PASS (0 errors, 0 warnings)
+- `npm run typecheck` — PASS (0 errors)
+- `npm run build` — PASS (108/108 static routes generated)
+- `node scripts/check-public-site.mjs` — PASS
+- `node scripts/check-day10.mjs` — PASS
+- `node scripts/check-day01-10.mjs` — PASS
+- `node scripts/check-components.mjs` — PASS
+- `node scripts/check-design-tokens.mjs` — PASS
+- `python scripts/check_day16.py` — PASS
 - `python scripts/scan_secrets.py` — PASS
 
 ## Git checkpoint
 
 Planned commit message:
 
-`Day 15: Implement grammar, vocabulary, and reading placement sections and polish website`
+`Day 16: Implement listening placement section with audio player and waveform and polish website`
 
 ## Exact next day
 
-**Day 16 — Implement listening placement section with audio player and waveform.**
+**Day 17 — Implement speaking placement section with audio recording and STT diagnostic.**
 
-Do not begin Day 16 until the Day 15 commit is pushed and `git status --short --branch`
+Do not begin Day 17 until the Day 16 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

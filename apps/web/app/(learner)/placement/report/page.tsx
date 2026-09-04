@@ -128,6 +128,7 @@ export default function PlacementReportPage() {
   const grammar = summary?.sections?.grammar;
   const vocabulary = summary?.sections?.vocabulary;
   const reading = summary?.sections?.reading;
+  const listening = summary?.sections?.listening;
 
   return (
     <main className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
@@ -234,11 +235,25 @@ export default function PlacementReportPage() {
           </div>
 
           {/* Listening */}
-          <div className={styles.sectionCard} style={{ opacity: 0.85 }}>
+          <div className={styles.sectionCard}>
             <h3>{t.listening}</h3>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
-              {t.listeningNotice}
-            </p>
+            {summary?.is_submitted && listening?.score_percentage !== undefined ? (
+              <div>
+                <span className={styles.sectionScore}>{listening.score_percentage}%</span>
+                <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
+                  {t.answered}: {listening.answered} / {listening.total}
+                </p>
+                {listening.objectives_covered && listening.objectives_covered.length > 0 && (
+                  <div style={{ marginTop: "var(--space-3)", fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
+                    <small dir="ltr" style={{ display: "block" }}>{listening.objectives_covered.join(", ")}</small>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)" }}>
+                {summary ? `${listening?.answered || 0} / ${listening?.total || 4} ${t.answered}` : t.pending}
+              </p>
+            )}
           </div>
         </div>
 

@@ -120,5 +120,5 @@ def evaluate_placement_answers(
         "overall_percentage": overall_percentage,
         "sections": section_results,
         "evidence": evidence_items,
-        "notice": "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان و درک مطلب است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
+        "notice": "این کارنامه یک برآورد آموزشی اولیه بر اساس بخش‌های گرامر، واژگان، درک مطلب و شنیداری است و مدرک رسمی یا نهایی CEFR محسوب نمی‌شود.",
     }
