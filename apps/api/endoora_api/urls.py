@@ -62,4 +62,8 @@ urlpatterns = [
         "api/pronunciation/",
         include("pronunciation.urls")
     ),
+    path(
+        "api/gamification/",
+        include("gamification.urls")
+    ),
 ]

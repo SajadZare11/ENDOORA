@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "roleplay",
     "voice_lab",
     "pronunciation",
+    "gamification",
     "srs",
     "ai_gateway",
     "mistake_genome",

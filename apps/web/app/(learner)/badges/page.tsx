@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "../learner-subpages.module.css";
 
@@ -25,6 +25,24 @@ export default function BadgesPage() {
   const isFa = locale === "fa";
 
   const [activeFilter, setActiveFilter] = useState<"all" | "unlocked" | "in_progress">("all");
+  const [currentLevel, setCurrentLevel] = useState<number>(1);
+  const [levelTitle, setLevelTitle] = useState<string>("Novice Explorer");
+
+  useEffect(() => {
+    async function loadLevel() {
+      try {
+        const res = await fetch("/api/gamification/summary/");
+        if (res.ok) {
+          const profile = await res.json();
+          if (profile.current_level) setCurrentLevel(profile.current_level);
+          if (profile.level_title_en) setLevelTitle(isFa ? profile.level_title_fa : profile.level_title_en);
+        }
+      } catch {
+        // Fallback
+      }
+    }
+    loadLevel();
+  }, [isFa]);
 
   const placementDone =
     data.path_steps?.find((step) => step.id === "placement")?.state === "complete";
@@ -172,9 +190,14 @@ export default function BadgesPage() {
                 : "Endoora milestones unlock solely based on verified linguistic evidence and authentic learning commitment."}
             </p>
           </div>
-          <span className={`${styles.heroBadge} ${styles.heroBadgeSuccess}`}>
-            {isFa ? `${totalUnlocked} از ${BADGES.length} نشان کسب‌شده` : `${totalUnlocked} of ${BADGES.length} Unlocked`}
-          </span>
+          <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
+            <span className={`${styles.heroBadge} ${styles.heroBadgeSuccess}`}>
+              🎖️ {isFa ? `سطح ${currentLevel}: ${levelTitle}` : `Level ${currentLevel}: ${levelTitle}`}
+            </span>
+            <span className={`${styles.heroBadge} ${styles.heroBadgeSuccess}`}>
+              {isFa ? `${totalUnlocked} از ${BADGES.length} نشان کسب‌شده` : `${totalUnlocked} of ${BADGES.length} Unlocked`}
+            </span>
+          </div>
         </div>
 
         <div className={styles.actionRow}>

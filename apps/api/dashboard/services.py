@@ -6,6 +6,7 @@ from typing import Any
 from django.db.models import Count, Q
 from django.utils import timezone
 
+from gamification.models import LearnerLevel, LearnerStreak, XPTransaction
 from learner_twin.models import LearnerTwin
 from missions.models import DailyMission
 from placement.models import PlacementSession
@@ -257,18 +258,26 @@ def build_learner_home(user) -> dict[str, Any]:
         "assignment": None,
         "next_class": None,
         "active_course": None,
-        "xp_available": False,
-        "xp": 0,
-        "streak_days": 0,
+        "xp_available": XPTransaction.objects.filter(learner=user).exists(),
+        "xp": (
+            LearnerLevel.objects.filter(learner=user).values_list("total_xp", flat=True).first()
+            if XPTransaction.objects.filter(learner=user).exists()
+            else 0
+        ) or 0,
+        "streak_days": (
+            LearnerStreak.objects.filter(learner=user).values_list("current_streak", flat=True).first()
+            if LearnerStreak.objects.filter(learner=user).exists()
+            else 0
+        ) or 0,
         "notifications_available": False,
         "notification_count": 0,
         "limitations_fa": [
             "تا وقتی شواهد واقعی یادگیری ثبت نشده، هیچ نمره یا سطح ساختگی نشان داده نمی‌شود.",
-            "تکلیف، کلاس، دوره، XP و اعلان‌ها فقط بعد از ساخته‌شدن دامنه واقعی خود فعال می‌شوند.",
+            "تکلیف، کلاس، دوره و اعلان‌ها فقط بعد از ساخته‌شدن دامنه واقعی خود فعال می‌شوند.",
         ],
         "limitations_en": [
             "No invented score or level is shown before real learning evidence exists.",
-            "Assignments, classes, courses, XP and notifications activate only after their real domains exist.",
+            "Assignments, classes, courses and notifications activate only after their real domains exist.",
         ],
         "generated_at": now,
     }

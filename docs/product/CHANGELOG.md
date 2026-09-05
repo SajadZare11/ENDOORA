@@ -1,5 +1,42 @@
 # Endoora Changelog
 
+## Day 28 — Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
+
+### Added
+- Complete Gamification Engine v1 backend models in `apps/api/gamification/models.py`:
+  - `XPCategory`: Granular activity tags (`mission`, `roleplay`, `srs`, `pronunciation`, `writing`, `placement`, `streak_bonus`, `system_adjustment`).
+  - `XPTransaction`: Append-only, financial-grade immutable XP ledger entries with unique `source_event` idempotency keys preventing double-award exploits, network retries, or replaying activities.
+  - `LearnerStreak`: Daily learning streak tracker evaluated in `Asia/Tehran` timezone, featuring automatic grace freeze shields (`freeze_credits`) protecting learners against accidental streak breakage.
+  - `LearnerLevel`: Cumulative XP balance, level progression indices, and transparent educational titles in English and Persian compliant with Product Constitution Rule #8 (Honest Assessment).
+- Initial database migration in `apps/api/gamification/migrations/0001_initial.py`.
+- Service layer engine in `apps/api/gamification/services.py` (`GamificationService`):
+  - 20-level pedagogical progression curve from Level 1 (*Novice Explorer* / *کاوشگر نوآموز*) to Level 20 (*Legendary Scholar* / *دانشمند اسطوره‌ای*).
+  - Idempotent `award_xp()` method with atomic database transactions and automatic level/streak cache refresh.
+  - Timezone-aware `record_activity()` managing consecutive days, same-day no-op, freeze shield consumption, and 7-day milestone freeze bonuses.
+  - `get_learner_gamification_profile()` aggregating comprehensive metrics, levels catalog, and Rule #7/#8 disclaimers.
+  - Legacy `XPService.award()` backward compatibility wrapper.
+- REST API views and serializers in `apps/api/gamification/views.py`, `serializers.py`, and `urls.py`:
+  - `GET /api/gamification/summary/`: Comprehensive gamification profile with safe zero-state fallback for guests.
+  - `GET /api/gamification/ledger/`: Paginated immutable XP audit log.
+  - `POST /api/gamification/award/`: Protected endpoint for validated learning event awards.
+  - `GET /api/gamification/levels/`: Public directory of all 20 levels and thresholds.
+- Dynamic integration with Learner Dashboard (`apps/api/dashboard/services.py`):
+  - Connects `xp`, `xp_available`, and `streak_days` directly to verified gamification records while maintaining safe zero-state for first-time learners before learning activity.
+- 12 comprehensive unit and integration tests in `apps/api/gamification/tests.py` covering immutability validation, idempotency, level brackets, streak rules, freeze grace protections, API permissions, user isolation, and Rule #7/#8 compliance.
+- Overhauled Progress and Analytics page at `/progress` (`apps/web/app/(learner)/progress/page.tsx`):
+  - Dynamic level progression card with level badge, XP brackets, and animated progress bar.
+  - Daily consistency streak card with flame counter, longest streak record, freeze shield counter, and 7-day weekly activity tracker.
+  - Live **Immutable XP Audit Ledger table** displaying timestamps, activity categories, source event references, and point gains.
+  - Product Constitution Rule #7 (Calm, Anti-Addiction) and Rule #8 (Honest Assessment) educational notices.
+- Updated Badges page at `/badges` (`apps/web/app/(learner)/badges/page.tsx`) displaying the learner's live level badge and educational title.
+- Dedicated 100% tokenized CSS module `apps/web/app/(learner)/progress/progress.module.css` with 0 raw hex color literals and logical properties only.
+- Complete technical and threat model documentation in `docs/gamification/xp-ledger.md`.
+- Automated Day 28 contract verification test suite in `scripts/check_day28.py` and pre-migration backup script `scripts/backup_day28.ps1`.
+
+### Changed
+- Total backend test suite grew from 226 to 238 passing tests with 0 errors across 16 applications.
+- Registered `"gamification"` in `INSTALLED_APPS` and routed `api/gamification/` in root `urls.py`.
+
 ## Day 27 — Pronunciation Lab v1, Speech Intelligibility Trends & Phonetics Workbench
 
 ### Added

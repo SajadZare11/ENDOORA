@@ -28,7 +28,9 @@
 | 24 | Writing Mentor v1 & IELTS Rubric Engine | Complete | 4-criteria IELTS rubric ranges, 3-tier rewrites, voice preservation, selective Genome passed |
 | 25 | Text-Based Roleplay Universe v1 | Complete | 10 scenarios, zero mid-turn interruptions, bounded turns, deferred diagnostic report passed |
 | 26 | Build Voice Lab v1 & Voice Conversation Beta | Complete | Validated beta, upload ticket caps, text fallback, STT editing, biometric retention passed |
-| 27-60 | Remaining roadmap | Not started | Sequential |
+| 27 | Build Pronunciation Lab v1 & Speech Intelligibility Trends | Complete | Formative pacing, pauses, syllable stress, Persian L1 catalog, and genome bridge passed |
+| 28 | Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules | Complete | Financial-grade XP ledger, 20-level curve, timezone-aware streaks, freeze shields, and Rule #7/#8 compliance passed |
+| 29-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -630,4 +632,43 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** Pronunciation Lab evaluates pacing (WPM), pauses, and syllable stress trends rather than fabricating fake phonemic scores; Persian L1 challenges are pedagogically addressed; learners can practice dual-accent shadowing; challenges bridge to Mistake Genome; and all contract checks pass.
 
-**Next day after Git push:** Day 28 — Build Placement Test Adaptive Flow & Placement Engine v1.
+**Next day after Git push:** Day 28 — Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules.
+
+## Day 28 — Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day28\20260829-090000\endoora-pre-day28.dump`)
+- [x] implemented financial-grade gamification models in `apps/api/gamification/models.py`:
+  - `XPCategory`: Activity categorizations (`mission`, `roleplay`, `srs`, `pronunciation`, `writing`, `placement`, `streak_bonus`, `system_adjustment`)
+  - `XPTransaction`: Append-only immutable ledger with unique `source_event` idempotency keys preventing duplicate awarding
+  - `LearnerStreak`: Daily learning streak tracking in `Asia/Tehran` calendar days with automatic freeze shield grace credits
+  - `LearnerLevel`: Cumulative XP balance, level progression ranks, and transparent bilingual titles compliant with Rule #8
+- [x] generated and applied initial migration `apps/api/gamification/migrations/0001_initial.py` with 0 model drift
+- [x] implemented pedagogical progression service in `apps/api/gamification/services.py` (`GamificationService`):
+  - 20-level pedagogical progression curve with quadratic thresholds and bilingual pedagogical rank titles
+  - Idempotent `award_xp()` method with atomic database transactions and automatic level cache recalculation
+  - Timezone-aware `record_activity()` managing consecutive days, same-day idempotency, freeze shield consumption, and 7-day milestone bonuses
+  - `get_learner_gamification_profile()` aggregating levels catalog, streak metrics, and Rule #7/#8 educational disclaimers
+  - Legacy `XPService.award()` backward compatibility wrapper
+- [x] routed API endpoints in `apps/api/gamification/urls.py` and `apps/api/endoora_api/urls.py` at `/api/gamification/`:
+  - `GET /api/gamification/summary/`: Learner profile and gamification summary
+  - `GET /api/gamification/ledger/`: Paginated immutable XP audit log
+  - `POST /api/gamification/award/`: Validated XP award endpoint
+  - `GET /api/gamification/levels/`: Catalog of all 20 levels and XP requirements
+- [x] dynamically integrated gamification ledger with Learner Dashboard (`apps/api/dashboard/services.py`) while preserving clean zero-state for new learners
+- [x] 12 unit and integration tests in `apps/api/gamification/tests.py` passing with 0 errors
+- [x] 238 full backend regression tests passing across all 16 applications with 0 errors
+- [x] overhauled Progress and Analytics page at `/progress` (`apps/web/app/(learner)/progress/page.tsx`):
+  - Dynamic level progression card with level badge, XP brackets, and animated progress bar
+  - Daily consistency streak card with flame counter, longest streak record, freeze shield counter, and 7-day weekly activity tracker
+  - Live **Immutable XP Audit Ledger table** displaying timestamps, activity categories, source event references, and point gains
+  - Product Constitution Rule #7 (Calm, Anti-Addiction) and Rule #8 (Honest Assessment) educational notices
+- [x] updated Badges page at `/badges` (`apps/web/app/(learner)/badges/page.tsx`) displaying live level badge and educational title
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/progress/progress.module.css` with 0 raw hex colors and logical properties only
+- [x] Next.js 111 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day28.py` and regression checks `scripts/check_day14.py` through `scripts/check_day27.py` passing 100%
+- [x] comprehensive architecture documentation in `docs/gamification/xp-ledger.md` and updated `docs/product/CHANGELOG.md`
+
+**Success gate:** XP ledger is strictly append-only and immutable; awarding is 100% idempotent via `source_event` unique keys; streaks are calculated in `Asia/Tehran` calendar days with automatic freeze shields protecting against accidental streak loss; levels and XP represent effort rather than accredited diplomas (Rule #8); gamification remains calm without addictive dark patterns (Rule #7); and all contract checks pass.
+**Next day after Git push:** Day 29 — Badges, Challenges & Privacy-Safe Leaderboards.

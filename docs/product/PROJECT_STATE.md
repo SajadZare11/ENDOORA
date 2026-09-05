@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 27 — Build Pronunciation Lab v1 & Speech Intelligibility Trends
-- **Day 27 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–26 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, and Voice Lab v1 / Voice Roleplay Beta
-- **Schema version:** Day 27 adds `pronunciation.0001_initial`
+- **Roadmap day completed:** Day 28 — Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
+- **Day 28 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–27 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, and Pronunciation Lab v1 / Speech Intelligibility Workbench
+- **Schema version:** Day 28 adds `gamification.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1085,15 +1085,59 @@ Commit message:
 - Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
 - Git diff check: `git diff --check` passed with 0 errors.
 
-## Git checkpoint (Day 27)
+## Features working through Day 28
+
+### Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
+- Financial-grade gamification models in `apps/api/gamification/models.py`:
+  - `XPCategory`: Activity categorizations (`mission`, `roleplay`, `srs`, `pronunciation`, `writing`, `placement`, `streak_bonus`, `system_adjustment`).
+  - `XPTransaction`: Append-only, immutable XP ledger. Prevents mutation or deletion once persisted. Enforces deduplication and anti-exploit integrity via unique `source_event` keys.
+  - `LearnerStreak`: Daily learning streak tracking evaluated against `Asia/Tehran` calendar days, with automatic grace freeze shields (`freeze_credits`) protecting learners against accidental streak loss.
+  - `LearnerLevel`: Cached cumulative XP balance, current level progression rank, and transparent bilingual pedagogical titles in English and Persian compliant with Product Constitution Rule #8 (Honest Assessment).
+- Initial migration `apps/api/gamification/migrations/0001_initial.py` applied with 0 schema drift.
+- Pedagogical progression service in `apps/api/gamification/services.py` (`GamificationService`):
+  - 20-level pedagogical progression curve from Level 1 (*Novice Explorer* / *کاوشگر نوآموز*) to Level 20 (*Legendary Scholar* / *دانشمند اسطوره‌ای*).
+  - Idempotent `award_xp()` method with atomic database transactions and automatic level/streak cache refresh.
+  - Timezone-aware `record_activity()` managing consecutive days, same-day no-op, freeze shield consumption, and 7-day milestone freeze bonuses.
+  - `get_learner_gamification_profile()` aggregating comprehensive metrics, levels catalog, and Rule #7/#8 disclaimers.
+  - Legacy `XPService.award()` backward compatibility wrapper.
+- REST API views and serializers in `apps/api/gamification/views.py`, `serializers.py`, and `urls.py`:
+  - `GET /api/gamification/summary/`: Comprehensive gamification profile with safe zero-state fallback for guests.
+  - `GET /api/gamification/ledger/`: Paginated immutable XP audit log.
+  - `POST /api/gamification/award/`: Protected endpoint for validated learning event awards.
+  - `GET /api/gamification/levels/`: Public directory of all 20 levels and thresholds.
+- Dynamic integration with Learner Dashboard (`apps/api/dashboard/services.py`):
+  - Connects `xp`, `xp_available`, and `streak_days` directly to verified gamification records while maintaining safe zero-state (`xp_available: False`) for first-time learners before learning activity.
+
+### Frontend Gamification & Progress Experience
+- Overhauled Progress and Analytics page at `/progress` (`apps/web/app/(learner)/progress/page.tsx`):
+  - Dynamic level progression card with level badge, XP brackets, and animated progress bar.
+  - Daily consistency streak card with flame counter, longest streak record, freeze shield counter, and 7-day weekly activity tracker.
+  - Live **Immutable XP Audit Ledger table** displaying timestamps, activity categories, source event references, and point gains.
+  - Product Constitution Rule #7 (Calm, Anti-Addiction) and Rule #8 (Honest Assessment) educational notices.
+- Updated Badges page at `/badges` (`apps/web/app/(learner)/badges/page.tsx`) displaying the learner's live level badge and educational title.
+- 100% tokenized CSS module `apps/web/app/(learner)/progress/progress.module.css` with 0 raw hex color literals and logical properties only.
+
+### Day 28 Verification Evidence
+- Pre-Day-28 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day28\20260829-090000\endoora-pre-day28.dump` (107,603 bytes).
+- Backend unit tests pass: 12/12 in `apps/api/gamification/tests.py`.
+- Full backend regression suite: 238/238 tests passing across all 16 applications with 0 errors.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Production build: `npm run build` compiled 111/111 pages cleanly.
+- Daily contract checks: `scripts/check_day28.py` and `scripts/check_day14.py` through `scripts/check_day27.py` all passed.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 28)
 
 Commit message:
 
-`Day 27: Build Pronunciation Lab v1, speech intelligibility trends, and phonetics workbench`
+`Day 28: Build Gamification Engine v1, immutable XP ledger, level progression, and streak rules`
 
 ## Exact next day
 
-**Day 28 — Build Placement Test Adaptive Flow & Placement Engine v1.**
+**Day 29 — Badges, Challenges & Privacy-Safe Leaderboards.**
 
-Do not begin Day 28 until the Day 27 commit is pushed and `git status --short --branch`
+Do not begin Day 29 until the Day 28 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
