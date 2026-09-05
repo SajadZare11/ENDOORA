@@ -1,5 +1,28 @@
 # Endoora Changelog
 
+## Day 24 — Writing Mentor v1 & IELTS Rubric Engine
+
+### Added
+- Complete Writing Mentor v1 backend models in `apps/api/writing_mentor/models.py` (`WritingDraft`, `WritingAnalysis`) with draft autosave, parent-revision chaining, and word counting.
+- Formative diagnostic analysis engine (`WritingMentorService`) generating:
+  - Official IELTS 4-criteria rubric breakdown (Task Achievement, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy) with score *ranges* (e.g. Band 6.0 – 6.5) and transparent Rule #8 disclaimers.
+  - Formative CEFR level ranges (e.g. B1 – B2).
+  - Categorized error annotations with strict separation between structural grammar/lexical errors and optional stylistic recommendations.
+  - Three-tier graduated reference rewrites (A2 accessible, B2 academic, C2 nuanced) with prominent learner voice preservation notice.
+  - Structured, actionable revision tasks checklist.
+- Selective Mistake Genome integration: ONLY explicitly accepted corrections are recorded into `MistakeGenomeService.record_mistake()`; dismissed suggestions are completely omitted to prevent false pattern pollution.
+- API endpoints in `apps/api/writing_mentor/views.py` and `urls.py` routed at `/api/writing/` and `/api/writing-mentor/` (`prompts/`, `drafts/`, `drafts/<id>/analyze/`, `drafts/<id>/revise/`, `drafts/<id>/accept-correction/`, `drafts/<id>/dismiss-correction/`).
+- Backward-compatibility bridge modules in `apps/api/writing/`.
+- 10 automated unit and integration tests in `apps/api/writing_mentor/tests.py` covering score ranges, voice preservation, grammar vs style distinction, and selective Genome updates.
+- Full-featured writing studio at `/writing` (`apps/web/app/(learner)/writing/page.tsx`) with embedded rich `WritingEditor`, stopwatch/timer widget, prompt presets (A1-C2 + IELTS Task 1 & 2), live word/sentence/reading metrics, confirmation modal, interactive error actions, and revision workflow.
+- 100% tokenized CSS in `apps/web/app/(learner)/writing/writing.module.css` with 0 raw hex colors and Persian RTL layout with English LTR isolation.
+- Architecture and rubric documentation in `docs/ai/writing-rubric.md` and updated `docs/learning/writing-mentor.md`.
+- Static contract verification script in `scripts/check_day24.py` and pre-migration backup script `scripts/backup_day24.ps1`.
+
+### Changed
+- Total backend test suite grew from 139 to 149 passing tests with 0 errors across 12 applications.
+- Next.js production build cleanly compiles 110 static routes with 0 lint and 0 typecheck errors.
+
 ## Day 23 — AI Mistake Genome & Error Taxonomy Architecture
 
 ### Added

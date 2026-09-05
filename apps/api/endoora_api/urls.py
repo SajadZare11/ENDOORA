@@ -38,4 +38,12 @@ urlpatterns = [
         "api/missions/",
         include("missions.urls")
     ),
+    path(
+        "api/writing/",
+        include("writing_mentor.urls")
+    ),
+    path(
+        "api/writing-mentor/",
+        include("writing_mentor.urls")
+    ),
 ]

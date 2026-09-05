@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 23 — Build the AI Mistake Genome
-- **Day 23 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–22 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, and structured AI exercise generation
-- **Schema version:** Day 23 adds `mistake_genome.0001_initial`
+- **Roadmap day completed:** Day 24 — Build Writing Mentor v1
+- **Day 24 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–23 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, and AI Mistake Genome
+- **Schema version:** Day 24 adds `writing_mentor.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -894,13 +894,65 @@ Commit message: `Day 20: Build adaptive daily mission engine, payload protection
 
 ## Git checkpoint (Day 23)
 
+Commit message: `Day 23: Build AI Mistake Genome, L1 transfer taxonomy, dispute handling, and error hub` (commit `1fae74a`)
+
+## Day 24: Build Writing Mentor v1 & IELTS Rubric Engine (2026-08-25)
+
+### Writing Mentor Architecture & Engine
+- Implemented `WritingDraft` and `WritingAnalysis` models in `apps/api/writing_mentor/models.py`:
+  - `WritingDraft` provides draft versioning (`version`), parent-revision linking (`parent_draft`), autosave tracking, word counts, and assignment context (`prompt_id`, `target_cefr`, `mode`).
+  - `WritingAnalysis` stores diagnostic evaluations, IELTS 4-criteria rubric scores with ranges, graduated rewrites with voice preservation notices, categorized error annotations, and actionable revision tasks.
+- Generated and verified migration `apps/api/writing_mentor/migrations/0001_initial.py` with 0 model drift.
+- Implemented `WritingMentorService` in `apps/api/writing_mentor/services.py`:
+  - Built-in prompt presets library (A1 to C2 + IELTS Task 1 & Task 2).
+  - Autosave draft management and revision branching.
+  - Formative IELTS 4-criteria evaluation (Task Achievement, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy) with score ranges (e.g. Band 6.0 – 6.5).
+  - Three-tier graduated reference rewrites (A2 accessible, B2 academic, C2 nuanced) with prominent educational disclaimer: *"Reference Example for Learning — Not a replacement for your voice"*.
+  - Categorized error annotations with explicit separation between structural grammar/lexical errors and optional stylistic recommendations.
+  - Actionable revision coaching tasks checklist.
+  - Selective Mistake Genome sync: only accepted corrections call `MistakeGenomeService.record_mistake()`, while dismissed corrections are completely omitted.
+- Created backward-compatibility bridge package in `apps/api/writing/`.
+- 10 unit tests in `apps/api/writing_mentor/tests.py` passing with 0 errors.
+- Full backend test suite: 149/149 tests passing across all 12 applications.
+
+### Frontend Writing Studio & Workbench
+- Overhauled `/writing` in `apps/web/app/(learner)/writing/page.tsx`:
+  - Embedded rich `WritingEditor` component with toolbar formatting.
+  - Interactive stopwatch/exam timer with start, pause, and reset controls for timed exam practice.
+  - Mode filter (All, General English, IELTS Tasks) and CEFR level presets (A1-C2).
+  - Live metric indicators (word count, sentence count, char count, estimated reading time, sufficiency progress).
+  - Submit-for-analysis confirmation modal.
+  - Full diagnostic summary card with estimated IELTS band range and CEFR level range.
+  - IELTS 4 criteria cards with bilingual feedback.
+  - Strengths and top revision priorities.
+  - Categorized error annotations with Accept and Dismiss actions.
+  - Graduated reference rewrites (A2/B2/C2) with learner voice preservation notice.
+  - Interactive revision tasks checklist.
+  - Revision branching action to start new drafts.
+- 100% tokenized CSS in `apps/web/app/(learner)/writing/writing.module.css` with 0 raw hex colors.
+- Strict compliance with Product Constitution Rule #8 transparent educational notices.
+
+### Day 24 Verification Evidence
+- Pre-Day-24 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day24\20260825-090000\endoora-pre-day24.dump` (107,603 bytes).
+- Backend unit tests pass: 10/10 in `apps/api/writing_mentor/tests.py`.
+- Full backend regression suite: 149/149 tests passing across all 12 applications.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors), `npm run build` (110/110 static routes compiled cleanly).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Component & system checks: `node scripts/check-components.mjs`, `node scripts/check-day01-10.mjs` passed.
+- Daily contract checks: `scripts/check_day14.py` through `scripts/check_day24.py` all passed.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 24)
+
 Commit message:
 
-`Day 23: Build AI Mistake Genome, L1 transfer taxonomy, dispute handling, and error hub`
+`Day 24: Build Writing Mentor v1, IELTS 4-criteria rubric, graduated rewrites, and studio workbench`
 
 ## Exact next day
 
-**Day 24 — Build Writing Mentor v1.**
+**Day 25 — Build text-based Roleplay Universe v1.**
 
-Do not begin Day 24 until the Day 23 commit is pushed and `git status --short --branch`
+Do not begin Day 25 until the Day 24 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
