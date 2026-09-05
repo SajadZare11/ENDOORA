@@ -15,8 +15,15 @@
 | 11 | Django admin, audit logs, and safe settings | Complete | Operations acceptance passed |
 | 12 | CEFR skill and content taxonomy | Complete | Taxonomy acceptance and explorer passed; pushed |
 | 13 | Versioned question bank schema | Complete | Question-bank acceptance passed; pushed |
-| 14 | Multi-stage placement session engine | Complete | Placement session acceptance passed; ready for push |
-| 15-60 | Remaining roadmap | Not started | Sequential |
+| 14 | Multi-stage placement session engine | Complete | Placement session acceptance passed; pushed |
+| 15 | Grammar, vocabulary, and reading placement sections | Complete | Scoring, session summary, and report passed; pushed |
+| 16 | Listening placement section with waveform audio player | Complete | Listening engine, audio scrubber, and report passed; pushed |
+| 17 | Speaking placement section with audio recorder & STT | Complete | Voice diagnostic, STT preview, and report passed; pushed |
+| 18 | Writing placement section with rich editor & scoring | Complete | Rich writing editor, CEFR evaluation, and report passed; pushed |
+| 19 | Personal learning path engine & interactive experience | Complete | Placement-derived path, timeline, and growth skills passed; pushed |
+| 20 | Adaptive daily mission engine & Wireframe 2 experience | Complete | Daily mission planner, payload protection, and Wireframe 2 passed; pushed |
+| 21 | SRS vocabulary engine & full website UI/UX overhaul | Complete | Transparent SM-2, leech handling, approval inbox, vocabulary hub, and UI/UX overhaul passed |
+| 22-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -418,4 +425,30 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** returning learners answer "What should I do now?" in 5 seconds via a dominant Today mission on Home, proceed through an explainable 3-step interactive practice flow, receive instant pedagogical feedback without answer leaks, and finish with a clear next best action.
 
-**Next day after Git push:** Day 21 — Spaced Repetition System (SRS) Vocabulary Foundation.
+## Day 21 — Spaced Repetition System (SRS) Vocabulary Engine & Full Website UI/UX Overhaul
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified pre-Day-21 PostgreSQL backup outside Git (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day21\20260822-090000\endoora-pre-day21.dump`)
+- [x] implemented `SrsCandidate`, enhanced `SrsItem`, and `SrsReview` in `apps/api/srs/models.py`
+- [x] enforced lemma and part-of-speech deduplication with unique database constraint
+- [x] implemented candidate extraction pipeline with traceable source sentences
+- [x] implemented learner candidate approval/ignore gate preventing the "Auto-saving every word" trap
+- [x] implemented transparent SM-2 interval scheduler with ratings: 1=Again, 2=Hard, 3=Good, 4=Easy
+- [x] implemented lapse counter and leech detection (`is_leech=True` when `lapse_count >= 4`)
+- [x] implemented anti-spam protection against rapid burst clicks (<300ms)
+- [x] implemented bad AI meaning correction and personal context deletion
+- [x] integrated `srs_due_count` into `DailyMissionSerializer` and `/today` UI
+- [x] generated Django migration `0002_srscandidate_alter_srsitem_options_and_more.py`
+- [x] 10 unit tests in `apps/api/srs/tests.py` passing
+- [x] 113 full backend regression tests passing
+- [x] built interactive Vocabulary Hub in `apps/web/app/(learner)/vocabulary/page.tsx` with 4 tabs
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/vocabulary/vocabulary.module.css` with 0 raw hex colors
+- [x] upgraded `/review` with in-place meaning editor, transparent interval previews, and leech warning badges
+- [x] completed rigorous end-to-end UI/UX overhaul across public, learner, teacher, and account pages
+- [x] Next.js 109 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static check `scripts/check_day21.py`, secret scan, and `git diff --check` passing
+
+**Success gate:** learners can extract candidate vocabulary from real writing, conversation, and reading activity, approve cards into an active SRS deck with editable meanings, review with transparent SM-2 intervals, and have difficult leeches flagged for active sentence synthesis rather than repetitive flashcards.
+
+**Next day after Git push:** Day 22 — Build the structured AI exercise-generation service.

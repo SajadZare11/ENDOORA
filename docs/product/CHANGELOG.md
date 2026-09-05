@@ -1,5 +1,28 @@
 # Endoora Changelog
 
+## Day 21 — Spaced Repetition System (SRS) Vocabulary Engine & Full Website UI/UX Overhaul
+
+### Added
+- Complete Spaced Repetition System (SRS) backend models (`SrsCandidate`, `SrsItem`, `SrsReview`) in `apps/api/srs/models.py`.
+- Learner approval inbox (`status: pending | approved | ignored`) protecting against auto-save deck bloat.
+- Lemma and part-of-speech deduplication with unique database constraint `unique_learner_lemma_pos`.
+- Transparent SM-2 review scheduler with rating scale: 1=Again, 2=Hard, 3=Good, 4=Easy, and next interval previews.
+- Lapse tracking and leech detection (`is_leech=True` when `lapse_count >= 4`) with dedicated pedagogical remedy routing.
+- Anti-spam guard rejecting rapid burst review submissions (<300ms).
+- Candidate vocabulary extraction pipeline preserving traceable source sentences and activity origins.
+- In-place editing of bilingual card meanings (`meaning_fa`, `example_sentence`) and complete personal context deletion.
+- Integration of `srs_due_count` into `DailyMissionSerializer` and `/today` UI.
+- Interactive Vocabulary Hub at `/vocabulary` with Candidate Inbox, Active Deck, Extract & Add Word, and Leech Recovery tabs.
+- Upgraded SRS Review Runner at `/review` with vocabulary bank link, editable meaning drawer, and leech warning badges.
+- Comprehensive UI/UX overhaul across public, learner, teacher, and account pages.
+- 10 automated unit tests in `apps/api/srs/tests.py`.
+- Static contract check script `scripts/check_day21.py` and documentation in `docs/learning/srs-rules.md`.
+
+### Changed
+- Web application route count increased to 109 static routes.
+- Daily Mission overview (`/today`) now highlights due SRS vocabulary cards with direct review action.
+- Centralized design tokens and logical CSS enforced across all modified pages with zero raw hex colors.
+
 ## Day 04 — Accessible component library
 
 ### Added

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AdminTaxonomyPage() {
   return (
-    <main style={{ minHeight: "100vh", backgroundColor: "var(--color-bg, #f8fafc)" }}>
+    <main style={{ minBlockSize: "100vh", backgroundColor: "var(--color-canvas)" }}>
       <TaxonomyExplorer initialLocale="fa" />
     </main>
   );

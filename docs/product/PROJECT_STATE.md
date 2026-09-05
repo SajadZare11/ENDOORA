@@ -791,15 +791,64 @@ Commit: `21d9fb3` — `Day 18: Implement writing placement section with rich tex
 - Frontend build passes (108/108 static routes generated), 0 lint errors/warnings, 0 typecheck errors.
 - Static checks pass: `scripts/check_day20.py`, `check_day19.py`, `check_day18.py`, ..., `check-public-site.mjs`, `check-design-tokens.mjs`, `scan_secrets.py`.
 
+## Git checkpoint (Day 20)
+
+Commit message: `Day 20: Build adaptive daily mission engine, payload protection, and Wireframe 2 interactive experience` (commit `f00d611`)
+
+## Day 21: Spaced Repetition System (SRS) Vocabulary Engine & Full Website UI/UX Overhaul (2026-08-22)
+
+### SRS Vocabulary Engine & Architecture
+- Implemented `SrsCandidate`, `SrsItem`, and `SrsReview` in `apps/api/srs/models.py`:
+  - `SrsCandidate` provides a learner approval inbox (`status: pending | approved | ignored`) preventing the "Auto-saving every word" failure trap.
+  - Enforced lemma and part-of-speech deduplication with `UniqueConstraint(fields=["learner", "lemma", "part_of_speech"])`.
+  - Implemented transparent interval calculation method `calculate_next_intervals()` on `SrsItem`.
+  - Added lapse counter `lapse_count`, leech flag `is_leech`, and `leech_action` triggering when `lapse_count >= 4`.
+  - Stored traceable source sentences (`source_text`) and activity origins (`source_type`).
+  - Added `SrsReview` recording `rating` (1=Again, 2=Hard, 3=Good, 4=Easy), previous/new intervals, ease factors, and `response_time_ms`.
+- Implemented core services in `apps/api/srs/services.py`:
+  - `review_item(item, rating, response_time_ms)` with SM-2 scheduling, leech flagging, and anti-spam guard.
+  - `extract_candidates(learner, text, source_type)` with tokenization, stop-word filtering, simple lemmatization, and candidate deduplication.
+  - `approve_candidate(candidate_id, learner, custom_meaning, custom_example)` and `ignore_candidate(candidate_id, learner)`.
+  - `edit_srs_item(item_id, learner, meaning_fa, example_sentence)` enabling correction of flawed machine meanings.
+  - `delete_srs_item(item_id, learner)` ensuring card deletion permanently removes personal source contexts.
+  - `get_srs_stats(learner)` providing deck counts for dashboard and Today mission integration.
+- Integrated `srs_due_count` into `DailyMissionSerializer` in `apps/api/missions/serializers.py` and rendered an active SRS review card in `/today`.
+- Added database migration `apps/api/srs/migrations/0002_srscandidate_alter_srsitem_options_and_more.py`.
+- Wrote 10 automated unit tests in `apps/api/srs/tests.py` covering deduplication, approval, SM-2 ratings, leech threshold, bad AI meaning editing, source sentence traceability, personal context deletion, user isolation, and anti-spam.
+
+### Frontend Vocabulary Hub & Review Experience
+- Built `/vocabulary` in `apps/web/app/(learner)/vocabulary/page.tsx`:
+  - 4 tabs: Candidate Inbox (approval/ignore gate), Active Deck (search, filters, audio), Extract & Add Word, Leech Recovery.
+  - 100% tokenized CSS in `apps/web/app/(learner)/vocabulary/vocabulary.module.css` with 0 raw hex colors and logical CSS.
+- Upgraded `/review` in `apps/web/app/(learner)/review/page.tsx`:
+  - Added direct link to Vocabulary Bank (`/vocabulary`).
+  - Added in-place meaning correction button and modal for AI error fixes.
+  - Displayed transparent next intervals on all 4 rating buttons (Again, Hard, Good, Easy).
+  - Displayed traceable source context and leech alert warning badges.
+- Upgraded `/today` in `apps/web/app/(learner)/today/page.tsx` with prominent SRS review callout card and due count indicator.
+
+### End-to-End UI/UX Audit & Polish
+- Overhauled and verified all website pages: Public marketing pages, Auth & Onboarding, Learner subpages (`/twin`, `/mistakes`, `/writing`, `/voice`, `/pronunciation`, `/listening`, `/roleplay`, `/progress`, `/badges`), Account hub pages (`/account/library`, `/account/usage`, `/account/plan`, `/account/billing`), Teacher portal pages (`/teacher/classes`, `/teacher/fixed-classes/new`, `/teacher/question-bank`, `/teacher/resources`), and Community (`/community`).
+- Verified zero raw hex colors, full token compliance, 14 AA contrast pairs, RTL Persian first with English LTR isolation, responsive 360px to 1440px layout, and Product Constitution Rule #8 adherence.
+
+### Day 21 Verification Evidence
+- Pre-Day-21 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day21\20260822-090000\endoora-pre-day21.dump` (107,603 bytes).
+- Unit tests pass: 10/10 SRS tests in `apps/api/srs/tests.py`.
+- Full backend regression suite: 113/113 tests passing with 0 errors.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors), `npm run build` (109/109 static routes compiled cleanly).
+- Static contract checks: `scripts/check_day21.py`, `scripts/check_day20.py`, `check_day19.py`, ..., `check-design-tokens.mjs`, `check-components.mjs`, `check-day01-10.mjs`, `scan_secrets.py`, `git diff --check`.
+
 ## Git checkpoint
 
-Planned commit message:
+Commit message:
 
-`Day 20: Build adaptive daily mission engine, payload protection, and Wireframe 2 interactive experience`
+`Day 21: Build SRS vocabulary engine, transparent SM-2 scheduler, leech recovery, and full website UI/UX overhaul`
 
 ## Exact next day
 
-**Day 21 — Spaced Repetition System (SRS) Vocabulary Foundation.**
+**Day 22 — Build the structured AI exercise-generation service.**
 
-Do not begin Day 21 until the Day 20 commit is pushed and `git status --short --branch`
+Do not begin Day 22 until the Day 21 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+

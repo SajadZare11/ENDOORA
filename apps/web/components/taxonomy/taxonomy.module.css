@@ -1,5 +1,5 @@
 .taxonomyContainer {
-  width: min(var(--content-width, 1200px), calc(100% - (2 * var(--space-6, 1.5rem))));
+  inline-size: min(var(--content-width, 1200px), calc(100% - (2 * var(--space-6, 1.5rem))));
   margin-inline: auto;
   padding-block: var(--space-8, 2rem) var(--space-16, 4rem);
 }
@@ -14,7 +14,7 @@
   gap: var(--space-2, 0.5rem);
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-action-blue, #2563eb);
+  color: var(--color-action);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-block-end: var(--space-2, 0.5rem);
@@ -24,15 +24,15 @@
   margin: 0;
   font-size: clamp(1.85rem, 3vw, 2.5rem);
   font-weight: 800;
-  color: var(--color-text, #0f172a);
+  color: var(--color-text);
   line-height: 1.25;
 }
 
 .headerSection p {
   margin-block: var(--space-3, 0.75rem) 0;
-  color: var(--color-muted, #475569);
+  color: var(--color-muted);
   font-size: 1.05rem;
-  max-width: 65ch;
+  max-inline-size: 65ch;
   line-height: 1.6;
 }
 
@@ -49,22 +49,22 @@
   gap: var(--space-2, 0.5rem);
   padding: var(--space-1, 0.25rem) var(--space-3, 0.75rem);
   border-radius: var(--radius-full, 9999px);
-  background-color: var(--color-surface-subtle, #f1f5f9);
-  border: 1px solid var(--color-border, #e2e8f0);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
   font-size: 0.85rem;
-  color: var(--color-text, #0f172a);
+  color: var(--color-text);
 }
 
 .statBadge strong {
-  color: var(--color-action-blue, #2563eb);
+  color: var(--color-action);
 }
 
 .controlsBar {
   display: flex;
   flex-direction: column;
   gap: var(--space-4, 1rem);
-  background: var(--color-surface, #ffffff);
-  border: 1px solid var(--color-border, #e2e8f0);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg, 1rem);
   padding: var(--space-5, 1.25rem);
   margin-block-end: var(--space-8, 2rem);
@@ -82,30 +82,30 @@
   flex: 1 1 240px;
   min-height: 44px;
   padding-inline: var(--space-4, 1rem);
-  border: 1px solid var(--color-border, #cbd5e1);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md, 0.5rem);
   font-size: 0.95rem;
-  background-color: var(--color-surface, #ffffff);
-  color: var(--color-text, #0f172a);
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 .searchInput:focus {
-  outline: 2px solid var(--color-action-blue, #2563eb);
+  outline: 2px solid var(--color-action);
   outline-offset: 1px;
 }
 
 .filterSelect {
   min-height: 44px;
   padding-inline: var(--space-3, 0.75rem);
-  border: 1px solid var(--color-border, #cbd5e1);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md, 0.5rem);
   font-size: 0.9rem;
-  background-color: var(--color-surface, #ffffff);
-  color: var(--color-text, #0f172a);
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 .filterSelect:focus {
-  outline: 2px solid var(--color-action-blue, #2563eb);
+  outline: 2px solid var(--color-action);
   outline-offset: 1px;
 }
 
@@ -116,7 +116,7 @@
   justify-content: space-between;
   gap: var(--space-3, 0.75rem);
   padding-block-start: var(--space-2, 0.5rem);
-  border-block-start: 1px solid var(--color-border-subtle, #f1f5f9);
+  border-block-start: 1px solid var(--color-border);
 }
 
 .pillGroup {
@@ -128,24 +128,24 @@
 .pillBtn {
   min-height: 34px;
   padding-inline: var(--space-3, 0.75rem);
-  border: 1px solid var(--color-border, #cbd5e1);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-full, 9999px);
-  background: var(--color-surface, #ffffff);
-  color: var(--color-muted, #475569);
+  background: var(--color-surface);
+  color: var(--color-muted);
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .pillBtn:hover {
-  border-color: var(--color-action-blue, #2563eb);
-  color: var(--color-action-blue, #2563eb);
+  border-color: var(--color-action);
+  color: var(--color-action);
 }
 
 .pillBtnActive {
-  background: var(--color-action-blue, #2563eb);
-  border-color: var(--color-action-blue, #2563eb);
-  color: #ffffff;
+  background: var(--color-action);
+  border-color: var(--color-action);
+  color: var(--color-action-text);
 }
 
 .nodeGrid {
@@ -158,15 +158,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3, 0.75rem);
-  background: var(--color-surface, #ffffff);
-  border: 1px solid var(--color-border, #e2e8f0);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg, 0.75rem);
   padding: var(--space-5, 1.25rem);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nodeCard:hover {
-  border-color: var(--color-action-blue, #2563eb);
+  border-color: var(--color-action);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
 }
 
@@ -187,8 +187,8 @@
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-sm, 4px);
-  background: var(--color-surface-subtle, #f1f5f9);
-  color: var(--color-muted, #475569);
+  background: var(--color-canvas);
+  color: var(--color-muted);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: capitalize;
@@ -198,8 +198,8 @@
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-sm, 4px);
-  background: color-mix(in srgb, var(--color-learning-teal, #0d9488) 15%, transparent);
-  color: var(--color-learning-teal, #0d9488);
+  background: color-mix(in srgb, var(--color-learning-teal) 15%, transparent);
+  color: var(--color-learning-teal);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -208,14 +208,14 @@
   margin: 0;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-text, #0f172a);
+  color: var(--color-text);
   line-height: 1.4;
 }
 
 .nodeAltTitle {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--color-muted, #64748b);
+  color: var(--color-muted);
   direction: ltr;
   text-align: start;
 }
@@ -223,19 +223,19 @@
 .nodeDescription {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--color-muted, #475569);
+  color: var(--color-muted);
   line-height: 1.5;
 }
 
 .nodeMetadata {
   margin-block-start: auto;
   padding-block-start: var(--space-3, 0.75rem);
-  border-block-start: 1px solid var(--color-border-subtle, #f1f5f9);
+  border-block-start: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-2, 0.5rem);
   font-size: 0.8rem;
-  color: var(--color-muted, #64748b);
+  color: var(--color-muted);
 }
 
 .metaRow {
@@ -247,12 +247,12 @@
 
 .slugCode {
   font-family: monospace;
-  background: var(--color-surface-subtle, #f8fafc);
+  background: var(--color-canvas);
   padding: 2px 6px;
   border-radius: 4px;
-  border: 1px solid var(--color-border, #e2e8f0);
+  border: 1px solid var(--color-border);
   font-size: 0.78rem;
-  color: var(--color-text, #0f172a);
+  color: var(--color-text);
   direction: ltr;
 }
 
@@ -260,16 +260,16 @@
   min-height: 28px;
   padding: 2px 8px;
   font-size: 0.75rem;
-  border: 1px solid var(--color-border, #cbd5e1);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm, 4px);
-  background: var(--color-surface, #ffffff);
-  color: var(--color-action-blue, #2563eb);
+  background: var(--color-surface);
+  color: var(--color-action);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .copyIdBtn:hover {
-  background: var(--color-surface-subtle, #f1f5f9);
+  background: var(--color-canvas);
 }
 
 .prereqList {
@@ -284,18 +284,18 @@
   font-size: 0.72rem;
   padding: 1px 5px;
   border-radius: 3px;
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
   direction: ltr;
 }
 
 .stateBox {
   text-align: center;
   padding: var(--space-12, 3rem) var(--space-6, 1.5rem);
-  border: 1px dashed var(--color-border, #cbd5e1);
+  border: 1px dashed var(--color-border);
   border-radius: var(--radius-lg, 1rem);
-  background: var(--color-surface, #ffffff);
-  color: var(--color-muted, #475569);
+  background: var(--color-surface);
+  color: var(--color-muted);
 }
 
 .retryBtn {
@@ -303,14 +303,14 @@
   min-height: 44px;
   padding-inline: var(--space-6, 1.5rem);
   border-radius: var(--radius-md, 0.5rem);
-  background: var(--color-action-blue, #2563eb);
-  color: #ffffff;
+  background: var(--color-action);
+  color: var(--color-action-text);
   border: none;
   font-weight: 600;
   cursor: pointer;
 }
 
-@media (max-width: 48rem) {
+@media (max-inline-size: 48rem) {
   .nodeGrid {
     grid-template-columns: 1fr;
   }

@@ -51,6 +51,7 @@ interface DailyMissionData {
   completed_count: number;
   tasks: MissionTask[];
   next_best_action?: NextBestAction | null;
+  srs_due_count?: number;
 }
 
 interface StepFeedback {
@@ -357,6 +358,53 @@ export default function TodayPage() {
                     </span>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* SRS Review Banner */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "var(--space-3) var(--space-4)",
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-card)",
+                marginBlock: "var(--space-4)",
+                flexWrap: "wrap",
+                gap: "var(--space-3)",
+              }}
+            >
+              <div>
+                <span style={{ fontWeight: 700, fontSize: "var(--font-size-body)", display: "block" }}>
+                  {isFa ? "مرور فاصله‌دار واژگان (SRS)" : "Vocabulary Spaced Repetition (SRS)"}
+                </span>
+                <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
+                  {mission.srs_due_count && mission.srs_due_count > 0
+                    ? isFa
+                      ? `${mission.srs_due_count} کارت واژه آماده مرور برای تثبیت در حافظه بلندمدت`
+                      : `${mission.srs_due_count} vocabulary cards ready for long-term retention review`
+                    : isFa
+                    ? "واژگان شما تثبیت شده‌اند یا کارت‌های جدید آماده ورود به چرخه هستند."
+                    : "Your vocabulary is up to date. Review cards or manage your word bank."}
+                </span>
+              </div>
+              <div style={{ display: "flex", gap: "var(--space-2)" }}>
+                <Link
+                  className={styles.primaryBtn}
+                  href="/review"
+                  style={{ textDecoration: "none", padding: "var(--space-2) var(--space-3)", fontSize: "var(--font-size-meta)" }}
+                >
+                  {isFa ? "شروع مرور واژگان" : "Start SRS Review"}
+                </Link>
+                <Link
+                  className={styles.secondaryBtn}
+                  href="/vocabulary"
+                  style={{ textDecoration: "none", padding: "var(--space-2) var(--space-3)", fontSize: "var(--font-size-meta)" }}
+                >
+                  {isFa ? "بانک واژگان" : "Word Bank"}
+                </Link>
               </div>
             </div>
 

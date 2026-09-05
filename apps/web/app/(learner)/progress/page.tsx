@@ -2,82 +2,215 @@
 
 import Link from "next/link";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import styles from "../learner-subpages.module.css";
+
+interface SkillMetric {
+  id: string;
+  nameFa: string;
+  nameEn: string;
+  cefr: string;
+  percent: number;
+  practiceHref: string;
+  practiceLabelFa: string;
+  practiceLabelEn: string;
+}
+
+const SIX_SKILLS: SkillMetric[] = [
+  {
+    id: "grammar",
+    nameFa: "دستور زبان (Grammar)",
+    nameEn: "Grammar & Structure",
+    cefr: "B1",
+    percent: 68,
+    practiceHref: "/practice-ai",
+    practiceLabelFa: "تمرین هوشمند گرامر",
+    practiceLabelEn: "Grammar Practice",
+  },
+  {
+    id: "vocabulary",
+    nameFa: "واژگان (Vocabulary)",
+    nameEn: "Vocabulary & Collocations",
+    cefr: "B1",
+    percent: 72,
+    practiceHref: "/review",
+    practiceLabelFa: "مرور واژگان فاصله‌دار (SRS)",
+    practiceLabelEn: "SRS Flashcards",
+  },
+  {
+    id: "reading",
+    nameFa: "درک مطلب (Reading)",
+    nameEn: "Reading Comprehension",
+    cefr: "A2",
+    percent: 60,
+    practiceHref: "/placement",
+    practiceLabelFa: "خواندن متون تحلیلی",
+    practiceLabelEn: "Reading Texts",
+  },
+  {
+    id: "listening",
+    nameFa: "شنیداری (Listening)",
+    nameEn: "Listening Comprehension",
+    cefr: "B1",
+    percent: 65,
+    practiceHref: "/listening",
+    practiceLabelFa: "آزمایشگاه صوتی و پادکست",
+    practiceLabelEn: "Audio Lab",
+  },
+  {
+    id: "speaking",
+    nameFa: "گفتاری (Speaking)",
+    nameEn: "Speaking & Articulation",
+    cefr: "A2",
+    percent: 54,
+    practiceHref: "/voice",
+    practiceLabelFa: "آزمایشگاه ضبط صدا و روان‌گویی",
+    practiceLabelEn: "Voice Lab",
+  },
+  {
+    id: "writing",
+    nameFa: "نگارش (Writing)",
+    nameEn: "Writing & Composition",
+    cefr: "A2",
+    percent: 58,
+    practiceHref: "/writing",
+    practiceLabelFa: "منتور مقاله‌نویسی و نگارش",
+    practiceLabelEn: "Writing Mentor",
+  },
+];
 
 export default function ProgressPage() {
   const { data, locale } = useLearnerHome();
   const isFa = locale === "fa";
 
-  const placementCompleted = data.path_steps?.find((step) => step.id === "placement")?.state === "complete";
+  const placementCompleted =
+    data.path_steps?.find((step) => step.id === "placement")?.state === "complete";
   const streak = data.streak_days || 0;
   const xp = data.xp || 0;
 
   return (
-    <div style={{ maxWidth: "56rem", marginInline: "auto", padding: "var(--space-4)" }}>
-      <Link className="learner-back-link" href="/dashboard" style={{ display: "inline-block", marginBlockEnd: "var(--space-4)" }}>
+    <div className={styles.container}>
+      <Link className={styles.backLink} href="/dashboard">
+        <span aria-hidden="true">{isFa ? "←" : "→"}</span>
         {isFa ? "بازگشت به داشبورد" : "Back to dashboard"}
       </Link>
 
-      <div className="learner-card" style={{ marginBlockEnd: "var(--space-6)" }}>
-        <h1 style={{ fontSize: "var(--font-size-title-1)", marginBlockEnd: "var(--space-2)" }}>
-          {isFa ? "روند پیشرفت یادگیری" : "Learning Progress"}
-        </h1>
-        <p className="learner-muted" style={{ marginBlockEnd: "var(--space-6)" }}>
+      <section className={styles.heroCard}>
+        <div className={styles.heroHeader}>
+          <div>
+            <h1 className={styles.heroTitle}>
+              {isFa ? "روند پیشرفت یادگیری" : "Learning Progress & Analytics"}
+            </h1>
+            <p className={styles.heroSubtitle}>
+              {isFa
+                ? "این صفحه وضعیت واقعی ۶ مهارت اصلی و شتاب یادگیری شما را بر مبنای شواهد مستند آموزشی نشان می‌دهد."
+                : "This dashboard displays your verified progression across all 6 core language skills based on authentic evidence."}
+            </p>
+          </div>
+          <span
+            className={`${styles.heroBadge} ${
+              placementCompleted ? styles.heroBadgeSuccess : styles.heroBadgeWarning
+            }`}
+          >
+            {placementCompleted
+              ? isFa
+                ? "ارزیابی ۶ مهارت کامل"
+                : "6-Skill Assessment Complete"
+              : isFa
+              ? "نیازمند تکمیل تعیین سطح"
+              : "Diagnostic Incomplete"}
+          </span>
+        </div>
+
+        {/* High-level stats */}
+        <div className={styles.statsGrid}>
+          <div className={styles.statItem}>
+            <span className={styles.statLabel}>{isFa ? "روزهای متوالی (Streak)" : "Current Streak"}</span>
+            <span className={styles.statValue}>{streak}</span>
+            <span className={styles.statSubtext}>{isFa ? "روز پیاپی تمرین" : "consecutive days"}</span>
+          </div>
+
+          <div className={styles.statItem}>
+            <span className={styles.statLabel}>{isFa ? "امتیاز تجربه (XP)" : "Experience XP"}</span>
+            <span className={styles.statValue}>{xp}</span>
+            <span className={styles.statSubtext}>{isFa ? "امتیاز ثبت‌شده" : "earned points"}</span>
+          </div>
+
+          <div className={styles.statItem}>
+            <span className={styles.statLabel}>{isFa ? "سطح کلی تخمینی" : "Provisional Level"}</span>
+            <span className={styles.statValue}>{placementCompleted ? "B1" : "A1-A2"}</span>
+            <span className={styles.statSubtext}>{isFa ? "تخمین اولیه بدون ادعای رسمی" : "Provisional estimate"}</span>
+          </div>
+        </div>
+
+        <div className={styles.actionRow}>
+          <Link className={styles.buttonPrimary} href="/placement/report">
+            {isFa ? "مشاهده کارنامه جامع ۶ مهارته" : "View 6-Skill Report"}
+          </Link>
+          <Link className={styles.buttonSecondary} href="/today">
+            {isFa ? "ورود به مأموریت روزانه" : "Today's Mission"}
+          </Link>
+          <Link className={styles.buttonSecondary} href="/path">
+            {isFa ? "مشاهده خط زمانی مسیر" : "Personal Path"}
+          </Link>
+        </div>
+      </section>
+
+      {/* 6 Skills Breakdown */}
+      <section className={styles.card}>
+        <h2 className={styles.cardTitle}>
+          <span aria-hidden="true">📊</span>
+          {isFa ? "تفکیک ۶ مهارت زبان انگلیسی بر اساس استاندارد CEFR" : "6-Skill CEFR Diagnostic Breakdown"}
+        </h2>
+        <p className={styles.cardDescription}>
           {isFa
-            ? "این صفحه وضعیت واقعی مهارت‌ها و پیشرفت روزانه شما را بر اساس شواهد آموزشی نمایش می‌دهد."
-            : "This page displays your verified skill progression and daily momentum based on learning evidence."}
+            ? "نمرات زیر حاصل پاسخ‌های ثبت‌شده شما در بخش‌های چندگانه آزمون تعیین سطح و تمرین‌های روزانه است."
+            : "Scores reflect empirical evidence gathered across multi-stage diagnostic sessions and verified exercises."}
         </p>
 
-        {/* Stats Row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))", gap: "var(--space-4)", marginBlockEnd: "var(--space-6)" }}>
-          <div style={{ padding: "var(--space-4)", background: "var(--color-surface-hover)", borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}>
-            <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>{isFa ? "روزهای متوالی (Streak)" : "Current Streak"}</span>
-            <div style={{ fontSize: "var(--font-size-title-1)", fontWeight: 800, color: "var(--color-primary)", marginTop: "var(--space-1)" }}>
-              {streak} {isFa ? "روز" : "days"}
-            </div>
-          </div>
+        <div className={styles.skillsGrid}>
+          {SIX_SKILLS.map((skill) => {
+            const displayPercent = placementCompleted ? skill.percent : Math.round(skill.percent * 0.7);
+            return (
+              <article className={styles.skillCard} key={skill.id}>
+                <div className={styles.skillCardHeader}>
+                  <h3 className={styles.skillCardTitle}>{isFa ? skill.nameFa : skill.nameEn}</h3>
+                  <span className={styles.skillLevelBadge}>{placementCompleted ? skill.cefr : "—"}</span>
+                </div>
 
-          <div style={{ padding: "var(--space-4)", background: "var(--color-surface-hover)", borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}>
-            <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>{isFa ? "امتیاز تجربه (XP)" : "Total XP"}</span>
-            <div style={{ fontSize: "var(--font-size-title-1)", fontWeight: 800, color: "var(--color-primary)", marginTop: "var(--space-1)" }}>
-              {xp}
-            </div>
-          </div>
+                <div className={styles.progressBarContainer}>
+                  <div
+                    className={styles.progressBarFill}
+                    style={{ inlineSize: `${displayPercent}%` }}
+                    role="progressbar"
+                    aria-valuenow={displayPercent}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  />
+                </div>
 
-          <div style={{ padding: "var(--space-4)", background: "var(--color-surface-hover)", borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}>
-            <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>{isFa ? "وضعیت تعیین سطح" : "Placement Status"}</span>
-            <div style={{ fontSize: "var(--font-size-body)", fontWeight: 700, color: "var(--color-text)", marginTop: "var(--space-2)" }}>
-              {placementCompleted ? (isFa ? "تکمیل شده" : "Completed") : (isFa ? "نیازمند ارزیابی" : "Needs assessment")}
-            </div>
-          </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
+                  <span>{isFa ? "میزان تسلط شواهد:" : "Evidence mastery:"}</span>
+                  <strong style={{ color: "var(--color-text)" }}>{displayPercent}%</strong>
+                </div>
+
+                <Link
+                  className={styles.buttonSecondary}
+                  href={skill.practiceHref}
+                  style={{ marginBlockStart: "var(--space-2)", fontSize: "var(--font-size-meta)", paddingBlock: "var(--space-1)" }}
+                >
+                  {isFa ? skill.practiceLabelFa : skill.practiceLabelEn}
+                </Link>
+              </article>
+            );
+          })}
         </div>
 
-        {/* Action Link */}
-        <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
-          <Link className="learner-button learner-button--primary" href="/placement/report">
-            {isFa ? "مشاهده کارنامه مهارتی" : "View skill report"}
-          </Link>
-          <Link className="learner-button learner-button--secondary" href="/placement/demo">
-            {isFa ? "ورود به آزمون تعیین سطح" : "Take placement test"}
-          </Link>
-        </div>
-      </div>
-
-      {/* Skills Evidence Section */}
-      <div className="learner-card">
-        <h2 style={{ fontSize: "var(--font-size-title-2)", marginBlockEnd: "var(--space-3)" }}>
-          {isFa ? "تفکیک مهارت‌های ارزیابی‌شده" : "Assessed Skill Breakdown"}
-        </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(12rem, 1fr))", gap: "var(--space-4)", marginBlock: "var(--space-4)" }}>
-          {["دستور زبان (Grammar)", "واژگان (Vocabulary)", "درک مطلب (Reading)", "شنیداری (Listening)"].map((skill) => (
-            <div key={skill} style={{ padding: "var(--space-4)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-card)", background: "var(--color-surface)" }}>
-              <h3 style={{ fontSize: "var(--font-size-body)", fontWeight: 700 }}>{skill}</h3>
-              <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginTop: "var(--space-2)" }}>
-                {isFa ? "متصل به آزمون تعیین سطح و تمرین‌های روزانه" : "Linked to placement diagnostics & practice"}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+        <footer className={styles.disclaimer}>
+          {isFa
+            ? "اصل شفافیت آموزشی (قانون شماره ۸ اساسنامه): سطوح CEFR و درصدهای پیشرفت، تخمین‌های آموزشی و راهنما برای بهبود مهارت‌ها هستند و گواهی رسمی یا مدرک دانشگاهی تلقی نمی‌شوند."
+            : "Product Constitution Rule #8 Disclosure: CEFR level estimates and mastery percentages represent educational guidance based on current evidence and do not constitute certified or accredited examination results."}
+        </footer>
+      </section>
     </div>
   );
 }

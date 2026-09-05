@@ -11,6 +11,7 @@ class DailyMissionSerializer(serializers.ModelSerializer):
     completed_count = serializers.SerializerMethodField()
     tasks = serializers.SerializerMethodField()
     next_best_action = serializers.SerializerMethodField()
+    srs_due_count = serializers.SerializerMethodField()
 
     class Meta:
         model = DailyMission
@@ -30,6 +31,7 @@ class DailyMissionSerializer(serializers.ModelSerializer):
             "completed_count",
             "tasks",
             "next_best_action",
+            "srs_due_count",
             "evidence_reason",
         ]
 
@@ -85,6 +87,12 @@ class DailyMissionSerializer(serializers.ModelSerializer):
         if obj.status == DailyMission.Status.COMPLETED or obj.is_all_completed():
             return resolve_mission_next_action(obj.user, obj)
         return None
+
+    def get_srs_due_count(self, obj: DailyMission) -> int:
+        from django.utils import timezone
+        from srs.models import SrsItem
+        return SrsItem.objects.filter(learner=obj.user, due_at__lte=timezone.now()).count()
+
 
 class MissionStepSubmitSerializer(serializers.Serializer):
     task_id = serializers.CharField(required=True, max_length=64)
