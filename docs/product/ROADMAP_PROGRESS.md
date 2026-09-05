@@ -478,3 +478,29 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** AI exercises are strictly validated by backend schema inspectors, answers and explanations are protected prior to submission, multi-tier routing avoids model lock-in, daily budget and timeout ceilings stop runaway calls, and any provider issue seamlessly falls back to reviewed questions without learner disruption.
 
 **Next day after Git push:** Day 23 — Build the AI Mistake Genome.
+
+## Day 23 — Build the AI Mistake Genome
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day23\20260824-090000\endoora-pre-day23.dump`)
+- [x] implemented Mistake Genome models (`MistakeCategory`, `MistakeSeverity`, `MistakeStatus`, `LearnerMistakePattern`, `MistakeEvidence`) in `apps/api/mistake_genome/models.py`
+- [x] generated and verified migration `apps/api/mistake_genome/migrations/0001_initial.py` with 0 model drift
+- [x] enforced multi-event evidence threshold (>= 2 occurrences required before graduating from occasional slip to recurring pattern)
+- [x] implemented learner dispute and correction workflow (`POST /api/mistakes/patterns/<id>/dispute/`), suppressing disputed patterns immediately from practice recommendations
+- [x] implemented learner resolution workflow (`POST /api/mistakes/patterns/<id>/resolve/`), marking pattern as mastered
+- [x] implemented privacy scrubbing and evidence deletion (`DELETE /api/mistakes/evidence/<id>/`), sanitizing personal snippets
+- [x] integrated mistake targets into Daily Mission recommendations (`apps/api/missions/services.py`)
+- [x] integrated AI exercise error capture into `StructuredExerciseService` (`apps/api/ai_gateway/services.py`), deriving focus areas and recording mistakes automatically
+- [x] 10 unit tests in `apps/api/mistake_genome/tests.py` passing with 0 errors
+- [x] 139 full backend tests passing across all 11 applications
+- [x] built interactive Mistake Hub at `/mistakes` (`apps/web/app/(learner)/mistakes/page.tsx`) with 4 status tabs (Recurring, Occasional, Mastered, Disputed), L1 interference root-cause explanations, quick-checks, dispute drawer, and direct links to `/practice`
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/mistakes/mistakes.module.css` with 0 raw hex colors
+- [x] Next.js 110 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day23.py` passing
+- [x] comprehensive taxonomy documentation in `docs/ai/mistake-taxonomy.md`
+- [x] adhered strictly to Product Constitution Rule #8 transparent educational notices and zero-shame pedagogical framing
+
+**Success gate:** errors are treated as diagnostic growth opportunities rather than permanent labels; multi-event evidence thresholds prevent slips from being branded as recurring habits; learner dispute empowers students to correct false AI categorizations and stop unwarranted drills; and all personal snippets remain strictly private and scrubbable.
+
+**Next day after Git push:** Day 24 — Build Writing Mentor v1.

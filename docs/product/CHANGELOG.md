@@ -1,5 +1,27 @@
 # Endoora Changelog
 
+## Day 23 — AI Mistake Genome & Error Taxonomy Architecture
+
+### Added
+- Complete AI Mistake Genome backend models in `apps/api/mistake_genome/models.py` (`LearnerMistakePattern`, `MistakeEvidence`) across eight categories (`grammar`, `lexical`, `collocation`, `spelling`, `discourse`, `comprehension`, `pronunciation`, `strategy`).
+- Multi-event evidence threshold (`EVIDENCE_RECURRING_THRESHOLD = 2`), ensuring a single mistake is treated as an occasional slip rather than permanent learner DNA.
+- Transparent dispute and correction mechanism (`dispute_pattern`), immediately excluding disputed patterns from active practice recommendations.
+- Pattern resolution workflow (`resolve_pattern`) marking mastered patterns.
+- Privacy-first evidence scrubbing (`delete_evidence`), removing personal snippet text on request while preserving aggregate counts.
+- Downstream integration hooks:
+  - Daily Mission service (`apps/api/missions/services.py`) incorporates recurring mistake targets into daily mission justification.
+  - AI Exercise service (`apps/api/ai_gateway/services.py`) selects focus areas from active mistake targets and feeds incorrect answers back into the genome.
+- Serializers and API endpoints in `views.py` and `urls.py` (`summary/`, `patterns/`, `patterns/<id>/dispute/`, `patterns/<id>/resolve/`, `record/`, `evidence/<id>/`).
+- 10 automated unit and integration tests in `apps/api/mistake_genome/tests.py`.
+- Overhauled Mistake Genome Hub at `/mistakes` (`apps/web/app/(learner)/mistakes/page.tsx`) with 4 status tabs (Recurring, Occasional, Mastered, Disputed), category filters, in-place dispute drawer, quick-check quizzes, and direct practice links.
+- 100% tokenized CSS in `apps/web/app/(learner)/mistakes/mistakes.module.css` with 0 raw hex colors and Persian RTL layout with English LTR isolation.
+- Architecture and taxonomy documentation in `docs/ai/mistake-taxonomy.md`.
+- Static contract verification script in `scripts/check_day23.py` and database backup script `scripts/backup_day23.ps1`.
+
+### Changed
+- Total backend regression test suite grew from 129 to 139 passing tests with 0 errors.
+- Web application routes build cleanly with 0 lint and 0 typecheck errors across 110 static pages.
+
 ## Day 22 — Structured AI Exercise-Generation Service & Multi-Tier Model Router
 
 ### Added

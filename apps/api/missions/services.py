@@ -505,6 +505,21 @@ def build_daily_mission(user) -> DailyMission:
         explanation_en = f"This mission is derived from your placement evidence with targeted practice in {skill_tuple[1]}."
         source = "placement_evaluation"
 
+    mistake_targets_info = []
+    try:
+        from mistake_genome.services import MistakeGenomeService
+        top_targets = MistakeGenomeService().get_top_practice_targets(user, limit=2)
+        for tgt in top_targets:
+            mistake_targets_info.append({
+                "id": tgt.id,
+                "tag": tgt.tag,
+                "category": tgt.category,
+                "title_fa": tgt.title_fa,
+                "title_en": tgt.title_en,
+            })
+    except Exception:
+        pass
+
     evidence_reason = {
         "source": source,
         "target_skill": target_skill,
@@ -513,6 +528,7 @@ def build_daily_mission(user) -> DailyMission:
         "tasks": tasks,
         "current_task_index": 0,
         "completed_task_ids": [],
+        "mistake_targets": mistake_targets_info,
     }
 
     mission = DailyMission.objects.create(

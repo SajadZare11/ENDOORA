@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 19 — Personal Learning Path Engine & Interactive Path Experience
-- **Day 19 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–18 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, and multi-stage placement sections (Grammar, Vocabulary, Reading, Listening, Speaking, Writing)
-- **Schema version:** Day 14 adds `placement.0002_alter_placementanswer_options_and_more` (Day 19 adds no schema migration)
+- **Roadmap day completed:** Day 23 — Build the AI Mistake Genome
+- **Day 23 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–22 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, and structured AI exercise generation
+- **Schema version:** Day 23 adds `mistake_genome.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -839,15 +839,68 @@ Commit message: `Day 20: Build adaptive daily mission engine, payload protection
 - Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors), `npm run build` (109/109 static routes compiled cleanly).
 - Static contract checks: `scripts/check_day21.py`, `scripts/check_day20.py`, `check_day19.py`, ..., `check-design-tokens.mjs`, `check-components.mjs`, `check-day01-10.mjs`, `scan_secrets.py`, `git diff --check`.
 
-## Git checkpoint
+## Day 22: Build Structured AI Exercise-Generation Service & Model Router (2026-08-23)
+
+### AI Gateway Architecture
+- Implemented models in `apps/api/ai_gateway/models.py`: `AIProviderConfig`, `AIRequestLog`, `GeneratedExerciseSet`, `ExerciseAttempt`.
+- Backend-only OpenRouter HTTP client (`apps/api/ai_gateway/client.py`) with 15s timeout circuit breaker, daily budget cap ($5.00/day), and error/key redaction.
+- Multi-tier model router (`apps/api/ai_gateway/model_router.py`) preventing vendor lock-in.
+- Strict JSON, CEFR, distractor ambiguity, and internal consistency validator (`apps/api/ai_gateway/validators.py`).
+- Structured exercise generation service with fallback bank (`apps/api/ai_gateway/services.py`).
+- Pre-submission payload protection in `GeneratedExerciseSetLearnerSerializer` (`apps/api/ai_gateway/serializers.py`).
+- Interactive exercise generator & runner at `/practice` (`apps/web/app/(learner)/practice/page.tsx`).
+- 100% tokenized CSS in `apps/web/app/(learner)/practice/practice.module.css`.
+- 16 unit and integration tests passing in `apps/api/ai_gateway/tests.py`.
+- Git checkpoint: commit `6ba0370`.
+
+## Day 23: Build the AI Mistake Genome & Error Taxonomy Hub (2026-08-24)
+
+### Mistake Genome Architecture & Models
+- Implemented `MistakeCategory` (8 categories: grammar, lexical, collocation, spelling, discourse, comprehension, pronunciation, strategy).
+- Implemented `MistakeSeverity` (minor, moderate, critical) and `MistakeStatus` (occasional, recurring, disputed, mastered).
+- Implemented `LearnerMistakePattern` with `UniqueConstraint(fields=["learner", "mistake_tag"])`, evidence count, and L1 interference notes (fa/en).
+- Implemented `MistakeEvidence` with source activity tracking, sanitized raw snippets, and scrubbed status flag.
+- Enforced evidence threshold: minimum 2 occurrences required before graduating from occasional slip to recurring pattern.
+- Implemented learner dispute and correction workflow: disputed patterns are immediately excluded from active practice recommendations.
+- Implemented learner resolution workflow: marking patterns as mastered.
+- Implemented privacy scrubbing: learner can scrub or delete personal evidence snippets.
+- Integrated mistake targets into `DailyMissionService` (`apps/api/missions/services.py`).
+- Integrated error tracking into `StructuredExerciseService` (`apps/api/ai_gateway/services.py`), deriving focus areas and recording mistakes automatically.
+- Database migration `apps/api/mistake_genome/migrations/0001_initial.py` applied with 0 model drift.
+- 10 unit tests in `apps/api/mistake_genome/tests.py` passing with 0 errors.
+
+### Frontend Mistake Hub & Practice Integration
+- Overhauled `/mistakes` in `apps/web/app/(learner)/mistakes/page.tsx`:
+  - 4 status tabs: Recurring, Occasional, Mastered, Disputed.
+  - Category filters and severity pills.
+  - L1 transfer root-cause explanations with Persian interference notes.
+  - Interactive quick-check exercises with instant pedagogical feedback.
+  - In-place dispute drawer allowing learners to correct flawed AI categorizations or typos.
+  - Direct links to `/practice` targeting specific mistake patterns.
+- 100% tokenized CSS in `apps/web/app/(learner)/mistakes/mistakes.module.css` with 0 raw hex colors.
+- Zero-shame pedagogical framing adhering strictly to Product Constitution Rule #8.
+
+### Day 23 Verification Evidence
+- Pre-Day-23 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day23\20260824-090000\endoora-pre-day23.dump` (107,603 bytes).
+- Backend unit tests pass: 10/10 in `apps/api/mistake_genome/tests.py`.
+- Full backend regression suite: 139/139 tests passing across all 11 applications.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors), `npm run build` (110/110 static routes compiled cleanly).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Component & system checks: `node scripts/check-components.mjs`, `node scripts/check-day01-10.mjs` passed.
+- Daily contract checks: `scripts/check_day14.py` through `scripts/check_day23.py` all passed.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 23)
 
 Commit message:
 
-`Day 22: Build structured AI exercise-generation service, multi-tier model router, and interactive practice runner`
+`Day 23: Build AI Mistake Genome, L1 transfer taxonomy, dispute handling, and error hub`
 
 ## Exact next day
 
-**Day 23 — Build the AI Mistake Genome.**
+**Day 24 — Build Writing Mentor v1.**
 
-Do not begin Day 23 until the Day 22 commit is pushed and `git status --short --branch`
+Do not begin Day 24 until the Day 23 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

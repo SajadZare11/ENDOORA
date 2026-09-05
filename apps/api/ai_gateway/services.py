@@ -208,6 +208,18 @@ class StructuredExerciseService:
         if cefr_level not in {"A1", "A2", "B1", "B2", "C1", "C2"}:
             cefr_level = "B1"
 
+        # Check if Mistake Genome has an active recurring target to focus on
+        if not focus_area or focus_area == "general practice":
+            try:
+                from mistake_genome.services import MistakeGenomeService
+                targets = MistakeGenomeService().get_top_practice_targets(learner, limit=1)
+                if targets:
+                    top = targets[0]
+                    focus_area = f"Remediate recurring error in {top.title_en} ({top.tag})"
+                    target_skill = top.category
+            except Exception:
+                pass
+
         system_prompt, user_prompt = build_exercise_prompt(
             target_skill=target_skill,
             cefr_level=cefr_level,
@@ -429,6 +441,29 @@ class StructuredExerciseService:
             is_correct = bool(submitted_id and submitted_id == correct_id)
             if is_correct:
                 correct_count += 1
+            else:
+                try:
+                    from mistake_genome.services import MistakeGenomeService
+                    tag = f"{exercise_set.target_skill}.{q.get('objective_id') or q_id}"
+                    corr_text = next(
+                        (opt["text"] for opt in q.get("options", []) if opt["id"] == correct_id),
+                        correct_id,
+                    )
+                    MistakeGenomeService().record_mistake(
+                        learner=learner,
+                        tag=tag,
+                        category=exercise_set.target_skill,
+                        title_fa=q.get("title_fa", ""),
+                        title_en=q.get("title_en", ""),
+                        source_activity="exercise",
+                        source_id=str(exercise_set.id),
+                        raw_snippet=f"Selected option '{submitted_id}' for: {q.get('prompt_en', '')}",
+                        correction_snippet=corr_text,
+                        explanation_fa=q.get("explanation_fa", ""),
+                        explanation_en=q.get("explanation_en", ""),
+                    )
+                except Exception as exc:
+                    logger.debug("Could not record mistake event in genome: %s", exc)
 
             detailed_results.append({
                 "question_id": q_id,
