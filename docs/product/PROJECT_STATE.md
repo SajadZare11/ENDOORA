@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 25 — Build text-based Roleplay Universe v1
-- **Day 25 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–24 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, and Writing Mentor v1
-- **Schema version:** Day 25 adds `roleplay.0001_initial`
+- **Roadmap day completed:** Day 26 — Build Voice Lab v1 & Voice Conversation Beta
+- **Day 26 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–25 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, and Roleplay Universe v1
+- **Schema version:** Day 26 adds `voice_lab.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1002,15 +1002,59 @@ Commit message:
 - Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
 - Git diff check: `git diff --check` passed with 0 errors.
 
-## Git checkpoint (Day 25)
+## Features working through Day 26
+
+### Voice Lab v1 & Voice Conversation Beta Architecture
+- Models in `apps/api/voice_lab/models.py`:
+  - `VoiceRecording` (aliased as `AudioAttempt` for compatibility): Stores audio recording file paths, format, duration, size, `stt_transcript`, `corrected_transcript`, `status`, and biometric privacy fields (`retention_policy`, `expires_at`, `is_deleted`).
+  - `VoicePreference`: Learner audio settings for `preferred_accent` (`US`, `UK`, `AU`), `playback_speed` (`0.8`, `1.0`, `1.2`), `default_retention` (`immediate`, `7_days`, `30_days`), and `auto_play_tts`.
+- Migration `apps/api/voice_lab/migrations/0001_initial.py` applied with 0 model drift.
+- Backward compatibility bridge in `apps/api/speech/` (`__init__.py`, `apps.py`, `models.py`, `services.py`, `urls.py`, `views.py`).
+- Pipeline service in `apps/api/voice_lab/services.py` (`VoicePipelineService`):
+  - Hard limit upload ticketing: Max **90 seconds** duration and max **10 MB** file size.
+  - Multipart audio upload with STT transcript extraction.
+  - Manual transcript correction endpoint (`PATCH /api/voice/recordings/<id>/transcript/`).
+  - TTS speech synthesis descriptor generator (`POST /api/voice/tts/`) with accent and speed controls.
+  - Automated expired audio file purging (`delete_expired_audio()`) preserving textual learning transcripts.
+- Scheduled cleanup management command in `apps/api/voice_lab/management/commands/cleanup_expired_audio.py`.
+- REST API routes in `apps/api/voice_lab/urls.py` registered at `/api/voice/` and `/api/speech/`.
+
+### Frontend Voice Experience & Safeguards
+- `VoiceRecorder` component in `apps/web/components/voice-recorder/VoiceRecorder.tsx`:
+  - 24-bar live AudioContext frequency analyzer visualizer.
+  - 90-second countdown timer.
+  - Native audio playback preview.
+  - In-place transcript review and editing textarea.
+  - Seamless non-blocking fallback text input when microphone is denied or unsupported.
+- Interactive Voice Roleplay Beta at `/roleplay/voice` in `apps/web/app/(learner)/roleplay/voice/page.tsx`:
+  - 10 full conversational scenarios across CEFR levels A2 to C1.
+  - Audio toolbar for persona accent (`en-US`/`en-GB`), speed (`0.8x`/`1.0x`/`1.2x`), and retention policies (`immediate`/`7 days`/`30 days`).
+  - Turn-by-turn dialogue stream with instant character TTS playback.
+  - Post-conversation diagnostic report view with communicative effectiveness score, goals achieved, and vocabulary extraction.
+- Updated Voice Lab Hub at `/voice` with direct beta CTA, acoustic retention preferences manager, and VoiceRecorder v1 sandbox.
+- Cross-linked Roleplay Universe at `/roleplay` with Voice Roleplay Beta fast-track CTA banner.
+- 100% tokenized CSS across all new CSS modules with 0 raw hex colors.
+
+### Day 26 Verification Evidence
+- Pre-Day-26 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day26\20260827-090000\endoora-pre-day26.dump` (107,603 bytes).
+- Backend unit tests pass: 11/11 in `apps/api/voice_lab/tests.py`.
+- Full backend regression suite: 216/216 tests passing across all 14 applications.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Daily contract check: `scripts/check_day26.py` passed with 0 errors.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 26)
 
 Commit message:
 
-`Day 25: Build text-based Roleplay Universe v1, scenario catalog, AI characters, and post-conversation report`
+`Day 26: Build Voice Lab v1, audio pipeline, and voice roleplay beta`
 
 ## Exact next day
 
-**Day 26 — Build Voice Lab v1.**
+**Day 27 — Build Pronunciation Lab v1.**
 
-Do not begin Day 26 until the Day 25 commit is pushed and `git status --short --branch`
+Do not begin Day 27 until the Day 26 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

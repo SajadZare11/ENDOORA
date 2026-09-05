@@ -36,5 +36,7 @@ Thumbs.db
 media/
 uploads/
 backups/
+voice_recordings/
+apps/api/voice_recordings/
 *.dump
 *.sql

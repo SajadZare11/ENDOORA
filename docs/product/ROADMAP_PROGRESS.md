@@ -27,7 +27,8 @@
 | 23 | AI Mistake Genome & Error Taxonomy Architecture | Complete | 8 mistake categories, multi-event threshold, dispute workflows, privacy scrubbing passed |
 | 24 | Writing Mentor v1 & IELTS Rubric Engine | Complete | 4-criteria IELTS rubric ranges, 3-tier rewrites, voice preservation, selective Genome passed |
 | 25 | Text-Based Roleplay Universe v1 | Complete | 10 scenarios, zero mid-turn interruptions, bounded turns, deferred diagnostic report passed |
-| 26-60 | Remaining roadmap | Not started | Sequential |
+| 26 | Build Voice Lab v1 & Voice Conversation Beta | Complete | Validated beta, upload ticket caps, text fallback, STT editing, biometric retention passed |
+| 27-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -563,4 +564,37 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** learners engage in realistic, goal-oriented situational dialogues with AI characters that never break character with annoying mid-turn interruptions; all diagnostics and target vocabulary are thoughtfully organized in the post-conversation report for selective integration into their Mistake Genome and SRS deck; and gamification is strictly protected against token and XP exploits.
 
-**Next day after Git push:** Day 26 — Build Voice Lab v1.
+**Next day after Git push:** Day 26 — Build Voice Lab v1 & Voice Conversation Beta.
+
+## Day 26 — Build Voice Lab v1 & Voice Conversation Beta
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day26\20260827-090000\endoora-pre-day26.dump`)
+- [x] implemented Voice Lab models (`VoiceRecording`, aliased as `AudioAttempt`, and `VoicePreference`) in `apps/api/voice_lab/models.py` with biometric privacy retention lifecycle (`expires_at`, `is_deleted`)
+- [x] generated and applied initial migration `apps/api/voice_lab/migrations/0001_initial.py` with 0 model drift
+- [x] implemented audio pipeline engine in `apps/api/voice_lab/services.py` with strict adherence to:
+  - hard limits on signed upload tickets: max 90 seconds duration and max 10MB file size to avoid proxying large audio blobs through frontend server nodes
+  - background speech recognition with learner manual transcript editing capability
+  - automated expired audio file purging while retaining anonymized learner learning transcripts
+  - Text-to-Speech (TTS) response synthesis with configurable accents (US/UK) and playback speeds (0.8x, 1.0x, 1.2x)
+- [x] implemented scheduled management command `apps/api/voice_lab/management/commands/cleanup_expired_audio.py` for automated retention purging
+- [x] created backward-compatibility bridge package in `apps/api/speech/`
+- [x] routed API endpoints in `apps/api/voice_lab/urls.py` and `apps/api/endoora_api/urls.py` at `/api/voice/` and `/api/speech/`
+- [x] 11 unit tests in `apps/api/voice_lab/tests.py` passing with 0 errors
+- [x] built `VoiceRecorder` frontend component (`apps/web/components/voice-recorder/VoiceRecorder.tsx`) with:
+  - 24-bar live AudioContext frequency analyzer visualizer
+  - 90-second countdown timer
+  - audio playback preview
+  - in-place transcript review and editing textarea
+  - non-blocking graceful fallback text input when microphone is denied or unsupported
+- [x] built interactive Voice Roleplay Beta experience at `/roleplay/voice` (`apps/web/app/(learner)/roleplay/voice/page.tsx`) with 10 situational scenarios, persona audio toolbar, turn-by-turn dialogue stream, TTS playback buttons, and post-conversation diagnostic report view
+- [x] updated Voice Lab Hub at `/voice` (`apps/web/app/(learner)/voice/page.tsx`) with direct beta CTA and acoustic retention preferences manager
+- [x] cross-linked Roleplay Universe at `/roleplay` (`apps/web/app/(learner)/roleplay/page.tsx`) with prominent Voice Roleplay Beta fast-track CTA
+- [x] 100% tokenized CSS across all new CSS modules with 0 raw hex colors
+- [x] static contract check `scripts/check_day26.py` and regression checks passing
+- [x] comprehensive architecture documentation in `docs/ai/voice-pipeline.md` and updated `docs/learning/voice-pipeline.md`
+
+**Success gate:** voice roleplay works as a clearly labelled beta without blocking text learning; learners can inspect live audio meter levels, edit automated STT transcripts before sending turns, customize voice accents and speech rates, and control audio retention periods; and audio binaries are automatically purged on expiration.
+
+**Next day after Git push:** Day 27 — Build Pronunciation Lab v1.

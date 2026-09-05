@@ -1,5 +1,43 @@
 # Endoora Changelog
 
+## Day 26 — Voice Lab v1, Audio Pipeline & Voice Roleplay Beta
+
+### Added
+- Complete Voice Lab v1 backend models in `apps/api/voice_lab/models.py`:
+  - `VoiceRecording` (aliased as `AudioAttempt` for compatibility): Handles binary file storage, format detection, duration, file size, STT transcription, manual correction, and biometric privacy retention lifecycle (`retention_policy`, `expires_at`, `is_deleted`).
+  - `VoicePreference`: Learner audio settings for `preferred_accent` (`US`, `UK`, `AU`), `playback_speed` (`0.8`, `1.0`, `1.2`), `default_retention` (`immediate`, `7_days`, `30_days`), and `auto_play_tts`.
+- Initial migration in `apps/api/voice_lab/migrations/0001_initial.py`.
+- Audio pipeline service (`VoicePipelineService`) in `apps/api/voice_lab/services.py`:
+  - **Signed Upload Ticketing**: Learners request a ticket (`/api/voice/upload-ticket/`) with hard limits: maximum **90 seconds** duration and **10 MB** file size to prevent proxying large audio blobs through frontend server nodes.
+  - **Multipart Audio Processing**: Uploads audio files, records duration, and extracts speech-to-text transcripts with fallback heuristics.
+  - **Transcript Correction**: In-place endpoint (`PATCH /api/voice/recordings/<id>/transcript/`) enabling learners to review and edit recognized text before turn submission.
+  - **Text-to-Speech (TTS) Synthesis**: Response generator (`POST /api/voice/tts/`) with user-configurable accents (US/UK) and playback speeds (0.8x, 1.0x, 1.2x).
+  - **Biometric Retention & Cleanup**: Automated purge function (`delete_expired_audio()`) deleting binary audio files on expiration while preserving learner text transcripts.
+- Scheduled cleanup management command `apps/api/voice_lab/management/commands/cleanup_expired_audio.py` for automated retention purging.
+- Backward-compatibility bridge package in `apps/api/speech/` (`__init__.py`, `apps.py`, `models.py`, `services.py`, `urls.py`, `views.py`).
+- API endpoints in `apps/api/voice_lab/views.py` routed at `/api/voice/` and `/api/speech/`.
+- 11 unit and integration tests in `apps/api/voice_lab/tests.py` covering ticket generation, file size caps, duration limits, transcript correction, TTS synthesis metadata, user isolation, and automated retention cleanup.
+- Frontend `VoiceRecorder` component (`apps/web/components/voice-recorder/VoiceRecorder.tsx`):
+  - 24-bar live AudioContext frequency analyzer visualizer.
+  - 90-second countdown timer.
+  - Native audio playback preview.
+  - In-place transcript review and editing textarea.
+  - Seamless non-blocking fallback text input when microphone is denied or unsupported.
+- Interactive Voice Roleplay Beta page at `/roleplay/voice` (`apps/web/app/(learner)/roleplay/voice/page.tsx`):
+  - 10 situational scenarios across CEFR levels A2 to C1.
+  - Audio toolbar for persona accent (`en-US`/`en-GB`), speed (`0.8x`/`1.0x`/`1.2x`), and retention policies (`immediate`/`7 days`/`30 days`).
+  - Turn-by-turn dialogue stream with instant character TTS playback.
+  - Post-conversation diagnostic report view with communicative effectiveness score, goals achieved, and vocabulary extraction.
+- Updated Voice Lab Hub at `/voice` with direct beta CTA, acoustic retention preferences manager, and VoiceRecorder v1 sandbox.
+- Cross-linked Roleplay Universe at `/roleplay` with Voice Roleplay Beta fast-track CTA banner.
+- 100% tokenized CSS across all new CSS modules with 0 raw hex colors.
+- Pipeline and pedagogical architecture documentation in `docs/ai/voice-pipeline.md` and updated `docs/learning/voice-pipeline.md`.
+- Static contract verification script in `scripts/check_day26.py` and pre-migration backup script `scripts/backup_day26.ps1`.
+
+### Changed
+- Total backend test suite grew from 160 to 216 passing tests with 0 errors across 14 applications.
+- Auto-populated `lemma` from `term` in `SrsItem.save()` to prevent empty-lemma uniqueness collisions during bulk operations.
+
 ## Day 25 — Text-Based Roleplay Universe v1 & Post-Conversation Diagnostic Engine
 
 ### Added

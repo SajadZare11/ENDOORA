@@ -1,0 +1,299 @@
+/* Voice Recorder Component - 100% Tokenized CSS (Zero Raw Hex) */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.badgeBeta {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding-block: 0.125rem;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-warning-surface);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Sound Meter Visualizer */
+.meterArea {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  block-size: 3.5rem;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-control);
+}
+
+.meterBar {
+  inline-size: 4px;
+  background-color: var(--color-action);
+  border-radius: var(--radius-pill);
+  transition: height 0.08s ease, background-color var(--transition-base);
+}
+
+.meterBarActive {
+  background-color: var(--color-success);
+}
+
+.meterBarPeak {
+  background-color: var(--color-danger);
+}
+
+/* Timer and Status Bar */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+}
+
+.timer {
+  font-family: var(--font-family-latin);
+  font-weight: 800;
+  font-size: var(--font-size-body);
+  color: var(--color-action);
+}
+
+.timerRecording {
+  color: var(--color-danger);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Controls Row */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.buttonRecord {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-control);
+  background-color: var(--color-action);
+  color: var(--color-action-text);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+}
+
+.buttonRecord:hover:not(:disabled) {
+  background-color: var(--color-action-hover);
+}
+
+.buttonRecordingActive {
+  background-color: var(--color-danger);
+  color: var(--color-canvas);
+}
+
+.buttonRecordingActive:hover {
+  opacity: 0.9;
+}
+
+.buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-control);
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background-color: var(--color-action-surface);
+  border-color: var(--color-action);
+}
+
+.buttonSuccess {
+  background-color: var(--color-success);
+  color: var(--color-canvas);
+  border: none;
+}
+
+.buttonSuccess:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* Audio Player Preview */
+.audioPreviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.audioNativePlayer {
+  inline-size: 100%;
+  block-size: 2.5rem;
+}
+
+/* Transcript Review Box */
+.transcriptCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-action-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.transcriptHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+}
+
+.transcriptText {
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: var(--line-height-base);
+}
+
+.transcriptEditor {
+  inline-size: 100%;
+  padding: var(--space-3);
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-action);
+  border-radius: var(--radius-control);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  min-block-size: 5rem;
+  resize: vertical;
+}
+
+.transcriptEditor:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-action-surface);
+}
+
+/* Error / Notice Banners */
+.noticeBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+}
+
+.noticeWarning {
+  background-color: var(--color-warning-surface);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+}
+
+.noticeDanger {
+  background-color: var(--color-danger-surface);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.noticeSuccess {
+  background-color: var(--color-success-surface);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+/* Fallback Text Input */
+.fallbackArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-canvas);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.fallbackInput {
+  inline-size: 100%;
+  padding: var(--space-3);
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.fallbackInput:focus {
+  outline: none;
+  border-color: var(--color-action);
+}
+
+@media (max-width: 640px) {
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

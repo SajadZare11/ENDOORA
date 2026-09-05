@@ -830,6 +830,21 @@ export default function RoleplayPage() {
           </span>
         </div>
 
+        {/* Voice Roleplay Beta Fast-Track Banner */}
+        <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", alignItems: "center" }}>
+          <Link
+            href="/roleplay/voice"
+            className={styles.buttonPrimary}
+            style={{ display: "inline-flex", alignItems: "center", gap: "var(--space-2)" }}
+          >
+            <span>🎙️</span>
+            <span>{isFa ? "ورود به نقش‌آفرینی صوتی (Voice Roleplay Beta)" : "Enter Voice Roleplay Beta"}</span>
+          </Link>
+          <span className={styles.heroBadge}>
+            🎙️ {isFa ? "مجهز به ضبط زنده و لهجه‌های انتخابی (آزمایشی)" : "Live Audio & Accent Controls (Beta)"}
+          </span>
+        </div>
+
         {/* Level Filters */}
         <div className={styles.filterRow}>
           <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-muted)" }}>

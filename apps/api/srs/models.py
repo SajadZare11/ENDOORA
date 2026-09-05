@@ -101,6 +101,11 @@ class SrsItem(models.Model):
     def __str__(self):
         return f"{self.term} (due {self.due_at})"
 
+    def save(self, *args, **kwargs):
+        if not self.lemma and self.term:
+            self.lemma = self.term.strip().lower()
+        super().save(*args, **kwargs)
+
     def calculate_next_intervals(self) -> dict:
         """Transparent interval calculations for all four ratings."""
         prev = self.interval_days

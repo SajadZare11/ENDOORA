@@ -50,4 +50,12 @@ urlpatterns = [
         "api/roleplay/",
         include("roleplay.urls")
     ),
+    path(
+        "api/voice/",
+        include("voice_lab.urls")
+    ),
+    path(
+        "api/speech/",
+        include("speech.urls")
+    ),
 ]

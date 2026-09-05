@@ -1,6 +1,5 @@
 from django.urls import path
-
-from .views import (
+from voice_lab.views import (
     CleanupExpiredAudioView,
     RecordingDetailView,
     RecordingListCreateView,
@@ -11,7 +10,7 @@ from .views import (
     VoicePreferenceView,
 )
 
-app_name = "voice_lab"
+app_name = "speech"
 
 urlpatterns = [
     path("upload-ticket/", UploadTicketView.as_view(), name="upload-ticket"),

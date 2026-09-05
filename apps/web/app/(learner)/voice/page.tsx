@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AudioRecorder } from "../../../components/placement/AudioRecorder";
+import { VoiceRecorder } from "../../../components/voice-recorder/VoiceRecorder";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "../learner-subpages.module.css";
 
@@ -43,6 +44,51 @@ export default function VoicePage() {
 
   const [activePrompt, setActivePrompt] = useState<PromptCard>(SPEAKING_PROMPTS[0]);
   const [spokenTranscript, setSpokenTranscript] = useState<string>("");
+  const [preferredAccent, setPreferredAccent] = useState<string>("en-US");
+  const [preferredSpeed, setPreferredSpeed] = useState<number>(1.0);
+  const [retentionDays, setRetentionDays] = useState<number>(7);
+  const [prefSaveStatus, setPrefSaveStatus] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadPrefs = async () => {
+      try {
+        const res = await fetch("/api/voice/preferences/");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.preferred_accent) setPreferredAccent(data.preferred_accent);
+          if (data.preferred_speed) setPreferredSpeed(data.preferred_speed);
+          if (data.retention_days !== undefined) setRetentionDays(data.retention_days);
+        }
+      } catch {
+        // Local defaults
+      }
+    };
+    loadPrefs();
+  }, []);
+
+  const handleSavePreferences = async (newAccent: string, newSpeed: number, newRetention: number) => {
+    setPreferredAccent(newAccent);
+    setPreferredSpeed(newSpeed);
+    setRetentionDays(newRetention);
+    setPrefSaveStatus(null);
+
+    try {
+      const res = await fetch("/api/voice/preferences/", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          preferred_accent: newAccent,
+          preferred_speed: newSpeed,
+          retention_days: newRetention,
+        }),
+      });
+      if (res.ok) {
+        setPrefSaveStatus(isFa ? "تنظیمات صوتی با موفقیت ذخیره شد." : "Voice preferences saved.");
+      }
+    } catch {
+      setPrefSaveStatus(isFa ? "تنظیمات به صورت محلی ذخیره شد." : "Saved locally.");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -69,7 +115,10 @@ export default function VoicePage() {
         </div>
 
         <div className={styles.actionRow}>
-          <Link className={styles.buttonPrimary} href="/placement">
+          <Link className={styles.buttonPrimary} href="/roleplay/voice">
+            🎙️ {isFa ? "ورود به نقش‌آفرینی صوتی (Voice Roleplay Beta)" : "Enter Voice Roleplay Beta"}
+          </Link>
+          <Link className={styles.buttonSecondary} href="/placement">
             {isFa ? "ورود به آزمون جامع ۶ مهارته" : "Take 6-Skill Placement Test"}
           </Link>
           <Link className={styles.buttonSecondary} href="/placement/report">
@@ -81,11 +130,118 @@ export default function VoicePage() {
         </div>
       </section>
 
-      {/* Interactive Recording Sandbox */}
+      {/* Audio Privacy & Preferences Management Card */}
+      <section className={styles.card}>
+        <h2 className={styles.cardTitle}>
+          <span aria-hidden="true">⚙️</span>
+          {isFa ? "تنظیمات حریم خصوصی و پردازش صوت (Acoustic Preferences)" : "Acoustic Privacy & Voice Preferences"}
+        </h2>
+        <p style={{ margin: "0 0 var(--space-4) 0", color: "var(--color-muted)", fontSize: "var(--font-size-body)" }}>
+          {isFa
+            ? "مدت زمان نگهداری فایل‌های صوتی و لهجه ترجیحی را مشخص کنید. فایل‌های ضبط‌شده پس از انقضا به صورت دائمی پاکسازی می‌شوند."
+            : "Configure biometric privacy retention policies and preferred TTS persona accent and speech rates."}
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(14rem, 1fr))", gap: "var(--space-4)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+            <label htmlFor="prefRetention" style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-text)" }}>
+              {isFa ? "مدت نگهداری صدا (حریم خصوصی):" : "Audio Retention Policy:"}
+            </label>
+            <select
+              id="prefRetention"
+              style={{
+                padding: "var(--space-2) var(--space-3)",
+                borderRadius: "var(--radius-control)",
+                border: "1px solid var(--color-border)",
+                backgroundColor: "var(--color-canvas)",
+                color: "var(--color-text)",
+              }}
+              value={retentionDays}
+              onChange={(e) => handleSavePreferences(preferredAccent, preferredSpeed, parseInt(e.target.value, 10))}
+            >
+              <option value="0">{isFa ? "حذف فوری پس از جلسه (حداکثر حریم خصوصی)" : "Delete Immediately (Max Privacy)"}</option>
+              <option value="7">{isFa ? "نگهداری ۷ روزه (جهت بازبینی و تمرین)" : "Keep 7 Days (Review & Practice)"}</option>
+              <option value="30">{isFa ? "نگهداری ۳۰ روزه" : "Keep 30 Days"}</option>
+            </select>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+            <label htmlFor="prefAccent" style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-text)" }}>
+              {isFa ? "لهجه ترجیحی کاراکترها:" : "Preferred Persona Accent:"}
+            </label>
+            <select
+              id="prefAccent"
+              style={{
+                padding: "var(--space-2) var(--space-3)",
+                borderRadius: "var(--radius-control)",
+                border: "1px solid var(--color-border)",
+                backgroundColor: "var(--color-canvas)",
+                color: "var(--color-text)",
+              }}
+              value={preferredAccent}
+              onChange={(e) => handleSavePreferences(e.target.value, preferredSpeed, retentionDays)}
+            >
+              <option value="en-US">English (US - American)</option>
+              <option value="en-GB">English (UK - British)</option>
+            </select>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+            <label htmlFor="prefSpeed" style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-text)" }}>
+              {isFa ? "سرعت پخش صدا:" : "Default Speech Rate:"}
+            </label>
+            <select
+              id="prefSpeed"
+              style={{
+                padding: "var(--space-2) var(--space-3)",
+                borderRadius: "var(--radius-control)",
+                border: "1px solid var(--color-border)",
+                backgroundColor: "var(--color-canvas)",
+                color: "var(--color-text)",
+              }}
+              value={preferredSpeed}
+              onChange={(e) => handleSavePreferences(preferredAccent, parseFloat(e.target.value), retentionDays)}
+            >
+              <option value="0.8">0.8x ({isFa ? "آهسته و شمرده" : "Slow & Clear"})</option>
+              <option value="1.0">1.0x ({isFa ? "سرعت طبیعی" : "Normal Speed"})</option>
+              <option value="1.2">1.2x ({isFa ? "سریع و روان" : "Fast & Fluent"})</option>
+            </select>
+          </div>
+        </div>
+
+        {prefSaveStatus && (
+          <div style={{ marginTop: "var(--space-3)", color: "var(--color-success)", fontWeight: 600, fontSize: "var(--font-size-meta)" }}>
+            ✓ {prefSaveStatus}
+          </div>
+        )}
+      </section>
+
+      {/* VoiceRecorder v1 Audio Sandbox */}
       <section className={styles.card}>
         <h2 className={styles.cardTitle}>
           <span aria-hidden="true">🎙️</span>
-          {isFa ? "آزمایش زنده میکروفون و سنجش روان‌گویی" : "Live Microphone & Oral Practice Sandbox"}
+          {isFa ? "ابزار نوین ضبط صوت و ویرایش متن گفتار (VoiceRecorder v1)" : "VoiceRecorder v1 Sandbox (Live Waveform & Edit)"}
+        </h2>
+        <p style={{ margin: "0 0 var(--space-4) 0", color: "var(--color-muted)", fontSize: "var(--font-size-body)" }}>
+          {isFa
+            ? "نوسان‌سنج ۲۴ باند زنده، پیش‌شنوایی فوری، تبدیل زنده گفتار به متن و امکان ویرایش دستی متن شناسایی‌شده پیش از ارسال."
+            : "24-bar live audio visualizer, immediate playback preview, real-time STT, and in-place transcript editor."}
+        </p>
+
+        <VoiceRecorder
+          locale={isFa ? "fa" : "en"}
+          timeLimitSec={90}
+          onConfirmTranscript={(text) => {
+            setSpokenTranscript(text);
+          }}
+        />
+      </section>
+
+      {/* Interactive Recording Sandbox */}
+      <section className={styles.card}>
+        <h2 className={styles.cardTitle}>
+          <span aria-hidden="true">📝</span>
+          {isFa ? "تمرین سناریوی موضوعی گفتار" : "Topic-Guided Speaking Practice"}
         </h2>
 
         {/* Prompt Selector */}
