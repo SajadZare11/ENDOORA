@@ -1,0 +1,51 @@
+{
+  "id": "travel",
+  "title_en": "Public Transit & Asking for Directions",
+  "title_fa": "مسیریابی شهری و حمل‌ونقل عمومی",
+  "level": "A2",
+  "category": "travel",
+  "character": {
+    "name_en": "Julian",
+    "name_fa": "جولین",
+    "role_en": "Station Attendant",
+    "role_fa": "راهنمای ایستگاه مترو",
+    "avatar": "🚇",
+    "tone": "clear, patient, encouraging"
+  },
+  "context_en": "You are at a busy central subway station in downtown Toronto trying to find the connecting train to the National Art Gallery.",
+  "context_fa": "در یک ایستگاه متروی شلوغ در مرکز شهر تورنتو هستید و می‌خواهید به گالری ملی هنر بروید و مسیر انتقال قطار را پیدا کنید.",
+  "initial_message_en": "Hello there! You look like you might need some transit directions. Where are you heading today?",
+  "initial_message_fa": "سلام! به نظر می‌رسد نیاز به راهنمایی مسیر دارید. امروز قصد رفتن به کجا را دارید؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "specify_destination",
+      "description_en": "Tell the attendant where you want to go",
+      "description_fa": "مقصد مورد نظر خود را به مسئول ایستگاه بگویید",
+      "keywords": ["national art gallery", "art gallery", "museum", "downtown", "heading to", "trying to get to", "looking for"]
+    },
+    {
+      "id": "ask_platform_transfer",
+      "description_en": "Ask which line, platform, or transfer to take",
+      "description_fa": "درباره خط مترو، سکو یا ایستگاه تعویض خط سوال کنید",
+      "keywords": ["line", "platform", "transfer", "train", "stop", "switch", "station"]
+    },
+    {
+      "id": "inquire_fare_ticket",
+      "description_en": "Ask about ticket fare or purchasing options",
+      "description_fa": "درباره قیمت بلیط یا نحوه خرید سوال بپرسید",
+      "keywords": ["ticket", "fare", "card", "cost", "buy", "machine", "contactless"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "transfer", "definition": "Change from one bus, train, or vehicle to another during a journey", "level": "A2" },
+    { "word": "platform", "definition": "A raised level surface on which people stand while waiting for a train", "level": "A2" },
+    { "word": "commute", "definition": "Travel some distance between one's home and place of work on a regular basis", "level": "B1" },
+    { "word": "fare", "definition": "The money a passenger on public transportation has to pay", "level": "B1" }
+  ],
+  "suggested_prompts": [
+    "Hi! I am trying to reach the National Art Gallery. Which line should I take?",
+    "Do I need to make a transfer at Union Station, and which platform is it?",
+    "Can I pay using my contactless credit card or do I need to purchase a physical token?"
+  ]
+}

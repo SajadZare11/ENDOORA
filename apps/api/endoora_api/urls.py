@@ -46,4 +46,8 @@ urlpatterns = [
         "api/writing-mentor/",
         include("writing_mentor.urls")
     ),
+    path(
+        "api/roleplay/",
+        include("roleplay.urls")
+    ),
 ]

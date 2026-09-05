@@ -1,0 +1,51 @@
+{
+  "id": "business",
+  "title_en": "Project Deadline & Scope Negotiation",
+  "title_fa": "مذاکره زمان‌بندی و محدوده پروژه تجاری",
+  "level": "B2",
+  "category": "professional",
+  "character": {
+    "name_en": "Marcus Vance",
+    "name_fa": "مارکوس ونس",
+    "role_en": "Senior Product Director",
+    "role_fa": "مدیر ارشد محصول",
+    "avatar": "📊",
+    "tone": "pragmatic, assertive, collaborative"
+  },
+  "context_en": "You are leading the frontend release of Endoora v2. Marcus Vance asks for an early release date, but you need to negotiate between feature scope and quality assurance.",
+  "context_fa": "شما مدیریت انتشار نسخه جدید وب‌سایت را بر عهده دارید. مارکوس خواستار تسریع در انتشار است و شما باید بین زمان‌بندی و حفظ کیفیت مذاکره کنید.",
+  "initial_message_en": "Good morning. Stakeholders are pushing to move our launch milestone forward by two weeks. Can we ship the entire feature roadmap ahead of schedule?",
+  "initial_message_fa": "صبح بخیر. ذی‌نفعان اصرار دارند تاریخ رونمایی را دو هفته جلو بیندازیم. آیا امکان انتشار تمام قابلیت‌ها زودتر از موعد وجود دارد؟",
+  "max_turns": 10,
+  "goals": [
+    {
+      "id": "assess_feasibility",
+      "description_en": "Clarify risks to code quality, regression testing, or burnout",
+      "description_fa": "ریسک‌های مربوط به کیفیت، آزمون‌های رگرسیون یا فشار کاری را شفاف کنید",
+      "keywords": ["risk", "quality", "testing", "timeline", "burnout", "impossible", "compromise", "bug", "stability"]
+    },
+    {
+      "id": "propose_staged_rollout",
+      "description_en": "Propose a phased release (MVP first, secondary features in v2.1)",
+      "description_fa": "پیشنهاد انتشار فازبندی شده (ابتدا قابلیت‌های حیاتی و سپس سایر ویژگی‌ها) ارائه دهید",
+      "keywords": ["phased", "mvp", "core features", "phase 1", "stage", "split", "scope", "defer"]
+    },
+    {
+      "id": "reach_alignment",
+      "description_en": "Finalize commitment on the adjusted scope and release date",
+      "description_fa": "بر روی محدوده اصلاح‌شده و زمان انتشار نهایی توافق کنید",
+      "keywords": ["agree", "commit", "schedule", "milestone", "aligned", "stakeholders", "deliver"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "feasibility", "definition": "The state or degree of being easily or conveniently done", "level": "B2" },
+    { "word": "stakeholder", "definition": "A person with an interest or concern in something, especially a business", "level": "B2" },
+    { "word": "milestone", "definition": "A significant stage or event in the development of something", "level": "B1" },
+    { "word": "contingency", "definition": "A future event or circumstance which is possible but cannot be predicted with certainty", "level": "C1" }
+  ],
+  "suggested_prompts": [
+    "Moving the date by two weeks without adjusting scope would severely compromise our QA testing and stability.",
+    "I propose we ship the core roleplay universe on the expedited date, and rollout advanced speech analytics in a fast follow-up.",
+    "If we agree on that phased milestone, our engineering team can confidently meet the deadline with zero critical defects."
+  ]
+}

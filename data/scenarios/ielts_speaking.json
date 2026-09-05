@@ -1,0 +1,51 @@
+{
+  "id": "ielts_speaking",
+  "title_en": "IELTS Speaking Part 2 & 3 Simulation",
+  "title_fa": "شبیه‌سازی مصاحبه شفاهی آیلتس (بخش ۲ و ۳)",
+  "level": "B2 - C1",
+  "category": "exam_prep",
+  "character": {
+    "name_en": "Examiner Henderson",
+    "name_fa": "ممتحن هندرسون",
+    "role_en": "Certified IELTS Examiner",
+    "role_fa": "ممتحن رسمی آزمون آیلتس",
+    "avatar": "🎙️",
+    "tone": "objective, professional, standard British/International"
+  },
+  "context_en": "You are taking the IELTS Speaking test. Examiner Henderson presents a topic card regarding environmental conservation and technological change.",
+  "context_fa": "در جلسه مصاحبه شفاهی آزمون آیلتس حضور دارید. ممتحن هندرسون موضوع مربوط به محیط‌زیست و تحولات فناورانه را مطرح می‌کند.",
+  "initial_message_en": "Good afternoon. Welcome to Part 2 and 3 of the Speaking module. Today's topic centers on environmental initiatives. Could you describe a policy or technological effort that helps protect our natural resources?",
+  "initial_message_fa": "بعدازظهر بخیر. به بخش‌های ۲ و ۳ آزمون شفاهی خوش آمدید. موضوع امروز پیرامون اقدامات زیست‌محیطی است. می‌توانید یک سیاست یا فناوری حامی منابع طبیعی را توضیح دهید؟",
+  "max_turns": 10,
+  "goals": [
+    {
+      "id": "elaborate_example",
+      "description_en": "Describe a specific environmental initiative or renewable technology with details",
+      "description_fa": "یک اقدام زیست‌محیطی یا فناوری پاک را با ذکر جزئیات و مثال تشریح کنید",
+      "keywords": ["solar", "renewable", "recycling", "initiative", "carbon footprint", "policy", "clean energy", "electric"]
+    },
+    {
+      "id": "analyze_societal_impact",
+      "description_en": "Analyze the societal benefits and challenges of this initiative",
+      "description_fa": "اثرات اجتماعی، اقتصادی یا چالش‌های پیاده‌سازی این سیاست را تحلیل کنید",
+      "keywords": ["society", "economic", "cost", "government", "public awareness", "lifestyle", "challenges", "benefits"]
+    },
+    {
+      "id": "hypothesize_future",
+      "description_en": "Give a nuanced future projection using conditional or speculative language",
+      "description_fa": "یک پیش‌بینی آینده‌نگرانه با استفاده از ساختارهای گمانه‌زنی و شرطی بیان کنید",
+      "keywords": ["in the long run", "potentially", "likely to", "provided that", "unless", "sustainable", "decades"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "sustainable", "definition": "Able to be maintained at a certain rate or level without exhausting natural resources", "level": "B2" },
+    { "word": "mitigate", "definition": "Make less severe, serious, or painful", "level": "C1" },
+    { "word": "infrastructure", "definition": "The basic physical and organizational structures needed for the operation of a society", "level": "B2" },
+    { "word": "imperative", "definition": "Of vital importance; crucial", "level": "C1" }
+  ],
+  "suggested_prompts": [
+    "A prominent example is the widespread adoption of municipal solar power and localized smart grids.",
+    "While initial installation costs are high, the long-term mitigation of fossil fuel reliance provides immense public health dividends.",
+    "Provided that governments invest in battery storage infrastructure, renewable sources will likely dominate energy grids within two decades."
+  ]
+}

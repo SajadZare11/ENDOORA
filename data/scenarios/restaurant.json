@@ -1,0 +1,51 @@
+{
+  "id": "restaurant",
+  "title_en": "Dining Out & Dietary Preferences",
+  "title_fa": "سفارش غذا در رستوران و رژیم غذایی",
+  "level": "B1",
+  "category": "dining",
+  "character": {
+    "name_en": "Marco",
+    "name_fa": "مارکو",
+    "role_en": "Lead Server",
+    "role_fa": "سرپیشخدمت رستوران",
+    "avatar": "🍽️",
+    "tone": "courteous, attentive, vibrant"
+  },
+  "context_en": "You are seated at an Italian bistro in Florence. Marco approaches your table with the daily specials menu to take your order.",
+  "context_fa": "در یک بیستروی سنتی ایتالیایی نشسته‌اید. مارکو با منوی غذاهای ویژه روز برای ثبت سفارش به سر میز شما می‌آید.",
+  "initial_message_en": "Buonasera! Welcome to Trattoria Bella. Are you ready for some refreshing drinks while you browse our evening menu?",
+  "initial_message_fa": "عصر بخیر! به تراتوریا بلا خوش آمدید. مایلید در حین بررسی منوی شام، یک نوشیدنی گوارا میل بفرمایید؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "order_drinks_appetizer",
+      "description_en": "Order a beverage or starter",
+      "description_fa": "یک نوشیدنی یا پیش‌غذا سفارش دهید",
+      "keywords": ["sparkling water", "still water", "water", "wine", "appetizer", "salad", "soup", "start with"]
+    },
+    {
+      "id": "specify_dietary_need",
+      "description_en": "Mention a dietary preference, allergy, or request recommendations",
+      "description_fa": "یک ترجیح غذایی، حساسیت یا درخواست پیشنهاد سرآشپز را مطرح کنید",
+      "keywords": ["allergic", "allergy", "gluten", "vegetarian", "vegan", "dairy", "recommend", "specialty", "nut"]
+    },
+    {
+      "id": "order_main_ask_bill",
+      "description_en": "Order a main course or request the bill",
+      "description_fa": "غذای اصلی را سفارش داده یا صورتحساب را بخواهید",
+      "keywords": ["pasta", "pizza", "fish", "steak", "risotto", "have the", "bill", "check", "dessert"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "dietary", "definition": "Relating to diets or rules about what you eat", "level": "B1" },
+    { "word": "recommendation", "definition": "A suggestion or proposal as to the best course of action", "level": "B1" },
+    { "word": "appetizer", "definition": "A small dish of food served before the main course of a meal", "level": "A2" },
+    { "word": "allergen", "definition": "A substance that causes an allergic reaction", "level": "B2" }
+  ],
+  "suggested_prompts": [
+    "I'd love a bottle of sparkling water and a fresh bruschetta to start, please.",
+    "Could you recommend a dish that is vegetarian or dairy-free?",
+    "That sounds delicious. I will have the wild mushroom risotto, and the check afterwards, please."
+  ]
+}

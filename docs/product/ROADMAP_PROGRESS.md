@@ -23,7 +23,11 @@
 | 19 | Personal learning path engine & interactive experience | Complete | Placement-derived path, timeline, and growth skills passed; pushed |
 | 20 | Adaptive daily mission engine & Wireframe 2 experience | Complete | Daily mission planner, payload protection, and Wireframe 2 passed; pushed |
 | 21 | SRS vocabulary engine & full website UI/UX overhaul | Complete | Transparent SM-2, leech handling, approval inbox, vocabulary hub, and UI/UX overhaul passed |
-| 22-60 | Remaining roadmap | Not started | Sequential |
+| 22 | Structured AI Exercise-Generation Service & Model Router | Complete | OpenRouter client, circuit breaker, fail-safe fallbacks, pre-submission protection passed |
+| 23 | AI Mistake Genome & Error Taxonomy Architecture | Complete | 8 mistake categories, multi-event threshold, dispute workflows, privacy scrubbing passed |
+| 24 | Writing Mentor v1 & IELTS Rubric Engine | Complete | 4-criteria IELTS rubric ranges, 3-tier rewrites, voice preservation, selective Genome passed |
+| 25 | Text-Based Roleplay Universe v1 | Complete | 10 scenarios, zero mid-turn interruptions, bounded turns, deferred diagnostic report passed |
+| 26-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -530,3 +534,33 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** learners receive formative writing correction and revision coaching that preserves their authentic voice through illustrative graduated examples, transparent IELTS rubric ranges without fake certification claims, clear separation between grammar errors and style advice, and user-controlled Mistake Genome updates.
 
 **Next day after Git push:** Day 25 — Build text-based Roleplay Universe v1.
+
+## Day 25 — Build text-based Roleplay Universe v1
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day25\20260826-090000\endoora-pre-day25.dump`)
+- [x] created 10 comprehensive scenario specifications in `data/scenarios/` covering A2 through C1 levels (`airport`, `hotel`, `restaurant`, `shopping`, `travel`, `university`, `job_interview`, `business`, `friendly_chat`, `ielts_speaking`)
+- [x] implemented Roleplay models (`RoleplaySession`, `RoleplayMessage`, `RoleplayReport`) in `apps/api/roleplay/models.py` with anti-exploit `xp_awarded` boolean guard and turn tracking
+- [x] generated and verified migration `apps/api/roleplay/migrations/0001_initial.py` with 0 model drift
+- [x] built conversational simulation engine in `apps/api/roleplay/services.py` with strict adherence to:
+  - zero mid-turn interruptions (in-character replies never disrupt conversational flow with red grammar lectures)
+  - in-character prompt injection defense (polite character redirects that preserve persona without leaking system prompts)
+  - bounded token consumption (strict `max_turns` limit of 8–10 turns and 500-char user message caps)
+  - deferred post-conversation diagnostic report generation
+  - anti-exploit completion XP (awarded strictly once upon scenario completion)
+- [x] implemented dual downstream ecosystem integrations:
+  - Mistake Genome: deferred grammatical errors can be accepted by the learner to call `MistakeGenomeService.record_mistake()`
+  - SRS Deck: target vocabulary words can be saved directly to the learner's active flashcard review via `SrsItem`
+- [x] implemented API endpoints in `apps/api/roleplay/views.py` and `urls.py` routed at `/api/roleplay/`
+- [x] 11 unit tests in `apps/api/roleplay/tests.py` passing with 0 errors
+- [x] 160 full backend tests passing across all 13 applications
+- [x] built interactive Roleplay Universe experience at `/roleplay` (`apps/web/app/(learner)/roleplay/page.tsx`) with scenario catalog, live character chat with avatar and goal milestones progress bar, hints, quick suggestions, and post-conversation report view with interactive genome and SRS buttons
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/roleplay/roleplay.module.css` with 0 raw hex colors
+- [x] Next.js 110 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day25.py` and regression checks `scripts/check_day14.py` through `scripts/check_day24.py` passing
+- [x] comprehensive architecture documentation in `docs/ai/roleplay-engine.md` and updated `docs/learning/roleplay.md`
+
+**Success gate:** learners engage in realistic, goal-oriented situational dialogues with AI characters that never break character with annoying mid-turn interruptions; all diagnostics and target vocabulary are thoughtfully organized in the post-conversation report for selective integration into their Mistake Genome and SRS deck; and gamification is strictly protected against token and XP exploits.
+
+**Next day after Git push:** Day 26 — Build Voice Lab v1.

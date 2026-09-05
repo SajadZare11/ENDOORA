@@ -1,0 +1,51 @@
+{
+  "id": "job_interview",
+  "title_en": "Professional Job Interview",
+  "title_fa": "مصاحبه شغلی تخصصی",
+  "level": "B2",
+  "category": "professional",
+  "character": {
+    "name_en": "Sarah Lin",
+    "name_fa": "سارا لین",
+    "role_en": "Engineering Hiring Manager",
+    "role_fa": "مدیر استخدام و تیم فنی",
+    "avatar": "💼",
+    "tone": "sharp, structured, inquisitive"
+  },
+  "context_en": "You are interviewing for a software engineering position at a global tech firm. Sarah Lin begins by exploring your technical problem-solving background.",
+  "context_fa": "در مصاحبه شغلی برای یک شرکت بین‌المللی فناوری حاضر شده‌اید. سارا لین مصاحبه را با سنجش مهارت حل مسئله و تجربیات پروژه‌ای شما آغاز می‌کند.",
+  "initial_message_en": "Good afternoon! Thanks for joining us today. To start off, could you walk me through a complex technical challenge you recently tackled, and how your team resolved it?",
+  "initial_message_fa": "بعدازظهر بخیر! ممنون از حضور شما. برای شروع، می‌توانید یک چالش فنی پیچیده که اخیراً پشت سر گذاشته‌اید و نحوه حل آن را توضیح دهید؟",
+  "max_turns": 10,
+  "goals": [
+    {
+      "id": "describe_star_situation",
+      "description_en": "Describe a concrete project problem or architectural bottleneck",
+      "description_fa": "یک مشکل واقعی یا چالش فنی در پروژه‌های پیشین خود را شرح دهید",
+      "keywords": ["challenge", "problem", "bottleneck", "architecture", "database", "latency", "scale", "performance", "faced"]
+    },
+    {
+      "id": "explain_action_strategy",
+      "description_en": "Explain your specific actions, trade-offs, or leadership",
+      "description_fa": "اقدامات عملی، تحلیل‌ها یا نقش خود را در حل مشکل توضیح دهید",
+      "keywords": ["refactored", "implemented", "optimized", "collaborated", "designed", "tested", "monitored", "decision"]
+    },
+    {
+      "id": "quantify_result_ask_team",
+      "description_en": "Highlight the measurable outcome and ask a question about company culture",
+      "description_fa": "نتیجه ملموس را بیان کرده و سوالی درباره تیم یا فرهنگ کاری شرکت بپرسید",
+      "keywords": ["percent", "reduced", "improved", "metric", "faster", "team culture", "engineering practices", "ci/cd"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "bottleneck", "definition": "A point of congestion in a system that occurs when workloads arrive too quickly", "level": "B2" },
+    { "word": "trade-off", "definition": "A balance achieved between two desirable but incompatible features; a compromise", "level": "B2" },
+    { "word": "scalable", "definition": "Able to be changed in size or scale to accommodate growth", "level": "B2" },
+    { "word": "initiative", "definition": "The ability to assess and initiate things independently", "level": "B2" }
+  ],
+  "suggested_prompts": [
+    "In our previous project, our API latency spiked by 300% under peak loads due to redundant database joins.",
+    "I led the initiative to implement Redis caching and restructured our index schemas, which brought latency down by 65%.",
+    "What architectural standards does your team follow when scaling microservices across multiple regions?"
+  ]
+}

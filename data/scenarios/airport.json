@@ -1,0 +1,51 @@
+{
+  "id": "airport",
+  "title_en": "Airport Passport Control & Customs",
+  "title_fa": "فرودگاه و بازرسی گذرنامه",
+  "level": "A2 - B1",
+  "category": "travel",
+  "character": {
+    "name_en": "Officer Davis",
+    "name_fa": "افسر دیویس",
+    "role_en": "Immigration Officer",
+    "role_fa": "افسر کنترل گذرنامه",
+    "avatar": "👮",
+    "tone": "formal, professional, direct"
+  },
+  "context_en": "You have arrived at London Heathrow Airport. Officer Davis is reviewing your passport and asking about your itinerary and purpose of visit.",
+  "context_fa": "شما به فرودگاه هیترو لندن رسیده‌اید. افسر دیویس گذرنامه شما را بررسی کرده و درباره برنامه سفر، هدف و مدت اقامت سوال می‌پرسد.",
+  "initial_message_en": "Good day. May I inspect your passport and landing card, please? What is the primary purpose of your visit to the United Kingdom?",
+  "initial_message_fa": "روز بخیر. لطفاً گذرنامه و کارت ورود خود را ارائه دهید. هدف اصلی شما از سفر به بریتانیا چیست؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "state_purpose",
+      "description_en": "State the purpose of your visit clearly",
+      "description_fa": "هدف سفر خود را به وضوح بیان کنید",
+      "keywords": ["visit", "tourism", "vacation", "holiday", "study", "conference", "business", "attending", "here to"]
+    },
+    {
+      "id": "state_duration_accommodation",
+      "description_en": "Specify where you will stay and for how long",
+      "description_fa": "محل اقامت و مدت اقامت خود را مشخص کنید",
+      "keywords": ["stay", "days", "weeks", "hotel", "hostel", "apartment", "staying at", "friend", "airbnb"]
+    },
+    {
+      "id": "return_details",
+      "description_en": "Confirm your return flight or departure plan",
+      "description_fa": "برنامه پرواز برگشت یا ترک کشور را تأیید کنید",
+      "keywords": ["return", "ticket", "flight", "booked", "leave", "leaving", "departure", "back on"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "immigration", "definition": "The official examination of passports and visas at a border", "level": "B1" },
+    { "word": "itinerary", "definition": "A detailed plan or schedule of travel", "level": "B2" },
+    { "word": "accommodation", "definition": "A place to live, stay, or sleep temporarily", "level": "B1" },
+    { "word": "customs", "definition": "The government department collecting duties on imported goods", "level": "B1" }
+  ],
+  "suggested_prompts": [
+    "Good morning. I am here for two weeks as a tourist to visit historical landmarks.",
+    "I have booked a room at the Central Park Hotel for my entire stay.",
+    "Yes officer, my return flight departs on September 24th with British Airways."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "id": "hotel",
+  "title_en": "Hotel Check-in & Special Requests",
+  "title_fa": "پذیرش هتل و درخواست‌های اقامت",
+  "level": "A2",
+  "category": "hospitality",
+  "character": {
+    "name_en": "Elena",
+    "name_fa": "النا",
+    "role_en": "Front Desk Concierge",
+    "role_fa": "مسئول پذیرش هتل",
+    "avatar": "🛎️",
+    "tone": "polite, warm, accommodating"
+  },
+  "context_en": "You have just entered the lobby of the Grand Royal Hotel after a long flight. Concierge Elena welcomes you to process your reservation.",
+  "context_fa": "پس از یک پرواز طولانی وارد لابی هتل گرند رویال شده‌اید. النا، مسئول پذیرش، برای ثبت ورود و رزرو اتاق به شما خوش‌آمد می‌گوید.",
+  "initial_message_en": "Welcome to the Grand Royal Hotel! How may I assist you this afternoon? Do you have an existing reservation with us?",
+  "initial_message_fa": "به هتل گرند رویال خوش آمدید! بعدازظهر بخیر، چطور می‌توانم کمکتان کنم؟ آیا رزرو قبلی دارید؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "provide_reservation",
+      "description_en": "Give your name and confirm you have a reservation",
+      "description_fa": "نام خود را اعلام کرده و رزرو اتاق را تایید کنید",
+      "keywords": ["reservation", "booked", "name", "booking", "under", "check in"]
+    },
+    {
+      "id": "request_amenity",
+      "description_en": "Ask for an amenity (quiet room, high floor, Wi-Fi password, or extra pillows)",
+      "description_fa": "یک امکانات خاص مانند اتاق آرام، طبقه بالا یا رمز وای‌فای درخواست کنید",
+      "keywords": ["quiet", "high floor", "view", "wifi", "wi-fi", "pillow", "towels", "breakfast", "key"]
+    },
+    {
+      "id": "inquire_timing",
+      "description_en": "Ask about breakfast hours or check-out time",
+      "description_fa": "درباره ساعت صبحانه یا ساعت خروج سوال بپرسید",
+      "keywords": ["breakfast", "time", "hours", "check out", "checkout", "morning", "served"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "reservation", "definition": "An arrangement by which accommodations are secured in advance", "level": "A2" },
+    { "word": "concierge", "definition": "A hotel staff member who assists guests with reservations, bookings, and recommendations", "level": "B2" },
+    { "word": "amenities", "definition": "Desirable or useful features of a building, room, or place", "level": "B1" },
+    { "word": "complimentary", "definition": "Given or provided free of charge", "level": "B2" }
+  ],
+  "suggested_prompts": [
+    "Hello! Yes, I have a reservation for three nights under the name Alex Smith.",
+    "Could I please request a quiet room on a higher floor with a nice view?",
+    "What time is breakfast served in the morning, and is Wi-Fi included?"
+  ]
+}

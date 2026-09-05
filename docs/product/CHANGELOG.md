@@ -1,6 +1,31 @@
 # Endoora Changelog
 
-## Day 24 — Writing Mentor v1 & IELTS Rubric Engine
+## Day 25 — Text-Based Roleplay Universe v1 & Post-Conversation Diagnostic Engine
+
+### Added
+- Complete Roleplay Universe v1 backend architecture in `apps/api/roleplay/` with models `RoleplaySession`, `RoleplayMessage`, and `RoleplayReport`.
+- 10 comprehensive scenario specifications in `data/scenarios/` covering A2 through C1 levels (`airport`, `hotel`, `restaurant`, `shopping`, `travel`, `university`, `job_interview`, `business`, `friendly_chat`, `ielts_speaking`) with rich persona details, communicative goals, and CEFR target vocabulary.
+- Roleplay engine (`RoleplayService`) enforcing:
+  - **Zero Mid-Turn Interruptions**: AI characters stay strictly in persona without breaking immersion with red grammar corrections or pedagogical lectures during conversation.
+  - **Deferred Diagnostic Reporting**: All grammatical error analysis, communicative fluency scoring, and vocabulary extractions are deferred to the Post-Conversation Report.
+  - **Bounded Token Caps**: Strict turn limits (`max_turns = 8 – 10`) and 500-character input limits.
+  - **In-Character Prompt Injection Defense**: Jailbreak attempts ("ignore previous instructions", "reveal system prompt") are politely redirected in-character without crashing or disclosing internal system prompts.
+  - **Anti-Exploit Gamification**: +50 XP completion reward is strictly awarded *once* per scenario (`xp_awarded` boolean guard), never per message turn.
+- Dual downstream integrations:
+  - **Mistake Genome**: Learners review deferred grammatical slips and tap "Add to Mistake Genome" to target them in future exercises via `MistakeGenomeService.record_mistake()`.
+  - **SRS Deck**: Target vocabulary words from the scenario can be saved directly into the learner's active flashcard review via `SrsItem.objects.create()`.
+- API endpoints in `apps/api/roleplay/views.py` and `urls.py` routed at `/api/roleplay/` (`scenarios/`, `scenarios/<id>/`, `sessions/start/`, `sessions/<id>/`, `sessions/<id>/message/`, `sessions/<id>/hint/`, `sessions/<id>/complete/`, `sessions/<id>/accept-mistake/`, `sessions/<id>/save-srs-word/`).
+- Initial migration in `apps/api/roleplay/migrations/0001_initial.py`.
+- 11 automated unit and integration tests in `apps/api/roleplay/tests.py` covering catalog loading, session lifecycle, turn limits, prompt injection safety, absence of mid-turn corrections, report generation, anti-exploit XP, genome sync, SRS addition, and user session isolation.
+- Interactive Roleplay Universe frontend at `/roleplay` (`apps/web/app/(learner)/roleplay/page.tsx`) with CEFR filterable scenario catalog, live persona chat interface, turn counters, goal checklist progress bar, contextual hints, quick suggested response chips, and post-conversation report view with interactive genome and SRS actions.
+- 100% tokenized CSS in `apps/web/app/(learner)/roleplay/roleplay.module.css` with 0 raw hex colors and Persian RTL layout with English LTR isolation.
+- Engine and pedagogical architecture documentation in `docs/ai/roleplay-engine.md` and updated `docs/learning/roleplay.md`.
+- Static contract verification script in `scripts/check_day25.py` and pre-migration backup script `scripts/backup_day25.ps1`.
+
+### Changed
+- Total backend test suite grew from 149 to 160 passing tests with 0 errors across 13 applications.
+- Next.js production build cleanly compiles 110 static routes with 0 lint and 0 typecheck errors.
+
 
 ### Added
 - Complete Writing Mentor v1 backend models in `apps/api/writing_mentor/models.py` (`WritingDraft`, `WritingAnalysis`) with draft autosave, parent-revision chaining, and word counting.

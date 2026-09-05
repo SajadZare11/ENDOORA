@@ -1,0 +1,51 @@
+{
+  "id": "friendly_chat",
+  "title_en": "Weekend Catch-up with a Friend",
+  "title_fa": "گپ‌وگفت دوستانه آخر هفته",
+  "level": "B1",
+  "category": "social",
+  "character": {
+    "name_en": "Sam",
+    "name_fa": "سَم",
+    "role_en": "Close Friend",
+    "role_fa": "دوست صمیمی",
+    "avatar": "☕",
+    "tone": "casual, warm, expressive"
+  },
+  "context_en": "You and your close friend Sam meet up at your favorite neighborhood coffee shop on a sunny Saturday afternoon.",
+  "context_fa": "شما و دوست صمیمیتان سَم در یک بعدازظهر آفتابی شنبه در کافه همیشگی محله برای نوشیدن قهوه دیدار کرده‌اید.",
+  "initial_message_en": "Hey! It feels like ages since we caught up properly. How have you been holding up with work and everything?",
+  "initial_message_fa": "سلام! خیلی وقته درست و حسابی با هم حرف نزدیم. اوضاع کار و زندگی چطور پیش میره؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "share_personal_update",
+      "description_en": "Share how you've been doing or mention a recent hobby/project",
+      "description_fa": "از احوال خود یا یک فعالیت/پروژه جدید که اخیراً انجام داده‌اید بگویید",
+      "keywords": ["busy", "good", "learning", "project", "coding", "reading", "working on", "tired", "excited"]
+    },
+    {
+      "id": "ask_friend_life",
+      "description_en": "Inquire about Sam's week, plans, or family",
+      "description_fa": "درباره هفته، برنامه‌ها یا حال و روز سَم سوال بپرسید",
+      "keywords": ["how about you", "what about you", "how's your", "plans", "weekend", "family", "doing lately"]
+    },
+    {
+      "id": "suggest_weekend_activity",
+      "description_en": "Suggest doing an activity together (movie, hike, concert, or dinner)",
+      "description_fa": "پیشنهاد یک فعالیت مشترک برای آخر هفته بدهید",
+      "keywords": ["grab food", "dinner", "movie", "hiking", "walk", "park", "hang out", "next week", "concert"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "catch up", "definition": "To talk to someone you have not seen for a while to find out what each person has been doing", "level": "B1" },
+    { "word": "hectic", "definition": "Full of incessant or frantic activity; very busy", "level": "B1" },
+    { "word": "unwind", "definition": "To relax after a period of work or tension", "level": "B2" },
+    { "word": "spontaneous", "definition": "Performed or occurring as a result of a sudden impulse without premeditation", "level": "B2" }
+  ],
+  "suggested_prompts": [
+    "I've been quite busy building an AI language learning app, but it's really exciting!",
+    "How have things been on your end? Are you still planning that trip to Vancouver?",
+    "We should definitely go hiking in the nature reserve tomorrow to unwind!"
+  ]
+}

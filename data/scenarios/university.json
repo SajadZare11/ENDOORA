@@ -1,0 +1,51 @@
+{
+  "id": "university",
+  "title_en": "Academic Advising & Course Selection",
+  "title_fa": "مشاوره تحصیلی و انتخاب واحد دانشگاهی",
+  "level": "B2",
+  "category": "academic",
+  "character": {
+    "name_en": "Dr. Sterling",
+    "name_fa": "دکتر استرلینگ",
+    "role_en": "Academic Advisor",
+    "role_fa": "مشاور تحصیلی و استاد راهنما",
+    "avatar": "🎓",
+    "tone": "academic, thoughtful, supportive"
+  },
+  "context_en": "You are sitting in Dr. Sterling's faculty office to plan your courses for the upcoming semester, balancing your major requirements with research seminar electives.",
+  "context_fa": "در دفتر کار دکتر استرلینگ برای انتخاب واحدهای ترم آینده نشسته‌اید تا تعادل بین دروس تخصصی و سمینار پژوهشی را تنظیم کنید.",
+  "initial_message_en": "Come in and have a seat! I see you are finalizing your course schedule for next semester. What academic focus or electives are you leaning towards?",
+  "initial_message_fa": "بفرمایید داخل و بنشینید! می‌بینم که در حال نهایی کردن برنامه دروس ترم آینده هستید. بیشتر به چه گرایش یا دروس اختیاری تمایل دارید؟",
+  "max_turns": 10,
+  "goals": [
+    {
+      "id": "discuss_core_electives",
+      "description_en": "Mention your intended major courses or research interests",
+      "description_fa": "دروس اصلی مورد نظر یا حوزه‌های پژوهشی خود را بیان کنید",
+      "keywords": ["major", "elective", "course", "research", "machine learning", "linguistics", "data", "seminar", "credits"]
+    },
+    {
+      "id": "raise_workload_concern",
+      "description_en": "Ask about managing workload, prerequisites, or assignment intensity",
+      "description_fa": "درباره پیش‌نیازها، حجم تکالیف یا مدیریت زمان سوال مطرح کنید",
+      "keywords": ["prerequisite", "workload", "manage", "demanding", "assignments", "exam", "reading list", "credits"]
+    },
+    {
+      "id": "agree_on_plan",
+      "description_en": "Agree on a balanced course plan for registration",
+      "description_fa": "بر روی یک ترکیب واحد متعادل برای ثبت‌نام به توافق برسید",
+      "keywords": ["enroll", "register", "four courses", "balance", "plan", "finalize", "sounds reasonable"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "prerequisite", "definition": "A thing that is required as a prior condition for something else to happen", "level": "B2" },
+    { "word": "syllabus", "definition": "An outline of the subjects in a course of study or teaching", "level": "B2" },
+    { "word": "curriculum", "definition": "The subjects comprising a course of study in a school or college", "level": "B2" },
+    { "word": "workload", "definition": "The amount of work to be done by someone in a given period", "level": "B1" }
+  ],
+  "suggested_prompts": [
+    "Thank you Dr. Sterling. I am hoping to take the Advanced Data Analysis seminar alongside the Cognitive Linguistics core course.",
+    "Do you think the workload for those two courses will be overwhelming with my part-time research assistantship?",
+    "That makes total sense. I will prioritize the prerequisite seminar this term and register tomorrow."
+  ]
+}

@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 24 — Build Writing Mentor v1
-- **Day 24 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–23 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, and AI Mistake Genome
-- **Schema version:** Day 24 adds `writing_mentor.0001_initial`
+- **Roadmap day completed:** Day 25 — Build text-based Roleplay Universe v1
+- **Day 25 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–24 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, and Writing Mentor v1
+- **Schema version:** Day 25 adds `roleplay.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -950,9 +950,67 @@ Commit message:
 
 `Day 24: Build Writing Mentor v1, IELTS 4-criteria rubric, graduated rewrites, and studio workbench`
 
+## Features working through Day 25
+
+### Roleplay Universe v1 Architecture
+- Models in `apps/api/roleplay/models.py`:
+  - `RoleplaySession`: Learner foreign key, `scenario_id`, `turn_count`, `max_turns`, `goals_completed`, and anti-exploit `xp_awarded` boolean guard.
+  - `RoleplayMessage`: Dialogue utterances with sender (`character`, `learner`, `system`), character name, and timestamp.
+  - `RoleplayReport`: Deferred post-conversation report storing communicative score, CEFR band estimate, accomplishments, deferred grammar feedback, extracted vocabulary items, and XP earned (+50 XP).
+- Migration `apps/api/roleplay/migrations/0001_initial.py` applied with 0 model drift.
+- Scenario catalog in `data/scenarios/` with 10 structured definitions:
+  - `airport.json` (Officer Davis, A2-B1, 3 goals, 4 vocab)
+  - `hotel.json` (Elena Concierge, A2, 3 goals, 4 vocab)
+  - `restaurant.json` (Marco Server, B1, 3 goals, 4 vocab)
+  - `shopping.json` (Chloe Customer Care, B1, 3 goals, 4 vocab)
+  - `travel.json` (Julian Transit Attendant, A2, 3 goals, 4 vocab)
+  - `university.json` (Dr. Sterling Advisor, B2, 3 goals, 4 vocab)
+  - `job_interview.json` (Sarah Lin Hiring Manager, B2, 3 goals, 4 vocab)
+  - `business.json` (Marcus Vance Product Lead, B2, 3 goals, 4 vocab)
+  - `friendly_chat.json` (Sam Close Friend, B1, 3 goals, 4 vocab)
+  - `ielts_speaking.json` (Examiner Henderson, B2-C1, 3 goals, 4 vocab)
+
+### Pedagogical & Immersion Safeguards
+- **Zero Mid-Turn Interruptions**: In-character responses maintain complete dramatic immersion, deferring all grammatical error analysis to the post-conversation report.
+- **In-Character Prompt Injection Defense**: System prompt extraction and jailbreak attempts are politely redirected in-character without crashing or disclosing internal system prompts.
+- **Bounded Token Caps**: Maximum turn limits (`max_turns = 8 – 10`) and 500-character input limits prevent runaway token loops.
+- **Anti-Exploit Completion XP**: Static +50 XP completion reward is strictly awarded *once* per scenario (`xp_awarded` guard), completely preventing per-turn token farming.
+
+### Downstream Integrations
+- **Mistake Genome**: Deferred grammatical slips can be reviewed and accepted by learners (`POST /api/roleplay/sessions/<id>/accept-mistake/`), seamlessly calling `MistakeGenomeService.record_mistake()`.
+- **SRS Deck**: Target vocabulary words from scenarios can be saved directly to the active flashcard review deck (`POST /api/roleplay/sessions/<id>/save-srs-word/`), creating an `SrsItem`.
+
+### Frontend Experience
+- Overhauled `/roleplay` in `apps/web/app/(learner)/roleplay/page.tsx`:
+  - Scenario catalog grid filterable by CEFR level with avatar and goal previews.
+  - Live persona chat interface with avatar, tone, and character role.
+  - Interactive turn counter (`Turn X of Y`) and goal checklist tracker.
+  - Pedagogical phrasing hint drawer.
+  - Quick suggested response chips.
+  - Post-conversation diagnostic report view with communicative fluency score, CEFR band estimate, accomplishments list, deferred grammatical feedback with "Add to Mistake Genome" action, and extracted target vocabulary with "Save to SRS Deck" action.
+- 100% tokenized CSS in `apps/web/app/(learner)/roleplay/roleplay.module.css` with 0 raw hex colors.
+
+### Day 25 Verification Evidence
+- Pre-Day-25 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day25\20260826-090000\endoora-pre-day25.dump` (107,603 bytes).
+- Backend unit tests pass: 11/11 in `apps/api/roleplay/tests.py`.
+- Full backend regression suite: 160/160 tests passing across all 13 applications.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors), `npm run build` (110/110 static routes compiled cleanly).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Component & system checks: `node scripts/check-components.mjs`, `node scripts/check-day01-10.mjs` passed.
+- Daily contract checks: `scripts/check_day14.py` through `scripts/check_day25.py` all passed.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 25)
+
+Commit message:
+
+`Day 25: Build text-based Roleplay Universe v1, scenario catalog, AI characters, and post-conversation report`
+
 ## Exact next day
 
-**Day 25 — Build text-based Roleplay Universe v1.**
+**Day 26 — Build Voice Lab v1.**
 
-Do not begin Day 25 until the Day 24 commit is pushed and `git status --short --branch`
+Do not begin Day 26 until the Day 25 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

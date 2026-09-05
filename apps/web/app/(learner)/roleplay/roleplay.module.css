@@ -1,0 +1,784 @@
+/* Roleplay Universe v1 - 100% Tokenized CSS (Zero Raw Hex) */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding-block: var(--space-4);
+  padding-inline: var(--space-4);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  text-decoration: none;
+  inline-size: fit-content;
+  border-radius: var(--radius-control);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+  transition: background-color var(--transition-base);
+}
+
+.backLink:hover {
+  background-color: var(--color-action-surface);
+}
+
+.backLink:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Hero Section */
+.heroCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.heroHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.heroTitle {
+  font-size: var(--font-size-title-1);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--line-height-heading);
+}
+
+.heroSubtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+  margin: 0;
+  max-inline-size: 48rem;
+  line-height: var(--line-height-base);
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-action-surface);
+  color: var(--color-action);
+  border: 1px solid var(--color-border);
+}
+
+.heroBadgeSuccess {
+  background-color: var(--color-success-surface);
+  color: var(--color-success);
+}
+
+/* Filter Controls */
+.filterRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filterPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filterPill:hover {
+  border-color: var(--color-action);
+  background-color: var(--color-action-surface);
+}
+
+.filterPillActive {
+  background-color: var(--color-action);
+  color: var(--color-action-text);
+  border-color: var(--color-action);
+}
+
+/* Scenario Catalog Grid */
+.scenarioGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-4);
+}
+
+.scenarioCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  cursor: pointer;
+}
+
+.scenarioCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-action);
+  box-shadow: var(--shadow-md);
+}
+
+.scenarioCardActive {
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 2px var(--color-action);
+}
+
+.scenarioCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+
+.characterAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  font-size: 1.75rem;
+  border-radius: var(--radius-control);
+  background-color: var(--color-action-surface);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.scenarioTitle {
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.characterRole {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  font-weight: 600;
+  margin: 0;
+}
+
+.scenarioContext {
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+  margin-block-end: var(--space-4);
+}
+
+.goalsPreview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-block-end: var(--space-4);
+  padding: var(--space-3);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-control);
+}
+
+.goalsPreviewTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-action);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.goalBullet {
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Live Session Arena */
+.arenaCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.arenaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-canvas);
+  border-block-end: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.characterHeaderInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.characterHeaderAvatar {
+  font-size: 2rem;
+}
+
+.characterHeaderTitle {
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.characterHeaderSubtitle {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.sessionControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.turnCounterBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  background-color: var(--color-action-surface);
+  color: var(--color-action);
+  border: 1px solid var(--color-border);
+}
+
+/* Goals Progress Tracker Bar */
+.goalsTrackerBar {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-surface-subtle);
+  border-block-end: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.goalsTrackerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.goalsList {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.goalPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  padding-block: var(--space-1);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-control);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.goalPillAchieved {
+  background-color: var(--color-success-surface);
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+/* Dialogue Transcript Area */
+.transcriptArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  max-block-size: 32rem;
+  overflow-y: auto;
+  background: var(--color-canvas);
+}
+
+.messageBubbleWrapper {
+  display: flex;
+  flex-direction: column;
+  max-inline-size: 82%;
+}
+
+.learnerWrapper {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.characterWrapper {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.bubbleSenderName {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-block-end: var(--space-1);
+  padding-inline: var(--space-1);
+}
+
+.messageBubble {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-base);
+  box-shadow: var(--shadow-subtle);
+  word-break: break-word;
+}
+
+.learnerBubble {
+  background-color: var(--color-action);
+  color: var(--color-action-text);
+  border-bottom-right-radius: 0;
+  border: 1px solid transparent;
+}
+
+.characterBubble {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-bottom-left-radius: 0;
+  border: 1px solid var(--color-border);
+}
+
+/* Suggested Prompts Shelf */
+.promptsShelf {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-surface);
+  border-block-start: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.promptsShelfTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.promptsButtonsGroup {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.promptChip {
+  padding-block: var(--space-1);
+  padding-inline: var(--space-3);
+  background-color: var(--color-action-surface);
+  color: var(--color-action);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-base);
+}
+
+.promptChip:hover {
+  border-color: var(--color-action);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Input Toolbar */
+.inputToolbar {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-surface);
+  border-block-start: 1px solid var(--color-border);
+  align-items: center;
+}
+
+.textInput {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  transition: border-color var(--transition-base);
+}
+
+.textInput:focus {
+  outline: none;
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 2px var(--color-action-surface);
+}
+
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-control);
+  background-color: var(--color-action);
+  color: var(--color-action-text);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+  white-space: nowrap;
+}
+
+.buttonPrimary:hover:not(:disabled) {
+  background-color: var(--color-action-hover);
+}
+
+.buttonPrimary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-control);
+  background-color: var(--color-canvas);
+  color: var(--color-text);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.buttonSecondary:hover {
+  background-color: var(--color-action-surface);
+  border-color: var(--color-action);
+}
+
+.buttonSuccess {
+  background-color: var(--color-success);
+  color: var(--color-canvas);
+  border: none;
+}
+
+.buttonSuccess:hover {
+  opacity: 0.9;
+}
+
+/* Hint Drawer */
+.hintBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-warning-surface);
+  color: var(--color-warning);
+  border-block-start: 1px solid var(--color-border);
+  font-size: var(--font-size-meta);
+}
+
+/* Post-Conversation Report Card */
+.reportCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+}
+
+.reportCelebration {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-action-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  flex-wrap: wrap;
+}
+
+.reportCelebrationTitle {
+  font-size: var(--font-size-title-2);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.reportCelebrationSubtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.xpBadgeContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-success-surface);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-title-3);
+  font-weight: 800;
+}
+
+.reportMetricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+}
+
+.metricTile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.metricLabel {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: var(--font-size-title-2);
+  font-weight: 800;
+  color: var(--color-action);
+}
+
+/* Report Section */
+.reportSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.reportSectionTitle {
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.reportSectionSubtitle {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Mistake Cards */
+.mistakeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mistakeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-warning);
+  border-radius: var(--radius-control);
+}
+
+[dir="rtl"] .mistakeCard {
+  border-left: 1px solid var(--color-border);
+  border-right: 4px solid var(--color-warning);
+}
+
+.mistakeCardAccepted {
+  border-left-color: var(--color-success);
+  opacity: 0.85;
+}
+
+[dir="rtl"] .mistakeCardAccepted {
+  border-right-color: var(--color-success);
+}
+
+.mistakeCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.mistakeTitle {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.mistakeComparison {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-body);
+}
+
+.mistakeOriginal {
+  color: var(--color-danger);
+  text-decoration: line-through;
+}
+
+.mistakeCorrected {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.mistakeExplanation {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-base);
+}
+
+/* Vocabulary Grid */
+.vocabGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--space-3);
+}
+
+.vocabCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.vocabTerm {
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-action);
+}
+
+.vocabLevelBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-action-surface);
+  color: var(--color-action);
+  border: 1px solid var(--color-border);
+}
+
+.vocabDefinition {
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+}
+
+.vocabMeaningFa {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+/* Disclaimer footer */
+.disclaimer {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-base);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+@media (max-width: 640px) {
+  .heroHeader {
+    flex-direction: column;
+  }
+
+  .arenaHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .messageBubbleWrapper {
+    max-inline-size: 95%;
+  }
+
+  .inputToolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

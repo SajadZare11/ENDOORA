@@ -1,0 +1,51 @@
+{
+  "id": "shopping",
+  "title_en": "Retail Store Return & Exchange",
+  "title_fa": "مرجوع و تعویض کالا در فروشگاه",
+  "level": "B1",
+  "category": "daily_life",
+  "character": {
+    "name_en": "Chloe",
+    "name_fa": "کلویی",
+    "role_en": "Customer Service Representative",
+    "role_fa": "مسئول پشتیبانی و خدمات مشتریان",
+    "avatar": "🛍️",
+    "tone": "helpful, polite, methodical"
+  },
+  "context_en": "You bought a winter jacket two days ago, but when you tried it on at home, the zipper was defective and the size was slightly too tight. You are at the customer service desk.",
+  "context_fa": "دو روز پیش کاپشنی خریداری کرده‌اید، اما زیپ آن ایراد دارد و سایز آن کمی تنگ است. اکنون پشت میز خدمات مشتریان ایستاده‌اید.",
+  "initial_message_en": "Hello! Welcome to Customer Care. How can I help you with your purchase today?",
+  "initial_message_fa": "سلام! به بخش پشتیبانی مشتریان خوش آمدید. امروز چطور می‌توانم در مورد خریدتان کمکتان کنم؟",
+  "max_turns": 8,
+  "goals": [
+    {
+      "id": "state_issue",
+      "description_en": "Explain why you want to return or exchange the item (defect or wrong size)",
+      "description_fa": "دلیل مرجوع یا تعویض کالا (نقص فنی یا سایز نامناسب) را توضیح دهید",
+      "keywords": ["return", "exchange", "zipper", "defective", "broken", "size", "tight", "jacket", "wrong"]
+    },
+    {
+      "id": "present_receipt",
+      "description_en": "Offer your receipt or order confirmation",
+      "description_fa": "فاکتور خرید یا رسید سفارش را ارائه دهید",
+      "keywords": ["receipt", "order", "proof of purchase", "confirmation", "bought", "two days ago"]
+    },
+    {
+      "id": "confirm_resolution",
+      "description_en": "Confirm an exchange for a larger size or a full refund",
+      "description_fa": "تعویض با سایز بزرگ‌تر یا دریافت وجه بازگشتی را توافق کنید",
+      "keywords": ["larger size", "medium", "large", "refund", "card", "cash", "exchange"]
+    }
+  ],
+  "target_vocabulary": [
+    { "word": "defective", "definition": "Imperfect or faulty in structure or function", "level": "B2" },
+    { "word": "refund", "definition": "A repayment of a sum of money, typically to a dissatisfied customer", "level": "B1" },
+    { "word": "exchange", "definition": "Giving one thing and receiving another in return", "level": "A2" },
+    { "word": "warranty", "definition": "A written guarantee of the integrity of a product and manufacturer's responsibility", "level": "B2" }
+  ],
+  "suggested_prompts": [
+    "Hello Chloe. I would like to exchange this jacket because the zipper is stuck and it feels a bit tight.",
+    "Yes, I have the original receipt and the tags are still attached right here.",
+    "I would love to exchange it for a size Large if you have one in stock, otherwise a refund is fine."
+  ]
+}
