@@ -30,7 +30,8 @@
 | 26 | Build Voice Lab v1 & Voice Conversation Beta | Complete | Validated beta, upload ticket caps, text fallback, STT editing, biometric retention passed |
 | 27 | Build Pronunciation Lab v1 & Speech Intelligibility Trends | Complete | Formative pacing, pauses, syllable stress, Persian L1 catalog, and genome bridge passed |
 | 28 | Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules | Complete | Financial-grade XP ledger, 20-level curve, timezone-aware streaks, freeze shields, and Rule #7/#8 compliance passed |
-| 29-60 | Remaining roadmap | Not started | Sequential |
+| 29 | Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards | Complete | Badges, daily/weekly challenges, 7-day sprint, active clubs, cohort suppression, minor protection passed |
+| 30-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -671,4 +672,44 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] comprehensive architecture documentation in `docs/gamification/xp-ledger.md` and updated `docs/product/CHANGELOG.md`
 
 **Success gate:** XP ledger is strictly append-only and immutable; awarding is 100% idempotent via `source_event` unique keys; streaks are calculated in `Asia/Tehran` calendar days with automatic freeze shields protecting against accidental streak loss; levels and XP represent effort rather than accredited diplomas (Rule #8); gamification remains calm without addictive dark patterns (Rule #7); and all contract checks pass.
-**Next day after Git push:** Day 29 — Badges, Challenges & Privacy-Safe Leaderboards.
+
+**Next day after Git push:** Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards.
+
+## Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day29\20260830-090000\endoora-pre-day29.dump`)
+- [x] implemented social recognition models in `apps/api/gamification/models.py`:
+  - `Badge` & `LearnerBadge`: Achievement badges with unique unlock constraints and XP rewards
+  - `ChallengeTemplate` & `LearnerChallenge`: Daily and weekly challenges with metric targets and progress tracking
+  - `SevenDaySprintEnrollment`: Intensive 7-day sprint challenge with bonus XP
+  - `ActiveUsersClub` & `ClubMembership`: Community clubs with membership caps and activity metrics
+  - `LearnerPrivacySettings`: Opt-in/opt-out toggles, pseudonymization, minor protection, and location masking
+  - `LeaderboardSnapshot` & `LeaderboardEntry`: Immutable frozen leaderboard archives with deterministic tie-breaking
+- [x] generated and applied migration `apps/api/gamification/migrations/0002_activeusersclub_badge_challengetemplate_and_more.py` with 0 model drift
+- [x] implemented social gamification services in `apps/api/gamification/services.py`:
+  - `BadgeService`: Idempotent evaluation and automated unlock triggers
+  - `ChallengeService`: Challenge template generation, progress updates, and sprint lifecycle
+  - `ClubService`: Club discovery, membership validation, and activity reporting
+  - `LeaderboardService`: Privacy-safe cohort ranking, small-city cohort suppression (`MIN_SAFE_COHORT_SIZE = 10`), minor location protection, deterministic tie-breaking, and frozen snapshot archival
+- [x] routed API endpoints in `apps/api/gamification/urls.py` at `/api/gamification/`:
+  - `GET /api/gamification/badges/`, `POST /api/gamification/badges/evaluate/`
+  - `GET /api/gamification/challenges/`, `POST /api/gamification/challenges/enroll-sprint/`, `POST /api/gamification/challenges/report/`
+  - `GET /api/gamification/clubs/`, `POST /api/gamification/clubs/join/`, `POST /api/gamification/clubs/leave/`
+  - `GET /api/gamification/leaderboard/`, `GET|PUT /api/gamification/leaderboard/privacy/`, `POST /api/gamification/leaderboard/snapshot/`
+- [x] 21 unit and integration tests in `apps/api/gamification/tests.py` passing with 0 errors
+- [x] 237 full backend regression tests passing across all 16 applications with 0 errors
+- [x] built interactive Achievements & Social Hub at `/achievements` (`apps/web/app/(learner)/achievements/page.tsx`):
+  - 5 interactive tabs: Badges & Honors, Challenges & 7-Day Sprint, Active Clubs, Leaderboard, Privacy Controls
+  - Live progress meters, countdown timers, and join/leave club interactions
+  - In-place privacy settings management (opt-out, pseudonym toggle, location mask)
+  - Product Constitution Rule #5, Rule #7, and Rule #8 educational banners
+- [x] cross-linked `/badges` page to `/achievements`
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/achievements/achievements.module.css` with 0 raw hex colors and logical properties only
+- [x] Next.js 112 static/SSG routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day29.py` and regression checks `scripts/check_day14.py` through `scripts/check_day28.py` passing 100%
+- [x] safety & privacy policy documented in `docs/safety/leaderboard-policy.md`
+
+**Success gate:** Badges are unlocked idempotently without double-granting XP; daily/weekly challenges track progress accurately; 7-day sprint provides clear milestone feedback; clubs enforce capacity limits and safe reporting; leaderboards suppress small cohorts (< 10 learners) to prevent doxxing; minors have location automatically protected; learners can fully opt out or use pseudonyms; and all contract checks pass.
+**Next day after Git push:** Day 30 — Social Learning & Peer Feedback Foundation.

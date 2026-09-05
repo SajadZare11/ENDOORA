@@ -1,0 +1,611 @@
+/* Achievements, Challenges, Clubs & Leaderboard Module Styles */
+/* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
+
+.container {
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-4) var(--space-12);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-end: var(--space-4);
+  color: var(--color-link);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+.backLink:hover {
+  color: var(--color-action-hover);
+  transform: translateX(calc(-1 * var(--space-1)));
+}
+
+:global([dir="ltr"]) .backLink:hover {
+  transform: translateX(var(--space-1));
+}
+
+.backLink:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-control);
+}
+
+/* Hero Section */
+.heroCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  margin-block-end: var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCard::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 4px;
+  background: linear-gradient(90deg, var(--color-achievement-amber), var(--color-endoora-blue), var(--color-learning-teal));
+}
+
+.heroHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-block-end: var(--space-6);
+}
+
+.heroTitle {
+  font-size: var(--font-size-hero-title);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block-end: var(--space-1);
+}
+
+.heroSubtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  max-inline-size: 44rem;
+  line-height: var(--line-height-body);
+}
+
+.heroStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-4);
+}
+
+.statBox {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.statLabel {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.statValue {
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Tabs Navigation */
+.tabsNav {
+  display: flex;
+  gap: var(--space-2);
+  border-block-end: 2px solid var(--color-border);
+  margin-block-end: var(--space-6);
+  overflow-x: auto;
+  padding-block-end: var(--space-1);
+  scrollbar-width: thin;
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-control) var(--radius-control) 0 0;
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--color-text);
+  background: var(--color-surface-subtle);
+}
+
+.activeTabBtn {
+  color: var(--color-endoora-blue);
+  border-block-end: 3px solid var(--color-endoora-blue);
+  margin-block-end: -3px;
+  background: var(--color-surface-subtle);
+}
+
+/* Badges Grid */
+.badgesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+.badgeCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+  position: relative;
+}
+
+.badgeCard:hover {
+  transform: translateY(calc(-1 * var(--space-1)));
+  box-shadow: var(--shadow-card);
+}
+
+.badgeCardLocked {
+  opacity: 0.75;
+  border-style: dashed;
+}
+
+.badgeCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.badgeIconBox {
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  border-radius: var(--radius-control);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.badgeIconBoxUnlocked {
+  background: var(--color-surface-amber);
+  border-color: var(--color-achievement-amber);
+}
+
+.badgeRewardTag {
+  font-size: var(--font-size-meta);
+  font-weight: 800;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-subtle);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.badgeRewardTagUnlocked {
+  background: var(--color-surface-amber);
+  color: var(--color-achievement-amber);
+  border-color: var(--color-achievement-amber);
+}
+
+.badgeTitle {
+  font-size: var(--font-size-body);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.badgeDesc {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-body);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.progressBarContainer {
+  block-size: 0.5rem;
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.progressBarFill {
+  block-size: 100%;
+  background: var(--color-learning-teal);
+  border-radius: var(--radius-pill);
+  transition: inline-size var(--motion-normal) ease;
+}
+
+.badgeFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  margin-block-start: auto;
+}
+
+/* 7-Day Sprint Card */
+.sprintCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-learning-teal);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.sprintHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-end: var(--space-5);
+}
+
+.sprintDaysTracker {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-3);
+  margin-block-end: var(--space-5);
+}
+
+.sprintDayPill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.sprintDayPillActive {
+  background: var(--color-surface-teal);
+  border-color: var(--color-learning-teal);
+  color: var(--color-learning-teal);
+  font-weight: 800;
+}
+
+.sprintDayPillDone {
+  background: var(--color-surface-success);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* Challenges Section */
+.challengesSection {
+  margin-block-end: var(--space-8);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block-end: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.challengeCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  margin-block-end: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.challengeInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1 1 18rem;
+}
+
+.challengeIconBox {
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: var(--radius-control);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Active-Users Clubs */
+.clubsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+.clubCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.clubCardActive {
+  border-color: var(--color-endoora-blue);
+  box-shadow: var(--shadow-subtle);
+}
+
+.clubHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.clubIconBox {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border-radius: var(--radius-card);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.clubActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-start: auto;
+}
+
+/* Leaderboard Experience */
+.leaderboardControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-block-end: var(--space-4);
+}
+
+.subTabs {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.subTabBtn {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+}
+
+.activeSubTabBtn {
+  background: var(--color-endoora-blue);
+  border-color: var(--color-endoora-blue);
+  color: var(--color-surface);
+}
+
+.privacyAlertBanner {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  margin-block-end: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.leaderboardTableCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  margin-block-end: var(--space-6);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.th {
+  background: var(--color-surface-subtle);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-meta);
+  font-weight: 800;
+  color: var(--color-text-muted);
+  border-block-end: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.td {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  border-block-end: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.userRowHighlight {
+  background: var(--color-surface-subtle);
+  font-weight: 800;
+}
+
+.rankMedal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: var(--radius-circle);
+  font-weight: 800;
+  font-size: var(--font-size-meta);
+}
+
+.rank1 {
+  background: var(--color-surface-amber);
+  color: var(--color-achievement-amber);
+}
+
+.rank2 {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-muted);
+}
+
+.rank3 {
+  background: var(--color-surface-teal);
+  color: var(--color-learning-teal);
+}
+
+/* Privacy Modal / Card */
+.privacyBox {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+}
+
+/* Buttons */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-action-primary);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+.btnPrimary:hover {
+  background: var(--color-action-hover);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+}
+
+.btnOutline:hover {
+  background: var(--color-surface-subtle);
+  border-color: var(--color-text-muted);
+}
+
+/* Disclaimers */
+.disclaimerCard {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  margin-block-start: var(--space-8);
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-body);
+}
+
+/* Responsive Overrides (360px) */
+@media (max-width: 480px) {
+  .heroHeader {
+    flex-direction: column;
+  }
+
+  .sprintDaysTracker {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .challengeCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

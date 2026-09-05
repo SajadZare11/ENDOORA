@@ -52,3 +52,36 @@ class AwardXPRequestSerializer(serializers.Serializer):
     reason = serializers.CharField(max_length=255)
     source_event = serializers.CharField(max_length=255)
     metadata = serializers.DictField(required=False, default=dict)
+
+
+class LearnerPrivacySettingsSerializer(serializers.Serializer):
+    is_leaderboard_visible = serializers.BooleanField()
+    pseudonym = serializers.CharField()
+    city = serializers.CharField(allow_blank=True)
+    show_city_rank = serializers.BooleanField()
+    is_minor = serializers.BooleanField()
+    avatar_seed = serializers.CharField()
+
+
+class UpdatePrivacyRequestSerializer(serializers.Serializer):
+    is_leaderboard_visible = serializers.BooleanField(required=False)
+    pseudonym = serializers.CharField(required=False, max_length=64, allow_blank=True)
+    city = serializers.CharField(required=False, max_length=64, allow_blank=True)
+    show_city_rank = serializers.BooleanField(required=False)
+    is_minor = serializers.BooleanField(required=False)
+    avatar_seed = serializers.CharField(required=False, max_length=32)
+
+
+class JoinClubRequestSerializer(serializers.Serializer):
+    club_slug = serializers.CharField(max_length=64)
+
+
+class ReportItemSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
+    slug = serializers.CharField(required=False)
+    reason = serializers.CharField(max_length=255, required=False, allow_blank=True)
+
+
+class SnapshotTriggerSerializer(serializers.Serializer):
+    board_type = serializers.CharField(default="global")
+    city_name = serializers.CharField(required=False, allow_blank=True)

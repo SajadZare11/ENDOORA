@@ -201,11 +201,11 @@ export default function BadgesPage() {
         </div>
 
         <div className={styles.actionRow}>
-          <Link className={styles.buttonPrimary} href="/today">
-            {isFa ? "کسب نشان با مأموریت امروز" : "Earn in Today's Mission"}
+          <Link className={styles.buttonPrimary} href="/achievements">
+            {isFa ? "🏆 چالش‌ها، کلوب‌ها و رتبه‌بندی" : "🏆 Challenges, Clubs & Leaderboards"}
           </Link>
-          <Link className={styles.buttonSecondary} href="/placement/report">
-            {isFa ? "مشاهده شواهد کارنامه" : "Inspect Skill Evidence"}
+          <Link className={styles.buttonSecondary} href="/today">
+            {isFa ? "کسب نشان با مأموریت امروز" : "Earn in Today's Mission"}
           </Link>
           <Link className={styles.buttonSecondary} href="/progress">
             {isFa ? "مشاهده شتاب پیشرفت" : "View Progress Flow"}

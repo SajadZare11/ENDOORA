@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 28 — Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
-- **Day 28 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–27 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, and Pronunciation Lab v1 / Speech Intelligibility Workbench
-- **Schema version:** Day 28 adds `gamification.0001_initial`
+- **Roadmap day completed:** Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards
+- **Day 29 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–28 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, and Gamification Engine v1
+- **Schema version:** Day 29 adds `gamification.0002_activeusersclub_badge_challengetemplate_and_more`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1135,9 +1135,71 @@ Commit message:
 
 `Day 28: Build Gamification Engine v1, immutable XP ledger, level progression, and streak rules`
 
+## Features working through Day 29
+
+### Gamification Social & Recognition Engine: Badges, Challenges, Clubs & Privacy-Safe Leaderboards
+- Comprehensive recognition and social engagement models in `apps/api/gamification/models.py`:
+  - `Badge`: Milestone, consistency, mastery, and special event achievements with icon keys, bilingual titles/descriptions, and XP rewards.
+  - `LearnerBadge`: Immutable record of earned badges with uniqueness constraints preventing duplicate unlocks.
+  - `ChallengeTemplate`: Daily, weekly, and 7-day sprint learning challenges with metric targets, duration, and XP rewards.
+  - `LearnerChallenge`: Individual challenge progress tracking with deadline and completion timestamps.
+  - `SevenDaySprintEnrollment`: Intensive 7-day sprint enrollment with streak, completion status, and bonus XP rewards.
+  - `ActiveUsersClub`: Community cohorts (study groups, interest clubs) with member caps, moderation settings, and activity stats.
+  - `ClubMembership`: Club join dates, roles (`member`, `moderator`), and active participation tracking.
+  - `LearnerPrivacySettings`: Fine-grained privacy controls with explicit opt-out (`is_leaderboard_visible`), pseudonymized public display name toggle (`use_pseudonym`), avatar concealment, and minor auto-masking.
+  - `LeaderboardSnapshot` & `LeaderboardEntry`: Weekly/monthly frozen leaderboard snapshots with historical auditability, snapshot reversal safeguards, and deterministic tie-breaking.
+- Applied migration `apps/api/gamification/migrations/0002_activeusersclub_badge_challengetemplate_and_more.py` with 0 schema drift.
+- Pedagogical social services in `apps/api/gamification/services.py`:
+  - `BadgeService`: Idempotent badge evaluation, automated milestone triggers, and transaction-safe XP award integration.
+  - `ChallengeService`: Daily and weekly challenge generation, active progress updates, and 7-day sprint lifecycle management.
+  - `ClubService`: Club discovery, creation, capacity-enforced joining, activity reporting, and moderation reporting.
+  - `LeaderboardService`: Privacy-safe cohort ranking, small-city cohort suppression (minimum cohort size = 10 to prevent doxxing), automatic minor masking, deterministic tie-breaking by first-to-reach timestamp, and weekly frozen snapshot archival.
+- REST API views and serializers in `apps/api/gamification/views.py`, `serializers.py`, and `urls.py`:
+  - `GET /api/gamification/badges/`: Catalog of available and earned badges.
+  - `POST /api/gamification/badges/evaluate/`: Trigger badge evaluations against verified activities.
+  - `GET /api/gamification/challenges/`: Active daily and weekly challenges with progress meters.
+  - `POST /api/gamification/challenges/enroll-sprint/`: Enroll into the 7-day learning sprint.
+  - `POST /api/gamification/challenges/report/`: Safe reporting of inappropriate challenge content.
+  - `GET /api/gamification/clubs/`: Directory of active learning clubs with search and filters.
+  - `POST /api/gamification/clubs/join/` & `POST /api/gamification/clubs/leave/`: Club membership operations.
+  - `GET /api/gamification/leaderboard/`: Privacy-safe leaderboard with cohort suppression and pseudonymization.
+  - `GET /api/gamification/leaderboard/privacy/` & `PUT /api/gamification/leaderboard/privacy/`: Granular privacy preferences.
+  - `POST /api/gamification/leaderboard/snapshot/`: Privileged snapshot generation for historical freezing.
+
+### Frontend Achievements & Social Hub
+- Comprehensive Achievements and Recognition Hub at `/achievements` (`apps/web/app/(learner)/achievements/page.tsx`):
+  - 5 interactive navigation tabs: **Badges & Honors**, **Challenges & 7-Day Sprint**, **Active Clubs**, **Leaderboard**, and **Privacy Controls**.
+  - Dynamic Badges grid displaying unlocked and locked badges with criteria, rarity, and XP rewards.
+  - Interactive Daily & Weekly Challenges dashboard with live progress meters, countdown timers, and 7-Day Sprint enrollment.
+  - Active Clubs browser with member count badges, topic tags, and one-click join/leave actions.
+  - Privacy-safe Leaderboard view with user pseudonymization, cohort size indicators, and position highlighting.
+  - In-place Leaderboard Privacy Controls allowing learners to opt out of public rankings, mask real names with generated pseudonyms, and protect location information.
+  - Educational disclaimers reinforcing Product Constitution Rule #5 (Privacy by Design), Rule #7 (Calm, Anti-Addiction), and Rule #8 (Honest Assessment).
+- Updated `/badges` route (`apps/web/app/(learner)/badges/page.tsx`) with fast-track cross-link to the comprehensive Achievements Hub.
+- 100% tokenized CSS module `apps/web/app/(learner)/achievements/achievements.module.css` with 0 raw hex colors and logical properties only.
+- Safety & privacy specification document created in `docs/safety/leaderboard-policy.md`.
+
+### Day 29 Verification Evidence
+- Pre-Day-29 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day29\20260830-090000\endoora-pre-day29.dump` (107,603 bytes).
+- Backend unit tests pass: 21/21 in `apps/api/gamification/tests.py`.
+- Full backend regression suite: 237/237 tests passing across all 16 applications with 0 errors.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Production build: `npm run build` compiled 112/112 static/SSG pages cleanly.
+- Daily contract checks: `scripts/check_day29.py` and `scripts/check_day14.py` through `scripts/check_day28.py` all passed 100%.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 29)
+
+Commit message:
+
+`Day 29: Badges, daily/weekly challenges, active clubs, and privacy-safe leaderboards`
+
 ## Exact next day
 
-**Day 29 — Badges, Challenges & Privacy-Safe Leaderboards.**
+**Day 30 — Social Learning & Peer Feedback Foundation.**
 
-Do not begin Day 29 until the Day 28 commit is pushed and `git status --short --branch`
+Do not begin Day 30 until the Day 29 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

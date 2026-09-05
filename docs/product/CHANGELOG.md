@@ -1,5 +1,50 @@
 # Endoora Changelog
 
+## Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards
+
+### Added
+- Complete Social Gamification & Recognition backend models in `apps/api/gamification/models.py`:
+  - `Badge`: Milestone, consistency, mastery, and special event achievements with icon keys, bilingual titles/descriptions, and XP rewards.
+  - `LearnerBadge`: Immutable record of earned badges with uniqueness constraints preventing duplicate unlocks.
+  - `ChallengeTemplate`: Daily, weekly, and 7-day sprint learning challenges with metric targets, duration, and XP rewards.
+  - `LearnerChallenge`: Individual challenge progress tracking with deadline and completion timestamps.
+  - `SevenDaySprintEnrollment`: Intensive 7-day sprint enrollment with streak, completion status, and bonus XP rewards.
+  - `ActiveUsersClub`: Community cohorts (study groups, interest clubs) with member caps, moderation settings, and activity stats.
+  - `ClubMembership`: Club join dates, roles (`member`, `moderator`), and active participation tracking.
+  - `LearnerPrivacySettings`: Fine-grained privacy controls with explicit opt-out (`is_leaderboard_visible`), pseudonymized public display name toggle (`use_pseudonym`), avatar concealment, and minor auto-masking.
+  - `LeaderboardSnapshot` & `LeaderboardEntry`: Weekly/monthly frozen leaderboard snapshots with historical auditability, snapshot reversal safeguards, and deterministic tie-breaking.
+  - Added `CHALLENGE` and `BADGE_UNLOCK` to `XPCategory`.
+- Applied migration `apps/api/gamification/migrations/0002_activeusersclub_badge_challengetemplate_and_more.py`.
+- Social gamification services in `apps/api/gamification/services.py`:
+  - `BadgeService`: Idempotent badge evaluation, automated milestone triggers, and transaction-safe XP award integration.
+  - `ChallengeService`: Daily and weekly challenge generation, active progress updates, and 7-day sprint lifecycle management.
+  - `ClubService`: Club discovery, creation, capacity-enforced joining, activity reporting, and moderation reporting.
+  - `LeaderboardService`: Privacy-safe cohort ranking, small-city cohort suppression (minimum cohort size = 10 to prevent doxxing), automatic minor masking, deterministic tie-breaking by first-to-reach timestamp, and weekly frozen snapshot archival.
+- REST API views and serializers in `apps/api/gamification/views.py`, `serializers.py`, and `urls.py`:
+  - `GET /api/gamification/badges/`: Catalog of available and earned badges.
+  - `POST /api/gamification/badges/evaluate/`: Trigger badge evaluations against verified activities.
+  - `GET /api/gamification/challenges/`: Active daily and weekly challenges with progress meters.
+  - `POST /api/gamification/challenges/enroll-sprint/`: Enroll into the 7-day learning sprint.
+  - `POST /api/gamification/challenges/report/`: Safe reporting of inappropriate challenge content.
+  - `GET /api/gamification/clubs/`: Directory of active learning clubs with search and filters.
+  - `POST /api/gamification/clubs/join/` & `POST /api/gamification/clubs/leave/`: Club membership operations.
+  - `GET /api/gamification/leaderboard/`: Privacy-safe leaderboard with cohort suppression and pseudonymization.
+  - `GET /api/gamification/leaderboard/privacy/` & `PUT /api/gamification/leaderboard/privacy/`: Granular privacy preferences.
+  - `POST /api/gamification/leaderboard/snapshot/`: Privileged snapshot generation for historical freezing.
+- 9 new unit and integration tests in `apps/api/gamification/tests.py` (`Day29GamificationSocialTests`) verifying badges idempotency, challenges, sprint enrollment, club join/leave, privacy opt-out, small-cohort suppression, minor masking, and deterministic snapshot ordering.
+- Interactive Achievements Hub at `/achievements` (`apps/web/app/(learner)/achievements/page.tsx`):
+  - 5 interactive tabs: Badges & Honors, Challenges & 7-Day Sprint, Active Clubs, Leaderboard, Privacy Controls.
+  - Live progress meters, countdown timers, and join/leave club interactions.
+  - In-place privacy settings management (opt-out, pseudonym toggle, location mask).
+  - Product Constitution Rule #5, Rule #7, and Rule #8 educational banners.
+- Dedicated 100% tokenized CSS module `apps/web/app/(learner)/achievements/achievements.module.css` with 0 raw hex color literals and logical properties only.
+- Safety & privacy specification document created in `docs/safety/leaderboard-policy.md`.
+- Automated Day 29 contract verification test suite in `scripts/check_day29.py` and pre-migration backup script `scripts/backup_day29.ps1`.
+
+### Changed
+- Total gamification tests grew to 21 passing tests; full backend regression suite passed with 237 tests across all 16 applications.
+- Updated `/badges` page with fast-track cross-link to `/achievements`.
+
 ## Day 28 — Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules
 
 ### Added
