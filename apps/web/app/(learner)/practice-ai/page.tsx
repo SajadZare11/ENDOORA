@@ -113,6 +113,44 @@ export default function PracticeAIPage() {
         {isFa ? "بازگشت به داشبورد" : "Back to dashboard"}
       </Link>
 
+      {/* Practice Navigation Tabs */}
+      <nav
+        style={{
+          display: "flex",
+          gap: "var(--space-2)",
+          marginBlockEnd: "var(--space-6)",
+          borderBlockEnd: "1px solid var(--color-border)",
+          paddingBlockEnd: "var(--space-2)",
+          overflowX: "auto",
+        }}
+        aria-label={isFa ? "بخش‌های تمرین هوشمند" : "AI Practice Sections"}
+      >
+        <Link
+          className={styles.filterPill}
+          href="/practice"
+          style={{ textDecoration: "none" }}
+        >
+          {isFa ? "🎯 آزمونک‌های هوشمند پداگوژیک" : "🎯 Adaptive Exercises"}
+        </Link>
+        <span
+          className={styles.filterPill}
+          style={{
+            background: "var(--color-action-bg)",
+            color: "var(--color-action-text)",
+            borderColor: "var(--color-action-bg)",
+          }}
+        >
+          {isFa ? "✍️ آزمایشگاه تشخیص و نگارش" : "✍️ Writing Diagnostics"}
+        </span>
+        <Link
+          className={styles.filterPill}
+          href="/review"
+          style={{ textDecoration: "none" }}
+        >
+          {isFa ? "🧠 مرور واژگان لایتنر (SRS)" : "🧠 SRS Vocabulary Review"}
+        </Link>
+      </nav>
+
       <section className={styles.heroCard}>
         <div className={styles.heroHeader}>
           <div>

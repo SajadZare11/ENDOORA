@@ -23,6 +23,10 @@ urlpatterns = [
         "api/ai/",
         include("ai_gateway.urls")
     ),
+    path(
+        "api/exercises/",
+        include("ai_gateway.urls")
+    ),
     path("api/questions/", include("questions.urls")),
     path(
         "api/srs/",

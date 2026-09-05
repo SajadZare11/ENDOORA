@@ -1,5 +1,29 @@
 # Endoora Changelog
 
+## Day 22 — Structured AI Exercise-Generation Service & Multi-Tier Model Router
+
+### Added
+- Complete AI Gateway architecture in `apps/api/ai_gateway/` with backend-only OpenRouter client (`client.py`).
+- Circuit breaker timeout (15s) and daily budget cap ($5.00/day) preventing runaway billing.
+- Automatic API key and credential redaction from all error messages and audit logs.
+- Task-specific multi-tier model routing (`model_router.py`) prioritizing `google/gemma-2-9b-it:free`, `meta-llama/llama-3.1-8b-instruct:free`, `mistralai/mistral-7b-instruct`, and `qwen/qwen-2.5-7b-instruct` without hardcoding a single free model.
+- Versioned prompt registry (`prompt_registry.py`) with strict schema-bound templates.
+- Strict JSON and pedagogical validator (`validators.py`) enforcing question counts, CEFR levels, distractor uniqueness, and internal consistency (`correct_option_id` matching an option).
+- Fail-safe fallback to reviewed human-curated question bank (`services.py`), ensuring malformed or delayed output never reaches the learner.
+- Pre-submission payload protection in `GeneratedExerciseSetLearnerSerializer` (`serializers.py`), stripping answer keys and explanations to eliminate client-side cheating.
+- Attempt scoring, evaluation, and bilingual pedagogical explanations delivered upon submission (`POST /api/ai/exercises/<id>/submit/`).
+- Full audit logging in `AIRequestLog` and model state tracking in `AIProviderConfig`.
+- Backward-compatible bridge modules in `apps/api/ai/` and `apps/api/exercises/`.
+- Interactive AI Exercise Generator and Runner at `/practice` (`apps/web/app/(learner)/practice/page.tsx`) with 100% tokenized CSS and zero raw hex colors.
+- Integrated tab navigation between `/practice` (Structured Exercises), `/practice-ai` (Writing Diagnostics), and `/review` (SRS Vocabulary Review).
+- 16 automated backend unit and integration tests in `apps/api/ai_gateway/tests.py`.
+- Documentation in `docs/ai/model-routing.md` and static contract verification script in `scripts/check_day22.py`.
+
+### Changed
+- Web application route count increased to 110 static routes.
+- Main API routing includes both `/api/ai/` and `/api/exercises/`.
+- Total backend test suite grew from 113 to 129 passing tests with 0 errors.
+
 ## Day 21 — Spaced Repetition System (SRS) Vocabulary Engine & Full Website UI/UX Overhaul
 
 ### Added

@@ -843,12 +843,11 @@ Commit message: `Day 20: Build adaptive daily mission engine, payload protection
 
 Commit message:
 
-`Day 21: Build SRS vocabulary engine, transparent SM-2 scheduler, leech recovery, and full website UI/UX overhaul`
+`Day 22: Build structured AI exercise-generation service, multi-tier model router, and interactive practice runner`
 
 ## Exact next day
 
-**Day 22 — Build the structured AI exercise-generation service.**
+**Day 23 — Build the AI Mistake Genome.**
 
-Do not begin Day 22 until the Day 21 commit is pushed and `git status --short --branch`
+Do not begin Day 23 until the Day 22 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
-

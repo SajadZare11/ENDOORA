@@ -451,4 +451,30 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** learners can extract candidate vocabulary from real writing, conversation, and reading activity, approve cards into an active SRS deck with editable meanings, review with transparent SM-2 intervals, and have difficult leeches flagged for active sentence synthesis rather than repetitive flashcards.
 
-**Next day after Git push:** Day 22 — Build the structured AI exercise-generation service.
+---
+
+### Day 22 — Build the structured AI exercise-generation service
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day22\20260823-090000\endoora-pre-day22.dump`)
+- [x] implemented AI Gateway models (`AIProviderConfig`, `AIRequestLog`, `GeneratedExerciseSet`, `ExerciseAttempt`) in `apps/api/ai_gateway/models.py`
+- [x] generated and verified migration `apps/api/ai_gateway/migrations/0001_initial.py` with 0 model drift
+- [x] created backend-only OpenRouter HTTP client (`client.py`) with 15s timeout circuit breaker, daily budget cap ($5.00/day), and error/key redaction
+- [x] implemented multi-tier model router (`model_router.py`) without single free-model hardcoding
+- [x] created versioned prompt registry (`prompt_registry.py`) with schema-bound formatting
+- [x] implemented strict JSON, CEFR, distractor ambiguity, and internal consistency validator (`validators.py`)
+- [x] built `StructuredExerciseService` (`services.py`) with 2-attempt retry loop and automatic fallback to reviewed question bank
+- [x] implemented pre-submission payload protection in `GeneratedExerciseSetLearnerSerializer` (`serializers.py`), omitting correct options and explanations
+- [x] built attempt evaluation, scoring, and bilingual explanation delivery (`POST /api/ai/exercises/<id>/submit/`)
+- [x] created backward-compatible bridge packages in `apps/api/ai/` and `apps/api/exercises/`
+- [x] 16 unit and integration tests passing in `apps/api/ai_gateway/tests.py`
+- [x] 129 full backend tests passing across all apps with 0 errors
+- [x] built interactive AI Exercise Generator & Runner at `/practice` (`apps/web/app/(learner)/practice/page.tsx`)
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/practice/practice.module.css` with zero raw hex colors
+- [x] added tabbed navigation between `/practice`, `/practice-ai`, and `/review`
+- [x] Next.js 110 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day22.py` passing
+- [x] comprehensive architecture documentation in `docs/ai/model-routing.md`
+
+**Success gate:** AI exercises are strictly validated by backend schema inspectors, answers and explanations are protected prior to submission, multi-tier routing avoids model lock-in, daily budget and timeout ceilings stop runaway calls, and any provider issue seamlessly falls back to reviewed questions without learner disruption.
+
+**Next day after Git push:** Day 23 — Build the AI Mistake Genome.
