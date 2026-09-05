@@ -1,5 +1,42 @@
 # Endoora Changelog
 
+## Day 27 — Pronunciation Lab v1, Speech Intelligibility Trends & Phonetics Workbench
+
+### Added
+- Complete Pronunciation Lab v1 backend models in `apps/api/pronunciation/models.py`:
+  - `PronunciationItem`: Curated phonological practice catalog covering Persian L1 interference categories (`minimal_pairs`, `stress_shifts`, `consonant_clusters`, `connected_speech`), with IPA transcriptions, stress pattern notation, target WPM, difficulty levels, and bilingual L1 pedagogical notes.
+  - `PronunciationAttempt`: Learner oral practice attempt recording target text, spoken transcript, duration, speech rate (WPM), hesitation pause count, syllable stress match, formative intelligibility trend score (0–100), and Mistake Genome sync state.
+  - Legacy backward compatibility accessors (`transcript`, `speech_rate`, `pauses`, `confidence`).
+- Initial database migration in `apps/api/pronunciation/migrations/0001_initial.py`.
+- Formative acoustic service in `apps/api/pronunciation/services.py` (`PronunciationService`):
+  - **Seed Catalog**: Automatically populates 9 curated Persian L1 phonetic challenge items.
+  - **Pacing & Intelligibility Analytics**: `calculate_speech_rate_wpm()`, `count_hesitations()`, `evaluate_stress_match()`, and `evaluate_intelligibility_trend()`.
+  - **Product Constitution Rule #8 Compliance**: Never claims AI native-speaker accent diagnosis or unvalidated phoneme grading percentages; focuses exclusively on speech rate, pause intervals, and syllable stress.
+  - **Mistake Genome Bridge**: `save_to_mistake_genome()` connects identified pronunciation challenges into the learner's `LearnerMistakePattern` under the `pronunciation` category.
+  - **Legacy Compatibility**: `analyze(audio)` bridge returning safe, non-fabricated metrics.
+- Comprehensive REST API in `apps/api/pronunciation/views.py` and `apps/api/pronunciation/urls.py`:
+  - `GET /api/pronunciation/items/`: List items with optional category filtering.
+  - `GET /api/pronunciation/items/<item_id>/`: Detailed item phonetics and L1 background.
+  - `POST /api/pronunciation/analyze/`: Formative speech analysis supporting both authenticated learners and guest visitors.
+  - `POST /api/pronunciation/attempts/<id>/save-to-genome/`: Targeted bridge to Mistake Genome.
+  - `GET /api/pronunciation/attempts/`: Learner oral practice history.
+- 10 comprehensive unit and integration tests in `apps/api/pronunciation/tests.py` verifying catalog seeding, endpoint filters, WPM calculations, Rule #8 compliance, user isolation, and Mistake Genome integration.
+- Dedicated 100% tokenized CSS module `apps/web/app/(learner)/pronunciation/pronunciation.module.css` with 0 raw hex color literals and logical CSS properties only.
+- Overhauled interactive Pronunciation Lab page at `/pronunciation` (`apps/web/app/(learner)/pronunciation/page.tsx`):
+  - Prominent **Product Constitution Rule #8 Banner** explaining the pedagogical intelligibility principle.
+  - Interactive category filter pills with active counts.
+  - Phonological practice cards with IPA badges, stress indicators, Persian L1 callouts, and dual-accent (US/UK) / variable speed (0.85x/1.0x) audio playback.
+  - Speech Intelligibility Workbench with a live 24-bar audio visualizer, real-time recording, elapsed timer, and manual transcript fallback.
+  - Diagnostic feedback card displaying Intelligibility Trend Score (%), Speech Rate (WPM), Pauses, and Syllable Stress match.
+  - Interactive "Track Challenge in Mistake Genome" action button with live confirmation.
+  - **Shadowing Studio Guide** detailing the 3-step shadowing method with fast-track cross-links to Voice Lab (`/voice`) and Voice Roleplay Beta (`/roleplay/voice`).
+- Technical and pedagogical documentation in `docs/ai/pronunciation-limitations.md` and `docs/learning/pronunciation-lab.md`.
+- Automated Day 27 contract verification test suite in `scripts/check_day27.py` and database pre-migration backup script `scripts/backup_day27.ps1`.
+
+### Changed
+- Total backend test suite grew from 216 to 226 passing tests with 0 errors across 15 applications.
+- Registered `"pronunciation"` in `INSTALLED_APPS` and routed `api/pronunciation/` in root `urls.py`.
+
 ## Day 26 — Voice Lab v1, Audio Pipeline & Voice Roleplay Beta
 
 ### Added

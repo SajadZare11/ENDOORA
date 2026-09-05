@@ -58,4 +58,8 @@ urlpatterns = [
         "api/speech/",
         include("speech.urls")
     ),
+    path(
+        "api/pronunciation/",
+        include("pronunciation.urls")
+    ),
 ]

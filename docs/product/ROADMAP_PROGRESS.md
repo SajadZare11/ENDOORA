@@ -598,3 +598,36 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** voice roleplay works as a clearly labelled beta without blocking text learning; learners can inspect live audio meter levels, edit automated STT transcripts before sending turns, customize voice accents and speech rates, and control audio retention periods; and audio binaries are automatically purged on expiration.
 
 **Next day after Git push:** Day 27 — Build Pronunciation Lab v1.
+
+## Day 27 — Build Pronunciation Lab v1 & Speech Intelligibility Trends
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day27\20260828-090000\endoora-pre-day27.dump`)
+- [x] implemented Pronunciation Lab models (`PronunciationItem` and `PronunciationAttempt`) in `apps/api/pronunciation/models.py` with backward-compatibility accessors (`transcript`, `speech_rate`, `pauses`, `confidence`)
+- [x] generated and applied initial migration `apps/api/pronunciation/migrations/0001_initial.py` with 0 model drift
+- [x] implemented formative acoustic service in `apps/api/pronunciation/services.py`:
+  - Curated Persian L1 interference catalog across 4 categories: `minimal_pairs`, `stress_shifts`, `consonant_clusters`, and `connected_speech`
+  - Calculation of Words Per Minute (WPM), hesitation pause counting, and syllable stress alignment
+  - Strict compliance with **Product Constitution Rule #8**: never fabricates unvalidated phoneme-level grading percentages or claims native-speaker accent diagnosis
+  - Integration with Mistake Genome: `save_to_mistake_genome()` records pronunciation challenges to `LearnerMistakePattern` (`category="pronunciation"`)
+  - Backward-compatible `analyze(audio)` bridge returning safe, non-fabricated metrics
+- [x] routed API endpoints in `apps/api/pronunciation/urls.py` and `apps/api/endoora_api/urls.py` at `/api/pronunciation/`
+- [x] 10 unit and integration tests in `apps/api/pronunciation/tests.py` passing with 0 errors
+- [x] 226 full backend tests passing across all 15 applications with 0 errors
+- [x] built interactive Pronunciation Lab page at `/pronunciation` (`apps/web/app/(learner)/pronunciation/page.tsx`):
+  - Prominent **Product Constitution Rule #8 Banner** explaining pedagogical intelligibility principles
+  - Interactive category filter pills with active counters
+  - Phonological practice cards with IPA badges, stress indicators, Persian L1 callouts, and dual-accent (US/UK) / variable speed (0.85x/1.0x) audio playback
+  - Speech Intelligibility Workbench with a live 24-bar audio visualizer, real-time recording, elapsed timer, and manual transcript fallback
+  - Diagnostic feedback card displaying Intelligibility Trend Score (%), Speech Rate (WPM), Pauses, and Syllable Stress match
+  - Interactive "Track Challenge in Mistake Genome" action button with live confirmation
+  - **Shadowing Studio Guide** detailing the 3-step shadowing method with fast-track cross-links to Voice Lab (`/voice`) and Voice Roleplay Beta (`/roleplay/voice`)
+- [x] 100% tokenized CSS in `apps/web/app/(learner)/pronunciation/pronunciation.module.css` with 0 raw hex colors and logical properties only
+- [x] Next.js 111 static routes build cleanly with 0 lint and 0 typecheck errors
+- [x] static contract check `scripts/check_day27.py` and regression checks `scripts/check_day14.py` through `scripts/check_day26.py` passing 100%
+- [x] comprehensive architecture documentation in `docs/ai/pronunciation-limitations.md` and `docs/learning/pronunciation-lab.md`
+
+**Success gate:** Pronunciation Lab evaluates pacing (WPM), pauses, and syllable stress trends rather than fabricating fake phonemic scores; Persian L1 challenges are pedagogically addressed; learners can practice dual-accent shadowing; challenges bridge to Mistake Genome; and all contract checks pass.
+
+**Next day after Git push:** Day 28 — Build Placement Test Adaptive Flow & Placement Engine v1.

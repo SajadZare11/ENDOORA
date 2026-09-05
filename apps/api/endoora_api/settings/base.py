@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "writing_mentor",
     "roleplay",
     "voice_lab",
+    "pronunciation",
     "srs",
     "ai_gateway",
     "mistake_genome",
