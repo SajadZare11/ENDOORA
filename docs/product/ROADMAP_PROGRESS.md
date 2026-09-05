@@ -31,7 +31,8 @@
 | 27 | Build Pronunciation Lab v1 & Speech Intelligibility Trends | Complete | Formative pacing, pauses, syllable stress, Persian L1 catalog, and genome bridge passed |
 | 28 | Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules | Complete | Financial-grade XP ledger, 20-level curve, timezone-aware streaks, freeze shields, and Rule #7/#8 compliance passed |
 | 29 | Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards | Complete | Badges, daily/weekly challenges, 7-day sprint, active clubs, cohort suppression, minor protection passed |
-| 30-60 | Remaining roadmap | Not started | Sequential |
+| 30 | Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content | Complete | Skills hub, lesson CMS, paywall redaction, Iranian school/konkur, culture, 248 tests passed |
+| 31-60 | Remaining roadmap | Not started | Sequential |
 
 ## Day 08 deliverables
 
@@ -712,4 +713,43 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] safety & privacy policy documented in `docs/safety/leaderboard-policy.md`
 
 **Success gate:** Badges are unlocked idempotently without double-granting XP; daily/weekly challenges track progress accurately; 7-day sprint provides clear milestone feedback; clubs enforce capacity limits and safe reporting; leaderboards suppress small cohorts (< 10 learners) to prevent doxxing; minors have location automatically protected; learners can fully opt out or use pseudonyms; and all contract checks pass.
-**Next day after Git push:** Day 30 — Social Learning & Peer Feedback Foundation.
+**Next day after Git push:** Day 30 — Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content.
+
+## Day 30 — Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content
+
+Status: Complete and verified; ready for Git commit and push.
+
+- [x] verified and created database backup before schema migration (`PRIVATE_DO_NOT_COPY_TO_GIT\backups\day30\20260905-190000\endoora-pre-day30.dump`)
+- [x] implemented content and courses models in `apps/api/content/models.py` and `apps/api/courses/models.py`:
+  - `ContentItem` with mandatory copyright attribution validation in `clean()` enforcing zero copyright infringement (`source_attribution`, `license_type`, `author_name`)
+  - `ContentReviewLog` tracking editor workflow (`draft`, `in_review`, `published`, `archived`)
+  - `Course`, `Module`, `Lesson`, `LearnerCourseEnrollment`, `LearnerLessonProgress`
+- [x] generated and applied initial database migrations:
+  - `apps/api/content/migrations/0001_initial.py`
+  - `apps/api/courses/migrations/0001_initial.py`
+- [x] implemented services with strict server-side entitlement & paywall enforcement:
+  - `ContentService` (`apps/api/content/services.py`): Skills hub summary, list, and detail with locked content redaction (stripping body, media, quiz, and resources for non-entitled learners)
+  - `CourseService` (`apps/api/courses/services.py`): Course catalog, syllabus, lesson player detail redaction, and lesson completion engine awarding 25 XP
+- [x] routed API endpoints in `apps/api/content/urls.py`, `apps/api/courses/urls.py`, and root `urls.py`:
+  - `/api/content/skills/`, `/api/content/items/`, `/api/content/items/<slug>/`, `/api/content/culture/`, `/api/content/school/`
+  - `/api/courses/`, `/api/courses/<slug>/`, `/api/courses/<slug>/enroll/`, `/api/courses/<slug>/lessons/<lesson_id>/`, `/api/courses/<slug>/lessons/<lesson_id>/complete/`
+- [x] 11 unit and integration tests passing in `content/tests.py` and `courses/tests.py`
+- [x] 248 full backend regression tests passing across all 18 applications with 0 errors
+- [x] built public skills and course learning experiences in `apps/web`:
+  - Skills Hub at `/skills` (`apps/web/app/(public)/skills/page.tsx`)
+  - Skill Deep-Dive pages at `/skills/[skill]`
+  - Culture Hub at `/skills/culture`
+  - Iranian High School & Konkur Hub at `/skills/school`
+  - Courses Catalog at `/courses`
+  - Course Syllabus at `/courses/[slug]`
+  - Lesson CMS Player at `/courses/[slug]/lessons/[lessonId]` with video/audio toggles, transcripts, interactive quizzes, and server-side locked paywall upgrade card (420,000 toman launch plan)
+  - Learner Hub at `/learn` connecting all learning destinations
+- [x] updated navigation Header with `/skills` link
+- [x] 100% tokenized CSS modules with 0 raw hex colors and logical properties only
+- [x] Next.js 138 static/SSG routes build cleanly with 0 lint and 0 typecheck errors
+- [x] contract check `scripts/check_day30.py` and regression checks `scripts/check_day09.py` through `scripts/check_day29.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+
+**Success gate:** Paywalls are strictly enforced on the server-side with zero media or text leaks to unentitled users; Iranian High School (Vision 1-3) and Konkur content are supported; all pedagogical resources have transparent copyright attribution; lesson interactive player supports video, audio, transcripts, and quizzes; and all 248 tests pass cleanly.
+**Next day after Git push:** Day 31 — Social Learning & Peer Feedback Foundation.
+

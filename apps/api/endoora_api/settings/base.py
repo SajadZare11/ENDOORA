@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     "taxonomy",
     "questions",
     "waitlist",
+    "content",
+    "courses",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

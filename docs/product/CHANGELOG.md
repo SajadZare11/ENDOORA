@@ -1,5 +1,59 @@
 # Endoora Changelog
 
+## Day 30 — Skills Hub, Lesson CMS Player, Courses, Iranian High School / Konkur, Culture & Paywall Enforcement
+
+### Added
+- Complete Pedagogical Content & Lesson CMS backend architecture across two new Django apps: `apps/api/content` and `apps/api/courses`.
+- Content models in `apps/api/content/models.py`:
+  - `ContentItem`: Rich pedagogical resources (articles, exercises, videos, audio, infographics, interactive quizzes) categorized by skill (grammar, listening, reading, writing, speaking, vocabulary, culture, school).
+  - Mandatory copyright attribution validation in `ContentItem.clean()` requiring `source_attribution`, `license_type`, and `author_name` (enforcing zero copyright infringement under Product Constitution Rule #6).
+  - `ContentReviewLog`: Editorial workflow tracking transitions between `draft`, `in_review`, `published`, and `archived` states with reviewer identity and editorial notes.
+- Course & Syllabus models in `apps/api/courses/models.py`:
+  - `Course`: Structured learning journeys (`konkur-english-vision-mastery`, `ielts-academic-speaking-and-writing-mastery`, `foundations-of-spoken-fluency`) with CEFR levels, target audience, duration, and premium flags.
+  - `Module`: Thematic curriculum units organizing lessons with pedagogical sequencing.
+  - `Lesson`: Discrete learning units with estimated duration, free preview flag (`is_free_preview`), video/audio URLs, transcripts, interactive quizzes, and downloadable resources.
+  - `LearnerCourseEnrollment` & `LearnerLessonProgress`: Learner progress tracking, lesson completion percentages, quiz scores, and XP awards.
+- Database migrations:
+  - `apps/api/content/migrations/0001_initial.py`
+  - `apps/api/courses/migrations/0001_initial.py`
+- Service layer with strict Server-Side Paywall & Entitlement Enforcement:
+  - `ContentService` (`apps/api/content/services.py`): Skills hub summary, categorized content lists, editorial review transition engine, and server-side paywall redaction stripping body text, media URLs, quizzes, and downloadables for non-entitled learners.
+  - `CourseService` (`apps/api/courses/services.py`): Catalog listing, syllabus generation, lesson detail redaction, course enrollment, and lesson completion engine awarding 25 XP to the learner gamification ledger.
+- REST API views, serializers, and URL routing in `apps/api/content/` and `apps/api/courses/`:
+  - `GET /api/content/skills/`: Skills hub summary with counts and featured items.
+  - `GET /api/content/items/`: Filterable list of published content items.
+  - `GET /api/content/items/<slug>/`: Content detail with server-side paywall redaction.
+  - `POST /api/content/items/<id>/review/`: Editorial review action endpoint.
+  - `GET /api/content/culture/`: Dedicated Iranian and intercultural communication hub.
+  - `GET /api/content/school/`: Iranian national high school (Vision 1, 2, 3) and Konkur preparation hub.
+  - `GET /api/courses/`: Comprehensive courses catalog.
+  - `GET /api/courses/<slug>/`: Detailed course syllabus and module breakdown.
+  - `POST /api/courses/<slug>/enroll/`: Course enrollment endpoint.
+  - `GET /api/courses/<slug>/lessons/<lesson_id>/`: Lesson detail player endpoint.
+  - `POST /api/courses/<slug>/lessons/<lesson_id>/complete/`: Lesson completion with score recording.
+- Comprehensive test coverage:
+  - 6 unit/integration tests in `apps/api/content/tests.py` covering copyright validation, unentitled paywall redaction, staff bypass, skills summary, and review transitions.
+  - 5 unit/integration tests in `apps/api/courses/tests.py` covering catalog, syllabus, free preview access, locked lesson redaction, and lesson progress calculation.
+  - Total backend test suite grew to 248 tests across 18 apps passing with 0 errors.
+- Frontend public skills and learning experience in `apps/web`:
+  - Public Skills Hub at `/skills` (`apps/web/app/(public)/skills/page.tsx` & `skills.module.css`): Visual cards for 6 core skills + Culture + High School & Konkur, CEFR level filter, real-time search, and featured articles.
+  - Dynamic Skill Deep-Dive pages at `/skills/[skill]` (`apps/web/app/(public)/skills/[skill]/page.tsx`): Detailed overview, CEFR roadmap, Persian L1 interference patterns, and recommended courses.
+  - Culture Hub at `/skills/culture` (`apps/web/app/(public)/skills/culture/page.tsx` & `culture.module.css`): Intercultural pragmatics, small talk norms, idiomatic etiquette, and Persian-English cultural shifts.
+  - High School & Konkur Hub at `/skills/school` (`apps/web/app/(public)/skills/school/page.tsx` & `school.module.css`): Vision 1, 2, and 3 curriculum coverage, cloze test techniques, reading comprehension strategies, and national exam test banks.
+  - Courses Catalog at `/courses` (`apps/web/app/(learner)/courses/page.tsx` & `courses.module.css`): Searchable course directory with CEFR badges, target audience filters, estimated hours, and preview counters.
+  - Course Syllabus at `/courses/[slug]` (`apps/web/app/(learner)/courses/[slug]/page.tsx`): Module breakdown, lesson status indicators (free preview vs. locked), enrollment status, and progress meters.
+  - Interactive Lesson CMS Player at `/courses/[slug]/lessons/[lessonId]` (`LessonPlayer.tsx`, `page.tsx` & `lesson-cms.module.css`): SSG pre-rendered player for all 14 course lessons with video/audio toggles, transcripts, interactive quizzes with immediate pedagogical feedback, downloadable resources, and server-side locked paywall upgrade card (420,000 toman launch plan).
+  - Learner Hub at `/learn` (`apps/web/app/(learner)/learn/page.tsx` & `learn.module.css`): Unified learning dashboard connecting Courses, Skills, School, Culture, Personal Learning Path, Daily Missions, and Achievements.
+- Global navigation update:
+  - Added direct link to `/skills` in `apps/web/components/layout/Header.tsx`.
+- Tokenized CSS compliance:
+  - 6 new CSS modules created with 0 raw hex color literals and 100% logical properties (`margin-inline`, `padding-inline`, `border-inline`).
+- Contract verification script `scripts/check_day30.py` and pre-migration backup script `scripts/backup_day30.ps1`.
+
+### Changed
+- Total static/SSG pre-rendered pages generated during Next.js production build increased from 112 to 138 pages with 0 warnings.
+- Backend registered apps in `apps/api/endoora_api/settings/base.py` and root URLs in `apps/api/endoora_api/urls.py` expanded to include `content` and `courses`.
+
 ## Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards
 
 ### Added

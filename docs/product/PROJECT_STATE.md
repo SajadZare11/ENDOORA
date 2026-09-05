@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 29 — Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards
-- **Day 29 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–28 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, and Gamification Engine v1
-- **Schema version:** Day 29 adds `gamification.0002_activeusersclub_badge_challengetemplate_and_more`
+- **Roadmap day completed:** Day 30 — Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content
+- **Day 30 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–29 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, and Social Badges/Leaderboards
+- **Schema version:** Day 30 adds `content.0001_initial` and `courses.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1191,15 +1191,58 @@ Commit message:
 - Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
 - Git diff check: `git diff --check` passed with 0 errors.
 
-## Git checkpoint (Day 29)
+## Day 30: Skills Hub, Lesson CMS Player, Courses, Iranian High School / Konkur, Culture & Paywall Enforcement
+
+### Backend Content & Courses Architecture
+- Created two new Django applications: `apps/api/content` and `apps/api/courses`.
+- Models:
+  - `ContentItem` (`apps/api/content/models.py`): Supports 8 categories (`grammar`, `listening`, `reading`, `writing`, `speaking`, `vocabulary`, `culture`, `school`) and multiple content types. Includes mandatory copyright attribution validation in `clean()` requiring `source_attribution`, `license_type`, and `author_name` (enforcing zero copyright infringement under Product Constitution Rule #6).
+  - `ContentReviewLog`: Editorial workflow tracking transitions between `draft`, `in_review`, `published`, and `archived` states.
+  - `Course`, `Module`, `Lesson`, `LearnerCourseEnrollment`, `LearnerLessonProgress` (`apps/api/courses/models.py`): Hierarchical syllabus structure with free preview flags, lesson duration, media attachments, transcripts, and interactive quizzes.
+- Database migrations:
+  - `apps/api/content/migrations/0001_initial.py`
+  - `apps/api/courses/migrations/0001_initial.py`
+- Service Layer & Server-Side Paywall:
+  - `ContentService` (`apps/api/content/services.py`): Skills hub summary, categorized content lists, review workflow, and server-side paywall redaction stripping body text, media URLs, quizzes, and downloadables for non-entitled learners.
+  - `CourseService` (`apps/api/courses/services.py`): Course catalog, syllabus, lesson detail redaction, course enrollment, and lesson completion awarding 25 XP to the learner gamification ledger.
+- API Endpoints:
+  - `/api/content/skills/`, `/api/content/items/`, `/api/content/items/<slug>/`, `/api/content/culture/`, `/api/content/school/`
+  - `/api/courses/`, `/api/courses/<slug>/`, `/api/courses/<slug>/enroll/`, `/api/courses/<slug>/lessons/<lesson_id>/`, `/api/courses/<slug>/lessons/<lesson_id>/complete/`
+
+### Frontend Public Skills & Learning Experience
+- Public Skills Hub at `/skills` (`apps/web/app/(public)/skills/page.tsx`): 6 core skills + Culture + School cards, CEFR level filter, search, and featured articles.
+- Dynamic Skill Deep-Dive pages at `/skills/[skill]` (`apps/web/app/(public)/skills/[skill]/page.tsx`): Persian L1 interference patterns, syllabus breakdown, and course recommendations.
+- Culture Hub at `/skills/culture` (`apps/web/app/(public)/skills/culture/page.tsx`): Iranian-English intercultural pragmatics, etiquette, and small talk.
+- Iranian High School & Konkur Hub at `/skills/school` (`apps/web/app/(public)/skills/school/page.tsx`): Vision 1, 2, 3 curriculum prep and Konkur test banks.
+- Courses Catalog at `/courses` (`apps/web/app/(learner)/courses/page.tsx`): Searchable catalog with CEFR level badges and audience filters.
+- Course Syllabus at `/courses/[slug]` (`apps/web/app/(learner)/courses/[slug]/page.tsx`): Module breakdown, preview vs. locked indicators, and enrollment status.
+- Interactive Lesson CMS Player at `/courses/[slug]/lessons/[lessonId]` (`apps/web/app/(learner)/courses/[slug]/lessons/[lessonId]/page.tsx` & `LessonPlayer.tsx`): SSG pre-rendered player for all 14 course lessons with video/audio toggles, transcripts, interactive quizzes with immediate pedagogical feedback, downloadable resources, and server-side locked paywall upgrade card (420,000 toman launch plan).
+- Learner Hub at `/learn` (`apps/web/app/(learner)/learn/page.tsx`): Unified dashboard connecting courses, skills, school, culture, path, daily missions, and achievements.
+- Added `/skills` navigation link to `apps/web/components/layout/Header.tsx`.
+- 100% tokenized CSS modules with 0 raw hex colors and logical properties only.
+
+### Day 30 Verification Evidence
+- Pre-Day-30 PostgreSQL backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day30\20260905-190000\endoora-pre-day30.dump` (107,603 bytes).
+- Backend unit tests pass: 11/11 in `content` and `courses`.
+- Full backend regression suite: 248/248 tests passing across all 18 applications with 0 errors in 17.7s.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors), `npm run typecheck` (0 errors).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Production build: `npm run build` compiled 138/138 static/SSG pages cleanly.
+- Daily contract checks: `scripts/check_day30.py` and `scripts/check_day09.py` through `scripts/check_day29.py` all passed 100%.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 30)
 
 Commit message:
 
-`Day 29: Badges, daily/weekly challenges, active clubs, and privacy-safe leaderboards`
+`Day 30: Skills hub, course CMS, culture, and public learning content`
 
 ## Exact next day
 
-**Day 30 — Social Learning & Peer Feedback Foundation.**
+**Day 31 — Social Learning & Peer Feedback Foundation.**
 
-Do not begin Day 30 until the Day 29 commit is pushed and `git status --short --branch`
+Do not begin Day 31 until the Day 30 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+

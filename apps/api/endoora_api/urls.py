@@ -66,4 +66,12 @@ urlpatterns = [
         "api/gamification/",
         include("gamification.urls")
     ),
+    path(
+        "api/content/",
+        include("content.urls")
+    ),
+    path(
+        "api/courses/",
+        include("courses.urls")
+    ),
 ]
