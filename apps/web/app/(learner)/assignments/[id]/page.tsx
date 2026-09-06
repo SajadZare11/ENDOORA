@@ -10,6 +10,7 @@ import {
   startLearnerAttempt,
   submitLearnerAttempt,
 } from "@/lib/teacher-assignments";
+import { acknowledgeLearnerFeedback } from "@/lib/teacher-gradebook";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -26,6 +27,9 @@ export default function LearnerAttemptPage({ params }: PageProps) {
   const [submitting, setSubmitting] = useState(false);
   const [lastSavedTime, setLastSavedTime] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [reflectionText, setReflectionText] = useState("");
+  const [isAcknowledging, setIsAcknowledging] = useState(false);
+  const [reflectionSubmitted, setReflectionSubmitted] = useState(false);
 
   // Timer state (remaining seconds)
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
@@ -144,6 +148,19 @@ export default function LearnerAttemptPage({ params }: PageProps) {
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
+  const handleAcknowledge = async () => {
+    if (!completedAttempt) return;
+    setIsAcknowledging(true);
+    try {
+      await acknowledgeLearnerFeedback(completedAttempt.id, reflectionText);
+      setReflectionSubmitted(true);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "خطا در ثبت تایید و خودارزیابی");
+    } finally {
+      setIsAcknowledging(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className={styles.container}>
@@ -209,6 +226,17 @@ export default function LearnerAttemptPage({ params }: PageProps) {
             </div>
           </div>
 
+          {completedAttempt.feedback_status === "revision_requested" && (
+            <div style={{ padding: "var(--space-4)", border: "1px solid var(--color-warning, #f59e0b)", background: "var(--color-surface-subtle)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)" }}>
+              <h4 style={{ margin: "0 0 var(--space-2) 0", color: "var(--color-warning, #f59e0b)" }}>
+                درخواست ویرایش مجدد از سوی مدرس:
+              </h4>
+              <p style={{ margin: 0, fontSize: "var(--font-size-body)" }}>
+                {completedAttempt.revision_notes || "مدرس درخواست بازنگری و ارسال مجدد داده است."}
+              </p>
+            </div>
+          )}
+
           {completedAttempt.teacher_feedback && (
             <div style={{ padding: "var(--space-4)", border: "1px solid var(--color-learning-teal)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)" }}>
               <h4 style={{ margin: "0 0 var(--space-2) 0", color: "var(--color-learning-teal)" }}>
@@ -220,9 +248,64 @@ export default function LearnerAttemptPage({ params }: PageProps) {
             </div>
           )}
 
-          <div>
-            <Link href="/assignments" className={styles.primaryButton} style={{ inlineSize: "auto" }}>
-              بازگشت به لیست تکالیف من
+          {completedAttempt.rubric_scores && Object.keys(completedAttempt.rubric_scores).length > 0 && (
+            <div style={{ padding: "var(--space-4)", background: "var(--color-surface-subtle)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)" }}>
+              <h4 style={{ margin: "0 0 var(--space-3) 0", color: "var(--color-text)" }}>
+                ارزیابی بر اساس معیارهای رابریک (Rubric):
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "var(--space-3)" }}>
+                {Object.entries(completedAttempt.rubric_scores).map(([crit, pts]) => (
+                  <div key={crit} style={{ padding: "var(--space-3)", background: "var(--color-surface)", borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}>
+                    <div style={{ fontSize: "var(--font-size-caption)", color: "var(--color-muted)" }}>{crit}</div>
+                    <div style={{ fontSize: "var(--font-size-h3)", fontWeight: 700, color: "var(--color-learning-teal)" }}>{pts} امتیاز</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div style={{ padding: "var(--space-5)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)", background: "var(--color-surface)" }}>
+            <h4 style={{ margin: "0 0 var(--space-2) 0" }}>چرخه بازخورد و خودارزیابی زبان‌آموز</h4>
+            {reflectionSubmitted || completedAttempt.learner_acknowledged_at ? (
+              <div style={{ color: "var(--color-learning-teal)", fontWeight: 600 }}>
+                ✓ شما بازخورد مدرس را مشاهده و تایید کردید.
+                {completedAttempt.learner_reflection && (
+                  <p style={{ marginBlockStart: "var(--space-2)", color: "var(--color-text)", fontWeight: 400 }}>
+                    یادداشت خودارزیابی شما: {completedAttempt.learner_reflection}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <div>
+                <p style={{ fontSize: "var(--font-size-body-sm)", color: "var(--color-muted)", marginBlockEnd: "var(--space-3)" }}>
+                  بازخورد استاد را مرور کنید و در صورت تمایل، یادداشت خودارزیابی یا پیام خود را برای مدرس ثبت نمایید:
+                </p>
+                <textarea
+                  className={styles.textInput}
+                  style={{ minBlockSize: "80px", marginBlockEnd: "var(--space-3)", inlineSize: "100%" }}
+                  placeholder="نکات یادگیری من، نقاط قوت و زمینه‌های بهبود..."
+                  value={reflectionText}
+                  onChange={(e) => setReflectionText(e.target.value)}
+                />
+                <button
+                  type="button"
+                  onClick={handleAcknowledge}
+                  disabled={isAcknowledging}
+                  className={styles.primaryButton}
+                  style={{ inlineSize: "auto" }}
+                >
+                  {isAcknowledging ? "در حال ثبت..." : "تایید بازخورد و ثبت خودارزیابی ✓"}
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
+            <Link href="/assignments" className={styles.secondaryButton} style={{ inlineSize: "auto" }}>
+              بازگشت به تکالیف
+            </Link>
+            <Link href="/grades" className={styles.primaryButton} style={{ inlineSize: "auto" }}>
+              مشاهده کارنامه جامع (My Grades) ←
             </Link>
           </div>
         </div>

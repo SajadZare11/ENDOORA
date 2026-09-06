@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 34 — Teacher Assignments, Question Selection, Due Dates, Attempts, and Accommodations
-- **Day 34 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–33 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, and Teacher Classes/Roster/Audited Hours Ledger
-- **Schema version:** Day 34 adds `teachers.0002_assignments`
+- **Roadmap day completed:** Day 35 — Learner Submission, Teacher Grading, Feedback Loop, and Gradebook
+- **Day 35 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–34 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, Teacher Classes/Roster/Audited Hours Ledger, and Teacher Assignments/Accommodations/Autosave
+- **Schema version:** Day 35 adds `teachers.0003_gradebook_and_feedback`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1361,9 +1361,43 @@ Key accomplishments:
   - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
 - Full verification: 283/283 backend tests passed, 146/146 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
 
+## Git checkpoint (Day 35)
+
+Commit message:
+
+`Day 35: Learner submission, teacher grading, feedback loop, and gradebook`
+
+Key accomplishments:
+- Enhanced assignment attempt models in `apps/api/teachers/models.py`:
+  - Added `AttemptStatus.REVISION_REQUESTED` and `FeedbackStatus` choices (`pending`, `returned`, `acknowledged`, `revision_requested`).
+  - Added `rubric_scores`, `question_grades`, `feedback_status`, `learner_reflection`, `learner_acknowledged_at`, and `revision_notes` to `AssignmentAttempt`.
+  - Created `SubmissionFeedbackMessage` model for threaded conversation and internal teacher notes.
+- Built comprehensive service layer in `apps/api/teachers/assignment_services.py`:
+  - `get_submission_grading_detail`: full question-by-question solution reference, options, auto-grading logs, and manual scores.
+  - `grade_attempt_submission`: question score overrides, rubric scoring, qualitative feedback, and revision request triggers.
+  - `acknowledge_feedback_and_reflect`: learner reflection notes and timestamped acknowledgment.
+  - `add_feedback_message` & `get_feedback_messages`: threaded feedback messages with strict privacy filter protecting internal teacher notes.
+  - `get_teacher_submissions_queue`: multi-class queue with status filters and learner search.
+  - `get_class_gradebook`: 2D matrix (learners x assignments) with overall weighted GPA %, completion counts, and assignment statistics (mean, median, completion rate).
+  - `export_class_gradebook_csv`: UTF-8 BOM (`\ufeff`) formatted CSV stream guaranteeing proper Persian/Arabic character display in Excel.
+  - `get_learner_gradebook`: cross-class GPA, assignment-by-assignment breakdowns, and feedback links for learners.
+- Database migration `0003_gradebook_and_feedback.py` created and applied.
+- Django Admin registered `SubmissionFeedbackMessageAdmin` and updated `AssignmentAttemptAdmin`.
+- 8 new REST endpoints implemented and registered in `apps/api/teachers/urls.py`.
+- Comprehensive unit and integration test suite: 8 tests in `TeacherGradebookAndFeedbackDay35Tests`, total 291/291 backend tests passing in 17.7s.
+- Frontend Implementation:
+  - Strongly typed client SDK in `apps/web/lib/teacher-gradebook.ts` using `endooraApi`.
+  - Submissions Queue in `apps/web/app/(teacher)/teacher/grading/page.tsx`.
+  - Grading Studio in `apps/web/app/(teacher)/teacher/grading/[attemptId]/page.tsx` with question scoring, rubric criteria, threaded discussion, and revision workflow.
+  - Class Gradebook Matrix in `apps/web/app/(teacher)/teacher/gradebook/page.tsx` with student search, aggregate columns, assignment stats footer, and UTF-8 BOM CSV export download.
+  - Learner My Grades in `apps/web/app/(learner)/grades/page.tsx` with cross-class GPA, assignment cards, and direct links to attempt feedback.
+  - Enhanced Learner Attempt View in `apps/web/app/(learner)/assignments/[id]/page.tsx` with rubric display, revision notices, and feedback acknowledgment / self-reflection form.
+  - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Full verification: 291/291 backend tests passed, 149/149 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
+
 ## Exact next day
 
-**Day 35 — Build learner submission, teacher grading, feedback loop, and gradebook.**
+**Day 36 — Build teacher analytics, progress reporting, at-risk alerts, and intervention tools.**
 
-Do not begin Day 35 until the Day 34 commit is pushed and `git status --short --branch`
+Do not begin Day 36 until the Day 35 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

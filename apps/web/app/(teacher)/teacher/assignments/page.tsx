@@ -104,8 +104,11 @@ export default function TeacherAssignmentsPage() {
             </p>
           </div>
           <div className={styles.headerActions}>
-            <Link href="/teacher/classes" className={styles.secondaryButton}>
-              مدیریت کلاس‌ها
+            <Link href="/teacher/grading" className={styles.secondaryButton}>
+              صف تصحیح تکالیف ✍️
+            </Link>
+            <Link href="/teacher/gradebook" className={styles.secondaryButton}>
+              دفتر نمرات کلاسی 📊
             </Link>
             <Link href="/teacher/assignments/new" className={styles.primaryButton}>
               + ساخت تکلیف جدید

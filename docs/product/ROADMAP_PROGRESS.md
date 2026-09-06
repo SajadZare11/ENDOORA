@@ -36,7 +36,8 @@
 | 32 | Unified Search, Recommendations, FAQ CMS, and AI Support Triage | Complete | Normalized search, FAQ CMS, auto-escalation, human handoff, 270 tests passed |
 | 33 | Teacher Class, Learner, History, and Teaching-Hours Management | Complete | Explicit consent, privacy shield, session completion, audited hours ledger, 278 tests passed |
 | 34 | Build teacher assignments, question selection, due dates, attempts, and accommodations | Complete | Wireframe 4 wizard, Question Bank curation, accommodations, autosave R-029, auto-scoring, 283 tests passed |
-| 35-60 | Remaining roadmap | Not started | Sequential |
+| 35 | Build learner submission, teacher grading, feedback loop, and gradebook | Complete | Grading studio, rubric evaluation, 2-way feedback loop, 2D gradebook matrix, UTF-8 BOM CSV, My Grades, 291 tests passed |
+| 36-60 | Remaining roadmap | Not started | Sequential |
 
 
 ## Day 08 deliverables
@@ -911,4 +912,41 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Teachers can create and manage drafts; Question Bank questions linked by version without content duplication; delivery rules (due dates, grace period, attempts, timer) enforced; individualized accommodations supported; answers stripped from learner payloads; learner attempts autosaved resiliently; objective questions auto-scored upon submission; and all 283 tests pass cleanly.
-**Next day after Git push:** Day 35 — Build learner submission, teacher grading, feedback loop, and gradebook.
+**Day 34 Status:** Completed and pushed to GitHub main.
+
+### Day 35 — Build learner submission, teacher grading, feedback loop, and gradebook
+- [x] enhanced assignment attempt models in `apps/api/teachers/models.py`:
+  - `AttemptStatus.REVISION_REQUESTED` choice
+  - `FeedbackStatus` choices (`pending`, `returned`, `acknowledged`, `revision_requested`)
+  - `AssignmentAttempt` fields: `rubric_scores`, `question_grades`, `feedback_status`, `learner_reflection`, `learner_acknowledged_at`, `revision_notes`
+  - `SubmissionFeedbackMessage` model for threaded conversation and internal teacher notes
+- [x] built service layer in `apps/api/teachers/assignment_services.py`:
+  - `get_submission_grading_detail`: full question-by-question solution reference, options, auto-grading logs, and manual scores
+  - `grade_attempt_submission`: question score overrides, rubric scoring, qualitative feedback, and revision request triggers
+  - `acknowledge_feedback_and_reflect`: learner reflection notes and timestamped acknowledgment
+  - `add_feedback_message` & `get_feedback_messages`: threaded feedback messages with strict privacy filter protecting internal teacher notes
+  - `get_teacher_submissions_queue`: multi-class queue with status filters and learner search
+  - `get_class_gradebook`: 2D matrix (learners x assignments) with overall weighted GPA %, completion counts, and assignment statistics (mean, median, completion rate)
+  - `export_class_gradebook_csv`: UTF-8 BOM (`\ufeff`) formatted CSV stream guaranteeing proper Persian/Arabic character display in Excel
+  - `get_learner_gradebook`: cross-class GPA, assignment-by-assignment breakdowns, and feedback links for learners
+- [x] database migration `teachers/migrations/0003_gradebook_and_feedback.py` created and applied
+- [x] registered Django Admin for `SubmissionFeedbackMessage` and updated `AssignmentAttemptAdmin`
+- [x] 8 new REST endpoints added in `apps/api/teachers/assignment_views.py` and registered in `urls.py`
+- [x] 32/32 unit tests passing in `teachers/tests.py` (including 8 new tests in `TeacherGradebookAndFeedbackDay35Tests`)
+- [x] full backend regression: 291/291 tests passing across all Django apps
+- [x] technical documentation drafted in `docs/teachers/grading-and-gradebook.md`
+- [x] built frontend typed API client in `apps/web/lib/teacher-gradebook.ts` using `endooraApi`
+- [x] built Submissions Queue in `apps/web/app/(teacher)/teacher/grading/page.tsx`
+- [x] built Grading Studio in `apps/web/app/(teacher)/teacher/grading/[attemptId]/page.tsx` with question scoring, rubric criteria, threaded discussion, and revision workflow
+- [x] built Class Gradebook Matrix in `apps/web/app/(teacher)/teacher/gradebook/page.tsx` with student search, aggregate columns, assignment stats footer, and UTF-8 BOM CSV export download
+- [x] built Learner My Grades in `apps/web/app/(learner)/grades/page.tsx` with cross-class GPA, assignment cards, and direct links to attempt feedback
+- [x] enhanced Learner Attempt View in `apps/web/app/(learner)/assignments/[id]/page.tsx` with rubric display, revision notices, and feedback acknowledgment / self-reflection form
+- [x] created 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties
+- [x] added Gradebook and Grading Studio navigation links in `teacher/classes/page.tsx`, `teacher/assignments/page.tsx`, and `learner/assignments/page.tsx`
+- [x] frontend lint (`npm run lint`), typecheck (`tsc --noEmit`), and Next.js build (149/149 pages) compiled cleanly with 0 errors
+- [x] contract check `scripts/check_day35.py` and regression checks `scripts/check_day30.py` through `scripts/check_day34.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Teachers have a question-by-question grading studio with override and rubric capabilities; two-way feedback loop supports reflection and threaded discussion with private internal notes strictly protected; 2D class gradebook matrix computes student aggregates and assignment statistics with UTF-8 BOM CSV export; learners can inspect cross-class grades and review feedback; and all 291 tests pass cleanly.
+**Next day after Git push:** Day 36 — Build teacher analytics, progress reporting, at-risk alerts, and intervention tools.

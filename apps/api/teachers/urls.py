@@ -24,12 +24,19 @@ from .assignment_views import (
     TeacherAssignmentPublishView,
     TeacherAssignmentSubmissionsView,
     TeacherAttemptGradeView,
+    TeacherSubmissionGradingDetailView,
+    TeacherSubmissionsQueueView,
+    TeacherClassGradebookView,
+    TeacherClassGradebookExportView,
     TeacherQuestionBankBrowseView,
     LearnerAssignmentsListView,
     LearnerAssignmentStartView,
     LearnerAttemptAutosaveView,
     LearnerAttemptSubmitView,
     LearnerAttemptDetailView,
+    LearnerAcknowledgeFeedbackView,
+    SubmissionFeedbackMessagesView,
+    LearnerGradebookView,
 )
 
 app_name = "teachers"
@@ -71,12 +78,23 @@ urlpatterns = [
     path("assignments/<uuid:assignment_id>/publish/", TeacherAssignmentPublishView.as_view(), name="assignment-publish"),
     path("assignments/<uuid:assignment_id>/submissions/", TeacherAssignmentSubmissionsView.as_view(), name="assignment-submissions"),
     path("attempts/<uuid:attempt_id>/grade/", TeacherAttemptGradeView.as_view(), name="attempt-grade"),
+    path("attempts/<uuid:attempt_id>/grading-detail/", TeacherSubmissionGradingDetailView.as_view(), name="attempt-grading-detail"),
+    path("submissions/queue/", TeacherSubmissionsQueueView.as_view(), name="submissions-queue"),
     path("question-bank/browse/", TeacherQuestionBankBrowseView.as_view(), name="question-bank-browse"),
 
-    # Learner Assignments & Attempts (Day 34)
+    # Gradebook & Class Reporting (Day 35)
+    path("classes/<uuid:class_id>/gradebook/", TeacherClassGradebookView.as_view(), name="class-gradebook"),
+    path("classes/<uuid:class_id>/gradebook/export/", TeacherClassGradebookExportView.as_view(), name="class-gradebook-export"),
+
+    # Learner Assignments & Attempts (Day 34 & 35)
     path("my-assignments/", LearnerAssignmentsListView.as_view(), name="learner-my-assignments"),
     path("assignments/<uuid:assignment_id>/start/", LearnerAssignmentStartView.as_view(), name="learner-assignment-start"),
     path("attempts/<uuid:attempt_id>/autosave/", LearnerAttemptAutosaveView.as_view(), name="learner-attempt-autosave"),
     path("attempts/<uuid:attempt_id>/submit/", LearnerAttemptSubmitView.as_view(), name="learner-attempt-submit"),
     path("attempts/<uuid:attempt_id>/", LearnerAttemptDetailView.as_view(), name="learner-attempt-detail"),
+
+    # Feedback Loop & Learner Gradebook (Day 35)
+    path("attempts/<uuid:attempt_id>/acknowledge-feedback/", LearnerAcknowledgeFeedbackView.as_view(), name="attempt-acknowledge-feedback"),
+    path("attempts/<uuid:attempt_id>/feedback-messages/", SubmissionFeedbackMessagesView.as_view(), name="attempt-feedback-messages"),
+    path("my-grades/", LearnerGradebookView.as_view(), name="learner-my-grades"),
 ]

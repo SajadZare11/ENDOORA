@@ -204,6 +204,7 @@ class AssignmentAttemptSerializer(serializers.ModelSerializer):
             "learner_name",
             "attempt_number",
             "status",
+            "feedback_status",
             "started_at",
             "submitted_at",
             "time_limit_expires_at",
@@ -213,6 +214,11 @@ class AssignmentAttemptSerializer(serializers.ModelSerializer):
             "percentage",
             "is_late",
             "teacher_feedback",
+            "rubric_scores",
+            "question_grades",
+            "learner_reflection",
+            "learner_acknowledged_at",
+            "revision_notes",
             "graded_at",
             "created_at",
             "updated_at",
@@ -231,5 +237,18 @@ class SubmitInputSerializer(serializers.Serializer):
 
 
 class GradeAttemptInputSerializer(serializers.Serializer):
-    score_awarded = serializers.DecimalField(max_digits=6, decimal_places=2, required=True)
+    score_awarded = serializers.DecimalField(max_digits=6, decimal_places=2, required=False, allow_null=True)
+    question_grades = serializers.DictField(required=False, default=dict)
+    rubric_scores = serializers.DictField(required=False, default=dict)
     teacher_feedback = serializers.CharField(required=False, allow_blank=True, default="")
+    action = serializers.ChoiceField(choices=["return_grade", "request_revision"], required=False, default="return_grade")
+    revision_notes = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class LearnerReflectionInputSerializer(serializers.Serializer):
+    reflection = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class SubmissionFeedbackMessageInputSerializer(serializers.Serializer):
+    message = serializers.CharField(required=True)
+    is_internal_note = serializers.BooleanField(required=False, default=False)

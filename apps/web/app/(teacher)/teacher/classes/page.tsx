@@ -325,6 +325,20 @@ export default function TeacherClassesPage() {
           </div>
           <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
             <Link
+              href="/teacher/gradebook"
+              className={styles.actionButtonSecondary}
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            >
+              {isFa ? "دفتر نمرات 📊" : "Gradebook 📊"}
+            </Link>
+            <Link
+              href="/teacher/grading"
+              className={styles.actionButtonSecondary}
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            >
+              {isFa ? "تصحیح تکالیف ✍️" : "Grading Studio ✍️"}
+            </Link>
+            <Link
               href="/teacher/assignments"
               className={styles.actionButtonSecondary}
               style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}

@@ -56,10 +56,21 @@ export default function LearnerAssignmentsPage() {
     <div className={styles.container}>
       {/* Header Card */}
       <div className={styles.headerCard}>
-        <h1 className={styles.title}>تکالیف و ارزیابی‌های کلاسی من</h1>
-        <p className={styles.description}>
-          مشاهده، انجام و پیگیری تکالیف محول شده توسط مدرسین، زمان‌بندی ددلاین‌ها و بررسی کارنامه‌های خودکار.
-        </p>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "var(--space-4)" }}>
+          <div>
+            <h1 className={styles.title}>تکالیف و ارزیابی‌های کلاسی من</h1>
+            <p className={styles.description}>
+              مشاهده، انجام و پیگیری تکالیف محول شده توسط مدرسین، زمان‌بندی ددلاین‌ها و بررسی کارنامه‌های خودکار.
+            </p>
+          </div>
+          <Link
+            href="/grades"
+            className={styles.primaryButton}
+            style={{ inlineSize: "auto", textDecoration: "none", whiteSpace: "nowrap" }}
+          >
+            کارنامه جامع من (My Grades) 📊
+          </Link>
+        </div>
 
         {/* Tab Bar */}
         <div className={styles.tabBar} role="tablist">

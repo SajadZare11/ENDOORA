@@ -1,7 +1,7 @@
 import { endooraApi } from "./endoora-api";
 
 export type AssignmentStatus = "draft" | "published" | "closed" | "archived";
-export type AttemptStatus = "in_progress" | "submitted" | "graded" | "timed_out";
+export type AttemptStatus = "in_progress" | "submitted" | "graded" | "timed_out" | "revision_requested";
 
 export type AssignmentListItem = {
   id: string;
@@ -119,6 +119,12 @@ export type AssignmentAttempt = {
   percentage: string | number | null;
   is_late: boolean;
   teacher_feedback: string;
+  rubric_scores?: Record<string, number>;
+  question_grades?: Record<string, number>;
+  feedback_status?: "pending" | "returned" | "acknowledged" | "revision_requested";
+  learner_reflection?: string;
+  learner_acknowledged_at?: string | null;
+  revision_notes?: string;
   graded_at: string | null;
   created_at: string;
   updated_at: string;

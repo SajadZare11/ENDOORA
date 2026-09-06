@@ -842,3 +842,445 @@ class TeacherAssignmentDay34Tests(TestCase):
         )
         self.assertEqual(grade_resp.status_code, 200)
         self.assertEqual(grade_resp.data["teacher_feedback"], "Excellent performance on both grammar and vocabulary!")
+
+
+class TeacherGradebookAndFeedbackDay35Tests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        call_command("import_taxonomy")
+
+    def setUp(self):
+        self.client = APIClient()
+        self.teacher = User.objects.create_user(
+            email="teacher-day35@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.other_teacher = User.objects.create_user(
+            email="other-teacher-day35@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.learner1 = User.objects.create_user(
+            email="learner1-day35@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+        self.learner2 = User.objects.create_user(
+            email="learner2-day35@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+        self.unlinked_learner = User.objects.create_user(
+            email="unlinked-day35@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+
+        # Setup active class & enroll both learners
+        self.teacher_class = TeacherClassService.create_class(
+            teacher=self.teacher,
+            title="IELTS Advanced Prep",
+            subject="IELTS",
+            level="B2",
+            max_capacity=15,
+        )
+        link1 = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner1)
+        TeacherClassService.accept_invite(self.learner1, link1.invite_code)
+
+        link2 = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner2)
+        TeacherClassService.accept_invite(self.learner2, link2.invite_code)
+
+        # Question bank setup
+        from questions.models import Question, QuestionObjective, QuestionVersion
+        from taxonomy.models import TaxonomyNode
+
+        obj_node = TaxonomyNode.objects.filter(
+            kind=TaxonomyNode.Kind.OBJECTIVE,
+            status=TaxonomyNode.Status.ACTIVE,
+        ).first()
+
+        self.q1 = Question.objects.create(slug="mcq-grammar-d35", created_by=self.teacher)
+        self.qv1 = QuestionVersion.objects.create(
+            question=self.q1,
+            version_number=1,
+            status=QuestionVersion.Status.DRAFT,
+            question_type=QuestionVersion.QuestionType.MCQ,
+            cefr_level=QuestionVersion.CefrLevel.B2,
+            difficulty=3,
+            title_fa="انتخاب حرف اضافه زمان",
+            title_en="Preposition Choice",
+            prompt_fa="حرف اضافه مناسب را انتخاب کنید.",
+            prompt_en="The lecture starts _____ Monday morning.",
+            learner_payload={
+                "options": [
+                    {"id": "opt1", "text": "in"},
+                    {"id": "opt2", "text": "on"},
+                    {"id": "opt3", "text": "at"},
+                ]
+            },
+            answer_key={"correct_option": "opt2"},
+            explanation_fa="برای روزهای مشخص هفته از on استفاده می‌شود.",
+            source_origin=QuestionVersion.SourceOrigin.ORIGINAL,
+            source_title="Grammar Bank",
+            license_type=QuestionVersion.LicenseType.ORIGINAL,
+            author=self.teacher,
+        )
+        QuestionObjective.objects.create(version=self.qv1, objective=obj_node, is_primary=True)
+        self.qv1.publish(self.teacher)
+
+        self.q2 = Question.objects.create(slug="writing-task-d35", created_by=self.teacher)
+        self.qv2 = QuestionVersion.objects.create(
+            question=self.q2,
+            version_number=1,
+            status=QuestionVersion.Status.DRAFT,
+            question_type=QuestionVersion.QuestionType.SHORT_ANSWER,
+            cefr_level=QuestionVersion.CefrLevel.B2,
+            difficulty=3,
+            title_fa="تکمیل جمله تحلیلی",
+            title_en="Analytical sentence",
+            prompt_fa="کلمه مناسب را وارد نمایید.",
+            prompt_en="Renewable energy is essential for _____ development.",
+            instructions_fa="کلمه را بنویسید.",
+            instructions_en="Type the word.",
+            learner_payload={"placeholder": "e.g. sustainable"},
+            answer_key={"accepted": ["sustainable", "future"]},
+            rubric={"accuracy": 5, "task_completion": 5},
+            explanation_fa="توسعه پایدار مفهوم اصلی است.",
+            source_origin=QuestionVersion.SourceOrigin.ORIGINAL,
+            source_title="Vocabulary Bank",
+            license_type=QuestionVersion.LicenseType.ORIGINAL,
+            author=self.teacher,
+        )
+        QuestionObjective.objects.create(version=self.qv2, objective=obj_node, is_primary=True)
+        self.qv2.publish(self.teacher)
+
+        # Create Assignment 1
+        from teachers.assignment_services import AssignmentService
+        self.assign1 = AssignmentService.create_assignment_draft(
+            teacher=self.teacher,
+            class_id=str(self.teacher_class.id),
+            title="Grammar & Vocabulary Test 1",
+            target_cefr="B2",
+        )
+        AssignmentService.set_assignment_questions(
+            teacher=self.teacher,
+            assignment_id=str(self.assign1.id),
+            questions_data=[
+                {"question_version_id": str(self.qv1.id), "points": Decimal("10.00"), "custom_instructions": ""},
+                {"question_version_id": str(self.qv2.id), "points": Decimal("10.00"), "custom_instructions": ""},
+            ],
+        )
+        AssignmentService.configure_delivery(
+            teacher=self.teacher,
+            assignment_id=str(self.assign1.id),
+            due_date=timezone.now() + timezone.timedelta(days=7),
+            grace_period_minutes=15,
+            allow_late_submission=True,
+            max_attempts=2,
+            passing_percentage=60,
+        )
+        self.assign1 = AssignmentService.publish_assignment(
+            teacher=self.teacher,
+            assignment_id=str(self.assign1.id),
+        )
+
+        # Create Assignment 2 (Expired / Past due)
+        self.assign2 = AssignmentService.create_assignment_draft(
+            teacher=self.teacher,
+            class_id=str(self.teacher_class.id),
+            title="Reading Comprehension Quiz",
+            target_cefr="B2",
+        )
+        AssignmentService.set_assignment_questions(
+            teacher=self.teacher,
+            assignment_id=str(self.assign2.id),
+            questions_data=[
+                {"question_version_id": str(self.qv1.id), "points": Decimal("10.00"), "custom_instructions": ""},
+            ],
+        )
+        AssignmentService.configure_delivery(
+            teacher=self.teacher,
+            assignment_id=str(self.assign2.id),
+            due_date=timezone.now() - timezone.timedelta(days=2),
+            grace_period_minutes=0,
+            allow_late_submission=False,
+            max_attempts=1,
+            passing_percentage=60,
+        )
+        self.assign2 = AssignmentService.publish_assignment(
+            teacher=self.teacher,
+            assignment_id=str(self.assign2.id),
+        )
+
+    def test_teacher_submissions_queue_and_filters(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2", str(self.qv2.id): "sustainable"},
+        )
+
+        self.client.force_login(self.teacher)
+        resp = self.client.get("/api/teachers/submissions/queue/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(len(resp.data), 1)
+        item = resp.data[0]
+        self.assertEqual(item["learner_email"], self.learner1.email)
+        self.assertEqual(item["assignment_title"], "Grammar & Vocabulary Test 1")
+        self.assertEqual(item["class_title"], "IELTS Advanced Prep")
+        self.assertEqual(item["status"], "graded")
+
+        # Other teacher gets empty queue
+        self.client.force_login(self.other_teacher)
+        other_resp = self.client.get("/api/teachers/submissions/queue/")
+        self.assertEqual(other_resp.status_code, 200)
+        self.assertEqual(len(other_resp.data), 0)
+
+    def test_grading_studio_detail_and_rubric_override(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2", str(self.qv2.id): "future"},
+        )
+
+        self.client.force_login(self.teacher)
+        detail_resp = self.client.get(f"/api/teachers/attempts/{att1.id}/grading-detail/")
+        self.assertEqual(detail_resp.status_code, 200)
+        self.assertEqual(detail_resp.data["learner"]["email"], self.learner1.email)
+        self.assertEqual(len(detail_resp.data["questions"]), 2)
+        q1_data = detail_resp.data["questions"][0]
+        self.assertIn("reference_solution", q1_data)
+        self.assertEqual(q1_data["reference_solution"]["correct_option"], "opt2")
+
+        # Teacher grades with per-question scores, rubrics, and feedback
+        grade_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/grade/",
+            {
+                "score_awarded": "18.50",
+                "question_grades": {
+                    str(self.qv1.id): {"score": 10.0, "comment": "Perfect preposition choice!"},
+                    str(self.qv2.id): {"score": 8.5, "comment": "'future development' is acceptable but 'sustainable' is more idiomatic."},
+                },
+                "rubric_scores": {
+                    "accuracy": {"score": 9, "max": 10, "comment": "Accurate vocabulary"},
+                    "task_completion": {"score": 9.5, "max": 10, "comment": "Addressed all instructions"},
+                },
+                "teacher_feedback": "Great effort overall! Keep practicing formal adjectives.",
+                "action": "return_grade",
+            },
+            format="json",
+        )
+        self.assertEqual(grade_resp.status_code, 200)
+        self.assertEqual(grade_resp.data["status"], "graded")
+        self.assertEqual(grade_resp.data["feedback_status"], "returned")
+        self.assertEqual(float(grade_resp.data["score_awarded"]), 18.50)
+        self.assertEqual(float(grade_resp.data["percentage"]), 92.50)
+        self.assertIn("rubric_scores", grade_resp.data)
+        self.assertIn("accuracy", grade_resp.data["rubric_scores"])
+
+    def test_request_revision_workflow(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt1"},
+        )
+
+        self.client.force_login(self.teacher)
+        grade_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/grade/",
+            {
+                "score_awarded": "5.00",
+                "teacher_feedback": "Please re-read the preposition rules for days of the week.",
+                "action": "request_revision",
+                "revision_notes": "Revise question 1 and explain why your new choice fits.",
+            },
+            format="json",
+        )
+        self.assertEqual(grade_resp.status_code, 200)
+        self.assertEqual(grade_resp.data["status"], "revision_requested")
+        self.assertEqual(grade_resp.data["feedback_status"], "revision_requested")
+        self.assertEqual(grade_resp.data["revision_notes"], "Revise question 1 and explain why your new choice fits.")
+
+    def test_learner_acknowledge_feedback_and_reflection(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2"},
+        )
+        AssignmentService.grade_attempt_submission(
+            teacher=self.teacher,
+            attempt_id=str(att1.id),
+            score_awarded=Decimal("15.00"),
+            teacher_feedback="Good job!",
+        )
+
+        # Learner reviews feedback and submits reflection
+        self.client.force_login(self.learner1)
+        ack_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/acknowledge-feedback/",
+            {"reflection": "I understand the difference between 'on' and 'at' now."},
+            format="json",
+        )
+        self.assertEqual(ack_resp.status_code, 200)
+        self.assertEqual(ack_resp.data["feedback_status"], "acknowledged")
+        self.assertEqual(ack_resp.data["learner_reflection"], "I understand the difference between 'on' and 'at' now.")
+        self.assertIsNotNone(ack_resp.data["learner_acknowledged_at"])
+
+    def test_feedback_loop_threaded_messages_and_privacy(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2"},
+        )
+
+        # Learner posts inquiry
+        self.client.force_login(self.learner1)
+        msg1_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/feedback-messages/",
+            {"message": "Could you clarify why option 1 wasn't correct?"},
+            format="json",
+        )
+        self.assertEqual(msg1_resp.status_code, 201)
+        self.assertFalse(msg1_resp.data["is_internal_note"])
+
+        # Teacher posts public reply and an internal private note
+        self.client.force_login(self.teacher)
+        msg2_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/feedback-messages/",
+            {"message": "Because Monday is a specific day, requiring 'on'.", "is_internal_note": False},
+            format="json",
+        )
+        self.assertEqual(msg2_resp.status_code, 201)
+
+        msg3_resp = self.client.post(
+            f"/api/teachers/attempts/{att1.id}/feedback-messages/",
+            {"message": "Internal record: Student confused 'in' vs 'on' during lesson 3.", "is_internal_note": True},
+            format="json",
+        )
+        self.assertEqual(msg3_resp.status_code, 201)
+
+        # Teacher sees all 3 messages
+        t_msgs = self.client.get(f"/api/teachers/attempts/{att1.id}/feedback-messages/")
+        self.assertEqual(len(t_msgs.data), 3)
+
+        # Learner NEVER sees the internal private note!
+        self.client.force_login(self.learner1)
+        l_msgs = self.client.get(f"/api/teachers/attempts/{att1.id}/feedback-messages/")
+        self.assertEqual(len(l_msgs.data), 2)
+        for m in l_msgs.data:
+            self.assertFalse(m["is_internal_note"])
+            self.assertNotIn("Internal record", m["message"])
+
+        # Unlinked learner gets 403 Forbidden
+        self.client.force_login(self.unlinked_learner)
+        forbidden_resp = self.client.get(f"/api/teachers/attempts/{att1.id}/feedback-messages/")
+        self.assertEqual(forbidden_resp.status_code, 403)
+
+    def test_class_gradebook_matrix_and_aggregates(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2", str(self.qv2.id): "sustainable"},
+        )
+
+        att2 = AssignmentService.start_learner_attempt(self.learner2, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner2,
+            str(att2.id),
+            final_answers={str(self.qv1.id): "opt2"},
+        )
+
+        self.client.force_login(self.teacher)
+        gb_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/gradebook/")
+        self.assertEqual(gb_resp.status_code, 200)
+        data = gb_resp.data
+
+        self.assertEqual(data["total_students"], 2)
+        self.assertEqual(data["total_assignments"], 2)
+        self.assertEqual(len(data["students"]), 2)
+        self.assertEqual(len(data["assignments"]), 2)
+
+        # Check student 1 metrics
+        s1 = next(s for s in data["students"] if s["email"] == self.learner1.email)
+        self.assertEqual(s1["completed_count"], 1)
+        self.assertEqual(s1["missing_count"], 1)
+        self.assertIn(str(self.assign1.id), s1["grades"])
+        self.assertEqual(s1["grades"][str(self.assign1.id)]["score"], 20.0)
+        self.assertEqual(s1["grades"][str(self.assign2.id)]["status"], "missing")
+
+        # Check assignment 1 metrics
+        a1_col = next(a for a in data["assignments"] if a["id"] == str(self.assign1.id))
+        self.assertEqual(a1_col["submission_count"], 2)
+        self.assertEqual(a1_col["completion_rate"], 100.0)
+        self.assertEqual(a1_col["average_percentage"], 75.0)
+        self.assertEqual(a1_col["high_percentage"], 100.0)
+        self.assertEqual(a1_col["low_percentage"], 50.0)
+
+    def test_class_gradebook_csv_export(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2", str(self.qv2.id): "sustainable"},
+        )
+
+        self.client.force_login(self.teacher)
+        export_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/gradebook/export/")
+        self.assertEqual(export_resp.status_code, 200)
+        self.assertIn("text/csv", export_resp["Content-Type"])
+        self.assertIn(f'attachment; filename="gradebook-{self.teacher_class.id}.csv"', export_resp["Content-Disposition"])
+
+        csv_text = export_resp.content.decode("utf-8")
+        self.assertTrue(csv_text.startswith("\ufeff"))
+        self.assertIn(self.learner1.email, csv_text)
+        self.assertIn("Grammar & Vocabulary Test 1", csv_text)
+        self.assertIn("Class Average", csv_text)
+
+    def test_learner_gradebook_summary(self):
+        from teachers.assignment_services import AssignmentService
+        att1 = AssignmentService.start_learner_attempt(self.learner1, str(self.assign1.id))
+        AssignmentService.submit_attempt(
+            self.learner1,
+            str(att1.id),
+            final_answers={str(self.qv1.id): "opt2", str(self.qv2.id): "sustainable"},
+        )
+        AssignmentService.grade_attempt_submission(
+            teacher=self.teacher,
+            attempt_id=str(att1.id),
+            score_awarded=Decimal("20.00"),
+            teacher_feedback="Phenomenal work on the test.",
+        )
+
+        self.client.force_login(self.learner1)
+        my_grades_resp = self.client.get("/api/teachers/my-grades/")
+        self.assertEqual(my_grades_resp.status_code, 200)
+        data = my_grades_resp.data
+
+        self.assertEqual(data["total_assignments"], 2)
+        self.assertEqual(data["completed_assignments"], 1)
+        self.assertEqual(data["pending_assignments"], 1)
+        self.assertEqual(len(data["classes"]), 1)
+        c_data = data["classes"][0]
+        self.assertEqual(c_data["class_title"], "IELTS Advanced Prep")
+        self.assertEqual(len(c_data["assignments"]), 2)
+
+        a1 = next(a for a in c_data["assignments"] if a["assignment_id"] == str(self.assign1.id))
+        self.assertEqual(a1["score_awarded"], 20.0)
+        self.assertEqual(a1["status"], "graded")
+        self.assertEqual(a1["feedback_status"], "returned")
+        self.assertIn("Phenomenal work", a1["teacher_feedback_snippet"])

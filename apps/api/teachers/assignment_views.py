@@ -1,9 +1,8 @@
-from __future__ import annotations
-
 from decimal import Decimal
 from typing import Any
 
 from django.core.exceptions import PermissionDenied, ValidationError
+from django.http import HttpResponse
 from django.utils import timezone
 from rest_framework import permissions, status
 from rest_framework.response import Response
@@ -20,6 +19,8 @@ from teachers.assignment_serializers import (
     AssignmentQuestionsInputSerializer,
     AutosaveInputSerializer,
     GradeAttemptInputSerializer,
+    LearnerReflectionInputSerializer,
+    SubmissionFeedbackMessageInputSerializer,
     SubmitInputSerializer,
 )
 from teachers.assignment_services import AssignmentService
@@ -231,37 +232,187 @@ class TeacherAssignmentSubmissionsView(APIView):
         return Response(serializer.data)
 
 
+class TeacherSubmissionGradingDetailView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, attempt_id):
+        try:
+            data = AssignmentService.get_submission_grading_detail(
+                teacher=request.user,
+                attempt_id=str(attempt_id),
+            )
+            return Response(data)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
+
+
 class TeacherAttemptGradeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, attempt_id):
-        attempt = (
-            AssignmentAttempt.objects.filter(id=attempt_id, assignment__teacher=request.user)
-            .select_related("assignment", "learner")
-            .first()
-        )
-        if not attempt:
-            return Response({"detail": "Attempt not found or unauthorized."}, status=status.HTTP_404_NOT_FOUND)
-
         serializer = GradeAttemptInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
-        score = Decimal(str(data["score_awarded"]))
-        total_pts = attempt.assignment.total_points
-        attempt.score_awarded = score
-        if total_pts > Decimal("0.00"):
-            attempt.percentage = (score / total_pts) * Decimal("100.00")
-        attempt.teacher_feedback = data.get("teacher_feedback", "").strip()
-        attempt.status = AttemptStatus.GRADED
-        attempt.graded_by = request.user
-        attempt.graded_at = timezone.now()
-        attempt.save()
+        try:
+            attempt = AssignmentService.grade_attempt_submission(
+                teacher=request.user,
+                attempt_id=str(attempt_id),
+                score_awarded=data.get("score_awarded"),
+                question_grades=data.get("question_grades"),
+                rubric_scores=data.get("rubric_scores"),
+                teacher_feedback=data.get("teacher_feedback"),
+                action=data.get("action", "return_grade"),
+                revision_notes=data.get("revision_notes", ""),
+            )
+            return Response(AssignmentAttemptSerializer(attempt).data)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
 
-        return Response(AssignmentAttemptSerializer(attempt).data)
+
+class TeacherSubmissionsQueueView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        class_id = request.query_params.get("class_id")
+        assignment_id = request.query_params.get("assignment_id")
+        status_filter = request.query_params.get("status")
+        queue = AssignmentService.get_teacher_submissions_queue(
+            teacher=request.user,
+            class_id=class_id,
+            assignment_id=assignment_id,
+            status_filter=status_filter,
+        )
+        return Response(queue)
+
+
+class TeacherClassGradebookView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, class_id):
+        try:
+            data = AssignmentService.get_class_gradebook(
+                teacher=request.user,
+                class_id=str(class_id),
+            )
+            return Response(data)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
+
+
+class TeacherClassGradebookExportView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, class_id):
+        try:
+            csv_content = AssignmentService.export_class_gradebook_csv(
+                teacher=request.user,
+                class_id=str(class_id),
+            )
+            response = HttpResponse(csv_content, content_type="text/csv; charset=utf-8")
+            response["Content-Disposition"] = f'attachment; filename="gradebook-{class_id}.csv"'
+            return response
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
 
 
 # ---------------------------------------------------------
+# Learner Views
+# ---------------------------------------------------------
+
+class LearnerAcknowledgeFeedbackView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, attempt_id):
+        serializer = LearnerReflectionInputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        reflection = serializer.validated_data.get("reflection", "")
+
+        try:
+            attempt = AssignmentService.acknowledge_feedback_and_reflect(
+                learner=request.user,
+                attempt_id=str(attempt_id),
+                reflection_text=reflection,
+            )
+            return Response(AssignmentAttemptSerializer(attempt).data)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
+
+
+class SubmissionFeedbackMessagesView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, attempt_id):
+        try:
+            messages = AssignmentService.get_feedback_messages(
+                user=request.user,
+                attempt_id=str(attempt_id),
+            )
+            data = [
+                {
+                    "id": str(m.id),
+                    "author_id": str(m.author.id),
+                    "author_email": m.author.email,
+                    "author_name": getattr(m.author, "name", "") or getattr(m.author, "first_name", "") or m.author.email.split("@")[0],
+                    "message": m.message,
+                    "is_internal_note": m.is_internal_note,
+                    "created_at": m.created_at.isoformat(),
+                }
+                for m in messages
+            ]
+            return Response(data)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
+
+    def post(self, request, attempt_id):
+        serializer = SubmissionFeedbackMessageInputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        try:
+            msg = AssignmentService.add_feedback_message(
+                user=request.user,
+                attempt_id=str(attempt_id),
+                message=data["message"],
+                is_internal_note=data.get("is_internal_note", False),
+            )
+            return Response({
+                "id": str(msg.id),
+                "author_id": str(msg.author.id),
+                "author_email": msg.author.email,
+                "author_name": getattr(msg.author, "name", "") or getattr(msg.author, "first_name", "") or msg.author.email.split("@")[0],
+                "message": msg.message,
+                "is_internal_note": msg.is_internal_note,
+                "created_at": msg.created_at.isoformat(),
+            }, status=status.HTTP_201_CREATED)
+        except ValidationError as ve:
+            return Response({"detail": ve.messages if hasattr(ve, "messages") else str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+        except PermissionDenied as pe:
+            return Response({"detail": str(pe)}, status=status.HTTP_403_FORBIDDEN)
+
+
+class LearnerGradebookView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        class_id = request.query_params.get("class_id")
+        data = AssignmentService.get_learner_gradebook(
+            learner=request.user,
+            class_id=class_id,
+        )
+        return Response(data)
 # Learner Views
 # ---------------------------------------------------------
 

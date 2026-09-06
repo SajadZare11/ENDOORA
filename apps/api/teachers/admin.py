@@ -10,6 +10,7 @@ from teachers.models import (
     AssignmentQuestion,
     AssignmentAccommodation,
     AssignmentAttempt,
+    SubmissionFeedbackMessage,
 )
 
 
@@ -98,6 +99,13 @@ class AssignmentAccommodationAdmin(admin.ModelAdmin):
 
 @admin.register(AssignmentAttempt)
 class AssignmentAttemptAdmin(admin.ModelAdmin):
-    list_display = ["assignment", "learner", "attempt_number", "status", "score_awarded", "percentage", "is_late", "started_at", "submitted_at"]
-    list_filter = ["status", "is_late"]
+    list_display = ["assignment", "learner", "attempt_number", "status", "feedback_status", "score_awarded", "percentage", "is_late", "started_at", "submitted_at"]
+    list_filter = ["status", "feedback_status", "is_late"]
     search_fields = ["assignment__title", "learner__email"]
+
+
+@admin.register(SubmissionFeedbackMessage)
+class SubmissionFeedbackMessageAdmin(admin.ModelAdmin):
+    list_display = ["attempt", "author", "is_internal_note", "created_at"]
+    list_filter = ["is_internal_note", "created_at"]
+    search_fields = ["attempt__assignment__title", "author__email", "message"]

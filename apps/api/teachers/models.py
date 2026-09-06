@@ -19,6 +19,14 @@ class AttemptStatus(models.TextChoices):
     SUBMITTED = "submitted", _("ارسال شده")
     GRADED = "graded", _("تصحیح شده")
     TIMED_OUT = "timed_out", _("مهلت تمام شده")
+    REVISION_REQUESTED = "revision_requested", _("درخواست بازنگری")
+
+
+class FeedbackStatus(models.TextChoices):
+    PENDING = "pending", _("در انتظار بررسی مدرس")
+    RETURNED = "returned", _("تصحیح شده و ارسال بازخورد")
+    ACKNOWLEDGED = "acknowledged", _("مشاهده و تایید شده توسط زبان‌آموز")
+    REVISION_REQUESTED = "revision_requested", _("درخواست بازنگری و اصلاح")
 
 
 class ClassStatus(models.TextChoices):
@@ -515,6 +523,38 @@ class AssignmentAttempt(models.Model):
         default="",
         verbose_name=_("بازخورد کیفی مدرس"),
     )
+    rubric_scores = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("نمرات و معیارهای ارزیابی روبریم"),
+    )
+    question_grades = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("نمرات و بازخوردهای تفکیکی هر سوال"),
+    )
+    feedback_status = models.CharField(
+        max_length=32,
+        choices=FeedbackStatus.choices,
+        default=FeedbackStatus.PENDING,
+        db_index=True,
+        verbose_name=_("وضعیت بازخورد"),
+    )
+    learner_reflection = models.TextField(
+        blank=True,
+        default="",
+        verbose_name=_("یادداشت و خودبازتابی زبان‌آموز"),
+    )
+    learner_acknowledged_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("زمان تایید بازخورد توسط زبان‌آموز"),
+    )
+    revision_notes = models.TextField(
+        blank=True,
+        default="",
+        verbose_name=_("دستورالعمل بازنگری و اصلاح"),
+    )
     graded_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -540,3 +580,34 @@ class AssignmentAttempt(models.Model):
         if self.time_limit_expires_at and timezone.now() > self.time_limit_expires_at:
             return True
         return False
+
+
+class SubmissionFeedbackMessage(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    attempt = models.ForeignKey(
+        AssignmentAttempt,
+        on_delete=models.CASCADE,
+        related_name="feedback_messages",
+        verbose_name=_("تلاش تکلیف"),
+    )
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="submission_feedback_messages",
+        verbose_name=_("نویسنده پیام"),
+    )
+    message = models.TextField(verbose_name=_("متن پیام یا بازخورد"))
+    is_internal_note = models.BooleanField(
+        default=False,
+        verbose_name=_("یادداشت خصوصی مدرس"),
+        help_text=_("فقط برای مدرسین قابل مشاهده است و به زبان‌آموز نشان داده نمی‌شود"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name = _("پیام حلقه بازخورد تکلیف")
+        verbose_name_plural = _("پیام‌های حلقه بازخورد تکالیف")
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"Feedback msg by {self.author.email} on attempt {self.attempt_id}"
