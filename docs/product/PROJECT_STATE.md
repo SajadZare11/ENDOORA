@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 30 — Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content
-- **Day 30 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–29 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, and Social Badges/Leaderboards
-- **Schema version:** Day 30 adds `content.0001_initial` and `courses.0001_initial`
+- **Roadmap day completed:** Day 33 — Teacher Class, Learner, History, and Teaching-Hours Management
+- **Day 33 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–32 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, and Unified Search/AI Support Triage
+- **Schema version:** Day 33 adds `teachers.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1315,9 +1315,29 @@ Key accomplishments:
 - Wired search and support links into `Header.tsx`, `PublicShell.tsx`, and `learn/page.tsx`.
 - Full test suite passing: 270/270 backend tests, 140/140 static routes prerendered.
 
+## Git checkpoint (Day 33)
+
+Commit message:
+
+`Day 33: Teacher class, learner, history, and teaching-hours management`
+
+Key accomplishments:
+- Created teacher models in `apps/api/teachers/models.py`: `TeacherClass`, `TeacherLearnerLink`, `ClassSession`, `TeachingHourLedger`, `TeachingHourAuditLog`, and `TeacherDataAccessAudit`.
+- Enforced explicit learner consent flow (`PENDING_CONSENT` -> `ACTIVE`).
+- Strict security barrier: Teachers cannot search arbitrary platform learners; access to educational profile requires an active consented link.
+- Strict privacy barrier: Solo AI roleplays, voice recordings, and private mistake logs are never exposed to instructors.
+- Implemented `TeacherDataAccessAudit` logging remote IP, user agent, and timestamp on every inspection of learner educational data.
+- Immediate access revocation upon termination while immutably preserving past sessions and teaching-hour records for legal/financial compliance.
+- Automated teaching hours calculation: `hours = duration_minutes / 60.0` upon session completion confirmation.
+- Financial audit compliance: Prohibited silent hours adjustment; modifications require a mandatory reason (min 5 characters) and create an immutable `TeachingHourAuditLog`.
+- Built frontend teacher classes hub in `apps/web/app/(teacher)/teacher/classes/page.tsx` with tabs, class creation modal, student roster, consent status badges, skill evidence drawer with accessible text table alternative, session scheduler, completion trigger, and audited adjustment modal.
+- Created 100% tokenized CSS module `classes.module.css` with 0 raw hex colors and 100% logical properties.
+- Created learner-facing `/my-teachers` page to view active instructors, check consent status, and accept invite codes.
+- Full test suite passing: 278/278 backend tests, 143/143 static routes prerendered.
+
 ## Exact next day
 
-**Day 33 — Build teacher class, learner, history, and teaching-hours management.**
+**Day 34 — Build teacher assignments, question selection, due dates, attempts, and accommodations.**
 
-Do not begin Day 33 until the Day 32 commit is pushed and `git status --short --branch`
+Do not begin Day 34 until the Day 33 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

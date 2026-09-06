@@ -1,15 +1,30 @@
 from __future__ import annotations
 
+from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.utils import timezone
 from rest_framework.test import APIClient
 
 from profiles.models import TeacherProfile
 
 from .dashboard import build_teacher_dashboard
+from .services import TeacherClassService
+from .models import (
+    TeacherClass,
+    TeacherLearnerLink,
+    ClassSession,
+    TeachingHourLedger,
+    TeachingHourAuditLog,
+    TeacherDataAccessAudit,
+    LinkStatus,
+    SessionStatus,
+    LedgerStatus,
+)
 
 
 User = get_user_model()
+
 
 
 def collect_keys(value) -> set[str]:
@@ -204,3 +219,253 @@ class TeacherPrimaryActionTests(TestCase):
             )
         )
         self.assertEqual(action["id"], "grade_work")
+
+
+class TeacherClassAndHoursManagementTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.teacher = User.objects.create_user(
+            email="teacher-day33@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.learner = User.objects.create_user(
+            email="learner-day33@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+        self.other_learner = User.objects.create_user(
+            email="other-learner-day33@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+        self.teacher_class = TeacherClassService.create_class(
+            teacher=self.teacher,
+            title="IELTS Speaking Masterclass",
+            subject="IELTS Speaking",
+            level="B2",
+            max_capacity=5,
+            objectives=["Fluency", "Lexical Resource", "Grammar Range"],
+            private_notes="High focus on task 2 structure.",
+        )
+
+    def test_create_managed_class_api(self):
+        self.client.force_login(self.teacher)
+        response = self.client.post(
+            "/api/teachers/classes/",
+            {
+                "title": "Business Writing Workshop",
+                "subject": "Business English",
+                "level": "C1",
+                "max_capacity": 8,
+                "objectives": ["Email etiquette", "Executive reports"],
+                "private_notes": "Corporate cohort.",
+            },
+            format="json",
+        )
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.data["title"], "Business Writing Workshop")
+        self.assertEqual(response.data["subject"], "Business English")
+        self.assertEqual(response.data["level"], "C1")
+        self.assertEqual(response.data["enrolled_students_count"], 0)
+
+    def test_invite_learner_and_consent_flow(self):
+        self.client.force_login(self.teacher)
+        # Teacher invites learner
+        response = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/invite/",
+            {"learner_email": self.learner.email},
+            format="json",
+        )
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.data["status"], "pending_consent")
+        invite_code = response.data["invite_code"]
+        self.assertTrue(bool(invite_code))
+
+        # Learner cannot be viewed while pending
+        overview_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/overview/"
+        )
+        self.assertEqual(overview_resp.status_code, 403)
+
+        # Learner accepts invite
+        self.client.force_login(self.learner)
+        consent_resp = self.client.post(
+            "/api/teachers/consent/",
+            {"invite_code": invite_code},
+            format="json",
+        )
+        self.assertEqual(consent_resp.status_code, 200)
+        self.assertEqual(consent_resp.data["status"], "active")
+        self.assertIsNotNone(consent_resp.data["consent_given_at"])
+
+    def test_security_barrier_cannot_view_unlinked_learner(self):
+        self.client.force_login(self.teacher)
+        response = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.other_learner.id}/overview/"
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.data["code"], "access_denied")
+
+    def test_view_active_learner_overview_and_audit_logging(self):
+        # Establish active link
+        link = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner)
+        TeacherClassService.accept_invite(self.learner, link.invite_code)
+
+        self.client.force_login(self.teacher)
+        response = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/overview/",
+            HTTP_USER_AGENT="EndooraTestBrowser/1.0",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["learner_email"], self.learner.email)
+        self.assertEqual(response.data["link_status"], "active")
+        self.assertIn("skill_evidence", response.data)
+        self.assertIn("text_alternative", response.data["skill_evidence"])
+
+        # Check that private AI chats are excluded
+        forbidden_keys = {"conversation", "chat_history", "raw_recording", "voice_notes", "ai_messages"}
+        self.assertTrue(forbidden_keys.isdisjoint(collect_keys(response.data)))
+
+        # Verify audit log was written
+        from teachers.models import TeacherDataAccessAudit
+        audit = TeacherDataAccessAudit.objects.filter(
+            teacher=self.teacher,
+            learner=self.learner,
+            access_type="VIEW_LEARNER_OVERVIEW",
+        ).first()
+        self.assertIsNotNone(audit)
+        self.assertIn("EndooraTestBrowser", audit.user_agent)
+
+    def test_terminate_relationship_revokes_future_access_and_preserves_history(self):
+        # Create active link and scheduled session
+        link = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner)
+        TeacherClassService.accept_invite(self.learner, link.invite_code)
+
+        now = timezone.now()
+        session = TeacherClassService.schedule_session(
+            teacher=self.teacher,
+            class_id=str(self.teacher_class.id),
+            learner_id=str(self.learner.id),
+            title="Pronunciation Diagnostic",
+            scheduled_start=now,
+            scheduled_end=now + timezone.timedelta(minutes=60),
+            duration_minutes=60,
+        )
+        TeacherClassService.confirm_session_completion(self.teacher, str(session.id))
+
+        # Terminate relationship
+        self.client.force_login(self.teacher)
+        term_resp = self.client.post(
+            f"/api/teachers/links/{link.id}/terminate/",
+            {"reason": "Student completed curriculum."},
+            format="json",
+        )
+        self.assertEqual(term_resp.status_code, 200)
+        self.assertEqual(term_resp.data["status"], "terminated")
+
+        # Future overview access is immediately revoked
+        overview_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/overview/"
+        )
+        self.assertEqual(overview_resp.status_code, 403)
+
+        # Historical session and ledger still exist
+        from teachers.models import ClassSession, TeachingHourLedger
+        self.assertTrue(ClassSession.objects.filter(id=session.id).exists())
+        self.assertTrue(TeachingHourLedger.objects.filter(session_id=session.id).exists())
+
+    def test_session_completion_calculates_hours_automatically(self):
+        link = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner)
+        TeacherClassService.accept_invite(self.learner, link.invite_code)
+
+        now = timezone.now()
+        session = TeacherClassService.schedule_session(
+            teacher=self.teacher,
+            class_id=str(self.teacher_class.id),
+            learner_id=str(self.learner.id),
+            title="Speaking Mock Test",
+            scheduled_start=now,
+            scheduled_end=now + timezone.timedelta(minutes=90),
+            duration_minutes=90,  # 1.5 hours
+        )
+
+        self.client.force_login(self.teacher)
+        comp_resp = self.client.post(
+            f"/api/teachers/sessions/{session.id}/complete/",
+            {"session_notes": "Completed parts 1, 2, and 3 successfully."},
+            format="json",
+        )
+        self.assertEqual(comp_resp.status_code, 200)
+        self.assertEqual(comp_resp.data["status"], "completed")
+
+        # Verify ledger entry was created with 1.50 hours
+        from teachers.models import TeachingHourLedger
+        ledger = TeachingHourLedger.objects.get(session_id=session.id)
+        self.assertEqual(ledger.hours, Decimal("1.50"))
+        self.assertEqual(ledger.status, "confirmed")
+
+        # Verify hours summary endpoint
+        hours_resp = self.client.get("/api/teachers/hours/")
+        self.assertEqual(hours_resp.status_code, 200)
+        self.assertEqual(hours_resp.data["total_hours"], 1.5)
+        self.assertEqual(hours_resp.data["confirmed_hours"], 1.5)
+        self.assertEqual(len(hours_resp.data["ledgers"]), 1)
+
+    def test_hours_adjustment_requires_reason_and_creates_audit_log(self):
+        link = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner)
+        TeacherClassService.accept_invite(self.learner, link.invite_code)
+
+        now = timezone.now()
+        session = TeacherClassService.schedule_session(
+            teacher=self.teacher,
+            class_id=str(self.teacher_class.id),
+            learner_id=str(self.learner.id),
+            title="Grammar Review",
+            scheduled_start=now,
+            scheduled_end=now + timezone.timedelta(minutes=60),
+            duration_minutes=60,
+        )
+        TeacherClassService.confirm_session_completion(self.teacher, str(session.id))
+        from teachers.models import TeachingHourLedger, TeachingHourAuditLog
+        ledger = TeachingHourLedger.objects.get(session_id=session.id)
+
+        self.client.force_login(self.teacher)
+
+        # Attempt to adjust without reason must fail
+        bad_resp = self.client.post(
+            f"/api/teachers/hours/{ledger.id}/adjust/",
+            {"new_hours": "1.75", "reason": ""},
+            format="json",
+        )
+        self.assertEqual(bad_resp.status_code, 400)
+
+        # Adjust with valid reason
+        good_resp = self.client.post(
+            f"/api/teachers/hours/{ledger.id}/adjust/",
+            {"new_hours": "1.75", "reason": "Extended by 15 minutes for questions."},
+            format="json",
+        )
+        self.assertEqual(good_resp.status_code, 200)
+        self.assertEqual(good_resp.data["hours"], "1.75")
+        self.assertEqual(good_resp.data["status"], "revised")
+
+        # Verify audit log exists
+        audit = TeachingHourAuditLog.objects.filter(ledger_entry=ledger, action="HOURS_ADJUSTED").first()
+        self.assertIsNotNone(audit)
+        self.assertEqual(audit.actor, self.teacher)
+        self.assertEqual(audit.previous_hours, Decimal("1.00"))
+        self.assertEqual(audit.new_hours, Decimal("1.75"))
+        self.assertEqual(audit.reason, "Extended by 15 minutes for questions.")
+
+    def test_learner_my_teachers_endpoint(self):
+        link = TeacherClassService.invite_learner(self.teacher, str(self.teacher_class.id), self.learner)
+        TeacherClassService.accept_invite(self.learner, link.invite_code)
+
+        self.client.force_login(self.learner)
+        response = self.client.get("/api/teachers/my-teachers/")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]["teacher_email"], self.teacher.email)
+        self.assertEqual(response.data[0]["class_title"], self.teacher_class.title)

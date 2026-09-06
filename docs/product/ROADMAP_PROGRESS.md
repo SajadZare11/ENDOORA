@@ -32,7 +32,11 @@
 | 28 | Build Gamification Engine v1: Immutable XP Ledger, Level Progression & Streak Rules | Complete | Financial-grade XP ledger, 20-level curve, timezone-aware streaks, freeze shields, and Rule #7/#8 compliance passed |
 | 29 | Badges, Daily/Weekly Challenges, Active Clubs & Privacy-Safe Leaderboards | Complete | Badges, daily/weekly challenges, 7-day sprint, active clubs, cohort suppression, minor protection passed |
 | 30 | Skills Hub, Lesson CMS, Courses, Culture, School, and Paywall Content | Complete | Skills hub, lesson CMS, paywall redaction, Iranian school/konkur, culture, 248 tests passed |
-| 31-60 | Remaining roadmap | Not started | Sequential |
+| 31 | Social Learning, Peer Feedback, Lesson Plans, Community Moderation | Complete | Community posts, lesson plans, 24-hr report SLA, PII scanner, 250 tests passed |
+| 32 | Unified Search, Recommendations, FAQ CMS, and AI Support Triage | Complete | Normalized search, FAQ CMS, auto-escalation, human handoff, 270 tests passed |
+| 33 | Teacher Class, Learner, History, and Teaching-Hours Management | Complete | Explicit consent, privacy shield, session completion, audited hours ledger, 278 tests passed |
+| 34-60 | Remaining roadmap | Not started | Sequential |
+
 
 ## Day 08 deliverables
 
@@ -834,4 +838,38 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Private items never leak to unauthorized users; Persian query normalization handles letter variants and diacritics; raw private messages are never indexed; AI support triage cites approved FAQs only; financial and security tickets immediately escalate to human staff; guaranteed human handoff button transitions ticket state; and all 270 tests pass cleanly.
-**Next day after Git push:** Day 33 — Build teacher class, learner, history, and teaching-hours management.
+**Day 32 Status:** Completed and pushed to GitHub main.
+
+### Day 33 — Build teacher class, learner, history, and teaching-hours management
+- [x] created teacher models in `apps/api/teachers/models.py`:
+  - `TeacherClass`: title, subject, target CEFR level, status, capacity, objectives, private notes
+  - `TeacherLearnerLink`: explicit consent state machine (`pending_consent`, `active`, `terminated`, `rejected`), invite codes, consent and termination timestamps
+  - `ClassSession`: scheduled/completed/cancelled sessions, duration in minutes, teacher and learner confirmation flags
+  - `TeachingHourLedger`: financial-grade hours ledger tied to confirmed completed sessions
+  - `TeachingHourAuditLog`: immutable audit trail logging actor, action, previous hours, new hours, and mandatory reason
+  - `TeacherDataAccessAudit`: audit records tracking every teacher view of learner educational profiles
+- [x] created service layer in `apps/api/teachers/services.py`:
+  - `create_class` & `list_teacher_classes`: verified teacher managed classes
+  - `invite_learner` & `accept_invite`: explicit learner consent boundary
+  - `get_learner_overview`: strict privacy guard preventing unlinked learner inspection, logging every view to `TeacherDataAccessAudit`, and strictly excluding private AI chats (`roleplay`, `voice_lab`)
+  - `terminate_relationship`: immediate revocation of future access while immutably preserving past sessions and ledger entries for accounting/legal compliance
+  - `schedule_session` & `confirm_session_completion`: automatic hours calculation as `duration_minutes / 60.0` with atomic ledger creation
+  - `adjust_teaching_hours`: failure trap guard requiring mandatory explanation (min 5 chars) and writing immutable `TeachingHourAuditLog`
+  - `get_learner_linked_teachers`: learner-facing active instructor visibility
+- [x] registered Django Admin for all 6 models with inlines and search/filter fields
+- [x] initial database migration `teachers/migrations/0001_initial.py` created and applied
+- [x] 19 unit tests passing in `teachers/tests.py` with 0 failures
+- [x] full backend regression: 278/278 tests passing across all Django apps
+- [x] drafted architecture documentation in `docs/teachers/class-and-hours-management.md`
+- [x] built frontend typed API client in `apps/web/lib/teacher-classes.ts`
+- [x] built frontend teacher classes hub in `apps/web/app/(teacher)/teacher/classes/page.tsx` with tabs, class creation modal, student roster, consent badges, skill evidence drawer with accessible text table alternative, session scheduler, completion trigger, and audited adjustment modal
+- [x] created 100% tokenized CSS module `classes.module.css` with zero raw hex colors and 100% logical properties
+- [x] created learner-facing `/my-teachers` page for reviewing linked instructors and accepting invitation codes
+- [x] added subpage redirects for `/teacher/students` and `/teacher/hours`
+- [x] frontend typecheck (`tsc --noEmit`) and Next.js build (143/143 pages) compiled cleanly with 0 errors
+- [x] contract check `scripts/check_day33.py` and regression checks `scripts/check_day09.py` through `scripts/check_day32.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Teachers cannot view unlinked learners; explicit learner consent required; private AI chats never exposed; termination immediately revokes future access while preserving past sessions/ledger; teaching hours automatically calculated from session duration; no un-audited hours modifications allowed; accessible text alternatives provided for skill charts; and all 278 tests pass cleanly.
+**Next day after Git push:** Day 34 — Build teacher assignments, question selection, due dates, attempts, and accommodations.
