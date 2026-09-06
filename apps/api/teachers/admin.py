@@ -6,6 +6,10 @@ from teachers.models import (
     TeachingHourLedger,
     TeachingHourAuditLog,
     TeacherDataAccessAudit,
+    Assignment,
+    AssignmentQuestion,
+    AssignmentAccommodation,
+    AssignmentAttempt,
 )
 
 
@@ -56,3 +60,44 @@ class TeacherDataAccessAuditAdmin(admin.ModelAdmin):
     list_display = ["teacher", "learner", "access_type", "ip_address", "timestamp"]
     list_filter = ["access_type"]
     search_fields = ["teacher__email", "learner__email", "access_type"]
+
+
+class AssignmentQuestionInline(admin.TabularInline):
+    model = AssignmentQuestion
+    extra = 0
+    raw_id_fields = ["question_version"]
+
+
+class AssignmentAccommodationInline(admin.TabularInline):
+    model = AssignmentAccommodation
+    extra = 0
+    raw_id_fields = ["learner"]
+
+
+@admin.register(Assignment)
+class AssignmentAdmin(admin.ModelAdmin):
+    list_display = ["title", "teacher_class", "teacher", "target_cefr", "status", "due_date", "time_limit_minutes", "total_points", "created_at"]
+    list_filter = ["status", "target_cefr", "allow_late_submission"]
+    search_fields = ["title", "teacher__email", "teacher_class__title"]
+    inlines = [AssignmentQuestionInline, AssignmentAccommodationInline]
+
+
+@admin.register(AssignmentQuestion)
+class AssignmentQuestionAdmin(admin.ModelAdmin):
+    list_display = ["assignment", "order", "question_version", "points", "created_at"]
+    list_filter = ["assignment"]
+    search_fields = ["assignment__title", "question_version__question__slug"]
+
+
+@admin.register(AssignmentAccommodation)
+class AssignmentAccommodationAdmin(admin.ModelAdmin):
+    list_display = ["assignment", "learner", "extra_time_minutes", "extra_attempts", "extended_due_date", "created_at"]
+    list_filter = ["assignment"]
+    search_fields = ["assignment__title", "learner__email"]
+
+
+@admin.register(AssignmentAttempt)
+class AssignmentAttemptAdmin(admin.ModelAdmin):
+    list_display = ["assignment", "learner", "attempt_number", "status", "score_awarded", "percentage", "is_late", "started_at", "submitted_at"]
+    list_filter = ["status", "is_late"]
+    search_fields = ["assignment__title", "learner__email"]

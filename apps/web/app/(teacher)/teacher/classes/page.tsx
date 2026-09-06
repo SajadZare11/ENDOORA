@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useId } from "react";
+import Link from "next/link";
 import styles from "./classes.module.css";
 import { useTeacherHome } from "../../../../components/teacher/TeacherShell";
 import {
@@ -322,13 +323,22 @@ export default function TeacherClassesPage() {
                 : "Manage private classes, secure learner relationships with explicit consent, schedule sessions, and audited teaching-hours ledger."}
             </p>
           </div>
-          <button
-            type="button"
-            className={styles.actionButton}
-            onClick={() => setShowCreateClassModal(true)}
-          >
-            {isFa ? "+ ایجاد کلاس جدید" : "+ Create New Class"}
-          </button>
+          <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
+            <Link
+              href="/teacher/assignments"
+              className={styles.actionButtonSecondary}
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            >
+              {isFa ? "تکالیف و آزمون‌ها" : "Assignments Hub"}
+            </Link>
+            <button
+              type="button"
+              className={styles.actionButton}
+              onClick={() => setShowCreateClassModal(true)}
+            >
+              {isFa ? "+ ایجاد کلاس جدید" : "+ Create New Class"}
+            </button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
@@ -437,17 +447,26 @@ export default function TeacherClassesPage() {
                     {selectedClass.description || (isFa ? "بدون توضیحات تکمیلی" : "No additional description.")}
                   </p>
                 </div>
-                <button
-                  type="button"
-                  className={styles.actionButtonSecondary}
-                  onClick={() => {
-                    setGeneratedInviteCode(null);
-                    setInviteEmail("");
-                    setShowInviteModal(true);
-                  }}
-                >
-                  {isFa ? "+ دعوت زبان‌آموز جدید" : "+ Invite New Learner"}
-                </button>
+                <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
+                  <Link
+                    href="/teacher/assignments/new"
+                    className={styles.actionButtonSecondary}
+                    style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+                  >
+                    {isFa ? "+ ساخت تکلیف" : "+ Create Assignment"}
+                  </Link>
+                  <button
+                    type="button"
+                    className={styles.actionButtonSecondary}
+                    onClick={() => {
+                      setGeneratedInviteCode(null);
+                      setInviteEmail("");
+                      setShowInviteModal(true);
+                    }}
+                  >
+                    {isFa ? "+ دعوت زبان‌آموز جدید" : "+ Invite New Learner"}
+                  </button>
+                </div>
               </div>
 
               {selectedClass.objectives && selectedClass.objectives.length > 0 ? (

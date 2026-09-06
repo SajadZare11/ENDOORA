@@ -35,7 +35,8 @@
 | 31 | Social Learning, Peer Feedback, Lesson Plans, Community Moderation | Complete | Community posts, lesson plans, 24-hr report SLA, PII scanner, 250 tests passed |
 | 32 | Unified Search, Recommendations, FAQ CMS, and AI Support Triage | Complete | Normalized search, FAQ CMS, auto-escalation, human handoff, 270 tests passed |
 | 33 | Teacher Class, Learner, History, and Teaching-Hours Management | Complete | Explicit consent, privacy shield, session completion, audited hours ledger, 278 tests passed |
-| 34-60 | Remaining roadmap | Not started | Sequential |
+| 34 | Build teacher assignments, question selection, due dates, attempts, and accommodations | Complete | Wireframe 4 wizard, Question Bank curation, accommodations, autosave R-029, auto-scoring, 283 tests passed |
+| 35-60 | Remaining roadmap | Not started | Sequential |
 
 
 ## Day 08 deliverables
@@ -872,4 +873,42 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Teachers cannot view unlinked learners; explicit learner consent required; private AI chats never exposed; termination immediately revokes future access while preserving past sessions/ledger; teaching hours automatically calculated from session duration; no un-audited hours modifications allowed; accessible text alternatives provided for skill charts; and all 278 tests pass cleanly.
-**Next day after Git push:** Day 34 — Build teacher assignments, question selection, due dates, attempts, and accommodations.
+**Day 33 Status:** Completed and pushed to GitHub main.
+
+### Day 34 — Build teacher assignments, question selection, due dates, attempts, and accommodations
+- [x] created assignment models in `apps/api/teachers/models.py`:
+  - `AssignmentStatus` (`draft`, `published`, `closed`, `archived`)
+  - `AttemptStatus` (`in_progress`, `submitted`, `graded`, `timed_out`)
+  - `Assignment`: class link, target CEFR, deadline, grace period (minutes), late submission flag, attempt limits, countdown timer (minutes), total points, and optimistic concurrency version counter
+  - `AssignmentQuestion`: stores `QuestionVersion.id` per content governance, ordering, custom instructions, and points
+  - `AssignmentAccommodation`: differentiated learning accommodations per student (`extra_time_minutes`, `extra_attempts`, `extended_due_date`, `notes`)
+  - `AssignmentAttempt`: learner attempts, answers payload, auto-grading results, timer tracking, and qualitative feedback
+- [x] implemented service layer in `apps/api/teachers/assignment_services.py`:
+  - `create_assignment_draft`, `update_assignment_draft`, `set_assignment_questions`, `configure_delivery`, `set_learner_accommodation`, `publish_assignment`
+  - `browse_question_bank` for searching published questions by CEFR and question type
+  - `start_learner_attempt` with idempotent resume and attempt limit enforcement
+  - `get_attempt_learner_payload`: strict content governance stripping all answer keys and solutions
+  - `autosave_attempt`: R-029 resilient draft answer persistence
+  - `submit_attempt`: deadline evaluation and auto-scoring via `questions.grading.grade_response`
+- [x] created DRF serializers in `apps/api/teachers/assignment_serializers.py`
+- [x] created API views in `apps/api/teachers/assignment_views.py` and registered routes in `urls.py`
+- [x] registered Django Admin for all Day 34 models with inlines in `admin.py`
+- [x] database migration `teachers/migrations/0002_assignments.py` created and applied
+- [x] 24 unit tests passing in `teachers/tests.py` with 0 failures
+- [x] full backend regression: 283/283 tests passing across all Django apps
+- [x] drafted architecture and safety documentation in `docs/teachers/assignments-and-accommodations.md`
+- [x] built frontend typed API client in `apps/web/lib/teacher-assignments.ts`
+- [x] built teacher assignments management hub in `apps/web/app/(teacher)/teacher/assignments/page.tsx`
+- [x] built 4-stage Wireframe 4 wizard in `apps/web/app/(teacher)/teacher/assignments/new/page.tsx` with "Save and Continue Later", Question Bank browser, delivery/accommodations, and distinct Publish action
+- [x] built teacher assignment detail and submissions grading dashboard in `apps/web/app/(teacher)/teacher/assignments/[id]/page.tsx`
+- [x] built learner assignments hub in `apps/web/app/(learner)/assignments/page.tsx`
+- [x] built learner attempt execution interface in `apps/web/app/(learner)/assignments/[id]/page.tsx` with live timer countdown, resilient autosave, and immediate score feedback
+- [x] created 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties
+- [x] added Assignments Hub navigation in `teacher/classes/page.tsx`
+- [x] frontend lint (`npm run lint`), typecheck (`tsc --noEmit`), and Next.js build (146/146 pages) compiled cleanly with 0 errors
+- [x] contract check `scripts/check_day34.py` and regression checks `scripts/check_day30.py` through `scripts/check_day33.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Teachers can create and manage drafts; Question Bank questions linked by version without content duplication; delivery rules (due dates, grace period, attempts, timer) enforced; individualized accommodations supported; answers stripped from learner payloads; learner attempts autosaved resiliently; objective questions auto-scored upon submission; and all 283 tests pass cleanly.
+**Next day after Git push:** Day 35 — Build learner submission, teacher grading, feedback loop, and gradebook.

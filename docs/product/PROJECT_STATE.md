@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 33 — Teacher Class, Learner, History, and Teaching-Hours Management
-- **Day 33 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–32 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, and Unified Search/AI Support Triage
-- **Schema version:** Day 33 adds `teachers.0001_initial`
+- **Roadmap day completed:** Day 34 — Teacher Assignments, Question Selection, Due Dates, Attempts, and Accommodations
+- **Day 34 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–33 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, and Teacher Classes/Roster/Audited Hours Ledger
+- **Schema version:** Day 34 adds `teachers.0002_assignments`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1335,9 +1335,35 @@ Key accomplishments:
 - Created learner-facing `/my-teachers` page to view active instructors, check consent status, and accept invite codes.
 - Full test suite passing: 278/278 backend tests, 143/143 static routes prerendered.
 
+## Git checkpoint (Day 34)
+
+Commit message:
+
+`Day 34: Teacher assignments, question selection, due dates, attempts, and accommodations`
+
+Key accomplishments:
+- Created assignment models in `apps/api/teachers/models.py`: `AssignmentStatus`, `AttemptStatus`, `Assignment`, `AssignmentQuestion`, `AssignmentAccommodation`, and `AssignmentAttempt`.
+- Supported optimistic concurrency locking (`version` field) preventing concurrent overwrite in authoring wizard.
+- Question Bank Integration: Linked `QuestionVersion.id` per content governance without duplicating content; supported searching published question bank items by CEFR level and question type.
+- Configurable delivery controls: due dates, grace period (minutes), late submission flag, max attempt limits, and time limit (countdown timer in minutes).
+- Individualized Accommodations: Differentiated learning accommodations per enrolled learner (`extra_time_minutes`, `extra_attempts`, `extended_due_date`, `notes`) with server-side class enrollment verification.
+- Content Governance: Learner payloads strictly strip all answer keys, accepted variants, rubrics, and evaluation solutions.
+- Resilience (R-029): Implemented autosave endpoint `/api/teachers/attempts/<id>/autosave/` preserving learner draft answers against page refresh or connectivity loss.
+- Auto-Scoring Engine: Objective question types (MCQ, Multi-Select, Gap fill, Short answer, Audio, Matching, Ordering) auto-graded on submission via `questions.grading.grade_response`; subjective questions flagged with `manual_review_required`.
+- Teacher Grading: Teachers can inspect submissions, override scores, and append qualitative instructional feedback.
+- Frontend Implementation:
+  - Strongly typed client SDK in `apps/web/lib/teacher-assignments.ts`.
+  - Teacher Assignments Hub in `apps/web/app/(teacher)/teacher/assignments/page.tsx`.
+  - Wireframe 4 Multi-Stage Wizard in `apps/web/app/(teacher)/teacher/assignments/new/page.tsx` with "Save and Continue Later", Question Bank browser, delivery/accommodations, and distinct Publish action.
+  - Teacher Assignment Detail & Submissions dashboard in `apps/web/app/(teacher)/teacher/assignments/[id]/page.tsx`.
+  - Learner Assignments Hub in `apps/web/app/(learner)/assignments/page.tsx`.
+  - Learner Attempt Taking Interface in `apps/web/app/(learner)/assignments/[id]/page.tsx` with live timer countdown, resilient autosave, and immediate score feedback.
+  - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Full verification: 283/283 backend tests passed, 146/146 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
+
 ## Exact next day
 
-**Day 34 — Build teacher assignments, question selection, due dates, attempts, and accommodations.**
+**Day 35 — Build learner submission, teacher grading, feedback loop, and gradebook.**
 
-Do not begin Day 34 until the Day 33 commit is pushed and `git status --short --branch`
+Do not begin Day 35 until the Day 34 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

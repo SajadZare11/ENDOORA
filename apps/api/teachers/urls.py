@@ -15,6 +15,22 @@ from .views import (
     TeachingHourAdjustView,
     LearnerLinkedTeachersView,
 )
+from .assignment_views import (
+    TeacherAssignmentsView,
+    TeacherAssignmentDetailView,
+    TeacherAssignmentQuestionsView,
+    TeacherAssignmentDeliveryView,
+    TeacherAssignmentAccommodationsView,
+    TeacherAssignmentPublishView,
+    TeacherAssignmentSubmissionsView,
+    TeacherAttemptGradeView,
+    TeacherQuestionBankBrowseView,
+    LearnerAssignmentsListView,
+    LearnerAssignmentStartView,
+    LearnerAttemptAutosaveView,
+    LearnerAttemptSubmitView,
+    LearnerAttemptDetailView,
+)
 
 app_name = "teachers"
 
@@ -45,4 +61,22 @@ urlpatterns = [
 
     # Learner's Teachers (Day 33)
     path("my-teachers/", LearnerLinkedTeachersView.as_view(), name="learner-my-teachers"),
+
+    # Assignments Hub & Wizard (Day 34)
+    path("assignments/", TeacherAssignmentsView.as_view(), name="assignment-list-create"),
+    path("assignments/<uuid:assignment_id>/", TeacherAssignmentDetailView.as_view(), name="assignment-detail"),
+    path("assignments/<uuid:assignment_id>/questions/", TeacherAssignmentQuestionsView.as_view(), name="assignment-questions"),
+    path("assignments/<uuid:assignment_id>/delivery/", TeacherAssignmentDeliveryView.as_view(), name="assignment-delivery"),
+    path("assignments/<uuid:assignment_id>/accommodations/", TeacherAssignmentAccommodationsView.as_view(), name="assignment-accommodations"),
+    path("assignments/<uuid:assignment_id>/publish/", TeacherAssignmentPublishView.as_view(), name="assignment-publish"),
+    path("assignments/<uuid:assignment_id>/submissions/", TeacherAssignmentSubmissionsView.as_view(), name="assignment-submissions"),
+    path("attempts/<uuid:attempt_id>/grade/", TeacherAttemptGradeView.as_view(), name="attempt-grade"),
+    path("question-bank/browse/", TeacherQuestionBankBrowseView.as_view(), name="question-bank-browse"),
+
+    # Learner Assignments & Attempts (Day 34)
+    path("my-assignments/", LearnerAssignmentsListView.as_view(), name="learner-my-assignments"),
+    path("assignments/<uuid:assignment_id>/start/", LearnerAssignmentStartView.as_view(), name="learner-assignment-start"),
+    path("attempts/<uuid:attempt_id>/autosave/", LearnerAttemptAutosaveView.as_view(), name="learner-attempt-autosave"),
+    path("attempts/<uuid:attempt_id>/submit/", LearnerAttemptSubmitView.as_view(), name="learner-attempt-submit"),
+    path("attempts/<uuid:attempt_id>/", LearnerAttemptDetailView.as_view(), name="learner-attempt-detail"),
 ]
