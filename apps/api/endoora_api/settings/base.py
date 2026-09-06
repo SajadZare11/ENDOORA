@@ -23,6 +23,16 @@ def env_list(name: str, default: str = "") -> list[str]:
     return [item.strip() for item in os.getenv(name, default).split(",") if item.strip()]
 
 
+def env_int(name: str, default: int = 0) -> int:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    try:
+        return int(value.strip())
+    except ValueError:
+        return default
+
+
 def validated_timezone() -> str:
     value = os.getenv("ENDOORA_TIMEZONE", "Asia/Tehran")
     try:
@@ -69,6 +79,8 @@ INSTALLED_APPS = [
     "waitlist",
     "content",
     "courses",
+    "community",
+    "moderation",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -165,3 +177,8 @@ REST_FRAMEWORK = {
         "otp_verify": "10/minute",
     },
 }
+
+# Community & Safety Feature Flags (Day 31)
+COMMUNITY_COMMENTS_ENABLED = env_bool("ENDOORA_COMMUNITY_COMMENTS_ENABLED", default=True)
+COMMUNITY_FILE_MAX_SIZE_MB = env_int("ENDOORA_COMMUNITY_FILE_MAX_SIZE_MB", default=15)
+COMMUNITY_ALLOWED_EXTENSIONS = env_list("ENDOORA_COMMUNITY_ALLOWED_EXTENSIONS", default="pdf,docx,epub,zip,mp3")

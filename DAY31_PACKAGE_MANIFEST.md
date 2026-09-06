@@ -1,1 +1,32 @@
-Day 31 roadmap patch.
+# Day 31 Package Manifest: Community, Teacher Experiences, Lesson Plans, and Moderation
+
+## Modified & Created Files
+- `apps/api/community/models.py`: CommunityPost, PostComment, PostReaction, UserBlock models with PII check, verified teacher check, lesson plan metadata, and editorial notes.
+- `apps/api/community/pii_scanner.py`: Scanner for Iranian mobile numbers, 10-digit National IDs, 16-digit bank cards, and Sheba accounts.
+- `apps/api/community/services.py`: CommunityService (post listing, creation, reactions, comments with feature flag, editorial featuring, and blocking).
+- `apps/api/community/serializers.py`: DRF serializers for community entities.
+- `apps/api/community/views.py`: API views for community posts, reactions, comments, editorial featuring, and blocking.
+- `apps/api/community/urls.py`: URL patterns for community endpoints.
+- `apps/api/community/admin.py`: Django admin registration for community.
+- `apps/api/community/apps.py`: AppConfig for community.
+- `apps/api/community/tests.py`: Unit and integration test suite for community.
+- `apps/api/community/migrations/0001_initial.py`: Initial migration for community.
+- `apps/api/moderation/models.py`: Report and ModerationAuditLog models with SLA mapping and immutable content snapshot.
+- `apps/api/moderation/services.py`: ModerationService (report submission, SLA deadline calculation, queue sorting, report resolution with audit log).
+- `apps/api/moderation/serializers.py`: DRF serializers for moderation reports and audit logs.
+- `apps/api/moderation/views.py`: API views for submitting reports, viewing queue, and resolving reports.
+- `apps/api/moderation/urls.py`: URL patterns for moderation endpoints.
+- `apps/api/moderation/admin.py`: Django admin registration for moderation.
+- `apps/api/moderation/apps.py`: AppConfig for moderation.
+- `apps/api/moderation/tests.py`: Unit test suite for moderation SLAs, queue, and audit trail.
+- `apps/api/moderation/migrations/0001_initial.py`: Initial migration for moderation.
+- `apps/api/endoora_api/settings/base.py`: Registered `community` and `moderation`, added `COMMUNITY_COMMENTS_ENABLED`, `COMMUNITY_FILE_MAX_SIZE_MB`, and `COMMUNITY_ALLOWED_EXTENSIONS`.
+- `apps/api/endoora_api/urls.py`: Included `api/community/` and `api/moderation/` routes.
+- `docs/safety/community-guidelines.md`: Full Persian & English community code of conduct, minor protection policies, moderation SLAs, and copyright/DMCA takedown procedures.
+- `apps/web/app/community/page.tsx`: Complete community hub UI with tabs, featured spotlight, reactions, comments, PII guard scanner, report modal, and moderation queue dashboard.
+- `apps/web/app/community/community.module.css`: 100% tokenized CSS module with logical properties and zero raw hex colors.
+- `apps/web/components/layout/Header.tsx`: Added `/community` link to navigation.
+- `apps/web/components/marketing/PublicShell.tsx`: Added `/community` link to footer.
+- `apps/web/app/(learner)/learn/page.tsx`: Added Community destination card to learner hub.
+- `scripts/backup_day31.ps1`: Database backup script for Day 31.
+- `scripts/check_day31.py`: Contract verification test script for Day 31.

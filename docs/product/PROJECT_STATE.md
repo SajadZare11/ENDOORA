@@ -1239,10 +1239,66 @@ Commit message:
 
 `Day 30: Skills hub, course CMS, culture, and public learning content`
 
+## Day 31 — Community, Teacher Experiences, Lesson Plans, and Moderation
+
+### Day 31 Summary
+- Implemented Django `community` app (`apps/api/community/`) with:
+  - Models: `CommunityPost`, `PostComment`, `PostReaction`, `UserBlock`, with `PostType`, `PostAudience`, `PostStatus`, and `LicenseType` choices.
+  - Teacher verification validation: only verified teachers can publish with `teacher_experience` label.
+  - Lesson plan upload validation: mandatory copyright license selection (`cc_by_sa`, `original_editorial`, etc.) and author attribution; file formats restricted to `.pdf`, `.docx`, `.epub`, `.zip`, `.mp3`.
+  - Media attachment validation: mandatory alt-text and captions for accessibility.
+  - PII scanner (`apps/api/community/pii_scanner.py`): client and server-side detection of Iranian mobile numbers, 10-digit National IDs, 16-digit bank cards, and Sheba numbers.
+  - Editorial Monthly Featured post selection: curator review with editorial note (`editorial_review_notes`), strictly restricted to staff to prevent upvote/algorithm manipulation.
+  - Comments feature flag: `COMMUNITY_COMMENTS_ENABLED`.
+  - User blocking and muting: hides blocked users' posts and comments from blocker's view.
+- Implemented Django `moderation` app (`apps/api/moderation/`) with:
+  - Models: `Report` and `ModerationAuditLog` with `ReportReason`, `ModerationStatus`, and `ModerationAction`.
+  - SLA engine: dynamic calculation of SLA deadlines (2 hours for PII/minors, 12 hours for harassment/copyright, 24 hours for spam/other).
+  - Moderation queue: reports sorted by SLA urgency (`sla_deadline ASC`).
+  - Immutable content snapshot: `target_content_snapshot` preserves exact text for audit even when content is soft-deleted.
+  - Action execution: soft-deletes removed content (`status='removed'`) while logging actor, target, and resolution notes in `ModerationAuditLog`.
+- Safety Documentation (`docs/safety/community-guidelines.md`):
+  - Persian & English code of conduct.
+  - Minor safety policies and prevention of unmonitored direct messages.
+  - Content moderation SLAs and reporting workflow.
+  - Copyright and DMCA takedown procedure (`copyright@endoora.ir`).
+- Frontend Community Hub (`apps/web/app/community/`):
+  - Public shell integration with Persian-first RTL typography.
+  - Filter tabs (All, Teacher Experiences, Lesson Plans, Q&A, Learner Posts, Monthly Featured).
+  - Monthly Featured Post spotlight banner with editorial notes.
+  - Teacher verified badges with shield icon.
+  - Lesson plan cards with format badges, size, license tags, and download action.
+  - Interactive reaction toggles (Like, Helpful, Inspiring, Insightful).
+  - Comments drawer with inline PII warning and submission.
+  - Real-time PII & Privacy Guard scanner on new post creation.
+  - Report modal with SLA preview.
+  - Moderator queue dashboard drawer with countdown badges and quick actions (Dismiss, Warn, Remove).
+  - Community guidelines drawer.
+  - 100% tokenized CSS (`community.module.css`) with 0 raw hex colors and 100% logical properties.
+  - Added `/community` links in `Header.tsx`, `PublicShell.tsx` footer, and `learn/page.tsx`.
+
+### Day 31 Verification Evidence
+- Pre-Day-31 database backup verified: `PRIVATE_DO_NOT_COPY_TO_GIT\backups\day31\20260906-190000\endoora-pre-day31.dump` (107,603 bytes).
+- Backend unit tests pass: 11/11 in `community` and `moderation`.
+- Full backend regression suite: 250/250 tests passing across all 20 applications with 0 errors in 25.1s.
+- Migration check: `python manage.py makemigrations --check --dry-run` shows 0 drift.
+- Frontend checks: `npm run lint` (0 errors, 0 warnings), `npm run typecheck` (0 errors).
+- Token check: `node scripts/check-design-tokens.mjs` passed (14 AA contrast pairs, logical CSS, 0 raw hex).
+- Production build: `npm run build` compiled 138/138 static/SSG pages cleanly.
+- Daily contract checks: `scripts/check_day31.py` and `scripts/check_day09.py` through `scripts/check_day30.py` all passed 100%.
+- Secret scan: `python scripts/scan_secrets.py` passed with 0 findings.
+- Git diff check: `git diff --check` passed with 0 errors.
+
+## Git checkpoint (Day 31)
+
+Commit message:
+
+`Day 31: Teacher experiences, learner posts, lesson-plan resources, and moderation`
+
 ## Exact next day
 
-**Day 31 — Social Learning & Peer Feedback Foundation.**
+**Day 32 — Build unified search, recommendations, FAQ, and AI support triage.**
 
-Do not begin Day 31 until the Day 30 commit is pushed and `git status --short --branch`
+Do not begin Day 32 until the Day 31 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
 

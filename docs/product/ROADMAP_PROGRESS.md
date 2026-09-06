@@ -753,3 +753,49 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** Paywalls are strictly enforced on the server-side with zero media or text leaks to unentitled users; Iranian High School (Vision 1-3) and Konkur content are supported; all pedagogical resources have transparent copyright attribution; lesson interactive player supports video, audio, transcripts, and quizzes; and all 248 tests pass cleanly.
 **Next day after Git push:** Day 31 — Social Learning & Peer Feedback Foundation.
 
+---
+
+### Day 31: Teacher experiences, learner posts, lesson-plan resources, and moderation
+- [x] designed and migrated community database models in `apps/api/community/models.py`:
+  - `CommunityPost` with verified teacher check, lesson-plan metadata, copyright attribution, alt-text/caption validation, PII scanner in `clean()`, and editorial review notes
+  - `PostComment` with PII scanner
+  - `PostReaction` supporting like, helpful, inspiring, insightful reactions
+  - `UserBlock` for user blocking and muting
+- [x] built PII Scanner & Privacy Guard in `apps/api/community/pii_scanner.py`:
+  - Regex and checksum detection for Iranian mobile numbers, 10-digit National IDs, 16-digit bank cards, and Sheba numbers
+- [x] implemented moderation engine in `apps/api/moderation/models.py`:
+  - `Report` with SLA hours mapping (2h for PII/minors, 12h for harassment/copyright, 24h for spam/other)
+  - Immutable content snapshot (`target_content_snapshot`) preserving reported text even after deletion
+  - `ModerationAuditLog` recording every action, actor, and resolution notes
+- [x] created services layer in `apps/api/community/services.py` and `apps/api/moderation/services.py`:
+  - `CommunityService`: feed listing with automatic exclusion of blocked users, post creation with teacher verification, comments with feature flag toggle (`COMMUNITY_COMMENTS_ENABLED`), reaction toggling, and editorial monthly featuring (strictly restricted to staff)
+  - `ModerationService`: SLA queue sorting, report resolution with automatic content status update to `removed` and audit logging
+- [x] configured settings and URLs in `endoora_api/settings/base.py` and `endoora_api/urls.py`:
+  - `api/community/` and `api/moderation/` routes
+  - `COMMUNITY_COMMENTS_ENABLED`, `COMMUNITY_FILE_MAX_SIZE_MB`, `COMMUNITY_ALLOWED_EXTENSIONS`
+- [x] 11 unit and integration tests passing in `community/tests.py` and `moderation/tests.py`
+- [x] 250 full backend regression tests passing across all 20 applications with 0 errors
+- [x] drafted comprehensive safety and copyright policy in `docs/safety/community-guidelines.md`:
+  - Code of conduct, minor protection policies, moderation SLAs, and DMCA takedown procedures
+- [x] built interactive community experience in `apps/web/app/community/`:
+  - Public shell integration with RTL Persian typography
+  - Filter tabs (All, Teacher Experiences, Lesson Plans, Q&A, Learner Posts, Monthly Featured)
+  - Monthly Featured Post spotlight banner with editorial curator notes
+  - Teacher verification badges with shield icons
+  - Lesson plan resource cards with format badges, size, license tags, and downloads
+  - Interactive reaction toggles (Like, Helpful, Inspiring, Insightful)
+  - Expandable comments drawer with inline PII warning
+  - "ارسال پست جدید" modal with real-time PII scanner alert
+  - "گزارش محتوا" modal with SLA preview
+  - Moderator queue dashboard drawer with countdown badges and quick actions (Dismiss, Warn, Remove)
+  - Community guidelines drawer
+  - 100% tokenized CSS (`community.module.css`) with 0 raw hex colors and 100% logical properties
+- [x] added `/community` link to `Header.tsx`, `PublicShell.tsx` footer, and `learn/page.tsx`
+- [x] Next.js 138 static/SSG routes build cleanly with 0 lint and 0 typecheck errors
+- [x] contract check `scripts/check_day31.py` and regression checks `scripts/check_day09.py` through `scripts/check_day30.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Unverified users cannot claim teacher-experience label; lesson-plan uploads require copyright license declaration; all media attachments require alt text and captions; PII scanner blocks sensitive data leaks; reported content enters SLA-ordered queue; removed content is hidden from public feeds while immutable audit log is preserved; and all 250 tests pass cleanly.
+**Next day after Git push:** Day 32 — Build unified search, recommendations, FAQ, and AI support triage.
+

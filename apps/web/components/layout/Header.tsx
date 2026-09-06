@@ -27,6 +27,9 @@ export default function Header() {
         <Link href="/skills">
           مهارت‌ها
         </Link>
+        <Link href="/community">
+          جامعه
+        </Link>
         <Link href="/ielts">
           IELTS
         </Link>

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./learn.module.css";
 
@@ -63,6 +63,13 @@ const LEARNING_DESTINATIONS = [
     href: "/achievements",
     icon: "🏆",
     action: "مشاهده دستاوردها",
+  },
+  {
+    title: "جامعه یادگیری و هم‌افزایی",
+    desc: "تبادل تجربیات واقعی با زبان‌آموزان و اساتید، طرح درس‌های معتبر، پرسش و پاسخ‌های زبانی در فضایی امن و منضبط.",
+    href: "/community",
+    icon: "👥",
+    action: "ورود به جامعه اندورا",
   },
 ];
 
