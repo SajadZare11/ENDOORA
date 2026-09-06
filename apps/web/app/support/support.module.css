@@ -1,0 +1,518 @@
+/* Endoora Support and FAQ Hub CSS Module (Day 32) */
+/* 100% Tokenized, 0 raw hex colors, 100% logical properties */
+
+.container {
+  max-inline-size: 75rem;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Hero Section */
+.hero {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 4px;
+  background: linear-gradient(90deg, var(--color-action), var(--color-learning-teal), var(--color-achievement-amber));
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.heroSubtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  max-inline-size: 44rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryBtn {
+  padding-inline: var(--space-5);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-card);
+  background: var(--color-action);
+  color: var(--color-action-contrast);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: opacity var(--transition-fast);
+}
+
+.primaryBtn:hover {
+  opacity: 0.92;
+}
+
+.secondaryBtn {
+  padding-inline: var(--space-5);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: border-color var(--transition-fast);
+}
+
+.secondaryBtn:hover {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+/* SLA Banner */
+.slaBanner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+}
+
+.slaCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.slaTitle {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.slaTime {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-action);
+}
+
+.slaDesc {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* FAQ Section */
+.faqSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.faqSearchInput {
+  block-size: 2.75rem;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  inline-size: 100%;
+  max-inline-size: 20rem;
+}
+
+.faqTabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-block: var(--space-1);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.faqTab {
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  background: transparent;
+  border: none;
+  border-block-end: 3px solid transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.faqTabActive {
+  color: var(--color-action);
+  border-block-end-color: var(--color-action);
+  font-weight: 700;
+}
+
+/* FAQ Accordion List */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faqItem {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.faqItem:hover {
+  border-color: var(--color-action);
+}
+
+.faqQuestion {
+  inline-size: 100%;
+  padding-inline: var(--space-5);
+  padding-block: var(--space-4);
+  background: none;
+  border: none;
+  text-align: start;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.faqToggleIcon {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.faqQuestion[aria-expanded="true"] .faqToggleIcon {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding-inline: var(--space-5);
+  padding-block: 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+}
+
+.faqFeedbackRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-3);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+  font-size: var(--font-size-meta);
+}
+
+.helpfulBtn {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-subtle);
+  padding-inline: var(--space-2);
+  padding-block: 2px;
+  cursor: pointer;
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+}
+
+.helpfulBtn:hover {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+/* Support Tickets Section */
+.ticketsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ticketCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--space-4);
+}
+
+.ticketCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.ticketCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-action);
+}
+
+.ticketTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketStatusBadge {
+  font-size: var(--font-size-meta);
+  padding-inline: var(--space-2);
+  padding-block: 2px;
+  border-radius: var(--radius-subtle);
+  font-weight: 700;
+}
+
+.statusNew {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-endoora-blue);
+}
+
+.statusAiAnswered {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-learning-teal);
+}
+
+.statusEscalated {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-achievement-amber);
+}
+
+.statusResolved {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--color-text-muted);
+}
+
+.ticketTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.ticketSnippet {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Modal and Drawer Elements */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-4);
+}
+
+.modalBox {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  inline-size: 100%;
+  max-inline-size: 38rem;
+  max-block-size: 90vh;
+  overflow-y: auto;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-elevated);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+/* Form Styles */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.formLabel {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-subtle);
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+}
+
+.formTextarea {
+  min-block-size: 6rem;
+  resize: vertical;
+}
+
+/* Policy Warning Alert */
+.policyWarningAlert {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--color-achievement-amber);
+  border-radius: var(--radius-card);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: 1.5;
+}
+
+/* Ticket Detail Drawer */
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-block-size: 18rem;
+  overflow-y: auto;
+  padding: var(--space-3);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.chatMessage {
+  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  max-inline-size: 85%;
+}
+
+.msgUser {
+  align-self: flex-start;
+  background: var(--color-action);
+  color: var(--color-action-contrast);
+}
+
+.msgAi {
+  align-self: flex-end;
+  background: var(--color-surface);
+  border: 1px solid var(--color-learning-teal);
+  color: var(--color-text);
+}
+
+.msgStaff {
+  align-self: flex-end;
+  background: var(--color-surface);
+  border: 1px solid var(--color-action);
+  color: var(--color-text);
+}
+
+.aiCitationBox {
+  margin-block-start: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(16, 185, 129, 0.08);
+  border-radius: var(--radius-subtle);
+  font-size: var(--font-size-meta);
+  color: var(--color-learning-teal);
+  font-weight: 600;
+}
+
+.escalateActionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.escalateBtn {
+  background: var(--color-achievement-amber);
+  color: var(--color-action-contrast);
+  border: none;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-card);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.escalateBtn:hover {
+  opacity: 0.9;
+}

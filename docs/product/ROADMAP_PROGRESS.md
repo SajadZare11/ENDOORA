@@ -797,5 +797,41 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Unverified users cannot claim teacher-experience label; lesson-plan uploads require copyright license declaration; all media attachments require alt text and captions; PII scanner blocks sensitive data leaks; reported content enters SLA-ordered queue; removed content is hidden from public feeds while immutable audit log is preserved; and all 250 tests pass cleanly.
-**Next day after Git push:** Day 32 — Build unified search, recommendations, FAQ, and AI support triage.
+**Day 31 Status:** Completed and pushed to GitHub main.
 
+### Day 32 — Build unified search, recommendations, FAQ, and AI support triage
+- [x] created search models in `apps/api/search/models.py`:
+  - `SearchDocument`: normalized multi-resource index for courses, teachers, community posts, lesson plans, FAQs, and private assignments
+  - `SearchQueryLog`: tracks query terms, results count, and logs zero-result searches for analytics
+  - `RecentSearch`: per-user search history with clear function
+- [x] created text normalizer in `apps/api/search/normalizer.py`:
+  - Persian/Arabic normalization (`ي/ی`, `ك/ک`, `ة/ه`, diacritics removal, ZWNJ handling)
+  - English case folding and tokenization
+- [x] created search services in `apps/api/search/services.py`:
+  - `SearchIndexingService`: indices public and private resources; explicitly prohibits raw private messages
+  - `SearchService`: enforces permission boundaries before ranking, returns popular searches, and records zero-result terms
+- [x] created support and FAQ CMS models in `apps/api/support/models.py`:
+  - `FAQCategory`, `FAQItem`: approved knowledge base with view and helpful votes
+  - `SupportTicket`, `TicketMessage`, `TicketAttachment`: multi-state ticket workflow
+- [x] created support services in `apps/api/support/services.py`:
+  - `FAQService`: categories, search, and voting
+  - `AITriageService`: **CRITICAL SAFETY POLICY** — automatically and immediately escalates all `PAYMENTS`, `ACCOUNT`, and `SECURITY` tickets to human staff without generating AI policy answers; drafts responses for general inquiries **strictly citing approved FAQs only**
+  - `TicketService`: ticket submission and guaranteed 1-click human escalation action
+- [x] configured settings and URLs:
+  - registered `search` and `support` in `INSTALLED_APPS`
+  - included `api/search/` and `api/support/` in root `urls.py`
+  - added `SUPPORT_AUTO_ESCALATE_CATEGORIES` setting
+- [x] database migrations created: `search/migrations/0001_initial.py` and `support/migrations/0001_initial.py`
+- [x] 20 unit tests passing in `search/tests.py` and `support/tests.py`
+- [x] full backend regression: 270/270 tests passing across all 22 Django apps
+- [x] drafted safety documentation in `docs/support/faq-and-ai-triage.md`
+- [x] built frontend search page in `apps/web/app/search/` (input, filters, popular tags, recent searches, zero-result suggestions, 100% tokenized CSS)
+- [x] built frontend support hub in `apps/web/app/support/` (SLA banner, FAQ accordion, new ticket modal with financial/security warning, ticket tracking with 1-click human handoff, 100% tokenized CSS)
+- [x] added Search and Support links to `Header.tsx`, `PublicShell.tsx` footer, and `learn/page.tsx`
+- [x] Next.js 140 static/SSG routes build cleanly with 0 lint and 0 typecheck errors
+- [x] contract check `scripts/check_day32.py` and regression checks `scripts/check_day09.py` through `scripts/check_day31.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Private items never leak to unauthorized users; Persian query normalization handles letter variants and diacritics; raw private messages are never indexed; AI support triage cites approved FAQs only; financial and security tickets immediately escalate to human staff; guaranteed human handoff button transitions ticket state; and all 270 tests pass cleanly.
+**Next day after Git push:** Day 33 — Build teacher class, learner, history, and teaching-hours management.

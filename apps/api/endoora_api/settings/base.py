@@ -81,6 +81,8 @@ INSTALLED_APPS = [
     "courses",
     "community",
     "moderation",
+    "search",
+    "support",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -182,3 +184,7 @@ REST_FRAMEWORK = {
 COMMUNITY_COMMENTS_ENABLED = env_bool("ENDOORA_COMMUNITY_COMMENTS_ENABLED", default=True)
 COMMUNITY_FILE_MAX_SIZE_MB = env_int("ENDOORA_COMMUNITY_FILE_MAX_SIZE_MB", default=15)
 COMMUNITY_ALLOWED_EXTENSIONS = env_list("ENDOORA_COMMUNITY_ALLOWED_EXTENSIONS", default="pdf,docx,epub,zip,mp3")
+
+# Search & AI Support Triage Flags (Day 32)
+SUPPORT_AUTO_ESCALATE_CATEGORIES = env_list("ENDOORA_SUPPORT_AUTO_ESCALATE_CATEGORIES", default="payments,account,security")
+SEARCH_DEFAULT_PAGE_SIZE = env_int("ENDOORA_SEARCH_DEFAULT_PAGE_SIZE", default=20)

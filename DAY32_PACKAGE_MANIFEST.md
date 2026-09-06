@@ -1,0 +1,36 @@
+# Day 32 Package Manifest: Unified Search, Recommendations, FAQ CMS, and AI Support Triage
+
+## Modified & Created Files
+- `apps/api/search/models.py`: SearchDocument, SearchQueryLog, RecentSearch models with permission filtering, normalized fields, and zero-result tracking.
+- `apps/api/search/normalizer.py`: Persian and English query normalizer (Arabic Yeh/Kaf unifier, diacritics stripper, ZWNJ standardizer, case folding).
+- `apps/api/search/services.py`: SearchIndexingService and SearchService (permission enforcement, raw private message indexing guard, zero-result logging, popular/recent terms).
+- `apps/api/search/serializers.py`: DRF serializers for search documents, results, query logs, and recent searches.
+- `apps/api/search/views.py`: API views for unified search, popular searches, user recent searches, and staff zero-result analytics.
+- `apps/api/search/urls.py`: URL patterns for search endpoints.
+- `apps/api/search/admin.py`: Django admin registration for search models.
+- `apps/api/search/apps.py`: AppConfig for search.
+- `apps/api/search/tests.py`: Unit tests for normalization, permissions, safety guards, and query logs.
+- `apps/api/search/migrations/0001_initial.py`: Initial migration for search.
+- `apps/api/support/models.py`: FAQCategory, FAQItem, SupportTicket, TicketMessage, TicketAttachment models with category/status choices and citation references.
+- `apps/api/support/services.py`: FAQService, AITriageService (auto-escalating payments/account/security, citing published FAQ only), and TicketService (guaranteed human handoff).
+- `apps/api/support/serializers.py`: DRF serializers for FAQs, tickets, messages, and attachments.
+- `apps/api/support/views.py`: API views for FAQ listing/search/voting, ticket submission, detail, messages, and human escalation.
+- `apps/api/support/urls.py`: URL patterns for support endpoints.
+- `apps/api/support/admin.py`: Django admin registration for support models.
+- `apps/api/support/apps.py`: AppConfig for support.
+- `apps/api/support/tests.py`: Unit tests for FAQ search, financial/security auto-escalation, FAQ citations, and human handoff.
+- `apps/api/support/migrations/0001_initial.py`: Initial migration for support.
+- `apps/api/endoora_api/settings/base.py`: Registered `search` and `support` apps, configured `SUPPORT_AUTO_ESCALATE_CATEGORIES` and `SEARCH_DEFAULT_PAGE_SIZE`.
+- `apps/api/endoora_api/urls.py`: Wired `api/search/` and `api/support/` routes.
+- `docs/support/faq-and-ai-triage.md`: Safety documentation on search permissions, zero-result analytics, FAQ CMS, and AI support guardrails.
+- `apps/web/app/search/page.tsx`: Complete unified search UI with category tabs, popular tags, recent searches, permission badges, and zero-results suggestions.
+- `apps/web/app/search/layout.tsx`: SEO metadata layout for `/search`.
+- `apps/web/app/search/search.module.css`: 100% tokenized CSS module with logical properties and zero raw hex colors.
+- `apps/web/app/support/page.tsx`: Complete support and FAQ hub UI with SLA cards, FAQ accordion with helpful voting, new ticket modal with financial/security warning, ticket tracking, and 1-click human escalation.
+- `apps/web/app/support/layout.tsx`: SEO metadata layout for `/support`.
+- `apps/web/app/support/support.module.css`: 100% tokenized CSS module with logical properties and zero raw hex colors.
+- `apps/web/components/layout/Header.tsx`: Added `/search` and `/support` links.
+- `apps/web/components/marketing/PublicShell.tsx`: Added `/support` and `/search` links to footer.
+- `apps/web/app/(learner)/learn/page.tsx`: Added Search and Support destination cards to learner hub.
+- `scripts/backup_day32.ps1`: Database backup script for Day 32.
+- `scripts/check_day32.py`: Contract verification test script for Day 32.

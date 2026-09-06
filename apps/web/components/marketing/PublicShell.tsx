@@ -111,6 +111,8 @@ export function PublicShell({
           </div>
           <div>
             <strong>{isFa ? "پشتیبانی" : "Support"}</strong>
+            <Link href={localizedPath(locale, "/support")}>{isFa ? "مرکز پشتیبانی و تیکت" : "Support Center"}</Link>
+            <Link href={localizedPath(locale, "/search")}>{isFa ? "جستجوی یکپارچه" : "Search"}</Link>
             <Link href={localizedPath(locale, "/contact")}>{isFa ? "تماس" : "Contact"}</Link>
             <Link href={localizedPath(locale, "/status")}>{isFa ? "وضعیت سرویس" : "Status"}</Link>
             <Link href={localizedPath(locale, "/legal/copyright")}>{isFa ? "کپی‌رایت" : "Copyright"}</Link>

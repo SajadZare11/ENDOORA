@@ -82,4 +82,12 @@ urlpatterns = [
         "api/moderation/",
         include("moderation.urls")
     ),
+    path(
+        "api/search/",
+        include("search.urls")
+    ),
+    path(
+        "api/support/",
+        include("support.urls")
+    ),
 ]

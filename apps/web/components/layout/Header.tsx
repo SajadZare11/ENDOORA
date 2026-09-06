@@ -39,6 +39,12 @@ export default function Header() {
         <Link href="/pricing">
           قیمت
         </Link>
+        <Link href="/search">
+          جستجو
+        </Link>
+        <Link href="/support">
+          پشتیبانی
+        </Link>
         <Link href="/help">
           راهنما
         </Link>

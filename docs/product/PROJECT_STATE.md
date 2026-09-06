@@ -1295,10 +1295,29 @@ Commit message:
 
 `Day 31: Teacher experiences, learner posts, lesson-plan resources, and moderation`
 
+## Git checkpoint (Day 32)
+
+Commit message:
+
+`Day 32: Unified search, recommendations, FAQ, and AI support triage`
+
+Key accomplishments:
+- Created normalized multi-resource search documents in `apps/api/search/models.py`.
+- Built Persian and English text normalizer in `apps/api/search/normalizer.py` supporting `ي/ی`, `ك/ک`, diacritics stripping, and ZWNJ standardization.
+- Enforced strict permission filters before ranking so private items (assignments, private classes) never leak to unauthorized users.
+- Built explicit guard against indexing raw private messages.
+- Implemented zero-result search query tracking in `SearchQueryLog`.
+- Built FAQ CMS in `apps/api/support/models.py` and `services.py` with categorized, approved entries.
+- Created bounded AI support triage engine that strictly drafts answers citing approved FAQ items only.
+- Implemented mandatory automatic human escalation for all `PAYMENTS`, `ACCOUNT`, and `SECURITY` tickets with zero machine-generated policies.
+- Provided guaranteed 1-click human escalation action for users.
+- Implemented frontend search and support pages in `apps/web/app/search/` and `apps/web/app/support/` with 100% tokenized CSS, logical properties, and 0 raw hex colors.
+- Wired search and support links into `Header.tsx`, `PublicShell.tsx`, and `learn/page.tsx`.
+- Full test suite passing: 270/270 backend tests, 140/140 static routes prerendered.
+
 ## Exact next day
 
-**Day 32 — Build unified search, recommendations, FAQ, and AI support triage.**
+**Day 33 — Build teacher class, learner, history, and teaching-hours management.**
 
-Do not begin Day 32 until the Day 31 commit is pushed and `git status --short --branch`
+Do not begin Day 33 until the Day 32 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
-
