@@ -15,6 +15,18 @@ from .views import (
     TeachingHourAdjustView,
     LearnerLinkedTeachersView,
 )
+from .analytics_views import (
+    TeacherAnalyticsOverviewView,
+    TeacherClassAnalyticsReportView,
+    TeacherClassAnalyticsExportView,
+    TeacherLearnerAnalyticsProfileView,
+    TeacherAtRiskAlertsListView,
+    TeacherAtRiskAlertAcknowledgeView,
+    TeacherAtRiskAlertResolveView,
+    TeacherInterventionsListView,
+    TeacherInterventionDetailView,
+)
+
 from .assignment_views import (
     TeacherAssignmentsView,
     TeacherAssignmentDetailView,
@@ -85,6 +97,18 @@ urlpatterns = [
     # Gradebook & Class Reporting (Day 35)
     path("classes/<uuid:class_id>/gradebook/", TeacherClassGradebookView.as_view(), name="class-gradebook"),
     path("classes/<uuid:class_id>/gradebook/export/", TeacherClassGradebookExportView.as_view(), name="class-gradebook-export"),
+
+
+    # Analytics & Early Warning System (Day 36)
+    path("analytics/overview/", TeacherAnalyticsOverviewView.as_view(), name="analytics-overview"),
+    path("classes/<uuid:class_id>/analytics/", TeacherClassAnalyticsReportView.as_view(), name="class-analytics-report"),
+    path("classes/<uuid:class_id>/analytics/export/", TeacherClassAnalyticsExportView.as_view(), name="class-analytics-export"),
+    path("classes/<uuid:class_id>/learners/<uuid:learner_id>/analytics/", TeacherLearnerAnalyticsProfileView.as_view(), name="class-learner-analytics-profile"),
+    path("alerts/", TeacherAtRiskAlertsListView.as_view(), name="alerts-list"),
+    path("alerts/<uuid:alert_id>/acknowledge/", TeacherAtRiskAlertAcknowledgeView.as_view(), name="alert-acknowledge"),
+    path("alerts/<uuid:alert_id>/resolve/", TeacherAtRiskAlertResolveView.as_view(), name="alert-resolve"),
+    path("interventions/", TeacherInterventionsListView.as_view(), name="interventions-list-create"),
+    path("interventions/<uuid:intervention_id>/", TeacherInterventionDetailView.as_view(), name="intervention-detail"),
 
     # Learner Assignments & Attempts (Day 34 & 35)
     path("my-assignments/", LearnerAssignmentsListView.as_view(), name="learner-my-assignments"),

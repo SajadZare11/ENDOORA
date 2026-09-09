@@ -107,6 +107,12 @@ export default function TeacherAssignmentsPage() {
             <Link href="/teacher/grading" className={styles.secondaryButton}>
               صف تصحیح تکالیف ✍️
             </Link>
+            <Link href="/teacher/analytics" className={styles.secondaryButton}>
+              تحلیل و پایش 📈
+            </Link>
+            <Link href="/teacher/interventions" className={styles.secondaryButton}>
+              مداخلات آموزشی 🎯
+            </Link>
             <Link href="/teacher/gradebook" className={styles.secondaryButton}>
               دفتر نمرات کلاسی 📊
             </Link>

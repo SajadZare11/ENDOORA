@@ -325,6 +325,20 @@ export default function TeacherClassesPage() {
           </div>
           <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
             <Link
+              href="/teacher/analytics"
+              className={styles.actionButtonSecondary}
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            >
+              {isFa ? "تحلیل و پایش 📈" : "Analytics 📈"}
+            </Link>
+            <Link
+              href="/teacher/interventions"
+              className={styles.actionButtonSecondary}
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}
+            >
+              {isFa ? "مداخلات آموزشی 🎯" : "Interventions 🎯"}
+            </Link>
+            <Link
               href="/teacher/gradebook"
               className={styles.actionButtonSecondary}
               style={{ textDecoration: "none", display: "inline-flex", alignItems: "center" }}

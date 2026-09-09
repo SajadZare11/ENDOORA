@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import timedelta
 from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
@@ -19,6 +20,7 @@ from .models import (
     TeachingHourAuditLog,
     TeacherDataAccessAudit,
     LinkStatus,
+    ClassStatus,
     SessionStatus,
     LedgerStatus,
 )
@@ -1284,3 +1286,351 @@ class TeacherGradebookAndFeedbackDay35Tests(TestCase):
         self.assertEqual(a1["status"], "graded")
         self.assertEqual(a1["feedback_status"], "returned")
         self.assertIn("Phenomenal work", a1["teacher_feedback_snippet"])
+
+
+
+class TeacherAnalyticsAndInterventionsDay36Tests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        call_command("import_taxonomy")
+
+    def setUp(self):
+        from datetime import timedelta
+        from questions.models import Question, QuestionObjective, QuestionVersion
+        from taxonomy.models import TaxonomyNode
+        from teachers.models import (
+            Assignment,
+            AssignmentQuestion,
+            AssignmentAttempt,
+            AssignmentStatus,
+            AttemptStatus,
+            ClassStatus,
+            LinkStatus,
+            TeacherClass,
+            TeacherLearnerLink,
+        )
+        self.client = APIClient()
+        User = get_user_model()
+        self.teacher = User.objects.create_user(
+            email="teacher_day36@example.com",
+            password="StrongPassword123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.other_teacher = User.objects.create_user(
+            email="other_teacher_day36@example.com",
+            password="StrongPassword123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.learner1 = User.objects.create_user(
+            email="learner1_day36@example.com",
+            password="StrongPassword123!",
+            role="learner",
+        )
+        self.learner2 = User.objects.create_user(
+            email="learner2_day36@example.com",
+            password="StrongPassword123!",
+            role="learner",
+        )
+        self.unlinked_learner = User.objects.create_user(
+            email="unlinked_day36@example.com",
+            password="StrongPassword123!",
+            role="learner",
+        )
+
+        self.teacher_class = TeacherClass.objects.create(
+            teacher=self.teacher,
+            title="TOEFL Masterclass Day 36",
+            subject="Academic Writing & Reading",
+            level="B2",
+            status=ClassStatus.ACTIVE,
+        )
+
+        # Enroll learners
+        self.link1 = TeacherLearnerLink.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            learner=self.learner1,
+            status=LinkStatus.ACTIVE,
+            invite_code="DAY36LNK1",
+        )
+        self.link2 = TeacherLearnerLink.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            learner=self.learner2,
+            status=LinkStatus.ACTIVE,
+            invite_code="DAY36LNK2",
+        )
+
+        # Questions
+        obj_node = TaxonomyNode.objects.filter(
+            kind=TaxonomyNode.Kind.OBJECTIVE,
+            status=TaxonomyNode.Status.ACTIVE,
+        ).first()
+
+        self.q1 = Question.objects.create(slug="d36-q1", created_by=self.teacher)
+        self.qv1 = QuestionVersion.objects.create(
+            question=self.q1,
+            version_number=1,
+            status=QuestionVersion.Status.DRAFT,
+            question_type=QuestionVersion.QuestionType.MCQ,
+            title_en="Grammar Q1",
+            title_fa="سوال گرامر ۱",
+            prompt_en="Choose best option",
+            prompt_fa="گزینه مناسب را انتخاب کنید",
+            instructions_en="",
+            instructions_fa="",
+            cefr_level="B2",
+            difficulty=3,
+            learner_payload={"options": [{"id": "a", "text": "A"}, {"id": "b", "text": "B"}]},
+            answer_key={"correct_option": "b"},
+            source_origin=QuestionVersion.SourceOrigin.ORIGINAL,
+            source_title="Grammar Question Bank",
+            license_type=QuestionVersion.LicenseType.ORIGINAL,
+            author=self.teacher,
+        )
+        QuestionObjective.objects.create(version=self.qv1, objective=obj_node, is_primary=True)
+        self.qv1.publish(self.teacher)
+
+        # Create 3 assignments
+        self.assign1 = Assignment.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            title="Assignment 1 - Baseline",
+            status=AssignmentStatus.PUBLISHED,
+            total_points=Decimal("100.00"),
+            due_date=timezone.now() - timedelta(days=10),
+            published_at=timezone.now() - timedelta(days=12),
+        )
+        AssignmentQuestion.objects.create(assignment=self.assign1, question_version=self.qv1, order=1, points=Decimal("100.00"))
+
+        self.assign2 = Assignment.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            title="Assignment 2 - Progress",
+            status=AssignmentStatus.PUBLISHED,
+            total_points=Decimal("100.00"),
+            due_date=timezone.now() - timedelta(days=5),
+            published_at=timezone.now() - timedelta(days=7),
+        )
+        AssignmentQuestion.objects.create(assignment=self.assign2, question_version=self.qv1, order=1, points=Decimal("100.00"))
+
+        self.assign3 = Assignment.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            title="Assignment 3 - Advanced",
+            status=AssignmentStatus.PUBLISHED,
+            total_points=Decimal("100.00"),
+            due_date=timezone.now() - timedelta(days=1),
+            published_at=timezone.now() - timedelta(days=3),
+        )
+        AssignmentQuestion.objects.create(assignment=self.assign3, question_version=self.qv1, order=1, points=Decimal("100.00"))
+
+    def test_evaluate_class_at_risk_alerts_low_mastery_and_missing(self):
+        from teachers.analytics_services import TeacherAnalyticsService
+        from teachers.models import AtRiskAlert, AlertType, AlertSeverity, AssignmentAttempt, AttemptStatus
+
+        # Learner 1: Submits and scores 40% on assign1 (Low Mastery < 50%)
+        # and has missing assign2 and assign3 (missing >= 2)
+        att1 = AssignmentAttempt.objects.create(
+            assignment=self.assign1,
+            learner=self.learner1,
+            attempt_number=1,
+            status=AttemptStatus.GRADED,
+            score_awarded=Decimal("40.00"),
+            percentage=Decimal("40.00"),
+            graded_at=timezone.now() - timedelta(days=9),
+        )
+
+        alerts = TeacherAnalyticsService.evaluate_class_at_risk_alerts(self.teacher, str(self.teacher_class.id))
+        self.assertTrue(len(alerts) >= 2)
+
+        learner1_alerts = [a for a in alerts if a.learner_id == self.learner1.id]
+        low_mastery = next((a for a in learner1_alerts if a.alert_type == AlertType.LOW_MASTERY), None)
+        self.assertIsNotNone(low_mastery)
+        self.assertEqual(low_mastery.severity, AlertSeverity.HIGH)
+        self.assertIn("بحرانی", low_mastery.title)
+
+        missing_alert = next((a for a in learner1_alerts if a.alert_type == AlertType.MISSING_ASSIGNMENTS), None)
+        self.assertIsNotNone(missing_alert)
+        self.assertEqual(missing_alert.severity, AlertSeverity.MEDIUM)
+        self.assertEqual(missing_alert.metrics_snapshot["missing_count"], 2)
+
+    def test_evaluate_class_at_risk_alerts_performance_drop(self):
+        from teachers.analytics_services import TeacherAnalyticsService
+        from teachers.models import AtRiskAlert, AlertType, AlertSeverity, AssignmentAttempt, AttemptStatus
+
+        # Learner 2: assign 1 score = 90%, assign 2 score = 60%, assign 3 score = 55%
+        # Prior avg = 90%, recent avg = (60+55)/2 = 57.5% -> drop = 32.5% (>= 25% -> HIGH severity)
+        AssignmentAttempt.objects.create(
+            assignment=self.assign1,
+            learner=self.learner2,
+            attempt_number=1,
+            status=AttemptStatus.GRADED,
+            score_awarded=Decimal("90.00"),
+            percentage=Decimal("90.00"),
+            graded_at=timezone.now() - timedelta(days=8),
+        )
+        AssignmentAttempt.objects.create(
+            assignment=self.assign2,
+            learner=self.learner2,
+            attempt_number=1,
+            status=AttemptStatus.GRADED,
+            score_awarded=Decimal("60.00"),
+            percentage=Decimal("60.00"),
+            graded_at=timezone.now() - timedelta(days=4),
+        )
+        AssignmentAttempt.objects.create(
+            assignment=self.assign3,
+            learner=self.learner2,
+            attempt_number=1,
+            status=AttemptStatus.GRADED,
+            score_awarded=Decimal("55.00"),
+            percentage=Decimal("55.00"),
+            graded_at=timezone.now() - timedelta(days=1),
+        )
+
+        alerts = TeacherAnalyticsService.evaluate_class_at_risk_alerts(self.teacher, str(self.teacher_class.id))
+        l2_alerts = [a for a in alerts if a.learner_id == self.learner2.id]
+        drop_alert = next((a for a in l2_alerts if a.alert_type == AlertType.PERFORMANCE_DROP), None)
+        self.assertIsNotNone(drop_alert)
+        self.assertEqual(drop_alert.severity, AlertSeverity.HIGH)
+        self.assertIn("افت شدید نمره", drop_alert.title)
+
+    def test_teacher_analytics_overview_endpoint(self):
+        self.client.force_login(self.teacher)
+        resp = self.client.get("/api/teachers/analytics/overview/")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.data
+
+        self.assertEqual(data["total_classes"], 1)
+        self.assertEqual(data["total_learners"], 2)
+        self.assertIn("alerts_summary", data)
+        self.assertIn("interventions_summary", data)
+        self.assertIn("class_summaries", data)
+        self.assertEqual(len(data["class_summaries"]), 1)
+        self.assertEqual(data["class_summaries"][0]["title"], "TOEFL Masterclass Day 36")
+
+    def test_class_analytics_report_and_csv_export(self):
+        self.client.force_login(self.teacher)
+        # Class report
+        rep_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/analytics/")
+        self.assertEqual(rep_resp.status_code, 200)
+        rdata = rep_resp.data
+        self.assertEqual(rdata["class_id"], str(self.teacher_class.id))
+        self.assertIn("score_distribution", rdata)
+        self.assertIn("skill_mastery", rdata)
+        self.assertIn("trajectory", rdata)
+        self.assertIn("learners_roster", rdata)
+        self.assertEqual(len(rdata["learners_roster"]), 2)
+
+        # CSV Export
+        exp_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/analytics/export/")
+        self.assertEqual(exp_resp.status_code, 200)
+        self.assertIn("text/csv", exp_resp["Content-Type"])
+        csv_text = exp_resp.content.decode("utf-8")
+        self.assertTrue(csv_text.startswith("\ufeff"))
+        self.assertIn(self.learner1.email, csv_text)
+        self.assertIn(self.learner2.email, csv_text)
+
+    def test_learner_analytics_profile_and_privacy_boundary(self):
+        self.client.force_login(self.teacher)
+        # Linked learner -> 200 OK
+        prof_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner1.id}/analytics/"
+        )
+        self.assertEqual(prof_resp.status_code, 200)
+        pdata = prof_resp.data
+        self.assertEqual(pdata["learner_id"], str(self.learner1.id))
+        self.assertIn("skills_breakdown", pdata)
+        self.assertIn("assignments_history", pdata)
+
+        # Check Audit record created
+        from teachers.models import TeacherDataAccessAudit
+        self.assertTrue(
+            TeacherDataAccessAudit.objects.filter(
+                teacher=self.teacher,
+                learner=self.learner1,
+                access_type="view_learner_analytics_profile",
+            ).exists()
+        )
+
+        # Unlinked learner -> 403 Forbidden
+        unlinked_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.unlinked_learner.id}/analytics/"
+        )
+        self.assertEqual(unlinked_resp.status_code, 403)
+
+        # Other teacher trying to access -> 400 or 403
+        self.client.force_login(self.other_teacher)
+        forbidden_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner1.id}/analytics/"
+        )
+        self.assertIn(forbidden_resp.status_code, [400, 403])
+
+    def test_at_risk_alert_lifecycle_and_interventions_crud(self):
+        from teachers.models import (
+            AtRiskAlert,
+            AlertType,
+            AlertSeverity,
+            AlertStatus,
+            TeacherIntervention,
+            InterventionType,
+            InterventionStatus,
+        )
+        alert = AtRiskAlert.objects.create(
+            teacher=self.teacher,
+            learner=self.learner1,
+            teacher_class=self.teacher_class,
+            alert_type=AlertType.LOW_MASTERY,
+            severity=AlertSeverity.HIGH,
+            status=AlertStatus.ACTIVE,
+            title="نمره کمتر از ۵۰٪",
+            description="نیاز به تمرین جبرانی",
+        )
+
+        self.client.force_login(self.teacher)
+        # 1. Acknowledge alert
+        ack_resp = self.client.post(f"/api/teachers/alerts/{alert.id}/acknowledge/")
+        self.assertEqual(ack_resp.status_code, 200)
+        self.assertEqual(ack_resp.data["status"], AlertStatus.ACKNOWLEDGED)
+
+        # 2. Create Intervention linked to alert
+        int_resp = self.client.post(
+            "/api/teachers/interventions/",
+            {
+                "class_id": str(self.teacher_class.id),
+                "learner_id": str(self.learner1.id),
+                "alert_id": str(alert.id),
+                "intervention_type": InterventionType.TARGETED_REMEDIAL_ASSIGNMENT,
+                "title": "تمرین تقویتی زمان حال کامل",
+                "description": "ارائه ۳ تمرین کلیدی برای رفع ضعف ساختاری گرامر",
+                "score_before": "40.00",
+            },
+            format="json",
+        )
+        self.assertEqual(int_resp.status_code, 201)
+        int_data = int_resp.data
+        int_id = int_data["id"]
+        self.assertEqual(int_data["status"], InterventionStatus.PLANNED)
+
+        # 3. Update Intervention to COMPLETED with auto_resolve_alert
+        patch_resp = self.client.patch(
+            f"/api/teachers/interventions/{int_id}/",
+            {
+                "status": InterventionStatus.COMPLETED,
+                "outcome_notes": "زبان‌آموز تمرین‌ها را با موفقیت انجام داد و نمره به ۷۵٪ رسید.",
+                "score_after": "75.00",
+                "auto_resolve_alert": True,
+            },
+            format="json",
+        )
+        self.assertEqual(patch_resp.status_code, 200)
+        self.assertEqual(patch_resp.data["status"], InterventionStatus.COMPLETED)
+        self.assertEqual(patch_resp.data["score_after"], "75.00")
+
+        # Verify linked alert is now RESOLVED
+        alert.refresh_from_db()
+        self.assertEqual(alert.status, AlertStatus.RESOLVED)
+        self.assertIn("رفع خودکار", alert.resolution_notes)

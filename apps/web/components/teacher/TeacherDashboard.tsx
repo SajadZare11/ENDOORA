@@ -139,6 +139,20 @@ export function TeacherDashboard() {
         </section>
       </div>
 
+      <aside className="teacher-account-rail" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-4)" }}>
+        <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
+          <Link href="/teacher/analytics" className="teacher-button teacher-button--secondary">
+            {localText(locale, "تحلیل یادگیری و هشدارها 📈", "Analytics & Alerts 📈")}
+          </Link>
+          <Link href="/teacher/interventions" className="teacher-button teacher-button--secondary">
+            {localText(locale, "میزکار مداخلات 🎯", "Interventions Hub 🎯")}
+          </Link>
+          <Link href="/teacher/gradebook" className="teacher-button teacher-button--secondary">
+            {localText(locale, "دفتر نمرات 📊", "Gradebook 📊")}
+          </Link>
+        </div>
+      </aside>
+
       <aside className="teacher-account-rail">
         <div><span><DashboardIcon name="privacy" /></span><div><strong>{localText(locale, "حریم خصوصی شواهد زبان‌آموز", "Learner evidence stays private")}</strong><p>{localText(locale, data.privacy_notice_fa, data.privacy_notice_en)}</p></div></div>
         <Link href="/account">{localText(locale, "درآمد، صورتحساب و تنظیمات در حساب", "Earnings, billing, and settings live in Account")}</Link>

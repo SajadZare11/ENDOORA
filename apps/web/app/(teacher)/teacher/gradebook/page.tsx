@@ -86,7 +86,13 @@ export default function TeacherGradebookPage() {
               : "Comprehensive academic matrix, assignment performance, completion rates, and CSV export."}
           </p>
         </div>
-        <div style={{ display: "flex", gap: "var(--space-2)" }}>
+        <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
+          <Link href="/teacher/analytics" className="teacher-button teacher-button--secondary">
+            {isFa ? "تحلیل و پایش 📈" : "Analytics 📈"}
+          </Link>
+          <Link href="/teacher/interventions" className="teacher-button teacher-button--secondary">
+            {isFa ? "مداخلات 🎯" : "Interventions 🎯"}
+          </Link>
           <Link href="/teacher/grading" className="teacher-button teacher-button--primary">
             {isFa ? "صندوق تصحیح تکالیف" : "Grading Queue"}
           </Link>

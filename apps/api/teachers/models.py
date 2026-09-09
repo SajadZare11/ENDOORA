@@ -611,3 +611,204 @@ class SubmissionFeedbackMessage(models.Model):
 
     def __str__(self):
         return f"Feedback msg by {self.author.email} on attempt {self.attempt_id}"
+
+
+class AlertSeverity(models.TextChoices):
+    HIGH = "high", _("بحرانی و نیازمند اقدام فوری")
+    MEDIUM = "medium", _("متوسط و هشدار روند نزولی")
+    LOW = "low", _("پایین و قابل پایش")
+
+
+class AlertType(models.TextChoices):
+    PERFORMANCE_DROP = "performance_drop", _("افت ناگهانی عملکرد و نمره")
+    LOW_MASTERY = "low_mastery", _("تسلط ضعیف بر مفاهیم و نمره زیر حد نصاب")
+    MISSING_ASSIGNMENTS = "missing_assignments", _("تکالیف معوق و عدم ارسال پاسخ")
+    ATTENDANCE_DROP = "attendance_drop", _("غیبت در جلسات یا عدم تایید حضور")
+    UNADDRESSED_FEEDBACK = "unaddressed_feedback", _("بازخورد و بازنگری بی‌پاسخ مانده")
+    MANUAL_FLAG = "manual_flag", _("ثبت نشانه‌گذاری دستی توسط مدرس")
+
+
+class AlertStatus(models.TextChoices):
+    ACTIVE = "active", _("فعال و نیازمند بررسی")
+    ACKNOWLEDGED = "acknowledged", _("مشاهده شده توسط مدرس")
+    RESOLVED = "resolved", _("حل شده با بهبود یا مداخله")
+    DISMISSED = "dismissed", _("نادیده گرفته شده")
+
+
+class AtRiskAlert(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="teacher_at_risk_alerts",
+        verbose_name=_("مدرس"),
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="learner_at_risk_alerts",
+        verbose_name=_("زبان‌آموز"),
+    )
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="at_risk_alerts",
+        verbose_name=_("کلاس"),
+    )
+    alert_type = models.CharField(
+        max_length=32,
+        choices=AlertType.choices,
+        db_index=True,
+        verbose_name=_("نوع هشدار"),
+    )
+    severity = models.CharField(
+        max_length=16,
+        choices=AlertSeverity.choices,
+        default=AlertSeverity.MEDIUM,
+        db_index=True,
+        verbose_name=_("شدت هشدار"),
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=AlertStatus.choices,
+        default=AlertStatus.ACTIVE,
+        db_index=True,
+        verbose_name=_("وضعیت هشدار"),
+    )
+    title = models.CharField(max_length=255, verbose_name=_("عنوان هشدار"))
+    description = models.TextField(verbose_name=_("شرح دقیق و علت هشدار"))
+    metrics_snapshot = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("شاخص‌های محرک هشدار"),
+    )
+    acknowledged_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("زمان مشاهده و تایید مدرس"),
+    )
+    resolved_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("زمان رفع هشدار"),
+    )
+    resolution_notes = models.TextField(
+        blank=True,
+        default="",
+        verbose_name=_("یادداشت نحوه برطرف‌سازی"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("هشدار در معرض خطر زبان‌آموز")
+        verbose_name_plural = _("هشدارهای در معرض خطر زبان‌آموزان")
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"[{self.severity.upper()}] {self.title} - {self.learner.email}"
+
+
+class InterventionType(models.TextChoices):
+    EXTRA_TIME_ACCOMMODATION = "extra_time_accommodation", _("تسهیلات زمان یا فرصت مجدد")
+    TARGETED_REMEDIAL_ASSIGNMENT = "targeted_remedial_assignment", _("تمرین و تکلیف جبرانی هدفمند")
+    ONE_ON_ONE_OFFICE_HOUR = "one_on_one_office_hour", _("جلسه رفع اشکال و مشاوره اختصاصی")
+    DIRECT_ENCOURAGEMENT_NOTE = "direct_encouragement_note", _("پیام انگیزشی و راهنمای یادگیری مستقیم")
+    LEARNING_PLAN_ADJUSTMENT = "learning_plan_adjustment", _("تعدیل برنامه و سرعت یادگیری")
+    OTHER = "other", _("سایر اقدامات حمایتی آموزشی")
+
+
+class InterventionStatus(models.TextChoices):
+    PLANNED = "planned", _("برنامه‌ریزی شده")
+    IN_PROGRESS = "in_progress", _("در حال اجرا")
+    COMPLETED = "completed", _("تکمیل شده و ارزیابی نتیجه")
+    CANCELLED = "cancelled", _("لغو شده")
+
+
+class TeacherIntervention(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="authored_interventions",
+        verbose_name=_("مدرس اقدام‌کننده"),
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="received_interventions",
+        verbose_name=_("زبان‌آموز هدف"),
+    )
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="interventions",
+        verbose_name=_("کلاس"),
+    )
+    alert = models.ForeignKey(
+        AtRiskAlert,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="interventions",
+        verbose_name=_("هشدار مرتبط"),
+    )
+    intervention_type = models.CharField(
+        max_length=32,
+        choices=InterventionType.choices,
+        db_index=True,
+        verbose_name=_("نوع مداخله آموزشی"),
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=InterventionStatus.choices,
+        default=InterventionStatus.PLANNED,
+        db_index=True,
+        verbose_name=_("وضعیت اقدام"),
+    )
+    title = models.CharField(max_length=255, verbose_name=_("عنوان مداخله"))
+    description = models.TextField(verbose_name=_("شرح اقدام و استراتژی آموزشی"))
+    action_data = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("داده‌های مرتبط با اقدام"),
+    )
+    outcome_notes = models.TextField(
+        blank=True,
+        default="",
+        verbose_name=_("ارزیابی نتیجه مداخله"),
+    )
+    score_before = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name=_("نمره یا درصد قبل از اقدام"),
+    )
+    score_after = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name=_("نمره یا درصد پس از اقدام"),
+    )
+    target_date = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("تاریخ هدف برای پیگیری"),
+    )
+    completed_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("زمان تکمیل مداخله"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("مداخله آموزشی مدرس")
+        verbose_name_plural = _("مداخلات آموزشی مدرسین")
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.title} for {self.learner.email} ({self.get_status_display()})"

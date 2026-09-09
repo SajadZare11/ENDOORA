@@ -949,4 +949,39 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Teachers have a question-by-question grading studio with override and rubric capabilities; two-way feedback loop supports reflection and threaded discussion with private internal notes strictly protected; 2D class gradebook matrix computes student aggregates and assignment statistics with UTF-8 BOM CSV export; learners can inspect cross-class grades and review feedback; and all 291 tests pass cleanly.
-**Next day after Git push:** Day 36 — Build teacher analytics, progress reporting, at-risk alerts, and intervention tools.
+
+### Day 36 — Build teacher analytics, progress reporting, at-risk alerts, and intervention tools
+- [x] created at-risk alert and teacher intervention models in `apps/api/teachers/models.py`:
+  - `AlertSeverity` (`high`, `medium`, `low`), `AlertType` (`performance_drop`, `low_mastery`, `missing_assignments`, `attendance_drop`, `unaddressed_feedback`, `manual_flag`), `AlertStatus` (`active`, `acknowledged`, `resolved`, `dismissed`)
+  - `AtRiskAlert` model with `metrics_snapshot`, `acknowledged_at`, `resolved_at`, and `resolution_notes`
+  - `InterventionType` (`extra_time_accommodation`, `targeted_remedial_assignment`, `one_on_one_office_hour`, `direct_encouragement_note`, `learning_plan_adjustment`, `other`), `InterventionStatus` (`planned`, `in_progress`, `completed`, `cancelled`)
+  - `TeacherIntervention` model with `action_data`, `outcome_notes`, `score_before`, `score_after`, `target_date`, and `completed_at`
+- [x] built service layer in `apps/api/teachers/analytics_services.py`:
+  - `evaluate_class_at_risk_alerts`: 5-rule automated early-warning risk evaluation engine (low mastery, missing assignments, sudden drop, attendance, unaddressed feedback)
+  - `get_teacher_analytics_overview`: global teacher KPI overview and cohort summaries
+  - `get_class_analytics_report`: score distribution bins, CEFR skill radar breakdown, longitudinal assignment trajectory, and learner roster
+  - `get_learner_analytics_profile`: single-learner profile with audited privacy boundaries (excluding private AI chats/mistake logs)
+  - `export_class_analytics_csv`: Excel-safe UTF-8 BOM (`\ufeff`) CSV export
+  - Alert lifecycle: `acknowledge_at_risk_alert`, `resolve_at_risk_alert`, `dismiss_at_risk_alert`
+  - Intervention lifecycle: `list_teacher_interventions`, `create_teacher_intervention`, `update_teacher_intervention` (with score delta tracking and auto-resolving linked alerts)
+- [x] database migration `teachers/migrations/0004_analytics_and_interventions.py` created and applied
+- [x] registered Django Admin for `AtRiskAlert` and `TeacherIntervention`
+- [x] 9 new REST endpoints added in `apps/api/teachers/analytics_views.py` and registered in `urls.py`
+- [x] 38/38 unit tests passing in `teachers/tests.py` (including 6 new tests in `TeacherAnalyticsAndInterventionsDay36Tests`)
+- [x] full backend regression: 297/297 tests passing across all Django apps
+- [x] technical documentation drafted in `docs/teachers/analytics-and-interventions.md`
+- [x] built frontend typed API client in `apps/web/lib/teacher-analytics.ts` using `endooraApi`
+- [x] built Teacher Analytics Overview in `apps/web/app/(teacher)/teacher/analytics/page.tsx`
+- [x] built Deep-Dive Class Report in `apps/web/app/(teacher)/teacher/analytics/[classId]/page.tsx` with score distribution bins, CEFR skills, trajectory, and roster
+- [x] built Learner Analytics Profile in `apps/web/app/(teacher)/teacher/analytics/learners/[learnerId]/page.tsx` with CEFR progress and 1-click intervention modal
+- [x] built Interventions Workspace in `apps/web/app/(teacher)/teacher/interventions/page.tsx` with status tabs, score delta tracking, and completion modal
+- [x] created 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties
+- [x] added Analytics and Interventions cross-navigation links across `TeacherDashboard.tsx`, `classes/page.tsx`, `assignments/page.tsx`, and `gradebook/page.tsx`
+- [x] frontend lint (`npm run lint`), typecheck (`tsc --noEmit`), and Next.js build (151/151 pages) compiled cleanly with 0 errors
+- [x] contract check `scripts/check_day36.py` and regression checks `scripts/check_day30.py` through `scripts/check_day35.py` passing 100%
+- [x] secret scan `python scripts/scan_secrets.py` passed with 0 findings
+- [x] `git diff --check` passed with 0 errors
+
+**Success gate:** Teachers have high-resolution cohort and learner progress reporting, automated early-warning alerts for struggling students with severity tiers and lifecycle management, structured interventions workflow with before/after score impact tracking, Excel-safe UTF-8 BOM CSV exports, strict isolation of private AI chats, and all 297 tests pass cleanly.
+**Day 36 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 37 — Build Marketplace Request Feed, Filtering, and Matching Pipeline.

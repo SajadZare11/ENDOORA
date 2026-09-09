@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 35 — Learner Submission, Teacher Grading, Feedback Loop, and Gradebook
-- **Day 35 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Roadmap day completed:** Day 36 — Build Teacher Analytics, Progress Reporting, At-Risk Alerts, and Intervention Tools
+- **Day 36 status:** Complete and verified; ready for Git commit and push to `origin/main`
 - **Inherited state:** Days 01–34 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, Teacher Classes/Roster/Audited Hours Ledger, and Teacher Assignments/Accommodations/Autosave
-- **Schema version:** Day 35 adds `teachers.0003_gradebook_and_feedback`
+- **Schema version:** Day 36 adds `teachers.0004_analytics_and_interventions`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1395,9 +1395,44 @@ Key accomplishments:
   - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
 - Full verification: 291/291 backend tests passed, 149/149 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
 
+
+## Git checkpoint (Day 36)
+
+Commit message:
+
+`Day 36: Teacher analytics, progress reporting, at-risk alerts, and intervention tools`
+
+Key accomplishments:
+- Created at-risk alert and teacher intervention models in `apps/api/teachers/models.py`:
+  - `AlertSeverity` (`high`, `medium`, `low`), `AlertType` (`performance_drop`, `low_mastery`, `missing_assignments`, `attendance_drop`, `unaddressed_feedback`, `manual_flag`), `AlertStatus` (`active`, `acknowledged`, `resolved`, `dismissed`).
+  - `AtRiskAlert` model with `metrics_snapshot`, `acknowledged_at`, `resolved_at`, and `resolution_notes`.
+  - `InterventionType` (`extra_time_accommodation`, `targeted_remedial_assignment`, `one_on_one_office_hour`, `direct_encouragement_note`, `learning_plan_adjustment`, `other`), `InterventionStatus` (`planned`, `in_progress`, `completed`, `cancelled`).
+  - `TeacherIntervention` model with `action_data`, `outcome_notes`, `score_before`, `score_after`, `target_date`, and `completed_at`.
+- Built comprehensive analytics and intervention service layer in `apps/api/teachers/analytics_services.py`:
+  - `evaluate_class_at_risk_alerts`: 5-rule automated early-warning risk evaluation engine (low mastery, missing assignments, sudden drop, attendance, unaddressed feedback).
+  - `get_teacher_analytics_overview`: global teacher KPI overview and cohort summaries.
+  - `get_class_analytics_report`: score distribution bins, CEFR skill radar breakdown, longitudinal assignment trajectory, and learner roster.
+  - `get_learner_analytics_profile`: single-learner profile with audited privacy boundaries (excluding private AI chats/mistake logs).
+  - `export_class_analytics_csv`: Excel-safe UTF-8 BOM (`\ufeff`) CSV export.
+  - Alert lifecycle: `acknowledge_at_risk_alert`, `resolve_at_risk_alert`, `dismiss_at_risk_alert`.
+  - Intervention lifecycle: `list_teacher_interventions`, `create_teacher_intervention`, `update_teacher_intervention` (with score delta tracking and auto-resolving linked alerts).
+- Database migration `0004_analytics_and_interventions.py` created and applied.
+- Registered Django Admin for `AtRiskAlert` and `TeacherIntervention`.
+- 9 new REST endpoints added in `apps/api/teachers/analytics_views.py` and registered in `urls.py`.
+- Comprehensive unit and integration test suite: 6 tests in `TeacherAnalyticsAndInterventionsDay36Tests`, total 38/38 teachers tests and 297/297 full backend tests passing.
+- Frontend Implementation:
+  - Strongly typed client SDK in `apps/web/lib/teacher-analytics.ts` using `endooraApi`.
+  - Teacher Analytics Overview in `apps/web/app/(teacher)/teacher/analytics/page.tsx`.
+  - Deep-Dive Class Report in `apps/web/app/(teacher)/teacher/analytics/[classId]/page.tsx`.
+  - Learner Analytics Profile in `apps/web/app/(teacher)/teacher/analytics/learners/[learnerId]/page.tsx`.
+  - Interventions Workspace in `apps/web/app/(teacher)/teacher/interventions/page.tsx`.
+  - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+  - Added Analytics and Interventions cross-navigation links across `TeacherDashboard.tsx`, `classes/page.tsx`, `assignments/page.tsx`, and `gradebook/page.tsx`.
+- Full verification: 297/297 backend tests passed, 151/151 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
+
 ## Exact next day
 
-**Day 36 — Build teacher analytics, progress reporting, at-risk alerts, and intervention tools.**
+**Day 37 — Build Marketplace Request Feed, Filtering, and Matching Pipeline.**
 
-Do not begin Day 36 until the Day 35 commit is pushed and `git status --short --branch`
+Do not begin Day 37 until the Day 36 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

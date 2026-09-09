@@ -11,6 +11,8 @@ from teachers.models import (
     AssignmentAccommodation,
     AssignmentAttempt,
     SubmissionFeedbackMessage,
+    AtRiskAlert,
+    TeacherIntervention,
 )
 
 
@@ -109,3 +111,17 @@ class SubmissionFeedbackMessageAdmin(admin.ModelAdmin):
     list_display = ["attempt", "author", "is_internal_note", "created_at"]
     list_filter = ["is_internal_note", "created_at"]
     search_fields = ["attempt__assignment__title", "author__email", "message"]
+
+
+@admin.register(AtRiskAlert)
+class AtRiskAlertAdmin(admin.ModelAdmin):
+    list_display = ["title", "teacher", "learner", "teacher_class", "alert_type", "severity", "status", "created_at"]
+    list_filter = ["severity", "status", "alert_type", "created_at"]
+    search_fields = ["title", "teacher__email", "learner__email", "teacher_class__title"]
+
+
+@admin.register(TeacherIntervention)
+class TeacherInterventionAdmin(admin.ModelAdmin):
+    list_display = ["title", "teacher", "learner", "teacher_class", "intervention_type", "status", "target_date", "created_at"]
+    list_filter = ["status", "intervention_type", "created_at"]
+    search_fields = ["title", "teacher__email", "learner__email", "teacher_class__title"]
