@@ -1,5 +1,52 @@
 import { endooraApi } from "./endoora-api";
 
+export type BookingStatus =
+  | "confirmed"
+  | "reschedule_requested"
+  | "in_progress"
+  | "completed"
+  | "cancelled_by_learner"
+  | "cancelled_by_teacher"
+  | "no_show"
+  | "disputed";
+
+export interface SessionBooking {
+  id: string;
+  request_id?: string | null;
+  offer_id?: string | null;
+  learner_id: string;
+  learner_name: string;
+  teacher_id: string;
+  teacher_name: string;
+  scheduled_start: string; // ISO UTC
+  scheduled_end: string;   // ISO UTC
+  duration_minutes: number;
+  status: BookingStatus;
+  status_display: string;
+  rate_toman: number;
+  online_format: string;
+  format_display: string;
+  target_skill: string;
+  skill_display: string;
+  target_subskill?: string;
+  learner_notes?: string;
+  teacher_notes?: string;
+  cancellation_reason?: string;
+  cancelled_by_id?: string | null;
+  reschedule_proposed_start?: string | null;
+  reschedule_proposed_by_id?: string | null;
+  reschedule_note?: string;
+  meeting_room_url: string;
+  is_active: boolean;
+  can_reschedule: boolean;
+  can_cancel: boolean;
+  can_start: boolean;
+  can_complete: boolean;
+  can_respond_reschedule: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface MarketplaceRequest {
   id: string;
   learner_display_name?: string;
@@ -92,6 +139,18 @@ export interface SubmitOfferPayload {
   online_format?: string;
 }
 
+export interface DirectBookingPayload {
+  teacher_id: string;
+  scheduled_start: string;
+  duration_minutes?: number;
+  rate_toman: number;
+  online_format?: string;
+  target_skill?: string;
+  target_subskill?: string;
+  learner_notes?: string;
+  idempotency_key?: string;
+}
+
 export async function fetchTeacherEligibility(): Promise<TeacherEligibility> {
   try {
     return await endooraApi<TeacherEligibility>("/api/marketplace/eligibility/");
@@ -175,11 +234,176 @@ export async function cancelLearnerRequest(
 
 export async function acceptTeacherOffer(
   offerId: string
-): Promise<{ status: string; request_id: string; offer_id: string; message: string }> {
-  return await endooraApi<{ status: string; request_id: string; offer_id: string; message: string }>(
+): Promise<{ status: string; request_id: string; offer_id: string; booking_id: string; booking: SessionBooking; message: string }> {
+  return await endooraApi<{ status: string; request_id: string; offer_id: string; booking_id: string; booking: SessionBooking; message: string }>(
     `/api/marketplace/offers/${offerId}/accept/`,
     {
       method: "POST",
     }
   );
+}
+
+// ---------------------------------------------------------------------------
+// Day 38: Session Booking and Scheduling API Endpoints
+// ---------------------------------------------------------------------------
+
+export async function fetchUserBookings(
+  statusFilter?: string,
+  roleFilter?: "learner" | "teacher"
+): Promise<{ bookings: SessionBooking[]; count: number }> {
+  const query = new URLSearchParams();
+  if (statusFilter && statusFilter !== "all") query.set("status", statusFilter);
+  if (roleFilter) query.set("role", roleFilter);
+  const path = `/api/marketplace/bookings/${query.toString() ? `?${query.toString()}` : ""}`;
+  return await endooraApi<{ bookings: SessionBooking[]; count: number }>(path);
+}
+
+export async function fetchBookingDetail(
+  bookingId: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/`);
+}
+
+export async function createDirectBooking(
+  payload: DirectBookingPayload
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>("/api/marketplace/bookings/create_direct/", {
+    method: "POST",
+    json: payload,
+  });
+}
+
+export async function requestBookingReschedule(
+  bookingId: string,
+  newStartTime: string,
+  rescheduleNote?: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/reschedule/`, {
+    method: "POST",
+    json: {
+      new_start_time: newStartTime,
+      reschedule_note: rescheduleNote || "",
+    },
+  });
+}
+
+export async function respondBookingReschedule(
+  bookingId: string,
+  action: "accept" | "decline",
+  responseNote?: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/respond_reschedule/`, {
+    method: "POST",
+    json: {
+      action,
+      response_note: responseNote || "",
+    },
+  });
+}
+
+export async function cancelBooking(
+  bookingId: string,
+  reason: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/cancel/`, {
+    method: "POST",
+    json: {
+      reason,
+    },
+  });
+}
+
+export async function startSession(
+  bookingId: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/start/`, {
+    method: "POST",
+  });
+}
+
+export async function completeSession(
+  bookingId: string,
+  notes?: string
+): Promise<SessionBooking> {
+  return await endooraApi<SessionBooking>(`/api/marketplace/bookings/${bookingId}/complete/`, {
+    method: "POST",
+    json: {
+      notes: notes || "",
+    },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Timezone and Date Format Helpers (Persian-First & Asia/Tehran Reference)
+// ---------------------------------------------------------------------------
+
+export const TEHRAN_TIMEZONE = "Asia/Tehran";
+
+export function formatTehranDateTime(isoString: string): string {
+  if (!isoString) return "";
+  try {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat("fa-IR", {
+      timeZone: TEHRAN_TIMEZONE,
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(d);
+  } catch {
+    return isoString;
+  }
+}
+
+export function formatTehranDateOnly(isoString: string): string {
+  if (!isoString) return "";
+  try {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat("fa-IR", {
+      timeZone: TEHRAN_TIMEZONE,
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+    }).format(d);
+  } catch {
+    return isoString;
+  }
+}
+
+export function formatTehranTimeOnly(isoString: string): string {
+  if (!isoString) return "";
+  try {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat("fa-IR", {
+      timeZone: TEHRAN_TIMEZONE,
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(d);
+  } catch {
+    return isoString;
+  }
+}
+
+export function formatUserLocalTime(isoString: string): string {
+  if (!isoString) return "";
+  try {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat(undefined, {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short",
+    }).format(d);
+  } catch {
+    return "";
+  }
+}
+
+export function isSameTimezoneAsTehran(): boolean {
+  try {
+    const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return userTz === TEHRAN_TIMEZONE;
+  } catch {
+    return true;
+  }
 }

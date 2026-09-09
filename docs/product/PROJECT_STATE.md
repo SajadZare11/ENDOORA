@@ -1456,9 +1456,54 @@ Key accomplishments:
   - Cross-navigation integration in `TeacherShell.tsx`, `(learner)/learn/page.tsx`, and `(learner)/my-teachers/page.tsx`.
 - Full verification: 304/304 backend tests passed, 153/153 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100% (71/71 checks).
 
+### Day 38 Accomplishments (Session Booking, Scheduling State Machine, and Timezone Management)
+- Created `SessionBooking` model and database migration `0002_sessionbooking.py` in `apps/api/marketplace`:
+  - Explicit status machine (`BookingStatus`: confirmed, reschedule_requested, in_progress, completed, cancelled_by_learner, cancelled_by_teacher, no_show_learner, no_show_teacher, disputed).
+  - High-precision timestamps stored in UTC with `Asia/Tehran` reference timezone.
+  - Concurrency & idempotency: `unique_booking_idempotency` unique key constraint.
+- Services in `apps/api/marketplace/services.py`:
+  - `check_schedule_conflict`: atomic overlapping interval check preventing double-bookings.
+  - `create_session_booking`: atomic creation with conflict validation and room URL provisioning.
+  - `request_booking_reschedule`: state transition to `reschedule_requested` with alternative time proposal.
+  - `respond_booking_reschedule`: accept (conflict-checked) or decline (preserves original time).
+  - `cancel_session_booking`: requires non-empty cancellation reason, transitions to `cancelled_by_...`, releases slot.
+  - `start_session_booking`: session window validation (15-min prior buffer), transitions to `in_progress`.
+  - `complete_session_booking`: transitions to `completed`, stores educational session notes.
+  - `accept_teacher_offer`: automatically mints a confirmed `SessionBooking` upon learner offer acceptance.
+- Serializers in `apps/api/marketplace/serializers.py`:
+  - `SessionBookingSerializer`: permissions methods (`can_cancel`, `can_reschedule`, `can_start`, `can_complete`, `can_respond_reschedule`), meeting room URL, formatted dates, and counterparty metadata.
+- REST Endpoints in `apps/api/marketplace/views.py` and `urls.py`:
+  - `GET/POST /api/marketplace/bookings/`
+  - `GET /api/marketplace/bookings/<id>/`
+  - `POST /api/marketplace/bookings/<id>/reschedule/`
+  - `POST /api/marketplace/bookings/<id>/reschedule/respond/`
+  - `POST /api/marketplace/bookings/<id>/cancel/`
+  - `POST /api/marketplace/bookings/<id>/start/`
+  - `POST /api/marketplace/bookings/<id>/complete/`
+- Comprehensive Unit Tests in `apps/api/marketplace/tests.py`:
+  - 11 unit tests covering conflict prevention, idempotency, reschedule negotiation, cancellation, start/complete lifecycles, and Day 37 regressions.
+- Frontend API Client & Timezone Helpers in `apps/web/lib/marketplace.ts`:
+  - Full CRUD and state transition methods.
+  - Persian-first formatted dates via `Intl.DateTimeFormat("fa-IR", { timeZone: "Asia/Tehran" })`.
+  - Device local timezone auto-detection and companion time display.
+- Unified Bookings Workspace in `apps/web/app/bookings/page.tsx` & `bookings.module.css`:
+  - Filter tabs (All, Upcoming, In Progress, Completed, Cancelled).
+  - Role filter (All, Learner, Teacher).
+  - Timezone comparison banner.
+  - Interactive Reschedule and Cancellation modals.
+  - Room launch button and direct navigation.
+- Deep-Dive Session Detail View in `apps/web/app/bookings/[id]/page.tsx` & `booking-detail.module.css`:
+  - Meeting room card with live access gate.
+  - Chronological state transition timeline.
+  - Rate breakdown and participant cards.
+  - Inline action buttons.
+- 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Cross-navigation integration across teacher requests, teacher offers, learner Learn Now wizard, and learner my-teachers page.
+- Full verification: 154/154 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (103/103 checks in `scripts/check_day38.py`).
+
 ## Exact next day
 
-**Day 38 — Build Session Booking, Scheduling State Machine, and Timezone Management (MKT-004).**
+**Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005).**
 
-Do not begin Day 38 until the Day 37 commit is pushed and `git status --short --branch`
+Do not begin Day 39 until the Day 38 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

@@ -12,6 +12,13 @@ from .services import (
     accept_teacher_offer,
     cancel_learner_request,
     list_teacher_offers,
+    create_session_booking,
+    list_user_bookings,
+    request_booking_reschedule,
+    respond_booking_reschedule,
+    cancel_session_booking,
+    start_session_booking,
+    complete_session_booking,
 )
 from .serializers import (
     TeacherFeedRequestSerializer,
@@ -20,8 +27,14 @@ from .serializers import (
     TeacherWorkspaceOfferSerializer,
     CreateMarketplaceRequestSerializer,
     SubmitTeacherOfferSerializer,
+    SessionBookingSerializer,
+    DirectCreateBookingSerializer,
+    RescheduleBookingSerializer,
+    RespondRescheduleSerializer,
+    CancelBookingSerializer,
+    CompleteBookingSerializer,
 )
-from .models import MarketplaceRequest, TeacherOffer
+from .models import MarketplaceRequest, TeacherOffer, SessionBooking
 
 
 @api_view(["GET"])
@@ -35,17 +48,9 @@ def teacher_eligibility_view(request):
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def marketplace_requests_view(request):
-    """
-    GET:
-      - If role == 'teacher' and not ?view=mine: return verified teacher request feed.
-      - If role == 'learner' or ?view=mine: return learner's own requests.
-    POST:
-      - Learner creates a new Learn Now request.
-    """
     if request.method == "GET":
         view_mode = request.query_params.get("view")
         if request.user.role == User.Role.TEACHER and view_mode != "mine":
-            # Teacher feed
             skill = request.query_params.get("skill")
             cefr_level = request.query_params.get("cefr_level")
             online_format = request.query_params.get("format")
@@ -70,7 +75,6 @@ def marketplace_requests_view(request):
             serializer = TeacherFeedRequestSerializer(feed_qs, many=True, context={"request": request})
             return Response({"requests": serializer.data, "count": len(serializer.data)})
         else:
-            # Learner's own requests
             qs = MarketplaceRequest.objects.filter(learner=request.user).order_by("-created_at")
             serializer = LearnerRequestDetailSerializer(qs, many=True, context={"request": request})
             return Response({"requests": serializer.data, "count": len(serializer.data)})
@@ -102,13 +106,6 @@ def marketplace_requests_view(request):
 @api_view(["GET", "DELETE"])
 @permission_classes([IsAuthenticated])
 def marketplace_request_detail_view(request, request_id):
-    """
-    GET:
-      - Learner receives full detail + received offers.
-      - Teacher receives privacy-masked feed item + their own offer status.
-    DELETE:
-      - Learner cancels their active request.
-    """
     if request.method == "GET":
         if request.user.role == User.Role.TEACHER:
             try:
@@ -133,7 +130,6 @@ def marketplace_request_detail_view(request, request_id):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def cancel_marketplace_request_view(request, request_id):
-    """Explicit POST endpoint for canceling a request."""
     cancelled = cancel_learner_request(request.user, request_id)
     return Response({"status": "cancelled", "id": str(cancelled.id)})
 
@@ -141,10 +137,6 @@ def cancel_marketplace_request_view(request, request_id):
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def request_offers_view(request, request_id):
-    """
-    GET: Learner retrieves offers for their request.
-    POST: Teacher submits a new structured offer.
-    """
     if request.method == "GET":
         try:
             req = MarketplaceRequest.objects.get(id=request_id, learner=request.user)
@@ -177,7 +169,6 @@ def request_offers_view(request, request_id):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def teacher_offers_workspace_view(request):
-    """Teacher lists all offers they have submitted."""
     status_filter = request.query_params.get("status")
     offers_qs = list_teacher_offers(request.user, status_filter=status_filter)
     serializer = TeacherWorkspaceOfferSerializer(offers_qs, many=True)
@@ -187,7 +178,6 @@ def teacher_offers_workspace_view(request):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def withdraw_teacher_offer_view(request, offer_id):
-    """Teacher withdraws their pending offer."""
     offer = withdraw_teacher_offer(request.user, offer_id)
     return Response({"status": "withdrawn", "id": str(offer.id)})
 
@@ -195,11 +185,144 @@ def withdraw_teacher_offer_view(request, offer_id):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def accept_teacher_offer_view(request, offer_id):
-    """Learner accepts an offer, booking the session and declining competing offers."""
-    req, offer = accept_teacher_offer(request.user, offer_id)
+    """Learner accepts an offer, booking the session and auto-declining competing offers."""
+    req, offer, booking = accept_teacher_offer(request.user, offer_id)
     return Response({
         "status": "booked",
         "request_id": str(req.id),
         "offer_id": str(offer.id),
-        "message": "پیشنهاد با موفقیت پذیرفته شد و درخواست به وضعیت رزرو شده انتقال یافت.",
+        "booking_id": str(booking.id),
+        "message": "پیشنهاد با موفقیت پذیرفته شد و جلسه شما رزرو گردید.",
+    })
+
+
+# --- Day 38: Session Booking & Scheduling Endpoints ---
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def bookings_collection_view(request):
+    """
+    GET: List user's bookings (learner or teacher).
+    POST: Direct booking creation (idempotent, conflict-checked).
+    """
+    if request.method == "GET":
+        status_filter = request.query_params.get("status")
+        role_filter = request.query_params.get("role")
+        qs = list_user_bookings(request.user, status_filter=status_filter, role_filter=role_filter)
+        serializer = SessionBookingSerializer(qs, many=True, context={"request": request})
+        return Response({"bookings": serializer.data, "count": len(serializer.data)})
+
+    elif request.method == "POST":
+        serializer = DirectCreateBookingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        try:
+            teacher = User.objects.get(id=data["teacher_id"], role=User.Role.TEACHER)
+        except User.DoesNotExist:
+            return Response({"detail": "مدرس مورد نظر یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        booking = create_session_booking(
+            learner=request.user,
+            teacher=teacher,
+            target_skill=data["target_skill"],
+            target_subskill=data.get("target_subskill", ""),
+            rate_toman=data["rate_toman"],
+            scheduled_start=data["scheduled_start"],
+            duration_minutes=data.get("duration_minutes", 45),
+            online_format=data.get("online_format", "video"),
+            timezone_name=data.get("timezone_name", "Asia/Tehran"),
+            idempotency_key=data.get("idempotency_key"),
+        )
+        return Response(
+            SessionBookingSerializer(booking, context={"request": request}).data,
+            status=status.HTTP_201_CREATED,
+        )
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def booking_detail_view(request, booking_id):
+    """Full booking details with counterparty, action capabilities and localized schedule."""
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        return Response({"detail": "جلسه مورد نظر یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.user.id not in [booking.learner_id, booking.teacher_id]:
+        return Response({"detail": "شما دسترسی به این جلسه را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+    serializer = SessionBookingSerializer(booking, context={"request": request})
+    return Response(serializer.data)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def cancel_booking_view(request, booking_id):
+    """Learner or teacher cancels a confirmed/reschedule-requested session with reason."""
+    serializer = CancelBookingSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    reason = serializer.validated_data["reason"]
+
+    cancelled = cancel_session_booking(request.user, booking_id, reason)
+    return Response({
+        "status": cancelled.status,
+        "id": str(cancelled.id),
+        "message": "جلسه با موفقیت لغو شد.",
+    })
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def request_reschedule_view(request, booking_id):
+    """Propose a new start time for the session."""
+    serializer = RescheduleBookingSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    data = serializer.validated_data
+
+    updated = request_booking_reschedule(
+        user=request.user,
+        booking_id=booking_id,
+        new_start=data["new_start_time"],
+        note=data.get("note", ""),
+    )
+    return Response(SessionBookingSerializer(updated, context={"request": request}).data)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def respond_reschedule_view(request, booking_id):
+    """Accept or reject proposed reschedule time."""
+    serializer = RespondRescheduleSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    accept = serializer.validated_data["accept"]
+
+    updated = respond_booking_reschedule(user=request.user, booking_id=booking_id, accept=accept)
+    return Response(SessionBookingSerializer(updated, context={"request": request}).data)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def start_booking_session_view(request, booking_id):
+    """Transition confirmed booking to in_progress within session time window."""
+    updated = start_session_booking(request.user, booking_id)
+    return Response({
+        "status": updated.status,
+        "meeting_url": updated.meeting_url,
+        "message": "جلسه آغاز شد.",
+    })
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def complete_booking_session_view(request, booking_id):
+    """Complete in_progress session with notes."""
+    serializer = CompleteBookingSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    notes = serializer.validated_data.get("session_notes", "")
+
+    updated = complete_session_booking(request.user, booking_id, notes)
+    return Response({
+        "status": updated.status,
+        "message": "جلسه با موفقیت به پایان رسید و ثبت گردید.",
     })

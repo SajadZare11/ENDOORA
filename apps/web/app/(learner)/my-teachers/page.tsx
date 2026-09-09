@@ -122,6 +122,24 @@ export default function MyTeachersPage() {
           >
             ⚡ {isFa ? "درخواست جلسه جدید با مدرس (Learn Now)" : "Request New Session (Learn Now)"}
           </Link>
+          <Link
+            href="/bookings"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "var(--space-2)",
+              padding: "var(--space-2) var(--space-3)",
+              backgroundColor: "transparent",
+              color: "var(--color-primary-600)",
+              border: "1px solid var(--color-primary-600)",
+              borderRadius: "var(--radius-md)",
+              textDecoration: "none",
+              fontSize: "var(--font-size-sm)",
+              fontWeight: 600,
+            }}
+          >
+            🗓 {isFa ? "مشاهده جلسات و رزروها" : "View Booked Sessions"}
+          </Link>
         </div>
       </section>
 

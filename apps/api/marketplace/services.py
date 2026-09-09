@@ -1,15 +1,17 @@
 from datetime import timedelta
 from decimal import Decimal
-from rest_framework.exceptions import PermissionDenied, ValidationError
 from django.db import transaction
 from django.db.models import Count, Q
 from django.utils import timezone
+from rest_framework.exceptions import PermissionDenied, ValidationError
 from accounts.models import User
 from .models import (
     MarketplaceRequest,
     TeacherOffer,
+    SessionBooking,
     RequestStatus,
     OfferStatus,
+    BookingStatus,
     RequestSkill,
     CEFRLevel,
     SessionFormat,
@@ -40,6 +42,91 @@ def get_teacher_eligibility_status(user: User) -> dict:
     }
 
 
+def check_schedule_conflict(user: User, start_time, end_time, exclude_booking_id=None) -> bool:
+    """
+    Checks whether the user (as learner or teacher) has an overlapping active session.
+    Active states: CONFIRMED, RESCHEDULE_REQUESTED, IN_PROGRESS.
+    """
+    active_statuses = [
+        BookingStatus.CONFIRMED,
+        BookingStatus.RESCHEDULE_REQUESTED,
+        BookingStatus.IN_PROGRESS,
+    ]
+    qs = SessionBooking.objects.filter(
+        Q(learner=user) | Q(teacher=user),
+        status__in=active_statuses,
+        scheduled_start__lt=end_time,
+        scheduled_end__gt=start_time,
+    )
+    if exclude_booking_id:
+        qs = qs.exclude(id=exclude_booking_id)
+    return qs.exists()
+
+
+def create_session_booking(
+    learner: User,
+    teacher: User,
+    target_skill: str,
+    rate_toman: Decimal,
+    scheduled_start,
+    duration_minutes: int = 45,
+    online_format: str = SessionFormat.VIDEO,
+    target_subskill: str = "",
+    timezone_name: str = "Asia/Tehran",
+    idempotency_key: str | None = None,
+    request: MarketplaceRequest | None = None,
+    offer: TeacherOffer | None = None,
+) -> SessionBooking:
+    if not learner.is_authenticated:
+        raise PermissionDenied("برای رزرو جلسه ابتدا باید وارد سیستم شوید.")
+
+    ensure_teacher_marketplace_eligible(teacher)
+
+    if learner.id == teacher.id:
+        raise ValidationError("امکان رزرو جلسه با خودتان وجود ندارد.")
+
+    # Idempotency check: if key already booked, return existing instance
+    if idempotency_key:
+        existing = SessionBooking.objects.filter(idempotency_key=idempotency_key).first()
+        if existing:
+            return existing
+
+    scheduled_end = scheduled_start + timedelta(minutes=duration_minutes)
+
+    # Double booking conflict check
+    if check_schedule_conflict(teacher, scheduled_start, scheduled_end):
+        raise ValidationError("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است.")
+
+    if check_schedule_conflict(learner, scheduled_start, scheduled_end):
+        raise ValidationError("شما در بازه زمانی انتخابی دارای جلسه دیگری هستید.")
+
+    meeting_url = f"/room/{uuid_slug()}"
+
+    booking = SessionBooking.objects.create(
+        learner=learner,
+        teacher=teacher,
+        request=request,
+        offer=offer,
+        target_skill=target_skill,
+        target_subskill=target_subskill,
+        duration_minutes=duration_minutes,
+        online_format=online_format,
+        scheduled_start=scheduled_start,
+        scheduled_end=scheduled_end,
+        timezone_name=timezone_name,
+        rate_toman=rate_toman,
+        status=BookingStatus.CONFIRMED,
+        idempotency_key=idempotency_key,
+        meeting_url=meeting_url,
+    )
+    return booking
+
+
+def uuid_slug() -> str:
+    import uuid
+    return uuid.uuid4().hex[:12]
+
+
 def create_learn_now_request(
     learner: User,
     target_skill: str,
@@ -56,7 +143,6 @@ def create_learn_now_request(
     if not learner.is_authenticated:
         raise PermissionDenied("برای ثبت درخواست باید وارد حساب کاربری خود شوید.")
 
-    # Duplicate check: check if learner has submitted an identical request within last 5 minutes
     recent_dup = MarketplaceRequest.objects.filter(
         learner=learner,
         target_skill=target_skill,
@@ -66,7 +152,6 @@ def create_learn_now_request(
     if recent_dup:
         raise ValidationError("درخواست مشابهی در چند دقیقه گذشته توسط شما ثبت شده است. لطفاً همان درخواست را پیگیری کنید.")
 
-    # Active open request count guard (max 5 active requests per learner)
     active_count = MarketplaceRequest.objects.filter(
         learner=learner,
         status__in=[RequestStatus.OPEN, RequestStatus.MATCHED],
@@ -162,7 +247,6 @@ def submit_teacher_offer(
     if req.learner_id == teacher.id:
         raise ValidationError("شما نمی‌توانید برای درخواست خودتان پیشنهاد تدریس ارسال کنید.")
 
-    # Check existing pending offer by this teacher
     existing = TeacherOffer.objects.filter(
         request=req,
         teacher=teacher,
@@ -204,7 +288,6 @@ def withdraw_teacher_offer(teacher: User, offer_id: str) -> TeacherOffer:
         offer.save(update_fields=["status", "updated_at"])
 
         req = offer.request
-        # Check if there are any remaining pending offers
         remaining_pending = TeacherOffer.objects.filter(
             request=req,
             status=OfferStatus.PENDING,
@@ -216,7 +299,15 @@ def withdraw_teacher_offer(teacher: User, offer_id: str) -> TeacherOffer:
     return offer
 
 
-def accept_teacher_offer(learner: User, offer_id: str) -> tuple[MarketplaceRequest, TeacherOffer]:
+def accept_teacher_offer(learner: User, offer_id: str) -> tuple[MarketplaceRequest, TeacherOffer, SessionBooking]:
+    """
+    Learner accepts a teacher offer.
+    Atomic transaction:
+      1. Sets offer status to ACCEPTED
+      2. Declines competing offers
+      3. Sets request to BOOKED
+      4. Creates a confirmed SessionBooking with conflict prevention & idempotency
+    """
     try:
         offer = TeacherOffer.objects.select_related("request", "teacher").get(id=offer_id)
     except TeacherOffer.DoesNotExist:
@@ -235,6 +326,12 @@ def accept_teacher_offer(learner: User, offer_id: str) -> tuple[MarketplaceReque
     if offer.status != OfferStatus.PENDING:
         raise ValidationError("این پیشنهاد در وضعیت معتبر برای پذیرش قرار ندارد.")
 
+    # Determine booking start time
+    start_time = offer.proposed_start_time
+    if not start_time or start_time < timezone.now():
+        # Default to tomorrow at 16:00 UTC if not provided or in the past
+        start_time = (timezone.now() + timedelta(days=1)).replace(hour=16, minute=0, second=0, microsecond=0)
+
     with transaction.atomic():
         offer.status = OfferStatus.ACCEPTED
         offer.save(update_fields=["status", "updated_at"])
@@ -243,7 +340,6 @@ def accept_teacher_offer(learner: User, offer_id: str) -> tuple[MarketplaceReque
         req.status = RequestStatus.BOOKED
         req.save(update_fields=["matched_offer", "status", "updated_at"])
 
-        # Auto-decline all other competing pending offers
         TeacherOffer.objects.filter(
             request=req,
             status=OfferStatus.PENDING,
@@ -252,7 +348,22 @@ def accept_teacher_offer(learner: User, offer_id: str) -> tuple[MarketplaceReque
             updated_at=timezone.now(),
         )
 
-    return req, offer
+        idempotency_key = f"offer_accept_{offer.id}"
+        booking = create_session_booking(
+            learner=learner,
+            teacher=offer.teacher,
+            target_skill=req.target_skill,
+            target_subskill=req.target_subskill,
+            duration_minutes=offer.duration_minutes,
+            online_format=offer.online_format,
+            scheduled_start=start_time,
+            rate_toman=offer.rate_toman,
+            idempotency_key=idempotency_key,
+            request=req,
+            offer=offer,
+        )
+
+    return req, offer, booking
 
 
 def cancel_learner_request(learner: User, request_id: str) -> MarketplaceRequest:
@@ -285,3 +396,217 @@ def list_teacher_offers(teacher: User, status_filter: str | None = None):
     if status_filter and status_filter != "all":
         qs = qs.filter(status=status_filter)
     return qs
+
+
+def list_user_bookings(user: User, status_filter: str | None = None, role_filter: str | None = None):
+    """
+    Returns bookings for the user based on role:
+      - If role_filter == 'learner': learner bookings only
+      - If role_filter == 'teacher': teacher bookings only
+      - Else: all bookings where user is learner or teacher
+    """
+    if role_filter == "learner":
+        qs = SessionBooking.objects.filter(learner=user)
+    elif role_filter == "teacher":
+        qs = SessionBooking.objects.filter(teacher=user)
+    else:
+        qs = SessionBooking.objects.filter(Q(learner=user) | Q(teacher=user))
+
+    qs = qs.select_related("learner", "teacher", "request")
+
+    if status_filter == "upcoming":
+        qs = qs.filter(
+            status__in=[
+                BookingStatus.CONFIRMED,
+                BookingStatus.RESCHEDULE_REQUESTED,
+                BookingStatus.IN_PROGRESS,
+            ],
+            scheduled_end__gte=timezone.now() - timedelta(hours=1),
+        ).order_by("scheduled_start")
+    elif status_filter == "completed":
+        qs = qs.filter(status=BookingStatus.COMPLETED).order_by("-scheduled_start")
+    elif status_filter == "cancelled":
+        qs = qs.filter(
+            status__in=[
+                BookingStatus.CANCELLED_BY_LEARNER,
+                BookingStatus.CANCELLED_BY_TEACHER,
+                BookingStatus.NO_SHOW_LEARNER,
+                BookingStatus.NO_SHOW_TEACHER,
+            ]
+        ).order_by("-scheduled_start")
+    elif status_filter and status_filter != "all":
+        qs = qs.filter(status=status_filter)
+
+    return qs
+
+
+def request_booking_reschedule(user: User, booking_id: str, new_start, note: str = "") -> SessionBooking:
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    if user.id not in [booking.learner_id, booking.teacher_id]:
+        raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
+
+    if booking.status != BookingStatus.CONFIRMED:
+        raise ValidationError("تنها جلسات در وضعیت قطعی را می‌توان جابجا کرد.")
+
+    if new_start < timezone.now() + timedelta(minutes=30):
+        raise ValidationError("زمان جدید جلسه باید حداقل ۳۰ دقیقه پس از زمان کنونی باشد.")
+
+    new_end = new_start + timedelta(minutes=booking.duration_minutes)
+
+    counterparty = booking.teacher if user.id == booking.learner_id else booking.learner
+    if check_schedule_conflict(counterparty, new_start, new_end, exclude_booking_id=booking.id):
+        raise ValidationError("طرف مقابل در زمان پیشنهادی جدید دارای جلسه دیگری است.")
+
+    if check_schedule_conflict(user, new_start, new_end, exclude_booking_id=booking.id):
+        raise ValidationError("شما در زمان انتخابی جدید دارای جلسه دیگری هستید.")
+
+    booking.status = BookingStatus.RESCHEDULE_REQUESTED
+    booking.reschedule_proposed_start = new_start
+    booking.reschedule_proposed_end = new_end
+    booking.reschedule_requested_by = user
+    booking.reschedule_note = note
+    booking.save(
+        update_fields=[
+            "status",
+            "reschedule_proposed_start",
+            "reschedule_proposed_end",
+            "reschedule_requested_by",
+            "reschedule_note",
+            "updated_at",
+        ]
+    )
+    return booking
+
+
+def respond_booking_reschedule(user: User, booking_id: str, accept: bool) -> SessionBooking:
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    if user.id not in [booking.learner_id, booking.teacher_id]:
+        raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
+
+    if booking.status != BookingStatus.RESCHEDULE_REQUESTED:
+        raise ValidationError("این جلسه در انتظار پاسخ جابجایی زمان نیست.")
+
+    # Only counterparty can respond
+    if booking.reschedule_requested_by_id == user.id:
+        raise ValidationError("شما نمی‌توانید به درخواست جابجایی خودتان پاسخ دهید.")
+
+    if accept:
+        new_start = booking.reschedule_proposed_start
+        new_end = booking.reschedule_proposed_end
+
+        if check_schedule_conflict(booking.teacher, new_start, new_end, exclude_booking_id=booking.id):
+            raise ValidationError("مدرس در زمان جدید با جلسه دیگری تداخل دارد.")
+        if check_schedule_conflict(booking.learner, new_start, new_end, exclude_booking_id=booking.id):
+            raise ValidationError("زبان‌آموز در زمان جدید با جلسه دیگری تداخل دارد.")
+
+        booking.scheduled_start = new_start
+        booking.scheduled_end = new_end
+        booking.status = BookingStatus.CONFIRMED
+        booking.reschedule_proposed_start = None
+        booking.reschedule_proposed_end = None
+        booking.reschedule_requested_by = None
+        booking.reschedule_note = ""
+        booking.save(
+            update_fields=[
+                "scheduled_start",
+                "scheduled_end",
+                "status",
+                "reschedule_proposed_start",
+                "reschedule_proposed_end",
+                "reschedule_requested_by",
+                "reschedule_note",
+                "updated_at",
+            ]
+        )
+    else:
+        # Revert to confirmed with original times preserved
+        booking.status = BookingStatus.CONFIRMED
+        booking.reschedule_proposed_start = None
+        booking.reschedule_proposed_end = None
+        booking.reschedule_requested_by = None
+        booking.reschedule_note = ""
+        booking.save(
+            update_fields=[
+                "status",
+                "reschedule_proposed_start",
+                "reschedule_proposed_end",
+                "reschedule_requested_by",
+                "reschedule_note",
+                "updated_at",
+            ]
+        )
+
+    return booking
+
+
+def cancel_session_booking(user: User, booking_id: str, reason: str = "") -> SessionBooking:
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    if user.id not in [booking.learner_id, booking.teacher_id]:
+        raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
+
+    if booking.status in [BookingStatus.COMPLETED, BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER]:
+        raise ValidationError("این جلسه قبلاً پایان یافته یا لغو شده است.")
+
+    status = (
+        BookingStatus.CANCELLED_BY_LEARNER
+        if user.id == booking.learner_id
+        else BookingStatus.CANCELLED_BY_TEACHER
+    )
+
+    booking.status = status
+    booking.cancellation_reason = reason
+    booking.cancelled_at = timezone.now()
+    booking.save(update_fields=["status", "cancellation_reason", "cancelled_at", "updated_at"])
+    return booking
+
+
+def start_session_booking(user: User, booking_id: str) -> SessionBooking:
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    if user.id not in [booking.learner_id, booking.teacher_id]:
+        raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
+
+    if booking.status not in [BookingStatus.CONFIRMED, BookingStatus.IN_PROGRESS]:
+        raise ValidationError("تنها جلسات تأییدشده را می‌توان شروع کرد.")
+
+    booking.status = BookingStatus.IN_PROGRESS
+    if not booking.started_at:
+        booking.started_at = timezone.now()
+    booking.save(update_fields=["status", "started_at", "updated_at"])
+    return booking
+
+
+def complete_session_booking(user: User, booking_id: str, session_notes: str = "") -> SessionBooking:
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    # Typically only teacher or learner can complete
+    if user.id not in [booking.learner_id, booking.teacher_id]:
+        raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
+
+    if booking.status == BookingStatus.COMPLETED:
+        return booking
+
+    booking.status = BookingStatus.COMPLETED
+    booking.completed_at = timezone.now()
+    if session_notes:
+        booking.session_notes = session_notes
+    booking.save(update_fields=["status", "completed_at", "session_notes", "updated_at"])
+    return booking

@@ -204,6 +204,12 @@ export default function MarketplaceRequestsPage() {
           >
             💼 پیشنهادهای ارسال‌شده من
           </Link>
+          <Link
+            href="/bookings"
+            className={styles.navLink}
+          >
+            🗓 تقویم جلسات و رزروها
+          </Link>
         </nav>
       </header>
 

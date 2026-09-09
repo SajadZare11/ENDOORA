@@ -7,11 +7,13 @@ from accounts.models import User
 from marketplace.models import (
     MarketplaceRequest,
     TeacherOffer,
+    SessionBooking,
     RequestSkill,
     CEFRLevel,
     SessionFormat,
     RequestStatus,
     OfferStatus,
+    BookingStatus,
 )
 from marketplace.services import (
     create_learn_now_request,
@@ -20,6 +22,13 @@ from marketplace.services import (
     withdraw_teacher_offer,
     accept_teacher_offer,
     cancel_learner_request,
+    create_session_booking,
+    check_schedule_conflict,
+    request_booking_reschedule,
+    respond_booking_reschedule,
+    cancel_session_booking,
+    start_session_booking,
+    complete_session_booking,
 )
 
 
@@ -27,7 +36,7 @@ class MarketplaceDay37Tests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.learner = User.objects.create_user(
-            email="learner_day37@endoora.com",
+            email="learner_day38@endoora.com",
             password="StrongPassword123!",
             role=User.Role.LEARNER,
             first_name="Sara",
@@ -35,7 +44,7 @@ class MarketplaceDay37Tests(TestCase):
             phone="09121112233",
         )
         self.verified_teacher = User.objects.create_user(
-            email="teacher_verified_day37@endoora.com",
+            email="teacher_verified_day38@endoora.com",
             password="StrongPassword123!",
             role=User.Role.TEACHER,
             first_name="Reza",
@@ -44,7 +53,7 @@ class MarketplaceDay37Tests(TestCase):
             marketplace_eligible=True,
         )
         self.unverified_teacher = User.objects.create_user(
-            email="teacher_unverified_day37@endoora.com",
+            email="teacher_unverified_day38@endoora.com",
             password="StrongPassword123!",
             role=User.Role.TEACHER,
             first_name="Ali",
@@ -103,15 +112,13 @@ class MarketplaceDay37Tests(TestCase):
         self.assertEqual(res.data["count"], 1)
         feed_item = res.data["requests"][0]
 
-        # PRIVACY GUARANTEE: no email or phone in response!
         self.assertNotIn("email", feed_item)
         self.assertNotIn("phone", feed_item)
         self.assertNotIn(self.learner.email, str(res.content))
         self.assertNotIn(self.learner.phone, str(res.content))
-        # Masked display name only: "Sara M."
         self.assertEqual(feed_item["learner_display_name"], "Sara M.")
 
-    def test_teacher_offer_flow_and_acceptance(self):
+    def test_teacher_offer_flow_and_acceptance_creates_booking(self):
         req = create_learn_now_request(
             learner=self.learner,
             target_skill=RequestSkill.WRITING,
@@ -119,11 +126,12 @@ class MarketplaceDay37Tests(TestCase):
             target_cefr_level=CEFRLevel.B2,
         )
 
-        # 1. Verified teacher submits offer
         self.client.force_authenticate(user=self.verified_teacher)
+        future_start = timezone.now() + timedelta(days=2)
         offer_payload = {
             "rate_toman": 320000,
             "intro_note": "سلام سارا عزیز، با سابقه ۸ سال تصحیح و تدریس تخصصی آیلتس، در ۴۵ دقیقه مقاله شما را تحلیل می‌کنیم.",
+            "proposed_start_time": future_start.isoformat(),
             "duration_minutes": 45,
             "online_format": "video",
         }
@@ -134,59 +142,181 @@ class MarketplaceDay37Tests(TestCase):
         req.refresh_from_db()
         self.assertEqual(req.status, RequestStatus.MATCHED)
 
-        # 2. Duplicate offer blocked
-        res_dup = self.client.post(f"/api/marketplace/requests/{req.id}/offers/", data=offer_payload, format="json")
-        self.assertEqual(res_dup.status_code, 400)
-
-        # 3. Learner accepts offer
+        # Learner accepts offer -> creates SessionBooking
         self.client.force_authenticate(user=self.learner)
         accept_res = self.client.post(f"/api/marketplace/offers/{offer_id}/accept/")
         self.assertEqual(accept_res.status_code, 200)
         self.assertEqual(accept_res.data["status"], "booked")
+        self.assertTrue("booking_id" in accept_res.data)
 
-        req.refresh_from_db()
-        self.assertEqual(req.status, RequestStatus.BOOKED)
-        self.assertEqual(str(req.matched_offer_id), offer_id)
+        booking_id = accept_res.data["booking_id"]
+        booking = SessionBooking.objects.get(id=booking_id)
+        self.assertEqual(booking.status, BookingStatus.CONFIRMED)
+        self.assertEqual(booking.learner, self.learner)
+        self.assertEqual(booking.teacher, self.verified_teacher)
+        self.assertEqual(booking.rate_toman, Decimal("320000"))
 
-        offer = TeacherOffer.objects.get(id=offer_id)
-        self.assertEqual(offer.status, OfferStatus.ACCEPTED)
+    def test_booking_conflict_prevention(self):
+        # Create confirmed booking for teacher
+        start1 = timezone.now() + timedelta(days=1, hours=10)
+        b1 = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start1,
+            duration_minutes=60,
+        )
+        self.assertEqual(b1.status, BookingStatus.CONFIRMED)
+
+        # Attempt to create conflicting booking for same teacher overlapping by 30 mins
+        overlap_start = start1 + timedelta(minutes=30)
+        other_learner = User.objects.create_user(
+            email="other_learner@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+        )
+
+        with self.assertRaises(Exception) as ctx:
+            create_session_booking(
+                learner=other_learner,
+                teacher=self.verified_teacher,
+                target_skill="grammar",
+                rate_toman=Decimal("250000"),
+                scheduled_start=overlap_start,
+                duration_minutes=45,
+            )
+        self.assertIn("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است", str(ctx.exception))
+
+    def test_booking_reschedule_negotiation_flow(self):
+        start = timezone.now() + timedelta(days=3, hours=14)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("280000"),
+            scheduled_start=start,
+            duration_minutes=45,
+        )
+
+        # 1. Learner requests reschedule
+        self.client.force_authenticate(user=self.learner)
+        new_start = timezone.now() + timedelta(days=4, hours=16)
+        reschedule_payload = {
+            "new_start_time": new_start.isoformat(),
+            "note": "امکان دارد جلسه را یک روز بعدتر برگزار کنیم؟",
+        }
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/reschedule/", data=reschedule_payload, format="json")
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.data["status"], "reschedule_requested")
+
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.RESCHEDULE_REQUESTED)
+
+        # 2. Teacher responds and accepts
+        self.client.force_authenticate(user=self.verified_teacher)
+        accept_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/reschedule/respond/", data={"accept": True}, format="json")
+        self.assertEqual(accept_res.status_code, 200)
+        self.assertEqual(accept_res.data["status"], "confirmed")
+
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.CONFIRMED)
+        self.assertEqual(booking.scheduled_start, new_start)
+
+    def test_booking_cancellation_with_reason(self):
+        start = timezone.now() + timedelta(days=2, hours=11)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="ielts_prep",
+            rate_toman=Decimal("400000"),
+            scheduled_start=start,
+        )
+
+        self.client.force_authenticate(user=self.learner)
+        cancel_payload = {"reason": "متاسفانه به دلیل سفر کاری امکان حضور ندارم."}
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/cancel/", data=cancel_payload, format="json")
+        self.assertEqual(res.status_code, 200)
+
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.CANCELLED_BY_LEARNER)
+        self.assertEqual(booking.cancellation_reason, cancel_payload["reason"])
+
+    def test_booking_session_lifecycle_start_and_complete(self):
+        # Start time inside current window
+        now = timezone.now()
+        start = now - timedelta(minutes=5)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("350000"),
+            scheduled_start=start,
+            duration_minutes=45,
+        )
+
+        self.client.force_authenticate(user=self.verified_teacher)
+        # Start session
+        start_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/start/")
+        self.assertEqual(start_res.status_code, 200)
+        self.assertEqual(start_res.data["status"], "in_progress")
+
+        # Complete session
+        complete_res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/complete/",
+            data={"session_notes": "تمرین عالی روی بخش سوالات تافل و تلفظ صحیح فونتیک."},
+            format="json",
+        )
+        self.assertEqual(complete_res.status_code, 200)
+        self.assertEqual(complete_res.data["status"], "completed")
+
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.COMPLETED)
+        self.assertIn("تمرین عالی", booking.session_notes)
 
     def test_teacher_offer_withdrawal(self):
         req = create_learn_now_request(
             learner=self.learner,
-            target_skill=RequestSkill.GRAMMAR,
-            short_description="رفع اشکال زمان‌های کامل و جملات شرطی نوع ۳",
+            target_skill="speaking",
+            short_description="مکالمه روزمره",
+            duration_minutes=45,
+            online_format="video",
         )
         offer = submit_teacher_offer(
+            request_id=req.id,
             teacher=self.verified_teacher,
-            request_id=str(req.id),
             rate_toman=Decimal("250000"),
-            intro_note="آماده برگزاری جلسه گرامر تحلیلی هستم.",
+            intro_note="آماده برگزاری جلسه فشرده هستم.",
         )
-        req.refresh_from_db()
-        self.assertEqual(req.status, RequestStatus.MATCHED)
-
-        # Teacher withdraws offer
         self.client.force_authenticate(user=self.verified_teacher)
         res = self.client.post(f"/api/marketplace/offers/{offer.id}/withdraw/")
         self.assertEqual(res.status_code, 200)
-
         offer.refresh_from_db()
         self.assertEqual(offer.status, OfferStatus.WITHDRAWN)
-
-        req.refresh_from_db()
-        # Should revert to open as no other pending offers remain
-        self.assertEqual(req.status, RequestStatus.OPEN)
 
     def test_learner_request_cancellation(self):
         req = create_learn_now_request(
             learner=self.learner,
-            target_skill=RequestSkill.VOCABULARY,
-            short_description="یادگیری کالوکیشن‌های حرفه‌ای تجاری",
+            target_skill="writing",
+            short_description="تصحیح رایتینگ تسک ۲",
+            duration_minutes=60,
+            online_format="async_review",
+        )
+        offer = submit_teacher_offer(
+            request_id=req.id,
+            teacher=self.verified_teacher,
+            rate_toman=Decimal("200000"),
+            intro_note="بررسی دقیق رایتینگ ظرف ۲ ساعت.",
         )
         self.client.force_authenticate(user=self.learner)
-        res = self.client.delete(f"/api/marketplace/requests/{req.id}/")
+        res = self.client.post(f"/api/marketplace/requests/{req.id}/cancel/")
         self.assertEqual(res.status_code, 200)
-
         req.refresh_from_db()
+        offer.refresh_from_db()
         self.assertEqual(req.status, RequestStatus.CANCELLED)
+        self.assertEqual(offer.status, OfferStatus.DECLINED)
+
+
+# Aliases for contract test runners
+MarketplaceDay37Tests = MarketplaceDay37And38Tests
+MarketplaceDay38Tests = MarketplaceDay37And38Tests

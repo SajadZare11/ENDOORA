@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MarketplaceRequest, TeacherOffer
+from .models import MarketplaceRequest, TeacherOffer, SessionBooking
 
 
 @admin.register(MarketplaceRequest)
@@ -15,4 +15,12 @@ class TeacherOfferAdmin(admin.ModelAdmin):
     list_display = ("id", "request", "teacher", "rate_toman", "status", "created_at")
     list_filter = ("status", "online_format")
     search_fields = ("teacher__email", "teacher__first_name", "teacher__last_name", "intro_note")
+    readonly_fields = ("created_at", "updated_at")
+
+
+@admin.register(SessionBooking)
+class SessionBookingAdmin(admin.ModelAdmin):
+    list_display = ("id", "learner", "teacher", "target_skill", "status", "scheduled_start", "rate_toman")
+    list_filter = ("status", "target_skill", "online_format")
+    search_fields = ("learner__email", "teacher__email", "session_notes", "cancellation_reason")
     readonly_fields = ("created_at", "updated_at")

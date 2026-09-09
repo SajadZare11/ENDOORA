@@ -2,12 +2,14 @@ from rest_framework import serializers
 from .models import (
     MarketplaceRequest,
     TeacherOffer,
+    SessionBooking,
     RequestSkill,
     CEFRLevel,
     SessionFormat,
     PreferredTimeWindow,
     RequestStatus,
     OfferStatus,
+    BookingStatus,
 )
 
 
@@ -45,7 +47,6 @@ class TeacherFeedRequestSerializer(serializers.ModelSerializer):
         ]
 
     def get_learner_display_name(self, obj) -> str:
-        # STRICT PRIVACY GUARD: never return email, phone or sensitive info
         learner = obj.learner
         first_name = (learner.first_name or "").strip()
         last_name = (learner.last_name or "").strip()
@@ -122,6 +123,7 @@ class LearnerRequestDetailSerializer(serializers.ModelSerializer):
     time_window_display = serializers.CharField(source="get_preferred_time_window_display", read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
     matched_offer_detail = TeacherOfferSerializer(source="matched_offer", read_only=True)
+    booking_id = serializers.SerializerMethodField()
 
     class Meta:
         model = MarketplaceRequest
@@ -142,6 +144,7 @@ class LearnerRequestDetailSerializer(serializers.ModelSerializer):
             "status_display",
             "matched_offer_id",
             "matched_offer_detail",
+            "booking_id",
             "expires_at",
             "created_at",
             "offers",
@@ -150,6 +153,10 @@ class LearnerRequestDetailSerializer(serializers.ModelSerializer):
     def get_offers(self, obj):
         offers = obj.offers.exclude(status=OfferStatus.WITHDRAWN).order_by("-created_at")
         return TeacherOfferSerializer(offers, many=True, context=self.context).data
+
+    def get_booking_id(self, obj) -> str | None:
+        booking = obj.bookings.first()
+        return str(booking.id) if booking else None
 
 
 class TeacherWorkspaceOfferSerializer(serializers.ModelSerializer):
@@ -187,6 +194,111 @@ class TeacherWorkspaceOfferSerializer(serializers.ModelSerializer):
         }
 
 
+class SessionBookingSerializer(serializers.ModelSerializer):
+    counterparty = serializers.SerializerMethodField()
+    skill_display = serializers.CharField(source="get_target_skill_display", read_only=True)
+    format_display = serializers.CharField(source="get_online_format_display", read_only=True)
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    can_cancel = serializers.SerializerMethodField()
+    can_reschedule = serializers.SerializerMethodField()
+    can_start = serializers.SerializerMethodField()
+    can_complete = serializers.SerializerMethodField()
+    can_respond_reschedule = serializers.SerializerMethodField()
+    meeting_room_url = serializers.CharField(source="meeting_url", read_only=True)
+    is_counterparty_reschedule = serializers.SerializerMethodField()
+    in_session_window = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SessionBooking
+        fields = [
+            "id",
+            "request_id",
+            "offer_id",
+            "target_skill",
+            "skill_display",
+            "target_subskill",
+            "duration_minutes",
+            "online_format",
+            "format_display",
+            "scheduled_start",
+            "scheduled_end",
+            "timezone_name",
+            "rate_toman",
+            "status",
+            "status_display",
+            "meeting_url",
+            "meeting_room_url",
+            "can_respond_reschedule",
+            "session_notes",
+            "cancellation_reason",
+            "reschedule_proposed_start",
+            "reschedule_proposed_end",
+            "reschedule_note",
+            "can_cancel",
+            "can_reschedule",
+            "can_start",
+            "can_complete",
+            "is_counterparty_reschedule",
+            "in_session_window",
+            "counterparty",
+            "created_at",
+            "started_at",
+            "completed_at",
+            "cancelled_at",
+        ]
+
+    def get_counterparty(self, obj) -> dict:
+        req_user = self.context.get("request").user if self.context.get("request") else None
+        if req_user and req_user.id == obj.learner_id:
+            # Counterparty is teacher
+            name = f"{obj.teacher.first_name or ''} {obj.teacher.last_name or ''}".strip() or "استاد اندورا"
+            profile = getattr(obj.teacher, "profile", None)
+            headline = getattr(profile, "headline", "مدرس زبان اندورا") if profile else "مدرس زبان اندورا"
+            return {
+                "id": str(obj.teacher.id),
+                "name": name,
+                "headline": headline,
+                "role": "teacher",
+                "verified": getattr(obj.teacher, "is_teacher_verified", False),
+            }
+        else:
+            # Counterparty is learner
+            first_name = (obj.learner.first_name or "").strip()
+            last_name = (obj.learner.last_name or "").strip()
+            name = f"{first_name} {last_name[0]}." if first_name and last_name else (first_name or "زبان‌آموز")
+            return {
+                "id": str(obj.learner.id),
+                "name": name,
+                "headline": "زبان‌آموز اندورا",
+                "role": "learner",
+                "verified": False,
+            }
+
+    def get_can_cancel(self, obj) -> bool:
+        return obj.status in [BookingStatus.CONFIRMED, BookingStatus.RESCHEDULE_REQUESTED]
+
+    def get_can_reschedule(self, obj) -> bool:
+        return obj.status == BookingStatus.CONFIRMED
+
+    def get_can_start(self, obj) -> bool:
+        return obj.status in [BookingStatus.CONFIRMED, BookingStatus.IN_PROGRESS] and obj.is_in_session_window()
+
+    def get_can_complete(self, obj) -> bool:
+        return obj.status == BookingStatus.IN_PROGRESS
+
+    def get_can_respond_reschedule(self, obj) -> bool:
+        return self.get_is_counterparty_reschedule(obj)
+
+    def get_is_counterparty_reschedule(self, obj) -> bool:
+        req_user = self.context.get("request").user if self.context.get("request") else None
+        if not req_user or obj.status != BookingStatus.RESCHEDULE_REQUESTED:
+            return False
+        return obj.reschedule_requested_by_id != req_user.id
+
+    def get_in_session_window(self, obj) -> bool:
+        return obj.is_in_session_window()
+
+
 class CreateMarketplaceRequestSerializer(serializers.Serializer):
     target_skill = serializers.ChoiceField(choices=RequestSkill.choices)
     target_subskill = serializers.CharField(required=False, allow_blank=True, default="", max_length=128)
@@ -206,3 +318,32 @@ class SubmitTeacherOfferSerializer(serializers.Serializer):
     proposed_start_time = serializers.DateTimeField(required=False, allow_null=True)
     duration_minutes = serializers.ChoiceField(choices=[30, 45, 60], default=45)
     online_format = serializers.ChoiceField(choices=SessionFormat.choices, default=SessionFormat.VIDEO)
+
+
+class DirectCreateBookingSerializer(serializers.Serializer):
+    teacher_id = serializers.UUIDField()
+    target_skill = serializers.ChoiceField(choices=RequestSkill.choices)
+    target_subskill = serializers.CharField(required=False, allow_blank=True, default="", max_length=128)
+    rate_toman = serializers.DecimalField(max_digits=10, decimal_places=0, min_value=10000)
+    scheduled_start = serializers.DateTimeField()
+    duration_minutes = serializers.ChoiceField(choices=[30, 45, 60], default=45)
+    online_format = serializers.ChoiceField(choices=SessionFormat.choices, default=SessionFormat.VIDEO)
+    timezone_name = serializers.CharField(required=False, default="Asia/Tehran", max_length=64)
+    idempotency_key = serializers.CharField(required=False, allow_null=True, max_length=128)
+
+
+class RescheduleBookingSerializer(serializers.Serializer):
+    new_start_time = serializers.DateTimeField()
+    note = serializers.CharField(required=False, allow_blank=True, default="", max_length=500)
+
+
+class RespondRescheduleSerializer(serializers.Serializer):
+    accept = serializers.BooleanField()
+
+
+class CancelBookingSerializer(serializers.Serializer):
+    reason = serializers.CharField(min_length=5, max_length=500)
+
+
+class CompleteBookingSerializer(serializers.Serializer):
+    session_notes = serializers.CharField(required=False, allow_blank=True, default="", max_length=1500)

@@ -58,6 +58,19 @@ class OfferStatus(models.TextChoices):
     EXPIRED = "expired", _("منقضی شده")
 
 
+class BookingStatus(models.TextChoices):
+    CONFIRMED = "confirmed", _("رزرو شده و قطعی")
+    RESCHEDULE_REQUESTED = "reschedule_requested", _("درخواست جابجایی زمان")
+    IN_PROGRESS = "in_progress", _("در حال برگزاری")
+    COMPLETED = "completed", _("پایان یافته")
+    CANCELLED_BY_LEARNER = "cancelled_by_learner", _("لغو توسط زبان‌آموز")
+    CANCELLED_BY_TEACHER = "cancelled_by_teacher", _("لغو توسط مدرس")
+    NO_SHOW = "no_show", _("عدم حضور در جلسه")
+    NO_SHOW_LEARNER = "no_show_learner", _("عدم حضور زبان‌آموز")
+    NO_SHOW_TEACHER = "no_show_teacher", _("عدم حضور مدرس")
+    DISPUTED = "disputed", _("مورد اختلاف")
+
+
 class MarketplaceRequest(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     learner = models.ForeignKey(
@@ -195,3 +208,116 @@ class TeacherOffer(models.Model):
 
     def __str__(self):
         return f"Offer {self.id} by {self.teacher_id} for {self.request_id} ({self.status})"
+
+
+class SessionBooking(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    request = models.ForeignKey(
+        MarketplaceRequest,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="bookings",
+    )
+    offer = models.ForeignKey(
+        TeacherOffer,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="bookings",
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="learner_bookings",
+    )
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="teacher_bookings",
+    )
+    target_skill = models.CharField(
+        max_length=32,
+        choices=RequestSkill.choices,
+        default=RequestSkill.SPEAKING,
+    )
+    target_subskill = models.CharField(max_length=128, blank=True, default="")
+    duration_minutes = models.PositiveSmallIntegerField(
+        default=45,
+        choices=[(30, "30 دقیقه"), (45, "45 دقیقه"), (60, "60 دقیقه")],
+    )
+    online_format = models.CharField(
+        max_length=24,
+        choices=SessionFormat.choices,
+        default=SessionFormat.VIDEO,
+    )
+    scheduled_start = models.DateTimeField(db_index=True)
+    scheduled_end = models.DateTimeField(db_index=True)
+    timezone_name = models.CharField(max_length=64, default="Asia/Tehran")
+    rate_toman = models.DecimalField(
+        max_digits=10,
+        decimal_places=0,
+        help_text="مبلغ قطعی رزرو به تومان",
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=BookingStatus.choices,
+        default=BookingStatus.CONFIRMED,
+        db_index=True,
+    )
+    idempotency_key = models.CharField(
+        max_length=128,
+        unique=True,
+        null=True,
+        blank=True,
+        db_index=True,
+        help_text="کلید یکتایی برای جلوگیری از ثبت تکراری (unique_booking_idempotency)",
+    )
+    meeting_url = models.CharField(max_length=512, blank=True, default="")
+
+    @property
+    def meeting_room_url(self) -> str:
+        return self.meeting_url
+
+    @property
+    def reschedule_proposed_by(self):
+        return self.reschedule_requested_by
+    session_notes = models.TextField(blank=True, default="", help_text="خلاصه جلسه و یادداشت‌های آموزشی")
+    cancellation_reason = models.TextField(blank=True, default="")
+
+    # Rescheduling negotiation fields
+    reschedule_proposed_start = models.DateTimeField(null=True, blank=True)
+    reschedule_proposed_end = models.DateTimeField(null=True, blank=True)
+    reschedule_requested_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="requested_reschedules",
+    )
+    reschedule_note = models.TextField(blank=True, default="")
+
+    started_at = models.DateTimeField(null=True, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    cancelled_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-scheduled_start"]
+        indexes = [
+            models.Index(fields=["status", "scheduled_start"]),
+            models.Index(fields=["learner", "status"]),
+            models.Index(fields=["teacher", "status"]),
+            models.Index(fields=["scheduled_start", "scheduled_end"]),
+        ]
+
+    def __str__(self):
+        return f"Booking {self.id}: {self.learner.email} with {self.teacher.email} [{self.status}]"
+
+    def is_in_session_window(self) -> bool:
+        now = timezone.now()
+        # Active window: from 15 minutes before scheduled start until scheduled end + 30 mins
+        start_buffer = self.scheduled_start - timezone.timedelta(minutes=15)
+        end_buffer = self.scheduled_end + timezone.timedelta(minutes=30)
+        return start_buffer <= now <= end_buffer

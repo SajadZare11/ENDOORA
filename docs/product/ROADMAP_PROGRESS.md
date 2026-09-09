@@ -37,7 +37,10 @@
 | 33 | Teacher Class, Learner, History, and Teaching-Hours Management | Complete | Explicit consent, privacy shield, session completion, audited hours ledger, 278 tests passed |
 | 34 | Build teacher assignments, question selection, due dates, attempts, and accommodations | Complete | Wireframe 4 wizard, Question Bank curation, accommodations, autosave R-029, auto-scoring, 283 tests passed |
 | 35 | Build learner submission, teacher grading, feedback loop, and gradebook | Complete | Grading studio, rubric evaluation, 2-way feedback loop, 2D gradebook matrix, UTF-8 BOM CSV, My Grades, 291 tests passed |
-| 36-60 | Remaining roadmap | Not started | Sequential |
+| 36 | Student and class analytics, at-risk alerts, and interventions | Complete | Analytics overview, class reports, at-risk severity rules, interventions, UTF-8 BOM CSV, 297 tests passed |
+| 37 | Marketplace Request Feed, Filtering, and Matching Pipeline | Complete | Privacy-preserved feed, eligibility gating, structured offers, auto-decline competing offers, 304 tests passed |
+| 38 | Build Session Booking, Scheduling State Machine, and Timezone Management | Complete | Scheduling state machine, conflict prevention, Asia/Tehran timezone, 103 contract checks, 308 tests passed |
+| 39-60 | Remaining roadmap | Not started | Sequential |
 
 
 ## Day 08 deliverables
@@ -1035,5 +1038,54 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] automated backup script `scripts/backup_day37.ps1` executed
 
 **Success gate:** Learners have an interactive, privacy-preserving Learn Now request wizard with server recovery; teachers have a filtered request feed and structured offer workflow strictly gated by verification and marketplace eligibility; competing offers auto-decline upon acceptance; and all 304 tests pass cleanly.
-**Day 37 Status:** Completed and ready for Git commit and push to GitHub main.
-**Next day after Git push:** Day 38 — Build Session Booking, Scheduling State Machine, and Timezone Management (MKT-004).
+**Day 37 Status:** Completed.
+
+### Day 38 — Build Session Booking, Scheduling State Machine, and Timezone Management (MKT-004)
+- [x] created SessionBooking model and database migration `0002_sessionbooking.py`:
+  - `SessionBooking`: `id`, `request`, `offer`, `learner`, `teacher`, `scheduled_start`, `scheduled_end`, `duration_minutes`, `rate_toman`, `online_format`, `target_skill`, `target_subskill`, `timezone_name` (`Asia/Tehran`), `status`, `idempotency_key`, `meeting_url`, `session_notes`, `cancellation_reason`, reschedule negotiation fields, timestamps
+  - `unique_booking_idempotency` unique constraint
+- [x] booking services in `apps/api/marketplace/services.py`:
+  - `check_schedule_conflict`: double-booking conflict prevention for teachers and learners with atomic overlapping interval query
+  - `create_session_booking`: atomic creation with idempotency guard and conflict detection
+  - `request_booking_reschedule`: state machine transition to `reschedule_requested` with alternative time proposal
+  - `respond_booking_reschedule`: accept (conflict-checked) or decline (preserves original time)
+  - `cancel_session_booking`: requires non-empty cancellation reason, transitions to `cancelled_by_...`, releases slot
+  - `start_session_booking`: session window validation (15-min prior buffer), transitions to `in_progress`
+  - `complete_session_booking`: transitions to `completed`, stores educational session notes
+  - `accept_teacher_offer`: automatically mints a confirmed `SessionBooking` upon learner offer acceptance
+- [x] REST endpoints in `apps/api/marketplace/views.py` and registered in `urls.py`:
+  - `GET/POST /api/marketplace/bookings/` (list user bookings / create direct booking)
+  - `GET /api/marketplace/bookings/<id>/` (detailed booking view)
+  - `POST /api/marketplace/bookings/<id>/reschedule/` (request rescheduling)
+  - `POST /api/marketplace/bookings/<id>/reschedule/respond/` (accept or decline reschedule)
+  - `POST /api/marketplace/bookings/<id>/cancel/` (cancel with reason)
+  - `POST /api/marketplace/bookings/<id>/start/` (start live session)
+  - `POST /api/marketplace/bookings/<id>/complete/` (complete session with notes)
+- [x] comprehensive unit tests in `apps/api/marketplace/tests.py`:
+  - 11 unit tests covering conflict prevention, idempotency, reschedule negotiation, cancellation, start/complete lifecycles, and Day 37 regressions
+- [x] typed API client and timezone utilities in `apps/web/lib/marketplace.ts`:
+  - `fetchUserBookings`, `fetchBookingDetail`, `createDirectBooking`, `requestBookingReschedule`, `respondBookingReschedule`, `cancelBooking`, `startSession`, `completeSession`
+  - `formatTehranDateTime`, `formatTehranTimeOnly`, `formatUserLocalTime`, `isSameTimezoneAsTehran`, `TEHRAN_TIMEZONE`
+- [x] Unified Bookings Workspace in `apps/web/app/bookings/page.tsx` & `bookings.module.css`:
+  - Status tabs (All, Upcoming, In Progress, Completed, Cancelled)
+  - Role filter (All, Learner, Teacher)
+  - Timezone banner comparing device local time with Tehran reference time
+  - Interactive Reschedule and Cancellation modals
+  - Room launch button and direct navigation
+- [x] Deep-Dive Session Detail View in `apps/web/app/bookings/[id]/page.tsx` & `booking-detail.module.css`:
+  - Meeting room card with live access gate
+  - Chronological state transition timeline
+  - Rate breakdown and participant cards
+  - Inline action buttons
+- [x] 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties
+- [x] navigation integration:
+  - Added bookings calendar link in teacher requests, teacher offers, learner Learn Now wizard, and learner my-teachers page
+- [x] contract check `scripts/check_day38.py` (103/103 checks passed) and regression checks `scripts/check_day30.py` through `scripts/check_day37.py` passing 100%
+- [x] Next.js build compiled 154/154 routes cleanly, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings
+- [x] technical documentation in `docs/marketplace/session-booking-and-scheduling.md`
+- [x] automated backup script `scripts/backup_day38.ps1` executed
+
+**Success gate:** Learners and teachers have a full-featured session scheduling state machine with double-booking conflict prevention, idempotency guards, reschedule negotiation protocols, mandatory cancellation reasons, localized Asia/Tehran timezone presentation, live room launch gates, and 103 contract checks passing cleanly.
+**Day 38 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005).
+

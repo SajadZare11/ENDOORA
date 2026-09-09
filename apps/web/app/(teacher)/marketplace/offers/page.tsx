@@ -114,6 +114,9 @@ export default function TeacherOffersPage() {
           >
             💼 پیشنهادهای ارسال‌شده من
           </Link>
+          <Link href="/bookings" className={styles.navLink}>
+            🗓 تقویم جلسات و رزروها
+          </Link>
         </nav>
       </header>
 
