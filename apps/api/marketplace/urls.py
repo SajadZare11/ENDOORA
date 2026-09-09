@@ -26,6 +26,18 @@ from .views import (
     teacher_time_off_delete_view,
     teacher_availability_settings_view,
     public_teacher_available_slots_view,
+    booking_dispute_view,
+    admin_disputes_list_view,
+    admin_dispute_detail_view,
+    admin_dispute_resolve_view,
+    teacher_onboarding_application_view,
+    admin_teacher_applications_list_view,
+    admin_teacher_application_review_view,
+    admin_teacher_eligibility_toggle_view,
+    admin_reviews_moderation_list_view,
+    admin_review_moderate_view,
+    public_pricing_plans_view,
+    admin_pricing_plans_view,
 )
 
 urlpatterns = [
@@ -61,4 +73,18 @@ urlpatterns = [
     path("teacher/availability/time-off/<uuid:time_off_id>/", teacher_time_off_delete_view, name="teacher_time_off_delete"),
     path("teacher/availability/settings/", teacher_availability_settings_view, name="teacher_availability_settings"),
     path("teachers/<uuid:teacher_id>/available-slots/", public_teacher_available_slots_view, name="public_teacher_available_slots"),
+    # Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+    path("bookings/<uuid:booking_id>/dispute/", booking_dispute_view, name="marketplace_booking_dispute"),
+    path("admin/disputes/", admin_disputes_list_view, name="marketplace_admin_disputes"),
+    path("admin/disputes/<uuid:dispute_id>/", admin_dispute_detail_view, name="marketplace_admin_dispute_detail"),
+    path("admin/disputes/<uuid:dispute_id>/resolve/", admin_dispute_resolve_view, name="marketplace_admin_dispute_resolve"),
+    path("teacher/onboarding/", teacher_onboarding_application_view, name="teacher_onboarding_application"),
+    path("admin/teachers/", admin_teacher_applications_list_view, name="marketplace_admin_teachers"),
+    path("admin/teachers/<uuid:application_id>/review/", admin_teacher_application_review_view, name="marketplace_admin_teacher_review"),
+    path("admin/teachers/<uuid:teacher_id>/eligibility/", admin_teacher_eligibility_toggle_view, name="marketplace_admin_teacher_eligibility"),
+    path("admin/reviews/", admin_reviews_moderation_list_view, name="marketplace_admin_reviews"),
+    path("admin/reviews/<uuid:review_id>/moderate/", admin_review_moderate_view, name="marketplace_admin_review_moderate"),
+    path("plans/", public_pricing_plans_view, name="marketplace_public_plans"),
+    path("admin/plans/", admin_pricing_plans_view, name="marketplace_admin_plans"),
+    path("admin/plans/<uuid:plan_id>/", admin_pricing_plans_view, name="marketplace_admin_plan_detail"),
 ]

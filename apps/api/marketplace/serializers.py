@@ -354,6 +354,9 @@ class CompleteBookingSerializer(serializers.Serializer):
 # ---------------------------------------------------------------------------
 
 class TeacherReviewSerializer(serializers.ModelSerializer):
+    teacher_name = serializers.CharField(source="teacher.get_full_name", read_only=True)
+    teacher_email = serializers.CharField(source="teacher.email", read_only=True)
+
     class Meta:
         from marketplace.models import TeacherReview
         model = TeacherReview
@@ -370,6 +373,10 @@ class TeacherReviewSerializer(serializers.ModelSerializer):
             "teacher_reply",
             "teacher_replied_at",
             "created_at",
+            "flag_reason",
+            "teacher_id",
+            "teacher_name",
+            "teacher_email",
         ]
 
 
@@ -510,3 +517,159 @@ class BookableSlotSerializer(serializers.Serializer):
     end_time_tehran = serializers.CharField()
     duration_minutes = serializers.IntegerField()
     is_bookable = serializers.BooleanField(default=True)
+
+# ---------------------------------------------------------------------------
+# Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+# ---------------------------------------------------------------------------
+
+class BookingDisputeSerializer(serializers.ModelSerializer):
+    reason_display = serializers.CharField(source="get_reason_category_display", read_only=True)
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    opened_by_id = serializers.UUIDField(source="opened_by.id", read_only=True)
+    opened_by_name = serializers.SerializerMethodField()
+    resolved_by_name = serializers.SerializerMethodField()
+    booking_summary = serializers.SerializerMethodField()
+
+    class Meta:
+        from marketplace.models import BookingDispute
+        model = BookingDispute
+        fields = [
+            "id",
+            "booking_id",
+            "opened_by_id",
+            "opened_by_name",
+            "reason_category",
+            "reason_display",
+            "description",
+            "evidence_notes",
+            "status",
+            "status_display",
+            "refund_percentage",
+            "resolution_notes",
+            "resolved_by_name",
+            "resolved_at",
+            "created_at",
+            "updated_at",
+            "booking_summary",
+        ]
+
+    def get_opened_by_name(self, obj) -> str:
+        u = obj.opened_by
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+    def get_resolved_by_name(self, obj) -> str:
+        if not obj.resolved_by:
+            return ""
+        u = obj.resolved_by
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+    def get_booking_summary(self, obj) -> dict:
+        b = obj.booking
+        learner_name = f"{b.learner.first_name} {b.learner.last_name}".strip() or b.learner.email
+        teacher_name = f"{b.teacher.first_name} {b.teacher.last_name}".strip() or b.teacher.email
+        return {
+            "id": str(b.id),
+            "learner_name": learner_name,
+            "teacher_name": teacher_name,
+            "scheduled_start": b.scheduled_start.isoformat(),
+            "scheduled_end": b.scheduled_end.isoformat(),
+            "rate_toman": int(b.rate_toman),
+            "target_skill": b.target_skill,
+            "status": b.status,
+            "status_display": b.get_status_display(),
+        }
+
+
+class OpenDisputeInputSerializer(serializers.Serializer):
+    reason_category = serializers.CharField(max_length=32)
+    description = serializers.CharField(min_length=15, max_length=5000)
+    evidence_notes = serializers.CharField(required=False, allow_blank=True, default="", max_length=5000)
+
+
+class ResolveDisputeInputSerializer(serializers.Serializer):
+    resolution_status = serializers.CharField(max_length=32)
+    resolution_notes = serializers.CharField(min_length=5, max_length=5000)
+    refund_percentage = serializers.IntegerField(min_value=0, max_value=100, default=0, required=False)
+
+
+class TeacherOnboardingApplicationSerializer(serializers.ModelSerializer):
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    teacher_id = serializers.UUIDField(source="teacher.id", read_only=True)
+    teacher_email = serializers.EmailField(source="teacher.email", read_only=True)
+    teacher_name = serializers.SerializerMethodField()
+    reviewed_by_name = serializers.SerializerMethodField()
+    is_teacher_verified = serializers.BooleanField(source="teacher.is_teacher_verified", read_only=True)
+    marketplace_eligible = serializers.BooleanField(source="teacher.marketplace_eligible", read_only=True)
+
+    class Meta:
+        from marketplace.models import TeacherOnboardingApplication
+        model = TeacherOnboardingApplication
+        fields = [
+            "id",
+            "teacher_id",
+            "teacher_email",
+            "teacher_name",
+            "status",
+            "status_display",
+            "national_id_number",
+            "id_document_url",
+            "degree_document_url",
+            "celta_tesol_document_url",
+            "sample_teaching_url",
+            "admin_notes",
+            "rejection_reason",
+            "reviewed_by_name",
+            "reviewed_at",
+            "is_teacher_verified",
+            "marketplace_eligible",
+            "created_at",
+            "updated_at",
+        ]
+
+    def get_teacher_name(self, obj) -> str:
+        u = obj.teacher
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+    def get_reviewed_by_name(self, obj) -> str:
+        if not obj.reviewed_by:
+            return ""
+        u = obj.reviewed_by
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+
+class SubmitOnboardingInputSerializer(serializers.Serializer):
+    national_id_number = serializers.CharField(max_length=20, required=False, allow_blank=True)
+    id_document_url = serializers.URLField(required=False, allow_blank=True)
+    degree_document_url = serializers.URLField(required=False, allow_blank=True)
+    celta_tesol_document_url = serializers.URLField(required=False, allow_blank=True)
+    sample_teaching_url = serializers.URLField(required=False, allow_blank=True)
+
+
+class ReviewOnboardingInputSerializer(serializers.Serializer):
+    action = serializers.ChoiceField(choices=["approve", "reject", "request_revision"])
+    admin_notes = serializers.CharField(required=False, allow_blank=True, default="")
+    reason = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class PlatformPricingPlanSerializer(serializers.ModelSerializer):
+    price_toman_number = serializers.IntegerField(source="price_toman", read_only=True)
+
+    class Meta:
+        from marketplace.models import PlatformPricingPlan
+        model = PlatformPricingPlan
+        fields = [
+            "id",
+            "code",
+            "name_fa",
+            "name_en",
+            "duration_days",
+            "price_toman",
+            "price_toman_number",
+            "is_active",
+            "is_featured",
+            "features_fa",
+            "note_fa",
+            "note_en",
+            "created_at",
+            "updated_at",
+        ]

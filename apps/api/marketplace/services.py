@@ -1369,3 +1369,366 @@ def generate_teacher_available_slots(
         curr_date += timedelta(days=1)
 
     return days_result
+
+# ---------------------------------------------------------------------------
+# Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+# ---------------------------------------------------------------------------
+
+def open_booking_dispute(
+    user: User,
+    booking_id: str,
+    reason_category: str,
+    description: str,
+    evidence_notes: str = "",
+):
+    from marketplace.models import (
+        SessionBooking,
+        BookingDispute,
+        BookingStatus,
+        DisputeReasonCategory,
+        DisputeStatus,
+    )
+
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه مورد نظر یافت نشد.")
+
+    # Only participants can dispute
+    if booking.learner != user and booking.teacher != user:
+        raise PermissionDenied("فقط طرفین حاضر در این جلسه (زبان‌آموز یا مدرس) مجاز به ثبت اختلاف هستند.")
+
+    if not description or len(description.strip()) < 15:
+        raise ValidationError("توضیحات اختلاف باید حداقل ۱۵ کاراکتر و شامل شرح شفاف مشکل باشد.")
+
+    if reason_category not in DisputeReasonCategory.values:
+        raise ValidationError("دسته‌بندی دلیل اختلاف نامعتبر است.")
+
+    # Check if dispute already exists
+    if hasattr(booking, "dispute") and booking.dispute is not None:
+        raise ValidationError("برای این جلسه قبلاً پرونده اختلاف ثبت شده است.")
+
+    eligible_statuses = [
+        BookingStatus.CONFIRMED,
+        BookingStatus.IN_PROGRESS,
+        BookingStatus.COMPLETED,
+        BookingStatus.RESCHEDULE_REQUESTED,
+    ]
+    if booking.status not in eligible_statuses:
+        raise ValidationError(f"امکان ثبت اختلاف برای جلسه‌ای با وضعیت '{booking.get_status_display()}' وجود ندارد.")
+
+    with transaction.atomic():
+        dispute = BookingDispute.objects.create(
+            booking=booking,
+            opened_by=user,
+            reason_category=reason_category,
+            description=description.strip(),
+            evidence_notes=evidence_notes.strip(),
+            status=DisputeStatus.OPEN,
+        )
+        booking.status = BookingStatus.DISPUTED
+        booking.save(update_fields=["status", "updated_at"])
+
+    return dispute
+
+
+def list_marketplace_disputes(status: str | None = None, category: str | None = None):
+    from marketplace.models import BookingDispute
+    qs = BookingDispute.objects.select_related("booking", "booking__learner", "booking__teacher", "opened_by", "resolved_by").all()
+    if status:
+        qs = qs.filter(status=status)
+    if category:
+        qs = qs.filter(reason_category=category)
+    return list(qs.order_by("-created_at"))
+
+
+def get_booking_dispute_detail(dispute_id: str, user: User):
+    from marketplace.models import BookingDispute
+    try:
+        dispute = BookingDispute.objects.select_related("booking", "booking__learner", "booking__teacher", "opened_by", "resolved_by").get(id=dispute_id)
+    except BookingDispute.DoesNotExist:
+        raise ValidationError("پرونده اختلاف مورد نظر یافت نشد.")
+
+    # Allow staff or booking participants
+    is_staff = user.is_staff or getattr(user, "role", "") == User.Role.ADMINISTRATOR
+    is_participant = dispute.booking.learner == user or dispute.booking.teacher == user
+    if not (is_staff or is_participant):
+        raise PermissionDenied("شما مجوز مشاهده این پرونده اختلاف را ندارید.")
+
+    return dispute
+
+
+def resolve_booking_dispute(
+    admin_user: User,
+    dispute_id: str,
+    resolution_status: str,
+    resolution_notes: str,
+    refund_percentage: int = 0,
+):
+    from marketplace.models import BookingDispute, DisputeStatus, BookingStatus
+
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران و کارشناسان پشتیبانی مجاز به صدور رأی اختلاف هستند.")
+
+    try:
+        dispute = BookingDispute.objects.select_related("booking").get(id=dispute_id)
+    except BookingDispute.DoesNotExist:
+        raise ValidationError("پرونده اختلاف یافت نشد.")
+
+    valid_resolutions = [
+        DisputeStatus.RESOLVED_FULL_REFUND,
+        DisputeStatus.RESOLVED_PARTIAL_REFUND,
+        DisputeStatus.RESOLVED_PAY_TEACHER,
+        DisputeStatus.DISMISSED,
+    ]
+    if resolution_status not in valid_resolutions:
+        raise ValidationError("نتیجه رأی صادره نامعتبر است.")
+
+    if not (0 <= refund_percentage <= 100):
+        raise ValidationError("درصد بازگشت وجه باید عددی بین ۰ تا ۱۰۰ باشد.")
+
+    if not resolution_notes or len(resolution_notes.strip()) < 5:
+        raise ValidationError("ثبت توضیحات و مستندات رأی داوری برای پرونده الزامی است.")
+
+    with transaction.atomic():
+        dispute.status = resolution_status
+        dispute.resolution_notes = resolution_notes.strip()
+        dispute.refund_percentage = refund_percentage
+        dispute.resolved_by = admin_user
+        dispute.resolved_at = timezone.now()
+        dispute.save()
+
+        booking = dispute.booking
+        if resolution_status == DisputeStatus.RESOLVED_FULL_REFUND:
+            dispute.refund_percentage = 100
+            dispute.save(update_fields=["refund_percentage"])
+            booking.status = BookingStatus.CANCELLED_BY_TEACHER
+            booking.cancellation_reason = f"لغو ناشی از رأی داوری اندورا (بازپرداخت ۱۰۰٪ به زبان‌آموز): {resolution_notes}"
+        elif resolution_status == DisputeStatus.RESOLVED_PARTIAL_REFUND:
+            booking.status = BookingStatus.COMPLETED
+            booking.session_notes = f"تسویه توافقی داوری با {refund_percentage}٪ بازگشت وجه به زبان‌آموز."
+        elif resolution_status == DisputeStatus.RESOLVED_PAY_TEACHER:
+            booking.status = BookingStatus.COMPLETED
+            dispute.refund_percentage = 0
+            dispute.save(update_fields=["refund_percentage"])
+        elif resolution_status == DisputeStatus.DISMISSED:
+            booking.status = BookingStatus.COMPLETED
+
+        booking.save(update_fields=["status", "cancellation_reason", "session_notes", "updated_at"])
+
+    return dispute
+
+
+def get_or_create_teacher_onboarding_application(teacher_user: User):
+    from marketplace.models import TeacherOnboardingApplication
+    if teacher_user.role != User.Role.TEACHER:
+        raise PermissionDenied("فقط کاربران دارای نقش مدرس می‌توانند درخواست احراز هویت ثبت کنند.")
+
+    app, _ = TeacherOnboardingApplication.objects.get_or_create(
+        teacher=teacher_user,
+        defaults={"status": "pending"},
+    )
+    return app
+
+
+def submit_teacher_onboarding_application(teacher_user: User, data: dict):
+    from marketplace.models import TeacherOnboardingStatus
+
+    app = get_or_create_teacher_onboarding_application(teacher_user)
+
+    if "national_id_number" in data:
+        app.national_id_number = str(data["national_id_number"]).strip()
+    if "id_document_url" in data:
+        app.id_document_url = str(data["id_document_url"]).strip()
+    if "degree_document_url" in data:
+        app.degree_document_url = str(data["degree_document_url"]).strip()
+    if "celta_tesol_document_url" in data:
+        app.celta_tesol_document_url = str(data["celta_tesol_document_url"]).strip()
+    if "sample_teaching_url" in data:
+        app.sample_teaching_url = str(data["sample_teaching_url"]).strip()
+
+    app.status = TeacherOnboardingStatus.PENDING
+    app.rejection_reason = ""
+    app.save()
+    return app
+
+
+def list_teacher_onboarding_applications(status: str | None = None):
+    from marketplace.models import TeacherOnboardingApplication
+    qs = TeacherOnboardingApplication.objects.select_related("teacher", "reviewed_by").all()
+    if status:
+        qs = qs.filter(status=status)
+    return list(qs.order_by("-created_at"))
+
+
+def review_teacher_onboarding_application(
+    admin_user: User,
+    application_id: str,
+    action: str,
+    admin_notes: str = "",
+    reason: str = "",
+):
+    from marketplace.models import TeacherOnboardingApplication, TeacherOnboardingStatus
+
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران مجاز به تأیید مدارک مدرسین هستند.")
+
+    try:
+        app = TeacherOnboardingApplication.objects.select_related("teacher").get(id=application_id)
+    except TeacherOnboardingApplication.DoesNotExist:
+        raise ValidationError("درخواست احراز هویت یافت نشد.")
+
+    teacher = app.teacher
+
+    with transaction.atomic():
+        app.reviewed_by = admin_user
+        app.reviewed_at = timezone.now()
+        app.admin_notes = admin_notes.strip()
+
+        if action == "approve":
+            app.status = TeacherOnboardingStatus.APPROVED
+            app.rejection_reason = ""
+            teacher.is_teacher_verified = True
+            teacher.marketplace_eligible = True
+            teacher.save(update_fields=["is_teacher_verified", "marketplace_eligible"])
+        elif action == "reject":
+            app.status = TeacherOnboardingStatus.REJECTED
+            app.rejection_reason = reason.strip() or "مدارک ارسالی با استانداردهای علمی پلتفرم همخوانی ندارد."
+            teacher.is_teacher_verified = False
+            teacher.marketplace_eligible = False
+            teacher.save(update_fields=["is_teacher_verified", "marketplace_eligible"])
+        elif action == "request_revision":
+            app.status = TeacherOnboardingStatus.REVISION_REQUESTED
+            app.rejection_reason = reason.strip() or "لطفاً تصاویر باکیفیت‌تر و شفاف‌تری از مدارک بارگذاری فرمایید."
+            teacher.is_teacher_verified = False
+            teacher.marketplace_eligible = False
+            teacher.save(update_fields=["is_teacher_verified", "marketplace_eligible"])
+        else:
+            raise ValidationError("عملیات بررسی نامعتبر است (مجاز: approve, reject, request_revision).")
+
+        app.save()
+
+    return app
+
+
+def toggle_teacher_marketplace_eligibility(
+    admin_user: User,
+    teacher_id: str,
+    eligible: bool,
+    reason: str = "",
+):
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران مجاز به تغییر سطح دسترسی بازارگاه مدرسین هستند.")
+
+    try:
+        teacher = User.objects.get(id=teacher_id, role=User.Role.TEACHER)
+    except User.DoesNotExist:
+        raise ValidationError("مدرس مورد نظر یافت نشد.")
+
+    teacher.marketplace_eligible = bool(eligible)
+    teacher.save(update_fields=["marketplace_eligible"])
+
+    return {
+        "teacher_id": str(teacher.id),
+        "teacher_email": teacher.email,
+        "marketplace_eligible": teacher.marketplace_eligible,
+        "is_teacher_verified": teacher.is_teacher_verified,
+        "reason": reason,
+    }
+
+
+def list_reviews_for_moderation(status: str | None = None):
+    from marketplace.models import TeacherReview, ReviewStatus
+    qs = TeacherReview.objects.select_related("booking", "teacher", "learner").all()
+    if status:
+        qs = qs.filter(status=status)
+    else:
+        qs = qs.filter(status__in=[ReviewStatus.PENDING_MODERATION, ReviewStatus.FLAGGED])
+    return list(qs.order_by("-created_at"))
+
+
+def moderate_review(
+    admin_user: User,
+    review_id: str,
+    action: str,
+    admin_notes: str = "",
+):
+    from marketplace.models import TeacherReview, ReviewStatus
+
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران و ناظران مجاز به تایید یا حذف بازخوردها هستند.")
+
+    try:
+        review = TeacherReview.objects.get(id=review_id)
+    except TeacherReview.DoesNotExist:
+        raise ValidationError("بازخورد مورد نظر یافت نشد.")
+
+    if action == "approve":
+        review.status = ReviewStatus.PUBLISHED
+    elif action == "remove":
+        review.status = ReviewStatus.REMOVED
+        if admin_notes:
+            review.flag_reason = f"حذف توسط ناظر: {admin_notes.strip()}"
+    else:
+        raise ValidationError("عملیات نظارت نامعتبر است (مجاز: approve, remove).")
+
+    review.save(update_fields=["status", "flag_reason", "updated_at"])
+    return review
+
+
+def get_active_pricing_plans():
+    from marketplace.models import PlatformPricingPlan
+    plans = list(PlatformPricingPlan.objects.filter(is_active=True).order_by("price_toman"))
+    if not plans:
+        # Seed initial launch plan from Day 06 baseline
+        plan = PlatformPricingPlan.objects.create(
+            code="launch_premium_90d",
+            name_fa="اشتراک ۹۰ روزه پرمیوم (دوره راه‌اندازی)",
+            name_en="90-Day Premium Launch Plan",
+            duration_days=90,
+            price_toman=Decimal("420000"),
+            is_active=True,
+            is_featured=True,
+            features_fa=[
+                "دسترسی نامحدود به دستیار نگارش هوشمند اندورا",
+                "تمرین‌های روزانه تصحیح خودکار تلفظ و مکالمه هوش مصنوعی",
+                "گزارش جامع ژنوم اشتباهات و تحلیل یادگیری",
+                "تخفیف ویژه جلسات تدریس خصوصی در بازارگاه اساتید",
+            ],
+            note_fa="قیمت اولیه برای دوره راه‌اندازی است و از بخش مدیریت سیستم قابل تنظیم است.",
+            note_en="This is the launch-plan display price, centrally managed through administrator configuration.",
+        )
+        plans = [plan]
+    return plans
+
+
+def update_pricing_plan(
+    admin_user: User,
+    plan_id: str,
+    data: dict,
+):
+    from marketplace.models import PlatformPricingPlan
+
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران سیستم مجاز به تغییر پلن‌های قیمت‌گذاری هستند.")
+
+    try:
+        plan = PlatformPricingPlan.objects.get(id=plan_id)
+    except PlatformPricingPlan.DoesNotExist:
+        raise ValidationError("پلن قیمت‌گذاری یافت نشد.")
+
+    if "price_toman" in data:
+        plan.price_toman = Decimal(str(data["price_toman"]))
+    if "is_active" in data:
+        plan.is_active = bool(data["is_active"])
+    if "is_featured" in data:
+        plan.is_featured = bool(data["is_featured"])
+    if "name_fa" in data:
+        plan.name_fa = str(data["name_fa"])
+    if "name_en" in data:
+        plan.name_en = str(data["name_en"])
+    if "duration_days" in data:
+        plan.duration_days = int(data["duration_days"])
+
+    plan.save()
+    return plan

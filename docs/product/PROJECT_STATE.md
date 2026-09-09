@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 40 — Build Teacher Availability Calendar, Recurring Slots, and Time-Off Management (MKT-002)
-- **Day 40 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–34 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, Teacher Classes/Roster/Audited Hours Ledger, and Teacher Assignments/Accommodations/Autosave
-- **Schema version:** Day 40 adds `marketplace.0004_teacheravailabilitysetting_teacheravailabilityslot_and_more`
+- **Roadmap day completed:** Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007 / MKT-006)
+- **Day 41 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–40 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, and Teacher Availability Calendar
+- **Schema version:** Day 41 adds `marketplace.0005_platformpricingplan_bookingdispute_and_more`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1536,9 +1536,48 @@ Key accomplishments:
 - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
 - Full verification: 155/155 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (78/78 checks in `scripts/check_day40.py`, all regression checks passed).
 
+### Day 41 Accomplishments (Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution)
+- Created `BookingDispute`, `TeacherOnboardingApplication`, and `PlatformPricingPlan` models with migration `0005_platformpricingplan_bookingdispute_and_more.py` in `apps/api/marketplace`:
+  - Categories: `teacher_absent`, `learner_absent`, `technical_difficulties`, `poor_quality`, `unprofessional_behavior`, `payment_disagreement`, `other`.
+  - Dispute statuses: `open`, `under_review`, `resolved_full_refund`, `resolved_partial_refund`, `resolved_pay_teacher`, `dismissed`.
+  - Onboarding statuses: `pending`, `in_review`, `approved`, `rejected`, `revision_requested`.
+  - Platform subscription plan store (`launch_premium_90d`, 420,000 toman, 90 days, JSON features, and bilingual notes).
+- Services in `apps/api/marketplace/services.py`:
+  - Dispute resolution engine: `open_booking_dispute`, `list_marketplace_disputes`, `get_booking_dispute_detail`, `resolve_booking_dispute` with refund calculations and booking status transitions.
+  - Teacher verification pipeline: `get_or_create_teacher_onboarding_application`, `submit_teacher_onboarding_application`, `list_teacher_onboarding_applications`, `review_teacher_onboarding_application`, `toggle_teacher_marketplace_eligibility`.
+  - Content moderation: `list_reviews_for_moderation`, `moderate_review`.
+  - Platform pricing: `get_active_pricing_plans`, `update_pricing_plan`.
+- REST Endpoints in `apps/api/marketplace/views.py` and registered in `urls.py`:
+  - `GET/POST /api/marketplace/bookings/<id>/dispute/`
+  - `GET /api/marketplace/admin/disputes/`
+  - `GET /api/marketplace/admin/disputes/<id>/`
+  - `POST /api/marketplace/admin/disputes/<id>/resolve/`
+  - `GET/POST /api/marketplace/teacher/onboarding/`
+  - `GET /api/marketplace/admin/teachers/`
+  - `POST /api/marketplace/admin/teachers/<id>/review/`
+  - `POST /api/marketplace/admin/teachers/<id>/eligibility/`
+  - `GET /api/marketplace/admin/reviews/`
+  - `POST /api/marketplace/admin/reviews/<id>/moderate/`
+  - `GET /api/marketplace/plans/`
+  - `GET/PATCH /api/marketplace/admin/plans/` & `.../<id>/`
+- Django Admin in `apps/api/marketplace/admin.py`: `BookingDisputeAdmin`, `TeacherOnboardingApplicationAdmin`, `PlatformPricingPlanAdmin`.
+- Unit Tests in `apps/api/marketplace/tests.py`: 29 unit tests (29/29 passing) covering dispute lifecycle, onboarding approval/rejection, review moderation, and pricing plans.
+- Typed Frontend API Client in `apps/web/lib/marketplace.ts`:
+  - TypeScript interfaces and 13 new API methods for disputes, teacher onboarding, review moderation, and pricing plans.
+- Dynamic Public Pricing in `apps/web/lib/public-site.ts`:
+  - `getLaunchPricingPlan` dynamic loader with ISR revalidation and graceful fallback.
+- Admin Marketplace Operations Hub in `apps/web/app/(admin)/marketplace/page.tsx` & `marketplace-admin.module.css`:
+  - 4-tab unified hub (Disputes, Teacher Onboarding, Review Moderation, Platform Pricing).
+- Teacher Verification Portal in `apps/web/app/(teacher)/teacher/verification/page.tsx` & `verification.module.css`:
+  - Dynamic status banners, credential upload form, honor code acknowledgment, and step indicator.
+- Booking Detail Dispute Integration in `apps/web/app/bookings/[id]/page.tsx` & `booking-detail.module.css`:
+  - Dispute filing modal and persistent resolution banner.
+- 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Full verification: 157/157 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (132/132 checks in `scripts/check_day41.py`, all regression checks passed).
+
 ## Exact next day
 
-**Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007).**
+**Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008).**
 
-Do not begin Day 41 until the Day 40 commit is pushed and `git status --short --branch`
+Do not begin Day 42 until the Day 41 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

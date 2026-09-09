@@ -54,3 +54,28 @@ class TeacherTimeOffAdmin(admin.ModelAdmin):
 @admin.register(TeacherAvailabilitySetting)
 class TeacherAvailabilitySettingAdmin(admin.ModelAdmin):
     list_display = ("teacher", "notice_lead_time_hours", "max_booking_ahead_days", "default_session_duration_minutes", "default_buffer_minutes")
+
+from .models import BookingDispute, TeacherOnboardingApplication, PlatformPricingPlan
+
+
+@admin.register(BookingDispute)
+class BookingDisputeAdmin(admin.ModelAdmin):
+    list_display = ("id", "booking", "opened_by", "reason_category", "status", "refund_percentage", "created_at")
+    list_filter = ("status", "reason_category", "created_at")
+    search_fields = ("booking__id", "opened_by__email", "description", "resolution_notes")
+    readonly_fields = ("created_at", "updated_at")
+
+
+@admin.register(TeacherOnboardingApplication)
+class TeacherOnboardingApplicationAdmin(admin.ModelAdmin):
+    list_display = ("id", "teacher", "status", "national_id_number", "reviewed_by", "reviewed_at", "created_at")
+    list_filter = ("status", "created_at")
+    search_fields = ("teacher__email", "teacher__first_name", "teacher__last_name", "national_id_number")
+    readonly_fields = ("created_at", "updated_at")
+
+
+@admin.register(PlatformPricingPlan)
+class PlatformPricingPlanAdmin(admin.ModelAdmin):
+    list_display = ("code", "name_fa", "duration_days", "price_toman", "is_active", "is_featured")
+    list_filter = ("is_active", "is_featured")
+    search_fields = ("code", "name_fa", "name_en")

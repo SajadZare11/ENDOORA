@@ -536,3 +536,229 @@ class TeacherAvailabilitySetting(models.Model):
 
     def __str__(self):
         return f"Settings for {self.teacher.email} (Notice: {self.notice_lead_time_hours}h, Ahead: {self.max_booking_ahead_days}d)"
+
+# ---------------------------------------------------------------------------
+# Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+# ---------------------------------------------------------------------------
+
+class DisputeReasonCategory(models.TextChoices):
+    TEACHER_ABSENT = "teacher_absent", _("عدم حضور مدرس / غیبت")
+    LEARNER_ABSENT = "learner_absent", _("عدم حضور زبان‌آموز")
+    TECHNICAL_DIFFICULTIES = "technical_difficulties", _("مشکل فنی یا قطعی سیستم/اینترنت")
+    POOR_QUALITY = "poor_quality", _("کیفیت نامطلوب جلسه / عدم تطابق با تخصص")
+    UNPROFESSIONAL_BEHAVIOR = "unprofessional_behavior", _("رفتار نامناسب یا نقض قوانین")
+    PAYMENT_DISAGREEMENT = "payment_disagreement", _("اختلاف مالی یا محاسباتی")
+    OTHER = "other", _("سایر موارد")
+
+
+class DisputeStatus(models.TextChoices):
+    OPEN = "open", _("در انتظار بررسی")
+    UNDER_REVIEW = "under_review", _("در حال بررسی کارشناس داوری")
+    RESOLVED_FULL_REFUND = "resolved_full_refund", _("تایید بازگشت کامل وجه به زبان‌آموز")
+    RESOLVED_PARTIAL_REFUND = "resolved_partial_refund", _("تایید بازگشت بخشی از وجه")
+    RESOLVED_PAY_TEACHER = "resolved_pay_teacher", _("رد ادعا و واریز کامل به مدرس")
+    DISMISSED = "dismissed", _("رد ادعا بدون تغییر مالی")
+
+
+class BookingDispute(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    booking = models.OneToOneField(
+        "marketplace.SessionBooking",
+        on_delete=models.CASCADE,
+        related_name="dispute",
+        help_text="جلسه مورد اختلاف",
+    )
+    opened_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="opened_disputes",
+        help_text="کاربر شاکی (زبان‌آموز یا مدرس)",
+    )
+    reason_category = models.CharField(
+        max_length=32,
+        choices=DisputeReasonCategory.choices,
+        db_index=True,
+        help_text="دسته‌بندی اصلی دلیل اختلاف",
+    )
+    description = models.TextField(
+        help_text="توضیحات تفصیلی کاربر درباره مشکل جلسه (حداقل ۱۵ کاراکتر)",
+    )
+    evidence_notes = models.TextField(
+        blank=True,
+        default="",
+        help_text="شواهد، لینک‌ها یا یادداشت‌های تکمیلی شاکی",
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=DisputeStatus.choices,
+        default=DisputeStatus.OPEN,
+        db_index=True,
+        help_text="وضعیت رسیدگی به اختلاف در پنل مدیریت",
+    )
+    refund_percentage = models.PositiveSmallIntegerField(
+        default=0,
+        help_text="درصد بازپرداخت به زبان‌آموز (۰ تا ۱۰۰)",
+    )
+    resolution_notes = models.TextField(
+        blank=True,
+        default="",
+        help_text="توضیحات و دلایل رای صادره توسط تیم داوری اندورا",
+    )
+    resolved_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="resolved_disputes",
+        help_text="کارشناس یا مدیر رسیدگی‌کننده به اختلاف",
+    )
+    resolved_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["status", "-created_at"]),
+            models.Index(fields=["opened_by", "-created_at"]),
+        ]
+
+    def __str__(self):
+        return f"Dispute {self.id} for Booking {self.booking_id} ({self.get_status_display()})"
+
+
+class TeacherOnboardingStatus(models.TextChoices):
+    PENDING = "pending", _("در انتظار بررسی کارشناس")
+    IN_REVIEW = "in_review", _("در حال بررسی مدارک")
+    APPROVED = "approved", _("تأیید شده / فعال در بازارگاه")
+    REJECTED = "rejected", _("رد درخواست")
+    REVISION_REQUESTED = "revision_requested", _("نیازمند اصلاح یا بارگذاری مجدد مدارک")
+
+
+class TeacherOnboardingApplication(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="onboarding_application",
+        help_text="کاربر مدرس متقاضی تدریس در بازارگاه",
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=TeacherOnboardingStatus.choices,
+        default=TeacherOnboardingStatus.PENDING,
+        db_index=True,
+    )
+    national_id_number = models.CharField(
+        max_length=20,
+        blank=True,
+        default="",
+        help_text="شماره ملی مدرس جهت احراز هویت",
+    )
+    id_document_url = models.URLField(
+        blank=True,
+        default="",
+        help_text="لینک تصویر کارت ملی یا شناسنامه",
+    )
+    degree_document_url = models.URLField(
+        blank=True,
+        default="",
+        help_text="لینک دانشنامه یا گواهی تحصیلی دانشگاهی",
+    )
+    celta_tesol_document_url = models.URLField(
+        blank=True,
+        default="",
+        help_text="لینک مدارک بین‌المللی تدریس (TTC، CELTA، TESOL، DELTA)",
+    )
+    sample_teaching_url = models.URLField(
+        blank=True,
+        default="",
+        help_text="لینک ویدیوی نمونه تدریس ۳ تا ۵ دقیقه‌ای",
+    )
+    admin_notes = models.TextField(
+        blank=True,
+        default="",
+        help_text="یادداشت‌های محرمانه کارشناس بررسی‌کننده",
+    )
+    rejection_reason = models.TextField(
+        blank=True,
+        default="",
+        help_text="دلیل رد یا موارد نیازمند اصلاح ارسالی برای مدرس",
+    )
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="reviewed_teacher_applications",
+    )
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["status", "-created_at"]),
+        ]
+
+    def __str__(self):
+        return f"Onboarding Application: {self.teacher.email} ({self.get_status_display()})"
+
+
+class PlatformPricingPlan(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    code = models.CharField(
+        max_length=64,
+        unique=True,
+        db_index=True,
+        help_text="شناسه یکتای پلن (مانند launch_premium_90d)",
+    )
+    name_fa = models.CharField(
+        max_length=120,
+        help_text="نام فارسی پلن اشتراک",
+    )
+    name_en = models.CharField(
+        max_length=120,
+        help_text="نام انگلیسی پلن اشتراک",
+    )
+    duration_days = models.PositiveIntegerField(
+        default=90,
+        help_text="طول دوره اشتراک به روز",
+    )
+    price_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=Decimal("420000"),
+        help_text="قیمت اشتراک به تومان",
+    )
+    is_active = models.BooleanField(
+        default=True,
+        db_index=True,
+        help_text="فعال بودن پلن جهت خرید",
+    )
+    is_featured = models.BooleanField(
+        default=False,
+        help_text="برگزیده بودن پلن در صفحات قیمت‌گذاری",
+    )
+    features_fa = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="لیست مزایا و ویژگی‌های پلن به فارسی",
+    )
+    note_fa = models.TextField(
+        blank=True,
+        default="قیمت اولیه برای دوره راه‌اندازی است و از بخش مدیریت سیستم قابل تنظیم است.",
+    )
+    note_en = models.TextField(
+        blank=True,
+        default="This is the launch-plan display price, centrally managed through administrator configuration.",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["price_toman"]
+
+    def __str__(self):
+        return f"{self.name_fa} ({self.price_toman} تومان / {self.duration_days} روز)"

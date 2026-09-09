@@ -627,3 +627,297 @@ def public_teacher_available_slots_view(request, teacher_id):
         "slots": all_slots,
         "total_slots": len(all_slots),
     }, status=status.HTTP_200_OK)
+
+# ---------------------------------------------------------------------------
+# Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+# ---------------------------------------------------------------------------
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def booking_dispute_view(request, booking_id):
+    """Participant checks dispute status or opens a new dispute for a booking."""
+    from marketplace.models import SessionBooking
+    from marketplace.services import open_booking_dispute
+    from marketplace.serializers import BookingDisputeSerializer, OpenDisputeInputSerializer
+
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        return Response({"detail": "جلسه مورد نظر یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+    if booking.learner != request.user and booking.teacher != request.user and not request.user.is_staff:
+        return Response({"detail": "شما دسترسی به این جلسه را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+    if request.method == "GET":
+        if hasattr(booking, "dispute") and booking.dispute is not None:
+            return Response({
+                "has_dispute": True,
+                "dispute": BookingDisputeSerializer(booking.dispute).data,
+            }, status=status.HTTP_200_OK)
+        return Response({"has_dispute": False, "dispute": None}, status=status.HTTP_200_OK)
+
+    elif request.method == "POST":
+        ser = OpenDisputeInputSerializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        dispute = open_booking_dispute(
+            user=request.user,
+            booking_id=str(booking.id),
+            reason_category=ser.validated_data["reason_category"],
+            description=ser.validated_data["description"],
+            evidence_notes=ser.validated_data.get("evidence_notes", ""),
+        )
+        return Response({
+            "message": "پرونده اختلاف با موفقیت ثبت شد و جهت داوری ارسال گردید.",
+            "dispute": BookingDisputeSerializer(dispute).data,
+        }, status=status.HTTP_201_CREATED)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def admin_disputes_list_view(request):
+    """Admin lists all marketplace disputes with filtering."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی به بخش داوری فقط برای مدیران سیستم مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import list_marketplace_disputes
+    from marketplace.serializers import BookingDisputeSerializer
+
+    status_filter = request.query_params.get("status")
+    category_filter = request.query_params.get("category")
+
+    disputes = list_marketplace_disputes(status=status_filter, category=category_filter)
+    return Response({
+        "disputes": BookingDisputeSerializer(disputes, many=True).data,
+        "count": len(disputes),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def admin_dispute_detail_view(request, dispute_id):
+    """Retrieve detailed dispute record."""
+    from marketplace.services import get_booking_dispute_detail
+    from marketplace.serializers import BookingDisputeSerializer
+
+    dispute = get_booking_dispute_detail(str(dispute_id), request.user)
+    return Response(BookingDisputeSerializer(dispute).data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def admin_dispute_resolve_view(request, dispute_id):
+    """Admin resolves a dispute with settlement outcome."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای کارشناسان داوری مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import resolve_booking_dispute
+    from marketplace.serializers import ResolveDisputeInputSerializer, BookingDisputeSerializer
+
+    ser = ResolveDisputeInputSerializer(data=request.data)
+    if not ser.is_valid():
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    dispute = resolve_booking_dispute(
+        admin_user=request.user,
+        dispute_id=str(dispute_id),
+        resolution_status=ser.validated_data["resolution_status"],
+        resolution_notes=ser.validated_data["resolution_notes"],
+        refund_percentage=ser.validated_data.get("refund_percentage", 0),
+    )
+    return Response({
+        "message": "رأی داوری با موفقیت برای پرونده صادر شد.",
+        "dispute": BookingDisputeSerializer(dispute).data,
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def teacher_onboarding_application_view(request):
+    """Teacher checks application status or submits credentials for marketplace onboarding."""
+    from accounts.models import User
+    if request.user.role != User.Role.TEACHER:
+        return Response({"detail": "فقط اساتید مجاز به ثبت درخواست احراز هویت هستند."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import (
+        get_or_create_teacher_onboarding_application,
+        submit_teacher_onboarding_application,
+    )
+    from marketplace.serializers import (
+        TeacherOnboardingApplicationSerializer,
+        SubmitOnboardingInputSerializer,
+    )
+
+    if request.method == "GET":
+        app = get_or_create_teacher_onboarding_application(request.user)
+        return Response(TeacherOnboardingApplicationSerializer(app).data, status=status.HTTP_200_OK)
+
+    elif request.method == "POST":
+        ser = SubmitOnboardingInputSerializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        app = submit_teacher_onboarding_application(request.user, ser.validated_data)
+        return Response({
+            "message": "مدارک و اطلاعات هویتی با موفقیت ارسال شد و در نوبت بررسی قرار گرفت.",
+            "application": TeacherOnboardingApplicationSerializer(app).data,
+        }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def admin_teacher_applications_list_view(request):
+    """Admin reviews the queue of teacher onboarding applications."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import list_teacher_onboarding_applications
+    from marketplace.serializers import TeacherOnboardingApplicationSerializer
+
+    status_filter = request.query_params.get("status")
+    apps = list_teacher_onboarding_applications(status=status_filter)
+    return Response({
+        "applications": TeacherOnboardingApplicationSerializer(apps, many=True).data,
+        "count": len(apps),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def admin_teacher_application_review_view(request, application_id):
+    """Admin approves, rejects, or requests revisions for a teacher's onboarding application."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import review_teacher_onboarding_application
+    from marketplace.serializers import ReviewOnboardingInputSerializer, TeacherOnboardingApplicationSerializer
+
+    ser = ReviewOnboardingInputSerializer(data=request.data)
+    if not ser.is_valid():
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    app = review_teacher_onboarding_application(
+        admin_user=request.user,
+        application_id=str(application_id),
+        action=ser.validated_data["action"],
+        admin_notes=ser.validated_data.get("admin_notes", ""),
+        reason=ser.validated_data.get("reason", ""),
+    )
+    return Response({
+        "message": f"وضعیت پرونده متقاضی به '{app.get_status_display()}' تغییر یافت.",
+        "application": TeacherOnboardingApplicationSerializer(app).data,
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def admin_teacher_eligibility_toggle_view(request, teacher_id):
+    """Admin toggles marketplace eligibility for a teacher."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import toggle_teacher_marketplace_eligibility
+
+    eligible = request.data.get("eligible", False)
+    reason = request.data.get("reason", "")
+
+    result = toggle_teacher_marketplace_eligibility(
+        admin_user=request.user,
+        teacher_id=str(teacher_id),
+        eligible=eligible,
+        reason=reason,
+    )
+    return Response({
+        "message": "سطح دسترسی بازارگاه مدرس با موفقیت بروزرسانی شد.",
+        "result": result,
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def admin_reviews_moderation_list_view(request):
+    """Admin lists reviews requiring moderation (flagged or pending moderation)."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای ناظران محتوا مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import list_reviews_for_moderation
+    from marketplace.serializers import TeacherReviewSerializer
+
+    status_filter = request.query_params.get("status")
+    reviews = list_reviews_for_moderation(status=status_filter)
+    return Response({
+        "reviews": TeacherReviewSerializer(reviews, many=True).data,
+        "count": len(reviews),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def admin_review_moderate_view(request, review_id):
+    """Admin approves or removes a moderated review."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای ناظران محتوا مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.services import moderate_review
+    from marketplace.serializers import TeacherReviewSerializer
+
+    action = request.data.get("action")
+    notes = request.data.get("notes", "")
+
+    review = moderate_review(
+        admin_user=request.user,
+        review_id=str(review_id),
+        action=action,
+        admin_notes=notes,
+    )
+    return Response({
+        "message": f"وضعیت بازخورد با موفقیت به '{review.get_status_display()}' تغییر یافت.",
+        "review": TeacherReviewSerializer(review).data,
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def public_pricing_plans_view(request):
+    """Public endpoint providing platform subscription plans from database."""
+    from marketplace.services import get_active_pricing_plans
+    from marketplace.serializers import PlatformPricingPlanSerializer
+
+    plans = get_active_pricing_plans()
+    return Response({
+        "plans": PlatformPricingPlanSerializer(plans, many=True).data,
+        "count": len(plans),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET", "PATCH"])
+@permission_classes([IsAuthenticated])
+def admin_pricing_plans_view(request, plan_id=None):
+    """Admin views all pricing plans or updates a specific plan."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران سیستم مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.models import PlatformPricingPlan
+    from marketplace.services import update_pricing_plan
+    from marketplace.serializers import PlatformPricingPlanSerializer
+
+    if request.method == "GET":
+        plans = list(PlatformPricingPlan.objects.all().order_by("price_toman"))
+        return Response({
+            "plans": PlatformPricingPlanSerializer(plans, many=True).data,
+        }, status=status.HTTP_200_OK)
+
+    elif request.method == "PATCH":
+        if not plan_id:
+            return Response({"detail": "شناسه پلن الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        plan = update_pricing_plan(
+            admin_user=request.user,
+            plan_id=str(plan_id),
+            data=request.data,
+        )
+        return Response({
+            "message": "پلن قیمت‌گذاری با موفقیت بروزرسانی شد.",
+            "plan": PlatformPricingPlanSerializer(plan).data,
+        }, status=status.HTTP_200_OK)

@@ -449,18 +449,25 @@ export interface TeacherPublicProfile extends TeacherDirectoryItem {
 
 export interface TeacherReview {
   id: string;
-  booking_id: string;
-  teacher_id: string;
-  learner_display_name: string;
+  booking_id?: string;
+  teacher_id?: string;
+  teacher_name?: string;
+  teacher_email?: string;
+  learner_display_name?: string;
+  masked_display_name?: string;
   overall_rating: number;
   teaching_quality: number;
+  rating_teaching?: number;
   punctuality: number;
+  rating_punctuality?: number;
   communication: number;
+  rating_communication?: number;
   comment: string;
   teacher_reply?: string | null;
   teacher_replied_at?: string | null;
   created_at: string;
-  status: "published" | "pending_moderation" | "flagged" | "rejected";
+  status: "published" | "pending_moderation" | "flagged" | "rejected" | "removed";
+  flag_reason?: string;
 }
 
 export interface SubmitReviewPayload {
@@ -735,4 +742,268 @@ export async function fetchTeacherAvailableSlots(
   const qs = query.toString();
   const url = `/api/marketplace/teachers/${teacherId}/available-slots/${qs ? `?${qs}` : ""}`;
   return await endooraApi<PublicAvailableSlotsResponse>(url);
+}
+
+// ---------------------------------------------------------------------------
+// Day 41: Marketplace Admin Moderation, Teacher Onboarding & Dispute Resolution
+// ---------------------------------------------------------------------------
+
+export type DisputeReasonCategory =
+  | "teacher_absent"
+  | "learner_absent"
+  | "technical_difficulties"
+  | "poor_quality"
+  | "unprofessional_behavior"
+  | "payment_disagreement"
+  | "other";
+
+export type DisputeStatus =
+  | "open"
+  | "under_review"
+  | "resolved_full_refund"
+  | "resolved_partial_refund"
+  | "resolved_pay_teacher"
+  | "dismissed";
+
+export interface BookingDispute {
+  id: string;
+  booking_id: string;
+  opened_by_id: string;
+  opened_by_name: string;
+  reason_category: DisputeReasonCategory;
+  reason_display: string;
+  description: string;
+  evidence_notes?: string;
+  status: DisputeStatus;
+  status_display: string;
+  refund_percentage: number;
+  resolution_notes?: string;
+  resolved_by_name?: string;
+  resolved_at?: string | null;
+  created_at: string;
+  updated_at: string;
+  booking_summary?: {
+    id: string;
+    learner_name: string;
+    teacher_name: string;
+    scheduled_start: string;
+    scheduled_end: string;
+    rate_toman: number;
+    target_skill: string;
+    status: string;
+    status_display: string;
+  };
+}
+
+export type TeacherOnboardingStatus =
+  | "pending"
+  | "in_review"
+  | "approved"
+  | "rejected"
+  | "revision_requested";
+
+export interface TeacherOnboardingApplication {
+  id: string;
+  teacher_id: string;
+  teacher_email: string;
+  teacher_name: string;
+  status: TeacherOnboardingStatus;
+  status_display: string;
+  national_id_number: string;
+  id_document_url: string;
+  degree_document_url: string;
+  celta_tesol_document_url: string;
+  sample_teaching_url: string;
+  admin_notes?: string;
+  rejection_reason?: string;
+  reviewed_by_name?: string;
+  reviewed_at?: string | null;
+  is_teacher_verified: boolean;
+  marketplace_eligible: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PlatformPricingPlan {
+  id: string;
+  code: string;
+  name_fa: string;
+  name_en: string;
+  duration_days: number;
+  price_toman: number | string;
+  price_toman_number: number;
+  is_active: boolean;
+  is_featured: boolean;
+  features_fa: string[];
+  note_fa: string;
+  note_en: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchBookingDispute(bookingId: string): Promise<{ has_dispute: boolean; dispute: BookingDispute | null }> {
+  return await endooraApi<{ has_dispute: boolean; dispute: BookingDispute | null }>(
+    `/api/marketplace/bookings/${bookingId}/dispute/`
+  );
+}
+
+export async function openBookingDispute(
+  bookingId: string,
+  payload: {
+    reason_category: DisputeReasonCategory | string;
+    description: string;
+    evidence_notes?: string;
+  }
+): Promise<{ message: string; dispute: BookingDispute }> {
+  return await endooraApi<{ message: string; dispute: BookingDispute }>(
+    `/api/marketplace/bookings/${bookingId}/dispute/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchAdminDisputes(params?: {
+  status?: string;
+  category?: string;
+}): Promise<{ disputes: BookingDispute[]; count: number }> {
+  const query = new URLSearchParams();
+  if (params?.status) query.set("status", params.status);
+  if (params?.category) query.set("category", params.category);
+  const qs = query.toString();
+  return await endooraApi<{ disputes: BookingDispute[]; count: number }>(
+    `/api/marketplace/admin/disputes/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function resolveAdminDispute(
+  disputeId: string,
+  payload: {
+    resolution_status: DisputeStatus | string;
+    resolution_notes: string;
+    refund_percentage?: number;
+  }
+): Promise<{ message: string; dispute: BookingDispute }> {
+  return await endooraApi<{ message: string; dispute: BookingDispute }>(
+    `/api/marketplace/admin/disputes/${disputeId}/resolve/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchTeacherOnboardingApplication(): Promise<TeacherOnboardingApplication> {
+  return await endooraApi<TeacherOnboardingApplication>(
+    "/api/marketplace/teacher/onboarding/"
+  );
+}
+
+export async function submitTeacherOnboardingApplication(payload: {
+  national_id_number?: string;
+  id_document_url?: string;
+  degree_document_url?: string;
+  celta_tesol_document_url?: string;
+  sample_teaching_url?: string;
+}): Promise<{ message: string; application: TeacherOnboardingApplication }> {
+  return await endooraApi<{ message: string; application: TeacherOnboardingApplication }>(
+    "/api/marketplace/teacher/onboarding/",
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchAdminTeacherApplications(params?: {
+  status?: string;
+}): Promise<{ applications: TeacherOnboardingApplication[]; count: number }> {
+  const query = new URLSearchParams();
+  if (params?.status) query.set("status", params.status);
+  const qs = query.toString();
+  return await endooraApi<{ applications: TeacherOnboardingApplication[]; count: number }>(
+    `/api/marketplace/admin/teachers/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function reviewAdminTeacherApplication(
+  applicationId: string,
+  payload: {
+    action: "approve" | "reject" | "request_revision";
+    admin_notes?: string;
+    reason?: string;
+  }
+): Promise<{ message: string; application: TeacherOnboardingApplication }> {
+  return await endooraApi<{ message: string; application: TeacherOnboardingApplication }>(
+    `/api/marketplace/admin/teachers/${applicationId}/review/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function toggleAdminTeacherEligibility(
+  teacherId: string,
+  eligible: boolean,
+  reason?: string
+): Promise<{ message: string; result: Record<string, unknown> }> {
+  return await endooraApi<{ message: string; result: Record<string, unknown> }>(
+    `/api/marketplace/admin/teachers/${teacherId}/eligibility/`,
+    {
+      method: "POST",
+      json: { eligible, reason },
+    }
+  );
+}
+
+export async function fetchAdminModerationReviews(params?: {
+  status?: string;
+}): Promise<{ reviews: TeacherReview[]; count: number }> {
+  const query = new URLSearchParams();
+  if (params?.status) query.set("status", params.status);
+  const qs = query.toString();
+  return await endooraApi<{ reviews: TeacherReview[]; count: number }>(
+    `/api/marketplace/admin/reviews/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function moderateAdminReview(
+  reviewId: string,
+  action: "approve" | "remove",
+  notes?: string
+): Promise<{ message: string; review: TeacherReview }> {
+  return await endooraApi<{ message: string; review: TeacherReview }>(
+    `/api/marketplace/admin/reviews/${reviewId}/moderate/`,
+    {
+      method: "POST",
+      json: { action, notes },
+    }
+  );
+}
+
+export async function fetchPublicPricingPlans(): Promise<{ plans: PlatformPricingPlan[]; count: number }> {
+  return await endooraApi<{ plans: PlatformPricingPlan[]; count: number }>(
+    "/api/marketplace/plans/"
+  );
+}
+
+export async function fetchAdminPricingPlans(): Promise<{ plans: PlatformPricingPlan[] }> {
+  return await endooraApi<{ plans: PlatformPricingPlan[] }>(
+    "/api/marketplace/admin/plans/"
+  );
+}
+
+export async function updateAdminPricingPlan(
+  planId: string,
+  payload: Partial<PlatformPricingPlan>
+): Promise<{ message: string; plan: PlatformPricingPlan }> {
+  return await endooraApi<{ message: string; plan: PlatformPricingPlan }>(
+    `/api/marketplace/admin/plans/${planId}/`,
+    {
+      method: "PATCH",
+      json: payload,
+    }
+  );
 }

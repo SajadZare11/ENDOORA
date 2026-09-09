@@ -17,6 +17,39 @@ export const LAUNCH_PLAN = {
   noteEn: "This is the launch-plan display price, centrally managed through administrator configuration.",
 } as const;
 
+export async function getLaunchPricingPlan(): Promise<{
+  name: string;
+  durationDays: number;
+  displayPriceFa: string;
+  displayPriceEn: string;
+  noteFa: string;
+  noteEn: string;
+}> {
+  try {
+    const res = await fetch(`${PUBLIC_BASE_URL}/api/marketplace/plans/`, {
+      next: { revalidate: 60 },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.plans && data.plans.length > 0) {
+        const p = data.plans[0];
+        const num = Number(p.price_toman_number || p.price_toman);
+        return {
+          name: p.name_fa || LAUNCH_PLAN.name,
+          durationDays: p.duration_days || LAUNCH_PLAN.durationDays,
+          displayPriceFa: `${num.toLocaleString("fa-IR")} تومان`,
+          displayPriceEn: `${num.toLocaleString("en-US")} toman`,
+          noteFa: p.note_fa || LAUNCH_PLAN.noteFa,
+          noteEn: p.note_en || LAUNCH_PLAN.noteEn,
+        };
+      }
+    }
+  } catch {
+    // Fallback to static baseline if offline or during build
+  }
+  return LAUNCH_PLAN;
+}
+
 export type PublicPageKey =
   | "how-it-works"
   | "placement"

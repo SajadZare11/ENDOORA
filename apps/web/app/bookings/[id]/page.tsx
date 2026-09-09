@@ -7,7 +7,11 @@ import styles from "./booking-detail.module.css";
 import {
   SessionBooking,
   TeacherReview,
+  BookingDispute,
+  DisputeReasonCategory,
   fetchBookingDetail,
+  fetchBookingDispute,
+  openBookingDispute,
   cancelBooking,
   startSession,
   completeSession,
@@ -48,7 +52,27 @@ export default function BookingDetailPage() {
   const [teacherReplyText, setTeacherReplyText] = useState("");
   const [replySubmitting, setReplySubmitting] = useState(false);
 
+  // Dispute state (Day 41)
+  const [dispute, setDispute] = useState<BookingDispute | null>(null);
+  const [hasDispute, setHasDispute] = useState(false);
+  const [showDisputeModal, setShowDisputeModal] = useState(false);
+  const [disputeReason, setDisputeReason] = useState<DisputeReasonCategory>("technical_difficulties");
+  const [disputeDescription, setDisputeDescription] = useState("");
+  const [disputeEvidence, setDisputeEvidence] = useState("");
+  const [disputeSubmitting, setDisputeSubmitting] = useState(false);
+  const [disputeError, setDisputeError] = useState<string | null>(null);
+
   const isLocalTehran = isSameTimezoneAsTehran();
+
+  const loadDispute = useCallback(async (bId: string) => {
+    try {
+      const data = await fetchBookingDispute(bId);
+      setHasDispute(data.has_dispute);
+      setDispute(data.dispute);
+    } catch {
+      // ignore dispute fetch error
+    }
+  }, []);
 
   const loadReview = useCallback(async (bId: string) => {
     try {
@@ -69,6 +93,7 @@ export default function BookingDetailPage() {
         if (!cancelled) {
           setBooking(data);
           setLoading(false);
+          loadDispute(data.id);
           if (data.status === "completed") {
             loadReview(data.id);
           }
@@ -85,7 +110,7 @@ export default function BookingDetailPage() {
     return () => {
       cancelled = true;
     };
-  }, [bookingId, loadReview]);
+  }, [bookingId, loadReview, loadDispute]);
 
   const handleStart = () => {
     if (!booking) return;
@@ -131,6 +156,35 @@ export default function BookingDetailPage() {
         alert(e?.message || "امکان لغو جلسه وجود ندارد.");
       }
     });
+  };
+
+  const handleOpenDispute = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!booking) return;
+    if (disputeDescription.trim().length < 10) {
+      setDisputeError("لطفاً حداقل ۱۰ کاراکتر شرح اختلاف یا نقص جلسه را بنویسید.");
+      return;
+    }
+
+    setDisputeSubmitting(true);
+    setDisputeError(null);
+    try {
+      const res = await openBookingDispute(booking.id, {
+        reason_category: disputeReason,
+        description: disputeDescription.trim(),
+        evidence_notes: disputeEvidence.trim(),
+      });
+      setDispute(res.dispute);
+      setHasDispute(true);
+      setShowDisputeModal(false);
+      setBooking((prev) => (prev ? { ...prev, status: "disputed", status_display: "در حال داوری اختلاف" } : prev));
+      alert("پرونده اختلاف با موفقیت ثبت شد و به تیم داوری پلتفرم ارجاع گردید.");
+    } catch (err: unknown) {
+      const e = err as { message?: string };
+      setDisputeError(e?.message || "خطا در ثبت پرونده اختلاف.");
+    } finally {
+      setDisputeSubmitting(false);
+    }
   };
 
   const handleSubmitReview = async (e: React.FormEvent) => {
@@ -188,6 +242,8 @@ export default function BookingDetailPage() {
         return <span className={`${styles.badge} ${styles.badgeInProgress}`}>▶ {display}</span>;
       case "completed":
         return <span className={`${styles.badge} ${styles.badgeCompleted}`}>✓ {display}</span>;
+      case "disputed":
+        return <span className={`${styles.badge} ${styles.badgeDisputed}`}>⚖️ {display}</span>;
       default:
         return <span className={`${styles.badge} ${styles.badgeCancelled}`}>✕ {display}</span>;
     }
@@ -242,6 +298,43 @@ export default function BookingDetailPage() {
           {getStatusBadge(booking.status, booking.status_display)}
         </div>
       </div>
+
+      {hasDispute && dispute && (
+        <div className={styles.disputeCard}>
+          <div className={styles.disputeHeader}>
+            <h2 className={styles.disputeTitle}>
+              ⚖️ پرونده داوری و حل اختلاف جلسه #{dispute.id.slice(0, 8)}
+            </h2>
+            <span className={`${styles.badge} ${styles.badgeDisputed}`}>
+              وضعیت داوری: {dispute.status_display}
+            </span>
+          </div>
+          <p className={styles.disputeText}>
+            <strong>دلیل اختلاف:</strong> {dispute.reason_display}
+          </p>
+          <p className={styles.disputeText}>
+            <strong>شرح ثبت‌شده:</strong> {dispute.description}
+          </p>
+          {dispute.evidence_notes && (
+            <p className={styles.disputeText}>
+              <strong>مستندات و توضیحات ضمیمه:</strong> {dispute.evidence_notes}
+            </p>
+          )}
+          {dispute.resolution_notes && (
+            <div className={styles.disputeResolvedBox}>
+              <p className={styles.disputeText}>
+                <strong>رأی نهایی داور پلتفرم ({dispute.resolved_by_name || "تیم داوری اندورا"}):</strong>
+              </p>
+              <p className={styles.disputeText}>{dispute.resolution_notes}</p>
+              {dispute.refund_percentage > 0 && (
+                <p className={styles.disputeText}>
+                  <strong>میزان استرداد وجه به زبان‌آموز:</strong> {dispute.refund_percentage}٪ مبلغ جلسه
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {(booking.status === "confirmed" || booking.status === "in_progress") && (
         <div className={styles.roomCard}>
@@ -566,6 +659,17 @@ export default function BookingDetailPage() {
           بازگشت به لیست جلسات
         </Link>
 
+        {(!hasDispute || !dispute) &&
+          (booking.status === "confirmed" || booking.status === "in_progress" || booking.status === "completed") && (
+            <button
+              type="button"
+              onClick={() => setShowDisputeModal(true)}
+              className={styles.btnWarningOutline}
+            >
+              ثبت اختلاف و داوری ⚖️
+            </button>
+          )}
+
         {booking.can_complete && (
           <button
             type="button"
@@ -588,6 +692,93 @@ export default function BookingDetailPage() {
           </button>
         )}
       </div>
+
+      {/* Dispute Modal */}
+      {showDisputeModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalBox}>
+            <h2 className={styles.modalTitle}>ثبت اختلاف و درخواست داوری جلسه</h2>
+            <p className={styles.modalDesc}>
+              چنانچه در برگزاری جلسه نقصی نظیر عدم حضور طرف مقابل، اختلال فنی غیرقابل رفع، یا عدم رعایت استانداردهای آموزشی رخ داده است،
+              می‌توانید پرونده داوری تشکیل دهید تا توسط کارشناسان پشتیبانی اندورا بررسی و تصمیم‌گیری شود.
+            </p>
+
+            <form onSubmit={handleOpenDispute} style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
+              {disputeError && (
+                <div style={{ color: "var(--color-danger)", fontSize: "var(--font-size-xs)" }}>
+                  ✕ {disputeError}
+                </div>
+              )}
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
+                <label htmlFor="dispute-reason-category-select" className={styles.modalDesc}>
+                  علت اصلی اختلاف:
+                </label>
+                <select
+                  id="dispute-reason-category-select"
+                  className={styles.dimensionSelect}
+                  value={disputeReason}
+                  onChange={(e) => setDisputeReason(e.target.value as DisputeReasonCategory)}
+                >
+                  <option value="technical_difficulties">قطع ارتباط یا اختلال فنی شدید پلتفرم</option>
+                  <option value="teacher_absent">عدم حضور یا تاخیر غیرمجاز مدرس</option>
+                  <option value="learner_absent">عدم حضور یا ترک زودهنگام جلسه توسط زبان‌آموز</option>
+                  <option value="poor_quality">کیفیت نامناسب آموزش یا عدم تطابق با سرفصل</option>
+                  <option value="unprofessional_behavior">رفتار غیرحرفه‌ای یا نقض کدهای رفتاری</option>
+                  <option value="payment_disagreement">مغایرت در تسویه یا زمان جلسه</option>
+                  <option value="other">سایر موارد</option>
+                </select>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
+                <label htmlFor="dispute-description-input" className={styles.modalDesc}>
+                  شرح کامل رویداد و دلایل اعتراض (حداقل ۱۰ کاراکتر):
+                </label>
+                <textarea
+                  id="dispute-description-input"
+                  required
+                  value={disputeDescription}
+                  onChange={(e) => setDisputeDescription(e.target.value)}
+                  placeholder="دقیقاً چه مشکلی رخ داد؟ در چه دقیقه‌ای از جلسه اتفاق افتاد؟"
+                  className={styles.textareaField}
+                />
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
+                <label htmlFor="dispute-evidence-input" className={styles.modalDesc}>
+                  مستندات و لینک‌های تکمیلی (اختیاری):
+                </label>
+                <input
+                  id="dispute-evidence-input"
+                  type="text"
+                  value={disputeEvidence}
+                  onChange={(e) => setDisputeEvidence(e.target.value)}
+                  placeholder="لینک تست سرعت اینترنت، تصویر اسکرین‌شات و..."
+                  className={styles.dimensionSelect}
+                />
+              </div>
+
+              <div className={styles.modalActions}>
+                <button
+                  type="button"
+                  onClick={() => setShowDisputeModal(false)}
+                  className={styles.btnSecondary}
+                  disabled={disputeSubmitting}
+                >
+                  انصراف
+                </button>
+                <button
+                  type="submit"
+                  className={styles.btnPrimary}
+                  disabled={disputeSubmitting || disputeDescription.trim().length < 10}
+                >
+                  {disputeSubmitting ? "در حال ثبت پرونده..." : "ارسال به تیم داوری ⚖️"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Complete Modal */}
       {showCompleteModal && (

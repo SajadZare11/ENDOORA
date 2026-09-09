@@ -710,3 +710,212 @@ class MarketplaceDay40Tests(TestCase):
 
 # Set alias
 MarketplaceDay40TestsClass = MarketplaceDay40Tests
+
+
+class MarketplaceDay41Tests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.learner = User.objects.create_user(
+            email="learner_day41@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Zahra",
+            last_name="Ebadi",
+            phone="09129998877",
+        )
+        self.verified_teacher = User.objects.create_user(
+            email="teacher_day41_v@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Mehdi",
+            last_name="Rostami",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        self.unverified_teacher = User.objects.create_user(
+            email="teacher_day41_uv@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Soheila",
+            last_name="Ansari",
+            is_teacher_verified=False,
+            marketplace_eligible=False,
+        )
+        self.admin_user = User.objects.create_user(
+            email="admin_day41@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.ADMINISTRATOR,
+            first_name="Admin",
+            last_name="Endoora",
+            is_staff=True,
+        )
+        self.stranger = User.objects.create_user(
+            email="stranger_day41@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Ali",
+            last_name="Gharibe",
+        )
+
+    def test_dispute_creation_and_status_transition(self):
+        start = timezone.now() + timedelta(days=2)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("400000"),
+            scheduled_start=start,
+            duration_minutes=60,
+        )
+
+        # Stranger cannot dispute
+        self.client.force_authenticate(user=self.stranger)
+        bad_res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/dispute/",
+            data={"reason_category": "teacher_absent", "description": "این جلسه متعلق به من نیست اما اعتراض دارم."},
+            format="json",
+        )
+        self.assertEqual(bad_res.status_code, 403)
+
+        # Learner files dispute
+        self.client.force_authenticate(user=self.learner)
+        dispute_payload = {
+            "reason_category": "teacher_absent",
+            "description": "مدرس محترم در اتاق آنلاین حاضر نشدند و پاسخی نیز به پیام‌ها ندادند.",
+            "evidence_notes": "عکس از ساعت حضور در اتاق جلسه و اسکرین‌شات تماس بی‌پاسخ.",
+        }
+        res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/dispute/",
+            data=dispute_payload,
+            format="json",
+        )
+        self.assertEqual(res.status_code, 201)
+        self.assertIn("dispute", res.data)
+        dispute_id = res.data["dispute"]["id"]
+
+        # Verify booking transitioned to disputed
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.DISPUTED)
+
+        # Duplicate dispute fails
+        dup_res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/dispute/",
+            data=dispute_payload,
+            format="json",
+        )
+        self.assertEqual(dup_res.status_code, 400)
+
+        # Admin resolves dispute with full refund
+        self.client.force_authenticate(user=self.admin_user)
+        resolve_res = self.client.post(
+            f"/api/marketplace/admin/disputes/{dispute_id}/resolve/",
+            data={
+                "resolution_status": "resolved_full_refund",
+                "resolution_notes": "بررسی گزارش سرور نشان داد مدرس در اتاق حضور نداشته است. استرداد ۱۰۰٪ وجه تایید شد.",
+                "refund_percentage": 100,
+            },
+            format="json",
+        )
+        self.assertEqual(resolve_res.status_code, 200)
+        self.assertEqual(resolve_res.data["dispute"]["status"], "resolved_full_refund")
+        self.assertEqual(resolve_res.data["dispute"]["refund_percentage"], 100)
+
+    def test_teacher_onboarding_application_and_approval_flow(self):
+        # Teacher submits onboarding application
+        self.client.force_authenticate(user=self.unverified_teacher)
+        get_res = self.client.get("/api/marketplace/teacher/onboarding/")
+        self.assertEqual(get_res.status_code, 200)
+
+        submit_res = self.client.post(
+            "/api/marketplace/teacher/onboarding/",
+            data={
+                "national_id_number": "0012345678",
+                "id_document_url": "https://storage.endoora.ir/docs/id.jpg",
+                "degree_document_url": "https://storage.endoora.ir/docs/degree.pdf",
+                "celta_tesol_document_url": "https://storage.endoora.ir/docs/celta.pdf",
+                "sample_teaching_url": "https://aparat.com/v/sample123",
+            },
+            format="json",
+        )
+        self.assertEqual(submit_res.status_code, 200)
+        app_id = submit_res.data["application"]["id"]
+        self.assertEqual(submit_res.data["application"]["status"], "pending")
+
+        # Admin reviews queue
+        self.client.force_authenticate(user=self.admin_user)
+        list_res = self.client.get("/api/marketplace/admin/teachers/?status=pending")
+        self.assertEqual(list_res.status_code, 200)
+        self.assertGreaterEqual(list_res.data["count"], 1)
+
+        # Admin approves
+        review_res = self.client.post(
+            f"/api/marketplace/admin/teachers/{app_id}/review/",
+            data={
+                "action": "approve",
+                "admin_notes": "مدارک تحصیلی و گواهینامه سلتا استعلام و تأیید گردید.",
+            },
+            format="json",
+        )
+        self.assertEqual(review_res.status_code, 200)
+        self.assertEqual(review_res.data["application"]["status"], "approved")
+
+        # Verify teacher status updated on user model
+        self.unverified_teacher.refresh_from_db()
+        self.assertTrue(self.unverified_teacher.is_teacher_verified)
+        self.assertTrue(self.unverified_teacher.marketplace_eligible)
+
+    def test_admin_review_moderation(self):
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        # Learner submits review with PII (auto-flagged)
+        self.client.force_authenticate(user=self.learner)
+        rev_res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/review/",
+            data={
+                "overall_rating": 5,
+                "comment": "استاد عالی بودند. شماره من 09121112233 است لطفاً تماس بگیرید.",
+            },
+            format="json",
+        )
+        self.assertEqual(rev_res.status_code, 201)
+        review_id = rev_res.data["review"]["id"]
+        self.assertEqual(rev_res.data["review"]["status"], "pending_moderation")
+
+        # Admin moderates review -> approve
+        self.client.force_authenticate(user=self.admin_user)
+        mod_res = self.client.post(
+            f"/api/marketplace/admin/reviews/{review_id}/moderate/",
+            data={"action": "approve", "notes": "بررسی شد و تایید شد."},
+            format="json",
+        )
+        self.assertEqual(mod_res.status_code, 200)
+        self.assertEqual(mod_res.data["review"]["status"], "published")
+
+    def test_platform_pricing_plans_api(self):
+        # Public gets pricing plans seeded
+        self.client.logout()
+        res = self.client.get("/api/marketplace/plans/")
+        self.assertEqual(res.status_code, 200)
+        self.assertGreaterEqual(res.data["count"], 1)
+        plan = res.data["plans"][0]
+        self.assertEqual(plan["code"], "launch_premium_90d")
+        self.assertEqual(plan["price_toman_number"], 420000)
+
+        # Admin updates pricing plan
+        self.client.force_authenticate(user=self.admin_user)
+        patch_res = self.client.patch(
+            f"/api/marketplace/admin/plans/{plan['id']}/",
+            data={"price_toman": 450000},
+            format="json",
+        )
+        self.assertEqual(patch_res.status_code, 200)
+        self.assertEqual(patch_res.data["plan"]["price_toman_number"], 450000)

@@ -434,3 +434,89 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
 }
+
+/* Day 41: Dispute Banner and Modal Styles - 0 hex, 100% logical properties */
+.badgeDisputed {
+  background-color: var(--color-warning-subtle);
+  color: var(--color-warning);
+}
+
+.disputeCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-xl);
+  padding-inline: var(--space-6);
+  padding-block: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.disputeCard::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 4px;
+  background: var(--color-warning);
+}
+
+.disputeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.disputeTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.disputeText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed, 1.6);
+  margin: 0;
+}
+
+.disputeResolvedBox {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.btnWarningOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  border: 1px solid var(--color-warning);
+  background: transparent;
+  color: var(--color-warning);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.15s ease);
+}
+
+.btnWarningOutline:hover {
+  background: var(--color-warning-subtle);
+}

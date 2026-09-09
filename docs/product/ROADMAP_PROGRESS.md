@@ -1190,3 +1190,68 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** Teachers have a comprehensive availability calendar and scheduling hub with Iranian calendar week support, collision-proof time-off management, and configurable booking policies, while learners can view real-time available slots and book directly from teacher public profiles with 78 contract checks passing cleanly.
 **Day 40 Status:** Completed and ready for Git commit and push to GitHub main.
 **Next day after Git push:** Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007).
+
+**Success gate:** Teachers have a comprehensive availability calendar and scheduling hub with Iranian calendar week support, collision-proof time-off management, and configurable booking policies, while learners can view real-time available slots and book directly from teacher public profiles with 78 contract checks passing cleanly.
+**Day 40 Status:** Complete and verified; pushed to `origin/main`.
+**Sequential successor:** Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007).
+
+### Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007 / MKT-006)
+- [x] Backend Data Architecture in `apps/api/marketplace/models.py` (migration `0005_platformpricingplan_bookingdispute_and_more.py`):
+  - `DisputeReasonCategory`: `teacher_absent`, `learner_absent`, `technical_difficulties`, `poor_quality`, `unprofessional_behavior`, `payment_disagreement`, `other`
+  - `DisputeStatus`: `open`, `under_review`, `resolved_full_refund`, `resolved_partial_refund`, `resolved_pay_teacher`, `dismissed`
+  - `BookingDispute`: OneToOne with `SessionBooking`, `opened_by`, `reason_category`, `description`, `evidence_notes`, `refund_percentage`, `resolution_notes`, `resolved_by`, `resolved_at`
+  - `TeacherOnboardingStatus`: `pending`, `in_review`, `approved`, `rejected`, `revision_requested`
+  - `TeacherOnboardingApplication`: `national_id_number`, `id_document_url`, `degree_document_url`, `celta_tesol_document_url`, `sample_teaching_url`, `admin_notes`, `rejection_reason`, `reviewed_by`, `reviewed_at`
+  - `PlatformPricingPlan`: centralized platform subscription plan store (Day 06 baseline: `launch_premium_90d`, 420,000 toman, 90 days, features, notes)
+- [x] Marketplace Services & State Machine in `apps/api/marketplace/services.py`:
+  - `open_booking_dispute`: opens dispute on eligible sessions and transitions booking status to `DISPUTED`
+  - `list_marketplace_disputes` & `get_booking_dispute_detail`: dispute retrieval with role-based access
+  - `resolve_booking_dispute`: atomic judgment issuing with refund percentage (100% full refund cancels session to `CANCELLED_BY_TEACHER`, partial refund sets `COMPLETED` with settlement notes, pay teacher sets `COMPLETED`)
+  - `get_or_create_teacher_onboarding_application` & `submit_teacher_onboarding_application`: teacher credential upload and submission
+  - `list_teacher_onboarding_applications`: admin onboarding queue filtering
+  - `review_teacher_onboarding_application`: admin approves (sets `is_teacher_verified = True` & `marketplace_eligible = True`), rejects, or requests revision
+  - `toggle_teacher_marketplace_eligibility`: admin access control toggle
+  - `list_reviews_for_moderation` & `moderate_review`: content moderation queue (approve/publish or remove with reason)
+  - `get_active_pricing_plans` & `update_pricing_plan`: central platform subscription plans management
+- [x] REST Endpoints in `apps/api/marketplace/views.py` and registered in `urls.py`:
+  - `GET/POST /api/marketplace/bookings/<id>/dispute/` (booking dispute state & submission)
+  - `GET /api/marketplace/admin/disputes/` (admin dispute listing)
+  - `GET /api/marketplace/admin/disputes/<id>/` (admin dispute detail)
+  - `POST /api/marketplace/admin/disputes/<id>/resolve/` (admin dispute judgment)
+  - `GET/POST /api/marketplace/teacher/onboarding/` (teacher application state & submission)
+  - `GET /api/marketplace/admin/teachers/` (admin teacher application queue)
+  - `POST /api/marketplace/admin/teachers/<id>/review/` (admin application review)
+  - `POST /api/marketplace/admin/teachers/<id>/eligibility/` (admin eligibility toggle)
+  - `GET /api/marketplace/admin/reviews/` (admin review moderation list)
+  - `POST /api/marketplace/admin/reviews/<id>/moderate/` (admin review action)
+  - `GET /api/marketplace/plans/` (public active subscription plans)
+  - `GET/PATCH /api/marketplace/admin/plans/` & `.../<id>/` (admin subscription plans management)
+- [x] Admin Registration in `apps/api/marketplace/admin.py`: `BookingDisputeAdmin`, `TeacherOnboardingApplicationAdmin`, `PlatformPricingPlanAdmin`
+- [x] Comprehensive Unit Tests in `apps/api/marketplace/tests.py`: 29 unit tests (29/29 passing) covering dispute lifecycle, teacher onboarding approval/rejection, review moderation, and pricing plan endpoints
+- [x] Typed Frontend Client in `apps/web/lib/marketplace.ts`:
+  - Full TypeScript interfaces (`BookingDispute`, `TeacherOnboardingApplication`, `PlatformPricingPlan`)
+  - Client functions: `fetchBookingDispute`, `openBookingDispute`, `fetchAdminDisputes`, `resolveAdminDispute`, `fetchTeacherOnboardingApplication`, `submitTeacherOnboardingApplication`, `fetchAdminTeacherApplications`, `reviewAdminTeacherApplication`, `toggleAdminTeacherEligibility`, `fetchAdminModerationReviews`, `moderateAdminReview`, `fetchPublicPricingPlans`, `fetchAdminPricingPlans`, `updateAdminPricingPlan`
+- [x] Dynamic Public Site Pricing in `apps/web/lib/public-site.ts`:
+  - `getLaunchPricingPlan`: dynamic loader querying `/api/marketplace/plans/` with ISR caching and fallback to `LAUNCH_PLAN`
+- [x] Admin Marketplace Operations Hub in `apps/web/app/(admin)/marketplace/page.tsx` & `marketplace-admin.module.css`:
+  - 4-tab unified hub: Disputes Resolution, Teacher Onboarding, Review Moderation, Platform Pricing
+  - Dispute resolution drawer with settlement selector, refund slider, and judgment notes
+  - Teacher verification drawer with document links, decision selector, and eligibility switch
+  - Content moderation review table with quick approve/remove actions
+  - Pricing editor with instant Toman price, duration, and active/featured toggles
+- [x] Teacher Verification Portal in `apps/web/app/(teacher)/teacher/verification/page.tsx` & `verification.module.css`:
+  - Dynamic status banners (approved, revision requested, pending, rejected)
+  - Document submission form (national ID, ID card, degree, CELTA/TESOL/TTC, teaching sample video)
+  - Honor code acknowledgment and step progress indicator
+- [x] Booking Detail Dispute Integration in `apps/web/app/bookings/[id]/page.tsx` & `booking-detail.module.css`:
+  - Dispute filing modal with reason categories, description, and evidence
+  - Persistent active dispute status banner with refund percentage and resolution notes
+- [x] Strict CSS Standards: 0 raw hex colors and 100% logical properties across all new modules
+- [x] Automated contract test `scripts/check_day41.py` (132/132 checks passed) and regression checks `scripts/check_day30.py` through `scripts/check_day40.py` (100% passed)
+- [x] Next.js build compiled 157/157 routes cleanly, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings
+- [x] Technical documentation in `docs/marketplace/admin-moderation-and-dispute-resolution.md`
+- [x] Automated backup archive `backups/day41_backup.zip` (199.5 KB) created
+
+**Success gate:** Admins have an all-in-one operations hub for resolving disputes, vetting teacher credentials, moderating reviews, and maintaining pricing plans; teachers have a dedicated verification portal; and session bookings have an auditable dispute lifecycle with 132 contract checks passing cleanly.
+**Day 41 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008).
