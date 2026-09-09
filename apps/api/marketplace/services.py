@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, time, date, timedelta, timezone as dt_timezone
 from decimal import Decimal
 from django.db import transaction
 from django.db.models import Count, Q
@@ -965,3 +965,407 @@ def flag_teacher_review(
         review.save(update_fields=["status", "flag_reason", "updated_at"])
 
     return review
+# ---------------------------------------------------------------------------
+# Day 40: Teacher Availability Calendar, Recurring Slots & Time-Off Services
+# ---------------------------------------------------------------------------
+
+import zoneinfo
+from datetime import datetime, date, time, timedelta
+
+TEHRAN_TZ = zoneinfo.ZoneInfo("Asia/Tehran")
+
+PERSIAN_WEEKDAY_NAMES = {
+    0: "شنبه",
+    1: "یک‌شنبه",
+    2: "دوشنبه",
+    3: "سه‌شنبه",
+    4: "چهارشنبه",
+    5: "پنج‌شنبه",
+    6: "جمعه",
+}
+
+
+def get_teacher_weekly_schedule(teacher_id) -> list[dict]:
+    from marketplace.models import TeacherAvailabilitySlot
+    slots = TeacherAvailabilitySlot.objects.filter(
+        teacher_id=teacher_id,
+        is_active=True,
+    ).order_by("day_of_week", "start_time")
+
+    result = []
+    for s in slots:
+        result.append({
+            "id": str(s.id),
+            "day_of_week": s.day_of_week,
+            "day_name": PERSIAN_WEEKDAY_NAMES.get(s.day_of_week, ""),
+            "start_time": s.start_time.strftime("%H:%M"),
+            "end_time": s.end_time.strftime("%H:%M"),
+            "is_active": s.is_active,
+        })
+    return result
+
+
+def save_teacher_weekly_schedule(teacher: User, slots_data: list[dict]) -> list[dict]:
+    from marketplace.models import TeacherAvailabilitySlot, DayOfWeek
+
+    if not (teacher.is_teacher_verified and teacher.marketplace_eligible):
+        raise PermissionDenied("تنها مدرسان ارزیابی‌شده و تأییدشده مجاز به تنظیم تقویم دسترسی هستند.")
+
+    validated_slots = []
+    # Group by day to check internal collisions
+    slots_by_day: dict[int, list[tuple[time, time]]] = {d: [] for d in range(7)}
+
+    for item in slots_data:
+        dow = int(item.get("day_of_week", 0))
+        if dow not in range(7):
+            raise ValidationError(f"روز هفته نامعتبر است: {dow}")
+
+        st_raw = item.get("start_time")
+        et_raw = item.get("end_time")
+        if not st_raw or not et_raw:
+            raise ValidationError("ساعت آغاز و پایان الزامی است.")
+
+        if isinstance(st_raw, str):
+            st_parts = [int(p) for p in st_raw.split(":")[:2]]
+            st = time(st_parts[0], st_parts[1])
+        else:
+            st = st_raw
+
+        if isinstance(et_raw, str):
+            et_parts = [int(p) for p in et_raw.split(":")[:2]]
+            et = time(et_parts[0], et_parts[1])
+        else:
+            et = et_raw
+
+        if st >= et:
+            raise ValidationError(f"ساعت پایان ({et.strftime('%H:%M')}) باید پس از ساعت آغاز ({st.strftime('%H:%M')}) باشد.")
+
+        # Check overlapping slots within the same day
+        for existing_st, existing_et in slots_by_day[dow]:
+            if not (et <= existing_st or st >= existing_et):
+                raise ValidationError(
+                    f"تداخل زمانی در روز {PERSIAN_WEEKDAY_NAMES.get(dow, '')}: بازه {st.strftime('%H:%M')}-{et.strftime('%H:%M')} با بازه {existing_st.strftime('%H:%M')}-{existing_et.strftime('%H:%M')} هم‌پوشانی دارد."
+                )
+
+        slots_by_day[dow].append((st, et))
+        validated_slots.append(
+            TeacherAvailabilitySlot(
+                teacher=teacher,
+                day_of_week=dow,
+                start_time=st,
+                end_time=et,
+                is_active=item.get("is_active", True),
+            )
+        )
+
+    with transaction.atomic():
+        TeacherAvailabilitySlot.objects.filter(teacher=teacher).delete()
+        if validated_slots:
+            TeacherAvailabilitySlot.objects.bulk_create(validated_slots)
+
+    return get_teacher_weekly_schedule(teacher.id)
+
+
+def list_teacher_time_off(teacher_id, future_only: bool = True) -> list[dict]:
+    from marketplace.models import TeacherTimeOff
+    qs = TeacherTimeOff.objects.filter(teacher_id=teacher_id)
+    if future_only:
+        qs = qs.filter(end_datetime__gte=timezone.now())
+
+    qs = qs.order_by("start_datetime")
+    result = []
+    for item in qs:
+        st_tehran = item.start_datetime.astimezone(TEHRAN_TZ)
+        et_tehran = item.end_datetime.astimezone(TEHRAN_TZ)
+        result.append({
+            "id": str(item.id),
+            "start_datetime": item.start_datetime.isoformat(),
+            "end_datetime": item.end_datetime.isoformat(),
+            "start_display": st_tehran.strftime("%Y/%m/%d - %H:%M"),
+            "end_display": et_tehran.strftime("%Y/%m/%d - %H:%M"),
+            "reason": item.reason,
+            "is_full_day": item.is_full_day,
+            "created_at": item.created_at.isoformat(),
+        })
+    return result
+
+
+def add_teacher_time_off(
+    teacher: User,
+    start_datetime: datetime,
+    end_datetime: datetime,
+    reason: str = "",
+    is_full_day: bool = False,
+):
+    from marketplace.models import TeacherTimeOff, SessionBooking, BookingStatus
+
+    if not (teacher.is_teacher_verified and teacher.marketplace_eligible):
+        raise PermissionDenied("تنها مدرسان معتبر مجاز به ثبت مرخصی و بلاک زمانی هستند.")
+
+    if start_datetime >= end_datetime:
+        raise ValidationError("زمان پایان باید بعد از زمان آغاز باشد.")
+
+    if end_datetime <= timezone.now():
+        raise ValidationError("امکان ثبت مرخصی برای زمان‌های گذشته وجود ندارد.")
+
+    # Check for active bookings conflict
+    conflicts = SessionBooking.objects.filter(
+        teacher=teacher,
+        status__in=[BookingStatus.CONFIRMED, BookingStatus.RESCHEDULE_REQUESTED, BookingStatus.IN_PROGRESS],
+        scheduled_start__lt=end_datetime,
+        scheduled_end__gt=start_datetime,
+    )
+    if conflicts.exists():
+        conflict_list = []
+        for c in conflicts[:3]:
+            st = c.scheduled_start.astimezone(TEHRAN_TZ).strftime("%Y/%m/%d %H:%M")
+            conflict_list.append(f"جلسه با {c.learner.email} در تاریخ {st}")
+        details = "، ".join(conflict_list)
+        raise ValidationError(
+            f"تداخل با جلسات رزرو شده قبلی: در این بازه زمانی {conflicts.count()} جلسه رزرو شده فعال وجود دارد ({details}). لطفاً ابتدا نسبت به جابجایی یا لغو این جلسات اقدام نمایید."
+        )
+
+    return TeacherTimeOff.objects.create(
+        teacher=teacher,
+        start_datetime=start_datetime,
+        end_datetime=end_datetime,
+        reason=reason.strip(),
+        is_full_day=is_full_day,
+    )
+
+
+def delete_teacher_time_off(teacher: User, time_off_id: str) -> bool:
+    from marketplace.models import TeacherTimeOff
+    try:
+        time_off = TeacherTimeOff.objects.get(id=time_off_id, teacher=teacher)
+    except TeacherTimeOff.DoesNotExist:
+        raise ValidationError("مورد مرخصی مورد نظر یافت نشد.")
+
+    time_off.delete()
+    return True
+
+
+def get_or_create_availability_settings(teacher_id):
+    from marketplace.models import TeacherAvailabilitySetting
+    from accounts.models import User
+    try:
+        teacher = User.objects.get(id=teacher_id)
+    except User.DoesNotExist:
+        raise ValidationError("مدرس مورد نظر یافت نشد.")
+
+    settings, _ = TeacherAvailabilitySetting.objects.get_or_create(
+        teacher=teacher,
+        defaults={
+            "notice_lead_time_hours": 12,
+            "max_booking_ahead_days": 14,
+            "default_session_duration_minutes": 45,
+            "default_buffer_minutes": 15,
+            "auto_accept_bookings": True,
+        },
+    )
+    return settings
+
+
+def update_availability_settings(teacher: User, settings_data: dict):
+    settings = get_or_create_availability_settings(teacher.id)
+
+    if "notice_lead_time_hours" in settings_data:
+        val = int(settings_data["notice_lead_time_hours"])
+        if not (1 <= val <= 72):
+            raise ValidationError("فاصله رزرو از قبل باید بین ۱ تا ۷۲ ساعت باشد.")
+        settings.notice_lead_time_hours = val
+
+    if "max_booking_ahead_days" in settings_data:
+        val = int(settings_data["max_booking_ahead_days"])
+        if not (1 <= val <= 60):
+            raise ValidationError("حداکثر روزهای قابل رزرو باید بین ۱ تا ۶۰ روز باشد.")
+        settings.max_booking_ahead_days = val
+
+    if "default_session_duration_minutes" in settings_data:
+        val = int(settings_data["default_session_duration_minutes"])
+        if val not in [30, 45, 60, 90]:
+            raise ValidationError("مدت جلسه باید ۳۰، ۴۵، ۶۰ یا ۹۰ دقیقه باشد.")
+        settings.default_session_duration_minutes = val
+
+    buffer_val = settings_data.get("default_buffer_minutes") or settings_data.get("buffer_minutes")
+    if buffer_val is not None:
+        val = int(buffer_val)
+        if not (0 <= val <= 60):
+            raise ValidationError("فاصله استراحت بین جلسات باید بین ۰ تا ۶۰ دقیقه باشد.")
+        settings.default_buffer_minutes = val
+
+    if "auto_accept_bookings" in settings_data:
+        settings.auto_accept_bookings = bool(settings_data["auto_accept_bookings"])
+
+    settings.save()
+    return settings
+
+
+def generate_teacher_available_slots(
+    teacher_id,
+    start_date: date | None = None,
+    end_date: date | None = None,
+    duration_minutes: int | None = None,
+) -> list[dict]:
+    from marketplace.models import (
+        TeacherAvailabilitySlot,
+        TeacherTimeOff,
+        SessionBooking,
+        BookingStatus,
+    )
+    from accounts.models import User
+
+    try:
+        teacher = User.objects.get(
+            id=teacher_id,
+            role=User.Role.TEACHER,
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+    except User.DoesNotExist:
+        raise ValidationError("مدرس مورد نظر یافت نشد یا مجاز به ارائه خدمات در بازارگاه نیست.")
+
+    settings = get_or_create_availability_settings(teacher.id)
+    session_duration = duration_minutes or settings.default_session_duration_minutes
+    buffer_m = settings.default_buffer_minutes
+    lead_time_h = settings.notice_lead_time_hours
+    max_days = settings.max_booking_ahead_days
+
+    now_tehran = datetime.now(TEHRAN_TZ)
+    now_utc = timezone.now()
+    earliest_bookable_utc = now_utc + timedelta(hours=lead_time_h)
+
+    if not start_date:
+        start_date = now_tehran.date()
+    if not end_date:
+        end_date = start_date + timedelta(days=max_days)
+
+    # Restrict to max horizon
+    max_allowed_date = now_tehran.date() + timedelta(days=max_days)
+    if end_date > max_allowed_date:
+        end_date = max_allowed_date
+
+    if start_date > end_date:
+        return []
+
+    # 1. Fetch recurring availability
+    recurring_slots = list(
+        TeacherAvailabilitySlot.objects.filter(
+            teacher=teacher,
+            is_active=True,
+        ).order_by("day_of_week", "start_time")
+    )
+    if not recurring_slots:
+        return []
+
+    # Map recurring slots by day_of_week
+    slots_by_dow: dict[int, list[TeacherAvailabilitySlot]] = {d: [] for d in range(7)}
+    for s in recurring_slots:
+        slots_by_dow[s.day_of_week].append(s)
+
+    # 2. Fetch active time-offs in range
+    range_start_utc = datetime.combine(start_date, time.min, tzinfo=TEHRAN_TZ).astimezone(dt_timezone.utc)
+    range_end_utc = datetime.combine(end_date, time.max, tzinfo=TEHRAN_TZ).astimezone(dt_timezone.utc)
+
+    time_offs = list(
+        TeacherTimeOff.objects.filter(
+            teacher=teacher,
+            end_datetime__gte=range_start_utc,
+            start_datetime__lte=range_end_utc,
+        )
+    )
+
+    # 3. Fetch active bookings in range
+    active_bookings = list(
+        SessionBooking.objects.filter(
+            teacher=teacher,
+            status__in=[
+                BookingStatus.CONFIRMED,
+                BookingStatus.RESCHEDULE_REQUESTED,
+                BookingStatus.IN_PROGRESS,
+            ],
+            scheduled_end__gte=range_start_utc,
+            scheduled_start__lte=range_end_utc,
+        )
+    )
+
+    days_result = []
+    curr_date = start_date
+
+    while curr_date <= end_date:
+        # Python weekday: Mon=0, Tue=1, Wed=2, Thu=3, Fri=4, Sat=5, Sun=6
+        # Iranian dow: Sat=0, Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=6
+        iran_dow = (curr_date.weekday() + 2) % 7
+        dow_slots = slots_by_dow.get(iran_dow, [])
+
+        day_available_slots = []
+        for block in dow_slots:
+            block_start_dt = datetime.combine(curr_date, block.start_time, tzinfo=TEHRAN_TZ)
+            block_end_dt = datetime.combine(curr_date, block.end_time, tzinfo=TEHRAN_TZ)
+
+            slot_start = block_start_dt
+            while True:
+                slot_end = slot_start + timedelta(minutes=session_duration)
+                if slot_end > block_end_dt:
+                    break
+
+                slot_start_utc = slot_start.astimezone(dt_timezone.utc)
+                slot_end_utc = slot_end.astimezone(dt_timezone.utc)
+
+                # Check 1: Lead time
+                if slot_start_utc < earliest_bookable_utc:
+                    slot_start = slot_end + timedelta(minutes=buffer_m)
+                    continue
+
+                # Check 2: Time-off collisions
+                has_time_off = any(
+                    to.start_datetime < slot_end_utc and to.end_datetime > slot_start_utc
+                    for to in time_offs
+                )
+                if has_time_off:
+                    slot_start = slot_end + timedelta(minutes=buffer_m)
+                    continue
+
+                # Check 3: Booking collisions
+                has_booking = any(
+                    b.scheduled_start < slot_end_utc and b.scheduled_end > slot_start_utc
+                    for b in active_bookings
+                )
+                if has_booking:
+                    slot_start = slot_end + timedelta(minutes=buffer_m)
+                    continue
+
+                day_name_fa = PERSIAN_WEEKDAY_NAMES.get(iran_dow, "")
+                day_available_slots.append({
+                    "start_utc": slot_start_utc.isoformat(),
+                    "end_utc": slot_end_utc.isoformat(),
+                    "start_time_tehran": slot_start.strftime("%H:%M"),
+                    "end_time_tehran": slot_end.strftime("%H:%M"),
+                    "start_tehran": slot_start.strftime("%H:%M"),
+                    "end_tehran": slot_end.strftime("%H:%M"),
+                    "duration_minutes": session_duration,
+                    "is_bookable": True,
+                    "date": curr_date.isoformat(),
+                    "day_of_week": iran_dow,
+                    "day_name_fa": day_name_fa,
+                    "jalali_date": f"{curr_date.year}/{curr_date.month:02d}/{curr_date.day:02d}",
+                })
+
+                # Move to next slot accounting for buffer
+                slot_start = slot_end + timedelta(minutes=buffer_m)
+
+        if day_available_slots:
+            day_name_fa = PERSIAN_WEEKDAY_NAMES.get(iran_dow, "")
+            days_result.append({
+                "date": curr_date.isoformat(),
+                "day_of_week": iran_dow,
+                "day_name": day_name_fa,
+                "day_name_fa": day_name_fa,
+                "jalali_date": f"{curr_date.year}/{curr_date.month:02d}/{curr_date.day:02d}",
+                "slots_count": len(day_available_slots),
+                "slots": day_available_slots,
+            })
+
+        curr_date += timedelta(days=1)
+
+    return days_result

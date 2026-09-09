@@ -571,3 +571,168 @@ export async function flagTeacherReview(
     }
   );
 }
+
+// ---------------------------------------------------------------------------
+// Day 40: Teacher Availability Calendar, Recurring Slots & Time-Off Types & APIs
+// ---------------------------------------------------------------------------
+
+export type PersianDayOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
+export interface TeacherAvailabilitySlot {
+  id: string;
+  day_of_week: number;
+  day_name: string;
+  start_time: string;
+  end_time: string;
+  start_time_str: string;
+  end_time_str: string;
+  is_active: boolean;
+}
+
+export interface TeacherTimeOff {
+  id: string;
+  start_datetime: string;
+  end_datetime: string;
+  start_display: string;
+  end_display: string;
+  reason: string;
+  is_full_day: boolean;
+  created_at: string;
+}
+
+export interface TeacherAvailabilitySetting {
+  notice_lead_time_hours: number;
+  max_booking_ahead_days: number;
+  default_session_duration_minutes: number;
+  default_buffer_minutes: number;
+  buffer_minutes?: number;
+  session_duration_minutes?: number;
+  auto_accept_bookings: boolean;
+}
+
+export interface BookableSlot {
+  start_utc: string;
+  end_utc: string;
+  start_time_tehran: string;
+  end_time_tehran: string;
+  start_tehran?: string;
+  end_tehran?: string;
+  duration_minutes: number;
+  is_bookable: boolean;
+  date?: string;
+  day_of_week?: number;
+  day_name_fa?: string;
+  jalali_date?: string;
+}
+
+export interface DayAvailableSlots {
+  date: string;
+  day_of_week: number;
+  day_name: string;
+  day_name_fa: string;
+  jalali_date: string;
+  slots_count: number;
+  slots: BookableSlot[];
+}
+
+export interface TeacherAvailabilityResponse {
+  schedule: TeacherAvailabilitySlot[];
+  settings: TeacherAvailabilitySetting;
+  is_verified: boolean;
+  marketplace_eligible: boolean;
+}
+
+export interface PublicAvailableSlotsResponse {
+  success: boolean;
+  teacher_id: string;
+  days: DayAvailableSlots[];
+  slots: BookableSlot[];
+  total_slots: number;
+}
+
+export async function fetchTeacherAvailability(): Promise<TeacherAvailabilityResponse> {
+  return await endooraApi<TeacherAvailabilityResponse>("/api/marketplace/teacher/availability/");
+}
+
+export async function saveTeacherWeeklySchedule(
+  slots: Array<{
+    day_of_week: number;
+    start_time: string;
+    end_time: string;
+    is_active?: boolean;
+  }>
+): Promise<{ message: string; schedule: TeacherAvailabilitySlot[] }> {
+  return await endooraApi<{ message: string; schedule: TeacherAvailabilitySlot[] }>(
+    "/api/marketplace/teacher/availability/",
+    {
+      method: "PUT",
+      json: { slots },
+    }
+  );
+}
+
+export async function fetchTeacherTimeOff(): Promise<{ time_offs: TeacherTimeOff[] }> {
+  return await endooraApi<{ time_offs: TeacherTimeOff[] }>(
+    "/api/marketplace/teacher/availability/time-off/"
+  );
+}
+
+export async function addTeacherTimeOff(payload: {
+  start_datetime: string;
+  end_datetime: string;
+  reason?: string;
+  is_full_day?: boolean;
+}): Promise<{ message: string; time_off: TeacherTimeOff; id?: string }> {
+  return await endooraApi<{ message: string; time_off: TeacherTimeOff; id?: string }>(
+    "/api/marketplace/teacher/availability/time-off/",
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function deleteTeacherTimeOff(timeOffId: string): Promise<{ message?: string; deleted?: boolean }> {
+  return await endooraApi<{ message?: string; deleted?: boolean }>(
+    `/api/marketplace/teacher/availability/time-off/${timeOffId}/`,
+    {
+      method: "DELETE",
+    }
+  );
+}
+
+export async function fetchTeacherAvailabilitySettings(): Promise<TeacherAvailabilitySetting> {
+  return await endooraApi<TeacherAvailabilitySetting>(
+    "/api/marketplace/teacher/availability/settings/"
+  );
+}
+
+export async function updateTeacherAvailabilitySettings(
+  payload: Partial<TeacherAvailabilitySetting>
+): Promise<{ message: string; settings: TeacherAvailabilitySetting } & TeacherAvailabilitySetting> {
+  return await endooraApi<{ message: string; settings: TeacherAvailabilitySetting } & TeacherAvailabilitySetting>(
+    "/api/marketplace/teacher/availability/settings/",
+    {
+      method: "PATCH",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchTeacherAvailableSlots(
+  teacherId: string,
+  params?: {
+    start_date?: string;
+    end_date?: string;
+    duration?: number;
+  }
+): Promise<PublicAvailableSlotsResponse> {
+  const query = new URLSearchParams();
+  if (params?.start_date) query.set("start_date", params.start_date);
+  if (params?.end_date) query.set("end_date", params.end_date);
+  if (params?.duration) query.set("duration", String(params.duration));
+
+  const qs = query.toString();
+  const url = `/api/marketplace/teachers/${teacherId}/available-slots/${qs ? `?${qs}` : ""}`;
+  return await endooraApi<PublicAvailableSlotsResponse>(url);
+}

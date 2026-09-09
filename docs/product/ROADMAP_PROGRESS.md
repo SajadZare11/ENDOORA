@@ -1142,3 +1142,51 @@ Status: Complete and verified; ready for Git commit and push.
 **Success gate:** Learners have a full-fledged public teacher directory and profile experience with verifiable social proof, a tamper-proof review state machine strictly gated by completed sessions, automated PII moderation, and 68 contract checks passing cleanly.
 **Day 39 Status:** Completed and ready for Git commit and push to GitHub main.
 **Next day after Git push:** Day 40 — Build Teacher Availability Calendar, Recurring Slots, and Time-Off Management (MKT-002).
+
+### Day 40 — Build Teacher Availability Calendar, Recurring Slots, and Time-Off Management (MKT-002)
+- [x] Backend Data Architecture in `apps/api/marketplace/models.py` (migration `0004_teacheravailabilitysetting_teacheravailabilityslot_and_more.py`):
+  - `DayOfWeek` integer choices representing Iranian calendar week (0 = شنبه/Saturday to 6 = جمعه/Friday)
+  - `TeacherAvailabilitySlot`: recurring weekly availability blocks (`day_of_week`, `start_time`, `end_time`, `is_active`)
+  - `TeacherTimeOff`: blackout and vacation periods (`start_datetime`, `end_datetime`, `reason`, `is_full_day`, `valid_time_off_window` CheckConstraint)
+  - `TeacherAvailabilitySetting`: per-teacher scheduling policies (`notice_lead_time_hours`, `max_booking_ahead_days`, `default_session_duration_minutes`, `default_buffer_minutes`, `auto_accept_bookings`)
+- [x] Backend Scheduling Engine in `apps/api/marketplace/services.py`:
+  - `get_teacher_weekly_schedule`: retrieves active and configured slots ordered by Iranian day of week
+  - `save_teacher_weekly_schedule`: atomic bulk replacement of recurring slots with validation (start < end)
+  - `list_teacher_time_off` & `delete_teacher_time_off`: management of blackout periods
+  - `add_teacher_time_off`: creates blackout periods with active booking collision detection and informative error feedback
+  - `get_or_create_availability_settings` & `update_availability_settings`: configuration of lead time, horizon, buffer, and duration
+  - `generate_teacher_available_slots`: dynamic slot generator slicing recurring blocks into discrete sessions, pruning slots within notice lead time, excluding blackout periods, and suppressing active booking overlaps
+- [x] REST Endpoints in `apps/api/marketplace/views.py` and registered in `urls.py`:
+  - `GET /api/marketplace/teacher/availability/` (fetch weekly schedule & settings)
+  - `PUT /api/marketplace/teacher/availability/` (bulk save recurring schedule)
+  - `GET /api/marketplace/teacher/availability/time-off/` (list time-off periods)
+  - `POST /api/marketplace/teacher/availability/time-off/` (create time-off with conflict check)
+  - `DELETE /api/marketplace/teacher/availability/time-off/<id>/` (delete time-off)
+  - `GET /api/marketplace/teacher/availability/settings/` (fetch scheduling policies)
+  - `PATCH /api/marketplace/teacher/availability/settings/` (update scheduling policies)
+  - `GET /api/marketplace/teachers/<id>/available-slots/` (public real-time bookable slots)
+- [x] Admin registration in `apps/api/marketplace/admin.py`: `TeacherAvailabilitySlotAdmin`, `TeacherTimeOffAdmin`, `TeacherAvailabilitySettingAdmin`
+- [x] Comprehensive unit tests in `apps/api/marketplace/tests.py`: 25 unit tests covering recurring schedule persistence, time-off conflict prevention, settings updates, eligibility permissions, and public slot generation (25/25 passing)
+- [x] Typed Frontend API Client in `apps/web/lib/marketplace.ts`:
+  - `TeacherAvailabilitySlot`, `TeacherTimeOff`, `TeacherAvailabilitySetting`, `BookableSlot`, `DayAvailableSlots`
+  - `fetchTeacherAvailability`, `saveTeacherWeeklySchedule`, `fetchTeacherTimeOff`, `addTeacherTimeOff`, `deleteTeacherTimeOff`, `fetchTeacherAvailabilitySettings`, `updateTeacherAvailabilitySettings`, `fetchTeacherAvailableSlots`
+- [x] Teacher Availability Hub Workspace in `apps/web/app/(teacher)/teacher/availability/page.tsx` & `availability.module.css`:
+  - 3-tab layout: Weekly Recurring Schedule, Time-Off Management, and Booking Settings
+  - Persian calendar week support (شنبه تا جمعه) with active switches and time pickers
+  - Quick Presets toolbar ("صبح‌ها", "عصرها", "تمام‌وقت", "پاک‌کردن")
+  - Time-off creation form with date-time pickers, full-day toggle, and conflict error banner
+  - Booking settings form with notice lead time, booking horizon, session duration, and buffer options
+- [x] Hours redirect: `apps/web/app/(teacher)/teacher/hours/page.tsx` permanently redirects to `/teacher/availability`
+- [x] Public Profile Slot Booking Widget in `apps/web/app/teachers/[id]/page.tsx` & `teacher-profile.module.css`:
+  - Horizontal Persian date picker carousel
+  - Real-time bookable time slots grid
+  - Selected slot preview banner with direct booking deep link
+- [x] Strict CSS Standards: 0 raw hex colors and 100% logical properties across all new modules
+- [x] Automated contract test `scripts/check_day40.py` (78/78 checks passed) and regression checks `scripts/check_day30.py` through `scripts/check_day39.py` (100% passed)
+- [x] Next.js build compiled 155/155 routes cleanly, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings
+- [x] Technical documentation in `docs/marketplace/teacher-availability-and-scheduling.md`
+- [x] Automated backup archive `backups/day40_backup.zip` (142.2 KB) created
+
+**Success gate:** Teachers have a comprehensive availability calendar and scheduling hub with Iranian calendar week support, collision-proof time-off management, and configurable booking policies, while learners can view real-time available slots and book directly from teacher public profiles with 78 contract checks passing cleanly.
+**Day 40 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007).

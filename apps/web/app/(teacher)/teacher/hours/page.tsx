@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function TeacherHoursPage() {
-  redirect("/teacher/classes");
+  redirect("/teacher/availability");
 }

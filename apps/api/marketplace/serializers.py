@@ -388,3 +388,125 @@ class TeacherReviewReplySerializer(serializers.Serializer):
 
 class FlagReviewSerializer(serializers.Serializer):
     reason = serializers.CharField(min_length=5, max_length=1000)
+
+# ---------------------------------------------------------------------------
+# Day 40: Serializers for Teacher Availability, Recurring Slots & Time-Off
+# ---------------------------------------------------------------------------
+
+class TeacherAvailabilitySlotSerializer(serializers.ModelSerializer):
+    day_name = serializers.CharField(source="get_day_of_week_display", read_only=True)
+    start_time_str = serializers.SerializerMethodField()
+    end_time_str = serializers.SerializerMethodField()
+
+    class Meta:
+        from marketplace.models import TeacherAvailabilitySlot
+        model = TeacherAvailabilitySlot
+        fields = [
+            "id",
+            "day_of_week",
+            "day_name",
+            "start_time",
+            "end_time",
+            "start_time_str",
+            "end_time_str",
+            "is_active",
+        ]
+
+    def get_start_time_str(self, obj) -> str:
+        return obj.start_time.strftime("%H:%M") if obj.start_time else ""
+
+    def get_end_time_str(self, obj) -> str:
+        return obj.end_time.strftime("%H:%M") if obj.end_time else ""
+
+
+class SlotInputSerializer(serializers.Serializer):
+    day_of_week = serializers.IntegerField(min_value=0, max_value=6)
+    start_time = serializers.CharField(max_length=8)
+    end_time = serializers.CharField(max_length=8)
+    is_active = serializers.BooleanField(default=True, required=False)
+
+
+class WeeklyScheduleInputSerializer(serializers.Serializer):
+    slots = SlotInputSerializer(many=True, required=False)
+    schedule = SlotInputSerializer(many=True, required=False)
+
+    def validate(self, data):
+        items = data.get("slots")
+        if items is None:
+            items = data.get("schedule")
+        if items is None:
+            raise serializers.ValidationError("فیلد slots یا schedule الزامی است.")
+        data["slots"] = items
+        return data
+
+
+class TeacherTimeOffSerializer(serializers.ModelSerializer):
+    start_display = serializers.SerializerMethodField()
+    end_display = serializers.SerializerMethodField()
+
+    class Meta:
+        from marketplace.models import TeacherTimeOff
+        model = TeacherTimeOff
+        fields = [
+            "id",
+            "start_datetime",
+            "end_datetime",
+            "start_display",
+            "end_display",
+            "reason",
+            "is_full_day",
+            "created_at",
+        ]
+
+    def get_start_display(self, obj) -> str:
+        from marketplace.services import TEHRAN_TZ
+        return obj.start_datetime.astimezone(TEHRAN_TZ).strftime("%Y/%m/%d %H:%M")
+
+    def get_end_display(self, obj) -> str:
+        from marketplace.services import TEHRAN_TZ
+        return obj.end_datetime.astimezone(TEHRAN_TZ).strftime("%Y/%m/%d %H:%M")
+
+
+class CreateTimeOffSerializer(serializers.Serializer):
+    start_datetime = serializers.DateTimeField(required=False)
+    end_datetime = serializers.DateTimeField(required=False)
+    start_time = serializers.DateTimeField(required=False)
+    end_time = serializers.DateTimeField(required=False)
+    reason = serializers.CharField(required=False, allow_blank=True, default="", max_length=255)
+    is_full_day = serializers.BooleanField(default=False, required=False)
+
+    def validate(self, data):
+        start = data.get("start_datetime") or data.get("start_time")
+        end = data.get("end_datetime") or data.get("end_time")
+        if not start or not end:
+            raise serializers.ValidationError({"conflicts": "فیلدهای زمان آغاز و پایان الزامی هستند."})
+        data["start_datetime"] = start
+        data["end_datetime"] = end
+        return data
+
+
+class TeacherAvailabilitySettingSerializer(serializers.ModelSerializer):
+    buffer_minutes = serializers.IntegerField(source="default_buffer_minutes", read_only=True)
+    session_duration_minutes = serializers.IntegerField(source="default_session_duration_minutes", read_only=True)
+
+    class Meta:
+        from marketplace.models import TeacherAvailabilitySetting
+        model = TeacherAvailabilitySetting
+        fields = [
+            "notice_lead_time_hours",
+            "max_booking_ahead_days",
+            "default_session_duration_minutes",
+            "default_buffer_minutes",
+            "buffer_minutes",
+            "session_duration_minutes",
+            "auto_accept_bookings",
+        ]
+
+
+class BookableSlotSerializer(serializers.Serializer):
+    start_utc = serializers.DateTimeField()
+    end_utc = serializers.DateTimeField()
+    start_time_tehran = serializers.CharField()
+    end_time_tehran = serializers.CharField()
+    duration_minutes = serializers.IntegerField()
+    is_bookable = serializers.BooleanField(default=True)

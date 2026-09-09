@@ -21,6 +21,11 @@ from .views import (
     booking_review_view,
     reply_to_review_view,
     flag_review_view,
+    teacher_availability_view,
+    teacher_time_off_list_create_view,
+    teacher_time_off_delete_view,
+    teacher_availability_settings_view,
+    public_teacher_available_slots_view,
 )
 
 urlpatterns = [
@@ -50,4 +55,10 @@ urlpatterns = [
     path("bookings/<uuid:booking_id>/review/", booking_review_view, name="marketplace_booking_review"),
     path("reviews/<uuid:review_id>/reply/", reply_to_review_view, name="marketplace_review_reply"),
     path("reviews/<uuid:review_id>/flag/", flag_review_view, name="marketplace_review_flag"),
+    # Day 40: Teacher Availability Calendar & Time-Off Endpoints
+    path("teacher/availability/", teacher_availability_view, name="teacher_availability"),
+    path("teacher/availability/time-off/", teacher_time_off_list_create_view, name="teacher_time_off_list_create"),
+    path("teacher/availability/time-off/<uuid:time_off_id>/", teacher_time_off_delete_view, name="teacher_time_off_delete"),
+    path("teacher/availability/settings/", teacher_availability_settings_view, name="teacher_availability_settings"),
+    path("teachers/<uuid:teacher_id>/available-slots/", public_teacher_available_slots_view, name="public_teacher_available_slots"),
 ]

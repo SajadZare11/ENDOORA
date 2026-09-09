@@ -9,8 +9,11 @@ import {
   fetchTeacherReviews,
   flagTeacherReview,
   formatTehranDateTime,
+  fetchTeacherAvailableSlots,
   type TeacherPublicProfile,
   type TeacherReview,
+  type DayAvailableSlots,
+  type BookableSlot,
 } from "../../../lib/marketplace";
 import styles from "./teacher-profile.module.css";
 
@@ -36,18 +39,34 @@ export default function TeacherPublicProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Day 40: Real-time available slots state
+  const [availableDays, setAvailableDays] = useState<DayAvailableSlots[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [selectedSlot, setSelectedSlot] = useState<BookableSlot | null>(null);
+
   useEffect(() => {
     let cancelled = false;
     async function load() {
       if (!teacherId) return;
       try {
-        const [profData, reviewsData] = await Promise.all([
+        const [profData, reviewsData, slotsData] = await Promise.all([
           fetchTeacherPublicProfile(teacherId),
           fetchTeacherReviews(teacherId),
+          fetchTeacherAvailableSlots(teacherId, { duration: 45 }).catch(() => ({
+            success: false,
+            teacher_id: teacherId,
+            days: [],
+            slots: [],
+            total_slots: 0,
+          })),
         ]);
         if (!cancelled) {
           setProfile(profData);
           setReviews(reviewsData.reviews || profData.reviews || []);
+          if (slotsData?.days && slotsData.days.length > 0) {
+            setAvailableDays(slotsData.days);
+            setSelectedDate(slotsData.days[0].date);
+          }
           setLoading(false);
         }
       } catch (err: unknown) {
@@ -441,7 +460,7 @@ export default function TeacherPublicProfilePage() {
             </section>
           </div>
 
-          {/* Sticky Sidebar (Booking Card) */}
+          {/* Sticky Sidebar (Booking Card with Day 40 Slot Picker) */}
           <aside className={styles.sidebar}>
             <div className={styles.bookingCard}>
               <div className={styles.rateHeader}>
@@ -451,11 +470,89 @@ export default function TeacherPublicProfilePage() {
                 </span>
               </div>
 
+              {/* Day 40: Slot Booking Calendar Section */}
+              <div className={styles.slotSection}>
+                <span className={styles.slotSectionTitle}>
+                  <span aria-hidden="true">📅</span>
+                  انتخاب زمان و رزرو مستقیم جلسه
+                </span>
+
+                {availableDays.length > 0 ? (
+                  <>
+                    {/* Horizontal Date Picker */}
+                    <div className={styles.datePickerScroll} role="tablist" aria-label="انتخاب تاریخ جلسه">
+                      {availableDays.map((d) => (
+                        <button
+                          key={d.date}
+                          type="button"
+                          className={`${styles.dateChip} ${selectedDate === d.date ? styles.dateChipActive : ""}`}
+                          onClick={() => {
+                            setSelectedDate(d.date);
+                            setSelectedSlot(null);
+                          }}
+                        >
+                          <span>{d.day_name || d.day_name_fa}</span>
+                          <span>{d.date.slice(5)}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Time Slots for Selected Date */}
+                    {(() => {
+                      const activeDay = availableDays.find((d) => d.date === selectedDate);
+                      const currentSlots = activeDay?.slots || [];
+                      if (currentSlots.length === 0) {
+                        return (
+                          <p className={styles.emptySlotsText}>
+                            اسلات بازی در این روز موجود نیست. تاریخ دیگری را انتخاب فرمایید.
+                          </p>
+                        );
+                      }
+                      return (
+                        <div className={styles.slotsGrid}>
+                          {currentSlots.map((s, idx) => {
+                            const isSelected = selectedSlot?.start_utc === s.start_utc;
+                            return (
+                              <button
+                                key={idx}
+                                type="button"
+                                className={`${styles.slotChip} ${isSelected ? styles.slotChipSelected : ""}`}
+                                onClick={() => setSelectedSlot(s)}
+                              >
+                                {s.start_time_tehran || s.start_tehran} - {s.end_time_tehran || s.end_tehran}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()}
+
+                    {/* Selected Slot Banner */}
+                    {selectedSlot && (
+                      <div className={styles.selectedSlotBanner}>
+                        <strong>✓ زمان انتخابی:</strong>
+                        <span>
+                          ساعت {selectedSlot.start_time_tehran || selectedSlot.start_tehran} به مدت {toPersianDigits(selectedSlot.duration_minutes)} دقیقه
+                        </span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <p className={styles.emptySlotsText}>
+                    در حال حاضر زمان‌بندی آنلاینی برای این مدرس تنظیم نشده است. می‌توانید درخواست جلسه خصوصی ثبت نمایید.
+                  </p>
+                )}
+              </div>
+
               <Link
-                href={`/learn/now`}
+                href={
+                  selectedSlot
+                    ? `/learn/now?teacher_id=${teacherId}&start_utc=${encodeURIComponent(selectedSlot.start_utc)}&duration=${selectedSlot.duration_minutes}`
+                    : `/learn/now?teacher_id=${teacherId}`
+                }
                 className={styles.bookButton}
               >
-                درخواست کلاس با این مدرس
+                {selectedSlot ? "رزرو این زمان انتخابی" : "درخواست کلاس با این مدرس"}
               </Link>
 
               <div className={styles.guaranteeList}>

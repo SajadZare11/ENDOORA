@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005 / MKT-001 / MKT-006)
-- **Day 39 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Roadmap day completed:** Day 40 — Build Teacher Availability Calendar, Recurring Slots, and Time-Off Management (MKT-002)
+- **Day 40 status:** Complete and verified; ready for Git commit and push to `origin/main`
 - **Inherited state:** Days 01–34 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, Teacher Classes/Roster/Audited Hours Ledger, and Teacher Assignments/Accommodations/Autosave
-- **Schema version:** Day 39 adds `profiles.0002_teacherprofile_certifications_and_more` and `marketplace.0003_alter_sessionbooking_idempotency_key_and_more`
+- **Schema version:** Day 40 adds `marketplace.0004_teacheravailabilitysetting_teacheravailabilityslot_and_more`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1501,9 +1501,44 @@ Key accomplishments:
 - Cross-navigation integration across teacher requests, teacher offers, learner Learn Now wizard, and learner my-teachers page.
 - Full verification: 154/154 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (103/103 checks in `scripts/check_day38.py`).
 
+
+### Day 40 Accomplishments (Teacher Availability Calendar, Recurring Slots, and Time-Off Management)
+- Created `TeacherAvailabilitySlot`, `TeacherTimeOff`, `TeacherAvailabilitySetting` models and migration `0004_teacheravailabilitysetting_teacheravailabilityslot_and_more.py` in `apps/api/marketplace`:
+  - Persian calendar week representation (0 = Saturday/شنبه to 6 = Friday/جمعه).
+  - Validation: start_time < end_time, start_datetime < end_datetime constraint.
+  - Active booking conflict detection preventing blackout periods over existing confirmed/in-progress sessions.
+- Services in `apps/api/marketplace/services.py`:
+  - `get_teacher_weekly_schedule`, `save_teacher_weekly_schedule`: atomic bulk replacement of weekly recurring slots.
+  - `list_teacher_time_off`, `add_teacher_time_off`, `delete_teacher_time_off`: conflict-safe time-off management.
+  - `get_or_create_availability_settings`, `update_availability_settings`: customizable lead time, booking horizon, buffer, and duration.
+  - `generate_teacher_available_slots`: high-performance discrete slot generator slicing weekly recurring blocks, applying lead time filter, and excluding time-offs and active bookings.
+- Serializers & Endpoints in `apps/api/marketplace/serializers.py`, `views.py`, and `urls.py`:
+  - `GET /api/marketplace/teacher/availability/`
+  - `PUT /api/marketplace/teacher/availability/`
+  - `GET /api/marketplace/teacher/availability/time-off/`
+  - `POST /api/marketplace/teacher/availability/time-off/`
+  - `DELETE /api/marketplace/teacher/availability/time-off/<id>/`
+  - `GET /api/marketplace/teacher/availability/settings/`
+  - `PATCH /api/marketplace/teacher/availability/settings/`
+  - `GET /api/marketplace/teachers/<id>/available-slots/`
+- Comprehensive Unit Tests in `apps/api/marketplace/tests.py`:
+  - 25 unit tests (25/25 passing) covering weekly schedule updates, time-off conflict detection, settings management, and slot generation.
+- Frontend API Client in `apps/web/lib/marketplace.ts`:
+  - Full TypeScript types and API client methods for availability, time-off, settings, and public slots.
+- Teacher Availability Hub in `apps/web/app/(teacher)/teacher/availability/page.tsx` & `availability.module.css`:
+  - 3-tab layout: Weekly Recurring Schedule, Time-Off Management, and Booking Settings.
+  - Presets toolbar ("صبح‌ها", "عصرها", "تمام‌وقت", "پاک‌کردن").
+  - Time-off manager with conflict alert banner.
+- Hours redirect in `apps/web/app/(teacher)/teacher/hours/page.tsx`:
+  - Seamless redirection to `/teacher/availability`.
+- Public Profile Slot Booking Widget in `apps/web/app/teachers/[id]/page.tsx` & `teacher-profile.module.css`:
+  - Interactive Persian date chip carousel and time slot grid for direct booking.
+- 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Full verification: 155/155 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (78/78 checks in `scripts/check_day40.py`, all regression checks passed).
+
 ## Exact next day
 
-**Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005).**
+**Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007).**
 
-Do not begin Day 39 until the Day 38 commit is pushed and `git status --short --branch`
+Do not begin Day 41 until the Day 40 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

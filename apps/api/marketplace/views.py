@@ -462,3 +462,168 @@ def flag_review_view(request: Request, review_id: str) -> Response:
         "status": "success",
         "message": "گزارش تخلف ثبت گردید و توسط تیم نظارت بررسی خواهد شد.",
     })
+
+# ---------------------------------------------------------------------------
+# Day 40: Teacher Availability Calendar, Recurring Slots & Time-Off Views
+# ---------------------------------------------------------------------------
+
+@api_view(["GET", "PUT"])
+@permission_classes([IsAuthenticated])
+def teacher_availability_view(request):
+    """Teacher retrieves or updates their weekly recurring availability schedule."""
+    from accounts.models import User
+    if not (request.user.is_authenticated and request.user.role == User.Role.TEACHER and getattr(request.user, "is_teacher_verified", False) and getattr(request.user, "marketplace_eligible", False)):
+        return Response({"detail": "فقط اساتید تاییدشده و واجد شرایط مجاز به تنظیم ساعات کاری هستند."}, status=status.HTTP_403_FORBIDDEN)
+    from marketplace.services import (
+        get_teacher_weekly_schedule,
+        save_teacher_weekly_schedule,
+        get_or_create_availability_settings,
+    )
+    from marketplace.serializers import (
+        WeeklyScheduleInputSerializer,
+        TeacherAvailabilitySettingSerializer,
+    )
+
+    if request.method == "GET":
+        schedule = get_teacher_weekly_schedule(request.user.id)
+        settings_obj = get_or_create_availability_settings(request.user.id)
+        return Response({
+            "schedule": schedule,
+            "settings": TeacherAvailabilitySettingSerializer(settings_obj).data,
+            "is_verified": request.user.is_teacher_verified,
+            "marketplace_eligible": request.user.marketplace_eligible,
+        }, status=status.HTTP_200_OK)
+
+    elif request.method == "PUT":
+        ser = WeeklyScheduleInputSerializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        slots_data = ser.validated_data.get("slots", [])
+        updated_schedule = save_teacher_weekly_schedule(request.user, slots_data)
+        return Response({
+            "message": "برنامه هفتگی دسترسی با موفقیت ذخیره شد.",
+            "schedule": updated_schedule,
+        }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def teacher_time_off_list_create_view(request):
+    """Teacher lists or creates time-off / blackout periods."""
+    from accounts.models import User
+    if not (request.user.is_authenticated and request.user.role == User.Role.TEACHER and getattr(request.user, "is_teacher_verified", False) and getattr(request.user, "marketplace_eligible", False)):
+        return Response({"detail": "فقط اساتید تاییدشده و واجد شرایط مجاز به ثبت مرخصی هستند."}, status=status.HTTP_403_FORBIDDEN)
+    from marketplace.services import list_teacher_time_off, add_teacher_time_off
+    from marketplace.serializers import CreateTimeOffSerializer, TeacherTimeOffSerializer
+
+    if request.method == "GET":
+        time_offs = list_teacher_time_off(request.user.id, future_only=False)
+        return Response({"time_offs": time_offs}, status=status.HTTP_200_OK)
+
+    elif request.method == "POST":
+        ser = CreateTimeOffSerializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        from rest_framework.exceptions import ValidationError as DRFValidationError
+        try:
+            time_off = add_teacher_time_off(
+                teacher=request.user,
+                start_datetime=ser.validated_data["start_datetime"],
+                end_datetime=ser.validated_data["end_datetime"],
+                reason=ser.validated_data.get("reason", ""),
+                is_full_day=ser.validated_data.get("is_full_day", False),
+            )
+        except DRFValidationError as exc:
+            return Response(exc.detail if isinstance(exc.detail, dict) else {"conflicts": str(exc.detail)}, status=status.HTTP_400_BAD_REQUEST)
+
+        time_off_data = TeacherTimeOffSerializer(time_off).data
+        response_payload = dict(time_off_data)
+        response_payload["message"] = "بازه مرخصی با موفقیت ثبت شد."
+        response_payload["time_off"] = time_off_data
+        return Response(response_payload, status=status.HTTP_201_CREATED)
+
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def teacher_time_off_delete_view(request, time_off_id):
+    """Teacher cancels/deletes an active time-off period."""
+    from marketplace.services import delete_teacher_time_off
+    delete_teacher_time_off(request.user, str(time_off_id))
+    return Response({"message": "بازه مرخصی حذف شد.", "deleted": True}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["GET", "PATCH"])
+@permission_classes([IsAuthenticated])
+def teacher_availability_settings_view(request):
+    """Teacher manages availability parameters (lead time, horizon, buffer)."""
+    from accounts.models import User
+    if not (request.user.is_authenticated and request.user.role == User.Role.TEACHER and getattr(request.user, "is_teacher_verified", False) and getattr(request.user, "marketplace_eligible", False)):
+        return Response({"detail": "فقط اساتید تاییدشده و واجد شرایط مجاز به تغییر تنظیمات هستند."}, status=status.HTTP_403_FORBIDDEN)
+    from marketplace.services import get_or_create_availability_settings, update_availability_settings
+    from marketplace.serializers import TeacherAvailabilitySettingSerializer
+
+    if request.method == "GET":
+        settings_obj = get_or_create_availability_settings(request.user.id)
+        return Response(TeacherAvailabilitySettingSerializer(settings_obj).data, status=status.HTTP_200_OK)
+
+    elif request.method == "PATCH":
+        updated_settings = update_availability_settings(request.user, request.data)
+        ser_data = TeacherAvailabilitySettingSerializer(updated_settings).data
+        response_data = dict(ser_data)
+        response_data["message"] = "تنظیمات دسترسی با موفقیت بروزرسانی شد."
+        response_data["settings"] = ser_data
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def public_teacher_available_slots_view(request, teacher_id):
+    """Public endpoint for learners to retrieve real-time available booking slots for a teacher."""
+    from datetime import date
+    from marketplace.services import generate_teacher_available_slots
+
+    start_date_str = request.query_params.get("start_date")
+    end_date_str = request.query_params.get("end_date")
+    duration_str = request.query_params.get("duration")
+
+    start_d = None
+    end_d = None
+    duration_m = None
+
+    if start_date_str:
+        try:
+            start_d = date.fromisoformat(start_date_str)
+        except ValueError:
+            return Response({"detail": "تاریخ آغاز نامعتبر است (فرمت مجاز: YYYY-MM-DD)"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if end_date_str:
+        try:
+            end_d = date.fromisoformat(end_date_str)
+        except ValueError:
+            return Response({"detail": "تاریخ پایان نامعتبر است (فرمت مجاز: YYYY-MM-DD)"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if duration_str:
+        try:
+            duration_m = int(duration_str)
+        except ValueError:
+            return Response({"detail": "مدت جلسه نامعتبر است"}, status=status.HTTP_400_BAD_REQUEST)
+
+    days = generate_teacher_available_slots(
+        teacher_id=str(teacher_id),
+        start_date=start_d,
+        end_date=end_d,
+        duration_minutes=duration_m,
+    )
+    all_slots = []
+    for d in days:
+        all_slots.extend(d.get("slots", []))
+
+    return Response({
+        "success": True,
+        "teacher_id": str(teacher_id),
+        "days": days,
+        "slots": all_slots,
+        "total_slots": len(all_slots),
+    }, status=status.HTTP_200_OK)

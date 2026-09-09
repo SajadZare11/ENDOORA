@@ -1,3 +1,22 @@
+from marketplace.models import (
+    TeacherAvailabilitySlot,
+    TeacherTimeOff,
+    TeacherAvailabilitySetting,
+    DayOfWeek,
+)
+from marketplace.services import (
+    get_teacher_weekly_schedule,
+    save_teacher_weekly_schedule,
+    list_teacher_time_off,
+    add_teacher_time_off,
+    delete_teacher_time_off,
+    get_or_create_availability_settings,
+    update_availability_settings,
+    generate_teacher_available_slots,
+)
+from datetime import time, date, datetime
+import zoneinfo
+
 from decimal import Decimal
 from datetime import timedelta
 from django.test import TestCase
@@ -542,3 +561,152 @@ class MarketplaceDay37Tests(TestCase):
 # Aliases for contract test runners
 MarketplaceDay38Tests = MarketplaceDay37Tests
 MarketplaceDay39Tests = MarketplaceDay37Tests
+
+
+
+class MarketplaceDay40Tests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.learner = User.objects.create_user(
+            email="learner_day40@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Maryam",
+            last_name="Rad",
+            phone="09123334455",
+        )
+        self.verified_teacher = User.objects.create_user(
+            email="teacher_day40_v@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Farhad",
+            last_name="Alavi",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        self.unverified_teacher = User.objects.create_user(
+            email="teacher_day40_uv@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Nima",
+            last_name="Shams",
+            is_teacher_verified=False,
+            marketplace_eligible=False,
+        )
+
+    def test_save_and_get_weekly_schedule(self):
+        self.client.force_authenticate(user=self.verified_teacher)
+        payload = {
+            "schedule": [
+                {
+                    "day_of_week": DayOfWeek.SATURDAY,
+                    "start_time": "09:00:00",
+                    "end_time": "13:00:00",
+                    "is_active": True,
+                },
+                {
+                    "day_of_week": DayOfWeek.MONDAY,
+                    "start_time": "14:00:00",
+                    "end_time": "18:00:00",
+                    "is_active": True,
+                },
+            ]
+        }
+        res = self.client.put("/api/marketplace/teacher/availability/", data=payload, format="json")
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data["schedule"]), 2)
+
+        # Retrieve schedule
+        get_res = self.client.get("/api/marketplace/teacher/availability/")
+        self.assertEqual(get_res.status_code, 200)
+        self.assertEqual(len(get_res.data["schedule"]), 2)
+
+    def test_unverified_teacher_cannot_manage_availability(self):
+        self.client.force_authenticate(user=self.unverified_teacher)
+        res = self.client.get("/api/marketplace/teacher/availability/")
+        self.assertEqual(res.status_code, 403)
+
+    def test_time_off_creation_and_conflict_detection(self):
+        self.client.force_authenticate(user=self.verified_teacher)
+        tz = zoneinfo.ZoneInfo("Asia/Tehran")
+        now_tehran = timezone.now().astimezone(tz)
+        target_day = now_tehran + timedelta(days=5)
+        booking_start = target_day.replace(hour=10, minute=0, second=0, microsecond=0)
+        booking_end = booking_start + timedelta(hours=1)
+
+        # Create active booking
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("350000"),
+            scheduled_start=booking_start,
+            duration_minutes=60,
+        )
+
+        # Attempt to create overlapping time off
+        time_off_payload = {
+            "start_time": (booking_start - timedelta(minutes=30)).isoformat(),
+            "end_time": (booking_end + timedelta(minutes=30)).isoformat(),
+            "reason": "مرخصی شخصی",
+        }
+        res = self.client.post("/api/marketplace/teacher/availability/time-off/", data=time_off_payload, format="json")
+        self.assertEqual(res.status_code, 400)
+        self.assertIn("conflicts", res.data)
+
+        # Create non-conflicting time off
+        safe_start = target_day + timedelta(days=2)
+        safe_payload = {
+            "start_time": safe_start.isoformat(),
+            "end_time": (safe_start + timedelta(hours=4)).isoformat(),
+            "reason": "جلسه کاری خارج از پلتفرم",
+        }
+        safe_res = self.client.post("/api/marketplace/teacher/availability/time-off/", data=safe_payload, format="json")
+        self.assertEqual(safe_res.status_code, 201)
+        time_off_id = safe_res.data["id"]
+
+        # Delete time off
+        del_res = self.client.delete(f"/api/marketplace/teacher/availability/time-off/{time_off_id}/")
+        self.assertEqual(del_res.status_code, 204)
+
+    def test_availability_settings_management(self):
+        self.client.force_authenticate(user=self.verified_teacher)
+        get_res = self.client.get("/api/marketplace/teacher/availability/settings/")
+        self.assertEqual(get_res.status_code, 200)
+        self.assertEqual(get_res.data["notice_lead_time_hours"], 12)
+
+        patch_res = self.client.patch(
+            "/api/marketplace/teacher/availability/settings/",
+            data={"notice_lead_time_hours": 24, "buffer_minutes": 20},
+            format="json",
+        )
+        self.assertEqual(patch_res.status_code, 200)
+        self.assertEqual(patch_res.data["notice_lead_time_hours"], 24)
+        self.assertEqual(patch_res.data["buffer_minutes"], 20)
+
+    def test_public_available_slots_generation(self):
+        # Configure weekly schedule for teacher: Sunday 10:00 - 14:00
+        TeacherAvailabilitySlot.objects.create(
+            teacher=self.verified_teacher,
+            day_of_week=DayOfWeek.SUNDAY,
+            start_time=time(10, 0),
+            end_time=time(14, 0),
+            is_active=True,
+        )
+        # Fetch available slots as public user
+        self.client.logout()
+        res = self.client.get(f"/api/marketplace/teachers/{self.verified_teacher.id}/available-slots/?days=14")
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue(res.data["success"])
+        slots = res.data["slots"]
+        self.assertIsInstance(slots, list)
+        if len(slots) > 0:
+            first_slot = slots[0]
+            self.assertIn("start_utc", first_slot)
+            self.assertIn("start_tehran", first_slot)
+            self.assertIn("jalali_date", first_slot)
+            self.assertIn("day_name_fa", first_slot)
+
+
+# Set alias
+MarketplaceDay40TestsClass = MarketplaceDay40Tests

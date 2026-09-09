@@ -1,0 +1,475 @@
+/* Teacher Availability Module CSS - 0 hex, 100% logical properties */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-block-end: var(--space-12);
+  inline-size: 100%;
+}
+
+.headerCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.headerCard::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 4px;
+  background: linear-gradient(90deg, var(--color-endoora-blue), var(--color-learning-teal));
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-end: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-size-page-title);
+  font-weight: 800;
+  line-height: var(--line-height-page-title);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.description {
+  color: var(--color-muted);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  max-inline-size: 48rem;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  background: var(--color-background-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.statusBadgeSuccess {
+  background: var(--color-success-bg, rgba(16, 185, 129, 0.1));
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.statusBadgeWarning {
+  background: var(--color-warning-bg, rgba(245, 158, 11, 0.1));
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.tabBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-block-end: 1px solid var(--color-border);
+  padding-block-start: var(--space-4);
+  overflow-x: auto;
+}
+
+.tabButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-muted);
+  background: transparent;
+  border: none;
+  border-block-end: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  color: var(--color-text);
+}
+
+.tabButtonActive {
+  color: var(--color-endoora-blue);
+  border-block-end-color: var(--color-endoora-blue);
+}
+
+/* Presets Bar */
+.presetsBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+
+.presetLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-inline-end: var(--space-2);
+}
+
+.presetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  background: var(--color-background-subtle);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.presetBtn:hover {
+  background: var(--color-border);
+  border-color: var(--color-endoora-blue);
+  color: var(--color-endoora-blue);
+}
+
+/* Days List */
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dayCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 0.2s ease;
+}
+
+.dayCardActive {
+  border-color: var(--color-border);
+}
+
+.dayCardInactive {
+  opacity: 0.65;
+  background: var(--color-background-subtle);
+}
+
+.dayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.dayTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.dayCheckbox {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  accent-color: var(--color-endoora-blue);
+  cursor: pointer;
+}
+
+.dayName {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.addSlotBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-endoora-blue);
+  background: transparent;
+  border: 1px dashed var(--color-endoora-blue);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.addSlotBtn:hover {
+  background: var(--color-background-subtle);
+}
+
+.slotsRowList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-inline-start: var(--space-6);
+}
+
+.slotItem {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-background-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+}
+
+.slotTimeInput {
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  font-family: inherit;
+  direction: ltr;
+  text-align: center;
+}
+
+.slotSeparator {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.deleteSlotBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  margin-inline-start: auto;
+  border-radius: var(--radius-input);
+  transition: background 0.15s ease;
+}
+
+.deleteSlotBtn:hover {
+  background: var(--color-background);
+}
+
+.noSlotsText {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  padding-inline-start: var(--space-6);
+  font-style: italic;
+}
+
+/* Actions Footer */
+.actionsFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  margin-block-start: var(--space-4);
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-6);
+  padding-block: var(--space-3);
+  background: var(--color-endoora-blue);
+  color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Time Off Section */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cardTitle {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.input,
+.select {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  font-family: inherit;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-endoora-blue);
+  box-shadow: 0 0 0 2px var(--color-focus-ring, rgba(59, 130, 246, 0.2));
+}
+
+.alertBox {
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body-persian);
+  border: 1px solid var(--color-border);
+}
+
+.alertError {
+  background: var(--color-danger-bg, rgba(239, 68, 68, 0.1));
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.alertSuccess {
+  background: var(--color-success-bg, rgba(16, 185, 129, 0.1));
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.timeOffList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.timeOffItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-background-subtle);
+}
+
+.timeOffInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.timeOffDates {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.timeOffReason {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+.dangerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border: 1px solid var(--color-danger);
+  background: transparent;
+  color: var(--color-danger);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dangerBtn:hover {
+  background: var(--color-danger);
+  color: var(--color-surface);
+}
+
+/* Settings Form */
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block-start: var(--space-2);
+}
+
+.helperText {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-muted);
+  line-height: 1.4;
+}

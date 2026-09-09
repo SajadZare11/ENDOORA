@@ -406,3 +406,133 @@ class TeacherReview(models.Model):
 
     def __str__(self):
         return f"Review {self.id} for {self.teacher.email} by {self.learner.email} ({self.overall_rating}★)"
+
+
+# ---------------------------------------------------------------------------
+# Day 40: Teacher Availability Calendar, Recurring Slots & Time-Off Management
+# ---------------------------------------------------------------------------
+
+class DayOfWeek(models.IntegerChoices):
+    SATURDAY = 0, _("شنبه")
+    SUNDAY = 1, _("یک‌شنبه")
+    MONDAY = 2, _("دوشنبه")
+    TUESDAY = 3, _("سه‌شنبه")
+    WEDNESDAY = 4, _("چهارشنبه")
+    THURSDAY = 5, _("پنج‌شنبه")
+    FRIDAY = 6, _("جمعه")
+
+
+class TeacherAvailabilitySlot(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="availability_slots",
+    )
+    day_of_week = models.PositiveSmallIntegerField(
+        choices=DayOfWeek.choices,
+        help_text="روز هفته (شنبه=۰ تا جمعه=۶)",
+    )
+    start_time = models.TimeField(
+        help_text="زمان آغاز دسترسی (ساعت و دقیقه به وقت تهران)",
+    )
+    end_time = models.TimeField(
+        help_text="زمان پایان دسترسی (ساعت و دقیقه به وقت تهران)",
+    )
+    is_active = models.BooleanField(
+        default=True,
+        help_text="فعال یا غیرفعال بودن این بازه زمانی",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["day_of_week", "start_time"]
+        indexes = [
+            models.Index(fields=["teacher", "day_of_week", "is_active"]),
+        ]
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(start_time__lt=models.F("end_time")),
+                name="valid_availability_time_window",
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.teacher.email} - {self.get_day_of_week_display()}: {self.start_time.strftime('%H:%M')} to {self.end_time.strftime('%H:%M')}"
+
+
+class TeacherTimeOff(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="time_off_periods",
+    )
+    start_datetime = models.DateTimeField(
+        help_text="زمان آغاز مرخصی یا بلاک بودن (UTC)",
+    )
+    end_datetime = models.DateTimeField(
+        help_text="زمان پایان مرخصی یا بلاک بودن (UTC)",
+    )
+    reason = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="علت مرخصی (سفر، امتحانات، تعطیلات رسمی و...)",
+    )
+    is_full_day = models.BooleanField(
+        default=False,
+        help_text="آیا مرخصی به صورت تمام‌روز است؟",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["start_datetime"]
+        indexes = [
+            models.Index(fields=["teacher", "start_datetime", "end_datetime"]),
+        ]
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(start_datetime__lt=models.F("end_datetime")),
+                name="valid_time_off_window",
+            ),
+        ]
+
+    def __str__(self):
+        return f"Time-off {self.teacher.email}: {self.start_datetime} to {self.end_datetime} ({self.reason})"
+
+
+class TeacherAvailabilitySetting(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="availability_settings",
+    )
+    notice_lead_time_hours = models.PositiveSmallIntegerField(
+        default=12,
+        help_text="حداقل فاصله زمانی قبل از جلسه برای رزرو شدن به ساعت (پیش‌فرض ۱۲ ساعت)",
+    )
+    max_booking_ahead_days = models.PositiveSmallIntegerField(
+        default=14,
+        help_text="حداکثر بازه زمانی مجاز برای رزرو از قبل به روز (پیش‌فرض ۱۴ روز)",
+    )
+    default_session_duration_minutes = models.PositiveSmallIntegerField(
+        default=45,
+        help_text="مدت پیش‌فرض هر جلسه به دقیقه (۳۰، ۴۵، ۶۰ یا ۹۰)",
+    )
+    default_buffer_minutes = models.PositiveSmallIntegerField(
+        default=15,
+        help_text="فاصله استراحت پیش‌فرض بین دو جلسه به دقیقه (۰، ۱۰، ۱۵ یا ۳۰)",
+    )
+    auto_accept_bookings = models.BooleanField(
+        default=True,
+        help_text="تأیید خودکار رزروهای منطبق با زمان‌های باز",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Settings for {self.teacher.email} (Notice: {self.notice_lead_time_hours}h, Ahead: {self.max_booking_ahead_days}d)"
