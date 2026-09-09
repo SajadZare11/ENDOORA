@@ -1253,5 +1253,78 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] Automated backup archive `backups/day41_backup.zip` (199.5 KB) created
 
 **Success gate:** Admins have an all-in-one operations hub for resolving disputes, vetting teacher credentials, moderating reviews, and maintaining pricing plans; teachers have a dedicated verification portal; and session bookings have an auditable dispute lifecycle with 132 contract checks passing cleanly.
-**Day 41 Status:** Completed and ready for Git commit and push to GitHub main.
-**Next day after Git push:** Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008).
+**Day 41 Status:** Complete and verified; pushed to `origin/main`.
+**Sequential successor:** Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008).
+
+### Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008)
+
+**Models** (migration `0006`):
+- [x] `UserWallet`: per-user atomic balance with `balance_toman` (DecimalField), auto-created via `get_or_create_wallet`
+- [x] `WalletTransaction`: immutable audit trail with typed entries (deposit, payment, refund, escrow_hold, escrow_release, payout)
+- [x] `PaymentTransaction`: gateway-agnostic payment records supporting ZarinPal, Sandbox, and Wallet providers
+- [x] `BookingEscrow`: holds funds between checkout and session completion/cancellation (held → released/refunded)
+- [x] `TeacherPayoutRequest`: teacher withdrawal request with admin approval lifecycle (pending → processed/rejected)
+- [x] Added `is_paid` boolean field and `PENDING_PAYMENT` status to `SessionBooking`
+
+**ZarinPal Gateway Client** (`marketplace/zarinpal.py`):
+- [x] PG v4 REST client with sandbox mode toggle (`ZARINPAL_SANDBOX` setting)
+- [x] `request_payment()` and `verify_payment()` methods
+- [x] Toman↔Rial conversion helpers
+
+**Services** (`marketplace/services.py`):
+- [x] Wallet CRUD: `get_or_create_wallet`, `deposit_to_wallet`, `pay_from_wallet`, `refund_to_wallet`
+- [x] Escrow lifecycle: `create_booking_escrow`, `release_booking_escrow`, `refund_booking_escrow`
+- [x] Checkout flow: `initiate_checkout` (ZarinPal/Sandbox/Wallet 1-click), `verify_checkout_payment` (idempotent fulfillment)
+- [x] Teacher earnings: `get_teacher_earnings_summary`, `request_teacher_payout`, `process_teacher_payout_request`
+- [x] Escrow hooks integrated into `complete_session_booking`, `cancel_session_booking`, `resolve_booking_dispute`
+
+**Serializers** (`marketplace/serializers.py`):
+- [x] `WalletTransactionSerializer`, `UserWalletSerializer`, `PaymentTransactionSerializer`
+- [x] `BookingEscrowSerializer`, `TeacherPayoutRequestSerializer`
+- [x] Input serializers for checkout initiation, verification, payout requests, and admin processing
+
+**API Endpoints** (10 new routes):
+- [x] `POST /api/marketplace/checkout/initiate/` — multi-gateway checkout initiation
+- [x] `POST /api/marketplace/checkout/verify/` — idempotent payment verification
+- [x] `GET /api/marketplace/wallet/` — user wallet balance
+- [x] `GET /api/marketplace/wallet/transactions/` — wallet transaction ledger
+- [x] `GET /api/marketplace/billing/invoices/` — billing invoice history
+- [x] `GET /api/marketplace/teacher/earnings/` — teacher earnings summary
+- [x] `POST /api/marketplace/teacher/payouts/request/` — submit payout request
+- [x] `GET /api/marketplace/teacher/payouts/` — teacher payout history
+- [x] `GET /api/marketplace/admin/payouts/` — admin payout queue
+- [x] `POST /api/marketplace/admin/payouts/<id>/process/` — admin approve/reject payout
+
+**Admin** (`marketplace/admin.py`):
+- [x] Registered `UserWallet`, `WalletTransaction`, `PaymentTransaction`, `BookingEscrow`, `TeacherPayoutRequest` with appropriate list_display, filters, search
+
+**Tests** (`marketplace/tests.py`):
+- [x] `MarketplaceDay42Tests`: 6 integration tests covering wallet CRUD, sandbox checkout+verify, wallet 1-click pay, escrow release on completion, escrow refund on cancellation, teacher earnings+payout pipeline
+- [x] All 35 marketplace tests passing cleanly
+
+**Frontend TypeScript Client** (`lib/marketplace.ts`):
+- [x] Added `UserWallet`, `WalletTransaction`, `PaymentTransaction`, `BookingEscrow`, `TeacherPayoutRequest`, `TeacherEarningsSummary` interfaces
+- [x] Added API functions: `fetchUserWallet`, `fetchWalletTransactions`, `initiateCheckout`, `verifyCheckoutPayment`, `fetchBillingInvoices`, `fetchTeacherEarnings`, `requestTeacherPayout`, `fetchTeacherPayouts`, `fetchAdminPayouts`, `processAdminPayout`
+
+**Frontend Pages**:
+- [x] Checkout page (`/checkout`): order summary, price breakdown, escrow trust banner, payment method selector (Wallet/Sandbox/ZarinPal)
+- [x] Checkout callback (`/checkout/callback`): payment verification receipt with sandbox simulator controls
+- [x] User wallet dashboard (`/account/wallet`): balance cards, transaction ledger, topup modal
+- [x] Billing invoices (`/account/billing`): invoice list with formal receipt modal and print support
+- [x] Teacher earnings dashboard (`/teacher/earnings`): metrics grid, payout history, Sheba bank payout form
+- [x] Updated booking detail (`/bookings/[id]`): payment warning banner with "Pay Now" CTA for unpaid bookings
+- [x] Updated admin marketplace (`/marketplace`): 5th "Payouts" tab with full payout processing queue and approval modal
+
+**Settings** (`base.py`):
+- [x] `ZARINPAL_MERCHANT_ID`, `ZARINPAL_SANDBOX = True`, `MARKETPLACE_COMMISSION_RATE = Decimal("0.15")`
+
+**Verification**:
+- [x] 35/35 marketplace unit tests passing
+- [x] TypeScript typecheck: 0 errors
+- [x] Next.js production build: 161/161 pages generated successfully
+- [x] CSS audit: 0 hex colors, 100% design tokens, 100% logical properties
+- [x] No TODO/FIXME/HACK markers in Day 42 code
+
+**Success gate:** Users can check out via ZarinPal gateway (sandbox mode), direct wallet balance, or sandbox test gateway; funds are held in escrow until session completion (auto-release) or cancellation (auto-refund); teachers can view earnings and request payouts via Sheba IBAN; admins can process payout requests with approval/rejection workflow; all 35 tests pass cleanly.
+**Day 42 Status:** Completed and pushed to GitHub main.
+**Next day after Git push:** Day 43 — TBD.

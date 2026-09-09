@@ -43,6 +43,7 @@ export interface SessionBooking {
   can_start: boolean;
   can_complete: boolean;
   can_respond_reschedule: boolean;
+  is_paid?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -1007,3 +1008,245 @@ export async function updateAdminPricingPlan(
     }
   );
 }
+
+// ---------------------------------------------------------------------------
+// Day 42: Payment Gateway, Wallet Balance & Escrow Client Library (MKT-008)
+// ---------------------------------------------------------------------------
+
+export interface WalletTransaction {
+  id: string;
+  transaction_type: "deposit" | "booking_payment" | "subscription_payment" | "escrow_hold" | "escrow_release" | "refund" | "payout" | "commission_deduction";
+  transaction_type_display: string;
+  amount_toman: number;
+  balance_after_toman: number;
+  tracking_code: string;
+  reference_id: string;
+  description: string;
+  created_at: string;
+}
+
+export interface UserWallet {
+  id: string;
+  balance_toman: number;
+  locked_toman: number;
+  available_balance_toman: number;
+  recent_transactions?: WalletTransaction[];
+  updated_at: string;
+}
+
+export interface PaymentTransaction {
+  id: string;
+  order_type: "booking_session" | "subscription_plan" | "wallet_topup";
+  order_type_display: string;
+  booking_id?: string | null;
+  plan_id?: string | null;
+  gateway_provider: "zarinpal" | "sandbox" | "wallet";
+  gateway_provider_display: string;
+  amount_toman: number;
+  amount_rial: number;
+  authority?: string | null;
+  ref_id?: string | null;
+  card_pan?: string | null;
+  status: "initiated" | "pending" | "paid" | "failed" | "refunded";
+  status_display: string;
+  description: string;
+  is_sandbox: boolean;
+  verified_at?: string | null;
+  created_at: string;
+}
+
+export interface BookingEscrow {
+  id: string;
+  booking_id: string;
+  total_amount_toman: number;
+  platform_commission_rate: string | number;
+  platform_commission_toman: number;
+  teacher_net_toman: number;
+  status: "held" | "released_to_teacher" | "refunded_to_learner" | "partially_settled";
+  status_display: string;
+  refund_amount_toman: number;
+  settlement_notes: string;
+  funded_at: string;
+  settled_at?: string | null;
+}
+
+export interface TeacherPayoutRequest {
+  id: string;
+  teacher_id: string;
+  teacher_email: string;
+  teacher_name: string;
+  amount_toman: number;
+  bank_shaba_number: string;
+  bank_name: string;
+  account_holder_name: string;
+  status: "pending" | "approved" | "paid" | "rejected";
+  status_display: string;
+  admin_notes: string;
+  rejection_reason: string;
+  processed_by_name: string;
+  processed_at?: string | null;
+  created_at: string;
+}
+
+export interface TeacherEarningsSummary {
+  wallet_balance_toman: number;
+  available_to_withdraw_toman: number;
+  held_in_escrow_toman: number;
+  settled_net_toman: number;
+  settled_gross_toman: number;
+  platform_fee_toman: number;
+  paid_payouts_toman: number;
+  pending_payouts_toman: number;
+  completed_session_count: number;
+}
+
+export interface CheckoutInitiateResult {
+  transaction_id: string;
+  order_type: string;
+  amount_toman: number;
+  amount_rial: number;
+  status: string;
+  authority?: string;
+  payment_url?: string;
+  is_sandbox?: boolean;
+  paid_via_wallet?: boolean;
+  tracking_code?: string;
+}
+
+export interface CheckoutVerifyResult {
+  transaction_id: string;
+  status: string;
+  ref_id?: string;
+  card_pan?: string;
+  amount_toman: number;
+  order_type: string;
+  booking_id?: string | null;
+  already_verified?: boolean;
+  error?: string;
+}
+
+export async function initiateCheckout(payload: {
+  order_type: "booking_session" | "subscription_plan" | "wallet_topup";
+  order_id?: string;
+  amount_toman?: number;
+  gateway_provider?: "zarinpal" | "sandbox" | "wallet";
+  callback_url?: string;
+  idempotency_key?: string;
+}): Promise<{ checkout: CheckoutInitiateResult }> {
+  return await endooraApi<{ checkout: CheckoutInitiateResult }>(
+    "/api/marketplace/checkout/initiate/",
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function verifyCheckoutPayment(payload: {
+  authority: string;
+  status?: string;
+}): Promise<{ result: CheckoutVerifyResult }> {
+  return await endooraApi<{ result: CheckoutVerifyResult }>(
+    "/api/marketplace/checkout/verify/",
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function simulateSandboxPayment(
+  authority: string,
+  status: string = "OK"
+): Promise<{ result: CheckoutVerifyResult }> {
+  return await endooraApi<{ result: CheckoutVerifyResult }>(
+    "/api/marketplace/checkout/sandbox/simulate/",
+    {
+      method: "POST",
+      json: { authority, status },
+    }
+  );
+}
+
+export async function fetchUserWallet(): Promise<{ wallet: UserWallet }> {
+  return await endooraApi<{ wallet: UserWallet }>("/api/marketplace/wallet/");
+}
+
+export async function fetchWalletTransactions(): Promise<{
+  transactions: WalletTransaction[];
+  count: number;
+}> {
+  return await endooraApi<{ transactions: WalletTransaction[]; count: number }>(
+    "/api/marketplace/wallet/transactions/"
+  );
+}
+
+export async function fetchBillingInvoices(): Promise<{
+  invoices: PaymentTransaction[];
+  count: number;
+}> {
+  return await endooraApi<{ invoices: PaymentTransaction[]; count: number }>(
+    "/api/marketplace/billing/invoices/"
+  );
+}
+
+export async function fetchTeacherEarningsSummary(): Promise<{
+  earnings: TeacherEarningsSummary;
+}> {
+  return await endooraApi<{ earnings: TeacherEarningsSummary }>(
+    "/api/marketplace/teacher/earnings/"
+  );
+}
+
+export async function fetchTeacherPayoutRequests(): Promise<{
+  payouts: TeacherPayoutRequest[];
+  count: number;
+}> {
+  return await endooraApi<{ payouts: TeacherPayoutRequest[]; count: number }>(
+    "/api/marketplace/teacher/payouts/"
+  );
+}
+
+export async function requestTeacherPayout(payload: {
+  amount_toman: number;
+  bank_shaba_number: string;
+  bank_name?: string;
+  account_holder_name?: string;
+}): Promise<{ message: string; payout: TeacherPayoutRequest }> {
+  return await endooraApi<{ message: string; payout: TeacherPayoutRequest }>(
+    "/api/marketplace/teacher/payouts/",
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchAdminPayoutRequests(params?: {
+  status?: string;
+}): Promise<{ payouts: TeacherPayoutRequest[]; count: number }> {
+  const query = new URLSearchParams();
+  if (params?.status) query.set("status", params.status);
+  const qs = query.toString();
+  return await endooraApi<{ payouts: TeacherPayoutRequest[]; count: number }>(
+    `/api/marketplace/admin/payouts/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function processAdminPayoutRequest(
+  payoutId: string,
+  payload: {
+    action: "approve" | "pay" | "reject";
+    admin_notes?: string;
+    rejection_reason?: string;
+  }
+): Promise<{ message: string; payout: TeacherPayoutRequest }> {
+  return await endooraApi<{ message: string; payout: TeacherPayoutRequest }>(
+    `/api/marketplace/admin/payouts/${payoutId}/process/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+

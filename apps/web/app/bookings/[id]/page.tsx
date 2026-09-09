@@ -295,9 +295,41 @@ export default function BookingDetailPage() {
             </h1>
             <span className={styles.sessionCode}>کد رزرو یکتا: {booking.id}</span>
           </div>
-          {getStatusBadge(booking.status, booking.status_display)}
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
+            {!booking.is_paid && !booking.status.startsWith("cancelled") && (
+              <span className={`${styles.badge} ${styles.badgeReschedule}`}>در انتظار پرداخت 💳</span>
+            )}
+            {getStatusBadge(booking.status, booking.status_display)}
+          </div>
         </div>
       </div>
+
+      {!booking.is_paid && !booking.status.startsWith("cancelled") && (
+        <div className={styles.paymentWarningCard}>
+          <div className={styles.paymentWarningHeader}>
+            <h3 className={styles.paymentWarningTitle}>
+              <span>⚠️</span>
+              <span>هزینه این جلسه هنوز پرداخت نشده است</span>
+            </h3>
+            <span className={styles.escrowBadgeMini}>
+              <span>🛡️</span>
+              <span>تضمین امن حساب امانی اندورا (Escrow)</span>
+            </span>
+          </div>
+          <p className={styles.paymentWarningDesc}>
+            برای قطعی شدن زمان کلاس و فعال‌سازی اتاق اختصاصی، لطفاً نسبت به پرداخت مبلغ {booking.rate_toman.toLocaleString("fa-IR")} تومان از طریق درگاه شتاب یا کیف پول اقدام فرمایید. وجه شما تا پایان جلسه نزد اندورا به امانت باقی می‌ماند.
+          </p>
+          <div className={styles.paymentActions}>
+            <Link
+              href={`/checkout?order_type=booking_session&order_id=${booking.id}`}
+              className={styles.btnPay}
+            >
+              <span>پرداخت و نهایی‌سازی رزرو ({booking.rate_toman.toLocaleString("fa-IR")} تومان)</span>
+              <span>←</span>
+            </Link>
+          </div>
+        </div>
+      )}
 
       {hasDispute && dispute && (
         <div className={styles.disputeCard}>

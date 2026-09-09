@@ -921,3 +921,209 @@ def admin_pricing_plans_view(request, plan_id=None):
             "message": "پلن قیمت‌گذاری با موفقیت بروزرسانی شد.",
             "plan": PlatformPricingPlanSerializer(plan).data,
         }, status=status.HTTP_200_OK)
+
+# ---------------------------------------------------------------------------
+# Day 42: Payment Gateway, Wallet & Escrow Views (MKT-008)
+# ---------------------------------------------------------------------------
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def checkout_initiate_view(request):
+    """
+    Initialize payment checkout for booking session, subscription plan, or wallet top-up.
+    Supports ZarinPal, Developer Sandbox, or instant 1-Click Wallet settlement.
+    """
+    from marketplace.serializers import InitiateCheckoutInputSerializer
+    from marketplace.services import initiate_checkout
+
+    ser = InitiateCheckoutInputSerializer(data=request.data)
+    if not ser.is_valid():
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    data = ser.validated_data
+    result = initiate_checkout(
+        user=request.user,
+        order_type=data["order_type"],
+        order_id=data.get("order_id"),
+        amount_toman=data.get("amount_toman"),
+        gateway_provider=data.get("gateway_provider", "zarinpal"),
+        callback_url=data.get("callback_url", ""),
+        idempotency_key=data.get("idempotency_key", ""),
+    )
+    return Response({"checkout": result}, status=status.HTTP_201_CREATED)
+
+
+@api_view(["POST", "GET"])
+@permission_classes([AllowAny])
+def checkout_verify_view(request):
+    """
+    Verify payment callback from ZarinPal or Sandbox and fulfill the order.
+    """
+    from marketplace.services import verify_checkout_payment
+
+    authority = request.data.get("authority") or request.query_params.get("Authority") or request.query_params.get("authority")
+    status_param = request.data.get("status") or request.query_params.get("Status") or request.query_params.get("status") or "OK"
+
+    if not authority:
+        return Response({"detail": "شناسه پرداخت Authority الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = verify_checkout_payment(authority=authority, status_param=status_param)
+    return Response({"result": result}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def checkout_sandbox_simulate_view(request):
+    """
+    Developer sandbox helper to simulate user completing or failing payment.
+    """
+    from marketplace.services import verify_checkout_payment
+
+    authority = request.data.get("authority")
+    status_param = request.data.get("status", "OK")
+
+    if not authority:
+        return Response({"detail": "شناسه Authority الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = verify_checkout_payment(authority=authority, status_param=status_param)
+    return Response({"result": result}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def user_wallet_view(request):
+    """Get authenticated user's wallet balance and recent transactions."""
+    from marketplace.services import get_or_create_wallet
+    from marketplace.serializers import UserWalletSerializer
+
+    wallet = get_or_create_wallet(request.user)
+    return Response({"wallet": UserWalletSerializer(wallet).data}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def user_wallet_transactions_view(request):
+    """Get detailed transaction history for authenticated user's wallet."""
+    from marketplace.services import get_or_create_wallet
+    from marketplace.serializers import WalletTransactionSerializer
+
+    wallet = get_or_create_wallet(request.user)
+    txs = wallet.transactions.all()
+    return Response({
+        "transactions": WalletTransactionSerializer(txs, many=True).data,
+        "count": txs.count(),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def user_billing_invoices_view(request):
+    """Get list of user payments and formal receipts."""
+    from marketplace.models import PaymentTransaction
+    from marketplace.serializers import PaymentTransactionSerializer
+
+    txs = PaymentTransaction.objects.filter(user=request.user).order_by("-created_at")
+    return Response({
+        "invoices": PaymentTransactionSerializer(txs, many=True).data,
+        "count": txs.count(),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def teacher_earnings_summary_view(request):
+    """Get teacher earnings, held escrow, completed sessions, and payout pipeline."""
+    from marketplace.services import get_teacher_earnings_summary
+
+    summary = get_teacher_earnings_summary(request.user)
+    return Response({"earnings": summary}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def teacher_payout_requests_view(request):
+    """
+    GET: List teacher's past and pending payout requests.
+    POST: Submit a new payout request to Sheba bank account.
+    """
+    from marketplace.models import TeacherPayoutRequest
+    from marketplace.serializers import TeacherPayoutRequestSerializer, TeacherPayoutInputSerializer
+    from marketplace.services import request_teacher_payout
+
+    if request.user.role != "teacher":
+        return Response({"detail": "فقط مدرسان مجاز به استفاده از این بخش هستند."}, status=status.HTTP_403_FORBIDDEN)
+
+    if request.method == "GET":
+        payouts = TeacherPayoutRequest.objects.filter(teacher=request.user).order_by("-created_at")
+        return Response({
+            "payouts": TeacherPayoutRequestSerializer(payouts, many=True).data,
+            "count": payouts.count(),
+        }, status=status.HTTP_200_OK)
+
+    elif request.method == "POST":
+        ser = TeacherPayoutInputSerializer(data=request.data)
+        if not ser.is_valid():
+            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        data = ser.validated_data
+        payout = request_teacher_payout(
+            teacher=request.user,
+            amount_toman=data["amount_toman"],
+            bank_shaba_number=data["bank_shaba_number"],
+            account_holder_name=data.get("account_holder_name", ""),
+            bank_name=data.get("bank_name", ""),
+        )
+        return Response({
+            "message": "درخواست تسویه با موفقیت ثبت شد و در نوبت بررسی کارشناس مالی قرار گرفت.",
+            "payout": TeacherPayoutRequestSerializer(payout).data,
+        }, status=status.HTTP_201_CREATED)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def admin_payout_requests_list_view(request):
+    """Admin views the queue of teacher payout requests."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران و کارشناسان مالی مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.models import TeacherPayoutRequest
+    from marketplace.serializers import TeacherPayoutRequestSerializer
+
+    status_filter = request.query_params.get("status")
+    qs = TeacherPayoutRequest.objects.select_related("teacher", "processed_by").all().order_by("-created_at")
+    if status_filter:
+        qs = qs.filter(status=status_filter)
+
+    return Response({
+        "payouts": TeacherPayoutRequestSerializer(qs, many=True).data,
+        "count": qs.count(),
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def admin_payout_process_view(request, payout_id):
+    """Admin approves, settles, or rejects a teacher payout request."""
+    if not (request.user.is_staff or getattr(request.user, "role", "") == "administrator"):
+        return Response({"detail": "دسترسی فقط برای مدیران و کارشناسان مالی مجاز است."}, status=status.HTTP_403_FORBIDDEN)
+
+    from marketplace.serializers import ProcessPayoutInputSerializer, TeacherPayoutRequestSerializer
+    from marketplace.services import process_teacher_payout_request
+
+    ser = ProcessPayoutInputSerializer(data=request.data)
+    if not ser.is_valid():
+        return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    data = ser.validated_data
+    payout = process_teacher_payout_request(
+        admin_user=request.user,
+        payout_id=str(payout_id),
+        action=data["action"],
+        admin_notes=data.get("admin_notes", ""),
+        rejection_reason=data.get("rejection_reason", ""),
+    )
+    return Response({
+        "message": f"وضعیت درخواست تسویه به '{payout.get_status_display()}' تغییر یافت.",
+        "payout": TeacherPayoutRequestSerializer(payout).data,
+    }, status=status.HTTP_200_OK)
+

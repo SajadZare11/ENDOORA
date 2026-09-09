@@ -60,6 +60,7 @@ class OfferStatus(models.TextChoices):
 
 
 class BookingStatus(models.TextChoices):
+    PENDING_PAYMENT = "pending_payment", _("در انتظار پرداخت")
     CONFIRMED = "confirmed", _("رزرو شده و قطعی")
     RESCHEDULE_REQUESTED = "reschedule_requested", _("درخواست جابجایی زمان")
     IN_PROGRESS = "in_progress", _("در حال برگزاری")
@@ -275,6 +276,7 @@ class SessionBooking(models.Model):
         help_text="کلید یکتایی برای جلوگیری از ثبت تکراری (unique_booking_idempotency)",
     )
     meeting_url = models.CharField(max_length=512, blank=True, default="")
+    is_paid = models.BooleanField(default=False, help_text="وضعیت پرداخت قطعی جلسه")
 
     @property
     def meeting_room_url(self) -> str:
@@ -762,3 +764,365 @@ class PlatformPricingPlan(models.Model):
 
     def __str__(self):
         return f"{self.name_fa} ({self.price_toman} تومان / {self.duration_days} روز)"
+
+# ---------------------------------------------------------------------------
+# Day 42: Payment Gateway, Wallet Balance & Escrow Settlement (MKT-008)
+# ---------------------------------------------------------------------------
+
+class UserWallet(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="wallet",
+    )
+    balance_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=0,
+        validators=[MinValueValidator(0)],
+        help_text="موجودی کل کیف پول به تومان",
+    )
+    locked_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=0,
+        validators=[MinValueValidator(0)],
+        help_text="مبلغ مسدود شده در حساب امانی برای جلسات آتی به تومان",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return f"Wallet for {self.user.email} ({self.balance_toman} Toman)"
+
+    @property
+    def available_balance_toman(self) -> Decimal:
+        diff = self.balance_toman - self.locked_toman
+        return diff if diff > 0 else Decimal("0")
+
+    def has_sufficient_balance(self, amount: Decimal | int | float) -> bool:
+        return self.available_balance_toman >= Decimal(str(amount))
+
+
+class WalletTransactionType(models.TextChoices):
+    DEPOSIT = "deposit", _("شارژ کیف پول")
+    BOOKING_PAYMENT = "booking_payment", _("پرداخت هزینه رزرو جلسه")
+    SUBSCRIPTION_PAYMENT = "subscription_payment", _("خرید اشتراک پرمیوم")
+    ESCROW_HOLD = "escrow_hold", _("مسدودسازی امانی برای جلسه")
+    ESCROW_RELEASE = "escrow_release", _("آزادسازی و واریز درآمد جلسه")
+    REFUND = "refund", _("استرداد وجه به کیف پول")
+    PAYOUT = "payout", _("برداشت و تسویه بانکی")
+    COMMISSION_DEDUCTION = "commission_deduction", _("کسر کارمزد پلتفرم")
+
+
+class WalletTransaction(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    wallet = models.ForeignKey(
+        UserWallet,
+        on_delete=models.CASCADE,
+        related_name="transactions",
+    )
+    transaction_type = models.CharField(
+        max_length=32,
+        choices=WalletTransactionType.choices,
+        db_index=True,
+    )
+    amount_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        help_text="مبلغ تراکنش به تومان",
+    )
+    balance_after_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        help_text="موجودی کیف پول پس از تراکنش",
+    )
+    tracking_code = models.CharField(
+        max_length=64,
+        unique=True,
+        db_index=True,
+        help_text="کد پیگیری مالی یکتا",
+    )
+    reference_id = models.CharField(
+        max_length=128,
+        blank=True,
+        default="",
+        db_index=True,
+        help_text="شناسه ارجاع خارجی (مانند کد رزرو یا شناسه تراکنش شاپرک)",
+    )
+    description = models.TextField(
+        blank=True,
+        default="",
+        help_text="شرح فارسی تراکنش مالی",
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"WalletTx {self.tracking_code} ({self.transaction_type}: {self.amount_toman} Toman)"
+
+
+class PaymentGatewayProvider(models.TextChoices):
+    ZARINPAL = "zarinpal", _("درگاه زرین‌پال / شاپرک")
+    SANDBOX = "sandbox", _("درگاه شبیه‌ساز آزمایشی")
+    WALLET = "wallet", _("کیف پول اندورا")
+
+
+class PaymentTransactionStatus(models.TextChoices):
+    INITIATED = "initiated", _("ایجاد شده")
+    PENDING = "pending", _("در انتظار پرداخت")
+    PAID = "paid", _("پرداخت موفق")
+    FAILED = "failed", _("ناموفق / انصراف")
+    REFUNDED = "refunded", _("مسترد شده")
+
+
+class PaymentOrderType(models.TextChoices):
+    BOOKING_SESSION = "booking_session", _("رزرو جلسه آموزشی")
+    SUBSCRIPTION_PLAN = "subscription_plan", _("اشتراک پرمیوم پلتفرم")
+    WALLET_TOPUP = "wallet_topup", _("شارژ کیف پول")
+
+
+class PaymentTransaction(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="payment_transactions",
+    )
+    order_type = models.CharField(
+        max_length=32,
+        choices=PaymentOrderType.choices,
+        db_index=True,
+    )
+    booking = models.ForeignKey(
+        "SessionBooking",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="payment_transactions",
+    )
+    plan = models.ForeignKey(
+        "PlatformPricingPlan",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="payment_transactions",
+    )
+    gateway_provider = models.CharField(
+        max_length=24,
+        choices=PaymentGatewayProvider.choices,
+        default=PaymentGatewayProvider.ZARINPAL,
+    )
+    amount_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        help_text="مبلغ تراکنش به تومان (واحد رسمی نمایش و سفارش پلتفرم)",
+    )
+    amount_rial = models.DecimalField(
+        max_digits=14,
+        decimal_places=0,
+        help_text="مبلغ معادل به ریال جهت ارسال به درگاه شاپرک (amount_toman * 10)",
+    )
+    authority = models.CharField(
+        max_length=128,
+        unique=True,
+        null=True,
+        blank=True,
+        db_index=True,
+        help_text="کد شناسه پرداخت درگاه زرین‌پال",
+    )
+    ref_id = models.CharField(
+        max_length=128,
+        null=True,
+        blank=True,
+        db_index=True,
+        help_text="شماره مرجع تراکنش شاپرک (RefID)",
+    )
+    card_pan = models.CharField(
+        max_length=32,
+        blank=True,
+        default="",
+        help_text="شماره کارت ماسک‌شده پرداخت‌کننده (مانند 603799******1234)",
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=PaymentTransactionStatus.choices,
+        default=PaymentTransactionStatus.INITIATED,
+        db_index=True,
+    )
+    idempotency_key = models.CharField(
+        max_length=128,
+        unique=True,
+        db_index=True,
+        help_text="کلید یکتایی پرداخت جهت جلوگیری از تراکنش تکراری",
+    )
+    description = models.TextField(
+        blank=True,
+        default="",
+        help_text="توضیحات سفارش و تراکنش",
+    )
+    gateway_callback_url = models.CharField(
+        max_length=512,
+        blank=True,
+        default="",
+    )
+    is_sandbox = models.BooleanField(
+        default=True,
+        help_text="آیا تراکنش در محیط آزمایشی سندباکس انجام شده است",
+    )
+    verified_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["user", "status", "-created_at"]),
+            models.Index(fields=["order_type", "status"]),
+        ]
+
+    def __str__(self):
+        return f"Payment {self.id} ({self.amount_toman} Toman) - {self.status}"
+
+
+class EscrowStatus(models.TextChoices):
+    HELD = "held", _("نگهداری امن در حساب امانی")
+    RELEASED_TO_TEACHER = "released_to_teacher", _("تسویه با مدرس")
+    REFUNDED_TO_LEARNER = "refunded_to_learner", _("استرداد کامل به زبان‌آموز")
+    PARTIALLY_SETTLED = "partially_settled", _("تسویه توافقی درصدی")
+
+
+class BookingEscrow(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    booking = models.OneToOneField(
+        "SessionBooking",
+        on_delete=models.CASCADE,
+        related_name="escrow",
+        help_text="جلسه رزرو شده متصل به این حساب امانی",
+    )
+    total_amount_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        help_text="کل مبلغ پرداختی زبان‌آموز به تومان",
+    )
+    platform_commission_rate = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=Decimal("0.15"),
+        help_text="نرخ کارمزد پلتفرم (پیش‌فرض ۰.۱۵ یعنی ۱۵ درصد)",
+    )
+    platform_commission_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=0,
+        help_text="سهم ناخالص پلتفرم اندورا از جلسه",
+    )
+    teacher_net_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=0,
+        help_text="سهم خالص حق‌التدریس مدرس (۸۵ درصد کل)",
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=EscrowStatus.choices,
+        default=EscrowStatus.HELD,
+        db_index=True,
+    )
+    refund_amount_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        default=0,
+        help_text="مبلغ مسترد شده به زبان‌آموز در صورت لغو یا داوری",
+    )
+    settlement_notes = models.TextField(
+        blank=True,
+        default="",
+        help_text="یادداشت‌های مالی تسویه یا استرداد حساب امانی",
+    )
+    funded_at = models.DateTimeField(auto_now_add=True)
+    settled_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-funded_at"]
+
+    def __str__(self):
+        return f"Escrow {self.id} for Booking {self.booking_id} [{self.status}]"
+
+
+class TeacherPayoutStatus(models.TextChoices):
+    PENDING = "pending", _("در انتظار بررسی")
+    APPROVED = "approved", _("تایید شده / در نوبت حواله پایا")
+    PAID = "paid", _("واریز شد")
+    REJECTED = "rejected", _("رد شده")
+
+
+class TeacherPayoutRequest(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="payout_requests",
+    )
+    amount_toman = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        help_text="مبلغ درخواستی جهت تسویه و واریز به تومان",
+    )
+    bank_shaba_number = models.CharField(
+        max_length=32,
+        help_text="شماره شبا حساب بانکی مدرس با پیشوند IR (۲۶ کاراکتر)",
+    )
+    bank_name = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text="نام بانک عامل",
+    )
+    account_holder_name = models.CharField(
+        max_length=128,
+        blank=True,
+        default="",
+        help_text="نام صاحب حساب بانکی منطبق با کارت ملی",
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=TeacherPayoutStatus.choices,
+        default=TeacherPayoutStatus.PENDING,
+        db_index=True,
+    )
+    admin_notes = models.TextField(
+        blank=True,
+        default="",
+        help_text="یادداشت کارشناس مالی یا شماره پیگیری پایا",
+    )
+    rejection_reason = models.TextField(
+        blank=True,
+        default="",
+        help_text="دلیل رد درخواست واریز (مانند عدم تطابق شبا)",
+    )
+    processed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="processed_payouts",
+    )
+    processed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Payout {self.id} for {self.teacher.email} ({self.amount_toman} Toman) [{self.status}]"
+

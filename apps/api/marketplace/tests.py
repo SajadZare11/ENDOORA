@@ -21,7 +21,7 @@ from decimal import Decimal
 from datetime import timedelta
 from django.test import TestCase
 from django.utils import timezone
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APITestCase
 from accounts.models import User
 from marketplace.models import (
     MarketplaceRequest,
@@ -919,3 +919,282 @@ class MarketplaceDay41Tests(TestCase):
         )
         self.assertEqual(patch_res.status_code, 200)
         self.assertEqual(patch_res.data["plan"]["price_toman_number"], 450000)
+
+class MarketplaceDay42Tests(APITestCase):
+    def setUp(self):
+        self.learner = User.objects.create_user(
+            email="learner42@endoora.ir",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="علی",
+            last_name="رضایی",
+        )
+        self.teacher = User.objects.create_user(
+            email="teacher42@endoora.ir",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="مریم",
+            last_name="احمدی",
+        )
+        self.teacher.is_teacher_verified = True
+        self.teacher.marketplace_eligible = True
+        self.teacher.save()
+
+        self.admin_user = User.objects.create_superuser(
+            email="admin42@endoora.ir",
+            password="StrongAdminPassword123!",
+            role="administrator",
+        )
+
+    def test_user_wallet_deposit_pay_and_refund(self):
+        from marketplace.services import get_or_create_wallet, deposit_to_wallet, pay_from_wallet, refund_to_wallet
+
+        wallet = get_or_create_wallet(self.learner)
+        self.assertEqual(wallet.balance_toman, 0)
+
+        # Deposit
+        tx_dep = deposit_to_wallet(self.learner, amount_toman=100000, description="تست شارژ حساب")
+        self.assertEqual(tx_dep.amount_toman, 100000)
+        wallet.refresh_from_db()
+        self.assertEqual(wallet.balance_toman, 100000)
+
+        # Insufficient pay fails
+        with self.assertRaises(Exception):
+            pay_from_wallet(self.learner, amount_toman=150000)
+
+        # Successful pay
+        tx_pay = pay_from_wallet(self.learner, amount_toman=40000, description="پرداخت تست")
+        self.assertEqual(tx_pay.amount_toman, 40000)
+        wallet.refresh_from_db()
+        self.assertEqual(wallet.balance_toman, 60000)
+
+        # Refund
+        tx_ref = refund_to_wallet(self.learner, amount_toman=15000, description="استرداد تست")
+        wallet.refresh_from_db()
+        self.assertEqual(wallet.balance_toman, 75000)
+
+        # API check
+        self.client.force_authenticate(user=self.learner)
+        res = self.client.get("/api/marketplace/wallet/")
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.data["wallet"]["balance_toman"], 75000)
+
+        tx_res = self.client.get("/api/marketplace/wallet/transactions/")
+        self.assertEqual(tx_res.status_code, 200)
+        self.assertEqual(tx_res.data["count"], 3)
+
+    def test_checkout_initiate_and_sandbox_verify_for_booking(self):
+        from marketplace.models import BookingEscrow, EscrowStatus, PaymentTransactionStatus
+        start = timezone.now() + timedelta(days=2)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("200000"),
+            scheduled_start=start,
+        )
+        self.assertFalse(booking.is_paid)
+
+        # Initiate checkout
+        self.client.force_authenticate(user=self.learner)
+        init_res = self.client.post(
+            "/api/marketplace/checkout/initiate/",
+            data={
+                "order_type": "booking_session",
+                "order_id": str(booking.id),
+                "gateway_provider": "sandbox",
+            },
+            format="json",
+        )
+        self.assertEqual(init_res.status_code, 201)
+        checkout_data = init_res.data["checkout"]
+        authority = checkout_data["authority"]
+        self.assertTrue(authority.startswith("A0000"))
+        self.assertEqual(checkout_data["amount_toman"], 200000)
+        self.assertEqual(checkout_data["amount_rial"], 2000000)
+
+        # Verify payment
+        verify_res = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": authority, "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(verify_res.status_code, 200)
+        res_data = verify_res.data["result"]
+        self.assertEqual(res_data["status"], PaymentTransactionStatus.PAID)
+        self.assertTrue(res_data["ref_id"])
+
+        # Booking is marked as paid
+        booking.refresh_from_db()
+        self.assertTrue(booking.is_paid)
+
+        # Escrow is created in held status
+        escrow = BookingEscrow.objects.get(booking=booking)
+        self.assertEqual(escrow.status, EscrowStatus.HELD)
+        self.assertEqual(escrow.total_amount_toman, 200000)
+        self.assertEqual(escrow.platform_commission_toman, 30000) # 15%
+        self.assertEqual(escrow.teacher_net_toman, 170000) # 85%
+
+        # User billing invoices
+        inv_res = self.client.get("/api/marketplace/billing/invoices/")
+        self.assertEqual(inv_res.status_code, 200)
+        self.assertEqual(inv_res.data["count"], 1)
+
+    def test_checkout_with_wallet_balance(self):
+        from marketplace.services import deposit_to_wallet
+        from marketplace.models import BookingEscrow, EscrowStatus
+
+        # Deposit funds to learner wallet
+        deposit_to_wallet(self.learner, amount_toman=500000)
+
+        start = timezone.now() + timedelta(days=3)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("150000"),
+            scheduled_start=start,
+        )
+
+        # 1-Click Pay with wallet
+        self.client.force_authenticate(user=self.learner)
+        init_res = self.client.post(
+            "/api/marketplace/checkout/initiate/",
+            data={
+                "order_type": "booking_session",
+                "order_id": str(booking.id),
+                "gateway_provider": "wallet",
+            },
+            format="json",
+        )
+        self.assertEqual(init_res.status_code, 201)
+        self.assertTrue(init_res.data["checkout"]["paid_via_wallet"])
+
+        booking.refresh_from_db()
+        self.assertTrue(booking.is_paid)
+
+        # Wallet balance deducted
+        self.learner.wallet.refresh_from_db()
+        self.assertEqual(self.learner.wallet.balance_toman, 350000)
+
+        # Escrow held
+        escrow = BookingEscrow.objects.get(booking=booking)
+        self.assertEqual(escrow.status, EscrowStatus.HELD)
+
+    def test_escrow_release_on_session_completion(self):
+        from marketplace.services import deposit_to_wallet, create_booking_escrow, complete_session_booking
+        from marketplace.models import EscrowStatus
+
+        start = timezone.now() - timedelta(hours=2)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("100000"),
+            scheduled_start=start,
+        )
+        booking.is_paid = True
+        booking.save()
+        escrow = create_booking_escrow(booking)
+        self.assertEqual(escrow.status, EscrowStatus.HELD)
+
+        # Complete session
+        complete_session_booking(user=self.teacher, booking_id=str(booking.id), session_notes="کلاس با کیفیت عالی به پایان رسید.")
+
+        escrow.refresh_from_db()
+        self.assertEqual(escrow.status, EscrowStatus.RELEASED_TO_TEACHER)
+
+        # Teacher wallet credited with 85,000 Toman
+        self.teacher.wallet.refresh_from_db()
+        self.assertEqual(self.teacher.wallet.balance_toman, 85000)
+
+    def test_escrow_refund_on_cancellation(self):
+        from marketplace.services import create_booking_escrow, cancel_session_booking
+        from marketplace.models import EscrowStatus
+
+        start = timezone.now() + timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("120000"),
+            scheduled_start=start,
+        )
+        booking.is_paid = True
+        booking.save()
+        escrow = create_booking_escrow(booking)
+
+        # Cancel session by learner
+        cancel_session_booking(user=self.learner, booking_id=str(booking.id), reason="مشغله کاری پیش‌بینی‌نشده")
+
+        escrow.refresh_from_db()
+        self.assertEqual(escrow.status, EscrowStatus.REFUNDED_TO_LEARNER)
+        self.assertEqual(escrow.refund_amount_toman, 120000)
+
+        # Learner wallet credited with full refund
+        self.learner.wallet.refresh_from_db()
+        self.assertEqual(self.learner.wallet.balance_toman, 120000)
+
+    def test_teacher_earnings_summary_and_payout_pipeline(self):
+        from marketplace.services import deposit_to_wallet
+        from marketplace.models import TeacherPayoutStatus
+
+        # Credit teacher wallet
+        deposit_to_wallet(self.teacher, amount_toman=300000)
+
+        self.client.force_authenticate(user=self.teacher)
+        summary_res = self.client.get("/api/marketplace/teacher/earnings/")
+        self.assertEqual(summary_res.status_code, 200)
+        self.assertEqual(summary_res.data["earnings"]["wallet_balance_toman"], 300000)
+
+        # Invalid Sheba fails
+        bad_payout_res = self.client.post(
+            "/api/marketplace/teacher/payouts/",
+            data={
+                "amount_toman": 100000,
+                "bank_shaba_number": "123456",
+            },
+            format="json",
+        )
+        self.assertEqual(bad_payout_res.status_code, 400)
+
+        # Valid Sheba succeeds
+        valid_payout_res = self.client.post(
+            "/api/marketplace/teacher/payouts/",
+            data={
+                "amount_toman": 100000,
+                "bank_shaba_number": "IR120170000000109876543210",
+                "bank_name": "بانک ملی",
+                "account_holder_name": "مریم احمدی",
+            },
+            format="json",
+        )
+        self.assertEqual(valid_payout_res.status_code, 201)
+        payout_id = valid_payout_res.data["payout"]["id"]
+
+        # Teacher balance deducted immediately
+        self.teacher.wallet.refresh_from_db()
+        self.assertEqual(self.teacher.wallet.balance_toman, 200000)
+
+        # Admin reviews payouts
+        self.client.force_authenticate(user=self.admin_user)
+        admin_list = self.client.get("/api/marketplace/admin/payouts/")
+        self.assertEqual(admin_list.status_code, 200)
+        self.assertEqual(admin_list.data["count"], 1)
+
+        # Admin rejects -> funds refunded back to teacher wallet!
+        reject_res = self.client.post(
+            f"/api/marketplace/admin/payouts/{payout_id}/process/",
+            data={
+                "action": "reject",
+                "rejection_reason": "شماره شبا با نام دارنده حساب تطابق ندارد.",
+            },
+            format="json",
+        )
+        self.assertEqual(reject_res.status_code, 200)
+        self.assertEqual(reject_res.data["payout"]["status"], TeacherPayoutStatus.REJECTED)
+
+        # Wallet balance refunded back
+        self.teacher.wallet.refresh_from_db()
+        self.assertEqual(self.teacher.wallet.balance_toman, 300000)
+

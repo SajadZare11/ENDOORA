@@ -1,0 +1,177 @@
+/* Checkout Callback Receipt CSS - 0 hex, 100% logical properties */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-8);
+  max-inline-size: 640px;
+  margin-inline: auto;
+  inline-size: 100%;
+  direction: rtl;
+}
+
+.receiptCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.receiptCardSuccess::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 6px;
+  background: var(--color-success);
+}
+
+.receiptCardFailed::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 6px;
+  background: var(--color-danger);
+}
+
+.iconWrapper {
+  inline-size: 72px;
+  block-size: 72px;
+  border-radius: var(--radius-pill);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+}
+
+.iconSuccess {
+  background: var(--color-success-light, rgba(16, 185, 129, 0.1));
+  color: var(--color-success);
+}
+
+.iconFailed {
+  background: var(--color-danger-light, rgba(239, 68, 68, 0.1));
+  color: var(--color-danger);
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-block: 1px dashed var(--color-border);
+  text-align: start;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.detailValue {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.primaryButton {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary, var(--color-surface));
+  border: none;
+  border-radius: var(--radius-card);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-4);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primaryButton:hover {
+  background: var(--color-primary-hover);
+}
+
+.secondaryButton {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-block: var(--space-3);
+  padding-inline: var(--space-4);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background: var(--color-surface-subtle);
+}
+
+.sandboxBox {
+  background: var(--color-surface-subtle);
+  border: 1px dashed var(--color-warning);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: start;
+}
+
+.sandboxHeader {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-warning);
+}
+
+.sandboxButtons {
+  display: flex;
+  gap: var(--space-2);
+}

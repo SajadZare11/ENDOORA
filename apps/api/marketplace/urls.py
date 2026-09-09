@@ -38,6 +38,16 @@ from .views import (
     admin_review_moderate_view,
     public_pricing_plans_view,
     admin_pricing_plans_view,
+    checkout_initiate_view,
+    checkout_verify_view,
+    checkout_sandbox_simulate_view,
+    user_wallet_view,
+    user_wallet_transactions_view,
+    user_billing_invoices_view,
+    teacher_earnings_summary_view,
+    teacher_payout_requests_view,
+    admin_payout_requests_list_view,
+    admin_payout_process_view,
 )
 
 urlpatterns = [
@@ -87,4 +97,15 @@ urlpatterns = [
     path("plans/", public_pricing_plans_view, name="marketplace_public_plans"),
     path("admin/plans/", admin_pricing_plans_view, name="marketplace_admin_plans"),
     path("admin/plans/<uuid:plan_id>/", admin_pricing_plans_view, name="marketplace_admin_plan_detail"),
+    # Day 42: Payment Gateway, Wallet & Escrow Endpoints (MKT-008)
+    path("checkout/initiate/", checkout_initiate_view, name="marketplace_checkout_initiate"),
+    path("checkout/verify/", checkout_verify_view, name="marketplace_checkout_verify"),
+    path("checkout/sandbox/simulate/", checkout_sandbox_simulate_view, name="marketplace_checkout_sandbox_simulate"),
+    path("wallet/", user_wallet_view, name="marketplace_user_wallet"),
+    path("wallet/transactions/", user_wallet_transactions_view, name="marketplace_wallet_transactions"),
+    path("billing/invoices/", user_billing_invoices_view, name="marketplace_billing_invoices"),
+    path("teacher/earnings/", teacher_earnings_summary_view, name="marketplace_teacher_earnings"),
+    path("teacher/payouts/", teacher_payout_requests_view, name="marketplace_teacher_payouts"),
+    path("admin/payouts/", admin_payout_requests_list_view, name="marketplace_admin_payouts"),
+    path("admin/payouts/<uuid:payout_id>/process/", admin_payout_process_view, name="marketplace_admin_payout_process"),
 ]

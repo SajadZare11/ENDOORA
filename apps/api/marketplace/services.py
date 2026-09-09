@@ -1,5 +1,6 @@
 from datetime import datetime, time, date, timedelta, timezone as dt_timezone
 from decimal import Decimal
+from typing import Optional, List, Dict, Any, Tuple
 from django.db import transaction
 from django.db.models import Count, Q
 from django.utils import timezone
@@ -569,6 +570,14 @@ def cancel_session_booking(user: User, booking_id: str, reason: str = "") -> Ses
     booking.cancellation_reason = reason
     booking.cancelled_at = timezone.now()
     booking.save(update_fields=["status", "cancellation_reason", "cancelled_at", "updated_at"])
+    # Auto-refund escrow to learner wallet if held
+    try:
+        escrow = getattr(booking, "escrow", None)
+        if escrow and escrow.status == "held":
+            refund_booking_escrow(booking, refund_percentage=100, reason=f"لغو جلسه: {reason}")
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).warning("Failed to auto-refund escrow for booking %s: %s", booking.id, exc)
     return booking
 
 
@@ -609,6 +618,14 @@ def complete_session_booking(user: User, booking_id: str, session_notes: str = "
     if session_notes:
         booking.session_notes = session_notes
     booking.save(update_fields=["status", "completed_at", "session_notes", "updated_at"])
+    # Auto-release escrow to teacher wallet if held
+    try:
+        escrow = getattr(booking, "escrow", None)
+        if escrow and escrow.status == "held":
+            release_booking_escrow(booking, "جلسه با موفقیت به اتمام رسید و وجه به کیف پول مدرس واریز شد.")
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).warning("Failed to auto-release escrow for booking %s: %s", booking.id, exc)
     return booking
 
 
@@ -1515,6 +1532,14 @@ def resolve_booking_dispute(
             booking.status = BookingStatus.COMPLETED
 
         booking.save(update_fields=["status", "cancellation_reason", "session_notes", "updated_at"])
+        # Settle escrow according to dispute refund percentage
+        try:
+            escrow = getattr(booking, "escrow", None)
+            if escrow and escrow.status == "held":
+                refund_booking_escrow(booking, refund_percentage=dispute.refund_percentage, reason=f"رأی داوری: {resolution_notes}")
+        except Exception as exc:
+            import logging
+            logging.getLogger(__name__).warning("Failed to settle dispute escrow for booking %s: %s", booking.id, exc)
 
     return dispute
 
@@ -1732,3 +1757,631 @@ def update_pricing_plan(
 
     plan.save()
     return plan
+
+# ---------------------------------------------------------------------------
+# Day 42: Payment Gateway Integration, User Wallet, & Escrow Services (MKT-008)
+# ---------------------------------------------------------------------------
+
+import re
+import uuid
+from django.conf import settings
+from marketplace.models import (
+    UserWallet,
+    WalletTransactionType,
+    WalletTransaction,
+    PaymentGatewayProvider,
+    PaymentTransactionStatus,
+    PaymentOrderType,
+    PaymentTransaction,
+    EscrowStatus,
+    BookingEscrow,
+    TeacherPayoutStatus,
+    TeacherPayoutRequest,
+)
+from marketplace.zarinpal import ZarinPalGateway, PaymentGatewayError, PaymentVerificationError, toman_to_rial, rial_to_toman
+
+
+def get_or_create_wallet(user: User) -> UserWallet:
+    """Retrieve or initialize a user's ledger wallet."""
+    if not user.is_authenticated:
+        raise PermissionDenied("کاربر وارد سیستم نشده است.")
+    wallet, _ = UserWallet.objects.get_or_create(user=user)
+    return wallet
+
+
+def deposit_to_wallet(
+    user: User,
+    amount_toman: Decimal | int | float,
+    reference_id: str = "",
+    description: str = "",
+) -> WalletTransaction:
+    """Safely deposit funds to a user's wallet with an atomic transaction log."""
+    amount = Decimal(str(amount_toman))
+    if amount <= 0:
+        raise ValidationError("مبلغ واریزی باید بزرگتر از صفر باشد.")
+
+    with transaction.atomic():
+        wallet = UserWallet.objects.select_for_update().get_or_create(user=user)[0]
+        wallet.balance_toman += amount
+        wallet.save(update_fields=["balance_toman", "updated_at"])
+
+        tracking = f"TX-DEP-{uuid.uuid4().hex[:10].upper()}"
+        tx = WalletTransaction.objects.create(
+            wallet=wallet,
+            transaction_type=WalletTransactionType.DEPOSIT,
+            amount_toman=amount,
+            balance_after_toman=wallet.balance_toman,
+            tracking_code=tracking,
+            reference_id=reference_id,
+            description=description or "شارژ کیف پول",
+        )
+        return tx
+
+
+def pay_from_wallet(
+    user: User,
+    amount_toman: Decimal | int | float,
+    transaction_type: str = WalletTransactionType.BOOKING_PAYMENT,
+    reference_id: str = "",
+    description: str = "",
+) -> WalletTransaction:
+    """Deduct funds from user wallet if available balance suffices."""
+    amount = Decimal(str(amount_toman))
+    if amount <= 0:
+        raise ValidationError("مبلغ کسر از کیف پول باید بزرگتر از صفر باشد.")
+
+    with transaction.atomic():
+        wallet = UserWallet.objects.select_for_update().get_or_create(user=user)[0]
+        if not wallet.has_sufficient_balance(amount):
+            raise ValidationError(
+                f"موجودی قابل استفاده کیف پول ({wallet.available_balance_toman:,} تومان) برای این پرداخت ({amount:,} تومان) کافی نیست."
+            )
+
+        wallet.balance_toman -= amount
+        wallet.save(update_fields=["balance_toman", "updated_at"])
+
+        tracking = f"TX-PAY-{uuid.uuid4().hex[:10].upper()}"
+        tx = WalletTransaction.objects.create(
+            wallet=wallet,
+            transaction_type=transaction_type,
+            amount_toman=amount,
+            balance_after_toman=wallet.balance_toman,
+            tracking_code=tracking,
+            reference_id=reference_id,
+            description=description or "پرداخت از کیف پول",
+        )
+        return tx
+
+
+def refund_to_wallet(
+    user: User,
+    amount_toman: Decimal | int | float,
+    reference_id: str = "",
+    description: str = "",
+) -> WalletTransaction:
+    """Refund funds back into user's wallet with ledger entry."""
+    amount = Decimal(str(amount_toman))
+    if amount <= 0:
+        raise ValidationError("مبلغ استرداد باید بزرگتر از صفر باشد.")
+
+    with transaction.atomic():
+        wallet = UserWallet.objects.select_for_update().get_or_create(user=user)[0]
+        wallet.balance_toman += amount
+        wallet.save(update_fields=["balance_toman", "updated_at"])
+
+        tracking = f"TX-REF-{uuid.uuid4().hex[:10].upper()}"
+        tx = WalletTransaction.objects.create(
+            wallet=wallet,
+            transaction_type=WalletTransactionType.REFUND,
+            amount_toman=amount,
+            balance_after_toman=wallet.balance_toman,
+            tracking_code=tracking,
+            reference_id=reference_id,
+            description=description or "استرداد وجه به کیف پول",
+        )
+        return tx
+
+
+def create_booking_escrow(
+    booking: SessionBooking,
+    commission_rate: Optional[Decimal] = None,
+) -> BookingEscrow:
+    """Create or return an active escrow hold for a paid booking session."""
+    existing = BookingEscrow.objects.filter(booking=booking).first()
+    if existing:
+        return existing
+
+    rate = commission_rate or getattr(settings, "MARKETPLACE_COMMISSION_RATE", Decimal("0.15"))
+    total_amount = booking.rate_toman
+    commission = (total_amount * rate).quantize(Decimal("1"))
+    teacher_net = total_amount - commission
+
+    escrow = BookingEscrow.objects.create(
+        booking=booking,
+        total_amount_toman=total_amount,
+        platform_commission_rate=rate,
+        platform_commission_toman=commission,
+        teacher_net_toman=teacher_net,
+        status=EscrowStatus.HELD,
+    )
+    return escrow
+
+
+def release_booking_escrow(booking: SessionBooking, notes: str = "") -> BookingEscrow:
+    """Release held escrow funds to the teacher's wallet upon verified completion."""
+    with transaction.atomic():
+        escrow = BookingEscrow.objects.select_for_update().filter(booking=booking).first()
+        if not escrow:
+            raise ValidationError("حساب امانی برای این جلسه یافت نشد.")
+        if escrow.status != EscrowStatus.HELD:
+            return escrow
+
+        # Credit teacher's wallet with net earnings
+        teacher_wallet = UserWallet.objects.select_for_update().get_or_create(user=booking.teacher)[0]
+        teacher_wallet.balance_toman += escrow.teacher_net_toman
+        teacher_wallet.save(update_fields=["balance_toman", "updated_at"])
+
+        WalletTransaction.objects.create(
+            wallet=teacher_wallet,
+            transaction_type=WalletTransactionType.ESCROW_RELEASE,
+            amount_toman=escrow.teacher_net_toman,
+            balance_after_toman=teacher_wallet.balance_toman,
+            tracking_code=f"TX-ESC-{uuid.uuid4().hex[:10].upper()}",
+            reference_id=str(booking.id),
+            description=f"تسویه حق‌التدریس جلسه {booking.target_skill} (کد رزرو {booking.id})",
+        )
+
+        escrow.status = EscrowStatus.RELEASED_TO_TEACHER
+        escrow.settled_at = timezone.now()
+        escrow.settlement_notes = notes or "تسویه موفق با مدرس پس از پایان جلسه"
+        escrow.save()
+        return escrow
+
+
+def refund_booking_escrow(
+    booking: SessionBooking,
+    refund_percentage: int = 100,
+    reason: str = "",
+) -> BookingEscrow:
+    """Refund held escrow funds to the learner (full or prorated) on cancellation/dispute."""
+    with transaction.atomic():
+        escrow = BookingEscrow.objects.select_for_update().filter(booking=booking).first()
+        if not escrow:
+            raise ValidationError("حساب امانی برای این جلسه یافت نشد.")
+        if escrow.status in [EscrowStatus.REFUNDED_TO_LEARNER, EscrowStatus.PARTIALLY_SETTLED]:
+            return escrow
+
+        total = escrow.total_amount_toman
+        refund_amount = (total * Decimal(str(refund_percentage)) / Decimal("100")).quantize(Decimal("1"))
+        teacher_amount = total - refund_amount
+
+        if refund_percentage == 100:
+            escrow.status = EscrowStatus.REFUNDED_TO_LEARNER
+            escrow.refund_amount_toman = refund_amount
+            if refund_amount > 0:
+                refund_to_wallet(
+                    user=booking.learner,
+                    amount_toman=refund_amount,
+                    reference_id=str(booking.id),
+                    description=f"استرداد ۱۰۰٪ هزینه رزرو جلسه {booking.id} ({reason})",
+                )
+        else:
+            escrow.status = EscrowStatus.PARTIALLY_SETTLED
+            escrow.refund_amount_toman = refund_amount
+            if refund_amount > 0:
+                refund_to_wallet(
+                    user=booking.learner,
+                    amount_toman=refund_amount,
+                    reference_id=str(booking.id),
+                    description=f"استرداد {refund_percentage}٪ هزینه رزرو جلسه با رأی داوری",
+                )
+            if teacher_amount > 0:
+                teacher_commission = (teacher_amount * escrow.platform_commission_rate).quantize(Decimal("1"))
+                teacher_net = teacher_amount - teacher_commission
+                teacher_wallet = UserWallet.objects.select_for_update().get_or_create(user=booking.teacher)[0]
+                teacher_wallet.balance_toman += teacher_net
+                teacher_wallet.save(update_fields=["balance_toman", "updated_at"])
+
+                WalletTransaction.objects.create(
+                    wallet=teacher_wallet,
+                    transaction_type=WalletTransactionType.ESCROW_RELEASE,
+                    amount_toman=teacher_net,
+                    balance_after_toman=teacher_wallet.balance_toman,
+                    tracking_code=f"TX-ESC-{uuid.uuid4().hex[:10].upper()}",
+                    reference_id=str(booking.id),
+                    description=f"تسویه سهم داوری از جلسه ({100 - refund_percentage}٪)",
+                )
+
+        escrow.settled_at = timezone.now()
+        escrow.settlement_notes = reason
+        escrow.save()
+        return escrow
+
+
+def initiate_checkout(
+    user: User,
+    order_type: str,
+    order_id: Optional[str] = None,
+    amount_toman: Optional[Decimal | int | float] = None,
+    gateway_provider: str = PaymentGatewayProvider.ZARINPAL,
+    callback_url: str = "",
+    idempotency_key: Optional[str] = None,
+) -> dict:
+    """
+    Initialize checkout payment process via ZarinPal, Sandbox, or Internal Wallet.
+    """
+    from marketplace.models import PlatformPricingPlan
+
+    if not user.is_authenticated:
+        raise PermissionDenied("کاربر وارد سیستم نشده است.")
+
+    booking = None
+    plan = None
+    amount = Decimal("0")
+    description = ""
+
+    if order_type == PaymentOrderType.BOOKING_SESSION:
+        if not order_id:
+            raise ValidationError("شناسه جلسه برای پرداخت الزامی است.")
+        try:
+            booking = SessionBooking.objects.get(id=order_id)
+        except SessionBooking.DoesNotExist:
+            raise ValidationError("جلسه مورد نظر یافت نشد.")
+        if booking.learner_id != user.id:
+            raise PermissionDenied("فقط رزروکننده جلسه می‌تواند هزینه آن را پرداخت کند.")
+        if booking.is_paid:
+            raise ValidationError("هزینه این جلسه قبلاً پرداخت شده است.")
+        amount = booking.rate_toman
+        description = f"رزرو جلسه آموزشی اندورا: {booking.get_target_skill_display()} با استاد {booking.teacher.get_full_name() or booking.teacher.email}"
+
+    elif order_type == PaymentOrderType.SUBSCRIPTION_PLAN:
+        if not order_id:
+            raise ValidationError("شناسه پلن اشتراک الزامی است.")
+        try:
+            plan = PlatformPricingPlan.objects.get(id=order_id, is_active=True)
+        except PlatformPricingPlan.DoesNotExist:
+            raise ValidationError("پلن اشتراک انتخابی معتبر نیست.")
+        amount = plan.price_toman
+        description = f"خرید {plan.name_fa} در اندورا"
+
+    elif order_type == PaymentOrderType.WALLET_TOPUP:
+        if not amount_toman or Decimal(str(amount_toman)) < 10000:
+            raise ValidationError("حداقل مبلغ شارژ کیف پول ۱۰,۰۰۰ تومان است.")
+        amount = Decimal(str(amount_toman))
+        description = f"شارژ حساب کیف پول کاربر {user.email} در اندورا"
+    else:
+        raise ValidationError("نوع سفارش نامعتبر است.")
+
+    idem_key = idempotency_key or f"idem_{user.id}_{order_type}_{order_id or 'topup'}_{int(timezone.now().timestamp())}"
+
+    # Wallet 1-Click Pay
+    if gateway_provider == PaymentGatewayProvider.WALLET:
+        with transaction.atomic():
+            wallet_tx = pay_from_wallet(
+                user=user,
+                amount_toman=amount,
+                transaction_type=WalletTransactionType.BOOKING_PAYMENT if order_type == PaymentOrderType.BOOKING_SESSION else WalletTransactionType.SUBSCRIPTION_PAYMENT,
+                reference_id=str(order_id or ""),
+                description=description,
+            )
+
+            tx = PaymentTransaction.objects.create(
+                user=user,
+                order_type=order_type,
+                booking=booking,
+                plan=plan,
+                gateway_provider=PaymentGatewayProvider.WALLET,
+                amount_toman=amount,
+                amount_rial=toman_to_rial(amount),
+                status=PaymentTransactionStatus.PAID,
+                ref_id=wallet_tx.tracking_code,
+                idempotency_key=idem_key,
+                description=description,
+                is_sandbox=False,
+                verified_at=timezone.now(),
+            )
+
+            # Apply order fulfillment
+            if order_type == PaymentOrderType.BOOKING_SESSION and booking:
+                booking.is_paid = True
+                if booking.status == BookingStatus.PENDING_PAYMENT:
+                    booking.status = BookingStatus.CONFIRMED
+                booking.save(update_fields=["is_paid", "status", "updated_at"])
+                create_booking_escrow(booking)
+
+            return {
+                "transaction_id": str(tx.id),
+                "order_type": order_type,
+                "amount_toman": int(amount),
+                "amount_rial": toman_to_rial(amount),
+                "status": tx.status,
+                "paid_via_wallet": True,
+                "tracking_code": wallet_tx.tracking_code,
+                "payment_url": "",
+            }
+
+    # Gateway Payment (ZarinPal or Sandbox)
+    is_sandbox = (gateway_provider == PaymentGatewayProvider.SANDBOX) or getattr(settings, "ZARINPAL_SANDBOX", True)
+    client = ZarinPalGateway(is_sandbox=is_sandbox)
+    amount_rial = toman_to_rial(amount)
+    cb_url = callback_url or "/checkout/callback"
+
+    gateway_res = client.request_payment(
+        amount_rial=amount_rial,
+        description=description,
+        callback_url=cb_url,
+        metadata={"email": user.email, "mobile": getattr(user, "mobile", "")},
+    )
+
+    authority = gateway_res["authority"]
+    payment_url = gateway_res["payment_url"]
+
+    tx = PaymentTransaction.objects.create(
+        user=user,
+        order_type=order_type,
+        booking=booking,
+        plan=plan,
+        gateway_provider=gateway_provider,
+        amount_toman=amount,
+        amount_rial=amount_rial,
+        authority=authority,
+        status=PaymentTransactionStatus.PENDING,
+        idempotency_key=idem_key,
+        description=description,
+        gateway_callback_url=cb_url,
+        is_sandbox=is_sandbox,
+    )
+
+    return {
+        "transaction_id": str(tx.id),
+        "authority": authority,
+        "payment_url": payment_url,
+        "amount_toman": int(amount),
+        "amount_rial": amount_rial,
+        "status": tx.status,
+        "is_sandbox": is_sandbox,
+        "paid_via_wallet": False,
+    }
+
+
+def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
+    """
+    Verify payment authority against ZarinPal/Sandbox gateway and trigger order fulfillment.
+    """
+    if not authority:
+        raise ValidationError("شناسه پرداخت Authority الزامی است.")
+
+    with transaction.atomic():
+        try:
+            tx = PaymentTransaction.objects.select_for_update().get(authority=authority)
+        except PaymentTransaction.DoesNotExist:
+            raise ValidationError("تراکنش مربوط به این شناسه پرداخت یافت نشد.")
+
+        # Idempotent response if already verified
+        if tx.status == PaymentTransactionStatus.PAID:
+            return {
+                "transaction_id": str(tx.id),
+                "status": tx.status,
+                "ref_id": tx.ref_id,
+                "card_pan": tx.card_pan,
+                "amount_toman": int(tx.amount_toman),
+                "order_type": tx.order_type,
+                "booking_id": str(tx.booking_id) if tx.booking_id else None,
+                "already_verified": True,
+            }
+
+        # Check if user cancelled in gateway
+        if status_param.upper() != "OK":
+            tx.status = PaymentTransactionStatus.FAILED
+            tx.save(update_fields=["status", "updated_at"])
+            return {
+                "transaction_id": str(tx.id),
+                "status": tx.status,
+                "error": "پرداخت توسط کاربر لغو شد یا انجام نشد.",
+                "amount_toman": int(tx.amount_toman),
+                "order_type": tx.order_type,
+                "booking_id": str(tx.booking_id) if tx.booking_id else None,
+            }
+
+        client = ZarinPalGateway(is_sandbox=tx.is_sandbox)
+        verify_res = client.verify_payment(
+            amount_rial=tx.amount_rial,
+            authority=authority,
+        )
+
+        ref_id = verify_res.get("ref_id", "")
+        card_pan = verify_res.get("card_pan", "")
+
+        tx.status = PaymentTransactionStatus.PAID
+        tx.ref_id = ref_id
+        tx.card_pan = card_pan
+        tx.verified_at = timezone.now()
+        tx.save(update_fields=["status", "ref_id", "card_pan", "verified_at", "updated_at"])
+
+        # Fulfillment
+        if tx.order_type == PaymentOrderType.BOOKING_SESSION and tx.booking:
+            booking = tx.booking
+            booking.is_paid = True
+            if booking.status == BookingStatus.PENDING_PAYMENT:
+                booking.status = BookingStatus.CONFIRMED
+            booking.save(update_fields=["is_paid", "status", "updated_at"])
+            create_booking_escrow(booking)
+
+        elif tx.order_type == PaymentOrderType.WALLET_TOPUP:
+            deposit_to_wallet(
+                user=tx.user,
+                amount_toman=tx.amount_toman,
+                reference_id=ref_id,
+                description=f"شارژ آنلاین حساب کاربری با تراکنش شماره {ref_id}",
+            )
+
+        return {
+            "transaction_id": str(tx.id),
+            "status": tx.status,
+            "ref_id": ref_id,
+            "card_pan": card_pan,
+            "amount_toman": int(tx.amount_toman),
+            "order_type": tx.order_type,
+            "booking_id": str(tx.booking_id) if tx.booking_id else None,
+            "already_verified": False,
+        }
+
+
+def get_teacher_earnings_summary(teacher: User) -> dict:
+    """
+    Calculate comprehensive earnings summary for a teacher including wallet balance,
+    held escrow, settled sessions, and payout pipeline.
+    """
+    if teacher.role != User.Role.TEACHER:
+        raise PermissionDenied("فقط مدرسان می‌توانند گزارش درآمدهای تدریس را مشاهده کنند.")
+
+    wallet = get_or_create_wallet(teacher)
+
+    # Escrow totals
+    held_escrows = BookingEscrow.objects.filter(
+        booking__teacher=teacher,
+        status=EscrowStatus.HELD,
+    )
+    held_toman = sum((e.teacher_net_toman for e in held_escrows), Decimal("0"))
+
+    settled_escrows = BookingEscrow.objects.filter(
+        booking__teacher=teacher,
+        status__in=[EscrowStatus.RELEASED_TO_TEACHER, EscrowStatus.PARTIALLY_SETTLED],
+    )
+    settled_gross_toman = sum((e.total_amount_toman for e in settled_escrows), Decimal("0"))
+    settled_net_toman = sum((e.teacher_net_toman for e in settled_escrows), Decimal("0"))
+    platform_fee_toman = sum((e.platform_commission_toman for e in settled_escrows), Decimal("0"))
+
+    # Payout requests
+    payout_qs = TeacherPayoutRequest.objects.filter(teacher=teacher)
+    paid_payouts_toman = sum(
+        (p.amount_toman for p in payout_qs.filter(status=TeacherPayoutStatus.PAID)),
+        Decimal("0"),
+    )
+    pending_payouts_toman = sum(
+        (p.amount_toman for p in payout_qs.filter(status__in=[TeacherPayoutStatus.PENDING, TeacherPayoutStatus.APPROVED])),
+        Decimal("0"),
+    )
+
+    completed_session_count = SessionBooking.objects.filter(
+        teacher=teacher,
+        status=BookingStatus.COMPLETED,
+    ).count()
+
+    return {
+        "wallet_balance_toman": int(wallet.balance_toman),
+        "available_to_withdraw_toman": int(wallet.available_balance_toman),
+        "held_in_escrow_toman": int(held_toman),
+        "settled_net_toman": int(settled_net_toman),
+        "settled_gross_toman": int(settled_gross_toman),
+        "platform_fee_toman": int(platform_fee_toman),
+        "paid_payouts_toman": int(paid_payouts_toman),
+        "pending_payouts_toman": int(pending_payouts_toman),
+        "completed_session_count": completed_session_count,
+    }
+
+
+def request_teacher_payout(
+    teacher: User,
+    amount_toman: Decimal | int | float,
+    bank_shaba_number: str,
+    account_holder_name: str = "",
+    bank_name: str = "",
+) -> TeacherPayoutRequest:
+    """Submit a payout request to bank account with Sheba validation and atomic balance hold."""
+    if teacher.role != User.Role.TEACHER:
+        raise PermissionDenied("فقط مدرسان مجاز به ثبت درخواست تسویه مالی هستند.")
+
+    amount = Decimal(str(amount_toman))
+    if amount < 50000:
+        raise ValidationError("حداقل مبلغ قابل تسویه ۵۰,۰۰۰ تومان است.")
+
+    # Clean and validate Iranian Sheba
+    shaba_clean = bank_shaba_number.strip().upper().replace(" ", "")
+    if not re.match(r"^IR\d{24}$", shaba_clean):
+        raise ValidationError("شماره شبا بانکی نامعتبر است. فرمت صحیح: IR به همراه ۲۴ رقم بدون فاصله.")
+
+    with transaction.atomic():
+        wallet = UserWallet.objects.select_for_update().get_or_create(user=teacher)[0]
+        if not wallet.has_sufficient_balance(amount):
+            raise ValidationError(
+                f"موجودی قابل برداشت کیف پول ({wallet.available_balance_toman:,} تومان) کمتر از مبلغ درخواستی ({amount:,} تومان) است."
+            )
+
+        # Deduct from wallet immediately to prevent double spending
+        wallet.balance_toman -= amount
+        wallet.save(update_fields=["balance_toman", "updated_at"])
+
+        tx = WalletTransaction.objects.create(
+            wallet=wallet,
+            transaction_type=WalletTransactionType.PAYOUT,
+            amount_toman=amount,
+            balance_after_toman=wallet.balance_toman,
+            tracking_code=f"TX-OUT-{uuid.uuid4().hex[:10].upper()}",
+            description=f"درخواست تسویه بانکی به شماره شبا {shaba_clean}",
+        )
+
+        payout = TeacherPayoutRequest.objects.create(
+            teacher=teacher,
+            amount_toman=amount,
+            bank_shaba_number=shaba_clean,
+            account_holder_name=account_holder_name.strip() or teacher.get_full_name() or teacher.email,
+            bank_name=bank_name.strip(),
+            status=TeacherPayoutStatus.PENDING,
+            admin_notes=f"تراکنش کسر از کیف پول: {tx.tracking_code}",
+        )
+        return payout
+
+
+def process_teacher_payout_request(
+    admin_user: User,
+    payout_id: str,
+    action: str,
+    admin_notes: str = "",
+    rejection_reason: str = "",
+) -> TeacherPayoutRequest:
+    """Process or reject teacher payout request by financial administrator."""
+    if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
+        raise PermissionDenied("فقط مدیران و کارشناسان مالی مجاز به بررسی درخواست‌های تسویه هستند.")
+
+    with transaction.atomic():
+        try:
+            payout = TeacherPayoutRequest.objects.select_for_update().get(id=payout_id)
+        except TeacherPayoutRequest.DoesNotExist:
+            raise ValidationError("درخواست تسویه یافت نشد.")
+
+        if payout.status in [TeacherPayoutStatus.PAID, TeacherPayoutStatus.REJECTED]:
+            raise ValidationError("این درخواست قبلاً نهایی شده و قابل تغییر نیست.")
+
+        action_clean = action.strip().lower()
+        if action_clean == "approve":
+            payout.status = TeacherPayoutStatus.APPROVED
+            if admin_notes:
+                payout.admin_notes = admin_notes
+        elif action_clean == "pay":
+            payout.status = TeacherPayoutStatus.PAID
+            payout.processed_by = admin_user
+            payout.processed_at = timezone.now()
+            if admin_notes:
+                payout.admin_notes = admin_notes
+        elif action_clean == "reject":
+            if not rejection_reason or len(rejection_reason.strip()) < 5:
+                raise ValidationError("ثبت علت رد درخواست تسویه الزامی است.")
+            payout.status = TeacherPayoutStatus.REJECTED
+            payout.rejection_reason = rejection_reason.strip()
+            payout.processed_by = admin_user
+            payout.processed_at = timezone.now()
+
+            # Refund held amount back to teacher's wallet
+            refund_to_wallet(
+                user=payout.teacher,
+                amount_toman=payout.amount_toman,
+                reference_id=str(payout.id),
+                description=f"استرداد مبلغ تسویه رد شده: {rejection_reason}",
+            )
+        else:
+            raise ValidationError("عملیات نامعتبر است (گزینه‌ها: approve, pay, reject).")
+
+        payout.save()
+        return payout
+

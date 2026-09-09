@@ -1575,9 +1575,39 @@ Key accomplishments:
 - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
 - Full verification: 157/157 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings, contracts passed 100% (132/132 checks in `scripts/check_day41.py`, all regression checks passed).
 
+### Day 42 Accomplishments (Payment Gateway, Wallet, Escrow & Teacher Payouts)
+- Backend:
+  - `UserWallet`, `WalletTransaction`, `PaymentTransaction`, `BookingEscrow`, `TeacherPayoutRequest` models (migration 0006).
+  - ZarinPal PG v4 client (`zarinpal.py`) with sandbox mode and Toman/Rial conversion.
+  - Full wallet lifecycle: deposit, pay, refund with atomic balance tracking.
+  - Escrow lifecycle: hold on checkout, release on session completion, refund on cancellation.
+  - Checkout flow: `initiate_checkout` (ZarinPal/Sandbox/Wallet 1-click), `verify_checkout_payment` (idempotent).
+  - Teacher earnings summary and payout pipeline (request to admin process to approved/rejected).
+  - 10 new REST API endpoints for checkout, wallet, billing, earnings, and payout management.
+  - Admin registration for all 5 new models.
+  - 6 new integration tests (35 total marketplace tests passing).
+  - Settings: `ZARINPAL_MERCHANT_ID`, `ZARINPAL_SANDBOX`, `MARKETPLACE_COMMISSION_RATE`.
+- Frontend:
+  - Checkout page (`/checkout`) with order summary, escrow trust banner, multi-gateway payment selector.
+  - Checkout callback (`/checkout/callback`) with verification receipt and sandbox simulator.
+  - User wallet dashboard (`/account/wallet`) with balance cards, transaction ledger, topup modal.
+  - Billing invoices (`/account/billing`) with formal receipt modal and print support.
+  - Teacher earnings dashboard (`/teacher/earnings`) with metrics grid, payout history, Sheba form.
+  - Booking detail payment warning banner with Pay Now CTA for unpaid bookings.
+  - Admin marketplace 5th Payouts tab with processing queue and approval modal.
+  - TypeScript client lib: all Day 42 interfaces and API functions.
+- 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+- Full verification: 161/161 static routes prerendered, TypeScript 0 errors, 35/35 marketplace tests passing.
+
+## Git checkpoint (Day 42)
+
+```
+Day 42: Payment Gateway (ZarinPal/Sandbox), User Wallet, Escrow Settlement & Teacher Payout Pipeline (MKT-008)
+```
+
 ## Exact next day
 
-**Day 42 — Build Marketplace Payment Gateway Integration, Wallet Balance, and Escrow Settlement (MKT-008).**
+**Day 43 -- TBD.**
 
-Do not begin Day 42 until the Day 41 commit is pushed and `git status --short --branch`
+Do not begin Day 43 until the Day 42 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

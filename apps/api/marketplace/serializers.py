@@ -673,3 +673,179 @@ class PlatformPricingPlanSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+# ---------------------------------------------------------------------------
+# Day 42: Payment Gateway, Wallet Balance & Escrow Serializers (MKT-008)
+# ---------------------------------------------------------------------------
+
+class WalletTransactionSerializer(serializers.ModelSerializer):
+    transaction_type_display = serializers.CharField(source="get_transaction_type_display", read_only=True)
+    amount_toman = serializers.IntegerField(read_only=True)
+    balance_after_toman = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        from marketplace.models import WalletTransaction
+        model = WalletTransaction
+        fields = [
+            "id",
+            "transaction_type",
+            "transaction_type_display",
+            "amount_toman",
+            "balance_after_toman",
+            "tracking_code",
+            "reference_id",
+            "description",
+            "created_at",
+        ]
+
+
+class UserWalletSerializer(serializers.ModelSerializer):
+    balance_toman = serializers.IntegerField(read_only=True)
+    locked_toman = serializers.IntegerField(read_only=True)
+    available_balance_toman = serializers.IntegerField(read_only=True)
+    recent_transactions = serializers.SerializerMethodField()
+
+    class Meta:
+        from marketplace.models import UserWallet
+        model = UserWallet
+        fields = [
+            "id",
+            "balance_toman",
+            "locked_toman",
+            "available_balance_toman",
+            "recent_transactions",
+            "updated_at",
+        ]
+
+    def get_recent_transactions(self, obj):
+        txs = obj.transactions.all()[:15]
+        return WalletTransactionSerializer(txs, many=True).data
+
+
+class PaymentTransactionSerializer(serializers.ModelSerializer):
+    order_type_display = serializers.CharField(source="get_order_type_display", read_only=True)
+    gateway_provider_display = serializers.CharField(source="get_gateway_provider_display", read_only=True)
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    amount_toman = serializers.IntegerField(read_only=True)
+    amount_rial = serializers.IntegerField(read_only=True)
+    booking_id = serializers.UUIDField(source="booking.id", read_only=True, allow_null=True)
+    plan_id = serializers.UUIDField(source="plan.id", read_only=True, allow_null=True)
+
+    class Meta:
+        from marketplace.models import PaymentTransaction
+        model = PaymentTransaction
+        fields = [
+            "id",
+            "order_type",
+            "order_type_display",
+            "booking_id",
+            "plan_id",
+            "gateway_provider",
+            "gateway_provider_display",
+            "amount_toman",
+            "amount_rial",
+            "authority",
+            "ref_id",
+            "card_pan",
+            "status",
+            "status_display",
+            "description",
+            "is_sandbox",
+            "verified_at",
+            "created_at",
+        ]
+
+
+class BookingEscrowSerializer(serializers.ModelSerializer):
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    total_amount_toman = serializers.IntegerField(read_only=True)
+    platform_commission_toman = serializers.IntegerField(read_only=True)
+    teacher_net_toman = serializers.IntegerField(read_only=True)
+    refund_amount_toman = serializers.IntegerField(read_only=True)
+    booking_id = serializers.UUIDField(source="booking.id", read_only=True)
+
+    class Meta:
+        from marketplace.models import BookingEscrow
+        model = BookingEscrow
+        fields = [
+            "id",
+            "booking_id",
+            "total_amount_toman",
+            "platform_commission_rate",
+            "platform_commission_toman",
+            "teacher_net_toman",
+            "status",
+            "status_display",
+            "refund_amount_toman",
+            "settlement_notes",
+            "funded_at",
+            "settled_at",
+        ]
+
+
+class TeacherPayoutRequestSerializer(serializers.ModelSerializer):
+    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    amount_toman = serializers.IntegerField(read_only=True)
+    teacher_id = serializers.UUIDField(source="teacher.id", read_only=True)
+    teacher_email = serializers.EmailField(source="teacher.email", read_only=True)
+    teacher_name = serializers.SerializerMethodField()
+    processed_by_name = serializers.SerializerMethodField()
+
+    class Meta:
+        from marketplace.models import TeacherPayoutRequest
+        model = TeacherPayoutRequest
+        fields = [
+            "id",
+            "teacher_id",
+            "teacher_email",
+            "teacher_name",
+            "amount_toman",
+            "bank_shaba_number",
+            "bank_name",
+            "account_holder_name",
+            "status",
+            "status_display",
+            "admin_notes",
+            "rejection_reason",
+            "processed_by_name",
+            "processed_at",
+            "created_at",
+        ]
+
+    def get_teacher_name(self, obj) -> str:
+        u = obj.teacher
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+    def get_processed_by_name(self, obj) -> str:
+        if not obj.processed_by:
+            return ""
+        u = obj.processed_by
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+
+class InitiateCheckoutInputSerializer(serializers.Serializer):
+    order_type = serializers.ChoiceField(choices=["booking_session", "subscription_plan", "wallet_topup"])
+    order_id = serializers.CharField(required=False, allow_blank=True, default="")
+    amount_toman = serializers.IntegerField(required=False, min_value=10000, default=0)
+    gateway_provider = serializers.ChoiceField(choices=["zarinpal", "sandbox", "wallet"], default="zarinpal")
+    callback_url = serializers.CharField(required=False, allow_blank=True, default="")
+    idempotency_key = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class VerifyPaymentInputSerializer(serializers.Serializer):
+    authority = serializers.CharField()
+    status = serializers.CharField(required=False, default="OK")
+
+
+class TeacherPayoutInputSerializer(serializers.Serializer):
+    amount_toman = serializers.IntegerField(min_value=50000)
+    bank_shaba_number = serializers.CharField(max_length=32)
+    bank_name = serializers.CharField(required=False, allow_blank=True, default="")
+    account_holder_name = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class ProcessPayoutInputSerializer(serializers.Serializer):
+    action = serializers.ChoiceField(choices=["approve", "pay", "reject"])
+    admin_notes = serializers.CharField(required=False, allow_blank=True, default="")
+    rejection_reason = serializers.CharField(required=False, allow_blank=True, default="")
+

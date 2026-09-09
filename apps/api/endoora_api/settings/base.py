@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from decimal import Decimal
 from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
@@ -193,3 +194,9 @@ SEARCH_DEFAULT_PAGE_SIZE = env_int("ENDOORA_SEARCH_DEFAULT_PAGE_SIZE", default=2
 # Teacher Management & Teaching Hours Flags (Day 33)
 TEACHER_MAX_CLASSES_DEFAULT = env_int("ENDOORA_TEACHER_MAX_CLASSES_DEFAULT", default=20)
 TEACHER_DEFAULT_SESSION_DURATION_MINUTES = env_int("ENDOORA_TEACHER_DEFAULT_SESSION_DURATION_MINUTES", default=60)
+
+# Payment Gateway & Marketplace Financials (Day 42)
+ZARINPAL_MERCHANT_ID = os.getenv("ZARINPAL_MERCHANT_ID", "00000000-0000-0000-0000-000000000000")
+ZARINPAL_SANDBOX = env_bool("ZARINPAL_SANDBOX", default=True)
+MARKETPLACE_COMMISSION_RATE = Decimal(os.getenv("MARKETPLACE_COMMISSION_RATE", "0.15"))
+

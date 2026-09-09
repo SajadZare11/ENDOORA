@@ -17,10 +17,21 @@ import {
   fetchAdminPricingPlans,
   updateAdminPricingPlan,
   formatTehranDateTime,
+  TeacherPayoutRequest,
+  fetchAdminPayoutRequests,
+  processAdminPayoutRequest,
 } from "@/lib/marketplace";
 
 export default function MarketplaceAdminPage() {
-  const [activeTab, setActiveTab] = useState<"disputes" | "onboarding" | "reviews" | "pricing">("disputes");
+  const [activeTab, setActiveTab] = useState<"disputes" | "onboarding" | "reviews" | "pricing" | "payouts">("disputes");
+
+  // Payouts state (Day 42)
+  const [payouts, setPayouts] = useState<TeacherPayoutRequest[]>([]);
+  const [payoutFilter, setPayoutFilter] = useState("all");
+  const [selectedPayout, setSelectedPayout] = useState<TeacherPayoutRequest | null>(null);
+  const [payoutAction, setPayoutAction] = useState<"approve" | "pay" | "reject">("approve");
+  const [payoutAdminNotes, setPayoutAdminNotes] = useState("");
+  const [payoutRejectionReason, setPayoutRejectionReason] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
@@ -73,6 +84,9 @@ export default function MarketplaceAdminPage() {
       } else if (activeTab === "pricing") {
         const res = await fetchAdminPricingPlans();
         setPlans(res.plans || []);
+      } else if (activeTab === "payouts") {
+        const res = await fetchAdminPayoutRequests({ status: payoutFilter === "all" ? undefined : payoutFilter });
+        setPayouts(res.payouts || []);
       }
     } catch (err: unknown) {
       const e = err as { message?: string };
@@ -80,7 +94,7 @@ export default function MarketplaceAdminPage() {
     } finally {
       setLoading(false);
     }
-  }, [activeTab, disputeFilter, onboardingFilter, reviewFilter]);
+  }, [activeTab, disputeFilter, onboardingFilter, reviewFilter, payoutFilter]);
 
   useEffect(() => {
     let cancelled = false;
@@ -98,6 +112,9 @@ export default function MarketplaceAdminPage() {
         } else if (activeTab === "pricing") {
           const res = await fetchAdminPricingPlans();
           if (!cancelled) setPlans(res.plans || []);
+        } else if (activeTab === "payouts") {
+          const res = await fetchAdminPayoutRequests({ status: payoutFilter === "all" ? undefined : payoutFilter });
+          if (!cancelled) setPayouts(res.payouts || []);
         }
       } catch (err: unknown) {
         if (!cancelled) {
@@ -114,7 +131,7 @@ export default function MarketplaceAdminPage() {
     return () => {
       cancelled = true;
     };
-  }, [activeTab, disputeFilter, onboardingFilter, reviewFilter]);
+  }, [activeTab, disputeFilter, onboardingFilter, reviewFilter, payoutFilter]);
 
   // Handle Dispute Resolution
   const handleResolveDispute = (e: React.FormEvent) => {
@@ -219,6 +236,30 @@ export default function MarketplaceAdminPage() {
     });
   };
 
+
+  const handleProcessPayoutSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedPayout) return;
+
+    startTransition(async () => {
+      try {
+        const res = await processAdminPayoutRequest(selectedPayout.id, {
+          action: payoutAction,
+          admin_notes: payoutAdminNotes,
+          rejection_reason: payoutRejectionReason,
+        });
+        setSuccessMsg(res.message || "درخواست تسویه با موفقیت پردازش گردید.");
+        setSelectedPayout(null);
+        setPayoutAdminNotes("");
+        setPayoutRejectionReason("");
+        loadData();
+      } catch (err: unknown) {
+        const e = err as { message?: string };
+        alert(e?.message || "خطا در پردازش درخواست تسویه.");
+      }
+    });
+  };
+
   const getDisputeBadge = (status: string) => {
     switch (status) {
       case "open":
@@ -318,6 +359,16 @@ export default function MarketplaceAdminPage() {
           className={`${styles.tabBtn} ${activeTab === "pricing" ? styles.tabActive : ""}`}
         >
           💎 تنظیم پلن‌های اشتراک و قیمت
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("payouts")}
+          className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabActive : ""}`}
+        >
+          💰 تسویه و حواله‌های بانکی مدرسان
+          {payouts.filter((p) => p.status === "pending").length > 0 && (
+            <span className={styles.badgePill}>{payouts.filter((p) => p.status === "pending").length}</span>
+          )}
         </button>
       </div>
 
@@ -940,6 +991,198 @@ export default function MarketplaceAdminPage() {
                 </button>
                 <button type="submit" className={styles.btnPrimary} disabled={isPending}>
                   {isPending ? "در حال ذخیره..." : "ذخیره تنظیمات قیمت 💾"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 5: Payouts Queue (Day 42) */}
+      {activeTab === "payouts" && (
+        <div className={styles.contentSection}>
+          <div className={styles.filterBar}>
+            <div className={styles.filterGroup}>
+              <label htmlFor="admin-payout-filter" className={styles.filterLabel}>فیلتر بر اساس وضعیت:</label>
+              <select
+                id="admin-payout-filter"
+                value={payoutFilter}
+                onChange={(e) => setPayoutFilter(e.target.value)}
+                className={styles.selectInput}
+              >
+                <option value="all">همه درخواست‌ها</option>
+                <option value="pending">در انتظار بررسی</option>
+                <option value="approved">تایید شده / نوبت پایا</option>
+                <option value="paid">واریز شده</option>
+                <option value="rejected">رد شده</option>
+              </select>
+            </div>
+            <button type="button" onClick={loadData} className={styles.btnSecondary}>
+              بروزرسانی لیست ↻
+            </button>
+          </div>
+
+          {loading ? (
+            <div className={styles.emptyCard}><p>در حال بارگذاری درخواست‌های تسویه...</p></div>
+          ) : payouts.length === 0 ? (
+            <div className={styles.emptyCard}><p>هیچ درخواست تسویه‌ای با فیلتر انتخابی یافت نشد.</p></div>
+          ) : (
+            <div className={styles.tableCard}>
+              <table className={styles.adminTable}>
+                <thead>
+                  <tr>
+                    <th>مدرس</th>
+                    <th>مبلغ درخواستی</th>
+                    <th>شماره شبا بانکی</th>
+                    <th>نام دارنده / بانک</th>
+                    <th>وضعیت</th>
+                    <th>تاریخ ثبت</th>
+                    <th>عملیات مالی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {payouts.map((p) => (
+                    <tr key={p.id}>
+                      <td>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                          <span style={{ fontWeight: 700 }}>{p.teacher_name}</span>
+                          <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-muted)", direction: "ltr", textAlign: "end" }}>
+                            {p.teacher_email}
+                          </span>
+                        </div>
+                      </td>
+                      <td style={{ fontWeight: 800, color: "var(--color-primary)", direction: "ltr", textAlign: "end" }}>
+                        {p.amount_toman.toLocaleString("fa-IR")} تومان
+                      </td>
+                      <td style={{ direction: "ltr", fontFamily: "monospace", fontSize: "var(--font-size-xs)" }}>
+                        {p.bank_shaba_number}
+                      </td>
+                      <td>
+                        <div style={{ display: "flex", flexDirection: "column", fontSize: "var(--font-size-xs)" }}>
+                          <span>{p.account_holder_name}</span>
+                          <span style={{ color: "var(--color-text-muted)" }}>{p.bank_name || "-"}</span>
+                        </div>
+                      </td>
+                      <td>
+                        {p.status === "paid" ? (
+                          <span className={`${styles.statusBadge} ${styles.badgeResolved}`}>واریز شد ✓</span>
+                        ) : p.status === "approved" ? (
+                          <span className={`${styles.statusBadge} ${styles.badgeUnderReview}`}>تایید شده</span>
+                        ) : p.status === "rejected" ? (
+                          <span className={`${styles.statusBadge} ${styles.badgeDismissed}`}>رد شده ✕</span>
+                        ) : (
+                          <span className={`${styles.statusBadge} ${styles.badgeOpen}`}>در انتظار</span>
+                        )}
+                      </td>
+                      <td style={{ fontSize: "var(--font-size-xs)" }}>{formatTehranDateTime(p.created_at)}</td>
+                      <td>
+                        {p.status !== "paid" && p.status !== "rejected" ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedPayout(p);
+                              setPayoutAction("pay");
+                              setPayoutAdminNotes("");
+                              setPayoutRejectionReason("");
+                            }}
+                            className={styles.btnPrimary}
+                            style={{ paddingInline: "var(--space-3)", paddingBlock: "var(--space-1)", fontSize: "var(--font-size-xs)" }}
+                          >
+                            بررسی و تسویه 💳
+                          </button>
+                        ) : (
+                          <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-muted)" }}>نهایی شده</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Payout Processing Modal */}
+      {selectedPayout && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalCard}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>پردازش درخواست تسویه مالی</h3>
+              <button
+                type="button"
+                onClick={() => setSelectedPayout(null)}
+                className={styles.closeBtn}
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleProcessPayoutSubmit} className={styles.modalBody}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)", background: "var(--color-surface-subtle)", padding: "var(--space-3)", borderRadius: "var(--radius-sm)", fontSize: "var(--font-size-xs)" }}>
+                <div><strong>مدرس:</strong> {selectedPayout.teacher_name} ({selectedPayout.teacher_email})</div>
+                <div><strong>مبلغ:</strong> {selectedPayout.amount_toman.toLocaleString("fa-IR")} تومان ({selectedPayout.amount_toman * 10} ریال)</div>
+                <div><strong>شماره شبا:</strong> <span style={{ direction: "ltr", fontFamily: "monospace" }}>{selectedPayout.bank_shaba_number}</span></div>
+                <div><strong>دارنده حساب:</strong> {selectedPayout.account_holder_name} (بانک {selectedPayout.bank_name || "نامشخص"})</div>
+              </div>
+
+              <div>
+                <label htmlFor="payout-action-select" className={styles.modalLabel}>اقدام مالی:</label>
+                <select
+                  id="payout-action-select"
+                  value={payoutAction}
+                  onChange={(e) => setPayoutAction(e.target.value as "approve" | "pay" | "reject")}
+                  className={styles.selectInput}
+                  style={{ inlineSize: "100%" }}
+                >
+                  <option value="pay">واریز شد (ثبت شماره پیگیری پایا و اتمام تسویه)</option>
+                  <option value="approve">تایید اولیه (قرار گرفتن در نوبت حواله روزانه)</option>
+                  <option value="reject">رد درخواست (استرداد خودکار وجه به کیف پول مدرس)</option>
+                </select>
+              </div>
+
+              {payoutAction === "reject" ? (
+                <div>
+                  <label htmlFor="payout-rejection-input" className={styles.modalLabel}>علت رد درخواست (به مدرس پیام داده می‌شود):</label>
+                  <textarea
+                    id="payout-rejection-input"
+                    value={payoutRejectionReason}
+                    onChange={(e) => setPayoutRejectionReason(e.target.value)}
+                    placeholder="مثال: شماره شبا نامعتبر است یا نام صاحب حساب با هویت مدرس همخوانی ندارد."
+                    className={styles.textareaInput}
+                    required
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label htmlFor="payout-notes-input" className={styles.modalLabel}>یادداشت مالی / شماره پیگیری حواله پایا:</label>
+                  <input
+                    id="payout-notes-input"
+                    type="text"
+                    value={payoutAdminNotes}
+                    onChange={(e) => setPayoutAdminNotes(e.target.value)}
+                    placeholder="مثال: شماره حواله پایا ۱۲۳۴۵۶۷۸۹"
+                    className={styles.selectInput}
+                    style={{ inlineSize: "100%" }}
+                  />
+                </div>
+              )}
+
+              <div className={styles.modalActions}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPayout(null)}
+                  className={styles.btnSecondary}
+                  disabled={isPending}
+                >
+                  انصراف
+                </button>
+                <button
+                  type="submit"
+                  className={payoutAction === "reject" ? styles.btnDanger : styles.btnPrimary}
+                  disabled={isPending}
+                >
+                  {isPending ? "در حال پردازش..." : payoutAction === "reject" ? "رد و استرداد وجه به کیف پول ✕" : "تایید و ثبت اقدام مالی ✓"}
                 </button>
               </div>
             </form>
