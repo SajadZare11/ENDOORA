@@ -15,6 +15,12 @@ from .views import (
     respond_reschedule_view,
     start_booking_session_view,
     complete_booking_session_view,
+    public_teachers_directory_view,
+    teacher_public_profile_view,
+    teacher_reviews_list_view,
+    booking_review_view,
+    reply_to_review_view,
+    flag_review_view,
 )
 
 urlpatterns = [
@@ -36,4 +42,12 @@ urlpatterns = [
     path("bookings/<uuid:booking_id>/reschedule/respond/", respond_reschedule_view, name="marketplace_booking_reschedule_respond"),
     path("bookings/<uuid:booking_id>/start/", start_booking_session_view, name="marketplace_booking_start"),
     path("bookings/<uuid:booking_id>/complete/", complete_booking_session_view, name="marketplace_booking_complete"),
+
+    # Day 39: Teacher Public Directory, Profile & Review Endpoints
+    path("teachers/", public_teachers_directory_view, name="marketplace_public_teachers"),
+    path("teachers/<uuid:teacher_id>/", teacher_public_profile_view, name="marketplace_teacher_public_profile"),
+    path("teachers/<uuid:teacher_id>/reviews/", teacher_reviews_list_view, name="marketplace_teacher_reviews"),
+    path("bookings/<uuid:booking_id>/review/", booking_review_view, name="marketplace_booking_review"),
+    path("reviews/<uuid:review_id>/reply/", reply_to_review_view, name="marketplace_review_reply"),
+    path("reviews/<uuid:review_id>/flag/", flag_review_view, name="marketplace_review_flag"),
 ]

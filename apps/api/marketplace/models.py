@@ -2,6 +2,7 @@ import uuid
 from decimal import Decimal
 from django.conf import settings
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -321,3 +322,87 @@ class SessionBooking(models.Model):
         start_buffer = self.scheduled_start - timezone.timedelta(minutes=15)
         end_buffer = self.scheduled_end + timezone.timedelta(minutes=30)
         return start_buffer <= now <= end_buffer
+
+
+class ReviewStatus(models.TextChoices):
+    PUBLISHED = "published", _("منتشر شده")
+    PENDING_MODERATION = "pending_moderation", _("در انتظار بررسی ناظر")
+    FLAGGED = "flagged", _("گزارش شده")
+    REMOVED = "removed", _("حذف شده")
+
+
+class TeacherReview(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    booking = models.OneToOneField(
+        "marketplace.SessionBooking",
+        on_delete=models.CASCADE,
+        related_name="review",
+        help_text="جلسه تکمیل‌شده متناظر با این نظر",
+    )
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="received_reviews",
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="submitted_reviews",
+    )
+    overall_rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="امتیاز کلی از ۱ تا ۵",
+    )
+    rating_teaching = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        default=5,
+        help_text="کیفیت تدریس و تسلط",
+    )
+    rating_punctuality = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        default=5,
+        help_text="نظم و وقت‌شناسی",
+    )
+    rating_communication = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        default=5,
+        help_text="فن بیان، صبوری و اخلاق حرفه‌ای",
+    )
+    comment = models.TextField(
+        help_text="متن بازخورد و تجربه زبان‌آموز",
+    )
+    is_anonymous = models.BooleanField(
+        default=False,
+        help_text="نمایش نام زبان‌آموز به صورت مخفی/ناشناس",
+    )
+    masked_display_name = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text="نام نمایشی ماسک‌شده (مثلاً سارا م.)",
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=ReviewStatus.choices,
+        default=ReviewStatus.PUBLISHED,
+        db_index=True,
+    )
+    teacher_reply = models.TextField(
+        blank=True,
+        default="",
+        help_text="پاسخ رسمی مدرس به این بازخورد",
+    )
+    teacher_replied_at = models.DateTimeField(null=True, blank=True)
+    flag_reason = models.TextField(blank=True, default="")
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["teacher", "status", "-created_at"]),
+            models.Index(fields=["learner", "status"]),
+        ]
+
+    def __str__(self):
+        return f"Review {self.id} for {self.teacher.email} by {self.learner.email} ({self.overall_rating}★)"

@@ -610,3 +610,358 @@ def complete_session_booking(user: User, booking_id: str, session_notes: str = "
         booking.session_notes = session_notes
     booking.save(update_fields=["status", "completed_at", "session_notes", "updated_at"])
     return booking
+
+
+# ---------------------------------------------------------------------------
+# Day 39: Teacher Directory, Public Profile & Verified Review Services
+# ---------------------------------------------------------------------------
+
+def calculate_teacher_social_proof(teacher_id) -> dict:
+    from marketplace.models import TeacherReview, ReviewStatus, SessionBooking, BookingStatus
+    from django.db.models import Avg, Count
+
+    completed_sessions = SessionBooking.objects.filter(
+        teacher_id=teacher_id,
+        status=BookingStatus.COMPLETED,
+    ).count()
+
+    reviews_qs = TeacherReview.objects.filter(
+        teacher_id=teacher_id,
+        status=ReviewStatus.PUBLISHED,
+    )
+
+    total_reviews = reviews_qs.count()
+    if total_reviews == 0:
+        return {
+            "average_rating": 5.0,
+            "total_reviews": 0,
+            "completed_sessions_count": completed_sessions,
+            "rating_breakdown": {"5": 0, "4": 0, "3": 0, "2": 0, "1": 0},
+            "dimension_averages": {
+                "teaching": 5.0,
+                "punctuality": 5.0,
+                "communication": 5.0,
+            },
+            "endorsements": ["مدرس تازه‌پیوسته به اندورا"],
+        }
+
+    aggs = reviews_qs.aggregate(
+        avg_overall=Avg("overall_rating"),
+        avg_teaching=Avg("rating_teaching"),
+        avg_punctuality=Avg("rating_punctuality"),
+        avg_comm=Avg("rating_communication"),
+    )
+
+    avg_rating = round(float(aggs["avg_overall"] or 5.0), 2)
+    dim_teaching = round(float(aggs["avg_teaching"] or 5.0), 1)
+    dim_punct = round(float(aggs["avg_punctuality"] or 5.0), 1)
+    dim_comm = round(float(aggs["avg_comm"] or 5.0), 1)
+
+    # Breakdown counts
+    counts_by_rating = dict(reviews_qs.values_list("overall_rating").annotate(c=Count("id")))
+    breakdown = {str(star): counts_by_rating.get(star, 0) for star in range(5, 0, -1)}
+
+    endorsements = []
+    if dim_punct >= 4.8:
+        endorsements.append("۱۰۰٪ رضایت در وقت‌شناسی")
+    if dim_teaching >= 4.8:
+        endorsements.append("کیفیت تدریس برتر")
+    if dim_comm >= 4.8:
+        endorsements.append("صبور و خوش‌برخورد")
+    if completed_sessions >= 10:
+        endorsements.append("مدرس باتجربه و پرمخاطب")
+    if not endorsements:
+        endorsements.append("مدرس تأییدشده اندورا")
+
+    return {
+        "average_rating": avg_rating,
+        "total_reviews": total_reviews,
+        "completed_sessions_count": completed_sessions,
+        "rating_breakdown": breakdown,
+        "dimension_averages": {
+            "teaching": dim_teaching,
+            "punctuality": dim_punct,
+            "communication": dim_comm,
+        },
+        "endorsements": endorsements,
+    }
+
+
+def list_public_teachers(
+    search: str | None = None,
+    skill: str | None = None,
+    min_rating: float | None = None,
+    max_rate_toman: Decimal | None = None,
+    sort_by: str = "rating",
+) -> list[dict]:
+    from accounts.models import User
+    from django.db.models import Q
+
+    qs = User.objects.filter(
+        role=User.Role.TEACHER,
+        is_teacher_verified=True,
+        marketplace_eligible=True,
+    ).select_related("teacher_profile")
+
+    if search:
+        s = search.strip()
+        qs = qs.filter(
+            Q(first_name__icontains=s)
+            | Q(last_name__icontains=s)
+            | Q(teacher_profile__public_name__icontains=s)
+            | Q(teacher_profile__headline__icontains=s)
+            | Q(teacher_profile__bio__icontains=s)
+        )
+
+    teachers_list = []
+    for teacher in qs:
+        prof = getattr(teacher, "teacher_profile", None)
+        specs = prof.specialties if prof and prof.specialties else []
+        if skill and skill != "all" and skill not in specs:
+            continue
+
+        hourly_rate = prof.hourly_rate_toman if prof and prof.hourly_rate_toman else Decimal("300000")
+        if max_rate_toman and hourly_rate > max_rate_toman:
+            continue
+
+        social_proof = calculate_teacher_social_proof(teacher.id)
+        if min_rating and social_proof["average_rating"] < min_rating:
+            continue
+
+        full_name = f"{teacher.first_name or ''} {teacher.last_name or ''}".strip()
+        if prof and prof.public_name:
+            full_name = prof.public_name
+
+        teachers_list.append({
+            "id": str(teacher.id),
+            "name": full_name or "مدرس اندورا",
+            "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی اندورا",
+            "bio": (prof.bio if prof else "") or "",
+            "city": (prof.city if prof else "") or "تهران",
+            "experience_years": (prof.experience_years if prof else 3) or 3,
+            "specialties": specs,
+            "hourly_rate_toman": int(hourly_rate),
+            "response_time_minutes": prof.response_time_minutes if prof else 30,
+            "social_proof": social_proof,
+            "is_verified": True,
+        })
+
+    # Sorting
+    if sort_by == "rating":
+        teachers_list.sort(key=lambda t: (t["social_proof"]["average_rating"], t["social_proof"]["total_reviews"]), reverse=True)
+    elif sort_by == "sessions":
+        teachers_list.sort(key=lambda t: t["social_proof"]["completed_sessions_count"], reverse=True)
+    elif sort_by == "price_asc":
+        teachers_list.sort(key=lambda t: t["hourly_rate_toman"])
+    elif sort_by == "price_desc":
+        teachers_list.sort(key=lambda t: t["hourly_rate_toman"], reverse=True)
+    elif sort_by == "experience":
+        teachers_list.sort(key=lambda t: t["experience_years"], reverse=True)
+
+    return teachers_list
+
+
+def get_teacher_public_profile(teacher_id) -> dict:
+    from accounts.models import User
+    from marketplace.models import TeacherReview, ReviewStatus
+
+    try:
+        teacher = User.objects.select_related("teacher_profile").get(
+            id=teacher_id,
+            role=User.Role.TEACHER,
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+    except User.DoesNotExist:
+        raise ValidationError("مدرس مورد نظر یافت نشد یا پروفایل عمومی آن فعال نیست.")
+
+    prof = getattr(teacher, "teacher_profile", None)
+    social_proof = calculate_teacher_social_proof(teacher.id)
+
+    full_name = f"{teacher.first_name or ''} {teacher.last_name or ''}".strip()
+    if prof and prof.public_name:
+        full_name = prof.public_name
+
+    # Fetch recent reviews
+    recent_reviews_qs = TeacherReview.objects.filter(
+        teacher=teacher,
+        status=ReviewStatus.PUBLISHED,
+    ).order_by("-created_at")[:10]
+
+    reviews_data = []
+    for r in recent_reviews_qs:
+        reviews_data.append({
+            "id": str(r.id),
+            "learner_name": r.masked_display_name,
+            "overall_rating": r.overall_rating,
+            "rating_teaching": r.rating_teaching,
+            "rating_punctuality": r.rating_punctuality,
+            "rating_communication": r.rating_communication,
+            "comment": r.comment,
+            "teacher_reply": r.teacher_reply,
+            "teacher_replied_at": r.teacher_replied_at.isoformat() if r.teacher_replied_at else None,
+            "created_at": r.created_at.isoformat(),
+        })
+
+    return {
+        "id": str(teacher.id),
+        "name": full_name or "مدرس اندورا",
+        "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی اندورا",
+        "bio": (prof.bio if prof else "") or "مدرس متعهد و مجرب اندورا با رویکرد آموزش شخصی‌سازی‌شده و متمرکز بر اهداف زبان‌آموز.",
+        "city": (prof.city if prof else "") or "تهران",
+        "experience_years": (prof.experience_years if prof else 3) or 3,
+        "specialties": prof.specialties if prof and prof.specialties else ["speaking", "grammar"],
+        "languages": prof.languages if prof and prof.languages else ["فارسی", "انگلیسی"],
+        "education": prof.education if prof and prof.education else [{"degree": "کارشناسی ارشد زبان و ادبیات انگلیسی", "institution": "دانشگاه تهران"}],
+        "certifications": prof.certifications if prof and prof.certifications else [{"name": "CELTA Certificate", "issuer": "Cambridge English", "year": "2021"}],
+        "video_intro_url": prof.video_intro_url if prof else "",
+        "hourly_rate_toman": int(prof.hourly_rate_toman if prof and prof.hourly_rate_toman else Decimal("300000")),
+        "response_time_minutes": prof.response_time_minutes if prof else 30,
+        "social_proof": social_proof,
+        "reviews": reviews_data,
+        "is_verified": True,
+    }
+
+
+def submit_session_review(
+    booking_id: str,
+    learner: User,
+    overall_rating: int,
+    comment: str,
+    rating_teaching: int = 5,
+    rating_punctuality: int = 5,
+    rating_communication: int = 5,
+    is_anonymous: bool = False,
+):
+    import re
+    from marketplace.models import SessionBooking, BookingStatus, TeacherReview, ReviewStatus
+
+    if not learner.is_authenticated:
+        raise PermissionDenied("برای ثبت نظر باید وارد حساب کاربری شوید.")
+
+    try:
+        booking = SessionBooking.objects.select_related("teacher", "learner").get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        raise ValidationError("جلسه رزرو شده یافت نشد.")
+
+    if booking.learner_id != learner.id:
+        raise PermissionDenied("تنها زبان‌آموز شرکت‌کننده در این جلسه مجاز به ثبت بازخورد است.")
+
+    if booking.status != BookingStatus.COMPLETED:
+        raise ValidationError("امکان ثبت نظر فقط برای جلساتی که وضعیت آن‌ها تکمیل‌شده (Completed) است وجود دارد.")
+
+    if hasattr(booking, "review"):
+        raise ValidationError("برای این جلسه قبلاً نظر و امتیاز ثبت شده است.")
+
+    if not (1 <= overall_rating <= 5):
+        raise ValidationError("امتیاز کلی باید بین ۱ تا ۵ باشد.")
+
+    for r_name, r_val in [
+        ("کیفیت تدریس", rating_teaching),
+        ("وقت‌شناسی", rating_punctuality),
+        ("فن بیان و ارتباط", rating_communication),
+    ]:
+        if not (1 <= r_val <= 5):
+            raise ValidationError(f"امتیاز {r_name} باید بین ۱ تا ۵ باشد.")
+
+    clean_comment = comment.strip()
+    if len(clean_comment) < 10:
+        raise ValidationError("متن نظر باید حداقل ۱۰ کاراکتر باشد.")
+
+    # PII and Content Scanner
+    phone_pattern = re.compile(r"(\+?98|0)?9\d{9}")
+    email_pattern = re.compile(r"[\w\.-]+@[\w\.-]+\.\w+")
+
+    status = ReviewStatus.PUBLISHED
+    flag_reason = ""
+    if phone_pattern.search(clean_comment) or email_pattern.search(clean_comment):
+        status = ReviewStatus.PENDING_MODERATION
+        flag_reason = "شامل شماره تماس یا ایمیل شناسایی‌شده توسط اسکنر PII"
+
+    # Masked name
+    if is_anonymous:
+        masked_name = "زبان‌آموز اندورا"
+    else:
+        fn = learner.first_name.strip() if learner.first_name else ""
+        ln = learner.last_name.strip() if learner.last_name else ""
+        if fn and ln:
+            masked_name = f"{fn} {ln[0]}."
+        elif fn:
+            masked_name = fn
+        else:
+            masked_name = "زبان‌آموز اندورا"
+
+    with transaction.atomic():
+        review = TeacherReview.objects.create(
+            booking=booking,
+            teacher=booking.teacher,
+            learner=learner,
+            overall_rating=overall_rating,
+            rating_teaching=rating_teaching,
+            rating_punctuality=rating_punctuality,
+            rating_communication=rating_communication,
+            comment=clean_comment,
+            is_anonymous=is_anonymous,
+            masked_display_name=masked_name,
+            status=status,
+            flag_reason=flag_reason,
+        )
+
+    return review
+
+
+def reply_to_teacher_review(
+    review_id: str,
+    teacher: User,
+    reply_text: str,
+):
+    from marketplace.models import TeacherReview
+
+    if not teacher.is_authenticated:
+        raise PermissionDenied("تنها کاربر وارد شده می‌تواند پاسخ ثبت کند.")
+
+    try:
+        review = TeacherReview.objects.get(id=review_id)
+    except TeacherReview.DoesNotExist:
+        raise ValidationError("نظر مورد نظر یافت نشد.")
+
+    if review.teacher_id != teacher.id:
+        raise PermissionDenied("شما تنها می‌توانید به نظرات ثبت شده برای خودتان پاسخ دهید.")
+
+    clean_reply = reply_text.strip()
+    if not clean_reply:
+        raise ValidationError("متن پاسخ مدرس نمی‌تواند خالی باشد.")
+
+    with transaction.atomic():
+        review.teacher_reply = clean_reply
+        review.teacher_replied_at = timezone.now()
+        review.save(update_fields=["teacher_reply", "teacher_replied_at", "updated_at"])
+
+    return review
+
+
+def flag_teacher_review(
+    review_id: str,
+    user: User,
+    reason: str,
+):
+    from marketplace.models import TeacherReview, ReviewStatus
+
+    if not user.is_authenticated:
+        raise PermissionDenied("برای گزارش تخلف باید وارد حساب خود شوید.")
+
+    try:
+        review = TeacherReview.objects.get(id=review_id)
+    except TeacherReview.DoesNotExist:
+        raise ValidationError("نظر مورد نظر یافت نشد.")
+
+    clean_reason = reason.strip()
+    if not clean_reason:
+        raise ValidationError("لطفاً علت گزارش تخلف را شرح دهید.")
+
+    with transaction.atomic():
+        review.status = ReviewStatus.FLAGGED
+        review.flag_reason = f"گزارش توسط {user.email}: {clean_reason}"
+        review.save(update_fields=["status", "flag_reason", "updated_at"])
+
+    return review

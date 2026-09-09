@@ -15,6 +15,7 @@ from marketplace.models import (
     OfferStatus,
     BookingStatus,
 )
+from profiles.models import TeacherProfile
 from marketplace.services import (
     create_learn_now_request,
     list_teacher_feed,
@@ -317,6 +318,227 @@ class MarketplaceDay37Tests(TestCase):
         self.assertEqual(offer.status, OfferStatus.DECLINED)
 
 
+
+    def test_public_teacher_directory_filtering_and_search(self):
+        # Configure verified teacher profile
+        prof, _ = TeacherProfile.objects.get_or_create(user=self.verified_teacher)
+        prof.headline = "مدرس برتر آیلتس و دارنده مدرک بین‌المللی CELTA"
+        prof.specialties = ["speaking", "ielts_prep"]
+        prof.hourly_rate_toman = Decimal("350000")
+        prof.save()
+
+        # 1. Anonymous user can access public directory
+        anon_client = APIClient()
+        res = anon_client.get("/api/marketplace/teachers/")
+        self.assertEqual(res.status_code, 200)
+        self.assertGreaterEqual(res.data["count"], 1)
+
+        # Unverified teacher should not appear
+        teacher_ids = [t["id"] for t in res.data["teachers"]]
+        self.assertIn(str(self.verified_teacher.id), teacher_ids)
+        self.assertNotIn(str(self.unverified_teacher.id), teacher_ids)
+
+        # 2. Filter by skill
+        skill_res = anon_client.get("/api/marketplace/teachers/?skill=speaking")
+        self.assertEqual(skill_res.status_code, 200)
+        self.assertGreaterEqual(len(skill_res.data["teachers"]), 1)
+
+        # 3. Search query
+        search_res = anon_client.get("/api/marketplace/teachers/?search=CELTA")
+        self.assertEqual(search_res.status_code, 200)
+        self.assertGreaterEqual(len(search_res.data["teachers"]), 1)
+
+    def test_teacher_public_profile_social_proof_aggregation(self):
+        anon_client = APIClient()
+        res = anon_client.get(f"/api/marketplace/teachers/{self.verified_teacher.id}/")
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.data["id"], str(self.verified_teacher.id))
+        self.assertIn("social_proof", res.data)
+        self.assertIn("average_rating", res.data["social_proof"])
+        self.assertIn("rating_breakdown", res.data["social_proof"])
+
+    def test_verified_learner_review_submission_on_completed_session(self):
+        # Create completed booking
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start,
+            duration_minutes=45,
+        )
+        # Transition to completed
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=self.learner)
+        review_payload = {
+            "overall_rating": 5,
+            "rating_teaching": 5,
+            "rating_punctuality": 4,
+            "rating_communication": 5,
+            "comment": "استاد فوق‌العاده صبور و دقیق بودند و ایرادات لهجه را با تمرین اصلاح کردند.",
+            "is_anonymous": False,
+        }
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=review_payload, format="json")
+        self.assertEqual(res.status_code, 201)
+        self.assertEqual(res.data["status"], "success")
+        self.assertEqual(res.data["review"]["overall_rating"], 5)
+        self.assertEqual(res.data["review"]["masked_display_name"], "Sara M.")
+
+        # Check public profile reviews list
+        anon_client = APIClient()
+        rev_res = anon_client.get(f"/api/marketplace/teachers/{self.verified_teacher.id}/reviews/")
+        self.assertEqual(rev_res.status_code, 200)
+        self.assertGreaterEqual(rev_res.data["count"], 1)
+
+    def test_uncompleted_session_review_blocked(self):
+        start = timezone.now() + timedelta(days=2)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="writing",
+            rate_toman=Decimal("250000"),
+            scheduled_start=start,
+        )
+        # Session is CONFIRMED, not completed
+        self.assertEqual(booking.status, BookingStatus.CONFIRMED)
+
+        self.client.force_authenticate(user=self.learner)
+        payload = {
+            "overall_rating": 5,
+            "comment": "جلسه هنوز شروع نشده اما می‌خواهم نظر بدهم.",
+        }
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=payload, format="json")
+        self.assertEqual(res.status_code, 400)
+
+    def test_non_participant_review_forbidden(self):
+        other_learner = User.objects.create_user(
+            email="intruder@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+        )
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="grammar",
+            rate_toman=Decimal("200000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=other_learner)
+        payload = {
+            "overall_rating": 1,
+            "comment": "من اصلاً در این کلاس نبودم ولی نقد می‌نویسم.",
+        }
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=payload, format="json")
+        self.assertEqual(res.status_code, 403)
+
+    def test_duplicate_review_on_same_session_blocked(self):
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("280000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=self.learner)
+        payload = {
+            "overall_rating": 5,
+            "comment": "نظر اولیه با کیفیت عالی و رضایت کامل.",
+        }
+        res1 = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=payload, format="json")
+        self.assertEqual(res1.status_code, 201)
+
+        # Duplicate submit
+        res2 = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=payload, format="json")
+        self.assertEqual(res2.status_code, 400)
+
+    def test_teacher_reply_to_review(self):
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=self.learner)
+        rev_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data={
+            "overall_rating": 5,
+            "comment": "تدریس بسیار اصولی و کاربردی بود. سپاسگزارم.",
+        }, format="json")
+        review_id = rev_res.data["review"]["id"]
+
+        # Teacher posts reply
+        self.client.force_authenticate(user=self.verified_teacher)
+        reply_res = self.client.post(f"/api/marketplace/reviews/{review_id}/reply/", data={
+            "reply_text": "سپاس از شما سارای گرامی، پیشرفت شما در تسک‌های اسپیکینگ بسیار چشمگیر بود.",
+        }, format="json")
+        self.assertEqual(reply_res.status_code, 200)
+        self.assertEqual(reply_res.data["status"], "success")
+        self.assertIn("پیشرفت شما", reply_res.data["review"]["teacher_reply"])
+
+    def test_review_moderation_pii_detection(self):
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=self.learner)
+        # Contains Iranian phone number
+        pii_payload = {
+            "overall_rating": 4,
+            "comment": "استاد عالی بودند. شماره تماس من 09121234567 است لطفاً در واتساپ پیام دهید.",
+        }
+        res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data=pii_payload, format="json")
+        self.assertEqual(res.status_code, 201)
+        self.assertEqual(res.data["review"]["status"], "pending_moderation")
+
+    def test_review_flagging_workflow(self):
+        start = timezone.now() - timedelta(days=1)
+        booking = create_session_booking(
+            learner=self.learner,
+            teacher=self.verified_teacher,
+            target_skill="speaking",
+            rate_toman=Decimal("300000"),
+            scheduled_start=start,
+        )
+        booking.status = BookingStatus.COMPLETED
+        booking.save()
+
+        self.client.force_authenticate(user=self.learner)
+        rev_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/review/", data={
+            "overall_rating": 5,
+            "comment": "کلاس فوق‌العاده موثر و مفید برای آزمون تافل بود.",
+        }, format="json")
+        review_id = rev_res.data["review"]["id"]
+
+        # Flag review
+        flag_res = self.client.post(f"/api/marketplace/reviews/{review_id}/flag/", data={
+            "reason": "محتوای اسپم یا مشکوک به تخلف تبلیغاتی.",
+        }, format="json")
+        self.assertEqual(flag_res.status_code, 200)
+        self.assertEqual(flag_res.data["status"], "success")
+
+
 # Aliases for contract test runners
-MarketplaceDay37Tests = MarketplaceDay37And38Tests
-MarketplaceDay38Tests = MarketplaceDay37And38Tests
+MarketplaceDay38Tests = MarketplaceDay37Tests
+MarketplaceDay39Tests = MarketplaceDay37Tests

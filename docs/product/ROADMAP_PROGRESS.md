@@ -1089,3 +1089,56 @@ Status: Complete and verified; ready for Git commit and push.
 **Day 38 Status:** Completed and ready for Git commit and push to GitHub main.
 **Next day after Git push:** Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005).
 
+### Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005 / MKT-001 / MKT-006)
+- [x] TeacherProfile model extended in `apps/api/profiles/models.py` (migration `0002_teacherprofile_certifications_and_more.py`):
+  - `headline`: teacher punchy headline/specialization
+  - `hourly_rate_toman`: default hourly teaching rate
+  - `video_intro_url`: introductory video link (Aparat, YouTube, MP4)
+  - `education`: JSON list of academic degrees & universities
+  - `certifications`: JSON list of international certifications (CELTA, TESOL, IELTS 8.5+, etc.)
+  - `response_time_minutes`: average response time in minutes
+- [x] Verified review models in `apps/api/marketplace/models.py` (migration `0003_alter_sessionbooking_idempotency_key_and_more.py`):
+  - `ReviewStatus`: `PUBLISHED`, `PENDING_MODERATION`, `FLAGGED`, `REMOVED`
+  - `TeacherReview`: `booking` (`OneToOneField` to completed `SessionBooking`), `teacher`, `learner`, `overall_rating` (1-5★), 3 dimension ratings (`rating_teaching`, `rating_punctuality`, `rating_communication`), `comment` (min 10 chars), `is_anonymous`, `masked_display_name` ("سارا م."), `teacher_reply`, `teacher_replied_at`, `status`, `flag_reason`
+- [x] Marketplace services in `apps/api/marketplace/services.py`:
+  - `calculate_teacher_social_proof`: dynamic aggregation of average rating, review count, completed session count, rating distribution breakdown (1★ to 5★ histogram), dimension averages, and endorsements
+  - `list_public_teachers`: public directory search and multi-criteria filtering (search query, skill, min rating, max rate, sorting)
+  - `get_teacher_public_profile`: comprehensive public profile with credentials, intro video, social proof, and recent reviews
+  - `submit_session_review`: verified review submission with completed session guard, participant validation, duplicate prevention, min 10-char comment, learner privacy name masking, and automated PII & contact information scanner (auto-flags to `pending_moderation`)
+  - `reply_to_teacher_review`: teacher official reply workflow
+  - `flag_teacher_review`: review reporting/flagging triage
+- [x] REST endpoints in `apps/api/marketplace/views.py` and registered in `urls.py`:
+  - `GET /api/marketplace/teachers/` (public teacher directory)
+  - `GET /api/marketplace/teachers/<id>/` (teacher public profile)
+  - `GET /api/marketplace/teachers/<id>/reviews/` (teacher published reviews)
+  - `GET /api/marketplace/bookings/<id>/review/` (booking review state)
+  - `POST /api/marketplace/bookings/<id>/review/` (submit session review)
+  - `POST /api/marketplace/reviews/<id>/reply/` (teacher official reply)
+  - `POST /api/marketplace/reviews/<id>/flag/` (flag review)
+- [x] Admin registration in `apps/api/marketplace/admin.py`: `TeacherReviewAdmin` registered with filters, search, and status tracking
+- [x] Comprehensive unit tests in `apps/api/marketplace/tests.py`: 20 unit tests covering directory search, skill filtering, social proof aggregation, verified session review creation, uncompleted session review blocking, non-participant forbidden, duplicate prevention, PII scanner moderation, teacher reply, and review flagging
+- [x] Typed frontend client in `apps/web/lib/marketplace.ts`:
+  - `TeacherSocialProof`, `TeacherDirectoryItem`, `TeacherPublicProfile`, `TeacherReview`, `SubmitReviewPayload`
+  - `fetchPublicTeachers`, `fetchTeacherPublicProfile`, `fetchTeacherReviews`, `fetchBookingReview`, `submitBookingReview`, `replyToTeacherReview`, `flagTeacherReview`
+- [x] Interactive Teacher Directory in `apps/web/app/teachers/page.tsx` & `teachers.module.css`:
+  - Keyword search, skill pills, min rating selector, max rate selector, and sort dropdown
+  - Teacher cards with verified badge, star rating, completed session count, specialties, hourly rate, and response time
+  - Responsive grid layout, loading skeletons, and empty state
+- [x] Detailed Teacher Public Profile in `apps/web/app/teachers/[id]/page.tsx` & `teacher-profile.module.css`:
+  - Hero header with verified badge, headline, and ratings
+  - About me, video introduction player, education, certifications, and teaching focus
+  - Social proof dashboard: overall rating, dimension progress bars, star distribution histogram, trust endorsements
+  - Verified reviews list with masked learner names, session badges, teacher replies, and report button
+  - Sticky booking widget with hourly rate and trust guarantees
+- [x] Booking Review Integration in `apps/web/app/bookings/[id]/page.tsx` & `booking-detail.module.css`:
+  - Review submission form for completed sessions with interactive 1-5 star picker, dimension selectors, and comment input
+  - Submitted review display and teacher reply input
+- [x] Strict CSS Standards: 0 raw hex colors and 100% logical properties across all new modules
+- [x] Automated contract test `scripts/check_day39.py` (68/68 checks passed) and regression checks `scripts/check_day30.py` through `scripts/check_day38.py` (100% passed)
+- [x] Next.js build compiled 154/154 routes cleanly, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings
+- [x] Technical documentation in `docs/marketplace/teacher-public-profile-and-reviews.md`
+- [x] Automated backup archive `backups/day39_backup.zip` (178.1 KB) created
+
+**Success gate:** Learners have a full-fledged public teacher directory and profile experience with verifiable social proof, a tamper-proof review state machine strictly gated by completed sessions, automated PII moderation, and 68 contract checks passing cleanly.
+**Day 39 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 40 — Build Teacher Availability Calendar, Recurring Slots, and Time-Off Management (MKT-002).

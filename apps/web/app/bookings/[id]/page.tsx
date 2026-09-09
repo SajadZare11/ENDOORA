@@ -1,15 +1,19 @@
 "use client";
 
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition, useCallback } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "./booking-detail.module.css";
 import {
   SessionBooking,
+  TeacherReview,
   fetchBookingDetail,
   cancelBooking,
   startSession,
   completeSession,
+  fetchBookingReview,
+  submitBookingReview,
+  replyToTeacherReview,
   formatTehranDateTime,
   formatTehranTimeOnly,
   formatUserLocalTime,
@@ -29,8 +33,32 @@ export default function BookingDetailPage() {
   const [sessionNotes, setSessionNotes] = useState("");
   const [isPending, startTransition] = useTransition();
 
+  // Review state
+  const [review, setReview] = useState<TeacherReview | null>(null);
+  const [canReview, setCanReview] = useState(false);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [teachingQuality, setTeachingQuality] = useState(5);
+  const [punctuality, setPunctuality] = useState(5);
+  const [communication, setCommunication] = useState(5);
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewMessage, setReviewMessage] = useState<string | null>(null);
+
+  // Teacher reply state
+  const [teacherReplyText, setTeacherReplyText] = useState("");
+  const [replySubmitting, setReplySubmitting] = useState(false);
+
   const isLocalTehran = isSameTimezoneAsTehran();
 
+  const loadReview = useCallback(async (bId: string) => {
+    try {
+      const data = await fetchBookingReview(bId);
+      setReview(data.review);
+      setCanReview(data.can_review);
+    } catch {
+      // ignore review fetch failure if not completed or unauthorized
+    }
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -41,6 +69,9 @@ export default function BookingDetailPage() {
         if (!cancelled) {
           setBooking(data);
           setLoading(false);
+          if (data.status === "completed") {
+            loadReview(data.id);
+          }
         }
       } catch (err: unknown) {
         if (!cancelled) {
@@ -54,7 +85,7 @@ export default function BookingDetailPage() {
     return () => {
       cancelled = true;
     };
-  }, [bookingId]);
+  }, [bookingId, loadReview]);
 
   const handleStart = () => {
     if (!booking) return;
@@ -79,6 +110,7 @@ export default function BookingDetailPage() {
         const updated = await completeSession(booking.id, sessionNotes);
         setBooking(updated);
         setShowCompleteModal(false);
+        loadReview(updated.id);
       } catch (err: unknown) {
         const e = err as { message?: string };
         alert(e?.message || "خطا در ثبت تکمیل جلسه.");
@@ -99,6 +131,51 @@ export default function BookingDetailPage() {
         alert(e?.message || "امکان لغو جلسه وجود ندارد.");
       }
     });
+  };
+
+  const handleSubmitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!booking) return;
+    if (reviewComment.trim().length < 10) {
+      setReviewMessage("لطفاً حداقل ۱۰ کاراکتر نظر یا بازخورد بنویسید.");
+      return;
+    }
+
+    setReviewSubmitting(true);
+    setReviewMessage(null);
+    try {
+      const createdReview = await submitBookingReview(booking.id, {
+        overall_rating: reviewRating,
+        teaching_quality: teachingQuality,
+        punctuality: punctuality,
+        communication: communication,
+        comment: reviewComment.trim(),
+      });
+      setReview(createdReview);
+      setCanReview(false);
+      setReviewMessage("نظر شما با موفقیت ثبت شد و پس از بررسی به نمایش درمی‌آید.");
+    } catch (err: unknown) {
+      const e = err as { message?: string };
+      setReviewMessage(e?.message || "خطا در ثبت نظر. لطفاً دوباره امتحان کنید.");
+    } finally {
+      setReviewSubmitting(false);
+    }
+  };
+
+  const handleTeacherReply = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!review || !teacherReplyText.trim()) return;
+    setReplySubmitting(true);
+    try {
+      const updatedReview = await replyToTeacherReview(review.id, teacherReplyText.trim());
+      setReview(updatedReview);
+      setTeacherReplyText("");
+    } catch (err: unknown) {
+      const e = err as { message?: string };
+      alert(e?.message || "خطا در ارسال پاسخ به نظر.");
+    } finally {
+      setReplySubmitting(false);
+    }
   };
 
   const getStatusBadge = (status: string, display: string) => {
@@ -180,9 +257,10 @@ export default function BookingDetailPage() {
                 disabled={isPending}
                 className={styles.btnPrimary}
               >
-                آغاز رسمی جلسه و ورود به کلاس
+                آغاز جلسه زنده ⚡
               </button>
             )}
+
             {booking.meeting_room_url && (
               <a
                 href={booking.meeting_room_url}
@@ -298,6 +376,190 @@ export default function BookingDetailPage() {
           </div>
         )}
       </div>
+
+      {/* Day 39 Review & Rating Section (Only for completed sessions) */}
+      {booking.status === "completed" && (
+        <section className={styles.reviewSection} aria-labelledby="session-review-heading">
+          <h2 id="session-review-heading" className={styles.cardHeading}>
+            ارزیابی و بازخورد جلسه آموزشی
+          </h2>
+
+          {/* Existing Review Display */}
+          {review ? (
+            <div className={styles.submittedReviewBox}>
+              <div className={styles.reviewPillRow}>
+                <span className={styles.reviewPill}>
+                  ★ امتیاز کلی: {review.overall_rating} از ۵
+                </span>
+                <span className={styles.reviewPill}>
+                  کیفیت تدریس: {review.teaching_quality}
+                </span>
+                <span className={styles.reviewPill}>
+                  وقت‌شناسی: {review.punctuality}
+                </span>
+                <span className={styles.reviewPill}>
+                  ارتباط و تعامل: {review.communication}
+                </span>
+                <span className={styles.reviewPill}>
+                  وضعیت: {review.status === "published" ? "منتشر شده" : "در حال بررسی"}
+                </span>
+              </div>
+
+              <p style={{ marginBlock: "var(--space-2)", fontSize: "var(--font-size-sm)", lineHeight: 1.6 }}>
+                <strong>دیدگاه ثبت‌شده:</strong> {review.comment}
+              </p>
+
+              {review.teacher_reply && (
+                <div className={styles.replyCard}>
+                  <span className={styles.replyTitle}>پاسخ رسمی مدرس:</span>
+                  <p style={{ marginBlock: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
+                    {review.teacher_reply}
+                  </p>
+                </div>
+              )}
+
+              {/* Teacher reply form if not yet replied */}
+              {!review.teacher_reply && (
+                <form onSubmit={handleTeacherReply} style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)", marginBlockStart: "var(--space-3)" }}>
+                  <label htmlFor="teacher-reply-input" style={{ fontSize: "var(--font-size-xs)", fontWeight: 600 }}>
+                    پاسخ مدرس به این نظر:
+                  </label>
+                  <textarea
+                    id="teacher-reply-input"
+                    value={teacherReplyText}
+                    onChange={(e) => setTeacherReplyText(e.target.value)}
+                    placeholder="متن پاسخ رسمی خود به نظر زبان‌آموز را بنویسید..."
+                    className={styles.textareaField}
+                  />
+                  <button
+                    type="submit"
+                    disabled={replySubmitting || !teacherReplyText.trim()}
+                    className={styles.btnPrimary}
+                    style={{ alignSelf: "flex-start" }}
+                  >
+                    {replySubmitting ? "در حال ارسال..." : "ثبت پاسخ رسمی مدرس"}
+                  </button>
+                </form>
+              )}
+            </div>
+          ) : canReview ? (
+            /* Review Submission Form */
+            <form onSubmit={handleSubmitReview} style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+              <p className={styles.modalDesc}>
+                از تجربه برگزاری این جلسه با {booking.teacher_name} رضایت داشتید؟ دیدگاه و امتیاز شما به دیگر زبان‌آموزان برای انتخاب استاد کمک می‌کند.
+              </p>
+
+              {reviewMessage && (
+                <div style={{ padding: "var(--space-3)", borderRadius: "var(--radius-md)", backgroundColor: "var(--color-surface-subtle)", fontSize: "var(--font-size-xs)" }}>
+                  {reviewMessage}
+                </div>
+              )}
+
+              {/* Overall Rating Star Picker */}
+              <div>
+                <span className={styles.dimensionLabel}>امتیاز کلی به جلسه:</span>
+                <div className={styles.starPickerRow} style={{ marginBlockStart: "var(--space-1)" }}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      className={`${styles.starBtn} ${star <= reviewRating ? styles.starBtnActive : ""}`}
+                      onClick={() => setReviewRating(star)}
+                      aria-label={`${star} ستاره`}
+                    >
+                      ★
+                    </button>
+                  ))}
+                  <span style={{ fontSize: "var(--font-size-sm)", marginInlineStart: "var(--space-2)" }}>
+                    {reviewRating} از ۵
+                  </span>
+                </div>
+              </div>
+
+              {/* 3 Dimensions */}
+              <div className={styles.dimensionGrid}>
+                <div className={styles.dimensionControl}>
+                  <label htmlFor="teach-quality" className={styles.dimensionLabel}>
+                    کیفیت و تسلط در تدریس:
+                  </label>
+                  <select
+                    id="teach-quality"
+                    className={styles.dimensionSelect}
+                    value={teachingQuality}
+                    onChange={(e) => setTeachingQuality(Number(e.target.value))}
+                  >
+                    {[5, 4, 3, 2, 1].map((n) => (
+                      <option key={n} value={n}>{n} ستاره</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dimensionControl}>
+                  <label htmlFor="punctuality-select" className={styles.dimensionLabel}>
+                    وقت‌شناسی و انضباط:
+                  </label>
+                  <select
+                    id="punctuality-select"
+                    className={styles.dimensionSelect}
+                    value={punctuality}
+                    onChange={(e) => setPunctuality(Number(e.target.value))}
+                  >
+                    {[5, 4, 3, 2, 1].map((n) => (
+                      <option key={n} value={n}>{n} ستاره</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dimensionControl}>
+                  <label htmlFor="communication-select" className={styles.dimensionLabel}>
+                    ارتباط و تعامل سازنده:
+                  </label>
+                  <select
+                    id="communication-select"
+                    className={styles.dimensionSelect}
+                    value={communication}
+                    onChange={(e) => setCommunication(Number(e.target.value))}
+                  >
+                    {[5, 4, 3, 2, 1].map((n) => (
+                      <option key={n} value={n}>{n} ستاره</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Comment Textarea */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
+                <label htmlFor="review-comment-input" className={styles.dimensionLabel}>
+                  نظر و توضیح شما (حداقل ۱۰ کاراکتر):
+                </label>
+                <textarea
+                  id="review-comment-input"
+                  value={reviewComment}
+                  onChange={(e) => setReviewComment(e.target.value)}
+                  placeholder="نقاط قوت استاد، نحوه بیان مباحث و میزان رضایت خود از جلسه را بنویسید..."
+                  className={styles.textareaField}
+                />
+                <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-tertiary)" }}>
+                  نام شما به شکل امن و مخفف (مانند سارا م.) برای حفظ حریم خصوصی نمایش داده می‌شود.
+                </span>
+              </div>
+
+              <button
+                type="submit"
+                disabled={reviewSubmitting || reviewComment.trim().length < 10}
+                className={styles.btnPrimary}
+                style={{ alignSelf: "flex-start" }}
+              >
+                {reviewSubmitting ? "در حال ثبت نظر..." : "ثبت و انتشار نظر 🚀"}
+              </button>
+            </form>
+          ) : (
+            <p style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)", marginBlock: 0 }}>
+              ارزیابی جلسه توسط شرکت‌کنندگان انجام می‌شود.
+            </p>
+          )}
+        </section>
+      )}
 
       <div className={styles.actionsCard}>
         <Link href="/bookings" className={styles.btnSecondary}>

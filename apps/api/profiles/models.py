@@ -157,6 +157,40 @@ class TeacherProfile(models.Model):
         blank=True,
     )
 
+    headline = models.CharField(
+        max_length=200,
+        blank=True,
+        default="",
+        help_text="عنوان حرفه‌ای و مختصر مدرس",
+    )
+    hourly_rate_toman = models.DecimalField(
+        max_digits=10,
+        decimal_places=0,
+        null=True,
+        blank=True,
+        help_text="نرخ پایه جلسات به تومان",
+    )
+    video_intro_url = models.URLField(
+        max_length=500,
+        blank=True,
+        default="",
+        help_text="لینک ویدیوی معرفی مدرس",
+    )
+    education = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="سوابق تحصیلی و مدارک دانشگاهی",
+    )
+    certifications = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="گواهینامه‌های بین‌المللی مانند CELTA, IELTS و...",
+    )
+    response_time_minutes = models.PositiveSmallIntegerField(
+        default=30,
+        help_text="میانگین زمان پاسخگویی به دقیقه",
+    )
+
     availability_intent = models.BooleanField(default=False)
     verification_intent = models.BooleanField(default=False)
 

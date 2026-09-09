@@ -347,3 +347,44 @@ class CancelBookingSerializer(serializers.Serializer):
 
 class CompleteBookingSerializer(serializers.Serializer):
     session_notes = serializers.CharField(required=False, allow_blank=True, default="", max_length=1500)
+
+
+# ---------------------------------------------------------------------------
+# Day 39: Serializers for Teacher Profile, Reviews, and Social Proof
+# ---------------------------------------------------------------------------
+
+class TeacherReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        from marketplace.models import TeacherReview
+        model = TeacherReview
+        fields = [
+            "id",
+            "overall_rating",
+            "rating_teaching",
+            "rating_punctuality",
+            "rating_communication",
+            "comment",
+            "masked_display_name",
+            "is_anonymous",
+            "status",
+            "teacher_reply",
+            "teacher_replied_at",
+            "created_at",
+        ]
+
+
+class SubmitReviewSerializer(serializers.Serializer):
+    overall_rating = serializers.IntegerField(min_value=1, max_value=5)
+    rating_teaching = serializers.IntegerField(min_value=1, max_value=5, default=5, required=False)
+    rating_punctuality = serializers.IntegerField(min_value=1, max_value=5, default=5, required=False)
+    rating_communication = serializers.IntegerField(min_value=1, max_value=5, default=5, required=False)
+    comment = serializers.CharField(min_length=10, max_length=2000)
+    is_anonymous = serializers.BooleanField(default=False, required=False)
+
+
+class TeacherReviewReplySerializer(serializers.Serializer):
+    reply_text = serializers.CharField(min_length=2, max_length=2000)
+
+
+class FlagReviewSerializer(serializers.Serializer):
+    reason = serializers.CharField(min_length=5, max_length=1000)

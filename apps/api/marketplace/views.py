@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.request import Request
 from rest_framework.response import Response
 from accounts.models import User
 from .services import (
@@ -325,4 +326,139 @@ def complete_booking_session_view(request, booking_id):
     return Response({
         "status": updated.status,
         "message": "جلسه با موفقیت به پایان رسید و ثبت گردید.",
+    })
+
+
+# ---------------------------------------------------------------------------
+# Day 39: Teacher Directory, Public Profile & Review Endpoints
+# ---------------------------------------------------------------------------
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def public_teachers_directory_view(request: Request) -> Response:
+    from marketplace.services import list_public_teachers
+
+    search = request.query_params.get("search")
+    skill = request.query_params.get("skill")
+    min_rating = float(request.query_params.get("min_rating")) if request.query_params.get("min_rating") else None
+    max_rate = Decimal(request.query_params.get("max_rate")) if request.query_params.get("max_rate") else None
+    sort_by = request.query_params.get("sort_by", "rating")
+
+    teachers = list_public_teachers(
+        search=search,
+        skill=skill,
+        min_rating=min_rating,
+        max_rate_toman=max_rate,
+        sort_by=sort_by,
+    )
+    return Response({"teachers": teachers, "count": len(teachers)})
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def teacher_public_profile_view(request: Request, teacher_id: str) -> Response:
+    from marketplace.services import get_teacher_public_profile
+
+    profile_data = get_teacher_public_profile(teacher_id)
+    return Response(profile_data)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def teacher_reviews_list_view(request: Request, teacher_id: str) -> Response:
+    from marketplace.models import TeacherReview, ReviewStatus
+    from marketplace.serializers import TeacherReviewSerializer
+
+    reviews = TeacherReview.objects.filter(
+        teacher_id=teacher_id,
+        status=ReviewStatus.PUBLISHED,
+    ).order_by("-created_at")[:50]
+
+    return Response({
+        "reviews": TeacherReviewSerializer(reviews, many=True).data,
+        "count": len(reviews),
+    })
+
+
+@api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
+def booking_review_view(request: Request, booking_id: str) -> Response:
+    from marketplace.models import SessionBooking
+    from marketplace.services import submit_session_review
+    from marketplace.serializers import TeacherReviewSerializer, SubmitReviewSerializer
+
+    try:
+        booking = SessionBooking.objects.get(id=booking_id)
+    except SessionBooking.DoesNotExist:
+        return Response({"error": "جلسه یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "GET":
+        review = getattr(booking, "review", None)
+        if not review:
+            return Response({"review": None, "has_review": False})
+        return Response({"review": TeacherReviewSerializer(review).data, "has_review": True})
+
+    # POST: Submit review
+    serializer = SubmitReviewSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    d = serializer.validated_data
+
+    review = submit_session_review(
+        booking_id=booking_id,
+        learner=request.user,
+        overall_rating=d["overall_rating"],
+        comment=d["comment"],
+        rating_teaching=d.get("rating_teaching", 5),
+        rating_punctuality=d.get("rating_punctuality", 5),
+        rating_communication=d.get("rating_communication", 5),
+        is_anonymous=d.get("is_anonymous", False),
+    )
+
+    return Response({
+        "status": "success",
+        "message": "نظر شما با موفقیت ثبت شد.",
+        "review": TeacherReviewSerializer(review).data,
+    }, status=status.HTTP_201_CREATED)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def reply_to_review_view(request: Request, review_id: str) -> Response:
+    from marketplace.services import reply_to_teacher_review
+    from marketplace.serializers import TeacherReviewReplySerializer, TeacherReviewSerializer
+
+    serializer = TeacherReviewReplySerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    review = reply_to_teacher_review(
+        review_id=review_id,
+        teacher=request.user,
+        reply_text=serializer.validated_data["reply_text"],
+    )
+
+    return Response({
+        "status": "success",
+        "message": "پاسخ مدرس با موفقیت ثبت شد.",
+        "review": TeacherReviewSerializer(review).data,
+    })
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def flag_review_view(request: Request, review_id: str) -> Response:
+    from marketplace.services import flag_teacher_review
+    from marketplace.serializers import FlagReviewSerializer
+
+    serializer = FlagReviewSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    review = flag_teacher_review(
+        review_id=review_id,
+        user=request.user,
+        reason=serializer.validated_data["reason"],
+    )
+
+    return Response({
+        "status": "success",
+        "message": "گزارش تخلف ثبت گردید و توسط تیم نظارت بررسی خواهد شد.",
     })

@@ -407,3 +407,167 @@ export function isSameTimezoneAsTehran(): boolean {
     return true;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Day 39: Teacher Directory, Public Profile, Social Proof & Reviews
+// ---------------------------------------------------------------------------
+
+export interface TeacherSocialProof {
+  average_rating: number;
+  review_count: number;
+  completed_sessions: number;
+  rating_breakdown: Record<string, number>;
+  dimension_averages: {
+    teaching_quality: number;
+    punctuality: number;
+    communication: number;
+  };
+}
+
+export interface TeacherDirectoryItem {
+  id: string;
+  name: string;
+  headline: string;
+  bio: string;
+  specialties: string[];
+  hourly_rate_toman: number;
+  experience_years: number;
+  response_time_minutes: number;
+  is_teacher_verified: boolean;
+  avatar_url?: string | null;
+  social_proof: TeacherSocialProof;
+}
+
+export interface TeacherPublicProfile extends TeacherDirectoryItem {
+  video_intro_url?: string | null;
+  education?: string | null;
+  certifications?: string[] | null;
+  city?: string | null;
+  languages?: string[] | null;
+  reviews: TeacherReview[];
+}
+
+export interface TeacherReview {
+  id: string;
+  booking_id: string;
+  teacher_id: string;
+  learner_display_name: string;
+  overall_rating: number;
+  teaching_quality: number;
+  punctuality: number;
+  communication: number;
+  comment: string;
+  teacher_reply?: string | null;
+  teacher_replied_at?: string | null;
+  created_at: string;
+  status: "published" | "pending_moderation" | "flagged" | "rejected";
+}
+
+export interface SubmitReviewPayload {
+  overall_rating: number;
+  teaching_quality: number;
+  punctuality: number;
+  communication: number;
+  comment: string;
+}
+
+export interface TeacherDirectoryResponse {
+  count: number;
+  page: number;
+  page_size: number;
+  teachers: TeacherDirectoryItem[];
+}
+
+export interface TeacherReviewsResponse {
+  count: number;
+  page: number;
+  page_size: number;
+  reviews: TeacherReview[];
+}
+
+export async function fetchPublicTeachers(params?: {
+  search?: string;
+  skill?: string;
+  min_rating?: number;
+  max_rate?: number;
+  sort_by?: string;
+  page?: number;
+}): Promise<TeacherDirectoryResponse> {
+  const query = new URLSearchParams();
+  if (params?.search) query.set("search", params.search);
+  if (params?.skill) query.set("skill", params.skill);
+  if (params?.min_rating !== undefined && params.min_rating > 0)
+    query.set("min_rating", String(params.min_rating));
+  if (params?.max_rate !== undefined && params.max_rate > 0)
+    query.set("max_rate", String(params.max_rate));
+  if (params?.sort_by) query.set("sort_by", params.sort_by);
+  if (params?.page) query.set("page", String(params.page));
+
+  const qs = query.toString();
+  const url = `/api/marketplace/teachers/${qs ? `?${qs}` : ""}`;
+  return await endooraApi<TeacherDirectoryResponse>(url);
+}
+
+export async function fetchTeacherPublicProfile(
+  teacherId: string
+): Promise<TeacherPublicProfile> {
+  return await endooraApi<TeacherPublicProfile>(
+    `/api/marketplace/teachers/${teacherId}/`
+  );
+}
+
+export async function fetchTeacherReviews(
+  teacherId: string,
+  page: number = 1
+): Promise<TeacherReviewsResponse> {
+  return await endooraApi<TeacherReviewsResponse>(
+    `/api/marketplace/teachers/${teacherId}/reviews/?page=${page}`
+  );
+}
+
+export async function fetchBookingReview(
+  bookingId: string
+): Promise<{ review: TeacherReview | null; can_review: boolean; is_completed: boolean }> {
+  return await endooraApi<{ review: TeacherReview | null; can_review: boolean; is_completed: boolean }>(
+    `/api/marketplace/bookings/${bookingId}/review/`
+  );
+}
+
+export async function submitBookingReview(
+  bookingId: string,
+  payload: SubmitReviewPayload
+): Promise<TeacherReview> {
+  return await endooraApi<TeacherReview>(
+    `/api/marketplace/bookings/${bookingId}/review/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function replyToTeacherReview(
+  reviewId: string,
+  reply: string
+): Promise<TeacherReview> {
+  return await endooraApi<TeacherReview>(
+    `/api/marketplace/reviews/${reviewId}/reply/`,
+    {
+      method: "POST",
+      json: { reply },
+    }
+  );
+}
+
+export async function flagTeacherReview(
+  reviewId: string,
+  reason: string
+): Promise<{ id: string; status: string; message: string }> {
+  return await endooraApi<{ id: string; status: string; message: string }>(
+    `/api/marketplace/reviews/${reviewId}/flag/`,
+    {
+      method: "POST",
+      json: { reason },
+    }
+  );
+}

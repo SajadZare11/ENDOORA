@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 36 — Build Teacher Analytics, Progress Reporting, At-Risk Alerts, and Intervention Tools
-- **Day 36 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Roadmap day completed:** Day 39 — Build Teacher Public Profile, Review System, and Social Proof (MKT-005 / MKT-001 / MKT-006)
+- **Day 39 status:** Complete and verified; ready for Git commit and push to `origin/main`
 - **Inherited state:** Days 01–34 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, 6 placement sections, adaptive daily missions, SRS vocabulary engine, structured AI exercise generation, AI Mistake Genome, Writing Mentor v1, Roleplay Universe v1, Voice Lab v1 / Voice Roleplay Beta, Pronunciation Lab v1, Gamification Engine v1, Social Badges/Leaderboards, Skills Hub/Lesson CMS, Community/Moderation, Unified Search/AI Support Triage, Teacher Classes/Roster/Audited Hours Ledger, and Teacher Assignments/Accommodations/Autosave
-- **Schema version:** Day 36 adds `teachers.0004_analytics_and_interventions`
+- **Schema version:** Day 39 adds `profiles.0002_teacherprofile_certifications_and_more` and `marketplace.0003_alter_sessionbooking_idempotency_key_and_more`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19

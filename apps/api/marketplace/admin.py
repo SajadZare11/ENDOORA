@@ -24,3 +24,13 @@ class SessionBookingAdmin(admin.ModelAdmin):
     list_filter = ("status", "target_skill", "online_format")
     search_fields = ("learner__email", "teacher__email", "session_notes", "cancellation_reason")
     readonly_fields = ("created_at", "updated_at")
+
+from .models import TeacherReview
+
+
+@admin.register(TeacherReview)
+class TeacherReviewAdmin(admin.ModelAdmin):
+    list_display = ("id", "teacher", "learner", "overall_rating", "status", "created_at")
+    list_filter = ("status", "overall_rating", "created_at")
+    search_fields = ("teacher__email", "learner__email", "comment", "masked_display_name")
+    readonly_fields = ("created_at", "updated_at")
