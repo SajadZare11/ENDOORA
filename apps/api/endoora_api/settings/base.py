@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     "moderation",
     "search",
     "support",
+    "marketplace",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

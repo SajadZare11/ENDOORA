@@ -90,4 +90,8 @@ urlpatterns = [
         "api/support/",
         include("support.urls")
     ),
+    path(
+        "api/marketplace/",
+        include("marketplace.urls")
+    ),
 ]

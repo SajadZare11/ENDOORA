@@ -1430,9 +1430,35 @@ Key accomplishments:
   - Added Analytics and Interventions cross-navigation links across `TeacherDashboard.tsx`, `classes/page.tsx`, `assignments/page.tsx`, and `gradebook/page.tsx`.
 - Full verification: 297/297 backend tests passed, 151/151 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100%.
 
+
+### Day 37 Accomplishments (Marketplace Request Feed, Filtering, and Matching Pipeline)
+- Created dedicated Django `marketplace` app in `apps/api/marketplace` and registered in `settings/base.py` and `endoora_api/urls.py`.
+- Models: `MarketplaceRequest` and `TeacherOffer` with choices (`RequestSkill`, `CEFRLevel`, `SessionFormat`, `PreferredTimeWindow`, `RequestStatus`, `OfferStatus`) and `unique_pending_offer_per_teacher_request` constraint.
+- Matching & Lifecycle Service:
+  - `ensure_teacher_marketplace_eligible`: strict capability and verification enforcement (403 Forbidden).
+  - `create_learn_now_request`: duplicate submission guard and expiration calculation.
+  - `list_teacher_feed`: multi-dimensional filtering (skill, CEFR, format, timing, offer state).
+  - `submit_teacher_offer`: atomic matching transition to `matched`.
+  - `withdraw_teacher_offer`: atomic offer withdrawal and request reversion to `open` when appropriate.
+  - `accept_teacher_offer`: atomic booking transition and auto-declining competing offers.
+  - `cancel_learner_request`: learner cancellation with cascading offer declination.
+- Strict Privacy Protection: `TeacherFeedRequestSerializer` completely isolates student email, phone, and account data, exposing only masked display names ("سارا م.").
+- Database migration: `0001_initial.py` created and applied.
+- Registered Django Admin for `MarketplaceRequest` and `TeacherOffer`.
+- 8 new REST endpoints under `/api/marketplace/`.
+- Comprehensive unit test suite: 7 tests in `MarketplaceDay37Tests`, total 304/304 full backend tests passing cleanly.
+- Frontend Implementation:
+  - Strongly typed client SDK in `apps/web/lib/marketplace.ts` using `endooraApi`.
+  - Upgraded Teacher Request Feed in `apps/web/app/(teacher)/marketplace/requests/page.tsx` & `requests.module.css`.
+  - Teacher Offers Workspace in `apps/web/app/(teacher)/marketplace/offers/page.tsx` & `offers.module.css` (MKT-003).
+  - Learner Learn Now Flow in `apps/web/app/(learner)/learn/now/page.tsx` & `learn-now.module.css` (Wireframe 3).
+  - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
+  - Cross-navigation integration in `TeacherShell.tsx`, `(learner)/learn/page.tsx`, and `(learner)/my-teachers/page.tsx`.
+- Full verification: 304/304 backend tests passed, 153/153 static routes prerendered, ESLint 0 errors, TypeScript 0 errors, secret scan passed, contracts passed 100% (71/71 checks).
+
 ## Exact next day
 
-**Day 37 — Build Marketplace Request Feed, Filtering, and Matching Pipeline.**
+**Day 38 — Build Session Booking, Scheduling State Machine, and Timezone Management (MKT-004).**
 
-Do not begin Day 37 until the Day 36 commit is pushed and `git status --short --branch`
+Do not begin Day 38 until the Day 37 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

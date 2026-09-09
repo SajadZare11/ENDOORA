@@ -9,6 +9,13 @@ export const metadata: Metadata = {
 
 const LEARNING_DESTINATIONS = [
   {
+    title: "یادگیری سریع با مدرس (Learn Now)",
+    desc: "ثبت درخواست جلسه متمرکز رفع اشکال، اسپیکینگ یا رایتینگ و دریافت پیشنهاد از مدرسین تأییدشده.",
+    href: "/learn/now",
+    icon: "⚡",
+    action: "شروع Learn Now",
+  },
+  {
     title: "دوره‌های آموزشی تعاملی",
     desc: "دوره‌های ویدئویی ساختاریافته از سطح A2 تا C1، کنکور سراسری، و آمادگی آیلتس همراه با آزمون‌های سنجشی.",
     href: "/courses",

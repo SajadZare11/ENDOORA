@@ -983,5 +983,57 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] `git diff --check` passed with 0 errors
 
 **Success gate:** Teachers have high-resolution cohort and learner progress reporting, automated early-warning alerts for struggling students with severity tiers and lifecycle management, structured interventions workflow with before/after score impact tracking, Excel-safe UTF-8 BOM CSV exports, strict isolation of private AI chats, and all 297 tests pass cleanly.
-**Day 36 Status:** Completed and ready for Git commit and push to GitHub main.
-**Next day after Git push:** Day 37 — Build Marketplace Request Feed, Filtering, and Matching Pipeline.
+**Day 36 Status:** Completed.
+
+### Day 37 — Build Marketplace Request Feed, Filtering, and Matching Pipeline
+- [x] created Django `marketplace` app in `apps/api/marketplace`:
+  - `apps/api/marketplace/models.py`:
+    - `RequestSkill`, `CEFRLevel`, `SessionFormat`, `PreferredTimeWindow`, `RequestStatus`, `OfferStatus` text choices
+    - `MarketplaceRequest`: `id`, `learner`, `preferred_teacher`, `target_skill`, `target_subskill`, `target_cefr_level`, `short_description`, `preferred_time_window`, `duration_minutes`, `online_format`, `budget_max_toman`, `status`, `matched_offer`, `expires_at`, `created_at`
+    - `TeacherOffer`: `id`, `request`, `teacher`, `rate_toman`, `proposed_start_time`, `duration_minutes`, `online_format`, `intro_note`, `status`, `expires_at`, `created_at`
+    - `unique_pending_offer_per_teacher_request` unique constraint
+  - `apps/api/marketplace/services.py`:
+    - `ensure_teacher_marketplace_eligible`: strict verification and marketplace capability gating (raises `PermissionDenied`)
+    - `create_learn_now_request`: duplicate request guard, active count limits, and safe expiration
+    - `list_teacher_feed`: multi-dimensional filtering (skill, CEFR, format, timing, offer state)
+    - `submit_teacher_offer`: validation, duplicate prevention, and atomic request transition to `matched`
+    - `withdraw_teacher_offer`: ownership validation, atomic status update, and auto-reversion to `open` if no active offers remain
+    - `accept_teacher_offer`: atomic booking transition and auto-declining competing offers
+    - `cancel_learner_request`: learner cancellation and cascading offer rejection
+    - `list_teacher_offers`: teacher workspace query with status filters
+  - `apps/api/marketplace/serializers.py`:
+    - `TeacherFeedRequestSerializer`: strict learner privacy guard excluding email and phone, showing only masked display name ("سارا م.") and learning parameters
+    - `LearnerRequestDetailSerializer`: complete request view with incoming teacher offers and profiles
+    - `TeacherOfferSerializer` & `TeacherWorkspaceOfferSerializer`
+  - `apps/api/marketplace/views.py`: 8 REST endpoints for eligibility, feed, request creation/details/cancellation, offer submission/listing/withdrawal/acceptance
+  - `apps/api/marketplace/urls.py`: registered under `/api/marketplace/`
+  - `apps/api/marketplace/admin.py`: `MarketplaceRequestAdmin` and `TeacherOfferAdmin`
+  - `apps/api/marketplace/migrations/0001_initial.py`: initial migration created and applied
+- [x] unit test suite in `apps/api/marketplace/tests.py`:
+  - 7 tests covering verification gating, privacy masking, request creation, offer lifecycle, duplicate blocking, withdrawal, and cancellation
+  - Full backend regression: 304/304 tests passing cleanly across all Django apps (0 errors)
+- [x] frontend typed API client in `apps/web/lib/marketplace.ts` using `endooraApi`
+- [x] upgraded Teacher Request Feed in `apps/web/app/(teacher)/marketplace/requests/page.tsx` & `requests.module.css`:
+  - Filter bar (skill, CEFR, format, timing)
+  - Verification & eligibility gating guide banner
+  - Privacy-masked request cards with urgency & budget tags
+  - Interactive structured offer submission modal
+- [x] built Teacher Offers Workspace in `apps/web/app/(teacher)/marketplace/offers/page.tsx` & `offers.module.css` (MKT-003):
+  - Status tabs: All, Pending, Accepted, Declined/Withdrawn
+  - 1-click withdrawal for pending offers
+  - Link to confirmed bookings
+- [x] built Learner Learn Now Flow in `apps/web/app/(learner)/learn/now/page.tsx` & `learn-now.module.css` (Wireframe 3):
+  - 4-step wizard: Request details → Review request → Matching & Eligible teacher offers → Booking confirmation
+  - Interruption-safe server state recovery
+- [x] 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties
+- [x] navigation integration:
+  - `TeacherShell.tsx` linked to `/marketplace/requests` with cross-nav to `/marketplace/offers`
+  - Added Learn Now cards and buttons in `(learner)/learn/page.tsx` and `(learner)/my-teachers/page.tsx`
+- [x] technical documentation in `docs/marketplace/matching-and-requests.md`
+- [x] contract check `scripts/check_day37.py` (71/71 checks passed) and regression checks `scripts/check_day30.py` through `scripts/check_day36.py` passing 100%
+- [x] Next.js build compiled 153/153 static routes cleanly, ESLint 0 errors, TypeScript 0 errors, secret scan passed with 0 findings
+- [x] automated backup script `scripts/backup_day37.ps1` executed
+
+**Success gate:** Learners have an interactive, privacy-preserving Learn Now request wizard with server recovery; teachers have a filtered request feed and structured offer workflow strictly gated by verification and marketplace eligibility; competing offers auto-decline upon acceptance; and all 304 tests pass cleanly.
+**Day 37 Status:** Completed and ready for Git commit and push to GitHub main.
+**Next day after Git push:** Day 38 — Build Session Booking, Scheduling State Machine, and Timezone Management (MKT-004).

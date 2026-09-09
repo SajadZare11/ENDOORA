@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useId } from "react";
+import Link from "next/link";
 import styles from "./my-teachers.module.css";
 import {
   fetchLearnerLinkedTeachers,
@@ -100,6 +101,27 @@ export default function MyTeachersPage() {
               ? "حفاظت سخت‌گیرانه از حریم خصوصی: چت‌های هوش مصنوعی اختصاصی، صدای ضبط‌شده و تمرین‌های فردی شما کاملاً محرمانه هستند و اساتید به آن‌ها دسترسی ندارند."
               : "Strict Privacy Boundary: Solo AI roleplays, personal voice recordings, and individual practice sessions are completely confidential and inaccessible to teachers."}
           </span>
+        </div>
+
+        <div style={{ marginBlockStart: "var(--space-3)", display: "flex", gap: "var(--space-2)" }}>
+          <Link
+            href="/learn/now"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "var(--space-2)",
+              paddingInline: "var(--space-4)",
+              paddingBlock: "var(--space-2)",
+              backgroundColor: "var(--color-primary-600)",
+              color: "var(--color-surface)",
+              borderRadius: "var(--radius-md)",
+              textDecoration: "none",
+              fontSize: "var(--font-size-sm)",
+              fontWeight: 600,
+            }}
+          >
+            ⚡ {isFa ? "درخواست جلسه جدید با مدرس (Learn Now)" : "Request New Session (Learn Now)"}
+          </Link>
         </div>
       </section>
 
