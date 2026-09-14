@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
+import Link from "next/link";
 import styles from "./taxonomy.module.css";
 
 export type TaxonomyNodeItem = {
@@ -114,6 +115,15 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
 
   return (
     <section className={styles.taxonomyContainer} aria-label={isFa ? "کاوشگر تاکسونومی آموزشی" : "Educational Taxonomy Explorer"}>
+      <nav className={styles.operationsNav} aria-label={isFa ? "ناوبری بخش عملیات محتوا" : "Content Operations Navigation"}>
+        <Link href="/operations/taxonomy" className={`${styles.navTab} ${styles.navTabActive}`}>
+          {isFa ? "تاکسونومی و سرفصل آموزشی (CONTENT-001)" : "Content Taxonomy (CONTENT-001)"}
+        </Link>
+        <Link href="/operations/questions" className={styles.navTab}>
+          {isFa ? "بانک سؤال نسخه‌بندی‌شده (CONTENT-002)" : "Versioned Question Bank (CONTENT-002)"}
+        </Link>
+      </nav>
+
       <header className={styles.headerSection}>
         <span className={styles.kicker}>
           {isFa ? "نقشه یکپارچه یادگیری" : "Shared Language Map"}
@@ -246,7 +256,7 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
         </div>
       ) : error ? (
         <div className={styles.stateBox}>
-          <p style={{ color: "#dc2626" }}>{error}</p>
+          <p style={{ color: "var(--color-error-text)" }}>{error}</p>
           <button
             type="button"
             className={styles.retryBtn}
@@ -329,8 +339,20 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
                       </div>
                     </div>
                   ) : null}
+
+                  {node.kind === "objective" ? (
+                    <div style={{ marginBlockStart: "0.5rem" }}>
+                      <Link
+                        href={`/operations/questions?objective=${node.slug}`}
+                        className={styles.objectiveQuestionLink}
+                      >
+                        {isFa ? "مشاهده سؤالات این هدف در بانک سؤال ↗" : "View mapped questions in bank ↗"}
+                      </Link>
+                    </div>
+                  ) : null}
                 </div>
               </article>
+
             );
           })}
         </div>

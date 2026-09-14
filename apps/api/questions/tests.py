@@ -279,3 +279,67 @@ class QuestionBankTests(TestCase):
         self.assertTrue(
             all(item.status == QuestionVersion.Status.DRAFT for item in imported)
         )
+
+    def test_editor_version_list_filters_by_status_and_search_query(self):
+        draft_version = self.make_version(slug="day48-filter-draft")
+        published_version = self.make_version(slug="day48-filter-published")
+        published_version.publish(self.editor)
+
+        self.client.force_authenticate(self.editor)
+
+        # Filter by draft status
+        res_draft = self.client.get("/api/questions/editor/versions/?status=draft")
+        self.assertEqual(res_draft.status_code, 200)
+        self.assertTrue(all(item["status"] == "draft" for item in res_draft.data["results"]))
+        slugs_draft = [item["question_slug"] for item in res_draft.data["results"]]
+        self.assertIn("day48-filter-draft", slugs_draft)
+        self.assertNotIn("day48-filter-published", slugs_draft)
+
+        # Filter by published status
+        res_pub = self.client.get("/api/questions/editor/versions/?status=published")
+        self.assertEqual(res_pub.status_code, 200)
+        self.assertTrue(all(item["status"] == "published" for item in res_pub.data["results"]))
+        slugs_pub = [item["question_slug"] for item in res_pub.data["results"]]
+        self.assertIn("day48-filter-published", slugs_pub)
+        self.assertNotIn("day48-filter-draft", slugs_pub)
+
+        # Search query by slug
+        res_search = self.client.get("/api/questions/editor/versions/?q=day48-filter-draft")
+        self.assertEqual(res_search.status_code, 200)
+        self.assertEqual(len(res_search.data["results"]), 1)
+        self.assertEqual(res_search.data["results"][0]["question_slug"], "day48-filter-draft")
+
+    def test_editor_version_serializes_review_audit_log(self):
+        version = self.make_version(slug="day48-audit-log")
+        version.publish(self.editor)
+
+        self.client.force_authenticate(self.editor)
+        res = self.client.get(f"/api/questions/editor/versions/{version.id}/")
+        self.assertEqual(res.status_code, 200)
+        self.assertIn("reviews", res.data)
+        self.assertEqual(len(res.data["reviews"]), 1)
+        self.assertEqual(res.data["reviews"][0]["decision"], "approved")
+        self.assertEqual(res.data["reviews"][0]["reviewer_email"], self.editor.email)
+        self.assertEqual(res.data["author_email"], self.editor.email)
+
+    def test_published_question_list_search_and_pagination(self):
+        v1 = self.make_version(slug="day48-search-apple")
+        v1.title_en = "Find the apple in the basket"
+        v1.save()
+        v1.publish(self.editor)
+
+        v2 = self.make_version(slug="day48-search-banana")
+        v2.title_en = "Find the yellow banana"
+        v2.save()
+        v2.publish(self.editor)
+
+        self.client.force_authenticate(self.editor)
+        res_apple = self.client.get("/api/questions/published/?q=apple")
+        self.assertEqual(res_apple.status_code, 200)
+        slugs = [item["question_slug"] for item in res_apple.data["results"]]
+        self.assertIn("day48-search-apple", slugs)
+        self.assertNotIn("day48-search-banana", slugs)
+
+        # Pagination metadata
+        self.assertIn("page", res_apple.data)
+        self.assertIn("per_page", res_apple.data)

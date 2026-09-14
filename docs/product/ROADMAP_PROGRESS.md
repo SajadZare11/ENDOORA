@@ -1643,7 +1643,56 @@ Status: Complete and verified; ready for Git commit and push.
 **Day 47 Status:** Completed.
 **Next day:** Day 48 — Content Taxonomy & Versioned Question Bank Governance (CONTENT-001 / CONTENT-002).
 
+---
 
+### Day 48: Content Taxonomy & Versioned Question Bank Governance (CONTENT-001 / CONTENT-002)
 
+**Backend (`apps/api`):**
+- [x] Question Review Audit Trail:
+  - Added `QuestionReviewSerializer` to serialize full review event audit trails (`id`, `decision`, `note`, `reviewer_email`, `created_at`).
+  - Added `author_email`, `reviewer_email`, and `reviews` audit log to `QuestionVersionEditorSerializer`.
+  - Updated `_base_queryset()` to prefetch `reviews__reviewer` for zero-query-overhead serialization.
+- [x] Versioned Question Bank Query Filters & Pagination:
+  - Enhanced `EditorVersionListView` with filtering by `status` (draft, in_review, published, retired), `type` (all 9 types), `cefr` (A1..C2), `objective`, `origin` (original, licensed, public_domain, ai_assisted), and `q` search query across slug, titles, and prompts.
+  - Enhanced `PublishedQuestionListView` with `q` search parameter and pagination (`page`, `per_page`).
+- [x] Automated Tests:
+  - Added 3 new unit tests in `apps/api/questions/tests.py`:
+    - `test_editor_version_list_filters_by_status_and_search_query`
+    - `test_editor_version_serializes_review_audit_log`
+    - `test_published_question_list_search_and_pagination`
+  - 29/29 tests passing cleanly in `taxonomy` and `questions`. Total backend suite: 368/368 passing.
 
+**Frontend (`apps/web`):**
+- [x] Versioned Question Bank Operations Control Center (`/operations/questions` - CONTENT-002):
+  - Operational header with dual tabs (`/operations/taxonomy` <-> `/operations/questions`) and bilingual switcher (FA/EN).
+  - Version lifecycle metrics strip: Total versions, Drafts, In Review, Published, Retired counters.
+  - Dual Mode Switcher:
+    1. **Governance & Audit Mode (Editor / Administrator)**:
+       - Question cards with version badges (`v{number}`), review status badges (`draft`, `in_review`, `published`, `retired`), CEFR badges, difficulty gauges (1–5), question type tags, and copyright/licensing badges (`Endoora Original`, `Licensed`, `Public Domain`, `AI-Assisted` with rights holder).
+       - Two-person gate bar showing author email, reviewer email, and publication timestamps.
+       - Direct action buttons: Submit for Review (`draft` -> `in_review` with editorial notes modal), Publish (`in_review` -> `published` validating two-person gate & publication requirements), Retire (`published` -> `retired` with deprecation reason modal).
+       - Version Audit Drawer: Protected fields viewer (answer keys, accepted variants, rubrics, pedagogical explanations), review audit events timeline, and SHA-256 immutability content hash.
+    2. **Learner-Safe Simulator Mode**:
+       - Pre-submission testing of question answering without exposing stored answer keys beforehand.
+       - Real-time submission to `/api/questions/published/<id>/check/` returning authentic grading status and pedagogical explanation.
+  - Multi-dimension Search & Filters: search query `q`, CEFR level, Question type, Review status, and License origin.
+  - JSON Import & Export:
+    - Download complete question bank as versioned JSON document matching Day 13 schema.
+    - Import JSON modal with validation preview and atomic submission to `/api/questions/editor/import/`.
+  - Complete state coverage: loading skeletons, empty states with reset CTAs, error alerts with retry handlers, offline notice.
+- [x] Content Taxonomy Operations Enhancements (`/operations/taxonomy` - CONTENT-001):
+  - Integrated operational navigation ribbon (`/operations/taxonomy` <-> `/operations/questions`).
+  - Added direct mapping link on every `objective` node: "مشاهده سؤالات این هدف در بانک سؤال ↗" linking to `/operations/questions?objective=${slug}`.
+  - Replaced inline color literals with standard design token `var(--color-error-text)`.
+- [x] Unified Admin Route Integration:
+  - Updated `apps/web/app/(admin)/content/questions/page.tsx` to mount `VersionedQuestionBankOperations`.
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
 
+**Verification:**
+- [x] Backend tests: 29/29 questions & taxonomy unit tests passing cleanly; 368/368 full backend tests passing.
+- [x] Design token compliance: `npm run check:design` passes with 0 raw hex colors and 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 170/170 static & dynamic routes generated cleanly (including `/operations/questions`).
+
+**Day 48 Status:** Completed.
+**Next day:** Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003).

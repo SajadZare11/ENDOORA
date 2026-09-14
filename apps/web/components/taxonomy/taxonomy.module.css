@@ -4,9 +4,72 @@
   padding-block: var(--space-8, 2rem) var(--space-16, 4rem);
 }
 
+.operationsNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-6, 1.5rem);
+  padding-block-end: var(--space-3, 0.75rem);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.navTab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+  border-radius: var(--radius-md, 0.5rem);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.navTab:hover {
+  color: var(--color-action);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.navTabActive {
+  color: var(--color-action-text);
+  background: var(--color-action);
+  border-color: var(--color-action);
+}
+
+.navTabActive:hover {
+  color: var(--color-action-text);
+  background: var(--color-action);
+  border-color: var(--color-action);
+}
+
+.objectiveQuestionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-action);
+  text-decoration: none;
+  padding: var(--space-1, 0.25rem) var(--space-2, 0.5rem);
+  border-radius: var(--radius-sm, 4px);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  transition: all 0.15s ease;
+}
+
+.objectiveQuestionLink:hover {
+  border-color: var(--color-action);
+  background: var(--color-surface);
+}
+
 .headerSection {
   margin-block-end: var(--space-8, 2rem);
 }
+
 
 .kicker {
   display: inline-flex;

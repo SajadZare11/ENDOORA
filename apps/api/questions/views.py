@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status
 from rest_framework.response import Response
@@ -16,7 +17,7 @@ from .services import export_document, import_document
 def _base_queryset():
     return (
         QuestionVersion.objects.select_related("question", "author", "reviewer")
-        .prefetch_related("objective_links__objective", "media")
+        .prefetch_related("objective_links__objective", "media", "reviews__reviewer")
     )
 
 
@@ -61,22 +62,44 @@ class PublishedQuestionListView(APIView):
         qtype = request.query_params.get("type")
         cefr = request.query_params.get("cefr")
         objective = request.query_params.get("objective")
+        q = (request.query_params.get("q") or "").strip()
         if qtype:
             qs = qs.filter(question_type=qtype)
         if cefr:
             qs = qs.filter(cefr_level=cefr)
         if objective:
             qs = qs.filter(objective_links__objective__slug=objective)
+        if q:
+            qs = qs.filter(
+                Q(question__slug__icontains=q)
+                | Q(title_fa__icontains=q)
+                | Q(title_en__icontains=q)
+                | Q(prompt_fa__icontains=q)
+                | Q(prompt_en__icontains=q)
+            )
         qs = qs.distinct().order_by("question__slug", "-version_number")
         try:
             per_page = min(max(int(request.query_params.get("per_page", "20")), 1), 100)
         except ValueError:
             per_page = 20
+        try:
+            page = max(int(request.query_params.get("page", "1")), 1)
+        except ValueError:
+            page = 1
         count = qs.count()
+        start = (page - 1) * per_page
+        end = start + per_page
         serializer = QuestionVersionLearnerSerializer(
-            list(qs[:per_page]), many=True, context={"request": request}
+            list(qs[start:end]), many=True, context={"request": request}
         )
-        return Response({"count": count, "results": serializer.data})
+        return Response(
+            {
+                "count": count,
+                "page": page,
+                "per_page": per_page,
+                "results": serializer.data,
+            }
+        )
 
 
 class PublishedQuestionDetailView(APIView):
@@ -134,13 +157,57 @@ class EditorVersionListView(APIView):
     permission_classes = [IsQuestionEditorOrAdministrator]
 
     def get(self, request):
-        qs = _base_queryset().all().order_by("question__slug", "-version_number")
+        qs = _base_queryset().all()
+        qtype = request.query_params.get("type")
+        cefr = request.query_params.get("cefr")
+        objective = request.query_params.get("objective")
+        vstatus = request.query_params.get("status")
+        origin = request.query_params.get("origin")
+        q = (request.query_params.get("q") or "").strip()
+
+        if qtype:
+            qs = qs.filter(question_type=qtype)
+        if cefr:
+            qs = qs.filter(cefr_level=cefr)
+        if objective:
+            qs = qs.filter(objective_links__objective__slug=objective)
+        if vstatus:
+            qs = qs.filter(status=vstatus)
+        if origin:
+            qs = qs.filter(source_origin=origin)
+        if q:
+            qs = qs.filter(
+                Q(question__slug__icontains=q)
+                | Q(title_fa__icontains=q)
+                | Q(title_en__icontains=q)
+                | Q(prompt_fa__icontains=q)
+                | Q(prompt_en__icontains=q)
+                | Q(source_title__icontains=q)
+            )
+
+        qs = qs.distinct().order_by("question__slug", "-version_number")
+        count = qs.count()
+        try:
+            per_page = min(max(int(request.query_params.get("per_page", "50")), 1), 100)
+        except ValueError:
+            per_page = 50
+        try:
+            page = max(int(request.query_params.get("page", "1")), 1)
+        except ValueError:
+            page = 1
+        start = (page - 1) * per_page
+        end = start + per_page
+
+        serializer = QuestionVersionEditorSerializer(qs[start:end], many=True)
         return Response(
             {
-                "count": qs.count(),
-                "results": QuestionVersionEditorSerializer(qs[:100], many=True).data,
+                "count": count,
+                "page": page,
+                "per_page": per_page,
+                "results": serializer.data,
             }
         )
+
 
 
 class EditorVersionDetailView(APIView):

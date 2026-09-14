@@ -1724,20 +1724,31 @@ Key accomplishments:
     - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
   - Full verification: 169/169 static routes prerendered, TypeScript 0 errors, 68/68 backend tests passing.
 
-## Git checkpoint (Day 47)
+- **Day 48 (Content Taxonomy & Versioned Question Bank Governance - CONTENT-001 / CONTENT-002):**
+  - Backend:
+    - Serialized question review audit trail (`QuestionReviewSerializer` with `id`, `decision`, `note`, `reviewer_email`, `created_at`).
+    - Added `author_email`, `reviewer_email`, and `reviews` audit log to `QuestionVersionEditorSerializer`.
+    - Prefetched `reviews__reviewer` in `_base_queryset()` for zero-query performance.
+    - Added comprehensive query filtering (`status`, `type`, `cefr`, `objective`, `origin`, `q`) and pagination to `EditorVersionListView` and `PublishedQuestionListView`.
+    - Added 3 unit tests in `apps/api/questions/tests.py` (29 questions & taxonomy tests, 368 full backend tests passing).
+  - Frontend:
+    - Built canonical `/operations/questions` route (`VersionedQuestionBankOperations` component and `operations-questions.module.css`).
+    - Dual modes: Governance & Audit Mode (complete cards/table, two-person gate, status transitions, review audit drawer, SHA-256 content hash) and Learner-Safe Simulator Mode (answer-key isolation, live submission to check endpoint).
+    - Multi-dimension search & filters (CEFR, type, status, licensing origin, objective).
+    - Day 13 JSON import validation and export downloads.
+    - Added operations navigation ribbon and objective question bank cross-links to `/operations/taxonomy`.
+    - Replaced raw color literals with design tokens; 100% token and logical CSS compliant.
+  - Full verification: 170/170 static & dynamic routes prerendered, TypeScript 0 errors, 368/368 backend tests passing.
+
+## Git checkpoint (Day 48)
 
 ```
-Day 47: Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005)
+Day 48: Build Content Taxonomy and Versioned Question Bank Governance (CONTENT-001 / CONTENT-002)
 ```
 
 ## Exact next day
 
-**Day 48 — Content Taxonomy & Versioned Question Bank Governance (CONTENT-001 / CONTENT-002).**
+**Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003).**
 
-Do not begin Day 48 until the Day 47 commit is pushed and `git status --short --branch`
+Do not begin Day 49 until the Day 48 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
-
-
-
-
-

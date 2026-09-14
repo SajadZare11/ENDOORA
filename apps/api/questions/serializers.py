@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from rest_framework import serializers
 
-from .models import QuestionMedia, QuestionVersion
+from .models import QuestionMedia, QuestionReview, QuestionVersion
 
 
 def _requested_locale(context) -> str:
@@ -84,11 +84,34 @@ class QuestionVersionLearnerSerializer(serializers.ModelSerializer):
         return LearnerMediaSerializer(visible, many=True).data
 
 
+class QuestionReviewSerializer(serializers.ModelSerializer):
+    reviewer_email = serializers.EmailField(
+        source="reviewer.email", read_only=True, default=None
+    )
+
+    class Meta:
+        model = QuestionReview
+        fields = (
+            "id",
+            "decision",
+            "note",
+            "reviewer_email",
+            "created_at",
+        )
+
+
 class QuestionVersionEditorSerializer(serializers.ModelSerializer):
     question_id = serializers.UUIDField(read_only=True)
     question_slug = serializers.CharField(source="question.slug", read_only=True)
+    author_email = serializers.EmailField(
+        source="author.email", read_only=True, default=None
+    )
+    reviewer_email = serializers.EmailField(
+        source="reviewer.email", read_only=True, default=None
+    )
     objectives = serializers.SerializerMethodField()
     media = LearnerMediaSerializer(many=True, read_only=True)
+    reviews = QuestionReviewSerializer(many=True, read_only=True)
 
     class Meta:
         model = QuestionVersion
@@ -120,13 +143,16 @@ class QuestionVersionEditorSerializer(serializers.ModelSerializer):
             "license_reference",
             "rights_holder",
             "author_id",
+            "author_email",
             "reviewer_id",
+            "reviewer_email",
             "reviewed_at",
             "published_at",
             "retired_at",
             "content_hash",
             "objectives",
             "media",
+            "reviews",
         )
 
     def get_objectives(self, obj):

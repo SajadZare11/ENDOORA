@@ -1,4 +1,4 @@
-import { QuestionBankPreview } from "./QuestionBankPreview";
+import { VersionedQuestionBankOperations } from "../../../../components/questions/VersionedQuestionBankOperations";
 
 export const metadata = {
   title: "بانک سؤال | Endoora Operations",
@@ -6,5 +6,9 @@ export const metadata = {
 };
 
 export default function QuestionBankPage() {
-  return <QuestionBankPreview />;
+  return (
+    <main style={{ minBlockSize: "100vh", backgroundColor: "var(--color-canvas)" }}>
+      <VersionedQuestionBankOperations />
+    </main>
+  );
 }
