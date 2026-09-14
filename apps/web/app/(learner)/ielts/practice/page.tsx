@@ -55,6 +55,10 @@ export default function IELTSPracticeHubPage() {
     setError(null);
     try {
       const mode = selectedModes[testId] || "full_simulation";
+      if (mode === "writing_practice") {
+        router.push("/ielts/writing");
+        return;
+      }
       const session = await startIELTSSession(testId, mode);
       router.push(`/ielts/practice/${session.id}`);
     } catch (err) {
@@ -88,6 +92,19 @@ export default function IELTSPracticeHubPage() {
 
       {/* Error Notice */}
       {error && <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)", borderRadius: "var(--radius-md)", fontSize: "var(--font-size-sm)" }}>{error}</div>}
+
+      {/* Writing Simulation Quick Entry Banner */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", paddingInline: "var(--space-4)", paddingBlock: "var(--space-3)", flexWrap: "wrap", gap: "var(--space-3)" }}>
+        <div>
+          <strong style={{ fontSize: "var(--font-size-sm)" }}>✍️ شبیه‌ساز نگارش آیلتس (Writing Tasks 1 & 2)</strong>
+          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
+            محیط استاندارد کامپیوتری، شمارشگر زنده کلمات و ارزیابی چندمعیاره هوش مصنوعی بر پایه ۴ معیار رسمی.
+          </p>
+        </div>
+        <Link href="/ielts/writing" className={styles.actionButton} style={{ textDecoration: "none", paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", margin: 0, inlineSize: "auto" }}>
+          ورود به اتاق رایتینگ ➔
+        </Link>
+      </div>
 
       {/* Controls / Filter Bar */}
       <div className={styles.controlsBar}>
@@ -181,6 +198,13 @@ export default function IELTSPracticeHubPage() {
                       onClick={() => setSelectedModes({ ...selectedModes, [test.id]: "listening_practice" })}
                     >
                       تمرین اختصاصی Listening
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.modeBtn} ${currentMode === "writing_practice" ? styles.modeBtnSelected : ""}`}
+                      onClick={() => setSelectedModes({ ...selectedModes, [test.id]: "writing_practice" })}
+                    >
+                      تمرین اختصاصی Writing
                     </button>
                   </div>
                 </div>

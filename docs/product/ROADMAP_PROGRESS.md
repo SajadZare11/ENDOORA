@@ -1517,7 +1517,65 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
 
 **Day 45 Status:** Completed.
-**Next day:** Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004).
+
+### Day 46: Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004)
+
+**Backend (`apps/api/ielts`):**
+- [x] Model `IELTSWritingSubmission` and status choices (`IELTSWritingSubmissionStatus`):
+  - Draft, Submitted, Evaluated status workflow
+  - Task 1 prompt, text, word count, time spent, criteria sub-scores (TA, CC, LR, GRA)
+  - Task 2 prompt, text, word count, time spent, criteria sub-scores (TR, CC, LR, GRA)
+  - Composite Band score, uncertainty range (`overall_band_min`, `overall_band_max`), confidence score, and CEFR level
+  - Inline annotations, criteria breakdown, and Persian pedagogical advice
+  - Human teacher review escalation flag (`teacher_review_requested`)
+- [x] Migration `ielts.0003_ieltswritingsubmission` created and applied
+- [x] Writing Evaluator Engine (`ielts/writing_evaluator.py`):
+  - Word count penalty logic: Task 1 (<150 words) and Task 2 (<250 words)
+  - Content structure checks: Task 1 Overview requirement and Task 2 thesis/conclusion requirement
+  - Coherence & Cohesion: paragraphing analysis, transition variety (20+ academic connectors), and repetition penalties
+  - Lexical Resource: Academic Word List (AWL) density matching and Type-Token Ratio (TTR)
+  - Grammatical Range & Accuracy: complex clauses, passive voice, informal contraction flags, and Persian L1 transfer error detection (e.g. "discuss about", "I am agree", "make research")
+  - Official weighting rule: **Task 2 carries 2/3 and Task 1 carries 1/3** of total mark with official half-band rounding (`round_to_ielts_half_band`)
+- [x] REST API Endpoints (`ielts/views.py`, `ielts/urls.py`):
+  - `GET /api/ielts/writing/prompts/` — catalog of available Task 1 & Task 2 prompts
+  - `POST /api/ielts/writing/draft/` — debounced autosave endpoint
+  - `GET /api/ielts/writing/draft/<id>/` — resume active writing draft
+  - `POST /api/ielts/writing/submit/` — submit and evaluate essay
+  - `GET /api/ielts/writing/report/<id>/` — multi-criteria diagnostic evaluation report
+  - `GET /api/ielts/writing/history/` — candidate past writing attempts
+  - `POST /api/ielts/writing/<id>/request-teacher-review/` — request examiner review
+- [x] Admin Registration (`ielts/admin.py`): `IELTSWritingSubmissionAdmin` with status filters, search, and score summaries
+- [x] Test Suite (`ielts/tests.py`): 7 new comprehensive tests (62 total backend tests passing cleanly)
+
+**Frontend (`apps/web`):**
+- [x] TypeScript client lib (`lib/ielts-writing.ts`): contracts for prompts, drafts, reports, criteria scores, annotations, and API functions
+- [x] Computer-Delivered IELTS Writing Simulation Room (`/ielts/writing` - IELTS-003):
+  - Examination header: 60-minute countdown clock with warning/danger alerts
+  - Accessibility toolbar: font size scaling (Standard, Large, Extra Large) and contrast modes (Light, Dark)
+  - Task 1 / Task 2 tab switcher with suggested times (20m / 40m) and live word count badges
+  - Split-screen layout: prompt, instructions, and diagram on left; distraction-free text editor on right
+  - Real-time word counter badge with deficiency indicator
+  - Debounced autosave indicator with timestamp
+  - Confirmation modal with word count validation summary before final submission
+- [x] IELTS Writing AI Evaluation & Diagnostic Report (`/ielts/writing/report` - IELTS-004):
+  - Hero Score Card: Estimated Overall Band with uncertainty range (e.g. Band 6.5 [6.0 – 7.0]) and confidence percentage
+  - 4 Official Criteria Cards: Task Achievement / Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy with sub-scores and Persian descriptors
+  - Task 1 vs Task 2 comparison tabs with candidate text and metrics
+  - Inline Annotations List: grammar fixes, lexical upgrades, cohesion advice, and Persian explanations
+  - Actionable Persian pedagogical recommendations
+  - Teacher Review Escalation CTA with status confirmation
+- [x] IELTS Practice Hub integration: direct quick-access banner and `writing_practice` mode in test cards
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px
+
+**Verification:**
+- [x] Backend tests: 62/62 unit tests passing cleanly in 1.62s (19 ielts + 8 ledger + 35 marketplace)
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`
+- [x] Next.js production build: 167/167 pages generated cleanly (added `/ielts/writing` & `/ielts/writing/report`)
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
+
+**Day 46 Status:** Completed.
+**Next day:** Day 47 — Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005).
+
 
 
 

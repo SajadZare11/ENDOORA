@@ -7,6 +7,7 @@ from ielts.models import (
     IELTSQuestion,
     IELTSBandDescriptor,
     IELTSTestSession,
+    IELTSWritingSubmission,
 )
 
 
@@ -94,4 +95,25 @@ class IELTSTestSessionAdmin(admin.ModelAdmin):
     list_filter = ["mode", "status", "test__test_type"]
     search_fields = ["learner__email", "test__title_en", "test__title_fa"]
     readonly_fields = ["id", "started_at", "completed_at", "created_at", "updated_at"]
+
+
+@admin.register(IELTSWritingSubmission)
+class IELTSWritingSubmissionAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "learner",
+        "status",
+        "overall_band",
+        "overall_band_min",
+        "overall_band_max",
+        "cefr_level",
+        "task1_word_count",
+        "task2_word_count",
+        "teacher_review_requested",
+        "created_at",
+    ]
+    list_filter = ["status", "cefr_level", "teacher_review_requested"]
+    search_fields = ["learner__email", "task1_prompt_title", "task2_prompt_title"]
+    readonly_fields = ["id", "created_at", "updated_at"]
+
 

@@ -485,3 +485,135 @@ class IELTSTestSession(models.Model):
         rem = int((self.expires_at - timezone.now()).total_seconds())
         return max(0, rem)
 
+
+class IELTSWritingSubmissionStatus(models.TextChoices):
+    DRAFT = "draft", _("Draft / پیش‌نویس ذخیره‌شده")
+    SUBMITTED = "submitted", _("Submitted / ارسال‌شده برای تصحیح")
+    EVALUATED = "evaluated", _("Evaluated / ارزیابی‌شده")
+
+
+class IELTSWritingSubmission(models.Model):
+    """
+    Candidate IELTS Writing submission and AI diagnostic evaluation.
+    Supports both Task 1 (Report/Letter) and Task 2 (Discursive Essay),
+    live word count telemetry, multi-dimensional rubric evaluation (TA/TR, CC, LR, GRA),
+    uncertainty band range estimation, inline annotations, and teacher review escalation.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="ielts_writing_submissions",
+        help_text="زبان‌آموز نویسنده متن",
+    )
+    test = models.ForeignKey(
+        IELTSTest,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="writing_submissions",
+        help_text="آزمون مرتبط (اختیاری در صورت تمرین مستقل)",
+    )
+    session = models.ForeignKey(
+        IELTSTestSession,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="writing_submissions",
+        help_text="جلسه آزمون مرتبط در صورت آزمون جامع",
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=IELTSWritingSubmissionStatus.choices,
+        default=IELTSWritingSubmissionStatus.DRAFT,
+        db_index=True,
+    )
+    # Task 1 details
+    task1_prompt_title = models.CharField(max_length=255, blank=True, default="")
+    task1_prompt_text = models.TextField(blank=True, default="")
+    task1_image_url = models.URLField(blank=True, default="")
+    task1_text = models.TextField(blank=True, default="")
+    task1_word_count = models.PositiveIntegerField(default=0)
+    task1_time_seconds = models.PositiveIntegerField(default=0)
+    task1_scores = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="نمرات تفکیکی معیارهای تسک ۱: { ta: 6.5, cc: 6.0, lr: 7.0, gra: 6.5, band: 6.5 }",
+    )
+
+    # Task 2 details
+    task2_prompt_title = models.CharField(max_length=255, blank=True, default="")
+    task2_prompt_text = models.TextField(blank=True, default="")
+    task2_text = models.TextField(blank=True, default="")
+    task2_word_count = models.PositiveIntegerField(default=0)
+    task2_time_seconds = models.PositiveIntegerField(default=0)
+    task2_scores = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="نمرات تفکیکی معیارهای تسک ۲: { tr: 6.5, cc: 6.5, lr: 7.0, gra: 6.0, band: 6.5 }",
+    )
+
+    # Composite & Diagnostic evaluation
+    overall_band = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="نمره باند کل بر اساس فرمول وزنی استاندارد آیلتس (یک‌سوم تسک ۱ + دوسوم تسک ۲)",
+    )
+    overall_band_min = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="حداقل دامنه تخمینی باند (عدم قطعیت هوش مصنوعی)",
+    )
+    overall_band_max = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="حداکثر دامنه تخمینی باند",
+    )
+    confidence_score = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=Decimal("0.85"),
+        help_text="میزان اطمینان مدل تشخیصی به نمره تخمین‌زده‌شده (۰ تا ۱)",
+    )
+    cefr_level = models.CharField(
+        max_length=8,
+        default="B2",
+        help_text="سطح معادل CEFR (مثلاً B2 یا C1)",
+    )
+    criteria_breakdown = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="توصیف‌گرهای معیارها و فیدبک تشخیصی چهارگانه",
+    )
+    annotations = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="پیشنهادهای اصلاحی درون‌متنی، گرامر، واژگان و ساختار جملات",
+    )
+    pedagogical_advice = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="توصیه‌های کاربردی به فارسی برای بهبود نگارش و افزایش نمره باند",
+    )
+    teacher_review_requested = models.BooleanField(
+        default=False,
+        help_text="درخواست تصحیح و نمره‌دهی توسط اگزمینر/مدرس رسمی اندورا",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = _("IELTS Writing Submission")
+        verbose_name_plural = _("IELTS Writing Submissions")
+
+    def __str__(self):
+        return f"Writing Submission {self.id} - {self.learner} (Band: {self.overall_band or 'Pending'})"
+
+

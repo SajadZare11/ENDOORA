@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 45 — Build the IELTS Test-Taking Simulator UI and Timed Session Engine (IELTS-002)
-- **Day 45 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–44 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, and IELTS Content Model & Two-Person Review Gate
-- **Schema version:** Day 45 adds `ielts.0002_ieltstestsession`
+- **Roadmap day completed:** Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004)
+- **Day 46 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–45 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, and IELTS CD Test Simulator UI & Timed Session Engine
+- **Schema version:** Day 46 adds `ielts.0003_ieltswritingsubmission`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1661,18 +1661,46 @@ Key accomplishments:
     - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
   - Full verification: 165/165 static routes prerendered, TypeScript 0 errors, 55/55 tests passing.
 
-## Git checkpoint (Day 45)
+- Day 46 additions (IELTS-003 / IELTS-004):
+  - Backend:
+    - Model `IELTSWritingSubmission` (migration `0003_ieltswritingsubmission`) with Task 1 & Task 2 telemetry, composite 9-band calculation, uncertainty ranges, confidence scores, criteria scores, annotations, and teacher review requests.
+    - AI Writing Evaluator Engine (`writing_evaluator.py`): official weighting rule (**Task 2 = 2/3, Task 1 = 1/3**), word count compliance checks (150 words Task 1 / 250 words Task 2), overview presence detection, paragraphing analysis, transition connector diversity (20+ connectors), AWL lexicon matching, and Persian L1 error annotations.
+    - 7 REST API endpoints for prompts catalog, draft autosave/resume, instant AI grading, diagnostic report, candidate history, and teacher review escalation.
+    - Registered `IELTSWritingSubmissionAdmin` with status filters, search, and scores.
+    - 7 new integration tests in `ielts/tests.py` (62 total backend tests passing cleanly).
+  - Frontend:
+    - TypeScript client lib (`lib/ielts-writing.ts`): full typed contracts and API client methods.
+    - Computer-Delivered IELTS Writing Simulation Room (`/ielts/writing` - IELTS-003):
+      - 60-minute countdown exam header with warning/danger alerts.
+      - Accessibility toolbar: font size scaling (Standard, Large, Extra Large) and contrast modes (Light, Dark).
+      - Task 1 / Task 2 tab switcher with suggested times (20m / 40m) and live word count badges.
+      - Split-screen workspace: prompt, instructions, and diagram preview on left; text editor with live word count on right.
+      - Debounced autosave indicator with timestamp.
+      - Confirmation modal with word count validation summary before final submission.
+    - IELTS Writing AI Evaluation & Diagnostic Report (`/ielts/writing/report` - IELTS-004):
+      - Hero Score Card: Estimated Overall Band with uncertainty range (e.g. Band 6.5 [6.0 – 7.0]) and confidence percentage.
+      - 4 Official Criteria Cards: Task Achievement / Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy with sub-scores and Persian descriptors.
+      - Task 1 vs Task 2 comparison tabs with candidate text and metrics.
+      - Inline Annotations List: grammar fixes, lexical upgrades, cohesion advice, and Persian explanations.
+      - Actionable Persian pedagogical recommendations.
+      - Teacher Review Escalation CTA with status confirmation.
+    - IELTS Practice Hub integration: direct quick-access banner and `writing_practice` mode in test cards.
+    - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
+  - Full verification: 167/167 static routes prerendered, TypeScript 0 errors, 62/62 backend tests passing.
+
+## Git checkpoint (Day 46)
 
 ```
-Day 45: Build the IELTS Test-Taking Simulator UI and Timed Session Engine (IELTS-002)
+Day 46: Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004)
 ```
 
 ## Exact next day
 
-**Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004).**
+**Day 47 — Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005).**
 
-Do not begin Day 46 until the Day 45 commit is pushed and `git status --short --branch`
+Do not begin Day 47 until the Day 46 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
 
 
 

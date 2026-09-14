@@ -389,3 +389,201 @@ class IELTSContentModelTests(TestCase):
         self.assertIn("explanation", reported_q)
 
 
+class IELTSWritingSimulationAndEvaluationTests(TestCase):
+    """
+    Tests for IELTS Writing Simulation UI autosave, 4-criterion AI evaluation,
+    word count penalties, official weighting (1/3 Task 1 + 2/3 Task 2), and report generation (IELTS-003 & IELTS-004).
+    """
+    def setUp(self):
+        self.learner = User.objects.create_user(
+            email="writing.learner@endoora.ir",
+            password="TestPassword123!",
+            first_name="مهسا",
+            last_name="رضایی",
+            role=User.Role.LEARNER,
+        )
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.learner)
+
+    def test_writing_evaluator_task_weighting_and_scoring(self):
+        """Verifies official 1/3 Task 1 + 2/3 Task 2 weighting and standard half-band rounding."""
+        from ielts.writing_evaluator import evaluate_ielts_writing_submission
+
+        # Sample high-quality Task 1 response (>150 words with overview & academic vocabulary)
+        task1_sample = (
+            "The bar chart illustrates the proportion of domestic electricity generated from renewable sources "
+            "across Denmark, Norway, and Sweden between 2015 and 2025. "
+            "Overall, it is evident that all three Scandinavian nations experienced substantial growth in renewable energy output, "
+            "with Norway consistently maintaining the dominant position throughout the decade.\n\n"
+            "In 2015, Norway generated approximately 65% of its domestic electricity from hydro and wind installations. "
+            "Over the subsequent ten years, this figure climbed steadily to reach an impressive peak of 88% by 2025. "
+            "Denmark demonstrated a remarkable upward trajectory as well, rising from 42% in 2015 to 74% in 2025, "
+            "predominantly driven by offshore wind farms in the North Sea.\n\n"
+            "In contrast, Sweden showed a more moderate yet constant increase, progressing from 50% to 68%. "
+            "In conclusion, while all three countries made decisive transitions toward clean energy, Norway remained the foremost producer."
+        )
+
+        # Sample high-quality Task 2 essay (>250 words with thesis, balanced discussion, conclusion)
+        task2_sample = (
+            "In contemporary society, the rapid integration of artificial intelligence into primary and secondary classrooms "
+            "has generated considerable debate among educators and policymakers. While some argue that algorithmic tutors provide "
+            "unprecedented personalized learning and boost academic motivation, others contend that relying on machine learning "
+            "undermines critical thinking and erodes the vital interpersonal bond between pupils and teachers. This essay will examine "
+            "both viewpoints before demonstrating why a balanced pedagogical synthesis is essential.\n\n"
+            "On the one hand, proponents emphasize that adaptive algorithms cater to individual student pacing far more effectively "
+            "than traditional instruction. For example, intelligent tutoring software can instantly diagnose a child's conceptual gaps "
+            "in mathematics and deliver tailored exercises, thereby fostering autonomous learning habits. Furthermore, gamified platforms "
+            "can significantly enhance engagement for neurodiverse children who might otherwise struggle in large lecture environments.\n\n"
+            "On the other hand, skeptics raise legitimate concerns regarding cognitive dependency and emotional isolation. "
+            "Human educators do not merely impart factual data; they instill moral empathy, collaborative problem-solving, and resilience. "
+            "If children interact predominantly with automated screens, their capacity for nuanced interpersonal communication could diminish.\n\n"
+            "In conclusion, although artificial intelligence offers powerful diagnostic tools that can assist instruction, "
+            "it should complement rather than supersede human teachers. The ideal educational model harnesses technology while preserving empathetic mentorship."
+        )
+
+        result = evaluate_ielts_writing_submission(
+            task1_text=task1_sample,
+            task2_text=task2_sample,
+            task1_time_seconds=1200,
+            task2_time_seconds=2400,
+        )
+
+        self.assertIn("overall_band", result)
+        self.assertGreaterEqual(result["overall_band"], 6.5)
+        self.assertLessEqual(result["overall_band"], 8.5)
+        self.assertIn(result["cefr_level"], ["B2", "C1", "C2"])
+        self.assertIn("criteria_breakdown", result)
+        self.assertIn("task_achievement_or_response", result["criteria_breakdown"])
+        self.assertIn("coherence_and_cohesion", result["criteria_breakdown"])
+        self.assertIn("lexical_resource", result["criteria_breakdown"])
+        self.assertIn("grammatical_range_and_accuracy", result["criteria_breakdown"])
+
+    def test_word_count_penalty_detection(self):
+        """Under-length essays receive automatic Task Achievement/Response penalties and Persian guidance."""
+        from ielts.writing_evaluator import evaluate_ielts_writing_submission
+
+        short_t1 = "This is a very short report about renewable energy. It shows Denmark and Norway."
+        short_t2 = "I think artificial intelligence is good for schools because students like computers."
+
+        result = evaluate_ielts_writing_submission(
+            task1_text=short_t1,
+            task2_text=short_t2,
+        )
+
+        self.assertLessEqual(result["overall_band"], 5.0)
+        # Verify Persian advice mentions word count deficiency
+        advice_text = " ".join(result["pedagogical_advice"])
+        self.assertIn("کلمات", advice_text)
+
+    def test_persian_l1_error_annotations(self):
+        """Detects common Persian transfer mistakes like 'discuss about', 'I am agree', and informal contractions."""
+        from ielts.writing_evaluator import evaluate_ielts_writing_submission
+
+        flawed_text = (
+            "We must discuss about this important problem because I am agree with experts. "
+            "In my opinion, I think it's very bad to make a research without planning."
+        )
+
+        result = evaluate_ielts_writing_submission(task2_text=flawed_text)
+        annotations = result["annotations"]
+        categories = [ann["category"] for ann in annotations]
+
+        self.assertIn("grammar", categories)
+        # Check that Persian explanation exists for learner guidance
+        for ann in annotations:
+            self.assertTrue(len(ann["explanation_fa"]) > 5)
+
+    def test_writing_prompts_catalog_api(self):
+        """GET /api/ielts/writing/prompts/ returns available Task 1 & Task 2 prompts."""
+        resp = self.client.get("/api/ielts/writing/prompts/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertGreaterEqual(len(resp.data), 2)
+        task_types = [p["task_type"] for p in resp.data]
+        self.assertIn("writing_task1_academic", task_types)
+        self.assertIn("writing_task2_essay", task_types)
+
+    def test_writing_draft_autosave_and_retrieval_api(self):
+        """POST and GET /api/ielts/writing/draft/ handles autosaving and resuming drafts."""
+        # Create draft
+        resp = self.client.post(
+            "/api/ielts/writing/draft/",
+            data={
+                "task1_text": "The chart illustrates renewable electricity generation.",
+                "task2_text": "Artificial intelligence in modern classrooms presents opportunities.",
+                "task1_time_seconds": 300,
+                "task2_time_seconds": 600,
+            },
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.data["success"])
+        sub_id = resp.data["submission_id"]
+        self.assertEqual(resp.data["task1_word_count"], 6)
+        self.assertEqual(resp.data["task2_word_count"], 7)
+
+        # Retrieve active draft
+        resp_get = self.client.get("/api/ielts/writing/draft/")
+        self.assertEqual(resp_get.status_code, 200)
+        self.assertEqual(resp_get.data["id"], sub_id)
+        self.assertEqual(resp_get.data["task1_text"], "The chart illustrates renewable electricity generation.")
+
+    def test_writing_submit_and_report_api(self):
+        """POST /api/ielts/writing/submit/ evaluates and returns diagnostic report with band range."""
+        essay_t1 = (
+            "The bar chart illustrates the proportion of electricity from renewable sources. "
+            "Overall, Norway had the highest figures throughout the ten-year period."
+        )
+        essay_t2 = (
+            "In conclusion, artificial intelligence should be incorporated with careful guidance. "
+            "On the one hand it motivates students, but on the other hand teacher empathy is irreplaceable."
+        )
+
+        resp = self.client.post(
+            "/api/ielts/writing/submit/",
+            data={
+                "task1_text": essay_t1,
+                "task2_text": essay_t2,
+                "task1_time_seconds": 1000,
+                "task2_time_seconds": 1800,
+            },
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 201)
+        sub_id = resp.data["id"]
+        self.assertEqual(resp.data["status"], "evaluated")
+        self.assertIn("overall_band", resp.data)
+        self.assertIn("criteria_breakdown", resp.data)
+
+        # GET Report
+        resp_rep = self.client.get(f"/api/ielts/writing/report/{sub_id}/")
+        self.assertEqual(resp_rep.status_code, 200)
+        self.assertEqual(resp_rep.data["id"], sub_id)
+        self.assertEqual(resp_rep.data["status"], "evaluated")
+
+        # GET History
+        resp_hist = self.client.get("/api/ielts/writing/history/")
+        self.assertEqual(resp_hist.status_code, 200)
+        self.assertGreaterEqual(len(resp_hist.data), 1)
+
+    def test_teacher_review_request_escalation_api(self):
+        """POST /api/ielts/writing/<id>/request-teacher-review/ marks submission for teacher grading."""
+        # Submit an essay
+        resp = self.client.post(
+            "/api/ielts/writing/submit/",
+            data={"task2_text": "Sample essay text for teacher review."},
+            format="json",
+        )
+        sub_id = resp.data["id"]
+
+        # Request teacher review
+        resp_tr = self.client.post(f"/api/ielts/writing/{sub_id}/request-teacher-review/")
+        self.assertEqual(resp_tr.status_code, 200)
+        self.assertTrue(resp_tr.data["success"])
+
+        # Check in database
+        from ielts.models import IELTSWritingSubmission
+        sub = IELTSWritingSubmission.objects.get(id=sub_id)
+        self.assertTrue(sub.teacher_review_requested)
+
+
+

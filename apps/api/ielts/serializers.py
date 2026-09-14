@@ -8,6 +8,8 @@ from ielts.models import (
     IELTSBandDescriptor,
     IELTSTestSession,
     IELTSPracticeMode,
+    IELTSWritingSubmission,
+    IELTSWritingSubmissionStatus,
 )
 
 
@@ -374,4 +376,112 @@ class StartSessionInputSerializer(serializers.Serializer):
 class RecordAnswerInputSerializer(serializers.Serializer):
     question_id = serializers.UUIDField(required=True)
     answer = serializers.JSONField(required=True)
+
+
+class IELTSWritingPromptSerializer(serializers.Serializer):
+    id = serializers.CharField()
+    title = serializers.CharField()
+    content_text = serializers.CharField()
+    media_image_url = serializers.CharField(allow_blank=True, required=False)
+    word_count = serializers.IntegerField()
+    task_type = serializers.CharField()
+    test_id = serializers.CharField(allow_null=True, required=False)
+
+
+class IELTSWritingDraftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSWritingSubmission
+        fields = [
+            "id",
+            "test",
+            "session",
+            "status",
+            "task1_prompt_title",
+            "task1_prompt_text",
+            "task1_image_url",
+            "task1_text",
+            "task1_word_count",
+            "task1_time_seconds",
+            "task2_prompt_title",
+            "task2_prompt_text",
+            "task2_text",
+            "task2_word_count",
+            "task2_time_seconds",
+            "updated_at",
+        ]
+        read_only_fields = ["id", "status", "updated_at"]
+
+
+class IELTSWritingSubmitInputSerializer(serializers.Serializer):
+    submission_id = serializers.UUIDField(required=False, allow_null=True)
+    test_id = serializers.UUIDField(required=False, allow_null=True)
+    session_id = serializers.UUIDField(required=False, allow_null=True)
+    task1_prompt_title = serializers.CharField(required=False, allow_blank=True, default="")
+    task1_prompt_text = serializers.CharField(required=False, allow_blank=True, default="")
+    task1_image_url = serializers.CharField(required=False, allow_blank=True, default="")
+    task1_text = serializers.CharField(required=False, allow_blank=True, default="")
+    task1_time_seconds = serializers.IntegerField(required=False, default=0)
+    task2_prompt_title = serializers.CharField(required=False, allow_blank=True, default="")
+    task2_prompt_text = serializers.CharField(required=False, allow_blank=True, default="")
+    task2_text = serializers.CharField(required=False, allow_blank=True, default="")
+    task2_time_seconds = serializers.IntegerField(required=False, default=0)
+
+
+class IELTSWritingReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSWritingSubmission
+        fields = [
+            "id",
+            "learner",
+            "test",
+            "session",
+            "status",
+            "task1_prompt_title",
+            "task1_prompt_text",
+            "task1_image_url",
+            "task1_text",
+            "task1_word_count",
+            "task1_time_seconds",
+            "task1_scores",
+            "task2_prompt_title",
+            "task2_prompt_text",
+            "task2_text",
+            "task2_word_count",
+            "task2_time_seconds",
+            "task2_scores",
+            "overall_band",
+            "overall_band_min",
+            "overall_band_max",
+            "confidence_score",
+            "cefr_level",
+            "criteria_breakdown",
+            "annotations",
+            "pedagogical_advice",
+            "teacher_review_requested",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = fields
+
+
+class IELTSWritingHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSWritingSubmission
+        fields = [
+            "id",
+            "status",
+            "task1_prompt_title",
+            "task2_prompt_title",
+            "task1_word_count",
+            "task2_word_count",
+            "overall_band",
+            "overall_band_min",
+            "overall_band_max",
+            "cefr_level",
+            "confidence_score",
+            "teacher_review_requested",
+            "created_at",
+        ]
+        read_only_fields = fields
+
 

@@ -16,6 +16,12 @@ from ielts.views import (
     LearnerSubmitSessionView,
     LearnerSessionReportView,
     LearnerSessionHistoryView,
+    IELTSWritingPromptsCatalogView,
+    IELTSWritingDraftView,
+    IELTSWritingSubmitView,
+    IELTSWritingReportView,
+    IELTSWritingHistoryView,
+    IELTSWritingTeacherReviewRequestView,
 )
 
 urlpatterns = [
@@ -40,4 +46,14 @@ urlpatterns = [
     path("sessions/<uuid:session_id>/advance/", LearnerAdvanceSectionView.as_view(), name="learner-ielts-session-advance"),
     path("sessions/<uuid:session_id>/submit/", LearnerSubmitSessionView.as_view(), name="learner-ielts-session-submit"),
     path("sessions/<uuid:session_id>/report/", LearnerSessionReportView.as_view(), name="learner-ielts-session-report"),
+
+    # IELTS Writing Simulation & AI Evaluation Engine (IELTS-003 & IELTS-004)
+    path("writing/prompts/", IELTSWritingPromptsCatalogView.as_view(), name="ielts-writing-prompts"),
+    path("writing/draft/", IELTSWritingDraftView.as_view(), name="ielts-writing-draft-create"),
+    path("writing/draft/<uuid:submission_id>/", IELTSWritingDraftView.as_view(), name="ielts-writing-draft-detail"),
+    path("writing/submit/", IELTSWritingSubmitView.as_view(), name="ielts-writing-submit"),
+    path("writing/report/<uuid:submission_id>/", IELTSWritingReportView.as_view(), name="ielts-writing-report"),
+    path("writing/history/", IELTSWritingHistoryView.as_view(), name="ielts-writing-history"),
+    path("writing/<uuid:submission_id>/request-teacher-review/", IELTSWritingTeacherReviewRequestView.as_view(), name="ielts-writing-teacher-review"),
 ]
+
