@@ -8,6 +8,14 @@ from ielts.views import (
     AdminCloneNewVersionView,
     IELTSBandDescriptorListView,
     PublicIELTSTestListView,
+    LearnerStartSessionView,
+    LearnerActiveSessionDetailView,
+    LearnerRecordAnswerView,
+    LearnerToggleFlagView,
+    LearnerAdvanceSectionView,
+    LearnerSubmitSessionView,
+    LearnerSessionReportView,
+    LearnerSessionHistoryView,
 )
 
 urlpatterns = [
@@ -22,4 +30,14 @@ urlpatterns = [
     # Public Band Descriptors & Catalog
     path("band-descriptors/", IELTSBandDescriptorListView.as_view(), name="ielts-band-descriptors"),
     path("public/tests/", PublicIELTSTestListView.as_view(), name="public-ielts-tests-list"),
+
+    # Learner IELTS Simulator & Timed Session Engine
+    path("sessions/start/", LearnerStartSessionView.as_view(), name="learner-ielts-session-start"),
+    path("sessions/history/", LearnerSessionHistoryView.as_view(), name="learner-ielts-session-history"),
+    path("sessions/<uuid:session_id>/", LearnerActiveSessionDetailView.as_view(), name="learner-ielts-session-detail"),
+    path("sessions/<uuid:session_id>/answer/", LearnerRecordAnswerView.as_view(), name="learner-ielts-session-answer"),
+    path("sessions/<uuid:session_id>/flag/", LearnerToggleFlagView.as_view(), name="learner-ielts-session-flag"),
+    path("sessions/<uuid:session_id>/advance/", LearnerAdvanceSectionView.as_view(), name="learner-ielts-session-advance"),
+    path("sessions/<uuid:session_id>/submit/", LearnerSubmitSessionView.as_view(), name="learner-ielts-session-submit"),
+    path("sessions/<uuid:session_id>/report/", LearnerSessionReportView.as_view(), name="learner-ielts-session-report"),
 ]

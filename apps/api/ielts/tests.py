@@ -16,6 +16,9 @@ from ielts.models import (
     IELTSQuestionGroup,
     IELTSQuestion,
     IELTSQuestionType,
+    IELTSTestSession,
+    IELTSAttemptStatus,
+    IELTSPracticeMode,
     MANDATORY_IELTS_DISCLAIMER,
 )
 from ielts.services import (
@@ -25,6 +28,14 @@ from ielts.services import (
     clone_test_new_version,
     evaluate_ielts_answer,
     normalize_ielts_answer,
+)
+from ielts.session_services import (
+    start_or_resume_session,
+    record_answer,
+    toggle_flag,
+    advance_section,
+    submit_session,
+    compile_full_diagnostic_report,
 )
 
 
@@ -285,4 +296,96 @@ class IELTSContentModelTests(TestCase):
         # Verify question count
         q_count = IELTSQuestion.objects.filter(group__passage_task__section__test=seeded_test).count()
         self.assertEqual(q_count, 19)
+
+    def test_start_and_resume_learner_session(self):
+        """Learner can start and resume a timed practice session on a published test."""
+        submit_test_for_review(self.test, self.author)
+        review_and_approve_test(self.test, self.reviewer, self.valid_checklist)
+        publish_test(self.test, self.reviewer)
+
+        # Start session
+        session = start_or_resume_session(self.learner, str(self.test.id))
+        self.assertEqual(session.status, IELTSAttemptStatus.IN_PROGRESS)
+        self.assertEqual(session.current_section_index, 0)
+        self.assertGreater(session.time_remaining_seconds, 0)
+
+        # Resuming returns the same session
+        resumed = start_or_resume_session(self.learner, str(self.test.id))
+        self.assertEqual(session.id, resumed.id)
+
+    def test_cannot_start_session_on_draft_test(self):
+        """Draft unapproved tests cannot be started by learners."""
+        with self.assertRaises(ValidationError):
+            start_or_resume_session(self.learner, str(self.test.id))
+
+    def test_learner_active_session_security_boundary(self):
+        """Active session endpoint must NEVER leak correct_answers or explanation."""
+        submit_test_for_review(self.test, self.author)
+        review_and_approve_test(self.test, self.reviewer, self.valid_checklist)
+        publish_test(self.test, self.reviewer)
+
+        session = start_or_resume_session(self.learner, str(self.test.id))
+
+        client = APIClient()
+        client.force_authenticate(user=self.learner)
+        resp = client.get(f"/api/ielts/sessions/{session.id}/")
+        self.assertEqual(resp.status_code, 200)
+
+        # Traverse questions in payload
+        section_data = resp.data["sections"][0]
+        q_data = section_data["passages_tasks"][0]["question_groups"][0]["questions"][0]
+
+        self.assertNotIn("correct_answers", q_data)
+        self.assertNotIn("explanation", q_data)
+        self.assertEqual(q_data["prompt_text"], self.question.prompt_text)
+
+    def test_session_autosave_and_submission_workflow(self):
+        """Learner records answers, flags questions, and submits session for diagnostic grading."""
+        submit_test_for_review(self.test, self.author)
+        review_and_approve_test(self.test, self.reviewer, self.valid_checklist)
+        publish_test(self.test, self.reviewer)
+
+        session = start_or_resume_session(self.learner, str(self.test.id))
+
+        client = APIClient()
+        client.force_authenticate(user=self.learner)
+
+        # Record answer via API
+        resp = client.post(
+            f"/api/ielts/sessions/{session.id}/answer/",
+            data={"question_id": str(self.question.id), "answer": "TRUE"},
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.data["success"])
+
+        # Flag question via API
+        resp = client.post(
+            f"/api/ielts/sessions/{session.id}/flag/",
+            data={"question_id": str(self.question.id)},
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(str(self.question.id), resp.data["flagged_questions"])
+
+        # Submit session
+        resp = client.post(f"/api/ielts/sessions/{session.id}/submit/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.data["status"], "submitted")
+        self.assertGreaterEqual(resp.data["scaled_band_score"], 1.0)
+
+        # Get full diagnostic report
+        resp = client.get(f"/api/ielts/sessions/{session.id}/report/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn("diagnostics", resp.data)
+        self.assertIn("section_scores", resp.data)
+        self.assertIn("questions", resp.data)
+
+        # In report, correct_answers and explanation ARE now visible
+        reported_q = resp.data["questions"][0]
+        self.assertEqual(reported_q["candidate_answer"], "TRUE")
+        self.assertTrue(reported_q["is_correct"])
+        self.assertIn("correct_answers", reported_q)
+        self.assertIn("explanation", reported_q)
+
 

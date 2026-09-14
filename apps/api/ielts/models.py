@@ -366,3 +366,122 @@ class IELTSBandDescriptor(models.Model):
 
     def __str__(self):
         return f"{self.section_type.title()} - {self.get_criteria_key_display()} (Band {self.band_level})"
+
+
+class IELTSAttemptStatus(models.TextChoices):
+    IN_PROGRESS = "in_progress", _("In Progress / در حال برگزاری")
+    SUBMITTED = "submitted", _("Submitted / پایان‌یافته و ثبت‌شده")
+    TIMED_OUT = "timed_out", _("Timed Out / اتمام زمان قانونی")
+    ABANDONED = "abandoned", _("Abandoned / رها شده")
+
+
+class IELTSPracticeMode(models.TextChoices):
+    FULL_SIMULATION = "full_simulation", _("Full Exam Simulation / شبیه‌ساز کامل آزمون")
+    LISTENING_PRACTICE = "listening_practice", _("Listening Practice / تمرین شنیداری")
+    READING_PRACTICE = "reading_practice", _("Reading Practice / تمرین درک مطلب")
+    WRITING_PRACTICE = "writing_practice", _("Writing Practice / تمرین نگارش")
+    SPEAKING_PRACTICE = "speaking_practice", _("Speaking Practice / تمرین مکالمه")
+
+
+class IELTSTestSession(models.Model):
+    """
+    A learner's active or completed test-taking attempt with anti-tampering server timestamps,
+    autosaved responses, section progression, raw score, scaled IELTS band score, and diagnostics.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="ielts_sessions",
+        help_text="زبان‌آموز شرکت‌کننده در آزمون",
+    )
+    test = models.ForeignKey(
+        IELTSTest,
+        on_delete=models.CASCADE,
+        related_name="sessions",
+        help_text="نسخه آزمون آیلتس انتخاب‌شده",
+    )
+    mode = models.CharField(
+        max_length=32,
+        choices=IELTSPracticeMode.choices,
+        default=IELTSPracticeMode.FULL_SIMULATION,
+        db_index=True,
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=IELTSAttemptStatus.choices,
+        default=IELTSAttemptStatus.IN_PROGRESS,
+        db_index=True,
+    )
+    current_section_index = models.PositiveSmallIntegerField(
+        default=0,
+        help_text="شاخص بخش فعلی در آزمون (0=Listening, 1=Reading, ...)",
+    )
+    started_at = models.DateTimeField(default=timezone.now)
+    expires_at = models.DateTimeField(help_text="زمان انقضای قطعی بخش/آزمون بر اساس ساعت سرور")
+    completed_at = models.DateTimeField(null=True, blank=True)
+    responses = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="پاسخ‌های زبان‌آموز به تفکیک شناسه سوال: { question_id: answer_val }",
+    )
+    flagged_questions = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="فهرست شناسه‌های سوالات نشانه‌گذاری‌شده برای بازبینی: [ question_id, ... ]",
+    )
+    section_timings = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="تاریخچه زمان‌بندی بخش‌ها و مدت زمان سپری‌شده",
+    )
+    raw_score = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        help_text="مجموع نمرات خام کسب‌شده (مثلاً ۳۵ از ۴۰)",
+    )
+    scaled_band_score = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="نمره باند استاندارد آیلتس (۱.۰ تا ۹.۰ با گام‌های ۰.۵)",
+    )
+    section_scores = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="نمرات تفکیکی مهارت‌ها: { listening: { raw, band, total }, reading: ... }",
+    )
+    diagnostics = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="تحلیل تشخیصی عملکرد به تفکیک فرمت سوال و سطح CEFR",
+    )
+    disclaimer_acknowledged = models.BooleanField(
+        default=True,
+        help_text="تأیید غیررسمی بودن شبیه‌ساز آیلتس توسط زبان‌آموز",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = _("IELTS Test Session")
+        verbose_name_plural = _("IELTS Test Sessions")
+
+    def __str__(self):
+        return f"Session {self.id} - {self.learner} ({self.status})"
+
+    @property
+    def is_expired(self) -> bool:
+        return timezone.now() > self.expires_at
+
+    @property
+    def time_remaining_seconds(self) -> int:
+        if self.status != IELTSAttemptStatus.IN_PROGRESS:
+            return 0
+        rem = int((self.expires_at - timezone.now()).total_seconds())
+        return max(0, rem)
+

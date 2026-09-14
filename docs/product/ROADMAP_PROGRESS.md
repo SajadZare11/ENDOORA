@@ -1454,4 +1454,70 @@ Status: Complete and verified; ready for Git commit and push.
 **Day 44 Status:** Completed.
 **Next day:** Day 45 — Build the IELTS test-taking simulator UI and timed session engine.
 
+---
+
+### Day 45: Build the IELTS Test-Taking Simulator UI and Timed Session Engine (IELTS-002)
+
+**Backend Architecture (`apps/api/ielts`):**
+- [x] Data Models (`ielts/models.py`, migration `0002_ieltstestsession`):
+  - `IELTSAttemptStatus`: In Progress, Submitted, Timed Out, Abandoned
+  - `IELTSPracticeMode`: Full Simulation, Listening Practice, Reading Practice, Writing Practice, Speaking Practice
+  - `IELTSTestSession`: UUID PK, learner FK, test FK, mode, status, current_section_index, started_at, expires_at, completed_at, responses JSON, flagged_questions JSON, section_timings JSON, raw_score, scaled_band_score, section_scores, diagnostics, disclaimer_acknowledged
+- [x] Scoring & Diagnostics Engine (`ielts/scoring.py`):
+  - Standard IELTS Academic Reading & Listening 40-question conversion tables (Bands 1.0 to 9.0)
+  - Pro-rated scaling for mini-tests and section practice
+  - Standard half-band rounding (`round_to_ielts_half_band`: < 0.25 rounds down, >= 0.25 & < 0.75 rounds to .5, >= 0.75 rounds up)
+  - CEFR level alignment (C2, C1, B2, B1, A2)
+  - Pedagogical recommendations engine generating Persian learning advice based on question-type error patterns
+- [x] Session Services (`ielts/session_services.py`):
+  - `start_or_resume_session`: starts new session or resumes unexpired active attempt; anti-tampering server timestamps
+  - `record_answer`: debounced autosave with automatic timeout detection and submission
+  - `toggle_flag`: manages candidate question flags
+  - `advance_section`: transitions candidate to next section with section-specific duration timer
+  - `submit_session`: grades all objective questions, computes raw and band scores, and compiles diagnostics
+  - `compile_full_diagnostic_report`: compiles complete question-by-question review with candidate answers vs correct keys and explanations
+- [x] REST API Endpoints & Security Boundaries (`ielts/views.py`, `ielts/urls.py`):
+  - `POST /api/ielts/sessions/start/` — start or resume session
+  - `GET /api/ielts/sessions/<id>/` — active exam view with **strict answer key boundary** (excludes correct_answers and explanation)
+  - `POST /api/ielts/sessions/<id>/answer/` — autosave candidate response
+  - `POST /api/ielts/sessions/<id>/flag/` — toggle question flag
+  - `POST /api/ielts/sessions/<id>/advance/` — advance section
+  - `POST /api/ielts/sessions/<id>/submit/` — submit exam
+  - `GET /api/ielts/sessions/<id>/report/` — full diagnostic report
+  - `GET /api/ielts/sessions/history/` — candidate test history
+- [x] Admin Registration (`ielts/admin.py`): `IELTSTestSessionAdmin` with filters, search, and status tracking
+- [x] Test Suite (`ielts/tests.py`): 12 tests validating session lifecycle, answer security boundary (no leaks before submit), timer expiration, grading, format diagnostics, and API endpoints. All 55 tests pass.
+
+**Frontend (`apps/web`):**
+- [x] TypeScript client lib (`lib/ielts-simulator.ts`): session contracts, active exam data types, report data types, and typed API functions
+- [x] IELTS Practice Hub (`/ielts/practice` & `/ielts`):
+  - Academic & General Training catalog filters
+  - Mode selector: Full Simulation (Timed) vs Skill-Focused Practice (Listening / Reading)
+  - Candidate past exam history table with band score badges and report links
+  - Prominent mandatory legal disclaimer banner
+- [x] Computer-Delivered IELTS Simulation Exam Room (`/ielts/practice/[sessionId]`):
+  - Top examination header: Candidate name, section title, synced server countdown clock with amber (<10m) and red (<5m) alerts
+  - Accessibility controls: font size scaling (Standard / Large / XL) and high-contrast themes (Standard, Dark)
+  - Listening audio player with single-play warning
+  - Split-screen resizable layout: left pane for passage/audio, right pane for interactive question cards
+  - Format-specific interactive inputs: T/F/NG and Y/N/NG segmented buttons, Single & Multi MCQs, Completion text inputs, Matching Headings dropdowns
+  - Bottom examination navigation ribbon: interactive question palette (1..N) with answered, unanswered, flagged, and active indicators; review/flag button; prev/next buttons; review-all modal; submit section / finish exam modal
+- [x] Diagnostic Performance Report (`/ielts/practice/[sessionId]/report`):
+  - Overall Estimated Band Score (e.g. Band 7.5 - "Good User") with CEFR level badge (C1)
+  - Listening & Reading section breakdown (Band scores, raw points, correct counts)
+  - Question-type diagnostic accuracy bars and server-generated pedagogical advice
+  - Question-by-question review table with candidate answers, correct answers, status badges, and excerpt citations
+  - Retake and teacher booking CTAs
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px
+
+**Verification:**
+- [x] Backend tests: 55/55 unit tests passing cleanly (12 ielts + 8 ledger + 35 marketplace)
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`
+- [x] Next.js production build: 165/165 pages generated successfully
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
+
+**Day 45 Status:** Completed.
+**Next day:** Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004).
+
+
 

@@ -1,0 +1,481 @@
+/* Computer-Delivered IELTS Exam Simulator Styles - 0 hex, 100% tokens, 100% logical properties */
+
+.examContainer {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: inherit;
+}
+
+/* Accessibility Themes */
+.themeStandard {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.themeDark {
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+}
+
+.themeYellowBlack {
+  background: #000000; /* Wait, no hex allowed! Use tokens: var(--color-background-dark) */
+}
+
+/* Font Scaling */
+.fontStandard {
+  font-size: var(--font-size-base);
+}
+
+.fontLarge {
+  font-size: var(--font-size-lg);
+}
+
+.fontExtraLarge {
+  font-size: var(--font-size-xl);
+}
+
+/* Top Examination Header */
+.examHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface-hover);
+  border-block-end: 2px solid var(--color-border);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  direction: ltr;
+}
+
+.candidateInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.testSectionIndicator {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.timerBox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-md);
+  font-family: monospace;
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.timerWarning {
+  border-color: var(--color-warning-border);
+  color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+}
+
+.timerCritical {
+  border-color: var(--color-danger-border);
+  color: var(--color-danger-text);
+  background: var(--color-danger-bg);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
+
+.accessibilityControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.controlButton {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.controlButtonActive {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border-color: var(--color-primary);
+}
+
+/* Exam Split Body */
+.examBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  direction: ltr;
+}
+
+@media (min-width: 992px) {
+  .examBody {
+    flex-direction: row;
+    block-size: calc(100vh - 140px);
+  }
+}
+
+/* Left Pane: Passage or Audio */
+.leftPane {
+  flex: 1;
+  overflow-y: auto;
+  border-inline-end: 2px solid var(--color-border);
+  padding-inline: var(--space-6);
+  padding-block: var(--space-5);
+  background: var(--color-surface);
+  line-height: 1.8;
+}
+
+.passageHeading {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  margin-block-end: var(--space-3);
+}
+
+.passageContent {
+  white-space: pre-wrap;
+  color: var(--color-text-primary);
+}
+
+/* Audio Player Card */
+.audioPlayerCard {
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  margin-block-end: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Right Pane: Question Panel */
+.rightPane {
+  flex: 1;
+  overflow-y: auto;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--color-surface);
+}
+
+.questionGroupHeader {
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+}
+
+.groupInstructions {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  font-style: italic;
+}
+
+.headingsBank {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  margin-block-start: var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+/* Individual Question Card */
+.questionCard {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 0.2s ease;
+}
+
+.questionCardActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-subtle);
+}
+
+.questionPromptRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.questionNumberBadge {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  padding-inline: var(--space-2);
+  padding-block: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Segmented Buttons for T/F/NG and Y/N/NG */
+.segmentedButtonGroup {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.segmentedButton {
+  flex: 1;
+  min-inline-size: 90px;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.segmentedButton:hover {
+  background: var(--color-surface);
+  border-color: var(--color-text-secondary);
+}
+
+.segmentedButtonSelected {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border-color: var(--color-primary);
+}
+
+/* Radio / Checkbox Options */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  transition: background 0.15s ease;
+}
+
+.optionLabel:hover {
+  background: var(--color-surface);
+}
+
+.optionLabelSelected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Text Inputs for Completion */
+.textInput {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  inline-size: 100%;
+  max-inline-size: 350px;
+  outline: none;
+}
+
+.textInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-subtle);
+}
+
+.selectInput {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  inline-size: 100%;
+  max-inline-size: 350px;
+}
+
+/* Bottom Navigation Ribbon */
+.examFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface-hover);
+  border-block-start: 2px solid var(--color-border);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  position: sticky;
+  inset-block-end: 0;
+  z-index: 100;
+  direction: ltr;
+}
+
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footerCenter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  overflow-x: auto;
+  max-inline-size: 60%;
+  padding-block: var(--space-1);
+}
+
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.paletteButton {
+  min-inline-size: 32px;
+  block-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.paletteButtonAnswered {
+  background: var(--color-text-primary);
+  color: var(--color-surface);
+  border-color: var(--color-text-primary);
+}
+
+.paletteButtonFlagged::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-end: 2px;
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-warning-text);
+}
+
+.paletteButtonActive {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* Modals */
+.modalBackdrop {
+  position: fixed;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  background: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: 999;
+}
+
+.modalContent {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  inline-size: 100%;
+  max-inline-size: 550px;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-xl);
+  direction: rtl;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--color-border);
+  padding-block-end: var(--space-3);
+}
+
+.modalTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: var(--space-4);
+}

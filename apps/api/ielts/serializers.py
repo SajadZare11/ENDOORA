@@ -6,6 +6,8 @@ from ielts.models import (
     IELTSQuestionGroup,
     IELTSQuestion,
     IELTSBandDescriptor,
+    IELTSTestSession,
+    IELTSPracticeMode,
 )
 
 
@@ -228,3 +230,148 @@ class ReviewApprovalInputSerializer(serializers.Serializer):
         default="",
         help_text="Reviewer sign-off notes",
     )
+
+
+class LearnerSafeQuestionSerializer(serializers.ModelSerializer):
+    """
+    CRITICAL SECURITY SERIALIZER: Excludes correct_answers and explanation during active exam attempts.
+    """
+    class Meta:
+        model = IELTSQuestion
+        fields = [
+            "id",
+            "group",
+            "question_number",
+            "prompt_text",
+            "options",
+            "max_score",
+        ]
+        read_only_fields = fields
+
+
+class LearnerSafeQuestionGroupSerializer(serializers.ModelSerializer):
+    questions = LearnerSafeQuestionSerializer(many=True, read_only=True)
+    question_type_display = serializers.CharField(source="get_question_type_display", read_only=True)
+
+    class Meta:
+        model = IELTSQuestionGroup
+        fields = [
+            "id",
+            "passage_task",
+            "question_type",
+            "question_type_display",
+            "order",
+            "instructions",
+            "heading_options",
+            "questions",
+        ]
+        read_only_fields = fields
+
+
+class LearnerSafePassageTaskSerializer(serializers.ModelSerializer):
+    question_groups = LearnerSafeQuestionGroupSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = IELTSPassageTask
+        fields = [
+            "id",
+            "section",
+            "order",
+            "title",
+            "content_text",
+            "media_image_url",
+            "word_count",
+            "metadata",
+            "question_groups",
+        ]
+        read_only_fields = fields
+
+
+class LearnerSafeSectionSerializer(serializers.ModelSerializer):
+    passages_tasks = LearnerSafePassageTaskSerializer(many=True, read_only=True)
+    section_type_display = serializers.CharField(source="get_section_type_display", read_only=True)
+
+    class Meta:
+        model = IELTSSection
+        fields = [
+            "id",
+            "test",
+            "section_type",
+            "section_type_display",
+            "order",
+            "duration_minutes",
+            "instructions_en",
+            "instructions_fa",
+            "audio_media_url",
+            "audio_script",
+            "passages_tasks",
+        ]
+        read_only_fields = fields
+
+
+class LearnerActiveSessionSerializer(serializers.ModelSerializer):
+    test_title_en = serializers.CharField(source="test.title_en", read_only=True)
+    test_title_fa = serializers.CharField(source="test.title_fa", read_only=True)
+    test_type = serializers.CharField(source="test.test_type", read_only=True)
+    disclaimer_label = serializers.CharField(source="test.disclaimer_label", read_only=True)
+    sections = LearnerSafeSectionSerializer(source="test.sections", many=True, read_only=True)
+    time_remaining_seconds = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = IELTSTestSession
+        fields = [
+            "id",
+            "test",
+            "test_title_en",
+            "test_title_fa",
+            "test_type",
+            "mode",
+            "status",
+            "current_section_index",
+            "started_at",
+            "expires_at",
+            "time_remaining_seconds",
+            "responses",
+            "flagged_questions",
+            "disclaimer_label",
+            "sections",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = fields
+
+
+class IELTSSessionHistorySerializer(serializers.ModelSerializer):
+    test_title_en = serializers.CharField(source="test.title_en", read_only=True)
+    test_title_fa = serializers.CharField(source="test.title_fa", read_only=True)
+    test_type = serializers.CharField(source="test.test_type", read_only=True)
+
+    class Meta:
+        model = IELTSTestSession
+        fields = [
+            "id",
+            "test",
+            "test_title_en",
+            "test_title_fa",
+            "test_type",
+            "mode",
+            "status",
+            "started_at",
+            "completed_at",
+            "raw_score",
+            "scaled_band_score",
+            "section_scores",
+            "created_at",
+        ]
+        read_only_fields = fields
+
+
+class StartSessionInputSerializer(serializers.Serializer):
+    test_id = serializers.UUIDField(required=True)
+    mode = serializers.CharField(default=IELTSPracticeMode.FULL_SIMULATION)
+
+
+class RecordAnswerInputSerializer(serializers.Serializer):
+    question_id = serializers.UUIDField(required=True)
+    answer = serializers.JSONField(required=True)
+

@@ -10,18 +10,32 @@ from ielts.models import (
     IELTSTest,
     IELTSTestStatus,
     IELTSBandDescriptor,
+    IELTSTestSession,
+    IELTSAttemptStatus,
 )
 from ielts.serializers import (
     IELTSTestListSerializer,
     IELTSTestDetailSerializer,
     IELTSBandDescriptorSerializer,
     ReviewApprovalInputSerializer,
+    LearnerActiveSessionSerializer,
+    IELTSSessionHistorySerializer,
+    StartSessionInputSerializer,
+    RecordAnswerInputSerializer,
 )
 from ielts.services import (
     submit_test_for_review,
     review_and_approve_test,
     publish_test,
     clone_test_new_version,
+)
+from ielts.session_services import (
+    start_or_resume_session,
+    record_answer,
+    toggle_flag,
+    advance_section,
+    submit_session,
+    compile_full_diagnostic_report,
 )
 
 
@@ -213,3 +227,148 @@ class PublicIELTSTestListView(APIView):
             "disclaimer": "IELTS-like practice — not official IELTS / تمرین شبیه‌ساز آیلتس — غیررسمی",
             "results": serializer.data,
         })
+
+
+# ---------------------------------------------------------------------------
+# Learner IELTS Simulator & Timed Session Views
+# ---------------------------------------------------------------------------
+
+class LearnerStartSessionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = StartSessionInputSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        test_id = serializer.validated_data["test_id"]
+        mode = serializer.validated_data["mode"]
+
+        try:
+            session = start_or_resume_session(
+                learner=request.user,
+                test_id=str(test_id),
+                mode=mode,
+            )
+            return Response(LearnerActiveSessionSerializer(session).data, status=status.HTTP_201_CREATED)
+        except ValidationError as exc:
+            msg = exc.message if hasattr(exc, "message") else str(exc)
+            return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LearnerActiveSessionDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, session_id):
+        session = get_object_or_404(
+            IELTSTestSession.objects.select_related("test").prefetch_related(
+                "test__sections__passages_tasks__question_groups__questions"
+            ),
+            pk=session_id,
+            learner=request.user,
+        )
+        return Response(LearnerActiveSessionSerializer(session).data)
+
+
+class LearnerRecordAnswerView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, session_id):
+        serializer = RecordAnswerInputSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        question_id = serializer.validated_data["question_id"]
+        answer = serializer.validated_data["answer"]
+
+        try:
+            session = record_answer(
+                session_id=session_id,
+                learner=request.user,
+                question_id=str(question_id),
+                answer_val=answer,
+            )
+            return Response({
+                "success": True,
+                "question_id": str(question_id),
+                "time_remaining_seconds": session.time_remaining_seconds,
+            })
+        except ValidationError as exc:
+            msg = exc.message if hasattr(exc, "message") else str(exc)
+            return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LearnerToggleFlagView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, session_id):
+        question_id = request.data.get("question_id")
+        if not question_id:
+            return Response({"detail": "شناسه سوال الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        session = toggle_flag(
+            session_id=session_id,
+            learner=request.user,
+            question_id=str(question_id),
+        )
+        return Response({
+            "success": True,
+            "flagged_questions": session.flagged_questions,
+        })
+
+
+class LearnerAdvanceSectionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, session_id):
+        session = advance_section(
+            session_id=session_id,
+            learner=request.user,
+        )
+        return Response(LearnerActiveSessionSerializer(session).data)
+
+
+class LearnerSubmitSessionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, session_id):
+        session = submit_session(
+            session_id=session_id,
+            learner=request.user,
+        )
+        return Response({
+            "session_id": str(session.id),
+            "status": session.status,
+            "raw_score": float(session.raw_score) if session.raw_score is not None else 0.0,
+            "scaled_band_score": float(session.scaled_band_score) if session.scaled_band_score is not None else 1.0,
+            "completed_at": session.completed_at.isoformat() if session.completed_at else None,
+        })
+
+
+class LearnerSessionReportView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, session_id):
+        session = get_object_or_404(
+            IELTSTestSession.objects.select_related("test"),
+            pk=session_id,
+            learner=request.user,
+        )
+        if session.status not in [IELTSAttemptStatus.SUBMITTED, IELTSAttemptStatus.TIMED_OUT]:
+            return Response(
+                {"detail": "کارنامه تشخیصی تنها پس از اتمام و ثبت نهایی آزمون در دسترس است."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        report = compile_full_diagnostic_report(session)
+        return Response(report)
+
+
+class LearnerSessionHistoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        qs = IELTSTestSession.objects.filter(learner=request.user).select_related("test").order_by("-created_at")
+        serializer = IELTSSessionHistorySerializer(qs, many=True)
+        return Response(serializer.data)
+

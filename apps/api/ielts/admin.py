@@ -6,6 +6,7 @@ from ielts.models import (
     IELTSQuestionGroup,
     IELTSQuestion,
     IELTSBandDescriptor,
+    IELTSTestSession,
 )
 
 
@@ -75,3 +76,22 @@ class IELTSBandDescriptorAdmin(admin.ModelAdmin):
     list_display = ["criteria_key", "section_type", "band_level"]
     list_filter = ["section_type", "criteria_key", "band_level"]
     search_fields = ["public_descriptor_en", "pedagogical_guidance_fa"]
+
+
+@admin.register(IELTSTestSession)
+class IELTSTestSessionAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "learner",
+        "test",
+        "mode",
+        "status",
+        "raw_score",
+        "scaled_band_score",
+        "started_at",
+        "completed_at",
+    ]
+    list_filter = ["mode", "status", "test__test_type"]
+    search_fields = ["learner__email", "test__title_en", "test__title_fa"]
+    readonly_fields = ["id", "started_at", "completed_at", "created_at", "updated_at"]
+

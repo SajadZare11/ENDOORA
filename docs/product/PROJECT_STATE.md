@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 44 — Build the IELTS Content Model and Copyright/Quality Workflow (IELTS-001)
-- **Day 44 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–43 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, and Double-Entry Teacher Payable Ledger
-- **Schema version:** Day 44 adds `ielts.0001_initial`
+- **Roadmap day completed:** Day 45 — Build the IELTS Test-Taking Simulator UI and Timed Session Engine (IELTS-002)
+- **Day 45 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–44 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, and IELTS Content Model & Two-Person Review Gate
+- **Schema version:** Day 45 adds `ielts.0002_ieltstestsession`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1634,17 +1634,45 @@ Key accomplishments:
     - Full design token compliance: 0 hex colors, 100% logical properties.
   - Full verification: 164/164 static routes prerendered, TypeScript 0 errors, 51/51 tests passing.
 
-## Git checkpoint (Day 44)
+- Day 45 additions (IELTS-002):
+  - Backend:
+    - Model `IELTSTestSession` (migration `0002_ieltstestsession`) supporting full simulations and skill-specific practice modes.
+    - Server-side anti-tampering timer engine with automatic timeout submission.
+    - Official IELTS Academic Reading and Listening 40-question band score conversion tables and pro-rated scaling for mini-tests (`scoring.py`).
+    - Standard half-band rounding algorithm (`round_to_ielts_half_band`) and CEFR level alignment (C2 to A2).
+    - Question-type diagnostic statistics and personalized pedagogical recommendations engine.
+    - Strict answer-key security boundary: `LearnerSafeQuestionSerializer` strips correct answers and explanations during active exam sessions.
+    - 8 REST API endpoints for session lifecycle, debounced autosave, question flags, section transitions, diagnostic grading, and past attempt history.
+    - 12 integration tests in `ielts/tests.py` (55 total backend tests passing).
+  - Frontend:
+    - TypeScript client lib (`lib/ielts-simulator.ts`): full typed contracts and API functions.
+    - IELTS Practice Hub (`/ielts/practice` & `/ielts`) with Academic/General filters, mode launcher (Full Mock vs Skill Practice), and candidate attempt history table.
+    - Computer-Delivered IELTS Simulation Exam Room (`/ielts/practice/[sessionId]`):
+      - Examination top bar with candidate details, synced server countdown timer (amber <10m, red pulsing <5m), and listening audio player.
+      - Accessibility tools: font size scaling (Standard, Large, Extra Large) and contrast modes (Light, Dark).
+      - Split-screen layout: passage on left, interactive questions on right.
+      - 5 interactive question input formats: T/F/NG and Y/N/NG segmented buttons, Single & Multi MCQs, Completion text inputs, Matching Headings dropdowns.
+      - Bottom navigation ribbon with interactive question palette (1..N), review/flag toggle, prev/next buttons, review-all modal, and finish exam confirmation modal.
+    - Diagnostic Performance Report (`/ielts/practice/[sessionId]/report`):
+      - Hero score card with Overall Band Score and CEFR level badge.
+      - Section score cards (Listening & Reading).
+      - Question-type diagnostic accuracy progress bars and learning advice.
+      - Question-by-question review table with candidate answers vs correct keys, status badges, and excerpt citations.
+    - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
+  - Full verification: 165/165 static routes prerendered, TypeScript 0 errors, 55/55 tests passing.
+
+## Git checkpoint (Day 45)
 
 ```
-Day 44: Build the IELTS Content Model and Copyright/Quality Workflow (IELTS-001)
+Day 45: Build the IELTS Test-Taking Simulator UI and Timed Session Engine (IELTS-002)
 ```
 
 ## Exact next day
 
-**Day 45 — Build the IELTS test-taking simulator UI and timed session engine.**
+**Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004).**
 
-Do not begin Day 45 until the Day 44 commit is pushed and `git status --short --branch`
+Do not begin Day 46 until the Day 45 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
 
 
