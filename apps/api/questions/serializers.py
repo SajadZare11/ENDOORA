@@ -44,6 +44,7 @@ class QuestionVersionLearnerSerializer(serializers.ModelSerializer):
             "question_slug",
             "version_number",
             "question_type",
+            "status",
             "display_title",
             "display_instructions",
             "prompt_fa",
@@ -54,6 +55,7 @@ class QuestionVersionLearnerSerializer(serializers.ModelSerializer):
             "objectives",
             "media",
         )
+
 
     def get_display_title(self, obj):
         locale = _requested_locale(self.context)

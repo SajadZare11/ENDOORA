@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { VersionedQuestionBankOperations } from "../../../../components/questions/VersionedQuestionBankOperations";
 
 export const metadata = {
@@ -8,7 +9,13 @@ export const metadata = {
 export default function QuestionBankPage() {
   return (
     <main style={{ minBlockSize: "100vh", backgroundColor: "var(--color-canvas)" }}>
-      <VersionedQuestionBankOperations />
+      <Suspense fallback={
+        <div style={{ padding: "3rem", textAlign: "center", color: "var(--color-muted)" }}>
+          در حال بارگذاری بانک سؤال...
+        </div>
+      }>
+        <VersionedQuestionBankOperations />
+      </Suspense>
     </main>
   );
 }

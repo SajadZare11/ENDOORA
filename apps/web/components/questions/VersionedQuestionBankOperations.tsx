@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import styles from "./operations-questions.module.css";
 
 export type QuestionReviewEvent = {
@@ -35,6 +36,8 @@ export type QuestionVersionEditorItem = {
   status: "draft" | "in_review" | "published" | "retired";
   title_fa: string;
   title_en: string;
+  display_title?: string;
+  display_instructions?: string;
   prompt_fa: string;
   prompt_en: string;
   instructions_fa: string;
@@ -105,7 +108,15 @@ export function VersionedQuestionBankOperations({
   const [selectedType, setSelectedType] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
   const [selectedOrigin, setSelectedOrigin] = useState<string>("all");
-  const [selectedObjective, setSelectedObjective] = useState<string>(initialObjectiveSlug);
+  const searchParams = useSearchParams();
+  const queryObjective = searchParams?.get("objective") || initialObjectiveSlug;
+  const [selectedObjective, setSelectedObjective] = useState<string>(queryObjective);
+
+  useEffect(() => {
+    if (queryObjective) {
+      setSelectedObjective(queryObjective);
+    }
+  }, [queryObjective]);
 
   // Drawer / Inspection
   const [inspectItem, setInspectItem] = useState<QuestionVersionEditorItem | null>(null);
@@ -145,8 +156,8 @@ export function VersionedQuestionBankOperations({
       });
       if (selectedCefr !== "all") params.set("cefr", selectedCefr);
       if (selectedType !== "all") params.set("type", selectedType);
-      if (selectedStatus !== "all") params.set("status", selectedStatus);
-      if (selectedOrigin !== "all") params.set("origin", selectedOrigin);
+      if (mode === "governance" && selectedStatus !== "all") params.set("status", selectedStatus);
+      if (mode === "governance" && selectedOrigin !== "all") params.set("origin", selectedOrigin);
       if (selectedObjective.trim()) params.set("objective", selectedObjective.trim());
       if (searchQuery.trim()) params.set("q", searchQuery.trim());
 
@@ -733,7 +744,9 @@ export function VersionedQuestionBankOperations({
                 {/* Title & Slug */}
                 <div className={styles.questionTitleRow}>
                   <h2 className={styles.questionTitle}>
-                    {isFa ? item.title_fa || item.title_en || item.question_slug : item.title_en || item.title_fa || item.question_slug}
+                    {isFa
+                      ? item.title_fa || item.display_title || item.title_en || item.question_slug
+                      : item.title_en || item.display_title || item.title_fa || item.question_slug}
                   </h2>
                   <div className={styles.questionSlug}>
                     {item.question_slug}
@@ -792,8 +805,9 @@ export function VersionedQuestionBankOperations({
                 )}
 
                 {/* Learner Simulator (Active in Learner Safe Mode or on Demand) */}
-                {mode === "learner_safe" && item.status === "published" && (
+                {mode === "learner_safe" && (
                   <div className={styles.simulatorArea}>
+
                     <div className={styles.simulatorTitle}>
                       {t(locale, "آزمایش پاسخ‌دهی شبیه‌ساز یادگیرنده (بدون افشای کلید پیش از ارسال):", "Learner Simulator Test (Isolated Pre-Submission):")}
                     </div>
