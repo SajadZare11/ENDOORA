@@ -10,6 +10,8 @@ from ielts.models import (
     IELTSPracticeMode,
     IELTSWritingSubmission,
     IELTSWritingSubmissionStatus,
+    IELTSSpeakingSubmission,
+    IELTSSpeakingSubmissionStatus,
 )
 
 
@@ -483,5 +485,149 @@ class IELTSWritingHistorySerializer(serializers.ModelSerializer):
             "created_at",
         ]
         read_only_fields = fields
+
+
+# =============================================================================
+# SPEAKING SIMULATION SERIALIZERS (IELTS-005)
+# =============================================================================
+
+class IELTSSpeakingPromptSerializer(serializers.Serializer):
+    id = serializers.CharField()
+    title = serializers.CharField()
+    test_id = serializers.CharField(allow_null=True, required=False)
+    part1 = serializers.DictField()
+    part2 = serializers.DictField()
+    part3 = serializers.DictField()
+
+
+class IELTSSpeakingDraftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSSpeakingSubmission
+        fields = [
+            "id",
+            "test",
+            "session",
+            "status",
+            "part1_prompt_title",
+            "part1_questions",
+            "part1_recording_url",
+            "part1_transcript",
+            "part1_duration_seconds",
+            "part2_cue_card_title",
+            "part2_cue_card_prompt",
+            "part2_bullet_points",
+            "part2_prep_notes",
+            "part2_prep_time_seconds",
+            "part2_recording_url",
+            "part2_transcript",
+            "part2_duration_seconds",
+            "part3_prompt_title",
+            "part3_questions",
+            "part3_recording_url",
+            "part3_transcript",
+            "part3_duration_seconds",
+            "updated_at",
+        ]
+        read_only_fields = ["id", "status", "updated_at"]
+
+
+class IELTSSpeakingSubmitInputSerializer(serializers.Serializer):
+    submission_id = serializers.UUIDField(required=False, allow_null=True)
+    test_id = serializers.UUIDField(required=False, allow_null=True)
+    session_id = serializers.UUIDField(required=False, allow_null=True)
+
+    part1_prompt_title = serializers.CharField(required=False, allow_blank=True, default="")
+    part1_questions = serializers.ListField(child=serializers.CharField(), required=False, default=list)
+    part1_recording_url = serializers.CharField(required=False, allow_blank=True, default="")
+    part1_transcript = serializers.CharField(required=False, allow_blank=True, default="")
+    part1_duration_seconds = serializers.IntegerField(required=False, default=0)
+
+    part2_cue_card_title = serializers.CharField(required=False, allow_blank=True, default="")
+    part2_cue_card_prompt = serializers.CharField(required=False, allow_blank=True, default="")
+    part2_bullet_points = serializers.ListField(child=serializers.CharField(), required=False, default=list)
+    part2_prep_notes = serializers.CharField(required=False, allow_blank=True, default="")
+    part2_prep_time_seconds = serializers.IntegerField(required=False, default=60)
+    part2_recording_url = serializers.CharField(required=False, allow_blank=True, default="")
+    part2_transcript = serializers.CharField(required=False, allow_blank=True, default="")
+    part2_duration_seconds = serializers.IntegerField(required=False, default=0)
+
+    part3_prompt_title = serializers.CharField(required=False, allow_blank=True, default="")
+    part3_questions = serializers.ListField(child=serializers.CharField(), required=False, default=list)
+    part3_recording_url = serializers.CharField(required=False, allow_blank=True, default="")
+    part3_transcript = serializers.CharField(required=False, allow_blank=True, default="")
+    part3_duration_seconds = serializers.IntegerField(required=False, default=0)
+
+
+class IELTSSpeakingReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSSpeakingSubmission
+        fields = [
+            "id",
+            "learner",
+            "test",
+            "session",
+            "status",
+            "part1_prompt_title",
+            "part1_questions",
+            "part1_recording_url",
+            "part1_transcript",
+            "part1_duration_seconds",
+            "part2_cue_card_title",
+            "part2_cue_card_prompt",
+            "part2_bullet_points",
+            "part2_prep_notes",
+            "part2_prep_time_seconds",
+            "part2_recording_url",
+            "part2_transcript",
+            "part2_duration_seconds",
+            "part3_prompt_title",
+            "part3_questions",
+            "part3_recording_url",
+            "part3_transcript",
+            "part3_duration_seconds",
+            "fc_score",
+            "lr_score",
+            "gra_score",
+            "pr_score",
+            "overall_band",
+            "overall_band_min",
+            "overall_band_max",
+            "confidence_score",
+            "cefr_level",
+            "criteria_breakdown",
+            "fluency_metrics",
+            "pronunciation_diagnostics",
+            "annotations",
+            "pedagogical_advice",
+            "teacher_review_requested",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = fields
+
+
+class IELTSSpeakingHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IELTSSpeakingSubmission
+        fields = [
+            "id",
+            "status",
+            "part1_prompt_title",
+            "part2_cue_card_title",
+            "part3_prompt_title",
+            "overall_band",
+            "overall_band_min",
+            "overall_band_max",
+            "fc_score",
+            "lr_score",
+            "gra_score",
+            "pr_score",
+            "cefr_level",
+            "confidence_score",
+            "teacher_review_requested",
+            "created_at",
+        ]
+        read_only_fields = fields
+
 
 

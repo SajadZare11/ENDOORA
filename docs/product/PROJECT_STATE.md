@@ -1687,19 +1687,56 @@ Key accomplishments:
     - IELTS Practice Hub integration: direct quick-access banner and `writing_practice` mode in test cards.
     - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
   - Full verification: 167/167 static routes prerendered, TypeScript 0 errors, 62/62 backend tests passing.
+- **Day 47: IELTS Speaking Simulation and Evaluation Engine (IELTS-005)**
+  - Backend:
+    - Model `IELTSSpeakingSubmission` and `IELTSSpeakingSubmissionStatus` (`draft`, `submitted`, `evaluated`).
+    - Storage for Part 1, Part 2 (Cue Card notes, prep time, speak time), Part 3 prompts, audio URLs, transcripts, durations.
+    - 4 official criteria sub-scores (`fc_score`, `lr_score`, `gra_score`, `pr_score`), composite `overall_band`, uncertainty range (`[min – max]`), confidence score, and CEFR level.
+    - Structured diagnostics: `fluency_metrics` (WPM, pause, hesitations, discourse markers), `pronunciation_diagnostics` (Rule #8-compliant intelligibility score, pacing stability, Persian L1 phonological flags, syllable stress advice), `criteria_breakdown`, `annotations`, `pedagogical_advice`.
+    - Human examiner review escalation flag (`teacher_review_requested`).
+    - Migration `ielts.0004_ieltsspeakingsubmission` created and applied.
+    - Evaluator Engine (`ielts/speaking_evaluator.py`): Rule #8 compliant, optimal WPM (110–150), hesitation ratio, AWL density, complex clauses, Persian phonological interference (/w/ vs /v/, /θ/, cluster epenthesis), official half-band rounding.
+    - 7 REST endpoints in `ielts/views.py` & `ielts/urls.py` (prompts, draft create/detail, submit, report, history, request-teacher-review).
+    - `IELTSSpeakingSubmissionAdmin` registered in `ielts/admin.py`.
+    - 6 new integration tests in `ielts/tests.py` (68 total backend tests passing cleanly).
+  - Frontend:
+    - TypeScript client lib (`lib/ielts-speaking.ts`): full typed contracts and API client methods.
+    - Computer-Delivered IELTS Speaking Simulation Room (`/ielts/speaking` - IELTS-005):
+      - 15-minute countdown exam header with warning/danger states.
+      - Accessibility toolbar: font size scaling (Standard, Large, Extra Large) and contrast modes (Light, Dark).
+      - Biometric audio privacy & microphone consent modal with graceful text fallback.
+      - Part 1, Part 2, and Part 3 tab switcher with duration badges.
+      - Live 24-frequency-bar audio meter visualizer powered by Web Audio API (`AudioContext` + `AnalyserNode`).
+      - Audio recording with real-time Web Speech API transcription preview and editable transcript review.
+      - Audio playback player allowing candidate to review recorded sound quality.
+      - Part 2 Cue Card: 60-second preparation countdown timer with start/reset controls, notes scratchpad, and 120-second response timer.
+      - Debounced autosave indicator with timestamp.
+      - Confirmation modal with part completion summary before final submission.
+    - IELTS Speaking AI Evaluation & Diagnostic Report (`/ielts/speaking/report` - IELTS-005):
+      - Hero Score Card: Estimated Overall Band with uncertainty range (e.g. Band 7.0 [6.5 – 7.5]), confidence percentage, and CEFR badge.
+      - 4 Official Criteria Cards: Fluency & Coherence, Lexical Resource, Grammatical Range & Accuracy, Pronunciation with sub-scores, English descriptors, and Persian guidance.
+      - Acoustic & Fluency Telemetry: Words Per Minute (WPM), hesitation count, total duration, and discourse markers used.
+      - Pronunciation & Intelligibility Diagnostics (Rule #8): Intelligibility score (0–100), pacing stability, and Persian L1 phonological challenge alerts (/w/ vs /v/, /θ/, cluster epenthesis).
+      - Candidate Transcripts Reviewer: Part 1, Part 2, and Part 3 tabs with word counts and response durations.
+      - Actionable Persian pedagogical recommendations list.
+      - Certified Human Examiner Review Escalation CTA with status confirmation.
+    - IELTS Practice Hub integration: direct quick-access banner and `speaking_practice` mode in mock test cards.
+    - Full design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px.
+  - Full verification: 169/169 static routes prerendered, TypeScript 0 errors, 68/68 backend tests passing.
 
-## Git checkpoint (Day 46)
+## Git checkpoint (Day 47)
 
 ```
-Day 46: Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004)
+Day 47: Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005)
 ```
 
 ## Exact next day
 
-**Day 47 — Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005).**
+**Day 48 — Content Taxonomy & Versioned Question Bank Governance (CONTENT-001 / CONTENT-002).**
 
-Do not begin Day 47 until the Day 46 commit is pushed and `git status --short --branch`
+Do not begin Day 48 until the Day 47 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
 
 
 

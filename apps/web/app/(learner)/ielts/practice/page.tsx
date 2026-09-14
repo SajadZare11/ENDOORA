@@ -59,6 +59,10 @@ export default function IELTSPracticeHubPage() {
         router.push("/ielts/writing");
         return;
       }
+      if (mode === "speaking_practice") {
+        router.push(`/ielts/speaking?testId=${testId}`);
+        return;
+      }
       const session = await startIELTSSession(testId, mode);
       router.push(`/ielts/practice/${session.id}`);
     } catch (err) {
@@ -103,6 +107,19 @@ export default function IELTSPracticeHubPage() {
         </div>
         <Link href="/ielts/writing" className={styles.actionButton} style={{ textDecoration: "none", paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", margin: 0, inlineSize: "auto" }}>
           ورود به اتاق رایتینگ ➔
+        </Link>
+      </div>
+
+      {/* Speaking Simulation Quick Entry Banner */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", paddingInline: "var(--space-4)", paddingBlock: "var(--space-3)", flexWrap: "wrap", gap: "var(--space-3)" }}>
+        <div>
+          <strong style={{ fontSize: "var(--font-size-sm)" }}>🎙️ شبیه‌ساز مکالمه آیلتس (Speaking 3-Part Simulation)</strong>
+          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
+            مصاحبه تعاملی ۳ قسمتی، تایمر کیوکارت، ضبط و تحلیل آکوستیک روانی کلام بر پایه ۴ معیار رسمی.
+          </p>
+        </div>
+        <Link href="/ielts/speaking" className={styles.actionButton} style={{ textDecoration: "none", paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", margin: 0, inlineSize: "auto" }}>
+          ورود به اتاق اسپیکینگ ➔
         </Link>
       </div>
 
@@ -205,6 +222,13 @@ export default function IELTSPracticeHubPage() {
                       onClick={() => setSelectedModes({ ...selectedModes, [test.id]: "writing_practice" })}
                     >
                       تمرین اختصاصی Writing
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.modeBtn} ${currentMode === "speaking_practice" ? styles.modeBtnSelected : ""}`}
+                      onClick={() => setSelectedModes({ ...selectedModes, [test.id]: "speaking_practice" })}
+                    >
+                      تمرین اختصاصی Speaking
                     </button>
                   </div>
                 </div>

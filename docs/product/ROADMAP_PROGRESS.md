@@ -1574,7 +1574,75 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
 
 **Day 46 Status:** Completed.
-**Next day:** Day 47 — Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005).
+
+---
+
+### Day 47: Build IELTS Speaking Simulation and Evaluation Engine (IELTS-005)
+
+**Backend (`apps/api/ielts`):**
+- [x] Model `IELTSSpeakingSubmission` and status choices (`IELTSSpeakingSubmissionStatus`):
+  - Draft, Submitted, Evaluated status lifecycle
+  - Part 1 prompt, recording URL, transcript, duration
+  - Part 2 Cue Card prompt, bullet points, preparation scratchpad notes, prep time, recording URL, transcript, duration
+  - Part 3 discussion prompt, recording URL, transcript, duration
+  - 4 official IELTS criteria sub-scores: `fc_score` (Fluency & Coherence), `lr_score` (Lexical Resource), `gra_score` (Grammatical Range & Accuracy), `pr_score` (Pronunciation)
+  - Composite Band score, uncertainty range (`overall_band_min`, `overall_band_max`), confidence score, and CEFR level
+  - Structured diagnostics: `fluency_metrics` (WPM, pauses, hesitations, discourse markers), `pronunciation_diagnostics` (intelligibility score, pacing stability, Persian L1 phonological flags, syllable stress advice)
+  - Inline annotations, criteria breakdown, and Persian pedagogical recommendations
+  - Human examiner review escalation flag (`teacher_review_requested`)
+- [x] Migration `ielts.0004_ieltsspeakingsubmission` created and applied
+- [x] Speaking Evaluator Engine (`ielts/speaking_evaluator.py`):
+  - Product Constitution Rule #8 compliant (non-fabrication of phoneme percentages, communication intelligibility focus)
+  - Speech pacing (WPM): optimal target 110–150 WPM
+  - Hesitation analysis: filler ratio and discourse marker count
+  - Lexical Resource: Academic Word List (AWL) density and idiomatic collocations
+  - Grammatical Range & Accuracy: complex clauses, modal auxiliary verbs, and Persian transfer error rules
+  - Pronunciation & Intelligibility: pacing stability proxy and detection of Persian L1 phonological interference (/w/ vs /v/, /θ/ dental fricative, and consonant cluster vowel epenthesis)
+  - Official arithmetic mean of 4 criteria rounded with `round_to_ielts_half_band`
+- [x] REST API Endpoints (`ielts/views.py`, `ielts/urls.py`):
+  - `GET /api/ielts/speaking/prompts/` — 3-part authentic speaking prompts
+  - `POST /api/ielts/speaking/draft/` — debounced autosave endpoint
+  - `GET /api/ielts/speaking/draft/<id>/` — resume active speaking draft
+  - `POST /api/ielts/speaking/submit/` — submit and evaluate speaking interview
+  - `GET /api/ielts/speaking/report/<id>/` — multi-criteria diagnostic evaluation report
+  - `GET /api/ielts/speaking/history/` — candidate past speaking submissions
+  - `POST /api/ielts/speaking/<id>/request-teacher-review/` — request examiner review
+- [x] Admin Registration (`ielts/admin.py`): `IELTSSpeakingSubmissionAdmin` with status filters, search, and score summaries
+- [x] Test Suite (`ielts/tests.py`): 6 new comprehensive tests (68 total backend tests passing cleanly in 1.55s)
+
+**Frontend (`apps/web`):**
+- [x] TypeScript client lib (`lib/ielts-speaking.ts`): contracts for prompts, drafts, reports, criteria scores, acoustics, phonology, and API client functions
+- [x] Computer-Delivered IELTS Speaking Simulation Room (`/ielts/speaking` - IELTS-005):
+  - Examination header: 15-minute interview countdown clock with warning/danger states
+  - Accessibility toolbar: font size scaling (Standard, Large, Extra Large) and contrast modes (Light, Dark)
+  - Biometric audio privacy & microphone consent modal with graceful text fallback
+  - Part 1, Part 2, and Part 3 tab switcher with duration badges
+  - Live 24-frequency-bar audio meter visualizer powered by Web Audio API (`AudioContext` + `AnalyserNode`)
+  - Audio recording with real-time Web Speech API transcription preview and editable transcript review
+  - Audio playback player allowing candidate to review recorded sound quality
+  - Part 2 Cue Card: 60-second preparation countdown timer with start/reset controls, notes scratchpad, and 120-second response timer
+  - Debounced autosave indicator with timestamp
+  - Confirmation modal with part completion summary before final submission
+- [x] IELTS Speaking AI Evaluation & Diagnostic Report (`/ielts/speaking/report` - IELTS-005):
+  - Hero Score Card: Estimated Overall Band with uncertainty range (e.g. Band 7.0 [6.5 – 7.5]), confidence percentage, and CEFR badge
+  - 4 Official Criteria Cards: Fluency & Coherence, Lexical Resource, Grammatical Range & Accuracy, Pronunciation with sub-scores, English descriptors, and Persian guidance
+  - Acoustic & Fluency Telemetry: Words Per Minute (WPM), hesitation count, total duration, and discourse markers used
+  - Pronunciation & Intelligibility Diagnostics (Rule #8): Intelligibility score (0–100), pacing stability, and Persian L1 phonological challenge alerts (/w/ vs /v/, /θ/, cluster epenthesis)
+  - Candidate Transcripts Reviewer: Part 1, Part 2, and Part 3 tabs with word counts and response durations
+  - Actionable Persian pedagogical recommendations list
+  - Certified Human Examiner Review Escalation CTA with status confirmation
+- [x] IELTS Practice Hub integration: direct quick-access banner and `speaking_practice` mode in mock test cards
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties, responsive down to 360px
+
+**Verification:**
+- [x] Backend tests: 68/68 unit tests passing cleanly in 1.55s (25 ielts + 8 ledger + 35 marketplace)
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`
+- [x] Next.js production build: 169/169 pages generated cleanly (added `/ielts/speaking` & `/ielts/speaking/report`)
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
+
+**Day 47 Status:** Completed.
+**Next day:** Day 48 — Content Taxonomy & Versioned Question Bank Governance (CONTENT-001 / CONTENT-002).
+
 
 
 

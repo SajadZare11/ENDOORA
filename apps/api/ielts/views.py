@@ -14,6 +14,8 @@ from ielts.models import (
     IELTSAttemptStatus,
     IELTSWritingSubmission,
     IELTSWritingSubmissionStatus,
+    IELTSSpeakingSubmission,
+    IELTSSpeakingSubmissionStatus,
     IELTSPassageTask,
     IELTSSectionType,
 )
@@ -31,8 +33,14 @@ from ielts.serializers import (
     IELTSWritingSubmitInputSerializer,
     IELTSWritingReportSerializer,
     IELTSWritingHistorySerializer,
+    IELTSSpeakingPromptSerializer,
+    IELTSSpeakingDraftSerializer,
+    IELTSSpeakingSubmitInputSerializer,
+    IELTSSpeakingReportSerializer,
+    IELTSSpeakingHistorySerializer,
 )
 from ielts.writing_evaluator import count_words, evaluate_ielts_writing_submission
+from ielts.speaking_evaluator import count_spoken_words, evaluate_ielts_speaking_submission
 from ielts.services import (
     submit_test_for_review,
     review_and_approve_test,
@@ -648,5 +656,322 @@ class IELTSWritingTeacherReviewRequestView(APIView):
             "message": "درخواست بازبینی و تصحیح توسط اگزمینر رسمی اندورا با موفقیت ثبت شد.",
             "submission_id": str(submission.id),
         })
+
+
+# =============================================================================
+# IELTS SPEAKING SIMULATION & AI EVALUATION VIEWS (IELTS-005)
+# =============================================================================
+
+DEFAULT_SPEAKING_PROMPT = {
+    "id": "default-speaking-sim",
+    "title": "Endoora Academic Speaking Diagnostic 01",
+    "test_id": None,
+    "part1": {
+        "title": "Part 1: Daily Habits, Neighborhood & Technology",
+        "instructions": "The examiner asks general questions about your background, living area, and daily morning routines.",
+        "questions": [
+            "What do you enjoy most about the neighborhood where you currently reside?",
+            "Has your personal morning routine altered noticeably over the past two years?",
+            "Do you prefer studying or working in the early morning or late evening? Why?",
+        ],
+    },
+    "part2": {
+        "title": "Part 2: Long Turn (Cue Card)",
+        "cue_card_prompt": (
+            "Describe a complex practical skill you acquired independently outside of a formal educational institution.\n\n"
+            "You should say:\n"
+            "- What skill you acquired\n"
+            "- Why you decided to pursue it independently\n"
+            "- What resources or learning techniques you utilized\n\n"
+            "and explain what obstacles you encountered and how you felt once you achieved proficiency."
+        ),
+        "bullet_points": [
+            "What skill you acquired",
+            "Why you decided to pursue it independently",
+            "What resources or learning techniques you utilized",
+            "Explain obstacles encountered and how you felt upon achieving proficiency",
+        ],
+        "prep_time_seconds": 60,
+        "speaking_time_seconds": 120,
+    },
+    "part3": {
+        "title": "Part 3: Discussion on Lifelong Education & Autonomous Learning",
+        "instructions": "The examiner explores deeper, abstract questions regarding self-directed learning and workplace demands.",
+        "questions": [
+            "Why do many adults find self-directed online tutorials more productive than conventional classroom courses?",
+            "In the coming decades, will demonstrable project portfolios overshadow traditional degree credentials in hiring decisions?",
+            "What role should national educational systems play in supporting continuous adult upskilling?",
+        ],
+    },
+}
+
+
+class IELTSSpeakingPromptsCatalogView(APIView):
+    """
+    Returns available 3-part Speaking simulation prompts from seeded published tests or default bank.
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        prompts = []
+        # Query published speaking tasks
+        tasks = IELTSPassageTask.objects.filter(
+            section__section_type=IELTSSectionType.SPEAKING,
+            section__test__status=IELTSTestStatus.PUBLISHED,
+        ).select_related("section__test").prefetch_related("question_groups__questions")
+
+        if tasks.exists():
+            test_map = {}
+            for t in tasks:
+                t_id = str(t.section.test.id)
+                if t_id not in test_map:
+                    test_map[t_id] = {
+                        "id": t_id,
+                        "title": t.section.test.title_en,
+                        "test_id": t_id,
+                        "part1": {"title": "Part 1: Introduction", "instructions": "", "questions": []},
+                        "part2": {"title": "Part 2: Long Turn (Cue Card)", "cue_card_prompt": "", "bullet_points": [], "prep_time_seconds": 60, "speaking_time_seconds": 120},
+                        "part3": {"title": "Part 3: Discussion", "instructions": "", "questions": []},
+                    }
+
+                # Extract questions
+                qs = []
+                for g in t.question_groups.all():
+                    for q in g.questions.all():
+                        qs.append(q.prompt_text)
+
+                if t.order == 1:
+                    test_map[t_id]["part1"]["title"] = t.title
+                    test_map[t_id]["part1"]["instructions"] = t.content_text
+                    test_map[t_id]["part1"]["questions"] = qs or DEFAULT_SPEAKING_PROMPT["part1"]["questions"]
+                elif t.order == 2:
+                    test_map[t_id]["part2"]["title"] = t.title
+                    test_map[t_id]["part2"]["cue_card_prompt"] = t.content_text
+                    test_map[t_id]["part2"]["bullet_points"] = DEFAULT_SPEAKING_PROMPT["part2"]["bullet_points"]
+                elif t.order == 3:
+                    test_map[t_id]["part3"]["title"] = t.title
+                    test_map[t_id]["part3"]["instructions"] = t.content_text
+                    test_map[t_id]["part3"]["questions"] = qs or DEFAULT_SPEAKING_PROMPT["part3"]["questions"]
+
+            prompts = list(test_map.values())
+        else:
+            prompts = [DEFAULT_SPEAKING_PROMPT]
+
+        return Response(IELTSSpeakingPromptSerializer(prompts, many=True).data)
+
+
+class IELTSSpeakingDraftView(APIView):
+    """
+    Autosaves or retrieves an in-progress speaking draft (IELTS-005).
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, submission_id=None):
+        if submission_id:
+            submission = get_object_or_404(
+                IELTSSpeakingSubmission,
+                pk=submission_id,
+                learner=request.user,
+            )
+        else:
+            submission = IELTSSpeakingSubmission.objects.filter(
+                learner=request.user,
+                status=IELTSSpeakingSubmissionStatus.DRAFT,
+            ).order_by("-updated_at").first()
+
+        if not submission:
+            return Response(
+                {"detail": "پیش‌نویس فعال آزمون مکالمه یافت نشد."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        return Response(IELTSSpeakingDraftSerializer(submission).data)
+
+    def post(self, request, submission_id=None):
+        data = request.data
+        sub_id = submission_id or data.get("submission_id")
+
+        if sub_id:
+            submission = get_object_or_404(
+                IELTSSpeakingSubmission,
+                pk=sub_id,
+                learner=request.user,
+            )
+            submission.part1_prompt_title = data.get("part1_prompt_title", submission.part1_prompt_title)
+            submission.part1_questions = data.get("part1_questions", submission.part1_questions)
+            submission.part1_recording_url = data.get("part1_recording_url", submission.part1_recording_url)
+            submission.part1_transcript = data.get("part1_transcript", submission.part1_transcript)
+            submission.part1_duration_seconds = data.get("part1_duration_seconds", submission.part1_duration_seconds)
+
+            submission.part2_cue_card_title = data.get("part2_cue_card_title", submission.part2_cue_card_title)
+            submission.part2_cue_card_prompt = data.get("part2_cue_card_prompt", submission.part2_cue_card_prompt)
+            submission.part2_bullet_points = data.get("part2_bullet_points", submission.part2_bullet_points)
+            submission.part2_prep_notes = data.get("part2_prep_notes", submission.part2_prep_notes)
+            submission.part2_prep_time_seconds = data.get("part2_prep_time_seconds", submission.part2_prep_time_seconds)
+            submission.part2_recording_url = data.get("part2_recording_url", submission.part2_recording_url)
+            submission.part2_transcript = data.get("part2_transcript", submission.part2_transcript)
+            submission.part2_duration_seconds = data.get("part2_duration_seconds", submission.part2_duration_seconds)
+
+            submission.part3_prompt_title = data.get("part3_prompt_title", submission.part3_prompt_title)
+            submission.part3_questions = data.get("part3_questions", submission.part3_questions)
+            submission.part3_recording_url = data.get("part3_recording_url", submission.part3_recording_url)
+            submission.part3_transcript = data.get("part3_transcript", submission.part3_transcript)
+            submission.part3_duration_seconds = data.get("part3_duration_seconds", submission.part3_duration_seconds)
+            submission.save()
+        else:
+            submission = IELTSSpeakingSubmission.objects.create(
+                learner=request.user,
+                status=IELTSSpeakingSubmissionStatus.DRAFT,
+                part1_prompt_title=data.get("part1_prompt_title", DEFAULT_SPEAKING_PROMPT["part1"]["title"]),
+                part1_questions=data.get("part1_questions", DEFAULT_SPEAKING_PROMPT["part1"]["questions"]),
+                part1_recording_url=data.get("part1_recording_url", ""),
+                part1_transcript=data.get("part1_transcript", ""),
+                part1_duration_seconds=data.get("part1_duration_seconds", 0),
+                part2_cue_card_title=data.get("part2_cue_card_title", DEFAULT_SPEAKING_PROMPT["part2"]["title"]),
+                part2_cue_card_prompt=data.get("part2_cue_card_prompt", DEFAULT_SPEAKING_PROMPT["part2"]["cue_card_prompt"]),
+                part2_bullet_points=data.get("part2_bullet_points", DEFAULT_SPEAKING_PROMPT["part2"]["bullet_points"]),
+                part2_prep_notes=data.get("part2_prep_notes", ""),
+                part2_prep_time_seconds=data.get("part2_prep_time_seconds", 60),
+                part2_recording_url=data.get("part2_recording_url", ""),
+                part2_transcript=data.get("part2_transcript", ""),
+                part2_duration_seconds=data.get("part2_duration_seconds", 0),
+                part3_prompt_title=data.get("part3_prompt_title", DEFAULT_SPEAKING_PROMPT["part3"]["title"]),
+                part3_questions=data.get("part3_questions", DEFAULT_SPEAKING_PROMPT["part3"]["questions"]),
+                part3_recording_url=data.get("part3_recording_url", ""),
+                part3_transcript=data.get("part3_transcript", ""),
+                part3_duration_seconds=data.get("part3_duration_seconds", 0),
+            )
+
+        return Response({
+            "success": True,
+            "submission_id": str(submission.id),
+            "status": submission.status,
+            "part1_words": count_spoken_words(submission.part1_transcript),
+            "part2_words": count_spoken_words(submission.part2_transcript),
+            "part3_words": count_spoken_words(submission.part3_transcript),
+            "updated_at": submission.updated_at.isoformat(),
+        })
+
+
+class IELTSSpeakingSubmitView(APIView):
+    """
+    Evaluates and grades a candidate's complete 3-part IELTS Speaking simulation via multi-criteria AI rubric (IELTS-005).
+    """
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = IELTSSpeakingSubmitInputSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        vd = serializer.validated_data
+        sub_id = vd.get("submission_id")
+
+        if sub_id:
+            submission = get_object_or_404(
+                IELTSSpeakingSubmission,
+                pk=sub_id,
+                learner=request.user,
+            )
+        else:
+            submission = IELTSSpeakingSubmission(learner=request.user)
+
+        submission.part1_prompt_title = vd.get("part1_prompt_title") or submission.part1_prompt_title or DEFAULT_SPEAKING_PROMPT["part1"]["title"]
+        submission.part1_questions = vd.get("part1_questions") or submission.part1_questions or DEFAULT_SPEAKING_PROMPT["part1"]["questions"]
+        submission.part1_recording_url = vd.get("part1_recording_url", submission.part1_recording_url)
+        submission.part1_transcript = vd.get("part1_transcript", submission.part1_transcript)
+        submission.part1_duration_seconds = vd.get("part1_duration_seconds", submission.part1_duration_seconds)
+
+        submission.part2_cue_card_title = vd.get("part2_cue_card_title") or submission.part2_cue_card_title or DEFAULT_SPEAKING_PROMPT["part2"]["title"]
+        submission.part2_cue_card_prompt = vd.get("part2_cue_card_prompt") or submission.part2_cue_card_prompt or DEFAULT_SPEAKING_PROMPT["part2"]["cue_card_prompt"]
+        submission.part2_bullet_points = vd.get("part2_bullet_points") or submission.part2_bullet_points or DEFAULT_SPEAKING_PROMPT["part2"]["bullet_points"]
+        submission.part2_prep_notes = vd.get("part2_prep_notes", submission.part2_prep_notes)
+        submission.part2_prep_time_seconds = vd.get("part2_prep_time_seconds", submission.part2_prep_time_seconds)
+        submission.part2_recording_url = vd.get("part2_recording_url", submission.part2_recording_url)
+        submission.part2_transcript = vd.get("part2_transcript", submission.part2_transcript)
+        submission.part2_duration_seconds = vd.get("part2_duration_seconds", submission.part2_duration_seconds)
+
+        submission.part3_prompt_title = vd.get("part3_prompt_title") or submission.part3_prompt_title or DEFAULT_SPEAKING_PROMPT["part3"]["title"]
+        submission.part3_questions = vd.get("part3_questions") or submission.part3_questions or DEFAULT_SPEAKING_PROMPT["part3"]["questions"]
+        submission.part3_recording_url = vd.get("part3_recording_url", submission.part3_recording_url)
+        submission.part3_transcript = vd.get("part3_transcript", submission.part3_transcript)
+        submission.part3_duration_seconds = vd.get("part3_duration_seconds", submission.part3_duration_seconds)
+
+        # Run multi-dimensional AI Speaking Evaluation
+        eval_result = evaluate_ielts_speaking_submission(
+            part1_transcript=submission.part1_transcript,
+            part1_duration_seconds=submission.part1_duration_seconds,
+            part2_transcript=submission.part2_transcript,
+            part2_duration_seconds=submission.part2_duration_seconds,
+            part3_transcript=submission.part3_transcript,
+            part3_duration_seconds=submission.part3_duration_seconds,
+        )
+
+        submission.status = IELTSSpeakingSubmissionStatus.EVALUATED
+        submission.fc_score = eval_result["fc_score"]
+        submission.lr_score = eval_result["lr_score"]
+        submission.gra_score = eval_result["gra_score"]
+        submission.pr_score = eval_result["pr_score"]
+        submission.overall_band = eval_result["overall_band"]
+        submission.overall_band_min = eval_result["overall_band_min"]
+        submission.overall_band_max = eval_result["overall_band_max"]
+        submission.confidence_score = eval_result["confidence_score"]
+        submission.cefr_level = eval_result["cefr_level"]
+        submission.criteria_breakdown = eval_result["criteria_breakdown"]
+        submission.fluency_metrics = eval_result["fluency_metrics"]
+        submission.pronunciation_diagnostics = eval_result["pronunciation_diagnostics"]
+        submission.annotations = eval_result["annotations"]
+        submission.pedagogical_advice = eval_result["pedagogical_advice"]
+        submission.save()
+
+        return Response(IELTSSpeakingReportSerializer(submission).data, status=status.HTTP_201_CREATED)
+
+
+class IELTSSpeakingReportView(APIView):
+    """
+    Returns full diagnostic evaluation report for an evaluated speaking submission (IELTS-005).
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, submission_id):
+        submission = get_object_or_404(
+            IELTSSpeakingSubmission,
+            pk=submission_id,
+            learner=request.user,
+        )
+        return Response(IELTSSpeakingReportSerializer(submission).data)
+
+
+class IELTSSpeakingHistoryView(APIView):
+    """
+    Candidate's past IELTS Speaking attempts history.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        qs = IELTSSpeakingSubmission.objects.filter(learner=request.user).order_by("-created_at")
+        return Response(IELTSSpeakingHistorySerializer(qs, many=True).data)
+
+
+class IELTSSpeakingTeacherReviewRequestView(APIView):
+    """
+    Escalates an AI-evaluated speaking attempt to a certified human IELTS examiner/teacher.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, submission_id):
+        submission = get_object_or_404(
+            IELTSSpeakingSubmission,
+            pk=submission_id,
+            learner=request.user,
+        )
+        submission.teacher_review_requested = True
+        submission.save()
+        return Response({
+            "success": True,
+            "message": "درخواست بازبینی و تصحیح آزمون اسپیکینگ توسط اگزمینر رسمی اندورا با موفقیت ثبت شد.",
+            "submission_id": str(submission.id),
+        })
+
 
 

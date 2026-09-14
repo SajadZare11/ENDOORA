@@ -617,3 +617,176 @@ class IELTSWritingSubmission(models.Model):
         return f"Writing Submission {self.id} - {self.learner} (Band: {self.overall_band or 'Pending'})"
 
 
+class IELTSSpeakingSubmissionStatus(models.TextChoices):
+    DRAFT = "draft", _("Draft / پیش‌نویس")
+    SUBMITTED = "submitted", _("Submitted / ارسال‌شده")
+    EVALUATED = "evaluated", _("Evaluated / ارزیابی‌شده")
+
+
+class IELTSSpeakingSubmission(models.Model):
+    """
+    Candidate's IELTS Speaking simulation attempt (IELTS-005).
+    Tracks audio recording URLs, transcripts, pacing telemetry, multi-criteria scores,
+    Rule #8-compliant pronunciation intelligibility diagnostics, and examiner escalation.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="ielts_speaking_submissions",
+        help_text="زبان‌آموز متقاضی آزمون مکالمه",
+    )
+    test = models.ForeignKey(
+        IELTSTest,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="speaking_submissions",
+        help_text="آزمون مرتبط (اختیاری در صورت تمرین مستقل)",
+    )
+    session = models.ForeignKey(
+        IELTSTestSession,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="speaking_submissions",
+        help_text="جلسه آزمون مرتبط در صورت ماک جامع",
+    )
+    status = models.CharField(
+        max_length=24,
+        choices=IELTSSpeakingSubmissionStatus.choices,
+        default=IELTSSpeakingSubmissionStatus.DRAFT,
+        db_index=True,
+    )
+
+    # Part 1: Familiar Topics & Introduction
+    part1_prompt_title = models.CharField(max_length=255, blank=True, default="")
+    part1_questions = models.JSONField(default=list, blank=True, help_text="فهرست سوالات پارت ۱")
+    part1_recording_url = models.URLField(blank=True, default="")
+    part1_transcript = models.TextField(blank=True, default="")
+    part1_duration_seconds = models.PositiveIntegerField(default=0)
+
+    # Part 2: Long Turn (Cue Card)
+    part2_cue_card_title = models.CharField(max_length=255, blank=True, default="")
+    part2_cue_card_prompt = models.TextField(blank=True, default="")
+    part2_bullet_points = models.JSONField(default=list, blank=True)
+    part2_prep_notes = models.TextField(blank=True, default="", help_text="یادداشت‌های ۱ دقیقه‌ای داوطلب")
+    part2_prep_time_seconds = models.PositiveIntegerField(default=60)
+    part2_recording_url = models.URLField(blank=True, default="")
+    part2_transcript = models.TextField(blank=True, default="")
+    part2_duration_seconds = models.PositiveIntegerField(default=0)
+
+    # Part 3: Abstract Discussion
+    part3_prompt_title = models.CharField(max_length=255, blank=True, default="")
+    part3_questions = models.JSONField(default=list, blank=True, help_text="فهرست سوالات تحلیلی پارت ۳")
+    part3_recording_url = models.URLField(blank=True, default="")
+    part3_transcript = models.TextField(blank=True, default="")
+    part3_duration_seconds = models.PositiveIntegerField(default=0)
+
+    # 4 Criteria Sub-scores (Arithmetic mean = Overall Band)
+    fc_score = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="Fluency and Coherence (FC) نمره روانی و انسجام کلامی",
+    )
+    lr_score = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="Lexical Resource (LR) نمره دامنه واژگان و اصطلاحات",
+    )
+    gra_score = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="Grammatical Range and Accuracy (GRA) نمره تنوع و دقت گرامری",
+    )
+    pr_score = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="Pronunciation (PR) نمره تلفظ، ریتم و وضوح کلامی",
+    )
+
+    # Composite Overall Band & Uncertainty Range (Beta estimation)
+    overall_band = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="میانگین ۴ معیار با گرد کردن نیم‌باندی رسمی آیلتس",
+    )
+    overall_band_min = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="حداقل بازه اطمینان تخمین باند",
+    )
+    overall_band_max = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        help_text="حداکثر بازه اطمینان تخمین باند",
+    )
+    confidence_score = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=Decimal("0.85"),
+        help_text="درجه اطمینان مدل تشخیصی به نمره تخمین‌زده‌شده (۰ تا ۱)",
+    )
+    cefr_level = models.CharField(
+        max_length=8,
+        default="B2",
+        help_text="سطح معادل CEFR (مثلاً B2 یا C1)",
+    )
+
+    # Diagnostic breakdowns
+    criteria_breakdown = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="توصیف‌گرهای تفکیکی ۴ معیار رسمی",
+    )
+    fluency_metrics = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="شاخص‌های روانی کلام: سرعت سخن‌گویی (WPM)، مکث‌ها، تکرارها و مارکرهای پیوستگی",
+    )
+    pronunciation_diagnostics = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="تحلیل وضوح گفتاری و تشخیص چالش‌های آوایی بومی زبان فارسی (قانون ۸ مرامنامه)",
+    )
+    annotations = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="یادداشت‌ها و پیشنهادهای درون‌متنی روی متن پیاده‌شده",
+    )
+    pedagogical_advice = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="توصیه‌های آموزشی به فارسی برای ارتقای نمره اسپیکینگ",
+    )
+    teacher_review_requested = models.BooleanField(
+        default=False,
+        help_text="درخواست ارزیابی رسمی توسط اگزمینر انسان",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = _("IELTS Speaking Submission")
+        verbose_name_plural = _("IELTS Speaking Submissions")
+
+    def __str__(self):
+        return f"Speaking Submission {self.id} - {self.learner} (Band: {self.overall_band or 'Pending'})"
+
+
+

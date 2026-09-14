@@ -581,9 +581,196 @@ class IELTSWritingSimulationAndEvaluationTests(TestCase):
         self.assertTrue(resp_tr.data["success"])
 
         # Check in database
+        # Check in database
         from ielts.models import IELTSWritingSubmission
         sub = IELTSWritingSubmission.objects.get(id=sub_id)
         self.assertTrue(sub.teacher_review_requested)
+
+
+class IELTSSpeakingSimulationAndEvaluationTests(TestCase):
+    """
+    Tests for Computer-Delivered IELTS Speaking simulation (IELTS-005):
+    - 4 official criteria evaluation (FC, LR, GRA, PR)
+    - Speech rate (WPM) & Rule #8-compliant acoustic/intelligibility diagnostics
+    - Persian phonological interference pattern detection
+    - 3-part simulation prompts, draft autosave/resume, report, history, and human examiner escalation.
+    """
+    def setUp(self):
+        self.learner = User.objects.create_user(
+            email="speaking.learner@endoora.ir",
+            password="TestPassword123!",
+            first_name="سارا",
+            last_name="احمدی",
+            role=User.Role.LEARNER,
+        )
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.learner)
+
+    def test_speaking_evaluator_scoring_and_rounding(self):
+        """Verifies 4 criteria sub-scores and half-band rounding for IELTS Speaking."""
+        from ielts.speaking_evaluator import evaluate_ielts_speaking_submission
+
+        part1_text = (
+            "Well, to be honest, I live in a vibrant neighborhood in northern Tehran. "
+            "What I enjoy most is the proximity to local parks and the warm community atmosphere. "
+            "Over the past two years, my morning routine has altered considerably because I now dedicate forty minutes to exercise."
+        )
+        part2_text = (
+            "I would like to speak about learning computer programming independently outside of any university course. "
+            "Three years ago, I decided to acquire Python because I wanted to automate data analysis tasks at work. "
+            "I utilized state-of-the-art online documentation and interactive problem-solving tutorials. "
+            "Although I encountered significant obstacles with complex algorithms, I persisted in practicing every evening. "
+            "In the long run, achieving proficiency played a crucial role in boosting my confidence and career prospects."
+        )
+        part3_text = (
+            "From my perspective, many adults favor self-directed online learning because of its flexibility. "
+            "Furthermore, in contemporary workplace environments, demonstrable project portfolios will likely overshadow "
+            "traditional degree credentials in hiring decisions, whereas rigid university curricula often lag behind technology."
+        )
+
+        result = evaluate_ielts_speaking_submission(
+            part1_transcript=part1_text,
+            part1_duration_seconds=45,
+            part2_transcript=part2_text,
+            part2_duration_seconds=95,
+            part3_transcript=part3_text,
+            part3_duration_seconds=60,
+        )
+
+        self.assertIn("overall_band", result)
+        self.assertGreaterEqual(result["overall_band"], 6.0)
+        self.assertLessEqual(result["overall_band"], 8.5)
+        # Check standard half band
+        self.assertIn(result["overall_band"] % 0.5, [0.0])
+        self.assertIn("fc_score", result)
+        self.assertIn("lr_score", result)
+        self.assertIn("gra_score", result)
+        self.assertIn("pr_score", result)
+        self.assertIn("criteria_breakdown", result)
+        self.assertIn("fluency_metrics", result)
+        self.assertIn("pronunciation_diagnostics", result)
+
+    def test_speaking_evaluator_pacing_and_phonology_flags(self):
+        """Verifies calculation of speech rate (WPM) and Persian L1 phonological interference detection."""
+        from ielts.speaking_evaluator import evaluate_ielts_speaking_submission
+
+        # Text containing Persian phonological challenge words (/w/, /th/, consonant clusters: world, think, sport, student)
+        phonology_text = (
+            "In this wonderful world, we think that every student should play sport and develop a special skill with passion."
+        )
+
+        result = evaluate_ielts_speaking_submission(
+            part1_transcript=phonology_text,
+            part1_duration_seconds=30,
+        )
+
+        metrics = result["fluency_metrics"]
+        self.assertGreater(metrics["composite_wpm"], 0)
+        diagnostics = result["pronunciation_diagnostics"]
+        self.assertIn("persian_phonological_flags", diagnostics)
+        flags = [f["sound"] for f in diagnostics["persian_phonological_flags"]]
+        # Verify phonology sounds detected
+        self.assertTrue(any(s in flags for s in ["/w/ vs /v/", "/θ/ vs /s/ or /t/", "Consonant Cluster Epenthesis"]))
+
+    def test_speaking_prompts_catalog_api(self):
+        """GET /api/ielts/speaking/prompts/ returns 3-part speaking simulation prompts."""
+        resp = self.client.get("/api/ielts/speaking/prompts/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertGreaterEqual(len(resp.data), 1)
+        first_prompt = resp.data[0]
+        self.assertIn("part1", first_prompt)
+        self.assertIn("part2", first_prompt)
+        self.assertIn("part3", first_prompt)
+        self.assertIn("questions", first_prompt["part1"])
+        self.assertIn("cue_card_prompt", first_prompt["part2"])
+        self.assertIn("prep_time_seconds", first_prompt["part2"])
+        self.assertEqual(first_prompt["part2"]["prep_time_seconds"], 60)
+        self.assertEqual(first_prompt["part2"]["speaking_time_seconds"], 120)
+
+    def test_speaking_draft_autosave_and_retrieval_api(self):
+        """POST and GET /api/ielts/speaking/draft/ persists and restores candidate progress."""
+        resp = self.client.post(
+            "/api/ielts/speaking/draft/",
+            data={
+                "part1_transcript": "I live in a peaceful neighborhood.",
+                "part1_duration_seconds": 25,
+                "part2_prep_notes": "Skill: Python. Reason: Automation. Outcome: Success.",
+                "part2_transcript": "I learned programming independently two years ago.",
+                "part2_duration_seconds": 80,
+            },
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp.data["success"])
+        sub_id = resp.data["submission_id"]
+
+        # Retrieve draft
+        resp_get = self.client.get("/api/ielts/speaking/draft/")
+        self.assertEqual(resp_get.status_code, 200)
+        self.assertEqual(resp_get.data["id"], sub_id)
+        self.assertEqual(resp_get.data["part2_prep_notes"], "Skill: Python. Reason: Automation. Outcome: Success.")
+
+    def test_speaking_submit_and_report_api(self):
+        """POST /api/ielts/speaking/submit/ evaluates speaking attempt and returns diagnostic report."""
+        p1 = "To be honest, my hometown is dynamic and rich in cultural heritage."
+        p2 = (
+            "I would like to describe a practical skill I learned independently, namely digital illustration. "
+            "I utilized state-of-the-art tutorials and dedicated two hours daily. "
+            "In the long run, achieving proficiency played a vital role in my professional career."
+        )
+        p3 = "Furthermore, autonomous online education fosters crucial self-discipline in adults."
+
+        resp = self.client.post(
+            "/api/ielts/speaking/submit/",
+            data={
+                "part1_transcript": p1,
+                "part1_duration_seconds": 30,
+                "part2_transcript": p2,
+                "part2_duration_seconds": 85,
+                "part3_transcript": p3,
+                "part3_duration_seconds": 40,
+            },
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 201)
+        sub_id = resp.data["id"]
+        self.assertEqual(resp.data["status"], "evaluated")
+        self.assertIn("overall_band", resp.data)
+        self.assertIn("fc_score", resp.data)
+        self.assertIn("lr_score", resp.data)
+        self.assertIn("gra_score", resp.data)
+        self.assertIn("pr_score", resp.data)
+        self.assertIn("criteria_breakdown", resp.data)
+        self.assertIn("fluency_metrics", resp.data)
+
+        # GET Report
+        resp_rep = self.client.get(f"/api/ielts/speaking/report/{sub_id}/")
+        self.assertEqual(resp_rep.status_code, 200)
+        self.assertEqual(resp_rep.data["id"], sub_id)
+        self.assertEqual(resp_rep.data["status"], "evaluated")
+
+        # GET History
+        resp_hist = self.client.get("/api/ielts/speaking/history/")
+        self.assertEqual(resp_hist.status_code, 200)
+        self.assertGreaterEqual(len(resp_hist.data), 1)
+
+    def test_speaking_teacher_review_escalation_api(self):
+        """POST /api/ielts/speaking/<id>/request-teacher-review/ flags submission for human examiner review."""
+        resp = self.client.post(
+            "/api/ielts/speaking/submit/",
+            data={"part1_transcript": "A brief speaking test response."},
+            format="json",
+        )
+        sub_id = resp.data["id"]
+
+        resp_esc = self.client.post(f"/api/ielts/speaking/{sub_id}/request-teacher-review/")
+        self.assertEqual(resp_esc.status_code, 200)
+        self.assertTrue(resp_esc.data["success"])
+
+        from ielts.models import IELTSSpeakingSubmission
+        submission = IELTSSpeakingSubmission.objects.get(id=sub_id)
+        self.assertTrue(submission.teacher_review_requested)
+
 
 
 

@@ -8,6 +8,7 @@ from ielts.models import (
     IELTSBandDescriptor,
     IELTSTestSession,
     IELTSWritingSubmission,
+    IELTSSpeakingSubmission,
 )
 
 
@@ -115,5 +116,28 @@ class IELTSWritingSubmissionAdmin(admin.ModelAdmin):
     list_filter = ["status", "cefr_level", "teacher_review_requested"]
     search_fields = ["learner__email", "task1_prompt_title", "task2_prompt_title"]
     readonly_fields = ["id", "created_at", "updated_at"]
+
+
+@admin.register(IELTSSpeakingSubmission)
+class IELTSSpeakingSubmissionAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "learner",
+        "status",
+        "overall_band",
+        "overall_band_min",
+        "overall_band_max",
+        "fc_score",
+        "lr_score",
+        "gra_score",
+        "pr_score",
+        "cefr_level",
+        "teacher_review_requested",
+        "created_at",
+    ]
+    list_filter = ["status", "cefr_level", "teacher_review_requested"]
+    search_fields = ["learner__email", "part1_prompt_title", "part2_cue_card_title", "part3_prompt_title"]
+    readonly_fields = ["id", "created_at", "updated_at"]
+
 
 

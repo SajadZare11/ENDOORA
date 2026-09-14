@@ -22,6 +22,12 @@ from ielts.views import (
     IELTSWritingReportView,
     IELTSWritingHistoryView,
     IELTSWritingTeacherReviewRequestView,
+    IELTSSpeakingPromptsCatalogView,
+    IELTSSpeakingDraftView,
+    IELTSSpeakingSubmitView,
+    IELTSSpeakingReportView,
+    IELTSSpeakingHistoryView,
+    IELTSSpeakingTeacherReviewRequestView,
 )
 
 urlpatterns = [
@@ -55,5 +61,15 @@ urlpatterns = [
     path("writing/report/<uuid:submission_id>/", IELTSWritingReportView.as_view(), name="ielts-writing-report"),
     path("writing/history/", IELTSWritingHistoryView.as_view(), name="ielts-writing-history"),
     path("writing/<uuid:submission_id>/request-teacher-review/", IELTSWritingTeacherReviewRequestView.as_view(), name="ielts-writing-teacher-review"),
+
+    # IELTS Speaking Simulation & AI Evaluation Engine (IELTS-005)
+    path("speaking/prompts/", IELTSSpeakingPromptsCatalogView.as_view(), name="ielts-speaking-prompts"),
+    path("speaking/draft/", IELTSSpeakingDraftView.as_view(), name="ielts-speaking-draft-create"),
+    path("speaking/draft/<uuid:submission_id>/", IELTSSpeakingDraftView.as_view(), name="ielts-speaking-draft-detail"),
+    path("speaking/submit/", IELTSSpeakingSubmitView.as_view(), name="ielts-speaking-submit"),
+    path("speaking/report/<uuid:submission_id>/", IELTSSpeakingReportView.as_view(), name="ielts-speaking-report"),
+    path("speaking/history/", IELTSSpeakingHistoryView.as_view(), name="ielts-speaking-history"),
+    path("speaking/<uuid:submission_id>/request-teacher-review/", IELTSSpeakingTeacherReviewRequestView.as_view(), name="ielts-speaking-teacher-review"),
 ]
+
 
