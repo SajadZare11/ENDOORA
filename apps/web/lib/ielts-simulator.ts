@@ -14,7 +14,12 @@ export type IELTSPracticeMode =
   | "writing_practice"
   | "speaking_practice";
 
-export type IELTSAttemptStatus = "in_progress" | "submitted" | "timed_out" | "abandoned";
+export type IELTSAttemptStatus =
+  | "in_progress"
+  | "submitted"
+  | "completed"
+  | "timed_out"
+  | "abandoned";
 
 export interface LearnerSafeQuestion {
   id: string;

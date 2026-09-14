@@ -229,6 +229,8 @@ export default function IELTSPracticeHubPage() {
                     <td>
                       {h.status === "in_progress" ? (
                         <span style={{ color: "var(--color-warning-text)", fontWeight: 700 }}>در جریان</span>
+                      ) : h.status === "timed_out" ? (
+                        <span style={{ color: "var(--color-danger-text)", fontWeight: 700 }}>اتمام زمان</span>
                       ) : (
                         <span style={{ color: "var(--color-success-text)", fontWeight: 700 }}>تکمیل‌شده</span>
                       )}

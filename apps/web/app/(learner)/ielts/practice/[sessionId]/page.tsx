@@ -51,7 +51,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     setError(null);
     try {
       const data = await fetchActiveSession(sessionId);
-      if (data.status === "submitted" || data.status === "timed_out") {
+      if (data.status === "completed" || data.status === "submitted" || data.status === "timed_out") {
         router.replace(`/ielts/practice/${sessionId}/report`);
         return;
       }

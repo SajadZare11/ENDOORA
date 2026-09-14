@@ -221,7 +221,7 @@ export default function IELTSDiagnosticReportPage({ params }: PageProps) {
                       <span style={{ opacity: 0.8 }}>{q.question_type_display}</span>
                     </div>
                   </td>
-                  <td style={{ direction: "ltr", textAlign: "left", maxWidth: "350px" }}>
+                  <td style={{ direction: "ltr", textAlign: "start", maxInlineSize: "350px" }}>
                     <div style={{ fontWeight: 600 }}>{q.prompt_text}</div>
                     {q.explanation && (
                       <div className={styles.explanationText}>
