@@ -97,31 +97,38 @@ export default function IELTSPracticeHubPage() {
       {/* Error Notice */}
       {error && <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)", borderRadius: "var(--radius-md)", fontSize: "var(--font-size-sm)" }}>{error}</div>}
 
-      {/* Writing Simulation Quick Entry Banner */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", paddingInline: "var(--space-4)", paddingBlock: "var(--space-3)", flexWrap: "wrap", gap: "var(--space-3)" }}>
-        <div>
-          <strong style={{ fontSize: "var(--font-size-sm)" }}>✍️ شبیه‌ساز نگارش آیلتس (Writing Tasks 1 & 2)</strong>
-          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-            محیط استاندارد کامپیوتری، شمارشگر زنده کلمات و ارزیابی چندمعیاره هوش مصنوعی بر پایه ۴ معیار رسمی.
-          </p>
-        </div>
-        <Link href="/ielts/writing" className={styles.actionButton} style={{ textDecoration: "none", paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", margin: 0, inlineSize: "auto" }}>
-          ورود به اتاق رایتینگ ➔
-        </Link>
-      </div>
+      {/* Productive Skills Module Grid (Writing & Speaking) */}
+      <section className={styles.productiveSkillsGrid} aria-label="IELTS Productive Skills Practice">
+        <article className={styles.productiveSkillCard}>
+          <div className={styles.productiveSkillHeader}>
+            <span className={styles.productiveSkillIcon} aria-hidden="true">✍️</span>
+            <div className={styles.productiveSkillInfo}>
+              <h2 className={styles.productiveSkillTitle}>شبیه‌ساز نگارش آیلتس (Writing Simulation)</h2>
+              <p className={styles.productiveSkillDesc}>
+                محیط کامپیوتری استاندارد با تایمر ۶۰ دقیقه‌ای، تصحیح خودکار بر پایه ۴ معیار رسمی و تفکیک تسک ۱ و ۲.
+              </p>
+            </div>
+          </div>
+          <Link href="/ielts/writing" className={styles.productiveSkillBtn}>
+            ورود به اتاق رایتینگ ➔
+          </Link>
+        </article>
 
-      {/* Speaking Simulation Quick Entry Banner */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-md)", paddingInline: "var(--space-4)", paddingBlock: "var(--space-3)", flexWrap: "wrap", gap: "var(--space-3)" }}>
-        <div>
-          <strong style={{ fontSize: "var(--font-size-sm)" }}>🎙️ شبیه‌ساز مکالمه آیلتس (Speaking 3-Part Simulation)</strong>
-          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-            مصاحبه تعاملی ۳ قسمتی، تایمر کیوکارت، ضبط و تحلیل آکوستیک روانی کلام بر پایه ۴ معیار رسمی.
-          </p>
-        </div>
-        <Link href="/ielts/speaking" className={styles.actionButton} style={{ textDecoration: "none", paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", margin: 0, inlineSize: "auto" }}>
-          ورود به اتاق اسپیکینگ ➔
-        </Link>
-      </div>
+        <article className={styles.productiveSkillCard}>
+          <div className={styles.productiveSkillHeader}>
+            <span className={styles.productiveSkillIcon} aria-hidden="true">🎙️</span>
+            <div className={styles.productiveSkillInfo}>
+              <h2 className={styles.productiveSkillTitle}>شبیه‌ساز مکالمه آیلتس (Speaking Simulation)</h2>
+              <p className={styles.productiveSkillDesc}>
+                مصاحبه ۳ قسمتی استاندارد با کیوکارت، تایمر تفکر، ضبط صدا و تحلیل آکوستیک روانی کلام و تلفظ.
+              </p>
+            </div>
+          </div>
+          <Link href="/ielts/speaking" className={styles.productiveSkillBtn}>
+            ورود به اتاق اسپیکینگ ➔
+          </Link>
+        </article>
+      </section>
 
       {/* Controls / Filter Bar */}
       <div className={styles.controlsBar}>

@@ -331,3 +331,83 @@
 .linkButton:hover {
   text-decoration: underline;
 }
+
+/* Productive Skills Cards (Writing & Speaking) */
+.productiveSkillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.productiveSkillCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.productiveSkillCard:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.productiveSkillHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.productiveSkillIcon {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+  padding: var(--space-2);
+  background-color: var(--color-surface-hover);
+  border-radius: var(--radius-md);
+}
+
+.productiveSkillInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.productiveSkillTitle {
+  font-size: var(--font-size-md);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.productiveSkillDesc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.productiveSkillBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.productiveSkillBtn:hover {
+  opacity: 0.9;
+}
+
