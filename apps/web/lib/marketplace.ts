@@ -1250,3 +1250,254 @@ export async function processAdminPayoutRequest(
   );
 }
 
+// ---------------------------------------------------------------------------
+// Day 43: Teacher Earnings Ledger, Dispute Windows, Finance & Dual-Control Operations
+// ---------------------------------------------------------------------------
+
+export interface CommissionRule {
+  id: string;
+  name: string;
+  product_type: string;
+  product_type_display: string;
+  rate_percentage: string | number;
+  fixed_fee_toman: number;
+  effective_from: string;
+  effective_to?: string | null;
+  priority: number;
+  is_active: boolean;
+  description: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface TeacherLedgerBalance {
+  pending_toman: number;
+  available_toman: number;
+  paid_toman: number;
+  reversed_toman: number;
+  total_earned_gross_toman: number;
+  total_commission_toman: number;
+  minimum_payout_toman: number;
+  can_request_payout: boolean;
+}
+
+export interface TeacherStatementItem {
+  id: string;
+  reference_code: string;
+  entry_type: string;
+  entry_type_display: string;
+  description: string;
+  gross_amount_toman: number;
+  commission_amount_toman: number;
+  net_amount_toman: number;
+  amount_toman: number;
+  is_matured: boolean;
+  status_label: string;
+  dispute_window_ends_at?: string | null;
+  created_at: string;
+}
+
+export interface TeacherTaxIdentity {
+  id?: string;
+  national_id_masked: string;
+  tax_file_number: string;
+  is_tax_exempt: boolean;
+  withholding_tax_rate: string | number;
+  bank_shaba_number: string;
+  bank_shaba_masked: string;
+  bank_name: string;
+  account_holder_name: string;
+  is_verified: boolean;
+  verified_at?: string | null;
+}
+
+export interface TeacherStatement {
+  statement_period: {
+    from_date?: string | null;
+    to_date?: string | null;
+  };
+  teacher_name: string;
+  teacher_email: string;
+  tax_identity: {
+    national_id_masked: string;
+    is_verified: boolean;
+    sheba_masked: string;
+  };
+  balances: TeacherLedgerBalance;
+  items: TeacherStatementItem[];
+  generated_at: string;
+}
+
+export interface PayoutAuditTrailItem {
+  id: string;
+  action: string;
+  action_display: string;
+  performed_by_name: string;
+  bank_transfer_reference: string;
+  transfer_date?: string | null;
+  notes: string;
+  created_at: string;
+}
+
+export interface LedgerPayoutRequestItem extends TeacherPayoutRequest {
+  bank_shaba_masked?: string;
+  audit_trail?: PayoutAuditTrailItem[];
+}
+
+export interface ReconciliationReport {
+  report_period: {
+    from_date?: string | null;
+    to_date?: string | null;
+  };
+  escrow_metrics: {
+    total_held_toman: number;
+    total_settled_toman: number;
+    total_refunded_toman: number;
+  };
+  ledger_metrics: {
+    total_pending_payables_toman: number;
+    total_matured_payables_toman: number;
+    total_platform_commission_toman: number;
+    total_refund_reversals_toman: number;
+    total_payouts_completed_toman: number;
+    total_payouts_in_flight_toman: number;
+    current_teacher_payable_liability_toman: number;
+  };
+  dual_control_summary: {
+    pending_review_count: number;
+    approved_ready_to_pay_count: number;
+    completed_count: number;
+    rejected_count: number;
+  };
+  reconciliation_status: string;
+  generated_at: string;
+}
+
+export interface AdminPayoutActionPayload {
+  action: "review" | "approve" | "dual_signoff" | "pay" | "reject";
+  bank_transfer_reference?: string;
+  transfer_date?: string;
+  notes?: string;
+  rejection_reason?: string;
+}
+
+export async function fetchTeacherLedgerBalances(): Promise<TeacherLedgerBalance> {
+  return await endooraApi<TeacherLedgerBalance>("/api/ledger/teacher/balance/");
+}
+
+export async function fetchTeacherStatement(params?: {
+  from_date?: string;
+  to_date?: string;
+}): Promise<TeacherStatement> {
+  const query = new URLSearchParams();
+  if (params?.from_date) query.set("from_date", params.from_date);
+  if (params?.to_date) query.set("to_date", params.to_date);
+  const qs = query.toString();
+  return await endooraApi<TeacherStatement>(
+    `/api/ledger/teacher/statement/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function fetchTeacherTaxIdentity(): Promise<TeacherTaxIdentity> {
+  return await endooraApi<TeacherTaxIdentity>("/api/ledger/teacher/tax-identity/");
+}
+
+export async function updateTeacherTaxIdentity(
+  payload: Partial<TeacherTaxIdentity> & { national_id?: string }
+): Promise<TeacherTaxIdentity> {
+  return await endooraApi<TeacherTaxIdentity>("/api/ledger/teacher/tax-identity/", {
+    method: "PUT",
+    json: payload,
+  });
+}
+
+export async function submitLedgerPayoutRequest(payload: {
+  amount_toman: number;
+  bank_shaba_number: string;
+  bank_name?: string;
+  account_holder_name?: string;
+}): Promise<LedgerPayoutRequestItem> {
+  return await endooraApi<LedgerPayoutRequestItem>("/api/ledger/teacher/payouts/", {
+    method: "POST",
+    json: payload,
+  });
+}
+
+export async function fetchTeacherLedgerPayouts(): Promise<LedgerPayoutRequestItem[]> {
+  return await endooraApi<LedgerPayoutRequestItem[]>("/api/ledger/teacher/payouts/");
+}
+
+export async function fetchAdminReconciliationReport(params?: {
+  from_date?: string;
+  to_date?: string;
+}): Promise<ReconciliationReport> {
+  const query = new URLSearchParams();
+  if (params?.from_date) query.set("from_date", params.from_date);
+  if (params?.to_date) query.set("to_date", params.to_date);
+  const qs = query.toString();
+  return await endooraApi<ReconciliationReport>(
+    `/api/ledger/admin/reconciliation/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function fetchAdminPayoutQueue(params?: {
+  status?: string;
+}): Promise<LedgerPayoutRequestItem[]> {
+  const query = new URLSearchParams();
+  if (params?.status) query.set("status", params.status);
+  const qs = query.toString();
+  return await endooraApi<LedgerPayoutRequestItem[]>(
+    `/api/ledger/admin/payouts/${qs ? `?${qs}` : ""}`
+  );
+}
+
+export async function processAdminPayoutAction(
+  payoutId: string,
+  payload: AdminPayoutActionPayload
+): Promise<LedgerPayoutRequestItem> {
+  return await endooraApi<LedgerPayoutRequestItem>(
+    `/api/ledger/admin/payouts/${payoutId}/action/`,
+    {
+      method: "POST",
+      json: payload,
+    }
+  );
+}
+
+export async function fetchCommissionRules(): Promise<CommissionRule[]> {
+  return await endooraApi<CommissionRule[]>("/api/ledger/admin/commission-rules/");
+}
+
+export async function createCommissionRule(
+  rule: Partial<CommissionRule>
+): Promise<CommissionRule> {
+  return await endooraApi<CommissionRule>("/api/ledger/admin/commission-rules/", {
+    method: "POST",
+    json: rule,
+  });
+}
+
+export async function updateCommissionRule(
+  id: string,
+  rule: Partial<CommissionRule>
+): Promise<CommissionRule> {
+  return await endooraApi<CommissionRule>(
+    `/api/ledger/admin/commission-rules/${id}/`,
+    {
+      method: "PATCH",
+      json: rule,
+    }
+  );
+}
+
+export async function deleteCommissionRule(
+  id: string
+): Promise<{ success: boolean }> {
+  return await endooraApi<{ success: boolean }>(
+    `/api/ledger/admin/commission-rules/${id}/`,
+    {
+      method: "DELETE",
+    }
+  );
+}
+

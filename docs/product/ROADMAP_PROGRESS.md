@@ -1327,4 +1327,67 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Success gate:** Users can check out via ZarinPal gateway (sandbox mode), direct wallet balance, or sandbox test gateway; funds are held in escrow until session completion (auto-release) or cancellation (auto-refund); teachers can view earnings and request payouts via Sheba IBAN; admins can process payout requests with approval/rejection workflow; all 35 tests pass cleanly.
 **Day 42 Status:** Completed and pushed to GitHub main.
-**Next day after Git push:** Day 43 — TBD.
+**Next day after Git push:** Day 43.
+
+---
+
+### Day 43: Teacher Earnings, Payout Requests, Refunds & Finance Operations (LEDGER-001)
+
+**Status:** Completed
+**Scope:** Build auditable double-entry payable ledger, dynamic commission rules engine per product category with effective date schedules, dispute window holding mechanism, dual-control four-eyes admin approval and Paya bank-transfer workflow, pro-rata refund & reversal allocations, itemized statements with export/print capability, and Iranian tax/identity placeholders.
+
+**Backend (`apps/api/ledger`):**
+- [x] Django application `ledger` registered in `INSTALLED_APPS` and wired to `/api/ledger/`
+- [x] Models (`ledger/models.py`):
+  - `CommissionRule`: rules per product type (`session_1on1`, `group_class`, `trial_session`, `ielts_mock`, `course_package`, `general`), rate percentage, fixed fee, effective date range (`effective_from`, `effective_to`), priority, active status
+  - `TeacherPayableLedgerEntry`: append-only immutable double-entry payable ledger (`EARNING_PENDING`, `EARNING_AVAILABLE`, `PAYOUT_REQUESTED`, `PAYOUT_COMPLETED`, `PAYOUT_REJECTED`, `REFUND_REVERSAL`, `COMMISSION_REVERSAL`, `ADJUSTMENT`)
+  - `TeacherTaxIdentity`: Iranian national ID masked and SHA-256 hashed, tax file number (سامانه مودیان), tax exemption status (ماده ۹۵/۱۳۹ ق.م.م), withholding tax rate, verified status
+  - `PayoutAuditLog`: four-eyes dual-control audit log (`submitted`, `reviewed`, `approved`, `dual_signoff`, `paid`, `rejected`) with bank transfer reference (کد پیگیری پایا/ساتنا)
+- [x] Payout & Ledger Services (`ledger/payouts.py`):
+  - `compute_teacher_ledger_balances`: dynamic balance calculation from ledger (pending, available, paid, reversed, gross, commission). Invariant: available balance cannot go negative
+  - `process_session_completion_ledger`: credits teacher only upon verified completion; places funds in 24h dispute window (`EARNING_PENDING`)
+  - `mature_pending_ledger_entries`: auto-matures entries past dispute window to available
+  - `process_refund_allocation`: allocates refund reversals pro-rata across teacher payable entry and platform commission entry
+  - `request_payout_with_ledger`: enforces minimum payout threshold (50,000 Toman) and available balance check; places immutable ledger hold
+  - `process_admin_payout_dual_control`: multi-step review, approval, and disbursement with Paya tracking code. Prevents double payments
+  - `generate_teacher_statement`: itemized statement with sensitive internal fields masked
+  - `generate_reconciliation_report`: platform-wide balance sheet and discrepancy checking
+- [x] REST API Endpoints (`ledger/views.py`, `ledger/urls.py`):
+  - `GET /api/ledger/teacher/balance/` — dynamic teacher balances
+  - `GET /api/ledger/teacher/statement/` — itemized statements
+  - `GET, POST /api/ledger/teacher/payouts/` — teacher payout queue and creation
+  - `GET, PUT /api/ledger/teacher/tax-identity/` — tax and Sheba compliance
+  - `GET /api/ledger/admin/reconciliation/` — platform financial balance sheet
+  - `GET /api/ledger/admin/payouts/` — admin payout queue
+  - `POST /api/ledger/admin/payouts/<id>/action/` — admin dual-control review/payout action
+  - `GET, POST, PATCH, DELETE /api/ledger/admin/commission-rules/` — commission rules manager
+- [x] Admin registration (`ledger/admin.py`): all 4 models registered with filters, search, and audit fields
+- [x] Integration Tests (`ledger/tests.py`): 8 comprehensive unit tests covering available balance non-negativity, refund reversals, double-payment prevention, statement masking, dispute maturation, and REST workflows. All 43 tests pass cleanly
+
+**Documentation:**
+- [x] `docs/finance/payout-policy-fa.md` — comprehensive Persian financial operations policy covering ledger immutability, commission rules, dispute resolution window, dual-control workflows, refund allocations, and Iranian tax/Sheba regulations
+
+**Frontend (`apps/web`):**
+- [x] TypeScript client lib (`lib/marketplace.ts`): Day 43 interfaces (`CommissionRule`, `TeacherLedgerBalance`, `TeacherStatement`, `TeacherTaxIdentity`, `ReconciliationReport`, `LedgerPayoutRequestItem`) and API functions
+- [x] Teacher Earnings Dashboard (`/teacher/earnings` & `/earnings`):
+  - 4-card double-entry ledger balance grid (Available, Pending in Dispute Window, Paid via Paya, Reversals)
+  - Gross billings and platform commission summary banner
+  - Itemized statement explorer with status tags, dispute countdowns, and print/export view
+  - Payout request modal with minimum threshold validation and masked Sheba preview
+  - Tax & compliance identity editor (masked national ID, tax file number, Sheba)
+- [x] Admin Treasury & Financial Operations Portal (`/finance`):
+  - Tab 1: Live Treasury & Reconciliation Balance Sheet (Escrow held vs Ledger payables vs Platform earnings vs In-flight liabilities)
+  - Tab 2: Dual-Control Payout Queue with multi-step review, approval, and Paya tracking code modal
+  - Tab 3: Commission Rules Engine manager with product categories, rates, fixed fees, and effective dates
+  - Tab 4: Refund & Dispute Allocations documentation and breakdown
+- [x] Route alias (`/earnings`) ensuring direct route matching
+
+**Verification:**
+- [x] 43/43 unit tests passing cleanly (8 ledger + 35 marketplace)
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`
+- [x] Next.js production build: 163/163 pages generated successfully
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
+
+**Day 43 Status:** Completed.
+**Next day:** Day 44 — Build the IELTS content model and copyright/quality workflow.
+

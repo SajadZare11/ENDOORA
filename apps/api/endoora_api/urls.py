@@ -94,4 +94,8 @@ urlpatterns = [
         "api/marketplace/",
         include("marketplace.urls")
     ),
+    path(
+        "api/ledger/",
+        include("ledger.urls")
+    ),
 ]

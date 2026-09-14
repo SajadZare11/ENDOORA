@@ -4,46 +4,76 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./earnings.module.css";
 import {
-  fetchTeacherEarningsSummary,
-  fetchTeacherPayoutRequests,
-  requestTeacherPayout,
-  TeacherEarningsSummary,
-  TeacherPayoutRequest,
+  fetchTeacherLedgerBalances,
+  fetchTeacherStatement,
+  fetchTeacherLedgerPayouts,
+  fetchTeacherTaxIdentity,
+  updateTeacherTaxIdentity,
+  submitLedgerPayoutRequest,
+  TeacherLedgerBalance,
+  TeacherStatement,
+  TeacherTaxIdentity,
+  LedgerPayoutRequestItem,
   formatTehranDateOnly,
   formatTehranTimeOnly,
 } from "../../../../lib/marketplace";
 
 export default function TeacherEarningsPage() {
   const [loading, setLoading] = useState(true);
-  const [earnings, setEarnings] = useState<TeacherEarningsSummary | null>(null);
-  const [payouts, setPayouts] = useState<TeacherPayoutRequest[]>([]);
+  const [activeTab, setActiveTab] = useState<"statement" | "payouts" | "tax">("statement");
+  const [balances, setBalances] = useState<TeacherLedgerBalance | null>(null);
+  const [statement, setStatement] = useState<TeacherStatement | null>(null);
+  const [payouts, setPayouts] = useState<LedgerPayoutRequestItem[]>([]);
+  const [taxIdentity, setTaxIdentity] = useState<TeacherTaxIdentity | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // Request Payout Modal state
-  const [showModal, setShowModal] = useState(false);
-  const [amount, setAmount] = useState<number>(100000);
+  const [showPayoutModal, setShowPayoutModal] = useState(false);
+  const [payoutAmount, setPayoutAmount] = useState<number>(50000);
   const [shaba, setShaba] = useState<string>("IR");
   const [bankName, setBankName] = useState<string>("");
   const [accountHolder, setAccountHolder] = useState<string>("");
-  const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
+  const [submittingPayout, setSubmittingPayout] = useState(false);
+  const [payoutFormError, setPayoutFormError] = useState<string | null>(null);
+
+  // Tax Identity Edit Modal state
+  const [showTaxModal, setShowTaxModal] = useState(false);
+  const [nationalIdInput, setNationalIdInput] = useState("");
+  const [taxFileInput, setTaxFileInput] = useState("");
+  const [isTaxExemptInput, setIsTaxExemptInput] = useState(false);
+  const [taxShabaInput, setTaxShabaInput] = useState("");
+  const [taxBankNameInput, setTaxBankNameInput] = useState("");
+  const [taxHolderInput, setTaxHolderInput] = useState("");
+  const [savingTax, setSavingTax] = useState(false);
+  const [taxFormError, setTaxFormError] = useState<string | null>(null);
 
   const loadData = async () => {
     setLoading(true);
     setError(null);
     try {
-      const [eRes, pRes] = await Promise.all([
-        fetchTeacherEarningsSummary(),
-        fetchTeacherPayoutRequests(),
+      const [balRes, stmtRes, payRes, taxRes] = await Promise.all([
+        fetchTeacherLedgerBalances(),
+        fetchTeacherStatement(),
+        fetchTeacherLedgerPayouts(),
+        fetchTeacherTaxIdentity(),
       ]);
-      setEarnings(eRes.earnings);
-      setPayouts(pRes.payouts);
-      if (eRes.earnings.available_to_withdraw_toman > 50000) {
-        setAmount(eRes.earnings.available_to_withdraw_toman);
+
+      setBalances(balRes);
+      setStatement(stmtRes);
+      setPayouts(payRes);
+      setTaxIdentity(taxRes);
+
+      if (balRes.available_toman >= 50000) {
+        setPayoutAmount(balRes.available_toman);
+      }
+      if (taxRes.bank_shaba_number) {
+        setShaba(taxRes.bank_shaba_number);
+        setBankName(taxRes.bank_name);
+        setAccountHolder(taxRes.account_holder_name);
       }
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات درآمد.");
+      setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات مالی و دفتر کل.");
     } finally {
       setLoading(false);
     }
@@ -58,7 +88,6 @@ export default function TeacherEarningsPage() {
     if (!val.startsWith("IR")) {
       val = "IR" + val.replace(/^IR/, "");
     }
-    // Limit to IR + 24 digits = 26 chars
     if (val.length <= 26) {
       setShaba(val);
     }
@@ -66,335 +95,653 @@ export default function TeacherEarningsPage() {
 
   const handlePayoutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormError(null);
+    setPayoutFormError(null);
 
-    if (!earnings || amount > earnings.available_to_withdraw_toman) {
-      setFormError("مبلغ درخواستی بیشتر از موجودی در دسترس است.");
+    if (!balances || payoutAmount > balances.available_toman) {
+      setPayoutFormError("مبلغ درخواستی بیشتر از موجودی قطعی و قابل تسویه است.");
       return;
     }
-    if (amount < 50000) {
-      setFormError("حداقل مبلغ قابل تسویه ۵۰,۰۰۰ تومان است.");
+    if (payoutAmount < 50000) {
+      setPayoutFormError("حداقل مبلغ قابل تسویه ۵۰,۰۰۰ تومان است.");
       return;
     }
     if (!/^IR\d{24}$/.test(shaba)) {
-      setFormError("شماره شبا باید با IR شروع شده و دارای ۲۴ رقم عددی باشد.");
+      setPayoutFormError("شماره شبا باید با IR شروع شده و دارای ۲۴ رقم عددی بدون فاصله باشد.");
       return;
     }
 
-    setSubmitting(true);
+    setSubmittingPayout(true);
     try {
-      const res = await requestTeacherPayout({
-        amount_toman: amount,
+      await submitLedgerPayoutRequest({
+        amount_toman: payoutAmount,
         bank_shaba_number: shaba,
         bank_name: bankName,
         account_holder_name: accountHolder,
       });
 
-      setSuccessMsg(res.message);
-      setShowModal(false);
+      setSuccessMsg("درخواست تسویه با موفقیت در دفتر کل ثبت شد و وجه به طور امن مسدود گردید.");
+      setShowPayoutModal(false);
       await loadData();
     } catch (err: unknown) {
-      setFormError(err instanceof Error ? err.message : "خطا در ثبت درخواست تسویه.");
+      setPayoutFormError(err instanceof Error ? err.message : "خطا در ثبت درخواست تسویه.");
     } finally {
-      setSubmitting(false);
+      setSubmittingPayout(false);
     }
   };
 
-  const available = earnings?.available_to_withdraw_toman || 0;
+  const handleTaxSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTaxFormError(null);
+    setSavingTax(true);
+    try {
+      const updated = await updateTeacherTaxIdentity({
+        national_id: nationalIdInput || undefined,
+        tax_file_number: taxFileInput,
+        is_tax_exempt: isTaxExemptInput,
+        bank_shaba_number: taxShabaInput || undefined,
+        bank_name: taxBankNameInput,
+        account_holder_name: taxHolderInput,
+      });
+      setTaxIdentity(updated);
+      setSuccessMsg("اطلاعات هویتی و مالیاتی با موفقیت به‌روزرسانی شد.");
+      setShowTaxModal(false);
+    } catch (err: unknown) {
+      setTaxFormError(err instanceof Error ? err.message : "خطا در ثبت اطلاعات مالیاتی.");
+    } finally {
+      setSavingTax(false);
+    }
+  };
+
+  const openTaxModal = () => {
+    if (taxIdentity) {
+      setTaxFileInput(taxIdentity.tax_file_number || "");
+      setIsTaxExemptInput(taxIdentity.is_tax_exempt || false);
+      setTaxShabaInput(taxIdentity.bank_shaba_number || "");
+      setTaxBankNameInput(taxIdentity.bank_name || "");
+      setTaxHolderInput(taxIdentity.account_holder_name || "");
+    }
+    setTaxFormError(null);
+    setShowTaxModal(true);
+  };
+
+  const getPayoutStatusBadge = (status: string) => {
+    switch (status) {
+      case "pending":
+        return <span className={`${styles.badge} ${styles.badgePending}`}>در انتظار بررسی</span>;
+      case "approved":
+        return <span className={`${styles.badge} ${styles.badgeApproved}`}>تایید شده (در صف پایا)</span>;
+      case "paid":
+        return <span className={`${styles.badge} ${styles.badgePaid}`}>واریز شد</span>;
+      case "rejected":
+        return <span className={`${styles.badge} ${styles.badgeRejected}`}>رد شده</span>;
+      default:
+        return <span className={styles.badge}>{status}</span>;
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className={styles.container}>
+        <div className={styles.loadingState}>
+          <div className={styles.spinner} />
+          <p>در حال بارگذاری دفتر کل مالی و گزارش درآمدها...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>درآمدها و تسویه مالی مدرس</h1>
-        <p className={styles.subtitle}>
-          گزارش درآمدهای جلسات برگزار شده، مبالغ امانی، و مدیریت درخواست‌های تسویه بانکی (پایا)
-        </p>
-      </header>
-
-      {error && (
-        <div style={{ padding: "var(--space-4)", background: "var(--color-danger-light, rgba(239, 68, 68, 0.1))", color: "var(--color-danger)", borderRadius: "var(--radius-card)" }}>
-          {error}
-        </div>
-      )}
-
-      {successMsg && (
-        <div style={{ padding: "var(--space-4)", background: "var(--color-success-light, rgba(16, 185, 129, 0.1))", color: "var(--color-success)", borderRadius: "var(--radius-card)" }}>
-          {successMsg}
-        </div>
-      )}
-
-      {/* Metrics Grid */}
-      <div className={styles.metricsGrid}>
-        <div className={`${styles.metricCard} ${styles.metricCardPrimary}`}>
-          <p className={styles.metricLabel}>موجودی کیف پول (آماده تسویه)</p>
-          <p className={styles.metricValue} style={{ color: "var(--color-primary)" }}>
-            {available.toLocaleString("fa-IR")} تومان
+    <main className={styles.container}>
+      {/* Header */}
+      <div className={styles.header}>
+        <div className={styles.headerTitles}>
+          <h1 className={styles.title}>امور مالی و دفتر کل درآمد تدریس</h1>
+          <p className={styles.subtitle}>
+            محاسبه شفاف درآمدها، ره‌گیری دوره‌های بازبینی شکایات، مدیریت تسویه‌های بانکی و تکالیف مالیاتی
           </p>
+        </div>
+        <div className={styles.headerActions}>
           <button
             type="button"
-            disabled={available < 50000}
-            onClick={() => setShowModal(true)}
             className={styles.payoutButton}
-            style={{ marginBlockStart: "var(--space-2)" }}
+            onClick={() => setShowPayoutModal(true)}
+            disabled={!balances?.can_request_payout}
           >
-            <span>🏦</span>
-            <span>درخواست تسویه حساب</span>
+            درخواست تسویه حساب
           </button>
-        </div>
-
-        <div className={styles.metricCard}>
-          <p className={styles.metricLabel}>نگهداری در حساب امانی (جلسات آتی)</p>
-          <p className={styles.metricValue} style={{ color: "var(--color-warning)" }}>
-            {(earnings?.held_in_escrow_toman || 0).toLocaleString("fa-IR")} تومان
-          </p>
-          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-            پس از اتمام موفق جلسه بلافاصله به کیف پول منتقل می‌شود
-          </p>
-        </div>
-
-        <div className={styles.metricCard}>
-          <p className={styles.metricLabel}>کل درآمد خالص تسویه شده</p>
-          <p className={styles.metricValue} style={{ color: "var(--color-success)" }}>
-            {(earnings?.settled_net_toman || 0).toLocaleString("fa-IR")} تومان
-          </p>
-          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-            از مجموع {(earnings?.completed_session_count || 0).toLocaleString("fa-IR")} جلسه برگزار شده
-          </p>
-        </div>
-
-        <div className={styles.metricCard}>
-          <p className={styles.metricLabel}>کارمزد ۱۵٪ پرداختی به پلتفرم</p>
-          <p className={styles.metricValue}>
-            {(earnings?.platform_fee_toman || 0).toLocaleString("fa-IR")} تومان
-          </p>
-          <p style={{ margin: 0, fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-            شامل زیرساخت ویدئوکنفرانس و تضمین مالی
-          </p>
+          <button
+            type="button"
+            className={styles.printButton}
+            onClick={() => window.print()}
+          >
+            چاپ / خروجی صورت‌حساب
+          </button>
         </div>
       </div>
 
-      {/* Payout History Table */}
-      <div className={styles.card}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2 style={{ fontSize: "var(--font-size-xl)", fontWeight: 800, margin: 0 }}>
-            تاریخچه درخواست‌های تسویه بانکی
-          </h2>
-          <button
-            type="button"
-            onClick={loadData}
-            style={{
-              paddingInline: "var(--space-3)",
-              paddingBlock: "var(--space-1)",
-              borderRadius: "var(--radius-sm)",
-              border: "1px solid var(--color-border)",
-              background: "var(--color-surface)",
-              cursor: "pointer",
-              fontSize: "var(--font-size-xs)",
-            }}
-          >
-            بروزرسانی ↻
-          </button>
+      {successMsg && (
+        <div className={styles.alertSuccess}>
+          <span>{successMsg}</span>
+          <button type="button" onClick={() => setSuccessMsg(null)}>✕</button>
+        </div>
+      )}
+
+      {error && (
+        <div className={styles.alertError}>
+          <span>{error}</span>
+          <button type="button" onClick={() => setError(null)}>✕</button>
+        </div>
+      )}
+
+      {/* 4-Card Double-Entry Ledger Balances Grid */}
+      <div className={styles.metricsGrid}>
+        {/* Card 1: Available for Payout */}
+        <div className={`${styles.metricCard} ${styles.metricCardPrimary}`}>
+          <div className={styles.cardHeaderRow}>
+            <span className={styles.metricLabel}>موجودی قطعی و قابل تسویه</span>
+            <span className={styles.pillGreen}>آماده برداشت</span>
+          </div>
+          <p className={styles.metricValue}>
+            {balances ? balances.available_toman.toLocaleString("fa-IR") : "۰"}
+            <span className={styles.unit}>تومان</span>
+          </p>
+          <span className={styles.metricHint}>
+            حداقل تسویه: ۵۰,۰۰۰ تومان
+          </span>
         </div>
 
-        {loading ? (
-          <p className={styles.emptyState}>در حال بارگذاری سوابق تسویه...</p>
-        ) : payouts.length === 0 ? (
-          <div className={styles.emptyState}>
-            <p>هنوز درخواست تسویه‌ای ثبت نشده است.</p>
+        {/* Card 2: Pending in Dispute Window */}
+        <div className={styles.metricCard}>
+          <div className={styles.cardHeaderRow}>
+            <span className={styles.metricLabel}>معلق در دوره بازبینی</span>
+            <span className={styles.pillAmber}>پنجره رسیدگی</span>
           </div>
-        ) : (
-          <div className={styles.tableWrapper}>
+          <p className={styles.metricValue}>
+            {balances ? balances.pending_toman.toLocaleString("fa-IR") : "۰"}
+            <span className={styles.unit}>تومان</span>
+          </p>
+          <span className={styles.metricHint}>
+            پس از ۲۴ ساعت از اتمام جلسه قطعی می‌شود
+          </span>
+        </div>
+
+        {/* Card 3: Paid Out to Bank */}
+        <div className={styles.metricCard}>
+          <div className={styles.cardHeaderRow}>
+            <span className={styles.metricLabel}>مجموع واریزهای موفق پایا</span>
+            <span className={styles.pillTeal}>تسویه شده</span>
+          </div>
+          <p className={styles.metricValue}>
+            {balances ? balances.paid_toman.toLocaleString("fa-IR") : "۰"}
+            <span className={styles.unit}>تومان</span>
+          </p>
+          <span className={styles.metricHint}>
+            واریز قطعی به شماره شبا
+          </span>
+        </div>
+
+        {/* Card 4: Reversals & Refunds */}
+        <div className={styles.metricCard}>
+          <div className={styles.cardHeaderRow}>
+            <span className={styles.metricLabel}>استردادها و خسارات</span>
+            <span className={styles.pillMuted}>کسورات بازگشتی</span>
+          </div>
+          <p className={styles.metricValue}>
+            {balances ? balances.reversed_toman.toLocaleString("fa-IR") : "۰"}
+            <span className={styles.unit}>تومان</span>
+          </p>
+          <span className={styles.metricHint}>
+            جلسات لغو شده یا مشمول داوری
+          </span>
+        </div>
+      </div>
+
+      {/* Summary Banner */}
+      <div className={styles.summaryBanner}>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>کل ارزش ناخالص جلسات:</span>
+          <span className={styles.summaryVal}>
+            {balances?.total_earned_gross_toman.toLocaleString("fa-IR")} تومان
+          </span>
+        </div>
+        <div className={styles.summaryDivider} />
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>کارمزد تسهیم‌شده پلتفرم:</span>
+          <span className={styles.summaryVal}>
+            {balances?.total_commission_toman.toLocaleString("fa-IR")} تومان
+          </span>
+        </div>
+        <div className={styles.summaryDivider} />
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>وضعیت هویت مالیاتی:</span>
+          <span className={taxIdentity?.is_verified ? styles.verifiedBadge : styles.unverifiedBadge}>
+            {taxIdentity?.is_verified ? "تأییدشده و معتبر" : "در انتظار تکمیل مدارک"}
+          </span>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className={styles.tabNav}>
+        <button
+          type="button"
+          className={`${styles.tabBtn} ${activeTab === "statement" ? styles.tabBtnActive : ""}`}
+          onClick={() => setActiveTab("statement")}
+        >
+          صورت‌حساب و اسناد دفتر کل
+        </button>
+        <button
+          type="button"
+          className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabBtnActive : ""}`}
+          onClick={() => setActiveTab("payouts")}
+        >
+          تاریخچه درخواست‌های تسویه
+        </button>
+        <button
+          type="button"
+          className={`${styles.tabBtn} ${activeTab === "tax" ? styles.tabBtnActive : ""}`}
+          onClick={() => setActiveTab("tax")}
+        >
+          مشخصات مالیاتی و شماره شبا
+        </button>
+      </div>
+
+      {/* TAB 1: Statement Explorer */}
+      {activeTab === "statement" && (
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2 className={styles.sectionTitle}>ریز اسناد مالی و صورت‌حساب رسمی</h2>
+              <p className={styles.sectionSubtitle}>
+                رکوردهای تغییرناپذیر دفتر کل حسابداری به همراه تفکیک بهای ناخالص، کارمزد و سهم خالص
+              </p>
+            </div>
+            <span className={styles.recordCount}>
+              تعداد اسناد: {statement?.items.length.toLocaleString("fa-IR")}
+            </span>
+          </div>
+
+          <div className={styles.tableResponsive}>
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th className={styles.th}>مبلغ (تومان)</th>
-                  <th className={styles.th}>شماره شبا</th>
-                  <th className={styles.th}>نام بانک / دارنده</th>
-                  <th className={styles.th}>وضعیت</th>
-                  <th className={styles.th}>تاریخ درخواست</th>
-                  <th className={styles.th}>توضیحات مالی</th>
+                  <th>کد سند</th>
+                  <th>شرح رویداد مالی</th>
+                  <th>بهای ناخالص</th>
+                  <th>کارمزد پلتفرم</th>
+                  <th>سهم خالص</th>
+                  <th>وضعیت سند</th>
+                  <th>تاریخ و ساعت</th>
                 </tr>
               </thead>
               <tbody>
-                {payouts.map((p) => (
-                  <tr key={p.id}>
-                    <td className={styles.td} style={{ fontWeight: 700, direction: "ltr", textAlign: "end" }}>
-                      {p.amount_toman.toLocaleString("fa-IR")}
-                    </td>
-                    <td className={styles.td} style={{ direction: "ltr", fontSize: "var(--font-size-xs)" }}>
-                      {p.bank_shaba_number}
-                    </td>
-                    <td className={styles.td}>
-                      {p.bank_name ? `${p.bank_name} - ` : ""}{p.account_holder_name || "-"}
-                    </td>
-                    <td className={styles.td}>
-                      {p.status === "paid" ? (
-                        <span className={styles.badgePaid}>واریز شد ✓</span>
-                      ) : p.status === "approved" ? (
-                        <span className={styles.badgePaid}>تایید شده / نوبت پایا</span>
-                      ) : p.status === "rejected" ? (
-                        <span className={styles.badgeRejected}>رد شد ✕</span>
-                      ) : (
-                        <span className={styles.badgePending}>در نوبت بررسی</span>
-                      )}
-                    </td>
-                    <td className={styles.td} style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                      {formatTehranDateOnly(p.created_at)}
-                    </td>
-                    <td className={styles.td} style={{ fontSize: "var(--font-size-xs)", maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {p.status === "rejected" ? (
-                        <span style={{ color: "var(--color-danger)" }}>علت رد: {p.rejection_reason}</span>
-                      ) : (
-                        p.admin_notes || "-"
-                      )}
+                {statement?.items.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className={styles.emptyCell}>
+                      هنوز سندی در دفتر کل ثبت نشده است. پس از اتمام نخستین جلسه، اسناد در این بخش نمایش می‌یابند.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  statement?.items.map((item) => (
+                    <tr key={item.id}>
+                      <td className={styles.monoCell}>{item.reference_code}</td>
+                      <td>{item.description}</td>
+                      <td className={styles.numCell}>
+                        {item.gross_amount_toman > 0
+                          ? `${item.gross_amount_toman.toLocaleString("fa-IR")} تومان`
+                          : "—"}
+                      </td>
+                      <td className={styles.feeCell}>
+                        {item.commission_amount_toman > 0
+                          ? `-${item.commission_amount_toman.toLocaleString("fa-IR")} تومان`
+                          : "—"}
+                      </td>
+                      <td className={`${styles.numCell} ${item.net_amount_toman < 0 ? styles.textRed : styles.textGreen}`}>
+                        {item.net_amount_toman > 0 ? "+" : ""}
+                        {item.net_amount_toman.toLocaleString("fa-IR")} تومان
+                      </td>
+                      <td>
+                        <span className={`${styles.statusBadge} ${item.is_matured ? styles.statusMatured : styles.statusPending}`}>
+                          {item.status_label}
+                        </span>
+                      </td>
+                      <td className={styles.dateCell}>
+                        {formatTehranDateOnly(item.created_at)}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
-        )}
-      </div>
+        </section>
+      )}
 
-      {/* Payout Request Modal */}
-      {showModal && (
+      {/* TAB 2: Payouts History */}
+      {activeTab === "payouts" && (
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2 className={styles.sectionTitle}>ره‌گیری درخواست‌های تسویه حساب</h2>
+              <p className={styles.sectionSubtitle}>
+                فرآیند واریز به حساب بانکی از طریق چرخه پایا بانک مرکزی
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.payoutButtonSmall}
+              onClick={() => setShowPayoutModal(true)}
+              disabled={!balances?.can_request_payout}
+            >
+              ثبت تسویه جدید
+            </button>
+          </div>
+
+          <div className={styles.tableResponsive}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>مبلغ درخواستی</th>
+                  <th>شماره شبا بانکی</th>
+                  <th>بانک عامل / صاحب حساب</th>
+                  <th>وضعیت</th>
+                  <th>یادداشت بانکی / کد پایا</th>
+                  <th>تاریخ ثبت</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payouts.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className={styles.emptyCell}>
+                      تاکنون درخواست تسویه‌ای ثبت نکرده‌اید.
+                    </td>
+                  </tr>
+                ) : (
+                  payouts.map((p) => (
+                    <tr key={p.id}>
+                      <td className={styles.numCell}>
+                        {p.amount_toman.toLocaleString("fa-IR")} تومان
+                      </td>
+                      <td className={styles.monoCell}>
+                        {p.bank_shaba_masked || p.bank_shaba_number}
+                      </td>
+                      <td>
+                        {p.bank_name || "بانک نامشخص"} — {p.account_holder_name}
+                      </td>
+                      <td>{getPayoutStatusBadge(p.status)}</td>
+                      <td className={styles.notesCell}>
+                        {p.status === "rejected" ? (
+                          <span className={styles.textRed}>{p.rejection_reason}</span>
+                        ) : (
+                          p.admin_notes || "در نوبت پردازش پایا"
+                        )}
+                      </td>
+                      <td className={styles.dateCell}>
+                        {formatTehranDateOnly(p.created_at)} {formatTehranTimeOnly(p.created_at)}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      {/* TAB 3: Tax Identity & Compliance */}
+      {activeTab === "tax" && (
+        <section className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2 className={styles.sectionTitle}>مشخصات هویتی، مالیاتی و حساب بانکی</h2>
+              <p className={styles.sectionSubtitle}>
+                الزامات قانونی سامانه مودیان و احراز هویت شاپرک جهت تسویه بدون تاخیر
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.payoutButtonSmall}
+              onClick={openTaxModal}
+            >
+              ویرایش اطلاعات
+            </button>
+          </div>
+
+          <div className={styles.taxGrid}>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>کد ملی احراز هویت شده:</span>
+              <span className={styles.taxValue}>{taxIdentity?.national_id_masked || "ثبت نشده"}</span>
+            </div>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>شماره شبا پیش‌فرض:</span>
+              <span className={styles.taxValue}>{taxIdentity?.bank_shaba_masked || "ثبت نشده"}</span>
+            </div>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>بانک عامل:</span>
+              <span className={styles.taxValue}>{taxIdentity?.bank_name || "تعیین نشده"}</span>
+            </div>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>نام صاحب حساب:</span>
+              <span className={styles.taxValue}>{taxIdentity?.account_holder_name || "منطبق بر کد ملی"}</span>
+            </div>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>شماره پرونده مالیاتی سامانه مودیان:</span>
+              <span className={styles.taxValue}>{taxIdentity?.tax_file_number || "ندارد / معافیت مشاغل"}</span>
+            </div>
+            <div className={styles.taxItem}>
+              <span className={styles.taxLabel}>معافیت آموزشی (ماده ۹۵/۱۳۹):</span>
+              <span className={styles.taxValue}>{taxIdentity?.is_tax_exempt ? "بله (معاف)" : "خیر (مشمول)"}</span>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Modal: Request Payout */}
+      {showPayoutModal && (
         <div className={styles.modalOverlay}>
-          <div className={styles.modalBox}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <h3 style={{ margin: 0, fontSize: "var(--font-size-lg)", fontWeight: 800 }}>
-                ثبت درخواست تسویه حساب به شماره شبا
-              </h3>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>درخواست تسویه حساب بانکی</h3>
               <button
                 type="button"
-                onClick={() => setShowModal(false)}
-                style={{ background: "none", border: "none", fontSize: "1.25rem", cursor: "pointer" }}
+                className={styles.modalClose}
+                onClick={() => setShowPayoutModal(false)}
               >
                 ✕
               </button>
             </div>
 
-            {formError && (
-              <div style={{ padding: "var(--space-3)", background: "var(--color-danger-light, rgba(239, 68, 68, 0.1))", color: "var(--color-danger)", borderRadius: "var(--radius-sm)", fontSize: "var(--font-size-xs)" }}>
-                {formError}
-              </div>
-            )}
+            <form onSubmit={handlePayoutSubmit} className={styles.modalForm}>
+              {payoutFormError && (
+                <div className={styles.modalError}>{payoutFormError}</div>
+              )}
 
-            <form onSubmit={handlePayoutSubmit} style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
-                <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>
-                  مبلغ درخواستی (تومان):
-                </label>
+              <div className={styles.infoBanner}>
+                <span>موجودی قطعی قابل تسویه شما: </span>
+                <strong>{balances?.available_toman.toLocaleString("fa-IR")} تومان</strong>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>مبلغ تسویه (تومان)</label>
                 <input
                   type="number"
                   min={50000}
-                  max={available}
+                  max={balances?.available_toman || 50000}
                   step={10000}
-                  value={amount}
-                  onChange={(e) => setAmount(parseInt(e.target.value || "0", 10))}
-                  style={{
-                    padding: "var(--space-3)",
-                    borderRadius: "var(--radius-card)",
-                    border: "1px solid var(--color-border)",
-                    fontSize: "var(--font-size-base)",
-                    direction: "ltr",
-                    textAlign: "end",
-                  }}
+                  value={payoutAmount}
+                  onChange={(e) => setPayoutAmount(Number(e.target.value))}
+                  className={styles.formInput}
                   required
                 />
-                <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                  سقف قابل برداشت: {available.toLocaleString("fa-IR")} تومان
-                </span>
+                <span className={styles.fieldHint}>حداقل مبلغ ۵۰,۰۰۰ تومان</span>
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
-                <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>
-                  شماره شبا حساب بانکی (۲۴ رقم پس از IR):
-                </label>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>شماره شبا (IBAN با پیشوند IR)</label>
                 <input
                   type="text"
+                  maxLength={26}
                   value={shaba}
                   onChange={handleShabaChange}
-                  placeholder="IR000000000000000000000000"
-                  style={{
-                    padding: "var(--space-3)",
-                    borderRadius: "var(--radius-card)",
-                    border: "1px solid var(--color-border)",
-                    fontSize: "var(--font-size-base)",
-                    direction: "ltr",
-                    fontFamily: "monospace",
-                  }}
-                  required
-                />
-                <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                  طول شبا: {shaba.length}/26 کاراکتر
-                </span>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
-                <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>
-                  نام و نام خانوادگی دارنده حساب:
-                </label>
-                <input
-                  type="text"
-                  value={accountHolder}
-                  onChange={(e) => setAccountHolder(e.target.value)}
-                  placeholder="منطبق با کارت ملی"
-                  style={{
-                    padding: "var(--space-3)",
-                    borderRadius: "var(--radius-card)",
-                    border: "1px solid var(--color-border)",
-                    fontSize: "var(--font-size-base)",
-                  }}
+                  placeholder="IR123456789012345678901234"
+                  className={`${styles.formInput} ${styles.monoInput}`}
                   required
                 />
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-1)" }}>
-                <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>
-                  نام بانک عامل:
-                </label>
-                <input
-                  type="text"
-                  value={bankName}
-                  onChange={(e) => setBankName(e.target.value)}
-                  placeholder="مثال: بانک ملی، سامان، ملت، پاسارگاد"
-                  style={{
-                    padding: "var(--space-3)",
-                    borderRadius: "var(--radius-card)",
-                    border: "1px solid var(--color-border)",
-                    fontSize: "var(--font-size-base)",
-                  }}
-                />
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>نام بانک</label>
+                  <input
+                    type="text"
+                    value={bankName}
+                    onChange={(e) => setBankName(e.target.value)}
+                    placeholder="مثال: بانک سامان"
+                    className={styles.formInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>نام صاحب حساب</label>
+                  <input
+                    type="text"
+                    value={accountHolder}
+                    onChange={(e) => setAccountHolder(e.target.value)}
+                    placeholder="مطابق با کارت ملی"
+                    className={styles.formInput}
+                  />
+                </div>
               </div>
 
-              <div style={{ display: "flex", gap: "var(--space-3)", marginBlockStart: "var(--space-2)" }}>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className={styles.payoutButton}
-                  style={{ flex: 1, justifyContent: "center" }}
-                >
-                  {submitting ? "در حال ثبت درخواست..." : "ثبت و ارسال به واحد مالی"}
-                </button>
+              <div className={styles.modalActions}>
                 <button
                   type="button"
-                  onClick={() => setShowModal(false)}
-                  style={{
-                    paddingInline: "var(--space-4)",
-                    paddingBlock: "var(--space-2)",
-                    borderRadius: "var(--radius-card)",
-                    border: "1px solid var(--color-border)",
-                    background: "var(--color-surface)",
-                    cursor: "pointer",
-                  }}
+                  className={styles.buttonCancel}
+                  onClick={() => setShowPayoutModal(false)}
                 >
                   انصراف
+                </button>
+                <button
+                  type="submit"
+                  className={styles.buttonSubmit}
+                  disabled={submittingPayout}
+                >
+                  {submittingPayout ? "در حال ثبت سند..." : "تایید و ثبت تسویه"}
                 </button>
               </div>
             </form>
           </div>
         </div>
       )}
-    </div>
+
+      {/* Modal: Edit Tax Identity */}
+      {showTaxModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>ویرایش مشخصات مالیاتی و حساب بانکی</h3>
+              <button
+                type="button"
+                className={styles.modalClose}
+                onClick={() => setShowTaxModal(false)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleTaxSubmit} className={styles.modalForm}>
+              {taxFormError && (
+                <div className={styles.modalError}>{taxFormError}</div>
+              )}
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>کد ملی (۱۰ رقم)</label>
+                <input
+                  type="text"
+                  maxLength={10}
+                  value={nationalIdInput}
+                  onChange={(e) => setNationalIdInput(e.target.value.replace(/\D/g, ""))}
+                  placeholder={taxIdentity?.national_id_masked || "مثال: ۰۰۱۲۳۴۵۶۷۸"}
+                  className={styles.formInput}
+                />
+                <span className={styles.fieldHint}>کد ملی فقط جهت احراز هویت یک‌بار مصرف ثبت شده و به صورت ماسک‌شده نگهداری می‌شود.</span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>شماره پرونده مالیاتی سامانه مودیان (اختیاری)</label>
+                <input
+                  type="text"
+                  value={taxFileInput}
+                  onChange={(e) => setTaxFileInput(e.target.value)}
+                  placeholder="TAX-XXXX-XXXX"
+                  className={styles.formInput}
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>شماره شبا پیش‌فرض</label>
+                <input
+                  type="text"
+                  maxLength={26}
+                  value={taxShabaInput}
+                  onChange={(e) => setTaxShabaInput(e.target.value.toUpperCase())}
+                  placeholder="IR..."
+                  className={`${styles.formInput} ${styles.monoInput}`}
+                />
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>نام بانک</label>
+                  <input
+                    type="text"
+                    value={taxBankNameInput}
+                    onChange={(e) => setTaxBankNameInput(e.target.value)}
+                    placeholder="مثال: بانک ملت"
+                    className={styles.formInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>نام صاحب حساب</label>
+                  <input
+                    type="text"
+                    value={taxHolderInput}
+                    onChange={(e) => setTaxHolderInput(e.target.value)}
+                    placeholder="نام کامل"
+                    className={styles.formInput}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formCheckboxGroup}>
+                <label className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={isTaxExemptInput}
+                    onChange={(e) => setIsTaxExemptInput(e.target.checked)}
+                  />
+                  <span>مشمول معافیت مالیاتی فعالیت‌های آموزشی (ماده ۹۵/۱۳۹)</span>
+                </label>
+              </div>
+
+              <div className={styles.modalActions}>
+                <button
+                  type="button"
+                  className={styles.buttonCancel}
+                  onClick={() => setShowTaxModal(false)}
+                >
+                  انصراف
+                </button>
+                <button
+                  type="submit"
+                  className={styles.buttonSubmit}
+                  disabled={savingTax}
+                >
+                  {savingTax ? "در حال ذخیره..." : "ذخیره تغییرات"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </main>
   );
 }

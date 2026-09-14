@@ -1599,15 +1599,33 @@ Key accomplishments:
 - 100% tokenized CSS modules with 0 raw hex colors and 100% logical properties.
 - Full verification: 161/161 static routes prerendered, TypeScript 0 errors, 35/35 marketplace tests passing.
 
-## Git checkpoint (Day 42)
+- Day 43 additions (LEDGER-001):
+  - Backend:
+    - New Django application `ledger` registered in `INSTALLED_APPS` and wired to `/api/ledger/`.
+    - Models: `CommissionRule`, `TeacherPayableLedgerEntry`, `TeacherTaxIdentity`, `PayoutAuditLog` (migration `0001_initial`).
+    - Core accounting logic (`payouts.py`): append-only double-entry payable ledger, dynamic balance calculations (guaranteed non-negative available balance), dispute resolution window holding (24h/48h), pro-rata refund reversal allocation across teacher and platform, four-eyes dual-control admin review and disbursement with Paya/Satna reference codes, itemized statements with masked sensitive banking data, and platform balance sheet reconciliation.
+    - 8 REST API endpoints for teacher balances, statements, payouts, tax identity, admin reconciliation, payout queue, dual-control action, and commission rules.
+    - Full Django admin registration with filters, search, and audit fields.
+    - 8 integration tests in `ledger/tests.py` (43 total backend tests passing).
+  - Documentation:
+    - Comprehensive Persian financial operations policy in `docs/finance/payout-policy-fa.md`.
+  - Frontend:
+    - Teacher Earnings Dashboard (`/teacher/earnings` & `/earnings`) with 4-card ledger balance grid, statement explorer, dispute status tags, printable statement view, and tax identity editor.
+    - Admin Treasury & Financial Operations Portal (`/finance`) with live balance sheet reconciliation, dual-control payout queue with Paya tracking code modal, commission rules manager, and dispute refund policy.
+    - TypeScript client lib (`lib/marketplace.ts`): Day 43 interfaces and API functions.
+    - Full design token compliance: 0 hex colors, 100% logical properties.
+  - Full verification: 163/163 static routes prerendered, TypeScript 0 errors, 43/43 tests passing.
+
+## Git checkpoint (Day 43)
 
 ```
-Day 42: Payment Gateway (ZarinPal/Sandbox), User Wallet, Escrow Settlement & Teacher Payout Pipeline (MKT-008)
+Day 43: Teacher Earnings, Double-Entry Payable Ledger, Dispute Windows, Payout Requests, Refunds & Finance Operations (LEDGER-001)
 ```
 
 ## Exact next day
 
-**Day 43 -- TBD.**
+**Day 44 — Build the IELTS content model and copyright/quality workflow.**
 
-Do not begin Day 43 until the Day 42 commit is pushed and `git status --short --branch`
+Do not begin Day 44 until the Day 43 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+

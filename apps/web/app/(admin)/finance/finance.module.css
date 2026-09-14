@@ -1,11 +1,11 @@
-/* Teacher Earnings & Ledger CSS - 0 hex, 100% design tokens, 100% logical properties */
+/* Admin Finance & Treasury CSS - 0 hex, 100% design tokens, 100% logical properties */
 .container {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   padding-inline: var(--space-4);
   padding-block: var(--space-6);
-  max-inline-size: 1100px;
+  max-inline-size: 1200px;
   margin-inline: auto;
   inline-size: 100%;
   direction: rtl;
@@ -42,78 +42,64 @@
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
   margin: 0;
-  max-inline-size: 600px;
+  max-inline-size: 650px;
 }
 
-.headerActions {
+.headerBadgeRow {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
-.payoutButton {
-  background: var(--color-primary);
-  color: var(--color-text-on-primary, var(--color-surface));
-  border: none;
-  border-radius: var(--radius-card);
-  padding-inline: var(--space-5);
-  padding-block: var(--space-3);
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
   gap: var(--space-2);
-  transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-.payoutButton:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.payoutButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.payoutButtonSmall {
-  background: var(--color-primary);
-  color: var(--color-text-on-primary, var(--color-surface));
-  border: none;
-  border-radius: var(--radius-card);
-  padding-inline: var(--space-3);
-  padding-block: var(--space-2);
+.systemBadge {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
   font-size: var(--font-size-xs);
   font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
 }
 
-.payoutButtonSmall:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+/* Tab Nav */
+.tabNav {
+  display: flex;
+  gap: var(--space-2);
+  border-block-end: 1px solid var(--color-border);
+  padding-block-end: var(--space-1);
+  overflow-x: auto;
 }
 
-.printButton {
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
+.tabBtn {
+  background: transparent;
+  border: none;
+  border-block-end: 2px solid transparent;
   padding-inline: var(--space-4);
-  padding-block: var(--space-3);
+  padding-block: var(--space-2);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  transition: background 0.2s ease;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.printButton:hover {
-  background: var(--color-surface-hover, var(--color-canvas));
+.tabBtn:hover {
+  color: var(--color-text-primary);
 }
 
-/* 4-Card Double-Entry Ledger Balances Grid */
+.tabBtnActive {
+  color: var(--color-primary);
+  border-block-end-color: var(--color-primary);
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Metrics Grid */
 .metricsGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -151,13 +137,7 @@
   inset-inline: 0;
   inset-block-start: 0;
   block-size: 4px;
-  background: var(--color-success-green);
-}
-
-.cardHeaderRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background: var(--color-primary);
 }
 
 .metricLabel {
@@ -188,146 +168,19 @@
   color: var(--color-text-muted);
 }
 
-.pillGreen {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-  font-size: 10px;
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-.pillAmber {
-  background: var(--color-warning-bg);
-  color: var(--color-warning-text);
-  font-size: 10px;
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-.pillTeal {
-  background: var(--color-info-bg);
-  color: var(--color-info-text);
-  font-size: 10px;
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-.pillMuted {
-  background: var(--color-canvas);
-  color: var(--color-text-secondary);
-  font-size: 10px;
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-/* Summary Banner */
-.summaryBanner {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding-inline: var(--space-4);
-  padding-block: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+/* Section Grid */
+.sectionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
 }
 
 @media (min-width: 768px) {
-  .summaryBanner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  .sectionGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-.summaryItem {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-sm);
-}
-
-.summaryLabel {
-  color: var(--color-text-secondary);
-}
-
-.summaryVal {
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.summaryDivider {
-  inline-size: 1px;
-  block-size: 24px;
-  background: var(--color-border);
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .summaryDivider {
-    display: block;
-  }
-}
-
-.verifiedBadge {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-  font-weight: 700;
-  font-size: var(--font-size-xs);
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-.unverifiedBadge {
-  background: var(--color-warning-bg);
-  color: var(--color-warning-text);
-  font-weight: 700;
-  font-size: var(--font-size-xs);
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-}
-
-/* Tab Navigation */
-.tabNav {
-  display: flex;
-  gap: var(--space-2);
-  border-block-end: 1px solid var(--color-border);
-  padding-block-end: var(--space-1);
-}
-
-.tabBtn {
-  background: transparent;
-  border: none;
-  border-block-end: 2px solid transparent;
-  padding-inline: var(--space-4);
-  padding-block: var(--space-2);
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.tabBtn:hover {
-  color: var(--color-text-primary);
-}
-
-.tabBtnActive {
-  color: var(--color-primary);
-  border-block-end-color: var(--color-primary);
-}
-
-/* Section Card */
 .sectionCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -366,10 +219,58 @@
   margin: 0;
 }
 
+.statList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  padding-block: var(--space-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.statRow span {
+  color: var(--color-text-secondary);
+}
+
+.statRow strong {
+  color: var(--color-text-primary);
+}
+
+/* Filter Row */
+.filterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.selectInput {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
 .recordCount {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  font-weight: 600;
 }
 
 /* Table */
@@ -412,12 +313,6 @@
   white-space: nowrap;
 }
 
-.feeCell {
-  color: var(--color-warning-text);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
 .monoCell {
   font-family: monospace;
   font-size: var(--font-size-xs);
@@ -435,34 +330,17 @@
 .notesCell {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
+  max-inline-size: 180px;
 }
 
-.textGreen {
-  color: var(--color-success-text);
+.subText {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: normal;
 }
 
 .textRed {
   color: var(--color-error-text);
-}
-
-.statusBadge {
-  display: inline-block;
-  padding-inline: var(--space-2);
-  padding-block: 2px;
-  border-radius: var(--radius-pill);
-  font-size: 10px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.statusMatured {
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-}
-
-.statusPending {
-  background: var(--color-warning-bg);
-  color: var(--color-warning-text);
 }
 
 .emptyCell {
@@ -472,7 +350,86 @@
   font-size: var(--font-size-sm);
 }
 
-/* Payout Badges */
+/* Action Button Group */
+.actionBtnGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.btnApprove {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-green);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnPay {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary, var(--color-surface));
+  border: none;
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnReject {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid var(--color-error-red);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnAudit {
+  background: var(--color-canvas);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btnEdit {
+  background: var(--color-canvas);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payoutButton {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary, var(--color-surface));
+  border: none;
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Badges */
 .badge {
   display: inline-block;
   padding-inline: var(--space-2);
@@ -503,80 +460,68 @@
   color: var(--color-error-text);
 }
 
-/* Tax Grid */
-.taxGrid {
+.verifiedBadge {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-size: 10px;
+  font-weight: 700;
+  padding-inline: var(--space-2);
+  padding-block: 2px;
+  border-radius: var(--radius-pill);
+}
+
+.unverifiedBadge {
+  background: var(--color-canvas);
+  color: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  padding-inline: var(--space-2);
+  padding-block: 2px;
+  border-radius: var(--radius-pill);
+}
+
+/* Refund Policy Grid */
+.refundPolicyGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
 }
 
 @media (min-width: 640px) {
-  .taxGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .refundPolicyGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-.taxItem {
+.policyCard {
   background: var(--color-canvas);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
-.taxLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-}
-
-.taxValue {
-  font-size: var(--font-size-sm);
+.policyTitle {
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--color-text-primary);
+  margin: 0;
 }
 
-/* Alerts */
-.alertSuccess {
-  background: var(--color-success-bg);
-  border: 1px solid var(--color-success-green);
-  color: var(--color-success-text);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-card);
+.policyList {
+  margin: 0;
+  padding-inline-start: var(--space-4);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--font-size-sm);
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
 }
 
-.alertSuccess button {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.alertError {
-  background: var(--color-error-bg);
-  border: 1px solid var(--color-error-red);
-  color: var(--color-error-text);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-card);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--font-size-sm);
-}
-
-.alertError button {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-/* Modal */
+/* Modals */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -594,7 +539,7 @@
   border-radius: var(--radius-card);
   padding: var(--space-6);
   inline-size: 100%;
-  max-inline-size: 520px;
+  max-inline-size: 560px;
   box-shadow: var(--shadow-elevated);
   display: flex;
   flex-direction: column;
@@ -629,30 +574,15 @@
   gap: var(--space-4);
 }
 
-.modalError {
-  background: var(--color-error-bg);
-  border: 1px solid var(--color-error-red);
-  color: var(--color-error-text);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-card);
-  font-size: var(--font-size-xs);
-}
-
-.infoBanner {
+.payoutSummaryBox {
   background: var(--color-canvas);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: var(--space-3);
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.infoBanner strong {
-  color: var(--color-primary);
-  font-weight: 800;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
 .formGroup {
@@ -701,25 +631,6 @@
   text-align: start;
 }
 
-.fieldHint {
-  font-size: 11px;
-  color: var(--color-text-muted);
-}
-
-.formCheckboxGroup {
-  display: flex;
-  align-items: center;
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  cursor: pointer;
-}
-
 .modalActions {
   display: flex;
   justify-content: flex-end;
@@ -750,9 +661,103 @@
   cursor: pointer;
 }
 
-.buttonSubmit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.buttonRejectSubmit {
+  background: var(--color-error-red);
+  color: var(--color-text-on-primary, var(--color-surface));
+  border: none;
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-5);
+  padding-block: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modalError {
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-red);
+  color: var(--color-error-text);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-xs);
+}
+
+/* Audit List */
+.auditList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.auditItem {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.auditAction {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.auditMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.auditRef {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-success-text);
+}
+
+.auditNotes {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+/* Alerts */
+.alertSuccess {
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-green);
+  color: var(--color-success-text);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.alertSuccess button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.alertError {
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-red);
+  color: var(--color-error-text);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.alertError button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .loadingState {
