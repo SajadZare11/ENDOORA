@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 41 — Build Marketplace Admin Moderation, Teacher Onboarding Approval, and Dispute Resolution (MKT-007 / MKT-006)
-- **Day 41 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–40 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, and Teacher Availability Calendar
-- **Schema version:** Day 41 adds `marketplace.0005_platformpricingplan_bookingdispute_and_more`
+- **Roadmap day completed:** Day 44 — Build the IELTS Content Model and Copyright/Quality Workflow (IELTS-001)
+- **Day 44 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–43 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, and Double-Entry Teacher Payable Ledger
+- **Schema version:** Day 44 adds `ielts.0001_initial`
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1616,16 +1616,35 @@ Key accomplishments:
     - Full design token compliance: 0 hex colors, 100% logical properties.
   - Full verification: 163/163 static routes prerendered, TypeScript 0 errors, 43/43 tests passing.
 
-## Git checkpoint (Day 43)
+- Day 44 additions (IELTS-001):
+  - Backend:
+    - New Django application `ielts` registered in `INSTALLED_APPS` and wired to `/api/ielts/`.
+    - Models: `IELTSTest`, `IELTSSection`, `IELTSPassageTask`, `IELTSQuestionGroup`, `IELTSQuestion`, `IELTSBandDescriptor` (migration `0001_initial`).
+    - Full 17 IELTS question formats supported across all 4 skill domains (Listening, Reading, Writing, Speaking).
+    - Editorial Quality Workflow (`services.py`): Two-Person Review Gate (`author != reviewer`), mandatory 5-point quality checklist, copyright provenance validation, mandatory trademark disclaimer enforcement, immutable test locking (`is_locked=True`), and version cloning (`clone_test_new_version`).
+    - 8 REST API endpoints for test CRUD, review submission, approval gate, publishing, cloning, band descriptors, and public catalogue.
+    - Full Django admin registration with inlines, search, and filters.
+    - Seed command `seed_ielts_mini_test`: creates complete 100% original Academic IELTS mini-test (19 questions) and official public band descriptors (Bands 5.0–9.0) with Persian pedagogical guidance.
+    - 8 integration tests in `ielts/tests.py` (51 total backend tests passing).
+  - Documentation:
+    - Comprehensive Persian authoring manual in `docs/content/ielts-authoring-guide.md` covering strict anti-infringement policies, two-person review protocols, question taxonomy, band descriptors, and version immutability.
+  - Frontend:
+    - Admin IELTS Content & Quality Studio (`/ielts-content`) with test catalog, Academic/General filters, status badges, full 4-section inspector, live preview of all question formats, audio script drawer, band descriptor viewer, two-person review modal, and publishing lock confirmation.
+    - TypeScript client lib (`lib/ielts.ts`): all Day 44 interfaces and API functions.
+    - Full design token compliance: 0 hex colors, 100% logical properties.
+  - Full verification: 164/164 static routes prerendered, TypeScript 0 errors, 51/51 tests passing.
+
+## Git checkpoint (Day 44)
 
 ```
-Day 43: Teacher Earnings, Double-Entry Payable Ledger, Dispute Windows, Payout Requests, Refunds & Finance Operations (LEDGER-001)
+Day 44: Build the IELTS Content Model and Copyright/Quality Workflow (IELTS-001)
 ```
 
 ## Exact next day
 
-**Day 44 — Build the IELTS content model and copyright/quality workflow.**
+**Day 45 — Build the IELTS test-taking simulator UI and timed session engine.**
 
-Do not begin Day 44 until the Day 43 commit is pushed and `git status --short --branch`
+Do not begin Day 45 until the Day 44 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
 

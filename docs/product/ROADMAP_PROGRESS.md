@@ -1391,3 +1391,67 @@ Status: Complete and verified; ready for Git commit and push.
 **Day 43 Status:** Completed.
 **Next day:** Day 44 — Build the IELTS content model and copyright/quality workflow.
 
+---
+
+### Day 44: Build the IELTS Content Model and Copyright/Quality Workflow (IELTS-001)
+
+**Backend Architecture (`apps/api/ielts`):**
+- [x] Django App Configuration (`ielts/apps.py`): registered in `endoora_api/settings/base.py` and `endoora_api/urls.py`
+- [x] Data Models (`ielts/models.py`):
+  - `IELTSTestType`: Academic & General Training
+  - `IELTSSectionType`: Listening, Reading, Writing, Speaking
+  - `IELTSTestStatus`: Draft, In Review, Approved, Published, Archived
+  - `IELTSQuestionType`: 17 comprehensive IELTS question formats (T/F/NG, Y/N/NG, Multiple Choice Single/Multi, Matching Headings/Info/Features, Sentence/Summary/Note/Table/Flowchart Completion, Writing Tasks 1/2, Speaking Parts 1/2/3)
+  - `IELTSCriteriaKey`: TA/TR, CC, LR, GRA, FC, PR
+  - `IELTSTest`: UUID PK, title EN/FA, versioning, author, reviewer, review notes, is_locked, quality_checklist, copyright_source, disclaimer_label, total_duration_minutes, difficulty_level
+  - `IELTSSection`: section_type, order, duration_minutes, instructions EN/FA, audio_media_url, audio_script
+  - `IELTSPassageTask`: order, title, content_text, media_image_url, word_count, metadata (prep/speaking time for cue cards)
+  - `IELTSQuestionGroup`: question_type, instructions, heading_options bank
+  - `IELTSQuestion`: question_number, prompt_text, options, correct_answers JSON, explanation, max_score
+  - `IELTSBandDescriptor`: official public criteria (TA/TR, CC, LR, GRA, FC, PR), band levels 1.0 to 9.0, English public descriptors, Persian pedagogical guidance
+- [x] Services & Business Logic (`ielts/services.py`):
+  - `submit_test_for_review`: validates test completeness and moves to IN_REVIEW
+  - `review_and_approve_test`: enforces Two-Person Review Gate (`author != reviewer`) and 5-point quality checklist confirmation
+  - `publish_test`: validates copyright provenance, trademark disclaimer, and permanently locks test (`is_locked=True`)
+  - `clone_test_new_version`: deep-copies test, sections, passages, groups, and questions into new isolated DRAFT version (`version + 1`)
+  - `evaluate_ielts_answer` & `normalize_ielts_answer`: robust string normalization and answer checking
+- [x] REST API Endpoints (`ielts/views.py`, `ielts/urls.py`):
+  - `GET, POST /api/ielts/tests/` — admin test catalog and draft creation
+  - `GET, PATCH /api/ielts/tests/<id>/` — test tree detail and metadata update
+  - `POST /api/ielts/tests/<id>/submit-review/` — submit to review queue
+  - `POST /api/ielts/tests/<id>/approve/` — two-person review approval gate
+  - `POST /api/ielts/tests/<id>/publish/` — test publishing and lock
+  - `POST /api/ielts/tests/<id>/clone/` — version cloning
+  - `GET /api/ielts/band-descriptors/` — public band descriptors catalog
+  - `GET /api/ielts/public/tests/` — public published test catalog with mandatory disclaimer
+- [x] Management Seed Command (`ielts/management/commands/seed_ielts_mini_test.py`):
+  - 100% original Academic IELTS Mini-Test (Listening Botanical Garden desk, Reading Urban Heat Islands, Writing Task 1 Energy Chart + Task 2 AI in Education, Speaking Parts 1, 2 Cue Card, and 3 Discussion)
+  - Complete public band descriptors across bands 5.0–9.0 with Persian pedagogical breakdowns
+- [x] Test Suite (`ielts/tests.py`): 8 comprehensive tests validating two-person review gate, disclaimer enforcement, unreviewed publish prevention, immutable version cloning, answer normalization, REST workflows, and seed command. All 51 tests pass.
+
+**Documentation:**
+- [x] `docs/content/ielts-authoring-guide.md` — comprehensive Persian guide detailing legal anti-infringement policies (zero Cambridge/BC/IDP copying), mandatory disclaimers, two-person review protocols, 17 question formats taxonomy, public band descriptors, and version immutability.
+
+**Frontend (`apps/web`):**
+- [x] TypeScript client lib (`lib/ielts.ts`): full IELTS data contracts, interfaces, and typed API functions
+- [x] Admin IELTS Content & Quality Studio (`/ielts-content`):
+  - Prominent mandatory trademark disclaimer banner (*"IELTS-like practice — not official IELTS / تمرین شبیه‌ساز آیلتس — غیررسمی"*)
+  - Test explorer with Academic/General Training and Draft/In Review/Approved/Published filters
+  - Detailed test inspector with 4-section tabs (Listening, Reading, Writing, Speaking)
+  - Passage and question preview across all question formats (T/F/NG, Matching Headings, Completion, Essays, Cue Cards with timers)
+  - Audio script inspector and audio player placeholder
+  - Answer key toggle and detailed explanation inspector
+  - Band Descriptors Explorer tab with criteria and Persian pedagogical guidance
+  - Two-Person Review modal with 5-point quality checklist and author-reviewer conflict prevention
+  - Publishing confirmation modal with immutability warnings
+
+**Verification:**
+- [x] Backend tests: 50+ unit tests passing cleanly (8 ielts + 8 ledger + 35 marketplace)
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`
+- [x] Next.js production build: 164/164 pages generated successfully
+- [x] Design token compliance: 0 hex colors, 100% tokens, 100% logical properties
+
+**Day 44 Status:** Completed.
+**Next day:** Day 45 — Build the IELTS test-taking simulator UI and timed session engine.
+
+

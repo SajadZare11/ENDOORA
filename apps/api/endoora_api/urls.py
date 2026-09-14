@@ -98,4 +98,8 @@ urlpatterns = [
         "api/ledger/",
         include("ledger.urls")
     ),
+    path(
+        "api/ielts/",
+        include("ielts.urls")
+    ),
 ]
