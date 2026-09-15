@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -40,6 +40,7 @@ const OPERATIONS_TABS = [
   { href: "/operations/analytics", label: "📈 تحلیل داده" },
   { href: "/operations/pwa", label: "📱 PWA و تاب‌آوری" },
   { href: "/operations/incidents", label: "🚨 مدیریت بحران و ران‌بوک‌ها" },
+  { href: "/operations/launch", label: "🚀 پروداکشن و لانچ نهایی" },
 ];
 
 export function IncidentOperationsDashboard() {

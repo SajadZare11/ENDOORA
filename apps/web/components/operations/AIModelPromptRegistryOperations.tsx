@@ -34,6 +34,7 @@ const OPERATIONS_TABS = [
   { label: "تحلیل محصول", href: "/operations/analytics" },
   { label: "PWA و آفلاین", href: "/operations/pwa" },
   { label: "مدیریت بحران", href: "/operations/incidents" },
+  { label: "پروداکشن و لانچ", href: "/operations/launch" },
 ];
 
 export function AIModelPromptRegistryOperations() {

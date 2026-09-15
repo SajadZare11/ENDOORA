@@ -26,6 +26,7 @@ const OPERATIONS_TABS = [
   { href: "/operations/analytics", label: "📈 تحلیل محصول و رویدادها" },
   { href: "/operations/pwa", label: "📱 PWA و تاب‌آوری آفلاین" },
   { href: "/operations/incidents", label: "🚨 مدیریت بحران و ران‌بوک‌ها" },
+  { href: "/operations/launch", label: "🚀 پروداکشن و لانچ نهایی" },
 ];
 
 export function PWAOperationsDashboard() {

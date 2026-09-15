@@ -96,6 +96,7 @@ INSTALLED_APPS = [
     "analytics.apps.AnalyticsConfig",
     "offline_sync.apps.OfflineSyncConfig",
     "incident_response.apps.IncidentResponseConfig",
+    "production_launch.apps.ProductionLaunchConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

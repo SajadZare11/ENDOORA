@@ -485,6 +485,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/operations/incidents" className={styles.opsTab}>
           🚨 مدیریت بحران و ران‌بوک‌ها (OPS-009)
         </Link>
+        <Link href="/operations/launch" className={styles.opsTab}>
+          🚀 پروداکشن و لانچ نهایی (LAUNCH-001)
+        </Link>
       </nav>
 
       {/* Operational Header */}

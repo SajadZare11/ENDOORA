@@ -133,6 +133,9 @@ export function AdminOperationsDashboard() {
         <Link href="/operations/incidents" className={styles.opsTab}>
           🚨 مدیریت بحران و ران‌بوک‌ها (OPS-009)
         </Link>
+        <Link href="/operations/launch" className={styles.opsTab}>
+          🚀 پروداکشن و لانچ نهایی (LAUNCH-001)
+        </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)
         </Link>

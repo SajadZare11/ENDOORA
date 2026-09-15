@@ -142,5 +142,9 @@ urlpatterns = [
         "api/incidents/",
         include("incident_response.urls")
     ),
+    path(
+        "api/launch/",
+        include("production_launch.urls")
+    ),
 ]
 

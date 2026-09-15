@@ -1,0 +1,450 @@
+﻿.container {
+  max-inline-size: 1400px;
+  margin-inline: auto;
+  padding-block: var(--space-8, 32px);
+  padding-inline: var(--space-6, 24px);
+  direction: rtl;
+}
+
+.header {
+  margin-block-end: var(--space-6, 24px);
+}
+
+.headerTitle {
+  font-size: var(--font-size-2xl, 24px);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block-end: var(--space-2, 8px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.headerSubtitle {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-block-start: var(--space-4, 16px);
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-4, 16px);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--color-primary);
+  color: var(--color-action-text);
+  font-weight: 700;
+  font-size: var(--font-size-sm, 14px);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btnPrimary:hover {
+  opacity: 0.9;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-4, 16px);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: var(--font-size-sm, 14px);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnSecondary:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.ribbon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  overflow-x: auto;
+  padding-block-end: var(--space-3, 12px);
+  margin-block-end: var(--space-8, 32px);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.ribbonLink {
+  white-space: nowrap;
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-3, 12px);
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all 0.15s ease;
+}
+
+.ribbonLink:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.ribbonLinkActive {
+  background-color: var(--color-primary);
+  color: var(--color-action-text);
+  border-color: var(--color-primary);
+}
+
+.masterHero {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding-block: var(--space-6, 24px);
+  padding-inline: var(--space-6, 24px);
+  margin-block-end: var(--space-8, 32px);
+  box-shadow: var(--shadow-sm);
+}
+
+.masterTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4, 16px);
+  margin-block-end: var(--space-6, 24px);
+  border-block-end: 1px solid var(--color-border);
+  padding-block-end: var(--space-4, 16px);
+}
+
+.masterTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.masterMainTitle {
+  font-size: var(--font-size-xl, 20px);
+  font-weight: 800;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.masterCertBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  padding-block: var(--space-1, 4px);
+  padding-inline: var(--space-3, 12px);
+  border-radius: var(--radius-full, 9999px);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 700;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+
+.scoreGauge {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2, 8px);
+}
+
+.scoreNumber {
+  font-size: var(--font-size-3xl, 36px);
+  font-weight: 900;
+  color: var(--color-success-text);
+  line-height: 1;
+}
+
+.scorePercent {
+  font-size: var(--font-size-lg, 18px);
+  color: var(--color-text-muted);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4, 16px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.kpiCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding-block: var(--space-5, 20px);
+  padding-inline: var(--space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.kpiLabel {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.kpiValue {
+  font-size: var(--font-size-2xl, 24px);
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.kpiMeta {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-muted);
+}
+
+.section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding-block: var(--space-6, 24px);
+  padding-inline: var(--space-6, 24px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+  margin-block-end: var(--space-4, 16px);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: 800;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.matrixGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+.matrixCard {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-4, 16px);
+  padding-inline: var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.matrixHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.matrixName {
+  font-weight: 700;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text);
+}
+
+.matrixPassBadge {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 700;
+  padding-block: 2px;
+  padding-inline: var(--space-2, 8px);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.matrixCategory {
+  font-size: 11px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.matrixRequirement {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.matrixEvidence {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-3, 12px);
+  border-radius: var(--radius-sm, 4px);
+  border-inline-start: 3px solid var(--color-primary);
+  line-height: 1.5;
+}
+
+.flowGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4, 16px);
+}
+
+.flowCard {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-4, 16px);
+  padding-inline: var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.flowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.flowTitle {
+  font-weight: 700;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text);
+}
+
+.flowStepsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-2, 8px);
+}
+
+.flowStepItem {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm, 4px);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-3, 12px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text);
+}
+
+.flowStepIcon {
+  color: var(--color-success-text);
+  font-weight: 800;
+}
+
+.signoffPanel {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-5, 20px);
+  padding-inline: var(--space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.signoffRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+  border-block-end: 1px solid var(--color-border);
+  padding-block-end: var(--space-3, 12px);
+}
+
+.signoffHash {
+  font-family: monospace;
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-learning-teal);
+  background-color: var(--color-surface);
+  padding-block: 4px;
+  padding-inline: var(--space-2, 8px);
+  border-radius: var(--radius-sm, 4px);
+  word-break: break-all;
+}
+
+.terminalOutput {
+  margin-block-start: var(--space-4, 16px);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-3, 12px);
+  padding-inline: var(--space-4, 16px);
+  direction: ltr;
+  text-align: start;
+  font-family: monospace;
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-success-text);
+  max-block-size: 180px;
+  overflow-y: auto;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.historyTable {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm, 14px);
+}
+
+.historyTable th {
+  text-align: start;
+  padding-block: var(--space-3, 12px);
+  padding-inline: var(--space-4, 16px);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  border-block-end: 2px solid var(--color-border);
+  font-size: var(--font-size-xs, 12px);
+}
+
+.historyTable td {
+  padding-block: var(--space-3, 12px);
+  padding-inline: var(--space-4, 16px);
+  border-block-end: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .matrixGrid {
+    grid-template-columns: 1fr;
+  }
+  .flowStepsList {
+    grid-template-columns: 1fr;
+  }
+  .kpiGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+}
