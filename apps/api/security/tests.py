@@ -150,3 +150,71 @@ class SecurityTests(TestCase):
         response = middleware(request)
         
         self.assertEqual(response.status_code, 200)
+
+from django.core.management import call_command
+from io import StringIO
+from security.services.pen_test_runner import PenTestRunner
+
+class PenTestRunnerTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.learner = User.objects.create_user(email="learner_pt@example.com", password="password", role="learner")
+        self.admin = User.objects.create_user(email="admin_pt@example.com", password="password", role="administrator", is_staff=True)
+        self.runner = PenTestRunner()
+
+    def test_pen_test_runner_all_probes_pass(self):
+        report = self.runner.run_full_scan()
+        self.assertEqual(report['score'], 100)
+        self.assertEqual(report['passed_count'], 10)
+        self.assertEqual(report['failed_count'], 0)
+        self.assertEqual(report['status'], 'PASS')
+        self.assertEqual(report['certification'], 'SEC-003 Certified')
+        self.assertEqual(report['total_probes'], 10)
+
+    def test_probe_access_control(self):
+        result = self.runner._probe_a01_broken_access_control()
+        self.assertEqual(result['status'], 'PASS')
+
+    def test_probe_injection_defense(self):
+        result = self.runner._probe_a03_injection_defense()
+        self.assertEqual(result['status'], 'PASS')
+
+    def test_probe_audit_immutability(self):
+        result = self.runner._probe_a09_security_logging()
+        self.assertEqual(result['status'], 'PASS')
+
+    def test_probe_ssrf_protection(self):
+        result = self.runner._probe_a10_ssrf_protection()
+        self.assertEqual(result['status'], 'PASS')
+
+    def test_security_scanner_status_endpoint_requires_admin(self):
+        self.client.force_authenticate(user=self.learner)
+        response = self.client.get(reverse('security-scanner-status'))
+        self.assertEqual(response.status_code, 403)
+        
+        self.client.force_authenticate(user=self.admin)
+        response = self.client.get(reverse('security-scanner-status'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('scan_id', response.json())
+
+    def test_security_scanner_run_endpoint_requires_admin(self):
+        self.client.force_authenticate(user=self.learner)
+        response = self.client.post(reverse('security-scanner-run'))
+        self.assertEqual(response.status_code, 403)
+        
+        self.client.force_authenticate(user=self.admin)
+        response = self.client.post(reverse('security-scanner-run'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['score'], 100)
+
+    def test_run_security_scan_management_command(self):
+        out = StringIO()
+        call_command('run_security_scan', stdout=out)
+        self.assertIn('ENDOORA SECURITY PENETRATION TEST REPORT (SEC-003)', out.getvalue())
+        self.assertIn('Score:        100/100', out.getvalue())
+        
+        out_json = StringIO()
+        call_command('run_security_scan', '--json', stdout=out_json)
+        data = json.loads(out_json.getvalue())
+        self.assertEqual(data['score'], 100)
+        self.assertEqual(data['total_probes'], 10)

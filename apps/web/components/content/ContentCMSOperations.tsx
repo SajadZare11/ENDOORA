@@ -247,6 +247,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/privacy" className={styles.opsTab}>
           🛡️ حریم خصوصی (Privacy)
         </Link>
+        <Link href="/operations/pen-test" className={styles.opsTab}>
+          🔍 آزمون نفوذ (Pen-Test)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

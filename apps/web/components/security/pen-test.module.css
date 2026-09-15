@@ -1,0 +1,379 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding-block-end: var(--spacing-6);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-block-start: var(--spacing-4);
+}
+
+.ribbonTab {
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: all 0.2s ease;
+}
+
+.ribbonTab:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.ribbonTabActive {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-4);
+  margin-block: var(--spacing-6);
+}
+
+.kpiCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.kpiLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.kpiValue {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-end: var(--spacing-6);
+}
+
+.scanBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.scanBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.scanBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.probesSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.probesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.probeCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.probeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.probeTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.probeId {
+  font-family: monospace;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: var(--color-background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+
+.probeNameFa {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.probeNameEn {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  direction: ltr;
+  text-align: start;
+}
+
+.badges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  align-items: flex-end;
+}
+
+.badge {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.badgePass {
+  background-color: var(--color-success-bg, rgba(16, 185, 129, 0.1));
+  color: var(--color-success-text, #10b981);
+}
+
+.badgeCritical {
+  background-color: var(--color-danger-bg, rgba(239, 68, 68, 0.1));
+  color: var(--color-danger-text, #ef4444);
+}
+
+.badgeHigh {
+  background-color: var(--color-warning-bg, rgba(245, 158, 11, 0.1));
+  color: var(--color-warning-text, #f59e0b);
+}
+
+.badgeMedium {
+  background-color: var(--color-info-bg, rgba(59, 130, 246, 0.1));
+  color: var(--color-info-text, #3b82f6);
+}
+
+.probeDesc {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  border-block-start: 1px dashed var(--color-border);
+  padding-block-start: var(--spacing-3);
+  margin-block-start: var(--spacing-2);
+}
+
+.inspectBtn {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  margin-block-start: auto;
+  transition: background-color 0.2s;
+}
+
+.inspectBtn:hover {
+  background-color: var(--color-surface-hover);
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: var(--spacing-4);
+}
+
+.modalContent {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.modalTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--spacing-1);
+}
+
+.modalBody {
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.detailRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.detailLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: var(--font-size-md);
+  background-color: var(--color-background);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  direction: ltr;
+  text-align: start;
+  font-family: monospace;
+}
+
+.detailValueFa {
+  direction: rtl;
+  text-align: start;
+  font-family: inherit;
+}
+
+/* Compliance Matrix */
+.matrixSection {
+  margin-block-start: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.matrixTableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.matrixTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.matrixTable th,
+.matrixTable td {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.matrixTable th {
+  background-color: var(--color-surface);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.matrixTable tr:last-child td {
+  border-block-end: none;
+}
+
+.statusIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .probeHeader {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+  .badges {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}

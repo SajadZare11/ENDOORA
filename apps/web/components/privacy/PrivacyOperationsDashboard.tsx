@@ -43,6 +43,7 @@ export function PrivacyOperationsDashboard() {
         <Link href="/operations/audit" className={styles.opsTab}>حسابرسی (Audit)</Link>
         <Link href="/operations/security" className={styles.opsTab}>امنیت (Security)</Link>
         <Link href="/operations/privacy" className={`${styles.opsTab} ${styles.opsTabActive}`}>🛡️ حریم خصوصی (Privacy)</Link>
+        <Link href="/operations/pen-test" className={styles.opsTab}>🔍 آزمون نفوذ (Pen-Test)</Link>
       </nav>
 
       <div className={styles.header}>

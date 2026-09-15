@@ -50,3 +50,22 @@ class SecurityHealthCheckView(APIView):
 
     def get(self, request):
         return Response({"status": "operational", "module": "endoora-security", "version": "1.0.0"})
+
+from security.services.pen_test_runner import PenTestRunner
+
+class SecurityScannerStatusView(APIView):
+    permission_classes = [IsAdministratorOrStaff]
+
+    def get(self, request):
+        # Returns the latest scan report, for now it will just run it.
+        runner = PenTestRunner()
+        report = runner.run_full_scan()
+        return Response(report)
+
+class SecurityScannerRunView(APIView):
+    permission_classes = [IsAdministratorOrStaff]
+
+    def post(self, request):
+        runner = PenTestRunner()
+        report = runner.run_full_scan()
+        return Response(report)

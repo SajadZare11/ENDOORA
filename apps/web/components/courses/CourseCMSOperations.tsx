@@ -464,6 +464,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/operations/privacy" className={styles.opsTab}>
           🛡️ حریم خصوصی (Privacy)
         </Link>
+        <Link href="/operations/pen-test" className={styles.opsTab}>
+          🔍 آزمون نفوذ (Pen-Test)
+        </Link>
       </nav>
 
       {/* Operational Header */}
