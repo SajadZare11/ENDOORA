@@ -42,7 +42,8 @@
 | 38 | Build Session Booking, Scheduling State Machine, and Timezone Management | Complete | Scheduling state machine, conflict prevention, Asia/Tehran timezone, 103 contract checks, 308 tests passed |
 | 39-49 | Advanced Platform Infrastructure & Content Systems (Day 39 to Day 49) | Complete | Teacher marketplace, payment ledgers, IELTS evaluation, questions & course CMS passed |
 | 50 | Culture & Skills Content CMS (CONTENT-004) & Operational Admin Hub (OPS-001/002/003) | Complete | Executive console, live telemetry, feature flags/kill switches, audit logs, 378+ tests passed |
-| 51-60 | Remaining roadmap | Not started | Sequential |
+| 51 | Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001) | Complete | Security headers, input sanitization, role throttling, burst defense, 392 tests passed |
+| 52-60 | Remaining roadmap | Not started | Sequential |
 
 
 
@@ -1807,5 +1808,37 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Day 50 Status:** Completed.
 **Next day:** Day 51 — Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001).
+
+## Day 51 deliverables
+
+### Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001)
+
+- [x] Backend Security App (`apps/api/security/`):
+  - `SecurityHeadersMiddleware`: Production HTTP headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `X-XSS-Protection: 1; mode=block`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, `Content-Security-Policy`, `Strict-Transport-Security`).
+  - `InputSanitizationMiddleware`: Non-GET request body scanner blocking `<script>`, `javascript:`, inline event handlers, and SQL injection vectors (`UNION SELECT`, `DROP TABLE`, `OR 1=1`, `'; --`).
+  - `IPRateLimitMiddleware`: Sliding 60-second window circuit breaker tracking connection velocities per IP with 429 status and RFC-compliant `Retry-After` headers.
+  - Custom Throttles: `RoleBasedThrottle` (tiered by guest, learner, teacher, editor, administrator), `BurstProtectionThrottle` (rapid-fire deduplication), and `SensitiveEndpointThrottle`.
+  - Input Validators: `sanitize_text_input`, `validate_no_injection`, `validate_content_length`.
+  - Security Audit & Health Endpoints: `GET /api/security/audit/` (restricted to administrators/staff) and `GET /api/security/health/` (lightweight health probe).
+  - 11 unit tests in `security/tests.py` covering all headers, XSS rejection, SQL injection defense, throttling, and IP rate limiting. Total 392/392 backend tests passing.
+- [x] Frontend Security Hardening (`apps/web/`):
+  - Next.js HTTP Security Headers configured in `next.config.ts` across all 178 routes.
+  - TypeScript Security Client (`lib/security-ops.ts`) with typed contracts for `ThrottleConfig`, `SecurityHeadersConfig`, `CookieSecurityConfig`, `CorsConfig`, and audit API integration.
+  - Security Operations Dashboard component (`SecurityOperationsDashboard.tsx`) with real-time posture KPI cards, compliance matrix, cookie security table, and role rate tiers.
+  - CSS Module (`security-ops.module.css`): 100% design token compliance, 0 raw hex colors, 100% logical properties, fully responsive down to 360px.
+  - Dedicated operations route at `/operations/security` (`apps/web/app/operations/security/page.tsx`).
+  - Synchronized unified 8-tab operations navigation ribbon across all operational views (`Taxonomy`, `Questions`, `Courses`, `Content`, `Admin`, `Flags`, `Audit`, `Security`).
+- [x] Documentation & Handbooks:
+  - Created `docs/security/security-hardening-handbook.md`.
+
+**Verification:**
+- [x] Backend tests: 392/392 unit tests passing in 15.4s.
+- [x] Design token compliance: `npm run check:design` passes with 14 AA contrast pairs, 0 raw hex colors, 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 178/178 routes generated successfully.
+
+**Day 51 Status:** Completed.
+**Next day:** Day 52 — Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002).
+
 
 

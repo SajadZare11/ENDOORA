@@ -170,7 +170,7 @@
   border: 1px solid rgb(20 184 166 / 0.42);
   border-radius: 0.9rem;
   background: rgb(20 184 166 / 0.1);
-  color: #5eead4;
+  color: var(--color-learning-teal);
   box-shadow: 0 0 32px rgb(20 184 166 / 0.12);
 }
 
@@ -188,7 +188,7 @@
 .description { margin: 0; }
 
 .title {
-  color: #f8fafc;
+  color: var(--color-text);
   font-size: clamp(1.55rem, 2.6vw, 2rem);
   line-height: 1.3;
   font-weight: 850;
@@ -197,7 +197,7 @@
 
 .description {
   margin-block-start: var(--space-2);
-  color: #b7c4d5;
+  color: var(--color-muted);
   line-height: 1.75;
 }
 
@@ -234,7 +234,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: #99f6e4;
+  color: var(--color-learning-teal);
 }
 
 .securityPanel ul {
@@ -242,7 +242,7 @@
   gap: var(--space-2);
   margin: 0;
   padding: 0;
-  color: #b7c4d5;
+  color: var(--color-muted);
   font-size: var(--font-size-meta);
   list-style: none;
 }
@@ -268,7 +268,7 @@
   min-block-size: 42rem;
   overflow: hidden;
   border-inline-end: 1px solid rgb(255 255 255 / 0.1);
-  background: #030712;
+  background: var(--color-deep-space);
 }
 
 .sceneImage {
@@ -306,13 +306,13 @@
 
 .sceneCopy h2,
 .sceneCopy p { margin: 0; }
-.sceneCopy h2 { color: #f8fafc; font-size: 1.25rem; }
-.sceneCopy p { margin-block-start: var(--space-2); color: #b7c4d5; }
+.sceneCopy h2 { color: var(--color-surface); font-size: 1.25rem; }
+.sceneCopy p { margin-block-start: var(--space-2); color: var(--color-muted); }
 
 .ltrInput {
   direction: ltr;
   unicode-bidi: isolate;
-  color: #f8fafc;
+  color: var(--color-text);
   font-family: var(--font-family-latin);
   text-align: left;
 }
@@ -358,7 +358,7 @@
 .roleChoice:has(input:checked) { border-color: var(--color-action); background: rgb(37 99 235 / 0.12); box-shadow: 0 0 0 2px rgb(37 99 235 / 0.18); }
 .roleChoice:has(input:focus-visible) { outline: var(--focus-ring-width) solid var(--color-focus); outline-offset: var(--focus-ring-offset); }
 .roleChoice input { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
-.roleTitle { color: #f8fafc; font-weight: 800; }
+.roleTitle { color: var(--color-text); font-weight: 800; }
 .roleDescription { color: var(--color-muted); font-size: var(--font-size-meta); line-height: var(--line-height-meta); }
 
 .actions { display: grid; gap: var(--space-3); }
@@ -417,7 +417,7 @@
   background: color-mix(in srgb, var(--color-learning-teal) 7%, var(--color-surface));
 }
 
-:global(html[data-theme="light"]) .securityHeading { color: #0f766e; }
+:global(html[data-theme="light"]) .securityHeading { color: var(--color-learning-teal); }
 
 :global(html[data-theme="light"]) .roleChoice {
   border-color: var(--color-border);

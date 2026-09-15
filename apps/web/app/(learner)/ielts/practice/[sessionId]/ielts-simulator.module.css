@@ -21,7 +21,7 @@
 }
 
 .themeYellowBlack {
-  background: #000000; /* Wait, no hex allowed! Use tokens: var(--color-background-dark) */
+  background: var(--color-deep-space);
 }
 
 /* Font Scaling */

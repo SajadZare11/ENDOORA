@@ -227,8 +227,8 @@ export default function LearnerAttemptPage({ params }: PageProps) {
           </div>
 
           {completedAttempt.feedback_status === "revision_requested" && (
-            <div style={{ padding: "var(--space-4)", border: "1px solid var(--color-warning, #f59e0b)", background: "var(--color-surface-subtle)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)" }}>
-              <h4 style={{ margin: "0 0 var(--space-2) 0", color: "var(--color-warning, #f59e0b)" }}>
+            <div style={{ padding: "var(--space-4)", border: "1px solid var(--color-warning-orange)", background: "var(--color-surface)", borderRadius: "var(--radius-card)", marginBlockEnd: "var(--space-6)" }}>
+              <h4 style={{ margin: "0 0 var(--space-2) 0", color: "var(--color-warning-orange)" }}>
                 درخواست ویرایش مجدد از سوی مدرس:
               </h4>
               <p style={{ margin: 0, fontSize: "var(--font-size-body)" }}>

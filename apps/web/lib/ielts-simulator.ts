@@ -3,9 +3,9 @@ import {
   IELTSTestType,
   IELTSSectionType,
   IELTSQuestionType,
-  IELTSTestListItem,
-  MANDATORY_IELTS_DISCLAIMER_TEXT,
 } from "./ielts";
+export type { IELTSTestListItem } from "./ielts";
+export { MANDATORY_IELTS_DISCLAIMER_TEXT } from "./ielts";
 
 export type IELTSPracticeMode =
   | "full_simulation"

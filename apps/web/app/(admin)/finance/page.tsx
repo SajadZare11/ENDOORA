@@ -14,7 +14,6 @@ import {
   CommissionRule,
   AdminPayoutActionPayload,
   formatTehranDateOnly,
-  formatTehranTimeOnly,
 } from "../../../lib/marketplace";
 
 export default function AdminFinancePage() {
@@ -75,7 +74,29 @@ export default function AdminFinancePage() {
   };
 
   useEffect(() => {
-    loadAllData();
+    let ignore = false;
+    Promise.all([
+      fetchAdminReconciliationReport(),
+      fetchAdminPayoutQueue({ status: payoutFilter !== "all" ? payoutFilter : undefined }),
+      fetchCommissionRules(),
+    ])
+      .then(([reconRes, payoutsRes, rulesRes]) => {
+        if (!ignore) {
+          setReconciliation(reconRes);
+          setPayouts(payoutsRes);
+          setCommissionRules(rulesRes);
+          setLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در دریافت اطلاعات مالی پلتفرم.");
+          setLoading(false);
+        }
+      });
+    return () => {
+      ignore = true;
+    };
   }, [payoutFilter]);
 
   const openActionModal = (payout: LedgerPayoutRequestItem, action: "review" | "approve" | "dual_signoff" | "pay" | "reject") => {

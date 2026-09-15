@@ -458,6 +458,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/operations/audit" className={styles.navTab}>
           {isFa ? "ردپای ممیزی (OPS-003)" : "Audit Trail (OPS-003)"}
         </Link>
+        <Link href="/operations/security" className={styles.navTab}>
+          🛡️ امنیت (SEC-001)
+        </Link>
       </nav>
 
       {/* Operational Header */}
@@ -1086,7 +1089,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                 <select
                   className={styles.formSelect}
                   value={courseFormData.cefr_level || "B1"}
-                  onChange={(e) => setCourseFormData({ ...courseFormData, cefr_level: e.target.value as any })}
+                  onChange={(e) => setCourseFormData({ ...courseFormData, cefr_level: e.target.value as "A1" | "A2" | "B1" | "B2" | "C1" | "C2" })}
                 >
                   {["A1", "A2", "B1", "B2", "C1", "C2"].map((lvl) => (
                     <option key={lvl} value={lvl}>
@@ -1101,7 +1104,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                 <select
                   className={styles.formSelect}
                   value={courseFormData.skill_category || "listening"}
-                  onChange={(e) => setCourseFormData({ ...courseFormData, skill_category: e.target.value as any })}
+                  onChange={(e) => setCourseFormData({ ...courseFormData, skill_category: e.target.value as "listening" | "speaking" | "reading" | "writing" | "grammar" | "vocabulary" | "culture" | "school" })}
                 >
                   <option value="listening">{isFa ? "شنیداری (Listening)" : "Listening"}</option>
                   <option value="speaking">{isFa ? "گفتاری (Speaking)" : "Speaking"}</option>
@@ -1119,7 +1122,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                 <select
                   className={styles.formSelect}
                   value={courseFormData.target_audience || "general"}
-                  onChange={(e) => setCourseFormData({ ...courseFormData, target_audience: e.target.value as any })}
+                  onChange={(e) => setCourseFormData({ ...courseFormData, target_audience: e.target.value as "general" | "school_konkur" | "ielts_academic" | "business" })}
                 >
                   <option value="general">{isFa ? "عمومی (General)" : "General"}</option>
                   <option value="school_konkur">{isFa ? "دبیرستان و کنکور" : "High School & Konkur"}</option>
@@ -1169,7 +1172,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                 <select
                   className={styles.formSelect}
                   value={courseFormData.license_type || "original_editorial"}
-                  onChange={(e) => setCourseFormData({ ...courseFormData, license_type: e.target.value as any })}
+                  onChange={(e) => setCourseFormData({ ...courseFormData, license_type: e.target.value as "original_editorial" | "cc_by_sa" | "public_domain" | "educational_fair_use" })}
                 >
                   <option value="original_editorial">{isFa ? "تألیفی اختصاصی اندورا" : "Original Editorial"}</option>
                   <option value="cc_by_sa">{isFa ? "کریتیو کامنز (CC-BY-SA)" : "CC BY-SA"}</option>

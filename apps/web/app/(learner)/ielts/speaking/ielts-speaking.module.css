@@ -461,8 +461,8 @@
 }
 
 .micBtnStop {
-  background-color: var(--color-danger);
-  color: var(--color-white, #fff);
+  background-color: var(--color-error-red);
+  color: var(--color-action-text);
 }
 
 .audioPlayer {

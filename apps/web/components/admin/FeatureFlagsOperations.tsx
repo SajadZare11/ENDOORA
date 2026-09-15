@@ -21,9 +21,9 @@ export function FeatureFlagsOperations() {
   const [rolloutVal, setRolloutVal] = useState<number>(100);
   const [killSwitchBehavior, setKillSwitchBehavior] = useState<string>("reviewed_fallback");
 
-  const loadFlags = () => {
+  const loadFlags = (query = searchQuery) => {
     setLoading(true);
-    fetchAdminFeatureFlags(searchQuery)
+    fetchAdminFeatureFlags(query)
       .then((data) => {
         setFlags(data.results);
       })
@@ -36,7 +36,24 @@ export function FeatureFlagsOperations() {
   };
 
   useEffect(() => {
-    loadFlags();
+    let ignore = false;
+    fetchAdminFeatureFlags(searchQuery)
+      .then((data) => {
+        if (!ignore) {
+          setFlags(data.results);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          console.error("Failed to load flags:", err);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, [searchQuery]);
 
   const handleOpenToggle = (flag: FeatureFlagRecord) => {
@@ -85,6 +102,9 @@ export function FeatureFlagsOperations() {
         </Link>
         <Link href="/operations/audit" className={styles.opsTab}>
           ردپای ممیزی تغییرات (OPS-003)
+        </Link>
+        <Link href="/operations/security" className={styles.opsTab}>
+          🛡️ امنیت (SEC-001)
         </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)

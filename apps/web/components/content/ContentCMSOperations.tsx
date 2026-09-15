@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./content-cms.module.css";
 import {
   ContentCategory,
   ContentItemEditorRecord,
-  ContentStatus,
   ContentType,
   CefrLevel,
   LicenseType,
@@ -38,8 +37,6 @@ export function ContentCMSOperations() {
   const [transitionAction, setTransitionAction] = useState<"submit_review" | "publish" | "archive" | "revert_draft">("submit_review");
   const [transitionNote, setTransitionNote] = useState<string>("");
 
-  const [, startTransition] = useTransition();
-
   const loadData = () => {
     setLoading(true);
     fetchEditorContentItems({
@@ -62,8 +59,32 @@ export function ContentCMSOperations() {
   };
 
   useEffect(() => {
-    loadData();
-  }, [selectedCategory, selectedStatus, selectedType, selectedCefr]);
+    let ignore = false;
+    fetchEditorContentItems({
+      category: selectedCategory,
+      status: selectedStatus,
+      content_type: selectedType,
+      cefr: selectedCefr,
+      search: searchQuery,
+    })
+      .then((data) => {
+        if (!ignore) {
+          setItems(data.results);
+          setError(null);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err.message || "خطا در دریافت فهرست محتوا");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [selectedCategory, selectedStatus, selectedType, selectedCefr, searchQuery]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -220,6 +241,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/audit" className={styles.navTab}>
           ردپای ممیزی (OPS-003)
         </Link>
+        <Link href="/operations/security" className={styles.navTab}>
+          🛡️ امنیت (SEC-001)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}
@@ -246,6 +270,18 @@ export function ContentCMSOperations() {
             {successMessage}
             <button
               onClick={() => setSuccessMessage(null)}
+              style={{ marginInlineStart: "var(--space-3)", background: "none", border: "none", cursor: "pointer" }}
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+        {error && (
+          <div className={`${styles.alertBox} ${styles.alertError || ""}`} style={{ color: "var(--color-error-text)", background: "var(--color-error-bg)", padding: "var(--space-3)", borderRadius: "var(--radius-sm)", marginBlockStart: "var(--space-2)" }}>
+            {error}
+            <button
+              onClick={() => setError(null)}
               style={{ marginInlineStart: "var(--space-3)", background: "none", border: "none", cursor: "pointer" }}
             >
               ✕
@@ -717,7 +753,7 @@ export function ContentCMSOperations() {
                   <label className={styles.formLabel}>اقدام گردش کار *</label>
                   <select
                     value={transitionAction}
-                    onChange={(e) => setTransitionAction(e.target.value as any)}
+                    onChange={(e) => setTransitionAction(e.target.value as "submit_review" | "publish" | "archive" | "revert_draft")}
                     className={styles.formSelect}
                   >
                     <option value="submit_review">ارسال برای بازبینی (Submit for Review)</option>

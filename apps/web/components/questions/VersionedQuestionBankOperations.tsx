@@ -322,7 +322,7 @@ export function VersionedQuestionBankOperations({
       a.download = `endoora_question_bank_export_${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
-    } catch (err: unknown) {
+    } catch {
       alert(isFa ? "خطا در خروجی فایل JSON" : "Failed to export JSON file");
     }
   }
@@ -426,6 +426,9 @@ export function VersionedQuestionBankOperations({
         </Link>
         <Link href="/operations/audit" className={styles.navTab}>
           {t(locale, "ردپای ممیزی (OPS-003)", "Audit Trail (OPS-003)")}
+        </Link>
+        <Link href="/operations/security" className={styles.navTab}>
+          {t(locale, "🛡️ امنیت", "🛡️ Security")}
         </Link>
       </nav>
 

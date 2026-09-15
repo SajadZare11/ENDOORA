@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef, use } from "react";
+import React, { useEffect, useState, useCallback, use } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./ielts-simulator.module.css";
 import {
@@ -13,6 +13,23 @@ import {
   LearnerSafeQuestion,
   LearnerSafeSection,
 } from "../../../../../lib/ielts-simulator";
+
+// Helper to extract flat list of questions
+function getAllQuestions(sess: ActiveSessionData | null): LearnerSafeQuestion[] {
+  if (!sess) return [];
+  const currSec = sess.sections[sess.current_section_index];
+  if (!currSec) return [];
+
+  const list: LearnerSafeQuestion[] = [];
+  currSec.passages_tasks.forEach((pt) => {
+    pt.question_groups.forEach((qg) => {
+      qg.questions.forEach((q) => {
+        list.push(q);
+      });
+    });
+  });
+  return list;
+}
 
 interface PageProps {
   params: Promise<{ sessionId: string }>;
@@ -45,40 +62,52 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Load session
-  const loadSession = async () => {
-    setLoading(true);
-    setError(null);
+  // Auto-submit when time expires
+  const handleAutoSubmit = useCallback(async () => {
     try {
-      const data = await fetchActiveSession(sessionId);
-      if (data.status === "completed" || data.status === "submitted" || data.status === "timed_out") {
-        router.replace(`/ielts/practice/${sessionId}/report`);
-        return;
-      }
-      setSession(data);
-      setAnswers(data.responses || {});
-      setFlagged(data.flagged_questions || []);
-
-      const exp = new Date(data.expires_at).getTime();
-      const now = Date.now();
-      const rem = Math.max(0, Math.floor((exp - now) / 1000));
-      setSecondsRemaining(rem);
-
-      // Select first question
-      const allQ = getAllQuestions(data);
-      if (allQ.length > 0 && !activeQuestionId) {
-        setActiveQuestionId(allQ[0].id);
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات جلسه آزمون.");
-    } finally {
-      setLoading(false);
+      await submitSession(sessionId);
+      router.push(`/ielts/practice/${sessionId}/report`);
+    } catch {
+      router.push(`/ielts/practice/${sessionId}/report`);
     }
-  };
+  }, [sessionId, router]);
 
   useEffect(() => {
-    loadSession();
-  }, [sessionId]);
+    let ignore = false;
+    fetchActiveSession(sessionId)
+      .then((data) => {
+        if (!ignore) {
+          if (data.status === "completed" || data.status === "submitted" || data.status === "timed_out") {
+            router.replace(`/ielts/practice/${sessionId}/report`);
+            return;
+          }
+          setSession(data);
+          setAnswers(data.responses || {});
+          setFlagged(data.flagged_questions || []);
+
+          const exp = new Date(data.expires_at).getTime();
+          const now = Date.now();
+          const rem = Math.max(0, Math.floor((exp - now) / 1000));
+          setSecondsRemaining(rem);
+
+          // Select first question
+          const allQ = getAllQuestions(data);
+          if (allQ.length > 0) {
+            setActiveQuestionId((prev) => prev || allQ[0].id);
+          }
+          setLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات جلسه آزمون.");
+          setLoading(false);
+        }
+      });
+    return () => {
+      ignore = true;
+    };
+  }, [sessionId, router]);
 
   // Countdown timer effect
   useEffect(() => {
@@ -96,34 +125,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [secondsRemaining, session]);
-
-  // Auto-submit when time expires
-  const handleAutoSubmit = async () => {
-    try {
-      await submitSession(sessionId);
-      router.push(`/ielts/practice/${sessionId}/report`);
-    } catch {
-      router.push(`/ielts/practice/${sessionId}/report`);
-    }
-  };
-
-  // Helper to extract flat list of questions
-  const getAllQuestions = (sess: ActiveSessionData | null): LearnerSafeQuestion[] => {
-    if (!sess) return [];
-    const currSec = sess.sections[sess.current_section_index];
-    if (!currSec) return [];
-
-    const list: LearnerSafeQuestion[] = [];
-    currSec.passages_tasks.forEach((pt) => {
-      pt.question_groups.forEach((qg) => {
-        qg.questions.forEach((q) => {
-          list.push(q);
-        });
-      });
-    });
-    return list;
-  };
+  }, [secondsRemaining, session, handleAutoSubmit]);
 
   const currentQuestions = getAllQuestions(session);
   const currentSection: LearnerSafeSection | undefined =

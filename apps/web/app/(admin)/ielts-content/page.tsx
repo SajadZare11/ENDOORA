@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ielts-content.module.css";
 import {
   fetchAdminIELTSTests,
@@ -19,8 +19,6 @@ import {
 } from "../../../lib/ielts";
 
 export default function AdminIELTSContentPage() {
-  const [isPending, startTransition] = useTransition();
-
   // Test lists & filters
   const [tests, setTests] = useState<IELTSTestListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +56,7 @@ export default function AdminIELTSContentPage() {
   const [publishing, setPublishing] = useState(false);
   const [publishModalError, setPublishModalError] = useState<string | null>(null);
 
-  // Load Tests
+  // Load Tests helper for manual actions
   const loadTests = async () => {
     setLoading(true);
     setError(null);
@@ -78,39 +76,56 @@ export default function AdminIELTSContentPage() {
     }
   };
 
-  // Load Selected Test Detail
-  const loadDetail = async (id: string) => {
-    setLoadingDetail(true);
-    try {
-      const detail = await fetchAdminIELTSTestDetail(id);
-      setTestDetail(detail);
-      setActiveSectionIndex(0);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "خطا در دریافت جزئیات آزمون.");
-    } finally {
-      setLoadingDetail(false);
-    }
-  };
-
-  // Load Band Descriptors
-  const loadDescriptors = async () => {
-    try {
-      const data = await fetchBandDescriptors();
-      setDescriptors(data);
-    } catch {
-      // Non-blocking for primary test explorer
-    }
-  };
-
   useEffect(() => {
-    loadTests();
-    loadDescriptors();
+    let ignore = false;
+    Promise.all([
+      fetchAdminIELTSTests({
+        status: statusFilter,
+        test_type: typeFilter,
+      }),
+      fetchBandDescriptors().catch(() => [] as IELTSBandDescriptor[]),
+    ])
+      .then(([testsData, descData]) => {
+        if (!ignore) {
+          setTests(testsData);
+          setSelectedTestId((prev) => (prev ? prev : (testsData[0]?.id ?? null)));
+          if (descData.length > 0) {
+            setDescriptors(descData);
+          }
+          setLoading(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در دریافت لیست آزمون‌های آیلتس.");
+          setLoading(false);
+        }
+      });
+    return () => {
+      ignore = true;
+    };
   }, [typeFilter, statusFilter]);
 
   useEffect(() => {
-    if (selectedTestId) {
-      loadDetail(selectedTestId);
-    }
+    if (!selectedTestId) return;
+    let ignore = false;
+    fetchAdminIELTSTestDetail(selectedTestId)
+      .then((detail) => {
+        if (!ignore) {
+          setTestDetail(detail);
+          setActiveSectionIndex(0);
+          setLoadingDetail(false);
+        }
+      })
+      .catch((err: unknown) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در دریافت جزئیات آزمون.");
+          setLoadingDetail(false);
+        }
+      });
+    return () => {
+      ignore = true;
+    };
   }, [selectedTestId]);
 
   // Handle Submit for Review

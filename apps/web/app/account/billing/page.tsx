@@ -32,7 +32,24 @@ export default function AccountBillingPage() {
   };
 
   useEffect(() => {
-    loadInvoices();
+    let ignore = false;
+    fetchBillingInvoices()
+      .then((res) => {
+        if (!ignore) {
+          setInvoices(res.invoices);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در دریافت لیست صورت‌حساب‌ها.");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handlePrint = () => {

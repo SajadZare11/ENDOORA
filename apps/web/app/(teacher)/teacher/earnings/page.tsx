@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import styles from "./earnings.module.css";
 import {
   fetchTeacherLedgerBalances,
@@ -80,7 +79,41 @@ export default function TeacherEarningsPage() {
   };
 
   useEffect(() => {
-    loadData();
+    let ignore = false;
+    Promise.all([
+      fetchTeacherLedgerBalances(),
+      fetchTeacherStatement(),
+      fetchTeacherLedgerPayouts(),
+      fetchTeacherTaxIdentity(),
+    ])
+      .then(([balRes, stmtRes, payRes, taxRes]) => {
+        if (!ignore) {
+          setBalances(balRes);
+          setStatement(stmtRes);
+          setPayouts(payRes);
+          setTaxIdentity(taxRes);
+
+          if (balRes.available_toman >= 50000) {
+            setPayoutAmount(balRes.available_toman);
+          }
+          if (taxRes.bank_shaba_number) {
+            setShaba(taxRes.bank_shaba_number);
+            setBankName(taxRes.bank_name);
+            setAccountHolder(taxRes.account_holder_name);
+          }
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات مالی و دفتر کل.");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleShabaChange = (e: React.ChangeEvent<HTMLInputElement>) => {

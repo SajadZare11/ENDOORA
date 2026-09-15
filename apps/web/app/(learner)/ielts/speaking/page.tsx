@@ -630,6 +630,11 @@ export default function IELTSSpeakingRoomPage() {
             <div className={styles.recorderHeader}>
               <strong style={{ fontSize: "var(--font-size-sm)" }}>
                 🎙️ کنسول ضبط صدای پاسخ داوطلب (پارت {activePart})
+                {consentGranted && !useTextFallback && (
+                  <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-success-text)", marginInlineStart: "var(--space-2)" }}>
+                    ● میکروفون مجاز
+                  </span>
+                )}
               </strong>
               <span
                 className={`${styles.recordingStateBadge} ${

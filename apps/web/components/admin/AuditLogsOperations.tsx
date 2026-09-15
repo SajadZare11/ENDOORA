@@ -42,8 +42,31 @@ export function AuditLogsOperations() {
   };
 
   useEffect(() => {
-    loadAuditLogs();
-  }, [targetApp, actionFilter]);
+    let ignore = false;
+    fetchAdminAuditLogs({
+      target_app: targetApp,
+      action: actionFilter,
+      search: searchQuery,
+      limit: 100,
+    })
+      .then((data) => {
+        if (!ignore) {
+          setLogs(data.results);
+          setTotalCount(data.count);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          console.error("Failed to load audit logs:", err);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [targetApp, actionFilter, searchQuery]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +88,9 @@ export function AuditLogsOperations() {
           <span style={{ fontSize: "var(--font-size-micro)", paddingInline: "6px", backgroundColor: "var(--color-surface-muted)", borderRadius: "var(--radius-pill)" }}>
             {totalCount}
           </span>
+        </Link>
+        <Link href="/operations/security" className={styles.opsTab}>
+          🛡️ امنیت (SEC-001)
         </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)

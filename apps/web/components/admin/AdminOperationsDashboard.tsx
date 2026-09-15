@@ -17,7 +17,6 @@ export function AdminOperationsDashboard() {
   const [stats, setStats] = useState<AdminDashboardStats | null>(null);
   const [flags, setFlags] = useState<FeatureFlagRecord[]>([]);
   const [recentAudits, setRecentAudits] = useState<AuditEventRecord[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
   // Toggle modal state
   const [selectedFlagForToggle, setSelectedFlagForToggle] = useState<FeatureFlagRecord | null>(null);
@@ -25,7 +24,6 @@ export function AdminOperationsDashboard() {
   const [isSubmittingToggle, setIsSubmittingToggle] = useState<boolean>(false);
 
   const loadDashboardData = () => {
-    setLoading(true);
     Promise.all([
       fetchAdminStats(),
       fetchAdminFeatureFlags(),
@@ -38,14 +36,30 @@ export function AdminOperationsDashboard() {
       })
       .catch((err) => {
         console.error("Failed to load admin stats:", err);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   };
 
   useEffect(() => {
-    loadDashboardData();
+    let ignore = false;
+    Promise.all([
+      fetchAdminStats(),
+      fetchAdminFeatureFlags(),
+      fetchAdminAuditLogs({ limit: 6 }),
+    ])
+      .then(([statsRes, flagsRes, auditRes]) => {
+        if (!ignore) {
+          setStats(statsRes);
+          setFlags(flagsRes.results);
+          setRecentAudits(auditRes.results);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load admin stats:", err);
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleOpenToggle = (flag: FeatureFlagRecord) => {
@@ -91,6 +105,9 @@ export function AdminOperationsDashboard() {
         </Link>
         <Link href="/operations/audit" className={styles.opsTab}>
           ردپای ممیزی تغییرات (OPS-003)
+        </Link>
+        <Link href="/operations/security" className={styles.opsTab}>
+          🛡️ امنیت (SEC-001)
         </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)

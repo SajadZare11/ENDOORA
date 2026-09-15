@@ -1,7 +1,6 @@
 .header {
   inline-size: 100%;
-  max-inline-size: 100vw;
-  overflow-x: hidden;
+  max-inline-size: 100%;
 
   block-size: 88px;
 

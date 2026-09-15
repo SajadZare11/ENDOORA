@@ -134,7 +134,7 @@
   inline-size: 8px;
   block-size: 8px;
   border-radius: 50%;
-  background: #cbd5e1;
+  background: var(--color-border);
 }
 
 .previewChrome strong { margin-inline-start: auto; font: 750 0.83rem/1 var(--font-family-latin); color: var(--color-muted); }
@@ -147,7 +147,7 @@
   align-items: center;
   gap: var(--space-5);
   padding-block: var(--space-6);
-  background: linear-gradient(180deg, #0b3150, var(--color-midnight-blue));
+  background: linear-gradient(180deg, var(--color-ocean-surface), var(--color-midnight-blue));
 }
 
 .previewRail b {
@@ -277,8 +277,8 @@
 }
 
 .waitlistActions { display: grid; gap: var(--space-4); }
-.waitlistActions > a { width: fit-content; display: inline-flex; align-items: center; gap: var(--space-2); color: #bfdbfe; font-weight: 800; text-decoration: none; }
-.waitlistActions > a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 0.3em; }
+.waitlistActions > a { width: fit-content; display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-info-text); font-weight: 800; text-decoration: none; }
+.waitlistActions > a:hover { color: var(--color-action-text); text-decoration: underline; text-underline-offset: 0.3em; }
 
 .sectionLabel,
 .kicker {
@@ -373,7 +373,7 @@
 .missionTask { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5); border: 1px solid color-mix(in srgb, var(--color-learning-teal) 34%, var(--color-border)); border-radius: var(--radius-md); background: var(--color-surface); }
 .missionTask > div { display: grid; gap: var(--space-1); }
 .missionTask small { color: var(--color-muted); }
-.taskCheck { inline-size: 2.7rem; block-size: 2.7rem; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; background: color-mix(in srgb, var(--color-learning-teal) 14%, var(--color-surface)); color: #0f766e; font-weight: 900; }
+.taskCheck { inline-size: 2.7rem; block-size: 2.7rem; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; background: color-mix(in srgb, var(--color-learning-teal) 14%, var(--color-surface)); color: var(--color-learning-teal); font-weight: 900; }
 
 .humanBand {
   display: grid;
@@ -426,25 +426,25 @@
   gap: clamp(var(--space-8), 7vw, 6rem);
   padding: clamp(var(--space-8), 6vw, var(--space-16));
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--color-deep-navy), #0b3150);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, var(--color-deep-navy), var(--color-ocean-surface));
+  color: var(--color-canvas);
   box-shadow: 0 24px 60px rgb(15 23 42 / 0.17);
 }
 
-.waitlist .sectionLabel { color: #5eead4; }
+.waitlist .sectionLabel { color: var(--color-learning-teal); }
 .waitlist h2 { color: var(--color-action-text); }
-.waitlistCopy > p { color: #cbd5e1; }
+.waitlistCopy > p { color: var(--color-muted); }
 
 .form { display: grid; grid-template-columns: 1fr auto; gap: var(--space-3); }
 .form > label:first-child { grid-column: 1 / -1; color: var(--color-action-text); font-weight: 750; }
 .form input[type="email"] { inline-size: 100%; min-block-size: 52px; padding-inline: var(--space-4); border: 1px solid rgb(255 255 255 / 0.26); border-radius: var(--radius-control); background: rgb(255 255 255 / 0.96); color: var(--color-deep-navy); }
 .form .primaryButton { min-inline-size: 9.5rem; cursor: pointer; }
-.checkboxLabel { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; align-items: start; gap: var(--space-3); color: #cbd5e1; cursor: pointer; font-size: 0.84rem; line-height: 1.7; }
+.checkboxLabel { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; align-items: start; gap: var(--space-3); color: var(--color-muted); cursor: pointer; font-size: 0.84rem; line-height: 1.7; }
 .checkboxLabel input { inline-size: 1.1rem; block-size: 1.1rem; min-block-size: 0; margin-block-start: 0.25rem; accent-color: var(--color-learning-teal); }
-.formStatus { grid-column: 1 / -1; min-height: 1.5rem; color: #bfdbfe; font-size: 0.85rem; font-weight: 700; }
+.formStatus { grid-column: 1 / -1; min-height: 1.5rem; color: var(--color-info-text); font-size: 0.85rem; font-weight: 700; }
 .formStatus[data-state="success"],
-.formStatus[data-state="already"] { color: #99f6e4; }
-.formStatus[data-state="error"] { color: #fecaca; }
+.formStatus[data-state="already"] { color: var(--color-learning-teal); }
+.formStatus[data-state="error"] { color: var(--color-error-text); }
 
 .consent {
   position: fixed;
@@ -453,12 +453,12 @@
   z-index: 80;
   width: min(62rem, calc(100% - (2 * var(--space-4))));
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid color-mix(in srgb, var(--color-action) 18%, var(--color-border));
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-surface) 96%, transparent);
   box-shadow: var(--shadow-raised);
@@ -496,8 +496,8 @@
 .planSection h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
 .priceCard { display: grid; gap: var(--space-2); padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-deep-navy); color: var(--color-action-text); box-shadow: var(--shadow-raised); }
 .priceCard strong { font-size: clamp(1.7rem, 3vw, 2.35rem); }
-.priceCard span { color: #5eead4; font-weight: 800; }
-.priceCard small { color: #cbd5e1; line-height: 1.75; }
+.priceCard span { color: var(--color-learning-teal); font-weight: 800; }
+.priceCard small { color: var(--color-muted); line-height: 1.75; }
 
 .detailGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .detailCard { min-height: 14rem; padding: clamp(var(--space-5), 3vw, var(--space-8)); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-subtle); }

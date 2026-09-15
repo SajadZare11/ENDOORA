@@ -40,7 +40,25 @@ export default function UserWalletPage() {
   };
 
   useEffect(() => {
-    loadData();
+    let ignore = false;
+    Promise.all([fetchUserWallet(), fetchWalletTransactions()])
+      .then(([wRes, txRes]) => {
+        if (!ignore) {
+          setWallet(wRes.wallet);
+          setTransactions(txRes.transactions);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در بارگذاری اطلاعات کیف پول.");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const isDepositType = (type: string) => {

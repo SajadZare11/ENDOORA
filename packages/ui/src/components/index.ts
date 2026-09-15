@@ -14,6 +14,7 @@ export * from "./States";
 export * from "./Stepper";
 export * from "./Tabs";
 export * from "./Toast";
+export * from "./RoadmapMilestoneModal";
 
 export * from "./learning/GrowthCard";
 export * from "./learning/LearnerTwinCard";

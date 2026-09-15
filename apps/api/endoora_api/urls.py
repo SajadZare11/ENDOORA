@@ -110,5 +110,9 @@ urlpatterns = [
         "api/admin-dashboard/",
         include("admin_dashboard.urls")
     ),
+    path(
+        "api/security/",
+        include("security.urls")
+    ),
 ]
 

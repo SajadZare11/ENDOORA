@@ -29,25 +29,29 @@ export default function IELTSPracticeHubPage() {
   const [selectedModes, setSelectedModes] = useState<Record<string, IELTSPracticeMode>>({});
   const [startingTestId, setStartingTestId] = useState<string | null>(null);
 
-  const loadData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [testsData, historyData] = await Promise.all([
-        fetchPublicIELTSTests({ test_type: typeFilter !== "all" ? typeFilter : undefined }),
-        fetchSessionHistory().catch(() => []),
-      ]);
-      setTests(testsData.results || []);
-      setHistory(historyData || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "خطا در بارگذاری آزمون‌های شبیه‌ساز آیلتس.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    loadData();
+    let ignore = false;
+    Promise.all([
+      fetchPublicIELTSTests({ test_type: typeFilter !== "all" ? typeFilter : undefined }),
+      fetchSessionHistory().catch(() => []),
+    ])
+      .then(([testsData, historyData]) => {
+        if (!ignore) {
+          setTests(testsData.results || []);
+          setHistory(historyData || []);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err instanceof Error ? err.message : "خطا در بارگذاری آزمون‌های شبیه‌ساز آیلتس.");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, [typeFilter]);
 
   const handleStartExam = async (testId: string) => {

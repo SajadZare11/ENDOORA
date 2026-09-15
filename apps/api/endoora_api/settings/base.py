@@ -88,9 +88,12 @@ INSTALLED_APPS = [
     "ledger",
     "ielts",
     "admin_dashboard.apps.AdminDashboardConfig",
+    "security.apps.SecurityConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "security.middleware.SecurityHeadersMiddleware",
+    "security.middleware.InputSanitizationMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -177,11 +180,17 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
     ],
+    "DEFAULT_THROTTLE_CLASSES": [
+        "security.throttles.RoleBasedThrottle",
+    ],
     "DEFAULT_THROTTLE_RATES": {
         "waitlist": "20/hour",
         "auth_login": "10/minute",
         "otp_request": "5/minute",
         "otp_verify": "10/minute",
+        "role_based": "60/minute",
+        "burst_protection": "10/second",
+        "sensitive_endpoint": "5/minute",
     },
 }
 
@@ -203,3 +212,10 @@ ZARINPAL_MERCHANT_ID = os.getenv("ZARINPAL_MERCHANT_ID", "00000000-0000-0000-000
 ZARINPAL_SANDBOX = env_bool("ZARINPAL_SANDBOX", default=True)
 MARKETPLACE_COMMISSION_RATE = Decimal(os.getenv("MARKETPLACE_COMMISSION_RATE", "0.15"))
 
+# Security Hardening (Day 51)
+ENDOORA_IP_RATE_LIMIT_PER_MINUTE = env_int("ENDOORA_IP_RATE_LIMIT_PER_MINUTE", default=120)
+ENDOORA_CSP_REPORT_ONLY = env_bool("ENDOORA_CSP_REPORT_ONLY", default=True)
+ENDOORA_HSTS_MAX_AGE = env_int("ENDOORA_HSTS_MAX_AGE", default=31536000)
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"

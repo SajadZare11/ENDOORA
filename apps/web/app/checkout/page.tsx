@@ -57,7 +57,7 @@ function CheckoutContent() {
           try {
             const bRes = await endooraApi<SessionBooking>(`/api/marketplace/bookings/${orderId}/`);
             setBooking(bRes);
-          } catch (err: unknown) {
+          } catch {
             setError("اطلاعات جلسه رزرو شده یافت نشد یا دسترسی غیرمجاز است.");
           }
         } else if (orderType === "subscription_plan") {
@@ -136,7 +136,7 @@ function CheckoutContent() {
         );
       } else if (checkout.payment_url) {
         // Redirect to gateway or sandbox callback
-        window.location.href = checkout.payment_url;
+        window.location.assign(checkout.payment_url);
       } else {
         router.push(
           `/checkout/callback?Authority=${checkout.authority}&Status=OK&sandbox=true`

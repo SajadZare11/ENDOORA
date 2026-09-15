@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 50 — Culture & Skills Content CMS (CONTENT-004) & Operational Admin Hub (OPS-001 / OPS-002 / OPS-003)
-- **Day 50 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–49 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, and Course CMS & Paywall Redaction
-- **Schema version:** Day 50 content CMS & operational admin extensions
+- **Roadmap day completed:** Day 51 — Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001)
+- **Day 51 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–50 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, Course CMS & Paywall Redaction, Culture & Skills Content CMS, and Operational Admin Hub
+- **Schema version:** Day 51 platform security hardening & rate limiting extensions
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1786,16 +1786,36 @@ Key accomplishments:
     - 100% design token compliance: 0 hex colors, 100% logical properties, responsive down to 360px.
   - Full verification: prerendered static & dynamic routes, TypeScript 0 errors, full backend tests passing.
 
-## Git checkpoint (Day 50)
+## Features added in Day 51 (Platform Security Hardening, Rate Limiting & Penetration Defense - SEC-001)
+
+- **Backend:**
+  - `apps/api/security/` application wired into `INSTALLED_APPS` and `MIDDLEWARE`.
+  - `SecurityHeadersMiddleware`: Production HTTP headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `X-XSS-Protection: 1; mode=block`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, `Content-Security-Policy`, `Strict-Transport-Security`).
+  - `InputSanitizationMiddleware`: Scans POST/PUT/PATCH bodies against XSS (`<script>`, `javascript:`, event handlers) and SQL injection keywords (`UNION SELECT`, `DROP TABLE`, `OR 1=1`, `'; --`), rejecting threats with 400 `DANGEROUS_INPUT_DETECTED`.
+  - `IPRateLimitMiddleware`: Sliding window IP rate limiter with 429 response and `Retry-After` header.
+  - Custom Throttles: `RoleBasedThrottle` (tiered rates by user role: guest 30/m, learner 60/m, teacher 100/m, editor 200/m, admin 500/m), `BurstProtectionThrottle` (10/s with path hash), and `SensitiveEndpointThrottle`.
+  - Input Validators: `sanitize_text_input`, `validate_no_injection`, `validate_content_length`.
+  - Endpoints: `GET /api/security/audit/` (Admin/Staff only) and `GET /api/security/health/` (public probe).
+  - 11 unit tests in `security/tests.py`, total 392/392 backend tests passing.
+
+- **Frontend:**
+  - Global security headers in `apps/web/next.config.ts`.
+  - TypeScript client `lib/security-ops.ts` with strongly-typed interfaces and mock fallbacks.
+  - Security Operations Dashboard `SecurityOperationsDashboard.tsx` and `security-ops.module.css` (100% design tokens, 0 raw hex, 100% logical properties).
+  - Dedicated route `apps/web/app/operations/security/page.tsx` (`/operations/security`).
+  - Unified 8-tab operations navigation ribbon synchronized across all operations views.
+  - Security hardening handbook in `docs/security/security-hardening-handbook.md`.
+
+## Git checkpoint (Day 51)
 
 ```
-Day 50: Build Culture and Skills Content CMS and Operational Admin Hub (CONTENT-004 / OPS-001)
+Day 51: Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001)
 ```
 
 ## Exact next day
 
-**Day 51 — Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001).**
+**Day 52 — Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002).**
 
-Do not begin Day 51 until the Day 50 commit is pushed and `git status --short --branch`
+Do not begin Day 52 until the Day 51 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
 
