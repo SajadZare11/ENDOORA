@@ -253,6 +253,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/disaster-recovery" className={styles.opsTab}>
           💾 بازیابی بحران (OPS-004)
         </Link>
+        <Link href="/operations/ai" className={styles.opsTab}>
+          🤖 مدل‌ها و پرامپت‌ها (OPS-005)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

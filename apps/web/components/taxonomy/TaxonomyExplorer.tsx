@@ -149,6 +149,9 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
         <Link href="/operations/disaster-recovery" className={styles.opsTab}>
           💾 بازیابی بحران (OPS-004)
         </Link>
+        <Link href="/operations/ai" className={styles.opsTab}>
+          🤖 مدل‌ها و پرامپت‌ها (OPS-005)
+        </Link>
       </nav>
 
       <header className={styles.headerSection}>

@@ -27,6 +27,7 @@ const OPERATIONS_TABS = [
   { label: "حریم خصوصی", href: "/operations/privacy" },
   { label: "آزمون نفوذ", href: "/operations/pen-test" },
   { label: "بازیابی بحران", href: "/operations/disaster-recovery" },
+  { label: "مدل‌ها و پرامپت‌ها", href: "/operations/ai" },
 ];
 
 export function DisasterRecoveryOperationsDashboard() {

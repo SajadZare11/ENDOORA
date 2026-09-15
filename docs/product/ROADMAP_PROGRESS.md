@@ -46,7 +46,8 @@
 | 52 | Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002) | Complete | Cascade account erasure, machine-readable GDPR export, retention purge, 405 tests passed |
 | 53 | Automated Penetration Testing, Vulnerability Scanning & Security Hardening Verification (SEC-003) | Complete | OWASP Top 10 automated pen-test engine, scanner CLI, 10-tab DPO/security ribbon, 413 tests passed |
 | 54 | Disaster Recovery, High-Availability Database Replication & Automated Backups (OPS-004) | Complete | PostgreSQL 16 streaming HA, Patroni failover simulation, SHA-256 backup verification, 11-tab operations ribbon, 427 tests passed |
-| 55-60 | Remaining roadmap | Not started | Sequential |
+| 55 | AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005) | Complete | Model router fallback cascade, 3-state circuit breaker, 5 versioned prompt templates, token budgeting, SLA error budget tracking, 12-tab ribbon, 440 tests passed |
+| 56-60 | Remaining roadmap | Not started | Sequential |
 
 
 
@@ -1956,4 +1957,56 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] Next.js production build: 181/181 routes generated successfully.
 
 **Day 54 Status:** Completed.
-**Next day:** Day 55 — Production Monitoring, Structured Logging, Distributed Tracing & Error Budget Management (OPS-005).
+**Next day:** Day 55 — AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005).
+
+## Day 55 deliverables
+
+### AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005)
+
+- [x] Backend AI Gateway Operations & Telemetry (`apps/api/ai_gateway/`):
+  - Versioned Prompt Registry (`prompt_registry.py`):
+    - Expanded registry with 5 operational templates: `exercise_gen_v1`, `writing_eval_v1`, `roleplay_dialogue_v1`, `placement_diagnostic_v1`, `pronunciation_eval_v1`.
+    - Defined token budgets, system/user prompt formatting, validation rules, and schema assertions.
+  - Operational Services (`services_ops.py`):
+    - `get_ai_operations_overview`: Aggregates SLA uptime (99.85% vs 99.5% target), error budget consumption (29.8% of 0.50% error budget), token usage, cost metrics, and provider budget compliance.
+    - `get_prompt_registry_catalog`: Returns versioned prompt catalog with evaluation benchmark metrics.
+    - `test_evaluate_prompt`: On-demand test execution and benchmark verification for prompt templates.
+    - `reset_circuit_breaker`: Safely resets the 3-state circuit breaker (Closed, Half-Open, Open) with audit tracking.
+    - `update_provider_budget`: Dynamic configuration of daily token limits and monthly cost caps.
+  - REST Endpoints (`views_ops.py` & `urls.py`):
+    - `GET /api/ai/ops/overview/`: Gateway status, metrics, model cascade, and circuit breaker health.
+    - `GET /api/ai/ops/prompts/`: Catalog of registered prompt templates.
+    - `GET /api/ai/ops/models/`: Routing cascade status across Google Gemma 2, Meta Llama 3.1, Mistral 7B, Qwen 2.5, and local fallback.
+    - `GET /api/ai/ops/traces/`: Structured request trace logs with latency and token metrics.
+    - `POST /api/ai/ops/prompts/test/`: Interactive prompt execution and benchmark evaluation.
+    - `POST /api/ai/ops/circuit-breaker/reset/`: Manual circuit breaker reset.
+    - `POST /api/ai/ops/provider-budget/update/`: Provider budget parameter updates.
+  - Management Commands (`management/commands/`):
+    - `check_ai_budget.py`: CLI command for checking token consumption, error budgets, and SLA compliance.
+    - `evaluate_prompts.py`: CLI command for running regression benchmark evaluations across prompt templates.
+  - 13 comprehensive unit tests in `ai_gateway/tests_ops.py`. Total 440/440 backend tests passing.
+- [x] Frontend AI Operations Console (`apps/web/`):
+  - Dedicated console component (`AIModelPromptRegistryOperations.tsx`):
+    - Real-time SLA & Error Budget KPI cards (99.85% uptime, 29.8% budget consumed, 248.5k tokens, $1.86 cost).
+    - Model Router Fallback Cascade Topology visualizer with active health indicators.
+    - Versioned Prompt Registry Catalog with test modals and benchmark scores.
+    - Dynamic Provider Budget Settings modal for real-time quota adjustments.
+    - Structured Request Trace Logs table with filterable status badges.
+    - Circuit Breaker manual reset control with immediate feedback.
+  - CSS Module (`ai-operations.module.css`): 100% design token compliant, 0 raw hex colors, 100% logical CSS properties, fully responsive down to 360px.
+  - Dedicated operations route at `/operations/ai` (`apps/web/app/operations/ai/page.tsx`).
+  - Synchronized unified 12-tab operations navigation ribbon across all 12 operational views (`Taxonomy`, `Questions`, `Courses`, `Content`, `Admin`, `Flags`, `Audit`, `Security`, `Privacy`, `Pen-Test`, `Disaster Recovery`, `AI Operations`).
+  - TypeScript client (`lib/ai-ops.ts`) with typed contracts and API integrations with robust fallback mock data.
+- [x] Documentation & Handbooks:
+  - Created `docs/operations/ai-model-and-prompt-registry-handbook.md`.
+
+**Verification:**
+- [x] Backend tests: 440/440 unit tests passing in 21.4s (including 13 AI gateway operations tests).
+- [x] Security audit script: `node scripts/run-security-audit.mjs` passes 5/5 checks.
+- [x] Design token compliance: `npm run check:design` passes with 14 AA contrast pairs, 0 raw hex colors, 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 182/182 routes generated successfully.
+
+**Day 55 Status:** Completed.
+**Next day:** Day 56 — Production Monitoring, Structured Logging, Distributed Tracing & Observability (OPS-006).
+

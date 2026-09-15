@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 54 — Disaster Recovery, High-Availability Database Replication & Automated Backups (OPS-004)
-- **Day 54 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–53 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, Course CMS & Paywall Redaction, Culture & Skills Content CMS, Operational Admin Hub, Platform Security Hardening, Rate Limiting, Data Protection/GDPR Compliance, and Automated Penetration Testing
-- **Schema version:** Day 54 Disaster Recovery, PostgreSQL 16 streaming HA, and SHA-256 backup verification extensions
+- **Roadmap day completed:** Day 55 — AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005)
+- **Day 55 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–54 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, Course CMS & Paywall Redaction, Culture & Skills Content CMS, Operational Admin Hub, Platform Security Hardening, Rate Limiting, Data Protection/GDPR Compliance, Automated Penetration Testing, and Disaster Recovery & HA Database Replication
+- **Schema version:** Day 55 AI Model & Prompt Registry Operations, LLM Gateway Telemetry & Token Budgets extensions
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1879,17 +1879,45 @@ Key accomplishments:
   - Synchronized unified 11-tab operations navigation ribbon across all 11 operational views.
   - Disaster Recovery handbook in `docs/operations/disaster-recovery-and-ha-handbook.md`.
 
-## Git checkpoint (Day 54)
+## Features working through Day 55
+
+### AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005)
+
+- **Backend:**
+  - AI Gateway operations module (`apps/api/ai_gateway/`):
+    - Expanded versioned prompt registry (`prompt_registry.py`) with 5 core templates: `exercise_gen_v1`, `writing_eval_v1`, `roleplay_dialogue_v1`, `placement_diagnostic_v1`, `pronunciation_eval_v1`.
+    - Real-time SLA tracking (99.85% vs 99.5% target) and error budget consumption (29.8% of 0.50% budget) in `services_ops.py`.
+    - Model router fallback cascade topology (`google/gemma-2-9b-it:free` -> `meta-llama/llama-3.1-8b-instruct:free` -> `mistralai/mistral-7b-instruct` -> `qwen/qwen-2.5-7b-instruct` -> local deterministic mock fallback).
+    - 3-state circuit breaker mechanics (Closed, Half-Open, Open) with automated cool-down and manual operator reset.
+    - Token budget and daily provider cost limits with dynamic operator reconfiguration.
+    - 7 REST endpoints under `/api/ai/ops/`: `overview/`, `prompts/`, `models/`, `traces/`, `prompts/test/`, `circuit-breaker/reset/`, and `provider-budget/update/`.
+    - Operational management commands: `check_ai_budget` and `evaluate_prompts`.
+    - 13 comprehensive unit tests in `ai_gateway/tests_ops.py`. Total 440/440 backend tests passing.
+
+- **Frontend:**
+  - Dedicated operations console (`AIModelPromptRegistryOperations.tsx`) at `/operations/ai`.
+  - Posture KPI cards: SLA Uptime (99.85%), Error Budget Consumed (29.8%), Token Usage (248.5k/1.0M), and Daily Cost ($1.86/$50).
+  - Model Router Fallback Cascade Topology visualizer with live health indicators.
+  - Interactive Versioned Prompt Registry Catalog with real-time prompt testing modal and regression benchmarks.
+  - Dynamic Provider Budget Settings modal for real-time quota adjustments.
+  - Structured Request Trace Logs table with filterable status badges.
+  - Circuit Breaker manual reset control with immediate feedback.
+  - CSS Module (`ai-operations.module.css`): 100% design token compliant, 0 raw hex colors, 100% logical properties, responsive down to 360px.
+  - Synchronized unified 12-tab operations navigation ribbon across all 12 operational views.
+  - TypeScript client (`lib/ai-ops.ts`) with typed contracts and API integrations with robust fallback mock data.
+  - AI Operations Handbook in `docs/operations/ai-model-and-prompt-registry-handbook.md`.
+
+## Git checkpoint (Day 55)
 
 ```
-Day 54: Disaster Recovery, High-Availability Database Replication & Automated Backups (OPS-004)
+Day 55: AI Model & Prompt Registry Operations, LLM Gateway Telemetry, Token Budgets & Error Budget Management (OPS-005)
 ```
 
 ## Exact next day
 
-**Day 55 — Production Monitoring, Structured Logging, Distributed Tracing & Error Budget Management (OPS-005).**
+**Day 56 — Production Monitoring, Structured Logging, Distributed Tracing & Observability (OPS-006).**
 
-Do not begin Day 55 until the Day 54 commit is pushed and `git status --short --branch`
+Do not begin Day 56 until the Day 55 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
 
 
