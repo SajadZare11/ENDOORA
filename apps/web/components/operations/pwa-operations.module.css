@@ -1,0 +1,272 @@
+.container {
+  max-inline-size: 1400px;
+  margin-inline: auto;
+  padding-block: var(--space-8, 32px);
+  padding-inline: var(--space-6, 24px);
+  direction: rtl;
+}
+
+.header {
+  margin-block-end: var(--space-6, 24px);
+}
+
+.headerTitle {
+  font-size: var(--font-size-2xl, 24px);
+  font-weight: 800;
+  color: var(--color-text, #f8fafc);
+  margin-block-end: var(--space-2, 8px);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.headerSubtitle {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-muted, #94a3b8);
+  line-height: 1.6;
+}
+
+.ribbon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  overflow-x: auto;
+  padding-block-end: var(--space-3, 12px);
+  margin-block-end: var(--space-8, 32px);
+  border-block-end: 1px solid var(--color-border, #334155);
+}
+
+.ribbonLink {
+  white-space: nowrap;
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-3, 12px);
+  border-radius: var(--radius-md, 8px);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 600;
+  color: var(--color-text-muted, #94a3b8);
+  text-decoration: none;
+  background-color: var(--color-surface, #1e293b);
+  border: 1px solid var(--color-border, #334155);
+  transition: all 0.15s ease;
+}
+
+.ribbonLink:hover {
+  background-color: var(--color-surface-hover, #334155);
+  color: var(--color-text, #f8fafc);
+}
+
+.ribbonLinkActive {
+  background-color: var(--color-primary, #0d9488);
+  color: var(--color-surface, #ffffff);
+  border-color: var(--color-primary, #0d9488);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4, 16px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.kpiCard {
+  background-color: var(--color-surface, #1e293b);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-4, 16px);
+}
+
+.kpiValue {
+  font-size: var(--font-size-3xl, 30px);
+  font-weight: 800;
+  color: var(--color-text, #f8fafc);
+  margin-block-end: var(--space-1, 4px);
+}
+
+.kpiLabel {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-muted, #94a3b8);
+  margin-block-end: var(--space-1, 4px);
+}
+
+.kpiSubtext {
+  font-size: 11px;
+  color: var(--color-primary, #0d9488);
+}
+
+.postureBanner {
+  background-color: var(--color-surface, #1e293b);
+  border: 1px solid var(--color-primary, #0d9488);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-5, 20px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.postureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+.postureItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.postureItemTitle {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-muted, #94a3b8);
+}
+
+.postureItemVal {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: 700;
+  color: var(--color-text, #f8fafc);
+}
+
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6, 24px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.panel {
+  background-color: var(--color-surface, #1e293b);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-6, 24px);
+}
+
+.panelTitle {
+  font-size: var(--font-size-base, 16px);
+  font-weight: 700;
+  color: var(--color-text, #f8fafc);
+  margin-block-end: var(--space-4, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.distributionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.distRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.distHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-text-muted, #94a3b8);
+}
+
+.distBar {
+  inline-size: 100%;
+  block-size: 6px;
+  background-color: var(--color-surface-sunken, #0f172a);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.distFill {
+  block-size: 100%;
+  background-color: var(--color-primary, #0d9488);
+  border-radius: var(--radius-full, 9999px);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #334155);
+}
+
+.eventsTable {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs, 12px);
+  text-align: start;
+}
+
+.tableHeader {
+  background-color: var(--color-surface-sunken, #0f172a);
+  color: var(--color-text-muted, #94a3b8);
+  padding: var(--space-3, 12px);
+  font-weight: 600;
+  border-block-end: 1px solid var(--color-border, #334155);
+}
+
+.tableCell {
+  padding: var(--space-3, 12px);
+  border-block-end: 1px solid var(--color-border, #334155);
+  color: var(--color-text, #f8fafc);
+}
+
+.badge {
+  display: inline-flex;
+  padding-block: 2px;
+  padding-inline: var(--space-2, 8px);
+  border-radius: var(--radius-full, 9999px);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badgePrimary {
+  background-color: rgba(13, 148, 136, 0.15);
+  color: var(--color-primary, #0d9488);
+}
+
+.badgeWarning {
+  background-color: rgba(217, 119, 6, 0.15);
+  color: var(--color-warning, #d97706);
+}
+
+.simulatorCard {
+  background-color: var(--color-surface-raised, #1e293b);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-6, 24px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.simActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+}
+
+.simButton {
+  background-color: var(--color-surface, #0f172a);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--space-4, 16px);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.simButton:hover {
+  background-color: var(--color-surface-hover, #334155);
+  border-color: var(--color-primary, #0d9488);
+}
+
+.feedbackBox {
+  margin-block-start: var(--space-3, 12px);
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-primary, #0d9488);
+}
+
+@media (max-width: 900px) {
+  .twoColumnGrid {
+    grid-template-columns: 1fr;
+  }
+}

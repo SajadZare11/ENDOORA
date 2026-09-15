@@ -262,6 +262,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/analytics" className={styles.opsTab}>
           📈 تحلیل محصول و فانل (OPS-007)
         </Link>
+        <Link href="/operations/pwa" className={styles.opsTab}>
+          📱 PWA و تاب‌آوری آفلاین (OPS-008)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

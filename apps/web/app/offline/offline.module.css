@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 80vh;
+  padding-block: var(--space-8, 32px);
+  padding-inline: var(--space-4, 16px);
+  text-align: center;
+  max-inline-size: 640px;
+  margin-inline: auto;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 88px;
+  block-size: 88px;
+  border-radius: var(--radius-full, 9999px);
+  background-color: var(--color-surface-sunken, #1e293b);
+  border: 2px solid var(--color-warning, #d97706);
+  margin-block-end: var(--space-6, 24px);
+  font-size: 36px;
+}
+
+.title {
+  font-size: var(--font-size-2xl, 24px);
+  font-weight: 800;
+  color: var(--color-text, #f8fafc);
+  margin-block-end: var(--space-2, 8px);
+}
+
+.description {
+  font-size: var(--font-size-base, 16px);
+  color: var(--color-text-muted, #94a3b8);
+  line-height: 1.7;
+  margin-block-end: var(--space-6, 24px);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 12px);
+  margin-block-end: var(--space-8, 32px);
+}
+
+.primaryButton {
+  background-color: var(--color-primary, #0d9488);
+  color: var(--color-surface, #ffffff);
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-3, 12px);
+  padding-inline: var(--space-6, 24px);
+  font-size: var(--font-size-base, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.primaryButton:hover {
+  background-color: var(--color-primary-hover, #0f766e);
+}
+
+.secondaryLink {
+  background-color: var(--color-surface, #1e293b);
+  color: var(--color-text, #f8fafc);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-md, 8px);
+  padding-block: var(--space-3, 12px);
+  padding-inline: var(--space-6, 24px);
+  font-size: var(--font-size-base, 16px);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.secondaryLink:hover {
+  background-color: var(--color-surface-hover, #334155);
+}
+
+.tipsBox {
+  inline-size: 100%;
+  background-color: var(--color-surface-raised, #1e293b);
+  border: 1px solid var(--color-border, #334155);
+  border-radius: var(--radius-lg, 12px);
+  padding-block: var(--space-4, 16px);
+  padding-inline: var(--space-6, 24px);
+  text-align: start;
+}
+
+.tipsTitle {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: 700;
+  color: var(--color-text, #f8fafc);
+  margin-block-end: var(--space-2, 8px);
+}
+
+.tipsList {
+  margin: 0;
+  padding-inline-start: var(--space-4, 16px);
+  color: var(--color-text-muted, #94a3b8);
+  font-size: var(--font-size-xs, 12px);
+  line-height: 1.8;
+}

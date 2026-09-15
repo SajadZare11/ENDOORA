@@ -48,6 +48,7 @@ export function PrivacyOperationsDashboard() {
         <Link href="/operations/ai" className={styles.opsTab}>🤖 مدل‌ها و پرامپت‌ها (OPS-005)</Link>
         <Link href="/operations/monitoring" className={styles.opsTab}>📊 پایش و لاگ‌ها (OPS-006)</Link>
         <Link href="/operations/analytics" className={styles.opsTab}>📈 تحلیل محصول و فانل (OPS-007)</Link>
+        <Link href="/operations/pwa" className={styles.opsTab}>📱 PWA و تاب‌آوری آفلاین (OPS-008)</Link>
       </nav>
 
       <div className={styles.header}>

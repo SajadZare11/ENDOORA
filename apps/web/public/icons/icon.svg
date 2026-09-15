@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="endooraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#0D9488" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#0F172A" rx="112" />
+  <circle cx="256" cy="256" r="190" fill="none" stroke="url(#endooraGrad)" stroke-width="24" filter="url(#glow)" />
+  <path d="M 180 340 L 180 230 A 76 76 0 0 1 332 230 L 332 340 Z" fill="url(#endooraGrad)" />
+  <circle cx="296" cy="285" r="10" fill="#0F172A" />
+</svg>

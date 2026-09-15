@@ -30,6 +30,7 @@ const OPERATIONS_TABS = [
   { label: "مدل‌ها و پرامپت‌ها", href: "/operations/ai" },
   { label: "پایش و لاگ‌ها", href: "/operations/monitoring" },
   { label: "تحلیل محصول", href: "/operations/analytics" },
+  { label: "PWA و آفلاین", href: "/operations/pwa" },
 ];
 
 export function DisasterRecoveryOperationsDashboard() {

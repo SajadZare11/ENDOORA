@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import "@endoora/ui/tokens.css";
 import "@endoora/ui/components.css";
 import { ThemeToggle } from "../components/theme/ThemeToggle";
+import { NetworkBandwidthBanner } from "../components/pwa/NetworkBandwidthBanner";
+import { PWARegistration } from "../components/pwa/PWARegistration";
 
 const themeBootstrap = `
 (function () {
@@ -18,10 +20,23 @@ const themeBootstrap = `
   }
 })();`;
 
+export const viewport: Viewport = {
+  themeColor: "#0B0F19",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.ENDOORA_PUBLIC_URL ?? "https://endoora.ir"),
   title: "Endoora | A new door to your English",
   description: "A Persian-first English learning system for Iranian learners.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Endoora",
+  },
 };
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
@@ -33,8 +48,10 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
         </Script>
       </head>
       <body>
+        <NetworkBandwidthBanner />
         {children}
         <ThemeToggle />
+        <PWARegistration />
       </body>
     </html>
   );

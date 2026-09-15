@@ -353,6 +353,14 @@ export default function AccountPage() {
       title: t.dataControls,
       description: t.dataControlsDescription,
     },
+    {
+      href: "/account/drafts",
+      title: locale === "fa" ? "پیش‌نویس‌ها و همگام‌سازی آفلاین" : "Offline Drafts & Sync",
+      description:
+        locale === "fa"
+          ? "مدیریت پیش‌نویس‌های ذخیره‌شده محلی، صف ارسال آفلاین و حل تداخل‌ها"
+          : "Manage locally-saved drafts, offline sync queues, and version conflicts",
+    },
   ];
 
   const foundationSections = [

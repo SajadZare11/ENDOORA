@@ -2162,7 +2162,83 @@ Status: Complete and verified; ready for Git commit and push.
 - [x] Next.js production build: 185/185 routes generated successfully.
 
 **Day 57 Status:** Completed.
-**Next day:** Day 58 — Progressive Web App (PWA), Low-Bandwidth Optimizations & Offline-Safe Drafts (OPS-008).
+
+---
+
+### Day 58: Progressive Web App (PWA), Low-Bandwidth Optimizations & Offline-Safe Drafts (OPS-008)
+
+**Goal:** Build an enterprise-grade, resilient, and privacy-conscious Progressive Web App (PWA), Low-Bandwidth Network Optimization suite, and Universal Offline-Safe Drafts Synchronization engine (`/operations/pwa` & `/account/drafts`), completing Route Inventory row 76 (OPS-008) with zero sensitive data cache retention (SEC-002).
+
+**Deliverables:**
+- [x] Backend Offline Sync Subsystem (`apps/api/offline_sync/`):
+  - Model `OfflineDraft`: Resilient draft entity storing domain type (`writing_submission`, `placement_checkpoint`, `teacher_note`, `roleplay_response`, `community_draft`, `general_draft`), contextual resource ID, sanitized JSON content payload, optimistic concurrency versions (`client_version`, `server_version`), SHA-256 integrity checksum, conflict detection flags, and client conflict backup snapshot.
+  - Model `OfflineSyncTelemetry`: Tracks sync session metrics, network effective types (4G, 3G, 2G, Slow-2G), low-bandwidth mode flags, payload byte counts, and conflict counters.
+  - Service `services/sync_service.py`: Batch synchronizes queued offline drafts, enforces input sanitization against XSS/injection (SEC-001), calculates SHA-256 checksums, identifies optimistic concurrency collisions, preserves conflict revisions in `conflict_backup`, and provides three resolution strategies (`keep_server`, `keep_client`, `custom_merge`).
+  - Service `services/telemetry_service.py`: Computes real-time operational resilience telemetry: total drafts, pending conflicts, 24h activity, low-bandwidth session share, network condition distribution, and recent sync audit events.
+  - Management commands:
+    - `seed_offline_sync_telemetry`: Populates sample drafts, simulated concurrency conflicts, and network telemetry for local development.
+    - `purge_stale_drafts`: Enforces storage hygiene by purging archived drafts and old telemetry sessions past retention thresholds (supporting `--dry-run`).
+  - REST Endpoints under `/api/drafts/`:
+    - `GET /api/drafts/`: List authenticated user's active drafts with domain filtering.
+    - `POST /api/drafts/`: Create a single draft.
+    - `POST /api/drafts/sync/`: Batch synchronizes queued offline drafts.
+    - `GET /api/drafts/<id>/`: Retrieve specific draft.
+    - `PUT /api/drafts/<id>/`: Incremental update with version increment.
+    - `DELETE /api/drafts/<id>/`: Safe draft archiving (`is_archived=True`).
+    - `POST /api/drafts/<id>/resolve/`: Resolve concurrency conflicts with chosen revision.
+    - `GET /api/drafts/ops/telemetry/`: Administrator and operations resilience telemetry (`IsAdministratorOrStaff`).
+  - 12 comprehensive unit tests in `offline_sync/tests.py`. Total 499/499 backend tests passing (0 failures).
+
+- [x] Frontend PWA & Service Worker Foundation (`apps/web/`):
+  - W3C Web App Manifest (`apps/web/app/manifest.ts`): Standalone display mode, Persian-first RTL configuration, theme color `#0B0F19`, background color `#0F172A`, multi-resolution icons (192x192, 512x512, maskable, SVG), and quick shortcuts (`/dashboard`, `/placement`, `/teacher`, `/account/drafts`).
+  - Service Worker (`apps/web/public/sw.js`): Production service worker version `endoora-sw-v1` with pre-caching for `/offline` and core assets, stale-while-revalidate for static assets, network-first with offline fallback for navigation, and strictly network-only bypass for sensitive routes (`/api/*`, `/backend/*`, `/admin/*`, `/checkout/*`).
+  - App icons in `apps/web/public/icons/`: Pixel-perfect PNG and SVG icons generated with Endoora branding.
+  - Universal Offline Drafts Engine (`lib/offline-drafts.ts`): Local storage abstraction with auto-save debouncing, versioning, SHA-256 checksums, sync queue, and automatic background reconnection listener (`online` event).
+  - Network Quality & Low-Bandwidth Monitor (`lib/network-quality.ts`): Detects connection quality (`navigator.connection`), Save-Data headers, and provides persistent low-bandwidth mode toggling.
+  - PWA Registration & Install Prompt Component (`components/pwa/PWARegistration.tsx`): Manages `/sw.js` lifecycle, update notifications, and deferred install prompts.
+  - Network Bandwidth Status Banner (`components/pwa/NetworkBandwidthBanner.tsx`): Non-intrusive Persian banner warning of offline state or active low-bandwidth optimization.
+  - Dedicated Offline Fallback Page (`apps/web/app/offline/page.tsx`): Token-compliant RTL offline experience with retry and cached route navigation.
+  - User Drafts Management Hub (`apps/web/app/account/drafts/page.tsx` & `components/drafts/AccountDraftsHub.tsx`): User dashboard for local drafts, manual sync, and conflict inspection.
+
+- [x] Operations PWA & Resilience Console (`/operations/pwa`):
+  - Dedicated operations console (`PWAOperationsDashboard.tsx`) mounted at `/operations/pwa`.
+  - 15-Tab Operations Navigation Ribbon: Synchronized across all 15 operational tools.
+  - Posture KPI cards: Total Synced Drafts, Pending Conflicts, Low-Bandwidth Sessions, and Service Worker Cache Hit Rate (94.2%).
+  - PWA Architecture & Cache Storage Posture Banner.
+  - Two-Column Grid: Drafts distribution by domain and network condition breakdown.
+  - Live Sync Telemetry Events Table with network badges and payload sizes.
+  - Resilience & Sync Simulator: Interactive testing of batch sync, conflict simulation, and cache invalidation.
+  - CSS Module (`pwa-operations.module.css`): 0 raw hex colors, 100% logical properties, fully responsive down to 360px.
+
+- [x] Synchronized 15-Tab Operations Navigation Ribbon across all 15 operational dashboards:
+  1. `TaxonomyExplorer.tsx` (`/operations/taxonomy`)
+  2. `VersionedQuestionBankOperations.tsx` (`/operations/questions`)
+  3. `CourseCMSOperations.tsx` (`/operations/courses`)
+  4. `ContentCMSOperations.tsx` (`/operations/content`)
+  5. `AdminOperationsDashboard.tsx` (`/admin`)
+  6. `FeatureFlagsOperations.tsx` (`/operations/flags`)
+  7. `AuditLogsOperations.tsx` (`/operations/audit`)
+  8. `SecurityOperationsDashboard.tsx` (`/operations/security`)
+  9. `PrivacyOperationsDashboard.tsx` (`/operations/privacy`)
+  10. `PenTestOperationsDashboard.tsx` (`/operations/pen-test`)
+  11. `DisasterRecoveryOperationsDashboard.tsx` (`/operations/disaster-recovery`)
+  12. `AIModelPromptRegistryOperations.tsx` (`/operations/ai`)
+  13. `MonitoringOperationsDashboard.tsx` (`/operations/monitoring`)
+  14. `ProductAnalyticsOperationsDashboard.tsx` (`/operations/analytics`)
+  15. `PWAOperationsDashboard.tsx` (`/operations/pwa`)
+
+- [x] Documentation & Handbooks:
+  - Created `docs/operations/pwa-low-bandwidth-and-offline-drafts-handbook.md`.
+
+**Verification:**
+- [x] Backend tests: 499/499 unit tests passing in 22.2s (including 12 offline sync tests).
+- [x] Security audit script: `node scripts/run-security-audit.mjs` passes 5/5 checks.
+- [x] Design token compliance: `npm run check:design` passes with 14 AA contrast pairs, 0 raw hex colors, 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 189/189 routes generated successfully.
+
+**Day 58 Status:** Completed.
+**Next day:** Day 59 — Automated Backups, Restore Verification, Comprehensive System Monitoring & Incident Response Runbooks (OPS-009).
 
 
 

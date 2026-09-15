@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     "observability.apps.ObservabilityConfig",
     "notifications.apps.NotificationsConfig",
     "analytics.apps.AnalyticsConfig",
+    "offline_sync.apps.OfflineSyncConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

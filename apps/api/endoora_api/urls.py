@@ -134,5 +134,9 @@ urlpatterns = [
         "api/analytics/",
         include("analytics.urls")
     ),
+    path(
+        "api/drafts/",
+        include("offline_sync.urls")
+    ),
 ]
 
