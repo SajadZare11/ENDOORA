@@ -46,6 +46,7 @@ export function PrivacyOperationsDashboard() {
         <Link href="/operations/pen-test" className={styles.opsTab}>🔍 آزمون نفوذ (Pen-Test)</Link>
         <Link href="/operations/disaster-recovery" className={styles.opsTab}>💾 بازیابی بحران (OPS-004)</Link>
         <Link href="/operations/ai" className={styles.opsTab}>🤖 مدل‌ها و پرامپت‌ها (OPS-005)</Link>
+        <Link href="/operations/monitoring" className={styles.opsTab}>📊 پایش و لاگ‌ها (OPS-006)</Link>
       </nav>
 
       <div className={styles.header}>

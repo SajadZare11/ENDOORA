@@ -28,6 +28,7 @@ const OPERATIONS_TABS = [
   { label: "آزمون نفوذ", href: "/operations/pen-test" },
   { label: "بازیابی بحران", href: "/operations/disaster-recovery" },
   { label: "مدل‌ها و پرامپت‌ها", href: "/operations/ai" },
+  { label: "پایش و لاگ‌ها", href: "/operations/monitoring" },
 ];
 
 export function DisasterRecoveryOperationsDashboard() {

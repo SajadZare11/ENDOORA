@@ -442,6 +442,9 @@ export function VersionedQuestionBankOperations({
         <Link href="/operations/ai" className={styles.opsTab}>
           🤖 مدل‌ها و پرامپت‌ها (OPS-005)
         </Link>
+        <Link href="/operations/monitoring" className={styles.opsTab}>
+          📊 پایش و لاگ‌ها (OPS-006)
+        </Link>
       </nav>
 
       {/* Main Header */}

@@ -341,6 +341,14 @@ export default function AccountPage() {
       description: t.sessionsDescription,
     },
     {
+      href: "/account/notifications",
+      title: locale === "fa" ? "اعلان‌ها و پیام‌ها" : "Notifications",
+      description:
+        locale === "fa"
+          ? "مشاهده پیام‌های آموزشی، تراکنش‌های مالی و تنظیمات پیامک"
+          : "Learning alerts, financial receipts, and SMS preferences",
+    },
+    {
       href: "/account/data-controls",
       title: t.dataControls,
       description: t.dataControlsDescription,

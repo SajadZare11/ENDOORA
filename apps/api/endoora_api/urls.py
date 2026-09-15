@@ -122,5 +122,13 @@ urlpatterns = [
         "api/dr/",
         include("disaster_recovery.urls")
     ),
+    path(
+        "api/observability/",
+        include("observability.urls")
+    ),
+    path(
+        "api/notifications/",
+        include("notifications.urls")
+    ),
 ]
 

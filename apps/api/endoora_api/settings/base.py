@@ -91,9 +91,12 @@ INSTALLED_APPS = [
     "security.apps.SecurityConfig",
     "data_protection.apps.DataProtectionConfig",
     "disaster_recovery.apps.DisasterRecoveryConfig",
+    "observability.apps.ObservabilityConfig",
+    "notifications.apps.NotificationsConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "observability.middleware.CorrelationTraceMiddleware",
     "security.middleware.SecurityHeadersMiddleware",
     "security.middleware.InputSanitizationMiddleware",
     "corsheaders.middleware.CorsMiddleware",
