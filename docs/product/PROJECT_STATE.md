@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 46 — Build IELTS Writing Simulation and AI Evaluation Engine (IELTS-003 / IELTS-004)
-- **Day 46 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–45 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, and IELTS CD Test Simulator UI & Timed Session Engine
-- **Schema version:** Day 46 adds `ielts.0003_ieltswritingsubmission`
+- **Roadmap day completed:** Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003)
+- **Day 49 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–48 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, and Versioned Question Bank Governance
+- **Schema version:** Day 49 courses CMS extensions
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1740,15 +1740,39 @@ Key accomplishments:
     - Replaced raw color literals with design tokens; 100% token and logical CSS compliant.
   - Full verification: 170/170 static & dynamic routes prerendered, TypeScript 0 errors, 368/368 backend tests passing.
 
-## Git checkpoint (Day 48)
+- **Day 49 (Course CMS, Curriculum Units & Paywall Redaction - CONTENT-003):**
+  - Backend:
+    - Added `IsCourseEditorOrAdministrator` permission boundary enforcing editor or administrator role (`apps/api/courses/permissions.py`).
+    - Serializers: `CourseEditorSerializer`, `ModuleEditorSerializer`, `LessonEditorSerializer`, `CourseTransitionInputSerializer` (`apps/api/courses/serializers.py`).
+    - `CourseEditorListCreateView`: filterable course list and course creation (`POST /api/courses/editor/`).
+    - `CourseEditorDetailView`: course retrieval, update, deletion (`/api/courses/editor/<id>/`).
+    - `CourseEditorTransitionView`: automated publication gate enforcing minimum 1 module, minimum 1 lesson, free preview for premium courses, and mandatory licensing metadata.
+    - `ModuleEditorListCreateView` & `ModuleEditorDetailView`: modular curriculum units CRUD and auto-ordering (`/api/courses/editor/<course_id>/modules/`).
+    - `LessonEditorCreateView` & `LessonEditorDetailView`: lesson CRUD (`/api/courses/editor/modules/<module_id>/lessons/`).
+    - `LessonRedactionPreviewView`: dedicated paywall inspection endpoint proving zero sensitive bytes leak over the wire under `learner_unsubscribed` vs `learner_subscribed`.
+    - Added comprehensive unit tests in `apps/api/courses/tests.py` (11 tests in courses, 46 in content platform, 374 in full backend regression suite).
+  - Frontend:
+    - Built TypeScript client library in `lib/courses-cms.ts`.
+    - Built canonical `/operations/courses` route and mirrored `(admin)/content/courses` route (`CourseCMSOperations` component and `courses-cms.module.css`).
+    - Integrated operations navigation ribbon across `/operations/taxonomy`, `/operations/questions`, and `/operations/courses`.
+    - Real-time metrics counters (Total Courses, Published, In Review, Drafts, Archived, Total Lessons, Total Hours).
+    - Multi-dimension search & filters (CEFR, Skill Category, Target Audience, Status, License Origin).
+    - Interactive Curriculum Unit & Lesson Tree manager with live accordion views.
+    - Live Server-Side Paywall Redaction Inspector verifying Rule #10 security with wire JSON inspection.
+    - Bilingual Course, Module, and Lesson authoring modals with full copyright metadata validation.
+    - Batch JSON export for curriculum structures.
+    - 100% design token compliance: 0 hex colors, 100% logical properties, responsive down to 360px.
+  - Full verification: 172/172 static & dynamic routes prerendered, TypeScript 0 errors, 374/374 backend tests passing.
+
+## Git checkpoint (Day 49)
 
 ```
-Day 48: Build Content Taxonomy and Versioned Question Bank Governance (CONTENT-001 / CONTENT-002)
+Day 49: Build Course CMS, Curriculum Units and Paywall Redaction (CONTENT-003)
 ```
 
 ## Exact next day
 
-**Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003).**
+**Day 50 — Culture, Blog & Skills Content CMS (CONTENT-004) / Operational Admin Hub (OPS-001).**
 
-Do not begin Day 49 until the Day 48 commit is pushed and `git status --short --branch`
+Do not begin Day 50 until the Day 49 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.

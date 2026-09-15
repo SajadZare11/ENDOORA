@@ -1696,3 +1696,53 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Day 48 Status:** Completed.
 **Next day:** Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003).
+
+---
+
+### Day 49: Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003)
+
+**Backend (`apps/api`):**
+- [x] Course CMS Editorial APIs:
+  - `IsCourseEditorOrAdministrator` permission boundary enforcing editor or administrator role (`apps/api/courses/permissions.py`).
+  - Serializers: `CourseEditorSerializer`, `ModuleEditorSerializer`, `LessonEditorSerializer`, `CourseTransitionInputSerializer` (`apps/api/courses/serializers.py`).
+  - `CourseEditorListCreateView`: lists courses with filters (`status`, `skill`, `cefr`, `audience`, `license`, `q`) and creates courses (`POST /api/courses/editor/`).
+  - `CourseEditorDetailView`: full course retrieval, updates (`PUT`/`PATCH`), and deletion (`DELETE /api/courses/editor/<id>/`).
+  - `CourseEditorTransitionView`: manages state transitions (`submit_review`, `publish`, `archive`, `revert_draft`) with automated publication gates requiring:
+    - Minimum 1 curriculum module.
+    - Minimum 1 lesson.
+    - Minimum 1 free preview lesson for premium courses.
+    - Mandatory copyright source attribution and author name.
+  - `ModuleEditorListCreateView` and `ModuleEditorDetailView`: modular curriculum units CRUD and auto-ordering (`POST`, `PUT`, `DELETE /api/courses/editor/<course_id>/modules/`).
+  - `LessonEditorCreateView` and `LessonEditorDetailView`: lesson CRUD (`POST`, `PUT`, `DELETE /api/courses/editor/modules/<module_id>/lessons/`).
+  - `LessonRedactionPreviewView`: dedicated paywall inspection endpoint (`GET /api/courses/editor/lessons/<id>/preview-redaction/`) proving zero sensitive media or quiz leaks over the wire under `learner_unsubscribed` vs `learner_subscribed`.
+- [x] Automated Tests (`apps/api/courses/tests.py`):
+  - 11 comprehensive tests covering public syllabus, free preview access, locked lesson redactions, staff bypass, enrollment progress, editor access control, listing & filters, course CRUD, curriculum module/lesson CRUD, publication validation gates, and live redaction simulation.
+  - 46/46 tests passing across `courses`, `content`, `questions`, and `taxonomy`. Full backend suite: 374/374 passing cleanly.
+
+**Frontend (`apps/web`):**
+- [x] TypeScript Client Lib (`lib/courses-cms.ts`): full typed contracts for `CourseEditorItem`, `ModuleEditorItem`, `LessonEditorItem`, `PaywallRedactionPreview`, `CourseFilters`, and API client helper functions.
+- [x] Course CMS Operations Control Center (`/operations/courses` - CONTENT-003):
+  - Operations navigation ribbon unifying `/operations/taxonomy`, `/operations/questions`, and `/operations/courses`.
+  - Metrics summary strip: Total Courses, Published, In Review, Drafts, Archived, Total Lessons, Total Hours.
+  - Multi-dimensional filters: text search `q`, CEFR level, skill category (all 8 categories), target audience, status pills, and licensing origin.
+  - Course inventory cards: bilingual titles (FA/EN), descriptions, status badges, premium vs free badges, curriculum stats, copyright metadata, and action bars.
+  - Interactive Curriculum Unit & Lesson Tree: accordion tree allowing editors to add, edit, and delete modules and lessons, inspect free preview flags, and launch redaction tests.
+  - Live Server-Side Paywall Redaction Inspector: toggles between Unsubscribed and Subscribed modes, displays stripped fields (`video_url`, `transcripts`, `quiz_data`), and renders the raw wire JSON payload to verify Rule #10 security.
+  - Modals: Course authoring, Module authoring, Lesson authoring, and Publication Gate confirmation.
+  - JSON catalog export.
+- [x] Canonical & Admin Routes:
+  - Canonical operational route: `apps/web/app/operations/courses/page.tsx` with `<Suspense>`.
+  - Mirrored admin route: `apps/web/app/(admin)/content/courses/page.tsx` with `<Suspense>`.
+- [x] Operations Ribbon Synchronization:
+  - Updated `TaxonomyExplorer.tsx` and `VersionedQuestionBankOperations.tsx` to include the `/operations/courses` link.
+- [x] 100% design token compliance: 0 hex colors, 100% logical properties, responsive down to 360px.
+
+**Verification:**
+- [x] Backend tests: 11/11 courses unit tests passing; 46/46 content platform tests; 374/374 full backend regression suite passing.
+- [x] Design token compliance: `npm run check:design` passes with 0 raw hex colors and 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 172/172 static & dynamic routes generated cleanly (prerendered `/operations/courses` and `/content/courses`).
+
+**Day 49 Status:** Completed.
+**Next day:** Day 50 — Culture, Blog & Skills Content CMS (CONTENT-004) / Operational Admin Hub (OPS-001).
+

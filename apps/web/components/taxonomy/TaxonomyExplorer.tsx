@@ -122,6 +122,9 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
         <Link href="/operations/questions" className={styles.navTab}>
           {isFa ? "بانک سؤال نسخه‌بندی‌شده (CONTENT-002)" : "Versioned Question Bank (CONTENT-002)"}
         </Link>
+        <Link href="/operations/courses" className={styles.navTab}>
+          {isFa ? "مدیریت دوره‌ها و سرفصل‌ها (CONTENT-003)" : "Course CMS & Units (CONTENT-003)"}
+        </Link>
       </nav>
 
       <header className={styles.headerSection}>

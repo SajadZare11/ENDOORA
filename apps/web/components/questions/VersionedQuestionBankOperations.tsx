@@ -412,6 +412,9 @@ export function VersionedQuestionBankOperations({
         <Link href="/operations/questions" className={`${styles.navTab} ${styles.navTabActive}`}>
           {t(locale, "بانک سؤال نسخه‌بندی‌شده (CONTENT-002)", "Versioned Question Bank (CONTENT-002)")}
         </Link>
+        <Link href="/operations/courses" className={styles.navTab}>
+          {t(locale, "مدیریت دوره‌ها و سرفصل‌ها (CONTENT-003)", "Course CMS & Units (CONTENT-003)")}
+        </Link>
       </nav>
 
       {/* Main Header */}
