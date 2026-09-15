@@ -138,5 +138,9 @@ urlpatterns = [
         "api/drafts/",
         include("offline_sync.urls")
     ),
+    path(
+        "api/incidents/",
+        include("incident_response.urls")
+    ),
 ]
 

@@ -265,6 +265,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/pwa" className={styles.opsTab}>
           📱 PWA و تاب‌آوری آفلاین (OPS-008)
         </Link>
+        <Link href="/operations/incidents" className={styles.opsTab}>
+          🚨 مدیریت بحران و ران‌بوک‌ها (OPS-009)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

@@ -95,6 +95,7 @@ INSTALLED_APPS = [
     "notifications.apps.NotificationsConfig",
     "analytics.apps.AnalyticsConfig",
     "offline_sync.apps.OfflineSyncConfig",
+    "incident_response.apps.IncidentResponseConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

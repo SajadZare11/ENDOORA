@@ -49,6 +49,7 @@ export function PrivacyOperationsDashboard() {
         <Link href="/operations/monitoring" className={styles.opsTab}>📊 پایش و لاگ‌ها (OPS-006)</Link>
         <Link href="/operations/analytics" className={styles.opsTab}>📈 تحلیل محصول و فانل (OPS-007)</Link>
         <Link href="/operations/pwa" className={styles.opsTab}>📱 PWA و تاب‌آوری آفلاین (OPS-008)</Link>
+        <Link href="/operations/incidents" className={styles.opsTab}>🚨 مدیریت بحران و ران‌بوک‌ها (OPS-009)</Link>
       </nav>
 
       <div className={styles.header}>

@@ -482,6 +482,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/operations/pwa" className={styles.opsTab}>
           📱 PWA و تاب‌آوری آفلاین (OPS-008)
         </Link>
+        <Link href="/operations/incidents" className={styles.opsTab}>
+          🚨 مدیریت بحران و ران‌بوک‌ها (OPS-009)
+        </Link>
       </nav>
 
       {/* Operational Header */}
