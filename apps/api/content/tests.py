@@ -196,3 +196,94 @@ class ContentAppTests(TestCase):
         self.assertIsNotNone(log)
         self.assertEqual(log.reviewer, self.editor)
         self.assertEqual(log.editorial_notes, "Editorial review passed")
+
+    def test_editor_list_create_permissions(self):
+        # Learner cannot access editor endpoints
+        self.client.force_authenticate(user=self.learner)
+        resp = self.client.get("/api/content/editor/")
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
+
+        resp_create = self.client.post("/api/content/editor/", {"title_fa": "تست"})
+        self.assertEqual(resp_create.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Editor can list items
+        self.client.force_authenticate(user=self.editor)
+        resp_list = self.client.get("/api/content/editor/")
+        self.assertEqual(resp_list.status_code, status.HTTP_200_OK)
+        self.assertIn("results", resp_list.data)
+        self.assertGreaterEqual(resp_list.data["count"], 3)
+
+    def test_editor_create_and_validation(self):
+        self.client.force_authenticate(user=self.editor)
+
+        # Fail with invalid slug
+        payload_bad_slug = {
+            "slug": "Invalid Slug with spaces",
+            "title_fa": "آموزش زمان آینده",
+            "title_en": "Future Tenses Guide",
+            "category": ContentCategory.GRAMMAR,
+            "content_type": ContentType.ARTICLE,
+            "source_attribution": "Endoora Research",
+            "author_name": "Senior Linguist",
+        }
+        resp = self.client.post("/api/content/editor/", payload_bad_slug)
+        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("slug", resp.data)
+
+        # Successful creation
+        payload_valid = {
+            "slug": "future-tenses-in-depth-guide",
+            "title_fa": "راهنمای جامع زمان‌های آینده در زبان انگلیسی",
+            "title_en": "Comprehensive Future Tenses in English",
+            "summary_fa": "بررسی will، be going to، و حال استمراری برای بیان آینده.",
+            "summary_en": "Deep dive into future tense expressions.",
+            "category": ContentCategory.GRAMMAR,
+            "content_type": ContentType.ARTICLE,
+            "status": ContentStatus.DRAFT,
+            "cefr_level": CefrLevel.B1,
+            "source_attribution": "Endoora Editorial Board",
+            "author_name": "Dr. Sarah Rezvani",
+            "learning_objectives": ["Distinguish will vs going to", "Express future plans"],
+        }
+        resp_valid = self.client.post("/api/content/editor/", payload_valid, format="json")
+        self.assertEqual(resp_valid.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(resp_valid.data["slug"], "future-tenses-in-depth-guide")
+        self.assertEqual(resp_valid.data["author_name"], "Dr. Sarah Rezvani")
+
+    def test_editor_update_and_transition_lifecycle(self):
+        self.client.force_authenticate(user=self.editor)
+
+        # Patch item
+        item_id = self.draft_item.id
+        patch_resp = self.client.patch(
+            f"/api/content/editor/{item_id}/",
+            {"summary_fa": "خلاصه به‌روزشده توسط دبیر تحریریه"},
+        )
+        self.assertEqual(patch_resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(patch_resp.data["summary_fa"], "خلاصه به‌روزشده توسط دبیر تحریریه")
+
+        # Transition: submit for review
+        trans_resp1 = self.client.post(
+            f"/api/content/editor/{item_id}/transition/",
+            {"action": "submit_review", "note": "Ready for editorial peer review."},
+        )
+        self.assertEqual(trans_resp1.status_code, status.HTTP_200_OK)
+        self.assertEqual(trans_resp1.data["status"], ContentStatus.IN_REVIEW)
+
+        # Transition: publish
+        trans_resp2 = self.client.post(
+            f"/api/content/editor/{item_id}/transition/",
+            {"action": "publish", "note": "Approved and published to all learners."},
+        )
+        self.assertEqual(trans_resp2.status_code, status.HTTP_200_OK)
+        self.assertEqual(trans_resp2.data["status"], ContentStatus.PUBLISHED)
+        self.assertIsNotNone(trans_resp2.data["published_at"])
+
+        # Transition: archive
+        trans_resp3 = self.client.post(
+            f"/api/content/editor/{item_id}/transition/",
+            {"action": "archive", "note": "Superseded by new syllabus."},
+        )
+        self.assertEqual(trans_resp3.status_code, status.HTTP_200_OK)
+        self.assertEqual(trans_resp3.data["status"], ContentStatus.ARCHIVED)
+

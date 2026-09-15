@@ -102,4 +102,13 @@ urlpatterns = [
         "api/ielts/",
         include("ielts.urls")
     ),
+    path(
+        "api/admin-ops/",
+        include("admin_dashboard.urls")
+    ),
+    path(
+        "api/admin-dashboard/",
+        include("admin_dashboard.urls")
+    ),
 ]
+

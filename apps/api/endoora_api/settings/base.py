@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     "marketplace",
     "ledger",
     "ielts",
+    "admin_dashboard.apps.AdminDashboardConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

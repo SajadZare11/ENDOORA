@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 49 — Course CMS, Curriculum Units & Paywall Redaction (CONTENT-003)
-- **Day 49 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–48 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, and Versioned Question Bank Governance
-- **Schema version:** Day 49 courses CMS extensions
+- **Roadmap day completed:** Day 50 — Culture & Skills Content CMS (CONTENT-004) & Operational Admin Hub (OPS-001 / OPS-002 / OPS-003)
+- **Day 50 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–49 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, and Course CMS & Paywall Redaction
+- **Schema version:** Day 50 content CMS & operational admin extensions
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1764,15 +1764,38 @@ Key accomplishments:
     - 100% design token compliance: 0 hex colors, 100% logical properties, responsive down to 360px.
   - Full verification: 172/172 static & dynamic routes prerendered, TypeScript 0 errors, 374/374 backend tests passing.
 
-## Git checkpoint (Day 49)
+- **Day 50 (Culture & Skills Content CMS & Operational Admin Hub - CONTENT-004 / OPS-001 / OPS-002 / OPS-003):**
+  - Backend:
+    - Added `IsContentEditorOrAdministrator` permission boundary enforcing editor or administrator role (`apps/api/content/permissions.py`).
+    - Serializers: `ContentItemEditorSerializer` (validating slug, titles, author, mandatory source attribution) and `ContentItemTransitionSerializer` (`apps/api/content/serializers.py`).
+    - `ContentEditorListCreateView`: filterable content items list and creation (`POST /api/content/editor/`).
+    - `ContentEditorDetailView`: full content item retrieval, update, deletion (`/api/content/editor/<id>/`).
+    - `ContentEditorTransitionView`: manages editorial transitions (`submit_review`, `publish`, `archive`, `revert_draft`) with automated publication gates.
+    - Created new Django app `admin_dashboard` registered in `INSTALLED_APPS` and wired in root `endoora_api/urls.py` (`/api/admin-ops/`).
+    - `IsAdministratorOrStaff` security permission boundary restricting access to superusers, staff, and `Role.ADMINISTRATOR`.
+    - `AdminDashboardStatsView`: executive telemetry aggregating total users by role, review queues, teacher verification backlog, moderation reports under SLA, and financial reconciliation.
+    - `AdminFeatureFlagsListView` & `AdminFeatureFlagToggleView`: feature flag and kill switch management (`OPS-002`), supporting canary rollouts, kill switch behaviors, and mandatory audit reasons.
+    - `AdminAuditLogsListView`: queryable immutable append-only audit trail explorer (`OPS-003`).
+    - Unit tests: 9 tests in `content`, 4 in `admin_dashboard`, 74/74 related tests passing in 5.25s.
+  - Frontend:
+    - Built TypeScript client libraries: `lib/content-cms.ts` and `lib/admin-ops.ts`.
+    - Built canonical `/operations/content` route and mirrored `(admin)/content` route (`ContentCMSOperations` component and `content-cms.module.css`).
+    - Built canonical `/admin` route and mirrored `(admin)` route (`AdminOperationsDashboard` component and `admin-dashboard.module.css`).
+    - Built dedicated operations routes: `/operations/flags` (`FeatureFlagsOperations`) and `/operations/audit` (`AuditLogsOperations`).
+    - Integrated operations navigation ribbon across all 5 operational workspaces (`/operations/taxonomy`, `/operations/questions`, `/operations/courses`, `/operations/content`, `/admin`).
+    - 100% design token compliance: 0 hex colors, 100% logical properties, responsive down to 360px.
+  - Full verification: prerendered static & dynamic routes, TypeScript 0 errors, full backend tests passing.
+
+## Git checkpoint (Day 50)
 
 ```
-Day 49: Build Course CMS, Curriculum Units and Paywall Redaction (CONTENT-003)
+Day 50: Build Culture and Skills Content CMS and Operational Admin Hub (CONTENT-004 / OPS-001)
 ```
 
 ## Exact next day
 
-**Day 50 — Culture, Blog & Skills Content CMS (CONTENT-004) / Operational Admin Hub (OPS-001).**
+**Day 51 — Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001).**
 
-Do not begin Day 50 until the Day 49 commit is pushed and `git status --short --branch`
+Do not begin Day 51 until the Day 50 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
