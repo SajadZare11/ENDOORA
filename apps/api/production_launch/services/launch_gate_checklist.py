@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import hashlib
 from typing import Any, Dict, List
@@ -20,10 +20,17 @@ class LaunchGateChecklistEvaluator:
         now = timezone.now()
 
         # Check latest Golden Flow rehearsal or trigger one if not present
-        latest_log = GoldenFlowVerificationLog.objects.order_by("-rehearsed_at").first()
-        if not latest_log:
-            GoldenFlowVerificationRunner.run_rehearsal()
+        try:
             latest_log = GoldenFlowVerificationLog.objects.order_by("-rehearsed_at").first()
+        except Exception:
+            latest_log = None
+
+        if not latest_log:
+            try:
+                GoldenFlowVerificationRunner.run_rehearsal()
+                latest_log = GoldenFlowVerificationLog.objects.order_by("-rehearsed_at").first()
+            except Exception:
+                latest_log = None
 
         total_models = len(apps.get_models())
 
@@ -113,7 +120,10 @@ class LaunchGateChecklistEvaluator:
         passed_count = sum(1 for c in checklist if c["status"] == "PASS")
         score = int((passed_count / len(checklist)) * 100)
 
-        latest_signoff = ProductionLaunchSignoff.objects.order_by("-signed_at").first()
+        try:
+            latest_signoff = ProductionLaunchSignoff.objects.order_by("-signed_at").first()
+        except Exception:
+            latest_signoff = None
 
         # Compute deterministic release confirmation hash
         state_string = f"endoora-v1.0-launch-{score}-{passed_count}-{total_models}"
