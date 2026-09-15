@@ -132,6 +132,9 @@ export function MonitoringOperationsDashboard() {
         <Link href="/operations/monitoring" className={`${styles.opsTab} ${styles.opsTabActive}`}>
           📊 پایش و لاگ‌های ساختاریافته (OPS-006)
         </Link>
+        <Link href="/operations/analytics" className={styles.opsTab}>
+          📈 تحلیل محصول و فانل (OPS-007)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

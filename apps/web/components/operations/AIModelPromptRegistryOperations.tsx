@@ -31,6 +31,7 @@ const OPERATIONS_TABS = [
   { label: "بازیابی بحران", href: "/operations/disaster-recovery" },
   { label: "مدل‌ها و پرامپت‌ها", href: "/operations/ai" },
   { label: "پایش و لاگ‌ها", href: "/operations/monitoring" },
+  { label: "تحلیل محصول", href: "/operations/analytics" },
 ];
 
 export function AIModelPromptRegistryOperations() {

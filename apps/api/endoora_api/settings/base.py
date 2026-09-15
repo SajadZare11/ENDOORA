@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     "disaster_recovery.apps.DisasterRecoveryConfig",
     "observability.apps.ObservabilityConfig",
     "notifications.apps.NotificationsConfig",
+    "analytics.apps.AnalyticsConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

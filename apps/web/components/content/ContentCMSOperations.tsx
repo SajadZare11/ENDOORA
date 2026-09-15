@@ -259,6 +259,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/monitoring" className={styles.opsTab}>
           📊 پایش و لاگ‌ها (OPS-006)
         </Link>
+        <Link href="/operations/analytics" className={styles.opsTab}>
+          📈 تحلیل محصول و فانل (OPS-007)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

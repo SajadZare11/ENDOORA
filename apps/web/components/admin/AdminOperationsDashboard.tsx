@@ -124,6 +124,9 @@ export function AdminOperationsDashboard() {
         <Link href="/operations/monitoring" className={styles.opsTab}>
           📊 پایش و لاگ‌ها (OPS-006)
         </Link>
+        <Link href="/operations/analytics" className={styles.opsTab}>
+          📈 تحلیل محصول و فانل (OPS-007)
+        </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)
         </Link>
