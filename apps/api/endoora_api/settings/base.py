@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "admin_dashboard.apps.AdminDashboardConfig",
     "security.apps.SecurityConfig",
     "data_protection.apps.DataProtectionConfig",
+    "disaster_recovery.apps.DisasterRecoveryConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -220,3 +221,9 @@ ENDOORA_HSTS_MAX_AGE = env_int("ENDOORA_HSTS_MAX_AGE", default=31536000)
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
+
+# Disaster Recovery & High Availability (Day 54 / OPS-004)
+ENDOORA_DR_CLUSTER_NAME = os.getenv("ENDOORA_DR_CLUSTER_NAME", "pg16-ha-tehran")
+ENDOORA_BACKUP_STORAGE_PATH = os.getenv("ENDOORA_BACKUP_STORAGE_PATH", "vault/backups")
+ENDOORA_DR_RPO_TARGET_SECONDS = env_int("ENDOORA_DR_RPO_TARGET_SECONDS", default=300)
+ENDOORA_DR_RTO_TARGET_SECONDS = env_int("ENDOORA_DR_RTO_TARGET_SECONDS", default=900)

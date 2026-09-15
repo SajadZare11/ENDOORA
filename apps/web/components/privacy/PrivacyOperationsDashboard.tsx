@@ -44,6 +44,7 @@ export function PrivacyOperationsDashboard() {
         <Link href="/operations/security" className={styles.opsTab}>امنیت (Security)</Link>
         <Link href="/operations/privacy" className={`${styles.opsTab} ${styles.opsTabActive}`}>🛡️ حریم خصوصی (Privacy)</Link>
         <Link href="/operations/pen-test" className={styles.opsTab}>🔍 آزمون نفوذ (Pen-Test)</Link>
+        <Link href="/operations/disaster-recovery" className={styles.opsTab}>💾 بازیابی بحران (OPS-004)</Link>
       </nav>
 
       <div className={styles.header}>

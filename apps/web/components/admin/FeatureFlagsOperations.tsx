@@ -112,6 +112,9 @@ export function FeatureFlagsOperations() {
         <Link href="/operations/pen-test" className={styles.opsTab}>
           🔍 آزمون نفوذ (Pen-Test)
         </Link>
+        <Link href="/operations/disaster-recovery" className={styles.opsTab}>
+          💾 بازیابی بحران (OPS-004)
+        </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)
         </Link>

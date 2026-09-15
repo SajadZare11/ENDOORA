@@ -250,6 +250,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/pen-test" className={styles.opsTab}>
           🔍 آزمون نفوذ (Pen-Test)
         </Link>
+        <Link href="/operations/disaster-recovery" className={styles.opsTab}>
+          💾 بازیابی بحران (OPS-004)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

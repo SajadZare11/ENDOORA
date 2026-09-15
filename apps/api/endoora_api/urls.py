@@ -118,5 +118,9 @@ urlpatterns = [
         "api/security/",
         include("security.urls")
     ),
+    path(
+        "api/dr/",
+        include("disaster_recovery.urls")
+    ),
 ]
 
