@@ -452,6 +452,12 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/admin" className={styles.navTab}>
           {isFa ? "میز مدیریت عملیات (OPS-001)" : "Admin Operations (OPS-001)"}
         </Link>
+        <Link href="/operations/flags" className={styles.navTab}>
+          {isFa ? "کلیدهای ویژگی (OPS-002)" : "Feature Flags (OPS-002)"}
+        </Link>
+        <Link href="/operations/audit" className={styles.navTab}>
+          {isFa ? "ردپای ممیزی (OPS-003)" : "Audit Trail (OPS-003)"}
+        </Link>
       </nav>
 
       {/* Operational Header */}

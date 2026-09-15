@@ -421,6 +421,12 @@ export function VersionedQuestionBankOperations({
         <Link href="/admin" className={styles.navTab}>
           {t(locale, "میز مدیریت عملیات (OPS-001)", "Admin Operations (OPS-001)")}
         </Link>
+        <Link href="/operations/flags" className={styles.navTab}>
+          {t(locale, "کلیدهای ویژگی (OPS-002)", "Feature Flags (OPS-002)")}
+        </Link>
+        <Link href="/operations/audit" className={styles.navTab}>
+          {t(locale, "ردپای ممیزی (OPS-003)", "Audit Trail (OPS-003)")}
+        </Link>
       </nav>
 
       {/* Main Header */}

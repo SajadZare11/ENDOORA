@@ -72,6 +72,12 @@ export function AuditLogsOperations() {
         <Link href="/operations/content" className={styles.opsTab}>
           محتوا و فرهنگ (CONTENT-004)
         </Link>
+        <Link href="/operations/questions" className={styles.opsTab}>
+          بانک سوالات (QUESTION-001)
+        </Link>
+        <Link href="/operations/taxonomy" className={styles.opsTab}>
+          درخت مهارت‌ها (TAXONOMY-001)
+        </Link>
       </nav>
 
       {/* Header */}

@@ -214,6 +214,12 @@ export function ContentCMSOperations() {
         <Link href="/admin" className={styles.navTab}>
           میز مدیریت عملیات (OPS-001)
         </Link>
+        <Link href="/operations/flags" className={styles.navTab}>
+          کلیدهای ویژگی (OPS-002)
+        </Link>
+        <Link href="/operations/audit" className={styles.navTab}>
+          ردپای ممیزی (OPS-003)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}
