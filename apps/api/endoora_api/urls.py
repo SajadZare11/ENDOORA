@@ -111,6 +111,10 @@ urlpatterns = [
         include("admin_dashboard.urls")
     ),
     path(
+        "api/privacy/",
+        include("data_protection.urls")
+    ),
+    path(
         "api/security/",
         include("security.urls")
     ),

@@ -244,6 +244,9 @@ export function ContentCMSOperations() {
         <Link href="/operations/security" className={styles.navTab}>
           🛡️ امنیت (SEC-001)
         </Link>
+        <Link href="/operations/privacy" className={styles.opsTab}>
+          🛡️ حریم خصوصی (Privacy)
+        </Link>
       </nav>
 
       {/* 2. Header Section */}

@@ -430,6 +430,9 @@ export function VersionedQuestionBankOperations({
         <Link href="/operations/security" className={styles.navTab}>
           {t(locale, "🛡️ امنیت", "🛡️ Security")}
         </Link>
+        <Link href="/operations/privacy" className={styles.opsTab}>
+          🛡️ حریم خصوصی (Privacy)
+        </Link>
       </nav>
 
       {/* Main Header */}

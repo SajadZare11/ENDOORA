@@ -461,6 +461,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <Link href="/operations/security" className={styles.navTab}>
           🛡️ امنیت (SEC-001)
         </Link>
+        <Link href="/operations/privacy" className={styles.opsTab}>
+          🛡️ حریم خصوصی (Privacy)
+        </Link>
       </nav>
 
       {/* Operational Header */}

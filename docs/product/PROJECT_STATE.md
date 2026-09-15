@@ -1,10 +1,10 @@
 # Endoora Project State
 
 ## Current checkpoint
-- **Roadmap day completed:** Day 51 — Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001)
-- **Day 51 status:** Complete and verified; ready for Git commit and push to `origin/main`
-- **Inherited state:** Days 01–50 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, Course CMS & Paywall Redaction, Culture & Skills Content CMS, and Operational Admin Hub
-- **Schema version:** Day 51 platform security hardening & rate limiting extensions
+- **Roadmap day completed:** Day 52 — Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002)
+- **Day 52 status:** Complete and verified; ready for Git commit and push to `origin/main`
+- **Inherited state:** Days 01–51 remain in place, including Persian-first RTL/English-LTR foundations, Endoora Operations, stable CEFR taxonomy, versioned question bank, placement session engine, adaptive daily missions, SRS vocabulary engine, AI Mistake Genome, Writing Mentor, Roleplay/Voice, Gamification, Skills Hub, Community, Unified Search/AI Support, Teacher Workspace, Marketplace Requests/Offers, Session Bookings, Teacher Public Profiles/Reviews, Teacher Availability Calendar, Escrow Payments, Double-Entry Teacher Payable Ledger, IELTS Content Model & Two-Person Review Gate, IELTS CD Test Simulator UI & Timed Session Engine, IELTS Speaking Simulation & AI Evaluation, Content Taxonomy Operations, Versioned Question Bank Governance, Course CMS & Paywall Redaction, Culture & Skills Content CMS, Operational Admin Hub, Platform Security Hardening, and Rate Limiting
+- **Schema version:** Day 52 data protection, GDPR compliance & automated retention purge extensions
 - **Frontend/UI package version:** `0.4.0`
 - **Backend:** Django 5.2.17 / Django REST Framework 3.18.0
 - **Frontend:** Next.js 16.3.1 / React 19
@@ -1806,16 +1806,38 @@ Key accomplishments:
   - Unified 8-tab operations navigation ribbon synchronized across all operations views.
   - Security hardening handbook in `docs/security/security-hardening-handbook.md`.
 
-## Git checkpoint (Day 51)
+## Features added in Day 52 (Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging - SEC-002)
+
+- **Backend:**
+  - `apps/api/data_protection/` application wired into `INSTALLED_APPS` and root `endoora_api/urls.py` (`/api/privacy/`).
+  - Models: `PrivacyConsentPreference` (granular consents: functional, analytics, AI telemetry, marketing) and `DataPurgeLog` (auditing retention purge runs).
+  - Export Service (`services/export_service.py`): Full GDPR Article 20 / Iranian Data Portability compiler assembling profile, learning history, SRS, missions, Mistake Genome, writing, audio metadata, and financial summaries into a SHA-256 verified machine-readable JSON archive, omitting credentials and tokens.
+  - Cascade Erasure Service (`services/erasure_service.py`): Irreversible PII scrambling (`deleted_<hash>@deleted.endoora.ir`, phone cleared, unusable password, `is_active=False`), profile scrub, audio binary deletion, OTP purge, and immutable `AuditEvent` logging while preserving pseudonymized accounting ledgers.
+  - Automated Retention Purge Service (`services/retention_service.py`): Automated execution for scheduled deletions past 7-day grace, expired audio past retention (7-30d), stale OTPs (30d), and stale export archives (48h).
+  - Management Command (`management/commands/purge_expired_data.py`): CLI utility with `--dry-run` and structured reporting.
+  - Endpoints: `GET/POST /api/privacy/preferences/`, `GET /api/privacy/policy/`, `POST /api/privacy/export/`, `GET /api/privacy/export/<id>/download/`, `GET /api/privacy/ops/telemetry/`, and `POST /api/privacy/ops/trigger-purge/`.
+  - 13 comprehensive unit tests in `data_protection/tests.py`. Total 405/405 backend tests passing.
+
+- **Frontend:**
+  - DPO Console component (`PrivacyOperationsDashboard.tsx`) with posture KPIs, retention schedule matrix, interactive manual purge trigger with dry-run modal, purge execution audit table, and statutory rights compliance scorecard.
+  - CSS Module (`privacy-ops.module.css`): 100% design token compliant, 0 raw hex colors, 100% logical CSS properties, fully responsive down to 360px.
+  - Dedicated operations route at `/operations/privacy` (`apps/web/app/operations/privacy/page.tsx`).
+  - Account Data Controls (`app/account/data-controls/page.tsx`) upgraded with Granular Privacy Preferences card, export bundle direct download, and 7-day deletion grace window badge.
+  - Synchronized unified 9-tab operations navigation ribbon across all 9 operational views.
+  - TypeScript client (`lib/privacy-ops.ts`) with typed contracts and API integrations.
+  - Data protection and privacy handbook in `docs/security/data-protection-and-privacy-handbook.md`.
+
+## Git checkpoint (Day 52)
 
 ```
-Day 51: Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001)
+Day 52: Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002)
 ```
 
 ## Exact next day
 
-**Day 52 — Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002).**
+**Day 53 — Automated Penetration Testing, Vulnerability Scanning & Security Hardening Verification (SEC-003).**
 
-Do not begin Day 52 until the Day 51 commit is pushed and `git status --short --branch`
+Do not begin Day 53 until the Day 52 commit is pushed and `git status --short --branch`
 shows `main` synchronized with `origin/main` and no unintended changes.
+
 

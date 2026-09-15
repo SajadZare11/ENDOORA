@@ -43,7 +43,8 @@
 | 39-49 | Advanced Platform Infrastructure & Content Systems (Day 39 to Day 49) | Complete | Teacher marketplace, payment ledgers, IELTS evaluation, questions & course CMS passed |
 | 50 | Culture & Skills Content CMS (CONTENT-004) & Operational Admin Hub (OPS-001/002/003) | Complete | Executive console, live telemetry, feature flags/kill switches, audit logs, 378+ tests passed |
 | 51 | Platform Security Hardening, Rate Limiting & Penetration Defense (SEC-001) | Complete | Security headers, input sanitization, role throttling, burst defense, 392 tests passed |
-| 52-60 | Remaining roadmap | Not started | Sequential |
+| 52 | Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002) | Complete | Cascade account erasure, machine-readable GDPR export, retention purge, 405 tests passed |
+| 53-60 | Remaining roadmap | Not started | Sequential |
 
 
 
@@ -1839,6 +1840,38 @@ Status: Complete and verified; ready for Git commit and push.
 
 **Day 51 Status:** Completed.
 **Next day:** Day 52 — Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002).
+
+## Day 52 deliverables
+
+### Data Protection, GDPR/Persian Privacy Compliance & Automated Data Purging (SEC-002)
+
+- [x] Backend Data Protection App (`apps/api/data_protection/`):
+  - Models: `PrivacyConsentPreference` (granular consents: functional, analytics, AI telemetry, marketing) and `DataPurgeLog` (auditing retention purge runs).
+  - Export Service (`services/export_service.py`): Full GDPR Article 20 / Iranian Data Portability compiler assembling profile, learning history, SRS, missions, Mistake Genome, writing, audio metadata, and financial summaries into a SHA-256 verified machine-readable JSON archive, omitting credentials and tokens.
+  - Cascade Erasure Service (`services/erasure_service.py`): Irreversible PII scrambling (`deleted_<hash>@deleted.endoora.ir`, phone cleared, unusable password, `is_active=False`), profile scrub, audio binary deletion, OTP purge, and immutable `AuditEvent` logging while preserving pseudonymized accounting ledgers.
+  - Automated Retention Purge Service (`services/retention_service.py`): Automated execution for scheduled deletions past 7-day grace, expired audio past retention (7-30d), stale OTPs (30d), and stale export archives (48h).
+  - Management Command (`management/commands/purge_expired_data.py`): CLI utility with `--dry-run` and structured reporting.
+  - Endpoints (`urls.py`): `GET/POST /api/privacy/preferences/`, `GET /api/privacy/policy/`, `POST /api/privacy/export/`, `GET /api/privacy/export/<id>/download/`, `GET /api/privacy/ops/telemetry/`, and `POST /api/privacy/ops/trigger-purge/`.
+  - 13 comprehensive unit tests in `data_protection/tests.py`. Total 405/405 backend tests passing.
+- [x] Frontend DPO Operations Hub & Account Data Controls (`apps/web/`):
+  - DPO Console component (`PrivacyOperationsDashboard.tsx`) with posture KPIs, retention schedule matrix, interactive manual purge trigger with dry-run modal, purge execution audit table, and statutory rights compliance scorecard.
+  - CSS Module (`privacy-ops.module.css`): 100% design token compliant, 0 raw hex colors, 100% logical CSS properties, fully responsive down to 360px.
+  - Dedicated operations route at `/operations/privacy` (`apps/web/app/operations/privacy/page.tsx`).
+  - Account Data Controls (`app/account/data-controls/page.tsx`) upgraded with Granular Privacy Preferences card, export bundle direct download, and 7-day deletion grace window badge.
+  - Synchronized unified 9-tab operations navigation ribbon across all 9 operational views.
+  - TypeScript client (`lib/privacy-ops.ts`) with typed contracts and API integrations.
+- [x] Documentation & Handbooks:
+  - Created `docs/security/data-protection-and-privacy-handbook.md`.
+
+**Verification:**
+- [x] Backend tests: 405/405 unit tests passing in 20.2s.
+- [x] Design token compliance: `npm run check:design` passes with 14 AA contrast pairs, 0 raw hex colors, 100% logical properties.
+- [x] TypeScript typecheck: 0 errors across `@endoora/ui`, `@endoora/contracts`, and `@endoora/web`.
+- [x] Next.js production build: 179/179 routes generated successfully.
+
+**Day 52 Status:** Completed.
+**Next day:** Day 53 — Automated Penetration Testing, Vulnerability Scanning & Security Hardening Verification (SEC-003).
+
 
 
 

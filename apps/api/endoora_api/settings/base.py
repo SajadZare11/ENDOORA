@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     "ielts",
     "admin_dashboard.apps.AdminDashboardConfig",
     "security.apps.SecurityConfig",
+    "data_protection.apps.DataProtectionConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

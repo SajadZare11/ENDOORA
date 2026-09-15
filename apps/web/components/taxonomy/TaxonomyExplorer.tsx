@@ -140,6 +140,9 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
         <Link href="/operations/security" className={styles.navTab}>
           {isFa ? "🛡️ امنیت (SEC-001)" : "🛡️ Security (SEC-001)"}
         </Link>
+        <Link href="/operations/privacy" className={styles.opsTab}>
+          🛡️ حریم خصوصی (Privacy)
+        </Link>
       </nav>
 
       <header className={styles.headerSection}>

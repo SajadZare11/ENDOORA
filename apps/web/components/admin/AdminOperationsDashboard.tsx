@@ -109,6 +109,9 @@ export function AdminOperationsDashboard() {
         <Link href="/operations/security" className={styles.opsTab}>
           🛡️ امنیت (SEC-001)
         </Link>
+        <Link href="/operations/privacy" className={styles.opsTab}>
+          🛡️ حریم خصوصی (Privacy)
+        </Link>
         <Link href="/operations/courses" className={styles.opsTab}>
           مدیریت دوره‌ها (CONTENT-003)
         </Link>

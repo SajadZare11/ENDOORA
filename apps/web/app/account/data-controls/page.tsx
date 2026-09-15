@@ -14,6 +14,11 @@ import {
   persistPreferredLocale,
   type EndooraLocale,
 } from "../../../lib/endoora-api";
+import {
+  fetchPrivacyPreferences,
+  updatePrivacyPreferences,
+  type PrivacyConsentPreference,
+} from "../../../lib/privacy-ops";
 import styles from "./data-controls.module.css";
 
 type AccountMe = {
@@ -186,6 +191,30 @@ function formatDate(
 }
 
 export default function DataControlsPage() {
+  const [prefs, setPrefs] = useState<PrivacyConsentPreference | null>(null);
+  const [prefsSaveStatus, setPrefsSaveStatus] = useState("");
+
+  useEffect(() => {
+    fetchPrivacyPreferences().then(setPrefs).catch(console.error);
+  }, []);
+
+  const togglePref = (key: keyof PrivacyConsentPreference) => {
+    if (prefs) setPrefs({ ...prefs, [key]: !prefs[key] });
+  };
+
+  const savePrefs = async () => {
+    if (prefs) {
+      setPrefsSaveStatus("در حال ذخیره...");
+      try {
+        await updatePrivacyPreferences(prefs);
+        setPrefsSaveStatus("تنظیمات با موفقیت ذخیره شد.");
+        setTimeout(() => setPrefsSaveStatus(""), 3000);
+      } catch (err) {
+        setPrefsSaveStatus("خطا در ذخیره تنظیمات.");
+      }
+    }
+  };
+
   const [locale, setLocale] =
     useState<EndooraLocale>("fa");
 
@@ -474,6 +503,37 @@ export default function DataControlsPage() {
       }
     >
       <div className={styles.content}>
+
+        {prefs && (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>
+              Granular Privacy Preferences (تنظیمات حریم خصوصی و پردازش داده‌ها)
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', background: 'var(--color-surface-elevated, #f9fafb)', padding: 'var(--spacing-lg, 1.5rem)', borderRadius: 'var(--radius-lg, 0.5rem)' }}>
+              <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <input type="checkbox" checked={prefs.functional_storage} disabled />
+                <span>Essential / عملکردی (Always active / ضروری)</span>
+              </label>
+              <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <input type="checkbox" checked={prefs.analytics_processing} onChange={() => togglePref('analytics_processing')} />
+                <span>Analytics / بهبود عملکرد آموزشی و تحلیلی</span>
+              </label>
+              <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <input type="checkbox" checked={prefs.ai_model_training_telemetry} onChange={() => togglePref('ai_model_training_telemetry')} />
+                <span>AI Model / بازخورد و بهینه‌سازی هوش مصنوعی</span>
+              </label>
+              <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <input type="checkbox" checked={prefs.marketing_communications} onChange={() => togglePref('marketing_communications')} />
+                <span>Marketing / اطلاع‌رسانی و پیام‌های ارتباطی</span>
+              </label>
+              <button type="button" onClick={savePrefs} className="endoora-button endoora-button--primary" style={{ width: 'fit-content', marginTop: '0.5rem' }}>
+                ذخیره تنظیمات (Save)
+              </button>
+              {prefsSaveStatus && <span style={{ color: 'var(--color-success, green)', fontSize: 'var(--font-size-sm, 0.875rem)' }}>{prefsSaveStatus}</span>}
+            </div>
+          </section>
+        )}
+
         {errors.length > 0 ? (
           <div
             className="endoora-error-summary"
@@ -567,19 +627,18 @@ export default function DataControlsPage() {
                     </span>
                   </div>
 
-                  {item.completed_at ? (
-                    <div className={styles.itemRow}>
-                      <strong>
-                        {t.completedAt}
-                      </strong>
-
-                      <span>
-                        {formatDate(
-                          item.completed_at,
-                          locale,
-                        )}
-                      </span>
-                    </div>
+                                    {item.completed_at ? (
+                    <>
+                      <div className={styles.itemRow}>
+                        <strong>{t.completedAt}</strong>
+                        <span>{formatDate(item.completed_at, locale)}</span>
+                      </div>
+                      <div className={styles.itemRow} style={{ marginTop: '0.5rem' }}>
+                        <a href={`/api/privacy/export/${item.id}/download/`} className="endoora-button endoora-button--secondary" style={{ textDecoration: 'none', display: 'inline-block' }}>
+                          دانلود فایل (Download)
+                        </a>
+                      </div>
+                    </>
                   ) : null}
                 </li>
               ))}
@@ -598,12 +657,15 @@ export default function DataControlsPage() {
             {t.deleteDescription}
           </p>
 
-          <div className={styles.warning}>
+                    <div className={styles.warning}>
             <strong>
               {t.deleteWarningTitle}
             </strong>
 
             <p>{t.deleteWarning}</p>
+            <div style={{ marginTop: '0.5rem', padding: '0.25rem 0.5rem', background: 'var(--color-danger-light, #fee2e2)', color: 'var(--color-danger-dark, #991b1b)', borderRadius: 'var(--radius-sm, 0.25rem)', display: 'inline-block', fontWeight: 'bold' }}>
+              فرصت انصراف ۷ روزه (7-day grace period)
+            </div>
           </div>
 
           {deleteSuccess ? (
