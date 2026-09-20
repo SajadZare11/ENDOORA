@@ -187,14 +187,24 @@ function NavItem({
   );
 }
 
+const STANDALONE_PREFIXES = [
+  "/placement",
+  "/lessons",
+  "/courses",
+  "/learn",
+  "/ielts",
+  "/en/placement",
+  "/en/lessons",
+  "/en/courses",
+  "/en/learn",
+  "/en/ielts",
+];
+
 export function LearnerShell({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const isStandaloneRoute =
-    pathname.startsWith("/placement") ||
-    pathname.startsWith("/lessons") ||
-    pathname.startsWith("/courses") ||
-    pathname.startsWith("/learn") ||
-    pathname.startsWith("/ielts");
+  const pathname = usePathname() || "";
+  const isStandaloneRoute = STANDALONE_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
   const [data, setData] = useState<LearnerHome | null>(null);
   const [locale, setLocale] = useState<Locale>("fa");
   const [localeError, setLocaleError] = useState("");
