@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "../courses.module.css";
 
 interface CourseDetail {
@@ -27,8 +28,8 @@ const COURSES_MAP: Record<string, CourseDetail> = {
     desc: "آموزش گام‌به‌گام کتب درسی دهم، یازدهم و دوازدهم همراه با تحلیل تکنیک‌های درک مطلب و کلوزتست کنکور سراسری.",
     cefr: "B1",
     hours: 24,
-    author: "هیئت مؤلفان و اساتید کنکور اندورا",
-    sourceAttribution: "کارگروه تألیف برنامه درسی ملی اندورا",
+    author: "هیئت مؤلفان و اساتید کنکور ایندورا",
+    sourceAttribution: "کارگروه تألیف برنامه درسی ملی ایندورا",
     modules: [
       {
         titleFa: "فصل ۱: پایه دهم (Vision 1) - زمان‌های آینده و صفات مقایسه‌ای",
@@ -64,7 +65,7 @@ const COURSES_MAP: Record<string, CourseDetail> = {
     desc: "رویکرد اصولی به معیارهای چهارگانه نمره‌دهی آیلتس بر مبنای استانداردهای رسمی کمبریج.",
     cefr: "B2",
     hours: 30,
-    author: "دپارتمان آیلتس و تصحیح‌کنندگان رسمی اندورا",
+    author: "دپارتمان آیلتس و تصحیح‌کنندگان رسمی ایندورا",
     sourceAttribution: "Endoora IELTS Research Board",
     modules: [
       {
@@ -93,7 +94,7 @@ const COURSES_MAP: Record<string, CourseDetail> = {
     desc: "غلبه بر استرس مکالمه، یادگیری اصطلاحات روزمره و تقویت روانی کلام بدون وسواس گرامری.",
     cefr: "A2",
     hours: 18,
-    author: "لابراتوار مکالمه کاربردی اندورا",
+    author: "لابراتوار مکالمه کاربردی ایندورا",
     sourceAttribution: "Endoora Spoken English Group",
     modules: [
       {
@@ -117,7 +118,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const course = COURSES_MAP[slug];
   if (!course) return {};
   return {
-    title: `${course.titleFa} | دوره‌های اندورا`,
+    title: `${course.titleFa} | دوره‌های ایندورا`,
     description: course.desc,
   };
 }
@@ -128,10 +129,11 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
   if (!course) notFound();
 
   return (
-    <div className={styles.container} dir="rtl">
-      <Link href="/courses" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
-        ← بازگشت به کاتالوگ دوره‌ها
-      </Link>
+    <PublicShell locale="fa" currentPath="/courses">
+      <div className={styles.container} dir="rtl">
+        <Link href="/courses" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
+          ← بازگشت به کاتالوگ دوره‌ها
+        </Link>
 
       <header className={styles.header}>
         <div>
@@ -233,8 +235,9 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
       {/* Author and Copyright footer */}
       <footer style={{ padding: "var(--space-4)", background: "var(--color-surface-subtle)", borderRadius: "var(--radius-card)", fontSize: "var(--font-size-small)", color: "var(--color-text-muted)" }}>
         <div><strong>تألیف و نظارت علمی: </strong>{course.author}</div>
-        <div style={{ marginTop: "0.25rem" }}><strong>منبع و مجوز: </strong>{course.sourceAttribution} — کلیه حقوق برای اندورا محفوظ است.</div>
+        <div style={{ marginTop: "0.25rem" }}><strong>منبع و مجوز: </strong>{course.sourceAttribution} — کلیه حقوق برای ایندورا محفوظ است.</div>
       </footer>
     </div>
+  </PublicShell>
   );
 }

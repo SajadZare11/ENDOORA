@@ -604,7 +604,7 @@ class BookingDispute(models.Model):
     resolution_notes = models.TextField(
         blank=True,
         default="",
-        help_text="توضیحات و دلایل رای صادره توسط تیم داوری اندورا",
+        help_text="توضیحات و دلایل رای صادره توسط تیم داوری ایندورا",
     )
     resolved_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -871,7 +871,7 @@ class WalletTransaction(models.Model):
 class PaymentGatewayProvider(models.TextChoices):
     ZARINPAL = "zarinpal", _("درگاه زرین‌پال / شاپرک")
     SANDBOX = "sandbox", _("درگاه شبیه‌ساز آزمایشی")
-    WALLET = "wallet", _("کیف پول اندورا")
+    WALLET = "wallet", _("کیف پول ایندورا")
 
 
 class PaymentTransactionStatus(models.TextChoices):
@@ -1021,7 +1021,7 @@ class BookingEscrow(models.Model):
         max_digits=12,
         decimal_places=0,
         default=0,
-        help_text="سهم ناخالص پلتفرم اندورا از جلسه",
+        help_text="سهم ناخالص پلتفرم ایندورا از جلسه",
     )
     teacher_net_toman = models.DecimalField(
         max_digits=12,

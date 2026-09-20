@@ -89,10 +89,23 @@ export async function fetchPrivacyTelemetry(): Promise<PrivacyTelemetry> {
   };
 }
 
-export async function triggerRetentionPurge(dryRun: boolean): Promise<any> {
+export interface RetentionPurgeResult {
+  success: boolean;
+  dryRun: boolean;
+  message: string;
+}
+
+export async function triggerRetentionPurge(dryRun: boolean): Promise<RetentionPurgeResult> {
   return { success: true, dryRun, message: "Purge triggered successfully." };
 }
 
-export async function triggerDataExport(): Promise<any> {
+export interface DataExportTriggerResult {
+  success: boolean;
+  id: string;
+  status: string;
+  message: string;
+}
+
+export async function triggerDataExport(): Promise<DataExportTriggerResult> {
   return { success: true, id: "EXP-888", status: "completed", message: "Data export ready." };
 }

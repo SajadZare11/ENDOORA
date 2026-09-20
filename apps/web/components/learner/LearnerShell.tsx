@@ -9,9 +9,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { EndooraWordmark } from "@endoora/ui";
+import { EndooraWordmark, Button } from "@endoora/ui";
 
-import { persistPreferredLocale } from "../../lib/endoora-api";
+import { endooraApi, persistPreferredLocale } from "../../lib/endoora-api";
 import {
   DashboardApiError,
   fetchLearnerHome,
@@ -26,7 +26,7 @@ type ContextValue = {
   setLocale: (locale: Locale) => void;
 };
 
-type IconName = "home" | "learn" | "practice" | "teachers" | "account" | "bell";
+type IconName = "home" | "learn" | "practice" | "teachers" | "account" | "bell" | "logout";
 
 const LearnerContext = createContext<ContextValue | null>(null);
 
@@ -43,6 +43,8 @@ const labels = {
     practice: "تمرین",
     teachers: "معلم‌ها و کلاس‌ها",
     account: "حساب",
+    logout: "خروج",
+    loggingOut: "در حال خروج…",
     switch: "English",
     context: "خانه یادگیری",
     notifications: "اعلان‌ها",
@@ -56,6 +58,8 @@ const labels = {
     practice: "Practice",
     teachers: "Teachers & Classes",
     account: "Account",
+    logout: "Log out",
+    loggingOut: "Logging out…",
     switch: "فارسی",
     context: "Learning home",
     notifications: "Notifications",
@@ -98,6 +102,7 @@ function Icon({ name }: { name: IconName }) {
     teachers: <><path d="M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" /><path d="M2.5 21a7 7 0 0 1 14 0M17 8.5a3.2 3.2 0 0 1 0 6.2M18 16.5a5.3 5.3 0 0 1 3.5 4.5" /></>,
     account: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
     bell: <><path d="M18 9a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" /><path d="M10 21h4" /></>,
+    logout: <><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></>,
   };
 
   return (
@@ -131,9 +136,9 @@ function Gate({
       <section className="learner-gate__card" aria-live="polite">
         <div className="learner-gate__header">
           <EndooraWordmark />
-          <button className="learner-language" type="button" onClick={onLocaleChange}>
+          <Button className="learner-language" type="button" onClick={onLocaleChange}>
             {copy.switch}
-          </button>
+          </Button>
         </div>
         <span className="learner-gate__symbol" aria-hidden="true">E</span>
         <h1>{content[0]}</h1>
@@ -149,9 +154,9 @@ function Gate({
           </Link>
         ) : null}
         {kind === "offline" || kind === "error" ? (
-          <button className="learner-button learner-button--primary" type="button" onClick={retry}>
+          <Button className="learner-button learner-button--primary" type="button" onClick={retry}>
             {copy.retry}
-          </button>
+          </Button>
         ) : null}
       </section>
     </main>
@@ -184,6 +189,12 @@ function NavItem({
 
 export function LearnerShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const isStandaloneRoute =
+    pathname.startsWith("/placement") ||
+    pathname.startsWith("/lessons") ||
+    pathname.startsWith("/courses") ||
+    pathname.startsWith("/learn") ||
+    pathname.startsWith("/ielts");
   const [data, setData] = useState<LearnerHome | null>(null);
   const [locale, setLocale] = useState<Locale>("fa");
   const [localeError, setLocaleError] = useState("");
@@ -200,6 +211,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   }, [locale]);
 
   useEffect(() => {
+    if (isStandaloneRoute) return;
     const controller = new AbortController();
     let mounted = true;
 
@@ -242,7 +254,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
       window.removeEventListener("online", online);
       window.removeEventListener("offline", offline);
     };
-  }, [reloadKey]);
+  }, [reloadKey, isStandaloneRoute]);
 
   async function handleLocaleChange(nextLocale: Locale) {
     const previousLocale = locale;
@@ -261,6 +273,10 @@ export function LearnerShell({ children }: { children: ReactNode }) {
 
   const value = data ? { data, locale, setLocale: handleLocaleChange } : null;
 
+  if (isStandaloneRoute) {
+    return <>{children}</>;
+  }
+
   if (status !== "ready" || !value) {
     const gateKind = status === "ready" ? "error" : status;
     return (
@@ -271,6 +287,23 @@ export function LearnerShell({ children }: { children: ReactNode }) {
         onLocaleChange={() => setLocale((current) => current === "fa" ? "en" : "fa")}
       />
     );
+  }
+
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await endooraApi<null>("/auth/logout/", {
+        method: "POST",
+        json: {},
+      });
+    } catch {
+      // Proceed with redirect regardless of network status
+    } finally {
+      window.location.href = "/auth/login";
+    }
   }
 
   const t = labels[locale];
@@ -302,9 +335,21 @@ export function LearnerShell({ children }: { children: ReactNode }) {
               />
             ))}
           </nav>
-          <p className="learner-sidebar__note">
-            {locale === "fa" ? "هر بار فقط یک قدم روشن." : "One clear step at a time."}
-          </p>
+          <div className="learner-sidebar__footer">
+            <button
+              type="button"
+              className="learner-nav__item learner-nav__item--logout"
+              onClick={() => void handleLogout()}
+              disabled={loggingOut}
+              aria-label={t.logout}
+            >
+              <Icon name="logout" />
+              <span>{loggingOut ? t.loggingOut : t.logout}</span>
+            </button>
+            <p className="learner-sidebar__note">
+              {locale === "fa" ? "هر بار فقط یک قدم روشن." : "One clear step at a time."}
+            </p>
+          </div>
         </aside>
 
         <header className="learner-header">
@@ -313,14 +358,14 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           </Link>
           <span className="learner-header__context">{t.context}</span>
           <div className="learner-header__actions">
-            <button
+            <Button
               className="learner-language"
               type="button"
               onClick={() => void handleLocaleChange(locale === "fa" ? "en" : "fa")}
             >
               {t.switch}
-            </button>
-            <button
+            </Button>
+            <Button
               className="learner-notification"
               type="button"
               aria-expanded={notificationsOpen}
@@ -332,13 +377,13 @@ export function LearnerShell({ children }: { children: ReactNode }) {
               {value.data.notification_count > 0 ? (
                 <span className="learner-notification__count">{value.data.notification_count}</span>
               ) : null}
-            </button>
+            </Button>
           </div>
           {notificationsOpen ? (
             <section className="learner-notification-panel" id="learner-notification-panel" aria-live="polite">
               <div>
                 <strong>{t.notifications}</strong>
-                <button type="button" onClick={() => setNotificationsOpen(false)} aria-label={t.close}>×</button>
+                <Button type="button" onClick={() => setNotificationsOpen(false)} aria-label={t.close}>×</Button>
               </div>
               <p>{t.noNotifications}</p>
             </section>

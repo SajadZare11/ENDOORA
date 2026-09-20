@@ -80,7 +80,13 @@ export async function endooraApi<T>(
     headers.set("X-CSRFToken", csrfToken);
   }
 
-  const response = await fetch(`/backend/api${path}`, {
+  const normalizedPath = path.startsWith("/api/")
+    ? path.slice(4)
+    : path.startsWith("/")
+      ? path
+      : `/${path}`;
+
+  const response = await fetch(`/backend/api${normalizedPath}`, {
     ...options,
     method,
     headers,

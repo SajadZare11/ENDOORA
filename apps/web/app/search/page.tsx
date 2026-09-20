@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button, Input } from "@endoora/ui";
 import { useState, useMemo, type FormEvent } from "react";
 import Link from "next/link";
 import { PublicShell } from "@/components/marketing/PublicShell";
@@ -63,8 +65,8 @@ const SAMPLE_DOCUMENTS: SearchResultItem[] = [
   },
   {
     id: "doc-4",
-    title: "آزمون تعیین سطح هوشمند اندورا چگونه کار می‌کند؟",
-    content: "تعیین سطح اندورا با رویکرد تطبیقی سوالات را بر مبنای پاسخ‌های پیشین تنظیم کرده و کارنامه تفصیلی به همراه مسیر یادگیری صادر می‌کند.",
+    title: "آزمون تعیین سطح هوشمند ایندورا چگونه کار می‌کند؟",
+    content: "تعیین سطح ایندورا با رویکرد تطبیقی سوالات را بر مبنای پاسخ‌های پیشین تنظیم کرده و کارنامه تفصیلی به همراه مسیر یادگیری صادر می‌کند.",
     contentType: "faq",
     contentTypeDisplay: "سوال متداول",
     visibility: "public",
@@ -164,24 +166,19 @@ export default function SearchPage() {
       <div className={styles.container}>
         {/* Search Hero Header */}
         <section className={styles.searchHeader}>
-          <h1 className={styles.title}>جستجوی یکپارچه اندورا</h1>
+          <h1 className={styles.title}>جستجوی یکپارچه ایندورا</h1>
           <p className={styles.subtitle}>
             دسترسی سریع به دوره‌های آموزشی، اساتید تایید شده، طرح درس‌ها، تجربیات جامعه یادگیری و راهنمای سیستم
           </p>
 
           <form className={styles.searchForm} onSubmit={handleSearchSubmit} role="search">
             <div className={styles.inputWrapper}>
-              <input
-                type="text"
-                className={styles.searchInput}
-                placeholder="عنوان دوره، موضوع گرامر، نام مدرس یا سوال خود را بنویسید..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                aria-label="عبارت جستجو"
-              />
+              <Input type="text" className={styles.searchInput} placeholder="عنوان دوره، موضوع گرامر، نام مدرس یا سوال خود را بنویسید..." value={query} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)} aria-label="عبارت جستجو" />
               {query && (
-                <button
+                <Button
                   type="button"
+                  variant="tertiary"
+                  size="compact"
                   className={styles.clearBtn}
                   onClick={() => {
                     setQuery("");
@@ -190,12 +187,12 @@ export default function SearchPage() {
                   aria-label="پاک کردن متن"
                 >
                   ✕
-                </button>
+                </Button>
               )}
             </div>
-            <button type="submit" className={styles.searchSubmitBtn}>
+            <Button type="submit" variant="primary" className={styles.searchSubmitBtn}>
               جستجو
-            </button>
+            </Button>
           </form>
 
           {/* Quick Tags: Popular & Recent */}
@@ -205,22 +202,13 @@ export default function SearchPage() {
                 <span className={styles.tagsLabel}>جستجوهای اخیر شما:</span>
                 <div className={styles.tagChips}>
                   {recentSearches.map((term) => (
-                    <button
-                      key={term}
-                      type="button"
-                      className={styles.tagChip}
-                      onClick={() => handleTagClick(term)}
-                    >
+                    <Button key={term} type="button" variant="secondary" size="sm" className={styles.tagChip} onClick={() => handleTagClick(term)}>
                       🕒 {term}
-                    </button>
+                    </Button>
                   ))}
-                  <button
-                    type="button"
-                    className={styles.clearHistoryBtn}
-                    onClick={handleClearHistory}
-                  >
+                  <Button type="button" variant="tertiary" size="sm" className={styles.clearHistoryBtn} onClick={handleClearHistory}>
                     پاک کردن تاریخچه
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -229,14 +217,9 @@ export default function SearchPage() {
               <span className={styles.tagsLabel}>بیشترین جستجوها:</span>
               <div className={styles.tagChips}>
                 {POPULAR_SEARCH_TERMS.map((term) => (
-                  <button
-                    key={term}
-                    type="button"
-                    className={styles.tagChip}
-                    onClick={() => handleTagClick(term)}
-                  >
+                  <Button key={term} type="button" variant="secondary" size="sm" className={styles.tagChip} onClick={() => handleTagClick(term)}>
                     🔍 {term}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -245,48 +228,69 @@ export default function SearchPage() {
 
         {/* Filter Tabs */}
         <nav className={styles.tabsContainer} aria-label="فیلتر دسته‌بندی نتایج">
-          <button
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "all" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("all")}
           >
             همه منابع ({activeQuery ? filteredResults.length : SAMPLE_DOCUMENTS.length})
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "course" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("course")}
           >
             دوره‌های آموزشی
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "teacher" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("teacher")}
           >
             مدرسان
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "lesson_plan" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("lesson_plan")}
           >
             طرح درس و منابع
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "community_post" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("community_post")}
           >
             جامعه و تجربیات
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "faq" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("faq")}
           >
             سوالات متداول
-          </button>
-          <button
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
             className={`${styles.tabBtn} ${selectedCategory === "assignment" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("assignment")}
           >
             تکالیف اختصاصی
-          </button>
+          </Button>
         </nav>
 
         {/* Results List */}
@@ -345,14 +349,9 @@ export default function SearchPage() {
                 <span className={styles.tagsLabel}>پیشنهادهای مرتبط:</span>
                 <div className={styles.tagChips}>
                   {POPULAR_SEARCH_TERMS.slice(0, 4).map((term) => (
-                    <button
-                      key={term}
-                      type="button"
-                      className={styles.tagChip}
-                      onClick={() => handleTagClick(term)}
-                    >
+                    <Button key={term} type="button" variant="secondary" size="sm" className={styles.tagChip} onClick={() => handleTagClick(term)}>
                       {term}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>

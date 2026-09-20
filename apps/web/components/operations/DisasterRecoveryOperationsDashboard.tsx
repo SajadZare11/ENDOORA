@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -145,13 +147,13 @@ export function DisasterRecoveryOperationsDashboard() {
           </p>
         </div>
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
             className={styles.primaryBtn}
             onClick={() => setIsModalOpen(true)}
           >
             <span>💾</span> ایجاد بکاپ فوری (On-Demand Backup)
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -307,7 +309,7 @@ export function DisasterRecoveryOperationsDashboard() {
         </p>
 
         <div className={styles.tableWrapper}>
-          <table className={styles.dataTable}>
+          <Table className={styles.dataTable}>
             <thead>
               <tr>
                 <th>شناسه</th>
@@ -344,20 +346,20 @@ export function DisasterRecoveryOperationsDashboard() {
                         تأیید شده ({b.verification_duration_ms}ms)
                       </span>
                     ) : (
-                      <button
+                      <Button
                         type="button"
                         className={styles.secondaryBtn}
                         onClick={() => handleVerifyBackup(b.id)}
                         disabled={verifyingId === b.id}
                       >
                         {verifyingId === b.id ? "در حال بررسی..." : "🔍 بررسی صحت"}
-                      </button>
+                      </Button>
                     )}
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
 
@@ -432,7 +434,7 @@ export function DisasterRecoveryOperationsDashboard() {
                   id="dr-backup-type"
                   className={styles.select}
                   value={backupType}
-                  onChange={(e) => setBackupType(e.target.value as any)}
+                  onChange={(e) => setBackupType(e.target.value as "full" | "differential" | "wal_archive")}
                 >
                   <option value="full">نسخه کامل پایگاه داده (Full Snapshot - ~48MB)</option>
                   <option value="differential">نسخه تفاضلی (Differential - ~12MB)</option>
@@ -444,7 +446,7 @@ export function DisasterRecoveryOperationsDashboard() {
                 <label className={styles.label} htmlFor="dr-backup-notes">
                   توضیحات یا دلیل عملیاتی:
                 </label>
-                <input
+                <Input
                   id="dr-backup-notes"
                   type="text"
                   className={styles.input}
@@ -456,7 +458,7 @@ export function DisasterRecoveryOperationsDashboard() {
 
               <div className={styles.formGroup}>
                 <label className={styles.checkboxLabel}>
-                  <input
+                  <Input
                     type="checkbox"
                     checked={verifyImmediately}
                     onChange={(e) => setVerifyImmediately(e.target.checked)}
@@ -466,21 +468,21 @@ export function DisasterRecoveryOperationsDashboard() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
                   className={styles.secondaryBtn}
                   onClick={() => setIsModalOpen(false)}
                   disabled={submitting}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   className={styles.primaryBtn}
                   disabled={submitting}
                 >
                   {submitting ? "در حال ایجاد..." : "تأیید و شروع ایجاد بکاپ"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

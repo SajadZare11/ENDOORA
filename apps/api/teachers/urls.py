@@ -11,6 +11,7 @@ from .views import (
     TeacherLearnerTerminateView,
     ClassSessionListCreateView,
     ClassSessionCompleteView,
+    ClassSessionDetailView,
     TeachingHourLedgerView,
     TeachingHourAdjustView,
     LearnerLinkedTeachersView,
@@ -50,6 +51,46 @@ from .assignment_views import (
     SubmissionFeedbackMessagesView,
     LearnerGradebookView,
 )
+from .teacheros_views import (
+    TeacherMaterialListCreateView,
+    TeacherMaterialDetailView,
+    TeacherMaterialGenerateView,
+    TeacherMaterialAssignView,
+    ClassOutcomeListCreateView,
+    NextLessonRecommendationView,
+    StudentDossierView,
+    StudentDossierScoreSkillsView,
+    StudentDossierLogErrorView,
+    StudentDossierErrorStatusView,
+    StudentDossierAssessmentView,
+    SpacedReviewQueueView,
+    SpacedReviewRecordView,
+    DifferentiationStudioView,
+    TeacherUsageSummaryView,
+    TeacherMaterialExportDocxView,
+    TeacherMaterialExportPdfView,
+    TeacherMaterialAdaptView,
+    TeacherMaterialScheduleView,
+    TeacherWritingAnalyzeView,
+    TeacherWritingApproveFeedbackView,
+    TeacherWritingExportDocxView,
+    TeacherWritingExportPdfView,
+    DifferentiationExportDocxView,
+    DifferentiationAssignView,
+    SRSGenerateWarmupView,
+    SRSPushWarmupView,
+    SRSExportWarmupDocxView,
+    ClassPacingAuditView,
+    ClassPacingAuditExportView,
+    ReportCardDataView,
+    ReportCardDispatchView,
+    ReportCardExportDocxView,
+    ReportCardExportPdfView,
+    TeacherMaterialBatchView,
+    TeacherAccountSummaryView,
+    TeacherAccountPreferencesView,
+    TeacherAccountUpgradeView,
+)
 
 app_name = "teachers"
 
@@ -72,6 +113,8 @@ urlpatterns = [
     path("consent/", LearnerConsentAcceptView.as_view(), name="consent-accept"),
 
     # Sessions & Completion (Day 33)
+    path("classes/<uuid:class_pk>/sessions/<uuid:session_pk>/", ClassSessionDetailView.as_view(), name="class-session-detail"),
+    path("sessions/<uuid:pk>/", ClassSessionDetailView.as_view(), name="session-detail"),
     path("sessions/<uuid:pk>/complete/", ClassSessionCompleteView.as_view(), name="session-complete"),
 
     # Teaching Hours Ledger & Auditing (Day 33)
@@ -121,4 +164,58 @@ urlpatterns = [
     path("attempts/<uuid:attempt_id>/acknowledge-feedback/", LearnerAcknowledgeFeedbackView.as_view(), name="attempt-acknowledge-feedback"),
     path("attempts/<uuid:attempt_id>/feedback-messages/", SubmissionFeedbackMessagesView.as_view(), name="attempt-feedback-messages"),
     path("my-grades/", LearnerGradebookView.as_view(), name="learner-my-grades"),
+
+    # TeacherOS: Materials & Generators (Pillar 2 & Library)
+    path("materials/", TeacherMaterialListCreateView.as_view(), name="teacheros-materials-list-create"),
+    path("materials/batch/", TeacherMaterialBatchView.as_view(), name="teacheros-materials-batch"),
+    path("materials/generate/", TeacherMaterialGenerateView.as_view(), name="teacheros-materials-generate"),
+    path("materials/<uuid:pk>/", TeacherMaterialDetailView.as_view(), name="teacheros-materials-detail"),
+    path("materials/<uuid:pk>/assign/", TeacherMaterialAssignView.as_view(), name="teacheros-materials-assign"),
+    path("materials/<uuid:pk>/differentiate/", DifferentiationStudioView.as_view(), name="teacheros-materials-differentiate"),
+    path("materials/<uuid:pk>/export/docx/", TeacherMaterialExportDocxView.as_view(), name="teacheros-material-export-docx"),
+    path("materials/<uuid:pk>/export/pdf/", TeacherMaterialExportPdfView.as_view(), name="teacheros-material-export-pdf"),
+    path("materials/<uuid:pk>/adapt/", TeacherMaterialAdaptView.as_view(), name="teacheros-material-adapt"),
+    path("materials/<uuid:pk>/schedule/", TeacherMaterialScheduleView.as_view(), name="teacheros-material-schedule"),
+    path("usage/", TeacherUsageSummaryView.as_view(), name="teacheros-usage"),
+
+    # TeacherOS: Account & Subscription Hub (Day 10)
+    path("account/summary/", TeacherAccountSummaryView.as_view(), name="teacheros-account-summary"),
+    path("account/preferences/", TeacherAccountPreferencesView.as_view(), name="teacheros-account-preferences"),
+    path("account/upgrade/", TeacherAccountUpgradeView.as_view(), name="teacheros-account-upgrade"),
+
+    # TeacherOS: Outcome Check-ins & Recommendations (Pillar 1 & 2)
+    path("classes/<uuid:class_pk>/outcomes/", ClassOutcomeListCreateView.as_view(), name="teacheros-class-outcomes"),
+    path("classes/<uuid:class_pk>/next-lesson-recommendation/", NextLessonRecommendationView.as_view(), name="teacheros-next-lesson-recommendation"),
+
+    # TeacherOS: 11-Section Student Dossier (Pillar 1)
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/", StudentDossierView.as_view(), name="teacheros-student-dossier"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/score-skills/", StudentDossierScoreSkillsView.as_view(), name="teacheros-student-score-skills"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/log-error/", StudentDossierLogErrorView.as_view(), name="teacheros-student-log-error"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/errors/<str:error_id>/", StudentDossierErrorStatusView.as_view(), name="teacheros-student-error-status"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/assessments/", StudentDossierAssessmentView.as_view(), name="teacheros-student-assessments"),
+
+    # TeacherOS: Spaced Review Queue & SM-2 Review (Pillar 4 Supertool)
+    path("classes/<uuid:class_pk>/spaced-reviews/", SpacedReviewQueueView.as_view(), name="teacheros-spaced-reviews"),
+    path("classes/<uuid:class_pk>/spaced-reviews/<uuid:pk>/review/", SpacedReviewRecordView.as_view(), name="teacheros-spaced-review-record"),
+
+    # TeacherOS: Writing Assessment & 3-Column Feedback Studio (Day 8)
+    path("assessment/analyze/", TeacherWritingAnalyzeView.as_view(), name="teacheros-writing-analyze"),
+    path("assessment/approve/", TeacherWritingApproveFeedbackView.as_view(), name="teacheros-writing-approve"),
+    path("assessment/export/docx/", TeacherWritingExportDocxView.as_view(), name="teacheros-writing-export-docx"),
+    path("assessment/export/pdf/", TeacherWritingExportPdfView.as_view(), name="teacheros-writing-export-pdf"),
+
+    # TeacherOS: Deep Pedagogical Supertools (Day 9)
+    path("materials/<uuid:pk>/differentiation/export/docx/", DifferentiationExportDocxView.as_view(), name="teacheros-differentiation-export-docx"),
+    path("materials/<uuid:pk>/differentiation/assign/", DifferentiationAssignView.as_view(), name="teacheros-differentiation-assign"),
+    path("classes/<uuid:class_pk>/srs/warmup/", SRSGenerateWarmupView.as_view(), name="teacheros-srs-warmup-generate"),
+    path("classes/<uuid:class_pk>/srs/warmup/push/", SRSPushWarmupView.as_view(), name="teacheros-srs-warmup-push"),
+    path("classes/<uuid:class_pk>/srs/warmup/export/docx/", SRSExportWarmupDocxView.as_view(), name="teacheros-srs-warmup-export-docx"),
+    path("classes/<uuid:class_pk>/pacing-audit/", ClassPacingAuditView.as_view(), name="teacheros-class-pacing-audit"),
+    path("classes/<uuid:class_pk>/pacing-audit/export/docx/", ClassPacingAuditExportView.as_view(), name="teacheros-class-pacing-audit-export-docx"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/report-card/", ReportCardDataView.as_view(), name="teacheros-report-card-data"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/report-card/dispatch/", ReportCardDispatchView.as_view(), name="teacheros-report-card-dispatch"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/report-card/export/docx/", ReportCardExportDocxView.as_view(), name="teacheros-report-card-export-docx"),
+    path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/report-card/export/pdf/", ReportCardExportPdfView.as_view(), name="teacheros-report-card-export-pdf"),
 ]
+
+

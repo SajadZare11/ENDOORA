@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('total_amount_toman', models.DecimalField(decimal_places=0, help_text='کل مبلغ پرداختی زبان\u200cآموز به تومان', max_digits=12)),
                 ('platform_commission_rate', models.DecimalField(decimal_places=2, default=Decimal('0.15'), help_text='نرخ کارمزد پلتفرم (پیش\u200cفرض ۰.۱۵ یعنی ۱۵ درصد)', max_digits=4)),
-                ('platform_commission_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم ناخالص پلتفرم اندورا از جلسه', max_digits=12)),
+                ('platform_commission_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم ناخالص پلتفرم ایندورا از جلسه', max_digits=12)),
                 ('teacher_net_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم خالص حق\u200cالتدریس مدرس (۸۵ درصد کل)', max_digits=12)),
                 ('status', models.CharField(choices=[('held', 'نگهداری امن در حساب امانی'), ('released_to_teacher', 'تسویه با مدرس'), ('refunded_to_learner', 'استرداد کامل به زبان\u200cآموز'), ('partially_settled', 'تسویه توافقی درصدی')], db_index=True, default='held', max_length=32)),
                 ('refund_amount_toman', models.DecimalField(decimal_places=0, default=0, help_text='مبلغ مسترد شده به زبان\u200cآموز در صورت لغو یا داوری', max_digits=12)),
@@ -104,7 +104,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('order_type', models.CharField(choices=[('booking_session', 'رزرو جلسه آموزشی'), ('subscription_plan', 'اشتراک پرمیوم پلتفرم'), ('wallet_topup', 'شارژ کیف پول')], db_index=True, max_length=32)),
-                ('gateway_provider', models.CharField(choices=[('zarinpal', 'درگاه زرین\u200cپال / شاپرک'), ('sandbox', 'درگاه شبیه\u200cساز آزمایشی'), ('wallet', 'کیف پول اندورا')], default='zarinpal', max_length=24)),
+                ('gateway_provider', models.CharField(choices=[('zarinpal', 'درگاه زرین\u200cپال / شاپرک'), ('sandbox', 'درگاه شبیه\u200cساز آزمایشی'), ('wallet', 'کیف پول ایندورا')], default='zarinpal', max_length=24)),
                 ('amount_toman', models.DecimalField(decimal_places=0, help_text='مبلغ تراکنش به تومان (واحد رسمی نمایش و سفارش پلتفرم)', max_digits=12)),
                 ('amount_rial', models.DecimalField(decimal_places=0, help_text='مبلغ معادل به ریال جهت ارسال به درگاه شاپرک (amount_toman * 10)', max_digits=14)),
                 ('authority', models.CharField(blank=True, db_index=True, help_text='کد شناسه پرداخت درگاه زرین\u200cپال', max_length=128, null=True, unique=True)),

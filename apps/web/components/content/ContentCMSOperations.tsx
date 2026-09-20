@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./content-cms.module.css";
@@ -218,7 +220,7 @@ export function ContentCMSOperations() {
   return (
     <div className={styles.container} dir="rtl">
       {/* 1. Operational Navigation Ribbon */}
-      <nav className={styles.operationsNav} aria-label="ناوبری عملیات آموزشی اندورا">
+      <nav className={styles.operationsNav} aria-label="ناوبری عملیات آموزشی ایندورا">
         <Link href="/operations/taxonomy" className={styles.navTab}>
           درخت مهارت‌ها (TAXONOMY-001)
         </Link>
@@ -283,36 +285,36 @@ export function ContentCMSOperations() {
             </p>
           </div>
           <div className={styles.headerActions}>
-            <button onClick={handleExportJson} className={styles.secondaryBtn}>
+            <Button onClick={handleExportJson} className={styles.secondaryBtn}>
               خروجی داده (JSON Export)
-            </button>
-            <button onClick={handleCreateNew} className={styles.primaryBtn}>
+            </Button>
+            <Button onClick={handleCreateNew} className={styles.primaryBtn}>
               + نگارش محتوای جدید
-            </button>
+            </Button>
           </div>
         </div>
 
         {successMessage && (
           <div className={`${styles.alertBox} ${styles.alertSuccess}`}>
             {successMessage}
-            <button
+            <Button
               onClick={() => setSuccessMessage(null)}
               style={{ marginInlineStart: "var(--space-3)", background: "none", border: "none", cursor: "pointer" }}
             >
               ✕
-            </button>
+            </Button>
           </div>
         )}
 
         {error && (
           <div className={`${styles.alertBox} ${styles.alertError || ""}`} style={{ color: "var(--color-error-text)", background: "var(--color-error-bg)", padding: "var(--space-3)", borderRadius: "var(--radius-sm)", marginBlockStart: "var(--space-2)" }}>
             {error}
-            <button
+            <Button
               onClick={() => setError(null)}
               style={{ marginInlineStart: "var(--space-3)", background: "none", border: "none", cursor: "pointer" }}
             >
               ✕
-            </button>
+            </Button>
           </div>
         )}
       </header>
@@ -415,7 +417,7 @@ export function ContentCMSOperations() {
         </div>
 
         <form onSubmit={handleSearchSubmit}>
-          <input
+          <Input
             type="text"
             placeholder="جستجوی عنوان، اسلاگ، مؤلف..."
             value={searchQuery}
@@ -432,9 +434,9 @@ export function ContentCMSOperations() {
         <div className={styles.emptyState}>
           <h3 className={styles.emptyTitle}>هیچ محتوایی با فیلترهای انتخابی یافت نشد</h3>
           <p className={styles.emptySubtitle}>می‌توانید فیلترها را ریست کنید یا محتوای آموزشی جدیدی ایجاد نمایید.</p>
-          <button onClick={handleCreateNew} className={styles.primaryBtn} style={{ marginBlockStart: "var(--space-3)" }}>
+          <Button onClick={handleCreateNew} className={styles.primaryBtn} style={{ marginBlockStart: "var(--space-3)" }}>
             + ایجاد نخستین محتوا
-          </button>
+          </Button>
         </div>
       ) : (
         <div className={styles.gridContainer}>
@@ -492,15 +494,15 @@ export function ContentCMSOperations() {
 
                 <div className={styles.cardFooter}>
                   <div className={styles.cardActions}>
-                    <button onClick={() => handleEdit(item)} className={styles.actionBtn}>
+                    <Button onClick={() => handleEdit(item)} className={styles.actionBtn}>
                       ویرایش
-                    </button>
-                    <button onClick={() => handleOpenTransition(item)} className={styles.actionBtn}>
+                    </Button>
+                    <Button onClick={() => handleOpenTransition(item)} className={styles.actionBtn}>
                       گردش کار
-                    </button>
-                    <button onClick={() => handleDelete(item)} className={styles.deleteBtn}>
+                    </Button>
+                    <Button onClick={() => handleDelete(item)} className={styles.deleteBtn}>
                       حذف
-                    </button>
+                    </Button>
                   </div>
                   <span style={{ fontSize: "var(--font-size-micro)", color: "var(--color-text-muted)" }}>
                     بازدید: {item.view_count.toLocaleString("fa-IR")}
@@ -520,9 +522,9 @@ export function ContentCMSOperations() {
               <h2 className={styles.modalTitle}>
                 {editingItem.id ? `ویرایش محتوا: ${editingItem.title_fa}` : "نگارش و ثبت محتوای آموزشی جدید"}
               </h2>
-              <button onClick={() => setIsEditModalOpen(false)} className={styles.closeBtn}>
+              <Button onClick={() => setIsEditModalOpen(false)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleSaveItem}>
@@ -530,7 +532,7 @@ export function ContentCMSOperations() {
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>عنوان فارسی *</label>
-                    <input
+                    <Input
                       type="text"
                       required
                       value={editingItem.title_fa || ""}
@@ -542,7 +544,7 @@ export function ContentCMSOperations() {
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>English Title *</label>
-                    <input
+                    <Input
                       type="text"
                       required
                       dir="ltr"
@@ -555,7 +557,7 @@ export function ContentCMSOperations() {
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>شناسه اسلاگ (Slug) *</label>
-                    <input
+                    <Input
                       type="text"
                       required
                       dir="ltr"
@@ -655,7 +657,7 @@ export function ContentCMSOperations() {
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>آدرس فایل صوتی (Audio URL)</label>
-                    <input
+                    <Input
                       type="url"
                       dir="ltr"
                       value={editingItem.audio_url || ""}
@@ -667,7 +669,7 @@ export function ContentCMSOperations() {
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>آدرس فایل ویدیویی (Video URL)</label>
-                    <input
+                    <Input
                       type="url"
                       dir="ltr"
                       value={editingItem.video_url || ""}
@@ -680,7 +682,7 @@ export function ContentCMSOperations() {
 
                 <div className={styles.formGroup}>
                   <label className={styles.checkboxLabel}>
-                    <input
+                    <Input
                       type="checkbox"
                       checked={editingItem.is_premium || false}
                       onChange={(e) => setEditingItem({ ...editingItem, is_premium: e.target.checked })}
@@ -710,7 +712,7 @@ export function ContentCMSOperations() {
                   <div className={styles.formGrid}>
                     <div className={styles.formGroup}>
                       <label className={styles.formLabel}>نام مؤلف / عضو هیئت علمی *</label>
-                      <input
+                      <Input
                         type="text"
                         required
                         value={editingItem.author_name || ""}
@@ -720,7 +722,7 @@ export function ContentCMSOperations() {
                     </div>
                     <div className={styles.formGroup}>
                       <label className={styles.formLabel}>ذکر مشخصات منبع (Source Attribution) *</label>
-                      <input
+                      <Input
                         type="text"
                         required
                         value={editingItem.source_attribution || ""}
@@ -735,7 +737,7 @@ export function ContentCMSOperations() {
                         onChange={(e) => setEditingItem({ ...editingItem, license_type: e.target.value as LicenseType })}
                         className={styles.formSelect}
                       >
-                        <option value="original_editorial">تولید اختصاصی هیئت علمی اندورا (Original Editorial)</option>
+                        <option value="original_editorial">تولید اختصاصی هیئت علمی ایندورا (Original Editorial)</option>
                         <option value="cc_by_sa">کریتیو کامنز با ذکر منبع (CC BY-SA)</option>
                         <option value="public_domain">مالکیت عمومی (Public Domain)</option>
                         <option value="educational_fair_use">استفاده منصفانه آموزشی (Educational Fair Use)</option>
@@ -746,12 +748,12 @@ export function ContentCMSOperations() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button type="button" onClick={() => setIsEditModalOpen(false)} className={styles.secondaryBtn}>
+                <Button type="button" onClick={() => setIsEditModalOpen(false)} className={styles.secondaryBtn}>
                   انصراف
-                </button>
-                <button type="submit" className={styles.primaryBtn}>
+                </Button>
+                <Button type="submit" className={styles.primaryBtn}>
                   ذخیره اطلاعات
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -764,9 +766,9 @@ export function ContentCMSOperations() {
           <div className={styles.modalContainer} style={{ maxInlineSize: "560px" }}>
             <div className={styles.modalHeader}>
               <h2 className={styles.modalTitle}>تغییر وضعیت گردش کار تحریریه</h2>
-              <button onClick={() => setIsTransitionModalOpen(false)} className={styles.closeBtn}>
+              <Button onClick={() => setIsTransitionModalOpen(false)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleExecuteTransition}>
@@ -809,12 +811,12 @@ export function ContentCMSOperations() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button type="button" onClick={() => setIsTransitionModalOpen(false)} className={styles.secondaryBtn}>
+                <Button type="button" onClick={() => setIsTransitionModalOpen(false)} className={styles.secondaryBtn}>
                   انصراف
-                </button>
-                <button type="submit" className={styles.primaryBtn}>
+                </Button>
+                <Button type="submit" className={styles.primaryBtn}>
                   ثبت و اعمال تغییر
-                </button>
+                </Button>
               </div>
             </form>
           </div>

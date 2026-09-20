@@ -345,7 +345,7 @@ class BadgeService:
             "slug": "placement-pioneer",
             "title_fa": "پیشگام ارزیابی ۶ مهارته",
             "title_en": "6-Skill Placement Pioneer",
-            "description_fa": "تکمیل موفقیت‌آمیز آزمون ارزیابی تعیین سطح جامع ۶ مهارته اندورا.",
+            "description_fa": "تکمیل موفقیت‌آمیز آزمون ارزیابی تعیین سطح جامع ۶ مهارته ایندورا.",
             "description_en": "Successfully complete all diagnostic placement modules on Endoora.",
             "icon": "🎯",
             "category": BadgeCategory.FIRSTS,
@@ -1264,7 +1264,7 @@ class LeaderboardService:
                 "total_eligible": snapshot.total_eligible,
                 "min_required": cls.MIN_SAFE_COHORT_SIZE,
                 "is_learner_visible": privacy.is_leaderboard_visible,
-                "rule_7_notice_fa": "اصل آرامش در یادگیری (قاعده ۷): رقابت در اندورا دوستانه و بدون الگوهای اعتیادآور است.",
+                "rule_7_notice_fa": "اصل آرامش در یادگیری (قاعده ۷): رقابت در ایندورا دوستانه و بدون الگوهای اعتیادآور است.",
                 "rule_7_notice_en": "Product Constitution Rule #7: Calm rather than addictive social motivation.",
             }
 

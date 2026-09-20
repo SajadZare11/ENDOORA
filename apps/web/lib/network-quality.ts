@@ -72,7 +72,7 @@ function notifyNetworkListeners(): void {
   listeners.forEach((fn) => {
     try {
       fn(current);
-    } catch (_) {
+    } catch {
       // safe fallback
     }
   });

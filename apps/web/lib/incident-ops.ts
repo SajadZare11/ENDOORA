@@ -1,4 +1,4 @@
-﻿export interface RestoreVerificationRecord {
+export interface RestoreVerificationRecord {
   id: string;
   snapshot: string | null;
   backup_file_path: string;
@@ -8,7 +8,7 @@
   records_sampled_count: number;
   status: "verified" | "partial" | "failed";
   duration_ms: number;
-  details: Record<string, any>;
+  details: Record<string, unknown>;
   verified_at: string;
 }
 

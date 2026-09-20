@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useEffect, useState } from "react";
 import {
   getNetworkQualityState,
@@ -10,11 +12,12 @@ import {
 import styles from "./network-banner.module.css";
 
 export function NetworkBandwidthBanner() {
-  const [network, setNetwork] = useState<NetworkQualityState | null>(null);
+  const [network, setNetwork] = useState<NetworkQualityState | null>(() =>
+    typeof window !== "undefined" ? getNetworkQualityState() : null
+  );
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    setNetwork(getNetworkQualityState());
     const unsub = subscribeToNetworkQuality((st) => {
       setNetwork(st);
     });
@@ -68,7 +71,7 @@ export function NetworkBandwidthBanner() {
 
         <div className={styles.actionsGroup}>
           {!isOffline && (
-            <button
+            <Button
               type="button"
               className={styles.toggleButton}
               onClick={() => setLowBandwidthMode(!network.isLowBandwidthMode)}
@@ -76,11 +79,11 @@ export function NetworkBandwidthBanner() {
               {network.isLowBandwidthMode
                 ? "خروج از حالت بهینه"
                 : "فعال‌سازی حالت بهینه"}
-            </button>
+            </Button>
           )}
 
           {isOffline && (
-            <button
+            <Button
               type="button"
               className={styles.toggleButton}
               onClick={() => {
@@ -88,17 +91,17 @@ export function NetworkBandwidthBanner() {
               }}
             >
               تلاش مجدد اتصال
-            </button>
+            </Button>
           )}
 
-          <button
+          <Button
             type="button"
             className={styles.dismissButton}
             onClick={() => setDismissed(true)}
             aria-label="بستن پیام"
           >
             ✕
-          </button>
+          </Button>
         </div>
       </div>
     </aside>

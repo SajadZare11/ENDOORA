@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -506,13 +508,13 @@ export default function CreateAssignmentWizardPage() {
                   <label htmlFor="titleInput" className={styles.label}>
                     عنوان تکلیف / آزمون *
                   </label>
-                  <input
+                  <Input
                     id="titleInput"
                     type="text"
                     className={styles.input}
                     placeholder="مثال: کوئیز گرامر زمان گذشته ساده و واژگان درس ۴"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                     required
                   />
                 </div>
@@ -521,13 +523,13 @@ export default function CreateAssignmentWizardPage() {
                   <label htmlFor="descInput" className={styles.label}>
                     توضیحات کوتاه
                   </label>
-                  <input
+                  <Input
                     id="descInput"
                     type="text"
                     className={styles.input}
                     placeholder="هدف آموزشی و مباحث ارزیابی شده"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
                   />
                 </div>
 
@@ -547,22 +549,23 @@ export default function CreateAssignmentWizardPage() {
                 {/* Wizard Footer for Stage 1 */}
                 <div className={styles.wizardFooter}>
                   <div className={styles.footerLeft}>
-                    <button
+                    <Button
                       type="button"
+                      variant="secondary"
                       onClick={handleSaveAndContinueLater}
                       className={styles.secondaryButton}
                       disabled={savingLater || !title}
                     >
                       {savingLater ? "در حال ذخیره..." : "ذخیره پیش‌نویس و خروج"}
-                    </button>
+                    </Button>
                     <Link href="/teacher/assignments" className={styles.secondaryButton}>
                       انصراف
                     </Link>
                   </div>
                   <div className={styles.footerRight}>
-                    <button type="submit" className={styles.primaryButton} disabled={loading}>
+                    <Button type="submit" variant="primary" className={styles.primaryButton} loading={loading} disabled={loading}>
                       {loading ? "در حال پردازش..." : "مرحله بعد: انتخاب سوالات ←"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </form>
@@ -582,12 +585,12 @@ export default function CreateAssignmentWizardPage() {
                   جستجو در بانک سوالات
                 </h3>
                 <div className={styles.searchToolbar}>
-                  <input
+                  <Input
                     type="text"
                     className={styles.input}
                     placeholder="جستجوی موضوع یا متن سوال..."
                     value={bankQuery}
-                    onChange={(e) => setBankQuery(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBankQuery(e.target.value)}
                     style={{ flex: 1 }}
                   />
                   <select
@@ -630,14 +633,16 @@ export default function CreateAssignmentWizardPage() {
                             {isSelected && <span className={styles.selectedBadge}>انتخاب شده</span>}
                           </div>
                           {!isSelected && (
-                            <button
+                            <Button
                               type="button"
+                              variant="secondary"
+                              size="sm"
                               onClick={() => handleAddQuestion(q)}
                               className={styles.secondaryButton}
                               style={{ paddingBlock: "var(--space-1)", paddingInline: "var(--space-2)", fontSize: "var(--font-size-caption)" }}
                             >
                               + افزودن
-                            </button>
+                            </Button>
                           )}
                         </div>
                         <p className={styles.questionPrompt}>{q.prompt_fa || q.prompt_en}</p>
@@ -679,23 +684,24 @@ export default function CreateAssignmentWizardPage() {
 
                         <div className={styles.reorderInputs}>
                           <label htmlFor={`pts-${item.question_version_id}`} style={{ fontSize: "var(--font-size-caption)" }}>نمره:</label>
-                          <input
+                          <Input
                             id={`pts-${item.question_version_id}`}
                             type="number"
-                            min="1"
-                            max="100"
+                            min={1}
+                            max={100}
                             className={styles.pointsInput}
                             value={item.points}
-                            onChange={(e) => handleUpdatePoints(item.question_version_id, Number(e.target.value) || 0)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdatePoints(item.question_version_id, Number(e.target.value) || 0)}
                           />
-                          <button
+                          <Button
                             type="button"
+                            variant="destructive"
                             onClick={() => handleRemoveQuestion(item.question_version_id)}
                             className={styles.dangerButton}
                             style={{ paddingBlock: "var(--space-1)", paddingInline: "var(--space-2)", fontSize: "var(--font-size-caption)" }}
                           >
                             حذف
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     ))}
@@ -707,26 +713,28 @@ export default function CreateAssignmentWizardPage() {
             {/* Wizard Footer for Stage 2 */}
             <div className={styles.wizardFooter}>
               <div className={styles.footerLeft}>
-                <button type="button" onClick={() => setStep(1)} className={styles.secondaryButton}>
+                <Button type="button" variant="secondary" onClick={() => setStep(1)} className={styles.secondaryButton}>
                   ← بازگشت به کلاس
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={handleSaveAndContinueLater}
                   className={styles.secondaryButton}
                 >
                   ذخیره پیش‌نویس و خروج
-                </button>
+                </Button>
               </div>
               <div className={styles.footerRight}>
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   onClick={handleStep2Next}
                   className={styles.primaryButton}
                   disabled={loading || selectedQuestions.length === 0}
                 >
                   مرحله بعد: تنظیمات تحویل و تسهیلات ←
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -746,12 +754,12 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="dueDateInput" className={styles.label}>
                   مهلت ارسال (ددلاین) *
                 </label>
-                <input
+                <Input
                   id="dueDateInput"
                   type="datetime-local"
                   className={styles.input}
                   value={dueDate}
-                  onChange={(e) => setDueDate(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDueDate(e.target.value)}
                   required
                 />
               </div>
@@ -760,13 +768,13 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="gracePeriodInput" className={styles.label}>
                   فرصت ارفاقی پس از ددلاین (دقیقه)
                 </label>
-                <input
+                <Input
                   id="gracePeriodInput"
                   type="number"
-                  min="0"
+                  min={0}
                   className={styles.input}
                   value={gracePeriod}
-                  onChange={(e) => setGracePeriod(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGracePeriod(Number(e.target.value))}
                 />
                 <span className={styles.helpText}>
                   در این مدت، ارسال‌ها بدون علامت تاخیر یا جریمه ثبت می‌شوند.
@@ -779,14 +787,14 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="maxAttemptsInput" className={styles.label}>
                   حداکثر دفعات مجاز تلاش
                 </label>
-                <input
+                <Input
                   id="maxAttemptsInput"
                   type="number"
-                  min="1"
-                  max="10"
+                  min={1}
+                  max={10}
                   className={styles.input}
                   value={maxAttempts}
-                  onChange={(e) => setMaxAttempts(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMaxAttempts(Number(e.target.value))}
                   required
                 />
               </div>
@@ -795,14 +803,14 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="timeLimitInput" className={styles.label}>
                   محدودیت زمانی هر تلاش (دقیقه)
                 </label>
-                <input
+                <Input
                   id="timeLimitInput"
                   type="number"
-                  min="1"
+                  min={1}
                   className={styles.input}
                   placeholder="خالی بگذارید برای آزمون بدون محدودیت زمانی"
                   value={timeLimitMinutes}
-                  onChange={(e) => setTimeLimitMinutes(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTimeLimitMinutes(e.target.value)}
                 />
               </div>
 
@@ -810,24 +818,24 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="passingPctInput" className={styles.label}>
                   درصد قبولی (%)
                 </label>
-                <input
+                <Input
                   id="passingPctInput"
                   type="number"
-                  min="0"
-                  max="100"
+                  min={0}
+                  max={100}
                   className={styles.input}
                   value={passingPercentage}
-                  onChange={(e) => setPassingPercentage(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassingPercentage(Number(e.target.value))}
                 />
               </div>
             </div>
 
             <div className={styles.formGroup}>
               <label className={styles.checkboxLabel}>
-                <input
+                <Input
                   type="checkbox"
                   checked={allowLate}
-                  onChange={(e) => setAllowLate(e.target.checked)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAllowLate(e.target.checked)}
                 />
                 اجازه ارسال پس از پایان مهلت با برچسب تاخیر (Late Submission)
               </label>
@@ -862,13 +870,13 @@ export default function CreateAssignmentWizardPage() {
                       ))}
                     </select>
                   ) : (
-                    <input
+                    <Input
                       id="learnerSelect"
                       type="text"
                       className={styles.input}
                       placeholder="شناسه UUID زبان‌آموز عضو کلاس"
                       value={selectedLearnerId}
-                      onChange={(e) => setSelectedLearnerId(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedLearnerId(e.target.value)}
                     />
                   )}
                 </div>
@@ -877,13 +885,13 @@ export default function CreateAssignmentWizardPage() {
                   <label htmlFor="extraTimeInput" className={styles.label}>
                     زمان اضافه (دقیقه)
                   </label>
-                  <input
+                  <Input
                     id="extraTimeInput"
                     type="number"
-                    min="0"
+                    min={0}
                     className={styles.input}
                     value={extraTime}
-                    onChange={(e) => setExtraTime(Number(e.target.value))}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setExtraTime(Number(e.target.value))}
                   />
                 </div>
 
@@ -891,13 +899,13 @@ export default function CreateAssignmentWizardPage() {
                   <label htmlFor="extraAttemptsInput" className={styles.label}>
                     تلاش اضافه
                   </label>
-                  <input
+                  <Input
                     id="extraAttemptsInput"
                     type="number"
-                    min="0"
+                    min={0}
                     className={styles.input}
                     value={extraAttempts}
-                    onChange={(e) => setExtraAttempts(Number(e.target.value))}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setExtraAttempts(Number(e.target.value))}
                   />
                 </div>
               </div>
@@ -906,25 +914,26 @@ export default function CreateAssignmentWizardPage() {
                 <label htmlFor="notesInput" className={styles.label}>
                   یادداشت و علت انطباق آموزشی
                 </label>
-                <input
+                <Input
                   id="notesInput"
                   type="text"
                   className={styles.input}
                   placeholder="علت اختصاص تسهیلات (محرمانه برای مدرس)"
                   value={accommodationNotes}
-                  onChange={(e) => setAccommodationNotes(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAccommodationNotes(e.target.value)}
                 />
               </div>
 
               <div style={{ marginBlockStart: "var(--space-3)" }}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={handleAddAccommodation}
                   className={styles.secondaryButton}
                   disabled={!selectedLearnerId}
                 >
                   + ثبت تسهیلات برای این زبان‌آموز
-                </button>
+                </Button>
               </div>
 
               {accommodationsList.length > 0 && (
@@ -944,21 +953,22 @@ export default function CreateAssignmentWizardPage() {
             {/* Wizard Footer for Stage 3 */}
             <div className={styles.wizardFooter}>
               <div className={styles.footerLeft}>
-                <button type="button" onClick={() => setStep(2)} className={styles.secondaryButton}>
+                <Button type="button" variant="secondary" onClick={() => setStep(2)} className={styles.secondaryButton}>
                   ← بازگشت به سوالات
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={handleSaveAndContinueLater}
                   className={styles.secondaryButton}
                 >
                   ذخیره پیش‌نویس و خروج
-                </button>
+                </Button>
               </div>
               <div className={styles.footerRight}>
-                <button type="submit" className={styles.primaryButton} disabled={loading || !dueDate}>
+                <Button type="submit" variant="primary" className={styles.primaryButton} loading={loading} disabled={loading || !dueDate}>
                   مرحله بعد: بازبینی و انتشار ←
-                </button>
+                </Button>
               </div>
             </div>
           </form>
@@ -1016,27 +1026,29 @@ export default function CreateAssignmentWizardPage() {
             {/* Wizard Footer for Stage 4 */}
             <div className={styles.wizardFooter}>
               <div className={styles.footerLeft}>
-                <button type="button" onClick={() => setStep(3)} className={styles.secondaryButton}>
+                <Button type="button" variant="secondary" onClick={() => setStep(3)} className={styles.secondaryButton}>
                   ← بازگشت به تنظیمات تحویل
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={handleSaveAndContinueLater}
                   className={styles.secondaryButton}
                 >
                   ذخیره به عنوان پیش‌نویس (بدون انتشار)
-                </button>
+                </Button>
               </div>
               <div className={styles.footerRight}>
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   onClick={handlePublish}
                   className={styles.primaryButton}
                   style={{ background: "var(--color-learning-teal)", color: "var(--color-surface)" }}
                   disabled={loading}
                 >
                   {loading ? "در حال انتشار..." : "انتشار نهایی تکلیف (Publish) ✓"}
-                </button>
+                </Button>
               </div>
             </div>
           </div>

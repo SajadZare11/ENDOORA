@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LessonPlayer } from "./LessonPlayer";
+import { getLessonById, getLessonBySlug, getAllLessons, type LessonData } from "@/lib/lessons";
+import { LessonPlayer } from "@/components/learning/LessonPlayer";
 
 interface LessonStaticData {
   id: string;
@@ -57,7 +58,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
       { title: "جزوه خلاصه گرامر زمان آینده Vision 1", size: "1.2 MB" },
       { title: "تست‌های طبقه‌بندی شده کنکور همراه با پاسخ", size: "2.4 MB" },
     ],
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_102": {
     id: "102",
@@ -69,7 +70,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "تحلیل ریشه‌شناسی واژه‌های درس اول کتاب دهم (Endangered, Extinct, Protect, Nature). برای مشاهده کامل محتوا اشتراک ویژه را تهیه کنید.",
     contentBodyEn: "Vocabulary roots and derivational affixes for high school exams.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_103": {
     id: "103",
@@ -81,7 +82,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "آموزش گذشته استمراری در ترکیب با گذشته ساده در جملات با While و When.",
     contentBodyEn: "Interrupted past actions using while and when.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_201": {
     id: "201",
@@ -93,7 +94,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "تحلیل زمان حال کامل با قیدهای Since و For در امتحانات نهایی یازدهم.",
     contentBodyEn: "Present perfect tense with since and for.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_202": {
     id: "202",
@@ -105,7 +106,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "فرمول تبدیل جملات معلوم به مجهول در کتاب یازدهم دبیرستان.",
     contentBodyEn: "Active to passive voice conversion rules.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_301": {
     id: "301",
@@ -117,7 +118,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "نکات انحرافی سؤالات تگ در کنکور و قواعد منفی/مثبت بودن.",
     contentBodyEn: "Tag question traps in national exams.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
   "konkur-english-vision-mastery_302": {
     id: "302",
@@ -129,7 +130,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "ماراتن تست‌زنی کنکور سراسری همراه با استراتژی‌های مدیریت زمان.",
     contentBodyEn: "Comprehensive test-solving marathon.",
-    author: "دپارتمان کنکور اندورا",
+    author: "دپارتمان کنکور ایندورا",
   },
 
   // IELTS Academic Course
@@ -163,7 +164,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     downloads: [
       { title: "الگوهای استاندارد مقدمه‌نویسی آیلتس", size: "950 KB" },
     ],
-    author: "دپارتمان آیلتس اندورا",
+    author: "دپارتمان آیلتس ایندورا",
   },
   "ielts-academic-speaking-and-writing-mastery_102": {
     id: "102",
@@ -175,7 +176,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "چارچوب استدلالی PEEL و پیاده‌سازی شواهد عینی در مقالات تسک ۲.",
     contentBodyEn: "Developing persuasive body paragraphs using PEEL formula.",
-    author: "دپارتمان آیلتس اندورا",
+    author: "دپارتمان آیلتس ایندورا",
   },
   "ielts-academic-speaking-and-writing-mastery_103": {
     id: "103",
@@ -187,7 +188,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "پرهیز از کاربرد مکانیکی transition words و ارتقای نمره Cohesion.",
     contentBodyEn: "Cohesive devices and logical flow for Band 8.",
-    author: "دپارتمان آیلتس اندورا",
+    author: "دپارتمان آیلتس ایندورا",
   },
   "ielts-academic-speaking-and-writing-mastery_201": {
     id: "201",
@@ -199,7 +200,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "مدیریت زمان در یادداشت‌برداری ۱ دقیقه‌ای و ساختاربندی داستان در اسپیکینگ پارت ۲.",
     contentBodyEn: "One-minute note taking strategies for IELTS speaking part 2.",
-    author: "دپارتمان آیلتس اندورا",
+    author: "دپارتمان آیلتس ایندورا",
   },
   "ielts-academic-speaking-and-writing-mastery_202": {
     id: "202",
@@ -211,7 +212,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "تحلیل روندهای اجتماعی، فرضیه‌سازی و تحلیل دیدگاه‌های مخالف در پارت ۳.",
     contentBodyEn: "Discussing abstract societal trends in part 3.",
-    author: "دپارتمان آیلتس اندورا",
+    author: "دپارتمان آیلتس ایندورا",
   },
 
   // Spoken Fluency Course
@@ -243,7 +244,7 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
       correctIndex: 0,
       explanationFa: "توصیف دسته وسیله (device) و کاربرد آن (heating food quickly) تعریف دقیقی برای microwave است.",
     },
-    author: "لابراتوار مکالمه اندورا",
+    author: "لابراتوار مکالمه ایندورا",
   },
   "foundations-of-spoken-fluency_102": {
     id: "102",
@@ -255,12 +256,14 @@ const LESSONS_DATABASE: Record<string, LessonStaticData> = {
     isFreePreview: false,
     contentBodyFa: "روش‌های طبیعی شروع گفتگو در محیط‌های کار، آسانسور، دانشگاه و وسایل نقلیه عمومی.",
     contentBodyEn: "Natural conversational ice-breakers and small talk etiquette.",
-    author: "لابراتوار مکالمه اندورا",
+    author: "لابراتوار مکالمه ایندورا",
   },
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   const params: Array<{ slug: string; lessonId: string }> = [];
+
+  // Static course routes from database
   for (const key of Object.keys(LESSONS_DATABASE)) {
     const lesson = LESSONS_DATABASE[key];
     params.push({
@@ -268,6 +271,20 @@ export function generateStaticParams() {
       lessonId: lesson.id,
     });
   }
+
+  // Standalone JSON lessons
+  const jsonLessons = await getAllLessons();
+  for (const jLesson of jsonLessons) {
+    params.push({
+      slug: "interactive",
+      lessonId: jLesson.id,
+    });
+    params.push({
+      slug: "interactive",
+      lessonId: jLesson.slug,
+    });
+  }
+
   return params;
 }
 
@@ -277,6 +294,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string; lessonId: string }>;
 }): Promise<Metadata> {
   const { slug, lessonId } = await params;
+  const jsonLesson = (await getLessonById(lessonId)) || (await getLessonBySlug(lessonId));
+  if (jsonLesson) {
+    return {
+      title: `${jsonLesson.title.fa} | ${jsonLesson.title.en} - ایندورا`,
+      description: jsonLesson.grammar.explanation_fa,
+    };
+  }
+
   const key = `${slug}_${lessonId}`;
   const lesson = LESSONS_DATABASE[key];
   if (!lesson) return {};
@@ -292,9 +317,98 @@ export default async function LessonPage({
   params: Promise<{ slug: string; lessonId: string }>;
 }) {
   const { slug, lessonId } = await params;
-  const key = `${slug}_${lessonId}`;
-  const lesson = LESSONS_DATABASE[key];
-  if (!lesson) notFound();
 
-  return <LessonPlayer lesson={lesson} />;
+  // 1. Check dynamic standalone JSON lessons first
+  const jsonLesson = (await getLessonById(lessonId)) || (await getLessonBySlug(lessonId));
+  if (jsonLesson) {
+    return <LessonPlayer lesson={jsonLesson} courseSlug={slug} />;
+  }
+
+  // 2. Fallback to static catalog database adapted to LessonData contract
+  const key = `${slug}_${lessonId}`;
+  const staticLesson = LESSONS_DATABASE[key];
+  if (!staticLesson) notFound();
+
+  const adaptedLesson: LessonData = {
+    id: staticLesson.id,
+    slug: `${staticLesson.courseSlug}_${staticLesson.id}`,
+    level: "B1",
+    title: {
+      en: staticLesson.titleEn,
+      fa: staticLesson.titleFa,
+    },
+    durationMinutes: staticLesson.durationMinutes,
+    vocabulary: [
+      {
+        word: "lesson",
+        fa: "درس، جلسه آموزشی",
+        example: {
+          en: staticLesson.contentBodyEn || staticLesson.titleEn,
+          fa: staticLesson.titleFa,
+        },
+      },
+    ],
+    grammar: {
+      title: {
+        en: staticLesson.titleEn,
+        fa: staticLesson.titleFa,
+      },
+      explanation_fa: staticLesson.contentBodyFa,
+      rules: [
+        "مطالعه دقیق متن درس و تطبیق ساختارها با آزمون‌های سراسری.",
+        "توجه به نشانه‌های زمانی و ساختارهای شرطی و مجهول.",
+      ],
+      examples: [
+        {
+          en: staticLesson.contentBodyEn || staticLesson.titleEn,
+          fa: staticLesson.titleFa,
+        },
+      ],
+    },
+    reading: {
+      title: {
+        en: staticLesson.titleEn,
+        fa: staticLesson.titleFa,
+      },
+      sentences: [
+        {
+          id: "s1",
+          en: staticLesson.contentBodyEn || staticLesson.titleEn,
+          fa: staticLesson.contentBodyFa,
+          vocabulary: [
+            {
+              word: "lesson",
+              fa: "جلسه آموزشی",
+            },
+          ],
+        },
+      ],
+    },
+    quiz: staticLesson.quiz
+      ? [
+          {
+            type: "multiple_choice",
+            id: `q_${staticLesson.id}`,
+            prompt: {
+              en: staticLesson.quiz.promptEn,
+              fa: staticLesson.quiz.promptFa,
+            },
+            options: staticLesson.quiz.options,
+            correctIndex: staticLesson.quiz.correctIndex,
+            explanation: {
+              fa: staticLesson.quiz.explanationFa,
+            },
+          },
+        ]
+      : [],
+  };
+
+  return (
+    <LessonPlayer
+      lesson={adaptedLesson}
+      courseSlug={staticLesson.courseSlug}
+      courseTitleFa={staticLesson.courseTitleFa}
+    />
+  );
 }
+

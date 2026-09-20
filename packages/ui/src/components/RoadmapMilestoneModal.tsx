@@ -66,7 +66,7 @@ export function RoadmapMilestoneModal({
 
         <p style={{ margin: 0, color: "var(--color-text)", fontSize: "var(--font-size-body)", lineHeight: "var(--line-height-body-persian)" }}>
           {description ||
-            `قابلیت «${featureTitle}» طبق نقشه راه ۵۰+ روزه اندورا برای مرحله بعد از نسخه بتای کنترل‌شده طراحی شده و هم‌اکنون معماری زیرساخت آن در حال آماده‌سازی است.`}
+            `قابلیت «${featureTitle}» طبق نقشه راه ۵۰+ روزه ایندورا برای مرحله بعد از نسخه بتای کنترل‌شده طراحی شده و هم‌اکنون معماری زیرساخت آن در حال آماده‌سازی است.`}
         </p>
 
         {benefits && benefits.length > 0 && (

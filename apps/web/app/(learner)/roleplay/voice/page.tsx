@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
+import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../../components/learner/LearnerShell";
 import { VoiceRecorder } from "../../../../components/voice-recorder/VoiceRecorder";
 import styles from "./voice-roleplay.module.css";
@@ -767,14 +768,8 @@ export default function VoiceRoleplayPage() {
               {isFa ? "فیلتر بر اساس سطح:" : "Filter by Level:"}
             </span>
             {["all", "A2", "B1", "B2", "C1"].map((lvl) => (
-              <button
-                key={lvl}
-                type="button"
-                className={`${styles.filterPill} ${selectedLevel === lvl ? styles.filterPillActive : ""}`}
-                onClick={() => setSelectedLevel(lvl)}
-              >
-                {lvl === "all" ? (isFa ? "همه سناریوها" : "All Scenarios") : lvl}
-              </button>
+              <Button key={lvl} type="button" size="sm" variant={selectedLevel === lvl ? "primary" : "secondary"} onClick={() => setSelectedLevel(lvl)}>{lvl === "all" ? (isFa ? "همه سناریوها" : "All Scenarios") : lvl}
+             </Button>
             ))}
           </div>
 
@@ -808,9 +803,7 @@ export default function VoiceRoleplayPage() {
                   <span style={{ fontSize: "0.75rem", color: "var(--color-muted)" }}>
                     🎙️ {sc.max_turns} {isFa ? "نوبت گفتاری" : "oral turns"}
                   </span>
-                  <button type="button" className={styles.buttonPrimary}>
-                    {isFa ? "آغاز مکالمه صوتی 🎙️" : "Start Voice Session 🎙️"}
-                  </button>
+                  <Button type="button" variant="primary">{isFa ? "آغاز مکالمه صوتی 🎙️" : "Start Voice Session 🎙️"}</Button>
                 </div>
               </div>
             ))}
@@ -836,21 +829,22 @@ export default function VoiceRoleplayPage() {
             </div>
 
             <div className={styles.buttonGroup}>
-              <button
+              <Button
                 type="button"
-                className={styles.buttonSecondary}
+                size="sm"
+                variant="secondary"
                 onClick={() => setInputMode(inputMode === "voice" ? "text" : "voice")}
               >
                 {inputMode === "voice"
                   ? isFa ? "تغییر به ورودی متنی ⌨️" : "Switch to Text ⌨️"
                   : isFa ? "تغییر به ورودی صوتی 🎙️" : "Switch to Voice 🎙️"}
-              </button>
-              <button type="button" className={styles.buttonSecondary} onClick={handleRequestHint}>
+              </Button>
+              <Button type="button" size="sm" variant="secondary" onClick={handleRequestHint}>
                 💡 {isFa ? "راهنمایی گفتار" : "Voice Hint"}
-              </button>
-              <button type="button" className={styles.buttonSecondary} onClick={handleCompleteSession}>
+              </Button>
+              <Button type="button" size="sm" variant="secondary" onClick={handleCompleteSession}>
                 🏁 {isFa ? "پایان مکالمه" : "Finish Session"}
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -917,15 +911,16 @@ export default function VoiceRoleplayPage() {
 
                   {/* Character TTS Audio Playback Button */}
                   {!isLearner && (
-                    <button
+                    <Button
                       type="button"
-                      className={styles.ttsPlayButton}
+                      size="sm"
+                      variant="secondary"
                       onClick={() => handlePlayTts(msg.content, index)}
                     >
                       {isPlayingTts && currentPlayingIndex === index
                         ? isFa ? "⏹️ توقف پخش" : "⏹️ Stop Audio"
                         : isFa ? "🔊 شنیدن تلفظ (TTS)" : "🔊 Listen (TTS)"}
-                    </button>
+                    </Button>
                   )}
                 </div>
               );
@@ -952,21 +947,20 @@ export default function VoiceRoleplayPage() {
                   <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-muted)" }}>
                     {isFa ? "ورودی متنی بدون مسدودیت:" : "Non-blocking Text Input Fallback:"}
                   </span>
-                  <button
+                  <Button
                     type="button"
-                    className={styles.buttonSecondary}
+                    size="sm"
+                    variant="secondary"
                     onClick={() => setInputMode("voice")}
-                    style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem" }}
                   >
                     {isFa ? "بازگشت به ضبط صدا 🎙️" : "Switch Back to Voice 🎙️"}
-                  </button>
+                  </Button>
                 </div>
 
                 <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                  <input
+                  <Input
                     type="text"
                     dir="ltr"
-                    className={styles.textFallbackInput}
                     value={textInput}
                     placeholder={
                       isFa
@@ -981,19 +975,20 @@ export default function VoiceRoleplayPage() {
                       }
                     }}
                   />
-                  <button
+                  <Button
                     type="button"
-                    className={styles.buttonPrimary}
+                    variant="primary"
                     onClick={() => {
                       if (textInput.trim()) {
                         handleLearnerTurn(textInput);
                         setTextInput("");
                       }
                     }}
+                    loading={isSubmittingTurn}
                     disabled={!textInput.trim() || isSubmittingTurn}
                   >
                     {isFa ? "ارسال نوبت" : "Send Turn"}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -1080,9 +1075,9 @@ export default function VoiceRoleplayPage() {
 
           {/* Action buttons */}
           <div className={styles.buttonGroup}>
-            <button
+            <Button
               type="button"
-              className={styles.buttonPrimary}
+              variant="primary"
               onClick={() => {
                 setSessionStatus("catalog");
                 setMessages([]);
@@ -1092,7 +1087,7 @@ export default function VoiceRoleplayPage() {
               }}
             >
               🔄 {isFa ? "تمرین سناریوی صوتی دیگر" : "Practice Another Scenario"}
-            </button>
+            </Button>
             <Link href="/dashboard" className={styles.buttonSecondary}>
               📊 {isFa ? "بازگشت به داشبورد تحلیلی" : "Return to Dashboard"}
             </Link>

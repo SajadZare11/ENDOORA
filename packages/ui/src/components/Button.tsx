@@ -1,29 +1,56 @@
+import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "destructive";
+export type ButtonSize = "sm" | "md" | "lg" | "compact";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   loading?: boolean;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
+  href?: string;
 };
 
-export function Button({
-  variant = "primary",
-  loading = false,
-  leadingIcon,
-  trailingIcon,
-  children,
-  className = "",
-  disabled,
-  type = "button",
-  ...props
-}: ButtonProps) {
-  const classes = ["endoora-button", `endoora-button--${variant}`, className].filter(Boolean).join(" ");
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    variant = "primary",
+    size = "md",
+    loading = false,
+    leadingIcon,
+    trailingIcon,
+    children,
+    className = "",
+    disabled,
+    type = "button",
+    href,
+    ...props
+  },
+  ref
+) {
+  const classes = [
+    "endoora-button",
+    `endoora-button--${variant}`,
+    size !== "md" ? `endoora-button--${size}` : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  if (href && !disabled && !loading) {
+    return (
+      <a href={href} className={classes} role="button">
+        {leadingIcon}
+        <span>{children}</span>
+        {trailingIcon}
+      </a>
+    );
+  }
 
   return (
     <button
+      ref={ref}
       type={type}
       className={classes}
       disabled={disabled || loading}
@@ -35,19 +62,31 @@ export function Button({
       {!loading && trailingIcon}
     </button>
   );
-}
+});
 
 export type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   label: string;
   icon: ReactNode;
   variant?: ButtonVariant;
+  size?: ButtonSize;
 };
 
-export function IconButton({ label, icon, variant = "tertiary", className = "", type = "button", ...props }: IconButtonProps) {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(
+  { label, icon, variant = "tertiary", size = "md", className = "", type = "button", ...props },
+  ref
+) {
   return (
     <button
+      ref={ref}
       type={type}
-      className={["endoora-icon-button", `endoora-button--${variant}`, className].filter(Boolean).join(" ")}
+      className={[
+        "endoora-icon-button",
+        `endoora-button--${variant}`,
+        size !== "md" ? `endoora-button--${size}` : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-label={label}
       title={label}
       {...props}
@@ -55,4 +94,4 @@ export function IconButton({ label, icon, variant = "tertiary", className = "", 
       {icon}
     </button>
   );
-}
+});

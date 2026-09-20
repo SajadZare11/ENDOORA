@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState, useId } from "react";
 import Link from "next/link";
 import styles from "./requests.module.css";
@@ -280,16 +282,18 @@ export default function MarketplaceRequestsPage() {
             <span className={styles.filterLabel}>مهارت:</span>
             <div className={styles.chipGroup}>
               {SKILL_OPTIONS.map((opt) => (
-                <button
+                <Button
                   key={opt.value}
                   type="button"
+                  variant={filters.skill === opt.value ? "primary" : "secondary"}
+                  size="sm"
                   onClick={() => setFilters((f) => ({ ...f, skill: opt.value }))}
                   className={`${styles.filterChip} ${
                     filters.skill === opt.value ? styles.filterChipActive : ""
                   }`}
                 >
                   {opt.label}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -298,16 +302,18 @@ export default function MarketplaceRequestsPage() {
             <span className={styles.filterLabel}>سطح زبان:</span>
             <div className={styles.chipGroup}>
               {CEFR_OPTIONS.map((opt) => (
-                <button
+                <Button
                   key={opt.value}
                   type="button"
+                  variant={filters.cefr_level === opt.value ? "primary" : "secondary"}
+                  size="sm"
                   onClick={() => setFilters((f) => ({ ...f, cefr_level: opt.value }))}
                   className={`${styles.filterChip} ${
                     filters.cefr_level === opt.value ? styles.filterChipActive : ""
                   }`}
                 >
                   {opt.label}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -316,16 +322,18 @@ export default function MarketplaceRequestsPage() {
             <span className={styles.filterLabel}>شیوه برگزاری:</span>
             <div className={styles.chipGroup}>
               {FORMAT_OPTIONS.map((opt) => (
-                <button
+                <Button
                   key={opt.value}
                   type="button"
+                  variant={filters.format === opt.value ? "primary" : "secondary"}
+                  size="sm"
                   onClick={() => setFilters((f) => ({ ...f, format: opt.value }))}
                   className={`${styles.filterChip} ${
                     filters.format === opt.value ? styles.filterChipActive : ""
                   }`}
                 >
                   {opt.label}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -337,9 +345,9 @@ export default function MarketplaceRequestsPage() {
         <div className={styles.banner} style={{ borderColor: "var(--color-danger-500)" }}>
           <p className={styles.bannerTitle} style={{ color: "var(--color-danger-500)" }}>خطا در ارتباط با سرور</p>
           <p className={styles.bannerText}>{error}</p>
-          <button type="button" onClick={loadData} className={styles.secondaryButton}>
+          <Button type="button" variant="secondary" onClick={loadData} className={styles.secondaryButton}>
             تلاش مجدد
-          </button>
+          </Button>
         </div>
       )}
 
@@ -357,13 +365,14 @@ export default function MarketplaceRequestsPage() {
           <p className={styles.emptyText}>
             درخواست‌های جدید زبان‌آموزان به محض ثبت به این لیست اضافه می‌شوند. می‌توانید فیلترها را ریست کنید.
           </p>
-          <button
+          <Button
             type="button"
+            variant="secondary"
             onClick={() => setFilters({ skill: "", cefr_level: "all", format: "all", timing: "all", status: "" })}
             className={styles.secondaryButton}
           >
             پاک کردن فیلترها
-          </button>
+          </Button>
         </div>
       )}
 
@@ -428,13 +437,14 @@ export default function MarketplaceRequestsPage() {
                   {req.has_my_offer ? (
                     <span className={styles.offeredBadge}>✓ پیشنهاد شما ارسال شده است</span>
                   ) : (
-                    <button
+                    <Button
                       type="button"
+                      variant="primary"
                       onClick={() => handleOpenOfferModal(req)}
                       className={styles.primaryButton}
                     >
                       ارسال پیشنهاد تدریس
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
@@ -456,14 +466,16 @@ export default function MarketplaceRequestsPage() {
               <h2 id="modal-offer-title" className={styles.modalTitle}>
                 ارسال پیشنهاد تدریس برای {selectedRequest.learner_display_name}
               </h2>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 onClick={handleCloseOfferModal}
                 className={styles.closeButton}
                 aria-label="بستن"
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleSubmitOffer} className={styles.modalForm}>
@@ -471,13 +483,13 @@ export default function MarketplaceRequestsPage() {
                 <label htmlFor={rateInputId} className={styles.formLabel}>
                   مبلغ پیشنهادی جلسه (تومان):
                 </label>
-                <input
+                <Input
                   id={rateInputId}
                   type="number"
                   min={10000}
                   step={10000}
                   value={rateToman}
-                  onChange={(e) => setRateToman(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRateToman(Number(e.target.value))}
                   className={styles.formInput}
                   required
                 />
@@ -534,21 +546,24 @@ export default function MarketplaceRequestsPage() {
               {offerError && <p className={styles.errorMessage}>{offerError}</p>}
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={handleCloseOfferModal}
                   className={styles.secondaryButton}
                   disabled={submittingOffer}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
                   className={styles.primaryButton}
+                  loading={submittingOffer}
                   disabled={submittingOffer}
                 >
                   {submittingOffer ? "در حال ثبت..." : "ثبت و ارسال پیشنهاد"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

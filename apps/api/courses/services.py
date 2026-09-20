@@ -107,7 +107,7 @@ Mastering high-frequency nature words and noun-verb derivations for national exa
                     "explanation_en": "'Safe' means secure from harm, the direct antonym of endangered."
                 }
             ],
-            free_preview_excerpt_fa="برای مشاهده تحلیل لغات و تست‌های واژگان، اشتراک ویژه اندورا را فعال کنید.",
+            free_preview_excerpt_fa="برای مشاهده تحلیل لغات و تست‌های واژگان، اشتراک ویژه ایندورا را فعال کنید.",
             free_preview_excerpt_en="Upgrade to Endoora Premium to access full vocabulary analysis and quizzes.",
         )
 
@@ -320,7 +320,7 @@ Mastering high-frequency nature words and noun-verb derivations for national exa
                 "plan_duration_days": 90,
                 "display_price_toman": 420000,
                 "cta_url": "/account/plan",
-                "message_fa": "این درس برای مشترکین ویژه اندورا فعال است. با تهیه اشتراک ویژه به تمام جلسات، ویدئوها و آزمون‌های سنجشی دسترسی پیدا کنید.",
+                "message_fa": "این درس برای مشترکین ویژه ایندورا فعال است. با تهیه اشتراک ویژه به تمام جلسات، ویدئوها و آزمون‌های سنجشی دسترسی پیدا کنید.",
                 "message_en": "This lesson is exclusive to Endoora Premium members. Upgrade to unlock full lessons, video stream, and interactive quizzes.",
             } if is_locked else None,
             "author_name": course.author_name,

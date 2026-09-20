@@ -1,0 +1,173 @@
+{
+  "id": "102",
+  "slug": "saving-nature-vision-1",
+  "level": "A2",
+  "title": {
+    "en": "Saving Nature & Protecting Endangered Wildlife",
+    "fa": "نجات طبیعت و حفاظت از حیات‌وحش در معرض خطر"
+  },
+  "durationMinutes": 25,
+  "vocabulary": [
+    {
+      "word": "endangered",
+      "fa": "در معرض خطر انقراض",
+      "ipa": "/ɪnˈdeɪn.dʒəd/",
+      "example": {
+        "en": "The Asiatic cheetah is a critically endangered species.",
+        "fa": "یوزپلنگ آسیایی گونه‌ای شدیداً در معرض خطر انقراض است."
+      }
+    },
+    {
+      "word": "protect",
+      "fa": "محافظت کردن",
+      "ipa": "/prəˈtekt/",
+      "example": {
+        "en": "Rangers work tirelessly to protect natural habitats.",
+        "fa": "محیط‌بانان خستگی‌ناپذیر برای حفاظت از زیستگاه‌های طبیعی تلاش می‌کنند."
+      }
+    },
+    {
+      "word": "extinct",
+      "fa": "منقرض‌شده",
+      "ipa": "/ɪkˈstɪŋkt/",
+      "example": {
+        "en": "Dinosaurs became extinct millions of years ago.",
+        "fa": "دایناسورها میلیون‌ها سال پیش منقرض شدند."
+      }
+    },
+    {
+      "word": "wildlife",
+      "fa": "حیات‌وحش",
+      "ipa": "/ˈwaɪld.laɪf/",
+      "example": {
+        "en": "Golestan National Park is rich in native wildlife.",
+        "fa": "پارک ملی گلستان سرشار از حیات‌وحش بومی است."
+      }
+    }
+  ],
+  "grammar": {
+    "title": {
+      "en": "Expressing Obligation & Necessity: Must vs. Should",
+      "fa": "بیان اجبار و ضرورت: Must در برابر Should"
+    },
+    "explanation_fa": "افعال مدال Must و Should برای بیان توصیه‌ها و ضرورت‌های اخلاقی و قانونی به کار می‌روند. Must نشان‌دهنده الزام قطعی و شدید است، در حالی که Should پیشنهاد و توصیه اخلاقی دوستانه را بیان می‌کند.",
+    "rules": [
+      "برای قوانین قطعی و الزامات حیاتی از must + فعل ساده استفاده کنید.",
+      "برای بیان توصیه‌های سودمند و نصایح از should + فعل ساده استفاده کنید.",
+      "منفی must یعنی mustn't به معنای «قدغن بودن و ممنوعیت کامل» است.",
+      "منفی should یعنی shouldn't به معنای «ایده خوبی نبودن یک کار» است."
+    ],
+    "examples": [
+      {
+        "en": "Humans must protect the remaining cheetahs in Iran.",
+        "fa": "انسان‌ها باید از یوزپلنگ‌های باقی‌مانده در ایران محافظت کنند.",
+        "highlight": "must protect"
+      },
+      {
+        "en": "People should not litter when visiting nature reserves.",
+        "fa": "مردم نباید هنگام بازدید از مناطق حفاظت‌شده زباله بریزند.",
+        "highlight": "should not litter"
+      },
+      {
+        "en": "You mustn't hunt animals in the protected national park.",
+        "fa": "شما نباید در پارک ملی حفاظت‌شده حیوانات را شکار کنید (ممنوع است).",
+        "highlight": "mustn't hunt"
+      }
+    ]
+  },
+  "reading": {
+    "title": {
+      "en": "Guardians of the Plains",
+      "fa": "نگهبانان دشت‌ها"
+    },
+    "sentences": [
+      {
+        "id": "s1",
+        "en": "Dedicated rangers protect rare wildlife from poachers across dry plains.",
+        "fa": "محیط‌بانان متعهد از حیات‌وحش کمیاب در برابر شکارچیان غیرمجاز در دشت‌های خشک محافظت می‌کنند.",
+        "vocabulary": [
+          { "word": "rangers", "fa": "محیط‌بانان" },
+          { "word": "protect", "fa": "محافظت کردن" },
+          { "word": "wildlife", "fa": "حیات‌وحش" }
+        ]
+      },
+      {
+        "id": "s2",
+        "en": "Without conservation programs, many unique species will become extinct permanently.",
+        "fa": "بدون برنامه‌های حفاظتی، بسیاری از گونه‌های منحصربه‌فرد برای همیشه منقرض خواهند شد.",
+        "vocabulary": [
+          { "word": "conservation", "fa": "حفاظت" },
+          { "word": "species", "fa": "گونه‌ها" },
+          { "word": "extinct", "fa": "منقرض‌شده" }
+        ]
+      },
+      {
+        "id": "s3",
+        "en": "Local communities should participate actively in saving their natural heritage.",
+        "fa": "جوامع محلی باید فعالانه در نجات میراث طبیعی خود مشارکت کنند.",
+        "vocabulary": [
+          { "word": "communities", "fa": "جوامع محلی" },
+          { "word": "participate", "fa": "مشارکت کردن" },
+          { "word": "heritage", "fa": "میراث" }
+        ]
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "id": "q1",
+      "prompt": {
+        "en": "What is the meaning of the word 'endangered'?",
+        "fa": "معنای دقیق واژه 'endangered' چیست؟"
+      },
+      "options": [
+        "A species facing a high risk of extinction",
+        "An animal that is already gone forever",
+        "A plant living only in deep oceans",
+        "A domesticated farm animal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "'Endangered' refers to species that are at danger of disappearing.",
+        "fa": "کلمه endangered به گونه‌هایی اشاره دارد که در خطر نابودی و انقراض قرار دارند."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "id": "q2",
+      "prompt": {
+        "en": "Fill in the blank: An animal species that has completely died out is ___.",
+        "fa": "جای خالی را پر کنید: گونه جانوری که کاملاً از بین رفته است ___ نامیده می‌شود."
+      },
+      "sentenceWithBlank": "Dinosaurs are ___ animals that lived millions of years ago.",
+      "acceptedAnswers": [
+        "extinct"
+      ],
+      "hintFa": "واژه‌ای که برای موجودات منقرض‌شده به کار می‌رود.",
+      "explanation": {
+        "en": "'Extinct' means having no living members.",
+        "fa": "صفت extinct به معنی منقرض‌شده است."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "id": "q3",
+      "prompt": {
+        "en": "Choose the best modal verb: Hunting in this reserve is illegal. You ___ shoot animals.",
+        "fa": "بهترین فعل مدال را انتخاب کنید: شکار در این منطقه غیرقانونی است. شما نباید به حیوانات شلیک کنید."
+      },
+      "options": [
+        "mustn't",
+        "should",
+        "might",
+        "don't have to"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "'Mustn't' indicates strict legal prohibition.",
+        "fa": "از mustn't برای بیان ممنوعیت صریح و غیرقانونی بودن استفاده می‌شود."
+      }
+    }
+  ]
+}

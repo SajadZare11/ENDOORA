@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button, Input, Table } from "@endoora/ui";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./wallet.module.css";
@@ -88,14 +89,10 @@ export default function UserWalletPage() {
             {(wallet?.balance_toman || 0).toLocaleString("fa-IR")} تومان
           </p>
           <div className={styles.balanceActions}>
-            <button
-              type="button"
-              onClick={() => setShowTopup(true)}
-              className={styles.topupButton}
-            >
+            <Button type="button" variant="primary" onClick={() => setShowTopup(true)} className={styles.topupButton}>
               <span>+</span>
               <span>افزایش موجودی (شارژ آنلاین)</span>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -126,21 +123,14 @@ export default function UserWalletPage() {
           <h2 style={{ fontSize: "var(--font-size-xl)", fontWeight: 800, margin: 0 }}>
             ریز تراکنش‌های حساب
           </h2>
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             onClick={loadData}
-            style={{
-              paddingInline: "var(--space-3)",
-              paddingBlock: "var(--space-1)",
-              borderRadius: "var(--radius-sm)",
-              border: "1px solid var(--color-border)",
-              background: "var(--color-surface)",
-              cursor: "pointer",
-              fontSize: "var(--font-size-xs)",
-            }}
           >
             بروزرسانی لیست ↻
-          </button>
+          </Button>
         </div>
 
         {loading ? (
@@ -151,7 +141,7 @@ export default function UserWalletPage() {
           </div>
         ) : (
           <div className={styles.tableWrapper}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th className={styles.th}>نوع تراکنش</th>
@@ -204,7 +194,7 @@ export default function UserWalletPage() {
                   );
                 })}
               </tbody>
-            </table>
+            </Table>
           </div>
         )}
       </div>
@@ -217,13 +207,7 @@ export default function UserWalletPage() {
               <h3 style={{ margin: 0, fontSize: "var(--font-size-lg)", fontWeight: 800 }}>
                 شارژ آنلاین کیف پول
               </h3>
-              <button
-                type="button"
-                onClick={() => setShowTopup(false)}
-                style={{ background: "none", border: "none", fontSize: "1.25rem", cursor: "pointer" }}
-              >
-                ✕
-              </button>
+              <Button type="button" variant="tertiary" size="sm" onClick={() => setShowTopup(false)}>✕</Button>
             </div>
 
             <p style={{ margin: 0, fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)" }}>
@@ -232,12 +216,12 @@ export default function UserWalletPage() {
 
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
               <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>مبلغ شارژ (تومان):</label>
-              <input
+              <Input
                 type="number"
                 min={10000}
                 step={50000}
                 value={topupAmount}
-                onChange={(e) => setTopupAmount(Math.max(10000, parseInt(e.target.value || "0", 10)))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopupAmount(Math.max(10000, parseInt(e.target.value || "0", 10)))}
                 style={{
                   padding: "var(--space-3)",
                   borderRadius: "var(--radius-card)",
@@ -249,9 +233,11 @@ export default function UserWalletPage() {
               />
               <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
                 {[100000, 200000, 500000, 1000000].map((preset) => (
-                  <button
+                  <Button
                     key={preset}
                     type="button"
+                    variant={topupAmount === preset ? "primary" : "secondary"}
+                    size="sm"
                     onClick={() => setTopupAmount(preset)}
                     style={{
                       paddingInline: "var(--space-3)",
@@ -265,7 +251,7 @@ export default function UserWalletPage() {
                     }}
                   >
                     {preset.toLocaleString("fa-IR")} تومان
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -278,20 +264,9 @@ export default function UserWalletPage() {
               >
                 انتقال به درگاه پرداخت
               </Link>
-              <button
-                type="button"
-                onClick={() => setShowTopup(false)}
-                style={{
-                  paddingInline: "var(--space-4)",
-                  paddingBlock: "var(--space-2)",
-                  borderRadius: "var(--radius-card)",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-surface)",
-                  cursor: "pointer",
-                }}
-              >
+              <Button type="button" variant="secondary" onClick={() => setShowTopup(false)} style={{ paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", borderRadius: "var(--radius-card)" }}>
                 انصراف
-              </button>
+              </Button>
             </div>
           </div>
         </div>

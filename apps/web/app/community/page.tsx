@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button, Input } from "@endoora/ui";
 import { useState, useMemo, type FormEvent } from "react";
 import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./community.module.css";
@@ -88,10 +90,10 @@ const INITIAL_POSTS: Post[] = [
     categoryNameFa: "تجربه استاد",
     isMonthlyFeatured: true,
     featuredNotes: "این پست به دلیل شیوایی در انتقال متدولوژی یادگیری مبتنی بر L1 و تمرین‌های کاربردی اسپیکینگ آیلتس به عنوان پست برگزیده ماه توسط تیم تحریریه انتخاب شد.",
-    featuredCurator: "شورای علمی و تحریریه اندورا",
+    featuredCurator: "شورای علمی و تحریریه ایندورا",
     titleFa: "تکنیک ۴ ربعی یادداشت‌برداری در پارت ۲ اسپیکینگ آیلتس: کاهش استرس و تثبیت انسجام گفتار",
     titleEn: "Four-Quadrant Note Taking for IELTS Speaking Part 2",
-    contentFa: "در طول ۱۰ سال تدریس آمادگی آزمون آیلتس، متوجه شدم بیش از ۷۰٪ افت نمره زبان‌آموزان در پارت دوم ناشی از کمبود دامنه واژگان نیست، بلکه گم کردن رشته کلام در دقیقه دوم است.\n\nبا تقسیم برگه به ۴ ربع (چه کسی/کجا، زمان/پس‌زمینه، رویداد اصلی، احساس و چرایی اهمیت)، زبان‌آموز همواره مسیر واژگانی خود را بدون مکث‌های نامطمئن دنبال می‌کند. این روش روی ۳۴ داوطلب در اندورا آزمایش شد و میانگین نمره فلوئنسی از ۶.۰ به ۷.۰ رسید.",
+    contentFa: "در طول ۱۰ سال تدریس آمادگی آزمون آیلتس، متوجه شدم بیش از ۷۰٪ افت نمره زبان‌آموزان در پارت دوم ناشی از کمبود دامنه واژگان نیست، بلکه گم کردن رشته کلام در دقیقه دوم است.\n\nبا تقسیم برگه به ۴ ربع (چه کسی/کجا، زمان/پس‌زمینه، رویداد اصلی، احساس و چرایی اهمیت)، زبان‌آموز همواره مسیر واژگانی خود را بدون مکث‌های نامطمئن دنبال می‌کند. این روش روی ۳۴ داوطلب در ایندورا آزمایش شد و میانگین نمره فلوئنسی از ۶.۰ به ۷.۰ رسید.",
     timeFa: "دیروز",
     tags: ["IELTS", "Speaking", "تکنیک تدریس", "L1"],
     reactions: { like: 84, helpful: 62, inspiring: 45, insightful: 38 },
@@ -133,7 +135,7 @@ const INITIAL_POSTS: Post[] = [
     category: "learner_post",
     categoryNameFa: "پست زبان‌آموز",
     titleFa: "چطور خطای ناخودآگاه در استفاده از حرف اضافه 'arrive to/at' را در دوقلوی هوشمند برطرف کردم؟",
-    contentFa: "من همیشه موقع صحبت کردن به خاطر ساختار فارسی 'رسیدن به' می‌گفتم arrive to. بعد از اینکه ژنوم اشتباهات در اندورا این تکرار را گوشزد کرد، با تکنیک تصویرسازی فضایی و تمرین جملات با بافت واقعی فرودگاه و هتل این چالش برای همیشه حل شد.",
+    contentFa: "من همیشه موقع صحبت کردن به خاطر ساختار فارسی 'رسیدن به' می‌گفتم arrive to. بعد از اینکه ژنوم اشتباهات در ایندورا این تکرار را گوشزد کرد، با تکنیک تصویرسازی فضایی و تمرین جملات با بافت واقعی فرودگاه و هتل این چالش برای همیشه حل شد.",
     timeFa: "۴ ساعت پیش",
     tags: ["دوقلوی هوشمند", "گرامر", "اصلاح خطا"],
     media: [
@@ -386,7 +388,7 @@ export default function CommunityPage() {
     const newComment: Comment = {
       id: `comm-${Date.now()}`,
       postId,
-      authorName: "زبان‌آموز اندورا",
+      authorName: "زبان‌آموز ایندورا",
       authorRole: "زبان‌آموز",
       content: newCommentText.trim(),
       timeFa: "هم‌اکنون",
@@ -442,7 +444,7 @@ export default function CommunityPage() {
     const newPostItem: Post = {
       id: `post-${Date.now()}`,
       authorId: `author-${Date.now()}`,
-      authorName: postType === "teacher_experience" ? "استاد محمدی" : "زبان‌آموز اندورا",
+      authorName: postType === "teacher_experience" ? "استاد محمدی" : "زبان‌آموز ایندورا",
       authorRole: postType === "teacher_experience" ? "teacher" : "learner",
       isVerifiedTeacher: postType === "teacher_experience",
       category: postType,
@@ -493,7 +495,7 @@ export default function CommunityPage() {
     setPlanAttribution("");
     setMediaAltText("");
     setMediaCaption("");
-    showToast("پست شما با موفقیت در جامعه یادگیری اندورا منتشر شد.");
+    showToast("پست شما با موفقیت در جامعه یادگیری ایندورا منتشر شد.");
   };
 
   return (
@@ -518,27 +520,15 @@ export default function CommunityPage() {
             تجربیات واقعی یادگیری، پرسش و پاسخ‌های زبانی، طرح درس‌های معتبر با رعایت کپی‌رایت، و رفع تله‌های L1 بدون هرزنامه و در امنیت کامل.
           </p>
           <div className={styles.heroActions}>
-            <button
-              type="button"
-              className={styles.primaryBtn}
-              onClick={() => setIsNewPostOpen(true)}
-            >
+            <Button type="button" variant="primary" onClick={() => setIsNewPostOpen(true)} className={styles.primaryBtn}>
               ✏️ ارسال گفتگوی جدید
-            </button>
-            <button
-              type="button"
-              className={styles.secondaryBtn}
-              onClick={() => setIsGuidelinesOpen(true)}
-            >
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => setIsGuidelinesOpen(true)} className={styles.secondaryBtn}>
               📜 شیوه‌نامه ایمنی و کپی‌رایت
-            </button>
-            <button
-              type="button"
-              className={styles.secondaryBtn}
-              onClick={() => setIsModQueueOpen(!isModQueueOpen)}
-            >
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => setIsModQueueOpen(!isModQueueOpen)} className={styles.secondaryBtn}>
               ⚖️ صف نظارت و بازبینی ({moderationQueue.filter((r) => r.status === "pending").length})
-            </button>
+            </Button>
           </div>
         </section>
 
@@ -578,27 +568,18 @@ export default function CommunityPage() {
 
                   {report.status === "pending" ? (
                     <div className={styles.queueActions}>
-                      <button
-                        type="button"
-                        className={`${styles.btnSm} ${styles.btnDanger}`}
-                        onClick={() => handleResolveReport(report.id, "remove")}
+                      <Button type="button" variant="destructive" size="sm" className={`${styles.btnSm} ${styles.btnDanger}`} onClick={() => handleResolveReport(report.id, "remove")}
                       >
                         🗑️ حذف محتوا از دید عموم
-                      </button>
-                      <button
-                        type="button"
-                        className={styles.btnSm}
-                        onClick={() => handleResolveReport(report.id, "warn")}
+                      </Button>
+                      <Button type="button" variant="secondary" size="sm" className={styles.btnSm} onClick={() => handleResolveReport(report.id, "warn")}
                       >
                         ⚠️ ارسال اخطار رسمی
-                      </button>
-                      <button
-                        type="button"
-                        className={styles.btnSm}
-                        onClick={() => handleResolveReport(report.id, "dismiss")}
+                      </Button>
+                      <Button type="button" variant="secondary" size="sm" className={styles.btnSm} onClick={() => handleResolveReport(report.id, "dismiss")}
                       >
                         ✓ رد گزارش (فاقد تخلف)
-                      </button>
+                      </Button>
                     </div>
                   ) : (
                     <div style={{ fontSize: "0.85rem", color: "var(--color-muted)" }}>
@@ -643,30 +624,21 @@ export default function CommunityPage() {
 
                   <div className={styles.postFooter}>
                     <div className={styles.reactionsRow}>
-                      <button
-                        type="button"
-                        className={`${styles.reactionBtn} ${feat.userReaction === "helpful" ? styles.reactionBtnActive : ""}`}
-                        onClick={() => handleToggleReaction(feat.id, "helpful")}
+                      <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${feat.userReaction === "helpful" ? styles.reactionBtnActive : ""}`} onClick={() => handleToggleReaction(feat.id, "helpful")}
                       >
                         💡 کاربردی ({feat.reactions.helpful})
-                      </button>
-                      <button
-                        type="button"
-                        className={`${styles.reactionBtn} ${feat.userReaction === "inspiring" ? styles.reactionBtnActive : ""}`}
-                        onClick={() => handleToggleReaction(feat.id, "inspiring")}
+                      </Button>
+                      <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${feat.userReaction === "inspiring" ? styles.reactionBtnActive : ""}`} onClick={() => handleToggleReaction(feat.id, "inspiring")}
                       >
                         🌱 الهام‌بخش ({feat.reactions.inspiring})
-                      </button>
+                      </Button>
                     </div>
 
                     <div className={styles.cardActions}>
-                      <button
-                        type="button"
-                        className={styles.iconBtn}
-                        onClick={() => setExpandedCommentsPostId(expandedCommentsPostId === feat.id ? null : feat.id)}
+                      <Button type="button" variant="tertiary" size="sm" className={styles.iconBtn} onClick={() => setExpandedCommentsPostId(expandedCommentsPostId === feat.id ? null : feat.id)}
                       >
                         💬 دیدگاه‌ها ({feat.commentsCount})
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </article>
@@ -676,9 +648,7 @@ export default function CommunityPage() {
 
         {/* Controls: Search & Category Tabs */}
         <section className={styles.controlsRow} aria-label="فیلتر و جستجوی پست‌ها">
-          <input
-            type="search"
-            className={styles.searchBar}
+          <Input type="search" className={styles.searchBar}
             placeholder="جستجو در میان گفتگوها، تجربیات اساتید، طرح درس‌ها و واژگان..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -694,15 +664,13 @@ export default function CommunityPage() {
               { id: "learner_post", label: "پست‌های زبان‌آموزان" },
               { id: "featured", label: "برگزیده‌های ماه" },
             ].map((tab) => (
-              <button
-                key={tab.id}
-                role="tab"
+              <Button key={tab.id} role="tab" variant={selectedCategory === tab.id ? "primary" : "secondary"} size="sm"
                 aria-selected={selectedCategory === tab.id}
                 className={`${styles.topicTab} ${selectedCategory === tab.id ? styles.topicTabActive : ""}`}
                 onClick={() => setSelectedCategory(tab.id as PostCategory)}
               >
                 {tab.label}
-              </button>
+              </Button>
             ))}
           </div>
         </section>
@@ -712,16 +680,12 @@ export default function CommunityPage() {
           {filteredPosts.length === 0 ? (
             <div className={styles.emptyState}>
               <p>پستی با این مشخصات یا در این دسته‌بندی یافت نشد.</p>
-              <button
-                type="button"
-                className={styles.secondaryBtn}
-                onClick={() => {
-                  setSelectedCategory("all");
+              <Button type="button" variant="secondary" size="sm" className={styles.secondaryBtn} onClick={() => { setSelectedCategory("all");
                   setSearchQuery("");
                 }}
               >
                 مشاهده همه گفتگوها
-              </button>
+              </Button>
             </div>
           ) : (
             filteredPosts.map((post) => (
@@ -790,13 +754,10 @@ export default function CommunityPage() {
                           انتساب: {post.lessonPlan.copyright_attribution}
                         </div>
                       </div>
-                      <button
-                        type="button"
-                        className={styles.secondaryBtn}
-                        onClick={() => showToast(`دریافت فایل ${post.lessonPlan?.file_format.toUpperCase()} آغاز شد.`)}
+                      <Button type="button" variant="secondary" size="sm" className={styles.secondaryBtn} onClick={() => showToast(`دریافت فایل ${post.lessonPlan?.file_format.toUpperCase()} آغاز شد.`)}
                       >
                         📥 دانلود فایل ({post.lessonPlan.file_size})
-                      </button>
+                      </Button>
                     </div>
                   )}
 
@@ -815,64 +776,47 @@ export default function CommunityPage() {
                 {/* Footer / Reactions & Actions */}
                 <div className={styles.postFooter}>
                   <div className={styles.reactionsRow}>
-                    <button
-                      type="button"
-                      className={`${styles.reactionBtn} ${post.userReaction === "like" ? styles.reactionBtnActive : ""}`}
+                    <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${post.userReaction === "like" ? styles.reactionBtnActive : ""}`}
                       onClick={() => handleToggleReaction(post.id, "like")}
                       aria-label="مفید و لایک"
                     >
                       👍 ({post.reactions.like})
-                    </button>
-                    <button
-                      type="button"
-                      className={`${styles.reactionBtn} ${post.userReaction === "helpful" ? styles.reactionBtnActive : ""}`}
+                    </Button>
+                    <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${post.userReaction === "helpful" ? styles.reactionBtnActive : ""}`}
                       onClick={() => handleToggleReaction(post.id, "helpful")}
                       aria-label="راهگشا و کاربردی"
                     >
                       💡 ({post.reactions.helpful})
-                    </button>
-                    <button
-                      type="button"
-                      className={`${styles.reactionBtn} ${post.userReaction === "inspiring" ? styles.reactionBtnActive : ""}`}
+                    </Button>
+                    <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${post.userReaction === "inspiring" ? styles.reactionBtnActive : ""}`}
                       onClick={() => handleToggleReaction(post.id, "inspiring")}
                       aria-label="الهام‌بخش"
                     >
                       🌱 ({post.reactions.inspiring})
-                    </button>
-                    <button
-                      type="button"
-                      className={`${styles.reactionBtn} ${post.userReaction === "insightful" ? styles.reactionBtnActive : ""}`}
+                    </Button>
+                    <Button type="button" variant="secondary" size="sm" className={`${styles.reactionBtn} ${post.userReaction === "insightful" ? styles.reactionBtnActive : ""}`}
                       onClick={() => handleToggleReaction(post.id, "insightful")}
                       aria-label="عمیق و نکته‌آموز"
                     >
                       🎯 ({post.reactions.insightful})
-                    </button>
+                    </Button>
                   </div>
 
                   <div className={styles.cardActions}>
-                    <button
-                      type="button"
-                      className={styles.iconBtn}
-                      onClick={() => setExpandedCommentsPostId(expandedCommentsPostId === post.id ? null : post.id)}
+                    <Button type="button" variant="tertiary" size="sm" className={styles.iconBtn} onClick={() => setExpandedCommentsPostId(expandedCommentsPostId === post.id ? null : post.id)}
                     >
                       💬 دیدگاه‌ها ({post.commentsCount})
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.iconBtn}
-                      onClick={() => handleOpenReport(post)}
+                    </Button>
+                    <Button type="button" variant="tertiary" size="sm" className={styles.iconBtn} onClick={() => handleOpenReport(post)}
                       title="گزارش تخلف یا نقض قوانین"
                     >
                       🚩 گزارش
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.iconBtn}
-                      onClick={() => handleBlockAuthor(post.authorId, post.authorName)}
+                    </Button>
+                    <Button type="button" variant="tertiary" size="sm" className={styles.iconBtn} onClick={() => handleBlockAuthor(post.authorId, post.authorName)}
                       title="پنهان‌سازی پست‌های این نویسنده"
                     >
                       🚫 مسدود
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -898,9 +842,7 @@ export default function CommunityPage() {
                     </div>
 
                     <div className={styles.commentInputRow}>
-                      <input
-                        type="text"
-                        className={styles.commentField}
+                      <Input type="text" className={styles.commentField}
                         placeholder="دیدگاه یا نکته آموزشی خود را بنویسید (حاوی اطلاعات تماس نباشد)..."
                         value={newCommentText}
                         onChange={(e) => setNewCommentText(e.target.value)}
@@ -908,14 +850,9 @@ export default function CommunityPage() {
                           if (e.key === "Enter") handleAddComment(post.id);
                         }}
                       />
-                      <button
-                        type="button"
-                        className={styles.primaryBtn}
-                        style={{ minInlineSize: "5rem" }}
-                        onClick={() => handleAddComment(post.id)}
-                      >
+                      <Button type="button" variant="primary" size="sm" style={{ minInlineSize: "5rem" }} onClick={() => handleAddComment(post.id)} className={styles.primaryBtn}>
                         ارسال
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 )}
@@ -930,16 +867,11 @@ export default function CommunityPage() {
             <div className={styles.modal}>
               <div className={styles.modalHeader}>
                 <h2 id="new-post-title" className={styles.modalTitle}>
-                  ارسال گفتگوی جدید در جامعه اندورا
+                  ارسال گفتگوی جدید در جامعه ایندورا
                 </h2>
-                <button
-                  type="button"
-                  className={styles.closeBtn}
-                  onClick={() => setIsNewPostOpen(false)}
-                  aria-label="بستن پنجره"
-                >
+                <Button type="button" variant="tertiary" size="sm" onClick={() => setIsNewPostOpen(false)} className={styles.closeBtn} aria-label="بستن پنجره">
                   ✕
-                </button>
+                </Button>
               </div>
 
               <form onSubmit={handleCreatePost} className={styles.modalBody}>
@@ -950,7 +882,7 @@ export default function CommunityPage() {
                       ⚠️ هشدار حریم خصوصی: اطلاعات حساس شناسایی شد!
                     </div>
                     <p className={styles.piiAlertText}>
-                      محتوای واردشده حاوی <strong>{piiMatches.join("، ")}</strong> است. طبق شیوه‌نامه جامعه اندورا، انتشار اطلاعات تماس، کدهای هویتی و شماره حساب در فضای عمومی برای حفظ امنیت شما ممنوع است. لطفاً پیش از ارسال، این اطلاعات را حذف کنید.
+                      محتوای واردشده حاوی <strong>{piiMatches.join("، ")}</strong> است. طبق شیوه‌نامه جامعه ایندورا، انتشار اطلاعات تماس، کدهای هویتی و شماره حساب در فضای عمومی برای حفظ امنیت شما ممنوع است. لطفاً پیش از ارسال، این اطلاعات را حذف کنید.
                     </p>
                   </div>
                 )}
@@ -974,9 +906,7 @@ export default function CommunityPage() {
                   <div className={styles.formGroup} style={{ background: "var(--color-surface-subtle)", padding: "var(--space-3)", borderRadius: "var(--radius-control)" }}>
                     <label className={styles.formLabel}>احراز هویت تدریس:</label>
                     <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", fontSize: "0.85rem" }}>
-                      <input
-                        type="checkbox"
-                        id="verify-teacher-cb"
+                      <Input type="checkbox" id="verify-teacher-cb"
                         checked={isTeacherVerifiedInput}
                         onChange={(e) => setIsTeacherVerifiedInput(e.target.checked)}
                       />
@@ -987,15 +917,7 @@ export default function CommunityPage() {
 
                 <div className={styles.formGroup}>
                   <label htmlFor="post-title-input" className={styles.formLabel}>عنوان گفتگو:</label>
-                  <input
-                    id="post-title-input"
-                    type="text"
-                    className={styles.formInput}
-                    placeholder="مثال: روش خلاصه یادداشت‌برداری برای تسک ۱ رایتینگ"
-                    value={postTitle}
-                    onChange={(e) => setPostTitle(e.target.value)}
-                    required
-                  />
+                  <Input id="post-title-input" type="text" className={styles.formInput} placeholder="مثال: روش خلاصه یادداشت‌برداری برای تسک ۱ رایتینگ" value={postTitle} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPostTitle(e.target.value)} required />
                 </div>
 
                 <div className={styles.formGroup}>
@@ -1031,15 +953,7 @@ export default function CommunityPage() {
 
                     <div className={styles.formGroup}>
                       <label htmlFor="attribution-input" className={styles.formLabel}>نام پدیدآورنده و مرجع حقوقی (Attribution):</label>
-                      <input
-                        id="attribution-input"
-                        type="text"
-                        className={styles.formInput}
-                        placeholder="مثال: استاد علیرضا کیانی — بر مبنای کتاب Grammar in Use"
-                        value={planAttribution}
-                        onChange={(e) => setPlanAttribution(e.target.value)}
-                        required
-                      />
+                      <Input id="attribution-input" type="text" className={styles.formInput} placeholder="مثال: استاد علیرضا کیانی — بر مبنای کتاب Grammar in Use" value={planAttribution} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPlanAttribution(e.target.value)} required />
                     </div>
 
                     <div className={styles.formGroup}>
@@ -1063,16 +977,12 @@ export default function CommunityPage() {
                 {/* Media Attachment fields */}
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>پیوست تصویر آموزشی (اختیاری):</label>
-                  <input
-                    type="text"
-                    className={styles.formInput}
+                  <Input type="text" className={styles.formInput}
                     placeholder="زیرنویس تصویر (Caption)"
                     value={mediaCaption}
                     onChange={(e) => setMediaCaption(e.target.value)}
                   />
-                  <input
-                    type="text"
-                    className={styles.formInput}
+                  <Input type="text" className={styles.formInput}
                     placeholder="متن جایگزین دسترسی‌پذیری (Alt Text برای افراد دارای معلولیت)"
                     value={mediaAltText}
                     onChange={(e) => setMediaAltText(e.target.value)}
@@ -1082,31 +992,16 @@ export default function CommunityPage() {
 
                 <div className={styles.formGroup}>
                   <label htmlFor="tags-input" className={styles.formLabel}>برچسب‌ها (با کاما جدا کنید):</label>
-                  <input
-                    id="tags-input"
-                    type="text"
-                    className={styles.formInput}
-                    placeholder="IELTS, گرامر, لغت, Vision 3"
-                    value={postTags}
-                    onChange={(e) => setPostTags(e.target.value)}
-                  />
+                  <Input id="tags-input" type="text" className={styles.formInput} placeholder="IELTS, گرامر, لغت, Vision 3" value={postTags} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPostTags(e.target.value)} />
                 </div>
 
                 <div className={styles.modalFooter}>
-                  <button
-                    type="button"
-                    className={styles.secondaryBtn}
-                    onClick={() => setIsNewPostOpen(false)}
-                  >
+                  <Button type="button" variant="secondary" onClick={() => setIsNewPostOpen(false)} className={styles.secondaryBtn}>
                     انصراف
-                  </button>
-                  <button
-                    type="submit"
-                    className={styles.primaryBtn}
-                    disabled={piiMatches.length > 0}
-                  >
+                  </Button>
+                  <Button type="submit" variant="primary" className={styles.primaryBtn} disabled={piiMatches.length > 0}>
                     انتشار مطلب
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
@@ -1119,16 +1014,11 @@ export default function CommunityPage() {
             <div className={styles.modal}>
               <div className={styles.modalHeader}>
                 <h2 id="report-title" className={styles.modalTitle}>
-                  گزارش تخلف به تیم نظارت و ایمنی اندورا
+                  گزارش تخلف به تیم نظارت و ایمنی ایندورا
                 </h2>
-                <button
-                  type="button"
-                  className={styles.closeBtn}
-                  onClick={() => setIsReportModalOpen(false)}
-                  aria-label="بستن پنجره"
-                >
+                <Button type="button" variant="tertiary" size="sm" onClick={() => setIsReportModalOpen(false)} className={styles.closeBtn} aria-label="بستن پنجره">
                   ✕
-                </button>
+                </Button>
               </div>
 
               <form onSubmit={handleSubmitReport} className={styles.modalBody}>
@@ -1165,16 +1055,12 @@ export default function CommunityPage() {
                 </div>
 
                 <div className={styles.modalFooter}>
-                  <button
-                    type="button"
-                    className={styles.secondaryBtn}
-                    onClick={() => setIsReportModalOpen(false)}
-                  >
+                  <Button type="button" variant="secondary" onClick={() => setIsReportModalOpen(false)} className={styles.secondaryBtn}>
                     انصراف
-                  </button>
-                  <button type="submit" className={styles.primaryBtn}>
+                  </Button>
+                  <Button type="submit" variant="primary" className={styles.primaryBtn}>
                     ثبت و ارسال به صف بازبینی
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
@@ -1187,16 +1073,11 @@ export default function CommunityPage() {
             <div className={styles.modal} style={{ maxInlineSize: "44rem" }}>
               <div className={styles.modalHeader}>
                 <h2 id="guidelines-title" className={styles.modalTitle}>
-                  شیوه‌نامه ایمنی جامعه و تعهدات کپی‌رایت اندورا
+                  شیوه‌نامه ایمنی جامعه و تعهدات کپی‌رایت ایندورا
                 </h2>
-                <button
-                  type="button"
-                  className={styles.closeBtn}
-                  onClick={() => setIsGuidelinesOpen(false)}
-                  aria-label="بستن پنجره"
-                >
+                <Button type="button" variant="tertiary" size="sm" onClick={() => setIsGuidelinesOpen(false)} className={styles.closeBtn} aria-label="بستن پنجره">
                   ✕
-                </button>
+                </Button>
               </div>
 
               <div className={styles.modalBody} style={{ fontSize: "0.9rem", lineHeight: "1.7" }}>
@@ -1232,13 +1113,10 @@ export default function CommunityPage() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
-                  type="button"
-                  className={styles.primaryBtn}
-                  onClick={() => setIsGuidelinesOpen(false)}
+                <Button type="button" variant="primary" className={styles.primaryBtn} onClick={() => setIsGuidelinesOpen(false)}
                 >
                   متوجه شدم
-                </button>
+                </Button>
               </div>
             </div>
           </div>

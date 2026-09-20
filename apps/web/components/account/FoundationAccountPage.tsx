@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { AuthShell } from "../auth/AuthShell";
+import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@endoora/ui";
+
 import {
   apiErrorMessages,
   endooraApi,
@@ -333,34 +335,42 @@ export function FoundationAccountPage({
 
             {/* Filter Chips */}
             <div className={styles.filterGroup}>
-              <button
+              <Button
                 type="button"
+                variant={libraryFilter === "all" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.filterChip} ${libraryFilter === "all" ? styles.filterChipActive : ""}`}
                 onClick={() => setLibraryFilter("all")}
               >
                 {isFa ? "همه موارد" : "All Resources"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant={libraryFilter === "vocabulary" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.filterChip} ${libraryFilter === "vocabulary" ? styles.filterChipActive : ""}`}
                 onClick={() => setLibraryFilter("vocabulary")}
               >
                 {isFa ? "دسته‌های واژگان (SRS)" : "Vocabulary Decks"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant={libraryFilter === "lessons" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.filterChip} ${libraryFilter === "lessons" ? styles.filterChipActive : ""}`}
                 onClick={() => setLibraryFilter("lessons")}
               >
                 {isFa ? "درس‌ها و رایتینگ" : "Lessons & Writing"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant={libraryFilter === "shadowing" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.filterChip} ${libraryFilter === "shadowing" ? styles.filterChipActive : ""}`}
                 onClick={() => setLibraryFilter("shadowing")}
               >
                 {isFa ? "تمرین‌های شادوینگ و تلفظ" : "Shadowing & Audio"}
-              </button>
+              </Button>
             </div>
 
             {/* Shelf Grid */}
@@ -478,7 +488,7 @@ export function FoundationAccountPage({
             <div className={styles.sectionHeading}>
               <div>
                 <h2 style={{ fontSize: "var(--font-size-section-title)", margin: 0 }}>
-                  {isFa ? "پلن‌های اشتراک و یادگیری اندورا" : "Endoora Learning Plans"}
+                  {isFa ? "پلن‌های اشتراک و یادگیری ایندورا" : "Endoora Learning Plans"}
                 </h2>
                 <p className={styles.description} style={{ marginBlockStart: "var(--space-1)" }}>
                   {isFa
@@ -509,13 +519,14 @@ export function FoundationAccountPage({
                   <li className={styles.planFeatureItem}>✓ {isFa ? "ردیابی پیوستگی مطالعه (Streak)" : "Streak & Habit tracking"}</li>
                 </ul>
 
-                <button
+                <Button
                   type="button"
-                  className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
+                  variant="secondary"
+                  className={styles.actionButton}
                   disabled
                 >
                   {isFa ? "پلن فعال شما" : "Current Plan"}
-                </button>
+                </Button>
               </div>
 
               {/* Pro Plan */}
@@ -539,15 +550,16 @@ export function FoundationAccountPage({
                   <li className={styles.planFeatureItem}>✓ {isFa ? "همگام‌سازی دوقلوی زبانی هوشمند" : "Continuous Twin AI calibration"}</li>
                 </ul>
 
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   onClick={() => setActivePlanSelection("pro")}
-                  className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
+                  className={styles.actionButton}
                 >
                   {activePlanSelection === "pro"
                     ? isFa ? "✓ انتخاب شده (آماده پرداخت)" : "✓ Selected"
                     : isFa ? "ارتقا به پلن پرو" : "Upgrade to Pro"}
-                </button>
+                </Button>
               </div>
 
               {/* Immersion Plan */}
@@ -569,15 +581,16 @@ export function FoundationAccountPage({
                   <li className={styles.planFeatureItem}>✓ {isFa ? "دانلود و استفاده آفلاین از فایل‌های صوتی" : "Offline audio lesson downloads"}</li>
                 </ul>
 
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   onClick={() => setActivePlanSelection("immersion")}
-                  className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
+                  className={styles.actionButton}
                 >
                   {activePlanSelection === "immersion"
                     ? isFa ? "✓ انتخاب شده (آماده پرداخت)" : "✓ Selected"
                     : isFa ? "انتخاب غوطه‌وری" : "Choose Immersion"}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -605,13 +618,14 @@ export function FoundationAccountPage({
               </div>
 
               <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   onClick={() => setBillingFeedback(isFa ? "درگاه افزایش اعتبار در حال آماده‌سازی است." : "Gateway top-up modal is initializing.")}
-                  className={`${styles.actionButton} ${styles.actionButtonPrimary}`}
+                  className={styles.actionButton}
                 >
                   {isFa ? "+ شارژ کیف پول" : "+ Add Funds"}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -632,86 +646,89 @@ export function FoundationAccountPage({
 
             {/* Invoices Table */}
             <div className={styles.billingTableContainer}>
-              <table className={styles.billingTable}>
-                <thead>
-                  <tr>
-                    <th>{isFa ? "شماره فاکتور" : "Invoice #"}</th>
-                    <th>{isFa ? "شرح خرید" : "Description"}</th>
-                    <th>{isFa ? "تاریخ" : "Date"}</th>
-                    <th>{isFa ? "مبلغ" : "Amount"}</th>
-                    <th>{isFa ? "درگاه" : "Gateway"}</th>
-                    <th>{isFa ? "وضعیت" : "Status"}</th>
-                    <th>{isFa ? "عملیات" : "Action"}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ fontWeight: 700 }}>END-2026-841</td>
-                    <td>{isFa ? "اشتراک ۱ ماهه پلن پرو" : "1-Month Pro Subscription"}</td>
-                    <td>۱۴۰۴/۱۲/۰۱</td>
-                    <td>۲۹۰,۰۰۰ {isFa ? "تومان" : "Tomans"}</td>
-                    <td>زرین‌پال (ZarinPal)</td>
-                    <td>
+              <Table aria-label={isFa ? "فاکتورهای مالی" : "Billing invoices"}>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{isFa ? "شماره فاکتور" : "Invoice #"}</TableHead>
+                    <TableHead>{isFa ? "شرح خرید" : "Description"}</TableHead>
+                    <TableHead>{isFa ? "تاریخ" : "Date"}</TableHead>
+                    <TableHead>{isFa ? "مبلغ" : "Amount"}</TableHead>
+                    <TableHead>{isFa ? "درگاه" : "Gateway"}</TableHead>
+                    <TableHead>{isFa ? "وضعیت" : "Status"}</TableHead>
+                    <TableHead>{isFa ? "عملیات" : "Action"}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 700 }}>END-2026-841</TableCell>
+                    <TableCell>{isFa ? "اشتراک ۱ ماهه پلن پرو" : "1-Month Pro Subscription"}</TableCell>
+                    <TableCell>۱۴۰۴/۱۲/۰۱</TableCell>
+                    <TableCell>۲۹۰,۰۰۰ {isFa ? "تومان" : "Tomans"}</TableCell>
+                    <TableCell>زرین‌پال (ZarinPal)</TableCell>
+                    <TableCell>
                       <span className={styles.status} style={{ fontSize: "0.75rem", minBlockSize: "1.5rem", background: "var(--color-success-bg)", color: "var(--color-success-text)" }}>
                         {isFa ? "موفق" : "Paid"}
                       </span>
-                    </td>
-                    <td>
-                      <button
+                    </TableCell>
+                    <TableCell>
+                      <Button
                         type="button"
+                        variant="tertiary"
+                        size="compact"
                         onClick={() => setBillingFeedback(isFa ? "فاکتور END-2026-841 صادر شد." : "Invoice END-2026-841 generated.")}
-                        style={{ background: "none", border: "none", color: "var(--color-link)", cursor: "pointer", fontWeight: 700 }}
                       >
                         {isFa ? "رسید" : "Receipt"}
-                      </button>
-                    </td>
-                  </tr>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
 
-                  <tr>
-                    <td style={{ fontWeight: 700 }}>END-2026-722</td>
-                    <td>{isFa ? "آزمون ارزیابی جامع CEFR و کالیبراسیون اولیه" : "Comprehensive CEFR Placement Test"}</td>
-                    <td>۱۴۰۴/۱۱/۱۵</td>
-                    <td>{isFa ? "رایگان" : "Free"}</td>
-                    <td>سیستمی</td>
-                    <td>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 700 }}>END-2026-722</TableCell>
+                    <TableCell>{isFa ? "آزمون ارزیابی جامع CEFR و کالیبراسیون اولیه" : "Comprehensive CEFR Placement Test"}</TableCell>
+                    <TableCell>۱۴۰۴/۱۱/۱۵</TableCell>
+                    <TableCell>{isFa ? "رایگان" : "Free"}</TableCell>
+                    <TableCell>سیستمی</TableCell>
+                    <TableCell>
                       <span className={styles.status} style={{ fontSize: "0.75rem", minBlockSize: "1.5rem", background: "var(--color-success-bg)", color: "var(--color-success-text)" }}>
                         {isFa ? "موفق" : "Completed"}
                       </span>
-                    </td>
-                    <td>
-                      <button
+                    </TableCell>
+                    <TableCell>
+                      <Button
                         type="button"
+                        variant="tertiary"
+                        size="compact"
                         onClick={() => setBillingFeedback(isFa ? "رسید آزمون رایگان نمایش داده شد." : "Free assessment receipt shown.")}
-                        style={{ background: "none", border: "none", color: "var(--color-link)", cursor: "pointer", fontWeight: 700 }}
                       >
                         {isFa ? "رسید" : "Receipt"}
-                      </button>
-                    </td>
-                  </tr>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
 
-                  <tr>
-                    <td style={{ fontWeight: 700 }}>END-2026-509</td>
-                    <td>{isFa ? "ثبت‌نام کارگاه مکالمه فشرده B1" : "B1 Conversational Fluency Workshop"}</td>
-                    <td>۱۴۰۴/۱۰/۲۸</td>
-                    <td>۴۵۰,۰۰۰ {isFa ? "تومان" : "Tomans"}</td>
-                    <td>شاپرک (Shetab)</td>
-                    <td>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 700 }}>END-2026-509</TableCell>
+                    <TableCell>{isFa ? "ثبت‌نام کارگاه مکالمه فشرده B1" : "B1 Conversational Fluency Workshop"}</TableCell>
+                    <TableCell>۱۴۰۴/۱۰/۲۸</TableCell>
+                    <TableCell>۴۵۰,۰۰۰ {isFa ? "تومان" : "Tomans"}</TableCell>
+                    <TableCell>شاپرک (Shetab)</TableCell>
+                    <TableCell>
                       <span className={styles.status} style={{ fontSize: "0.75rem", minBlockSize: "1.5rem", background: "var(--color-success-bg)", color: "var(--color-success-text)" }}>
                         {isFa ? "موفق" : "Paid"}
                       </span>
-                    </td>
-                    <td>
-                      <button
+                    </TableCell>
+                    <TableCell>
+                      <Button
                         type="button"
+                        variant="tertiary"
+                        size="compact"
                         onClick={() => setBillingFeedback(isFa ? "رسید کارگاه آموزشی صادر شد." : "Workshop receipt downloaded.")}
-                        style={{ background: "none", border: "none", color: "var(--color-link)", cursor: "pointer", fontWeight: 700 }}
                       >
                         {isFa ? "رسید" : "Receipt"}
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
           </section>
         )}

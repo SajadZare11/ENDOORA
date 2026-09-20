@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "../learner-subpages.module.css";
 
@@ -236,15 +237,15 @@ export default function ReviewPage() {
                 <h2 dir="ltr" style={{ fontSize: "2.25rem", fontWeight: 800, margin: 0, color: "var(--color-text)" }}>
                   {currentCard.word}
                 </h2>
-                <button
+                <Button
                   type="button"
+                  size="sm"
+                  variant="secondary"
                   onClick={() => handlePlayAudio(currentCard.word)}
-                  className={styles.buttonSecondary}
-                  style={{ padding: "var(--space-1) var(--space-2)", minBlockSize: "2.2rem" }}
                   aria-label="Play audio"
                 >
                   <span aria-hidden="true">🔊</span>
-                </button>
+                </Button>
               </div>
 
               <div dir="ltr" style={{ fontSize: "var(--font-size-body)", fontStyle: "italic", color: "var(--color-endoora-blue)", marginBlockEnd: "var(--space-4)" }}>
@@ -253,50 +254,41 @@ export default function ReviewPage() {
 
               {!showAnswer ? (
                 <div style={{ marginBlockStart: "var(--space-6)" }}>
-                  <button
+                  <Button
                     type="button"
-                    className={styles.buttonPrimary}
+                    variant="primary"
                     onClick={() => setShowAnswer(true)}
                   >
                     {isFa ? "نمایش معنی و بافت جمله" : "Show Meaning & Context"}
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "var(--space-5)", marginTop: "var(--space-4)" }}>
                   {isEditingMeaning ? (
                     <div style={{ maxInlineSize: "28rem", marginInline: "auto", marginBlockEnd: "var(--space-3)" }}>
-                      <input
+                      <Input
                         type="text"
-                        style={{
-                          inlineSize: "100%",
-                          padding: "var(--space-2) var(--space-3)",
-                          borderRadius: "var(--radius-control)",
-                          border: "1px solid var(--color-border)",
-                          background: "var(--color-surface)",
-                          color: "var(--color-text)",
-                          fontSize: "var(--font-size-body)",
-                          marginBlockEnd: "var(--space-2)",
-                        }}
+                        style={{ marginBlockEnd: "var(--space-2)" }}
                         value={editedMeaning}
                         onChange={(e) => setEditedMeaning(e.target.value)}
                       />
                       <div style={{ display: "flex", justifyContent: "center", gap: "var(--space-2)" }}>
-                        <button
+                        <Button
                           type="button"
-                          className={styles.buttonPrimary}
-                          style={{ padding: "var(--space-1) var(--space-3)", fontSize: "var(--font-size-meta)" }}
+                          size="sm"
+                          variant="primary"
                           onClick={handleSaveEdit}
                         >
                           {isFa ? "ذخیره معنی" : "Save Meaning"}
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                           type="button"
-                          className={styles.buttonSecondary}
-                          style={{ padding: "var(--space-1) var(--space-3)", fontSize: "var(--font-size-meta)" }}
+                          size="sm"
+                          variant="secondary"
                           onClick={() => setIsEditingMeaning(false)}
                         >
                           {isFa ? "انصراف" : "Cancel"}
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   ) : (
@@ -304,15 +296,15 @@ export default function ReviewPage() {
                       <h3 style={{ fontSize: "var(--font-size-section-title)", fontWeight: 700, color: "var(--color-action)", margin: 0 }}>
                         {currentCard.translationFa}
                       </h3>
-                      <button
+                      <Button
                         type="button"
-                        className={styles.buttonSecondary}
-                        style={{ padding: "2px 8px", fontSize: "0.75rem" }}
+                        size="sm"
+                        variant="secondary"
                         onClick={handleStartEdit}
                         title={isFa ? "اصلاح ترجمه" : "Edit translation"}
                       >
                         ✏️ {isFa ? "اصلاح" : "Edit"}
-                      </button>
+                      </Button>
                     </div>
                   )}
 
@@ -341,69 +333,37 @@ export default function ReviewPage() {
 
                   {/* 4 Transparent SRS Rating Buttons */}
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(6.5rem, 1fr))", gap: "var(--space-2)" }}>
-                    <button
+                    <Button
                       type="button"
+                      variant="destructive"
                       onClick={() => handleRate("again")}
-                      style={{
-                        padding: "var(--space-3)",
-                        borderRadius: "var(--radius-control)",
-                        background: "var(--color-error-bg)",
-                        color: "var(--color-error-text)",
-                        border: "1px solid var(--color-border)",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                      }}
                     >
                       {isFa ? "دوباره (۱ روز)" : "Again (1d)"}
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       type="button"
+                      variant="secondary"
                       onClick={() => handleRate("hard")}
-                      style={{
-                        padding: "var(--space-3)",
-                        borderRadius: "var(--radius-control)",
-                        background: "var(--color-warning-bg)",
-                        color: "var(--color-warning-text)",
-                        border: "1px solid var(--color-border)",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                      }}
                     >
                       {isFa ? "سخت (۲ روز)" : "Hard (2d)"}
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       type="button"
+                      variant="primary"
                       onClick={() => handleRate("good")}
-                      style={{
-                        padding: "var(--space-3)",
-                        borderRadius: "var(--radius-control)",
-                        background: "var(--color-info-bg)",
-                        color: "var(--color-info-text)",
-                        border: "1px solid var(--color-border)",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                      }}
                     >
                       {isFa ? "خوب (۴ روز)" : "Good (4d)"}
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       type="button"
+                      variant="primary"
                       onClick={() => handleRate("easy")}
-                      style={{
-                        padding: "var(--space-3)",
-                        borderRadius: "var(--radius-control)",
-                        background: "var(--color-success-bg)",
-                        color: "var(--color-success-text)",
-                        border: "1px solid var(--color-border)",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                      }}
                     >
                       {isFa ? "آسان (۷ روز)" : "Easy (7d)"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               )}
@@ -444,9 +404,8 @@ export default function ReviewPage() {
               <Link className={styles.buttonSecondary} href="/vocabulary">
                 {isFa ? "مشاهده بانک واژگان" : "View Vocabulary Bank"}
               </Link>
-              <button type="button" className={styles.buttonSecondary} onClick={handleReset}>
-                {isFa ? "مرور مجدد همین کارت‌ها" : "Review Again"}
-              </button>
+              <Button type="button" variant="secondary" onClick={handleReset}>{isFa ? "مرور مجدد همین کارت‌ها" : "Review Again"}
+             </Button>
             </div>
           </div>
         )}

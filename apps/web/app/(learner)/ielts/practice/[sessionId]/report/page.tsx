@@ -1,5 +1,7 @@
 'use client';
 
+import { Button, Table } from "@endoora/ui";
+
 import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
 import styles from "./ielts-report.module.css";
@@ -7,6 +9,7 @@ import {
   fetchSessionReport,
   SessionReportData,
 } from "../../../../../../lib/ielts-simulator";
+import { PublicShell } from "../../../../../../components/marketing/PublicShell";
 
 interface PageProps {
   params: Promise<{ sessionId: string }>;
@@ -38,21 +41,25 @@ export default function IELTSDiagnosticReportPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
-        در حال محاسبه نمرات و تحلیل تشخیصی آزمون آیلتس...
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
+          در حال محاسبه نمرات و تحلیل تشخیصی آزمون آیلتس...
+        </div>
+      </PublicShell>
     );
   }
 
   if (error || !report) {
     return (
-      <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
-        <h2>خطا در دریافت کارنامه</h2>
-        <p>{error || "کارنامه یافت نشد."}</p>
-        <Link href="/ielts/practice" className={styles.actionBtnPrimary}>
-          بازگشت به مرکز آزمون‌ها
-        </Link>
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
+          <h2>خطا در دریافت کارنامه</h2>
+          <p>{error || "کارنامه یافت نشد."}</p>
+          <Link href="/ielts/practice" className={styles.actionBtnPrimary}>
+            بازگشت به مرکز آزمون‌ها
+          </Link>
+        </div>
+      </PublicShell>
     );
   }
 
@@ -66,7 +73,8 @@ export default function IELTSDiagnosticReportPage({ params }: PageProps) {
   const incorrectCount = report.questions.length - correctCount;
 
   return (
-    <div className={styles.container}>
+    <PublicShell locale="fa" currentPath="/ielts">
+      <div className={styles.container}>
       {/* Page Header */}
       <header className={styles.header}>
         <span className={styles.kicker}>IELTS Diagnostic Performance Report</span>
@@ -172,35 +180,41 @@ export default function IELTSDiagnosticReportPage({ params }: PageProps) {
 
           {/* Filter buttons */}
           <div style={{ display: "flex", gap: "var(--space-2)" }}>
-            <button
+            <Button
               type="button"
+              variant={reviewFilter === "all" ? "primary" : "secondary"}
+              size="sm"
               className={styles.actionBtnSecondary}
               style={reviewFilter === "all" ? { background: "var(--color-surface-hover)", borderColor: "var(--color-primary)" } : {}}
               onClick={() => setReviewFilter("all")}
             >
               همه سوالات ({report.questions.length})
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant={reviewFilter === "incorrect" ? "primary" : "secondary"}
+              size="sm"
               className={styles.actionBtnSecondary}
               style={reviewFilter === "incorrect" ? { background: "var(--color-surface-hover)", borderColor: "var(--color-danger-border)" } : {}}
               onClick={() => setReviewFilter("incorrect")}
             >
               اشتباهات ({incorrectCount})
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant={reviewFilter === "correct" ? "primary" : "secondary"}
+              size="sm"
               className={styles.actionBtnSecondary}
               style={reviewFilter === "correct" ? { background: "var(--color-surface-hover)", borderColor: "var(--color-success-border)" } : {}}
               onClick={() => setReviewFilter("correct")}
             >
               صحیح‌ها ({correctCount})
-            </button>
+            </Button>
           </div>
         </div>
 
         <div className={styles.reviewTableWrapper}>
-          <table className={styles.table}>
+          <Table className={styles.table}>
             <thead>
               <tr>
                 <th>شماره</th>
@@ -249,9 +263,10 @@ export default function IELTSDiagnosticReportPage({ params }: PageProps) {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
     </div>
+    </PublicShell>
   );
 }

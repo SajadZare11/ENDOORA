@@ -77,6 +77,18 @@ class TeacherClass(models.Model):
     max_capacity = models.PositiveIntegerField(default=1, verbose_name=_("ظرفیت حداکثر"))
     objectives = models.JSONField(default=list, blank=True, verbose_name=_("اهداف آموزشی"))
     private_notes = models.TextField(blank=True, default="", verbose_name=_("یادداشت‌های اختصاصی مدرس"))
+
+    # TeacherOS Pedagogical Profile
+    coursebook = models.CharField(max_length=255, blank=True, default="", verbose_name=_("کتاب و منابع آموزشی"))
+    age_group = models.CharField(max_length=32, blank=True, default="adult", verbose_name=_("گروه سنی"))
+    class_size_type = models.CharField(max_length=32, blank=True, default="small", verbose_name=_("نوع و اندازه کلاس"))
+    default_duration = models.PositiveIntegerField(default=60, verbose_name=_("مدت زمان پیش‌فرض جلسه (دقیقه)"))
+    goal = models.CharField(max_length=64, blank=True, default="general", verbose_name=_("هدف اصلی دوره"))
+    focus_skills = models.JSONField(default=list, blank=True, verbose_name=_("مهارت‌های نیازمند تمرکز"))
+    equipment = models.JSONField(default=list, blank=True, verbose_name=_("امکانات و تجهیزات کلاسی"))
+    teaching_preferences = models.JSONField(default=list, blank=True, verbose_name=_("رویکردها و ترجیحات تدریس"))
+    target_exams = models.CharField(max_length=255, blank=True, default="", verbose_name=_("آزمون‌های هدف"))
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -812,3 +824,353 @@ class TeacherIntervention(models.Model):
 
     def __str__(self):
         return f"{self.title} for {self.learner.email} ({self.get_status_display()})"
+
+
+class MaterialType(models.TextChoices):
+    LESSON = "lesson", _("طرح درس")
+    ACTIVITY = "activity", _("فعالیت کلاسی")
+    WORKSHEET = "worksheet", _("کاربرگ تمرین")
+    ASSESSMENT = "assessment", _("آزمون و کوئیز")
+
+
+class MaterialStatus(models.TextChoices):
+    DRAFT = "draft", _("پیش‌نویس")
+    APPROVED = "approved", _("تایید شده")
+    ARCHIVED = "archived", _("بایگانی شده")
+
+
+class TeacherMaterial(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="created_materials",
+        verbose_name=_("مدرس سازنده"),
+    )
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="materials",
+        verbose_name=_("کلاس مرتبط"),
+    )
+    material_type = models.CharField(
+        max_length=32,
+        choices=MaterialType.choices,
+        db_index=True,
+        verbose_name=_("نوع محتوا"),
+    )
+    subtype = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        verbose_name=_("زیرنوع محتوا"),
+    )
+    title = models.CharField(max_length=255, verbose_name=_("عنوان محتوا"))
+    topic = models.CharField(max_length=255, blank=True, default="", verbose_name=_("موضوع درس"))
+    cefr_level = models.CharField(max_length=16, default="B1", verbose_name=_("سطح CEFR"))
+    content = models.JSONField(default=dict, blank=True, verbose_name=_("محتوای ساختاریافته"))
+    raw_markdown = models.TextField(blank=True, default="", verbose_name=_("متن کامل یا مارک‌داون"))
+    status = models.CharField(
+        max_length=32,
+        choices=MaterialStatus.choices,
+        default=MaterialStatus.DRAFT,
+        db_index=True,
+        verbose_name=_("وضعیت محتوا"),
+    )
+    is_pinned = models.BooleanField(default=False, verbose_name=_("سنجاق به علاقه‌مندی‌ها"))
+    metadata = models.JSONField(default=dict, blank=True, verbose_name=_("متاداده آموزشی"))
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("محتوای آموزشی TeacherOS")
+        verbose_name_plural = _("محتواهای آموزشی TeacherOS")
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return f"{self.title} ({self.get_material_type_display()})"
+
+
+class OutcomeResult(models.TextChoices):
+    SUCCESS = "success", _("بسیار موفق")
+    PARTIAL = "partial", _("موفق با چالش جزئی")
+    NEEDS_REPEAT = "needs_repeat", _("نیازمند تکرار و تمرین بیشتر")
+
+
+class LessonOutcome(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="lesson_outcomes",
+        verbose_name=_("کلاس"),
+    )
+    session = models.ForeignKey(
+        ClassSession,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="outcomes",
+        verbose_name=_("جلسه مرتبط"),
+    )
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="recorded_outcomes",
+        verbose_name=_("مدرس"),
+    )
+    result = models.CharField(
+        max_length=32,
+        choices=OutcomeResult.choices,
+        default=OutcomeResult.SUCCESS,
+        verbose_name=_("نتیجه تدریس"),
+    )
+    difficulty_rating = models.PositiveSmallIntegerField(
+        default=3,
+        verbose_name=_("درجه سختی (۱ تا ۵)"),
+    )
+    completion_percent = models.PositiveSmallIntegerField(
+        default=100,
+        verbose_name=_("درصد پوشش مباحث"),
+    )
+    summary = models.TextField(blank=True, default="", verbose_name=_("خلاصه دستاوردها"))
+    notes = models.TextField(blank=True, default="", verbose_name=_("یادداشت و مشاهدات معلم"))
+    followup_reminders = models.JSONField(default=list, blank=True, verbose_name=_("موارد پیگیری جلسه آینده"))
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name = _("ثبت نتیجه تدریس جلسه")
+        verbose_name_plural = _("نتایج تدریس جلسات")
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Outcome for {self.teacher_class.title} on {self.created_at.strftime('%Y-%m-%d')}"
+
+
+class StudentDossier(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="student_dossiers",
+        verbose_name=_("کلاس"),
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="dossiers",
+        verbose_name=_("زبان‌آموز"),
+    )
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="mentored_dossiers",
+        verbose_name=_("مدرس مسئول"),
+    )
+    target_goals = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("اهداف کوتاه‌مدت و بلندمدت"),
+    )
+    learning_preferences = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("ترجیحات یادگیری و رفتار"),
+    )
+    cefr_skills = models.JSONField(
+        default=dict,
+        blank=True,
+        verbose_name=_("سطوح و اعتمادبه‌نفس ۷ مهارت"),
+    )
+    skill_scores_history = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("سوابق ارزیابی هفت مهارت (از ۲۰)"),
+    )
+    error_profile = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("پروفایل خطاهای زبانی"),
+    )
+    strengths = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("نقاط قوت"),
+    )
+    areas_for_development = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("نقاط نیازمند تقویت"),
+    )
+    engagement_index = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=Decimal("1.00"),
+        verbose_name=_("شاخص تعامل و نظم کلاسی"),
+    )
+    ai_recommendations = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("پیشنهادات هوشمند AI"),
+    )
+    assessment_milestones = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("نقاط عطف و نتایج آزمون‌ها"),
+    )
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("پرونده آموزشی دانش‌آموز (Dossier)")
+        verbose_name_plural = _("پرونده‌های آموزشی دانش‌آموزان")
+        unique_together = ("teacher_class", "learner")
+
+    def __str__(self):
+        return f"Dossier: {self.learner.email} ({self.teacher_class.title})"
+
+    def calculate_cefr_overall(self) -> str:
+        """Derive overall CEFR level based on average of 7 skills."""
+        if not self.cefr_skills:
+            return self.teacher_class.level if self.teacher_class else "B1"
+        scores = [v.get("score", 10) for v in self.cefr_skills.values() if isinstance(v, dict)]
+        if not scores:
+            return "B1"
+        avg = sum(scores) / len(scores)
+        if avg >= 18:
+            return "C2"
+        elif avg >= 15:
+            return "C1"
+        elif avg >= 12:
+            return "B2"
+        elif avg >= 9:
+            return "B1"
+        elif avg >= 6:
+            return "A2"
+        else:
+            return "A1"
+
+
+class SpacedReviewItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="spaced_review_items",
+        verbose_name=_("کلاس"),
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="assigned_spaced_reviews",
+        verbose_name=_("زبان‌آموز هدف (یا همه)"),
+    )
+    target_item = models.CharField(max_length=255, verbose_name=_("واژه یا نکته گرامری"))
+    item_type = models.CharField(max_length=32, default="vocabulary", verbose_name=_("نوع آیتم"))
+    prompt_question = models.TextField(blank=True, default="", verbose_name=_("سوال مرور یا فلش‌کارت"))
+    correct_answer = models.TextField(blank=True, default="", verbose_name=_("پاسخ صحیح"))
+    due_date = models.DateField(db_index=True, verbose_name=_("تاریخ موعد مرور بعدی"))
+    interval_days = models.PositiveIntegerField(default=1, verbose_name=_("فاصله مرور (روز)"))
+    repetition_count = models.PositiveIntegerField(default=0, verbose_name=_("تعداد مرور موفق"))
+    ease_factor = models.FloatField(default=2.5, verbose_name=_("ضریب سهولت SuperMemo"))
+    is_mastered = models.BooleanField(default=False, verbose_name=_("تسلط کامل یافته"))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("آیتم مرور با فاصله (SRS)")
+        verbose_name_plural = _("آیتم‌های مرور با فاصله")
+        ordering = ["due_date"]
+
+    def __str__(self):
+        return f"SRS: {self.target_item} - due {self.due_date}"
+
+    def record_review(self, grade: int):
+        """
+        Implements SuperMemo SM-2 algorithm for spaced retrieval.
+        grade: integer from 0 (complete blackout) to 5 (perfect recall).
+        """
+        grade = max(0, min(5, int(grade)))
+        if grade >= 3:
+            if self.repetition_count == 0:
+                self.interval_days = 1
+            elif self.repetition_count == 1:
+                self.interval_days = 6
+            else:
+                self.interval_days = max(1, round(self.interval_days * self.ease_factor))
+            self.repetition_count += 1
+            if self.repetition_count >= 5:
+                self.is_mastered = True
+        else:
+            self.repetition_count = 0
+            self.interval_days = 1
+            self.is_mastered = False
+
+        self.ease_factor = max(1.3, self.ease_factor + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02)))
+        self.due_date = timezone.now().date() + timedelta(days=self.interval_days)
+        self.save()
+
+
+class DifferentiationPlan(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    material = models.ForeignKey(
+        TeacherMaterial,
+        on_delete=models.CASCADE,
+        related_name="differentiation_plans",
+        verbose_name=_("محتوای مبنا"),
+    )
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="differentiation_plans",
+        verbose_name=_("کلاس"),
+    )
+    tier_support = models.JSONField(
+        default=dict,
+        verbose_name=_("سطح پشتیبانی (برای یادگیرندگان نیازمند کمک)"),
+    )
+    tier_core = models.JSONField(
+        default=dict,
+        verbose_name=_("سطح استاندارد"),
+    )
+    tier_extension = models.JSONField(
+        default=dict,
+        verbose_name=_("سطح چالشی (برای یادگیرندگان پیشرفته)"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("برنامه تمایزیافته آموزشی")
+        verbose_name_plural = _("برنامه‌های تمایزیافته آموزشی")
+
+    def __str__(self):
+        return f"Differentiation: {self.material.title} ({self.teacher_class.title})"
+
+
+class TeacherPedagogicalPreference(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="pedagogical_preferences",
+        verbose_name=_("مدرس"),
+    )
+    plan_code = models.CharField(max_length=32, default="pro", verbose_name=_("کد طرح اشتراک"))  # free, pro, premium
+    plan_expires_at = models.DateTimeField(null=True, blank=True, verbose_name=_("تاریخ انقضای طرح"))
+    default_cefr = models.CharField(max_length=16, default="B1", verbose_name=_("سطح زبانی پیش‌فرض"))
+    default_duration = models.PositiveIntegerField(default=60, verbose_name=_("مدت جلسه پیش‌فرض"))
+    preferred_methodology = models.CharField(max_length=32, default="ppp", verbose_name=_("متدولوژی تدریس ترجیحی"))
+    auto_generate_ccqs = models.BooleanField(default=True, verbose_name=_("تولید خودکار سوالات مفهومی CCQ"))
+    feedback_tone = models.CharField(max_length=32, default="balanced", verbose_name=_("لحن بازخورد رایتینگ"))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("تنظیمات آموزشی و ترجیحات مدرس")
+        verbose_name_plural = _("تنظیمات آموزشی و ترجیحات مدرسان")
+
+    def __str__(self):
+        return f"Preferences: {self.teacher.email} ({self.plan_code})"
+

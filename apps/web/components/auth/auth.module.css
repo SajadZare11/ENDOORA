@@ -1,6 +1,9 @@
 .page {
-  min-block-size: 100vh;
-  padding: clamp(var(--space-3), 2.6vw, var(--space-8));
+  min-block-size: calc(100vh - 5rem);
+  padding: clamp(var(--space-4), 3vw, var(--space-8)) clamp(var(--space-3), 2.5vw, var(--space-6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   background:
     radial-gradient(circle at 12% 4%, rgb(20 184 166 / 0.11), transparent 24rem),
@@ -13,10 +16,10 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(28rem, 0.88fr) minmax(30rem, 1.12fr);
-  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(26rem, 0.9fr) minmax(28rem, 1.1fr);
+  grid-template-rows: 1fr;
   inline-size: min(76rem, 100%);
-  min-block-size: calc(100vh - clamp(1.5rem, 5.2vw, 4rem));
+  min-block-size: min(48rem, calc(100vh - 8rem));
   margin-inline: auto;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 0.14);
@@ -27,11 +30,9 @@
   direction: ltr;
 }
 
-.page[dir="rtl"] .header,
 .page[dir="rtl"] .workspace,
 .page[dir="rtl"] .sceneCopy { direction: rtl; }
 
-.page[dir="ltr"] .header,
 .page[dir="ltr"] .workspace,
 .page[dir="ltr"] .sceneCopy { direction: ltr; }
 
@@ -40,108 +41,14 @@
   inline-size: min(86rem, 100%);
 }
 
-.header {
-  z-index: 4;
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  min-block-size: 5.2rem;
-  padding: var(--space-4) clamp(var(--space-4), 3vw, var(--space-8));
-  border-block-end: 1px solid rgb(255 255 255 / 0.1);
-  background: rgb(3 7 18 / 0.48);
-  backdrop-filter: blur(18px);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.brandMark {
-  display: grid;
-  place-items: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  border: 1px solid rgb(255 255 255 / 0.24);
-  border-radius: 0.8rem;
-  background: rgb(16 42 67 / 0.82);
-  box-shadow: inset 0 1px rgb(255 255 255 / 0.12);
-}
-
-.brandMark span {
-  inline-size: 0.82rem;
-  block-size: 1.2rem;
-  border: 2px solid var(--color-learning-teal);
-  border-block-end-color: transparent;
-  border-radius: 0.7rem 0.7rem 0.2rem 0.2rem;
-}
-
-.brandName,
-.brandMotto { display: block; }
-
-.brandName {
-  font-family: var(--font-family-latin);
-  font-size: 1.3rem;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-}
-
-.brandMotto {
-  margin-block-start: var(--space-1);
-  color: var(--color-muted);
-  font-family: var(--font-family-latin);
-  font-size: 0.72rem;
-}
-
-.headerActions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.headerControl {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  min-block-size: var(--target-min);
-  padding-inline: var(--space-3);
-  border: 1px solid rgb(255 255 255 / 0.12);
-  border-radius: var(--radius-control);
-  background: rgb(255 255 255 / 0.045);
-  color: var(--color-text);
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), background var(--motion-fast) var(--motion-ease);
-}
-
-.headerControl svg {
-  inline-size: 1.15rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-}
-
-.headerControl:hover {
-  transform: translateY(-1px);
-  border-color: rgb(20 184 166 / 0.56);
-  background: rgb(20 184 166 / 0.08);
-}
-
 .workspace {
   z-index: 2;
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   align-self: center;
   inline-size: min(37rem, calc(100% - (2 * var(--space-8))));
-  max-block-size: calc(100vh - 9rem);
-  margin: var(--space-8) auto;
+  max-block-size: min(46rem, calc(100vh - 10rem));
+  margin: var(--space-6) auto;
   padding: clamp(var(--space-5), 3vw, var(--space-8));
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -264,8 +171,8 @@
 .scene {
   position: relative;
   grid-column: 1;
-  grid-row: 2;
-  min-block-size: 42rem;
+  grid-row: 1;
+  min-block-size: 100%;
   overflow: hidden;
   border-inline-end: 1px solid rgb(255 255 255 / 0.1);
   background: var(--color-deep-space);
@@ -381,22 +288,6 @@
   box-shadow: 0 30px 80px rgb(15 23 42 / 0.14);
 }
 
-:global(html[data-theme="light"]) .header {
-  border-block-end-color: var(--color-border);
-  background: rgb(255 255 255 / 0.78);
-}
-
-:global(html[data-theme="light"]) .brandMark {
-  border-color: color-mix(in srgb, var(--color-action) 22%, var(--color-border));
-  background: color-mix(in srgb, var(--color-info-bg) 58%, var(--color-surface));
-  box-shadow: inset 0 1px rgb(255 255 255 / 0.72);
-}
-
-:global(html[data-theme="light"]) .headerControl {
-  border-color: var(--color-border);
-  background: rgb(255 255 255 / 0.72);
-}
-
 :global(html[data-theme="light"]) .workspace {
   border-color: var(--color-border);
   background: rgb(255 255 255 / 0.9);
@@ -437,21 +328,43 @@
 @media (max-width: 48rem) {
   .page { padding: var(--space-3); }
   .stage,
-  .stageWide { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-block-size: calc(100vh - (2 * var(--space-3))); }
-  .header { grid-column: 1; min-block-size: 4.6rem; padding: var(--space-3) var(--space-4); }
-  .scene { grid-column: 1; grid-row: 2; min-block-size: 12rem; border-inline-end: 0; border-block-end: 1px solid rgb(255 255 255 / 0.1); }
+  .stageWide {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-block-size: auto;
+  }
+  .scene {
+    grid-column: 1;
+    grid-row: 1;
+    min-block-size: 14rem;
+    border-inline-end: 0;
+    border-block-end: 1px solid rgb(255 255 255 / 0.1);
+  }
   .sceneImage { object-position: center 44%; }
-  .sceneCopy { inset-block-end: var(--space-3); inset-inline: auto var(--space-4); max-inline-size: min(24rem, calc(100% - 8rem)); padding: var(--space-3); }
+  .sceneCopy {
+    inset-block-end: var(--space-3);
+    inset-inline: auto var(--space-4);
+    max-inline-size: min(24rem, calc(100% - 8rem));
+    padding: var(--space-3);
+  }
   .sceneCopy h2 { font-size: 1rem; }
   .sceneCopy p { display: none; }
   .workspace,
-  .stageWide .workspace { grid-column: 1; grid-row: 3; inline-size: 100%; max-block-size: none; margin: 0; padding: var(--space-5) var(--space-4) var(--space-6); overflow: visible; border: 0; border-radius: 0; box-shadow: none; }
+  .stageWide .workspace {
+    grid-column: 1;
+    grid-row: 2;
+    inline-size: 100%;
+    max-block-size: none;
+    margin: 0;
+    padding: var(--space-5) var(--space-4) var(--space-6);
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
 
 @media (max-width: 36rem) {
-  .brandMotto,
-  .headerControl:first-child span { display: none; }
-  .headerControl { padding-inline: var(--space-2); }
   .heading { gap: var(--space-3); }
   .securityIcon { inline-size: 2.5rem; block-size: 2.5rem; }
   .roleGrid,

@@ -54,7 +54,7 @@ class TeacherFeedRequestSerializer(serializers.ModelSerializer):
             return f"{first_name} {last_name[0]}."
         elif first_name:
             return first_name
-        return "زبان‌آموز اندورا"
+        return "زبان‌آموز ایندورا"
 
     def get_offer_count(self, obj) -> int:
         return obj.offers.filter(status__in=[OfferStatus.PENDING, OfferStatus.ACCEPTED]).count()
@@ -104,13 +104,13 @@ class TeacherOfferSerializer(serializers.ModelSerializer):
 
     def get_teacher_name(self, obj) -> str:
         name = f"{obj.teacher.first_name or ''} {obj.teacher.last_name or ''}".strip()
-        return name or "استاد اندورا"
+        return name or "استاد ایندورا"
 
     def get_teacher_headline(self, obj) -> str:
         profile = getattr(obj.teacher, "profile", None)
         if profile and hasattr(profile, "headline") and profile.headline:
             return profile.headline
-        return "مدرس زبان انگلیسی اندورا"
+        return "مدرس زبان انگلیسی ایندورا"
 
     def get_teacher_verified(self, obj) -> bool:
         return getattr(obj.teacher, "is_teacher_verified", False)
@@ -251,9 +251,9 @@ class SessionBookingSerializer(serializers.ModelSerializer):
         req_user = self.context.get("request").user if self.context.get("request") else None
         if req_user and req_user.id == obj.learner_id:
             # Counterparty is teacher
-            name = f"{obj.teacher.first_name or ''} {obj.teacher.last_name or ''}".strip() or "استاد اندورا"
+            name = f"{obj.teacher.first_name or ''} {obj.teacher.last_name or ''}".strip() or "استاد ایندورا"
             profile = getattr(obj.teacher, "profile", None)
-            headline = getattr(profile, "headline", "مدرس زبان اندورا") if profile else "مدرس زبان اندورا"
+            headline = getattr(profile, "headline", "مدرس زبان ایندورا") if profile else "مدرس زبان ایندورا"
             return {
                 "id": str(obj.teacher.id),
                 "name": name,
@@ -269,7 +269,7 @@ class SessionBookingSerializer(serializers.ModelSerializer):
             return {
                 "id": str(obj.learner.id),
                 "name": name,
-                "headline": "زبان‌آموز اندورا",
+                "headline": "زبان‌آموز ایندورا",
                 "role": "learner",
                 "verified": False,
             }

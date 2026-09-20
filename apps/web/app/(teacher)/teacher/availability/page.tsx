@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import styles from "./availability.module.css";
 import {
@@ -381,27 +383,30 @@ export default function TeacherAvailabilityPage() {
 
         {/* Tab Navigation */}
         <div className={styles.tabBar}>
-          <button
+          <Button
             type="button"
+            variant={activeTab === "schedule" ? "primary" : "secondary"}
             className={`${styles.tabButton} ${activeTab === "schedule" ? styles.tabButtonActive : ""}`}
             onClick={() => setActiveTab("schedule")}
           >
             📅 برنامه هفتگی تکرارشونده
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "timeoff" ? "primary" : "secondary"}
             className={`${styles.tabButton} ${activeTab === "timeoff" ? styles.tabButtonActive : ""}`}
             onClick={() => setActiveTab("timeoff")}
           >
             🏖️ مرخصی‌ها و تعطیلات ({timeOffs.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "settings" ? "primary" : "secondary"}
             className={`${styles.tabButton} ${activeTab === "settings" ? styles.tabButtonActive : ""}`}
             onClick={() => setActiveTab("settings")}
           >
             ⚙️ سیاست‌ها و تنظیمات رزرو
-          </button>
+          </Button>
         </div>
       </section>
 
@@ -428,34 +433,42 @@ export default function TeacherAvailabilityPage() {
               {/* Presets Toolbar */}
               <div className={styles.presetsBar}>
                 <span className={styles.presetLabel}>الگوهای سریع:</span>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.presetBtn}
                   onClick={() => applyPreset("morning")}
                 >
                   صبح‌ها (۰۹:۰۰ تا ۱۳:۰۰)
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.presetBtn}
                   onClick={() => applyPreset("evening")}
                 >
                   عصرها (۱۴:۰۰ تا ۱۹:۰۰)
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.presetBtn}
                   onClick={() => applyPreset("full")}
                 >
                   تمام‌وقت (صبح و عصر)
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.presetBtn}
                   onClick={() => applyPreset("clear")}
                 >
                   پاک‌کردن همه
-                </button>
+                </Button>
               </div>
 
               {/* Day Cards */}
@@ -470,9 +483,7 @@ export default function TeacherAvailabilityPage() {
                   >
                     <div className={styles.dayHeader}>
                       <div className={styles.dayTitleWrap}>
-                        <input
-                          type="checkbox"
-                          id={`day-${day}`}
+                        <Input type="checkbox" id={`day-${day}`}
                           className={styles.dayCheckbox}
                           checked={dayState.is_active}
                           onChange={() => toggleDayActive(day)}
@@ -483,13 +494,15 @@ export default function TeacherAvailabilityPage() {
                       </div>
 
                       {dayState.is_active && (
-                        <button
+                        <Button
                           type="button"
+                          variant="secondary"
+                          size="sm"
                           className={styles.addSlotBtn}
                           onClick={() => addSlotToDay(day)}
                         >
                           + بازه جدید
-                        </button>
+                        </Button>
                       )}
                     </div>
 
@@ -499,31 +512,24 @@ export default function TeacherAvailabilityPage() {
                         <div className={styles.slotsRowList}>
                           {dayState.slots.map((slot, sIdx) => (
                             <div key={sIdx} className={styles.slotItem}>
-                              <input
-                                type="time"
-                                className={styles.slotTimeInput}
+                              <Input type="time" className={styles.slotTimeInput}
                                 value={slot.start_time}
                                 onChange={(e) =>
                                   updateSlotTimes(day, sIdx, "start_time", e.target.value)
                                 }
                               />
                               <span className={styles.slotSeparator}>تا</span>
-                              <input
-                                type="time"
-                                className={styles.slotTimeInput}
+                              <Input type="time" className={styles.slotTimeInput}
                                 value={slot.end_time}
                                 onChange={(e) =>
                                   updateSlotTimes(day, sIdx, "end_time", e.target.value)
                                 }
                               />
-                              <button
-                                type="button"
-                                className={styles.deleteSlotBtn}
-                                onClick={() => removeSlotFromDay(day, sIdx)}
+                              <Button type="button" variant="destructive" size="compact" className={styles.deleteSlotBtn} onClick={() => removeSlotFromDay(day, sIdx)}
                                 title="حذف این بازه"
                               >
                                 ✕ حذف
-                              </button>
+                              </Button>
                             </div>
                           ))}
                         </div>
@@ -541,14 +547,16 @@ export default function TeacherAvailabilityPage() {
 
               {/* Actions Footer */}
               <div className={styles.actionsFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   className={styles.primaryBtn}
+                  loading={saving}
                   disabled={saving}
                   onClick={handleSaveSchedule}
                 >
                   {saving ? "در حال ذخیره..." : "ذخیره تغییرات برنامه هفتگی"}
-                </button>
+                </Button>
               </div>
             </div>
           )}
@@ -573,42 +581,40 @@ export default function TeacherAvailabilityPage() {
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
                     <label className={styles.label}>آغاز مرخصی</label>
-                    <input
+                    <Input
                       type="datetime-local"
                       className={styles.input}
                       value={toStart}
-                      onChange={(e) => setToStart(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToStart(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className={styles.formGroup}>
                     <label className={styles.label}>پایان مرخصی</label>
-                    <input
+                    <Input
                       type="datetime-local"
                       className={styles.input}
                       value={toEnd}
-                      onChange={(e) => setToEnd(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToEnd(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className={styles.formGroup}>
                     <label className={styles.label}>علت یا یادداشت (اختیاری)</label>
-                    <input
+                    <Input
                       type="text"
                       className={styles.input}
                       placeholder="مثلاً: سفر خانوادگی، امتحانات دانشگاه"
                       value={toReason}
-                      onChange={(e) => setToReason(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToReason(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div className={styles.toggleRow}>
-                  <input
-                    type="checkbox"
-                    id="toFullDay"
+                  <Input type="checkbox" id="toFullDay"
                     className={styles.dayCheckbox}
                     checked={toFullDay}
                     onChange={(e) => setToFullDay(e.target.checked)}
@@ -619,9 +625,9 @@ export default function TeacherAvailabilityPage() {
                 </div>
 
                 <div className={styles.actionsFooter}>
-                  <button type="submit" className={styles.primaryBtn} disabled={saving}>
+                  <Button type="submit" variant="primary" className={styles.primaryBtn} loading={saving} disabled={saving}>
                     {saving ? "در حال ثبت..." : "+ ثبت بازه مرخصی"}
-                  </button>
+                  </Button>
                 </div>
               </form>
 
@@ -642,14 +648,11 @@ export default function TeacherAvailabilityPage() {
                             <span className={styles.timeOffReason}>علت: {item.reason}</span>
                           )}
                         </div>
-                        <button
-                          type="button"
-                          className={styles.dangerBtn}
-                          onClick={() => handleDeleteTimeOff(item.id)}
+                        <Button type="button" variant="destructive" size="sm" className={styles.dangerBtn} onClick={() => handleDeleteTimeOff(item.id)}
                           disabled={saving}
                         >
                           ✕ لغو مرخصی
-                        </button>
+                        </Button>
                       </div>
                     ))}
                   </div>
@@ -724,7 +727,7 @@ export default function TeacherAvailabilityPage() {
                     }
                   >
                     <option value={30}>۳۰ دقیقه</option>
-                    <option value={45}>۴۵ دقیقه (استاندارد اندورا)</option>
+                    <option value={45}>۴۵ دقیقه (استاندارد ایندورا)</option>
                     <option value={60}>۶۰ دقیقه (۱ ساعت کامل)</option>
                     <option value={90}>۹۰ دقیقه</option>
                   </select>
@@ -757,9 +760,7 @@ export default function TeacherAvailabilityPage() {
               </div>
 
               <div className={styles.toggleRow}>
-                <input
-                  type="checkbox"
-                  id="autoAccept"
+                <Input type="checkbox" id="autoAccept"
                   className={styles.dayCheckbox}
                   checked={settings.auto_accept_bookings}
                   onChange={(e) =>
@@ -775,9 +776,9 @@ export default function TeacherAvailabilityPage() {
               </div>
 
               <div className={styles.actionsFooter}>
-                <button type="submit" className={styles.primaryBtn} disabled={saving}>
+                <Button type="submit" variant="primary" className={styles.primaryBtn} loading={saving} disabled={saving}>
                   {saving ? "در حال ذخیره..." : "ذخیره تنظیمات رزرو"}
-                </button>
+                </Button>
               </div>
             </form>
           )}

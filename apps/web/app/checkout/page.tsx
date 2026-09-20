@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button, Input } from "@endoora/ui";
 import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -84,7 +85,7 @@ function CheckoutContent() {
 
   // Compute final payable amount
   let payableAmountToman = 0;
-  let itemName = "سفارش اندورا";
+  let itemName = "سفارش ایندورا";
   let itemDescription = "";
 
   if (orderType === "booking_session") {
@@ -101,7 +102,7 @@ function CheckoutContent() {
     itemDescription = plan ? `${plan.duration_days} روز دسترسی نامحدود به تمامی امکانات هوشمند` : "";
   } else if (orderType === "wallet_topup") {
     payableAmountToman = topupAmount;
-    itemName = "شارژ کیف پول کاربری اندورا";
+    itemName = "شارژ کیف پول کاربری ایندورا";
     itemDescription = "مبلغ بلافاصله پس از پرداخت به موجودی حساب شما افزوده می‌شود.";
   }
 
@@ -191,12 +192,12 @@ function CheckoutContent() {
               <label style={{ fontSize: "var(--font-size-sm)", fontWeight: 600 }}>
                 مبلغ شارژ (تومان):
               </label>
-              <input
+              <Input
                 type="number"
                 min={10000}
                 step={50000}
                 value={topupAmount}
-                onChange={(e) => setTopupAmount(Math.max(10000, parseInt(e.target.value || "0", 10)))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopupAmount(Math.max(10000, parseInt(e.target.value || "0", 10)))}
                 style={{
                   padding: "var(--space-3)",
                   borderRadius: "var(--radius-card)",
@@ -208,23 +209,15 @@ function CheckoutContent() {
               />
               <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
                 {[100000, 200000, 500000, 1000000].map((preset) => (
-                  <button
+                  <Button
                     key={preset}
                     type="button"
+                    variant={topupAmount === preset ? "primary" : "secondary"}
+                    size="sm"
                     onClick={() => setTopupAmount(preset)}
-                    style={{
-                      paddingInline: "var(--space-3)",
-                      paddingBlock: "var(--space-1)",
-                      fontSize: "var(--font-size-xs)",
-                      borderRadius: "var(--radius-pill)",
-                      border: "1px solid var(--color-border)",
-                      background: topupAmount === preset ? "var(--color-primary)" : "var(--color-surface)",
-                      color: topupAmount === preset ? "var(--color-text-on-primary, var(--color-surface))" : "var(--color-text-primary)",
-                      cursor: "pointer",
-                    }}
                   >
                     {preset.toLocaleString("fa-IR")} تومان
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -250,7 +243,7 @@ function CheckoutContent() {
               </span>
             </div>
             <p className={styles.currencyNote}>
-              * کلیه مبالغ در پلتفرم اندورا به تومان است. ارسال مبالغ به درگاه‌های بانکی شاپرک طبق قانون به ریال محاسبه می‌شود.
+              * کلیه مبالغ در پلتفرم ایندورا به تومان است. ارسال مبالغ به درگاه‌های بانکی شاپرک طبق قانون به ریال محاسبه می‌شود.
             </p>
           </div>
 
@@ -261,7 +254,7 @@ function CheckoutContent() {
               <div className={styles.escrowText}>
                 <h4 className={styles.escrowTitle}>تضمین امن پرداخت امانی (Escrow Settlement)</h4>
                 <p className={styles.escrowDesc}>
-                  مبلغ پرداختی شما تا اتمام موفقیت‌آمیز جلسه آموزشی و اعلام رضایت در حساب امن امانی اندورا نگهداری می‌شود و سپس به استاد تسویه خواهد شد. در صورت بروز هرگونه مشکل یا لغو کلاس، وجه بلافاصله مسترد می‌گردد.
+                  مبلغ پرداختی شما تا اتمام موفقیت‌آمیز جلسه آموزشی و اعلام رضایت در حساب امن امانی ایندورا نگهداری می‌شود و سپس به استاد تسویه خواهد شد. در صورت بروز هرگونه مشکل یا لغو کلاس، وجه بلافاصله مسترد می‌گردد.
                 </p>
               </div>
             </div>
@@ -283,7 +276,7 @@ function CheckoutContent() {
                   selectedGateway === "wallet" ? styles.methodCardSelected : ""
                 } ${!hasSufficientWallet ? styles.methodCardDisabled : ""}`}
               >
-                <input
+                <Input
                   type="radio"
                   name="gateway"
                   value="wallet"
@@ -294,7 +287,7 @@ function CheckoutContent() {
                 />
                 <div className={styles.methodBody}>
                   <div className={styles.methodTitle}>
-                    <span>کیف پول کاربری اندورا</span>
+                    <span>کیف پول کاربری ایندورا</span>
                     <span
                       className={`${styles.walletBadge} ${
                         hasSufficientWallet ? styles.walletBadgeOk : styles.walletBadgeLow
@@ -318,7 +311,7 @@ function CheckoutContent() {
                 selectedGateway === "sandbox" ? styles.methodCardSelected : ""
               }`}
             >
-              <input
+              <Input
                 type="radio"
                 name="gateway"
                 value="sandbox"
@@ -343,7 +336,7 @@ function CheckoutContent() {
                 selectedGateway === "zarinpal" ? styles.methodCardSelected : ""
               }`}
             >
-              <input
+              <Input
                 type="radio"
                 name="gateway"
                 value="zarinpal"
@@ -363,12 +356,7 @@ function CheckoutContent() {
             </label>
           </div>
 
-          <button
-            type="button"
-            onClick={handlePay}
-            disabled={paying || payableAmountToman <= 0}
-            className={styles.payButton}
-          >
+          <Button type="button" variant="primary" loading={paying} onClick={handlePay} disabled={paying || payableAmountToman <= 0} className={styles.payButton}>
             {paying ? (
               <span>در حال اتصال به درگاه...</span>
             ) : selectedGateway === "wallet" ? (
@@ -376,7 +364,7 @@ function CheckoutContent() {
             ) : (
               <span>انتقال به درگاه امن پرداخت</span>
             )}
-          </button>
+          </Button>
 
           <div className={styles.securityNote}>
             <span>🔒</span>

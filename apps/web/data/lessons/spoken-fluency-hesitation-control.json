@@ -1,0 +1,129 @@
+{
+  "id": "spoken-101",
+  "slug": "spoken-fluency-hesitation-control",
+  "level": "A2",
+  "title": {
+    "en": "Conversational Fillers & Hesitation Control",
+    "fa": "عبارات پرکننده و مدیریت مکث در مکالمه انگلیسی"
+  },
+  "durationMinutes": 15,
+  "vocabulary": [
+    {
+      "word": "hesitate",
+      "fa": "درنگ کردن، مکث کردن",
+      "ipa": "/ˈhez.ɪ.teɪt/",
+      "example": {
+        "en": "Do not hesitate when answering everyday questions.",
+        "fa": "هنگام پاسخ دادن به سؤالات روزمره مکث نکنید."
+      }
+    },
+    {
+      "word": "filler",
+      "fa": "کلمه یا عبارت پرکننده مکث",
+      "ipa": "/ˈfɪl.ər/",
+      "example": {
+        "en": "Native speakers use fillers like 'well' or 'you know'.",
+        "fa": "انگلیسی‌زبانان بومی از عبارات پرکننده مثل 'well' یا 'you know' استفاده می‌کنند."
+      }
+    },
+    {
+      "word": "fluent",
+      "fa": "روان و سلیس",
+      "ipa": "/ˈfluː.ənt/",
+      "example": {
+        "en": "Her spoken English sounded confident and fluent.",
+        "fa": "انگلیسی گفتاری او بااعتمادبه‌نفس و روان به نظر می‌رسید."
+      }
+    }
+  ],
+  "grammar": {
+    "title": {
+      "en": "Discourse Markers to Buy Thinking Time",
+      "fa": "نشانگرهای گفتمان برای خرید زمان فکر کردن"
+    },
+    "explanation_fa": "هنگامی که در حین مکالمه کلمه‌ای را فراموش می‌کنید یا نیاز به فکر کردن دارید، سکوت مطلق جریان گفتگو را قطع می‌کند. با استفاده از نشانگرهای گفتمان (Discourse Markers) زمان بخرید و روان به نظر برسید.",
+    "rules": [
+      "عبارت 'Well, to be honest...' به شما ۲ ثانیه فرصت تفکر می‌دهد.",
+      "عبارت 'Let me see...' یا 'That's an interesting question...' برای پرسش‌های غافلگیرکننده عالی است.",
+      "توصیف کارکرد یک شیء (It's a device used for...) جایگزین کلمه فراموش‌شده می‌شود."
+    ],
+    "examples": [
+      {
+        "en": "Well, let me see, I haven't really thought about that before.",
+        "fa": "خب، بگذارید ببینم، من واقعاً قبلاً در مورد آن فکر نکرده بودم.",
+        "highlight": "Well, let me see"
+      },
+      {
+        "en": "To be honest, it is kind of like an electric kitchen mixer.",
+        "fa": "راستش را بخواهید، شبیه یک همزن برقی آشپزخانه است.",
+        "highlight": "To be honest, it is kind of like"
+      }
+    ]
+  },
+  "reading": {
+    "title": {
+      "en": "Overcoming Silence in Natural Conversation",
+      "fa": "غلبه بر سکوت در گفتگوی طبیعی"
+    },
+    "sentences": [
+      {
+        "id": "s1",
+        "en": "When speakers hesitate during natural chats, using polite fillers maintains comfortable conversational rhythm.",
+        "fa": "هنگامی که گویندگان در گپ‌های طبیعی مکث می‌کنند، استفاده از عبارات پرکننده محترمانه ریتم راحت مکالمه را حفظ می‌کند.",
+        "vocabulary": [
+          { "word": "hesitate", "fa": "مکث کردن" },
+          { "word": "fillers", "fa": "عبارات پرکننده" },
+          { "word": "rhythm", "fa": "ریتم" }
+        ]
+      },
+      {
+        "id": "s2",
+        "en": "Describing the appearance or purpose of an unknown object keeps speech remarkably fluent.",
+        "fa": "توصیف ظاهر یا کاربرد یک شیء ناشناخته، کلام را به‌طرز چشمگیری روان نگه می‌دارد.",
+        "vocabulary": [
+          { "word": "appearance", "fa": "ظاهر" },
+          { "word": "purpose", "fa": "هدف و کاربرد" },
+          { "word": "fluent", "fa": "روان و سلیس" }
+        ]
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "id": "q1",
+      "prompt": {
+        "en": "If you momentarily forget the word 'microwave', what is the best conversational strategy?",
+        "fa": "اگر واژه 'microwave' موقتاً یادتان رفت، بهترین استراتژی مکالمه چیست؟"
+      },
+      "options": [
+        "Describe its function: 'It is a kitchen appliance used for heating meals quickly.'",
+        "Stay completely silent until you remember the exact word",
+        "Switch immediately to your native language without explaining",
+        "Change the subject of conversation abruptly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "Circumlocution (describing the object) maintains conversational fluency.",
+        "fa": "توصیف غیرمستقیم کاربرد شیء روانی کلام و ارتباط را حفظ می‌کند."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "id": "q2",
+      "prompt": {
+        "en": "Complete the natural filler: 'Well, to be ___, I am not completely sure.'",
+        "fa": "عبارت پرکننده طبیعی را کامل کنید: 'Well, to be ___, I am not completely sure.'"
+      },
+      "sentenceWithBlank": "Well, to be ___, I haven't visited that museum yet.",
+      "acceptedAnswers": [
+        "honest"
+      ],
+      "hintFa": "واژه‌ای به معنای «صادق» که همراه to be می‌آید.",
+      "explanation": {
+        "en": "'To be honest' is a very common idiomatic discourse filler.",
+        "fa": "ترکیب To be honest عبارت پرکننده طبیعی و متداول است."
+      }
+    }
+  ]
+}

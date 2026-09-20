@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { PublicShell } from "../../../components/marketing/PublicShell";
+import { Button } from "@endoora/ui";
 import {
   fetchTeacherPublicProfile,
   fetchTeacherReviews,
@@ -94,7 +95,7 @@ export default function TeacherPublicProfilePage() {
 
     try {
       await flagTeacherReview(reviewId, reason.trim());
-      alert("گزارش شما ثبت شد و توسط تیم نظارت اندورا بررسی خواهد شد.");
+      alert("گزارش شما ثبت شد و توسط تیم نظارت ایندورا بررسی خواهد شد.");
     } catch {
       alert("خطا در ثبت گزارش. لطفاً دوباره تلاش کنید.");
     }
@@ -176,7 +177,7 @@ export default function TeacherPublicProfilePage() {
               </h1>
               {profile.is_teacher_verified && (
                 <span className={styles.verifiedBadge}>
-                  ✓ مدرس رسمی و تاییدشده اندورا
+                  ✓ مدرس رسمی و تاییدشده ایندورا
                 </span>
               )}
             </div>
@@ -401,7 +402,7 @@ export default function TeacherPublicProfilePage() {
                       <div className={styles.reviewHeader}>
                         <div className={styles.reviewerMeta}>
                           <span className={styles.reviewerName}>
-                            {rev.learner_display_name || "زبان‌آموز اندورا"}
+                            {rev.learner_display_name || "زبان‌آموز ایندورا"}
                           </span>
                           <span className={styles.sessionVerifiedTag}>
                             ✓ جلسه تاییدشده
@@ -446,13 +447,15 @@ export default function TeacherPublicProfilePage() {
                       )}
 
                       {/* Flag button */}
-                      <button
+                      <Button
                         type="button"
+                        variant="tertiary"
+                        size="compact"
                         className={styles.flagButton}
                         onClick={() => handleFlagReview(rev.id)}
                       >
                         گزارش این نظر
-                      </button>
+                      </Button>
                     </article>
                   ))
                 )}
@@ -482,9 +485,11 @@ export default function TeacherPublicProfilePage() {
                     {/* Horizontal Date Picker */}
                     <div className={styles.datePickerScroll} role="tablist" aria-label="انتخاب تاریخ جلسه">
                       {availableDays.map((d) => (
-                        <button
+                        <Button
                           key={d.date}
                           type="button"
+                          variant={selectedDate === d.date ? "primary" : "secondary"}
+                          size="sm"
                           className={`${styles.dateChip} ${selectedDate === d.date ? styles.dateChipActive : ""}`}
                           onClick={() => {
                             setSelectedDate(d.date);
@@ -493,7 +498,7 @@ export default function TeacherPublicProfilePage() {
                         >
                           <span>{d.day_name || d.day_name_fa}</span>
                           <span>{d.date.slice(5)}</span>
-                        </button>
+                        </Button>
                       ))}
                     </div>
 
@@ -513,14 +518,16 @@ export default function TeacherPublicProfilePage() {
                           {currentSlots.map((s, idx) => {
                             const isSelected = selectedSlot?.start_utc === s.start_utc;
                             return (
-                              <button
+                              <Button
                                 key={idx}
                                 type="button"
+                                variant={isSelected ? "primary" : "secondary"}
+                                size="sm"
                                 className={`${styles.slotChip} ${isSelected ? styles.slotChipSelected : ""}`}
                                 onClick={() => setSelectedSlot(s)}
                               >
                                 {s.start_time_tehran || s.start_tehran} - {s.end_time_tehran || s.end_tehran}
-                              </button>
+                              </Button>
                             );
                           })}
                         </div>

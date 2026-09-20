@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { PublicShell } from "../../components/marketing/PublicShell";
+import { Button, SearchInput } from "@endoora/ui";
 import {
   fetchPublicTeachers,
   type TeacherDirectoryItem,
@@ -145,7 +146,7 @@ export default function TeachersDirectoryPage() {
         {/* Hero Section */}
         <section className={styles.hero} aria-labelledby="teachers-heading">
           <h1 id="teachers-heading" className={styles.heroTitle}>
-            مدرس‌های برتر زبان انگلیسی در اندورا
+            مدرس‌های برتر زبان انگلیسی در ایندورا
           </h1>
           <p className={styles.heroSubtitle}>
             اساتید ارزیابی‌شده و دارای گواهینامه‌های معتبر بین‌المللی (CELTA، TESOL، IELTS 8.5+).
@@ -172,15 +173,13 @@ export default function TeachersDirectoryPage() {
           {/* Search Row */}
           <div className={styles.searchRow}>
             <div className={styles.searchInputWrapper}>
-              <input
-                type="search"
+              <SearchInput
                 className={styles.searchInput}
                 placeholder="جستجوی نام مدرس، تخصص یا رزومه (مثال: آیلتس، CELTA، مکالمه)..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 aria-label="جستجوی مدرس"
               />
-              <span className={styles.searchIcon} aria-hidden="true">🔍</span>
             </div>
 
             <select
@@ -202,15 +201,17 @@ export default function TeachersDirectoryPage() {
             {SKILL_OPTIONS.map((skill) => {
               const active = selectedSkill === skill.id;
               return (
-                <button
+                <Button
                   key={skill.id}
                   type="button"
+                  variant={active ? "primary" : "secondary"}
+                  size="sm"
                   className={`${styles.skillPill} ${active ? styles.skillPillActive : ""}`}
                   onClick={() => setSelectedSkill(skill.id)}
                   aria-pressed={active}
                 >
                   {skill.label}
-                </button>
+                </Button>
               );
             })}
           </div>
@@ -254,13 +255,15 @@ export default function TeachersDirectoryPage() {
             </div>
 
             {hasActiveFilters && (
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.resetButton}
                 onClick={handleResetFilters}
               >
                 پاک کردن همه فیلترها
-              </button>
+              </Button>
             )}
           </div>
         </section>
@@ -281,13 +284,14 @@ export default function TeachersDirectoryPage() {
           <div className={styles.emptyState}>
             <p className={styles.emptyTitle}>خطایی رخ داد</p>
             <p className={styles.emptySubtitle}>{error}</p>
-            <button
+            <Button
               type="button"
+              variant="primary"
               className={styles.viewProfileButton}
               onClick={handleRetry}
             >
               تلاش مجدد
-            </button>
+            </Button>
           </div>
         )}
 
@@ -347,7 +351,7 @@ export default function TeachersDirectoryPage() {
                           )}
                         </div>
                         <p className={styles.teacherHeadline}>
-                          {teacher.headline || "مدرس تخصصی زبان انگلیسی در اندورا"}
+                          {teacher.headline || "مدرس تخصصی زبان انگلیسی در ایندورا"}
                         </p>
                       </div>
                     </div>
@@ -429,13 +433,14 @@ export default function TeachersDirectoryPage() {
             <p className={styles.emptySubtitle}>
               لطفاً فیلترهای اعمال‌شده را تغییر دهید یا واژه جستجوی دیگری را امتحان نمایید.
             </p>
-            <button
+            <Button
               type="button"
+              variant="secondary"
               className={styles.viewProfileButton}
               onClick={handleResetFilters}
             >
               پاک کردن همه فیلترها
-            </button>
+            </Button>
           </div>
         )}
       </main>

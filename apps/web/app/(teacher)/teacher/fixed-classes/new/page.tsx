@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useTeacherHome } from "../../../../../components/teacher/TeacherShell";
@@ -105,11 +107,11 @@ export default function NewFixedClassFoundationPage() {
               <label htmlFor="class-title" className={styles.formLabel}>
                 {isFa ? "عنوان دوره / کلاس *" : "Class Title *"}
               </label>
-              <input
+              <Input
                 id="class-title"
                 className={styles.formInput}
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                 required
                 placeholder={isFa ? "مثال: دوره فشرده رایتینگ تسک ۲" : "e.g. IELTS Writing Task 2 Masterclass"}
               />
@@ -143,8 +145,9 @@ export default function NewFixedClassFoundationPage() {
                 value={skill}
                 onChange={(e) => setSkill(e.target.value)}
               >
-                <option value="Speaking">{isFa ? "مکالمه (Speaking)" : "Speaking"}</option>
-                <option value="Writing">{isFa ? "نگارش (Writing)" : "Writing"}</option>
+                <option value="General">{isFa ? "مکالمه و عمومی" : "General & Speaking"}</option>
+                <option value="Speaking">{isFa ? "اسپیکینگ و تلفظ" : "Speaking & Fluency"}</option>
+                <option value="Writing">{isFa ? "نگارش و مقاله‌نویسی" : "Writing & Essays"}</option>
                 <option value="Listening">{isFa ? "شنیداری (Listening)" : "Listening"}</option>
                 <option value="Grammar">{isFa ? "گرامر و ساختار" : "Grammar"}</option>
                 <option value="IELTS">{isFa ? "آمادگی آزمون آیلتس" : "IELTS Prep"}</option>
@@ -155,14 +158,14 @@ export default function NewFixedClassFoundationPage() {
               <label htmlFor="class-capacity" className={styles.formLabel}>
                 {isFa ? "حداکثر ظرفیت (نفر)" : "Max Capacity (Learners)"}
               </label>
-              <input
+              <Input
                 id="class-capacity"
                 type="number"
                 min="2"
                 max="15"
                 className={styles.formInput}
                 value={capacity}
-                onChange={(e) => setCapacity(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCapacity(e.target.value)}
               />
             </div>
 
@@ -170,14 +173,14 @@ export default function NewFixedClassFoundationPage() {
               <label htmlFor="class-sessions" className={styles.formLabel}>
                 {isFa ? "تعداد جلسات" : "Total Sessions"}
               </label>
-              <input
+              <Input
                 id="class-sessions"
                 type="number"
                 min="1"
                 max="30"
                 className={styles.formInput}
                 value={sessions}
-                onChange={(e) => setSessions(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSessions(e.target.value)}
               />
             </div>
 
@@ -185,11 +188,11 @@ export default function NewFixedClassFoundationPage() {
               <label htmlFor="class-schedule" className={styles.formLabel}>
                 {isFa ? "زمان‌بندی جلسات" : "Weekly Schedule"}
               </label>
-              <input
+              <Input
                 id="class-schedule"
                 className={styles.formInput}
                 value={schedule}
-                onChange={(e) => setSchedule(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSchedule(e.target.value)}
                 placeholder={isFa ? "مثال: شنبه و چهارشنبه ۱۸:۰۰ تا ۱۹:۳۰" : "e.g. Saturdays & Tuesdays 18:00 - 19:30"}
               />
             </div>
@@ -198,11 +201,11 @@ export default function NewFixedClassFoundationPage() {
               <label htmlFor="class-price" className={styles.formLabel}>
                 {isFa ? "شهریه کل دوره (تومان)" : "Tuition Fee (Tomans)"}
               </label>
-              <input
+              <Input
                 id="class-price"
                 className={styles.formInput}
                 value={priceTomans}
-                onChange={(e) => setPriceTomans(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPriceTomans(e.target.value)}
                 placeholder="1,500,000"
               />
             </div>
@@ -224,19 +227,21 @@ export default function NewFixedClassFoundationPage() {
 
           {/* Actions */}
           <div className={styles.buttonRow}>
-            <button
+            <Button
               type="submit"
+              variant="primary"
               className="teacher-button teacher-button--primary"
             >
               {isFa ? "ثبت و ارسال کلاس" : "Submit Class for Review"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="secondary"
               onClick={handleSaveDraft}
               className="teacher-button teacher-button--secondary"
             >
               {isFa ? "ذخیره پیش‌نویس" : "Save Draft"}
-            </button>
+            </Button>
             <Link
               className="teacher-button teacher-button--secondary"
               href={verified ? "/teacher/classes" : "/account/profile"}

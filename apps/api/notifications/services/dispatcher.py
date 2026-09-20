@@ -33,7 +33,7 @@ class NotificationDispatcher:
         if Notification.objects.filter(recipient=user).count() == 0:
             Notification.objects.create(
                 recipient=user,
-                title="خوش‌آمدید به پلتفرم یادگیری زبان اندورا",
+                title="خوش‌آمدید به پلتفرم یادگیری زبان ایندورا",
                 message="حساب کاربری شما با موفقیت فعال شد. می‌توانید از بخش تعیین سطح، مهارت‌های زبان خود را بسنجید.",
                 category=Notification.Category.SYSTEM,
                 channel=Notification.Channel.IN_APP,

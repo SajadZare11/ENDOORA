@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('evidence_notes', models.TextField(blank=True, default='', help_text='شواهد، لینک\u200cها یا یادداشت\u200cهای تکمیلی شاکی')),
                 ('status', models.CharField(choices=[('open', 'در انتظار بررسی'), ('under_review', 'در حال بررسی کارشناس داوری'), ('resolved_full_refund', 'تایید بازگشت کامل وجه به زبان\u200cآموز'), ('resolved_partial_refund', 'تایید بازگشت بخشی از وجه'), ('resolved_pay_teacher', 'رد ادعا و واریز کامل به مدرس'), ('dismissed', 'رد ادعا بدون تغییر مالی')], db_index=True, default='open', help_text='وضعیت رسیدگی به اختلاف در پنل مدیریت', max_length=32)),
                 ('refund_percentage', models.PositiveSmallIntegerField(default=0, help_text='درصد بازپرداخت به زبان\u200cآموز (۰ تا ۱۰۰)')),
-                ('resolution_notes', models.TextField(blank=True, default='', help_text='توضیحات و دلایل رای صادره توسط تیم داوری اندورا')),
+                ('resolution_notes', models.TextField(blank=True, default='', help_text='توضیحات و دلایل رای صادره توسط تیم داوری ایندورا')),
                 ('resolved_at', models.DateTimeField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),

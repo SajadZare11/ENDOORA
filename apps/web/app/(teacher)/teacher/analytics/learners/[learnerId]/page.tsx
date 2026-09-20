@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
@@ -107,13 +109,14 @@ export default function LearnerAnalyticsProfilePage() {
         </div>
 
         <div className={styles.actionsArea}>
-          <button
+          <Button
             type="button"
+            variant="primary"
             className="teacher-button teacher-button--primary"
             onClick={() => setShowModal(true)}
           >
             {isFa ? "ثبت اقدام و مداخله جدید" : "Plan Intervention"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -210,7 +213,7 @@ export default function LearnerAnalyticsProfilePage() {
               </h2>
             </div>
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>{isFa ? "تکلیف" : "Assignment"}</th>
@@ -260,7 +263,7 @@ export default function LearnerAnalyticsProfilePage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           </div>
         </>
@@ -274,13 +277,15 @@ export default function LearnerAnalyticsProfilePage() {
               <h3 style={{ margin: 0, fontWeight: 700 }}>
                 {isFa ? "طراحی اقدام و مداخله آموزشی" : "Plan Educational Intervention"}
               </h3>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.btnSm}
                 onClick={() => setShowModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={(e) => void handleCreateIntervention(e)} style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
@@ -302,12 +307,12 @@ export default function LearnerAnalyticsProfilePage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "عنوان مداخله:" : "Title:"}</label>
-                <input
+                <Input
                   type="text"
                   className={styles.formInput}
                   placeholder={isFa ? "مثال: تمرین تقویتی زمان گذشته کامل" : "e.g. Remedial Past Perfect Drills"}
                   value={intTitle}
-                  onChange={(e) => setIntTitle(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIntTitle(e.target.value)}
                   required
                 />
               </div>
@@ -324,20 +329,25 @@ export default function LearnerAnalyticsProfilePage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.btnSm}
                   onClick={() => setShowModal(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
+                  size="sm"
                   className={`${styles.btnSm} ${styles.btnSmPrimary}`}
+                  loading={submitting}
                   disabled={submitting}
                 >
                   {submitting ? (isFa ? "در حال ثبت..." : "Saving...") : (isFa ? "ثبت اقدام" : "Save Intervention")}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

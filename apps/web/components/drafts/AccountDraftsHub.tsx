@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useEffect, useState } from "react";
 import {
   deleteLocalDraft,
@@ -12,12 +14,13 @@ import {
 import styles from "./drafts-hub.module.css";
 
 export function AccountDraftsHub() {
-  const [drafts, setDrafts] = useState<LocalDraftRecord[]>([]);
+  const [drafts, setDrafts] = useState<LocalDraftRecord[]>(() =>
+    typeof window !== "undefined" ? listLocalDrafts() : []
+  );
   const [isSyncing, setIsSyncing] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
   useEffect(() => {
-    setDrafts(listLocalDrafts());
     const unsub = subscribeToDrafts(() => {
       setDrafts(listLocalDrafts());
     });
@@ -105,21 +108,21 @@ export function AccountDraftsHub() {
 
       <div className={styles.actionsBar}>
         <div style={{ display: "flex", gap: "var(--space-2, 8px)" }}>
-          <button
+          <Button
             type="button"
             onClick={handleSyncAll}
             disabled={isSyncing || pendingCount === 0}
             className={styles.primaryButton}
           >
             {isSyncing ? "در حال همگام‌سازی..." : "🔄 همگام‌سازی همه با سرور"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={handleCreateSampleDraft}
             className={styles.secondaryButton}
           >
             ➕ ایجاد پیش‌نویس آزمایشی
-          </button>
+          </Button>
         </div>
 
         {feedback && (
@@ -136,13 +139,13 @@ export function AccountDraftsHub() {
             <div className={styles.emptyText}>
               در حال حاضر هیچ پیش‌نویس ذخیره‌شده‌ای در این مرورگر وجود ندارد.
             </div>
-            <button
+            <Button
               type="button"
               onClick={handleCreateSampleDraft}
               className={styles.primaryButton}
             >
               ایجاد اولین پیش‌نویس آزمایشی
-            </button>
+            </Button>
           </div>
         ) : (
           drafts.map((d) => {
@@ -187,20 +190,20 @@ export function AccountDraftsHub() {
                   </span>
 
                   <div className={styles.draftActions}>
-                    <button
+                    <Button
                       type="button"
                       onClick={() => handleCopyContent(d)}
                       className={styles.textButton}
                     >
                       کپی محتوا
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="button"
                       onClick={() => handleDelete(d.id, d.title)}
                       className={styles.deleteButton}
                     >
                       حذف
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </article>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useEffect, useState } from "react";
 
 interface BeforeInstallPromptEvent extends Event {
@@ -108,8 +110,8 @@ export function PWARegistration() {
             fontSize: "var(--font-size-sm, 14px)",
           }}
         >
-          <span>🚀 نسخه جدید اندورا در دسترس است.</span>
-          <button
+          <span>🚀 نسخه جدید ایندورا در دسترس است.</span>
+          <Button
             type="button"
             onClick={handleUpdate}
             style={{
@@ -123,7 +125,7 @@ export function PWARegistration() {
             }}
           >
             به‌روزرسانی
-          </button>
+          </Button>
         </div>
       )}
 
@@ -142,8 +144,8 @@ export function PWARegistration() {
             fontSize: "var(--font-size-sm, 14px)",
           }}
         >
-          <span>📲 نصب اندورا به عنوان برنامه مستقل</span>
-          <button
+          <span>📲 نصب ایندورا به عنوان برنامه مستقل</span>
+          <Button
             type="button"
             onClick={handleInstallClick}
             style={{
@@ -157,8 +159,8 @@ export function PWARegistration() {
             }}
           >
             نصب (Install)
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={() => setCanInstall(false)}
             aria-label="بستن اعلان"
@@ -171,7 +173,7 @@ export function PWARegistration() {
             }}
           >
             ✕
-          </button>
+          </Button>
         </div>
       )}
     </div>

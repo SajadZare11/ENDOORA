@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button, Input } from "@endoora/ui";
 import React, { useEffect, useState, useTransition, useCallback } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -313,11 +315,11 @@ export default function BookingDetailPage() {
             </h3>
             <span className={styles.escrowBadgeMini}>
               <span>🛡️</span>
-              <span>تضمین امن حساب امانی اندورا (Escrow)</span>
+              <span>تضمین امن حساب امانی ایندورا (Escrow)</span>
             </span>
           </div>
           <p className={styles.paymentWarningDesc}>
-            برای قطعی شدن زمان کلاس و فعال‌سازی اتاق اختصاصی، لطفاً نسبت به پرداخت مبلغ {booking.rate_toman.toLocaleString("fa-IR")} تومان از طریق درگاه شتاب یا کیف پول اقدام فرمایید. وجه شما تا پایان جلسه نزد اندورا به امانت باقی می‌ماند.
+            برای قطعی شدن زمان کلاس و فعال‌سازی اتاق اختصاصی، لطفاً نسبت به پرداخت مبلغ {booking.rate_toman.toLocaleString("fa-IR")} تومان از طریق درگاه شتاب یا کیف پول اقدام فرمایید. وجه شما تا پایان جلسه نزد ایندورا به امانت باقی می‌ماند.
           </p>
           <div className={styles.paymentActions}>
             <Link
@@ -355,7 +357,7 @@ export default function BookingDetailPage() {
           {dispute.resolution_notes && (
             <div className={styles.disputeResolvedBox}>
               <p className={styles.disputeText}>
-                <strong>رأی نهایی داور پلتفرم ({dispute.resolved_by_name || "تیم داوری اندورا"}):</strong>
+                <strong>رأی نهایی داور پلتفرم ({dispute.resolved_by_name || "تیم داوری ایندورا"}):</strong>
               </p>
               <p className={styles.disputeText}>{dispute.resolution_notes}</p>
               {dispute.refund_percentage > 0 && (
@@ -376,14 +378,9 @@ export default function BookingDetailPage() {
           </p>
           <div className={styles.roomActions}>
             {booking.can_start && (
-              <button
-                type="button"
-                onClick={handleStart}
-                disabled={isPending}
-                className={styles.btnPrimary}
-              >
+              <Button type="button" variant="primary" onClick={handleStart} disabled={isPending} className={styles.btnPrimary}>
                 آغاز جلسه زنده ⚡
-              </button>
+              </Button>
             )}
 
             {booking.meeting_room_url && (
@@ -556,14 +553,9 @@ export default function BookingDetailPage() {
                     placeholder="متن پاسخ رسمی خود به نظر زبان‌آموز را بنویسید..."
                     className={styles.textareaField}
                   />
-                  <button
-                    type="submit"
-                    disabled={replySubmitting || !teacherReplyText.trim()}
-                    className={styles.btnPrimary}
-                    style={{ alignSelf: "flex-start" }}
-                  >
+                  <Button type="submit" variant="primary" disabled={replySubmitting || !teacherReplyText.trim()} className={styles.btnPrimary} style={{ alignSelf: "flex-start" }}>
                     {replySubmitting ? "در حال ارسال..." : "ثبت پاسخ رسمی مدرس"}
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>
@@ -585,15 +577,17 @@ export default function BookingDetailPage() {
                 <span className={styles.dimensionLabel}>امتیاز کلی به جلسه:</span>
                 <div className={styles.starPickerRow} style={{ marginBlockStart: "var(--space-1)" }}>
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <button
+                    <Button
                       key={star}
                       type="button"
+                      variant="tertiary"
+                      size="sm"
                       className={`${styles.starBtn} ${star <= reviewRating ? styles.starBtnActive : ""}`}
                       onClick={() => setReviewRating(star)}
                       aria-label={`${star} ستاره`}
                     >
                       ★
-                    </button>
+                    </Button>
                   ))}
                   <span style={{ fontSize: "var(--font-size-sm)", marginInlineStart: "var(--space-2)" }}>
                     {reviewRating} از ۵
@@ -669,14 +663,9 @@ export default function BookingDetailPage() {
                 </span>
               </div>
 
-              <button
-                type="submit"
-                disabled={reviewSubmitting || reviewComment.trim().length < 10}
-                className={styles.btnPrimary}
-                style={{ alignSelf: "flex-start" }}
-              >
+              <Button type="submit" variant="primary" disabled={reviewSubmitting || reviewComment.trim().length < 10} className={styles.btnPrimary} style={{ alignSelf: "flex-start" }}>
                 {reviewSubmitting ? "در حال ثبت نظر..." : "ثبت و انتشار نظر 🚀"}
-              </button>
+              </Button>
             </form>
           ) : (
             <p style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)", marginBlock: 0 }}>
@@ -693,35 +682,21 @@ export default function BookingDetailPage() {
 
         {(!hasDispute || !dispute) &&
           (booking.status === "confirmed" || booking.status === "in_progress" || booking.status === "completed") && (
-            <button
-              type="button"
-              onClick={() => setShowDisputeModal(true)}
-              className={styles.btnWarningOutline}
-            >
+            <Button type="button" variant="secondary" onClick={() => setShowDisputeModal(true)} className={styles.btnWarningOutline}>
               ثبت اختلاف و داوری ⚖️
-            </button>
+            </Button>
           )}
 
         {booking.can_complete && (
-          <button
-            type="button"
-            onClick={() => setShowCompleteModal(true)}
-            disabled={isPending}
-            className={styles.btnPrimary}
-          >
+          <Button type="button" variant="primary" onClick={() => setShowCompleteModal(true)} disabled={isPending} className={styles.btnPrimary}>
             تکمیل و پایان جلسه
-          </button>
+          </Button>
         )}
 
         {booking.can_cancel && (
-          <button
-            type="button"
-            onClick={handleCancel}
-            disabled={isPending}
-            className={styles.btnDangerOutline}
-          >
+          <Button type="button" variant="destructive" onClick={handleCancel} disabled={isPending} className={styles.btnDangerOutline}>
             لغو جلسه
-          </button>
+          </Button>
         )}
       </div>
 
@@ -732,7 +707,7 @@ export default function BookingDetailPage() {
             <h2 className={styles.modalTitle}>ثبت اختلاف و درخواست داوری جلسه</h2>
             <p className={styles.modalDesc}>
               چنانچه در برگزاری جلسه نقصی نظیر عدم حضور طرف مقابل، اختلال فنی غیرقابل رفع، یا عدم رعایت استانداردهای آموزشی رخ داده است،
-              می‌توانید پرونده داوری تشکیل دهید تا توسط کارشناسان پشتیبانی اندورا بررسی و تصمیم‌گیری شود.
+              می‌توانید پرونده داوری تشکیل دهید تا توسط کارشناسان پشتیبانی ایندورا بررسی و تصمیم‌گیری شود.
             </p>
 
             <form onSubmit={handleOpenDispute} style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
@@ -780,32 +755,16 @@ export default function BookingDetailPage() {
                 <label htmlFor="dispute-evidence-input" className={styles.modalDesc}>
                   مستندات و لینک‌های تکمیلی (اختیاری):
                 </label>
-                <input
-                  id="dispute-evidence-input"
-                  type="text"
-                  value={disputeEvidence}
-                  onChange={(e) => setDisputeEvidence(e.target.value)}
-                  placeholder="لینک تست سرعت اینترنت، تصویر اسکرین‌شات و..."
-                  className={styles.dimensionSelect}
-                />
+                <Input id="dispute-evidence-input" type="text" value={disputeEvidence} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDisputeEvidence(e.target.value)} placeholder="لینک تست سرعت اینترنت، تصویر اسکرین‌شات و..." className={styles.dimensionSelect} />
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  onClick={() => setShowDisputeModal(false)}
-                  className={styles.btnSecondary}
-                  disabled={disputeSubmitting}
-                >
+                <Button type="button" variant="secondary" onClick={() => setShowDisputeModal(false)} className={styles.btnSecondary} disabled={disputeSubmitting}>
                   انصراف
-                </button>
-                <button
-                  type="submit"
-                  className={styles.btnPrimary}
-                  disabled={disputeSubmitting || disputeDescription.trim().length < 10}
-                >
+                </Button>
+                <Button type="submit" variant="primary" className={styles.btnPrimary} disabled={disputeSubmitting || disputeDescription.trim().length < 10}>
                   {disputeSubmitting ? "در حال ثبت پرونده..." : "ارسال به تیم داوری ⚖️"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -831,22 +790,12 @@ export default function BookingDetailPage() {
             />
 
             <div className={styles.modalActions}>
-              <button
-                type="button"
-                onClick={() => setShowCompleteModal(false)}
-                className={styles.btnSecondary}
-                disabled={isPending}
-              >
+              <Button type="button" variant="secondary" onClick={() => setShowCompleteModal(false)} className={styles.btnSecondary} disabled={isPending}>
                 انصراف
-              </button>
-              <button
-                type="button"
-                onClick={handleComplete}
-                className={styles.btnPrimary}
-                disabled={isPending}
-              >
+              </Button>
+              <Button type="button" variant="primary" onClick={handleComplete} className={styles.btnPrimary} disabled={isPending}>
                 {isPending ? "در حال ثبت..." : "تایید و اتمام جلسه"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

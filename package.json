@@ -21,7 +21,8 @@
     "check:day08": "node scripts/check-day08.mjs",
     "check:day09": "node scripts/check-day09.mjs",
     "check:day10": "node scripts/check-day10.mjs",
-    "check:day01-10": "node scripts/check-day01-10.mjs"
+    "check:day01-10": "node scripts/check-day01-10.mjs",
+    "check:lessons": "node --experimental-strip-types scripts/check-bilingual-and-lessons.mjs"
   },
   "engines": {
     "node": ">=24 <25",

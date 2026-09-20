@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./culture.module.css";
 
 export const metadata: Metadata = {
-  title: "فرهنگ و ارتباطات بین‌المللی | اندورا",
+  title: "فرهنگ و ارتباطات بین‌المللی | ایندورا",
   description: "راهنمای آشنایی با هنجارهای فرهنگی، تعارف در انگلیسی، گپ‌وگفت‌های خودمانی (Small Talk) و نکات ظریف بین‌فرهنگی.",
 };
 
@@ -69,7 +69,7 @@ export default function CultureHubPage() {
             </div>
             <div style={{ marginTop: "var(--space-4)", paddingTop: "var(--space-3)", borderTop: "1px solid var(--color-border)" }}>
               <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
-                تألیف: دپارتمان مطالعات بین‌فرهنگی اندورا
+                تألیف: دپارتمان مطالعات بین‌فرهنگی ایندورا
               </span>
             </div>
           </div>

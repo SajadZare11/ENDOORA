@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -10,6 +12,7 @@ import {
   requestTeacherWritingReview,
   IELTSWritingReport,
 } from "../../../../../lib/ielts-writing";
+import { PublicShell } from "../../../../../components/marketing/PublicShell";
 
 export default function IELTSWritingReportPage() {
   const searchParams = useSearchParams();
@@ -68,28 +71,33 @@ export default function IELTSWritingReportPage() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
-        در حال ارزیابی و استخراج نمرات معیارهای رایتینگ آیلتس...
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
+          در حال ارزیابی و استخراج نمرات معیارهای رایتینگ آیلتس...
+        </div>
+      </PublicShell>
     );
   }
 
   if (error || !report) {
     return (
-      <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
-        <h2>خطا در نمایش کارنامه</h2>
-        <p>{error || "گزارش ارزیابی یافت نشد."}</p>
-        <Link href="/ielts/writing" className={styles.actionBtnPrimary}>
-          ورود به اتاق تمرین رایتینگ
-        </Link>
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
+          <h2>خطا در نمایش کارنامه</h2>
+          <p>{error || "گزارش ارزیابی یافت نشد."}</p>
+          <Link href="/ielts/writing" className={styles.actionBtnPrimary}>
+            ورود به اتاق تمرین رایتینگ
+          </Link>
+        </div>
+      </PublicShell>
     );
   }
 
   const confidencePct = Math.round((report.confidence_score || 0.85) * 100);
 
   return (
-    <div className={styles.container}>
+    <PublicShell locale="fa" currentPath="/ielts">
+      <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
         <span className={styles.kicker}>IELTS Writing AI Diagnostic Evaluation (IELTS-004)</span>
@@ -220,40 +228,44 @@ export default function IELTSWritingReportPage() {
           </h3>
           <p className={styles.teacherReviewDesc}>
             {teacherReviewRequested
-              ? "متن ارسالی شما در صف بررسی کارشناسان ارشد دپارتمان آیلتس اندورا قرار گرفت."
-              : "مدرسان معتبر اندورا می‌توانند استدلال‌ها و ظرافت‌های انشای شما را به صورت دستی تصحیح و نمره‌گذاری کنند."}
+              ? "متن ارسالی شما در صف بررسی کارشناسان ارشد دپارتمان آیلتس ایندورا قرار گرفت."
+              : "مدرسان معتبر ایندورا می‌توانند استدلال‌ها و ظرافت‌های انشای شما را به صورت دستی تصحیح و نمره‌گذاری کنند."}
           </p>
         </div>
 
         {!teacherReviewRequested && (
-          <button
+          <Button
             type="button"
+            variant="primary"
             className={styles.actionBtnPrimary}
             onClick={handleTeacherReviewRequest}
+            loading={requestingTeacher}
             disabled={requestingTeacher}
           >
             {requestingTeacher ? "در حال ثبت درخواست..." : "درخواست تصحیح اگزمینر"}
-          </button>
+          </Button>
         )}
       </section>
 
       {/* Candidate Essay Review & Tabs */}
       <section className={styles.card} aria-label="متن انشا و آمار تفکیکی">
         <div className={styles.essayTabs}>
-          <button
+          <Button
             type="button"
+            variant={activeEssayTab === 1 ? "primary" : "secondary"}
             className={`${styles.essayTabBtn} ${activeEssayTab === 1 ? styles.essayTabBtnActive : ""}`}
             onClick={() => setActiveEssayTab(1)}
           >
             تسک ۱ ({report.task1_word_count} کلمه | باند {report.task1_scores?.band || "—"})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeEssayTab === 2 ? "primary" : "secondary"}
             className={`${styles.essayTabBtn} ${activeEssayTab === 2 ? styles.essayTabBtnActive : ""}`}
             onClick={() => setActiveEssayTab(2)}
           >
             تسک ۲ ({report.task2_word_count} کلمه | باند {report.task2_scores?.band || "—"})
-          </button>
+          </Button>
         </div>
 
         <div>
@@ -315,5 +327,6 @@ export default function IELTSWritingReportPage() {
         </section>
       )}
     </div>
+    </PublicShell>
   );
 }

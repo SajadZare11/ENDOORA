@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useState, useEffect, useId } from "react";
 import Link from "next/link";
 import styles from "./classes.module.css";
@@ -55,6 +57,10 @@ export default function TeacherClassesPage() {
   const [newClassSubject, setNewClassSubject] = useState("");
   const [newClassLevel, setNewClassLevel] = useState("B1");
   const [newClassCapacity, setNewClassCapacity] = useState(5);
+  const [newClassCoursebook, setNewClassCoursebook] = useState("");
+  const [newClassAgeGroup, setNewClassAgeGroup] = useState("adult");
+  const [newClassGoal, setNewClassGoal] = useState("general");
+  const [newClassDuration, setNewClassDuration] = useState(60);
   const [newClassObjectives, setNewClassObjectives] = useState("");
   const [newClassNotes, setNewClassNotes] = useState("");
 
@@ -190,11 +196,16 @@ export default function TeacherClassesPage() {
         max_capacity: Number(newClassCapacity),
         objectives,
         private_notes: newClassNotes,
+        coursebook: newClassCoursebook,
+        age_group: newClassAgeGroup,
+        goal: newClassGoal,
+        default_duration: Number(newClassDuration),
       });
 
       setShowCreateClassModal(false);
       setNewClassTitle("");
       setNewClassSubject("");
+      setNewClassCoursebook("");
       setNewClassObjectives("");
       setNewClassNotes("");
       await loadClasses();
@@ -359,19 +370,20 @@ export default function TeacherClassesPage() {
             >
               {isFa ? "تکالیف و آزمون‌ها" : "Assignments Hub"}
             </Link>
-            <button
+            <Button
               type="button"
+              variant="primary"
               className={styles.actionButton}
               onClick={() => setShowCreateClassModal(true)}
             >
               {isFa ? "+ ایجاد کلاس جدید" : "+ Create New Class"}
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Tab Navigation */}
         <div className={styles.tabBar} role="tablist">
-          <button
+          <Button
             type="button"
             role="tab"
             aria-selected={activeTab === "classes"}
@@ -380,8 +392,8 @@ export default function TeacherClassesPage() {
             onClick={() => setActiveTab("classes")}
           >
             {isFa ? "کلاس‌ها و زبان‌آموزان" : "Classes & Learners"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             role="tab"
             aria-selected={activeTab === "sessions"}
@@ -390,8 +402,8 @@ export default function TeacherClassesPage() {
             onClick={() => setActiveTab("sessions")}
           >
             {isFa ? "جلسات آموزشی" : "Sessions & Schedule"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             role="tab"
             aria-selected={activeTab === "hours"}
@@ -400,7 +412,7 @@ export default function TeacherClassesPage() {
             onClick={() => setActiveTab("hours")}
           >
             {isFa ? "دفتر ساعات تدریس و حسابرسی" : "Teaching Hours & Audit"}
-          </button>
+          </Button>
         </div>
       </section>
 
@@ -416,14 +428,14 @@ export default function TeacherClassesPage() {
           {classes.length === 0 && !loading ? (
             <div className={styles.emptyState}>
               <p>{isFa ? "هنوز کلاسی ایجاد نکرده‌اید." : "No classes created yet."}</p>
-              <button
+              <Button
                 type="button"
                 className={styles.actionButton}
                 onClick={() => setShowCreateClassModal(true)}
                 style={{ marginBlockStart: "var(--space-3)" }}
               >
                 {isFa ? "اولین کلاس خود را ایجاد کنید" : "Create Your First Class"}
-              </button>
+              </Button>
             </div>
           ) : (
             <div className={styles.classGrid}>
@@ -483,7 +495,7 @@ export default function TeacherClassesPage() {
                   >
                     {isFa ? "+ ساخت تکلیف" : "+ Create Assignment"}
                   </Link>
-                  <button
+                  <Button
                     type="button"
                     className={styles.actionButtonSecondary}
                     onClick={() => {
@@ -493,7 +505,7 @@ export default function TeacherClassesPage() {
                     }}
                   >
                     {isFa ? "+ دعوت زبان‌آموز جدید" : "+ Invite New Learner"}
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -523,7 +535,7 @@ export default function TeacherClassesPage() {
                 </p>
               ) : (
                 <div className={styles.tableContainer}>
-                  <table className={styles.table}>
+                  <Table className={styles.table}>
                     <caption className={styles.srOnly}>
                       {isFa ? "جدول زبان‌آموزان کلاس" : "Class Learners Table"}
                     </caption>
@@ -564,16 +576,16 @@ export default function TeacherClassesPage() {
                           <td>
                             <div style={{ display: "flex", gap: "var(--space-2)" }}>
                               {enr.status === "active" ? (
-                                <button
+                                <Button
                                   type="button"
                                   className={styles.actionButtonSecondary}
                                   onClick={() => handleOpenLearnerOverview(enr.learner)}
                                 >
                                   {isFa ? "پرونده آموزشی" : "Educational Summary"}
-                                </button>
+                                </Button>
                               ) : null}
                               {enr.status !== "terminated" ? (
-                                <button
+                                <Button
                                   type="button"
                                   className={styles.actionButtonDanger}
                                   onClick={() => {
@@ -582,14 +594,14 @@ export default function TeacherClassesPage() {
                                   }}
                                 >
                                   {isFa ? "خاتمه ارتباط" : "Terminate"}
-                                </button>
+                                </Button>
                               ) : null}
                             </div>
                           </td>
                         </tr>
                       ))}
                     </tbody>
-                  </table>
+                  </Table>
                 </div>
               )}
             </section>
@@ -604,14 +616,14 @@ export default function TeacherClassesPage() {
             <h2 style={{ margin: 0, fontSize: "var(--font-size-title)", fontWeight: 700 }}>
               {isFa ? "جلسات کلاسی" : "Class Sessions"}
             </h2>
-            <button
+            <Button
               type="button"
               className={styles.actionButton}
               onClick={() => setShowScheduleModal(true)}
               disabled={!selectedClassId}
             >
               {isFa ? "+ برنامه‌ریزی جلسه جدید" : "+ Schedule New Session"}
-            </button>
+            </Button>
           </div>
 
           {!selectedClassDetail || selectedClassDetail.sessions.length === 0 ? (
@@ -620,7 +632,7 @@ export default function TeacherClassesPage() {
             </div>
           ) : (
             <div className={styles.tableContainer}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <caption className={styles.srOnly}>
                   {isFa ? "جدول جلسات آموزشی" : "Educational Sessions Table"}
                 </caption>
@@ -665,7 +677,7 @@ export default function TeacherClassesPage() {
                       </td>
                       <td>
                         {sess.status === "scheduled" ? (
-                          <button
+                          <Button
                             type="button"
                             className={styles.actionButtonSecondary}
                             onClick={() => handleCompleteSession(sess.id)}
@@ -678,7 +690,7 @@ export default function TeacherClassesPage() {
                               : isFa
                               ? "ثبت برگزاری جلسه"
                               : "Complete Session"}
-                          </button>
+                          </Button>
                         ) : sess.status === "completed" ? (
                           <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-success-text)" }}>
                             {isFa ? "ساعت ثبت شد ✓" : "Hours Recorded ✓"}
@@ -688,7 +700,7 @@ export default function TeacherClassesPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </section>
@@ -735,7 +747,7 @@ export default function TeacherClassesPage() {
             </div>
           ) : (
             <div className={styles.tableContainer}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <caption className={styles.srOnly}>
                   {isFa ? "دفتر ساعات تدریس و اصلاحات" : "Teaching Hours and Audit Log Table"}
                 </caption>
@@ -795,7 +807,7 @@ export default function TeacherClassesPage() {
                         )}
                       </td>
                       <td>
-                        <button
+                        <Button
                           type="button"
                           className={styles.actionButtonSecondary}
                           onClick={() => {
@@ -806,12 +818,12 @@ export default function TeacherClassesPage() {
                           }}
                         >
                           {isFa ? "اصلاح ساعت (با دلیل)" : "Adjust (Audit)"}
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </section>
@@ -825,21 +837,21 @@ export default function TeacherClassesPage() {
               <h2 id={newClassTitleId} className={styles.modalTitle}>
                 {isFa ? "ایجاد کلاس جدید" : "Create New Class"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowCreateClassModal(false)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <form onSubmit={handleCreateClass}>
               <div className={styles.formGroup}>
                 <label htmlFor={newClassTitleId} className={styles.formLabel}>
                   {isFa ? "عنوان کلاس" : "Class Title"}
                 </label>
-                <input
+                <Input
                   id={newClassTitleId}
                   className={styles.formInput}
                   type="text"
@@ -853,7 +865,7 @@ export default function TeacherClassesPage() {
                 <label htmlFor={newClassSubjectId} className={styles.formLabel}>
                   {isFa ? "موضوع و مهارت اصلی" : "Subject & Focus"}
                 </label>
-                <input
+                <Input
                   id={newClassSubjectId}
                   className={styles.formInput}
                   type="text"
@@ -886,7 +898,7 @@ export default function TeacherClassesPage() {
                   <label htmlFor={newClassCapacityId} className={styles.formLabel}>
                     {isFa ? "ظرفیت حداکثر" : "Max Capacity"}
                   </label>
-                  <input
+                  <Input
                     id={newClassCapacityId}
                     className={styles.formInput}
                     type="number"
@@ -894,6 +906,68 @@ export default function TeacherClassesPage() {
                     max={50}
                     value={newClassCapacity}
                     onChange={(e) => setNewClassCapacity(parseInt(e.target.value, 10))}
+                  />
+                </div>
+              </div>
+              <div className={styles.formRow} style={{ marginBlockStart: "var(--space-3)" }}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    {isFa ? "کتاب و منابع درسی" : "Coursebook / Materials"}
+                  </label>
+                  <Input
+                    className={styles.formInput}
+                    type="text"
+                    value={newClassCoursebook}
+                    onChange={(e) => setNewClassCoursebook(e.target.value)}
+                    placeholder={isFa ? "مثال: Touchstone 2" : "e.g. Touchstone 2"}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    {isFa ? "گروه سنی" : "Age Group"}
+                  </label>
+                  <select
+                    className={styles.formInput}
+                    value={newClassAgeGroup}
+                    onChange={(e) => setNewClassAgeGroup(e.target.value)}
+                  >
+                    <option value="yl">{isFa ? "کودکان (Young Learners)" : "Young Learners"}</option>
+                    <option value="teen">{isFa ? "نوجوانان (Teens)" : "Teens"}</option>
+                    <option value="adult">{isFa ? "بزرگسالان (Adults)" : "Adults"}</option>
+                    <option value="mixed">{isFa ? "سنین مختلف (Mixed)" : "Mixed"}</option>
+                  </select>
+                </div>
+              </div>
+              <div className={styles.formRow} style={{ marginBlockStart: "var(--space-3)" }}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    {isFa ? "هدف اصلی دوره" : "Primary Goal"}
+                  </label>
+                  <select
+                    className={styles.formInput}
+                    value={newClassGoal}
+                    onChange={(e) => setNewClassGoal(e.target.value)}
+                  >
+                    <option value="general">{isFa ? "انگلیسی عمومی" : "General English"}</option>
+                    <option value="speaking">{isFa ? "مکالمه و گفت‌وگو" : "Conversation"}</option>
+                    <option value="exam">{isFa ? "آمادگی آزمون (IELTS/TOEFL)" : "Exam Prep"}</option>
+                    <option value="business">{isFa ? "انگلیسی تجاری" : "Business English"}</option>
+                    <option value="academic">{isFa ? "انگلیسی آکادمیک" : "Academic English"}</option>
+                    <option value="travel">{isFa ? "انگلیسی سفر" : "Travel English"}</option>
+                  </select>
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>
+                    {isFa ? "مدت زمان پیش‌فرض جلسه (دقیقه)" : "Default Duration (mins)"}
+                  </label>
+                  <Input
+                    className={styles.formInput}
+                    type="number"
+                    min={15}
+                    max={180}
+                    step={15}
+                    value={newClassDuration}
+                    onChange={(e) => setNewClassDuration(parseInt(e.target.value, 10))}
                   />
                 </div>
               </div>
@@ -921,16 +995,17 @@ export default function TeacherClassesPage() {
                 />
               </div>
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.actionButtonSecondary}
                   onClick={() => setShowCreateClassModal(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button type="submit" className={styles.actionButton}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.actionButton}>
                   {isFa ? "ذخیره و ایجاد" : "Save & Create"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -945,14 +1020,14 @@ export default function TeacherClassesPage() {
               <h2 id={inviteEmailId} className={styles.modalTitle}>
                 {isFa ? "دعوت زبان‌آموز با رضایت صریح" : "Invite Learner with Explicit Consent"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowInviteModal(false)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
             {generatedInviteCode ? (
               <div>
@@ -969,13 +1044,13 @@ export default function TeacherClassesPage() {
                     {isFa ? "کد اختصاصی دعوت:" : "Unique Invite Code:"}
                   </label>
                   <div style={{ display: "flex", gap: "var(--space-2)", marginBlockStart: "var(--space-2)" }}>
-                    <input
+                    <Input
                       className={styles.formInput}
                       readOnly
                       value={generatedInviteCode}
                       style={{ flex: 1, fontFamily: "monospace" }}
                     />
-                    <button
+                    <Button
                       type="button"
                       className={styles.actionButtonSecondary}
                       onClick={() => {
@@ -985,17 +1060,18 @@ export default function TeacherClassesPage() {
                       }}
                     >
                       {copiedCode ? (isFa ? "کپی شد!" : "Copied!") : isFa ? "کپی کد" : "Copy"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className={styles.modalFooter}>
-                  <button
+                  <Button
                     type="button"
+                    variant="primary"
                     className={styles.actionButton}
                     onClick={() => setShowInviteModal(false)}
                   >
                     {isFa ? "اتمام" : "Done"}
-                  </button>
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -1010,9 +1086,9 @@ export default function TeacherClassesPage() {
                 </div>
                 <div className={styles.formGroup}>
                   <label htmlFor={inviteEmailId} className={styles.formLabel}>
-                    {isFa ? "ایمیل حساب کاربری زبان‌آموز در اندورا" : "Learner's Endoora Account Email"}
+                    {isFa ? "ایمیل حساب کاربری زبان‌آموز در ایندورا" : "Learner's Endoora Account Email"}
                   </label>
-                  <input
+                  <Input
                     id={inviteEmailId}
                     className={styles.formInput}
                     type="email"
@@ -1023,16 +1099,17 @@ export default function TeacherClassesPage() {
                   />
                 </div>
                 <div className={styles.modalFooter}>
-                  <button
+                  <Button
                     type="button"
+                    variant="secondary"
                     className={styles.actionButtonSecondary}
                     onClick={() => setShowInviteModal(false)}
                   >
                     {isFa ? "انصراف" : "Cancel"}
-                  </button>
-                  <button type="submit" className={styles.actionButton}>
+                  </Button>
+                  <Button type="submit" variant="primary" className={styles.actionButton}>
                     {isFa ? "ارسال دعوت‌نامه" : "Generate Invitation"}
-                  </button>
+                  </Button>
                 </div>
               </form>
             )}
@@ -1048,14 +1125,14 @@ export default function TeacherClassesPage() {
               <h2 className={styles.modalTitle}>
                 {isFa ? "پرونده آموزشی زبان‌آموز" : "Learner Educational Overview"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setSelectedLearnerOverview(null)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -1077,7 +1154,7 @@ export default function TeacherClassesPage() {
               <span>🔒</span>
               <span>
                 {isFa
-                  ? "مرز حریم خصوصی اندورا: چت‌های هوش مصنوعی اختصاصی، صدای ضبط‌شده در اتاق تمرین شخصی و تمرین‌های فردی زبان‌آموز کاملاً محرمانه نگه داشته می‌شوند و به مدرس نشان داده نمی‌شوند."
+                  ? "مرز حریم خصوصی ایندورا: چت‌های هوش مصنوعی اختصاصی، صدای ضبط‌شده در اتاق تمرین شخصی و تمرین‌های فردی زبان‌آموز کاملاً محرمانه نگه داشته می‌شوند و به مدرس نشان داده نمی‌شوند."
                   : "Endoora Privacy Boundary: Solo AI roleplays, private voice recordings, and individual mistake logs are confidential and withheld from instructors."}
               </span>
             </div>
@@ -1103,7 +1180,7 @@ export default function TeacherClassesPage() {
 
             {/* Accessible Table Alternative for Screen Readers & WCAG */}
             <div className={styles.tableContainer} style={{ marginBlockStart: "var(--space-3)" }}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <caption>
                   {isFa
                     ? "کارنامه تفصیلی مهارت‌ها (جایگزین متنی دسترس‌پذیر برای نمودار)"
@@ -1127,17 +1204,18 @@ export default function TeacherClassesPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
 
             <div className={styles.modalFooter}>
-              <button
+              <Button
                 type="button"
+                variant="primary"
                 className={styles.actionButton}
                 onClick={() => setSelectedLearnerOverview(null)}
               >
                 {isFa ? "بستن پرونده" : "Close Overview"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -1151,21 +1229,21 @@ export default function TeacherClassesPage() {
               <h2 id={sessionTitleId} className={styles.modalTitle}>
                 {isFa ? "برنامه‌ریزی جلسه آموزشی" : "Schedule Educational Session"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowScheduleModal(false)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <form onSubmit={handleScheduleSession}>
               <div className={styles.formGroup}>
                 <label htmlFor={sessionTitleId} className={styles.formLabel}>
                   {isFa ? "عنوان جلسه" : "Session Title"}
                 </label>
-                <input
+                <Input
                   id={sessionTitleId}
                   className={styles.formInput}
                   type="text"
@@ -1204,7 +1282,7 @@ export default function TeacherClassesPage() {
                   <label htmlFor={sessionStartId} className={styles.formLabel}>
                     {isFa ? "زمان شروع" : "Start Time"}
                   </label>
-                  <input
+                  <Input
                     id={sessionStartId}
                     className={styles.formInput}
                     type="datetime-local"
@@ -1217,7 +1295,7 @@ export default function TeacherClassesPage() {
                   <label htmlFor={sessionEndId} className={styles.formLabel}>
                     {isFa ? "زمان پایان" : "End Time"}
                   </label>
-                  <input
+                  <Input
                     id={sessionEndId}
                     className={styles.formInput}
                     type="datetime-local"
@@ -1232,7 +1310,7 @@ export default function TeacherClassesPage() {
                 <label htmlFor={sessionDurationId} className={styles.formLabel}>
                   {isFa ? "مدت زمان به دقیقه (مبنای محاسبه ساعت تدریس)" : "Duration in Minutes (Hours Basis)"}
                 </label>
-                <input
+                <Input
                   id={sessionDurationId}
                   className={styles.formInput}
                   type="number"
@@ -1256,16 +1334,17 @@ export default function TeacherClassesPage() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.actionButtonSecondary}
                   onClick={() => setShowScheduleModal(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button type="submit" className={styles.actionButton}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.actionButton}>
                   {isFa ? "ثبت برنامه جلسه" : "Schedule Session"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1280,14 +1359,14 @@ export default function TeacherClassesPage() {
               <h2 id={terminateReasonId} className={styles.modalTitle}>
                 {isFa ? "خاتمه ارتباط آموزشی" : "Terminate Educational Relationship"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowTerminateModal(false)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <form onSubmit={handleTerminateRelationship}>
               <div className={styles.warningNotice}>
@@ -1314,16 +1393,17 @@ export default function TeacherClassesPage() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.actionButtonSecondary}
                   onClick={() => setShowTerminateModal(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button type="submit" className={styles.actionButtonDanger}>
+                </Button>
+                <Button type="submit" variant="destructive" className={styles.actionButtonDanger}>
                   {isFa ? "خاتمه قطعی ارتباط" : "Confirm Termination"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1338,14 +1418,14 @@ export default function TeacherClassesPage() {
               <h2 id={adjustHoursId} className={styles.modalTitle}>
                 {isFa ? "اصلاح ساعت تدریس با ثبت در لاگ حسابرسی" : "Audited Hours Adjustment"}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowAdjustModal(false)}
                 aria-label={isFa ? "بستن" : "Close"}
               >
                 ×
-              </button>
+              </Button>
             </div>
             <form onSubmit={handleAdjustHours}>
               <div className={styles.privacyNotice}>
@@ -1368,7 +1448,7 @@ export default function TeacherClassesPage() {
                 <label htmlFor={adjustHoursId} className={styles.formLabel}>
                   {isFa ? "ساعت جدید تدریس" : "New Teaching Hours"}
                 </label>
-                <input
+                <Input
                   id={adjustHoursId}
                   className={styles.formInput}
                   type="number"
@@ -1396,16 +1476,17 @@ export default function TeacherClassesPage() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.actionButtonSecondary}
                   onClick={() => setShowAdjustModal(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button type="submit" className={styles.actionButton}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.actionButton}>
                   {isFa ? "ثبت اصلاحیه و لاگ حسابرسی" : "Record Audited Adjustment"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

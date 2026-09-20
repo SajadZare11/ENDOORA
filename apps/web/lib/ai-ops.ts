@@ -346,7 +346,7 @@ export async function fetchAIRequestLogs(): Promise<AIRequestLogItem[]> {
 
 export async function testPromptTemplate(
   promptId: string,
-  testParams: Record<string, any> = {}
+  testParams: Record<string, unknown> = {}
 ): Promise<PromptTestResult> {
   try {
     const res = await fetch(`/api/ai/ops/prompts/${promptId}/test/`, {

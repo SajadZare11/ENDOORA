@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
 
 interface SkillEvidence {
@@ -84,6 +85,17 @@ const TWIN_SKILLS: SkillEvidence[] = [
     detailsFa: "انسجام پاراگراف، علائم نگارشی استاندارد و غنای واژگانی",
     detailsEn: "Paragraph cohesion, formal punctuation, and lexical sophistication",
   },
+  {
+    id: "pronunciation",
+    nameFa: "تلفظ و آواشناسی (Pronunciation)",
+    nameEn: "Pronunciation & Phonology",
+    evidenceCount: 7,
+    confidence: "medium",
+    lastVerifiedFa: "در جلسه کلاسی مدرس با سیستم TeacherOS",
+    lastVerifiedEn: "During TeacherOS Live Class Session",
+    detailsFa: "آهنگ کلامی، استرس واژگان، تلفظ فونتیک و وضوح لهجه معیار",
+    detailsEn: "Sentence intonation, lexical word stress, and phonetic clarity",
+  },
 ];
 
 export default function LearnerTwinPage() {
@@ -157,33 +169,36 @@ export default function LearnerTwinPage() {
       {/* Tabs */}
       <section className={styles.card}>
         <div className={styles.filterBar} role="tablist">
-          <button
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeTab === "skills" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeTab === "skills" ? "primary" : "secondary"}
             onClick={() => setActiveTab("skills")}
           >
             {isFa ? "شواهد ۶ مهارت اصلی" : "6-Skill Evidence Matrix"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeTab === "history" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeTab === "history" ? "primary" : "secondary"}
             onClick={() => setActiveTab("history")}
           >
             {isFa ? "تاریخچه ثبت شواهد" : "Calibration History"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeTab === "controls" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeTab === "controls" ? "primary" : "secondary"}
             onClick={() => setActiveTab("controls")}
           >
             {isFa ? "کنترل‌ها و حریم خصوصی" : "Privacy & Evidence Controls"}
-          </button>
+          </Button>
         </div>
 
         {activeTab === "skills" && (
           <div>
             <h2 className={styles.cardTitle}>
-              {isFa ? "ماتریس شواهد مستند ۶ مهارت" : "Verified 6-Skill Evidence Matrix"}
+              {isFa ? "ماتریس شواهد مستند ۷ مهارت CEFR" : "Verified 7-Skill CEFR Evidence Matrix"}
             </h2>
             <p className={styles.cardDescription}>
               {isFa
@@ -210,11 +225,11 @@ export default function LearnerTwinPage() {
                     </span>
                   </div>
 
-                  <p style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)", lineHeight: 1.6, margin: "var(--space-2) 0" }}>
+                  <p style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)", lineHeight: 1.6, marginBlock: "var(--space-2)" }}>
                     {isFa ? item.detailsFa : item.detailsEn}
                   </p>
 
-                  <div style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text)", borderTop: "1px solid var(--color-border)", paddingTop: "var(--space-2)" }}>
+                  <div style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text)", borderBlockStart: "1px solid var(--color-border)", paddingBlockStart: "var(--space-2)" }}>
                     <span style={{ color: "var(--color-muted)" }}>{isFa ? "آخرین بازبینی: " : "Last verified: "}</span>
                     <strong>{isFa ? item.lastVerifiedFa : item.lastVerifiedEn}</strong>
                   </div>
@@ -284,9 +299,9 @@ export default function LearnerTwinPage() {
             </p>
 
             <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", marginBlock: "var(--space-4)" }}>
-              <button type="button" className={styles.buttonSecondary} onClick={handleResetEvidence}>
+              <Button type="button" variant="secondary" onClick={handleResetEvidence}>
                 {isFa ? "درخواست بازنگری و کالیبراسیون شواهد" : "Request Evidence Recalibration"}
-              </button>
+              </Button>
               <Link className={styles.buttonSecondary} href="/account/data-controls">
                 {isFa ? "خروجی کامل داده‌ها (Data Export)" : "GDPR Data Controls"}
               </Link>

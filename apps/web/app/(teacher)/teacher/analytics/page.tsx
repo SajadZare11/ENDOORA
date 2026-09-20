@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./analytics.module.css";
@@ -270,14 +272,17 @@ export default function TeacherAnalyticsOverviewPage() {
 
                       <div className={styles.alertActions}>
                         {alert.status === "active" && (
-                          <button
+                          <Button
                             type="button"
+                            variant="secondary"
+                            size="sm"
                             className={styles.btnSm}
                             onClick={() => void handleAcknowledge(alert.id)}
+                            loading={actingAlertId === alert.id}
                             disabled={actingAlertId === alert.id}
                           >
                             {isFa ? "مشاهده شد" : "Acknowledge"}
-                          </button>
+                          </Button>
                         )}
                         <Link
                           href={`/teacher/interventions?learner_id=${alert.learner_id}&class_id=${alert.teacher_class_id}&alert_id=${alert.id}`}

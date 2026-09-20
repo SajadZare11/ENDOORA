@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button } from "@endoora/ui";
 import Link from "next/link";
 import styles from "./offline.module.css";
 
@@ -24,13 +26,9 @@ export default function OfflinePage() {
       </p>
 
       <div className={styles.actions}>
-        <button
-          type="button"
-          onClick={handleRetry}
-          className={styles.primaryButton}
-        >
+        <Button type="button" variant="primary" onClick={handleRetry} className={styles.primaryButton}>
           🔄 تلاش مجدد برای اتصال
-        </button>
+        </Button>
 
         <Link href="/account/drafts" className={styles.secondaryLink}>
           📝 مدیریت پیش‌نویس‌های آفلاین

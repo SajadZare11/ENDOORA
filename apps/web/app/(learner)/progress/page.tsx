@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@endoora/ui";
 import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "./progress.module.css";
@@ -384,38 +385,38 @@ export default function ProgressPage() {
 
         {gamification.recent_transactions.length > 0 ? (
           <div className={styles.tableWrapper}>
-            <table className={styles.ledgerTable}>
-              <thead>
-                <tr>
-                  <th>{isFa ? "امتیاز" : "XP"}</th>
-                  <th>{isFa ? "دسته‌بندی" : "Category"}</th>
-                  <th>{isFa ? "شرح فعالیت آموزشی" : "Activity Reason"}</th>
-                  <th>{isFa ? "کلید ارجاع رویداد" : "Event Key"}</th>
-                  <th>{isFa ? "زمان ثبت" : "Timestamp"}</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table aria-label={isFa ? "دفترکل تراکنش‌های امتیاز" : "XP Transaction Ledger"}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{isFa ? "امتیاز" : "XP"}</TableHead>
+                  <TableHead>{isFa ? "دسته‌بندی" : "Category"}</TableHead>
+                  <TableHead>{isFa ? "شرح فعالیت آموزشی" : "Activity Reason"}</TableHead>
+                  <TableHead>{isFa ? "کلید ارجاع رویداد" : "Event Key"}</TableHead>
+                  <TableHead>{isFa ? "زمان ثبت" : "Timestamp"}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {gamification.recent_transactions.map((tx) => (
-                  <tr key={tx.id}>
-                    <td>
+                  <TableRow key={tx.id}>
+                    <TableCell>
                       <span className={styles.xpBadgeGain}>
                         +{tx.amount} XP
                       </span>
-                    </td>
-                    <td>
+                    </TableCell>
+                    <TableCell>
                       <span className={styles.categoryTag}>{tx.category}</span>
-                    </td>
-                    <td>{tx.reason}</td>
-                    <td dir="ltr" style={{ fontFamily: "monospace", fontSize: "0.75rem", color: "var(--color-muted)" }}>
+                    </TableCell>
+                    <TableCell>{tx.reason}</TableCell>
+                    <TableCell dir="ltr" style={{ fontFamily: "monospace", fontSize: "0.75rem", color: "var(--color-muted)" }}>
                       {tx.source_event.length > 28 ? `${tx.source_event.slice(0, 26)}...` : tx.source_event}
-                    </td>
-                    <td dir="ltr" style={{ fontSize: "0.75rem", color: "var(--color-muted)" }}>
+                    </TableCell>
+                    <TableCell dir="ltr" style={{ fontSize: "0.75rem", color: "var(--color-muted)" }}>
                       {new Date(tx.created_at).toLocaleDateString()}
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         ) : (
           <div className={styles.emptyLedgerNotice}>
@@ -439,7 +440,7 @@ export default function ProgressPage() {
           </h4>
           <p>
             {isFa
-              ? "سامانه گیمیفیکیشن اندورا صرفاً برای ایجاد انگیزه و استمرار آموزشی طراحی شده است و فاقد الگوهای اعتیادآور یا قمارگونه (Dark Patterns) است. سطوح و امتیازات XP بازتاب تلاش مستمر شما هستند و گواهی یا مدرک دانشگاهی رسمی تلقی نمی‌شوند."
+              ? "سامانه گیمیفیکیشن ایندورا صرفاً برای ایجاد انگیزه و استمرار آموزشی طراحی شده است و فاقد الگوهای اعتیادآور یا قمارگونه (Dark Patterns) است. سطوح و امتیازات XP بازتاب تلاش مستمر شما هستند و گواهی یا مدرک دانشگاهی رسمی تلقی نمی‌شوند."
               : "Endoora gamification promotes healthy consistency without manipulative engagement tricks. XP points and level titles celebrate educational effort and do not constitute accredited certification."}
           </p>
         </div>

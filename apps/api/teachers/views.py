@@ -18,6 +18,7 @@ from .models import (
     TeachingHourLedger,
     LinkStatus,
     LedgerStatus,
+    SessionStatus,
 )
 from .serializers import (
     TeacherDashboardEventSerializer,
@@ -27,7 +28,9 @@ from .serializers import (
     ClassSessionSerializer,
     TeachingHourLedgerSerializer,
     CreateClassInputSerializer,
+    UpdateClassInputSerializer,
     ScheduleSessionInputSerializer,
+    UpdateSessionInputSerializer,
     AdjustHoursInputSerializer,
     InviteLearnerInputSerializer,
     LearnerConsentInputSerializer,
@@ -154,12 +157,21 @@ class TeacherClassListCreateView(APIView):
             max_capacity=data.get("max_capacity", 1),
             objectives=data.get("objectives", []),
             private_notes=data.get("private_notes", ""),
+            coursebook=data.get("coursebook", ""),
+            age_group=data.get("age_group", "adult"),
+            class_size_type=data.get("class_size_type", "small"),
+            default_duration=data.get("default_duration", 60),
+            goal=data.get("goal", "general"),
+            focus_skills=data.get("focus_skills", []),
+            equipment=data.get("equipment", []),
+            teaching_preferences=data.get("teaching_preferences", []),
+            target_exams=data.get("target_exams", ""),
         )
         return Response(TeacherClassSerializer(created_class).data, status=status.HTTP_201_CREATED)
 
 
 class TeacherClassDetailView(APIView):
-    """Retrieve details, enrollments, and sessions of a managed class."""
+    """Retrieve details, enrollments, and sessions of a managed class or update class profile."""
     authentication_classes = [SessionAuthentication]
     permission_classes = []
 
@@ -183,6 +195,26 @@ class TeacherClassDetailView(APIView):
             "enrollments": enrollments,
             "sessions": sessions,
         })
+
+    def patch(self, request, pk):
+        error = require_teacher(request)
+        if error is not None:
+            return error
+
+        get_object_or_404(TeacherClass, id=pk, teacher=request.user)
+        input_serializer = UpdateClassInputSerializer(data=request.data, partial=True)
+        input_serializer.is_valid(raise_exception=True)
+
+        updated_class = TeacherClassService.update_class(
+            teacher=request.user,
+            class_id=str(pk),
+            **input_serializer.validated_data,
+        )
+        return Response(TeacherClassSerializer(updated_class).data)
+
+    def put(self, request, pk):
+        return self.patch(request, pk)
+
 
 
 class TeacherLearnerInviteView(APIView):
@@ -414,6 +446,83 @@ class ClassSessionCompleteView(APIView):
             return Response({"code": "session_not_found"}, status=status.HTTP_404_NOT_FOUND)
 
         return Response(ClassSessionSerializer(session).data, status=status.HTTP_200_OK)
+
+
+class ClassSessionDetailView(APIView):
+    """
+    Retrieve, update (title, times, duration, notes, status), or delete a class session.
+    Supports status toggling: scheduled, completed, cancelled.
+    """
+    authentication_classes = [SessionAuthentication]
+    permission_classes = []
+
+    def get(self, request, pk=None, class_pk=None, session_pk=None):
+        error = require_teacher(request)
+        if error is not None:
+            return error
+
+        sid = session_pk or pk
+        session = get_object_or_404(
+            ClassSession.objects.select_related("teacher_class"),
+            id=sid,
+            teacher_class__teacher=request.user,
+        )
+        return Response(ClassSessionSerializer(session).data)
+
+    def patch(self, request, pk=None, class_pk=None, session_pk=None):
+        error = require_teacher(request)
+        if error is not None:
+            return error
+
+        sid = session_pk or pk
+        get_object_or_404(
+            ClassSession.objects.select_related("teacher_class"),
+            id=sid,
+            teacher_class__teacher=request.user,
+        )
+
+        input_serializer = UpdateSessionInputSerializer(data=request.data, partial=True)
+        input_serializer.is_valid(raise_exception=True)
+
+        try:
+            updated_session = TeacherClassService.update_session(
+                teacher=request.user,
+                session_id=str(sid),
+                **input_serializer.validated_data,
+            )
+        except PermissionDenied as e:
+            return Response({"code": "permission_denied", "detail": str(e)}, status=status.HTTP_403_FORBIDDEN)
+        except Exception as e:
+            return Response({"code": "session_update_failed", "detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(ClassSessionSerializer(updated_session).data)
+
+    def put(self, request, pk=None, class_pk=None, session_pk=None):
+        return self.patch(request, pk=pk, class_pk=class_pk, session_pk=session_pk)
+
+    def delete(self, request, pk=None, class_pk=None, session_pk=None):
+        error = require_teacher(request)
+        if error is not None:
+            return error
+
+        sid = session_pk or pk
+        session = get_object_or_404(
+            ClassSession.objects.select_related("teacher_class"),
+            id=sid,
+            teacher_class__teacher=request.user,
+        )
+        if session.status == SessionStatus.COMPLETED:
+            return Response(
+                {
+                    "code": "cannot_delete_completed",
+                    "message_fa": "جلسات تکمیل‌شده و ثبت‌شده در دفتر ساعات تدریس قابل حذف نیستند.",
+                    "detail": "Completed sessions cannot be deleted.",
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        session.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 class TeachingHourLedgerView(APIView):

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Table } from "@endoora/ui";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -114,7 +116,7 @@ export function ProductAnalyticsOperationsDashboard() {
   return (
     <div className={styles.container}>
       {/* 1. 14-Tab Synchronized Operations Ribbon */}
-      <nav className={styles.ribbon} aria-label="ناوبری عملیات اندورا">
+      <nav className={styles.ribbon} aria-label="ناوبری عملیات ایندورا">
         <Link href="/operations/taxonomy" className={styles.opsTab}>
           تاکسونومی (CONTENT-001)
         </Link>
@@ -178,7 +180,7 @@ export function ProductAnalyticsOperationsDashboard() {
             <span>📈 تحلیل محصول، نرخ تبدیل و تلمتری رویدادها</span>
             <span className={styles.statusBadge}>
               <span className={styles.liveDot} />
-              OPS-007 فعال
+              {isLoading ? "در حال به‌روزرسانی..." : "OPS-007 فعال"}
             </span>
           </h1>
           <p className={styles.headerSubtitle}>
@@ -200,13 +202,13 @@ export function ProductAnalyticsOperationsDashboard() {
               <option value={90}>۹۰ روز گذشته</option>
             </select>
 
-            <button
+            <Button
               type="button"
               className={styles.btnAction}
               onClick={handleTriggerTestTelemetry}
             >
               🚀 آزمون ارسال تلمتری
-            </button>
+            </Button>
           </div>
         </div>
       </header>
@@ -294,7 +296,7 @@ export function ProductAnalyticsOperationsDashboard() {
         {/* Funnel Selector Tabs */}
         <div className={styles.funnelSelector}>
           {overview.funnels_summary.map((fn) => (
-            <button
+            <Button
               key={fn.slug}
               type="button"
               className={`${styles.funnelTab} ${
@@ -303,7 +305,7 @@ export function ProductAnalyticsOperationsDashboard() {
               onClick={() => handleFunnelChange(fn.slug)}
             >
               {fn.name_fa} ({fn.overall_conversion_rate}٪)
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -477,7 +479,7 @@ export function ProductAnalyticsOperationsDashboard() {
         </div>
 
         <div className={styles.tableResponsive}>
-          <table className={styles.cohortTable}>
+          <Table className={styles.cohortTable}>
             <thead>
               <tr>
                 <th>کوهورت هفتگی</th>
@@ -527,7 +529,7 @@ export function ProductAnalyticsOperationsDashboard() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
 
@@ -561,7 +563,7 @@ export function ProductAnalyticsOperationsDashboard() {
         </div>
 
         <div className={styles.tableResponsive}>
-          <table className={styles.eventsTable}>
+          <Table className={styles.eventsTable}>
             <thead>
               <tr>
                 <th>نام رویداد (Event Name)</th>
@@ -594,7 +596,7 @@ export function ProductAnalyticsOperationsDashboard() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
     </div>

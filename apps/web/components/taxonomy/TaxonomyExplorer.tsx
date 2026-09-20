@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import styles from "./taxonomy.module.css";
@@ -197,7 +199,7 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
 
       <div className={styles.controlsBar}>
         <div className={styles.searchRow}>
-          <input
+          <Input
             type="search"
             className={styles.searchInput}
             placeholder={isFa ? "جست‌وجوی مهارت، گرامر، واژگان یا شناسه..." : "Search skill, grammar, vocabulary, or slug..."}
@@ -236,46 +238,46 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
 
         <div className={styles.toggleRow}>
           <div className={styles.pillGroup}>
-            <button
+            <Button
               type="button"
               className={`${styles.pillBtn} ${selectedKind === "all" ? styles.pillBtnActive : ""}`}
               onClick={() => setSelectedKind("all")}
             >
               {isFa ? "همه" : "All"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className={`${styles.pillBtn} ${selectedKind === "skill" ? styles.pillBtnActive : ""}`}
               onClick={() => setSelectedKind("skill")}
             >
               {isFa ? "مهارت‌ها" : "Skills"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className={`${styles.pillBtn} ${selectedKind === "objective" ? styles.pillBtnActive : ""}`}
               onClick={() => setSelectedKind("objective")}
             >
               {isFa ? "اهداف یادگیری" : "Objectives"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className={`${styles.pillBtn} ${selectedKind === "grammar_topic" ? styles.pillBtnActive : ""}`}
               onClick={() => setSelectedKind("grammar_topic")}
             >
               {isFa ? "گرامر" : "Grammar"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className={`${styles.pillBtn} ${selectedKind === "vocabulary_topic" ? styles.pillBtnActive : ""}`}
               onClick={() => setSelectedKind("vocabulary_topic")}
             >
               {isFa ? "واژگان" : "Vocabulary"}
-            </button>
+            </Button>
           </div>
 
           <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
             <label style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "0.85rem", cursor: "pointer" }}>
-              <input
+              <Input
                 type="checkbox"
                 checked={includeDeprecated}
                 onChange={(e) => setIncludeDeprecated(e.target.checked)}
@@ -283,14 +285,14 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
               <span>{isFa ? "نمایش موارد منسوخ" : "Include deprecated"}</span>
             </label>
 
-            <button
+            <Button
               type="button"
               className={styles.pillBtn}
               onClick={() => setLocale(isFa ? "en" : "fa")}
               aria-label={isFa ? "تغییر زبان به انگلیسی" : "Switch language to Persian"}
             >
               {isFa ? "English" : "فارسی"}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -302,13 +304,13 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
       ) : error ? (
         <div className={styles.stateBox}>
           <p style={{ color: "var(--color-error-text)" }}>{error}</p>
-          <button
+          <Button
             type="button"
             className={styles.retryBtn}
             onClick={() => setLocale((prev) => (prev === "fa" ? "fa" : "en"))}
           >
             {isFa ? "تلاش مجدد" : "Retry"}
-          </button>
+          </Button>
         </div>
       ) : nodes.length === 0 ? (
         <div className={styles.stateBox}>
@@ -333,14 +335,14 @@ export function TaxonomyExplorer({ initialLocale = "fa" }: { initialLocale?: "fa
                       <span className={styles.badgeCefr}>{node.cefr_level}</span>
                     ) : null}
                   </div>
-                  <button
+                  <Button
                     type="button"
                     className={styles.copyIdBtn}
                     onClick={() => handleCopyId(node.id)}
                     title={isFa ? "کپی شناسه یکتا" : "Copy stable UUID"}
                   >
                     {copiedId === node.id ? (isFa ? "کپی شد!" : "Copied!") : (isFa ? "کپی شناسه" : "Copy ID")}
-                  </button>
+                  </Button>
                 </div>
 
                 <h2 className={styles.nodeTitle}>{primaryTitle}</h2>

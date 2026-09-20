@@ -13,7 +13,7 @@ class ReportReason(models.TextChoices):
     SPAM = 'spam_or_solicitation', 'اسپم، تبلیغات نامرتبط یا تقلب'
     INAPPROPRIATE_FOR_MINORS = 'inappropriate_for_minors', 'محتوای نامناسب برای رده سنی کودکان و نوجوانان'
     MISINFORMATION = 'misinformation', 'اطلاعات نادرست و گمراه‌کننده آموزشی'
-    OTHER = 'other', 'سایر موارد مغایر با قوانین جامعه اندورا'
+    OTHER = 'other', 'سایر موارد مغایر با قوانین جامعه ایندورا'
 
 
 class ModerationStatus(models.TextChoices):

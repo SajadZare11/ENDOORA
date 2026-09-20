@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@endoora/ui";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "../placement.module.css";
 
 type Locale = "fa" | "en";
@@ -41,7 +43,7 @@ interface SessionSummaryData {
 
 const copy = {
   fa: {
-    kicker: "گزارش شفاف یادگیری Endoora",
+    kicker: "گزارش شفاف یادگیری ایندورا",
     title: "کارنامه تحلیلی ارزیابی اولیه",
     desc: "این کارنامه بر اساس شواهد واقعی شما در شش بخش دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری و نگارش محاسبه شده است.",
     grammar: "دستور زبان (Grammar)",
@@ -64,7 +66,7 @@ const copy = {
     buildPersonalPath: "مشاهده و ساخت مسیر یادگیری شخصی",
     retakePlacement: "مرور یا شرکت مجدد در آزمون",
     viewTwin: "مشاهده دوقلوی یادگیری",
-    noticeHeader: "اصل شفافیت آموزشی Endoora (Honest Assessment)",
+    noticeHeader: "اصل شفافیت آموزشی ایندورا (Honest Assessment)",
     honestDisclaimer: "این کارنامه یک برآورد آموزشی اولیه بر اساس شواهد ثبت‌شده در این آزمون است و ادعای مدرک رسمی یا تضمین سطح CEFR را ندارد.",
     loading: "در حال دریافت و ارزیابی شواهد آزمون...",
   },
@@ -142,25 +144,28 @@ export default function PlacementReportPage() {
   const writing = summary?.sections?.writing;
 
   return (
-    <main className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
-      <div className={styles.container}>
+    <PublicShell locale={locale} currentPath="/placement/report">
+      <div className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
+        <div className={styles.container}>
         {/* Language switch */}
-        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "var(--space-4)" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginBlockEnd: "var(--space-4)" }}>
           <div style={{ display: "inline-flex", gap: "var(--space-1)", background: "var(--color-surface)", padding: "var(--space-1)", borderRadius: "var(--radius-control)", border: "1px solid var(--color-border)" }}>
-            <button
+            <Button
               type="button"
-              style={{ padding: "var(--space-2) var(--space-3)", border: "none", background: locale === "fa" ? "var(--color-surface-hover)" : "transparent", fontWeight: locale === "fa" ? 700 : 400, cursor: "pointer", borderRadius: "var(--radius-control)" }}
+              size="sm"
+              variant={locale === "fa" ? "primary" : "tertiary"}
               onClick={() => setLocale("fa")}
             >
               فارسی
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              style={{ padding: "var(--space-2) var(--space-3)", border: "none", background: locale === "en" ? "var(--color-surface-hover)" : "transparent", fontWeight: locale === "en" ? 700 : 400, cursor: "pointer", borderRadius: "var(--radius-control)" }}
+              size="sm"
+              variant={locale === "en" ? "primary" : "tertiary"}
               onClick={() => setLocale("en")}
             >
               English
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -369,6 +374,7 @@ export default function PlacementReportPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </PublicShell>
   );
 }

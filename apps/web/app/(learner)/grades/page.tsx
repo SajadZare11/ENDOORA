@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@endoora/ui";
 import styles from "./grades.module.css";
 import { fetchLearnerGradebook, type LearnerGradebookSummary } from "../../../lib/teacher-gradebook";
 
@@ -109,27 +110,27 @@ export default function LearnerMyGradesPage() {
                 </div>
 
                 {/* Assignments Table */}
-                <table className={styles.assignmentsTable}>
-                  <thead>
-                    <tr>
-                      <th>عنوان تکلیف</th>
-                      <th>وضعیت</th>
-                      <th>نمره کسب‌شده</th>
-                      <th>درصد</th>
-                      <th>بازخورد مدرس</th>
-                      <th>عملیات</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <Table aria-label="جدول نمرات تکالیف کلاس">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>عنوان تکلیف</TableHead>
+                      <TableHead>وضعیت</TableHead>
+                      <TableHead>نمره کسب‌شده</TableHead>
+                      <TableHead>درصد</TableHead>
+                      <TableHead>بازخورد مدرس</TableHead>
+                      <TableHead>عملیات</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {cls.assignments.map((a) => (
-                      <tr key={a.assignment_id}>
-                        <td>
+                      <TableRow key={a.assignment_id}>
+                        <TableCell>
                           <strong>{a.title}</strong>
                           <div style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
                             سطح {a.target_cefr} | {a.total_points} نمره
                           </div>
-                        </td>
-                        <td>
+                        </TableCell>
+                        <TableCell>
                           {a.status === "graded" ? (
                             <span style={{ padding: "0.125rem 0.5rem", borderRadius: "9999px", fontSize: "0.75rem", background: "var(--color-success-subtle)", color: "var(--color-success-dark)", fontWeight: 700 }}>
                               تصحیح شده
@@ -147,23 +148,23 @@ export default function LearnerMyGradesPage() {
                               شروع نشده
                             </span>
                           )}
-                        </td>
-                        <td>
+                        </TableCell>
+                        <TableCell>
                           {a.score_awarded !== null ? (
                             <strong>{a.score_awarded} / {a.total_points}</strong>
                           ) : (
                             "-"
                           )}
-                        </td>
-                        <td>
+                        </TableCell>
+                        <TableCell>
                           {a.percentage !== null ? `${a.percentage}%` : "-"}
-                        </td>
-                        <td style={{ maxWidth: "250px", fontSize: "var(--font-size-xs)" }}>
+                        </TableCell>
+                        <TableCell style={{ maxWidth: "250px", fontSize: "var(--font-size-xs)" }}>
                           {a.teacher_feedback_snippet || (
                             <span style={{ color: "var(--color-text-tertiary)" }}>بدون بازخورد متنی</span>
                           )}
-                        </td>
-                        <td>
+                        </TableCell>
+                        <TableCell>
                           <Link
                             href={`/assignments/${a.assignment_id}`}
                             style={{
@@ -179,11 +180,11 @@ export default function LearnerMyGradesPage() {
                           >
                             مشاهده و بازخورد
                           </Link>
-                        </td>
-                      </tr>
+                        </TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
-                </table>
+                  </TableBody>
+                </Table>
               </section>
             ))
           )}

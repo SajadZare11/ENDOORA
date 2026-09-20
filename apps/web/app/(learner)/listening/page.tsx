@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import { AudioWaveformPlayer } from "../../../components/placement/AudioWaveformPlayer";
+import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
 
 interface ListeningQuestion {
@@ -166,45 +167,42 @@ export default function ListeningPage() {
               }
 
               return (
-                <button
+                <Button
                   key={option}
                   type="button"
+                  variant={isSelected ? "primary" : "secondary"}
                   dir="ltr"
                   onClick={() => {
                     if (!checked) setSelectedOption(idx);
                   }}
                   style={{
-                    padding: "var(--space-3) var(--space-4)",
-                    borderRadius: "var(--radius-control)",
-                    border: `1px solid ${borderColor}`,
-                    background,
+                    inlineSize: "100%",
+                    justifyContent: "flex-start",
                     textAlign: "left",
-                    color: "var(--color-text)",
-                    fontWeight: isSelected ? 700 : 500,
-                    cursor: checked ? "default" : "pointer",
-                    transition: "all var(--motion-fast) ease",
+                    borderColor,
+                    backgroundColor: background,
                   }}
                 >
                   {option}
-                </button>
+                </Button>
               );
             })}
           </div>
 
           <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center", flexWrap: "wrap" }}>
             {!checked ? (
-              <button
+              <Button
                 type="button"
-                className={styles.buttonPrimary}
+                variant="primary"
                 onClick={handleCheck}
                 disabled={selectedOption === null}
               >
                 {isFa ? "بررسی پاسخ" : "Check Answer"}
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
                 type="button"
-                className={styles.buttonSecondary}
+                variant="secondary"
                 onClick={() => setShowTranscript(!showTranscript)}
               >
                 {showTranscript
@@ -214,7 +212,7 @@ export default function ListeningPage() {
                   : isFa
                   ? "مشاهده متن کامل صوتی (Transcript)"
                   : "Reveal Transcript"}
-              </button>
+              </Button>
             )}
           </div>
 
@@ -240,7 +238,7 @@ export default function ListeningPage() {
           {showTranscript && (
             <div
               style={{
-                marginTop: "var(--space-4)",
+                marginBlockStart: "var(--space-4)",
                 padding: "var(--space-4)",
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",

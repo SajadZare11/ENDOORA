@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./admin-dashboard.module.css";
@@ -157,7 +159,7 @@ export function FeatureFlagsOperations() {
         </div>
 
         <div className={styles.headerActions}>
-          <input
+          <Input
             type="text"
             placeholder="جستجوی کلید ویژگی یا مالک..."
             value={searchQuery}
@@ -211,12 +213,12 @@ export function FeatureFlagsOperations() {
                 </div>
 
                 <div className={styles.flagControls}>
-                  <button
+                  <Button
                     onClick={() => handleOpenToggle(flag)}
                     className={`${styles.toggleSwitch} ${flag.enabled ? styles.toggleSwitchActive : ""}`}
                   >
                     {flag.enabled ? "فعال (Online)" : "غیرفعال (Offline)"}
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -232,9 +234,9 @@ export function FeatureFlagsOperations() {
               <h2 className={styles.modalTitle}>
                 تنظیم وضعیت کلید ویژگی: <code>{selectedFlagForToggle.key}</code>
               </h2>
-              <button onClick={() => setSelectedFlagForToggle(null)} className={styles.closeBtn}>
+              <Button onClick={() => setSelectedFlagForToggle(null)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleConfirmToggle}>
@@ -256,7 +258,7 @@ export function FeatureFlagsOperations() {
 
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>درصد انتشار تدریجی (Rollout Percentage): {rolloutVal}%</label>
-                  <input
+                  <Input
                     type="range"
                     min="0"
                     max="100"
@@ -294,17 +296,17 @@ export function FeatureFlagsOperations() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
                   onClick={() => setSelectedFlagForToggle(null)}
                   className={styles.secondaryBtn}
                   disabled={isSubmitting}
                 >
                   انصراف
-                </button>
-                <button type="submit" className={styles.primaryBtn} disabled={isSubmitting}>
+                </Button>
+                <Button type="submit" className={styles.primaryBtn} disabled={isSubmitting}>
                   {isSubmitting ? "در حال ثبت..." : "ثبت و اعمال تغییر"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

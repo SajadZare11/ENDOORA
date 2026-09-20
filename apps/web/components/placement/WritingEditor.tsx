@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useId, useRef, useState } from "react";
 import styles from "./writing-editor.module.css";
 
@@ -209,7 +211,7 @@ export function WritingEditor({
 
       {/* Formatting Toolbar */}
       <div className={styles.toolbar} role="toolbar" aria-label={locale === "fa" ? "نوار ابزار ویرایشگر" : "Editor Toolbar"}>
-        <button
+        <Button
           type="button"
           className={styles.toolBtn}
           onClick={() => applyFormat("**")}
@@ -217,8 +219,8 @@ export function WritingEditor({
           aria-label={t.bold}
         >
           <strong>B</strong>
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           className={styles.toolBtn}
           onClick={() => applyFormat("*")}
@@ -226,9 +228,9 @@ export function WritingEditor({
           aria-label={t.italic}
         >
           <em>I</em>
-        </button>
+        </Button>
         <span className={styles.separator} aria-hidden="true" />
-        <button
+        <Button
           type="button"
           className={styles.toolBtn}
           onClick={() => applyList(false)}
@@ -236,8 +238,8 @@ export function WritingEditor({
           aria-label={t.bulletList}
         >
           • لیست
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           className={styles.toolBtn}
           onClick={() => applyList(true)}
@@ -245,9 +247,9 @@ export function WritingEditor({
           aria-label={t.numberList}
         >
           1. شماره
-        </button>
+        </Button>
         <span className={styles.separator} aria-hidden="true" />
-        <button
+        <Button
           type="button"
           className={styles.toolBtn}
           onClick={handleClear}
@@ -255,7 +257,7 @@ export function WritingEditor({
           aria-label={t.clear}
         >
           {t.clear}
-        </button>
+        </Button>
       </div>
 
       {/* Editor Textarea */}
@@ -307,14 +309,14 @@ export function WritingEditor({
 
       {/* Actions Row */}
       <div className={styles.actionsRow}>
-        <button
+        <Button
           type="button"
           className={styles.confirmBtn}
           onClick={handleConfirm}
           disabled={wordCount === 0}
         >
           {isConfirmed ? t.confirmed : t.confirmAnswer}
-        </button>
+        </Button>
       </div>
     </section>
   );

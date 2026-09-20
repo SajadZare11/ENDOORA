@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./security-ops.module.css";
@@ -118,9 +120,9 @@ export function SecurityOperationsDashboard() {
         </div>
 
         <div className={styles.headerActions}>
-          <button onClick={loadData} className={styles.primaryBtn}>
+          <Button onClick={loadData} className={styles.primaryBtn}>
             به‌روزرسانی وضعیت
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -226,7 +228,7 @@ export function SecurityOperationsDashboard() {
               </div>
             </div>
 
-            <table className={styles.configTable}>
+            <Table className={styles.configTable}>
               <thead>
                 <tr>
                   <th>نوع کوکی</th>
@@ -254,13 +256,13 @@ export function SecurityOperationsDashboard() {
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
 
             <div className={styles.sectionHeader} style={{ marginBlockStart: "var(--space-4)" }}>
               <h3 className={styles.sectionTitle} style={{ fontSize: "var(--font-size-card-title)" }}>محدودیت نرخ بر اساس نقش</h3>
             </div>
             
-            <table className={styles.configTable}>
+            <Table className={styles.configTable}>
               <thead>
                 <tr>
                   <th>گروه کاربری</th>
@@ -277,7 +279,7 @@ export function SecurityOperationsDashboard() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           </section>
         </div>
       )}

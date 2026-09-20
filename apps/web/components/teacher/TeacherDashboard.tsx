@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 import { trackTeacherAction, type TeacherCountSummary, type TeacherPrimaryActionId } from "../../lib/teacher-dashboard";
 import { useTeacherHome } from "./TeacherShell";
+import { QuickCreateModal } from "./QuickCreateModal";
 
 type Locale = "fa" | "en";
 type DashboardIconName = "classes" | "students" | "requests" | "grading" | "schedule" | "question" | "class" | "privacy" | "arrow";
@@ -56,6 +57,7 @@ function actionLabel(locale: Locale, actionId: TeacherPrimaryActionId): string {
 
 export function TeacherDashboard() {
   const { data, locale, online } = useTeacherHome();
+  const [quickCreateOpen, setQuickCreateOpen] = useState(false);
   const action = data.primary_action;
   const limitations = locale === "fa" ? data.limitations_fa : data.limitations_en;
   const isVerified = data.capabilities.teacher_verified;
@@ -97,9 +99,19 @@ export function TeacherDashboard() {
           <span className="teacher-primary-label">{localText(locale, "اقدام اصلی امروز", "Today's primary action")}</span>
           <h2 id="teacher-priority-title">{localText(locale, action.title_fa, action.title_en)}</h2>
           <p>{localText(locale, action.description_fa, action.description_en)}</p>
-          <Link className="teacher-button teacher-button--primary" href={action.href} onClick={() => void trackTeacherAction("primary_cta_click", action.id)}>
-            {actionLabel(locale, action.id)}<span aria-hidden="true"><DashboardIcon name="arrow" /></span>
-          </Link>
+          <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap", alignItems: "center" }}>
+            <Link className="teacher-button teacher-button--primary" href={action.href} onClick={() => void trackTeacherAction("primary_cta_click", action.id)}>
+              {actionLabel(locale, action.id)}<span aria-hidden="true"><DashboardIcon name="arrow" /></span>
+            </Link>
+            <button
+              type="button"
+              className="teacher-button teacher-button--secondary"
+              onClick={() => setQuickCreateOpen(true)}
+              style={{ display: "inline-flex", alignItems: "center", gap: "var(--space-1)", cursor: "pointer" }}
+            >
+              ⚡ {localText(locale, "ساخت سریع محتوا (Quick Create)", "Quick Create Material")}
+            </button>
+          </div>
           <details className="teacher-why"><summary>{localText(locale, "چرا این اقدام؟", "Why this action?")}</summary><p>{localText(locale, action.reason_fa, action.reason_en)}</p></details>
           <div className="teacher-profile-progress">
             <div><span>{localText(locale, "تکمیل پروفایل", "Profile completion")}</span><strong>{data.profile_completeness_percent}%</strong></div>
@@ -159,6 +171,8 @@ export function TeacherDashboard() {
       </aside>
 
       <details className="teacher-limitations"><summary>{localText(locale, "این صفحه چگونه با داده‌ها کار می‌کند؟", "How does this page use data?")}</summary><ul>{limitations.map((item) => <li key={item}>{item}</li>)}</ul></details>
+
+      <QuickCreateModal isOpen={quickCreateOpen} onClose={() => setQuickCreateOpen(false)} locale={locale} />
     </div>
   );
 }

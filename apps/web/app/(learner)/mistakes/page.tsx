@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "./mistakes.module.css";
 
@@ -225,7 +226,7 @@ export default function MistakesPage() {
         <div className={styles.educationalNotice}>
           <span>
             {isFa
-              ? "اصل هشتم قانون اساسی محصول اندورا: یک اشتباه هرگز صفت دائمی شما نامیده نمی‌شود. هر الگو تنها پس از تکرار چندباره شواهد به عنوان «الگوی تکرارشونده» ثبت می‌شود و در صورت اعتراض یا تمرین موفق، بلافاصله اصلاح می‌گردد."
+              ? "اصل هشتم قانون اساسی محصول ایندورا: یک اشتباه هرگز صفت دائمی شما نامیده نمی‌شود. هر الگو تنها پس از تکرار چندباره شواهد به عنوان «الگوی تکرارشونده» ثبت می‌شود و در صورت اعتراض یا تمرین موفق، بلافاصله اصلاح می‌گردد."
               : "Endoora Constitution Rule #8: A single error is never treated as permanent DNA. Patterns require multiple verified evidence occurrences before being flagged as recurring, and can always be disputed or mastered."}
           </span>
         </div>
@@ -289,34 +290,14 @@ export default function MistakesPage() {
 
       {/* Primary Status Tabs */}
       <nav className={styles.tabBar} aria-label={isFa ? "تب‌های وضعیت ژنوم" : "Genome Status Tabs"}>
-        <button
-          type="button"
-          className={`${styles.tabItem} ${activeTab === "recurring" ? styles.tabItemActive : ""}`}
-          onClick={() => setActiveTab("recurring")}
-        >
-          {isFa ? `الگوهای تکرارشونده (${recurringCount})` : `Recurring Patterns (${recurringCount})`}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabItem} ${activeTab === "occasional" ? styles.tabItemActive : ""}`}
-          onClick={() => setActiveTab("occasional")}
-        >
-          {isFa ? `الگوهای تک‌موردی (${occasionalCount})` : `Occasional Slips (${occasionalCount})`}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabItem} ${activeTab === "mastered" ? styles.tabItemActive : ""}`}
-          onClick={() => setActiveTab("mastered")}
-        >
-          {isFa ? `تثبیت‌شده (${masteredCount})` : `Mastered (${masteredCount})`}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabItem} ${activeTab === "disputed" ? styles.tabItemActive : ""}`}
-          onClick={() => setActiveTab("disputed")}
-        >
-          {isFa ? `موارد اعتراض (${disputedCount})` : `Disputed (${disputedCount})`}
-        </button>
+        <Button type="button" size="sm" variant={activeTab === "recurring" ? "primary" : "secondary"} onClick={() => setActiveTab("recurring")}>{isFa ? `الگوهای تکرارشونده (${recurringCount})` : `Recurring Patterns (${recurringCount})`}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "occasional" ? "primary" : "secondary"} onClick={() => setActiveTab("occasional")}>{isFa ? `الگوهای تک‌موردی (${occasionalCount})` : `Occasional Slips (${occasionalCount})`}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "mastered" ? "primary" : "secondary"} onClick={() => setActiveTab("mastered")}>{isFa ? `تثبیت‌شده (${masteredCount})` : `Mastered (${masteredCount})`}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "disputed" ? "primary" : "secondary"} onClick={() => setActiveTab("disputed")}>{isFa ? `موارد اعتراض (${disputedCount})` : `Disputed (${disputedCount})`}
+       </Button>
       </nav>
 
       {/* Secondary Category Filter Bar */}
@@ -329,14 +310,7 @@ export default function MistakesPage() {
           { id: "discourse", labelFa: "نگارش و اتصال", labelEn: "Discourse" },
           { id: "pronunciation", labelFa: "تلفظ و استرس", labelEn: "Pronunciation" },
         ].map((cat) => (
-          <button
-            key={cat.id}
-            type="button"
-            className={`${styles.filterPill} ${activeCategory === cat.id ? styles.filterPillActive : ""}`}
-            onClick={() => setActiveCategory(cat.id)}
-          >
-            {isFa ? cat.labelFa : cat.labelEn}
-          </button>
+          <Button key={cat.id} type="button" size="sm" variant={activeCategory === cat.id ? "primary" : "secondary"} onClick={() => setActiveCategory(cat.id)}>{isFa ? cat.labelFa : cat.labelEn}</Button>
         ))}
       </div>
 
@@ -447,26 +421,18 @@ export default function MistakesPage() {
                       {item.quick_options.map((opt, optIdx) => {
                         const isSelected = userAnswer === optIdx;
                         return (
-                          <button
+                          <Button
                             key={opt}
                             type="button"
+                            size="sm"
+                            variant={isSelected ? "primary" : "secondary"}
                             dir="ltr"
                             onClick={() =>
                               setTestedAnswers((prev) => ({ ...prev, [item.id]: optIdx }))
                             }
-                            style={{
-                              padding: "var(--space-1) var(--space-3)",
-                              borderRadius: "var(--radius-control)",
-                              border: `1px solid ${isSelected ? "var(--color-action-bg)" : "var(--color-border)"}`,
-                              background: isSelected ? "var(--color-action-bg)" : "var(--color-canvas)",
-                              color: isSelected ? "var(--color-action-text)" : "var(--color-text)",
-                              fontSize: "var(--font-size-meta)",
-                              fontWeight: isSelected ? 700 : 500,
-                              cursor: "pointer",
-                            }}
                           >
                             {opt}
-                          </button>
+                          </Button>
                         );
                       })}
                     </div>
@@ -500,23 +466,13 @@ export default function MistakesPage() {
                   )}
 
                   {item.status !== "mastered" && item.status !== "disputed" && (
-                    <button
-                      className={styles.buttonSecondary}
-                      type="button"
-                      onClick={() => handleResolve(item.id)}
-                    >
-                      {isFa ? "تثبیت شد / آموختم" : "Mark Mastered"}
-                    </button>
+                    <Button size="sm" variant="secondary" type="button" onClick={() => handleResolve(item.id)}>{isFa ? "تثبیت شد / آموختم" : "Mark Mastered"}
+                   </Button>
                   )}
 
                   {item.status !== "disputed" ? (
-                    <button
-                      className={styles.buttonText}
-                      type="button"
-                      onClick={() => setDisputeOpenId(disputeOpenId === item.id ? null : item.id)}
-                    >
-                      {isFa ? "اعتراض / اصلاح این خطا" : "Dispute or Correct"}
-                    </button>
+                    <Button size="sm" variant="tertiary" type="button" onClick={() => setDisputeOpenId(disputeOpenId === item.id ? null : item.id)}>{isFa ? "اعتراض / اصلاح این خطا" : "Dispute or Correct"}
+                   </Button>
                   ) : (
                     <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
                       {isFa ? `دلیل ثبت‌شده: ${item.dispute_reason || "اشتباه تایپی"}` : `Reason: ${item.dispute_reason || "Typo"}`}
@@ -532,29 +488,12 @@ export default function MistakesPage() {
                         ? "دلیل اعتراض به این الگو را بنویسید (مثلاً: این صرفاً یک اشتباه تایپی لحظه‌ای بود، نه نقص دانشی):"
                         : "State your dispute reason (e.g., accidental slip rather than conceptual knowledge gap):"}
                     </label>
-                    <input
-                      id={`dispute-input-${item.id}`}
-                      className={styles.disputeInput}
-                      type="text"
-                      value={disputeReason}
-                      onChange={(e) => setDisputeReason(e.target.value)}
-                      placeholder="e.g. Accidental typo while typing fast"
-                    />
+                    <Input id={`dispute-input-${item.id}`} type="text" value={disputeReason} onChange={(e) => setDisputeReason(e.target.value)} placeholder="e.g. Accidental typo while typing fast" />
                     <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                      <button
-                        className={styles.buttonPrimary}
-                        type="button"
-                        onClick={() => handleDisputeSubmit(item.id)}
-                      >
-                        {isFa ? "ثبت اعتراض و توقف توصیه" : "Confirm Dispute"}
-                      </button>
-                      <button
-                        className={styles.buttonSecondary}
-                        type="button"
-                        onClick={() => setDisputeOpenId(null)}
-                      >
-                        {isFa ? "انصراف" : "Cancel"}
-                      </button>
+                      <Button size="sm" variant="primary" type="button" onClick={() => handleDisputeSubmit(item.id)}>{isFa ? "ثبت اعتراض و توقف توصیه" : "Confirm Dispute"}
+                     </Button>
+                      <Button size="sm" variant="secondary" type="button" onClick={() => setDisputeOpenId(null)}>{isFa ? "انصراف" : "Cancel"}
+                     </Button>
                     </div>
                   </div>
                 )}

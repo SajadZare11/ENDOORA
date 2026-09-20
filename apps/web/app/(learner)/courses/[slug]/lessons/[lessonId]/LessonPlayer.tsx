@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Button } from "@endoora/ui";
 import styles from "./lesson-cms.module.css";
 
 interface QuizItem {
@@ -57,7 +58,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
       </nav>
 
       <header className={styles.lessonHeader}>
-        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBottom: "var(--space-2)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBlockEnd: "var(--space-2)" }}>
           {lesson.isFreePreview ? (
             <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-learning-teal)", background: "var(--color-surface-subtle)", padding: "0.2rem 0.6rem", borderRadius: "var(--radius-pill)" }}>
               ✓ جلسه پیش‌نمایش رایگان
@@ -78,10 +79,10 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
       {/* Media Player or Paywall Notice */}
       {isLocked ? (
         <section className={styles.paywallCard} aria-label="قفل اشتراک ویژه">
-          <div style={{ fontSize: "2.5rem", marginBottom: "var(--space-2)" }}>🔒</div>
-          <h2 className={styles.paywallTitle}>این درس ویژه اعضای اشتراک اندورا است</h2>
+          <div style={{ fontSize: "2.5rem", marginBlockEnd: "var(--space-2)" }}>🔒</div>
+          <h2 className={styles.paywallTitle}>این درس ویژه اعضای اشتراک ایندورا است</h2>
           <p className={styles.paywallDesc}>
-            برای دسترسی نامحدود به تمام جلسات ویدئویی، آزمون‌های سنجشی، جزوات قابل دانلود و تمرین‌های تعاملی، اشتراک ویژه اندورا را فعال کنید.
+            برای دسترسی نامحدود به تمام جلسات ویدئویی، آزمون‌های سنجشی، جزوات قابل دانلود و تمرین‌های تعاملی، اشتراک ویژه ایندورا را فعال کنید.
           </p>
           <div className={styles.paywallPrice}>
             اشتراک ۳ ماهه (۹۰ روزه): ۴۲۰٬۰۰۰ تومان
@@ -93,33 +94,26 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
       ) : (
         <section className={styles.mediaBox} aria-label="پخش‌کننده ویدئو آموزشی">
           <div className={styles.playerPlaceholder}>
-            <span style={{ fontSize: "3rem", marginBottom: "var(--space-2)" }}>▶️</span>
+            <span style={{ fontSize: "3rem", marginBlockEnd: "var(--space-2)" }}>▶️</span>
             <strong>پخش ویدئوی آموزشی تعاملی</strong>
-            <span style={{ fontSize: "var(--font-size-small)", color: "var(--color-text-muted)", marginTop: "var(--space-1)" }}>
+            <span style={{ fontSize: "var(--font-size-small)", color: "var(--color-text-muted)", marginBlockStart: "var(--space-1)" }}>
               کیفیت تطبیقی با اینترنت ایران (Full HD / 720p)
             </span>
           </div>
 
           <div style={{ display: "flex", justifyContent: "center", gap: "var(--space-4)" }}>
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="sm"
               onClick={() => setShowTranscript(!showTranscript)}
-              style={{
-                padding: "var(--space-2) var(--space-4)",
-                background: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderRadius: "var(--radius-control)",
-                fontSize: "var(--font-size-small)",
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
             >
               {showTranscript ? "مخفی‌سازی متن و زیرنویس" : "نمایش متن و زیرنویس فارسی"}
-            </button>
+            </Button>
           </div>
 
           {showTranscript && (
-            <div style={{ marginTop: "var(--space-4)", padding: "var(--space-4)", background: "var(--color-surface)", borderRadius: "var(--radius-control)", textAlign: "start", fontSize: "var(--font-size-small)", lineHeight: "var(--line-height-body)" }}>
+            <div style={{ marginBlockStart: "var(--space-4)", padding: "var(--space-4)", background: "var(--color-surface)", borderRadius: "var(--radius-control)", textAlign: "start", fontSize: "var(--font-size-small)", lineHeight: "var(--line-height-body)" }}>
               <strong>متن درس: </strong>{lesson.transcriptFa || "متن و رونویسی رسمی این جلسه در حال آماده‌سازی است."}
             </div>
           )}
@@ -139,7 +133,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
       {/* Formative Quiz (Only available when not locked) */}
       {!isLocked && lesson.quiz && (
         <section className={styles.quizCard} aria-label="آزمون سنجش یادگیری">
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "var(--space-3)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBlockEnd: "var(--space-3)" }}>
             <h2 className={styles.quizTitle}>آزمون سنجش این درس</h2>
             {completed && (
               <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-learning-teal)" }}>
@@ -148,8 +142,8 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
             )}
           </div>
 
-          <p style={{ fontWeight: 600, marginBottom: "var(--space-3)" }}>{lesson.quiz.promptFa}</p>
-          <div style={{ fontSize: "var(--font-size-small)", color: "var(--color-text-muted)", direction: "ltr", textAlign: "right", fontFamily: "var(--font-family-latin)", marginBottom: "var(--space-4)" }}>
+          <p style={{ fontWeight: 600, marginBlockEnd: "var(--space-3)" }}>{lesson.quiz.promptFa}</p>
+          <div style={{ fontSize: "var(--font-size-small)", color: "var(--color-text-muted)", direction: "ltr", textAlign: "right", fontFamily: "var(--font-family-latin)", marginBlockEnd: "var(--space-4)" }}>
             {lesson.quiz.promptEn}
           </div>
 
@@ -164,15 +158,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
                 }
               }
               return (
-                <button
-                  key={idx}
-                  type="button"
-                  className={optClass}
-                  onClick={() => handleSelectOption(idx)}
-                  disabled={selectedOption !== null}
-                >
-                  <span style={{ marginInlineEnd: "var(--space-2)" }}>{idx + 1}.</span> {opt}
-                </button>
+                <Button key={idx} type="button" variant="secondary" className={optClass} onClick={() => handleSelectOption(idx)} disabled={selectedOption !== null} style={{ inlineSize: "100%", justifyContent: "flex-start" }}><span style={{ marginInlineEnd: "var(--space-2)" }}>{idx + 1}.</span> {opt}</Button>
               );
             })}
           </div>
@@ -188,7 +174,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
       {/* Downloadable Resources */}
       {lesson.downloads && lesson.downloads.length > 0 && !isLocked && (
         <section style={{ marginBlockEnd: "var(--space-6)" }}>
-          <h3 style={{ fontSize: "var(--font-size-body)", fontWeight: 700, marginBottom: "var(--space-3)" }}>
+          <h3 style={{ fontSize: "var(--font-size-body)", fontWeight: 700, marginBlockEnd: "var(--space-3)" }}>
             فایل‌های ضمیمه و کاربرگ‌ها
           </h3>
           <div className={styles.downloadsList}>
@@ -208,7 +194,7 @@ export function LessonPlayer({ lesson }: { lesson: LessonData }) {
           ← بازگشت به سرفصل دوره
         </Link>
         <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
-          مدرس: {lesson.author} | کلیه حقوق برای اندورا محفوظ است.
+          مدرس: {lesson.author} | کلیه حقوق برای ایندورا محفوظ است.
         </span>
       </footer>
     </div>

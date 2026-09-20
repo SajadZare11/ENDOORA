@@ -42,11 +42,32 @@
 
 .brand {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
   color: var(--color-text);
   text-decoration: none;
+}
+
+.brandLogo {
+  inline-size: 2.35rem;
+  block-size: auto;
+  aspect-ratio: 38 / 45;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.06));
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.brand:hover .brandLogo {
+  transform: scale(1.05);
+}
+
+.brandCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
 }
 
 .brandName,
@@ -56,7 +77,7 @@
   letter-spacing: -0.04em;
 }
 
-.brandName { font-size: 1.45rem; line-height: 1; }
+.brandName { font-size: 1.45rem; line-height: 1.05; }
 .motto { color: var(--color-muted); font: 550 0.68rem/1.2 var(--font-family-latin); letter-spacing: 0.01em; }
 
 .desktopNav {
@@ -127,17 +148,32 @@
   color: var(--color-text);
   font-family: var(--font-family-latin);
   font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .primaryCta {
-  border: 1px solid var(--color-action);
+  border: 1px solid rgb(255 255 255 / 0.16);
   background: var(--color-action);
   color: var(--color-action-text);
-  box-shadow: 0 6px 16px color-mix(in srgb, var(--color-action) 18%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 14px -2px color-mix(in srgb, var(--color-action) 35%, transparent);
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
-.language:hover { border-color: var(--color-action); color: var(--color-action-hover); }
-.primaryCta:hover { background: var(--color-action-hover); }
+.language:hover {
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
+  color: var(--color-action);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.06);
+}
+
+.primaryCta:hover {
+  background: var(--color-action-hover);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 18px -2px color-mix(in srgb, var(--color-action) 45%, transparent);
+}
 
 .mobileMenu { display: none; position: relative; }
 .mobileMenu summary { gap: var(--space-2); border: 1px solid var(--color-border); cursor: pointer; list-style: none; }
@@ -205,6 +241,8 @@
 .footerGrid > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
 .footerGrid > div > strong:not(.footerBrand) { margin-block-end: var(--space-2); font-size: 0.9rem; }
 .footerGrid a { min-block-size: 34px; color: var(--color-muted); font-size: 0.9rem; }
+.footerBrandWrap { display: inline-flex; align-items: center; gap: var(--space-2); }
+.footerLogo { inline-size: 1.85rem; block-size: auto; aspect-ratio: 38 / 45; object-fit: contain; }
 .footerBrand { color: var(--color-text); font-size: 1.55rem; }
 .footerText { max-width: 31rem; margin-block: var(--space-3) 0; color: var(--color-muted); }
 

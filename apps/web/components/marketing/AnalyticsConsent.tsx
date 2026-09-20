@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useSyncExternalStore } from "react";
 import type { PublicLocale } from "../../lib/public-site";
 import styles from "./marketing.module.css";
@@ -83,13 +85,13 @@ export function AnalyticsConsent({ locale }: { locale: PublicLocale }) {
       </div>
 
       <div className={styles.consentActions}>
-        <button type="button" onClick={() => save("accepted")}>
+        <Button type="button" onClick={() => save("accepted")}>
           {isFa ? "اجازه در آینده" : "Allow in future"}
-        </button>
+        </Button>
 
-        <button type="button" onClick={() => save("declined")}>
+        <Button type="button" onClick={() => save("declined")}>
           {isFa ? "رد تحلیل اختیاری" : "Decline optional analytics"}
-        </button>
+        </Button>
       </div>
     </aside>
   );

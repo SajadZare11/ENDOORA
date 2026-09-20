@@ -84,7 +84,7 @@ self.addEventListener("fetch", (event) => {
             return offlineFallback;
           }
           return new Response(
-            `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>آفلاین | اندورا</title><style>body{font-family:system-ui,sans-serif;background:#0F172A;color:#F8FAFC;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}</style></head><body><div><h1>اتصال اینترنت برقرار نیست</h1><p>اطلاعات و پیش‌نویس‌های شما به صورت محلی ذخیره شده‌اند.</p><button onclick="window.location.reload()" style="padding:10px 20px;border-radius:8px;border:none;background:#0D9488;color:#fff;cursor:pointer">تلاش مجدد</button></div></body></html>`,
+            `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>آفلاین | ایندورا</title><style>body{font-family:system-ui,sans-serif;background:#0F172A;color:#F8FAFC;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}</style></head><body><div><h1>اتصال اینترنت برقرار نیست</h1><p>اطلاعات و پیش‌نویس‌های شما به صورت محلی ذخیره شده‌اند.</p><button onclick="window.location.reload()" style="padding:10px 20px;border-radius:8px;border:none;background:#0D9488;color:#fff;cursor:pointer">تلاش مجدد</button></div></body></html>`,
             {
               headers: { "Content-Type": "text/html; charset=utf-8" },
               status: 503,

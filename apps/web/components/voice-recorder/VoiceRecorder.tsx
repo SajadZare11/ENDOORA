@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useEffect, useRef, useState } from "react";
 import styles from "./voice-recorder.module.css";
 
@@ -388,14 +390,14 @@ export function VoiceRecorder({
         </div>
 
         {onSwitchToTextMode && (
-          <button
+          <Button
             type="button"
             className={styles.buttonSecondary}
             onClick={onSwitchToTextMode}
             style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem" }}
           >
             {isFa ? "تغییر به تایپ متنی ⌨️" : "Switch to Text ⌨️"}
-          </button>
+          </Button>
         )}
       </div>
 
@@ -490,7 +492,7 @@ export function VoiceRecorder({
         <div className={styles.transcriptCard}>
           <div className={styles.transcriptHeader}>
             <span>{isFa ? "متن شناسایی‌شده از گفتار:" : "Recognized Speech Transcript:"}</span>
-            <button
+            <Button
               type="button"
               className={styles.buttonSecondary}
               style={{ padding: "0.125rem 0.5rem", fontSize: "0.75rem" }}
@@ -499,7 +501,7 @@ export function VoiceRecorder({
               {isEditingTranscript
                 ? isFa ? "ذخیره متن ویرایش‌شده ✓" : "Save Edits ✓"
                 : isFa ? "ویرایش متن شناسایی‌شده ✏️" : "Edit Transcript ✏️"}
-            </button>
+            </Button>
           </div>
 
           {isEditingTranscript ? (
@@ -522,7 +524,7 @@ export function VoiceRecorder({
       <div className={styles.controlsRow}>
         {recordingState === "idle" && (
           <>
-            <button
+            <Button
               type="button"
               className={styles.buttonRecord}
               onClick={handleStartRecording}
@@ -530,8 +532,8 @@ export function VoiceRecorder({
             >
               <span>🔴</span>
               <span>{isFa ? "شروع ضبط صدا" : "Start Recording"}</span>
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               className={styles.buttonSecondary}
               onClick={handleTestMic}
@@ -539,13 +541,13 @@ export function VoiceRecorder({
             >
               <span>🎙️</span>
               <span>{isFa ? "آزمایش میکروفون" : "Test Microphone"}</span>
-            </button>
+            </Button>
           </>
         )}
 
         {recordingState === "testing" && (
           <>
-            <button
+            <Button
               type="button"
               className={styles.buttonRecord}
               onClick={handleStartRecording}
@@ -553,27 +555,27 @@ export function VoiceRecorder({
             >
               <span>🔴</span>
               <span>{isFa ? "آغاز مکالمه و ضبط" : "Start Turn Recording"}</span>
-            </button>
-            <button type="button" className={styles.buttonSecondary} onClick={handleReset}>
+            </Button>
+            <Button type="button" className={styles.buttonSecondary} onClick={handleReset}>
               {isFa ? "لغو آزمایش" : "Cancel Test"}
-            </button>
+            </Button>
           </>
         )}
 
         {recordingState === "recording" && (
-          <button
+          <Button
             type="button"
             className={`${styles.buttonRecord} ${styles.buttonRecordingActive}`}
             onClick={handleStopRecording}
           >
             <span>⏹️</span>
             <span>{isFa ? "توقف ضبط و استخراج متن" : "Stop & Transcribe"}</span>
-          </button>
+          </Button>
         )}
 
         {recordingState === "recorded" && (
           <>
-            <button
+            <Button
               type="button"
               className={`${styles.buttonRecord} ${styles.buttonSuccess}`}
               onClick={handleConfirmAndSubmit}
@@ -581,10 +583,10 @@ export function VoiceRecorder({
             >
               <span>✓</span>
               <span>{isFa ? "تأیید و ارسال نوبت صوتی" : "Confirm & Send Turn"}</span>
-            </button>
-            <button type="button" className={styles.buttonSecondary} onClick={handleReset}>
+            </Button>
+            <Button type="button" className={styles.buttonSecondary} onClick={handleReset}>
               {isFa ? "ضبط مجدد ↺" : "Record Again ↺"}
-            </button>
+            </Button>
           </>
         )}
       </div>
@@ -596,7 +598,7 @@ export function VoiceRecorder({
             {isFa ? "ورودی جایگزین متنی (عدم توقف فرآیند یادگیری):" : "Non-blocking Text Fallback:"}
           </span>
           <div style={{ display: "flex", gap: "var(--space-2)" }}>
-            <input
+            <Input
               type="text"
               dir="ltr"
               className={styles.fallbackInput}
@@ -610,7 +612,7 @@ export function VoiceRecorder({
                 }
               }}
             />
-            <button
+            <Button
               type="button"
               className={styles.buttonRecord}
               onClick={() => {
@@ -622,7 +624,7 @@ export function VoiceRecorder({
               disabled={!fallbackText.trim()}
             >
               {isFa ? "ارسال" : "Send"}
-            </button>
+            </Button>
           </div>
         </div>
       )}

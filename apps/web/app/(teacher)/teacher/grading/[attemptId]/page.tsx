@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -295,9 +297,7 @@ export default function TeacherGradingStudioPage() {
                     <label className={styles.formLabel}>
                       {isFa ? `نمره اختصاصی (حداکثر ${q.points}):` : `Awarded Score (Max ${q.points}):`}
                     </label>
-                    <input
-                      type="number"
-                      step="0.5"
+                    <Input type="number" step="0.5"
                       min="0"
                       max={q.points}
                       className={styles.formInput}
@@ -309,12 +309,12 @@ export default function TeacherGradingStudioPage() {
                     <label className={styles.formLabel}>
                       {isFa ? "بازخورد تفکیکی برای این سوال:" : "Question-Specific Feedback:"}
                     </label>
-                    <input
+                    <Input
                       type="text"
                       placeholder={isFa ? "مثال: رعایت گرامر عالی، اما به زمان فعل دقت شود." : "e.g. Accurate choice, watch verb tense."}
                       className={styles.formInput}
                       value={questionComments[vId] || ""}
-                      onChange={(e) => handleQuestionCommentChange(vId, e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleQuestionCommentChange(vId, e.target.value)}
                     />
                   </div>
                 </div>
@@ -334,10 +334,7 @@ export default function TeacherGradingStudioPage() {
                   <strong style={{ textTransform: "capitalize" }}>{crit.replace("_", " ")}</strong>
                   <span>{data.score} / {data.max}</span>
                 </div>
-                <input
-                  type="range"
-                  min="0"
-                  max={data.max}
+                <Input type="range" min="0" max={data.max}
                   value={data.score}
                   onChange={(e) => {
                     const sc = parseInt(e.target.value, 10);
@@ -377,22 +374,16 @@ export default function TeacherGradingStudioPage() {
 
             {/* Action Buttons */}
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)", marginBlockStart: "var(--space-3)" }}>
-              <button
-                type="button"
-                className={styles.actionButton}
-                disabled={submitting}
+              <Button type="button" variant="primary" className={styles.actionButton} disabled={submitting}
                 onClick={() => handleSubmitGrade("return_grade")}
               >
                 {submitting ? (isFa ? "در حال ثبت..." : "Saving...") : (isFa ? "ثبت نمره نهایی و ارسال بازخورد" : "Finalize Grade & Return")}
-              </button>
-              <button
-                type="button"
-                className={styles.actionButtonSecondary}
-                disabled={submitting}
+              </Button>
+              <Button type="button" variant="secondary" className={styles.actionButtonSecondary} disabled={submitting}
                 onClick={() => handleSubmitGrade("request_revision")}
               >
                 {isFa ? "درخواست بازنگری از زبان‌آموز" : "Request Revision from Learner"}
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -456,16 +447,14 @@ export default function TeacherGradingStudioPage() {
               />
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <label style={{ display: "flex", alignItems: "center", gap: "var(--space-1)", fontSize: "var(--font-size-xs)", cursor: "pointer" }}>
-                  <input
-                    type="checkbox"
-                    checked={isInternalNote}
+                  <Input type="checkbox" checked={isInternalNote}
                     onChange={(e) => setIsInternalNote(e.target.checked)}
                   />
                   {isFa ? "یادداشت خصوصی (پنهان از زبان‌آموز)" : "Internal Note (Hidden from learner)"}
                 </label>
-                <button type="submit" className={styles.actionButton} style={{ paddingBlock: "0.25rem" }}>
+                <Button type="submit" variant="primary" size="sm" className={styles.actionButton} style={{ paddingBlock: "0.25rem" }}>
                   {isFa ? "ارسال پیام" : "Send"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

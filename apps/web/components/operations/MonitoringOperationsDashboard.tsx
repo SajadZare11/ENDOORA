@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./monitoring-ops.module.css";
@@ -92,7 +94,7 @@ export function MonitoringOperationsDashboard() {
   return (
     <div className={styles.container}>
       {/* 1. 13-Tab Synchronized Operations Ribbon */}
-      <nav className={styles.ribbon} aria-label="ناوبری عملیات اندورا">
+      <nav className={styles.ribbon} aria-label="ناوبری عملیات ایندورا">
         <Link href="/operations/taxonomy" className={styles.opsTab}>
           تاکسونومی (CONTENT-001)
         </Link>
@@ -161,10 +163,10 @@ export function MonitoringOperationsDashboard() {
             <span className={styles.statusDot} />
             وضعیت کلی: {overview.status === "OPTIMAL" ? "سالم و بهینه (OPTIMAL)" : overview.status}
           </span>
-          <button className={styles.secondaryButton} onClick={handleSimulateDrill}>
+          <Button className={styles.secondaryButton} onClick={handleSimulateDrill}>
             ⚡ اجرای مانور آزمایشی تاخیر
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
             onClick={async () => {
               setLoading(true);
@@ -174,7 +176,7 @@ export function MonitoringOperationsDashboard() {
             }}
           >
             {loading ? "در حال دریافت..." : "🔄 بروزرسانی زنده"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -343,12 +345,12 @@ export function MonitoringOperationsDashboard() {
                   {item.details}
                 </div>
               </div>
-              <button
+              <Button
                 className={styles.secondaryButton}
                 onClick={() => handleAcknowledgeAlert(item.id)}
               >
                 تایید دریافت هشدار (Acknowledge)
-              </button>
+              </Button>
             </div>
           ))
         )}
@@ -414,7 +416,7 @@ export function MonitoringOperationsDashboard() {
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>📋 جریان لاگ‌های ساختاریافته بلادرنگ (Structured JSON Logs)</h2>
           <div className={styles.logFilters}>
-            <input
+            <Input
               type="text"
               placeholder="جستجو در مسیر، آی‌پی یا شناسه..."
               className={styles.logSearchInput}
@@ -425,14 +427,14 @@ export function MonitoringOperationsDashboard() {
               }}
             />
             {["ALL", "INFO", "WARNING", "ERROR"].map((lvl) => (
-              <button
+              <Button
                 key={lvl}
                 className={logLevel === lvl ? styles.actionButton : styles.secondaryButton}
                 style={{ fontSize: "11px", padding: "4px 8px" }}
                 onClick={() => handleFilterLogs(lvl, logSearch)}
               >
                 {lvl}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

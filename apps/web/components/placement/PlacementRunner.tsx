@@ -1,7 +1,10 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { endooraApi } from "@/lib/endoora-api";
 import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
 import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
@@ -11,6 +14,18 @@ import { WritingEditor } from "./WritingEditor";
 import styles from "@/components/placement/placement.module.css";
 
 type Locale = "fa" | "en";
+
+type SessionAccount = {
+  email?: string;
+  first_name?: string;
+  full_name?: string;
+  role?: string;
+};
+
+type AuthState =
+  | { kind: "checking" }
+  | { kind: "anonymous" }
+  | { account: SessionAccount; kind: "authenticated" };
 
 interface PlacementQuestionItem {
   id: string;
@@ -413,7 +428,7 @@ const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
 
 const t = {
   fa: {
-    heroTag: "موتور هوشمند تعیین سطح Endoora",
+    heroTag: "موتور هوشمند تعیین سطح ایندورا",
     heroTitle: "شناخت دقیق نقطه شروع یادگیری",
     heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری و نگارش) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
     questionCounter: "سوال",
@@ -439,6 +454,29 @@ const t = {
     viewReport: "مشاهده کارنامه مهارتی",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
+    pretestKicker: "آزمون جامع تعیین سطح ۶ مهارته ایندورا",
+    pretestTitle: "سنجش هوشمند و استاندارد سطح زبان انگلیسی",
+    pretestDesc: "این ارزیابی شامل ۲۴ پرسش انطباقی در ۶ مهارت تخصصی است. با تکمیل آزمون، دوقلوی یادگیری شما کالیبره شده و نقشه راه اختصاصی‌تان در داشبورد شکل می‌گیرد.",
+    skillsHeader: "مهارت‌های ۶ گانه مورد سنجش در این آزمون",
+    skill1: "دستور زبان (Grammar) · ۴ سوال",
+    skill2: "واژگان (Vocabulary) · ۴ سوال",
+    skill3: "درک مطلب (Reading) · ۴ سوال",
+    skill4: "شنیداری (Listening) · ۴ سوال صوتی",
+    skill5: "گفتاری (Speaking) · ۴ سوال ضبط صدا",
+    skill6: "نگارش (Writing) · ۴ سوال ویرایش متن",
+    authChecking: "در حال بررسی وضعیت حساب کاربری...",
+    authedNoticeTitle: "حساب کاربری متصل است",
+    authedNoticeDesc: "پاسخ‌های شما با مهر زمانی سرور در پروفایلتان ذخیره می‌شوند و کارنامه نهایی به داشبورد شما اضافه خواهد شد.",
+    startTestBtn: "شروع آزمون تعیین سطح (۲۴ سوال)",
+    unauthedTitle: "برای ذخیره نتایج آزمون در پروفایل، ابتدا وارد شوید یا ثبت‌نام کنید",
+    unauthedDesc: "این آزمون ۲۴ سوالی هر ۶ مهارت زبانی را می‌سنجد. برای اینکه پاسخ‌ها، سطح دقیق CEFR و نقشه راه اختصاصی شما در پروفایل ذخیره بماند، پیشنهاد می‌کنیم وارد حساب خود شوید.",
+    signInBtn: "ورود به حساب کاربری",
+    registerBtn: "ثبت‌نام سریع و رایگان",
+    guestBtn: "ادامه به عنوان مهمان (بدون ذخیره در پروفایل)",
+    guestPillNotice: "حالت آزمایشی (مهمان): نتایج در پروفایل ذخیره نمی‌شوند.",
+    guestPillAction: "ورود یا ثبت‌نام برای ذخیره‌سازی",
+    unauthedSubmittedDesc: "آزمون ۲۴ سوالی با موفقیت تکمیل شد! برای ذخیره دائمی این کارنامه در پروفایل و دریافت برنامه یادگیری شخصی، ثبت‌نام کنید یا وارد شوید.",
+    registerSaveBtn: "ثبت‌نام و ذخیره کارنامه در پروفایل",
   },
   en: {
     heroTag: "Endoora Adaptive Placement Engine",
@@ -467,6 +505,29 @@ const t = {
     viewReport: "View skill report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
+    pretestKicker: "Endoora 6-Skill Comprehensive Placement Test",
+    pretestTitle: "Adaptive Diagnostic Assessment (CEFR Aligned)",
+    pretestDesc: "This assessment contains 24 questions across 6 core skills. Your answers will generate your verified analytical report and calibrate your Learner Twin.",
+    skillsHeader: "Evaluated Competencies",
+    skill1: "Grammar · 4 items",
+    skill2: "Vocabulary · 4 items",
+    skill3: "Reading · 4 items",
+    skill4: "Listening · 4 audio items",
+    skill5: "Speaking · 4 voice recording items",
+    skill6: "Writing · 4 written items",
+    authChecking: "Checking account status...",
+    authedNoticeTitle: "Learner Account Connected",
+    authedNoticeDesc: "Your responses are securely autosaved to your profile, and your comprehensive diagnostic report will be accessible in your dashboard.",
+    startTestBtn: "Start Placement Test (24 questions)",
+    unauthedTitle: "Sign in or register to save your results to your profile",
+    unauthedDesc: "This comprehensive test evaluates all 6 skills. To save your results and personalized roadmap in your profile, please sign in or create an account.",
+    signInBtn: "Sign in to account",
+    registerBtn: "Create free account",
+    guestBtn: "Continue as guest (without saving)",
+    guestPillNotice: "Guest mode: results are not saved to a profile.",
+    guestPillAction: "Sign in / Register to save",
+    unauthedSubmittedDesc: "All 24 questions completed! To permanently save this diagnostic report to your profile and launch your adaptive curriculum, create an account or sign in.",
+    registerSaveBtn: "Register & save report to profile",
   },
 };
 
@@ -483,6 +544,8 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [session, setSession] = useState<PlacementSessionData | null>(null);
+  const [authState, setAuthState] = useState<AuthState>({ kind: "checking" });
+  const [hasStarted, setHasStarted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
@@ -495,6 +558,23 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   // Initialize or resume placement session
   useEffect(() => {
     let isMounted = true;
+
+    // 0. Verify learner authentication
+    endooraApi<SessionAccount>("/auth/me/")
+      .then((account) => {
+        if (isMounted) setAuthState({ account, kind: "authenticated" });
+      })
+      .catch(() => {
+        if (isMounted) setAuthState({ kind: "anonymous" });
+      });
+
+    // Check query params for immediate start or guest mode
+    if (typeof window !== "undefined") {
+      const sp = new URLSearchParams(window.location.search);
+      if (sp.get("start") === "1" || sp.get("guest") === "1" || sp.get("guest") === "true") {
+        setHasStarted(true);
+      }
+    }
 
     async function initSession() {
       try {
@@ -516,7 +596,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
           }
 
           // Restore existing saved answers
-          if (sessionData.answers && Array.isArray(sessionData.answers)) {
+          if (sessionData.answers && Array.isArray(sessionData.answers) && sessionData.answers.length > 0) {
             const restored: Record<string, string> = {};
             sessionData.answers.forEach((ans) => {
               if (ans.answer_value?.selected_option) {
@@ -524,6 +604,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
               }
             });
             setAnswers((prev) => ({ ...restored, ...prev }));
+            setHasStarted(true);
           }
         }
       } catch {
@@ -743,64 +824,167 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   return (
     <EndooraBackground>
       <div className={styles.container} dir={locale === "fa" ? "rtl" : "ltr"}>
-        {/* Language Switcher */}
-        <div className={styles.headerActions}>
-          <div className={styles.languageToggle}>
-            <button
-              type="button"
-              className={`${styles.langBtn} ${locale === "fa" ? styles.langBtnActive : ""}`}
-              onClick={() => setLocale("fa")}
-            >
-              فارسی
-            </button>
-            <button
-              type="button"
-              className={`${styles.langBtn} ${locale === "en" ? styles.langBtnActive : ""}`}
-              onClick={() => setLocale("en")}
-            >
-              English
-            </button>
-          </div>
-        </div>
-
-        {/* Hero Banner */}
-        <GlassCard>
-          <div className={styles.hero}>
-            <p className={styles.heroTag}>{copy.heroTag}</p>
-            <h1>{copy.heroTitle}</h1>
-            <p>{copy.heroDesc}</p>
-          </div>
-        </GlassCard>
-
         {/* Status Alerts */}
         {isOffline && <div className={`${styles.alert} ${styles.alertWarning}`}>{copy.offlineWarning}</div>}
 
         {isExpired && (
           <div className={`${styles.alert} ${styles.alertError}`}>
             <p>{copy.expiredAlert}</p>
-            <button type="button" className={styles.btnPrimary} onClick={handleRestartSession} style={{ marginTop: "1rem" }}>
+            <Button type="button" className={styles.btnPrimary} onClick={handleRestartSession} style={{ marginTop: "1rem" }}>
               {copy.startNewSession}
-            </button>
+            </Button>
           </div>
+        )}
+
+        {/* Pre-Test Overview & Auth Gate */}
+        {!hasStarted && !isSubmitted && !isExpired && (
+          <GlassCard>
+            <div className={styles.hero}>
+              <p className={styles.heroTag}>{copy.pretestKicker}</p>
+              <h1>{copy.pretestTitle}</h1>
+              <p>{copy.pretestDesc}</p>
+            </div>
+
+            <div className={styles.skillsOverview}>
+              <h2 className={styles.skillsOverviewTitle}>{copy.skillsHeader}</h2>
+              <div className={styles.skillsGrid}>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۱</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "دستور زبان" : "Grammar"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill1}</span>
+                </div>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۲</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "واژگان" : "Vocabulary"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill2}</span>
+                </div>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۳</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "درک مطلب" : "Reading"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill3}</span>
+                </div>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۴</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "شنیداری" : "Listening"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill4}</span>
+                </div>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۵</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "گفتاری" : "Speaking"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill5}</span>
+                </div>
+                <div className={styles.skillCard}>
+                  <span className={styles.skillCardNumber}>۰۶</span>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "نگارش" : "Writing"}</span>
+                  <span className={styles.skillCardDetail}>{copy.skill6}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Account Status Card */}
+            {authState.kind === "checking" ? (
+              <div className={styles.authGateBox} aria-busy="true">
+                <p className={styles.authGateCheckingText}>{copy.authChecking}</p>
+              </div>
+            ) : authState.kind === "authenticated" ? (
+              <div className={`${styles.authGateBox} ${styles.authGateBoxAuthed}`}>
+                <div className={styles.authGateHeader}>
+                  <span className={styles.authGateBadgeAuthed}>
+                    <span aria-hidden="true">✓</span>
+                    {copy.authedNoticeTitle}
+                  </span>
+                  <span className={styles.authGateUserTag}>
+                    {authState.account.first_name || authState.account.email || (locale === "fa" ? "زبان‌آموز گرامی" : "Learner")}
+                  </span>
+                </div>
+                <h3 className={styles.authGateTitle}>{copy.authedNoticeTitle}</h3>
+                <p className={styles.authGateDesc}>{copy.authedNoticeDesc}</p>
+                <div className={styles.authGateActions}>
+                  <Button type="button" className={styles.btnPrimary} onClick={() => setHasStarted(true)}>
+                    {copy.startTestBtn}
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className={`${styles.authGateBox} ${styles.authGateBoxPrompt}`}>
+                <div className={styles.authGateHeader}>
+                  <span className={styles.authGateBadgePrompt}>
+                    <span aria-hidden="true">🔒</span>
+                    {locale === "fa" ? "ذخیره‌سازی در پروفایل" : "Save to Profile"}
+                  </span>
+                </div>
+                <h3 className={styles.authGateTitle}>{copy.unauthedTitle}</h3>
+                <p className={styles.authGateDesc}>{copy.unauthedDesc}</p>
+                <div className={styles.authGateActions}>
+                  <Link href="/auth/login?next=/placement/demo?start=1" className={styles.btnPrimary}>
+                    {copy.signInBtn}
+                  </Link>
+                  <Link href="/auth/register?next=/placement/demo?start=1" className={styles.btnPrimaryAlt}>
+                    {copy.registerBtn}
+                  </Link>
+                  <Button type="button" className={styles.btnGhost} onClick={() => setHasStarted(true)}>
+                    {copy.guestBtn}
+                  </Button>
+                </div>
+              </div>
+            )}
+          </GlassCard>
         )}
 
         {/* Submission Complete View */}
         {isSubmitted ? (
           <div className={styles.emptyState}>
             <h2>{copy.completedTitle}</h2>
-            <p style={{ marginBlock: "1.5rem", maxWidth: "36rem", marginInline: "auto" }}>{copy.completedDesc}</p>
+            <p style={{ marginBlock: "1.5rem", maxWidth: "36rem", marginInline: "auto" }}>
+              {authState.kind === "anonymous" ? copy.unauthedSubmittedDesc : copy.completedDesc}
+            </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/placement/report" className={styles.btnPrimary}>
-                {copy.viewReport}
-              </Link>
-              <Link href="/dashboard" className={styles.btnSecondary}>
-                {copy.goToDashboard}
-              </Link>
+              {authState.kind === "anonymous" ? (
+                <>
+                  <Link href="/auth/register?next=/placement/report" className={styles.btnPrimary}>
+                    {copy.registerSaveBtn}
+                  </Link>
+                  <Link href="/auth/login?next=/placement/report" className={styles.btnSecondary}>
+                    {copy.signInBtn}
+                  </Link>
+                  <Link href="/placement/report" className={styles.btnGhost}>
+                    {copy.viewReport}
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/placement/report" className={styles.btnPrimary}>
+                    {copy.viewReport}
+                  </Link>
+                  <Link href="/dashboard" className={styles.btnSecondary}>
+                    {copy.goToDashboard}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
-        ) : (
-          !isExpired && (
-            <div className={styles.grid}>
+        ) : hasStarted && !isExpired ? (
+          <>
+              {/* Hero Banner */}
+              <GlassCard>
+                <div className={styles.hero}>
+                  <p className={styles.heroTag}>{copy.heroTag}</p>
+                  <h1>{copy.heroTitle}</h1>
+                  <p>{copy.heroDesc}</p>
+                </div>
+              </GlassCard>
+
+              {/* If guest mode, show unobtrusive alert */}
+              {authState.kind === "anonymous" && (
+                <div className={styles.guestNoticePill}>
+                  <span>{copy.guestPillNotice}</span>
+                  <Link href="/auth/register?next=/placement/demo?start=1" className={styles.guestNoticeLink}>
+                    {copy.guestPillAction}
+                  </Link>
+                </div>
+              )}
+
+              <div className={styles.grid}>
               {/* Question Card */}
               <div className={styles.questionCard}>
                 {/* Multi-stage Section Tabs */}
@@ -904,7 +1088,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                 ) : (
                   <div className={styles.options}>
                     {question.options.map((opt) => (
-                      <button
+                      <Button
                         key={opt}
                         type="button"
                         dir="ltr"
@@ -912,34 +1096,34 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                         onClick={() => handleSelectOption(opt)}
                       >
                         {opt}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 )}
 
                 <div className={styles.navRow}>
-                  <button
+                  <Button
                     type="button"
                     className={styles.btnSecondary}
                     onClick={handlePrev}
                     disabled={currentIndex === 0}
                   >
                     {copy.prev}
-                  </button>
+                  </Button>
 
                   {currentIndex < questions.length - 1 ? (
-                    <button type="button" className={styles.btnPrimary} onClick={handleNext}>
+                    <Button type="button" className={styles.btnPrimary} onClick={handleNext}>
                       {copy.next}
-                    </button>
+                    </Button>
                   ) : (
-                    <button
+                    <Button
                       type="button"
                       className={styles.btnPrimary}
                       onClick={handleSubmit}
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? copy.submitting : copy.submit}
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
@@ -947,8 +1131,8 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
               {/* Sidebar Preview */}
               <LearnerTwinPreview />
             </div>
-          )
-        )}
+          </>
+        ) : null}
       </div>
     </EndooraBackground>
   );

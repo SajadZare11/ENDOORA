@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useId } from "react";
 import Link from "next/link";
+import { Button, Input } from "@endoora/ui";
 import styles from "./my-teachers.module.css";
 import {
   fetchLearnerLinkedTeachers,
@@ -158,18 +159,11 @@ export default function MyTeachersPage() {
           <label htmlFor={inviteCodeId} className="sr-only">
             {isFa ? "کد دعوت اختصاصی" : "Unique Invite Code"}
           </label>
-          <input
-            id={inviteCodeId}
-            className={styles.input}
-            type="text"
-            required
-            placeholder={isFa ? "کد دعوت (مثلاً: 9kL2x...)" : "Invite code (e.g. 9kL2x...)"}
-            value={inviteCode}
-            onChange={(e) => setInviteCode(e.target.value)}
-          />
-          <button
+          <Input id={inviteCodeId} type="text" required placeholder={isFa ? "کد دعوت (مثلاً: 9kL2x...)" : "Invite code (e.g. 9kL2x...)"} value={inviteCode} onChange={(e) => setInviteCode(e.target.value)} />
+          <Button
             type="submit"
-            className={styles.button}
+            variant="primary"
+            loading={submitting}
             disabled={submitting}
           >
             {submitting
@@ -179,7 +173,7 @@ export default function MyTeachersPage() {
               : isFa
               ? "تایید و اعطای رضایت"
               : "Accept & Grant Consent"}
-          </button>
+          </Button>
         </form>
 
         {feedback ? (
@@ -201,7 +195,7 @@ export default function MyTeachersPage() {
 
       {/* Teachers List */}
       <section aria-label={isFa ? "فهرست اساتید" : "Teachers List"}>
-        <h2 style={{ margin: "0 0 var(--space-4) 0", fontSize: "var(--font-size-title)", fontWeight: 700 }}>
+        <h2 style={{ marginBlockEnd: "var(--space-4)", fontSize: "var(--font-size-title)", fontWeight: 700 }}>
           {isFa ? "اساتید فعال" : "Active Instructors"}
         </h2>
 

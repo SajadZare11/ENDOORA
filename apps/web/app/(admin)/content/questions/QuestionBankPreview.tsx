@@ -1,5 +1,6 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
 import { useEffect, useState } from "react";
 import styles from "./question-bank.module.css";
 
@@ -206,12 +207,12 @@ export function QuestionBankPreview() {
           </p>
         </div>
         <div className={styles.language} aria-label={t(locale, "زبان رابط", "Interface language")}>
-          <button type="button" aria-pressed={locale === "fa"} onClick={() => setLocale("fa")}>
+          <Button type="button" variant={locale === "fa" ? "primary" : "secondary"} size="sm" aria-pressed={locale === "fa"} onClick={() => setLocale("fa")}>
             فارسی
-          </button>
-          <button type="button" aria-pressed={locale === "en"} onClick={() => setLocale("en")}>
+          </Button>
+          <Button type="button" variant={locale === "en" ? "primary" : "secondary"} size="sm" aria-pressed={locale === "en"} onClick={() => setLocale("en")}>
             English
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -231,14 +232,7 @@ export function QuestionBankPreview() {
       <section className={styles.filters} aria-label={t(locale, "فیلترهای بانک سؤال", "Question bank filters")}>
         <div className={styles.filterGroup}>
           <label htmlFor="search-input">{t(locale, "جستجو:", "Search:")}</label>
-          <input
-            id="search-input"
-            type="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t(locale, "عنوان، متن سؤال، یا شناسه…", "Title, prompt, or slug…")}
-            className={styles.filterInput}
-          />
+          <Input id="search-input" type="search" value={searchQuery} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)} placeholder={t(locale, "عنوان، متن سؤال، یا شناسه…", "Title, prompt, or slug…")} className={styles.filterInput} />
         </div>
 
         <div className={styles.filterGroup}>
@@ -290,15 +284,7 @@ export function QuestionBankPreview() {
       {error && (
         <section className={styles.state} role="alert">
           <p>{error}</p>
-          <button
-            type="button"
-            onClick={() => {
-              setError(null);
-              window.location.reload();
-            }}
-          >
-            {t(locale, "تلاش دوباره", "Retry")}
-          </button>
+          <Button type="button" variant="secondary" onClick={() => { setError(null); window.location.reload(); }}>{t(locale, "تلاش دوباره", "Retry")}</Button>
         </section>
       )}
 
@@ -355,7 +341,7 @@ export function QuestionBankPreview() {
                     <div className={styles.optionGroup} role="radiogroup" aria-label={question.display_title || "Options"}>
                       {options.map((opt) => (
                         <label key={opt.id} className={styles.optionLabel} dir="ltr">
-                          <input
+                          <Input
                             type="radio"
                             name={`opt-${question.id}`}
                             value={opt.id}
@@ -370,7 +356,7 @@ export function QuestionBankPreview() {
                     </div>
                   ) : (
                     <div className={styles.inputGroup}>
-                      <input
+                      <Input
                         type="text"
                         dir="ltr"
                         className={styles.textInput}
@@ -384,16 +370,7 @@ export function QuestionBankPreview() {
                   )}
 
                   <div className={styles.actionRow}>
-                    <button
-                      type="button"
-                      className={styles.checkButton}
-                      disabled={isChecking || !currentResponse}
-                      onClick={() => handleCheckAnswer(question.id)}
-                    >
-                      {isChecking
-                        ? t(locale, "در حال بررسی…", "Checking…")
-                        : t(locale, "ارسال و بررسی پاسخ", "Check answer")}
-                    </button>
+                    <Button type="button" variant="primary" loading={isChecking} disabled={isChecking || !currentResponse} onClick={() => handleCheckAnswer(question.id)} className={styles.checkButton}>{isChecking ? t(locale, "در حال بررسی…", "Checking…") : t(locale, "ارسال و بررسی پاسخ", "Check answer")}</Button>
                   </div>
 
                   {checkError && (

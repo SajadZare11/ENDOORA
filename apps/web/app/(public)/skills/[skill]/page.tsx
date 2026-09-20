@@ -63,7 +63,7 @@ const SKILL_DETAILS: Record<string, SkillDetail> = {
     cefrRange: "A2 تا C1",
     icon: "📖",
     l1ChallengeTitle: "تله ترجمه کلمه به کلمه",
-    l1ChallengeDescription: "ترجمه ذهنی تمام کلمات سرعت درک مطلب را به شدت کاهش می‌دهد. در اندورا تکنیک‌های خواندن بلوکی (Chunking) و پیش‌بینی محتوا آموزش داده می‌شود.",
+    l1ChallengeDescription: "ترجمه ذهنی تمام کلمات سرعت درک مطلب را به شدت کاهش می‌دهد. در ایندورا تکنیک‌های خواندن بلوکی (Chunking) و پیش‌بینی محتوا آموزش داده می‌شود.",
     syllabusTopics: [
       { titleFa: "تکنیک مرور اجمالی (Skimming) برای دستیابی به ایده اصلی", titleEn: "Skimming for Gist and Paragraph Macro-Structure", level: "B1" },
       { titleFa: "تکنیک پویش (Scanning) برای پاسخ به سؤالات جزئیات", titleEn: "Scanning for Names, Dates, and Factual Evidence", level: "B1" },
@@ -117,7 +117,7 @@ const SKILL_DETAILS: Record<string, SkillDetail> = {
     cefrRange: "A1 تا C2",
     icon: "💡",
     l1ChallengeTitle: "حفظ واژگان منفرد بدون بافت جمله",
-    l1ChallengeDescription: "حفظ لیست‌های تکی کلمات مانع استفاده از آن‌ها در صحبت می‌شود. در اندورا واژه‌ها در قالب ترکیب‌های دوتایی و سه‌تایی تثبیت می‌شوند.",
+    l1ChallengeDescription: "حفظ لیست‌های تکی کلمات مانع استفاده از آن‌ها در صحبت می‌شود. در ایندورا واژه‌ها در قالب ترکیب‌های دوتایی و سه‌تایی تثبیت می‌شوند.",
     syllabusTopics: [
       { titleFa: "همنشینی‌های طلایی فعل و اسم با Do و Make", titleEn: "Essential Verb-Noun Collocations with Do and Make", level: "A2" },
       { titleFa: "افعال دوکلمه‌ای روزمره در محیط‌های کاری و اداری", titleEn: "High-Frequency Phrasal Verbs for Workplaces", level: "B1" },
@@ -138,7 +138,7 @@ export async function generateMetadata({ params }: { params: Promise<{ skill: st
   const detail = SKILL_DETAILS[skill];
   if (!detail) return {};
   return {
-    title: `${detail.titleFa} | مهارت‌های اندورا`,
+    title: `${detail.titleFa} | مهارت‌های ایندورا`,
     description: detail.heroSummaryFa,
   };
 }

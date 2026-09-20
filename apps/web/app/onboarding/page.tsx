@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import { Button, Input } from "@endoora/ui";
 import { AuthShell } from "../../components/auth/AuthShell";
 import authStyles from "../../components/auth/auth.module.css";
 import {
@@ -1345,8 +1346,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="daily-minutes"
+                <Input id="daily-minutes"
                   type="number"
                   min={5}
                   max={240}
@@ -1394,8 +1394,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="timezone"
+                <Input id="timezone"
                   type="text"
                   className={`endoora-input ${styles.ltr}`}
                   value={
@@ -1441,7 +1440,7 @@ export default function OnboardingPage() {
                         }
                         className="endoora-check-row"
                       >
-                        <input
+                        <Input
                           type="checkbox"
                           className="endoora-check"
                           checked={learner.preferred_days.includes(
@@ -1486,8 +1485,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="teacher-name"
+                <Input id="teacher-name"
                   className="endoora-input"
                   value={
                     teacher.public_name
@@ -1520,8 +1518,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="teacher-experience"
+                <Input id="teacher-experience"
                   type="number"
                   min={0}
                   max={70}
@@ -1568,8 +1565,7 @@ export default function OnboardingPage() {
                   {t.city}
                 </label>
 
-                <input
-                  id="teacher-city"
+                <Input id="teacher-city"
                   className="endoora-input"
                   value={
                     teacher.city
@@ -1648,8 +1644,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="specialties"
+                <Input id="specialties"
                   className={`endoora-input ${styles.ltr}`}
                   value={
                     specialtiesText
@@ -1682,8 +1677,7 @@ export default function OnboardingPage() {
                   }
                 </label>
 
-                <input
-                  id="teacher-languages"
+                <Input id="teacher-languages"
                   className={`endoora-input ${styles.ltr}`}
                   value={
                     languagesText
@@ -1710,7 +1704,7 @@ export default function OnboardingPage() {
                 className={`endoora-fieldset ${styles.fullWidth}`}
               >
                 <label className="endoora-check-row">
-                  <input
+                  <Input
                     type="checkbox"
                     className="endoora-check"
                     checked={
@@ -1741,7 +1735,7 @@ export default function OnboardingPage() {
                 </label>
 
                 <label className="endoora-check-row">
-                  <input
+                  <Input
                     type="checkbox"
                     className="endoora-check"
                     checked={
@@ -1785,9 +1779,9 @@ export default function OnboardingPage() {
               styles.actions
             }
           >
-            <button
+            <Button
               type="button"
-              className="endoora-button endoora-button--secondary"
+              variant="secondary"
               disabled={
                 saving
               }
@@ -1798,7 +1792,7 @@ export default function OnboardingPage() {
               {saving
                 ? t.saving
                 : t.saveLater}
-            </button>
+            </Button>
 
             <div
               className={
@@ -1806,9 +1800,9 @@ export default function OnboardingPage() {
               }
             >
               {step > 1 ? (
-                <button
+                <Button
                   type="button"
-                  className="endoora-button endoora-button--tertiary"
+                  variant="tertiary"
                   disabled={
                     saving
                   }
@@ -1826,12 +1820,12 @@ export default function OnboardingPage() {
                   }
                 >
                   {t.back}
-                </button>
+                </Button>
               ) : null}
 
-              <button
+              <Button
                 type="submit"
-                className="endoora-button endoora-button--primary"
+                variant="primary"
                 disabled={
                   saving
                 }
@@ -1839,7 +1833,7 @@ export default function OnboardingPage() {
                 {saving
                   ? t.saving
                   : t.next}
-              </button>
+              </Button>
             </div>
           </div>
         </form>
@@ -2074,9 +2068,9 @@ export default function OnboardingPage() {
               styles.actions
             }
           >
-            <button
+            <Button
               type="button"
-              className="endoora-button endoora-button--secondary"
+              variant="secondary"
               disabled={
                 saving
               }
@@ -2087,16 +2081,16 @@ export default function OnboardingPage() {
               {saving
                 ? t.saving
                 : t.saveLater}
-            </button>
+            </Button>
 
             <div
               className={
                 styles.actionsPrimary
               }
             >
-              <button
+              <Button
                 type="button"
-                className="endoora-button endoora-button--tertiary"
+                variant="tertiary"
                 disabled={
                   saving
                 }
@@ -2105,11 +2099,11 @@ export default function OnboardingPage() {
                 }
               >
                 {t.back}
-              </button>
+              </Button>
 
-              <button
+              <Button
                 type="button"
-                className="endoora-button endoora-button--primary"
+                variant="primary"
                 disabled={
                   saving
                 }
@@ -2120,7 +2114,7 @@ export default function OnboardingPage() {
                 {saving
                   ? t.saving
                   : t.complete}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

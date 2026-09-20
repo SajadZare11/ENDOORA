@@ -198,20 +198,24 @@
   background: var(--color-primary);
   color: var(--color-surface);
   font-weight: 700;
-  border: none;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 14px -2px color-mix(in srgb, var(--color-primary) 35%, transparent);
   cursor: pointer;
   min-height: 2.75rem;
   min-width: 7rem;
-  transition: opacity 0.2s;
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .btnPrimary:hover:not(:disabled) {
-  opacity: 0.92;
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 18px -2px color-mix(in srgb, var(--color-primary) 45%, transparent);
 }
 
 .btnPrimary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .btnSecondary {
@@ -221,16 +225,21 @@
   padding-inline: var(--space-4);
   padding-block: var(--space-3);
   border-radius: var(--radius-control);
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
   cursor: pointer;
   min-height: 2.75rem;
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .btnSecondary:hover {
   color: var(--color-text);
-  border-color: var(--color-text-muted);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.06);
 }
 
 .twin {
@@ -355,4 +364,211 @@
   .navRow button {
     width: 100%;
   }
+}
+
+/* Pre-test gate & Account Notice */
+.authGateBox {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-6);
+  padding-block: var(--space-6);
+  margin-block: var(--space-6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.authGateBoxPrompt {
+  border-inline-start: 4px solid var(--color-action);
+  background: color-mix(in srgb, var(--color-surface) 96%, var(--color-action) 4%);
+}
+
+.authGateBoxAuthed {
+  border-inline-start: 4px solid var(--color-success);
+  background: color-mix(in srgb, var(--color-surface) 96%, var(--color-success) 4%);
+}
+
+.authGateCheckingText {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+  text-align: center;
+  padding-block: var(--space-4);
+}
+
+.authGateHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.authGateBadgePrompt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+}
+
+.authGateBadgeAuthed {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+}
+
+.authGateUserTag {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+}
+
+.authGateTitle {
+  font-size: var(--font-size-title-2);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block-end: var(--space-2);
+  line-height: 1.4;
+}
+
+.authGateDesc {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body-persian, 1.7);
+  margin-block-end: var(--space-5);
+  max-width: 52rem;
+}
+
+.authGateActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.btnPrimaryAlt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-action);
+  border: 1.5px solid var(--color-action);
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 2.75rem;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btnPrimaryAlt:hover {
+  background: var(--color-primary-subtle);
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 2.75rem;
+  text-decoration: none;
+  font-size: var(--font-size-meta);
+  transition: color 0.2s;
+}
+
+.btnGhost:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+/* Skills overview grid */
+.skillsOverview {
+  margin-block-end: var(--space-6);
+}
+
+.skillsOverviewTitle {
+  font-size: var(--font-size-title-3);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-block-end: var(--space-4);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-3);
+}
+
+.skillCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.skillCardNumber {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.skillCardTitle {
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+}
+
+.skillCardDetail {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+}
+
+/* Guest banner during active test */
+.guestNoticePill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-warning-text);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+  margin-block-end: var(--space-4);
+}
+
+.guestNoticeLink {
+  color: var(--color-warning-text);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.guestNoticeLink:hover {
+  opacity: 0.85;
 }

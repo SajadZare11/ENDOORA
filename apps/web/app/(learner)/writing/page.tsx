@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import { WritingEditor } from "../../../components/placement/WritingEditor";
 import styles from "./writing.module.css";
@@ -502,37 +503,41 @@ export default function WritingMentorPage() {
             {isFa ? "حالت و موضوع نگارش:" : "Writing Mode & Prompt:"}
           </label>
           <div className={styles.pillGroup}>
-            <button
+            <Button
               type="button"
-              className={`${styles.filterPill} ${selectedMode === "all" ? styles.filterPillActive : ""}`}
+              size="sm"
+              variant={selectedMode === "all" ? "primary" : "secondary"}
               onClick={() => setSelectedMode("all")}
             >
               {isFa ? "همه موضوعات" : "All Modes"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className={`${styles.filterPill} ${selectedMode === "general" ? styles.filterPillActive : ""}`}
+              size="sm"
+              variant={selectedMode === "general" ? "primary" : "secondary"}
               onClick={() => setSelectedMode("general")}
             >
               {isFa ? "انگلیسی عمومی (A1-B2)" : "General English"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className={`${styles.filterPill} ${selectedMode === "ielts" ? styles.filterPillActive : ""}`}
+              size="sm"
+              variant={selectedMode === "ielts" ? "primary" : "secondary"}
               onClick={() => setSelectedMode("ielts")}
             >
               {isFa ? "آزمون آیلتس (IELTS)" : "IELTS Tasks"}
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Prompt Pills */}
         <div className={styles.pillGroup}>
           {visiblePrompts.map((p) => (
-            <button
+            <Button
               key={p.id}
               type="button"
-              className={`${styles.filterPill} ${selectedPrompt.id === p.id ? styles.filterPillActive : ""}`}
+              size="sm"
+              variant={selectedPrompt.id === p.id ? "primary" : "secondary"}
               onClick={() => {
                 setSelectedPrompt(p);
                 setAnalysis(null);
@@ -540,7 +545,7 @@ export default function WritingMentorPage() {
             >
               <span style={{ marginInlineEnd: "var(--space-1)", opacity: 0.8 }}>[{p.level}]</span>
               {isFa ? p.title_fa : p.title_en}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -564,38 +569,27 @@ export default function WritingMentorPage() {
           <div className={styles.timerWidget}>
             <span aria-hidden="true">⏱</span>
             <span>{formatTime(timeSeconds)}</span>
-            <button
+            <Button
               type="button"
+              size="sm"
+              variant="tertiary"
               onClick={() => setIsTimerRunning(!isTimerRunning)}
-              style={{
-                background: "transparent",
-                border: "none",
-                color: "var(--color-action)",
-                fontWeight: 700,
-                cursor: "pointer",
-                padding: 0,
-                marginInlineStart: "var(--space-2)",
-              }}
+              style={{ marginInlineStart: "var(--space-2)" }}
             >
               {isTimerRunning ? (isFa ? "توقف" : "Pause") : (isFa ? "شروع تایمر" : "Start")}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              size="sm"
+              variant="tertiary"
               onClick={() => {
                 setIsTimerRunning(false);
                 setTimeSeconds(0);
               }}
-              style={{
-                background: "transparent",
-                border: "none",
-                color: "var(--color-muted)",
-                cursor: "pointer",
-                padding: 0,
-                marginInlineStart: "var(--space-1)",
-              }}
+              style={{ marginInlineStart: "var(--space-1)" }}
             >
               {isFa ? "ریست" : "Reset"}
-            </button>
+            </Button>
           </div>
 
           {/* Stats Bar */}
@@ -650,25 +644,26 @@ export default function WritingMentorPage() {
 
         {/* Primary Action */}
         <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", alignItems: "center" }}>
-          <button
+          <Button
             type="button"
-            className={styles.buttonPrimary}
+            variant="primary"
             onClick={() => setShowConfirmModal(true)}
+            loading={isAnalyzing}
             disabled={wordCount < 10 || isAnalyzing}
           >
             {isAnalyzing
               ? (isFa ? "در حال تحلیل تشخیصی نگارش..." : "Analyzing Writing...")
               : (isFa ? "تحلیل جامع نگارش و معیارهای آیلتس" : "Analyze Writing & IELTS Rubrics")}
-          </button>
+          </Button>
 
           {analysis && (
-            <button
+            <Button
               type="button"
-              className={styles.buttonSecondary}
+              variant="secondary"
               onClick={handleStartRevision}
             >
               {isFa ? "شروع نسخه بازنویسی جدید (Revision)" : "Start New Revision (v" + (draftVersion + 1) + ")"}
-            </button>
+            </Button>
           )}
         </div>
       </section>
@@ -686,20 +681,20 @@ export default function WritingMentorPage() {
                 : `Your draft containing ${wordCount} words will be analyzed for grammar, vocabulary diversity, and IELTS estimated band ranges.`}
             </p>
             <div style={{ display: "flex", gap: "var(--space-3)", justifyContent: "flex-end", marginBlockStart: "var(--space-2)" }}>
-              <button
+              <Button
                 type="button"
-                className={styles.buttonSecondary}
+                variant="secondary"
                 onClick={() => setShowConfirmModal(false)}
               >
                 {isFa ? "انصراف و ادامه ویرایش" : "Cancel"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className={styles.buttonPrimary}
+                variant="primary"
                 onClick={handleConfirmAnalysis}
               >
                 {isFa ? "ارسال و مشاهده تحلیل" : "Confirm & Analyze"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -834,27 +829,30 @@ export default function WritingMentorPage() {
                 {isFa ? "نمونه‌های بازنویسی سه‌سطحی برای یادگیری ساختارها:" : "Three-Tier Graduated Reference Rewrites:"}
               </h4>
               <div className={styles.rewriteTabs}>
-                <button
+                <Button
                   type="button"
-                  className={`${styles.rewriteTab} ${activeRewriteTab === "a2" ? styles.rewriteTabActive : ""}`}
+                  size="sm"
+                  variant={activeRewriteTab === "a2" ? "primary" : "secondary"}
                   onClick={() => setActiveRewriteTab("a2")}
                 >
                   {isFa ? "سطح A2 (روان)" : "A2 (Accessible)"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
-                  className={`${styles.rewriteTab} ${activeRewriteTab === "b2" ? styles.rewriteTabActive : ""}`}
+                  size="sm"
+                  variant={activeRewriteTab === "b2" ? "primary" : "secondary"}
                   onClick={() => setActiveRewriteTab("b2")}
                 >
                   {isFa ? "سطح B2 (آکادمیک)" : "B2 (Academic)"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
-                  className={`${styles.rewriteTab} ${activeRewriteTab === "c2" ? styles.rewriteTabActive : ""}`}
+                  size="sm"
+                  variant={activeRewriteTab === "c2" ? "primary" : "secondary"}
                   onClick={() => setActiveRewriteTab("c2")}
                 >
                   {isFa ? "سطح C2 (پیشرفته)" : "C2 (Nuanced)"}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -878,27 +876,30 @@ export default function WritingMentorPage() {
                 {isFa ? "نکات اصلاحی و بازخورد اختصاصی:" : "Detailed Feedback & Correction Items:"}
               </h3>
               <div className={styles.pillGroup}>
-                <button
+                <Button
                   type="button"
-                  className={`${styles.filterPill} ${errorCategoryFilter === "all" ? styles.filterPillActive : ""}`}
+                  size="sm"
+                  variant={errorCategoryFilter === "all" ? "primary" : "secondary"}
                   onClick={() => setErrorCategoryFilter("all")}
                 >
                   {isFa ? "همه نکات" : "All Items"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
-                  className={`${styles.filterPill} ${errorCategoryFilter === "grammar" ? styles.filterPillActive : ""}`}
+                  size="sm"
+                  variant={errorCategoryFilter === "grammar" ? "primary" : "secondary"}
                   onClick={() => setErrorCategoryFilter("grammar")}
                 >
                   {isFa ? "دستور زبان (Grammar)" : "Grammar"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
-                  className={`${styles.filterPill} ${errorCategoryFilter === "style" ? styles.filterPillActive : ""}`}
+                  size="sm"
+                  variant={errorCategoryFilter === "style" ? "primary" : "secondary"}
                   onClick={() => setErrorCategoryFilter("style")}
                 >
                   {isFa ? "سبک و واژگان (Style)" : "Style & Precision"}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -942,21 +943,23 @@ export default function WritingMentorPage() {
 
                     {!err.is_accepted && (
                       <div className={styles.errorActions}>
-                        <button
+                        <Button
                           type="button"
-                          className={styles.btnAccept}
+                          size="sm"
+                          variant="primary"
                           onClick={() => handleAcceptCorrection(err.id)}
                         >
                           <span aria-hidden="true">✓</span>
                           {isFa ? "تایید تصحیح و ثبت در یادگیری" : "Accept Correction"}
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                           type="button"
-                          className={styles.btnDismiss}
+                          size="sm"
+                          variant="secondary"
                           onClick={() => handleDismissCorrection(err.id)}
                         >
                           {isFa ? "صرف‌نظر (حفظ نگارش من)" : "Keep My Phrasing"}
-                        </button>
+                        </Button>
                       </div>
                     )}
                   </div>
@@ -973,7 +976,7 @@ export default function WritingMentorPage() {
             <div className={styles.tasksList}>
               {analysis.revision_tasks.map((task) => (
                 <label key={task.id} className={styles.taskItem}>
-                  <input
+                  <Input
                     type="checkbox"
                     className={styles.taskCheckbox}
                     defaultChecked={task.completed}

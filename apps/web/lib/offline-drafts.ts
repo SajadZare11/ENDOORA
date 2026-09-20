@@ -30,7 +30,7 @@ function notifyListeners() {
   listeners.forEach((l) => {
     try {
       l();
-    } catch (_) {
+    } catch {
       // safe fallback
     }
   });

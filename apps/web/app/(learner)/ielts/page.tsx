@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { IELTSPracticeHub } from "../../../components/ielts/IELTSPracticeHub";
 
-export default function IELTSIndexPage() {
-  redirect("/ielts/practice");
+export default function IELTSPage() {
+  return <IELTSPracticeHub />;
 }

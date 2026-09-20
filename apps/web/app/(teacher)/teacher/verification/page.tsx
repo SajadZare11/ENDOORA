@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useState, useEffect, useTransition } from "react";
 import styles from "./verification.module.css";
 import {
@@ -100,7 +102,7 @@ export default function TeacherVerificationPage() {
           {getStatusBadge()}
         </div>
         <p className={styles.description}>
-          برای برگزاری جلسات آموزشی خصوصی، دریافت رزرو از زبان‌آموزان و نمایش در فهرست اساتید برتر اندورا،
+          برای برگزاری جلسات آموزشی خصوصی، دریافت رزرو از زبان‌آموزان و نمایش در فهرست اساتید برتر ایندورا،
           احراز هویت فردی و بررسی مدارک علمی و سوابق تدریس الزامی است.
         </p>
       </div>
@@ -120,7 +122,7 @@ export default function TeacherVerificationPage() {
         <div className={`${styles.bannerCard} ${styles.bannerRevision}`}>
           <h2 className={styles.bannerTitle}>⚠️ نیاز به بارگذاری مجدد یا اصلاح مدارک</h2>
           <p className={styles.bannerText}>
-            کارشناس ارزیابی اندورا توضیح داده است: <strong>{app.rejection_reason || "لطفاً مدارک خواناتری ارائه دهید."}</strong>
+            کارشناس ارزیابی ایندورا توضیح داده است: <strong>{app.rejection_reason || "لطفاً مدارک خواناتری ارائه دهید."}</strong>
           </p>
           <p className={styles.bannerText}>
             لطفاً لینک یا مدارک اصلاح‌شده را در فرم زیر وارد کرده و مجدداً ارسال نمایید.
@@ -144,7 +146,7 @@ export default function TeacherVerificationPage() {
         <div className={`${styles.bannerCard} ${styles.bannerPending}`}>
           <h2 className={styles.bannerTitle}>⏳ مدارک شما با موفقیت دریافت شد</h2>
           <p className={styles.bannerText}>
-            مدارک و اطلاعات ارسالی شما در صف ارزیابی دپارتمان آموزش اندورا قرار دارد.
+            مدارک و اطلاعات ارسالی شما در صف ارزیابی دپارتمان آموزش ایندورا قرار دارد.
             نتیجه بررسی حداکثر ظرف ۴۸ ساعت کاری از طریق پیامک و پنل کاربری اعلام خواهد شد.
           </p>
         </div>
@@ -194,14 +196,14 @@ export default function TeacherVerificationPage() {
           {/* National ID */}
           <div className={styles.inputGroup}>
             <label htmlFor="national-id-input" className={styles.label}>کد ملی (۱۰ رقم):</label>
-            <input
+            <Input
               id="national-id-input"
               type="text"
               required
               maxLength={10}
               placeholder="مثال: 0012345678"
               value={nationalId}
-              onChange={(e) => setNationalId(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNationalId(e.target.value)}
               className={styles.input}
               disabled={loading || isPending}
             />
@@ -211,13 +213,13 @@ export default function TeacherVerificationPage() {
           {/* ID Card Doc URL */}
           <div className={styles.inputGroup}>
             <label htmlFor="id-doc-input" className={styles.label}>لینک تصویر کارت ملی / شناسنامه:</label>
-            <input
+            <Input
               id="id-doc-input"
               type="url"
               required
               placeholder="https://drive.google.com/... یا لینک فایل امن"
               value={idDocUrl}
-              onChange={(e) => setIdDocUrl(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIdDocUrl(e.target.value)}
               className={styles.input}
               disabled={loading || isPending}
             />
@@ -227,12 +229,12 @@ export default function TeacherVerificationPage() {
           {/* Degree Doc URL */}
           <div className={styles.inputGroup}>
             <label htmlFor="degree-doc-input" className={styles.label}>لینک مدرک تحصیلی دانشگاهی (اختیاری):</label>
-            <input
+            <Input
               id="degree-doc-input"
               type="url"
               placeholder="https://..."
               value={degreeDocUrl}
-              onChange={(e) => setDegreeDocUrl(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDegreeDocUrl(e.target.value)}
               className={styles.input}
               disabled={loading || isPending}
             />
@@ -242,12 +244,12 @@ export default function TeacherVerificationPage() {
           {/* CELTA / TESOL URL */}
           <div className={styles.inputGroup}>
             <label htmlFor="celta-doc-input" className={styles.label}>لینک مدارک بین‌المللی CELTA / TESOL / TTC:</label>
-            <input
+            <Input
               id="celta-doc-input"
               type="url"
               placeholder="https://..."
               value={celtaDocUrl}
-              onChange={(e) => setCeltaDocUrl(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCeltaDocUrl(e.target.value)}
               className={styles.input}
               disabled={loading || isPending}
             />
@@ -257,12 +259,12 @@ export default function TeacherVerificationPage() {
           {/* Sample Teaching Video */}
           <div className={styles.inputGroupFull}>
             <label htmlFor="sample-teaching-input" className={styles.label}>لینک ویدیو یا پادکست نمونه تدریس (۳ تا ۵ دقیقه):</label>
-            <input
+            <Input
               id="sample-teaching-input"
               type="url"
               placeholder="https://aparat.com/v/... یا https://youtube.com/watch?v=..."
               value={sampleTeachingUrl}
-              onChange={(e) => setSampleTeachingUrl(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSampleTeachingUrl(e.target.value)}
               className={styles.input}
               disabled={loading || isPending}
             />
@@ -274,28 +276,28 @@ export default function TeacherVerificationPage() {
           {/* Honor code acknowledgment */}
           <div className={styles.inputGroupFull}>
             <label className={styles.checkboxContainer}>
-              <input
-                type="checkbox"
-                checked={termsAgreed}
+              <Input type="checkbox" checked={termsAgreed}
                 onChange={(e) => setTermsAgreed(e.target.checked)}
                 disabled={loading || isPending}
               />
               <span className={styles.inputHelper}>
                 صحت تمامی اطلاعات و اصالت مدارک بارگذاری‌شده را تایید می‌کنم و متعهد به رعایت قوانین اخلاقی،
-                پایبندی به زمان‌بندی جلسات و اصول حرفه‌ای تدریس در اندورا هستم.
+                پایبندی به زمان‌بندی جلسات و اصول حرفه‌ای تدریس در ایندورا هستم.
               </span>
             </label>
           </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <button
+          <Button
             type="submit"
-            disabled={loading || isPending || (!termsAgreed && app?.status !== "approved")}
+            variant="primary"
             className={styles.submitBtn}
+            loading={isPending}
+            disabled={loading || isPending || (!termsAgreed && app?.status !== "approved")}
           >
             {isPending ? "در حال ارسال و ثبت..." : "ارسال مدارک جهت بررسی کارشناسی 📤"}
-          </button>
+          </Button>
         </div>
       </form>
 

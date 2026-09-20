@@ -659,7 +659,7 @@ def calculate_teacher_social_proof(teacher_id) -> dict:
                 "punctuality": 5.0,
                 "communication": 5.0,
             },
-            "endorsements": ["مدرس تازه‌پیوسته به اندورا"],
+            "endorsements": ["مدرس تازه‌پیوسته به ایندورا"],
         }
 
     aggs = reviews_qs.aggregate(
@@ -688,7 +688,7 @@ def calculate_teacher_social_proof(teacher_id) -> dict:
     if completed_sessions >= 10:
         endorsements.append("مدرس باتجربه و پرمخاطب")
     if not endorsements:
-        endorsements.append("مدرس تأییدشده اندورا")
+        endorsements.append("مدرس تأییدشده ایندورا")
 
     return {
         "average_rating": avg_rating,
@@ -751,8 +751,8 @@ def list_public_teachers(
 
         teachers_list.append({
             "id": str(teacher.id),
-            "name": full_name or "مدرس اندورا",
-            "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی اندورا",
+            "name": full_name or "مدرس ایندورا",
+            "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی ایندورا",
             "bio": (prof.bio if prof else "") or "",
             "city": (prof.city if prof else "") or "تهران",
             "experience_years": (prof.experience_years if prof else 3) or 3,
@@ -822,9 +822,9 @@ def get_teacher_public_profile(teacher_id) -> dict:
 
     return {
         "id": str(teacher.id),
-        "name": full_name or "مدرس اندورا",
-        "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی اندورا",
-        "bio": (prof.bio if prof else "") or "مدرس متعهد و مجرب اندورا با رویکرد آموزش شخصی‌سازی‌شده و متمرکز بر اهداف زبان‌آموز.",
+        "name": full_name or "مدرس ایندورا",
+        "headline": (prof.headline if prof else "") or "مدرس زبان انگلیسی ایندورا",
+        "bio": (prof.bio if prof else "") or "مدرس متعهد و مجرب ایندورا با رویکرد آموزش شخصی‌سازی‌شده و متمرکز بر اهداف زبان‌آموز.",
         "city": (prof.city if prof else "") or "تهران",
         "experience_years": (prof.experience_years if prof else 3) or 3,
         "specialties": prof.specialties if prof and prof.specialties else ["speaking", "grammar"],
@@ -897,7 +897,7 @@ def submit_session_review(
 
     # Masked name
     if is_anonymous:
-        masked_name = "زبان‌آموز اندورا"
+        masked_name = "زبان‌آموز ایندورا"
     else:
         fn = learner.first_name.strip() if learner.first_name else ""
         ln = learner.last_name.strip() if learner.last_name else ""
@@ -906,7 +906,7 @@ def submit_session_review(
         elif fn:
             masked_name = fn
         else:
-            masked_name = "زبان‌آموز اندورا"
+            masked_name = "زبان‌آموز ایندورا"
 
     with transaction.atomic():
         review = TeacherReview.objects.create(
@@ -1520,7 +1520,7 @@ def resolve_booking_dispute(
             dispute.refund_percentage = 100
             dispute.save(update_fields=["refund_percentage"])
             booking.status = BookingStatus.CANCELLED_BY_TEACHER
-            booking.cancellation_reason = f"لغو ناشی از رأی داوری اندورا (بازپرداخت ۱۰۰٪ به زبان‌آموز): {resolution_notes}"
+            booking.cancellation_reason = f"لغو ناشی از رأی داوری ایندورا (بازپرداخت ۱۰۰٪ به زبان‌آموز): {resolution_notes}"
         elif resolution_status == DisputeStatus.RESOLVED_PARTIAL_REFUND:
             booking.status = BookingStatus.COMPLETED
             booking.session_notes = f"تسویه توافقی داوری با {refund_percentage}٪ بازگشت وجه به زبان‌آموز."
@@ -1715,7 +1715,7 @@ def get_active_pricing_plans():
             is_active=True,
             is_featured=True,
             features_fa=[
-                "دسترسی نامحدود به دستیار نگارش هوشمند اندورا",
+                "دسترسی نامحدود به دستیار نگارش هوشمند ایندورا",
                 "تمرین‌های روزانه تصحیح خودکار تلفظ و مکالمه هوش مصنوعی",
                 "گزارش جامع ژنوم اشتباهات و تحلیل یادگیری",
                 "تخفیف ویژه جلسات تدریس خصوصی در بازارگاه اساتید",
@@ -2032,7 +2032,7 @@ def initiate_checkout(
         if booking.is_paid:
             raise ValidationError("هزینه این جلسه قبلاً پرداخت شده است.")
         amount = booking.rate_toman
-        description = f"رزرو جلسه آموزشی اندورا: {booking.get_target_skill_display()} با استاد {booking.teacher.get_full_name() or booking.teacher.email}"
+        description = f"رزرو جلسه آموزشی ایندورا: {booking.get_target_skill_display()} با استاد {booking.teacher.get_full_name() or booking.teacher.email}"
 
     elif order_type == PaymentOrderType.SUBSCRIPTION_PLAN:
         if not order_id:
@@ -2042,13 +2042,13 @@ def initiate_checkout(
         except PlatformPricingPlan.DoesNotExist:
             raise ValidationError("پلن اشتراک انتخابی معتبر نیست.")
         amount = plan.price_toman
-        description = f"خرید {plan.name_fa} در اندورا"
+        description = f"خرید {plan.name_fa} در ایندورا"
 
     elif order_type == PaymentOrderType.WALLET_TOPUP:
         if not amount_toman or Decimal(str(amount_toman)) < 10000:
             raise ValidationError("حداقل مبلغ شارژ کیف پول ۱۰,۰۰۰ تومان است.")
         amount = Decimal(str(amount_toman))
-        description = f"شارژ حساب کیف پول کاربر {user.email} در اندورا"
+        description = f"شارژ حساب کیف پول کاربر {user.email} در ایندورا"
     else:
         raise ValidationError("نوع سفارش نامعتبر است.")
 

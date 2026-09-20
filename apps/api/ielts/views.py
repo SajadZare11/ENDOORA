@@ -653,7 +653,7 @@ class IELTSWritingTeacherReviewRequestView(APIView):
         submission.save()
         return Response({
             "success": True,
-            "message": "درخواست بازبینی و تصحیح توسط اگزمینر رسمی اندورا با موفقیت ثبت شد.",
+            "message": "درخواست بازبینی و تصحیح توسط اگزمینر رسمی ایندورا با موفقیت ثبت شد.",
             "submission_id": str(submission.id),
         })
 
@@ -969,7 +969,7 @@ class IELTSSpeakingTeacherReviewRequestView(APIView):
         submission.save()
         return Response({
             "success": True,
-            "message": "درخواست بازبینی و تصحیح آزمون اسپیکینگ توسط اگزمینر رسمی اندورا با موفقیت ثبت شد.",
+            "message": "درخواست بازبینی و تصحیح آزمون اسپیکینگ توسط اگزمینر رسمی ایندورا با موفقیت ثبت شد.",
             "submission_id": str(submission.id),
         })
 

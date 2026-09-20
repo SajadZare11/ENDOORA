@@ -1,0 +1,197 @@
+{
+  "id": "101",
+  "slug": "future-plans-vision-1",
+  "level": "B1",
+  "title": {
+    "en": "Future Simple & Pre-arranged Plans (Will vs. Be Going To)",
+    "fa": "زمان آینده ساده و تصمیمات برنامه‌ریزی‌شده (Will در برابر Be going to)"
+  },
+  "durationMinutes": 20,
+  "vocabulary": [
+    {
+      "word": "decision",
+      "fa": "تصمیم",
+      "ipa": "/dɪˈsɪʒ.ən/",
+      "example": {
+        "en": "Making a spontaneous decision is exciting.",
+        "fa": "گرفتن یک تصمیم لحظه‌ای هیجان‌انگیز است."
+      }
+    },
+    {
+      "word": "spontaneous",
+      "fa": "خودبه‌خودی، ناگهانی",
+      "ipa": "/spɒnˈteɪ.ni.əs/",
+      "example": {
+        "en": "We made a spontaneous offer to help the travelers.",
+        "fa": "ما پیشنهادی ناگهانی برای کمک به مسافران دادیم."
+      }
+    },
+    {
+      "word": "predict",
+      "fa": "پیش‌بینی کردن",
+      "ipa": "/prɪˈdɪkt/",
+      "example": {
+        "en": "Meteorologists predict it will rain tomorrow.",
+        "fa": "هواشناسان پیش‌بینی می‌کنند فردا باران خواهد بارید."
+      }
+    },
+    {
+      "word": "arrangement",
+      "fa": "برنامه‌ریزی، هماهنگی قبلی",
+      "ipa": "/əˈreɪndʒ.mənt/",
+      "example": {
+        "en": "They made an official arrangement for Monday morning.",
+        "fa": "آن‌ها برای صبح دوشنبه هماهنگی رسمی انجام دادند."
+      }
+    }
+  ],
+  "grammar": {
+    "title": {
+      "en": "Future Forms: Will vs. Be Going To",
+      "fa": "گرامر زمان آینده: Will در برابر Be going to"
+    },
+    "explanation_fa": "در زبان انگلیسی برای بیان زمان آینده از دو ساختار اصلی استفاده می‌شود: Will برای تصمیمات ناگهانی و حدس زدن بدون شواهد عینی، و Be going to برای برنامه‌ریزی‌های قبلی و رویدادهایی با شواهد عینی در زمان حال.",
+    "rules": [
+      "از Will + فرم پایه فعل (V1) برای تصمیم‌گیری در همان لحظه صحبت (Spontaneous reaction) استفاده کنید.",
+      "از am/is/are + going to + فرم پایه فعل برای تصمیمات و نیات از پیش برنامه‌ریزی‌شده (Prior plan) استفاده کنید.",
+      "هنگامی که نشانه‌ای عینی در محیط حاضر وجود دارد، حتماً ساختار Be going to را ترجیح دهید.",
+      "برای پیش‌بینی بر پایه باورهای فردی و با افعالی مثل think, believe, expect معمولاً will به کار می‌رود."
+    ],
+    "examples": [
+      {
+        "en": "Hold on, I will open the heavy gate for you.",
+        "fa": "صبر کن، من درِ سنگین را برایت باز می‌کنم.",
+        "highlight": "will open"
+      },
+      {
+        "en": "Look at those dark storm clouds! It is going to rain.",
+        "fa": "به آن ابرهای تیره طوفانی نگاه کن! قرار است باران ببارد.",
+        "highlight": "is going to rain"
+      },
+      {
+        "en": "We are going to travel to Isfahan next weekend.",
+        "fa": "ما آخر هفته آینده قصد داریم به اصفهان سفر کنیم.",
+        "highlight": "are going to travel"
+      },
+      {
+        "en": "I think scientists will find innovative energy sources soon.",
+        "fa": "من فکر می‌کنم دانشمندان به‌زودی منابع انرژی نوآورانه‌ای خواهند یافت.",
+        "highlight": "will find"
+      }
+    ]
+  },
+  "reading": {
+    "title": {
+      "en": "Planning the Future of Green Cities",
+      "fa": "برنامه‌ریزی برای آینده شهرهای سبز"
+    },
+    "sentences": [
+      {
+        "id": "s1",
+        "en": "Urban architects are going to design eco-friendly residential towers next year.",
+        "fa": "معماران شهری سال آینده برج‌های مسکونی سازگار با محیط زیست طراحی خواهند کرد.",
+        "vocabulary": [
+          { "word": "architects", "fa": "معماران" },
+          { "word": "design", "fa": "طراحی کردن" },
+          { "word": "residential", "fa": "مسکونی" }
+        ]
+      },
+      {
+        "id": "s2",
+        "en": "If atmospheric pollution increases rapidly, authorities will implement strict transportation rules.",
+        "fa": "اگر آلودگی جوی به سرعت افزایش یابد، مسئولان قوانین سختگیرانه حمل‌ونقل را اعمال خواهند کرد.",
+        "vocabulary": [
+          { "word": "pollution", "fa": "آلودگی" },
+          { "word": "authorities", "fa": "مسئولان" },
+          { "word": "implement", "fa": "اعمال و پیاده‌سازی کردن" }
+        ]
+      },
+      {
+        "id": "s3",
+        "en": "Many conscious citizens made a spontaneous decision to commute using electric bicycles.",
+        "fa": "بسیاری از شهروندان آگاه تصمیمی لحظه‌ای برای رفت‌وآمد با دوچرخه‌های برقی گرفتند.",
+        "vocabulary": [
+          { "word": "citizens", "fa": "شهروندان" },
+          { "word": "decision", "fa": "تصمیم" },
+          { "word": "commute", "fa": "رفت‌وآمد روزانه" }
+        ]
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "id": "q1",
+      "prompt": {
+        "en": "Which sentence expresses a spontaneous decision made at the moment of speaking?",
+        "fa": "کدام جمله نشان‌دهنده یک تصمیم لحظه‌ای در لحظه صحبت کردن است؟"
+      },
+      "options": [
+        "I will call a taxi for you right now.",
+        "I am going to study medicine next semester.",
+        "She is flying to Shiraz tomorrow morning.",
+        "They are going to build a solar plant next year."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "We use 'will' for instant reactions and decisions made at the moment of speech.",
+        "fa": "از فعل کمکی will برای واکنش‌های لحظه‌ای و تصمیمات ناگهانی استفاده می‌شود."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "id": "q2",
+      "prompt": {
+        "en": "Complete the sentence with the correct future form of 'visit' for a pre-arranged plan.",
+        "fa": "جمله را با فرم آینده مناسب فعل visit کامل کنید (برنامه از پیش تعیین‌شده)."
+      },
+      "sentenceWithBlank": "We ___ our grandparents in Tabriz next Friday.",
+      "acceptedAnswers": [
+        "are going to visit",
+        "are visiting"
+      ],
+      "hintFa": "برنامه از قبل چیده شده است، بنابراین از ساختار be going to استفاده کنید.",
+      "explanation": {
+        "en": "Pre-arranged intentions use 'are going to visit'.",
+        "fa": "برای برنامه‌های از پیش تعیین‌شده از ترکیب are going to visit استفاده می‌شود."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "id": "q3",
+      "prompt": {
+        "en": "Look at the dark storm clouds in the sky! It ___ rain.",
+        "fa": "به ابرهای تیره طوفانی در آسمان نگاه کن! قرار است باران ببارد."
+      },
+      "options": [
+        "is going to",
+        "will probably",
+        "was going to",
+        "would"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "When there is present visible evidence, 'be going to' is mandatory.",
+        "fa": "با وجود شواهد عینی حاضر (ابرهای تیره)، استفاده از is going to الزامی است."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "id": "q4",
+      "prompt": {
+        "en": "Fill in the blank with the appropriate modal for an instant offer.",
+        "fa": "جای خالی را با فعل کمکی مناسب برای پیشنهاد کمک لحظه‌ای کامل کنید."
+      },
+      "sentenceWithBlank": "Don't carry those heavy books alone; I ___ help you.",
+      "acceptedAnswers": [
+        "will",
+        "'ll"
+      ],
+      "hintFa": "برای تصمیم و پیشنهاد کمک ناگهانی از will استفاده کنید.",
+      "explanation": {
+        "en": "Offers of help use 'will' or abbreviated ''ll'.",
+        "fa": "برای ارائه پیشنهاد کمک در لحظه از will یا شکل مخفف 'll استفاده می‌شود."
+      }
+    }
+  ]
+}

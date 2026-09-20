@@ -14,6 +14,7 @@ export * from "./States";
 export * from "./Stepper";
 export * from "./Tabs";
 export * from "./Toast";
+export * from "./Table";
 export * from "./RoadmapMilestoneModal";
 
 export * from "./learning/GrowthCard";
@@ -25,3 +26,4 @@ export * from "./ai/AIThinkingState";
 
 export * from "./worlds/Crystal";
 export * from "./worlds/Door";
+export * from "./BidiText";

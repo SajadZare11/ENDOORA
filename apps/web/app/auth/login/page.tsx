@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
 import { PasswordField } from "../../../components/auth/PasswordField";
+import { Button, Input } from "@endoora/ui";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -21,7 +22,7 @@ type LoginResponse = {
 
 const copy = {
   fa: {
-    title: "ورود به Endoora",
+    title: "ورود به ایندورا",
     description:
       "برای ادامه مسیر یادگیری یا تدریس وارد حساب خود شوید.",
     email: "ایمیل",
@@ -202,12 +203,12 @@ export default function LoginPage() {
             {t.email}
           </label>
 
-          <input
+          <Input
             id="login-email"
             type="email"
             name="email"
             autoComplete="email"
-            className={`endoora-input ${styles.ltrInput}`}
+            className={styles.ltrInput}
             value={email}
             onChange={(event) =>
               setEmail(event.target.value)
@@ -227,15 +228,16 @@ export default function LoginPage() {
         />
 
         <div className={styles.actions}>
-          <button
+          <Button
             type="submit"
-            className="endoora-button endoora-button--primary"
+            variant="primary"
+            loading={submitting}
             disabled={submitting}
           >
             {submitting
               ? t.submitting
               : t.submit}
-          </button>
+          </Button>
         </div>
 
         <div className={styles.secondaryLinks}>

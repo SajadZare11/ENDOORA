@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
 import { PasswordField } from "../../../components/auth/PasswordField";
+import { Button, Input } from "@endoora/ui";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -32,7 +33,7 @@ const copy = {
     description:
       "ایمیل حساب خود را وارد کنید تا کد بازیابی برای شما ایجاد شود.",
     email: "ایمیل",
-    emailHelp: "همان ایمیلی را وارد کنید که با آن در Endoora ثبت‌نام کرده‌اید.",
+    emailHelp: "همان ایمیلی را وارد کنید که با آن در ایندورا ثبت‌نام کرده‌اید.",
     sendCode: "دریافت کد بازیابی",
     sendingCode: "در حال ایجاد کد…",
     codeSent:
@@ -58,7 +59,7 @@ const copy = {
     passwordMismatch: "دو رمز عبور با یکدیگر یکسان نیستند.",
     successTitle: "رمز عبور تغییر کرد",
     successBody:
-      "اکنون می‌توانید با رمز عبور جدید وارد حساب Endoora شوید.",
+      "اکنون می‌توانید با رمز عبور جدید وارد حساب ایندورا شوید.",
     login: "ورود با رمز جدید",
   },
 
@@ -281,11 +282,11 @@ export default function ForgotPasswordPage() {
               {t.email}
             </label>
 
-            <input
+            <Input
               id="reset-email"
               type="email"
               autoComplete="email"
-              className={`endoora-input ${styles.ltrInput} ${styles.codeInput}`}
+              className={`${styles.ltrInput} ${styles.codeInput}`}
               value={email}
               onChange={(event) =>
                 setEmail(event.target.value)
@@ -297,15 +298,16 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="endoora-button endoora-button--primary"
+            variant="primary"
+            loading={busy}
             disabled={busy}
           >
             {busy
               ? t.sendingCode
               : t.sendCode}
-          </button>
+          </Button>
         </form>
       ) : (
         <form
@@ -350,12 +352,12 @@ export default function ForgotPasswordPage() {
               {t.code}
             </label>
 
-            <input
+            <Input
               id="reset-code"
               inputMode="numeric"
               autoComplete="one-time-code"
               maxLength={6}
-              className={`endoora-input ${styles.ltrInput}`}
+              className={styles.ltrInput}
               value={code}
               onChange={(event) =>
                 setCode(
@@ -393,26 +395,27 @@ export default function ForgotPasswordPage() {
           />
 
           <div className={styles.actions}>
-            <button
+            <Button
               type="submit"
-              className="endoora-button endoora-button--primary"
+              variant="primary"
+              loading={busy}
               disabled={busy}
             >
               {busy
                 ? t.resetting
                 : t.reset}
-            </button>
+            </Button>
 
-            <button
+            <Button
               type="button"
-              className="endoora-button endoora-button--secondary"
+              variant="secondary"
               disabled={busy}
               onClick={() => {
                 void requestCode();
               }}
             >
               {t.resend}
-            </button>
+            </Button>
           </div>
         </form>
       )}

@@ -199,14 +199,91 @@ export async function fetchBandDescriptors(params?: {
   return await endooraApi<IELTSBandDescriptor[]>(`/api/ielts/band-descriptors/${qs}`);
 }
 
+export const DEFAULT_FALLBACK_TESTS: IELTSTestListItem[] = [
+  {
+    id: "ielts-mock-acad-01",
+    title_en: "IELTS Academic Full Practice Test 1",
+    title_fa: "آزمون شبیه‌ساز کامل آیلتس آکادمیک شماره ۱",
+    test_type: "academic",
+    test_type_display: "Academic",
+    version: 1,
+    status: "published",
+    status_display: "منتشر شده",
+    author_name: "Endoora Academic Council",
+    reviewer_name: "Senior Examiner",
+    is_locked: false,
+    copyright_source: "Endoora Original",
+    disclaimer_label: MANDATORY_IELTS_DISCLAIMER_TEXT,
+    total_duration_minutes: 160,
+    difficulty_level: "Standard",
+    sections_count: 4,
+    total_questions: 40,
+    created_at: "2026-03-01T00:00:00Z",
+    updated_at: "2026-03-01T00:00:00Z",
+  },
+  {
+    id: "ielts-mock-gen-01",
+    title_en: "IELTS General Training Practice Test 1",
+    title_fa: "آزمون شبیه‌ساز کامل آیلتس جنرال ترینینگ شماره ۱",
+    test_type: "general_training",
+    test_type_display: "General Training",
+    version: 1,
+    status: "published",
+    status_display: "منتشر شده",
+    author_name: "Endoora Academic Council",
+    reviewer_name: "Senior Examiner",
+    is_locked: false,
+    copyright_source: "Endoora Original",
+    disclaimer_label: MANDATORY_IELTS_DISCLAIMER_TEXT,
+    total_duration_minutes: 160,
+    difficulty_level: "Standard",
+    sections_count: 4,
+    total_questions: 40,
+    created_at: "2026-03-01T00:00:00Z",
+    updated_at: "2026-03-01T00:00:00Z",
+  },
+  {
+    id: "ielts-mock-acad-02",
+    title_en: "IELTS Academic Listening & Reading Masterclass",
+    title_fa: "آزمون تمرکز لیسنینگ و ریدینگ پیشرفته آکادمیک",
+    test_type: "academic",
+    test_type_display: "Academic",
+    version: 2,
+    status: "published",
+    status_display: "منتشر شده",
+    author_name: "Endoora Academic Council",
+    reviewer_name: "Senior Examiner",
+    is_locked: false,
+    copyright_source: "Endoora Original",
+    disclaimer_label: MANDATORY_IELTS_DISCLAIMER_TEXT,
+    total_duration_minutes: 120,
+    difficulty_level: "Advanced",
+    sections_count: 2,
+    total_questions: 40,
+    created_at: "2026-03-01T00:00:00Z",
+    updated_at: "2026-03-01T00:00:00Z",
+  },
+];
+
 export async function fetchPublicIELTSTests(params?: {
   test_type?: string;
 }): Promise<{ disclaimer: string; results: IELTSTestListItem[] }> {
-  const query = new URLSearchParams();
-  if (params?.test_type) query.set("test_type", params.test_type);
+  try {
+    const query = new URLSearchParams();
+    if (params?.test_type) query.set("test_type", params.test_type);
 
-  const qs = query.toString() ? `?${query.toString()}` : "";
-  return await endooraApi<{ disclaimer: string; results: IELTSTestListItem[] }>(
-    `/api/ielts/public/tests/${qs}`
-  );
+    const qs = query.toString() ? `?${query.toString()}` : "";
+    return await endooraApi<{ disclaimer: string; results: IELTSTestListItem[] }>(
+      `/ielts/public/tests/${qs}`
+    );
+  } catch {
+    const filtered =
+      params?.test_type && params.test_type !== "all"
+        ? DEFAULT_FALLBACK_TESTS.filter((t) => t.test_type === params.test_type)
+        : DEFAULT_FALLBACK_TESTS;
+    return {
+      disclaimer: MANDATORY_IELTS_DISCLAIMER_TEXT,
+      results: filtered,
+    };
+  }
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./interventions.module.css";
@@ -115,34 +117,42 @@ export default function TeacherInterventionsPage() {
       {/* Tabs Filter Bar */}
       <div className={styles.filterBar}>
         <div className={styles.tabGroup}>
-          <button
+          <Button
             type="button"
+            variant={activeTab === "all" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabBtn} ${activeTab === "all" ? styles.tabBtnActive : ""}`}
             onClick={() => setActiveTab("all")}
           >
             {isFa ? "همه اقدامات" : "All"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "planned" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabBtn} ${activeTab === "planned" ? styles.tabBtnActive : ""}`}
             onClick={() => setActiveTab("planned")}
           >
             {isFa ? "برنامه‌ریزی شده" : "Planned"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "in_progress" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabBtn} ${activeTab === "in_progress" ? styles.tabBtnActive : ""}`}
             onClick={() => setActiveTab("in_progress")}
           >
             {isFa ? "در حال اجرا" : "In Progress"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "completed" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabBtn} ${activeTab === "completed" ? styles.tabBtnActive : ""}`}
             onClick={() => setActiveTab("completed")}
           >
             {isFa ? "تکمیل شده" : "Completed"}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -220,22 +230,26 @@ export default function TeacherInterventionsPage() {
                   </span>
                   <div style={{ display: "flex", gap: "var(--space-2)" }}>
                     {item.status === "planned" && (
-                      <button
+                      <Button
                         type="button"
+                        variant="secondary"
+                        size="sm"
                         className={styles.btnSm}
                         onClick={() => void handleStartProgress(item)}
                       >
                         {isFa ? "شروع اجرا" : "Start"}
-                      </button>
+                      </Button>
                     )}
                     {item.status === "in_progress" && (
-                      <button
+                      <Button
                         type="button"
+                        variant="primary"
+                        size="sm"
                         className={`${styles.btnSm} ${styles.btnSmPrimary}`}
                         onClick={() => setEvaluatingItem(item)}
                       >
                         {isFa ? "ثبت نتیجه و تکمیل" : "Complete & Evaluate"}
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -253,13 +267,15 @@ export default function TeacherInterventionsPage() {
               <h3 style={{ margin: 0, fontWeight: 700 }}>
                 {isFa ? "ارزیابی و تکمیل مداخله آموزشی" : "Evaluate & Complete Intervention"}
               </h3>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.btnSm}
                 onClick={() => setEvaluatingItem(null)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={(e) => void handleCompleteSubmit(e)} style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
@@ -269,7 +285,7 @@ export default function TeacherInterventionsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "نمره یا درصد پس از مداخله (%):" : "Score After Intervention (%):"}</label>
-                <input
+                <Input
                   type="number"
                   step="0.01"
                   min="0"
@@ -277,7 +293,7 @@ export default function TeacherInterventionsPage() {
                   className={styles.formInput}
                   placeholder="e.g. 75.5"
                   value={scoreAfter}
-                  onChange={(e) => setScoreAfter(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setScoreAfter(e.target.value)}
                 />
               </div>
 
@@ -294,9 +310,7 @@ export default function TeacherInterventionsPage() {
 
               {evaluatingItem.alert_id && (
                 <label style={{ display: "flex", gap: "var(--space-2)", alignItems: "center", fontSize: "var(--font-size-sm)", cursor: "pointer" }}>
-                  <input
-                    type="checkbox"
-                    checked={autoResolveAlert}
+                  <Input type="checkbox" checked={autoResolveAlert}
                     onChange={(e) => setAutoResolveAlert(e.target.checked)}
                   />
                   <span>{isFa ? "رفع خودکار هشدار مرتبط در صورت موفقیت" : "Auto-resolve linked at-risk alert"}</span>
@@ -304,20 +318,25 @@ export default function TeacherInterventionsPage() {
               )}
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
+                  size="sm"
                   className={styles.btnSm}
                   onClick={() => setEvaluatingItem(null)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
+                  size="sm"
                   className={`${styles.btnSm} ${styles.btnSmPrimary}`}
+                  loading={saving}
                   disabled={saving}
                 >
                   {saving ? (isFa ? "در حال ثبت..." : "Saving...") : (isFa ? "ثبت و تکمیل مداخله" : "Save & Complete")}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

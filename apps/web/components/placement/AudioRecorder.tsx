@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useEffect, useRef, useState } from "react";
 import styles from "./audio-recorder.module.css";
 
@@ -325,7 +327,7 @@ export function AudioRecorder({
       {/* Controls Row */}
       <div className={styles.controlsRow}>
         {recordingState === "idle" && (
-          <button
+          <Button
             type="button"
             className={`${styles.recordBtn} ${styles.recordBtnStart}`}
             onClick={startRecording}
@@ -336,11 +338,11 @@ export function AudioRecorder({
               <circle cx="12" cy="12" r="10" />
             </svg>
             {isFa ? "شروع ضبط صدا" : "Start Recording"}
-          </button>
+          </Button>
         )}
 
         {recordingState === "recording" && (
-          <button
+          <Button
             type="button"
             className={`${styles.recordBtn} ${styles.recordBtnStop}`}
             onClick={stopRecording}
@@ -350,11 +352,11 @@ export function AudioRecorder({
               <rect x="6" y="6" width="12" height="12" rx="2" />
             </svg>
             {isFa ? "توقف و ثبت صدا" : "Stop Recording"}
-          </button>
+          </Button>
         )}
 
         {recordingState === "recorded" && (
-          <button
+          <Button
             type="button"
             className={styles.reRecordBtn}
             onClick={handleReRecord}
@@ -365,7 +367,7 @@ export function AudioRecorder({
               <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
             </svg>
             {isFa ? "ضبط مجدد صدا" : "Re-record"}
-          </button>
+          </Button>
         )}
 
         <div className={styles.timer}>
@@ -407,7 +409,7 @@ export function AudioRecorder({
 
       {/* Fallback Text Input Toggle */}
       <div className={styles.fallbackSection}>
-        <button
+        <Button
           type="button"
           className={styles.fallbackToggle}
           onClick={() => setShowFallback(!showFallback)}
@@ -416,7 +418,7 @@ export function AudioRecorder({
           {showFallback
             ? (isFa ? "بستن بخش نوشتن متنی" : "Hide text fallback")
             : (isFa ? "یا در صورت عدم دسترسی به میکروفون، پاسخ خود را اینجا بنویسید" : "Or type your response if your mic is unavailable")}
-        </button>
+        </Button>
 
         {showFallback && (
           <div>

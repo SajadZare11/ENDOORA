@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Table } from "@endoora/ui";
+
 import Link from "next/link";
 import { useTeacherHome } from "./TeacherShell";
 import styles from "./teacher-foundation.module.css";
@@ -94,7 +96,7 @@ export function TeacherFoundationPage({
               : "Once teacher verification and enrollment cycles open, scheduled sessions will be managed in this table."}
           </p>
 
-          <table className={styles.table}>
+          <Table className={styles.table}>
             <thead>
               <tr>
                 <th>{isFa ? "عنوان کلاس" : "Class Title"}</th>
@@ -120,7 +122,7 @@ export function TeacherFoundationPage({
                 <td><span className={`${styles.badge} ${styles.badgeWarning}`}>{isFa ? "در انتظار تأیید" : "Pending Verification"}</span></td>
               </tr>
             </tbody>
-          </table>
+          </Table>
         </div>
       )}
 
@@ -162,9 +164,9 @@ export function TeacherFoundationPage({
                   <h3 className={styles.resourceTitle}>{isFa ? res.titleFa : res.titleEn}</h3>
                   <p className={styles.resourceMeta}>{isFa ? res.metaFa : res.metaEn}</p>
                 </div>
-                <button type="button" className="teacher-button teacher-button--secondary" style={{ alignSelf: "flex-start", padding: "var(--space-1) var(--space-3)", fontSize: "var(--font-size-meta)" }}>
+                <Button type="button" className="teacher-button teacher-button--secondary" style={{ alignSelf: "flex-start", padding: "var(--space-1) var(--space-3)", fontSize: "var(--font-size-meta)" }}>
                   {isFa ? "مشاهده سرفصل" : "View Outline"}
-                </button>
+                </Button>
               </div>
             ))}
           </div>
@@ -227,7 +229,7 @@ export function TeacherFoundationPage({
                     {isFa ? req.timeFa : req.timeEn} • {isFa ? req.rateFa : req.rateEn}
                   </span>
                 </div>
-                <button
+                <Button
                   type="button"
                   className="teacher-button teacher-button--primary"
                   disabled={!verified}
@@ -236,7 +238,7 @@ export function TeacherFoundationPage({
                   {verified
                     ? isFa ? "پذیرش درخواست" : "Accept Request"
                     : isFa ? "نیاز به تأیید مدرس" : "Requires Verification"}
-                </button>
+                </Button>
               </div>
             ))}
           </div>

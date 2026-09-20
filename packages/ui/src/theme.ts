@@ -39,6 +39,23 @@ export const tokens = {
     errorText: "var(--color-error-text)",
     infoBg: "var(--color-info-bg)",
     infoText: "var(--color-info-text)",
+    chart1: "var(--color-chart-1)",
+    chart2: "var(--color-chart-2)",
+    chart3: "var(--color-chart-3)",
+    chart4: "var(--color-chart-4)",
+    chart5: "var(--color-chart-5)",
+    chart6: "var(--color-chart-6)",
+  },
+  glass: {
+    background: "var(--glass-background)",
+    border: "var(--glass-border)",
+    surfaceBorder: "var(--glass-surface-border)",
+    highlight: "var(--glass-highlight)",
+    blur: "var(--glass-blur)",
+  },
+  controlHeight: {
+    targetMin: "var(--target-min)",
+    compact: "var(--control-height-compact)",
   },
   gradient: {
     gateway: "var(--gradient-gateway)",

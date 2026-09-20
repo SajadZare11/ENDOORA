@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button, Input } from "@endoora/ui";
 import styles from "./today.module.css";
 
 interface TaskOption {
@@ -245,20 +246,22 @@ export default function TodayPage() {
             <span>{isFa ? "بازگشت به خانه یادگیری" : "Back to Learning Home"}</span>
           </Link>
           <div className={styles.localeSwitcher} role="group" aria-label="Language selector">
-            <button
+            <Button
               type="button"
-              className={`${styles.localeButton} ${isFa ? styles.localeButtonActive : ""}`}
+              size="sm"
+              variant={isFa ? "primary" : "tertiary"}
               onClick={() => setLocale("fa")}
             >
               فارسی
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className={`${styles.localeButton} ${!isFa ? styles.localeButtonActive : ""}`}
+              size="sm"
+              variant={!isFa ? "primary" : "tertiary"}
               onClick={() => setLocale("en")}
             >
               English
-            </button>
+            </Button>
           </div>
         </header>
 
@@ -275,14 +278,14 @@ export default function TodayPage() {
           <section className={styles.errorCard} role="alert">
             <h2>{isFa ? "خطا در برقراری ارتباط" : "Connection Error"}</h2>
             <p>{errorMessage}</p>
-            <button
+            <Button
               type="button"
-              className={styles.primaryBtn}
+              variant="primary"
               onClick={() => window.location.reload()}
               style={{ marginInline: "auto", marginBlockStart: "var(--space-4)" }}
             >
               {isFa ? "تلاش مجدد" : "Try Again"}
-            </button>
+            </Button>
           </section>
         ) : null}
 
@@ -412,32 +415,33 @@ export default function TodayPage() {
             <div className={styles.btnRow}>
               {mission.status === "completed" ? (
                 <>
-                  <button
+                  <Button
                     type="button"
-                    className={styles.primaryBtn}
+                    variant="primary"
                     onClick={() => setViewMode("complete")}
                   >
                     {isFa ? "مشاهده کارنامه ماموریت" : "View Mission Summary"}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
-                    className={styles.secondaryBtn}
+                    variant="secondary"
                     onClick={handleResetMission}
                   >
                     {isFa ? "تمرین دوباره ماموریت" : "Practice Again"}
-                  </button>
+                  </Button>
                 </>
               ) : (
-                <button
+                <Button
                   type="button"
-                  className={styles.primaryBtn}
+                  variant="primary"
+                  loading={submitting}
                   onClick={handleStartMission}
                   disabled={submitting}
                 >
                   {mission.status === "in_progress"
                     ? isFa ? "ادامه ماموریت" : "Continue Mission"
                     : isFa ? "شروع ماموریت امروز" : "Start Today's Mission"}
-                </button>
+                </Button>
               )}
             </div>
           </article>
@@ -454,14 +458,14 @@ export default function TodayPage() {
                     ? `گام ${activeTaskIndex + 1} از ${mission.tasks.length}`
                     : `Step ${activeTaskIndex + 1} of ${mission.tasks.length}`}
                 </span>
-                <button
+                <Button
                   type="button"
-                  className={styles.secondaryBtn}
-                  style={{ padding: "var(--space-1) var(--space-3)", fontSize: "var(--font-size-meta)" }}
+                  variant="secondary"
+                  size="sm"
                   onClick={() => setViewMode("overview")}
                 >
                   {isFa ? "مرور کلی" : "Overview"}
-                </button>
+                </Button>
               </div>
               <div className={styles.progressTrack} role="progressbar" aria-valuenow={activeTaskIndex + 1} aria-valuemin={1} aria-valuemax={mission.tasks.length}>
                 <div
@@ -510,7 +514,7 @@ export default function TodayPage() {
                           isSelected ? styles.optionCardSelected : ""
                         } ${isDisabled ? styles.optionCardDisabled : ""}`}
                       >
-                        <input
+                        <Input
                           type="radio"
                           name={`task-${mission.tasks[activeTaskIndex].id}`}
                           value={opt.id}
@@ -563,28 +567,29 @@ export default function TodayPage() {
                       {isFa ? stepFeedback.explanation_fa : stepFeedback.explanation_en}
                     </p>
 
-                    <button
+                    <Button
                       type="button"
-                      className={styles.primaryBtn}
+                      variant="primary"
                       style={{ marginBlockStart: "var(--space-4)" }}
                       onClick={handleNextStep}
                     >
                       {stepFeedback.all_completed
                         ? isFa ? "تکمیل و مشاهده نتیجه ماموریت" : "Finish & View Results"
                         : isFa ? "گام بعدی" : "Next Step"}
-                    </button>
+                    </Button>
                   </div>
                 ) : (
-                  <button
+                  <Button
                     type="button"
-                    className={styles.primaryBtn}
+                    variant="primary"
+                    loading={submitting}
                     onClick={handleSubmitStep}
                     disabled={!selectedOption || submitting}
                   >
                     {submitting
                       ? isFa ? "در حال بررسی..." : "Checking..."
                       : isFa ? "بررسی و ثبت پاسخ" : "Check & Submit"}
-                  </button>
+                  </Button>
                 )}
               </article>
             ) : null}
@@ -608,7 +613,7 @@ export default function TodayPage() {
             <div className={styles.evidenceNotice}>
               <strong>{isFa ? "ثبت شواهد یادگیری:" : "Learning Evidence Recorded:"} </strong>
               {isFa
-                ? "این فعالیت مستقیماً در پرونده یادگیری و تعیین گام‌های بعدی شما لحاظ می‌شود. اندورا از سیستم‌های ساختگی امتیاز یا ادعاهای بدون شواهد استفاده نمی‌کند."
+                ? "این فعالیت مستقیماً در پرونده یادگیری و تعیین گام‌های بعدی شما لحاظ می‌شود. ایندورا از سیستم‌های ساختگی امتیاز یا ادعاهای بدون شواهد استفاده نمی‌کند."
                 : "This activity is directly incorporated into your learner model to shape subsequent steps. Endoora does not use artificial XP or unsubstantiated claims."}
             </div>
 
@@ -642,13 +647,13 @@ export default function TodayPage() {
               <Link className={styles.secondaryBtn} href="/dashboard">
                 {isFa ? "بازگشت به خانه یادگیری" : "Back to Learning Home"}
               </Link>
-              <button
+              <Button
                 type="button"
-                className={styles.secondaryBtn}
+                variant="secondary"
                 onClick={handleResetMission}
               >
                 {isFa ? "تمرین دوباره" : "Practice Again"}
-              </button>
+              </Button>
             </div>
           </article>
         ) : null}

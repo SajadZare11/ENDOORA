@@ -243,24 +243,27 @@
   padding-inline: var(--space-6);
   padding-block: var(--space-3);
   border-radius: var(--radius-control);
-  background: var(--color-action-bg);
+  background: var(--color-action);
   color: var(--color-action-text);
   font-size: var(--font-size-body);
   font-weight: 700;
-  border: none;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 14px -2px color-mix(in srgb, var(--color-action) 35%, transparent);
   cursor: pointer;
   text-decoration: none;
-  transition: all var(--motion-fast) ease;
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .buttonPrimary:hover:not(:disabled) {
   background: var(--color-action-hover);
   transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 18px -2px color-mix(in srgb, var(--color-action) 45%, transparent);
 }
 
 .buttonPrimary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
 .buttonSecondary {
@@ -271,18 +274,23 @@
   padding-inline: var(--space-5);
   padding-block: var(--space-3);
   border-radius: var(--radius-control);
-  background: var(--color-canvas);
+  background: var(--color-surface);
   color: var(--color-text);
   font-size: var(--font-size-body);
   font-weight: 700;
   border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
   cursor: pointer;
   text-decoration: none;
-  transition: all var(--motion-fast) ease;
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .buttonSecondary:hover {
-  background: var(--color-surface-hover);
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
+  color: var(--color-action);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.06);
 }
 
 /* Progress bar */

@@ -205,7 +205,7 @@ export const MOCK_CONTENT_ITEMS: ContentItemEditorRecord[] = [
     is_premium: true,
     free_preview_excerpt_fa: "۳ نکته کلیدی برای مواجهه با سوالات کلوزتست در آزمون سراسری.",
     free_preview_excerpt_en: "Three critical clues to solve national exam cloze passages swiftly.",
-    source_attribution: "دپارتمان زبان کنکور اندورا",
+    source_attribution: "دپارتمان زبان کنکور ایندورا",
     license_type: "original_editorial",
     author_name: "مهندس علیرضا صابری",
     tags: ["konkur", "vision3", "school", "cloze-test"],

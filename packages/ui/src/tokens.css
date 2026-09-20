@@ -17,7 +17,7 @@
   --color-error-red: #dc2626;
 
   /* Surfaces and text */
-  --color-canvas: #f8fafc;
+  --color-canvas: #f1f5f9;
   --color-background: var(--color-canvas);
   --color-surface: #ffffff;
   --color-text: #0f172a;
@@ -39,10 +39,18 @@
   --color-info-bg: #dbeafe;
   --color-info-text: #1e3a8a;
 
+  /* Chart accent color tokens */
+  --color-chart-1: #2563eb;
+  --color-chart-2: #14b8a6;
+  --color-chart-3: #8b5cf6;
+  --color-chart-4: #f59e0b;
+  --color-chart-5: #102a43;
+  --color-chart-6: #16a34a;
+
   /* World B — Human Learning Space (Volume 1 Specs) */
-  --color-warm-paper: #fafaf8;
-  --color-soft-sand: #e7e5e4;
-  --color-ink: #111827;
+  --color-warm-paper: #f8fafc;
+  --color-soft-sand: #e2e8f0;
+  --color-ink: #0f172a;
 
   /* Brand Gradients (Volume 1 Specs) */
   --gradient-gateway: linear-gradient(135deg, var(--color-endoora-blue), var(--color-learning-teal));
@@ -53,6 +61,7 @@
   /* Typography */
   --font-family-persian: var(--font-vazirmatn, "Vazirmatn"), Tahoma, Arial, sans-serif;
   --font-family-latin: var(--font-inter, "Inter"), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-body: var(--font-family-persian);
   --font-size-hero: 2.5rem;
   --line-height-hero: 1.2;
   --font-size-page-title: 2rem;
@@ -79,18 +88,22 @@
   --space-16: 4rem;
 
   /* Shape, elevation and glass */
-  --radius-sm: 0.75rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-control: var(--radius-sm);
-  --radius-card: var(--radius-md);
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-control: 0.5rem;
+  --radius-card: 0.875rem;
   --radius-pill: 999px;
-  --shadow-subtle: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px rgb(15 23 42 / 0.06);
-  --shadow-raised: 0 12px 30px rgb(15 23 42 / 0.12);
+  --shadow-subtle: 0 1px 2px rgb(15 23 42 / 0.05), 0 4px 12px rgb(15 23 42 / 0.04);
+  --shadow-raised: 0 1px 3px rgb(15 23 42 / 0.06), 0 12px 32px -4px rgb(15 23 42 / 0.08);
   --shadow-soft: var(--shadow-raised);
-  --glass-background: rgb(255 255 255 / 0.76);
-  --glass-border: rgb(255 255 255 / 0.88);
+  --glass-background: rgb(255 255 255 / 0.82);
+  --glass-border: rgb(255 255 255 / 0.9);
+  --glass-surface-border: rgb(255 255 255 / 0.9);
+  --glass-highlight: rgb(255 255 255 / 0.5);
   --glass-blur: 20px;
+  --control-height-compact: 2.25rem;
 
   /* Layout */
   --content-width: 78rem;
@@ -111,9 +124,9 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --color-canvas: #08111f;
+  --color-canvas: #0f172a;
   --color-background: var(--color-canvas);
-  --color-surface: #111c2e;
+  --color-surface: #1e293b;
   --color-text: #f8fafc;
   --color-muted: #cbd5e1;
   --color-border: #334155;
@@ -131,9 +144,17 @@
   --color-info-bg: #172554;
   --color-info-text: #bfdbfe;
 
+  /* Chart accent color tokens (Dark Theme) */
+  --color-chart-1: #60a5fa;
+  --color-chart-2: #2dd4bf;
+  --color-chart-3: #a78bfa;
+  --color-chart-4: #fbbf24;
+  --color-chart-5: #38bdf8;
+  --color-chart-6: #4ade80;
+
   /* World B — Human Learning Space (Dark Theme) */
-  --color-warm-paper: #111c2e;
-  --color-soft-sand: #1e293b;
+  --color-warm-paper: #1e293b;
+  --color-soft-sand: #334155;
   --color-ink: #f8fafc;
 
   /* Brand Gradients (Dark Theme) */
@@ -141,11 +162,14 @@
   --gradient-intelligence: linear-gradient(135deg, var(--color-intelligence-purple), var(--color-endoora-blue));
   --gradient-achievement: linear-gradient(135deg, var(--color-achievement-gold), var(--color-learning-teal));
   --gradient-deep-universe: linear-gradient(180deg, var(--color-deep-space), var(--color-midnight-blue));
-  --shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.22), 0 8px 24px rgb(0 0 0 / 0.18);
-  --shadow-raised: 0 12px 30px rgb(0 0 0 / 0.3);
+  --shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.35), 0 4px 16px rgb(0 0 0 / 0.22);
+  --shadow-raised: 0 1px 3px rgb(0 0 0 / 0.4), 0 16px 36px -4px rgb(0 0 0 / 0.45);
   --shadow-soft: var(--shadow-raised);
-  --glass-background: rgb(17 28 46 / 0.76);
-  --glass-border: rgb(255 255 255 / 0.14);
+  --glass-background: rgb(17 24 39 / 0.82);
+  --glass-border: rgb(255 255 255 / 0.08);
+  --glass-surface-border: rgb(255 255 255 / 0.08);
+  --glass-highlight: rgb(255 255 255 / 0.04);
+  --control-height-compact: 2.25rem;
 }
 
 .font-persian {
@@ -199,6 +223,26 @@
   text-align: start;
 }
 
+.isolate-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  font-family: var(--font-family-latin);
+  text-align: start;
+}
+
+:root[dir="ltr"],
+html[lang="en"],
+[data-locale="en"] {
+  --font-family-body: var(--font-family-latin);
+}
+
+:root[dir="rtl"],
+html[lang="fa"],
+[data-locale="fa"] {
+  --font-family-body: var(--font-family-persian);
+}
+
 .rtl-isolate {
   direction: rtl;
   unicode-bidi: isolate;
@@ -207,9 +251,24 @@
 
 .endoora-wordmark {
   display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text);
+}
+
+.endoora-wordmark__icon {
+  inline-size: 2.25rem;
+  block-size: auto;
+  aspect-ratio: 38 / 45;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.endoora-wordmark__text {
+  display: inline-flex;
   flex-direction: column;
   gap: var(--space-1);
-  color: var(--color-text);
 }
 
 .endoora-wordmark__name {

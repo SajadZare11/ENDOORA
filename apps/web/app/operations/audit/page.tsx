@@ -3,7 +3,7 @@ import { AuditLogsOperations } from "../../../components/admin/AuditLogsOperatio
 
 export const metadata = {
   title: "ردپای ممیزی و وقایع حساس پلتفرم (Audit Trail) | Endoora Operations",
-  description: "سامانه بازرسی و پایش رخدادهای غیرقابل‌حذف ممیزی، تغییرات کلیدها و انتشارهای محتوایی در پلتفرم اندورا",
+  description: "سامانه بازرسی و پایش رخدادهای غیرقابل‌حذف ممیزی، تغییرات کلیدها و انتشارهای محتوایی در پلتفرم ایندورا",
 };
 
 export default function OperationsAuditPage() {

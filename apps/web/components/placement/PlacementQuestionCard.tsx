@@ -1,3 +1,4 @@
+import { Button } from "@endoora/ui";
 import styles from "./placement.module.css";
 
 type Props = {
@@ -15,14 +16,14 @@ export default function PlacementQuestionCard({question, options, selected, setS
     <h2 dir="ltr">{question}</h2>
     <div className={styles.options}>
       {options.map(option => (
-        <button key={option} className={selected===option ? styles.selected : ""} onClick={()=>setSelected(option)} dir="ltr">
+        <Button key={option} className={selected===option ? styles.selected : ""} onClick={()=>setSelected(option)} dir="ltr">
           {option}
-        </button>
+        </Button>
       ))}
     </div>
-    <button className={styles.primary} disabled={!selected} onClick={onContinue}>
+    <Button className={styles.primary} disabled={!selected} onClick={onContinue}>
       {isLast ? "مشاهده نتیجه" : "ادامه"}
-    </button>
+    </Button>
   </section>
  );
 }

@@ -18,7 +18,7 @@ export interface DatabaseBackupSnapshot {
     operator_email?: string;
     notes?: string;
     compression?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -39,7 +39,7 @@ export interface ReplicationNode {
     sync_priority?: number;
     sync_state?: string;
     disk_usage_pct?: number;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -351,7 +351,7 @@ export async function triggerBackup(payload: {
   // mock fallback snapshot
   return {
     id: "new-" + Date.now(),
-    backup_type: payload.backup_type as any,
+    backup_type: payload.backup_type as DatabaseBackupSnapshot["backup_type"],
     backup_type_display: payload.backup_type === "full" ? "نسخه کامل (Full)" : "نسخه تفاضلی (Diff)",
     storage_location: `vault/backups/${payload.backup_type}_${new Date().toISOString().slice(0, 10)}.enc.tar.gz`,
     file_size_bytes: 48520192,

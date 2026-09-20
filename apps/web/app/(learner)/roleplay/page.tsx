@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button, Input } from "@endoora/ui";
 import styles from "./roleplay.module.css";
 
 interface CharacterInfo {
@@ -851,14 +852,8 @@ export default function RoleplayPage() {
             {isFa ? "فیلتر بر اساس سطح CEFR:" : "Filter by CEFR Level:"}
           </span>
           {["all", "A2", "B1", "B2", "C1"].map((lvl) => (
-            <button
-              key={lvl}
-              type="button"
-              className={`${styles.filterPill} ${selectedLevel === lvl ? styles.filterPillActive : ""}`}
-              onClick={() => setSelectedLevel(lvl)}
-            >
-              {lvl === "all" ? (isFa ? "همه سناریوها" : "All Levels") : lvl}
-            </button>
+            <Button key={lvl} type="button" size="sm" variant={selectedLevel === lvl ? "primary" : "secondary"} onClick={() => setSelectedLevel(lvl)}>{lvl === "all" ? (isFa ? "همه سناریوها" : "All Levels") : lvl}
+           </Button>
           ))}
         </div>
       </section>
@@ -897,9 +892,9 @@ export default function RoleplayPage() {
                 </div>
               </div>
 
-              <button
+              <Button
                 type="button"
-                className={styles.buttonPrimary}
+                variant="primary"
                 style={{ width: "100%", marginBlockStart: "var(--space-3)" }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -907,7 +902,7 @@ export default function RoleplayPage() {
                 }}
               >
                 {isFa ? "ورود به سناریو و آغاز گفتگو" : "Start Conversation"}
-              </button>
+              </Button>
             </div>
           ))}
         </section>
@@ -940,15 +935,15 @@ export default function RoleplayPage() {
                 </span>
               </span>
 
-              <button type="button" className={styles.buttonSecondary} onClick={handleRequestHint}>
+              <Button type="button" size="sm" variant="secondary" onClick={handleRequestHint}>
                 <span>💡</span>
                 <span>{isFa ? "راهنمایی جمله" : "Request Hint"}</span>
-              </button>
+              </Button>
 
-              <button type="button" className={styles.buttonSecondary} onClick={handleManualComplete}>
+              <Button type="button" size="sm" variant="secondary" onClick={handleManualComplete}>
                 <span>🏁</span>
                 <span>{isFa ? "پایان و گزارش" : "Conclude"}</span>
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -986,14 +981,14 @@ export default function RoleplayPage() {
                 <strong>{isFa ? "نکته کمکی: " : "Speaking Hint: "}</strong>
                 <span>{isFa ? hint.fa : hint.en}</span>
               </div>
-              <button
+              <Button
                 type="button"
-                className={styles.buttonSecondary}
-                style={{ padding: "0.25rem 0.5rem", fontSize: "0.75rem" }}
+                size="sm"
+                variant="secondary"
                 onClick={() => setHint(null)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
           )}
 
@@ -1033,26 +1028,26 @@ export default function RoleplayPage() {
             </span>
             <div className={styles.promptsButtonsGroup}>
               {activeScenario.suggested_prompts.map((p, idx) => (
-                <button
+                <Button
                   key={idx}
                   type="button"
+                  size="sm"
+                  variant="secondary"
                   dir="ltr"
-                  className={styles.promptChip}
                   onClick={() => handleSendMessage(p)}
                   disabled={isSubmitting}
                 >
                   &ldquo;{p}&rdquo;
-                </button>
+                </Button>
               ))}
             </div>
           </div>
 
           {/* Input Toolbar */}
           <div className={styles.inputToolbar}>
-            <input
+            <Input
               type="text"
               dir="ltr"
-              className={styles.textInput}
               value={inputText}
               maxLength={500}
               placeholder={isFa ? "پاسخ انگلیسی خود را تایپ کنید (حداکثر ۵۰۰ نویسه)..." : "Type your English response (max 500 characters)..."}
@@ -1065,21 +1060,22 @@ export default function RoleplayPage() {
               }}
               disabled={isSubmitting}
             />
-            <button
+            <Button
               type="button"
-              className={styles.buttonPrimary}
+              variant="primary"
               onClick={() => handleSendMessage(inputText)}
+              loading={isSubmitting}
               disabled={!inputText.trim() || isSubmitting}
             >
               {isSubmitting ? (isFa ? "در حال ارسال..." : "Sending...") : isFa ? "ارسال نوبت" : "Send Turn"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className={styles.buttonSecondary}
+              variant="secondary"
               onClick={() => setSessionStatus("catalog")}
             >
               {isFa ? "تغییر سناریو" : "Switch Scenario"}
-            </button>
+            </Button>
           </div>
         </section>
       )}
@@ -1194,14 +1190,14 @@ export default function RoleplayPage() {
                           ✓ {isFa ? "در ژنوم ثبت شد" : "Added to Mistake Genome"}
                         </span>
                       ) : (
-                        <button
+                        <Button
                           type="button"
-                          className={styles.buttonSecondary}
-                          style={{ padding: "0.25rem 0.75rem", fontSize: "var(--font-size-meta)" }}
+                          size="sm"
+                          variant="secondary"
                           onClick={() => handleAcceptMistake(mst.id)}
                         >
                           {isFa ? "افزودن به ژنوم اشتباهات" : "Add to Mistake Genome"}
-                        </button>
+                        </Button>
                       )}
                     </div>
 
@@ -1256,14 +1252,15 @@ export default function RoleplayPage() {
                           ✓ {isFa ? "در جعبه لغات ذخیره شد" : "Saved to SRS Deck"}
                         </span>
                       ) : (
-                        <button
+                        <Button
                           type="button"
-                          className={styles.buttonSecondary}
-                          style={{ width: "100%", padding: "0.25rem 0.5rem", fontSize: "var(--font-size-meta)" }}
+                          size="sm"
+                          variant="secondary"
+                          style={{ width: "100%" }}
                           onClick={() => handleSaveSrsWord(lemma)}
                         >
                           {isFa ? "ذخیره در جعبه مرور (SRS)" : "Save to SRS Deck"}
-                        </button>
+                        </Button>
                       )}
                     </div>
                   </div>
@@ -1274,13 +1271,13 @@ export default function RoleplayPage() {
 
           {/* CTAs */}
           <div style={{ display: "flex", gap: "var(--space-3)", marginBlockStart: "var(--space-4)", flexWrap: "wrap" }}>
-            <button
+            <Button
               type="button"
-              className={styles.buttonPrimary}
+              variant="primary"
               onClick={() => setSessionStatus("catalog")}
             >
               {isFa ? "تمرین یک سناریوی جدید" : "Practice Another Scenario"}
-            </button>
+            </Button>
             <Link href="/dashboard" className={styles.buttonSecondary}>
               {isFa ? "مشاهده پیشرفت در داشبورد" : "View Dashboard Progress"}
             </Link>

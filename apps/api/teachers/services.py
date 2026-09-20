@@ -36,6 +36,15 @@ class TeacherClassService:
         max_capacity: int = 1,
         objectives: Optional[List[str]] = None,
         private_notes: str = "",
+        coursebook: str = "",
+        age_group: str = "adult",
+        class_size_type: str = "small",
+        default_duration: int = 60,
+        goal: str = "general",
+        focus_skills: Optional[List[str]] = None,
+        equipment: Optional[List[str]] = None,
+        teaching_preferences: Optional[List[str]] = None,
+        target_exams: str = "",
     ) -> TeacherClass:
         # Check teacher verification or role
         if getattr(teacher, "role", "") != "teacher" and not getattr(teacher, "is_teacher_verified", False):
@@ -49,8 +58,52 @@ class TeacherClassService:
             max_capacity=max_capacity,
             objectives=objectives or [],
             private_notes=private_notes.strip(),
+            coursebook=coursebook.strip(),
+            age_group=age_group.strip() or "adult",
+            class_size_type=class_size_type.strip() or "small",
+            default_duration=default_duration or 60,
+            goal=goal.strip() or "general",
+            focus_skills=focus_skills or [],
+            equipment=equipment or [],
+            teaching_preferences=teaching_preferences or [],
+            target_exams=target_exams.strip(),
             status=ClassStatus.ACTIVE,
         )
+
+    @staticmethod
+    def update_class(teacher, class_id: str, **kwargs) -> TeacherClass:
+        teacher_class = TeacherClass.objects.get(id=class_id, teacher=teacher)
+        allowed_fields = {
+            "title",
+            "description",
+            "subject",
+            "level",
+            "status",
+            "max_capacity",
+            "objectives",
+            "private_notes",
+            "coursebook",
+            "age_group",
+            "class_size_type",
+            "default_duration",
+            "goal",
+            "focus_skills",
+            "equipment",
+            "teaching_preferences",
+            "target_exams",
+        }
+        update_fields = []
+        for field, val in kwargs.items():
+            if field in allowed_fields and val is not None:
+                if isinstance(val, str) and field not in ("private_notes", "description"):
+                    val = val.strip()
+                setattr(teacher_class, field, val)
+                update_fields.append(field)
+        if update_fields:
+            update_fields.append("updated_at")
+            teacher_class.save(update_fields=update_fields)
+        return teacher_class
+
 
     @staticmethod
     def list_teacher_classes(teacher) -> List[TeacherClass]:
@@ -269,6 +322,85 @@ class TeacherClassService:
             reason="Session marked as completed and confirmed by teacher.",
         )
         return session
+
+    @staticmethod
+    @transaction.atomic
+    def update_session(teacher, session_id: str, **kwargs) -> ClassSession:
+        """
+        Updates an existing session.
+        Handles status transitions:
+        - Transitioning to COMPLETED triggers confirmation and ledger generation.
+        - Transitioning from COMPLETED to CANCELLED/SCHEDULED updates ledger hours and audit log.
+        """
+        session = ClassSession.objects.select_for_update().select_related("teacher_class").get(id=session_id)
+        if session.teacher_class.teacher != teacher and not getattr(teacher, "is_staff", False):
+            raise PermissionDenied("You do not have permission to update this session.")
+
+        target_status = kwargs.get("status")
+        if target_status == SessionStatus.COMPLETED and session.status != SessionStatus.COMPLETED:
+            notes = kwargs.get("session_notes", session.session_notes)
+            confirmed_by_learner = kwargs.get("confirmed_by_learner", session.confirmed_by_learner)
+            return TeacherClassService.confirm_session_completion(
+                teacher=teacher,
+                session_id=session_id,
+                session_notes=notes,
+                confirmed_by_learner=confirmed_by_learner,
+            )
+
+        if target_status in (SessionStatus.CANCELLED, SessionStatus.SCHEDULED) and session.status == SessionStatus.COMPLETED:
+            if hasattr(session, "ledger_entry"):
+                ledger = session.ledger_entry
+                prev_hours = ledger.hours
+                ledger.hours = Decimal("0.00")
+                ledger.status = LedgerStatus.DISPUTED if target_status == SessionStatus.CANCELLED else LedgerStatus.REVISED
+                ledger.save(update_fields=["hours", "status", "updated_at"])
+                TeachingHourAuditLog.objects.create(
+                    ledger_entry=ledger,
+                    actor=teacher,
+                    action=f"SESSION_STATUS_CHANGED_TO_{target_status.upper()}",
+                    previous_hours=prev_hours,
+                    new_hours=Decimal("0.00"),
+                    reason=f"Session status changed to {target_status}.",
+                )
+
+        allowed_fields = {
+            "title",
+            "scheduled_start",
+            "scheduled_end",
+            "duration_minutes",
+            "status",
+            "session_notes",
+            "confirmed_by_learner",
+        }
+        update_fields = []
+        for field, val in kwargs.items():
+            if field in allowed_fields and val is not None:
+                if isinstance(val, str) and field in ("title", "session_notes"):
+                    val = val.strip()
+                setattr(session, field, val)
+                update_fields.append(field)
+
+        if "learner_id" in kwargs:
+            learner_id = kwargs["learner_id"]
+            if learner_id:
+                link = TeacherLearnerLink.objects.filter(
+                    teacher_class=session.teacher_class,
+                    learner_id=learner_id,
+                    status=LinkStatus.ACTIVE,
+                ).first()
+                if not link:
+                    raise PermissionDenied("Learner does not have an active link in this class.")
+                session.learner = link.learner
+            else:
+                session.learner = None
+            update_fields.append("learner")
+
+        if update_fields:
+            update_fields.append("updated_at")
+            session.save(update_fields=update_fields)
+
+        return session
+
 
     @staticmethod
     @transaction.atomic

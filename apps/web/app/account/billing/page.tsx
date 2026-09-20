@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button, Table } from "@endoora/ui";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./billing.module.css";
@@ -94,21 +95,14 @@ export default function AccountBillingPage() {
             >
               مشاهده کیف پول →
             </Link>
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="sm"
               onClick={loadInvoices}
-              style={{
-                paddingInline: "var(--space-3)",
-                paddingBlock: "var(--space-1)",
-                borderRadius: "var(--radius-sm)",
-                border: "1px solid var(--color-border)",
-                background: "var(--color-surface)",
-                fontSize: "var(--font-size-xs)",
-                cursor: "pointer",
-              }}
             >
               بروزرسانی ↻
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -120,7 +114,7 @@ export default function AccountBillingPage() {
           </div>
         ) : (
           <div className={styles.tableWrapper}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th className={styles.th}>نوع سفارش</th>
@@ -161,18 +155,14 @@ export default function AccountBillingPage() {
                       {formatTehranDateOnly(inv.created_at)}
                     </td>
                     <td className={styles.td}>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedInvoice(inv)}
-                        className={styles.viewReceiptBtn}
-                      >
+                      <Button type="button" variant="secondary" size="sm" onClick={() => setSelectedInvoice(inv)} className={styles.viewReceiptBtn}>
                         مشاهده فاکتور 🧾
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           </div>
         )}
       </div>
@@ -185,16 +175,10 @@ export default function AccountBillingPage() {
               <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
                 <span style={{ fontSize: "1.5rem" }}>🧾</span>
                 <h3 style={{ margin: 0, fontSize: "var(--font-size-lg)", fontWeight: 800 }}>
-                  رسید دیجیتال پلتفرم اندورا
+                  رسید دیجیتال پلتفرم ایندورا
                 </h3>
               </div>
-              <button
-                type="button"
-                onClick={() => setSelectedInvoice(null)}
-                style={{ background: "none", border: "none", fontSize: "1.25rem", cursor: "pointer" }}
-              >
-                ✕
-              </button>
+              <Button type="button" variant="tertiary" size="sm" onClick={() => setSelectedInvoice(null)}>✕</Button>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)", fontSize: "var(--font-size-sm)" }}>
@@ -242,8 +226,9 @@ export default function AccountBillingPage() {
             </div>
 
             <div style={{ display: "flex", gap: "var(--space-3)", marginBlockStart: "var(--space-3)" }}>
-              <button
+              <Button
                 type="button"
+                variant="primary"
                 onClick={handlePrint}
                 style={{
                   flex: 1,
@@ -257,21 +242,10 @@ export default function AccountBillingPage() {
                 }}
               >
                 چاپ فاکتور 🖨️
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedInvoice(null)}
-                style={{
-                  paddingInline: "var(--space-4)",
-                  paddingBlock: "var(--space-2)",
-                  borderRadius: "var(--radius-card)",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-surface)",
-                  cursor: "pointer",
-                }}
-              >
+              </Button>
+              <Button type="button" variant="secondary" onClick={() => setSelectedInvoice(null)} style={{ paddingInline: "var(--space-4)", paddingBlock: "var(--space-2)", borderRadius: "var(--radius-card)" }}>
                 بستن
-              </button>
+              </Button>
             </div>
           </div>
         </div>

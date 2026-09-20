@@ -19,6 +19,7 @@ import {
   updatePrivacyPreferences,
   type PrivacyConsentPreference,
 } from "../../../lib/privacy-ops";
+import { Button, Input } from "@endoora/ui";
 import styles from "./data-controls.module.css";
 
 type AccountMe = {
@@ -209,7 +210,7 @@ export default function DataControlsPage() {
         await updatePrivacyPreferences(prefs);
         setPrefsSaveStatus("تنظیمات با موفقیت ذخیره شد.");
         setTimeout(() => setPrefsSaveStatus(""), 3000);
-      } catch (err) {
+      } catch {
         setPrefsSaveStatus("خطا در ذخیره تنظیمات.");
       }
     }
@@ -509,27 +510,27 @@ export default function DataControlsPage() {
             <h2 className={styles.sectionTitle}>
               Granular Privacy Preferences (تنظیمات حریم خصوصی و پردازش داده‌ها)
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', background: 'var(--color-surface-elevated, #f9fafb)', padding: 'var(--spacing-lg, 1.5rem)', borderRadius: 'var(--radius-lg, 0.5rem)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', marginBlockStart: 'var(--space-4)', background: 'var(--color-surface)', padding: 'var(--space-6)', borderRadius: 'var(--radius-card)', border: '1px solid var(--color-border)' }}>
               <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <input type="checkbox" checked={prefs.functional_storage} disabled />
+                <Input type="checkbox" checked={prefs.functional_storage} disabled />
                 <span>Essential / عملکردی (Always active / ضروری)</span>
               </label>
               <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <input type="checkbox" checked={prefs.analytics_processing} onChange={() => togglePref('analytics_processing')} />
+                <Input type="checkbox" checked={prefs.analytics_processing} onChange={() => togglePref('analytics_processing')} />
                 <span>Analytics / بهبود عملکرد آموزشی و تحلیلی</span>
               </label>
               <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <input type="checkbox" checked={prefs.ai_model_training_telemetry} onChange={() => togglePref('ai_model_training_telemetry')} />
+                <Input type="checkbox" checked={prefs.ai_model_training_telemetry} onChange={() => togglePref('ai_model_training_telemetry')} />
                 <span>AI Model / بازخورد و بهینه‌سازی هوش مصنوعی</span>
               </label>
               <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <input type="checkbox" checked={prefs.marketing_communications} onChange={() => togglePref('marketing_communications')} />
+                <Input type="checkbox" checked={prefs.marketing_communications} onChange={() => togglePref('marketing_communications')} />
                 <span>Marketing / اطلاع‌رسانی و پیام‌های ارتباطی</span>
               </label>
-              <button type="button" onClick={savePrefs} className="endoora-button endoora-button--primary" style={{ width: 'fit-content', marginTop: '0.5rem' }}>
+              <Button variant="primary" onClick={savePrefs} style={{ width: 'fit-content', marginBlockStart: 'var(--space-2)' }}>
                 ذخیره تنظیمات (Save)
-              </button>
-              {prefsSaveStatus && <span style={{ color: 'var(--color-success, green)', fontSize: 'var(--font-size-sm, 0.875rem)' }}>{prefsSaveStatus}</span>}
+              </Button>
+              {prefsSaveStatus && <span style={{ color: 'var(--color-success-green)', fontSize: 'var(--font-size-meta)' }}>{prefsSaveStatus}</span>}
             </div>
           </section>
         )}
@@ -570,10 +571,9 @@ export default function DataControlsPage() {
           ) : null}
 
           <div className={styles.actions}>
-            <button
-              type="button"
-              className="endoora-button endoora-button--primary"
-              disabled={exportBusy}
+            <Button
+              variant="primary"
+              loading={exportBusy}
               onClick={() => {
                 void requestExport();
               }}
@@ -581,7 +581,7 @@ export default function DataControlsPage() {
               {exportBusy
                 ? t.requestingExport
                 : t.requestExport}
-            </button>
+            </Button>
           </div>
 
           <h3>{t.exportHistory}</h3>
@@ -663,7 +663,7 @@ export default function DataControlsPage() {
             </strong>
 
             <p>{t.deleteWarning}</p>
-            <div style={{ marginTop: '0.5rem', padding: '0.25rem 0.5rem', background: 'var(--color-danger-light, #fee2e2)', color: 'var(--color-danger-dark, #991b1b)', borderRadius: 'var(--radius-sm, 0.25rem)', display: 'inline-block', fontWeight: 'bold' }}>
+            <div style={{ marginBlockStart: 'var(--space-2)', padding: 'var(--space-1) var(--space-2)', background: 'var(--color-error-bg)', color: 'var(--color-error-text)', borderRadius: 'var(--radius-control)', display: 'inline-block', fontWeight: 'bold' }}>
               فرصت انصراف ۷ روزه (7-day grace period)
             </div>
           </div>
@@ -712,16 +712,15 @@ export default function DataControlsPage() {
               </div>
 
               <div className={styles.actions}>
-                <button
-                  type="button"
-                  className="endoora-button endoora-button--secondary"
-                  disabled={cancelBusy}
+                <Button
+                  variant="secondary"
+                  loading={cancelBusy}
                   onClick={() => void cancelDeletion()}
                 >
                   {cancelBusy
                     ? t.cancellingDeletion
                     : t.cancelDeletion}
-                </button>
+                </Button>
               </div>
             </div>
           ) : (
@@ -737,7 +736,7 @@ export default function DataControlsPage() {
                   {t.reason}
                 </label>
 
-                <input
+                <Input
                   id="deletion-reason"
                   className="endoora-input"
                   maxLength={64}
@@ -760,7 +759,7 @@ export default function DataControlsPage() {
                   {t.confirmation}
                 </label>
 
-                <input
+                <Input
                   id="deletion-confirmation"
                   className={`endoora-input ${styles.ltr}`}
                   autoComplete="off"
@@ -779,9 +778,10 @@ export default function DataControlsPage() {
               </div>
 
               <div className={styles.actions}>
-                <button
+                <Button
                   type="submit"
-                  className="endoora-button endoora-button--secondary"
+                  variant="destructive"
+                  loading={deleteBusy}
                   disabled={
                     deleteBusy ||
                     confirmation !== "DELETE"
@@ -790,7 +790,7 @@ export default function DataControlsPage() {
                   {deleteBusy
                     ? t.requestingDeletion
                     : t.requestDeletion}
-                </button>
+                </Button>
               </div>
             </form>
           )}

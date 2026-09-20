@@ -1,8 +1,8 @@
 import { SecurityOperationsDashboard } from "@/components/security/SecurityOperationsDashboard";
 
 export const metadata = {
-  title: "عملیات امنیت | اندورا",
-  description: "داشبورد عملیات امنیت پلتفرم اندورا",
+  title: "عملیات امنیت | ایندورا",
+  description: "داشبورد عملیات امنیت پلتفرم ایندورا",
 };
 
 export default function SecurityOperationsPage() {

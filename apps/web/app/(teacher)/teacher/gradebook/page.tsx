@@ -1,5 +1,7 @@
 "use client";
 
+import { Input, Table } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./gradebook.module.css";
@@ -120,11 +122,11 @@ export default function TeacherGradebookPage() {
             ))}
           </select>
 
-          <input
+          <Input
             type="text"
             placeholder={isFa ? "جستجوی زبان‌آموز..." : "Search student..."}
             value={searchStudent}
-            onChange={(e) => setSearchStudent(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchStudent(e.target.value)}
             style={{ padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-border-subtle)" }}
           />
         </div>
@@ -174,7 +176,7 @@ export default function TeacherGradebookPage() {
 
           {/* Matrix Grid Table */}
           <div className={styles.matrixWrapper}>
-            <table className={styles.matrixTable}>
+            <Table className={styles.matrixTable}>
               <thead>
                 <tr>
                   <th className={styles.stickyCol}>{isFa ? "زبان‌آموز (Student)" : "Student"}</th>
@@ -273,7 +275,7 @@ export default function TeacherGradebookPage() {
                   ))}
                 </tr>
               </tfoot>
-            </table>
+            </Table>
           </div>
         </>
       )}

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useId } from "react";
 import Link from "next/link";
+import { Button, Input } from "@endoora/ui";
 import styles from "./learn-now.module.css";
 import {
   createLearnNowRequest,
@@ -203,7 +204,7 @@ export default function LearnNowWizardPage() {
       <header className={styles.header}>
         <h1 className={styles.title}>یادگیری سریع با مدرس (Learn Now)</h1>
         <p className={styles.subtitle}>
-          در کمتر از چند دقیقه نیاز آموزشی خود را ثبت کنید؛ مدرسین تأییدشده اندورا پیشنهادهای خود را برای
+          در کمتر از چند دقیقه نیاز آموزشی خود را ثبت کنید؛ مدرسین تأییدشده ایندورا پیشنهادهای خود را برای
           شما ارسال خواهند کرد.
         </p>
       </header>
@@ -347,14 +348,7 @@ export default function LearnNowWizardPage() {
               <label htmlFor={subskillId} className={styles.formLabel}>
                 موضوع مشخص یا عنوان تمرین (اختیاری):
               </label>
-              <input
-                id={subskillId}
-                type="text"
-                placeholder="مثلاً: تمرین اسپیکینگ پارت ۲ آیلتس یا مصاحبه شغلی"
-                value={targetSubskill}
-                onChange={(e) => setTargetSubskill(e.target.value)}
-                className={styles.formInput}
-              />
+              <Input id={subskillId} type="text" placeholder="مثلاً: تمرین اسپیکینگ پارت ۲ آیلتس یا مصاحبه شغلی" value={targetSubskill} onChange={(e) => setTargetSubskill(e.target.value)} />
             </div>
 
             <div className={styles.formGroup}>
@@ -413,17 +407,7 @@ export default function LearnNowWizardPage() {
               <label htmlFor={budgetId} className={styles.formLabel}>
                 حداکثر سقف بودجه پیشنهادی (تومان، اختیاری):
               </label>
-              <input
-                id={budgetId}
-                type="number"
-                step={10000}
-                placeholder="مثلاً: 350000"
-                value={budgetMaxToman}
-                onChange={(e) =>
-                  setBudgetMaxToman(e.target.value ? Number(e.target.value) : "")
-                }
-                className={styles.formInput}
-              />
+              <Input id={budgetId} type="number" step={10000} placeholder="مثلاً: 350000" value={budgetMaxToman} onChange={(e) => setBudgetMaxToman(e.target.value ? Number(e.target.value) : "")} />
             </div>
 
             <div className={`${styles.formGroup} ${styles.formGroupFull}`}>
@@ -442,9 +426,9 @@ export default function LearnNowWizardPage() {
             </div>
 
             <div className={`${styles.actionsRow} ${styles.formGroupFull}`}>
-              <button type="submit" className={styles.primaryButton}>
+              <Button type="submit" variant="primary">
                 مرحله بعد: بازبینی درخواست ←
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -511,22 +495,23 @@ export default function LearnNowWizardPage() {
           </p>
 
           <div className={styles.actionsRow}>
-            <button
+            <Button
               type="button"
+              variant="secondary"
               onClick={() => setStep("details")}
-              className={styles.secondaryButton}
               disabled={submitting}
             >
               ← ویرایش اطلاعات
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="primary"
+              loading={submitting}
               onClick={handlePublishRequest}
-              className={styles.primaryButton}
               disabled={submitting}
             >
               {submitting ? "در حال ثبت درخواست..." : "انتشار درخواست در بازار تدریس ✓"}
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -539,22 +524,24 @@ export default function LearnNowWizardPage() {
               درخواست فعال: {activeRequest.skill_display || activeRequest.target_skill}
             </h2>
             <div style={{ display: "flex", gap: "var(--space-2)" }}>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
+                size="sm"
                 onClick={refreshRequestOffers}
-                className={styles.secondaryButton}
-                style={{ fontSize: "var(--font-size-xs)" }}
               >
                 🔄 بروزرسانی پیشنهادها
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="destructive"
+                size="sm"
+                loading={submitting}
                 onClick={handleCancelRequest}
-                className={styles.dangerButton}
                 disabled={submitting}
               >
                 لغو درخواست
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -568,7 +555,7 @@ export default function LearnNowWizardPage() {
                 درخواست شما در بازار برای مدرسین واجد شرایط فعال شد
               </h3>
               <p style={{ fontSize: "var(--font-size-sm)", color: "var(--color-text-secondary)", maxInlineSize: "500px", margin: 0 }}>
-                سیستم هوشمند تطبیق اندورا درخواست شما را به مدرسین متخصص این مهارت نمایش می‌دهد.
+                سیستم هوشمند تطبیق ایندورا درخواست شما را به مدرسین متخصص این مهارت نمایش می‌دهد.
                 به محض ارسال پیشنهاد، کارت مدرس در این بخش ظاهر می‌شود.
               </p>
             </div>
@@ -616,14 +603,15 @@ export default function LearnNowWizardPage() {
                   )}
 
                   <div style={{ display: "flex", justifyContent: "flex-end", paddingBlockStart: "var(--space-2)" }}>
-                    <button
+                    <Button
                       type="button"
+                      variant="primary"
+                      loading={submitting}
                       onClick={() => handleAcceptOffer(offer)}
-                      className={styles.primaryButton}
                       disabled={submitting}
                     >
                       {submitting ? "در حال ثبت رزرو..." : "انتخاب این پیشنهاد و تأیید جلسه ←"}
-                    </button>
+                    </Button>
                   </div>
                 </article>
               ))}
@@ -645,17 +633,17 @@ export default function LearnNowWizardPage() {
             <Link href="/bookings" className={styles.primaryButton}>
               مشاهده رزروها و اتاق جلسه
             </Link>
-            <button
+            <Button
               type="button"
+              variant="secondary"
               onClick={() => {
                 setActiveRequest(null);
                 setAcceptedOffer(null);
                 setStep("details");
               }}
-              className={styles.secondaryButton}
             >
               ثبت یک درخواست دیگر
-            </button>
+            </Button>
           </div>
         </div>
       )}

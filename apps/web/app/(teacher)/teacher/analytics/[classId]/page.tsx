@@ -1,5 +1,7 @@
 "use client";
 
+import { Input, Table } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -240,7 +242,7 @@ export default function ClassAnalyticsReportPage() {
               </div>
             ) : (
               <div className={styles.tableWrapper}>
-                <table className={styles.table}>
+                <Table className={styles.table}>
                   <thead>
                     <tr>
                       <th>{isFa ? "عنوان تکلیف" : "Assignment"}</th>
@@ -269,7 +271,7 @@ export default function ClassAnalyticsReportPage() {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
             )}
           </div>
@@ -280,11 +282,11 @@ export default function ClassAnalyticsReportPage() {
               <h2 className={styles.cardTitle}>
                 {isFa ? "فهرست عملکرد زبان‌آموزان کلاس" : "Learner Cohort Roster"}
               </h2>
-              <input
+              <Input
                 type="text"
                 placeholder={isFa ? "جستجوی زبان‌آموز..." : "Search learner..."}
                 value={searchLearner}
-                onChange={(e) => setSearchLearner(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchLearner(e.target.value)}
                 style={{
                   paddingInline: "var(--space-3)",
                   paddingBlock: "var(--space-2)",
@@ -295,7 +297,7 @@ export default function ClassAnalyticsReportPage() {
             </div>
 
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>{isFa ? "زبان‌آموز" : "Learner"}</th>
@@ -346,7 +348,7 @@ export default function ClassAnalyticsReportPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           </div>
         </>

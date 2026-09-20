@@ -21,6 +21,7 @@ import {
   triggerRestoreDrill,
   updateIncident,
 } from "../../lib/incident-ops";
+import { LoadingState, Button, Input, Table } from "@endoora/ui";
 import styles from "./incident-operations.module.css";
 
 const OPERATIONS_TABS = [
@@ -158,21 +159,21 @@ export function IncidentOperationsDashboard() {
           اجرای دستورالعمل‌های مهار بحران (Runbooks) و ارزیابی شش‌گانه دروازه انتشار نهایی (Launch Gate).
         </p>
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
             className={styles.btnPrimary}
             onClick={handleTriggerDrill}
             disabled={isDrillRunning}
           >
             {isDrillRunning ? "در حال اجرای مانور..." : "🧪 اجرای مانور تست بازیابی (Restore Drill)"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={styles.btnSecondary}
             onClick={() => setIsNewIncidentOpen(true)}
           >
             ➕ ثبت رخداد بحرانی جدید (New Incident)
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -192,6 +193,10 @@ export function IncidentOperationsDashboard() {
         })}
       </nav>
 
+      {loading ? (
+        <LoadingState label="در حال دریافت وضعیت مدیریت بحران و تاب‌آوری..." />
+      ) : null}
+
       {/* User Feedback Toast */}
       {feedback && (
         <div
@@ -210,7 +215,7 @@ export function IncidentOperationsDashboard() {
           }}
         >
           <span>💡 {feedback}</span>
-          <button
+          <Button
             type="button"
             onClick={() => setFeedback(null)}
             style={{
@@ -221,7 +226,7 @@ export function IncidentOperationsDashboard() {
             }}
           >
             ✕
-          </button>
+          </Button>
         </div>
       )}
 
@@ -342,7 +347,7 @@ export function IncidentOperationsDashboard() {
         </div>
 
         <div style={{ overflowX: "auto" }}>
-          <table className={styles.incidentTable}>
+          <Table className={styles.incidentTable}>
             <thead>
               <tr>
                 <th>شدت (Severity)</th>
@@ -398,24 +403,24 @@ export function IncidentOperationsDashboard() {
                     <td>
                       <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
                         {inc.status !== "resolved" && (
-                          <button
+                          <Button
                             type="button"
                             className={styles.btnSecondary}
                             style={{ padding: "4px 8px", fontSize: "11px" }}
                             onClick={() => handleStatusUpdate(inc.id, "resolved")}
                           >
                             علامت‌گذاری به عنوان رفع‌شده
-                          </button>
+                          </Button>
                         )}
                         {inc.status === "detected" && (
-                          <button
+                          <Button
                             type="button"
                             className={styles.btnSecondary}
                             style={{ padding: "4px 8px", fontSize: "11px" }}
                             onClick={() => handleStatusUpdate(inc.id, "mitigated")}
                           >
                             اعلام مهار
-                          </button>
+                          </Button>
                         )}
                       </div>
                     </td>
@@ -423,7 +428,7 @@ export function IncidentOperationsDashboard() {
                 ))
               )}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
 
@@ -475,7 +480,7 @@ export function IncidentOperationsDashboard() {
                       <span>
                         گام {st.step}: {st.title}
                       </span>
-                      <button
+                      <Button
                         type="button"
                         className={styles.stepBtnExecute}
                         disabled={
@@ -486,7 +491,7 @@ export function IncidentOperationsDashboard() {
                         {executingStep?.slug === rb.slug && executingStep?.step === st.step
                           ? "در حال اجرا..."
                           : "اجرای آزمایشی (Dry Run)"}
-                      </button>
+                      </Button>
                     </div>
                     <div className={styles.stepCode}>{st.command}</div>
                     <div style={{ fontSize: "11px", color: "var(--color-text-muted)", marginTop: "4px" }}>
@@ -527,7 +532,7 @@ export function IncidentOperationsDashboard() {
         </div>
 
         <div style={{ overflowX: "auto" }}>
-          <table className={styles.incidentTable}>
+          <Table className={styles.incidentTable}>
             <thead>
               <tr>
                 <th>شناسه مانور</th>
@@ -560,7 +565,7 @@ export function IncidentOperationsDashboard() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
 
@@ -572,7 +577,7 @@ export function IncidentOperationsDashboard() {
             <form onSubmit={handleCreateIncident} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>عنوان رخداد</label>
-                <input
+                <Input
                   type="text"
                   required
                   placeholder="مثال: قطعی موقت در اتصال به درگاه پرداخت"
@@ -587,7 +592,7 @@ export function IncidentOperationsDashboard() {
                 <select
                   className={styles.formSelect}
                   value={newSeverity}
-                  onChange={(e) => setNewSeverity(e.target.value as any)}
+                  onChange={(e) => setNewSeverity(e.target.value as IncidentRecord["severity"])}
                 >
                   <option value="P1_CRITICAL">P1 - بحرانی (قطعی سرویس اصلی یا پایگاه داده)</option>
                   <option value="P2_HIGH">P2 - بالا (اختلال پرداخت یا هوش مصنوعی)</option>
@@ -598,7 +603,7 @@ export function IncidentOperationsDashboard() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>سرویس متأثر</label>
-                <input
+                <Input
                   type="text"
                   required
                   placeholder="مثال: Billing & Escrow"
@@ -634,16 +639,16 @@ export function IncidentOperationsDashboard() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
                   className={styles.btnSecondary}
                   onClick={() => setIsNewIncidentOpen(false)}
                 >
                   انصراف
-                </button>
-                <button type="submit" className={styles.btnPrimary}>
+                </Button>
+                <Button type="submit" className={styles.btnPrimary}>
                   ثبت رسمی رخداد
-                </button>
+                </Button>
               </div>
             </form>
           </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button, Input } from "@endoora/ui";
 import styles from "./practice.module.css";
 
 interface ExerciseOption {
@@ -311,7 +312,7 @@ export default function PracticePage() {
           </svg>
           <span>
             {isFa
-              ? "اصل شفافیت آموزشی (اصل هشتم قانون اساسی محصول اندورا): آزمونک‌ها هرگز بدون اعتبارسنجی ساختاری به زبان‌آموز ارائه نمی‌شوند. در صورت بروز تاخیر یا اتمام سقف بودجه، محتوا مستقیماً از بانک بازبینی‌شده مدرسان بارگیری می‌شود."
+              ? "اصل شفافیت آموزشی (اصل هشتم قانون اساسی محصول ایندورا): آزمونک‌ها هرگز بدون اعتبارسنجی ساختاری به زبان‌آموز ارائه نمی‌شوند. در صورت بروز تاخیر یا اتمام سقف بودجه، محتوا مستقیماً از بانک بازبینی‌شده مدرسان بارگیری می‌شود."
               : "Endoora Constitution Rule #8 (Educational Notice): AI exercises are strictly validated by backend schema inspectors. Any provider delay or budget limit seamlessly activates our reviewed human-curated question bank."}
           </span>
         </div>
@@ -331,16 +332,15 @@ export default function PracticePage() {
             </span>
             <div className={styles.pillGroup}>
               {TARGET_SKILLS.map((skill) => (
-                <button
+                <Button
                   key={skill.id}
                   type="button"
-                  className={`${styles.pillButton} ${
-                    selectedSkill === skill.id ? styles.pillButtonActive : ""
-                  }`}
+                  size="sm"
+                  variant={selectedSkill === skill.id ? "primary" : "secondary"}
                   onClick={() => setSelectedSkill(skill.id)}
                 >
                   {isFa ? skill.labelFa : skill.labelEn}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -352,16 +352,15 @@ export default function PracticePage() {
             </span>
             <div className={styles.pillGroup}>
               {CEFR_LEVELS.map((lvl) => (
-                <button
+                <Button
                   key={lvl}
                   type="button"
-                  className={`${styles.pillButton} ${
-                    selectedCefr === lvl ? styles.pillButtonActive : ""
-                  }`}
+                  size="sm"
+                  variant={selectedCefr === lvl ? "primary" : "secondary"}
                   onClick={() => setSelectedCefr(lvl)}
                 >
                   <strong>{lvl}</strong>
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -373,10 +372,11 @@ export default function PracticePage() {
             </span>
             <div className={styles.pillGroup}>
               {PRESET_TOPICS.map((topic, i) => (
-                <button
+                <Button
                   key={i}
                   type="button"
-                  className={styles.pillButton}
+                  size="sm"
+                  variant="secondary"
                   onClick={() => {
                     setFocusArea(topic.en);
                     setSelectedSkill(topic.skill);
@@ -384,7 +384,7 @@ export default function PracticePage() {
                   }}
                 >
                   {isFa ? topic.fa : topic.en} ({topic.level})
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -394,14 +394,7 @@ export default function PracticePage() {
             <label className={styles.fieldLabel} htmlFor="focus-area-input">
               {isFa ? "۳. موضوع یا هدف دقیق آموزشی:" : "3. Target Focus Area / Objective:"}
             </label>
-            <input
-              id="focus-area-input"
-              className={styles.inputField}
-              type="text"
-              value={focusArea}
-              onChange={(e) => setFocusArea(e.target.value)}
-              placeholder="e.g. Present perfect continuous, business emails, phrasal verbs"
-            />
+            <Input id="focus-area-input" type="text" value={focusArea} onChange={(e) => setFocusArea(e.target.value)} placeholder="e.g. Present perfect continuous, business emails, phrasal verbs" />
           </div>
 
           {/* Question Count Selection */}
@@ -411,16 +404,15 @@ export default function PracticePage() {
             </span>
             <div className={styles.pillGroup}>
               {[1, 2, 3, 5].map((cnt) => (
-                <button
+                <Button
                   key={cnt}
                   type="button"
-                  className={`${styles.pillButton} ${
-                    questionCount === cnt ? styles.pillButtonActive : ""
-                  }`}
+                  size="sm"
+                  variant={questionCount === cnt ? "primary" : "secondary"}
                   onClick={() => setQuestionCount(cnt)}
                 >
                   {cnt} {isFa ? "سوال" : "Questions"}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -431,9 +423,10 @@ export default function PracticePage() {
             </p>
           )}
 
-          <button
-            className={styles.buttonPrimary}
+          <Button
+            variant="primary"
             type="button"
+            loading={generating}
             disabled={generating}
             onClick={handleGenerateExercise}
           >
@@ -444,7 +437,7 @@ export default function PracticePage() {
               : isFa
               ? "✨ تولید آزمونک هوشمند"
               : "✨ Generate Adaptive Exercise"}
-          </button>
+          </Button>
         </section>
       ) : (
         /* Active Exercise Runner Card */
@@ -458,8 +451,9 @@ export default function PracticePage() {
                 {isFa ? `سطح ${currentExercise.cefr_level} | مهارت ${currentExercise.target_skill}` : `${currentExercise.cefr_level} • ${currentExercise.target_skill}`}
               </span>
             </div>
-            <button
-              className={styles.buttonSecondary}
+            <Button
+              variant="secondary"
+              size="sm"
               type="button"
               onClick={() => {
                 setCurrentExercise(null);
@@ -467,7 +461,7 @@ export default function PracticePage() {
               }}
             >
               {isFa ? "تغییر تنظیمات / آزمونک جدید" : "New Exercise"}
-            </button>
+            </Button>
           </div>
 
           {/* Progress bar */}
@@ -521,18 +515,18 @@ export default function PracticePage() {
                   }
 
                   return (
-                    <button
+                    <Button
                       key={opt.id}
                       type="button"
+                      className={evalClass || undefined}
+                      variant={isSelected ? "primary" : "secondary"}
                       disabled={Boolean(evaluation)}
-                      className={`${styles.optionButton} ${
-                        isSelected ? styles.optionButtonActive : ""
-                      } ${evalClass}`}
+                      style={{ inlineSize: "100%", justifyContent: "flex-start", textAlign: "left" }}
                       onClick={() => handleSelectOption(qId, opt.id)}
                     >
-                      <span className={styles.optionBadge}>{opt.id.toUpperCase()}</span>
+                      <span className={styles.optionBadge} style={{ marginInlineEnd: "var(--space-2)" }}>{opt.id.toUpperCase()}</span>
                       <span>{opt.text}</span>
-                    </button>
+                    </Button>
                   );
                 })}
               </div>
@@ -567,38 +561,41 @@ export default function PracticePage() {
 
           {/* Question Navigation Controls */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-2)", marginBlockEnd: "var(--space-4)" }}>
-            <button
-              className={styles.buttonSecondary}
+            <Button
+              variant="secondary"
+              size="sm"
               type="button"
               disabled={activeQuestionIndex === 0}
               onClick={() => setActiveQuestionIndex((i) => Math.max(0, i - 1))}
             >
               {isFa ? "سوال قبلی" : "Previous"}
-            </button>
+            </Button>
 
             <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700 }}>
               {activeQuestionIndex + 1} / {currentExercise.questions.length}
             </span>
 
             {activeQuestionIndex < currentExercise.questions.length - 1 ? (
-              <button
-                className={styles.buttonSecondary}
+              <Button
+                variant="secondary"
+                size="sm"
                 type="button"
                 onClick={() => setActiveQuestionIndex((i) => Math.min(currentExercise.questions.length - 1, i + 1))}
               >
                 {isFa ? "سوال بعدی" : "Next"}
-              </button>
+              </Button>
             ) : !evaluation ? (
-              <button
-                className={styles.buttonPrimary}
+              <Button
+                variant="primary"
                 type="button"
+                loading={submitting}
                 disabled={submitting || Object.keys(userAnswers).length === 0}
                 onClick={handleSubmitExercise}
               >
                 {submitting
                   ? isFa ? "در حال تصحیح…" : "Evaluating…"
                   : isFa ? "ثبت و تصحیح آزمونک" : "Submit & Grade"}
-              </button>
+              </Button>
             ) : null}
           </div>
 
@@ -620,13 +617,13 @@ export default function PracticePage() {
               </div>
 
               <div className={styles.actionRow}>
-                <button
-                  className={styles.buttonPrimary}
+                <Button
+                  variant="primary"
                   type="button"
                   onClick={handleGenerateExercise}
                 >
                   {isFa ? "تولید آزمونک مشابه" : "Try Similar Exercise"}
-                </button>
+                </Button>
                 <Link className={styles.buttonSecondary} href="/review">
                   {isFa ? "افزودن به جعبه لایتنر" : "Review in SRS"}
                 </Link>

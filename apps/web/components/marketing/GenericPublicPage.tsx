@@ -9,6 +9,7 @@ import {
 } from "../../lib/public-site";
 import styles from "./marketing.module.css";
 import { PublicFaq } from "./PublicFaq";
+import { PlacementAuthNotice } from "../placement/PlacementAuthNotice";
 
 export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; pageKey: PublicPageKey }) {
   const copy = publicPages[pageKey][locale];
@@ -31,6 +32,10 @@ export function GenericPublicPage({ locale, pageKey }: { locale: PublicLocale; p
           </Link>
         </div>
       </section>
+
+      {pageKey === "placement" ? (
+        <PlacementAuthNotice locale={locale} />
+      ) : null}
 
       {isPricing ? (
         <section className={styles.planSection}>

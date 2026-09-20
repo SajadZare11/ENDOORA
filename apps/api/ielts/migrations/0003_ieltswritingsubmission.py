@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('criteria_breakdown', models.JSONField(blank=True, default=dict, help_text='توصیف\u200cگرهای معیارها و فیدبک تشخیصی چهارگانه')),
                 ('annotations', models.JSONField(blank=True, default=list, help_text='پیشنهادهای اصلاحی درون\u200cمتنی، گرامر، واژگان و ساختار جملات')),
                 ('pedagogical_advice', models.JSONField(blank=True, default=list, help_text='توصیه\u200cهای کاربردی به فارسی برای بهبود نگارش و افزایش نمره باند')),
-                ('teacher_review_requested', models.BooleanField(default=False, help_text='درخواست تصحیح و نمره\u200cدهی توسط اگزمینر/مدرس رسمی اندورا')),
+                ('teacher_review_requested', models.BooleanField(default=False, help_text='درخواست تصحیح و نمره\u200cدهی توسط اگزمینر/مدرس رسمی ایندورا')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('learner', models.ForeignKey(help_text='زبان\u200cآموز نویسنده متن', on_delete=django.db.models.deletion.CASCADE, related_name='ielts_writing_submissions', to=settings.AUTH_USER_MODEL)),

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
+import { Button } from "@endoora/ui";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "../placement.module.css";
 
 export default function ListeningReadyPage() {
@@ -28,62 +30,57 @@ export default function ListeningReadyPage() {
   }
 
   return (
-    <EndooraBackground>
-      <main className={styles.page} dir="rtl">
-        <div className={styles.container}>
-          <GlassCard>
-            <div className={styles.card} style={{ textAlign: "center", maxWidth: "42rem", marginInline: "auto" }}>
-              <p style={{ color: "var(--color-primary)", fontWeight: 700, fontSize: "var(--font-size-meta)" }}>
-                پیش‌نیاز شنیداری و آزمایشگاه صوتی
-              </p>
-              <h1 style={{ fontSize: "var(--font-size-title-1)", marginBlock: "var(--space-3)" }}>
-                بررسی آمادگی صوتی
-              </h1>
-              <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBlockEnd: "var(--space-6)" }}>
-                برای شرکت در بخش‌های شنیداری آزمون تعیین سطح و تعاملات گفتاری، می‌توانید اکنون وضعیت ضبط و پخش صوتی مرورگر خود را بسنجید.
-              </p>
+    <PublicShell locale="fa" currentPath="/placement/listening-ready">
+      <EndooraBackground>
+        <div className={styles.page} dir="rtl">
+          <div className={styles.container}>
+            <GlassCard>
+              <div className={styles.card} style={{ textAlign: "center", maxWidth: "42rem", marginInline: "auto" }}>
+                <p style={{ color: "var(--color-primary)", fontWeight: 700, fontSize: "var(--font-size-meta)" }}>
+                  پیش‌نیاز شنیداری و آزمایشگاه صوتی
+                </p>
+                <h1 style={{ fontSize: "var(--font-size-title-1)", marginBlock: "var(--space-3)" }}>
+                  بررسی آمادگی صوتی
+                </h1>
+                <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBlockEnd: "var(--space-6)" }}>
+                  برای شرکت در بخش‌های شنیداری آزمون تعیین سطح و تعاملات گفتاری، می‌توانید اکنون وضعیت ضبط و پخش صوتی مرورگر خود را بسنجید.
+                </p>
 
-              <div
-                style={{
-                  background: isReady ? "var(--color-success-bg)" : "var(--color-surface-hover)",
-                  border: `1px solid ${isReady ? "var(--color-success)" : "var(--color-border)"}`,
-                  borderRadius: "var(--radius-card)",
-                  padding: "var(--space-4)",
-                  marginBlockEnd: "var(--space-6)",
-                  color: "var(--color-text)",
-                }}
-              >
-                {status}
-              </div>
+                <div
+                  style={{
+                    background: isReady ? "var(--color-success-bg)" : "var(--color-surface-hover)",
+                    border: `1px solid ${isReady ? "var(--color-success)" : "var(--color-border)"}`,
+                    borderRadius: "var(--radius-card)",
+                    padding: "var(--space-4)",
+                    marginBlockEnd: "var(--space-6)",
+                    color: "var(--color-text)",
+                  }}
+                >
+                  {status}
+                </div>
 
-              <div style={{ display: "flex", gap: "var(--space-4)", justifyContent: "center", flexWrap: "wrap" }}>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={checkMicrophone}
-                  style={{ marginBlockStart: 0 }}
-                >
-                  {hasChecked ? "بررسی مجدد میکروفون" : "بررسی میکروفون"}
-                </button>
-                <Link
-                  href="/placement/demo"
-                  className={styles.button}
-                  style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
-                >
-                  ورود به آزمون تعیین سطح
-                </Link>
-                <Link
-                  href="/listening"
-                  className={styles.button}
-                  style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
-                >
-                  آزمایشگاه شنیداری
-                </Link>
+                <div style={{ display: "flex", gap: "var(--space-4)", justifyContent: "center", flexWrap: "wrap" }}>
+                  <Button type="button" variant="primary" onClick={checkMicrophone}>{hasChecked ? "بررسی مجدد میکروفون" : "بررسی میکروفون"}</Button>
+                  <Link
+                    href="/placement/demo"
+                    className={styles.button}
+                    style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
+                  >
+                    ورود به آزمون تعیین سطح
+                  </Link>
+                  <Link
+                    href="/listening"
+                    className={styles.button}
+                    style={{ marginBlockStart: 0, background: "var(--color-surface)", color: "var(--color-text)", border: "1px solid var(--color-border)" }}
+                  >
+                    آزمایشگاه شنیداری
+                  </Link>
+                </div>
               </div>
-            </div>
-          </GlassCard>
+            </GlassCard>
+          </div>
         </div>
-      </main>
-    </EndooraBackground>
+      </EndooraBackground>
+    </PublicShell>
   );
 }

@@ -8,9 +8,12 @@
   border: 1px solid transparent;
   border-radius: var(--radius-control);
   font: inherit;
-  font-weight: 750;
+  font-family: var(--font-family-body, inherit);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  min-height: var(--target-min);
   cursor: pointer;
-  transition: transform var(--motion-fast) var(--motion-ease), background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
+  transition: transform var(--motion-fast) var(--motion-ease), background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease);
 }
 
 .endoora-button {
@@ -38,21 +41,33 @@
 .endoora-icon-button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+  transform: none;
 }
 
 .endoora-button--primary {
   background: var(--color-action);
   color: var(--color-action-text);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 12px -2px color-mix(in srgb, var(--color-action) 28%, transparent);
 }
 
 .endoora-button--primary:hover:not(:disabled) {
   background: var(--color-action-hover);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 6px 16px -2px color-mix(in srgb, var(--color-action) 38%, transparent);
 }
 
 .endoora-button--secondary {
-  border-color: var(--color-action);
+  border-color: var(--color-border);
   background: var(--color-surface);
-  color: var(--color-link);
+  color: var(--color-text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.endoora-button--secondary:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
+  color: var(--color-action);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.06);
 }
 
 .endoora-button--tertiary {
@@ -60,14 +75,16 @@
   color: var(--color-text);
 }
 
-.endoora-button--secondary:hover:not(:disabled),
 .endoora-button--tertiary:hover:not(:disabled) {
-  background: var(--color-info-bg);
+  background: color-mix(in srgb, var(--color-action) 6%, transparent);
+  color: var(--color-action);
 }
 
 .endoora-button--destructive {
   background: var(--color-error-red);
   color: var(--color-action-text);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 2px 8px color-mix(in srgb, var(--color-error-red) 25%, transparent);
 }
 
 .endoora-spinner {
@@ -415,6 +432,61 @@
 .endoora-data-card__row { display: grid; grid-template-columns: minmax(6rem, 0.5fr) minmax(0, 1fr); gap: var(--space-3); }
 .endoora-table-empty { padding: var(--space-6); border: 1px dashed var(--color-border); border-radius: var(--radius-control); color: var(--color-muted); text-align: center; }
 
+.endoora-table-container {
+  overflow-x: auto;
+  inline-size: 100%;
+}
+
+.endoora-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+.endoora-table__head,
+.endoora-table__cell {
+  padding-block: var(--space-3);
+  padding-inline: var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.endoora-table__header .endoora-table__head {
+  background: var(--color-canvas);
+  font-weight: 750;
+  color: var(--color-muted);
+  font-size: var(--font-size-meta);
+}
+
+.endoora-table__row {
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+
+.endoora-table__row:hover {
+  background: var(--color-canvas);
+}
+
+.endoora-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  inline-size: 100%;
+}
+
+.endoora-search-input-icon {
+  position: absolute;
+  inset-inline-start: var(--space-3);
+  display: grid;
+  place-items: center;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.endoora-search-input {
+  inline-size: 100%;
+  padding-inline-start: var(--space-8);
+}
+
 .endoora-chart { display: grid; gap: var(--space-4); margin: 0; }
 .endoora-chart figcaption h3,
 .endoora-chart figcaption p { margin-block-start: 0; }
@@ -460,7 +532,21 @@
 .endoora-account-nav ul,
 .endoora-role-shell nav ul { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
 .endoora-account-nav a,
-.endoora-role-shell nav a { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--target-min); padding-block: var(--space-2); padding-inline: var(--space-3); border-radius: var(--radius-control); color: var(--color-text); text-decoration: none; }
+.endoora-role-shell nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: var(--target-min);
+  min-height: var(--target-min);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-family-body, inherit);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
 .endoora-account-nav a:hover,
 .endoora-role-shell nav a:hover,
 .endoora-account-nav a[aria-current="page"],

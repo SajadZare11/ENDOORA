@@ -97,10 +97,39 @@
   stroke-linejoin: round;
 }
 
-.learner-sidebar__note {
-  margin-block: auto 0;
-  padding-block-start: var(--space-5);
+.learner-sidebar__footer {
+  margin-block-start: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-border);
+}
+
+.learner-nav__item--logout {
+  inline-size: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-align: start;
+}
+
+.learner-nav__item--logout:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-error-red) 32%, var(--color-border));
+  background: color-mix(in srgb, var(--color-error-bg) 70%, transparent);
+  color: var(--color-error-text);
+}
+
+.learner-sidebar__note {
+  margin-block: 0;
+  padding-block-start: 0;
+  border-block-start: 0;
   color: var(--color-muted);
   font-size: var(--font-size-meta);
 }

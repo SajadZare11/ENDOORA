@@ -1,5 +1,7 @@
 'use client';
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import styles from "./earnings.module.css";
 import {
@@ -234,35 +236,37 @@ export default function TeacherEarningsPage() {
           </p>
         </div>
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
+            variant="primary"
             className={styles.payoutButton}
             onClick={() => setShowPayoutModal(true)}
             disabled={!balances?.can_request_payout}
           >
             درخواست تسویه حساب
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="secondary"
             className={styles.printButton}
             onClick={() => window.print()}
           >
             چاپ / خروجی صورت‌حساب
-          </button>
+          </Button>
         </div>
       </div>
 
       {successMsg && (
         <div className={styles.alertSuccess}>
           <span>{successMsg}</span>
-          <button type="button" onClick={() => setSuccessMsg(null)}>✕</button>
+          <Button type="button" variant="tertiary" size="sm" onClick={() => setSuccessMsg(null)}>✕</Button>
         </div>
       )}
 
       {error && (
         <div className={styles.alertError}>
           <span>{error}</span>
-          <button type="button" onClick={() => setError(null)}>✕</button>
+          <Button type="button" variant="tertiary" size="sm" onClick={() => setError(null)}>✕</Button>
         </div>
       )}
 
@@ -355,27 +359,30 @@ export default function TeacherEarningsPage() {
 
       {/* Navigation Tabs */}
       <div className={styles.tabNav}>
-        <button
+        <Button
           type="button"
+          variant={activeTab === "statement" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "statement" ? styles.tabBtnActive : ""}`}
           onClick={() => setActiveTab("statement")}
         >
           صورت‌حساب و اسناد دفتر کل
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant={activeTab === "payouts" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabBtnActive : ""}`}
           onClick={() => setActiveTab("payouts")}
         >
           تاریخچه درخواست‌های تسویه
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant={activeTab === "tax" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "tax" ? styles.tabBtnActive : ""}`}
           onClick={() => setActiveTab("tax")}
         >
           مشخصات مالیاتی و شماره شبا
-        </button>
+        </Button>
       </div>
 
       {/* TAB 1: Statement Explorer */}
@@ -394,7 +401,7 @@ export default function TeacherEarningsPage() {
           </div>
 
           <div className={styles.tableResponsive}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th>کد سند</th>
@@ -444,7 +451,7 @@ export default function TeacherEarningsPage() {
                   ))
                 )}
               </tbody>
-            </table>
+            </Table>
           </div>
         </section>
       )}
@@ -459,18 +466,15 @@ export default function TeacherEarningsPage() {
                 فرآیند واریز به حساب بانکی از طریق چرخه پایا بانک مرکزی
               </p>
             </div>
-            <button
-              type="button"
-              className={styles.payoutButtonSmall}
-              onClick={() => setShowPayoutModal(true)}
+            <Button type="button" variant="primary" size="sm" className={styles.payoutButtonSmall} onClick={() => setShowPayoutModal(true)}
               disabled={!balances?.can_request_payout}
             >
               ثبت تسویه جدید
-            </button>
+            </Button>
           </div>
 
           <div className={styles.tableResponsive}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th>مبلغ درخواستی</th>
@@ -515,7 +519,7 @@ export default function TeacherEarningsPage() {
                   ))
                 )}
               </tbody>
-            </table>
+            </Table>
           </div>
         </section>
       )}
@@ -530,13 +534,15 @@ export default function TeacherEarningsPage() {
                 الزامات قانونی سامانه مودیان و احراز هویت شاپرک جهت تسویه بدون تاخیر
               </p>
             </div>
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="sm"
               className={styles.payoutButtonSmall}
               onClick={openTaxModal}
             >
               ویرایش اطلاعات
-            </button>
+            </Button>
           </div>
 
           <div className={styles.taxGrid}>
@@ -574,13 +580,15 @@ export default function TeacherEarningsPage() {
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>درخواست تسویه حساب بانکی</h3>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.modalClose}
                 onClick={() => setShowPayoutModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handlePayoutSubmit} className={styles.modalForm}>
@@ -595,13 +603,13 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>مبلغ تسویه (تومان)</label>
-                <input
+                <Input
                   type="number"
                   min={50000}
                   max={balances?.available_toman || 50000}
                   step={10000}
                   value={payoutAmount}
-                  onChange={(e) => setPayoutAmount(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPayoutAmount(Number(e.target.value))}
                   className={styles.formInput}
                   required
                 />
@@ -610,10 +618,7 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>شماره شبا (IBAN با پیشوند IR)</label>
-                <input
-                  type="text"
-                  maxLength={26}
-                  value={shaba}
+                <Input type="text" maxLength={26} value={shaba}
                   onChange={handleShabaChange}
                   placeholder="IR123456789012345678901234"
                   className={`${styles.formInput} ${styles.monoInput}`}
@@ -624,9 +629,7 @@ export default function TeacherEarningsPage() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>نام بانک</label>
-                  <input
-                    type="text"
-                    value={bankName}
+                  <Input type="text" value={bankName}
                     onChange={(e) => setBankName(e.target.value)}
                     placeholder="مثال: بانک سامان"
                     className={styles.formInput}
@@ -634,9 +637,7 @@ export default function TeacherEarningsPage() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>نام صاحب حساب</label>
-                  <input
-                    type="text"
-                    value={accountHolder}
+                  <Input type="text" value={accountHolder}
                     onChange={(e) => setAccountHolder(e.target.value)}
                     placeholder="مطابق با کارت ملی"
                     className={styles.formInput}
@@ -645,20 +646,23 @@ export default function TeacherEarningsPage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.buttonCancel}
                   onClick={() => setShowPayoutModal(false)}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
                   className={styles.buttonSubmit}
+                  loading={submittingPayout}
                   disabled={submittingPayout}
                 >
                   {submittingPayout ? "در حال ثبت سند..." : "تایید و ثبت تسویه"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -671,13 +675,15 @@ export default function TeacherEarningsPage() {
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>ویرایش مشخصات مالیاتی و حساب بانکی</h3>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.modalClose}
                 onClick={() => setShowTaxModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleTaxSubmit} className={styles.modalForm}>
@@ -687,10 +693,7 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>کد ملی (۱۰ رقم)</label>
-                <input
-                  type="text"
-                  maxLength={10}
-                  value={nationalIdInput}
+                <Input type="text" maxLength={10} value={nationalIdInput}
                   onChange={(e) => setNationalIdInput(e.target.value.replace(/\D/g, ""))}
                   placeholder={taxIdentity?.national_id_masked || "مثال: ۰۰۱۲۳۴۵۶۷۸"}
                   className={styles.formInput}
@@ -700,9 +703,7 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>شماره پرونده مالیاتی سامانه مودیان (اختیاری)</label>
-                <input
-                  type="text"
-                  value={taxFileInput}
+                <Input type="text" value={taxFileInput}
                   onChange={(e) => setTaxFileInput(e.target.value)}
                   placeholder="TAX-XXXX-XXXX"
                   className={styles.formInput}
@@ -711,10 +712,7 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>شماره شبا پیش‌فرض</label>
-                <input
-                  type="text"
-                  maxLength={26}
-                  value={taxShabaInput}
+                <Input type="text" maxLength={26} value={taxShabaInput}
                   onChange={(e) => setTaxShabaInput(e.target.value.toUpperCase())}
                   placeholder="IR..."
                   className={`${styles.formInput} ${styles.monoInput}`}
@@ -724,9 +722,7 @@ export default function TeacherEarningsPage() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>نام بانک</label>
-                  <input
-                    type="text"
-                    value={taxBankNameInput}
+                  <Input type="text" value={taxBankNameInput}
                     onChange={(e) => setTaxBankNameInput(e.target.value)}
                     placeholder="مثال: بانک ملت"
                     className={styles.formInput}
@@ -734,9 +730,7 @@ export default function TeacherEarningsPage() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>نام صاحب حساب</label>
-                  <input
-                    type="text"
-                    value={taxHolderInput}
+                  <Input type="text" value={taxHolderInput}
                     onChange={(e) => setTaxHolderInput(e.target.value)}
                     placeholder="نام کامل"
                     className={styles.formInput}
@@ -746,9 +740,7 @@ export default function TeacherEarningsPage() {
 
               <div className={styles.formCheckboxGroup}>
                 <label className={styles.checkboxLabel}>
-                  <input
-                    type="checkbox"
-                    checked={isTaxExemptInput}
+                  <Input type="checkbox" checked={isTaxExemptInput}
                     onChange={(e) => setIsTaxExemptInput(e.target.checked)}
                   />
                   <span>مشمول معافیت مالیاتی فعالیت‌های آموزشی (ماده ۹۵/۱۳۹)</span>
@@ -756,20 +748,23 @@ export default function TeacherEarningsPage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.buttonCancel}
                   onClick={() => setShowTaxModal(false)}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
                   className={styles.buttonSubmit}
+                  loading={savingTax}
                   disabled={savingTax}
                 >
                   {savingTax ? "در حال ذخیره..." : "ذخیره تغییرات"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
                 ('entry_type', models.CharField(choices=[('earning_pending', 'درآمد معلق در دوره رسیدگی به شکایات'), ('earning_available', 'درآمد قطعی و قابل تسویه'), ('payout_requested', 'مسدودسازی بابت درخواست تسویه بانکی'), ('payout_completed', 'تسویه موفق و واریز حواله پایا'), ('payout_rejected', 'استرداد به موجودی به دلیل رد درخواست تسویه'), ('refund_reversal', 'برگشت و کسر درآمد به دلیل استرداد جلسه'), ('commission_reversal', 'برگشت کارمزد پلتفرم بابت استرداد'), ('adjustment', 'تعدیل حسابداری با تایید مدیر ارشد مالی')], db_index=True, max_length=32)),
                 ('amount_toman', models.DecimalField(decimal_places=0, help_text='مبلغ ردیف دفتر کل به تومان (مثبت: بستانکاری معلم، منفی: بدهکاری/برداشت)', max_digits=12)),
                 ('gross_amount_toman', models.DecimalField(decimal_places=0, default=0, help_text='کل بهای ناخالص جلسه یا تراکنش پایه', max_digits=12)),
-                ('commission_amount_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم کارمزد پلتفرم اندورا از این تراکنش', max_digits=12)),
+                ('commission_amount_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم کارمزد پلتفرم ایندورا از این تراکنش', max_digits=12)),
                 ('net_amount_toman', models.DecimalField(decimal_places=0, default=0, help_text='سهم خالص معلم', max_digits=12)),
                 ('dispute_window_ends_at', models.DateTimeField(blank=True, db_index=True, help_text='زمان خاتمه بازه رسیدگی به شکایات که پس از آن وجه قابل تسویه می\u200cشود', null=True)),
                 ('is_matured', models.BooleanField(db_index=True, default=False, help_text='آیا موعد بازبینی سپری شده و وجه در موجودی قطعی قرار دارد')),

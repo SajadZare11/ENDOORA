@@ -123,7 +123,7 @@ class CommunityService:
         if not user or not user.is_authenticated:
             raise PermissionDenied('برای ارسال پست باید وارد حساب کاربری خود شوید.')
 
-        author_name = user.get_full_name() or getattr(user, 'username', 'کاربر اندورا')
+        author_name = user.get_full_name() or getattr(user, 'username', 'کاربر ایندورا')
         author_role = getattr(user, 'role', 'learner')
 
         # Check verified teacher status

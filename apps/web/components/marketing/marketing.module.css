@@ -76,14 +76,14 @@
 .primaryButton,
 .secondaryButton {
   display: inline-flex;
-  min-block-size: 52px;
+  min-block-size: 46px;
   align-items: center;
   justify-content: center;
   gap: var(--space-3);
   padding-inline: var(--space-6);
   border: 1px solid transparent;
   border-radius: var(--radius-control);
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
   transition: background var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
 }
@@ -91,78 +91,112 @@
 .primaryButton {
   background: var(--color-action);
   color: var(--color-action-text);
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-action) 22%, transparent);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 16px -2px color-mix(in srgb, var(--color-action) 32%, transparent);
 }
 
 .secondaryButton {
-  border-color: var(--color-action);
+  border-color: var(--color-border);
   background: var(--color-surface);
-  color: var(--color-action-hover);
+  color: var(--color-text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
 }
 
-.primaryButton:hover { background: var(--color-action-hover); transform: translateY(-1px); }
-.secondaryButton:hover { background: var(--color-info-bg); transform: translateY(-1px); }
+.primaryButton:hover {
+  background: var(--color-action-hover);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 20px -2px color-mix(in srgb, var(--color-action) 42%, transparent);
+}
+
+.secondaryButton:hover {
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
+  color: var(--color-action);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+}
+
 .primaryButton:disabled { cursor: wait; opacity: 0.68; transform: none; }
 
 .twinCard {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-action) 20%, var(--color-border));
-  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--color-action) 15%, var(--color-border));
+  border-radius: var(--radius-card);
   background: var(--color-surface);
-  box-shadow: 0 24px 60px rgb(15 23 42 / 0.13), 0 2px 8px rgb(15 23 42 / 0.06);
-  transition: transform var(--motion-slow) var(--motion-ease), box-shadow var(--motion-slow) var(--motion-ease);
+  box-shadow: var(--shadow-raised);
+  transition: transform var(--motion-slow) var(--motion-ease), box-shadow var(--motion-slow) var(--motion-ease), border-color var(--motion-slow) var(--motion-ease);
 }
 
 .twinCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 32px 72px rgb(15 23 42 / 0.16), 0 3px 10px rgb(15 23 42 / 0.07);
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-learning-teal) 35%, var(--color-border));
+  box-shadow: 0 20px 48px -8px rgb(15 23 42 / 0.12), 0 4px 16px -2px color-mix(in srgb, var(--color-learning-teal) 15%, transparent);
 }
 
 .previewChrome {
-  min-block-size: 48px;
+  min-block-size: 42px;
   display: flex;
   align-items: center;
   gap: var(--space-2);
   padding-inline: var(--space-4);
   border-block-end: 1px solid var(--color-border);
-  background: color-mix(in srgb, var(--color-canvas) 72%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-canvas) 50%, var(--color-surface));
 }
 
 .previewChrome > span {
-  inline-size: 8px;
-  block-size: 8px;
+  inline-size: 6px;
+  block-size: 6px;
   border-radius: 50%;
-  background: var(--color-border);
+  background: color-mix(in srgb, var(--color-learning-teal) 50%, var(--color-border));
 }
 
-.previewChrome strong { margin-inline-start: auto; font: 750 0.83rem/1 var(--font-family-latin); color: var(--color-muted); }
+.previewChrome > span:first-child {
+  background: var(--color-learning-teal);
+  box-shadow: 0 0 6px var(--color-learning-teal);
+}
 
-.previewBody { min-height: 27rem; display: grid; grid-template-columns: 5rem 1fr; }
+.previewChrome strong { margin-inline-start: auto; font: 700 0.8rem/1 var(--font-family-latin); color: var(--color-muted); letter-spacing: 0.02em; }
+
+.previewBody { min-height: 26rem; display: grid; grid-template-columns: 4.25rem 1fr; }
 
 .previewRail {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-5);
-  padding-block: var(--space-6);
-  background: linear-gradient(180deg, var(--color-ocean-surface), var(--color-midnight-blue));
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  background: color-mix(in srgb, var(--color-deep-navy) 92%, var(--color-surface));
+  border-inline-end: 1px solid var(--color-border);
 }
 
 .previewRail b {
-  inline-size: 2.25rem;
-  block-size: 2.25rem;
+  inline-size: 2rem;
+  block-size: 2rem;
   display: grid;
   place-items: center;
   border-radius: var(--radius-sm);
-  background: var(--color-learning-teal);
+  background: var(--color-action);
   color: var(--color-action-text);
   font-family: var(--font-family-latin);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-action) 35%, transparent);
 }
 
-.previewRail span { inline-size: 1.65rem; block-size: 1.65rem; border: 1px solid rgb(255 255 255 / 0.35); border-radius: 0.5rem; }
-.previewRail span:first-of-type { background: rgb(20 184 166 / 0.28); border-color: rgb(94 234 212 / 0.68); }
+.previewRail span {
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.375rem;
+  background: rgb(255 255 255 / 0.04);
+}
+
+.previewRail span:first-of-type {
+  background: color-mix(in srgb, var(--color-learning-teal) 22%, transparent);
+  border-color: color-mix(in srgb, var(--color-learning-teal) 65%, transparent);
+}
 
 .previewContent { padding: clamp(var(--space-5), 3vw, var(--space-8)); }
 
@@ -188,41 +222,43 @@
 
 .orb {
   position: relative;
-  inline-size: 4.5rem;
-  block-size: 4.5rem;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 34%, var(--color-border));
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-learning-teal) 8%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 40%, var(--color-border));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-learning-teal) 10%, var(--color-surface));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 2px 10px color-mix(in srgb, var(--color-learning-teal) 18%, transparent);
 }
 
 .orb::before,
 .orb::after,
-.orb span { position: absolute; border: 2px solid color-mix(in srgb, var(--color-learning-teal) 72%, transparent); border-radius: 50%; content: ""; }
-.orb::before { inset: 0.65rem; }
-.orb::after { inset: 1.25rem; }
-.orb span { inset: 1.8rem; background: var(--color-learning-teal); border: 0; }
+.orb span { position: absolute; border-radius: 50%; content: ""; }
+.orb::before { inset: 0.35rem; border: 1.5px dashed color-mix(in srgb, var(--color-learning-teal) 60%, transparent); }
+.orb::after { inset: 0.75rem; border: 1.5px solid color-mix(in srgb, var(--color-learning-teal) 40%, transparent); }
+.orb span { inset: 1.15rem; background: var(--color-learning-teal); border: 0; box-shadow: 0 0 8px var(--color-learning-teal); }
 
 .previewTitle { margin-block: var(--space-6) var(--space-3); font-weight: 800; }
 
 .previewBadge {
   display: inline-flex;
   align-items: center;
-  min-block-size: 1.85rem;
-  margin-block-end: var(--space-2);
+  min-block-size: 1.65rem;
+  margin-block-end: var(--space-3);
   padding-inline: var(--space-3);
   border-radius: var(--radius-pill);
-  background: var(--color-info-bg);
-  color: var(--color-info-text);
-  font-size: 0.72rem;
-  font-weight: 800;
+  background: color-mix(in srgb, var(--color-learning-teal) 10%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 30%, var(--color-border));
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .skillPreview,
 .evidenceRow {
-  min-block-size: 52px;
+  min-block-size: 46px;
   margin-block-start: var(--space-2);
   display: flex;
   align-items: center;
@@ -232,6 +268,13 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
+  transition: border-color var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+.skillPreview:hover,
+.evidenceRow:hover {
+  border-color: color-mix(in srgb, var(--color-action) 35%, var(--color-border));
+  box-shadow: 0 2px 8px rgb(15 23 42 / 0.05);
 }
 
 .skillPreview > span,

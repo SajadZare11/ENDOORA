@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
 
 interface PresetPrompt {
@@ -190,14 +191,7 @@ export default function PracticeAIPage() {
           </span>
           <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
             {PRESET_PROMPTS.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                className={styles.filterPill}
-                onClick={() => handleSelectPreset(p)}
-              >
-                <strong>{p.level}:</strong> {isFa ? p.titleFa : p.titleEn}
-              </button>
+              <Button key={p.id} type="button" size="sm" variant="secondary" onClick={() => handleSelectPreset(p)}><strong>{p.level}:</strong> {isFa ? p.titleFa : p.titleEn}</Button>
             ))}
           </div>
         </div>
@@ -230,7 +224,7 @@ export default function PracticeAIPage() {
             }}
           />
 
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--font-size-meta)", color: "var(--color-muted)", marginTop: "var(--space-2)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--font-size-meta)", color: "var(--color-muted)", marginBlockStart: "var(--space-2)" }}>
             <span>
               {isFa ? `${wordCount} کلمه | ${charCount} کاراکتر` : `${wordCount} words | ${charCount} chars`}
             </span>
@@ -240,10 +234,11 @@ export default function PracticeAIPage() {
 
         {/* Controls */}
         <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", marginBlockEnd: "var(--space-5)" }}>
-          <button
+          <Button
             type="button"
-            className={styles.buttonPrimary}
+            variant="primary"
             onClick={handleAnalyze}
+            loading={analyzing}
             disabled={wordCount === 0 || analyzing}
           >
             {analyzing
@@ -253,11 +248,11 @@ export default function PracticeAIPage() {
               : isFa
               ? "تحلیل جامع آموزشی"
               : "Analyze Response"}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
-            className={styles.buttonSecondary}
+            variant="secondary"
             onClick={handlePlayAudio}
             disabled={wordCount === 0 || audioPlaying}
           >
@@ -269,7 +264,7 @@ export default function PracticeAIPage() {
               : isFa
               ? "شنیدن تلفظ صوتی"
               : "Listen to Pronunciation"}
-          </button>
+          </Button>
         </div>
 
         {/* Diagnostic Results Card */}

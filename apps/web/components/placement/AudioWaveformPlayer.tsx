@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import { useEffect, useRef, useState } from "react";
 import styles from "./audio-player.module.css";
 
@@ -217,7 +219,7 @@ export function AudioWaveformPlayer({
       {/* Controls Row */}
       <div className={styles.controlsRow}>
         <div className={styles.mainControls}>
-          <button
+          <Button
             type="button"
             className={styles.playButton}
             onClick={togglePlay}
@@ -239,9 +241,9 @@ export function AudioWaveformPlayer({
                 <span>{isFa ? (playCount > 0 ? "ادامه پخش" : "پخش فایل") : (playCount > 0 ? "Resume" : "Play")}</span>
               </>
             )}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
             className={styles.volumeButton}
             onClick={toggleMute}
@@ -249,13 +251,13 @@ export function AudioWaveformPlayer({
             title={isMuted ? (isFa ? "وصل صدا" : "Unmute") : (isFa ? "قطع صدا" : "Mute")}
           >
             {isMuted ? "🔇" : "🔊"}
-          </button>
+          </Button>
         </div>
 
         {/* Playback Speed Switcher */}
         <div className={styles.speedGroup} role="group" aria-label={isFa ? "سرعت پخش" : "Playback speed"}>
           {[0.8, 1.0, 1.2].map((rate) => (
-            <button
+            <Button
               key={rate}
               type="button"
               className={`${styles.speedButton} ${playbackRate === rate ? styles.speedButtonActive : ""}`}
@@ -263,7 +265,7 @@ export function AudioWaveformPlayer({
               aria-pressed={playbackRate === rate}
             >
               {rate}x
-            </button>
+            </Button>
           ))}
         </div>
       </div>

@@ -49,7 +49,7 @@ class TicketMessageSerializer(serializers.ModelSerializer):
 
     def get_sender_name(self, obj):
         if obj.sender_type == "ai_agent":
-            return "دستیار هوشمند اندورا"
+            return "دستیار هوشمند ایندورا"
         if obj.sender_type == "staff":
             return "کارشناس پشتیبانی"
         return getattr(obj.sender_user, "name", "شما") or "شما"

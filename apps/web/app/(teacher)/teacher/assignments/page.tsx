@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./assignments.module.css";
@@ -147,34 +149,42 @@ export default function TeacherAssignmentsPage() {
       <div className={styles.contentCard}>
         {/* Tab Filters */}
         <div className={styles.tabBar} role="tablist">
-          <button
+          <Button
             type="button"
+            variant={activeTab === "all" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "all" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("all")}
           >
             همه تکالیف ({totalAssignments})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "published" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "published" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("published")}
           >
             منتشر شده ({publishedCount})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "draft" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "draft" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("draft")}
           >
             پیش‌نویس‌ها ({draftCount})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "closed" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "closed" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("closed")}
           >
             پایان یافته
-          </button>
+          </Button>
         </div>
 
         {error && (
@@ -201,7 +211,7 @@ export default function TeacherAssignmentsPage() {
           </div>
         ) : (
           <div className={styles.tableWrapper} style={{ marginBlockStart: "var(--space-4)" }}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th scope="col">عنوان تکلیف</th>
@@ -255,14 +265,16 @@ export default function TeacherAssignmentsPage() {
                             جزئیات و نمرات
                           </Link>
                           {a.status === "draft" && (
-                            <button
+                            <Button
                               type="button"
-                              onClick={(e) => handleDeleteDraft(a.id, e)}
+                              variant="destructive"
+                              size="sm"
+                              onClick={(e: React.MouseEvent) => handleDeleteDraft(a.id, e)}
                               className={styles.dangerButton}
                               style={{ paddingBlock: "var(--space-1)", paddingInline: "var(--space-3)", fontSize: "var(--font-size-caption)" }}
                             >
                               حذف
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </td>
@@ -270,7 +282,7 @@ export default function TeacherAssignmentsPage() {
                   );
                 })}
               </tbody>
-            </table>
+            </Table>
           </div>
         )}
       </div>

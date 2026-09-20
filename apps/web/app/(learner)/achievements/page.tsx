@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
@@ -333,7 +335,7 @@ export default function AchievementsPage() {
             </h1>
             <p className={styles.heroSubtitle}>
               {isFa
-                ? "انگیزه یادگیری آرام و هدفمند: نشان‌های مهارت، چالش‌های تداوم هفتگی، انجمن‌های یادگیرندگان و رتبه‌بندی امن بدون الگوهای اعتیادآور (قواعد ۷ و ۸ قانون اساسی اندورا)."
+                ? "انگیزه یادگیری آرام و هدفمند: نشان‌های مهارت، چالش‌های تداوم هفتگی، انجمن‌های یادگیرندگان و رتبه‌بندی امن بدون الگوهای اعتیادآور (قواعد ۷ و ۸ قانون اساسی ایندورا)."
                 : "Calm, evidence-based learning motivation: pedagogical badges, weekly consistency challenges, active clubs, and privacy-safe leaderboards without manipulative dark patterns."}
             </p>
           </div>
@@ -365,58 +367,71 @@ export default function AchievementsPage() {
         <div className={styles.privacyAlertBanner} style={{ borderInlineStart: "4px solid var(--color-learning-teal)" }}>
           <span>ℹ️</span>
           <span>{statusMessage}</span>
-          <button
+          <Button
+            type="button"
+            variant="tertiary"
+            size="sm"
             onClick={() => setStatusMessage("")}
             className={styles.btnOutline}
             style={{ marginInlineStart: "auto", padding: "2px 8px" }}
           >
             {isFa ? "بستن" : "Dismiss"}
-          </button>
+          </Button>
         </div>
       )}
 
       {/* Tabs Navigation */}
       <div className={styles.tabsNav} role="tablist">
-        <button
+        <Button
+          type="button"
+          variant={activeTab === "badges" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "badges" ? styles.activeTabBtn : ""}`}
           onClick={() => setActiveTab("badges")}
           role="tab"
           aria-selected={activeTab === "badges"}
         >
           🏅 {isFa ? "نشان‌های آموزشی (Badges)" : "Pedagogical Badges"}
-        </button>
-        <button
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === "challenges" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "challenges" ? styles.activeTabBtn : ""}`}
           onClick={() => setActiveTab("challenges")}
           role="tab"
           aria-selected={activeTab === "challenges"}
         >
           🎯 {isFa ? "چالش‌ها و ماراتن ۷ روزه" : "Challenges & 7-Day Sprint"}
-        </button>
-        <button
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === "clubs" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "clubs" ? styles.activeTabBtn : ""}`}
           onClick={() => setActiveTab("clubs")}
           role="tab"
           aria-selected={activeTab === "clubs"}
         >
           🌟 {isFa ? "انجمن‌های فعال (Clubs)" : "Active-Users Clubs"}
-        </button>
-        <button
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === "leaderboard" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "leaderboard" ? styles.activeTabBtn : ""}`}
           onClick={() => setActiveTab("leaderboard")}
           role="tab"
           aria-selected={activeTab === "leaderboard"}
         >
           📊 {isFa ? "رتبه‌بندی امن (Leaderboard)" : "Privacy-Safe Leaderboard"}
-        </button>
-        <button
+        </Button>
+        <Button
+          type="button"
+          variant={activeTab === "privacy" ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTab === "privacy" ? styles.activeTabBtn : ""}`}
           onClick={() => setActiveTab("privacy")}
           role="tab"
           aria-selected={activeTab === "privacy"}
         >
           🛡️ {isFa ? "تنظیمات حریم خصوصی" : "Privacy Controls"}
-        </button>
+        </Button>
       </div>
 
       {/* TAB 1: BADGES */}
@@ -497,9 +512,9 @@ export default function AchievementsPage() {
                     : `Day ${sprint.days_completed} of 7`}
                 </div>
               ) : (
-                <button onClick={handleEnrollSprint} className={styles.btnPrimary}>
+                <Button type="button" variant="primary" onClick={handleEnrollSprint} className={styles.btnPrimary}>
                   🚀 {isFa ? "ثبت‌نام در ماراتن ۷ روزه" : "Enroll in 7-Day Sprint"}
-                </button>
+                </Button>
               )}
             </div>
 
@@ -620,16 +635,21 @@ export default function AchievementsPage() {
                       <span style={{ color: "var(--color-success)", fontWeight: 800, fontSize: "var(--font-size-meta)" }}>
                         ✅ {isFa ? "عضو فعال" : "Active Member"}
                       </span>
-                      <button
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
                         onClick={() => handleLeaveClub(c.slug)}
                         className={styles.btnOutline}
                         style={{ marginInlineStart: "auto" }}
                       >
                         {isFa ? "خروج از انجمن" : "Leave Club"}
-                      </button>
+                      </Button>
                     </>
                   ) : (
-                    <button
+                    <Button
+                      type="button"
+                      variant={c.is_eligible ? "primary" : "secondary"}
                       onClick={() => handleJoinClub(c.slug)}
                       disabled={!c.is_eligible}
                       className={c.is_eligible ? styles.btnPrimary : styles.btnOutline}
@@ -642,7 +662,7 @@ export default function AchievementsPage() {
                         : isFa
                         ? "نیاز به فعالیت بیشتر"
                         : "Requirements Pending"}
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
@@ -656,18 +676,24 @@ export default function AchievementsPage() {
         <section>
           <div className={styles.leaderboardControls}>
             <div className={styles.subTabs}>
-              <button
+              <Button
+                type="button"
+                variant={boardType === "global" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.subTabBtn} ${boardType === "global" ? styles.activeSubTabBtn : ""}`}
                 onClick={() => setBoardType("global")}
               >
                 🌍 {isFa ? "رتبه‌بندی عمومی (Global Cohort)" : "Global Cohort"}
-              </button>
-              <button
+              </Button>
+              <Button
+                type="button"
+                variant={boardType === "city" ? "primary" : "secondary"}
+                size="sm"
                 className={`${styles.subTabBtn} ${boardType === "city" ? styles.activeSubTabBtn : ""}`}
                 onClick={() => setBoardType("city")}
               >
                 🏙️ {isFa ? "رتبه‌بندی شهری (Safe City Cohort)" : "City Cohort"}
-              </button>
+              </Button>
             </div>
 
             <div style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
@@ -696,7 +722,7 @@ export default function AchievementsPage() {
           ) : (
             <div className={styles.leaderboardTableCard}>
               <div className={styles.tableWrapper}>
-                <table className={styles.table}>
+                <Table className={styles.table}>
                   <thead>
                     <tr>
                       <th className={styles.th}>{isFa ? "رتبه" : "Rank"}</th>
@@ -738,7 +764,7 @@ export default function AchievementsPage() {
                       </tr>
                     )}
                   </tbody>
-                </table>
+                </Table>
               </div>
             </div>
           )}
@@ -762,7 +788,7 @@ export default function AchievementsPage() {
                     : "When disabled, you will be completely hidden from all public cohort tables."}
                 </p>
               </div>
-              <input
+              <Input
                 type="checkbox"
                 checked={privacy.is_leaderboard_visible}
                 onChange={(e) => setPrivacy({ ...privacy, is_leaderboard_visible: e.target.checked })}
@@ -779,10 +805,10 @@ export default function AchievementsPage() {
                     : "Real names and phone numbers are never exposed."}
                 </p>
               </div>
-              <input
+              <Input
                 type="text"
                 value={privacy.pseudonym}
-                onChange={(e) => setPrivacy({ ...privacy, pseudonym: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrivacy({ ...privacy, pseudonym: e.target.value })}
                 style={{
                   padding: "var(--space-2) var(--space-3)",
                   borderRadius: "var(--radius-control)",
@@ -801,7 +827,7 @@ export default function AchievementsPage() {
                     : "Minors are strictly barred from location disclosure and city-level leaderboards."}
                 </p>
               </div>
-              <input
+              <Input
                 type="checkbox"
                 checked={privacy.is_minor}
                 onChange={(e) => setPrivacy({ ...privacy, is_minor: e.target.checked })}
@@ -818,7 +844,7 @@ export default function AchievementsPage() {
                     : "Consent to appear on city-level cohort leaderboard if not a minor."}
                 </p>
               </div>
-              <input
+              <Input
                 type="checkbox"
                 checked={privacy.show_city_rank && !privacy.is_minor}
                 disabled={privacy.is_minor}
@@ -828,9 +854,9 @@ export default function AchievementsPage() {
             </div>
 
             <div style={{ marginBlockStart: "var(--space-6)" }}>
-              <button onClick={handleSavePrivacy} className={styles.btnPrimary}>
+              <Button type="button" variant="primary" onClick={handleSavePrivacy} className={styles.btnPrimary}>
                 💾 {isFa ? "ذخیره تغییرات حریم خصوصی" : "Save Privacy Preferences"}
-              </button>
+              </Button>
             </div>
           </div>
         </section>
@@ -839,7 +865,7 @@ export default function AchievementsPage() {
       {/* Disclaimers (Rules #7 and #8) */}
       <div className={styles.disclaimerCard}>
         <div style={{ marginBlockEnd: "var(--space-2)", fontWeight: 700 }}>
-          {isFa ? "اصول قانون اساسی اندورا در گیمیفیکیشن:" : "Endoora Product Constitution Principles:"}
+          {isFa ? "اصول قانون اساسی ایندورا در گیمیفیکیشن:" : "Endoora Product Constitution Principles:"}
         </div>
         <p style={{ margin: "0 0 var(--space-2) 0" }}>
           🌱 <strong>{isFa ? "اصل آرامش در یادگیری (قاعده ۷):" : "Rule #7 (Calm Rather Than Addictive):"}</strong>{" "}

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./learn.module.css";
 
 export const metadata: Metadata = {
-  title: "مرکز یادگیری | اندورا",
+  title: "مرکز یادگیری | ایندورا",
   description: "دسترسی جامع به دوره‌های آموزشی، پایگاه مهارت‌ها، مسیر یادگیری شخصی، واژگان و کتب درسی کنکور.",
 };
 
@@ -76,7 +77,7 @@ const LEARNING_DESTINATIONS = [
     desc: "تبادل تجربیات واقعی با زبان‌آموزان و اساتید، طرح درس‌های معتبر، پرسش و پاسخ‌های زبانی در فضایی امن و منضبط.",
     href: "/community",
     icon: "👥",
-    action: "ورود به جامعه اندورا",
+    action: "ورود به جامعه ایندورا",
   },
   {
     title: "جستجوی یکپارچه",
@@ -87,7 +88,7 @@ const LEARNING_DESTINATIONS = [
   },
   {
     title: "مرکز پشتیبانی و سوالات متداول",
-    desc: "پاسخ سریع به پرسش‌ها، راهنمای امکانات، ثبت تیکت هوشمند و ارتباط مستقیم با کارشناسان اندورا.",
+    desc: "پاسخ سریع به پرسش‌ها، راهنمای امکانات، ثبت تیکت هوشمند و ارتباط مستقیم با کارشناسان ایندورا.",
     href: "/support",
     icon: "🎧",
     action: "ورود به پشتیبانی",
@@ -96,29 +97,31 @@ const LEARNING_DESTINATIONS = [
 
 export default function LearnHubPage() {
   return (
-    <div className={styles.container} dir="rtl">
-      <header className={styles.heroHeader}>
-        <h1 className={styles.title}>مرکز جامع یادگیری اندورا</h1>
-        <p className={styles.subtitle}>
-          تمام منابع آموزشی، دوره‌ها، مهارت‌ها و ابزارهای تمرینی در یک نگاه. گام بعدی یادگیری خود را انتخاب کنید.
-        </p>
-      </header>
+    <PublicShell locale="fa" currentPath="/learn">
+      <div className={styles.container} dir="rtl">
+        <header className={styles.heroHeader}>
+          <h1 className={styles.title}>مرکز جامع یادگیری ایندورا</h1>
+          <p className={styles.subtitle}>
+            تمام منابع آموزشی، دوره‌ها، مهارت‌ها و ابزارهای تمرینی در یک نگاه. گام بعدی یادگیری خود را انتخاب کنید.
+          </p>
+        </header>
 
-      <div className={styles.hubGrid}>
-        {LEARNING_DESTINATIONS.map((dest, idx) => (
-          <Link key={idx} href={dest.href} className={styles.hubCard}>
-            <div>
-              <div className={styles.cardIcon}>{dest.icon}</div>
-              <h2 className={styles.cardTitle}>{dest.title}</h2>
-              <p className={styles.cardDesc}>{dest.desc}</p>
-            </div>
-            <div className={styles.cardAction}>
-              <span>{dest.action}</span>
-              <span>←</span>
-            </div>
-          </Link>
-        ))}
+        <div className={styles.hubGrid}>
+          {LEARNING_DESTINATIONS.map((dest, idx) => (
+            <Link key={idx} href={dest.href} className={styles.hubCard}>
+              <div>
+                <div className={styles.cardIcon}>{dest.icon}</div>
+                <h2 className={styles.cardTitle}>{dest.title}</h2>
+                <p className={styles.cardDesc}>{dest.desc}</p>
+              </div>
+              <div className={styles.cardAction}>
+                <span>{dest.action}</span>
+                <span>←</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </PublicShell>
   );
 }

@@ -2,6 +2,7 @@
 
 import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
+import { Button, Input } from "@endoora/ui";
 import styles from "../learner-assignments.module.css";
 import {
   AssignmentAttempt,
@@ -287,15 +288,15 @@ export default function LearnerAttemptPage({ params }: PageProps) {
                   value={reflectionText}
                   onChange={(e) => setReflectionText(e.target.value)}
                 />
-                <button
+                <Button
                   type="button"
                   onClick={handleAcknowledge}
+                  loading={isAcknowledging}
                   disabled={isAcknowledging}
-                  className={styles.primaryButton}
-                  style={{ inlineSize: "auto" }}
+                  variant="primary"
                 >
                   {isAcknowledging ? "در حال ثبت..." : "تایید بازخورد و ثبت خودارزیابی ✓"}
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -396,7 +397,7 @@ export default function LearnerAttemptPage({ params }: PageProps) {
                         key={opt.id}
                         className={`${styles.optionLabel} ${isSelected ? styles.optionSelected : ""}`}
                       >
-                        <input
+                        <Input
                           type="radio"
                           name={`q-${q.question_version_id}`}
                           value={opt.id}
@@ -413,13 +414,7 @@ export default function LearnerAttemptPage({ params }: PageProps) {
               {/* Text Input for Gap Fill, Short Answer, etc. */}
               {!isMcq && (
                 <div>
-                  <input
-                    type="text"
-                    className={styles.textInput}
-                    placeholder="پاسخ خود را اینجا تایپ کنید..."
-                    value={(currentAnswer as string) || ""}
-                    onChange={(e) => handleTextChange(q.question_version_id, e.target.value)}
-                  />
+                  <Input type="text" placeholder="پاسخ خود را اینجا تایپ کنید..." value={(currentAnswer as string) || ""} onChange={(e) => handleTextChange(q.question_version_id, e.target.value)} />
                 </div>
               )}
             </div>
@@ -431,15 +426,15 @@ export default function LearnerAttemptPage({ params }: PageProps) {
           <Link href="/assignments" className={styles.secondaryButton} style={{ inlineSize: "auto" }}>
             خروج موقت (پیش‌نویس ذخیره می‌شود)
           </Link>
-          <button
+          <Button
             type="button"
             onClick={handleSubmit}
-            className={styles.primaryButton}
-            style={{ inlineSize: "auto", background: "var(--color-learning-teal)", color: "var(--color-surface)" }}
+            variant="primary"
+            loading={submitting}
             disabled={submitting}
           >
             {submitting ? "در حال ارسال و تصحیح..." : "ثبت نهایی و دریافت نتیجه آزمون ✓"}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

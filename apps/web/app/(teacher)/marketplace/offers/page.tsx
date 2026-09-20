@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./offers.module.css";
@@ -128,42 +130,27 @@ export default function TeacherOffersPage() {
 
       {/* Tabs */}
       <div className={styles.tabBar} role="tablist">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={activeTab === "all"}
-          onClick={() => setActiveTab("all")}
-          className={`${styles.tabButton} ${activeTab === "all" ? styles.tabButtonActive : ""}`}
+        <Button type="button" role="tab" aria-selected={activeTab === "all"} onClick={() => setActiveTab("all")} variant={activeTab === "all" ? "primary" : "secondary"} size="sm" className={`${styles.tabButton} ${activeTab === "all" ? styles.tabButtonActive : ""}`}
         >
           همه پیشنهادها
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={activeTab === "pending"}
-          onClick={() => setActiveTab("pending")}
-          className={`${styles.tabButton} ${activeTab === "pending" ? styles.tabButtonActive : ""}`}
+        </Button>
+        <Button type="button" role="tab" aria-selected={activeTab === "pending"} onClick={() => setActiveTab("pending")} variant={activeTab === "pending" ? "primary" : "secondary"} size="sm" className={`${styles.tabButton} ${activeTab === "pending" ? styles.tabButtonActive : ""}`}
         >
           در انتظار پاسخ زبان‌آموز
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={activeTab === "accepted"}
-          onClick={() => setActiveTab("accepted")}
-          className={`${styles.tabButton} ${activeTab === "accepted" ? styles.tabButtonActive : ""}`}
+        </Button>
+        <Button type="button" role="tab" aria-selected={activeTab === "accepted"} onClick={() => setActiveTab("accepted")} variant={activeTab === "accepted" ? "primary" : "secondary"} size="sm" className={`${styles.tabButton} ${activeTab === "accepted" ? styles.tabButtonActive : ""}`}
         >
           پذیرفته‌شده و رزرو قطعی
-        </button>
+        </Button>
       </div>
 
       {/* Error state */}
       {error && (
         <div style={{ padding: "var(--space-4)", backgroundColor: "var(--color-danger-50)", border: "1px solid var(--color-danger-500)", borderRadius: "var(--radius-md)", color: "var(--color-danger-700)" }}>
           <p>{error}</p>
-          <button type="button" onClick={loadOffers} className={styles.actionButton}>
+          <Button type="button" variant="secondary" onClick={loadOffers} className={styles.actionButton}>
             تلاش مجدد
-          </button>
+          </Button>
         </div>
       )}
 
@@ -237,13 +224,15 @@ export default function TeacherOffersPage() {
 
                 <div>
                   {offer.status === "pending" && (
-                    <button
+                    <Button
                       type="button"
+                      variant="destructive"
+                      size="sm"
                       onClick={() => handleWithdraw(offer.id)}
                       className={styles.actionButton}
                     >
                       پس‌گرفتن پیشنهاد
-                    </button>
+                    </Button>
                   )}
                   {offer.status === "accepted" && (
                     <Link

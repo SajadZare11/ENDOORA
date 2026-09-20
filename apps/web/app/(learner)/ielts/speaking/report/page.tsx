@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -11,6 +13,7 @@ import {
   IELTSSpeakingReport,
   MANDATORY_IELTS_DISCLAIMER_TEXT,
 } from "../../../../../lib/ielts-speaking";
+import { PublicShell } from "../../../../../components/marketing/PublicShell";
 
 export default function IELTSSpeakingReportPage() {
   const searchParams = useSearchParams();
@@ -68,28 +71,33 @@ export default function IELTSSpeakingReportPage() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
-        در حال تحلیل و استخراج نمرات معیارهای گفتاری آیلتس...
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
+          در حال تحلیل و استخراج نمرات معیارهای گفتاری آیلتس...
+        </div>
+      </PublicShell>
     );
   }
 
   if (error || !report) {
     return (
-      <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
-        <h2>خطا در نمایش کارنامه</h2>
-        <p>{error || "گزارش ارزیابی یافت نشد."}</p>
-        <Link href="/ielts/speaking" className={styles.actionBtnPrimary}>
-          ورود به اتاق تمرین اسپیکینگ
-        </Link>
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
+          <h2>خطا در نمایش کارنامه</h2>
+          <p>{error || "گزارش ارزیابی یافت نشد."}</p>
+          <Link href="/ielts/speaking" className={styles.actionBtnPrimary}>
+            ورود به اتاق تمرین اسپیکینگ
+          </Link>
+        </div>
+      </PublicShell>
     );
   }
 
   const confidencePct = Math.round((report.confidence_score || 0.85) * 100);
 
   return (
-    <div className={styles.container}>
+    <PublicShell locale="fa" currentPath="/ielts">
+      <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
         <span className={styles.kicker}>IELTS Speaking AI Diagnostic Evaluation (IELTS-005)</span>
@@ -355,27 +363,30 @@ export default function IELTSSpeakingReportPage() {
         </h2>
 
         <div className={styles.partTabs}>
-          <button
+          <Button
             type="button"
+            variant={activeTranscriptTab === 1 ? "primary" : "secondary"}
             className={`${styles.partTabBtn} ${activeTranscriptTab === 1 ? styles.partTabBtnActive : ""}`}
             onClick={() => setActiveTranscriptTab(1)}
           >
             پارت ۱: مصاحبه و احوال‌پرسی ({report.part1_duration_seconds || 0} ثانیه)
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTranscriptTab === 2 ? "primary" : "secondary"}
             className={`${styles.partTabBtn} ${activeTranscriptTab === 2 ? styles.partTabBtnActive : ""}`}
             onClick={() => setActiveTranscriptTab(2)}
           >
             پارت ۲: ارائه ۲ دقیقه‌ای Cue Card ({report.part2_duration_seconds || 0} ثانیه)
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTranscriptTab === 3 ? "primary" : "secondary"}
             className={`${styles.partTabBtn} ${activeTranscriptTab === 3 ? styles.partTabBtnActive : ""}`}
             onClick={() => setActiveTranscriptTab(3)}
           >
             پارت ۳: بحث تحلیلی و انتزاعی ({report.part3_duration_seconds || 0} ثانیه)
-          </button>
+          </Button>
         </div>
 
         <div className={styles.transcriptDisplay}>
@@ -414,20 +425,23 @@ export default function IELTSSpeakingReportPage() {
         <div>
           {teacherReviewRequested ? (
             <div style={{ color: "var(--color-success)", fontWeight: 700, fontSize: "var(--font-size-sm)" }}>
-              ✓ درخواست بازبینی توسط اگزمینر رسمی اندورا با موفقیت ثبت شده است.
+              ✓ درخواست بازبینی توسط اگزمینر رسمی ایندورا با موفقیت ثبت شده است.
             </div>
           ) : (
-            <button
+            <Button
               type="button"
+              variant="primary"
               className={styles.actionBtnPrimary}
               onClick={handleTeacherReviewRequest}
+              loading={requestingTeacher}
               disabled={requestingTeacher}
             >
               {requestingTeacher ? "در حال ثبت درخواست..." : "ارسال برای اگزمینر رسمی 👨‍🏫"}
-            </button>
+            </Button>
           )}
         </div>
       </section>
     </div>
+    </PublicShell>
   );
 }

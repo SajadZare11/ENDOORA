@@ -11,6 +11,15 @@ export type TeacherClass = {
   max_capacity: number;
   objectives: string[];
   private_notes: string;
+  coursebook?: string;
+  age_group?: string;
+  class_size_type?: string;
+  default_duration?: number;
+  goal?: string;
+  focus_skills?: string[];
+  equipment?: string[];
+  teaching_preferences?: string[];
+  target_exams?: string;
   enrolled_students_count: number;
   sessions_count: number;
   created_at: string;
@@ -112,7 +121,36 @@ export type CreateClassPayload = {
   max_capacity?: number;
   objectives?: string[];
   private_notes?: string;
+  coursebook?: string;
+  age_group?: string;
+  class_size_type?: string;
+  default_duration?: number;
+  goal?: string;
+  focus_skills?: string[];
+  equipment?: string[];
+  teaching_preferences?: string[];
+  target_exams?: string;
 };
+
+export type UpdateClassPayload = Partial<{
+  title: string;
+  description: string;
+  subject: string;
+  level: string;
+  status: "active" | "archived" | "completed";
+  max_capacity: number;
+  objectives: string[];
+  private_notes: string;
+  coursebook: string;
+  age_group: string;
+  class_size_type: string;
+  default_duration: number;
+  goal: string;
+  focus_skills: string[];
+  equipment: string[];
+  teaching_preferences: string[];
+  target_exams: string;
+}>;
 
 export type ScheduleSessionPayload = {
   title: string;
@@ -122,6 +160,17 @@ export type ScheduleSessionPayload = {
   learner_id?: string | null;
   session_notes?: string;
 };
+
+export type UpdateSessionPayload = Partial<{
+  title: string;
+  scheduled_start: string;
+  scheduled_end: string;
+  duration_minutes: number;
+  status: "scheduled" | "completed" | "cancelled";
+  session_notes: string;
+  learner_id: string | null;
+  confirmed_by_learner: boolean;
+}>;
 
 export type LinkedTeacher = {
   link_id: string;
@@ -230,6 +279,37 @@ export async function acceptLearnerConsent(inviteCode: string): Promise<TeacherL
   });
 }
 
+export async function updateTeacherClass(
+  classId: string,
+  payload: UpdateClassPayload
+): Promise<TeacherClass> {
+  return endooraApi<TeacherClass>(`/teachers/classes/${classId}/`, {
+    method: "PATCH",
+    json: payload,
+  });
+}
+
+export async function updateClassSession(
+  classId: string,
+  sessionId: string,
+  payload: UpdateSessionPayload
+): Promise<ClassSession> {
+  return endooraApi<ClassSession>(`/teachers/classes/${classId}/sessions/${sessionId}/`, {
+    method: "PATCH",
+    json: payload,
+  });
+}
+
+export async function deleteClassSession(
+  classId: string,
+  sessionId: string
+): Promise<void> {
+  return endooraApi<void>(`/teachers/classes/${classId}/sessions/${sessionId}/`, {
+    method: "DELETE",
+  });
+}
+
 export async function fetchLearnerLinkedTeachers(): Promise<LinkedTeacher[]> {
   return endooraApi<LinkedTeacher[]>("/teachers/my-teachers/");
 }
+

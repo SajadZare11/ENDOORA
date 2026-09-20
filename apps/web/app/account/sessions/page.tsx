@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
+import { Button } from "@endoora/ui";
 import {
   apiErrorMessages,
   endooraApi,
@@ -345,14 +346,15 @@ export default function SessionsPage() {
             </div>
           </dl>
 
-          <button
+          <Button
             type="button"
-            className="endoora-button endoora-button--secondary"
+            variant="secondary"
+            loading={signingOut}
             disabled={signingOut}
             onClick={() => void signOutCurrentSession()}
           >
             {signingOut ? t.signingOut : t.signOutCurrent}
-          </button>
+          </Button>
         </section>
 
         {errors.length > 0 ? (

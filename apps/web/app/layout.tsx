@@ -3,9 +3,12 @@ import Script from "next/script";
 import "./globals.css";
 import "@endoora/ui/tokens.css";
 import "@endoora/ui/components.css";
+import { vazirmatn, inter } from "./fonts";
 import { ThemeToggle } from "../components/theme/ThemeToggle";
 import { NetworkBandwidthBanner } from "../components/pwa/NetworkBandwidthBanner";
 import { PWARegistration } from "../components/pwa/PWARegistration";
+import { LocaleProvider } from "../lib/locale-context";
+import { LanguageSwitcher } from "../components/layout/LanguageSwitcher";
 
 const themeBootstrap = `
 (function () {
@@ -18,6 +21,24 @@ const themeBootstrap = `
   } catch (_) {
     document.documentElement.dataset.theme = "light";
   }
+})();`;
+
+const localeBootstrap = `
+(function () {
+  try {
+    var savedLocale = window.localStorage.getItem("endoora_ui_locale");
+    if (savedLocale === "en") {
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
+      document.documentElement.setAttribute("data-locale", "en");
+      document.documentElement.style.setProperty("--font-family-body", "var(--font-family-latin)");
+    } else {
+      document.documentElement.lang = "fa";
+      document.documentElement.dir = "rtl";
+      document.documentElement.setAttribute("data-locale", "fa");
+      document.documentElement.style.setProperty("--font-family-body", "var(--font-family-persian)");
+    }
+  } catch (_) {}
 })();`;
 
 export const viewport: Viewport = {
@@ -41,17 +62,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning>
+    <html
+      lang="fa"
+      dir="rtl"
+      className={`${vazirmatn.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <Script id="endoora-theme-bootstrap" strategy="beforeInteractive">
           {themeBootstrap}
         </Script>
+        <Script id="endoora-locale-bootstrap" strategy="beforeInteractive">
+          {localeBootstrap}
+        </Script>
       </head>
       <body>
-        <NetworkBandwidthBanner />
-        {children}
-        <ThemeToggle />
-        <PWARegistration />
+        <LocaleProvider>
+          <NetworkBandwidthBanner />
+          <LanguageSwitcher pinned />
+          {children}
+          <ThemeToggle />
+          <PWARegistration />
+        </LocaleProvider>
       </body>
     </html>
   );

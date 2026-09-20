@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,7 +14,6 @@ import {
   LaunchStatusScorecard,
   MOCK_GOLDEN_FLOWS,
   MOCK_LAUNCH_SCORECARD,
-  ProductionLaunchSignoffRecord,
   submitProductionSignoff,
   triggerGoldenFlowRehearsal,
 } from "../../lib/launch-ops";
@@ -42,7 +43,7 @@ export function ProductionLaunchOperationsDashboard() {
   const [scorecard, setScorecard] = useState<LaunchStatusScorecard>(MOCK_LAUNCH_SCORECARD);
   const [flows, setflows] = useState<GoldenFlowItem[]>(MOCK_GOLDEN_FLOWS);
   const [history, setHistory] = useState<GoldenFlowLogSummary[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [isRehearsing, setIsRehearsing] = useState<boolean>(false);
   const [terminalLogs, setTerminalLogs] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -61,7 +62,6 @@ export function ProductionLaunchOperationsDashboard() {
       if (mounted) {
         setScorecard(sc);
         setHistory(hist);
-        setLoading(false);
       }
     });
     return () => {
@@ -154,29 +154,34 @@ export function ProductionLaunchOperationsDashboard() {
         </p>
 
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
             className={styles.btnPrimary}
             onClick={handleRunRehearsal}
             disabled={isRehearsing}
           >
             <span>{isRehearsing ? "⏳ در حال مانور..." : "🔄 مانور هفت مسیر طلایی (Run Rehearsal)"}</span>
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={styles.btnSecondary}
+            disabled={isRefreshing}
             onClick={() => {
-              setLoading(true);
-              Promise.all([fetchLaunchStatus(), fetchRehearsalHistory()]).then(([sc, hist]) => {
-                setScorecard(sc);
-                setHistory(hist);
-                setLoading(false);
-                setFeedback("اطلاعات ماتریس و گواهی‌ها به‌روزرسانی شد.");
-              });
+              setIsRefreshing(true);
+              Promise.all([fetchLaunchStatus(), fetchRehearsalHistory()])
+                .then(([sc, hist]) => {
+                  setScorecard(sc);
+                  setHistory(hist);
+                  setIsRefreshing(false);
+                  setFeedback("اطلاعات ماتریس و گواهی‌ها به‌روزرسانی شد.");
+                })
+                .catch(() => {
+                  setIsRefreshing(false);
+                });
             }}
           >
-            <span>📋 تازه‌سازی شاخص‌ها</span>
-          </button>
+            <span>{isRefreshing ? "⏳ در حال تازه‌سازی..." : "📋 تازه‌سازی شاخص‌ها"}</span>
+          </Button>
         </div>
       </header>
 
@@ -312,14 +317,14 @@ export function ProductionLaunchOperationsDashboard() {
             <span>⚡</span>
             <span>مانور هفت مسیر طلایی کاربر و سیستم (End-to-End Golden Flows)</span>
           </h2>
-          <button
+          <Button
             type="button"
             className={styles.btnPrimary}
             onClick={handleRunRehearsal}
             disabled={isRehearsing}
           >
             <span>{isRehearsing ? "در حال اجرای مانور..." : "اجرای مجدد مانور (Run Rehearsal)"}</span>
-          </button>
+          </Button>
         </div>
 
         <p className={styles.headerSubtitle} style={{ marginBlockEnd: "var(--space-4, 16px)" }}>
@@ -410,7 +415,7 @@ export function ProductionLaunchOperationsDashboard() {
                 >
                   نام مهندس معمار یا لید فنی:
                 </label>
-                <input
+                <Input
                   id="signoff-engineer"
                   type="text"
                   value={engineerName}
@@ -435,7 +440,7 @@ export function ProductionLaunchOperationsDashboard() {
                 >
                   سمت سازمانی / نقش:
                 </label>
-                <input
+                <Input
                   id="signoff-role"
                   type="text"
                   value={engineerRole}
@@ -479,13 +484,13 @@ export function ProductionLaunchOperationsDashboard() {
             </div>
 
             <div>
-              <button
+              <Button
                 type="submit"
                 className={styles.btnPrimary}
                 disabled={isSigning}
               >
                 <span>{isSigning ? "در حال ثبت گواهی..." : "📜 ثبت رسمی امضای پروداکشن (Sign & Certify)"}</span>
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -504,7 +509,7 @@ export function ProductionLaunchOperationsDashboard() {
         </div>
 
         <div className={styles.tableContainer}>
-          <table className={styles.historyTable}>
+          <Table className={styles.historyTable}>
             <thead>
               <tr>
                 <th>شناسه مانور</th>
@@ -542,7 +547,7 @@ export function ProductionLaunchOperationsDashboard() {
                 </tr>
               )}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
     </div>

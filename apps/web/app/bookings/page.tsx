@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button, Input } from "@endoora/ui";
 import React, { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import styles from "./bookings.module.css";
@@ -224,41 +226,21 @@ export default function BookingsWorkspacePage() {
 
       <div className={styles.controlsBar}>
         <div className={styles.tabs}>
-          <button
-            type="button"
-            className={`${styles.tabBtn} ${activeTab === "all" ? styles.tabBtnActive : ""}`}
-            onClick={() => setActiveTab("all")}
-          >
+          <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "all" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("all")}>
             همه ({bookings.length})
-          </button>
-          <button
-            type="button"
-            className={`${styles.tabBtn} ${activeTab === "upcoming" ? styles.tabBtnActive : ""}`}
-            onClick={() => setActiveTab("upcoming")}
-          >
+          </Button>
+          <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "upcoming" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("upcoming")}>
             پیش‌رو (
             {bookings.filter((b) => b.status === "confirmed" || b.status === "reschedule_requested").length}
             )
-          </button>
-          <button
-            type="button"
-            className={`${styles.tabBtn} ${activeTab === "in_progress" ? styles.tabBtnActive : ""}`}
-            onClick={() => setActiveTab("in_progress")}
-          >
+          </Button>
+          <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "in_progress" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("in_progress")}>
             در حال برگزاری ({bookings.filter((b) => b.status === "in_progress").length})
-          </button>
-          <button
-            type="button"
-            className={`${styles.tabBtn} ${activeTab === "completed" ? styles.tabBtnActive : ""}`}
-            onClick={() => setActiveTab("completed")}
-          >
+          </Button>
+          <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "completed" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("completed")}>
             تکمیل‌شده ({bookings.filter((b) => b.status === "completed").length})
-          </button>
-          <button
-            type="button"
-            className={`${styles.tabBtn} ${activeTab === "cancelled" ? styles.tabBtnActive : ""}`}
-            onClick={() => setActiveTab("cancelled")}
-          >
+          </Button>
+          <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "cancelled" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("cancelled")}>
             لغوشده (
             {
               bookings.filter(
@@ -269,7 +251,7 @@ export default function BookingsWorkspacePage() {
               ).length
             }
             )
-          </button>
+          </Button>
         </div>
 
         <div className={styles.roleFilter}>
@@ -296,9 +278,9 @@ export default function BookingsWorkspacePage() {
         <div className={styles.emptyState}>
           <h2 className={styles.emptyTitle}>خطا در بارگذاری</h2>
           <p className={styles.emptyText}>{error}</p>
-          <button type="button" onClick={loadBookings} className={styles.btnSecondary}>
+          <Button type="button" variant="secondary" onClick={loadBookings} className={styles.btnSecondary}>
             تلاش مجدد
-          </button>
+          </Button>
         </div>
       )}
 
@@ -344,22 +326,12 @@ export default function BookingsWorkspacePage() {
                   </div>
                   {booking.can_respond_reschedule && (
                     <div className={styles.rescheduleActions}>
-                      <button
-                        type="button"
-                        onClick={() => handleRespondReschedule(booking.id, "accept")}
-                        disabled={isPending}
-                        className={styles.btnSuccess}
-                      >
+                      <Button type="button" variant="primary" size="sm" onClick={() => handleRespondReschedule(booking.id, "accept")} disabled={isPending} className={styles.btnSuccess}>
                         ✓ پذیرش زمان جدید
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleRespondReschedule(booking.id, "decline")}
-                        disabled={isPending}
-                        className={styles.btnDanger}
-                      >
+                      </Button>
+                      <Button type="button" variant="destructive" size="sm" onClick={() => handleRespondReschedule(booking.id, "decline")} disabled={isPending} className={styles.btnDanger}>
                         ✕ رد پیشنهاد و حفظ زمان قبلی
-                      </button>
+                      </Button>
                     </div>
                   )}
                 </div>
@@ -406,14 +378,9 @@ export default function BookingsWorkspacePage() {
                   </Link>
 
                   {booking.can_start && (
-                    <button
-                      type="button"
-                      onClick={() => handleStartSession(booking.id)}
-                      disabled={isPending}
-                      className={styles.btnPrimary}
-                    >
+                    <Button type="button" variant="primary" size="sm" onClick={() => handleStartSession(booking.id)} disabled={isPending} className={styles.btnPrimary}>
                       ورود به کلاس آنلاین
-                    </button>
+                    </Button>
                   )}
 
                   {booking.status === "in_progress" && booking.meeting_room_url && (
@@ -428,25 +395,15 @@ export default function BookingsWorkspacePage() {
                   )}
 
                   {booking.can_reschedule && (
-                    <button
-                      type="button"
-                      onClick={() => handleOpenReschedule(booking)}
-                      disabled={isPending}
-                      className={styles.btnSecondary}
-                    >
+                    <Button type="button" variant="secondary" size="sm" onClick={() => handleOpenReschedule(booking)} disabled={isPending} className={styles.btnSecondary}>
                       درخواست تغییر زمان
-                    </button>
+                    </Button>
                   )}
 
                   {booking.can_cancel && (
-                    <button
-                      type="button"
-                      onClick={() => handleOpenCancel(booking)}
-                      disabled={isPending}
-                      className={styles.btnDangerOutline}
-                    >
+                    <Button type="button" variant="destructive" size="sm" onClick={() => handleOpenCancel(booking)} disabled={isPending} className={styles.btnDangerOutline}>
                       لغو جلسه
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
@@ -468,13 +425,7 @@ export default function BookingsWorkspacePage() {
 
             <div className={styles.formGroup}>
               <label htmlFor="reschedule-time-input" className={styles.inputLabel}>تاریخ و زمان جدید پیشنهادی:</label>
-              <input
-                id="reschedule-time-input"
-                type="datetime-local"
-                value={newStartTime}
-                onChange={(e) => setNewStartTime(e.target.value)}
-                className={styles.inputField}
-              />
+              <Input id="reschedule-time-input" type="datetime-local" value={newStartTime} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewStartTime(e.target.value)} className={styles.inputField} />
             </div>
 
             <div className={styles.formGroup}>
@@ -489,22 +440,12 @@ export default function BookingsWorkspacePage() {
             </div>
 
             <div className={styles.modalActions}>
-              <button
-                type="button"
-                onClick={() => setRescheduleModalId(null)}
-                className={styles.btnSecondary}
-                disabled={isPending}
-              >
+              <Button type="button" variant="secondary" onClick={() => setRescheduleModalId(null)} className={styles.btnSecondary} disabled={isPending}>
                 انصراف
-              </button>
-              <button
-                type="button"
-                onClick={handleSubmitReschedule}
-                className={styles.btnPrimary}
-                disabled={isPending}
-              >
+              </Button>
+              <Button type="button" variant="primary" onClick={handleSubmitReschedule} className={styles.btnPrimary} disabled={isPending}>
                 {isPending ? "در حال ثبت..." : "ارسال درخواست جابجایی"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -533,22 +474,12 @@ export default function BookingsWorkspacePage() {
             </div>
 
             <div className={styles.modalActions}>
-              <button
-                type="button"
-                onClick={() => setCancelModalId(null)}
-                className={styles.btnSecondary}
-                disabled={isPending}
-              >
+              <Button type="button" variant="secondary" onClick={() => setCancelModalId(null)} className={styles.btnSecondary} disabled={isPending}>
                 بازگشت
-              </button>
-              <button
-                type="button"
-                onClick={handleSubmitCancel}
-                className={styles.btnDanger}
-                disabled={isPending}
-              >
+              </Button>
+              <Button type="button" variant="destructive" onClick={handleSubmitCancel} className={styles.btnDanger} disabled={isPending}>
                 {isPending ? "در حال لغو..." : "تایید و لغو قطعی"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

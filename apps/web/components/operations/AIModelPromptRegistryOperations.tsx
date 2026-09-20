@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -178,21 +180,21 @@ export function AIModelPromptRegistryOperations() {
           </p>
         </div>
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
             className={styles.secondaryBtn}
             onClick={() => setBudgetModalOpen(true)}
           >
             <span>💰</span> تنظیم سقف بودجه روزانه
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={styles.primaryBtn}
             onClick={handleResetCircuitBreaker}
             disabled={resettingCb}
           >
             <span>⚡</span> {resettingCb ? "در حال بازنشانی..." : "بازنشانی مدارشکن (Circuit Breaker)"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -342,11 +344,11 @@ export function AIModelPromptRegistryOperations() {
           <span>📑</span> کاتالوگ قالب‌های رجیستری پرامپت (Versioned Prompt Templates)
         </h2>
         <p className={styles.sectionSubtitle}>
-          کلیه پرامپت‌های سامانه‌های هوش مصنوعی اندورا به‌صورت نسخه‌دار و با اعتبارسنجی ساختار JSON نگهداری می‌شوند.
+          کلیه پرامپت‌های سامانه‌های هوش مصنوعی ایندورا به‌صورت نسخه‌دار و با اعتبارسنجی ساختار JSON نگهداری می‌شوند.
         </p>
 
         <div className={styles.tableWrapper}>
-          <table className={styles.dataTable}>
+          <Table className={styles.dataTable}>
             <thead>
               <tr>
                 <th>شناسه پرامپت</th>
@@ -378,18 +380,18 @@ export function AIModelPromptRegistryOperations() {
                     </span>
                   </td>
                   <td>
-                    <button
+                    <Button
                       type="button"
                       className={styles.secondaryBtn}
                       onClick={() => handleTestPrompt(p)}
                     >
                       🧪 آزمون و ارزیابی
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
 
@@ -403,7 +405,7 @@ export function AIModelPromptRegistryOperations() {
         </p>
 
         <div className={styles.tableWrapper}>
-          <table className={styles.dataTable}>
+          <Table className={styles.dataTable}>
             <thead>
               <tr>
                 <th>شناسه</th>
@@ -442,7 +444,7 @@ export function AIModelPromptRegistryOperations() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
 
@@ -492,21 +494,21 @@ export function AIModelPromptRegistryOperations() {
             ) : null}
 
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
                 className={styles.secondaryBtn}
                 onClick={() => setTestModalPrompt(null)}
               >
                 بستن
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 className={styles.primaryBtn}
                 onClick={() => handleTestPrompt(testModalPrompt)}
                 disabled={testing}
               >
                 {testing ? "در حال ارزیابی..." : "اجرای مجدد آزمون"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -522,7 +524,7 @@ export function AIModelPromptRegistryOperations() {
                 <label className={styles.label} htmlFor="ai-daily-budget">
                   سقف بودجه روزانه به دلار (USD):
                 </label>
-                <input
+                <Input
                   id="ai-daily-budget"
                   type="number"
                   step="0.5"
@@ -537,21 +539,21 @@ export function AIModelPromptRegistryOperations() {
                 در صورت رسیدن مصرف روزانه به این سقف، کلید مدارشکن به‌صورت خودکار ترافیک را به کش استاتیک پداگوژیک منتقل می‌کند.
               </p>
               <div className={styles.modalActions}>
-                <button
+                <Button
                   type="button"
                   className={styles.secondaryBtn}
                   onClick={() => setBudgetModalOpen(false)}
                   disabled={updatingBudget}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   className={styles.primaryBtn}
                   disabled={updatingBudget}
                 >
                   {updatingBudget ? "در حال ذخیره..." : "ذخیره سقف بودجه"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

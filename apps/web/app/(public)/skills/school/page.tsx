@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./school.module.css";
 
 export const metadata: Metadata = {
-  title: "بخش اختصاصی کتب دبیرستان و کنکور سراسری | اندورا",
+  title: "بخش اختصاصی کتب دبیرستان و کنکور سراسری | ایندورا",
   description: "آموزش و تحلیل خط‌به‌خط کتب درسی Vision 1, Vision 2, Vision 3 و تکنیک‌های تست‌زنی کنکور زبان انگلیسی.",
 };
 

@@ -1,0 +1,477 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.headerCard {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.recommendationBanner {
+  background: rgba(13, 148, 136, 0.08);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.generatorTabs {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.generatorTab {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--color-muted);
+  padding: var(--space-3) var(--space-5);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.generatorTab[data-active="true"] {
+  color: var(--color-endoora-blue);
+  border-bottom-color: var(--color-endoora-blue);
+}
+
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .workspaceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formCard {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.previewCard {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 480px;
+}
+
+.previewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: var(--space-3);
+}
+
+.previewContent {
+  line-height: 1.7;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+.actionBar {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.formGroup label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: 10px 12px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.btnPrimary {
+  background: var(--color-endoora-blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-control);
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.loadingSpinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  height: 300px;
+  color: var(--color-learning-teal);
+  font-weight: 600;
+}
+
+.viewModeSwitcher {
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-border);
+}
+
+.viewModeBtn {
+  background: transparent;
+  border: none;
+  padding: 4px 12px;
+  border-radius: calc(var(--radius-control) - 2px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.viewModeBtn[data-active="true"] {
+  background: var(--color-endoora-blue);
+  color: #fff;
+}
+
+.renderedView {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  line-height: 1.7;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: var(--space-2);
+}
+
+.stageCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 4px;
+}
+
+.stageDuration {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--color-endoora-blue);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.studentCardA {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+}
+
+.studentCardB {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+}
+
+.ccqBox {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-control);
+  padding: var(--space-3);
+  font-size: 0.88rem;
+}
+
+.answerKeyCard {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+}
+
+.methodologyToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.methodologyToggle3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.methodBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  padding: 8px 4px;
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+}
+
+.methodBtn[data-active="true"] {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: var(--color-endoora-blue);
+  color: var(--color-endoora-blue);
+}
+
+/* Generation Progress Stepper */
+.generationProgress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  gap: var(--space-4);
+  background: rgba(2, 6, 23, 0.4);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+}
+
+.progressPulse {
+  width: 100%;
+  max-width: 420px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressPulseBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-endoora-blue), var(--color-learning-teal));
+  border-radius: var(--radius-pill);
+  transition: width 0.5s ease;
+}
+
+.progressSteps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 440px;
+}
+
+.progressStepItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  transition: color 0.3s ease;
+}
+
+.progressStepItem[data-active="true"] {
+  color: var(--color-learning-teal);
+  font-weight: 700;
+}
+
+.progressStepItem[data-done="true"] {
+  color: var(--color-success-green);
+}
+
+/* Interactive Stage Timer */
+.stageTimerWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-control);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.timerDigit {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-endoora-blue);
+  min-width: 44px;
+}
+
+.timerDigit[data-expired="true"] {
+  color: var(--color-error-red);
+  animation: pulse 1s infinite;
+}
+
+.timerBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.timerBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Student Card Copy Actions */
+.cardCopyBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-2);
+  transition: all var(--motion-fast);
+}
+
+.cardCopyBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-endoora-blue);
+}
+
+/* Collapsible Accordion */
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+}
+
+.accordionContent {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Print Modal */
+.printModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.printModal {
+  background: #ffffff;
+  color: #1e293b;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  direction: ltr;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+@media print {
+  .printModalOverlay {
+    position: static;
+    background: none;
+    padding: 0;
+  }
+  .printModal {
+    max-width: 100%;
+    box-shadow: none;
+    padding: 0;
+  }
+}

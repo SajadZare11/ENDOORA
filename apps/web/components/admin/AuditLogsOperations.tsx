@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./admin-dashboard.module.css";
@@ -172,7 +174,7 @@ export function AuditLogsOperations() {
           </select>
 
           <form onSubmit={handleSearchSubmit}>
-            <input
+            <Input
               type="text"
               placeholder="جستجو در دلیل، ایمیل، یا شناسه..."
               value={searchQuery}
@@ -220,13 +222,13 @@ export function AuditLogsOperations() {
                       <code>{audit.target_pk}</code>] | محیط: {audit.environment}
                     </div>
 
-                    <button
+                    <Button
                       onClick={() => setSelectedAudit(audit)}
                       className={styles.secondaryBtn}
                       style={{ paddingInline: "var(--space-2)", paddingBlock: "2px", fontSize: "var(--font-size-micro)" }}
                     >
                       مشاهده بار داده (JSON Diff)
-                    </button>
+                    </Button>
                   </div>
                 </div>
               );
@@ -241,9 +243,9 @@ export function AuditLogsOperations() {
           <div className={styles.modalContainer} style={{ maxInlineSize: "720px" }}>
             <div className={styles.modalHeader}>
               <h2 className={styles.modalTitle}>جزئیات رویداد ممیزی: {selectedAudit.target_pk}</h2>
-              <button onClick={() => setSelectedAudit(null)} className={styles.closeBtn}>
+              <Button onClick={() => setSelectedAudit(null)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <div className={styles.modalBody}>
@@ -292,9 +294,9 @@ export function AuditLogsOperations() {
             </div>
 
             <div className={styles.modalFooter}>
-              <button onClick={() => setSelectedAudit(null)} className={styles.secondaryBtn}>
+              <Button onClick={() => setSelectedAudit(null)} className={styles.secondaryBtn}>
                 بستن
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,0 +1,140 @@
+{
+  "id": "ielts-101",
+  "slug": "ielts-essay-introduction-mastery",
+  "level": "B2",
+  "title": {
+    "en": "Anatomy of a 40-Word IELTS Task 2 Introduction",
+    "fa": "کالبدشکافی مقدمه ۴۰ کلمه‌ای استاندارد در رایتینگ تسک ۲ آیلتس"
+  },
+  "durationMinutes": 18,
+  "vocabulary": [
+    {
+      "word": "paraphrase",
+      "fa": "بازنویسی با واژگان دیگر (پارافریز)",
+      "ipa": "/ˈpær.ə.freɪz/",
+      "example": {
+        "en": "Candidates must paraphrase the prompt effectively in the opening sentence.",
+        "fa": "داوطلبان باید صورت سؤال را در اولین جمله به‌طور مؤثر بازنویسی کنند."
+      }
+    },
+    {
+      "word": "thesis",
+      "fa": "تز یا دیدگاه محوری مقاله",
+      "ipa": "/ˈθiː.sɪs/",
+      "example": {
+        "en": "A clear thesis statement informs the examiner of your explicit position.",
+        "fa": "بیان شفاف تز استیتمنت، موضع صریح شما را به اگزمینر اعلام می‌کند."
+      }
+    },
+    {
+      "word": "cohesion",
+      "fa": "پیوستگی و انسجام متنی",
+      "ipa": "/kəʊˈhiː.ʒən/",
+      "example": {
+        "en": "Logical flow between sentences boosts your cohesion score to Band 8.",
+        "fa": "جریان منطقی میان جملات، نمره انسجام شما را به بند ۸ ارتقا می‌دهد."
+      }
+    },
+    {
+      "word": "controversial",
+      "fa": "بحث‌برانگیز، چالش‌آفرین",
+      "ipa": "/ˌkɒn.trəˈvɜː.ʃəl/",
+      "example": {
+        "en": "Whether artificial intelligence replaces human teachers is a controversial issue.",
+        "fa": "اینکه آیا هوش مصنوعی جایگزین معلمان انسانی می‌شود، موضوعی بحث‌برانگیز است."
+      }
+    }
+  ],
+  "grammar": {
+    "title": {
+      "en": "Complex Sentence Structures for Academic Introductions",
+      "fa": "ساختارهای جملات مرکب و پیچیده برای مقدمه‌های آکادمیک"
+    },
+    "explanation_fa": "برای کسب نمره ۷ و بالاتر در معیار Grammatical Range and Accuracy، نگارش جملات مرکب شرطی و تقابلی (با While یا Although) در مقدمه الزامی است. این ساختارها نشان‌دهنده تسلط به گرامر پیشرفته بدون زیاده‌گویی است.",
+    "rules": [
+      "از جملات پیرو تقابلی (Concessive Clauses) با While یا Although برای ارائه دیدگاه مخالف استفاده کنید.",
+      "جمله اول مقدمه باید پیش‌زمینه را پارافریز کند، بدون کپی‌برداری کلمه‌به‌کلمه صورت سؤال.",
+      "جمله دوم باید بدون ابهام، دیدگاه مستقیم (Thesis Statement) و جهت‌گیری استدلال شما را اعلام کند."
+    ],
+    "examples": [
+      {
+        "en": "While some argue that remote education isolates students, I firmly believe it offers unparalleled flexibility.",
+        "fa": "اگرچه برخی استدلال می‌کنند آموزش از راه دور دانش‌آموزان را منزوی می‌کند، من عمیقاً باور دارم این شیوه انعطاف‌پذیری بی‌نظیری ارائه می‌دهد.",
+        "highlight": "While some argue"
+      },
+      {
+        "en": "Although technological progress brings convenience, it poses serious privacy hazards.",
+        "fa": "اگرچه پیشرفت فناوری آسایش به همراه دارد، اما خطرات جدی برای حریم خصوصی ایجاد می‌کند.",
+        "highlight": "Although technological progress brings"
+      }
+    ]
+  },
+  "reading": {
+    "title": {
+      "en": "Cambridge Band 8 Model Essay Opening",
+      "fa": "نمونه افتتاحیه مقاله نمره ۸ کمبریج"
+    },
+    "sentences": [
+      {
+        "id": "s1",
+        "en": "It is widely argued that continuous technological automation will eradicate numerous traditional employment roles.",
+        "fa": "به‌طور گسترده استدلال می‌شود که خودکارسازی مداوم فناوری بسیاری از نقش‌های شغلی سنتی را محو خواهد کرد.",
+        "vocabulary": [
+          { "word": "automation", "fa": "خودکارسازی" },
+          { "word": "eradicate", "fa": "ریشه‌کن کردن، محو کردن" },
+          { "word": "employment", "fa": "اشتغال" }
+        ]
+      },
+      {
+        "id": "s2",
+        "en": "While this transformation may displace manual laborers temporarily, I believe innovation creates superior specialized opportunities.",
+        "fa": "در حالی که این تحول ممکن است به‌طور موقت کارگران یدی را جابه‌جا کند، من باور دارم نوآوری فرصت‌های تخصصی برتری خلق می‌کند.",
+        "vocabulary": [
+          { "word": "transformation", "fa": "تحول، دگرگونی" },
+          { "word": "displace", "fa": "جابه‌جا کردن، بی‌خانمان کردن" },
+          { "word": "specialized", "fa": "تخصصی" }
+        ]
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "id": "q1",
+      "prompt": {
+        "en": "What is the primary function of a thesis statement in an IELTS Task 2 introduction?",
+        "fa": "وظیفه اصلی تز استیتمنت (Thesis Statement) در مقدمه رایتینگ تسک ۲ چیست؟"
+      },
+      "options": [
+        "To present the author's direct, explicit position on the prompt",
+        "To summarize statistics and empirical data from research",
+        "To ask rhetorical questions to engage the reader",
+        "To copy the exam prompt using synonyms for every word"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "The thesis statement must state the candidate's clear position to satisfy Task Achievement Band 7+.",
+        "fa": "تز استیتمنت باید موضع شفاف نویسنده را برای برآورده ساختن معیار Task Achievement در نمره ۷+ بیان کند."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "id": "q2",
+      "prompt": {
+        "en": "Complete the complex opening sentence with the appropriate concessive conjunction: '___ some believe money brings happiness, others prioritize health.'",
+        "fa": "جمله مرکب آغازین را با حرف ربط تقابلی مناسب کامل کنید: '___ برخی باور دارند پول شادی می‌آورد، دیگران سلامت را اولویت می‌دهند.'"
+      },
+      "sentenceWithBlank": "___ some believe money brings happiness, others prioritize well-being.",
+      "acceptedAnswers": [
+        "While",
+        "Although",
+        "Even though"
+      ],
+      "hintFa": "از کلماتی نظیر While یا Although برای بیان تقابل استفاده کنید.",
+      "explanation": {
+        "en": "'While' or 'Although' sets up a balanced academic contrast clause.",
+        "fa": "حروف ربط While یا Although بند تقابلی دانشگاهی استاندارد ایجاد می‌کنند."
+      }
+    }
+  ]
+}

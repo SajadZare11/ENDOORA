@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('target_id', models.CharField(db_index=True, max_length=64)),
                 ('target_author_id', models.UUIDField(blank=True, null=True)),
                 ('target_content_snapshot', models.TextField(help_text='Immutable snapshot of reported content at time of report')),
-                ('reason', models.CharField(choices=[('copyright_infringement', 'نقض حقوق مالکیت معنوی و کپی\u200cرایت'), ('privacy_or_pii_leak', 'نشت اطلاعات حساس، هویتی یا اطلاعات خصوصی زبان\u200cآموز'), ('harassment_or_abuse', 'توهین، مزاحمت یا رفتار نامناسب'), ('spam_or_solicitation', 'اسپم، تبلیغات نامرتبط یا تقلب'), ('inappropriate_for_minors', 'محتوای نامناسب برای رده سنی کودکان و نوجوانان'), ('misinformation', 'اطلاعات نادرست و گمراه\u200cکننده آموزشی'), ('other', 'سایر موارد مغایر با قوانین جامعه اندورا')], db_index=True, default='other', max_length=64)),
+                ('reason', models.CharField(choices=[('copyright_infringement', 'نقض حقوق مالکیت معنوی و کپی\u200cرایت'), ('privacy_or_pii_leak', 'نشت اطلاعات حساس، هویتی یا اطلاعات خصوصی زبان\u200cآموز'), ('harassment_or_abuse', 'توهین، مزاحمت یا رفتار نامناسب'), ('spam_or_solicitation', 'اسپم، تبلیغات نامرتبط یا تقلب'), ('inappropriate_for_minors', 'محتوای نامناسب برای رده سنی کودکان و نوجوانان'), ('misinformation', 'اطلاعات نادرست و گمراه\u200cکننده آموزشی'), ('other', 'سایر موارد مغایر با قوانین جامعه ایندورا')], db_index=True, default='other', max_length=64)),
                 ('description', models.TextField(blank=True)),
                 ('sla_hours', models.PositiveIntegerField(default=24)),
                 ('sla_deadline', models.DateTimeField(db_index=True)),

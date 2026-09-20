@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
 
 interface BadgeItem {
@@ -216,27 +217,30 @@ export default function BadgesPage() {
       {/* Filter Tabs */}
       <section className={styles.card}>
         <div className={styles.filterBar} role="tablist">
-          <button
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeFilter === "all" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeFilter === "all" ? "primary" : "secondary"}
             onClick={() => setActiveFilter("all")}
           >
             {isFa ? `همه نشان‌ها (${BADGES.length})` : `All (${BADGES.length})`}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeFilter === "unlocked" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeFilter === "unlocked" ? "primary" : "secondary"}
             onClick={() => setActiveFilter("unlocked")}
           >
             {isFa ? `کسب‌شده (${totalUnlocked})` : `Unlocked (${totalUnlocked})`}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className={`${styles.filterPill} ${activeFilter === "in_progress" ? styles.filterPillActive : ""}`}
+            size="sm"
+            variant={activeFilter === "in_progress" ? "primary" : "secondary"}
             onClick={() => setActiveFilter("in_progress")}
           >
             {isFa ? `در حال پیشرفت (${BADGES.length - totalUnlocked})` : `In Progress (${BADGES.length - totalUnlocked})`}
-          </button>
+          </Button>
         </div>
 
         {/* Badges Grid */}

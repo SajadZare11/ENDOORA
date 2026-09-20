@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Button } from "@endoora/ui";
 import styles from "./learner-assignments.module.css";
 import { fetchLearnerAssignments, LearnerAssignmentItem } from "@/lib/teacher-assignments";
 
@@ -74,20 +75,22 @@ export default function LearnerAssignmentsPage() {
 
         {/* Tab Bar */}
         <div className={styles.tabBar} role="tablist">
-          <button
+          <Button
             type="button"
-            className={`${styles.tabButton} ${activeTab === "pending" ? styles.activeTabButton : ""}`}
+            size="sm"
+            variant={activeTab === "pending" ? "primary" : "secondary"}
             onClick={() => setActiveTab("pending")}
           >
             تکالیف پیش‌رو و فعال ({pendingList.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className={`${styles.tabButton} ${activeTab === "completed" ? styles.activeTabButton : ""}`}
+            size="sm"
+            variant={activeTab === "completed" ? "primary" : "secondary"}
             onClick={() => setActiveTab("completed")}
           >
             تکمیل شده و نمرات ({completedList.length})
-          </button>
+          </Button>
         </div>
       </div>
 

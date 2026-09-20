@@ -1,5 +1,7 @@
 "use client";
 
+
+import { Button, Input } from "@endoora/ui";
 import { useState, useMemo, type FormEvent } from "react";
 import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./support.module.css";
@@ -46,8 +48,8 @@ const INITIAL_FAQS: FAQItem[] = [
   {
     id: "faq-1",
     category: "placement",
-    question: "آزمون تعیین سطح هوشمند اندورا چگونه کار می‌کند؟",
-    answer: "آزمون تعیین سطح اندورا یک سیستم چندمرحله‌ای و تطبیقی است که مهارت‌های شنیداری، خواندن و ساختارهای دستوری شما را ارزیابی کرده و کارنامه تفصیلی به همراه نقشه یادگیری اختصاصی صادر می‌کند.",
+    question: "آزمون تعیین سطح هوشمند ایندورا چگونه کار می‌کند؟",
+    answer: "آزمون تعیین سطح ایندورا یک سیستم چندمرحله‌ای و تطبیقی است که مهارت‌های شنیداری، خواندن و ساختارهای دستوری شما را ارزیابی کرده و کارنامه تفصیلی به همراه نقشه یادگیری اختصاصی صادر می‌کند.",
     helpfulCount: 142,
   },
   {
@@ -60,8 +62,8 @@ const INITIAL_FAQS: FAQItem[] = [
   {
     id: "faq-3",
     category: "teachers",
-    question: "چگونه مدرسان در اندورا اعتبارسنجی می‌شوند؟",
-    answer: "تمام مدرسان اندورا مدارک بین‌المللی تدریس (نظیر CELTA/DELTA/TTC)، پیشینه تحصیلی و سوابق کلاسی را بارگذاری نموده و پس از ارزیابی مصاحبه و احراز هویت، نشان تایید شده (Verified Teacher) دریافت می‌کنند.",
+    question: "چگونه مدرسان در ایندورا اعتبارسنجی می‌شوند؟",
+    answer: "تمام مدرسان ایندورا مدارک بین‌المللی تدریس (نظیر CELTA/DELTA/TTC)، پیشینه تحصیلی و سوابق کلاسی را بارگذاری نموده و پس از ارزیابی مصاحبه و احراز هویت، نشان تایید شده (Verified Teacher) دریافت می‌کنند.",
     helpfulCount: 76,
   },
   {
@@ -105,8 +107,8 @@ const INITIAL_TICKETS: SupportTicket[] = [
       {
         id: "m-2",
         senderType: "ai_agent",
-        senderName: "دستیار هوشمند اندورا",
-        body: "با سلام. بر اساس پایگاه دانش اندورا، راهنمای مرتبط با سوال شما به شرح زیر است:\n\nبرای ثبت‌نام دوره آیلتس پس از ورود به سامانه به تب دوره‌ها بروید و سطح مناسب را انتخاب فرمایید.",
+        senderName: "دستیار هوشمند ایندورا",
+        body: "با سلام. بر اساس پایگاه دانش ایندورا، راهنمای مرتبط با سوال شما به شرح زیر است:\n\nبرای ثبت‌نام دوره آیلتس پس از ورود به سامانه به تب دوره‌ها بروید و سطح مناسب را انتخاب فرمایید.",
         createdAt: "۱۰:۱۶ - امروز",
       },
     ],
@@ -133,7 +135,7 @@ const INITIAL_TICKETS: SupportTicket[] = [
       {
         id: "m-4",
         senderType: "ai_agent",
-        senderName: "دستیار هوشمند اندورا",
+        senderName: "دستیار هوشمند ایندورا",
         body: "درخواست شما مربوط به امور مالی و تراکنش بانکی است و بر اساس پروتکل‌های ایمنی، مستقیماً جهت بررسی به کارشناس ارشد پشتیبانی ارجاع داده شد.",
         createdAt: "دیروز - ۱۸:۳۰",
       },
@@ -218,7 +220,7 @@ export default function SupportPage() {
       initialMessages.push({
         id: `msg-${Date.now()}-2`,
         senderType: "ai_agent",
-        senderName: "دستیار هوشمند اندورا",
+        senderName: "دستیار هوشمند ایندورا",
         body: "درخواست شما مربوط به موضوعات حساس مالی یا امنیتی است. جهت حفظ حریم خصوصی، سیستم هوش مصنوعی از مداخله خودداری کرده و تیکت مستقیماً به کارشناس ارشد ارجاع داده شد.",
         createdAt: "هم‌اکنون",
       });
@@ -238,7 +240,7 @@ export default function SupportPage() {
         initialMessages.push({
           id: `msg-${Date.now()}-2`,
           senderType: "ai_agent",
-          senderName: "دستیار هوشمند اندورا",
+          senderName: "دستیار هوشمند ایندورا",
           body: `با سلام. بر اساس بررسی خودکار، راهنمای زیر ممکن است پاسخ شما باشد:\n\n📌 **${matched.question}**\n${matched.answer}\n\nدر صورتی که نیاز به راهنمایی بیشتری دارید، می‌توانید با زدن دکمه «ارجاع به پشتیبان انسانی» تیکت را به کارشناس منتقل فرمایید.`,
           createdAt: "هم‌اکنون",
         });
@@ -249,7 +251,7 @@ export default function SupportPage() {
         initialMessages.push({
           id: `msg-${Date.now()}-2`,
           senderType: "ai_agent",
-          senderName: "دستیار هوشمند اندورا",
+          senderName: "دستیار هوشمند ایندورا",
           body: "درخواست شما ثبت شد و جهت پاسخگویی در صف بررسی کارشناسان قرار گرفت.",
           createdAt: "هم‌اکنون",
         });
@@ -357,19 +359,19 @@ export default function SupportPage() {
       <div className={styles.container}>
         {/* Support Hero */}
         <section className={styles.hero}>
-          <h1 className={styles.heroTitle}>مرکز پشتیبانی و پایگاه دانش اندورا</h1>
+          <h1 className={styles.heroTitle}>مرکز پشتیبانی و پایگاه دانش ایندورا</h1>
           <p className={styles.heroSubtitle}>
             پاسخ سریع به پرسش‌های متداول، راهنمای استفاده از امکانات پلتفرم و ثبت تیکت‌های پشتیبانی با تریاژ هوشمند و ارجاع تضمینی به انسان
           </p>
 
           <div className={styles.heroActions}>
-            <button
+            <Button
               type="button"
               className={styles.primaryBtn}
               onClick={() => setIsTicketModalOpen(true)}
             >
               ✉️ ثبت درخواست پشتیبانی جدید
-            </button>
+            </Button>
             <a href="#faqs" className={styles.secondaryBtn}>
               📖 جستجو در سوالات متداول
             </a>
@@ -399,13 +401,13 @@ export default function SupportPage() {
         <section className={styles.ticketsSection} aria-label="درخواست‌های پشتیبانی من">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>درخواست‌های پشتیبانی شما ({tickets.length})</h2>
-            <button
+            <Button
               type="button"
               className={styles.primaryBtn}
               onClick={() => setIsTicketModalOpen(true)}
             >
               + ثبت تیکت جدید
-            </button>
+            </Button>
           </div>
 
           <div className={styles.ticketCardsGrid}>
@@ -453,53 +455,28 @@ export default function SupportPage() {
         <section id="faqs" className={styles.faqSection} aria-label="سوالات متداول">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>پایگاه دانش و سوالات متداول</h2>
-            <input
-              type="search"
-              className={styles.faqSearchInput}
-              placeholder="جستجو در سوالات متداول..."
-              value={faqSearch}
-              onChange={(e) => setFaqSearch(e.target.value)}
-              aria-label="جستجو در پایگاه دانش"
-            />
+            <Input type="search" className={styles.faqSearchInput} placeholder="جستجو در سوالات متداول..." value={faqSearch} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFaqSearch(e.target.value)} aria-label="جستجو در پایگاه دانش" />
           </div>
 
           <nav className={styles.faqTabs} aria-label="دسته‌بندی سوالات متداول">
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "all" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("all")}
-            >
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "all" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("all")}>
               همه موضوعات
-            </button>
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "placement" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("placement")}
-            >
+            </Button>
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "placement" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("placement")}>
               تعیین سطح
-            </button>
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "courses" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("courses")}
-            >
+            </Button>
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "courses" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("courses")}>
               دوره‌ها و آموزش
-            </button>
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "teachers" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("teachers")}
-            >
+            </Button>
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "teachers" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("teachers")}>
               مدرسان و کلاس‌ها
-            </button>
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "billing" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("billing")}
-            >
+            </Button>
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "billing" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("billing")}>
               اشتراک و امور مالی
-            </button>
-            <button
-              className={`${styles.faqTab} ${activeFaqCategory === "security" ? styles.faqTabActive : ""}`}
-              onClick={() => setActiveFaqCategory("security")}
-            >
+            </Button>
+            <Button type="button" variant="secondary" size="sm" className={`${styles.faqTab} ${activeFaqCategory === "security" ? styles.faqTabActive : ""}`} onClick={() => setActiveFaqCategory("security")}>
               امنیت و حساب کاربری
-            </button>
+            </Button>
           </nav>
 
           <div className={styles.faqList}>
@@ -507,7 +484,9 @@ export default function SupportPage() {
               const isExpanded = expandedFaqId === faq.id;
               return (
                 <div key={faq.id} className={styles.faqItem}>
-                  <button
+                  <Button
+                    type="button"
+                    variant="tertiary"
                     className={styles.faqQuestion}
                     aria-expanded={isExpanded}
                     onClick={() => setExpandedFaqId(isExpanded ? null : faq.id)}
@@ -516,21 +495,23 @@ export default function SupportPage() {
                     <span className={styles.faqToggleIcon} aria-hidden="true">
                       ▼
                     </span>
-                  </button>
+                  </Button>
 
                   {isExpanded && (
                     <div className={styles.faqAnswer}>
                       <p>{faq.answer}</p>
                       <div className={styles.faqFeedbackRow}>
                         <span>آیا این پاسخ برای شما مفید بود؟</span>
-                        <button
+                        <Button
                           type="button"
+                          variant="secondary"
+                          size="sm"
                           className={styles.helpfulBtn}
                           onClick={() => handleVoteHelpful(faq.id)}
                           disabled={faq.userVoted}
                         >
                           👍 بله ({faq.helpfulCount})
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   )}
@@ -546,27 +527,15 @@ export default function SupportPage() {
             <div className={styles.modalBox}>
               <div className={styles.modalHeader}>
                 <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 700 }}>ثبت درخواست پشتیبانی جدید</h3>
-                <button
-                  type="button"
-                  className={styles.closeBtn}
-                  onClick={() => setIsTicketModalOpen(false)}
-                  aria-label="بستن پنجره"
-                >
+                <Button type="button" variant="tertiary" size="sm" onClick={() => setIsTicketModalOpen(false)} className={styles.closeBtn} aria-label="بستن پنجره">
                   ✕
-                </button>
+                </Button>
               </div>
 
               <form onSubmit={handleCreateTicket} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>موضوع و عنوان درخواست</label>
-                  <input
-                    type="text"
-                    className={styles.formInput}
-                    placeholder="مثال: سوال در مورد نحوه ورود به دوره یا تراکنش بانکی"
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    required
-                  />
+                  <Input type="text" className={styles.formInput} placeholder="مثال: سوال در مورد نحوه ورود به دوره یا تراکنش بانکی" value={newTitle} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewTitle(e.target.value)} required />
                 </div>
 
                 <div className={styles.formGroup}>
@@ -590,7 +559,7 @@ export default function SupportPage() {
                   <div className={styles.policyWarningAlert}>
                     <span style={{ fontSize: "1.2rem" }}>🛡️</span>
                     <div>
-                      <strong>سیاست ایمنی و رازداری اندورا:</strong>
+                      <strong>سیاست ایمنی و رازداری ایندورا:</strong>
                       <br />
                       درخواست‌های مربوط به امور مالی و امنیت مستقیماً به کارشناس ارشد انسانی ارجاع داده می‌شوند و سیستم هوش مصنوعی از مداخله یا تولید پاسخ در این حوزه‌ها اکیداً منع شده است.
                     </div>
@@ -609,16 +578,10 @@ export default function SupportPage() {
                 </div>
 
                 <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end", marginBlockStart: "0.5rem" }}>
-                  <button
-                    type="button"
-                    className={styles.secondaryBtn}
-                    onClick={() => setIsTicketModalOpen(false)}
-                  >
+                  <Button type="button" variant="secondary" onClick={() => setIsTicketModalOpen(false)} className={styles.secondaryBtn}>
                     انصراف
-                  </button>
-                  <button type="submit" className={styles.primaryBtn}>
-                    ثبت و ارسال تیکت
-                  </button>
+                  </Button>
+                  <Button type="submit" variant="primary" className={styles.primaryBtn}>ثبت و ارسال تیکت</Button>
                 </div>
               </form>
             </div>
@@ -646,14 +609,9 @@ export default function SupportPage() {
                     {selectedTicket.title}
                   </h3>
                 </div>
-                <button
-                  type="button"
-                  className={styles.closeBtn}
-                  onClick={() => setSelectedTicket(null)}
-                  aria-label="بستن پنجره"
-                >
+                <Button type="button" variant="tertiary" size="sm" onClick={() => setSelectedTicket(null)} className={styles.closeBtn} aria-label="بستن پنجره">
                   ✕
-                </button>
+                </Button>
               </div>
 
               {/* AI Cited FAQ Box */}
@@ -697,29 +655,16 @@ export default function SupportPage() {
                       با زدن دکمه روبرو، تیکت بدون معطلی به صف بررسی کارشناسان انسانی منتقل می‌شود.
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    className={styles.escalateBtn}
-                    onClick={() => handleEscalateToHuman(selectedTicket.id)}
-                  >
+                  <Button type="button" variant="secondary" size="sm" className={styles.escalateBtn} onClick={() => handleEscalateToHuman(selectedTicket.id)}>
                     ارجاع به پشتیبان انسانی
-                  </button>
+                  </Button>
                 </div>
               )}
 
               {/* Reply Form */}
               <form onSubmit={handleSendReply} style={{ display: "flex", gap: "0.5rem" }}>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  placeholder="پاسخ یا توضیح تکمیلی خود را بنویسید..."
-                  value={ticketReply}
-                  onChange={(e) => setTicketReply(e.target.value)}
-                  style={{ flex: 1 }}
-                />
-                <button type="submit" className={styles.primaryBtn}>
-                  ارسال پیام
-                </button>
+                <Input type="text" className={styles.formInput} placeholder="پاسخ یا توضیح تکمیلی خود را بنویسید..." value={ticketReply} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTicketReply(e.target.value)} style={{ flex: 1 }} />
+                <Button type="submit" variant="primary" className={styles.primaryBtn}>ارسال پیام</Button>
               </form>
             </div>
           </div>

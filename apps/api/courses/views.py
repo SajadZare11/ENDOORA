@@ -409,7 +409,7 @@ class LessonRedactionPreviewView(APIView):
                 "plan_duration_days": 90,
                 "display_price_toman": 420000,
                 "cta_url": "/account/plan",
-                "message_fa": "این درس برای مشترکین ویژه اندورا فعال است. با تهیه اشتراک ویژه به تمام جلسات دسترسی پیدا کنید.",
+                "message_fa": "این درس برای مشترکین ویژه ایندورا فعال است. با تهیه اشتراک ویژه به تمام جلسات دسترسی پیدا کنید.",
                 "message_en": "This lesson is exclusive to Endoora Premium members.",
             } if is_locked else None,
             "author_name": course.author_name,

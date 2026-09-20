@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@endoora/ui";
 import styles from "./path.module.css";
 
 type Locale = "fa" | "en";
@@ -239,20 +240,24 @@ export default function LearningPathPage() {
             ← {t.dashboardBtn}
           </Link>
           <div className={styles.localeSwitcher} role="group" aria-label="Language selection">
-            <button
+            <Button
               type="button"
+              variant={locale === "fa" ? "primary" : "secondary"}
+              size="sm"
               className={`${styles.localeButton} ${locale === "fa" ? styles.localeButtonActive : ""}`}
               onClick={() => setLocale("fa")}
             >
               فارسی
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant={locale === "en" ? "primary" : "secondary"}
+              size="sm"
               className={`${styles.localeButton} ${locale === "en" ? styles.localeButtonActive : ""}`}
               onClick={() => setLocale("en")}
             >
               English
-            </button>
+            </Button>
           </div>
         </div>
 

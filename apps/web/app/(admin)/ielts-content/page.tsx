@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button, Input, Table } from "@endoora/ui";
 import React, { useEffect, useState } from "react";
 import styles from "./ielts-content.module.css";
 import {
@@ -214,13 +215,9 @@ export default function AdminIELTSContentPage() {
         </div>
 
         <div className={styles.filterGroup}>
-          <button
-            type="button"
-            className={`${styles.filterButton} ${showDescriptorsTab ? styles.filterButtonActive : ""}`}
-            onClick={() => setShowDescriptorsTab(!showDescriptorsTab)}
-          >
+          <Button type="button" variant="secondary" className={`${styles.filterButton} ${showDescriptorsTab ? styles.filterButtonActive : ""}`} onClick={() => setShowDescriptorsTab(!showDescriptorsTab)}>
             {showDescriptorsTab ? "بازگشت به آزمون‌ها" : "راهنمای نمره باند آیلتس (Band Descriptors)"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -230,7 +227,7 @@ export default function AdminIELTSContentPage() {
         <div>
           <strong>{MANDATORY_IELTS_DISCLAIMER_TEXT}</strong>
           <div>
-            محتوای این بخش ۱۰۰٪ توسط هیئت علمی اندورا تألیف شده و مستقل از مراجع رسمی آیلتس (Cambridge / British Council / IDP) می‌باشد.
+            محتوای این بخش ۱۰۰٪ توسط هیئت علمی ایندورا تألیف شده و مستقل از مراجع رسمی آیلتس (Cambridge / British Council / IDP) می‌باشد.
           </div>
         </div>
       </aside>
@@ -249,7 +246,7 @@ export default function AdminIELTSContentPage() {
             </p>
           </div>
           <div className={styles.tableWrapper}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th>مهارت</th>
@@ -272,7 +269,7 @@ export default function AdminIELTSContentPage() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           </div>
         </section>
       ) : (
@@ -282,27 +279,33 @@ export default function AdminIELTSContentPage() {
           <div className={styles.controlsBar}>
             <div className={styles.filterGroup}>
               <span style={{ fontSize: "var(--font-size-sm)", fontWeight: 700 }}>نوع آزمون:</span>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
+                size="sm"
                 className={`${styles.filterButton} ${typeFilter === "all" ? styles.filterButtonActive : ""}`}
                 onClick={() => setTypeFilter("all")}
               >
                 همه
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="secondary"
+                size="sm"
                 className={`${styles.filterButton} ${typeFilter === "academic" ? styles.filterButtonActive : ""}`}
                 onClick={() => setTypeFilter("academic")}
               >
                 Academic
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="secondary"
+                size="sm"
                 className={`${styles.filterButton} ${typeFilter === "general_training" ? styles.filterButtonActive : ""}`}
                 onClick={() => setTypeFilter("general_training")}
               >
                 General Training
-              </button>
+              </Button>
             </div>
 
             <div className={styles.filterGroup}>
@@ -324,7 +327,7 @@ export default function AdminIELTSContentPage() {
           {/* Test Catalog Table */}
           <section className={styles.card} aria-label="IELTS Tests Repository">
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>عنوان آزمون</th>
@@ -394,19 +397,19 @@ export default function AdminIELTSContentPage() {
                         <td>{t.sections_count} بخش ({t.total_questions} سوال)</td>
                         <td>{t.total_duration_minutes} دقیقه</td>
                         <td>
-                          <button
+                          <Button variant="secondary" size="sm"
                             type="button"
                             className={styles.actionButtonSecondary}
                             onClick={() => setSelectedTestId(t.id)}
                           >
                             مشاهده و بازبینی
-                          </button>
+                          </Button>
                         </td>
                       </tr>
                     ))
                   )}
                 </tbody>
-              </table>
+              </Table>
             </div>
           </section>
 
@@ -428,26 +431,26 @@ export default function AdminIELTSContentPage() {
 
                 {/* Workflow Action Buttons */}
                 <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", flexWrap: "wrap" }}>
-                  <button
+                  <Button variant="secondary" size="sm"
                     type="button"
                     className={styles.actionButtonSecondary}
                     onClick={() => setShowAnswerKeys(!showAnswerKeys)}
                   >
                     {showAnswerKeys ? "مخفی‌سازی کلید پاسخ" : "نمایش کلید پاسخ"}
-                  </button>
+                  </Button>
 
                   {testDetail.status === "draft" && (
-                    <button
+                    <Button variant="primary" size="sm"
                       type="button"
                       className={styles.actionButtonPrimary}
                       onClick={() => handleSubmitForReview(testDetail.id)}
                     >
                       ارسال به صف بازبینی
-                    </button>
+                    </Button>
                   )}
 
                   {testDetail.status === "in_review" && (
-                    <button
+                    <Button variant="primary" size="sm"
                       type="button"
                       className={styles.actionButtonPrimary}
                       style={{ background: "var(--color-info-text)" }}
@@ -458,11 +461,11 @@ export default function AdminIELTSContentPage() {
                       }}
                     >
                       تأیید کیفی بازبین (Review Gate)
-                    </button>
+                    </Button>
                   )}
 
                   {testDetail.status === "approved" && (
-                    <button
+                    <Button variant="primary" size="sm"
                       type="button"
                       className={styles.actionButtonPrimary}
                       style={{ background: "var(--color-success-text)" }}
@@ -472,17 +475,17 @@ export default function AdminIELTSContentPage() {
                       }}
                     >
                       انتشار و قفل نهایی
-                    </button>
+                    </Button>
                   )}
 
                   {testDetail.is_locked && (
-                    <button
+                    <Button variant="secondary" size="sm"
                       type="button"
                       className={styles.actionButtonSecondary}
                       onClick={() => handleCloneVersion(testDetail.id)}
                     >
                       ایجاد نسخه جدید (Clone v+{testDetail.version + 1})
-                    </button>
+                    </Button>
                   )}
                 </div>
               </div>
@@ -495,16 +498,18 @@ export default function AdminIELTSContentPage() {
               {/* Section Tabs */}
               <div className={styles.sectionTabs}>
                 {testDetail.sections.map((sec, idx) => (
-                  <button
+                  <Button
                     key={sec.id}
                     type="button"
+                    variant="secondary"
+                    size="sm"
                     className={`${styles.sectionTabButton} ${activeSectionIndex === idx ? styles.sectionTabButtonActive : ""}`}
                     onClick={() => setActiveSectionIndex(idx)}
                   >
                     <span>بخش {sec.order}:</span>
                     <span>{sec.section_type_display}</span>
                     <span style={{ fontSize: "var(--font-size-xs)", opacity: 0.8 }}>({sec.duration_minutes} دقیقه)</span>
-                  </button>
+                  </Button>
                 ))}
               </div>
 
@@ -645,13 +650,13 @@ export default function AdminIELTSContentPage() {
           <div className={styles.modalContent}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>تأیید کیفی و بازبینی دونفره (Two-Person Review Gate)</h3>
-              <button
+              <Button variant="tertiary" size="sm"
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowReviewModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             {reviewModalError && <div className={styles.alertError}>{reviewModalError}</div>}
@@ -665,7 +670,7 @@ export default function AdminIELTSContentPage() {
 
             <div className={styles.checklistGrid}>
               <label className={styles.checklistItem}>
-                <input
+                <Input
                   type="checkbox"
                   className={styles.checkbox}
                   checked={reviewChecklist.zero_copyright_infringement}
@@ -682,7 +687,7 @@ export default function AdminIELTSContentPage() {
               </label>
 
               <label className={styles.checklistItem}>
-                <input
+                <Input
                   type="checkbox"
                   className={styles.checkbox}
                   checked={reviewChecklist.cefr_calibrated}
@@ -699,7 +704,7 @@ export default function AdminIELTSContentPage() {
               </label>
 
               <label className={styles.checklistItem}>
-                <input
+                <Input
                   type="checkbox"
                   className={styles.checkbox}
                   checked={reviewChecklist.answer_key_verified}
@@ -716,7 +721,7 @@ export default function AdminIELTSContentPage() {
               </label>
 
               <label className={styles.checklistItem}>
-                <input
+                <Input
                   type="checkbox"
                   className={styles.checkbox}
                   checked={reviewChecklist.audio_script_verified}
@@ -733,7 +738,7 @@ export default function AdminIELTSContentPage() {
               </label>
 
               <label className={styles.checklistItem}>
-                <input
+                <Input
                   type="checkbox"
                   className={styles.checkbox}
                   checked={reviewChecklist.typo_and_formatting_checked}
@@ -761,22 +766,22 @@ export default function AdminIELTSContentPage() {
             </div>
 
             <div className={styles.modalFooter}>
-              <button
+              <Button variant="secondary" size="sm"
                 type="button"
                 className={styles.actionButtonSecondary}
                 onClick={() => setShowReviewModal(false)}
                 disabled={submittingReview}
               >
                 انصراف
-              </button>
-              <button
+              </Button>
+              <Button variant="primary" size="sm"
                 type="button"
                 className={styles.actionButtonPrimary}
                 onClick={handleApprove}
                 disabled={submittingReview}
               >
                 {submittingReview ? "در حال ثبت تأییدیه..." : "تأیید رسمی و انتقال به Approved"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -788,13 +793,13 @@ export default function AdminIELTSContentPage() {
           <div className={styles.modalContent}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>انتشار نهایی و قفل آزمون</h3>
-              <button
+              <Button variant="tertiary" size="sm"
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setShowPublishModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             {publishModalError && <div className={styles.alertError}>{publishModalError}</div>}
@@ -815,15 +820,15 @@ export default function AdminIELTSContentPage() {
             </div>
 
             <div className={styles.modalFooter}>
-              <button
+              <Button variant="secondary" size="sm"
                 type="button"
                 className={styles.actionButtonSecondary}
                 onClick={() => setShowPublishModal(false)}
                 disabled={publishing}
               >
                 انصراف
-              </button>
-              <button
+              </Button>
+              <Button variant="primary" size="sm"
                 type="button"
                 className={styles.actionButtonPrimary}
                 style={{ background: "var(--color-success-text)" }}
@@ -831,7 +836,7 @@ export default function AdminIELTSContentPage() {
                 disabled={publishing}
               >
                 {publishing ? "در حال انتشار و قفل..." : "تأیید و انتشار عمومی"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

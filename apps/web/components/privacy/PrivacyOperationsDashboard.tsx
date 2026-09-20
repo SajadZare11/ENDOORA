@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./privacy-ops.module.css";
@@ -23,7 +25,7 @@ export function PrivacyOperationsDashboard() {
     try {
       const res = await triggerRetentionPurge(dryRun);
       setPurgeStatus(`وضعیت: ${res.message} (Dry Run: ${res.dryRun})`);
-    } catch (e) {
+    } catch {
       setPurgeStatus("خطا در اجرا");
     }
   };
@@ -81,7 +83,7 @@ export function PrivacyOperationsDashboard() {
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>ماتریس سیاست‌های نگهداری داده‌ها (Retention Policy Matrix)</h2>
-        <table className={styles.table}>
+        <Table className={styles.table}>
           <thead>
             <tr className={styles.tr}>
               <th className={styles.th}>دسته‌بندی (Data Category)</th>
@@ -98,17 +100,17 @@ export function PrivacyOperationsDashboard() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>اجرای دستی پاکسازی (Manual Purge Trigger)</h2>
         <div className={styles.purgeControl}>
-          <button className={styles.btnPrimary} onClick={handlePurge}>
+          <Button className={styles.btnPrimary} onClick={handlePurge}>
             اجرای پاکسازی خودکار دوره‌ای
-          </button>
+          </Button>
           <label className={styles.checkboxLabel}>
-            <input type="checkbox" checked={dryRun} onChange={(e) => setDryRun(e.target.checked)} />
+            <Input type="checkbox" checked={dryRun} onChange={(e) => setDryRun(e.target.checked)} />
             اجرای آزمایشی (Dry Run)
           </label>
           {purgeStatus && <span>{purgeStatus}</span>}
@@ -117,7 +119,7 @@ export function PrivacyOperationsDashboard() {
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>گزارش‌های اخیر پاکسازی (Recent Data Purge Logs)</h2>
-        <table className={styles.table}>
+        <Table className={styles.table}>
           <thead>
             <tr className={styles.tr}>
               <th className={styles.th}>شناسه (ID)</th>
@@ -136,7 +138,7 @@ export function PrivacyOperationsDashboard() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
 
       <div className={styles.section}>

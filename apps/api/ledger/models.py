@@ -158,7 +158,7 @@ class TeacherPayableLedgerEntry(models.Model):
         max_digits=12,
         decimal_places=0,
         default=0,
-        help_text="سهم کارمزد پلتفرم اندورا از این تراکنش",
+        help_text="سهم کارمزد پلتفرم ایندورا از این تراکنش",
     )
     net_amount_toman = models.DecimalField(
         max_digits=12,

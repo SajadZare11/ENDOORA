@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "اندورا | درگاهی نو به زبان انگلیسی",
-    short_name: "اندورا | Endoora",
+    name: "ایندورا | درگاهی نو به زبان انگلیسی",
+    short_name: "ایندورا | Endoora",
     description: "سیستم آموزش هوشمند، شخصی‌سازی‌شده و سنجش تطبیقی زبان انگلیسی ویژه فارسی‌زبانان",
     start_url: "/",
     display: "standalone",

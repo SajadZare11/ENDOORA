@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from "@endoora/ui";
+
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./ielts-writing.module.css";
@@ -215,32 +217,39 @@ export default function IELTSWritingRoomPage() {
 
         {/* Accessibility & Finish actions */}
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.iconBtn}
             onClick={() => setFontScale((f) => (f === "standard" ? "large" : f === "large" ? "xl" : "standard"))}
             title="اندازه فونت"
           >
             اندازه قلم: {fontScale === "standard" ? "استاندارد" : fontScale === "large" ? "بزرگ" : "خیلی بزرگ"}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.iconBtn}
             onClick={() => setContrastTheme((c) => (c === "standard" ? "dark" : "standard"))}
             title="کنتراست و پوسته"
           >
             {contrastTheme === "standard" ? "🌙 پوسته تیره" : "☀️ پوسته روشن"}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="primary"
+            size="sm"
             className={styles.submitBtn}
             onClick={() => setShowSubmitModal(true)}
+            loading={submitting}
             disabled={submitting}
           >
             پایان و تصحیح هوشمند ➔
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -258,8 +267,9 @@ export default function IELTSWritingRoomPage() {
 
       {/* Task Switcher Tabs */}
       <nav className={styles.tabsBar} aria-label="انتخاب تسک رایتینگ">
-        <button
+        <Button
           type="button"
+          variant={activeTask === 1 ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTask === 1 ? styles.tabBtnActive : ""}`}
           onClick={() => setActiveTask(1)}
         >
@@ -267,10 +277,11 @@ export default function IELTSWritingRoomPage() {
           <span className={styles.tabPill}>
             {countWords(task1Text)} / ۱۵۰ کلمه (پیشنهاد: ۲۰ دقیقه)
           </span>
-        </button>
+        </Button>
 
-        <button
+        <Button
           type="button"
+          variant={activeTask === 2 ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activeTask === 2 ? styles.tabBtnActive : ""}`}
           onClick={() => setActiveTask(2)}
         >
@@ -278,7 +289,7 @@ export default function IELTSWritingRoomPage() {
           <span className={styles.tabPill}>
             {countWords(task2Text)} / ۲۵۰ کلمه (پیشنهاد: ۴۰ دقیقه)
           </span>
-        </button>
+        </Button>
       </nav>
 
       {/* Split Workspace */}
@@ -398,23 +409,26 @@ export default function IELTSWritingRoomPage() {
             </p>
 
             <div className={styles.modalActionRow}>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
                 className={styles.cancelBtn}
                 onClick={() => setShowSubmitModal(false)}
                 disabled={submitting}
               >
                 ادامه ویرایش
-              </button>
+              </Button>
 
-              <button
+              <Button
                 type="button"
+                variant="primary"
                 className={styles.confirmBtn}
                 onClick={handleFinalSubmit}
+                loading={submitting}
                 disabled={submitting}
               >
                 {submitting ? "در حال پردازش و نمره‌دهی..." : "ارسال قطعی و مشاهده کارنامه"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

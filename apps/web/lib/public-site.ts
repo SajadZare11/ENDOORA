@@ -187,7 +187,7 @@ export const publicPages: Record<PublicPageKey, Localized<CopyBlock>> = {
     fa: {
       eyebrow: "تعیین سطح",
       title: "برآورد شفاف سطح، نه ادعای مدرک رسمی",
-      summary: "هسته تعیین سطح اندورا با رویکرد چندمرحله‌ای، شواهد مهارت‌ها و میزان اطمینان برآورد را به صورت شفاف و زنده ارائه می‌دهد.",
+      summary: "هسته تعیین سطح ایندورا با رویکرد چندمرحله‌ای، شواهد مهارت‌ها و میزان اطمینان برآورد را به صورت شفاف و زنده ارائه می‌دهد.",
       sections: [
         { title: "مهارت‌های چندگانه", body: "گرامر، واژگان، خواندن، شنیدن و تعامل متنی بررسی می‌شوند؛ صدا اختیاری خواهد بود." },
         { title: "قابل ادامه", body: "پاسخ‌ها ذخیره می‌شوند تا قطع اینترنت یا تازه‌سازی صفحه باعث از دست رفتن مسیر نشود." },
@@ -583,6 +583,9 @@ export function accountPath(
 }
 
 export function alternatePath(locale: PublicLocale, path: string): string {
+  if (path.startsWith("/auth/") || path.startsWith("/account") || path.startsWith("/onboarding")) {
+    return locale === "fa" ? `${path}?locale=en` : path.replace(/\?locale=en/, "");
+  }
   return localizedPath(locale === "fa" ? "en" : "fa", path);
 }
 

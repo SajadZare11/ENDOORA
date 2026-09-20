@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AudioRecorder } from "../../../components/placement/AudioRecorder";
 import { VoiceRecorder } from "../../../components/voice-recorder/VoiceRecorder";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
 
 interface PromptCard {
@@ -251,17 +252,18 @@ export default function VoicePage() {
           </span>
           <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
             {SPEAKING_PROMPTS.map((p) => (
-              <button
+              <Button
                 key={p.id}
                 type="button"
-                className={`${styles.filterPill} ${activePrompt.id === p.id ? styles.filterPillActive : ""}`}
+                size="sm"
+                variant={activePrompt.id === p.id ? "primary" : "secondary"}
                 onClick={() => {
                   setActivePrompt(p);
                   setSpokenTranscript("");
                 }}
               >
                 <strong>{p.level}:</strong> {isFa ? p.topicFa : p.topicEn}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -278,7 +280,7 @@ export default function VoicePage() {
           <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-endoora-blue)" }}>
             {isFa ? "راهنمای موضوع:" : "Topic Guidelines:"}
           </span>
-          <p style={{ margin: "var(--space-1) 0 0 0", color: "var(--color-text)" }}>
+          <p style={{ marginBlockStart: "var(--space-1)", color: "var(--color-text)" }}>
             {isFa ? activePrompt.hintFa : activePrompt.hintEn}
           </p>
         </div>
@@ -296,7 +298,7 @@ export default function VoicePage() {
         {spokenTranscript && (
           <div
             style={{
-              marginTop: "var(--space-4)",
+              marginBlockStart: "var(--space-4)",
               padding: "var(--space-4)",
               background: "var(--color-info-bg)",
               color: "var(--color-info-text)",

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useId, useState, type FormEvent } from "react";
 import type { PublicLocale } from "../../lib/public-site";
 import styles from "./marketing.module.css";
@@ -175,7 +177,7 @@ export function WaitlistForm({
         {isFa ? "ایمیل" : "Email"}
       </label>
 
-      <input
+      <Input
         id={emailId}
         name="email"
         type="email"
@@ -192,7 +194,7 @@ export function WaitlistForm({
         className={styles.checkboxLabel}
         htmlFor={consentId}
       >
-        <input
+        <Input
           id={consentId}
           name="consent"
           type="checkbox"
@@ -206,7 +208,7 @@ export function WaitlistForm({
         </span>
       </label>
 
-      <button
+      <Button
         className={styles.primaryButton}
         type="submit"
         disabled={state === "submitting"}
@@ -218,7 +220,7 @@ export function WaitlistForm({
           : isFa
             ? "ثبت علاقه‌مندی"
             : "Join early access"}
-      </button>
+      </Button>
 
       <div
         id={statusId}

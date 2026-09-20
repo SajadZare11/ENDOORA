@@ -3,7 +3,7 @@ import { ContentCMSOperations } from "../../../components/content/ContentCMSOper
 
 export const metadata = {
   title: "مدیریت محتوا و فرهنگ (Content CMS) | Endoora Admin",
-  description: "سامانه مدیریت محتوای آموزشی، دروس صوتی و تصویری و مقالات فرهنگی در پنل مدیریت اندورا",
+  description: "سامانه مدیریت محتوای آموزشی، دروس صوتی و تصویری و مقالات فرهنگی در پنل مدیریت ایندورا",
 };
 
 export default function AdminContentPage() {

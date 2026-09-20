@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type InputHTMLAttributes } from "react";
+import { IconButton, Input } from "@endoora/ui";
 
 import styles from "./auth.module.css";
 
@@ -40,23 +41,23 @@ export function PasswordField({
     <div className="endoora-field">
       <label className="endoora-field__label" htmlFor={id}>{label}</label>
       <div className={styles.passwordWrap}>
-        <input
+        <Input
           {...inputProps}
           id={id}
           type={visible ? "text" : "password"}
-          className={`endoora-input ${styles.ltrInput} ${className} ${error ? "endoora-input--error" : ""}`}
+          className={`${styles.ltrInput} ${className}`}
+          hasError={Boolean(error)}
           aria-invalid={error ? "true" : undefined}
           aria-describedby={errorId ?? helpId}
         />
-        <button
-          type="button"
+        <IconButton
+          variant="tertiary"
           className={styles.passwordToggle}
-          aria-label={visible ? hideLabel : showLabel}
+          label={visible ? hideLabel : showLabel}
           aria-pressed={visible}
           onClick={() => setVisible((current) => !current)}
-        >
-          <EyeIcon hidden={visible} />
-        </button>
+          icon={<EyeIcon hidden={visible} />}
+        />
       </div>
       {error ? (
         <p id={errorId} className="endoora-field__error">{error}</p>

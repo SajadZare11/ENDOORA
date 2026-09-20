@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from "@endoora/ui";
+
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./ielts-speaking.module.css";
@@ -456,16 +458,20 @@ export default function IELTSSpeakingRoomPage() {
 
         {/* Header Accessibility & Actions */}
         <div className={styles.headerActions}>
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.iconBtn}
             onClick={() => setContrastTheme(contrastTheme === "dark" ? "standard" : "dark")}
             title="تغییر کنتراست پوسته"
           >
             {contrastTheme === "dark" ? "☀️ روز" : "🌙 شب"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.iconBtn}
             onClick={() => {
               if (fontScale === "standard") setFontScale("large");
@@ -475,15 +481,18 @@ export default function IELTSSpeakingRoomPage() {
             title="تغییر اندازه قلم"
           >
             اندازه متن ({fontScale})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="primary"
+            size="sm"
             className={styles.submitBtn}
             onClick={() => setShowSubmitModal(true)}
+            loading={submitting}
             disabled={submitting}
           >
             {submitting ? "در حال ارزیابی..." : "اتمام آزمون و ارزیابی هوش مصنوعی ➔"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -495,32 +504,35 @@ export default function IELTSSpeakingRoomPage() {
 
       {/* Part Selection Tabs */}
       <nav className={styles.tabsBar} aria-label="Speaking Parts Navigation">
-        <button
+        <Button
           type="button"
+          variant={activePart === 1 ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activePart === 1 ? styles.tabBtnActive : ""}`}
           onClick={() => handleSelectPart(1)}
         >
           <span>پارت ۱: احوال‌پرسی و سوالات عمومی</span>
           <span className={styles.tabPill}>۴-۵ دقیقه</span>
-        </button>
+        </Button>
 
-        <button
+        <Button
           type="button"
+          variant={activePart === 2 ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activePart === 2 ? styles.tabBtnActive : ""}`}
           onClick={() => handleSelectPart(2)}
         >
           <span>پارت ۲: صحبت ۲ دقیقه‌ای (Cue Card)</span>
           <span className={styles.tabPill}>۱ دقیقه تفکر + ۲ دقیقه صحبت</span>
-        </button>
+        </Button>
 
-        <button
+        <Button
           type="button"
+          variant={activePart === 3 ? "primary" : "secondary"}
           className={`${styles.tabBtn} ${activePart === 3 ? styles.tabBtnActive : ""}`}
           onClick={() => handleSelectPart(3)}
         >
           <span>پارت ۳: بحث عمیق و تحلیلی</span>
           <span className={styles.tabPill}>۴-۵ دقیقه</span>
-        </button>
+        </Button>
       </nav>
 
       {/* Error Alert */}
@@ -577,15 +589,19 @@ export default function IELTSSpeakingRoomPage() {
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
                   <span className={styles.prepTimerDigits}>{formatTime(part2PrepSeconds)}</span>
-                  <button
+                  <Button
                     type="button"
+                    variant="secondary"
+                    size="sm"
                     className={styles.iconBtn}
                     onClick={() => setPrepTimerActive(!prepTimerActive)}
                   >
                     {prepTimerActive ? "توقف" : "شروع ۱ دقیقه"}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="button"
+                    variant="secondary"
+                    size="sm"
                     className={styles.iconBtn}
                     onClick={() => {
                       setPrepTimerActive(false);
@@ -593,7 +609,7 @@ export default function IELTSSpeakingRoomPage() {
                     }}
                   >
                     بازنشانی
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -670,23 +686,25 @@ export default function IELTSSpeakingRoomPage() {
             {/* Recording Controls */}
             <div className={styles.controlsRow}>
               {recordingState !== "recording" ? (
-                <button
+                <Button
                   type="button"
+                  variant="primary"
                   className={`${styles.micBtn} ${styles.micBtnStart}`}
                   onClick={startRecording}
                 >
                   <span>🎤</span>
                   <span>شروع ضبط صدای پارت {activePart}</span>
-                </button>
+                </Button>
               ) : (
-                <button
+                <Button
                   type="button"
+                  variant="destructive"
                   className={`${styles.micBtn} ${styles.micBtnStop}`}
                   onClick={stopRecording}
                 >
                   <span>⏹️</span>
                   <span>توقف ضبط ({formatTime(activeDuration)})</span>
-                </button>
+                </Button>
               )}
 
               <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
@@ -754,7 +772,7 @@ export default function IELTSSpeakingRoomPage() {
             <div className={styles.modalBody}>
               برای اجرای شبیه‌ساز رسمی مکالمه آیلتس، مرورگر شما نیازمند دسترسی به میکروفون است.
               <div className={styles.privacyAlert} style={{ marginBlock: "var(--space-3)" }}>
-                <strong>سیاست حفظ حریم خصوصی بیومتریک اندورا (قانون شماره ۸ مرامنامه):</strong>
+                <strong>سیاست حفظ حریم خصوصی بیومتریک ایندورا (قانون شماره ۸ مرامنامه):</strong>
                 <p style={{ margin: 0, marginBlockStart: "var(--space-1)" }}>
                   فایل‌های صوتی ضبط‌شده صرفاً جهت استخراج سرعت سخن‌گویی (WPM)، مکث‌ها و ارزیابی تشخیصی روانی کلام بر پایه معیارهای رسمی آیلتس استفاده می‌شوند. هیچ‌گونه نمره‌سازی ساختگی در سطح واج یا لهجه‌سنجی غیرمعتبر انجام نخواهد شد.
                 </p>
@@ -762,20 +780,22 @@ export default function IELTSSpeakingRoomPage() {
               همچنین می‌توانید در هر زمان متن پیاده‌شده را اصلاح کرده یا در صورت تمایل از حالت تایپ متنی پشتیبان استفاده کنید.
             </div>
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
                 className={styles.cancelBtn}
                 onClick={handleDeclineConsent}
               >
                 ادامه در حالت متنی (بدون میکروفون)
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="primary"
                 className={styles.confirmBtn}
                 onClick={handleGrantConsent}
               >
                 فعال‌سازی میکروفون و شروع آزمون 🎙️
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -798,20 +818,22 @@ export default function IELTSSpeakingRoomPage() {
               پس از ثبت نهایی، موتور ارزیابی چندمعیاره هوش مصنوعی پاسخ‌های شما را بر پایه ۴ معیار رسمی آیلتس (FC, LR, GRA, PR) تحلیل خواهد کرد.
             </div>
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
                 className={styles.cancelBtn}
                 onClick={() => setShowSubmitModal(false)}
               >
                 بازگشت و ادامه تمرین
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="primary"
                 className={styles.confirmBtn}
                 onClick={handleFinalSubmit}
               >
                 تأیید و دریافت کارنامه تشخیصی ➔
-              </button>
+              </Button>
             </div>
           </div>
         </div>

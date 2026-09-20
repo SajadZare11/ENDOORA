@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button, Input, Table } from "@endoora/ui";
 import React, { useEffect, useState } from "react";
 import styles from "./finance.module.css";
 import {
@@ -220,7 +221,7 @@ export default function AdminFinancePage() {
       <main className={styles.container}>
         <div className={styles.loadingState}>
           <div className={styles.spinner} />
-          <p>در حال بارگذاری درگاه خزانه‌داری و عملیات مالی اندورا...</p>
+          <p>در حال بارگذاری درگاه خزانه‌داری و عملیات مالی ایندورا...</p>
         </div>
       </main>
     );
@@ -246,47 +247,31 @@ export default function AdminFinancePage() {
       {successMsg && (
         <div className={styles.alertSuccess}>
           <span>{successMsg}</span>
-          <button type="button" onClick={() => setSuccessMsg(null)}>✕</button>
+          <Button type="button" variant="tertiary" size="sm" onClick={() => setSuccessMsg(null)}>✕</Button>
         </div>
       )}
 
       {error && (
         <div className={styles.alertError}>
           <span>{error}</span>
-          <button type="button" onClick={() => setError(null)}>✕</button>
+          <Button type="button" variant="tertiary" size="sm" onClick={() => setError(null)}>✕</Button>
         </div>
       )}
 
       {/* Tabs */}
       <div className={styles.tabNav}>
-        <button
-          type="button"
-          className={`${styles.tabBtn} ${activeTab === "reconciliation" ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTab("reconciliation")}
-        >
+        <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "reconciliation" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("reconciliation")}>
           ترازنامه و تطبیق مالی
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTab("payouts")}
-        >
+        </Button>
+        <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("payouts")}>
           صف تسویه حساب و کنترل دو مرحله‌ای
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabBtn} ${activeTab === "commission" ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTab("commission")}
-        >
+        </Button>
+        <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "commission" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("commission")}>
           تعرفه‌های کارمزد محصولات
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabBtn} ${activeTab === "refunds" ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTab("refunds")}
-        >
+        </Button>
+        <Button type="button" variant="secondary" className={`${styles.tabBtn} ${activeTab === "refunds" ? styles.tabBtnActive : ""}`} onClick={() => setActiveTab("refunds")}>
           تسهیم خسارت و استردادها
-        </button>
+        </Button>
       </div>
 
       {/* TAB 1: Reconciliation & Balance Sheet */}
@@ -318,7 +303,7 @@ export default function AdminFinancePage() {
                 {reconciliation.ledger_metrics.total_platform_commission_toman.toLocaleString("fa-IR")}
                 <span className={styles.unit}>تومان</span>
               </p>
-              <span className={styles.metricHint}>سهم خالص اندورا از جلسات برگزارشده</span>
+              <span className={styles.metricHint}>سهم خالص ایندورا از جلسات برگزارشده</span>
             </div>
 
             <div className={styles.metricCard}>
@@ -400,7 +385,7 @@ export default function AdminFinancePage() {
           </div>
 
           <div className={styles.tableResponsive}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th>مدرس متقاضی</th>
@@ -421,7 +406,7 @@ export default function AdminFinancePage() {
                   payouts.map((p) => (
                     <tr key={p.id}>
                       <td>
-                        <strong>{p.teacher_name || "مدرس اندورا"}</strong>
+                        <strong>{p.teacher_name || "مدرس ایندورا"}</strong>
                         <div className={styles.subText}>{p.account_holder_name} ({p.bank_name || "بانک عامل"})</div>
                       </td>
                       <td className={styles.numCell}>
@@ -445,54 +430,44 @@ export default function AdminFinancePage() {
                         <div className={styles.actionBtnGroup}>
                           {p.status === "pending" && (
                             <>
-                              <button
-                                type="button"
-                                className={styles.btnApprove}
+                              <Button type="button" variant="primary" size="sm" className={styles.btnApprove}
                                 onClick={() => openActionModal(p, "approve")}
                               >
                                 تایید مرحله ۱
-                              </button>
-                              <button
-                                type="button"
-                                className={styles.btnReject}
+                              </Button>
+                              <Button type="button" variant="destructive" size="sm" className={styles.btnReject}
                                 onClick={() => openActionModal(p, "reject")}
                               >
                                 رد درخواست
-                              </button>
+                              </Button>
                             </>
                           )}
                           {p.status === "approved" && (
                             <>
-                              <button
-                                type="button"
-                                className={styles.btnPay}
+                              <Button type="button" variant="primary" size="sm" className={styles.btnPay}
                                 onClick={() => openActionModal(p, "pay")}
                               >
                                 ثبت حواله پایا
-                              </button>
-                              <button
-                                type="button"
-                                className={styles.btnReject}
+                              </Button>
+                              <Button type="button" variant="destructive" size="sm" className={styles.btnReject}
                                 onClick={() => openActionModal(p, "reject")}
                               >
                                 انصراف و رد
-                              </button>
+                              </Button>
                             </>
                           )}
-                          <button
-                            type="button"
-                            className={styles.btnAudit}
+                          <Button type="button" variant="secondary" size="sm" className={styles.btnAudit}
                             onClick={() => setAuditPayout(p)}
                           >
                             زنجیره حسابرسی
-                          </button>
+                          </Button>
                         </div>
                       </td>
                     </tr>
                   ))
                 )}
               </tbody>
-            </table>
+            </Table>
           </div>
         </section>
       )}
@@ -502,22 +477,20 @@ export default function AdminFinancePage() {
         <section className={styles.sectionCard}>
           <div className={styles.sectionHeader}>
             <div>
-              <h2 className={styles.sectionTitle}>قوانین و تعرفه‌های پویای کارمزد اندورا</h2>
+              <h2 className={styles.sectionTitle}>قوانین و تعرفه‌های پویای کارمزد ایندورا</h2>
               <p className={styles.sectionSubtitle}>
                 تعیین نرخ کارمزد به تفکیک محصولات آموزشی، تاریخ شروع و اولویت اعمال در بازارگاه
               </p>
             </div>
-            <button
-              type="button"
-              className={styles.payoutButton}
+            <Button type="button" variant="primary" className={styles.payoutButton}
               onClick={openNewRuleModal}
             >
               افزودن تعرفه جدید
-            </button>
+            </Button>
           </div>
 
           <div className={styles.tableResponsive}>
-            <table className={styles.table}>
+            <Table className={styles.table}>
               <thead>
                 <tr>
                   <th>نام تعرفه</th>
@@ -552,18 +525,16 @@ export default function AdminFinancePage() {
                       </span>
                     </td>
                     <td>
-                      <button
-                        type="button"
-                        className={styles.btnEdit}
+                      <Button type="button" variant="secondary" size="sm" className={styles.btnEdit}
                         onClick={() => openEditRuleModal(r)}
                       >
                         ویرایش
-                      </button>
+                      </Button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           </div>
         </section>
       )}
@@ -581,7 +552,7 @@ export default function AdminFinancePage() {
               <h3 className={styles.policyTitle}>استرداد ۱۰۰٪ (لغو موجه یا غیبت مدرس)</h3>
               <ul className={styles.policyList}>
                 <li>۱۰۰٪ کل بهای جلسه فوراً به کیف پول زبان‌آموز بازگردانده می‌شود.</li>
-                <li>کارمزد پلتفرم اندورا کسر نشده و کل درآمد بازگشت داده می‌شود (`COMMISSION_REVERSAL`).</li>
+                <li>کارمزد پلتفرم ایندورا کسر نشده و کل درآمد بازگشت داده می‌شود (`COMMISSION_REVERSAL`).</li>
                 <li>سند برگشت درآمد به مبلغ خالص سهم مدرس در دفتر کل مطالبات ثبت می‌شود (`REFUND_REVERSAL`).</li>
                 <li>مانده در دسترس مدرس هرگز منفی نخواهد شد و کسری از درآمدهای بعدی تسویه می‌شود.</li>
               </ul>
@@ -610,13 +581,11 @@ export default function AdminFinancePage() {
                 {actionType === "pay" && "ثبت حواله بانکی پایا و تسویه نهایی"}
                 {actionType === "reject" && "رد درخواست تسویه حساب مدرس"}
               </h3>
-              <button
-                type="button"
-                className={styles.modalClose}
+              <Button type="button" variant="tertiary" size="sm" className={styles.modalClose}
                 onClick={() => setShowActionModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleActionSubmit} className={styles.modalForm}>
@@ -635,24 +604,11 @@ export default function AdminFinancePage() {
                 <>
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>شماره پیگیری حواله پایا / ساتنا (الزامی)</label>
-                    <input
-                      type="text"
-                      value={bankRefInput}
-                      onChange={(e) => setBankRefInput(e.target.value)}
-                      placeholder="مثال: PAYA-1403-98765432"
-                      className={`${styles.formInput} ${styles.monoInput}`}
-                      required
-                    />
+                    <Input type="text" value={bankRefInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBankRefInput(e.target.value)} placeholder="مثال: PAYA-1403-98765432" className={`${styles.formInput} ${styles.monoInput}`} required />
                   </div>
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>تاریخ اجرای حواله بانکی</label>
-                    <input
-                      type="date"
-                      value={transferDateInput}
-                      onChange={(e) => setTransferDateInput(e.target.value)}
-                      className={styles.formInput}
-                      required
-                    />
+                    <Input type="date" value={transferDateInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTransferDateInput(e.target.value)} className={styles.formInput} required />
                   </div>
                 </>
               )}
@@ -673,30 +629,20 @@ export default function AdminFinancePage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>یادداشت کنترل داخلی (اختیاری)</label>
-                <input
-                  type="text"
-                  value={notesInput}
-                  onChange={(e) => setNotesInput(e.target.value)}
-                  placeholder="ملاحظات مالی..."
-                  className={styles.formInput}
-                />
+                <Input type="text" value={notesInput} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNotesInput(e.target.value)} placeholder="ملاحظات مالی..." className={styles.formInput} />
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  className={styles.buttonCancel}
+                <Button type="button" variant="secondary" className={styles.buttonCancel}
                   onClick={() => setShowActionModal(false)}
                 >
                   انصراف
-                </button>
-                <button
-                  type="submit"
-                  className={actionType === "reject" ? styles.buttonRejectSubmit : styles.buttonSubmit}
+                </Button>
+                <Button type="submit" variant={actionType === "reject" ? "destructive" : "primary"} className={actionType === "reject" ? styles.buttonRejectSubmit : styles.buttonSubmit}
                   disabled={submittingAction}
                 >
                   {submittingAction ? "در حال ثبت سند..." : "تایید و اعمال اقدام مالی"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -709,13 +655,11 @@ export default function AdminFinancePage() {
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>زنجیره حسابرسی و کنترل داخلی تسویه</h3>
-              <button
-                type="button"
-                className={styles.modalClose}
+              <Button type="button" variant="tertiary" size="sm" className={styles.modalClose}
                 onClick={() => setAuditPayout(null)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <div className={styles.auditList}>
@@ -750,13 +694,11 @@ export default function AdminFinancePage() {
               <h3 className={styles.modalTitle}>
                 {editingRule ? "ویرایش تعرفه کارمزد" : "تعریف تعرفه کارمزد جدید"}
               </h3>
-              <button
-                type="button"
-                className={styles.modalClose}
+              <Button type="button" variant="tertiary" size="sm" className={styles.modalClose}
                 onClick={() => setShowRuleModal(false)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleRuleSubmit} className={styles.modalForm}>
@@ -766,14 +708,7 @@ export default function AdminFinancePage() {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>عنوان تعرفه</label>
-                <input
-                  type="text"
-                  value={ruleName}
-                  onChange={(e) => setRuleName(e.target.value)}
-                  placeholder="مثال: کارمزد جلسات ماک آیلتس"
-                  className={styles.formInput}
-                  required
-                />
+                <Input type="text" value={ruleName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRuleName(e.target.value)} placeholder="مثال: کارمزد جلسات ماک آیلتس" className={styles.formInput} required />
               </div>
 
               <div className={styles.formRow}>
@@ -795,43 +730,19 @@ export default function AdminFinancePage() {
 
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>درصد کارمزد پلتفرم (٪)</label>
-                  <input
-                    type="number"
-                    min={0}
-                    max={100}
-                    step={0.5}
-                    value={ruleRate}
-                    onChange={(e) => setRuleRate(Number(e.target.value))}
-                    className={styles.formInput}
-                    required
-                  />
+                  <Input type="number" min={0} max={100} step={0.5} value={ruleRate} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRuleRate(Number(e.target.value))} className={styles.formInput} required />
                 </div>
               </div>
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>کارمزد ثابت (تومان)</label>
-                  <input
-                    type="number"
-                    min={0}
-                    step={1000}
-                    value={ruleFixedFee}
-                    onChange={(e) => setRuleFixedFee(Number(e.target.value))}
-                    className={styles.formInput}
-                  />
+                  <Input type="number" min={0} step={1000} value={ruleFixedFee} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRuleFixedFee(Number(e.target.value))} className={styles.formInput} />
                 </div>
 
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>اولویت اعمال (عدد بزرگتر)</label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={100}
-                    value={rulePriority}
-                    onChange={(e) => setRulePriority(Number(e.target.value))}
-                    className={styles.formInput}
-                    required
-                  />
+                  <Input type="number" min={1} max={100} value={rulePriority} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRulePriority(Number(e.target.value))} className={styles.formInput} required />
                 </div>
               </div>
 
@@ -847,20 +758,16 @@ export default function AdminFinancePage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  className={styles.buttonCancel}
+                <Button type="button" variant="secondary" className={styles.buttonCancel}
                   onClick={() => setShowRuleModal(false)}
                 >
                   انصراف
-                </button>
-                <button
-                  type="submit"
-                  className={styles.buttonSubmit}
+                </Button>
+                <Button type="submit" variant="primary" className={styles.buttonSubmit}
                   disabled={submittingRule}
                 >
                   {submittingRule ? "در حال ذخیره..." : "ذخیره تعرفه کارمزد"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

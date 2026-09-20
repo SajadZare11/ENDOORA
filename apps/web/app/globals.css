@@ -16,9 +16,26 @@ body {
   min-height: 100vh;
   background: var(--color-canvas);
   color: var(--color-text);
-  font-family: var(--font-family-persian);
+  font-family: var(--font-family-body, var(--font-family-persian));
   font-size: var(--font-size-body);
   line-height: var(--line-height-body-persian);
+}
+
+:root[dir="ltr"],
+html[lang="en"],
+[data-locale="en"] {
+  --font-family-body: var(--font-family-latin);
+}
+
+:root[dir="rtl"],
+html[lang="fa"],
+[data-locale="fa"] {
+  --font-family-body: var(--font-family-persian);
+}
+
+html[lang="en"] body,
+:root[dir="ltr"] body {
+  line-height: var(--line-height-body-latin);
 }
 
 a {
@@ -38,6 +55,23 @@ input,
 select,
 textarea {
   min-block-size: var(--target-min);
+}
+
+button,
+a.btn,
+nav a {
+  font-family: var(--font-family-body, inherit);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-control);
+}
+
+.isolate-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  font-family: var(--font-family-latin);
+  text-align: start;
 }
 
 main.local-home {

@@ -122,7 +122,7 @@ class CommunityTests(TestCase):
         # Invalid file format (e.g. .exe)
         post.lesson_plan_metadata = {
             'license_type': LicenseType.CC_BY_SA,
-            'copyright_attribution': 'استاد کیانی و گروه آموزشی اندورا',
+            'copyright_attribution': 'استاد کیانی و گروه آموزشی ایندورا',
             'file_format': 'exe',
         }
         with self.assertRaises(ValidationError) as ctx:
@@ -132,7 +132,7 @@ class CommunityTests(TestCase):
         # Valid format (.pdf)
         post.lesson_plan_metadata = {
             'license_type': LicenseType.CC_BY_SA,
-            'copyright_attribution': 'استاد کیانی و گروه آموزشی اندورا',
+            'copyright_attribution': 'استاد کیانی و گروه آموزشی ایندورا',
             'file_format': 'pdf',
             'file_url': 'https://storage.endoora.com/plans/conditionals.pdf',
         }
@@ -230,7 +230,7 @@ class CommunityTests(TestCase):
             author=self.teacher,
             author_name='استاد کیانی',
             title_fa='بهترین روش مرور لغت',
-            content_fa='روش جعبه لایتنر دیجیتال اندورا...',
+            content_fa='روش جعبه لایتنر دیجیتال ایندورا...',
             status=PostStatus.PUBLISHED
         )
 

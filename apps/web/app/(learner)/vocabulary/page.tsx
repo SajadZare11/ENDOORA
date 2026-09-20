@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Button, Input } from "@endoora/ui";
 import styles from "./vocabulary.module.css";
 
 interface VocabCandidate {
@@ -373,34 +374,14 @@ export default function VocabularyHubPage() {
 
       {/* Tab Bar */}
       <nav className={styles.tabNav} aria-label="Vocabulary sections">
-        <button
-          type="button"
-          className={`${styles.tabButton} ${activeTab === "inbox" ? styles.tabButtonActive : ""}`}
-          onClick={() => setActiveTab("inbox")}
-        >
-          {isFa ? `صندوق ورودی (${candidates.length})` : `Candidate Inbox (${candidates.length})`}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabButton} ${activeTab === "deck" ? styles.tabButtonActive : ""}`}
-          onClick={() => setActiveTab("deck")}
-        >
-          {isFa ? `بانک واژگان فعال (${cards.length})` : `Active Deck (${cards.length})`}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabButton} ${activeTab === "extract" ? styles.tabButtonActive : ""}`}
-          onClick={() => setActiveTab("extract")}
-        >
-          {isFa ? "استخراج و ثبت واژه" : "Extract & Add"}
-        </button>
-        <button
-          type="button"
-          className={`${styles.tabButton} ${activeTab === "leeches" ? styles.tabButtonActive : ""}`}
-          onClick={() => setActiveTab("leeches")}
-        >
-          {isFa ? `بازیابی پرخطاها (${leechCount})` : `Leech Recovery (${leechCount})`}
-        </button>
+        <Button type="button" size="sm" variant={activeTab === "inbox" ? "primary" : "secondary"} onClick={() => setActiveTab("inbox")}>{isFa ? `صندوق ورودی (${candidates.length})` : `Candidate Inbox (${candidates.length})`}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "deck" ? "primary" : "secondary"} onClick={() => setActiveTab("deck")}>{isFa ? `بانک واژگان فعال (${cards.length})` : `Active Deck (${cards.length})`}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "extract" ? "primary" : "secondary"} onClick={() => setActiveTab("extract")}>{isFa ? "استخراج و ثبت واژه" : "Extract & Add"}
+       </Button>
+        <Button type="button" size="sm" variant={activeTab === "leeches" ? "primary" : "secondary"} onClick={() => setActiveTab("leeches")}>{isFa ? `بازیابی پرخطاها (${leechCount})` : `Leech Recovery (${leechCount})`}
+       </Button>
       </nav>
 
       {/* TAB 1: Candidate Inbox */}
@@ -412,7 +393,7 @@ export default function VocabularyHubPage() {
             </h2>
             <p style={{ color: "var(--color-muted)", fontSize: "var(--font-size-meta)", marginBlockStart: "var(--space-1)" }}>
               {isFa
-                ? "برخلاف سیستم‌های سنتی، اندورا هر واژه‌ای را خودکار ذخیره نمی‌کند. واژگانی که مایلید به خاطر بسپارید را تأیید کنید."
+                ? "برخلاف سیستم‌های سنتی، ایندورا هر واژه‌ای را خودکار ذخیره نمی‌کند. واژگانی که مایلید به خاطر بسپارید را تأیید کنید."
                 : "Endoora requires learner approval to prevent deck bloat. Save only words you want to actively internalize."}
             </p>
           </div>
@@ -440,15 +421,15 @@ export default function VocabularyHubPage() {
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBlock: "var(--space-2)" }}>
                       <h3 className={styles.wordTerm}>{cand.term}</h3>
-                      <button
+                      <Button
                         type="button"
+                        size="sm"
+                        variant="secondary"
                         onClick={() => handlePlayAudio(cand.term)}
-                        className={styles.buttonSecondary}
-                        style={{ padding: "2px 8px", minBlockSize: "1.8rem" }}
                         aria-label="Play audio"
                       >
                         🔊
-                      </button>
+                      </Button>
                     </div>
                     <p className={styles.meaningFa}>{cand.meaningFa}</p>
 
@@ -459,22 +440,23 @@ export default function VocabularyHubPage() {
                   </div>
 
                   <div style={{ display: "flex", gap: "var(--space-2)", marginBlockStart: "var(--space-3)" }}>
-                    <button
+                    <Button
                       type="button"
-                      className={styles.buttonPrimary}
-                      style={{ flex: 1, padding: "var(--space-2)" }}
+                      size="sm"
+                      variant="primary"
+                      style={{ flex: 1 }}
                       onClick={() => handleApprove(cand.id)}
                     >
                       {isFa ? "تأیید و افزودن به مرور" : "Approve Card"}
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="button"
-                      className={styles.buttonSecondary}
-                      style={{ padding: "var(--space-2)" }}
+                      size="sm"
+                      variant="secondary"
                       onClick={() => handleIgnore(cand.id)}
                     >
                       {isFa ? "صرف‌نظر" : "Ignore"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -488,37 +470,26 @@ export default function VocabularyHubPage() {
         <section>
           {/* Filter Bar */}
           <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", marginBlockEnd: "var(--space-4)", alignItems: "center" }}>
-            <input
-              type="text"
-              className={styles.input}
-              style={{ maxInlineSize: "20rem", margin: 0 }}
-              placeholder={isFa ? "جستجو در واژگان یا معنی فارسی..." : "Search term or meaning..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <Input type="text" style={{ maxInlineSize: "20rem" }} placeholder={isFa ? "جستجو در واژگان یا معنی فارسی..." : "Search term or meaning..."} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             <div style={{ display: "flex", gap: "var(--space-1)", flexWrap: "wrap" }}>
               {(["all", "learning", "review", "mastered", "leeches"] as const).map((filter) => (
-                <button
+                <Button
                   key={filter}
                   type="button"
+                  size="sm"
+                  variant={deckFilter === filter ? "primary" : "secondary"}
                   onClick={() => setDeckFilter(filter)}
-                  style={{
-                    padding: "var(--space-1) var(--space-3)",
-                    borderRadius: "var(--radius-pill)",
-                    border: "1px solid var(--color-border)",
-                    background: deckFilter === filter ? "var(--color-action)" : "var(--color-surface)",
-                    color: deckFilter === filter ? "var(--color-button-primary-text)" : "var(--color-text)",
-                    fontWeight: 600,
-                    fontSize: "var(--font-size-meta)",
-                    cursor: "pointer",
-                  }}
                 >
-                  {filter === "all" && (isFa ? "همه" : "All")}
-                  {filter === "learning" && (isFa ? "در حال یادگیری" : "Learning")}
-                  {filter === "review" && (isFa ? "در چرخه مرور" : "Review")}
-                  {filter === "mastered" && (isFa ? "تثبیت‌شده" : "Mastered")}
-                  {filter === "leeches" && (isFa ? "پرخطاها (Leech)" : "Leeches")}
-                </button>
+                  {filter === "all"
+                    ? isFa ? "همه کارت‌ها" : "All"
+                    : filter === "learning"
+                    ? isFa ? "در حال یادگیری" : "Learning"
+                    : filter === "review"
+                    ? isFa ? "موعد مرور" : "Due for Review"
+                    : filter === "mastered"
+                    ? isFa ? "تثبیت‌شده" : "Mastered"
+                    : isFa ? "پرخطا (Leeches)" : "Leeches"}
+                </Button>
               ))}
             </div>
           </div>
@@ -557,42 +528,29 @@ export default function VocabularyHubPage() {
 
                     <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBlock: "var(--space-2)" }}>
                       <h3 className={styles.wordTerm}>{card.term}</h3>
-                      <button
+                      <Button
                         type="button"
+                        size="sm"
+                        variant="secondary"
                         onClick={() => handlePlayAudio(card.term)}
-                        className={styles.buttonSecondary}
-                        style={{ padding: "2px 8px", minBlockSize: "1.8rem" }}
                         aria-label="Play audio"
                       >
                         🔊
-                      </button>
+                      </Button>
                     </div>
 
                     {editingCardId === card.id ? (
                       <div style={{ marginBlock: "var(--space-2)" }}>
-                        <input
+                        <Input
                           type="text"
-                          className={styles.input}
                           value={editMeaningText}
                           onChange={(e) => setEditMeaningText(e.target.value)}
                         />
                         <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                          <button
-                            type="button"
-                            className={styles.buttonPrimary}
-                            style={{ padding: "var(--space-1) var(--space-2)", fontSize: "var(--font-size-meta)" }}
-                            onClick={() => handleSaveEdit(card.id)}
-                          >
-                            {isFa ? "ذخیره" : "Save"}
-                          </button>
-                          <button
-                            type="button"
-                            className={styles.buttonSecondary}
-                            style={{ padding: "var(--space-1) var(--space-2)", fontSize: "var(--font-size-meta)" }}
-                            onClick={() => setEditingCardId(null)}
-                          >
-                            {isFa ? "انصراف" : "Cancel"}
-                          </button>
+                          <Button type="button" size="sm" variant="primary" onClick={() => handleSaveEdit(card.id)}>{isFa ? "ذخیره" : "Save"}
+                         </Button>
+                          <Button type="button" size="sm" variant="secondary" onClick={() => setEditingCardId(null)}>{isFa ? "انصراف" : "Cancel"}
+                         </Button>
                         </div>
                       </div>
                     ) : (
@@ -613,21 +571,16 @@ export default function VocabularyHubPage() {
                   </div>
 
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--color-border)", paddingTop: "var(--space-3)", marginBlockStart: "var(--space-2)" }}>
-                    <button
+                    <Button type="button" size="sm" variant="secondary" onClick={() => handleStartEdit(card)}>{isFa ? "ویرایش معنی" : "Edit Meaning"}
+                   </Button>
+                    <Button
                       type="button"
-                      className={styles.buttonSecondary}
-                      style={{ padding: "var(--space-1) var(--space-2)", fontSize: "var(--font-size-meta)" }}
-                      onClick={() => handleStartEdit(card)}
-                    >
-                      {isFa ? "ویرایش معنی" : "Edit Meaning"}
-                    </button>
-                    <button
-                      type="button"
-                      className={styles.buttonDanger}
+                      size="sm"
+                      variant="destructive"
                       onClick={() => handleDeleteCard(card.id)}
                     >
                       {isFa ? "حذف" : "Delete"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -662,10 +615,10 @@ export default function VocabularyHubPage() {
             />
 
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <button type="submit" className={styles.buttonPrimary}>
+              <Button type="submit" variant="primary">
                 <span aria-hidden="true">⚡</span>
                 {isFa ? "استخراج واژگان کاندید" : "Extract Candidate Words"}
-              </button>
+              </Button>
             </div>
           </form>
         </section>
@@ -713,15 +666,15 @@ export default function VocabularyHubPage() {
 
                       <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBlock: "var(--space-2)" }}>
                         <h3 className={styles.wordTerm}>{card.term}</h3>
-                        <button
+                        <Button
                           type="button"
+                          size="sm"
+                          variant="secondary"
                           onClick={() => handlePlayAudio(card.term)}
-                          className={styles.buttonSecondary}
-                          style={{ padding: "2px 8px", minBlockSize: "1.8rem" }}
                           aria-label="Play audio"
                         >
                           🔊
-                        </button>
+                        </Button>
                       </div>
 
                       <p className={styles.meaningFa}>{card.meaningFa}</p>
@@ -744,13 +697,14 @@ export default function VocabularyHubPage() {
                       >
                         {isFa ? "تمرین در رایتینگ" : "Practice in Writing"}
                       </Link>
-                      <button
+                      <Button
                         type="button"
-                        className={styles.buttonDanger}
+                        size="sm"
+                        variant="destructive"
                         onClick={() => handleDeleteCard(card.id)}
                       >
                         {isFa ? "حذف کارت" : "Remove"}
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ))}
@@ -762,7 +716,7 @@ export default function VocabularyHubPage() {
       {/* Educational Notice - Product Constitution Rule #8 */}
       <footer className={styles.disclaimer}>
         {isFa
-          ? "سامانه تکرار فاصله‌دار اندورا (SRS) بر مبنای الگوریتم SM-2 بهینه‌سازی شده برای یادگیرندگان ایرانی طراحی شده است. فواصل مرور به صورت کاملاً شفاف و بدون وعده‌های اغراق‌آمیز حافظه فوتوگرافیک محاسبه می‌گردد."
+          ? "سامانه تکرار فاصله‌دار ایندورا (SRS) بر مبنای الگوریتم SM-2 بهینه‌سازی شده برای یادگیرندگان ایرانی طراحی شده است. فواصل مرور به صورت کاملاً شفاف و بدون وعده‌های اغراق‌آمیز حافظه فوتوگرافیک محاسبه می‌گردد."
           : "Endoora's Spaced Repetition System operates on empirical cognitive intervals. Next review dates are transparently displayed without false photographic memory guarantees."}
       </footer>
     </div>

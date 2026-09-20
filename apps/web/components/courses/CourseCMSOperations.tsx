@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import styles from "./courses-cms.module.css";
@@ -509,29 +511,29 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
           <div className={styles.headerActions}>
             <div className={styles.localeToggle}>
-              <button
+              <Button
                 type="button"
                 className={`${styles.localeBtn} ${isFa ? styles.localeBtnActive : ""}`}
                 onClick={() => setLocale("fa")}
               >
                 فارسی
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 className={`${styles.localeBtn} ${!isFa ? styles.localeBtnActive : ""}`}
                 onClick={() => setLocale("en")}
               >
                 English
-              </button>
+              </Button>
             </div>
 
-            <button type="button" className={styles.secondaryActionBtn} onClick={handleExportJson}>
+            <Button type="button" className={styles.secondaryActionBtn} onClick={handleExportJson}>
               📥 {isFa ? "خروجی JSON" : "Export JSON"}
-            </button>
+            </Button>
 
-            <button type="button" className={styles.primaryActionBtn} onClick={openCreateCourseModal}>
+            <Button type="button" className={styles.primaryActionBtn} onClick={openCreateCourseModal}>
               ➕ {isFa ? "ایجاد دوره جدید" : "Create New Course"}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -577,7 +579,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
       {/* Filters Bar */}
       <section className={styles.filterBar} aria-label={isFa ? "فیلترها و جستجو" : "Filters and Search"}>
         <div className={styles.searchRow}>
-          <input
+          <Input
             type="search"
             className={styles.searchInput}
             placeholder={isFa ? "جست‌وجوی عنوان دوره، شناسه، نویسنده یا منبع..." : "Search title, slug, author, attribution..."}
@@ -637,7 +639,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             aria-label={isFa ? "نوع مجوز" : "License Type"}
           >
             <option value="all">{isFa ? "همه مجوزها" : "All Licenses"}</option>
-            <option value="original_editorial">{isFa ? "تألیفی اختصاصی اندورا" : "Original Editorial"}</option>
+            <option value="original_editorial">{isFa ? "تألیفی اختصاصی ایندورا" : "Original Editorial"}</option>
             <option value="cc_by_sa">{isFa ? "کریتیو کامنز (CC-BY-SA)" : "CC BY-SA"}</option>
             <option value="public_domain">{isFa ? "مالکیت عمومی (Public Domain)" : "Public Domain"}</option>
             <option value="educational_fair_use">{isFa ? "استفاده منصفانه آموزشی" : "Educational Fair Use"}</option>
@@ -652,14 +654,14 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             { key: "published", labelFa: "منتشر شده", labelEn: "Published" },
             { key: "archived", labelFa: "بایگانی شده", labelEn: "Archived" },
           ].map((item) => (
-            <button
+            <Button
               key={item.key}
               type="button"
               className={`${styles.statusPill} ${selectedStatus === item.key ? styles.statusPillActive : ""}`}
               onClick={() => setSelectedStatus(item.key)}
             >
               {isFa ? item.labelFa : item.labelEn}
-            </button>
+            </Button>
           ))}
         </div>
       </section>
@@ -673,9 +675,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
         <div className={styles.emptyState}>
           <div className={styles.emptyTitle}>{isFa ? "خطا در بارگذاری داده‌ها" : "Failed to load data"}</div>
           <p className={styles.emptyText}>{error}</p>
-          <button type="button" className={styles.secondaryActionBtn} onClick={() => setRefreshKey((k) => k + 1)}>
+          <Button type="button" className={styles.secondaryActionBtn} onClick={() => setRefreshKey((k) => k + 1)}>
             {isFa ? "تلاش مجدد" : "Retry"}
-          </button>
+          </Button>
         </div>
       ) : courses.length === 0 ? (
         <div className={styles.emptyState}>
@@ -685,9 +687,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               ? "فیلترهای انتخابی را تغییر داده یا دوره جدیدی ایجاد نمایید."
               : "Adjust your filter criteria or create a new course."}
           </p>
-          <button type="button" className={styles.primaryActionBtn} onClick={openCreateCourseModal}>
+          <Button type="button" className={styles.primaryActionBtn} onClick={openCreateCourseModal}>
             ➕ {isFa ? "ایجاد اولین دوره" : "Create First Course"}
-          </button>
+          </Button>
         </div>
       ) : (
         <div className={styles.coursesList}>
@@ -781,18 +783,18 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                 {/* Action Bar */}
                 <div className={styles.cardActions}>
                   <div className={styles.leftButtonGroup}>
-                    <button
+                    <Button
                       type="button"
                       className={styles.iconBtn}
                       onClick={() => setExpandedCourseId(isExpanded ? null : course.id)}
                     >
                       {isExpanded ? "▲ " : "▼ "}
                       {isFa ? "سرفصل‌ها و جلسات آموزشی" : "Curriculum Units & Lessons"}
-                    </button>
+                    </Button>
 
-                    <button type="button" className={styles.iconBtn} onClick={() => openEditCourseModal(course)}>
+                    <Button type="button" className={styles.iconBtn} onClick={() => openEditCourseModal(course)}>
                       ✏️ {isFa ? "ویرایش مشخصات" : "Edit Metadata"}
-                    </button>
+                    </Button>
 
                     <Link
                       href={`/courses/${course.slug}`}
@@ -806,52 +808,52 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
                   <div className={styles.rightButtonGroup}>
                     {course.status === "draft" && (
-                      <button
+                      <Button
                         type="button"
                         className={styles.iconBtn}
                         onClick={() => openTransitionModal(course, "submit_review")}
                       >
                         📤 {isFa ? "ارسال به بازبینی" : "Submit for Review"}
-                      </button>
+                      </Button>
                     )}
 
                     {(course.status === "in_review" || course.status === "draft") && (
-                      <button
+                      <Button
                         type="button"
                         className={`${styles.iconBtn} ${styles.publishBtn}`}
                         onClick={() => openTransitionModal(course, "publish")}
                       >
                         ✓ {isFa ? "تأیید و انتشار رسمی" : "Publish Course"}
-                      </button>
+                      </Button>
                     )}
 
                     {course.status === "published" && (
-                      <button
+                      <Button
                         type="button"
                         className={styles.iconBtn}
                         onClick={() => openTransitionModal(course, "archive")}
                       >
                         📦 {isFa ? "بایگانی" : "Archive"}
-                      </button>
+                      </Button>
                     )}
 
                     {course.status === "archived" && (
-                      <button
+                      <Button
                         type="button"
                         className={styles.iconBtn}
                         onClick={() => openTransitionModal(course, "revert_draft")}
                       >
                         🔄 {isFa ? "بازگشت به پیش‌نویس" : "Revert to Draft"}
-                      </button>
+                      </Button>
                     )}
 
-                    <button
+                    <Button
                       type="button"
                       className={`${styles.iconBtn} ${styles.dangerBtn}`}
                       onClick={() => handleDeleteCourse(course)}
                     >
                       🗑️ {isFa ? "حذف" : "Delete"}
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -860,13 +862,13 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   <div className={styles.curriculumTree}>
                     <div className={styles.curriculumHeader}>
                       <span>{isFa ? "ساختار فصول و جلسات آموزشی این دوره" : "Curriculum Units Hierarchy"}</span>
-                      <button
+                      <Button
                         type="button"
                         className={styles.primaryActionBtn}
                         onClick={() => openAddModuleModal(course.id)}
                       >
                         ➕ {isFa ? "افزودن فصل جدید" : "Add Module"}
-                      </button>
+                      </Button>
                     </div>
 
                     {course.modules.length === 0 ? (
@@ -885,27 +887,27 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                             </div>
 
                             <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                              <button
+                              <Button
                                 type="button"
                                 className={styles.iconBtn}
                                 onClick={() => openAddLessonModal(mod.id)}
                               >
                                 ➕ {isFa ? "افزودن درس" : "Add Lesson"}
-                              </button>
-                              <button
+                              </Button>
+                              <Button
                                 type="button"
                                 className={styles.iconBtn}
                                 onClick={() => openEditModuleModal(course.id, mod)}
                               >
                                 ✏️
-                              </button>
-                              <button
+                              </Button>
+                              <Button
                                 type="button"
                                 className={`${styles.iconBtn} ${styles.dangerBtn}`}
                                 onClick={() => handleDeleteModule(course.id, mod.id)}
                               >
                                 🗑️
-                              </button>
+                              </Button>
                             </div>
                           </div>
 
@@ -930,28 +932,28 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                                   </div>
 
                                   <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                                    <button
+                                    <Button
                                       type="button"
                                       className={styles.iconBtn}
                                       onClick={() => setInspectingLesson(lesson)}
                                       title={isFa ? "بررسی سانسور پی‌وال سمت سرور" : "Inspect Server-Side Paywall Redaction"}
                                     >
                                       🛡️ {isFa ? "آزمایش سانسور پی‌وال" : "Inspect Redaction"}
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
                                       type="button"
                                       className={styles.iconBtn}
                                       onClick={() => openEditLessonModal(lesson)}
                                     >
                                       ✏️
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
                                       type="button"
                                       className={`${styles.iconBtn} ${styles.dangerBtn}`}
                                       onClick={() => handleDeleteLesson(lesson.id)}
                                     >
                                       🗑️
-                                    </button>
+                                    </Button>
                                   </div>
                                 </div>
                               ))}
@@ -983,7 +985,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
             <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
               <div className={styles.modeToggleGroup}>
-                <button
+                <Button
                   type="button"
                   className={`${styles.modeToggleBtn} ${
                     inspectMode === "learner_unsubscribed" ? styles.modeToggleBtnActive : ""
@@ -991,8 +993,8 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   onClick={() => setInspectMode("learner_unsubscribed")}
                 >
                   {isFa ? "کاربر بدون اشتراک (Unsubscribed)" : "Unsubscribed Learner"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   className={`${styles.modeToggleBtn} ${
                     inspectMode === "learner_subscribed" ? styles.modeToggleBtnActive : ""
@@ -1000,17 +1002,17 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   onClick={() => setInspectMode("learner_subscribed")}
                 >
                   {isFa ? "کاربر با اشتراک ویژه (Subscribed)" : "Subscribed Learner"}
-                </button>
+                </Button>
               </div>
 
-              <button
+              <Button
                 type="button"
                 className={styles.closeBtn}
                 onClick={() => setInspectingLesson(null)}
                 aria-label={isFa ? "بستن بازرس" : "Close inspector"}
               >
                 ✕
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -1064,9 +1066,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   ? "ایجاد دوره آموزشی جدید"
                   : "Create New Course"}
               </h2>
-              <button type="button" className={styles.closeBtn} onClick={() => setIsCourseModalOpen(false)}>
+              <Button type="button" className={styles.closeBtn} onClick={() => setIsCourseModalOpen(false)}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             {actionError && (
@@ -1078,7 +1080,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             <form onSubmit={handleSaveCourse} className={styles.formGrid}>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "عنوان فارسی دوره *" : "Persian Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1089,7 +1091,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "عنوان انگلیسی دوره *" : "English Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1100,7 +1102,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "شناسه یکتا (Slug) *" : "Unique Slug *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -1160,7 +1162,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "ساعت تخمینی آموزش *" : "Estimated Hours *"}</label>
-                <input
+                <Input
                   type="number"
                   min="1"
                   max="500"
@@ -1174,7 +1176,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "نوع دسترسی *" : "Access Model *"}</label>
                 <label className={styles.checkboxRow} style={{ marginBlockStart: "var(--space-2)" }}>
-                  <input
+                  <Input
                     type="checkbox"
                     checked={courseFormData.is_premium ?? true}
                     onChange={(e) => setCourseFormData({ ...courseFormData, is_premium: e.target.checked })}
@@ -1185,7 +1187,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "نام پدیدآورنده یا هیئت علمی *" : "Author / Academic Board *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1201,7 +1203,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   value={courseFormData.license_type || "original_editorial"}
                   onChange={(e) => setCourseFormData({ ...courseFormData, license_type: e.target.value as "original_editorial" | "cc_by_sa" | "public_domain" | "educational_fair_use" })}
                 >
-                  <option value="original_editorial">{isFa ? "تألیفی اختصاصی اندورا" : "Original Editorial"}</option>
+                  <option value="original_editorial">{isFa ? "تألیفی اختصاصی ایندورا" : "Original Editorial"}</option>
                   <option value="cc_by_sa">{isFa ? "کریتیو کامنز (CC-BY-SA)" : "CC BY-SA"}</option>
                   <option value="public_domain">{isFa ? "مالکیت عمومی (Public Domain)" : "Public Domain"}</option>
                   <option value="educational_fair_use">{isFa ? "استفاده منصفانه آموزشی" : "Educational Fair Use"}</option>
@@ -1210,7 +1212,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formFull}>
                 <label className={styles.formLabel}>{isFa ? "ذکر منبع و اطلاعات حق نشر *" : "Source Attribution & Rights Reference *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1238,20 +1240,20 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               </div>
 
               <div className={styles.modalFooter} style={{ gridColumn: "span 2" }}>
-                <button
+                <Button
                   type="button"
                   className={styles.secondaryActionBtn}
                   onClick={() => setIsCourseModalOpen(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   disabled={actionLoading}
                   className={styles.primaryActionBtn}
                 >
                   {actionLoading ? (isFa ? "در حال ذخیره..." : "Saving...") : isFa ? "ذخیره اطلاعات دوره" : "Save Course"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1266,9 +1268,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               <h2 className={styles.modalTitle}>
                 {editingModule ? (isFa ? "ویرایش فصل آموزشی" : "Edit Module") : isFa ? "افزودن فصل آموزشی جدید" : "Add New Module"}
               </h2>
-              <button type="button" className={styles.closeBtn} onClick={() => setIsModuleModalOpen(false)}>
+              <Button type="button" className={styles.closeBtn} onClick={() => setIsModuleModalOpen(false)}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             {actionError && (
@@ -1280,7 +1282,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             <form onSubmit={handleSaveModule} className={styles.formGrid}>
               <div className={styles.formFull}>
                 <label className={styles.formLabel}>{isFa ? "عنوان فارسی فصل *" : "Persian Module Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1291,7 +1293,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formFull}>
                 <label className={styles.formLabel}>{isFa ? "عنوان انگلیسی فصل *" : "English Module Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1302,7 +1304,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "ترتیب نمایش" : "Order Sequence"}</label>
-                <input
+                <Input
                   type="number"
                   min="1"
                   className={styles.formInput}
@@ -1321,20 +1323,20 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               </div>
 
               <div className={styles.modalFooter} style={{ gridColumn: "span 2" }}>
-                <button
+                <Button
                   type="button"
                   className={styles.secondaryActionBtn}
                   onClick={() => setIsModuleModalOpen(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   disabled={actionLoading}
                   className={styles.primaryActionBtn}
                 >
                   {actionLoading ? (isFa ? "در حال ذخیره..." : "Saving...") : isFa ? "ذخیره فصل" : "Save Module"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1349,9 +1351,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               <h2 className={styles.modalTitle}>
                 {editingLesson ? (isFa ? "ویرایش درس آموزشی" : "Edit Lesson") : isFa ? "افزودن درس آموزشی جدید" : "Add New Lesson"}
               </h2>
-              <button type="button" className={styles.closeBtn} onClick={() => setIsLessonModalOpen(false)}>
+              <Button type="button" className={styles.closeBtn} onClick={() => setIsLessonModalOpen(false)}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             {actionError && (
@@ -1363,7 +1365,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             <form onSubmit={handleSaveLesson} className={styles.formGrid}>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "عنوان فارسی درس *" : "Persian Lesson Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1374,7 +1376,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "عنوان انگلیسی درس *" : "English Lesson Title *"}</label>
-                <input
+                <Input
                   type="text"
                   required
                   className={styles.formInput}
@@ -1385,7 +1387,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "مدت زمان (دقیقه) *" : "Duration (minutes) *"}</label>
-                <input
+                <Input
                   type="number"
                   min="1"
                   max="300"
@@ -1399,7 +1401,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "دسترسی پیش‌نمایش" : "Preview Access"}</label>
                 <label className={styles.checkboxRow} style={{ marginBlockStart: "var(--space-2)" }}>
-                  <input
+                  <Input
                     type="checkbox"
                     checked={lessonFormData.is_free_preview ?? false}
                     onChange={(e) => setLessonFormData({ ...lessonFormData, is_free_preview: e.target.checked })}
@@ -1410,7 +1412,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "آدرس ویدئو (Video URL)" : "Video URL"}</label>
-                <input
+                <Input
                   type="url"
                   className={styles.formInput}
                   placeholder="https://media.endoora.ir/videos/lesson.mp4"
@@ -1421,7 +1423,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "آدرس صوت (Audio URL)" : "Audio URL"}</label>
-                <input
+                <Input
                   type="url"
                   className={styles.formInput}
                   placeholder="https://media.endoora.ir/audios/lesson.mp3"
@@ -1459,20 +1461,20 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
               </div>
 
               <div className={styles.modalFooter} style={{ gridColumn: "span 2" }}>
-                <button
+                <Button
                   type="button"
                   className={styles.secondaryActionBtn}
                   onClick={() => setIsLessonModalOpen(false)}
                 >
                   {isFa ? "انصراف" : "Cancel"}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   disabled={actionLoading}
                   className={styles.primaryActionBtn}
                 >
                   {actionLoading ? (isFa ? "در حال ذخیره..." : "Saving...") : isFa ? "ذخیره درس" : "Save Lesson"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1501,9 +1503,9 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
                   ? "بازگردانی به پیش‌نویس"
                   : "Revert to Draft"}
               </h2>
-              <button type="button" className={styles.closeBtn} onClick={() => setTransitionCourseItem(null)}>
+              <Button type="button" className={styles.closeBtn} onClick={() => setTransitionCourseItem(null)}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             {actionError && (
@@ -1525,7 +1527,7 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
 
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>{isFa ? "یادداشت تغییر وضعیت (اختیاری):" : "Transition Note (Optional):"}</label>
-                <input
+                <Input
                   type="text"
                   className={styles.formInput}
                   placeholder={isFa ? "علت یا توضیحات بازبینی..." : "Reason or review comments..."}
@@ -1536,21 +1538,21 @@ export function CourseCMSOperations({ initialLocale = "fa" }: Props) {
             </div>
 
             <div className={styles.modalFooter}>
-              <button
+              <Button
                 type="button"
                 className={styles.secondaryActionBtn}
                 onClick={() => setTransitionCourseItem(null)}
               >
                 {isFa ? "انصراف" : "Cancel"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 disabled={actionLoading}
                 className={`${styles.primaryActionBtn} ${transitionAction === "publish" ? styles.publishBtn : ""}`}
                 onClick={handleConfirmTransition}
               >
                 {actionLoading ? (isFa ? "در حال پردازش..." : "Processing...") : isFa ? "تأیید و اعمال" : "Confirm"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

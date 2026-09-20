@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "./pronunciation.module.css";
 
@@ -556,64 +557,46 @@ export default function PronunciationLabPage() {
 
       {/* Category Filter Pills */}
       <div className={styles.filterBar} role="tablist" aria-label={isFa ? "دسته‌بندی‌های آواشناسی" : "Phonetic Categories"}>
-        <button
+        <Button
           type="button"
-          role="tab"
-          aria-selected={selectedCategory === "all"}
-          className={`${styles.filterPill} ${selectedCategory === "all" ? styles.filterPillActive : ""}`}
+          size="sm"
+          variant={selectedCategory === "all" ? "primary" : "secondary"}
           onClick={() => setSelectedCategory("all")}
         >
-          {isFa ? "همه چالش‌ها" : "All Challenges"}
-          <span className={styles.filterCount}>{items.length}</span>
-        </button>
-        <button
+          {isFa ? "همه چالش‌ها" : "All Challenges"} ({items.length})
+        </Button>
+        <Button
           type="button"
-          role="tab"
-          aria-selected={selectedCategory === "minimal_pairs"}
-          className={`${styles.filterPill} ${selectedCategory === "minimal_pairs" ? styles.filterPillActive : ""}`}
+          size="sm"
+          variant={selectedCategory === "minimal_pairs" ? "primary" : "secondary"}
           onClick={() => setSelectedCategory("minimal_pairs")}
         >
-          {isFa ? "جفت‌های کمینه (/w/-/v/, /θ/-/t/)" : "Minimal Pairs"}
-          <span className={styles.filterCount}>
-            {items.filter((i) => i.category === "minimal_pairs").length}
-          </span>
-        </button>
-        <button
+          {isFa ? "جفت‌های کمینه (/w/-/v/, /θ/-/t/)" : "Minimal Pairs"} ({items.filter((i) => i.category === "minimal_pairs").length})
+        </Button>
+        <Button
           type="button"
-          role="tab"
-          aria-selected={selectedCategory === "stress_shifts"}
-          className={`${styles.filterPill} ${selectedCategory === "stress_shifts" ? styles.filterPillActive : ""}`}
+          size="sm"
+          variant={selectedCategory === "stress_shifts" ? "primary" : "secondary"}
           onClick={() => setSelectedCategory("stress_shifts")}
         >
-          {isFa ? "تغییر استرس سیلاب" : "Syllable Stress Shifts"}
-          <span className={styles.filterCount}>
-            {items.filter((i) => i.category === "stress_shifts").length}
-          </span>
-        </button>
-        <button
+          {isFa ? "تغییر استرس سیلاب" : "Syllable Stress Shifts"} ({items.filter((i) => i.category === "stress_shifts").length})
+        </Button>
+        <Button
           type="button"
-          role="tab"
-          aria-selected={selectedCategory === "consonant_clusters"}
-          className={`${styles.filterPill} ${selectedCategory === "consonant_clusters" ? styles.filterPillActive : ""}`}
+          size="sm"
+          variant={selectedCategory === "consonant_clusters" ? "primary" : "secondary"}
           onClick={() => setSelectedCategory("consonant_clusters")}
         >
-          {isFa ? "خوشه‌های همخوانی (/sp/, /st/)" : "Consonant Clusters"}
-          <span className={styles.filterCount}>
-            {items.filter((i) => i.category === "consonant_clusters").length}
-          </span>
-        </button>
-        <button
+          {isFa ? "خوشه‌های همخوانی (/sp/, /st/)" : "Consonant Clusters"} ({items.filter((i) => i.category === "consonant_clusters").length})
+        </Button>
+        <Button
           type="button"
-          role="tab"
-          aria-selected={selectedCategory === "connected_speech"}
-          className={`${styles.filterPill} ${selectedCategory === "connected_speech" ? styles.filterPillActive : ""}`}
+          size="sm"
+          variant={selectedCategory === "connected_speech" ? "primary" : "secondary"}
           onClick={() => setSelectedCategory("connected_speech")}
         >
-          {isFa ? "گفتار پیوسته و حذف آوایی" : "Connected Speech"}
-          <span className={styles.filterCount}>
-            {items.filter((i) => i.category === "connected_speech").length}
-          </span>
-        </button>
+          {isFa ? "گفتار پیوسته و حذف آوایی" : "Connected Speech"} ({items.filter((i) => i.category === "connected_speech").length})
+        </Button>
       </div>
 
       {/* Main 2-Column Layout: Catalog & Workbench */}
@@ -672,20 +655,22 @@ export default function PronunciationLabPage() {
 
                   <div className={styles.cardControls}>
                     <div className={styles.audioOptionsGroup}>
-                      <button
+                      <Button
                         type="button"
-                        className={styles.btnPlay}
+                        size="sm"
+                        variant="secondary"
                         onClick={() => handlePlayAudio(item.target_text)}
                         aria-label={`Listen to ${item.target_text}`}
                       >
                         <span aria-hidden="true">{isAudioPlaying ? "🔊" : "🔈"}</span>
                         {isAudioPlaying ? (isFa ? "پخش..." : "Playing...") : (isFa ? "شنیدن" : "Listen")}
-                      </button>
+                      </Button>
                     </div>
 
-                    <button
+                    <Button
                       type="button"
-                      className={styles.btnSelectPractice}
+                      size="sm"
+                      variant={isSelected ? "primary" : "secondary"}
                       onClick={() => {
                         setActiveItem(item);
                         setDiagnosticResult(null);
@@ -693,7 +678,7 @@ export default function PronunciationLabPage() {
                       }}
                     >
                       {isSelected ? (isFa ? "در حال تمرین" : "Selected") : (isFa ? "انتخاب برای تمرین" : "Practice This")}
-                    </button>
+                    </Button>
                   </div>
                 </article>
               );
@@ -730,22 +715,22 @@ export default function PronunciationLabPage() {
 
             {/* Audio Settings: Accent & Speed */}
             <div style={{ display: "flex", gap: "var(--space-2)", marginBlockEnd: "var(--space-4)", justifyContent: "center" }}>
-              <button
+              <Button
                 type="button"
-                className={styles.filterPill}
-                style={{ fontSize: "0.75rem", padding: "var(--space-1) var(--space-3)" }}
+                size="sm"
+                variant="secondary"
                 onClick={() => setAccent(accent === "en-US" ? "en-GB" : "en-US")}
               >
                 {accent === "en-US" ? "🇺🇸 English (US)" : "🇬🇧 English (UK)"}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className={styles.filterPill}
-                style={{ fontSize: "0.75rem", padding: "var(--space-1) var(--space-3)" }}
+                size="sm"
+                variant="secondary"
                 onClick={() => setPlaybackRate(playbackRate === 0.85 ? 1.0 : 0.85)}
               >
                 {playbackRate === 0.85 ? "🐢 0.85x (Study)" : "⚡ 1.0x (Normal)"}
-              </button>
+              </Button>
             </div>
 
             {/* 24-Bar Live Audio Waveform Visualizer */}
@@ -764,9 +749,9 @@ export default function PronunciationLabPage() {
 
             {/* Recording Controls */}
             <div className={styles.recorderControlRow}>
-              <button
+              <Button
                 type="button"
-                className={`${styles.recordButton} ${isRecording ? styles.recordButtonRecording : ""}`}
+                variant={isRecording ? "destructive" : "primary"}
                 onClick={handleToggleRecord}
                 disabled={isAnalyzing}
               >
@@ -778,7 +763,7 @@ export default function PronunciationLabPage() {
                   : isFa
                   ? "آغاز ضبط گفتار"
                   : "Start Recording"}
-              </button>
+              </Button>
             </div>
 
             {/* Realtime transcript editing / fallback */}
@@ -790,31 +775,23 @@ export default function PronunciationLabPage() {
                 {isFa ? "متن ضبط شده یا ویرایش دستی:" : "Spoken or Simulated Transcript:"}
               </label>
               <div style={{ display: "flex", gap: "var(--space-2)" }}>
-                <input
+                <Input
                   id="spokenTranscriptInput"
                   type="text"
                   dir="ltr"
                   value={transcriptInput}
-                  onChange={(e) => setTranscriptInput(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTranscriptInput(e.target.value)}
                   placeholder={activeItem.target_text.split(" vs ")[0]}
-                  style={{
-                    flex: 1,
-                    padding: "var(--space-2) var(--space-3)",
-                    borderRadius: "var(--radius-control)",
-                    border: "1px solid var(--color-border)",
-                    background: "var(--color-canvas)",
-                    color: "var(--color-text)",
-                  }}
                 />
-                <button
+                <Button
                   type="button"
-                  className={styles.btnSecondary}
-                  style={{ padding: "var(--space-2) var(--space-3)", minBlockSize: "unset" }}
+                  variant="secondary"
                   onClick={() => analyzeSpeech(transcriptInput || activeItem.target_text.split(" vs ")[0], 3)}
+                  loading={isAnalyzing}
                   disabled={isAnalyzing}
                 >
                   {isAnalyzing ? (isFa ? "تحلیل..." : "Analyzing...") : isFa ? "تحلیل" : "Analyze"}
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -868,17 +845,18 @@ export default function PronunciationLabPage() {
                       {isFa ? "در ژنوم اشتباهات ثبت شد" : "Targeted in Mistake Genome"}
                     </span>
                   ) : (
-                    <button
+                    <Button
                       type="button"
-                      className={styles.btnSaveGenome}
+                      variant="primary"
                       onClick={handleSaveToGenome}
+                      loading={isSavingGenome}
                       disabled={isSavingGenome}
                     >
                       <span aria-hidden="true">🧬</span>
                       {isSavingGenome
                         ? isFa ? "در حال ذخیره..." : "Saving..."
                         : isFa ? "افزودن به ژنوم اشتباهات برای تمرین هدفمند" : "Track Challenge in Mistake Genome"}
-                    </button>
+                    </Button>
                   )}
                   <Link
                     href="/mistakes"
@@ -948,7 +926,7 @@ export default function PronunciationLabPage() {
 
       <footer className={styles.disclaimer}>
         {isFa
-          ? "نکته آموزشی اندورا: تنوع لهجه‌ها در زبان انگلیسی امری طبیعی است. هدف این آزمایشگاه وضوح کلام، استرس صحیح و انتقال روان پیام در سطح بین‌المللی است."
+          ? "نکته آموزشی ایندورا: تنوع لهجه‌ها در زبان انگلیسی امری طبیعی است. هدف این آزمایشگاه وضوح کلام، استرس صحیح و انتقال روان پیام در سطح بین‌المللی است."
           : "Pedagogical Note: All international English varieties are respected. Endoora prioritizes intelligibility, stress clarity, and communicative confidence."}
       </footer>
     </div>

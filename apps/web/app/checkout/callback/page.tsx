@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { Button } from "@endoora/ui";
 import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -121,7 +122,7 @@ function CallbackContent() {
           </h1>
           <p className={styles.subtitle}>
             {isSuccess
-              ? "سفارش شما با موفقیت در سیستم اندورا ثبت و فعال گردید."
+              ? "سفارش شما با موفقیت در سیستم ایندورا ثبت و فعال گردید."
               : error || result?.error || "تراکنش توسط کاربر لغو شد یا درگاه بانکی تراکنش را تایید نکرد."}
           </p>
         </div>
@@ -134,38 +135,22 @@ function CallbackContent() {
               در محیط سندباکس می‌توانید نتیجه بازگشت از درگاه را تغییر دهید:
             </p>
             <div className={styles.sandboxButtons}>
-              <button
+              <Button
                 type="button"
+                variant="primary"
+                size="sm"
                 onClick={() => handleSimulateStatus("OK")}
-                style={{
-                  paddingInline: "var(--space-3)",
-                  paddingBlock: "var(--space-1)",
-                  fontSize: "var(--font-size-xs)",
-                  borderRadius: "var(--radius-sm)",
-                  background: "var(--color-success)",
-                  color: "var(--color-text-on-primary, var(--color-surface))",
-                  border: "none",
-                  cursor: "pointer",
-                }}
               >
                 شبیه‌سازی پرداخت موفق (Status=OK)
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="destructive"
+                size="sm"
                 onClick={() => handleSimulateStatus("NOK")}
-                style={{
-                  paddingInline: "var(--space-3)",
-                  paddingBlock: "var(--space-1)",
-                  fontSize: "var(--font-size-xs)",
-                  borderRadius: "var(--radius-sm)",
-                  background: "var(--color-danger)",
-                  color: "var(--color-text-on-primary, var(--color-surface))",
-                  border: "none",
-                  cursor: "pointer",
-                }}
               >
                 شبیه‌سازی انصراف / خطا (Status=NOK)
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -246,14 +231,9 @@ function CallbackContent() {
           )}
 
           <div style={{ display: "flex", gap: "var(--space-3)" }}>
-            <button
-              type="button"
-              onClick={handlePrint}
-              className={styles.secondaryButton}
-              style={{ flex: 1 }}
-            >
+            <Button type="button" variant="secondary" onClick={handlePrint} className={styles.secondaryButton} style={{ flex: 1 }}>
               <span>🖨️ چاپ و ذخیره رسید</span>
-            </button>
+            </Button>
             <Link
               href="/account/billing"
               className={styles.secondaryButton}

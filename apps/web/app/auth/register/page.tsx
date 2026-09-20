@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
 import { PasswordField } from "../../../components/auth/PasswordField";
+import { Button, Input } from "@endoora/ui";
 import styles from "../../../components/auth/auth.module.css";
 import {
   apiErrorMessages,
@@ -29,7 +30,7 @@ type FormErrors = {
 
 const copy = {
   fa: {
-    title: "ساخت حساب Endoora",
+    title: "ساخت حساب ایندورا",
     description:
       "برای شروع فقط اطلاعات ضروری را وارد کنید. جزئیات بیشتر را بعداً می‌توانید کامل کنید.",
     email: "ایمیل",
@@ -39,7 +40,7 @@ const copy = {
       "یک رمز عبور قوی و منحصربه‌فرد انتخاب کنید.",
     showPassword: "نمایش رمز عبور",
     hidePassword: "پنهان کردن رمز عبور",
-    role: "می‌خواهید چگونه از Endoora استفاده کنید؟",
+    role: "می‌خواهید چگونه از ایندورا استفاده کنید؟",
     learner: "زبان‌آموز",
     learnerDescription:
       "یادگیری، تمرین و دنبال‌کردن مسیر شخصی",
@@ -281,16 +282,13 @@ export default function RegisterPage() {
             {t.email}
           </label>
 
-          <input
+          <Input
             id="register-email"
             name="email"
             type="email"
             autoComplete="email"
-            className={`endoora-input ${styles.ltrInput} ${
-              errors.email
-                ? "endoora-input--error"
-                : ""
-            }`}
+            className={styles.ltrInput}
+            hasError={Boolean(errors.email)}
             value={email}
             onChange={(event) =>
               setEmail(event.target.value)
@@ -342,7 +340,7 @@ export default function RegisterPage() {
 
           <div className={styles.roleGrid}>
             <label className={styles.roleChoice}>
-              <input
+              <Input
                 type="radio"
                 name="role"
                 value="learner"
@@ -366,7 +364,7 @@ export default function RegisterPage() {
             </label>
 
             <label className={styles.roleChoice}>
-              <input
+              <Input
                 type="radio"
                 name="role"
                 value="teacher"
@@ -393,7 +391,7 @@ export default function RegisterPage() {
 
         <fieldset className="endoora-fieldset">
           <label className="endoora-check-row">
-            <input
+            <Input
               type="checkbox"
               className="endoora-check"
               checked={acceptTerms}
@@ -411,7 +409,7 @@ export default function RegisterPage() {
           </label>
 
           <label className="endoora-check-row">
-            <input
+            <Input
               type="checkbox"
               className="endoora-check"
               checked={acceptPrivacy}
@@ -436,15 +434,16 @@ export default function RegisterPage() {
         </fieldset>
 
         <div className={styles.actions}>
-          <button
+          <Button
             type="submit"
-            className="endoora-button endoora-button--primary"
+            variant="primary"
+            loading={submitting}
             disabled={submitting}
           >
             {submitting
               ? t.submitting
               : t.submit}
-          </button>
+          </Button>
         </div>
       </form>
     </AuthShell>

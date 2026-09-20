@@ -44,7 +44,7 @@ Day 39 delivers the complete discovery, evaluation, and social trust infrastruct
 
 ### Learner Privacy and Name Masking
 - Learner privacy is protected by default. Public serializers and endpoints mask names (e.g., "سارا م." or "Ali K.") while retaining verification authenticity.
-- Learners can also opt for full anonymity ("زبان‌آموز اندورا").
+- Learners can also opt for full anonymity ("زبان‌آموز ایندورا").
 
 ### Automated PII and Contact Information Scanner
 To prevent off-platform disintermediation and protect platform safety:

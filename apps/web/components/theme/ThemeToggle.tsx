@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import styles from "./theme-toggle.module.css";
 
 type Theme = "light" | "dark";
@@ -31,7 +33,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <button
+    <Button
       type="button"
       className={`${styles.toggle} theme-toggle-global`}
       onClick={toggleTheme}
@@ -41,6 +43,6 @@ export function ThemeToggle() {
       <span className={`${styles.icon} ${styles.sun}`} aria-hidden="true"><SunIcon /></span>
       <span className={styles.label}><span className={styles.lightLabel}>حالت شب</span><span className={styles.darkLabel}>حالت روشن</span></span>
       <span className={`${styles.icon} ${styles.moon}`} aria-hidden="true"><MoonIcon /></span>
-    </button>
+    </Button>
   );
 }

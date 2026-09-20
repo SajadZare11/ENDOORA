@@ -1,4 +1,4 @@
-﻿export interface GoldenFlowStep {
+export interface GoldenFlowStep {
   step: number;
   description: string;
   status: string;
@@ -368,7 +368,7 @@ export async function fetchProductionSignoff(): Promise<ProductionLaunchSignoffR
   } catch {
     // fallback
   }
-  return MOCK_LAUNCH_SCORECARD.latest_signoff as any;
+  return (MOCK_LAUNCH_SCORECARD.latest_signoff ?? null) as ProductionLaunchSignoffRecord | null;
 }
 
 export async function fetchRehearsalHistory(): Promise<GoldenFlowLogSummary[]> {

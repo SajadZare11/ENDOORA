@@ -1634,3 +1634,1134 @@ class TeacherAnalyticsAndInterventionsDay36Tests(TestCase):
         alert.refresh_from_db()
         self.assertEqual(alert.status, AlertStatus.RESOLVED)
         self.assertIn("رفع خودکار", alert.resolution_notes)
+
+
+class TeacherOSTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.teacher = User.objects.create_user(
+            email="teacheros-pro@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.learner = User.objects.create_user(
+            email="teacheros-student@example.com",
+            password="StrongPass123!",
+            role="learner",
+        )
+        self.teacher_class = TeacherClass.objects.create(
+            teacher=self.teacher,
+            title="IELTS Masterclass B2",
+            subject="IELTS Academic",
+            level="B2",
+            max_capacity=15,
+        )
+        self.link = TeacherLearnerLink.objects.create(
+            teacher_class=self.teacher_class,
+            teacher=self.teacher,
+            learner=self.learner,
+            status="active",
+            invite_code="TEACHER-OS-001",
+        )
+        self.client.force_login(self.teacher)
+
+    def test_create_and_list_material(self):
+        # 1. Create a lesson plan material
+        response = self.client.post(
+            "/api/teachers/materials/",
+            {
+                "class_id": str(self.teacher_class.id),
+                "material_type": "lesson",
+                "title": "Present Perfect vs Past Simple for IELTS",
+                "topic": "Life Experiences & Milestones",
+                "cefr_level": "B2",
+                "content": {
+                    "warmup": "2-minute partner interview",
+                    "presentation": "Timeline diagram contrasting definite past vs unfinished time",
+                    "practice": "Sentence matching and cloze cards",
+                    "production": "Personal achievement mini-talk",
+                },
+                "raw_markdown": "# Present Perfect Lesson\n\n## Warmup\nAsk your partner 3 questions.",
+            },
+            format="json",
+        )
+        self.assertEqual(response.status_code, 201)
+        material_id = response.data["id"]
+        self.assertEqual(response.data["material_type"], "lesson")
+        self.assertEqual(response.data["status"], "draft")
+
+        # 2. List materials with filter
+        list_resp = self.client.get("/api/teachers/materials/?material_type=lesson")
+        self.assertEqual(list_resp.status_code, 200)
+        self.assertEqual(len(list_resp.data), 1)
+
+        # 3. Patch material to approved & pinned
+        patch_resp = self.client.patch(
+            f"/api/teachers/materials/{material_id}/",
+            {"status": "approved", "is_pinned": True},
+            format="json",
+        )
+        self.assertEqual(patch_resp.status_code, 200)
+        self.assertEqual(patch_resp.data["status"], "approved")
+        self.assertTrue(patch_resp.data["is_pinned"])
+
+        # 4. Assign material to class
+        assign_resp = self.client.post(f"/api/teachers/materials/{material_id}/assign/")
+        self.assertEqual(assign_resp.status_code, 200)
+        self.assertEqual(assign_resp.data["learner_count"], 1)
+
+    def test_material_generator_engine_and_lifecycle(self):
+        # 1. Generator 1: Lesson Planner (PPP & ESA)
+        lesson_gen_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "lesson",
+                "topic": "Conditionals for IELTS Speaking",
+                "cefr_level": "B2",
+                "duration": 60,
+                "methodology": "ppp",
+                "grammar_focus": "Third Conditional",
+                "vocabulary_focus": "Decision making & regrets",
+                "class_id": str(self.teacher_class.id),
+            },
+            format="json",
+        )
+        self.assertEqual(lesson_gen_resp.status_code, 201)
+        lesson_id = lesson_gen_resp.data["id"]
+        lesson_md = lesson_gen_resp.data["raw_markdown"].lower()
+        self.assertIn("lesson overview", lesson_md)
+        self.assertIn("lesson information", lesson_md)
+        self.assertIn("materials", lesson_md)
+        self.assertIn("lesson procedure", lesson_md)
+        self.assertIn("assessment", lesson_md)
+        self.assertIn("homework", lesson_md)
+
+        # 2. Generator 2: Activity Generator (Student A/B Cards)
+        act_gen_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "activity",
+                "topic": "Airport Transit Disruption",
+                "cefr_level": "B2",
+                "activity_format": "roleplay",
+                "duration": 20,
+                "class_id": str(self.teacher_class.id),
+            },
+            format="json",
+        )
+        self.assertEqual(act_gen_resp.status_code, 201)
+        act_md = act_gen_resp.data["raw_markdown"].lower()
+        self.assertIn("level", act_md)
+        self.assertIn("time", act_md)
+        self.assertIn("aim", act_md)
+        self.assertIn("procedure", act_md)
+        self.assertIn("student a prompt card", act_md)
+        self.assertIn("student b prompt card", act_md)
+        self.assertIn("teacher notes", act_md)
+        self.assertIn("differentiation", act_md)
+
+        # 3. Generator 3: Worksheet Generator (Exercises + Answer Key)
+        ws_gen_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "worksheet",
+                "topic": "Academic Discourse Markers",
+                "cefr_level": "C1",
+                "worksheet_type": "grammar",
+                "question_count": 10,
+                "class_id": str(self.teacher_class.id),
+            },
+            format="json",
+        )
+        self.assertEqual(ws_gen_resp.status_code, 201)
+        ws_md = ws_gen_resp.data["raw_markdown"].lower()
+        self.assertIn("student worksheet", ws_md)
+        self.assertIn("exercise 1", ws_md)
+        self.assertIn("communicative extension", ws_md)
+        self.assertIn("answer key", ws_md)
+        self.assertIn("teacher notes", ws_md)
+
+        # 4. Generator 4: Quiz / Assessment Generator (CEFR Rubric)
+        quiz_gen_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "assessment",
+                "topic": "B2 Mid-Course Diagnostic",
+                "cefr_level": "B2",
+                "question_count": 10,
+                "class_id": str(self.teacher_class.id),
+            },
+            format="json",
+        )
+        self.assertEqual(quiz_gen_resp.status_code, 201)
+        quiz_md = quiz_gen_resp.data["raw_markdown"].lower()
+        self.assertIn("instructions", quiz_md)
+        self.assertIn("answer key", quiz_md)
+        self.assertIn("scoring guide", quiz_md)
+        self.assertIn("teacher notes", quiz_md)
+
+        # 5. Approve generated lesson and assign to class
+        approve_resp = self.client.patch(
+            f"/api/teachers/materials/{lesson_id}/",
+            {"status": "approved", "is_pinned": True},
+            format="json",
+        )
+        self.assertEqual(approve_resp.status_code, 200)
+        self.assertEqual(approve_resp.data["status"], "approved")
+        self.assertTrue(approve_resp.data["is_pinned"])
+
+        assign_resp = self.client.post(f"/api/teachers/materials/{lesson_id}/assign/")
+        self.assertEqual(assign_resp.status_code, 200)
+        self.assertEqual(assign_resp.data["learner_count"], 1)
+
+    def test_record_outcome_and_recommendation(self):
+        # Record post-lesson 30-second outcome
+        resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/outcomes/",
+            {
+                "result": "success",
+                "difficulty_rating": 2,
+                "completion_percent": 95,
+                "summary": "Learners excelled at contrastive grammar timelines.",
+                "notes": "Sara struggled slightly with since vs for.",
+                "followup_reminders": ["Review since/for in 5-min warmup next session"],
+            },
+            format="json",
+        )
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.data["difficulty_rating"], 2)
+
+        # Get AI Next-Lesson Recommendation
+        rec_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/next-lesson-recommendation/")
+        self.assertEqual(rec_resp.status_code, 200)
+        self.assertEqual(rec_resp.data["mode"], "advancement")
+        self.assertIn("Advancement", rec_resp.data["recommended_topic"])
+        self.assertEqual(len(rec_resp.data["reminders_from_last_session"]), 1)
+
+    def test_student_dossier_11_sections(self):
+        # 1. Fetch or initialize 11-section dossier
+        dossier_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/"
+        )
+        self.assertEqual(dossier_resp.status_code, 200)
+        self.assertIn("speaking", dossier_resp.data["cefr_skills"])
+
+        # 2a. Score today's 7 skills with score < 10 but MISSING diagnostic note -> MUST FAIL (400)
+        bad_score_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/score-skills/",
+            {
+                "speaking": 16,
+                "listening": 15,
+                "reading": 17,
+                "writing": 8,
+                "grammar": 7,
+                "vocabulary": 14,
+                "pronunciation": 13,
+                "confidence": 4,
+                "notes": "",  # Empty notes with scores < 10 violates TeacherOS diagnostic rules
+            },
+            format="json",
+        )
+        self.assertEqual(bad_score_resp.status_code, 400)
+        self.assertIn("notes", bad_score_resp.data)
+
+        # 2b. Score today's 7 skills WITH diagnostic note -> MUST SUCCEED (200)
+        score_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/score-skills/",
+            {
+                "speaking": 16,
+                "listening": 15,
+                "reading": 17,
+                "writing": 9,
+                "grammar": 8,
+                "vocabulary": 14,
+                "pronunciation": 13,
+                "confidence": 4,
+                "notes": "Excellent oral fluency; needs support in passive voice syntax.",
+            },
+            format="json",
+        )
+        self.assertEqual(score_resp.status_code, 200)
+        self.assertEqual(score_resp.data["cefr_skills"]["speaking"]["score"], 16)
+        self.assertIn("Writing", score_resp.data["areas_for_development"])
+        self.assertIn("Speaking", score_resp.data["strengths"])
+
+        # 3. Log a language error with frequency and status
+        err_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/log-error/",
+            {
+                "category": "grammar",
+                "sentence": "I have seen him yesterday.",
+                "correction": "I saw him yesterday.",
+                "notes": "L1 interference with past indefinite.",
+                "frequency": "medium",
+                "status": "improving",
+            },
+            format="json",
+        )
+        self.assertEqual(err_resp.status_code, 201)
+        self.assertEqual(err_resp.data["status"], "logged")
+        error_id = err_resp.data["error"]["id"]
+        self.assertEqual(err_resp.data["error"]["frequency"], "medium")
+
+        # 4. Transition error status from 'improving' to 'solved'
+        status_patch_resp = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/errors/{error_id}/",
+            {"status": "solved"},
+            format="json",
+        )
+        self.assertEqual(status_patch_resp.status_code, 200)
+        solved_err = next(
+            e for e in status_patch_resp.data["error_profile"] if e["id"] == error_id
+        )
+        self.assertEqual(solved_err["status"], "solved")
+
+        # 5. Record formal assessment result milestone
+        assess_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/assessments/",
+            {
+                "type": "formal",
+                "subtype": "midterm",
+                "title": "B2 CEFR Midterm Exam",
+                "score": 88.5,
+                "max_score": 100.0,
+                "notes": "Solid task achievement; minor preposition slips.",
+            },
+            format="json",
+        )
+        self.assertEqual(assess_resp.status_code, 201)
+        self.assertEqual(assess_resp.data["status"], "recorded")
+        self.assertEqual(len(assess_resp.data["dossier"]["assessment_milestones"]), 1)
+        self.assertEqual(assess_resp.data["assessment"]["percentage"], 88.5)
+
+        # 6. Patch dossier goals and preferences
+        goals_patch_resp = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/",
+            {
+                "target_goals": {
+                    "long_term": "IELTS 7.5 Academic",
+                    "short_term": "Master phrasal verbs for workplace contexts",
+                },
+                "learning_preferences": {
+                    "preferred_activities": ["role play", "debate"],
+                    "learning_behaviors": ["participates actively"],
+                    "pace": "Fast-paced with challenge tasks",
+                },
+            },
+            format="json",
+        )
+        self.assertEqual(goals_patch_resp.status_code, 200)
+        self.assertEqual(
+            goals_patch_resp.data["target_goals"]["long_term"], "IELTS 7.5 Academic"
+        )
+
+    def test_spaced_review_and_differentiation(self):
+        # 1. Add item to SRS review queue
+        srs_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/",
+            {
+                "target_item": "serendipitous",
+                "item_type": "vocabulary",
+                "prompt_question": "What is an appropriate synonym for 'serendipitous'?",
+                "correct_answer": "Chance / fortunate coincidence",
+            },
+            format="json",
+        )
+        self.assertEqual(srs_resp.status_code, 201)
+
+        # 2. List review queue
+        queue_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/")
+        self.assertEqual(queue_resp.status_code, 200)
+        self.assertEqual(len(queue_resp.data), 1)
+
+        # 3. Create a worksheet and differentiate it
+        mat_resp = self.client.post(
+            "/api/teachers/materials/",
+            {
+                "class_id": str(self.teacher_class.id),
+                "material_type": "worksheet",
+                "title": "Conditionals Mixed Practice",
+                "cefr_level": "B2",
+            },
+            format="json",
+        )
+        mat_id = mat_resp.data["id"]
+
+        diff_resp = self.client.post(f"/api/teachers/materials/{mat_id}/differentiate/")
+        self.assertEqual(diff_resp.status_code, 201)
+        self.assertIn("scaffolds", diff_resp.data["tier_support"])
+        self.assertIn("challenges", diff_resp.data["tier_extension"])
+
+    def test_sm2_spaced_repetition_review_progression(self):
+        # 1. Create SRS item
+        srs_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/",
+            {
+                "target_item": "ephemeral",
+                "item_type": "vocabulary",
+                "prompt_question": "Definition of ephemeral?",
+                "correct_answer": "Lasting for a very short time",
+            },
+            format="json",
+        )
+        self.assertEqual(srs_resp.status_code, 201)
+        item_id = srs_resp.data["id"]
+
+        # 2. Record successful review grade 5 (perfect recall)
+        review_resp1 = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/{item_id}/review/",
+            {"grade": 5},
+            format="json",
+        )
+        self.assertEqual(review_resp1.status_code, 200)
+        self.assertEqual(review_resp1.data["repetition_count"], 1)
+        self.assertEqual(review_resp1.data["interval_days"], 1)
+
+        # 3. Record second successful review grade 4
+        review_resp2 = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/{item_id}/review/",
+            {"grade": 4},
+            format="json",
+        )
+        self.assertEqual(review_resp2.status_code, 200)
+        self.assertEqual(review_resp2.data["repetition_count"], 2)
+        self.assertEqual(review_resp2.data["interval_days"], 6)
+
+        # 4. Record forgotten review grade 2 (resets interval)
+        review_resp3 = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/spaced-reviews/{item_id}/review/",
+            {"grade": 2},
+            format="json",
+        )
+        self.assertEqual(review_resp3.status_code, 200)
+        self.assertEqual(review_resp3.data["repetition_count"], 0)
+        self.assertEqual(review_resp3.data["interval_days"], 1)
+        self.assertFalse(review_resp3.data["is_mastered"])
+
+    def test_validations_and_ownership_boundaries(self):
+        # 1. Invalid skill score (> 20) rejected
+        invalid_score_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/dossier/score-skills/",
+            {"speaking": 25},
+            format="json",
+        )
+        self.assertEqual(invalid_score_resp.status_code, 400)
+
+        # 2. Invalid completion percent (> 100) rejected
+        invalid_outcome_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/outcomes/",
+            {
+                "result": "success",
+                "difficulty_rating": 3,
+                "completion_percent": 150,
+            },
+            format="json",
+        )
+        self.assertEqual(invalid_outcome_resp.status_code, 400)
+
+        # 3. Ownership boundary: Another teacher cannot edit or assign this teacher's material
+        other_teacher = User.objects.create_user(
+            email="other-teacher@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.client.force_login(other_teacher)
+
+        # Create material by teacher 1
+        from teachers.models import TeacherMaterial
+        material = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type="lesson",
+            title="Private Lesson",
+        )
+
+        # Teacher 2 attempts to assign it -> 404
+        forbidden_assign = self.client.post(f"/api/teachers/materials/{material.id}/assign/")
+        self.assertEqual(forbidden_assign.status_code, 404)
+
+    def test_class_profile_update_and_session_lifecycle(self):
+        self.client.force_login(self.teacher)
+
+        # 1. Update Class Profile with TeacherOS pedagogical fields
+        update_resp = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/",
+            {
+                "coursebook": "Touchstone 2",
+                "age_group": "adult",
+                "class_size_type": "small",
+                "default_duration": 90,
+                "goal": "speaking",
+                "focus_skills": ["spk", "gram"],
+                "target_exams": "IELTS 6.5",
+                "teaching_preferences": ["comm", "task"],
+            },
+            format="json",
+        )
+        self.assertEqual(update_resp.status_code, 200)
+        self.assertEqual(update_resp.data["coursebook"], "Touchstone 2")
+        self.assertEqual(update_resp.data["goal"], "speaking")
+        self.assertEqual(update_resp.data["default_duration"], 90)
+        self.assertIn("spk", update_resp.data["focus_skills"])
+
+        # 2. Schedule a new session
+        now = timezone.now()
+        start = now + timedelta(days=1)
+        end = start + timedelta(minutes=90)
+        sched_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/sessions/",
+            {
+                "title": "Session 12: Conditional Structures & Fluency",
+                "scheduled_start": start.isoformat(),
+                "scheduled_end": end.isoformat(),
+                "duration_minutes": 90,
+                "session_notes": "Focus on second conditionals and role play.",
+            },
+            format="json",
+        )
+        self.assertEqual(sched_resp.status_code, 201)
+        session_id = sched_resp.data["id"]
+        self.assertEqual(sched_resp.data["status"], "scheduled")
+
+        # 3. Toggle session status to COMPLETED -> verifies TeachingHourLedger creation
+        comp_resp = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/sessions/{session_id}/",
+            {
+                "status": "completed",
+                "session_notes": "Completed successfully with all students actively speaking.",
+            },
+            format="json",
+        )
+        self.assertEqual(comp_resp.status_code, 200)
+        self.assertEqual(comp_resp.data["status"], "completed")
+
+        from teachers.models import ClassSession, TeachingHourLedger
+        session_obj = ClassSession.objects.get(id=session_id)
+        self.assertTrue(hasattr(session_obj, "ledger_entry"))
+        self.assertEqual(session_obj.ledger_entry.hours, Decimal("1.50"))
+
+        # 4. Toggle session status to CANCELLED -> verifies ledger hours adjusted to 0.00
+        cancel_resp = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/sessions/{session_id}/",
+            {
+                "status": "cancelled",
+                "session_notes": "Cancelled due to bad weather.",
+            },
+            format="json",
+        )
+        self.assertEqual(cancel_resp.status_code, 200)
+        self.assertEqual(cancel_resp.data["status"], "cancelled")
+
+        session_obj.refresh_from_db()
+        self.assertEqual(session_obj.ledger_entry.hours, Decimal("0.00"))
+
+        # 5. Ownership verification: other teacher cannot update this session
+        other_teacher = User.objects.create_user(
+            email="session-intruder@example.com",
+            password="StrongPass123!",
+            role="teacher",
+            is_teacher_verified=True,
+        )
+        self.client.force_login(other_teacher)
+        forbidden_update = self.client.patch(
+            f"/api/teachers/classes/{self.teacher_class.id}/sessions/{session_id}/",
+            {"status": "scheduled"},
+            format="json",
+        )
+        self.assertEqual(forbidden_update.status_code, 404)
+
+    def test_teacher_usage_and_quota_enforcement(self):
+        self.client.force_login(self.teacher)
+
+        # 1. Initial usage summary check
+        usage_resp = self.client.get("/api/teachers/usage/")
+        self.assertEqual(usage_resp.status_code, 200)
+        self.assertEqual(usage_resp.data["plan_name"], "TeacherOS Pro")
+        self.assertEqual(usage_resp.data["daily_limit"], 30)
+        self.assertIn("used_today", usage_resp.data)
+        self.assertIn("remaining_today", usage_resp.data)
+        self.assertIn("breakdown", usage_resp.data)
+        self.assertEqual(
+            usage_resp.data["used_today"] + usage_resp.data["remaining_today"],
+            30,
+        )
+
+        # 2. Standalone Quick Create generation with TBL (Task-Based Learning) without class_id
+        tbl_gen_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "lesson",
+                "topic": "Negotiating Business Contracts",
+                "cefr_level": "C1",
+                "duration": 60,
+                "methodology": "tbl",
+                "grammar_focus": "Subjunctive & Conditional Bargaining",
+                "vocabulary_focus": "Terms & Concessions",
+            },
+            format="json",
+        )
+        self.assertEqual(tbl_gen_resp.status_code, 201)
+        self.assertIsNone(tbl_gen_resp.data["teacher_class"])
+        self.assertIn("task-based learning", tbl_gen_resp.data["raw_markdown"].lower())
+        self.assertEqual(tbl_gen_resp.data["metadata"]["methodology"], "tbl")
+        self.assertIn("usage", tbl_gen_resp.data)
+        self.assertGreaterEqual(tbl_gen_resp.data["usage"]["used_today"], 1)
+
+        # 3. Simulate reaching the daily quota of 30 items
+        from teachers.models import TeacherMaterial
+        now = timezone.now()
+        today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        current_today = TeacherMaterial.objects.filter(
+            teacher=self.teacher,
+            created_at__gte=today_start,
+        ).count()
+        needed_for_limit = 30 - current_today
+
+        if needed_for_limit > 0:
+            for idx in range(needed_for_limit):
+                TeacherMaterial.objects.create(
+                    teacher=self.teacher,
+                    material_type="activity",
+                    title=f"Bulk Limit Fill {idx}",
+                    topic="Speaking practice",
+                    cefr_level="B2",
+                )
+
+        # Confirm quota is exactly exhausted
+        limit_usage_resp = self.client.get("/api/teachers/usage/")
+        self.assertEqual(limit_usage_resp.status_code, 200)
+        self.assertEqual(limit_usage_resp.data["used_today"], 30)
+        self.assertEqual(limit_usage_resp.data["remaining_today"], 0)
+
+        # 4. Exceeding quota triggers HTTP 429 Too Many Requests
+        exceeded_resp = self.client.post(
+            "/api/teachers/materials/generate/",
+            {
+                "material_type": "worksheet",
+                "topic": "Exhausted Quota Test",
+                "cefr_level": "B1",
+                "worksheet_type": "grammar",
+            },
+            format="json",
+        )
+        self.assertEqual(exceeded_resp.status_code, 429)
+        self.assertEqual(exceeded_resp.data["code"], "quota_exhausted")
+        self.assertEqual(exceeded_resp.data["usage"]["remaining_today"], 0)
+
+    def test_word_and_pdf_document_exporters(self):
+        import io
+        import zipfile
+        from teachers.models import TeacherMaterial
+
+        self.client.force_login(self.teacher)
+
+        # Create a sample worksheet with Answer Key and Teacher Notes
+        material = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type="worksheet",
+            subtype="Grammar Drills",
+            title="Conditionals Comprehensive Practice",
+            topic="Third Conditionals",
+            cefr_level="B2",
+            raw_markdown="""# Student Worksheet: Conditionals Comprehensive Practice
+
+## Exercise 1: Gap Fill
+1. If she ____________ (know) the schedule, she would have arrived early.
+2. They ____________ (pass) the exam if they had studied systematically.
+
+---
+
+## Answer Key
+1. had known
+2. would have passed
+
+## Teacher Notes
+- Allocate 15 minutes for pair review.
+- Persian learners frequently omit the auxiliary had in conditional clauses.
+""",
+        )
+
+        # 1. Export Word (.docx) - Teacher Edition
+        docx_teacher_resp = self.client.get(f"/api/teachers/materials/{material.id}/export/docx/?mode=teacher")
+        self.assertEqual(docx_teacher_resp.status_code, 200)
+        self.assertEqual(
+            docx_teacher_resp["Content-Type"],
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        )
+        self.assertIn("attachment; filename=", docx_teacher_resp["Content-Disposition"])
+        # Verify valid ZIP containing word/document.xml
+        zip_buf = io.BytesIO(docx_teacher_resp.content)
+        with zipfile.ZipFile(zip_buf, "r") as zf:
+            self.assertIn("word/document.xml", zf.namelist())
+            xml_content = zf.read("word/document.xml").decode("utf-8")
+            self.assertIn("Answer Key", xml_content)
+            self.assertIn("had known", xml_content)
+
+        # 2. Export Word (.docx) - Student Edition (Cleansed)
+        docx_student_resp = self.client.get(f"/api/teachers/materials/{material.id}/export/docx/?mode=student")
+        self.assertEqual(docx_student_resp.status_code, 200)
+        student_zip = io.BytesIO(docx_student_resp.content)
+        with zipfile.ZipFile(student_zip, "r") as zf:
+            student_xml = zf.read("word/document.xml").decode("utf-8")
+            self.assertIn("Exercise 1", student_xml)
+            # Answer key should be stripped in student handout
+            self.assertNotIn("had known", student_xml)
+
+        # 3. Export PDF (.pdf) - Teacher Edition
+        pdf_teacher_resp = self.client.get(f"/api/teachers/materials/{material.id}/export/pdf/?mode=teacher")
+        self.assertEqual(pdf_teacher_resp.status_code, 200)
+        self.assertEqual(pdf_teacher_resp["Content-Type"], "application/pdf")
+        self.assertTrue(pdf_teacher_resp.content.startswith(b"%PDF-"))
+
+        # 4. Export PDF (.pdf) - Student Edition
+        pdf_student_resp = self.client.get(f"/api/teachers/materials/{material.id}/export/pdf/?mode=student")
+        self.assertEqual(pdf_student_resp.status_code, 200)
+        self.assertEqual(pdf_student_resp["Content-Type"], "application/pdf")
+        self.assertTrue(pdf_student_resp.content.startswith(b"%PDF-"))
+
+    def test_material_adaptation_assignment_and_scheduling(self):
+        from teachers.models import Assignment, ClassSession, TeacherMaterial
+
+        self.client.force_login(self.teacher)
+
+        material = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type="lesson",
+            subtype="PPP Lesson Plan",
+            title="IELTS Speaking Part 2 Strategy",
+            topic="Memorable Journeys",
+            cefr_level="B2",
+            raw_markdown="# IELTS Speaking Part 2 Strategy\n\n## Presentation\nTalk for 2 minutes.\n",
+        )
+
+        # 1. Adapt Material (Request One Change)
+        adapt_resp = self.client.post(
+            f"/api/teachers/materials/{material.id}/adapt/",
+            {
+                "requested_change": "افزودن ۳ اصطلاح سطح C1 و فعالیت مصاحبه دو نفره",
+            },
+            format="json",
+        )
+        self.assertEqual(adapt_resp.status_code, 201)
+        adapted_data = adapt_resp.data
+        self.assertIn("(ویرایش‌شده / Adapted)", adapted_data["title"])
+        self.assertEqual(adapted_data["metadata"]["adapted_from_material_id"], str(material.id))
+        self.assertEqual(
+            adapted_data["metadata"]["requested_change"],
+            "افزودن ۳ اصطلاح سطح C1 و فعالیت مصاحبه دو نفره",
+        )
+        # Verify original still exists
+        self.assertTrue(TeacherMaterial.objects.filter(id=material.id).exists())
+
+        # 2. Assign Material to Class with automated student Assignment creation
+        now = timezone.now()
+        due = now + timedelta(days=3)
+        assign_resp = self.client.post(
+            f"/api/teachers/materials/{material.id}/assign/",
+            {
+                "due_date": due.isoformat(),
+                "create_assignment": True,
+            },
+            format="json",
+        )
+        self.assertEqual(assign_resp.status_code, 200)
+        self.assertEqual(assign_resp.data["learner_count"], 1)
+        self.assertIsNotNone(assign_resp.data["class_id"])
+
+        # 3. Schedule Material as a Class Session
+        sched_start = now + timedelta(days=2)
+        sched_resp = self.client.post(
+            f"/api/teachers/materials/{material.id}/schedule/",
+            {
+                "title": "جلسه استراتژی پیشرفته اسپیکینگ آیلتس",
+                "scheduled_start": sched_start.isoformat(),
+                "duration_minutes": 75,
+                "session_notes": "آمادگی برای آزمون ماک و ارزیابی روانی کلام",
+            },
+            format="json",
+        )
+        self.assertEqual(sched_resp.status_code, 201)
+        session_id = sched_resp.data["session_id"]
+        self.assertEqual(sched_resp.data["status"], "scheduled")
+
+        session_obj = ClassSession.objects.get(id=session_id)
+        self.assertEqual(session_obj.duration_minutes, 75)
+        self.assertEqual(session_obj.teacher_class, self.teacher_class)
+
+        # Confirm material is now approved and pinned
+        material.refresh_from_db()
+        self.assertEqual(material.status, "approved")
+        self.assertTrue(material.is_pinned)
+
+    def test_writing_assessment_analysis_and_approval(self):
+        """Day 8: Verify CEFR 4-criteria writing analysis, dossier sync, and Word/PDF feedback export."""
+        from teachers.models import StudentDossier
+        self.client.force_login(self.teacher)
+
+        sample_text = (
+            "Last year, I have traveled to Shiraz with my family. "
+            "We was very exciting to visit Persepolis. "
+            "If I will go there again, I would visit Eram Garden."
+        )
+
+        # 1. Analyze Writing Submission
+        analyze_resp = self.client.post(
+            "/api/teachers/assessment/analyze/",
+            {
+                "text": sample_text,
+                "level": "B1",
+                "mode": "rubric",
+                "task_prompt": "Writing Assignment: A Memorable Journey",
+                "student_label": "Sarah Rezaei",
+            },
+            format="json",
+        )
+        self.assertEqual(analyze_resp.status_code, 200)
+        analysis = analyze_resp.data
+        self.assertIn("band", analysis)
+        self.assertIn("rubrics", analysis)
+        self.assertIn("task_achievement", analysis["rubrics"])
+        self.assertIn("coherence_cohesion", analysis["rubrics"])
+        self.assertIn("lexical_resource", analysis["rubrics"])
+        self.assertIn("grammatical_accuracy", analysis["rubrics"])
+        self.assertGreaterEqual(len(analysis["corrections"]), 2)
+        self.assertGreaterEqual(len(analysis["strengths"]), 1)
+        self.assertGreaterEqual(len(analysis["next_steps"]), 1)
+
+        # 2. Approve Feedback and Synchronize with Student Dossier
+        approve_resp = self.client.post(
+            "/api/teachers/assessment/approve/",
+            {
+                "class_id": str(self.teacher_class.id),
+                "learner_id": str(self.learner.id),
+                "assignment_title": "Writing Assignment: A Memorable Journey",
+                "student_text": sample_text,
+                "analysis": analysis,
+                "teacher_notes": "Great progress on narrative writing. Focus on past tense accuracy.",
+            },
+            format="json",
+        )
+        self.assertEqual(approve_resp.status_code, 200)
+        self.assertTrue(approve_resp.data["success"])
+        self.assertGreaterEqual(approve_resp.data["errors_added"], 2)
+
+        # Verify Student Dossier state
+        dossier = StudentDossier.objects.get(
+            teacher_class=self.teacher_class,
+            learner=self.learner,
+        )
+        # Errors recorded
+        self.assertGreaterEqual(len(dossier.error_profile), 2)
+        categories = [e["category"] for e in dossier.error_profile]
+        self.assertIn("grammar", categories)
+
+        # Assessment milestone recorded
+        self.assertGreaterEqual(len(dossier.assessment_milestones), 1)
+        latest_assessment = dossier.assessment_milestones[-1]
+        self.assertEqual(latest_assessment["subtype"], "writing")
+        self.assertEqual(latest_assessment["type"], "formal")
+        self.assertIn("A Memorable Journey", latest_assessment["title"])
+
+        # Writing skill score updated
+        self.assertGreater(dossier.cefr_skills["writing"]["score"], 0)
+
+        # Next steps registered in co-teacher recommendations
+        self.assertGreaterEqual(len(dossier.ai_recommendations), 1)
+
+        # 3. Export Word (.docx) Feedback Report
+        docx_resp = self.client.post(
+            "/api/teachers/assessment/export/docx/",
+            {
+                "analysis": analysis,
+                "mode": "student",
+            },
+            format="json",
+        )
+        self.assertEqual(docx_resp.status_code, 200)
+        self.assertIn("wordprocessingml.document", docx_resp["Content-Type"])
+        self.assertGreater(len(docx_resp.content), 2000)
+
+        # 4. Export PDF Feedback Report
+        pdf_resp = self.client.post(
+            "/api/teachers/assessment/export/pdf/",
+            {
+                "analysis": analysis,
+                "mode": "teacher",
+            },
+            format="json",
+        )
+        self.assertEqual(pdf_resp.status_code, 200)
+        self.assertEqual(pdf_resp["Content-Type"], "application/pdf")
+        self.assertTrue(pdf_resp.content.startswith(b"%PDF"))
+
+    def test_day9_deep_pedagogical_supertools(self):
+        """Day 9: Verify 3-tier differentiation, SRS 5-min warmup, curriculum pacing audit, and report card dispatch/export."""
+        from teachers.models import DifferentiationPlan, StudentDossier, SpacedReviewItem, TeacherMaterial, MaterialType
+        self.client.force_login(self.teacher)
+
+        # 1. Differentiation Studio: Generate, Export docx, and Assign
+        mat = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type=MaterialType.WORKSHEET,
+            title="Grammar Mastery: Narrative Tenses",
+            topic="Travel Stories & Past Narrative Tenses",
+            cefr_level="B1",
+            content={"tasks": ["Complete sentences with past simple or past continuous", "Write a 60-word story"]},
+        )
+
+        diff_resp = self.client.post(f"/api/teachers/materials/{mat.id}/differentiate/")
+        self.assertEqual(diff_resp.status_code, 201)
+        self.assertIn("tier_support", diff_resp.data)
+        self.assertIn("tier_core", diff_resp.data)
+        self.assertIn("tier_extension", diff_resp.data)
+        self.assertGreaterEqual(len(diff_resp.data["tier_support"]["scaffolds"]), 3)
+
+        # GET Differentiation
+        get_diff_resp = self.client.get(f"/api/teachers/materials/{mat.id}/differentiate/")
+        self.assertEqual(get_diff_resp.status_code, 200)
+        self.assertEqual(get_diff_resp.data["id"], diff_resp.data["id"])
+
+        # Export Differentiation Docx
+        diff_docx_resp = self.client.post(f"/api/teachers/materials/{mat.id}/differentiation/export/docx/")
+        self.assertEqual(diff_docx_resp.status_code, 200)
+        self.assertIn("wordprocessingml.document", diff_docx_resp["Content-Type"])
+        self.assertGreater(len(diff_docx_resp.content), 2000)
+
+        # Assign Differentiation Tiers to Students
+        assign_resp = self.client.post(
+            f"/api/teachers/materials/{mat.id}/differentiation/assign/",
+            {"tier_assignments": {str(self.learner.id): "tier_support"}},
+            format="json",
+        )
+        self.assertEqual(assign_resp.status_code, 200)
+        self.assertTrue(assign_resp.data["success"])
+        self.assertEqual(assign_resp.data["learner_count"], 1)
+
+        # 2. Spaced Retrieval Review (SRS): 5-Minute Warmup Generator & Push
+        SpacedReviewItem.objects.create(
+            teacher_class=self.teacher_class,
+            target_item="resilient",
+            item_type="vocabulary",
+            prompt_question="What does resilient mean?",
+            correct_answer="Able to recover quickly from adversity",
+            due_date=timezone.now().date(),
+        )
+        warmup_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/srs/warmup/",
+            {"count": 3},
+            format="json",
+        )
+        self.assertEqual(warmup_resp.status_code, 200)
+        self.assertEqual(warmup_resp.data["duration_minutes"], 5)
+        self.assertEqual(len(warmup_resp.data["questions"]), 3)
+        self.assertIn("raw_markdown", warmup_resp.data)
+
+        # Push Warmup to Students
+        push_warmup_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/srs/warmup/push/",
+            {"warmup_data": warmup_resp.data},
+            format="json",
+        )
+        self.assertEqual(push_warmup_resp.status_code, 200)
+        self.assertTrue(push_warmup_resp.data["success"])
+
+        # Export Warmup Docx
+        warmup_docx_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/srs/warmup/export/docx/",
+            {"warmup_data": warmup_resp.data},
+            format="json",
+        )
+        self.assertEqual(warmup_docx_resp.status_code, 200)
+        self.assertIn("wordprocessingml.document", warmup_docx_resp["Content-Type"])
+
+        # 3. Curriculum Pacing Audit: Calculate & Export Docx
+        pacing_resp = self.client.get(f"/api/teachers/classes/{self.teacher_class.id}/pacing-audit/")
+        self.assertEqual(pacing_resp.status_code, 200)
+        self.assertIn("pacing_status", pacing_resp.data)
+        self.assertIn("skill_coverages", pacing_resp.data)
+        self.assertIn("pedagogical_adjustments", pacing_resp.data)
+
+        pacing_docx_resp = self.client.post(f"/api/teachers/classes/{self.teacher_class.id}/pacing-audit/export/docx/")
+        self.assertEqual(pacing_docx_resp.status_code, 200)
+        self.assertIn("wordprocessingml.document", pacing_docx_resp["Content-Type"])
+
+        # 4. Official Progress Report Card: Data, Dispatch, Docx & PDF
+        report_data_resp = self.client.get(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/report-card/"
+        )
+        self.assertEqual(report_data_resp.status_code, 200)
+        self.assertIn("cefr_skills", report_data_resp.data)
+        self.assertIn("strengths", report_data_resp.data)
+
+        # Dispatch Report Card to Learner
+        dispatch_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/report-card/dispatch/",
+            {
+                "term": "Term 2 - Spring 2026",
+                "teacher_comment": "Excellent effort and consistent speaking engagement this term.",
+                "overall_score": 16.5,
+            },
+            format="json",
+        )
+        self.assertEqual(dispatch_resp.status_code, 200)
+        self.assertTrue(dispatch_resp.data["success"])
+
+        # Verify Dossier update
+        dossier = StudentDossier.objects.get(teacher_class=self.teacher_class, learner=self.learner)
+        report_milestones = [m for m in dossier.assessment_milestones if m.get("subtype") == "report_card"]
+        self.assertGreaterEqual(len(report_milestones), 1)
+
+        # Export Report Card Docx
+        rc_docx_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/report-card/export/docx/",
+            {"term": "Term 2 - Spring 2026", "teacher_comment": "Great term progress!"},
+            format="json",
+        )
+        self.assertEqual(rc_docx_resp.status_code, 200)
+        self.assertIn("wordprocessingml.document", rc_docx_resp["Content-Type"])
+
+        # Export Report Card PDF
+        rc_pdf_resp = self.client.post(
+            f"/api/teachers/classes/{self.teacher_class.id}/learners/{self.learner.id}/report-card/export/pdf/",
+            {"term": "Term 2 - Spring 2026", "teacher_comment": "Great term progress!"},
+            format="json",
+        )
+        self.assertEqual(rc_pdf_resp.status_code, 200)
+        self.assertEqual(rc_pdf_resp["Content-Type"], "application/pdf")
+        self.assertTrue(rc_pdf_resp.content.startswith(b"%PDF"))
+
+    def test_day10_teacher_library_and_account(self):
+        """Day 10: Verify Teacher Library advanced search, CEFR filter, batch actions, and Account & Subscription Hub."""
+        from teachers.models import TeacherMaterial, MaterialType, MaterialStatus, TeacherPedagogicalPreference
+        self.client.force_login(self.teacher)
+
+        # 1. Create a suite of test materials with different CEFR levels and types
+        m1 = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type=MaterialType.LESSON,
+            title="B1 Travel & Tourism Essentials",
+            topic="Airport & Travel Vocabulary",
+            cefr_level="B1",
+            is_pinned=True,
+            raw_markdown="Full lesson plan for travel vocabulary.",
+        )
+        m2 = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type=MaterialType.WORKSHEET,
+            title="C1 Advanced Academic Lexis",
+            topic="Academic Collocations & Inversion",
+            cefr_level="C1",
+            is_pinned=False,
+            raw_markdown="Academic lexis drills.",
+        )
+        m3 = TeacherMaterial.objects.create(
+            teacher=self.teacher,
+            teacher_class=self.teacher_class,
+            material_type=MaterialType.ASSESSMENT,
+            title="B2 Grammar Diagnostic Quiz",
+            topic="Conditionals and Passives",
+            cefr_level="B2",
+            is_pinned=False,
+            raw_markdown="Diagnostic quiz content.",
+        )
+
+        # 2. Search & Filtering tests
+        # Search by query
+        search_resp = self.client.get("/api/teachers/materials/?search=Airport")
+        self.assertEqual(search_resp.status_code, 200)
+        self.assertEqual(len(search_resp.data), 1)
+        self.assertEqual(search_resp.data[0]["id"], str(m1.id))
+
+        # Filter by CEFR Level
+        cefr_resp = self.client.get("/api/teachers/materials/?cefr_level=C1")
+        self.assertEqual(cefr_resp.status_code, 200)
+        self.assertEqual(len(cefr_resp.data), 1)
+        self.assertEqual(cefr_resp.data[0]["cefr_level"], "C1")
+
+        # Ordering: Pinned first by default
+        list_resp = self.client.get("/api/teachers/materials/")
+        self.assertEqual(list_resp.status_code, 200)
+        self.assertTrue(list_resp.data[0]["is_pinned"])
+
+        # 3. Batch Actions: Pin, Archive, Delete
+        batch_pin_resp = self.client.post(
+            "/api/teachers/materials/batch/",
+            {"action": "pin", "material_ids": [str(m2.id), str(m3.id)]},
+            format="json",
+        )
+        self.assertEqual(batch_pin_resp.status_code, 200)
+        self.assertTrue(batch_pin_resp.data["success"])
+        self.assertEqual(batch_pin_resp.data["affected_count"], 2)
+        m2.refresh_from_db()
+        self.assertTrue(m2.is_pinned)
+
+        batch_archive_resp = self.client.post(
+            "/api/teachers/materials/batch/",
+            {"action": "archive", "material_ids": [str(m1.id)]},
+            format="json",
+        )
+        self.assertEqual(batch_archive_resp.status_code, 200)
+        m1.refresh_from_db()
+        self.assertEqual(m1.status, MaterialStatus.ARCHIVED)
+
+        # 4. Teacher Account Hub: Summary, Preferences, and Plan Upgrade
+        account_resp = self.client.get("/api/teachers/account/summary/")
+        self.assertEqual(account_resp.status_code, 200)
+        adata = account_resp.data
+        self.assertIn("teacher", adata)
+        self.assertIn("plan", adata)
+        self.assertIn("usage", adata)
+        self.assertIn("productivity", adata)
+        self.assertIn("preferences", adata)
+        self.assertIn("available_plans", adata)
+        self.assertGreaterEqual(len(adata["available_plans"]), 3)
+        self.assertGreater(adata["productivity"]["hours_saved"], 0)
+
+        # Update Pedagogical Preferences
+        pref_resp = self.client.post(
+            "/api/teachers/account/preferences/",
+            {
+                "default_cefr": "B2",
+                "default_duration": 45,
+                "preferred_methodology": "tbl",
+                "auto_generate_ccqs": True,
+                "feedback_tone": "encouraging",
+            },
+            format="json",
+        )
+        self.assertEqual(pref_resp.status_code, 200)
+        self.assertTrue(pref_resp.data["success"])
+        self.assertEqual(pref_resp.data["preferences"]["preferred_methodology"], "tbl")
+        self.assertEqual(pref_resp.data["preferences"]["default_cefr"], "B2")
+
+        # Upgrade Plan to Premium
+        upgrade_resp = self.client.post(
+            "/api/teachers/account/upgrade/",
+            {"plan_code": "premium", "gateway": "zarinpal"},
+            format="json",
+        )
+        self.assertEqual(upgrade_resp.status_code, 200)
+        self.assertTrue(upgrade_resp.data["success"])
+        self.assertEqual(upgrade_resp.data["plan_code"], "premium")
+        self.assertIn("transaction", upgrade_resp.data)
+        self.assertTrue(upgrade_resp.data["transaction"]["ref_id"].startswith("ZP-"))
+
+        # Verify daily limit increased to 999
+        updated_metrics = self.client.get("/api/teachers/usage/")
+        self.assertEqual(updated_metrics.status_code, 200)
+        self.assertEqual(updated_metrics.data["daily_limit"], 999)
+        self.assertEqual(updated_metrics.data["plan_name"], "TeacherOS Premium")
+
+
+
+
+
+
+

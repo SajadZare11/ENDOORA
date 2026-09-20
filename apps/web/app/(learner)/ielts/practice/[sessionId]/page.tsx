@@ -1,5 +1,7 @@
 'use client';
 
+import { Button, Input } from "@endoora/ui";
+
 import React, { useEffect, useState, useCallback, use } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./ielts-simulator.module.css";
@@ -215,9 +217,9 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
         <h2>خطا در ورود به جلسه آزمون</h2>
         <p>{error || "جلسه آزمون یافت نشد."}</p>
-        <button type="button" onClick={() => router.push("/ielts/practice")}>
+        <Button type="button" variant="primary" onClick={() => router.push("/ielts/practice")}>
           بازگشت به مرکز آزمون‌ها
-        </button>
+        </Button>
       </div>
     );
   }
@@ -266,40 +268,48 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
         {/* Accessibility Tools */}
         <div className={styles.accessibilityControls}>
           {/* Font scale buttons */}
-          <button
+          <Button
             type="button"
+            variant={fontScale === "standard" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.controlButton} ${fontScale === "standard" ? styles.controlButtonActive : ""}`}
             onClick={() => setFontScale("standard")}
             title="Standard Text Size"
           >
             A
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={fontScale === "large" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.controlButton} ${fontScale === "large" ? styles.controlButtonActive : ""}`}
             onClick={() => setFontScale("large")}
             title="Large Text Size"
           >
             A+
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={fontScale === "xl" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.controlButton} ${fontScale === "xl" ? styles.controlButtonActive : ""}`}
             onClick={() => setFontScale("xl")}
             title="Extra Large Text Size"
           >
             A++
-          </button>
+          </Button>
 
           {/* Theme contrast toggle */}
-          <button
+          <Button
             type="button"
+            variant={contrastTheme === "dark" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.controlButton} ${contrastTheme === "dark" ? styles.controlButtonActive : ""}`}
             onClick={() => setContrastTheme(contrastTheme === "dark" ? "standard" : "dark")}
             title="Toggle Contrast"
           >
             {contrastTheme === "dark" ? "☀️ Light" : "🌙 Dark"}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -376,16 +386,18 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                         {group.question_type === "true_false_not_given" && (
                           <div className={styles.segmentedButtonGroup}>
                             {["TRUE", "FALSE", "NOT GIVEN"].map((val) => (
-                              <button
+                              <Button
                                 key={val}
                                 type="button"
+                                variant={String(currentVal).toUpperCase() === val ? "primary" : "secondary"}
+                                size="sm"
                                 className={`${styles.segmentedButton} ${
                                   String(currentVal).toUpperCase() === val ? styles.segmentedButtonSelected : ""
                                 }`}
                                 onClick={() => handleAnswerChange(q.id, val)}
                               >
                                 {val}
-                              </button>
+                              </Button>
                             ))}
                           </div>
                         )}
@@ -394,16 +406,18 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                         {group.question_type === "yes_no_not_given" && (
                           <div className={styles.segmentedButtonGroup}>
                             {["YES", "NO", "NOT GIVEN"].map((val) => (
-                              <button
+                              <Button
                                 key={val}
                                 type="button"
+                                variant={String(currentVal).toUpperCase() === val ? "primary" : "secondary"}
+                                size="sm"
                                 className={`${styles.segmentedButton} ${
                                   String(currentVal).toUpperCase() === val ? styles.segmentedButtonSelected : ""
                                 }`}
                                 onClick={() => handleAnswerChange(q.id, val)}
                               >
                                 {val}
-                              </button>
+                              </Button>
                             ))}
                           </div>
                         )}
@@ -418,7 +432,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                                   currentVal === opt.id ? styles.optionLabelSelected : ""
                                 }`}
                               >
-                                <input
+                                <Input
                                   type="radio"
                                   name={`question-${q.id}`}
                                   value={opt.id}
@@ -439,12 +453,12 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                           "table_flowchart_completion",
                         ].includes(group.question_type) && (
                           <div>
-                            <input
+                            <Input
                               type="text"
                               className={styles.textInput}
                               placeholder="Type your answer here..."
                               value={typeof currentVal === "string" ? currentVal : ""}
-                              onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleAnswerChange(q.id, e.target.value)}
                             />
                           </div>
                         )}
@@ -483,21 +497,25 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       {/* Bottom Examination Navigation Ribbon */}
       <footer className={styles.examFooter}>
         <div className={styles.footerLeft}>
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.controlButton}
             onClick={() => activeQuestionId && handleToggleFlag(activeQuestionId)}
             disabled={!activeQuestionId}
           >
             {activeQuestionId && flagged.includes(activeQuestionId) ? "🏳️ Unflag Question" : "🚩 Flag Question"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="secondary"
+            size="sm"
             className={styles.controlButton}
             onClick={() => setShowReviewModal(true)}
           >
             📋 Review All ({answeredCount}/{currentQuestions.length})
-          </button>
+          </Button>
         </div>
 
         {/* Question Palette Number Grid */}
@@ -508,9 +526,11 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
             const isAct = activeQuestionId === q.id;
 
             return (
-              <button
+              <Button
                 key={q.id}
                 type="button"
+                variant={isAct ? "primary" : hasAns ? "secondary" : "tertiary"}
+                size="sm"
                 className={`${styles.paletteButton} ${hasAns ? styles.paletteButtonAnswered : ""} ${
                   isFlg ? styles.paletteButtonFlagged : ""
                 } ${isAct ? styles.paletteButtonActive : ""}`}
@@ -522,28 +542,31 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                 title={`Question ${q.question_number} ${hasAns ? "(Answered)" : "(Unanswered)"}`}
               >
                 {q.question_number}
-              </button>
+              </Button>
             );
           })}
         </div>
 
         <div className={styles.footerRight}>
-          <button
+          <Button
             type="button"
+            variant="secondary"
             className={styles.controlButton}
             onClick={handlePrevQuestion}
           >
             ◀ Back
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="secondary"
             className={styles.controlButton}
             onClick={handleNextQuestion}
           >
             Next ▶
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant="primary"
             className={`${styles.controlButton} ${styles.controlButtonActive}`}
             style={{ background: "var(--color-primary)", color: "var(--color-primary-text)" }}
             onClick={() => setShowSubmitModal(true)}
@@ -551,7 +574,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
             {session.current_section_index >= session.sections.length - 1
               ? "Finish Exam ➔"
               : "Next Section ➔"}
-          </button>
+          </Button>
         </div>
       </footer>
 
@@ -561,9 +584,9 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
           <div className={styles.modalContent}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>وضعیت پاسخگویی به سوالات</h3>
-              <button type="button" className={styles.controlButton} onClick={() => setShowReviewModal(false)}>
+              <Button type="button" variant="tertiary" size="sm" className={styles.controlButton} onClick={() => setShowReviewModal(false)}>
                 ✕
-              </button>
+              </Button>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-3)", textAlign: "center" }}>
               <div style={{ background: "var(--color-surface-hover)", padding: "var(--space-3)", borderRadius: "var(--radius-md)" }}>
@@ -580,9 +603,9 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
               </div>
             </div>
             <div className={styles.modalFooter}>
-              <button type="button" className={styles.controlButton} onClick={() => setShowReviewModal(false)}>
+              <Button type="button" variant="secondary" className={styles.controlButton} onClick={() => setShowReviewModal(false)}>
                 بازگشت به آزمون
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -598,9 +621,9 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                   ? "پایان آزمون و ثبت نهایی کارنامه"
                   : "اتمام بخش فعلی و ورود به بخش بعد"}
               </h3>
-              <button type="button" className={styles.controlButton} onClick={() => setShowSubmitModal(false)}>
+              <Button type="button" variant="tertiary" size="sm" className={styles.controlButton} onClick={() => setShowSubmitModal(false)}>
                 ✕
-              </button>
+              </Button>
             </div>
             <div>
               <p>
@@ -613,22 +636,25 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
               )}
             </div>
             <div className={styles.modalFooter}>
-              <button
+              <Button
                 type="button"
+                variant="secondary"
                 className={styles.controlButton}
                 onClick={() => setShowSubmitModal(false)}
                 disabled={submitting}
               >
                 انصراف و ادامه آزمون
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="primary"
                 className={`${styles.controlButton} ${styles.controlButtonActive}`}
                 onClick={handleFinishSection}
+                loading={submitting}
                 disabled={submitting}
               >
                 {submitting ? "در حال پردازش..." : "تأیید و ادامه"}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

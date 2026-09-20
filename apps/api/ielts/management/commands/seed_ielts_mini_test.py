@@ -155,7 +155,7 @@ class Command(BaseCommand):
             title_en="Endoora Academic IELTS Diagnostic Simulation 01",
             version=1,
             defaults={
-                "title_fa": "آزمون شبیه‌ساز تشخیصی آیلتس آکادمیک اندورا ۰۱",
+                "title_fa": "آزمون شبیه‌ساز تشخیصی آیلتس آکادمیک ایندورا ۰۱",
                 "test_type": IELTSTestType.ACADEMIC,
                 "status": IELTSTestStatus.PUBLISHED,
                 "author": author,

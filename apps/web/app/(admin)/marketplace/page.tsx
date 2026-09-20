@@ -1,5 +1,6 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
 import React, { useState, useEffect, useCallback, useTransition } from "react";
 import styles from "./marketplace-admin.module.css";
 import {
@@ -321,55 +322,35 @@ export default function MarketplaceAdminPage() {
 
       {/* Tabs */}
       <div className={styles.tabsContainer}>
-        <button
-          type="button"
-          onClick={() => setActiveTab("disputes")}
-          className={`${styles.tabBtn} ${activeTab === "disputes" ? styles.tabActive : ""}`}
-        >
+        <Button type="button" variant="secondary" onClick={() => setActiveTab("disputes")} className={`${styles.tabBtn} ${activeTab === "disputes" ? styles.tabActive : ""}`}>
           ⚖️ داوری و حل اختلاف جلسات
           {disputes.filter((d) => d.status === "open").length > 0 && (
             <span className={styles.badgePill}>{disputes.filter((d) => d.status === "open").length}</span>
           )}
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("onboarding")}
-          className={`${styles.tabBtn} ${activeTab === "onboarding" ? styles.tabActive : ""}`}
-        >
+        </Button>
+        <Button type="button" variant="secondary" onClick={() => setActiveTab("onboarding")} className={`${styles.tabBtn} ${activeTab === "onboarding" ? styles.tabActive : ""}`}>
           🎓 تایید صلاحیت و مدارک اساتید
           {applications.filter((a) => a.status === "pending").length > 0 && (
             <span className={styles.badgePill}>{applications.filter((a) => a.status === "pending").length}</span>
           )}
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("reviews")}
-          className={`${styles.tabBtn} ${activeTab === "reviews" ? styles.tabActive : ""}`}
-        >
+        </Button>
+        <Button type="button" variant="secondary" onClick={() => setActiveTab("reviews")} className={`${styles.tabBtn} ${activeTab === "reviews" ? styles.tabActive : ""}`}>
           💬 نظارت بر بازخوردها و کامنت‌ها
           {reviews.filter((r) => r.status === "flagged" || r.status === "pending_moderation").length > 0 && (
             <span className={styles.badgePill}>
               {reviews.filter((r) => r.status === "flagged" || r.status === "pending_moderation").length}
             </span>
           )}
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("pricing")}
-          className={`${styles.tabBtn} ${activeTab === "pricing" ? styles.tabActive : ""}`}
-        >
+        </Button>
+        <Button type="button" variant="secondary" onClick={() => setActiveTab("pricing")} className={`${styles.tabBtn} ${activeTab === "pricing" ? styles.tabActive : ""}`}>
           💎 تنظیم پلن‌های اشتراک و قیمت
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("payouts")}
-          className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabActive : ""}`}
-        >
+        </Button>
+        <Button type="button" variant="secondary" onClick={() => setActiveTab("payouts")} className={`${styles.tabBtn} ${activeTab === "payouts" ? styles.tabActive : ""}`}>
           💰 تسویه و حواله‌های بانکی مدرسان
           {payouts.filter((p) => p.status === "pending").length > 0 && (
             <span className={styles.badgePill}>{payouts.filter((p) => p.status === "pending").length}</span>
           )}
-        </button>
+        </Button>
       </div>
 
       {/* Error & Success Banners */}
@@ -405,9 +386,9 @@ export default function MarketplaceAdminPage() {
                 <option value="dismissed">رد شکایت</option>
               </select>
             </div>
-            <button type="button" onClick={loadData} className={styles.searchBtn}>
+            <Button type="button" variant="primary" onClick={loadData} className={styles.searchBtn}>
               به‌روزرسانی لیست 🔄
-            </button>
+            </Button>
           </div>
 
           {loading ? (
@@ -416,7 +397,7 @@ export default function MarketplaceAdminPage() {
             <div className={styles.emptyState}>هیچ پرونده اختلافی در این وضعیت یافت نشد. ✅</div>
           ) : (
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>کد رزرو</th>
@@ -438,8 +419,10 @@ export default function MarketplaceAdminPage() {
                       <td>{getDisputeBadge(d.status)}</td>
                       <td>{d.refund_percentage}%</td>
                       <td>
-                        <button
+                        <Button
                           type="button"
+                          variant="primary"
+                          size="sm"
                           onClick={() => {
                             setSelectedDispute(d);
                             setResolutionStatus(d.status === "open" ? "resolved_full_refund" : d.status);
@@ -449,12 +432,12 @@ export default function MarketplaceAdminPage() {
                           className={styles.btnPrimary}
                         >
                           بررسی و صدور رأی ⚖️
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>
@@ -480,9 +463,9 @@ export default function MarketplaceAdminPage() {
                 <option value="rejected">تایید نشده</option>
               </select>
             </div>
-            <button type="button" onClick={loadData} className={styles.searchBtn}>
+            <Button type="button" variant="primary" onClick={loadData} className={styles.searchBtn}>
               به‌روزرسانی مدارک 🔄
-            </button>
+            </Button>
           </div>
 
           {loading ? (
@@ -491,7 +474,7 @@ export default function MarketplaceAdminPage() {
             <div className={styles.emptyState}>هیچ درخواستی در این بخش وجود ندارد.</div>
           ) : (
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>نام و ایمیل مدرس</th>
@@ -538,18 +521,22 @@ export default function MarketplaceAdminPage() {
                         <span className={styles.statusBadge}>{app.status_display}</span>
                       </td>
                       <td>
-                        <button
+                        <Button
                           type="button"
+                          variant="secondary"
+                          size="sm"
                           onClick={() => handleToggleEligibility(app.teacher_id, app.marketplace_eligible)}
                           className={app.marketplace_eligible ? styles.btnSuccess : styles.btnSecondary}
                           title="کلیک جهت تغییر وضعیت حضور در بازارگاه"
                         >
                           {app.marketplace_eligible ? "✓ فعال در بازارگاه" : "✕ مسدود"}
-                        </button>
+                        </Button>
                       </td>
                       <td>
-                        <button
+                        <Button
                           type="button"
+                          variant="primary"
+                          size="sm"
                           onClick={() => {
                             setSelectedApp(app);
                             setReviewAction(app.status === "approved" ? "approve" : "approve");
@@ -558,13 +545,13 @@ export default function MarketplaceAdminPage() {
                           }}
                           className={styles.btnPrimary}
                         >
-                          ارزیابی مدارک 📝
-                        </button>
+                          بررسی پرونده 🔍
+                        </Button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>
@@ -589,9 +576,9 @@ export default function MarketplaceAdminPage() {
                 <option value="removed">حذف‌شده توسط ناظر</option>
               </select>
             </div>
-            <button type="button" onClick={loadData} className={styles.searchBtn}>
+            <Button type="button" variant="primary" onClick={loadData} className={styles.searchBtn}>
               به‌روزرسانی نظرات 🔄
-            </button>
+            </Button>
           </div>
 
           {loading ? (
@@ -600,7 +587,7 @@ export default function MarketplaceAdminPage() {
             <div className={styles.emptyState}>هیچ بازخوردی نیازمند نظارت در صف وجود ندارد. 🌟</div>
           ) : (
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>امتیاز</th>
@@ -633,29 +620,33 @@ export default function MarketplaceAdminPage() {
                       <td>
                         <div style={{ display: "flex", gap: "var(--space-1)" }}>
                           {rev.status !== "published" && (
-                            <button
+                            <Button
                               type="button"
+                              variant="secondary"
+                              size="sm"
                               onClick={() => handleModerateReview(rev.id, "approve")}
                               className={styles.btnSuccess}
                             >
                               تایید و انتشار
-                            </button>
+                            </Button>
                           )}
                           {rev.status !== "removed" && (
-                            <button
+                            <Button
                               type="button"
+                              variant="destructive"
+                              size="sm"
                               onClick={() => handleModerateReview(rev.id, "remove")}
                               className={styles.btnDanger}
                             >
                               حذف / پالایش
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>
@@ -673,16 +664,16 @@ export default function MarketplaceAdminPage() {
                 پلن‌های نمایش داده‌شده در صفحه قیمت عمومی (/pricing) و درگاه پرداخت مستقیماً از این منبع داده خوانده می‌شوند.
               </p>
             </div>
-            <button type="button" onClick={loadData} className={styles.searchBtn}>
+            <Button type="button" variant="primary" onClick={loadData} className={styles.searchBtn}>
               به‌روزرسانی پلن‌ها 🔄
-            </button>
+            </Button>
           </div>
 
           {loading ? (
             <div className={styles.emptyState}>در حال دریافت پلن‌های قیمت‌گذاری...</div>
           ) : (
             <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+              <Table className={styles.table}>
                 <thead>
                   <tr>
                     <th>کد پلن</th>
@@ -710,8 +701,10 @@ export default function MarketplaceAdminPage() {
                       </td>
                       <td>{p.is_featured ? "⭐ ویژه" : "عادی"}</td>
                       <td>
-                        <button
+                        <Button
                           type="button"
+                          variant="primary"
+                          size="sm"
                           onClick={() => {
                             setSelectedPlan(p);
                             setEditPriceToman(String(p.price_toman_number || p.price_toman));
@@ -723,12 +716,12 @@ export default function MarketplaceAdminPage() {
                           className={styles.btnPrimary}
                         >
                           ویرایش نرخ ✏️
-                        </button>
+                        </Button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>
@@ -776,7 +769,7 @@ export default function MarketplaceAdminPage() {
               {resolutionStatus === "resolved_partial_refund" && (
                 <div>
                   <label htmlFor="refund-percentage-range" className={styles.modalLabel}>درصد بازگشت وجه به زبان‌آموز ({refundPercentage}٪):</label>
-                  <input
+                  <Input
                     id="refund-percentage-range"
                     type="range"
                     min="1"
@@ -802,17 +795,12 @@ export default function MarketplaceAdminPage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedDispute(null)}
-                  className={styles.btnSecondary}
-                  disabled={isPending}
-                >
+                <Button type="button" variant="secondary" onClick={() => setSelectedDispute(null)} className={styles.btnSecondary} disabled={isPending}>
                   انصراف
-                </button>
-                <button type="submit" className={styles.btnPrimary} disabled={isPending}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.btnPrimary} disabled={isPending}>
                   {isPending ? "در حال ثبت رأی..." : "ابلاغ رأی و بستن پرونده ⚖️"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -887,11 +875,11 @@ export default function MarketplaceAdminPage() {
 
               <div>
                 <label htmlFor="admin-internal-notes-input" className={styles.modalLabel}>یادداشت محرمانه ناظر (فقط برای ادمین‌ها):</label>
-                <input
+                <Input
                   id="admin-internal-notes-input"
                   type="text"
                   value={adminNotes}
-                  onChange={(e) => setAdminNotes(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAdminNotes(e.target.value)}
                   placeholder="مثال: استعلام مدرک دانشگاه تهران انجام شد."
                   className={styles.selectInput}
                   style={{ inlineSize: "100%" }}
@@ -899,17 +887,12 @@ export default function MarketplaceAdminPage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedApp(null)}
-                  className={styles.btnSecondary}
-                  disabled={isPending}
-                >
+                <Button type="button" variant="secondary" onClick={() => setSelectedApp(null)} className={styles.btnSecondary} disabled={isPending}>
                   انصراف
-                </button>
-                <button type="submit" className={styles.btnPrimary} disabled={isPending}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.btnPrimary} disabled={isPending}>
                   {isPending ? "در حال ثبت..." : "ثبت نتیجه ارزیابی ✅"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -924,11 +907,11 @@ export default function MarketplaceAdminPage() {
             <form onSubmit={handleSavePricingPlan} style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
               <div>
                 <label htmlFor="edit-plan-title-input" className={styles.modalLabel}>عنوان پلن:</label>
-                <input
+                <Input
                   id="edit-plan-title-input"
                   type="text"
                   value={editNameFa}
-                  onChange={(e) => setEditNameFa(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditNameFa(e.target.value)}
                   className={styles.selectInput}
                   style={{ inlineSize: "100%" }}
                   required
@@ -937,11 +920,11 @@ export default function MarketplaceAdminPage() {
 
               <div>
                 <label htmlFor="edit-plan-price-input" className={styles.modalLabel}>قیمت به تومان (منبع رسمی):</label>
-                <input
+                <Input
                   id="edit-plan-price-input"
                   type="number"
                   value={editPriceToman}
-                  onChange={(e) => setEditPriceToman(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditPriceToman(e.target.value)}
                   className={styles.selectInput}
                   style={{ inlineSize: "100%" }}
                   required
@@ -950,11 +933,11 @@ export default function MarketplaceAdminPage() {
 
               <div>
                 <label htmlFor="edit-plan-duration-input" className={styles.modalLabel}>مدت اعتبار (روز):</label>
-                <input
+                <Input
                   id="edit-plan-duration-input"
                   type="number"
                   value={editDurationDays}
-                  onChange={(e) => setEditDurationDays(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEditDurationDays(Number(e.target.value))}
                   className={styles.selectInput}
                   style={{ inlineSize: "100%" }}
                   required
@@ -963,7 +946,7 @@ export default function MarketplaceAdminPage() {
 
               <div style={{ display: "flex", gap: "var(--space-4)" }}>
                 <label style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", fontSize: "var(--font-size-xs)" }}>
-                  <input
+                  <Input
                     type="checkbox"
                     checked={editIsActive}
                     onChange={(e) => setEditIsActive(e.target.checked)}
@@ -971,7 +954,7 @@ export default function MarketplaceAdminPage() {
                   پلن فعال است
                 </label>
                 <label style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", fontSize: "var(--font-size-xs)" }}>
-                  <input
+                  <Input
                     type="checkbox"
                     checked={editIsFeatured}
                     onChange={(e) => setEditIsFeatured(e.target.checked)}
@@ -981,17 +964,12 @@ export default function MarketplaceAdminPage() {
               </div>
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPlan(null)}
-                  className={styles.btnSecondary}
-                  disabled={isPending}
-                >
+                <Button type="button" variant="secondary" onClick={() => setSelectedPlan(null)} className={styles.btnSecondary} disabled={isPending}>
                   انصراف
-                </button>
-                <button type="submit" className={styles.btnPrimary} disabled={isPending}>
+                </Button>
+                <Button type="submit" variant="primary" className={styles.btnPrimary} disabled={isPending}>
                   {isPending ? "در حال ذخیره..." : "ذخیره تنظیمات قیمت 💾"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
@@ -1017,9 +995,9 @@ export default function MarketplaceAdminPage() {
                 <option value="rejected">رد شده</option>
               </select>
             </div>
-            <button type="button" onClick={loadData} className={styles.btnSecondary}>
+            <Button type="button" variant="secondary" onClick={loadData} className={styles.btnSecondary}>
               بروزرسانی لیست ↻
-            </button>
+            </Button>
           </div>
 
           {loading ? (
@@ -1028,7 +1006,7 @@ export default function MarketplaceAdminPage() {
             <div className={styles.emptyCard}><p>هیچ درخواست تسویه‌ای با فیلتر انتخابی یافت نشد.</p></div>
           ) : (
             <div className={styles.tableCard}>
-              <table className={styles.adminTable}>
+              <Table className={styles.adminTable}>
                 <thead>
                   <tr>
                     <th>مدرس</th>
@@ -1077,8 +1055,10 @@ export default function MarketplaceAdminPage() {
                       <td style={{ fontSize: "var(--font-size-xs)" }}>{formatTehranDateTime(p.created_at)}</td>
                       <td>
                         {p.status !== "paid" && p.status !== "rejected" ? (
-                          <button
+                          <Button
                             type="button"
+                            variant="primary"
+                            size="sm"
                             onClick={() => {
                               setSelectedPayout(p);
                               setPayoutAction("pay");
@@ -1089,7 +1069,7 @@ export default function MarketplaceAdminPage() {
                             style={{ paddingInline: "var(--space-3)", paddingBlock: "var(--space-1)", fontSize: "var(--font-size-xs)" }}
                           >
                             بررسی و تسویه 💳
-                          </button>
+                          </Button>
                         ) : (
                           <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-muted)" }}>نهایی شده</span>
                         )}
@@ -1097,7 +1077,7 @@ export default function MarketplaceAdminPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>
@@ -1109,13 +1089,9 @@ export default function MarketplaceAdminPage() {
           <div className={styles.modalCard}>
             <div className={styles.modalHeader}>
               <h3 className={styles.modalTitle}>پردازش درخواست تسویه مالی</h3>
-              <button
-                type="button"
-                onClick={() => setSelectedPayout(null)}
-                className={styles.closeBtn}
-              >
+              <Button type="button" variant="tertiary" size="sm" onClick={() => setSelectedPayout(null)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleProcessPayoutSubmit} className={styles.modalBody}>
@@ -1156,34 +1132,17 @@ export default function MarketplaceAdminPage() {
               ) : (
                 <div>
                   <label htmlFor="payout-notes-input" className={styles.modalLabel}>یادداشت مالی / شماره پیگیری حواله پایا:</label>
-                  <input
-                    id="payout-notes-input"
-                    type="text"
-                    value={payoutAdminNotes}
-                    onChange={(e) => setPayoutAdminNotes(e.target.value)}
-                    placeholder="مثال: شماره حواله پایا ۱۲۳۴۵۶۷۸۹"
-                    className={styles.selectInput}
-                    style={{ inlineSize: "100%" }}
-                  />
+                  <Input id="payout-notes-input" type="text" value={payoutAdminNotes} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPayoutAdminNotes(e.target.value)} placeholder="مثال: شماره حواله پایا ۱۲۳۴۵۶۷۸۹" className={styles.selectInput} style={{ inlineSize: "100%" }} />
                 </div>
               )}
 
               <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedPayout(null)}
-                  className={styles.btnSecondary}
-                  disabled={isPending}
-                >
+                <Button type="button" variant="secondary" onClick={() => setSelectedPayout(null)} className={styles.btnSecondary} disabled={isPending}>
                   انصراف
-                </button>
-                <button
-                  type="submit"
-                  className={payoutAction === "reject" ? styles.btnDanger : styles.btnPrimary}
-                  disabled={isPending}
-                >
+                </Button>
+                <Button type="submit" variant={payoutAction === "reject" ? "destructive" : "primary"} className={payoutAction === "reject" ? styles.btnDanger : styles.btnPrimary} disabled={isPending}>
                   {isPending ? "در حال پردازش..." : payoutAction === "reject" ? "رد و استرداد وجه به کیف پول ✕" : "تایید و ثبت اقدام مالی ✓"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

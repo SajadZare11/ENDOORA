@@ -1,3 +1,4 @@
+import { Button } from "@endoora/ui";
 import styles from './placement.module.css';
 import EndooraButton from '@/components/design/EndooraButton';
 
@@ -36,7 +37,7 @@ export default function PlacementQuestion({
 
       <div className={styles.options}>
         {question.options.map((option) => (
-          <button
+          <Button
             key={option}
             onClick={() => setSelected(option)}
             className={`${styles.option} ${
@@ -44,7 +45,7 @@ export default function PlacementQuestion({
             }`}
           >
             {option}
-          </button>
+          </Button>
         ))}
       </div>
 

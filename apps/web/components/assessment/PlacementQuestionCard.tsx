@@ -1,3 +1,4 @@
+import { Button } from "@endoora/ui";
 type Props = {
   question: string;
   options: string[];
@@ -16,14 +17,14 @@ export default function PlacementQuestionCard({
       <h2>{question}</h2>
       <div>
         {options.map((option) => (
-          <button
+          <Button
             key={option}
             type="button"
             aria-pressed={selected === option}
             onClick={() => onSelect(option)}
           >
             {option}
-          </button>
+          </Button>
         ))}
       </div>
     </section>

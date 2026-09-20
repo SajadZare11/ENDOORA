@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
+import { Button, Input } from "@endoora/ui";
 import {
   apiErrorMessages,
   endooraApi,
@@ -604,9 +605,9 @@ export default function ProfilePage() {
                 {t.email}
               </label>
 
-              <input
+              <Input
                 id="account-email"
-                className={`endoora-input ${styles.ltr}`}
+                className={styles.ltr}
                 value={account.email}
                 readOnly
               />
@@ -622,9 +623,8 @@ export default function ProfilePage() {
                 {t.role}
               </label>
 
-              <input
+              <Input
                 id="account-role"
-                className="endoora-input"
                 value={
                   isLearner
                     ? t.learner
@@ -642,11 +642,11 @@ export default function ProfilePage() {
                 {t.phone}
               </label>
 
-              <input
+              <Input
                 id="account-phone"
                 inputMode="tel"
                 autoComplete="tel"
-                className={`endoora-input ${styles.ltr}`}
+                className={styles.ltr}
                 value={account.phone ?? ""}
                 onChange={(event) =>
                   setAccount((current) =>
@@ -654,7 +654,9 @@ export default function ProfilePage() {
                       ? {
                           ...current,
                           phone:
-                            event.target.value,
+                            event.target
+                              .value ||
+                            null,
                         }
                       : current,
                   )
@@ -882,12 +884,12 @@ export default function ProfilePage() {
                   {t.dailyMinutes}
                 </label>
 
-                <input
+                <Input
                   id="learner-minutes"
                   type="number"
                   min={5}
                   max={240}
-                  className={`endoora-input ${styles.ltr}`}
+                  className={styles.ltr}
                   value={
                     learner.preferred_daily_minutes ??
                     ""
@@ -921,9 +923,9 @@ export default function ProfilePage() {
                   {t.timezone}
                 </label>
 
-                <input
+                <Input
                   id="learner-timezone"
-                  className={`endoora-input ${styles.ltr}`}
+                  className={styles.ltr}
                   value={learner.timezone}
                   onChange={(event) =>
                     setLearner((current) =>
@@ -952,7 +954,7 @@ export default function ProfilePage() {
                       key={day}
                       className="endoora-check-row"
                     >
-                      <input
+                      <Input
                         type="checkbox"
                         className="endoora-check"
                         checked={learner.preferred_days.includes(
@@ -983,9 +985,8 @@ export default function ProfilePage() {
                   {t.publicName}
                 </label>
 
-                <input
+                <Input
                   id="teacher-name"
-                  className="endoora-input"
                   value={teacher.public_name}
                   onChange={(event) =>
                     setTeacher((current) =>
@@ -1009,12 +1010,12 @@ export default function ProfilePage() {
                   {t.experience}
                 </label>
 
-                <input
+                <Input
                   id="teacher-experience"
                   type="number"
                   min={0}
                   max={70}
-                  className={`endoora-input ${styles.ltr}`}
+                  className={styles.ltr}
                   value={
                     teacher.experience_years ??
                     ""
@@ -1046,7 +1047,7 @@ export default function ProfilePage() {
                   {t.city}
                 </label>
 
-                <input
+                <Input
                   id="teacher-city"
                   className="endoora-input"
                   value={teacher.city}
@@ -1072,7 +1073,7 @@ export default function ProfilePage() {
                   {t.specialties}
                 </label>
 
-                <input
+                <Input
                   id="teacher-specialties"
                   className={`endoora-input ${styles.ltr}`}
                   value={specialtiesText}
@@ -1096,7 +1097,7 @@ export default function ProfilePage() {
                   {t.languages}
                 </label>
 
-                <input
+                <Input
                   id="teacher-languages"
                   className={`endoora-input ${styles.ltr}`}
                   value={languagesText}
@@ -1146,7 +1147,7 @@ export default function ProfilePage() {
               >
                 <div className={styles.checks}>
                   <label className="endoora-check-row">
-                    <input
+                    <Input
                       type="checkbox"
                       className="endoora-check"
                       checked={
@@ -1172,7 +1173,7 @@ export default function ProfilePage() {
                   </label>
 
                   <label className="endoora-check-row">
-                    <input
+                    <Input
                       type="checkbox"
                       className="endoora-check"
                       checked={
@@ -1207,15 +1208,16 @@ export default function ProfilePage() {
         </section>
 
         <div className={styles.actions}>
-          <button
+          <Button
             type="submit"
-            className="endoora-button endoora-button--primary"
+            variant="primary"
+            loading={saving}
             disabled={saving}
           >
             {saving
               ? t.saving
               : t.save}
-          </button>
+          </Button>
         </div>
       </form>
     </AuthShell>

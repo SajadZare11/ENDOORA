@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type {
   InputHTMLAttributes,
   OptionHTMLAttributes,
@@ -5,6 +6,80 @@ import type {
   SelectHTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
+
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  hasError?: boolean;
+};
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { hasError = false, className = "", ...props },
+  ref
+) {
+  return (
+    <input
+      ref={ref}
+      className={["endoora-input", hasError ? "endoora-input--error" : "", className].filter(Boolean).join(" ")}
+      {...props}
+    />
+  );
+});
+
+export type SearchInputProps = InputProps & {
+  leadingIcon?: ReactNode;
+};
+
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(function SearchInput(
+  { leadingIcon, className = "", ...props },
+  ref
+) {
+  return (
+    <div className="endoora-search-input-wrapper">
+      {leadingIcon ? <span className="endoora-search-input-icon" aria-hidden="true">{leadingIcon}</span> : null}
+      <input
+        ref={ref}
+        type="search"
+        className={["endoora-input", "endoora-search-input", className].filter(Boolean).join(" ")}
+        {...props}
+      />
+    </div>
+  );
+});
+
+export type SelectControlProps = SelectHTMLAttributes<HTMLSelectElement> & {
+  hasError?: boolean;
+};
+
+export const SelectControl = forwardRef<HTMLSelectElement, SelectControlProps>(function SelectControl(
+  { hasError = false, className = "", children, ...props },
+  ref
+) {
+  return (
+    <select
+      ref={ref}
+      className={["endoora-input", hasError ? "endoora-input--error" : "", className].filter(Boolean).join(" ")}
+      {...props}
+    >
+      {children}
+    </select>
+  );
+});
+
+export type TextareaControlProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  hasError?: boolean;
+};
+
+export const TextareaControl = forwardRef<HTMLTextAreaElement, TextareaControlProps>(function TextareaControl(
+  { hasError = false, className = "", ...props },
+  ref
+) {
+  return (
+    <textarea
+      ref={ref}
+      className={["endoora-input", "endoora-textarea", hasError ? "endoora-input--error" : "", className].filter(Boolean).join(" ")}
+      {...props}
+    />
+  );
+});
 
 export type FieldCommonProps = {
   id: string;

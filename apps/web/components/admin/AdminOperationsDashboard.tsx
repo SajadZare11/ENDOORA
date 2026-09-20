@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@endoora/ui";
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./admin-dashboard.module.css";
@@ -154,7 +156,7 @@ export function AdminOperationsDashboard() {
       <header className={styles.header}>
         <div className={styles.titleBlock}>
           <div className={styles.titleRow}>
-            <h1 className={styles.title}>مرکز فرماندهی و مدیریت عملیات اندورا (OPS-001)</h1>
+            <h1 className={styles.title}>مرکز فرماندهی و مدیریت عملیات ایندورا (OPS-001)</h1>
             <div className={styles.statusBadgeLive}>
               <span className={styles.pulseDot} />
               <span>سامانه عملیاتی پایدار (99.98% SLA)</span>
@@ -172,9 +174,9 @@ export function AdminOperationsDashboard() {
           <Link href="/operations/audit" className={styles.secondaryBtn}>
             مشاهده گزارشات ممیزی
           </Link>
-          <button onClick={loadDashboardData} className={styles.primaryBtn}>
+          <Button onClick={loadDashboardData} className={styles.primaryBtn}>
             به‌روزرسانی داده‌ها
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -312,12 +314,12 @@ export function AdminOperationsDashboard() {
                   <span className={styles.flagRationale}>{flag.rationale}</span>
                 </div>
                 <div className={styles.flagControls}>
-                  <button
+                  <Button
                     onClick={() => handleOpenToggle(flag)}
                     className={`${styles.toggleSwitch} ${flag.enabled ? styles.toggleSwitchActive : ""}`}
                   >
                     {flag.enabled ? "فعال (Online)" : "غیرفعال (Offline)"}
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -397,9 +399,9 @@ export function AdminOperationsDashboard() {
               <h2 className={styles.modalTitle}>
                 تغییر وضعیت کلید ویژگی: <code>{selectedFlagForToggle.key}</code>
               </h2>
-              <button onClick={() => setSelectedFlagForToggle(null)} className={styles.closeBtn}>
+              <Button onClick={() => setSelectedFlagForToggle(null)} className={styles.closeBtn}>
                 ✕
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleConfirmToggle}>
@@ -434,21 +436,21 @@ export function AdminOperationsDashboard() {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
                   onClick={() => setSelectedFlagForToggle(null)}
                   className={styles.secondaryBtn}
                   disabled={isSubmittingToggle}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   className={styles.primaryBtn}
                   disabled={isSubmittingToggle}
                 >
                   {isSubmittingToggle ? "در حال ثبت..." : "تایید و اعمال فوری تغییر"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

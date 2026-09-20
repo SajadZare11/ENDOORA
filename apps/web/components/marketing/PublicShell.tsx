@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import {
   alternatePath,
@@ -27,10 +28,12 @@ function isCurrentRoute(currentPath: string, path: string) {
 export function PublicShell({
   locale,
   currentPath,
+  onLocaleChange,
   children,
 }: {
   locale: PublicLocale;
   currentPath: string;
+  onLocaleChange?: (locale: PublicLocale) => void;
   children: ReactNode;
 }) {
   const isFa = locale === "fa";
@@ -43,9 +46,19 @@ export function PublicShell({
       </a>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link className={styles.brand} href={localizedPath(locale, "/")} aria-label={isFa ? "صفحه اصلی Endoora" : "Endoora home"}>
-            <span className={styles.brandName} dir="ltr">Endoora</span>
-            <span className={styles.motto} dir="ltr">A new door to your English</span>
+          <Link className={styles.brand} href={localizedPath(locale, "/")} aria-label={isFa ? "صفحه اصلی ایندورا" : "Endoora home"}>
+            <Image
+              className={styles.brandLogo}
+              src="/images/endoora-mark.png"
+              alt="Endoora"
+              width={38}
+              height={45}
+              priority
+            />
+            <div className={styles.brandCopy}>
+              <span className={styles.brandName} dir="ltr">Endoora</span>
+              <span className={styles.motto} dir="ltr">A new door to your English</span>
+            </div>
           </Link>
 
           <nav className={styles.desktopNav} aria-label={isFa ? "ناوبری اصلی" : "Primary navigation"}>
@@ -61,9 +74,20 @@ export function PublicShell({
           </nav>
 
           <div className={styles.actions}>
-            <Link className={styles.language} href={alternatePath(locale, currentPath)} hrefLang={isFa ? "en" : "fa-IR"}>
-              {isFa ? "English" : "فارسی"}
-            </Link>
+            {onLocaleChange ? (
+              <button
+                type="button"
+                className={styles.language}
+                onClick={() => onLocaleChange(isFa ? "en" : "fa")}
+                aria-label={isFa ? "Switch to English" : "تغییر به فارسی"}
+              >
+                {isFa ? "English" : "فارسی"}
+              </button>
+            ) : (
+              <Link className={styles.language} href={alternatePath(locale, currentPath)} hrefLang={isFa ? "en" : "fa-IR"}>
+                {isFa ? "English" : "فارسی"}
+              </Link>
+            )}
             <AccountEntryLink className={styles.primaryCta} locale={locale} />
             <details className={styles.mobileMenu}>
               <summary aria-label={isFa ? "باز کردن منوی اصلی" : "Open main menu"}>
@@ -93,7 +117,16 @@ export function PublicShell({
       <footer className={styles.footer}>
         <div className={styles.footerGrid}>
           <div>
-            <strong className={styles.footerBrand} dir="ltr">Endoora</strong>
+            <div className={styles.footerBrandWrap}>
+              <Image
+                className={styles.footerLogo}
+                src="/images/endoora-mark.png"
+                alt="Endoora"
+                width={28}
+                height={34}
+              />
+              <strong className={styles.footerBrand} dir="ltr">Endoora</strong>
+            </div>
             <p className={styles.footerText}>{isFa ? "سیستم یادگیری انگلیسی فارسی‌محور برای زبان‌آموزان ایران." : "A Persian-first English learning system for Iranian learners."}</p>
           </div>
           <div>

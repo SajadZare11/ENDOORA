@@ -429,7 +429,7 @@ def _get_curated_tasks(target_skill: str) -> list[dict[str, Any]]:
                 {"id": "d", "text": "English is words and books."}
             ],
             "correct_option_id": "a",
-            "explanation_fa": "عبارت I intend to practice... ساختاری صریح، متعهدانه و شفاف برای تنظیم اهداف یادگیری است که پایه اصلی ادامه مسیر در اندورا خواهد بود.",
+            "explanation_fa": "عبارت I intend to practice... ساختاری صریح، متعهدانه و شفاف برای تنظیم اهداف یادگیری است که پایه اصلی ادامه مسیر در ایندورا خواهد بود.",
             "explanation_en": "I intend to practice... clearly states an actionable, intentional learning habit."
         }
     ]
@@ -443,7 +443,7 @@ def _resolve_target_skill_from_placement(user) -> tuple[str, str, str]:
     if not session:
         return (
             "diagnostic_readiness",
-            "هنوز تعیین سطح انجام نشده است؛ این ماموریت مقدماتی برای آشنایی با روند یادگیری اندورا آماده شده است.",
+            "هنوز تعیین سطح انجام نشده است؛ این ماموریت مقدماتی برای آشنایی با روند یادگیری ایندورا آماده شده است.",
             "Placement is not yet completed; this introductory mission gets you familiar with Endoora learning flow."
         )
 
@@ -495,7 +495,7 @@ def build_daily_mission(user) -> DailyMission:
     if target_skill == "diagnostic_readiness":
         title_fa = "ماموریت امروز: آشنایی و سنجش نقطه شروع"
         title_en = "Today's Mission: Readiness & Starting Point"
-        explanation_fa = "این ماموریت مقدماتی شما را با ساختار یادگیری اندورا آشنا می‌کند. برای دریافت برنامه‌های اختصاصی‌تر، تعیین سطح را تکمیل کنید."
+        explanation_fa = "این ماموریت مقدماتی شما را با ساختار یادگیری ایندورا آشنا می‌کند. برای دریافت برنامه‌های اختصاصی‌تر، تعیین سطح را تکمیل کنید."
         explanation_en = "This introductory mission introduces you to Endoora flow. Complete placement to unlock fully tailored missions."
         source = "unplaced_onboarding"
     else:

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Button, Input } from "@endoora/ui";
 import styles from "./notifications.module.css";
 import {
   fetchNotificationPreferences,
@@ -23,29 +24,39 @@ export function NotificationCenter() {
   const [prefs, setPrefs] = useState<NotificationPreferences>(FALLBACK_PREFERENCES);
   const [loading, setLoading] = useState<boolean>(true);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
-
-  const loadData = async (cat?: string, unread?: boolean) => {
-    try {
-      const [res, pr] = await Promise.all([
-        fetchNotifications(cat ?? selectedCategory, unread ?? unreadOnly),
-        fetchNotificationPreferences(),
-      ]);
-      setNotifications(res.notifications);
-      setUnreadCount(res.unread_count);
-      setPrefs(pr);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [refreshCount, setRefreshCount] = useState<number>(0);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    let mounted = true;
+    Promise.all([
+      fetchNotifications(selectedCategory === "UNREAD" ? "ALL" : selectedCategory, unreadOnly),
+      fetchNotificationPreferences(),
+    ])
+      .then(([res, pr]) => {
+        if (mounted) {
+          setNotifications(res.notifications);
+          setUnreadCount(res.unread_count);
+          setPrefs(pr);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (mounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [selectedCategory, unreadOnly, refreshCount]);
+
+
 
   const handleCategorySelect = (cat: string) => {
     setSelectedCategory(cat);
     setUnreadOnly(cat === "UNREAD");
-    loadData(cat === "UNREAD" ? "ALL" : cat, cat === "UNREAD");
+    setLoading(true);
   };
 
   const handleMarkAsRead = async (id: string) => {
@@ -101,12 +112,28 @@ export function NotificationCenter() {
         </div>
 
         <div className={styles.headerActions}>
-          <button className={styles.actionButton} onClick={handleMarkAllAsRead}>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className={styles.actionButton}
+            onClick={handleMarkAllAsRead}
+          >
             ✓ خواندن همه
-          </button>
-          <button className={styles.actionButton} onClick={() => loadData()}>
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className={styles.actionButton}
+            loading={loading}
+            onClick={() => {
+              setLoading(true);
+              setRefreshCount((c) => c + 1);
+            }}
+          >
             🔄 بروزرسانی
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -127,15 +154,18 @@ export function NotificationCenter() {
           { key: "FINANCIAL", label: "💳 مالی و پرداخت" },
           { key: "SYSTEM", label: "⚙️ سیستم" },
         ].map((tab) => (
-          <button
+          <Button
             key={tab.key}
+            type="button"
+            variant={selectedCategory === tab.key ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.filterTab} ${
               selectedCategory === tab.key ? styles.filterTabActive : ""
             }`}
             onClick={() => handleCategorySelect(tab.key)}
           >
             {tab.label}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -171,12 +201,15 @@ export function NotificationCenter() {
                   )}
                 </div>
                 {!item.is_read && (
-                  <button
+                  <Button
+                    type="button"
+                    variant="tertiary"
+                    size="compact"
                     className={styles.markReadBtn}
                     onClick={() => handleMarkAsRead(item.id)}
                   >
                     علامت‌گذاری به عنوان خوانده‌شده
-                  </button>
+                  </Button>
                 )}
               </div>
 
@@ -216,8 +249,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>اعلان‌های درون‌برنامه‌ای (In-App)</span>
               <span className={styles.prefDesc}>نمایش نشان قرمز و لیست پیام‌ها در هدر سایت</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.in_app_enabled}
               onChange={(e) => setPrefs({ ...prefs, in_app_enabled: e.target.checked })}
             />
@@ -228,8 +262,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>پیامک موبایل (SMS ایران)</span>
               <span className={styles.prefDesc}>ارسال به شماره همراه تایید شده ({prefs.user_phone || "ثبت نشده"})</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.sms_enabled}
               onChange={(e) => setPrefs({ ...prefs, sms_enabled: e.target.checked })}
             />
@@ -240,8 +275,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>ایمیل اطلاع‌رسانی</span>
               <span className={styles.prefDesc}>گزارش‌های پیشرفت و کارنامه دوره‌ای</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.email_enabled}
               onChange={(e) => setPrefs({ ...prefs, email_enabled: e.target.checked })}
             />
@@ -252,8 +288,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>یادآوری تمرین‌ها و ماموریت‌ها</span>
               <span className={styles.prefDesc}>اطلاع‌رسانی تمرین روزانه و مرور فاصله‌دار SRS</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.learning_updates}
               onChange={(e) => setPrefs({ ...prefs, learning_updates: e.target.checked })}
             />
@@ -264,8 +301,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>تکالیف و اعلام نمرات</span>
               <span className={styles.prefDesc}>بازخورد استادان و تصحیح هوشمند مقالات</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.assignment_alerts}
               onChange={(e) => setPrefs({ ...prefs, assignment_alerts: e.target.checked })}
             />
@@ -276,8 +314,9 @@ export function NotificationCenter() {
               <span className={styles.prefName}>تراکنش‌های مالی و فاکتور</span>
               <span className={styles.prefDesc}>رسید رزرو کلاس، شارژ کیف پول و تسویه</span>
             </div>
-            <input
+            <Input
               type="checkbox"
+              className="endoora-check"
               checked={prefs.financial_receipts}
               onChange={(e) => setPrefs({ ...prefs, financial_receipts: e.target.checked })}
             />
@@ -285,9 +324,14 @@ export function NotificationCenter() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <button className={`${styles.actionButton} ${styles.primaryButton}`} onClick={handleSavePreferences}>
+          <Button
+            type="button"
+            variant="primary"
+            className={`${styles.actionButton} ${styles.primaryButton}`}
+            onClick={handleSavePreferences}
+          >
             💾 ذخیره تغییرات ترجیحات
-          </button>
+          </Button>
         </div>
       </section>
     </div>

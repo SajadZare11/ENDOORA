@@ -377,7 +377,7 @@ Point, Evidence, Explanation, Link.
         return {
             "total_skills": len(categories_meta),
             "skills": skills_data,
-            "constitution_rule_notice_fa": "تمام محتواهای آموزشی اندورا بر اساس اصول علمی، دارای کپی‌رایت شفاف و بدون استفاده از متون تجاری غیرمجاز نگاشته شده‌اند.",
+            "constitution_rule_notice_fa": "تمام محتواهای آموزشی ایندورا بر اساس اصول علمی، دارای کپی‌رایت شفاف و بدون استفاده از متون تجاری غیرمجاز نگاشته شده‌اند.",
             "constitution_rule_notice_en": "All Endoora pedagogical content adheres to transparent licensing, verified CEFR taxonomy, and zero copyright infringement.",
         }
 
@@ -479,7 +479,7 @@ Point, Evidence, Explanation, Link.
                 "plan_duration_days": 90,
                 "display_price_toman": 420000,
                 "cta_url": "/account/plan",
-                "message_fa": "این محتوای تخصصی نیازمند اشتراک ویژه اندورا است. با فعال‌سازی اشتراک ۹۰ روزه به تمام امکانات دسترسی داشته باشید.",
+                "message_fa": "این محتوای تخصصی نیازمند اشتراک ویژه ایندورا است. با فعال‌سازی اشتراک ۹۰ روزه به تمام امکانات دسترسی داشته باشید.",
                 "message_en": "This premium lesson requires an active Endoora Premium subscription. Upgrade to unlock full content, audio, and quizzes.",
             } if is_locked else None,
             "source_attribution": item.source_attribution,

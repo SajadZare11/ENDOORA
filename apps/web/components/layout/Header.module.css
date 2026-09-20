@@ -19,20 +19,36 @@
 
 .logo {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text);
+}
 
+.logoImg {
+  inline-size: 2.35rem;
+  block-size: auto;
+  aspect-ratio: 38 / 45;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.06));
+}
+
+.logoCopy {
   display: flex;
   flex-direction: column;
 }
 
-
 .logo strong {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
+  line-height: 1.1;
 }
-
 
 .logo span {
   font-size: 13px;
+  color: var(--color-muted);
 }
 
 

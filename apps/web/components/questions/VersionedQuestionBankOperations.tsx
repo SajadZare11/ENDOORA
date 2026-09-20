@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input } from "@endoora/ui";
+
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -478,29 +480,29 @@ export function VersionedQuestionBankOperations({
         </div>
 
         <div className={styles.headerControls}>
-          <button
+          <Button
             type="button"
             className={styles.btnSecondary}
             onClick={() => setLocale(isFa ? "en" : "fa")}
             aria-label={isFa ? "تغییر زبان به انگلیسی" : "Switch language to Persian"}
           >
             {isFa ? "English" : "فارسی"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={styles.btnSecondary}
             onClick={handleExport}
             title={t(locale, "دانلود ساختار نسخه‌بندی‌شده به فرمت JSON", "Export versioned bank as JSON")}
           >
             {t(locale, "خروجی JSON", "Export JSON")}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={styles.btnPrimary}
             onClick={() => setImportModalOpen(true)}
           >
             {t(locale, "واردسازی سؤال (Import)", "Import Questions")}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -553,27 +555,27 @@ export function VersionedQuestionBankOperations({
           </span>
         </div>
         <div className={styles.modeSegmentGroup} role="radiogroup" aria-label={t(locale, "انتخاب حالت نمایش", "View mode switcher")}>
-          <button
+          <Button
             type="button"
             className={`${styles.modeSegmentBtn} ${mode === "governance" ? styles.modeSegmentBtnActive : ""}`}
             onClick={() => setMode("governance")}
           >
             {t(locale, "حاکمیت و ممیزی (ویرایشگر)", "Governance & Audit")}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className={`${styles.modeSegmentBtn} ${mode === "learner_safe" ? styles.modeSegmentBtnActive : ""}`}
             onClick={() => setMode("learner_safe")}
           >
             {t(locale, "شبیه‌ساز یادگیرنده (امن)", "Learner-Safe Simulator")}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Filters Bar */}
       <section className={styles.filtersPanel} aria-label={t(locale, "فیلترهای جستجو", "Search & filters")}>
         <div className={styles.filterControlsRow}>
-          <input
+          <Input
             type="search"
             className={styles.filterSearchInput}
             placeholder={t(locale, "جستجو بر اساس شناسه، عنوان یا صورت سؤال...", "Search slug, title, or prompt...")}
@@ -643,14 +645,14 @@ export function VersionedQuestionBankOperations({
           )}
 
           {selectedObjective && (
-            <button
+            <Button
               type="button"
               className={styles.btnSecondary}
               onClick={() => setSelectedObjective("")}
               title={t(locale, "پاک کردن فیلتر هدف یادگیری", "Clear objective filter")}
             >
               {t(locale, `هدف: ${selectedObjective} ✕`, `Objective: ${selectedObjective} ✕`)}
-            </button>
+            </Button>
           )}
         </div>
       </section>
@@ -668,13 +670,13 @@ export function VersionedQuestionBankOperations({
         <div className={styles.stateContainer} role="alert">
           <h2>{t(locale, "خطا در بارگذاری اطلاعات", "Data Fetch Error")}</h2>
           <p style={{ color: "var(--color-error-text)" }}>{error}</p>
-          <button
+          <Button
             type="button"
             className={styles.btnPrimary}
             onClick={() => setRefreshKey((k) => k + 1)}
           >
             {t(locale, "تلاش مجدد", "Retry")}
-          </button>
+          </Button>
         </div>
       )}
 
@@ -744,44 +746,44 @@ export function VersionedQuestionBankOperations({
                   {/* Actions Bar */}
                   <div className={styles.actionButtonGroup}>
                     {mode === "governance" && (
-                      <button
+                      <Button
                         type="button"
                         className={styles.btnActionSmall}
                         onClick={() => setInspectItem(item)}
                       >
                         {t(locale, "مشاهده ممیزی و کلید پاسخ", "Audit & Answer Key")}
-                      </button>
+                      </Button>
                     )}
 
                     {item.status === "draft" && (
-                      <button
+                      <Button
                         type="button"
                         className={`${styles.btnActionSmall} ${styles.btnActionReview}`}
                         onClick={() => setReviewModalItem(item)}
                       >
                         {t(locale, "ارسال به بازبینی", "Submit for Review")}
-                      </button>
+                      </Button>
                     )}
 
                     {item.status === "in_review" && (
-                      <button
+                      <Button
                         type="button"
                         className={`${styles.btnActionSmall} ${styles.btnActionPublish}`}
                         onClick={() => handlePublish(item)}
                         disabled={actionLoading}
                       >
                         {t(locale, "نشر رسمی", "Publish")}
-                      </button>
+                      </Button>
                     )}
 
                     {item.status === "published" && (
-                      <button
+                      <Button
                         type="button"
                         className={`${styles.btnActionSmall} ${styles.btnActionRetire}`}
                         onClick={() => setRetireModalItem(item)}
                       >
                         {t(locale, "بایگانی / بازنشستگی", "Retire Version")}
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -861,7 +863,7 @@ export function VersionedQuestionBankOperations({
                       <div className={styles.optionList} role="radiogroup" aria-label="Choices">
                         {options.map((opt) => (
                           <label key={opt.id} className={styles.optionItem} dir="ltr">
-                            <input
+                            <Input
                               type="radio"
                               name={`sim-${item.id}`}
                               value={opt.id}
@@ -875,7 +877,7 @@ export function VersionedQuestionBankOperations({
                         ))}
                       </div>
                     ) : (
-                      <input
+                      <Input
                         type="text"
                         className={styles.textInputSimulator}
                         value={currentResponse}
@@ -887,14 +889,14 @@ export function VersionedQuestionBankOperations({
                     )}
 
                     <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                      <button
+                      <Button
                         type="button"
                         className={styles.btnPrimary}
                         disabled={isChecking || !currentResponse}
                         onClick={() => handleCheckAnswer(item)}
                       >
                         {isChecking ? t(locale, "در حال بررسی...", "Checking...") : t(locale, "ارسال و تصحیح پاسخ", "Check Answer")}
-                      </button>
+                      </Button>
                     </div>
 
                     {checkError && (
@@ -942,13 +944,13 @@ export function VersionedQuestionBankOperations({
               <h2 className={styles.drawerTitle}>
                 {t(locale, "ممیزی حاکمیتی و کلید پاسخ", "Governance Audit & Answer Key")}
               </h2>
-              <button
+              <Button
                 type="button"
                 className={styles.btnCloseDrawer}
                 onClick={() => setInspectItem(null)}
               >
                 ✕
-              </button>
+              </Button>
             </div>
 
             <div>
@@ -1076,21 +1078,21 @@ export function VersionedQuestionBankOperations({
             )}
 
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
                 className={styles.btnSecondary}
                 onClick={() => setReviewModalItem(null)}
               >
                 {t(locale, "انصراف", "Cancel")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 className={styles.btnPrimary}
                 disabled={actionLoading}
                 onClick={handleSubmitForReview}
               >
                 {actionLoading ? t(locale, "در حال ثبت...", "Submitting...") : t(locale, "تأیید و ارسال به صف بازبینی", "Submit to Review Queue")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -1128,21 +1130,21 @@ export function VersionedQuestionBankOperations({
             )}
 
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
                 className={styles.btnSecondary}
                 onClick={() => setRetireModalItem(null)}
               >
                 {t(locale, "انصراف", "Cancel")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 className={`${styles.btnPrimary} ${styles.btnActionRetire}`}
                 disabled={actionLoading}
                 onClick={handleRetire}
               >
                 {actionLoading ? t(locale, "در حال بایگانی...", "Retiring...") : t(locale, "تأیید بازنشستگی", "Confirm Retirement")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -1184,7 +1186,7 @@ export function VersionedQuestionBankOperations({
             )}
 
             <div className={styles.modalActions}>
-              <button
+              <Button
                 type="button"
                 className={styles.btnSecondary}
                 onClick={() => {
@@ -1194,15 +1196,15 @@ export function VersionedQuestionBankOperations({
                 }}
               >
                 {t(locale, "بستن", "Close")}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
                 className={styles.btnPrimary}
                 disabled={!importJsonText.trim()}
                 onClick={handleImport}
               >
                 {t(locale, "بررسی و واردسازی", "Validate & Import")}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

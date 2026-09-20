@@ -1,5 +1,7 @@
 "use client";
 
+import { Input, Table } from "@endoora/ui";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./grading.module.css";
@@ -77,12 +79,12 @@ export default function TeacherGradingQueuePage() {
 
       {/* Filters Bar */}
       <div className={styles.filtersBar}>
-        <input
+        <Input
           type="text"
           placeholder={isFa ? "جستجوی زبان‌آموز یا تکلیف..." : "Search learner or assignment..."}
           className={styles.filterInput}
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
         />
         <select
           className={styles.filterSelect}
@@ -115,7 +117,7 @@ export default function TeacherGradingQueuePage() {
         </div>
       ) : (
         <div className={styles.tableContainer}>
-          <table className={styles.table}>
+          <Table className={styles.table}>
             <thead>
               <tr>
                 <th>{isFa ? "زبان‌آموز" : "Learner"}</th>
@@ -190,7 +192,7 @@ export default function TeacherGradingQueuePage() {
                 );
               })}
             </tbody>
-          </table>
+          </Table>
         </div>
       )}
     </div>

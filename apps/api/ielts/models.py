@@ -603,7 +603,7 @@ class IELTSWritingSubmission(models.Model):
     )
     teacher_review_requested = models.BooleanField(
         default=False,
-        help_text="درخواست تصحیح و نمره‌دهی توسط اگزمینر/مدرس رسمی اندورا",
+        help_text="درخواست تصحیح و نمره‌دهی توسط اگزمینر/مدرس رسمی ایندورا",
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

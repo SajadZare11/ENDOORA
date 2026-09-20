@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Input, Table } from "@endoora/ui";
+
 import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../assignments.module.css";
@@ -202,27 +204,33 @@ export default function AssignmentDetailPage({ params }: PageProps) {
       {/* Main Content Area with Tabs */}
       <div className={styles.contentCard}>
         <div className={styles.tabBar} role="tablist">
-          <button
+          <Button
             type="button"
+            variant={activeTab === "submissions" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "submissions" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("submissions")}
           >
             پاسخ‌ها و تصحیح ({submissions.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "questions" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "questions" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("questions")}
           >
             سوالات پیوست ({assignment.questions.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={activeTab === "accommodations" ? "primary" : "secondary"}
+            size="sm"
             className={`${styles.tabButton} ${activeTab === "accommodations" ? styles.activeTabButton : ""}`}
             onClick={() => setActiveTab("accommodations")}
           >
             تسهیلات آموزشی فردی ({assignment.accommodations.length})
-          </button>
+          </Button>
         </div>
 
         {/* Tab 1: Submissions */}
@@ -237,7 +245,7 @@ export default function AssignmentDetailPage({ params }: PageProps) {
               </div>
             ) : (
               <div className={styles.tableWrapper}>
-                <table className={styles.table}>
+                <Table className={styles.table}>
                   <thead>
                     <tr>
                       <th scope="col">زبان‌آموز</th>
@@ -305,19 +313,16 @@ export default function AssignmentDetailPage({ params }: PageProps) {
                           )}
                         </td>
                         <td>
-                          <button
-                            type="button"
-                            onClick={() => handleOpenGradeModal(att)}
-                            className={styles.secondaryButton}
+                          <Button type="button" variant="secondary" size="sm" onClick={() => handleOpenGradeModal(att)} className={styles.secondaryButton}
                             style={{ paddingBlock: "var(--space-1)", paddingInline: "var(--space-3)", fontSize: "var(--font-size-caption)" }}
                           >
                             ثبت بازخورد و نمره
-                          </button>
+                          </Button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
             )}
           </div>
@@ -363,7 +368,7 @@ export default function AssignmentDetailPage({ params }: PageProps) {
               </div>
             ) : (
               <div className={styles.tableWrapper}>
-                <table className={styles.table}>
+                <Table className={styles.table}>
                   <thead>
                     <tr>
                       <th scope="col">زبان‌آموز</th>
@@ -393,7 +398,7 @@ export default function AssignmentDetailPage({ params }: PageProps) {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
             )}
           </div>
@@ -408,14 +413,16 @@ export default function AssignmentDetailPage({ params }: PageProps) {
               <h2 className={styles.modalTitle}>
                 ثبت بازخورد و تنظیم نمره ({selectedAttempt.learner_name})
               </h2>
-              <button
+              <Button
                 type="button"
+                variant="tertiary"
+                size="sm"
                 className={styles.closeButton}
                 onClick={() => setSelectedAttempt(null)}
                 aria-label="بستن پنجره"
               >
                 ×
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handleSaveGrade} className={styles.formGrid}>
@@ -423,7 +430,7 @@ export default function AssignmentDetailPage({ params }: PageProps) {
                 <label htmlFor="gradeScoreInput" className={styles.label}>
                   نمره نهایی (از {Number(assignment.total_points)}) *
                 </label>
-                <input
+                <Input
                   id="gradeScoreInput"
                   type="number"
                   step="0.25"
@@ -431,7 +438,7 @@ export default function AssignmentDetailPage({ params }: PageProps) {
                   max={Number(assignment.total_points)}
                   className={styles.input}
                   value={gradeScore}
-                  onChange={(e) => setGradeScore(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGradeScore(e.target.value)}
                   required
                 />
               </div>
@@ -450,20 +457,23 @@ export default function AssignmentDetailPage({ params }: PageProps) {
               </div>
 
               <div className={styles.modalFooter}>
-                <button
+                <Button
                   type="button"
+                  variant="secondary"
                   className={styles.secondaryButton}
                   onClick={() => setSelectedAttempt(null)}
                 >
                   انصراف
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
+                  variant="primary"
                   className={styles.primaryButton}
+                  loading={submittingGrade}
                   disabled={submittingGrade || !gradeScore}
                 >
                   {submittingGrade ? "در حال ثبت..." : "ثبت نمره و بازخورد ✓"}
-                </button>
+                </Button>
               </div>
             </form>
           </div>

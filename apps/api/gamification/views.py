@@ -355,7 +355,7 @@ class LeaderboardView(APIView):
                 "is_guest": True,
                 "percentile_message_fa": "برای شرکت در رتبه‌بندی‌های هفتگی وارد حساب کاربری خود شوید.",
                 "percentile_message_en": "Log in to join privacy-safe weekly leaderboards.",
-                "rule_7_notice_fa": "اصل آرامش در یادگیری (قاعده ۷): رقابت در اندورا دوستانه و بدون الگوهای اعتیادآور است.",
+                "rule_7_notice_fa": "اصل آرامش در یادگیری (قاعده ۷): رقابت در ایندورا دوستانه و بدون الگوهای اعتیادآور است.",
                 "rule_7_notice_en": "Product Constitution Rule #7: Calm social motivation.",
                 "rule_8_notice_fa": "اصل شفافیت آموزشی (قاعده ۸): رتبه‌ها نشان‌دهنده پشتکار در تمرین هستند و به معنای مدرک رسمی نیستند.",
                 "rule_8_notice_en": "Product Constitution Rule #8: Honest assessment.",

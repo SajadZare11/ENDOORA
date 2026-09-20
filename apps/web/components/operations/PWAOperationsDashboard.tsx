@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Table } from "@endoora/ui";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -81,7 +83,7 @@ export function PWAOperationsDashboard() {
       </header>
 
       {/* 15-Tab Operations Navigation Ribbon */}
-      <nav className={styles.ribbon} aria-label="ناوبری عملیات اندورا">
+      <nav className={styles.ribbon} aria-label="ناوبری عملیات ایندورا">
         {OPERATIONS_TABS.map((tab) => {
           const isActive = tab.href === "/operations/pwa";
           return (
@@ -230,7 +232,7 @@ export function PWAOperationsDashboard() {
           <span>📜 آخرین رویدادهای همگام‌سازی صف کلاینت</span>
         </h2>
         <div className={styles.tableWrapper}>
-          <table className={styles.eventsTable}>
+          <Table className={styles.eventsTable}>
             <thead>
               <tr>
                 <th className={styles.tableHeader}>شناسه نشست همگام‌سازی</th>
@@ -272,7 +274,7 @@ export function PWAOperationsDashboard() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </section>
 
@@ -282,27 +284,27 @@ export function PWAOperationsDashboard() {
           <span>🧪 جعبه‌ابزار آزمایش تاب‌آوری و شبیه‌سازی همگام‌سازی</span>
         </h2>
         <div className={styles.simActions}>
-          <button
+          <Button
             type="button"
             onClick={handleSimulateSync}
             className={styles.simButton}
           >
             ⚡ شبیه‌سازی دریافت پیش‌نویس آفلاین (Batch Sync)
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={handleSimulateConflict}
             className={styles.simButton}
           >
             ⚠️ شبیه‌سازی تداخل همزمانی نسخه (Conflict Simulation)
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={handleCachePurge}
             className={styles.simButton}
           >
             🧹 تست ارسال دستور ابطال کش کلاینت‌ها (Cache Invalidation)
-          </button>
+          </Button>
         </div>
 
         {feedback && <div className={styles.feedbackBox}>{feedback}</div>}
