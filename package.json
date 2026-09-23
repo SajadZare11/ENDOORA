@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev:web": "npm run dev --workspace @endoora/web",
+    "dev:api": "powershell -Command \"cd apps/api; ./.venv/Scripts/python.exe manage.py runserver 127.0.0.1:8000\"",
     "build": "npm run build --workspace @endoora/web",
     "lint": "npm run lint --workspace @endoora/web",
     "typecheck": "npm run typecheck --workspace @endoora/ui && npm run typecheck --workspace @endoora/contracts && npm run typecheck --workspace @endoora/web",
