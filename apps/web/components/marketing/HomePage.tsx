@@ -741,10 +741,6 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
             </Link>
           </div>
         </div>
-
-        <Link className={styles.centerLink} href={localizedPath(locale, "/how-it-works")}>
-          {isFa ? "مشاهده چرخه کامل و جزئیات تکمیلی" : "Explore full 7-step learning loop"}<span aria-hidden="true">{isFa ? "←" : "→"}</span>
-        </Link>
       </section>
 
       <section id="features" className={`${styles.section} ${styles.featuresSection}`}>

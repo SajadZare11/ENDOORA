@@ -283,7 +283,7 @@
 .evidenceRow small { color: var(--color-muted); text-align: end; }
 
 .section { padding-block: clamp(5rem, 9vw, 8rem); scroll-margin-top: 5rem; }
-.loopSection { width: 100%; max-width: none; padding-inline: max(var(--space-6), calc((100vw - var(--content-width)) / 2)); background: linear-gradient(180deg, color-mix(in srgb, var(--color-info-bg) 34%, var(--color-surface)), var(--color-surface)); }
+.loopSection { width: 100%; max-width: none; padding-inline: max(var(--space-6), calc((100vw - var(--content-width)) / 2)); padding-block-end: clamp(3rem, 5vw, 4.5rem); background: linear-gradient(180deg, color-mix(in srgb, var(--color-info-bg) 34%, var(--color-surface)), var(--color-surface)); }
 
 .sectionHeading { max-width: 48rem; margin-block-end: clamp(var(--space-8), 5vw, var(--space-12)); }
 .sectionHeading h2,
