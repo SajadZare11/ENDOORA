@@ -14,7 +14,7 @@ export function FeaturePage({ locale, featureKey }: { locale: PublicLocale; feat
         <h1>{copy.title}</h1>
         <p>{copy.summary}</p>
         <div className={styles.heroActions}>
-          <Link className={styles.primaryButton} href={localizedPath(locale, "/#waitlist")}>{isFa ? "خبرم کن" : "Join early access"}</Link>
+          <Link className={styles.primaryButton} href={localizedPath(locale, "/placement")}>{isFa ? "شروع تعیین سطح" : "Start placement"}</Link>
           <Link className={styles.secondaryButton} href={localizedPath(locale, "/how-it-works")}>{isFa ? "چرخه کامل" : "See the full loop"}</Link>
         </div>
       </section>

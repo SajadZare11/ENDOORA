@@ -56,11 +56,9 @@ if (!faHomeRoute.includes('<PublicShell locale="fa"') || !enHomeRoute.includes('
 const home = read("apps/web/components/marketing/HomePage.tsx");
 for (const requiredText of [
   'localizedPath(locale, "/placement")',
-  'accountPath(locale, "/auth/register")',
   '<section id="how"',
   '<section id="features"',
   '<section id="faq"',
-  '<section id="waitlist"',
   "PublicFaq",
   "application/ld+json",
   "Mistake Genome",

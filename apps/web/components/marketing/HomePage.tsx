@@ -4,12 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 import {
-  accountPath,
   localizedPath,
   type PublicLocale,
 } from "../../lib/public-site";
 import { PublicFaq } from "./PublicFaq";
-import { WaitlistForm } from "./WaitlistForm";
 import styles from "./marketing.module.css";
 
 interface LoopStepItem {
@@ -777,22 +775,7 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
         </ol>
       </section>
 
-      <section className={styles.trustRail} aria-labelledby="trust-title">
-        <div><span className={styles.sectionLabel}>{isFa ? "اعتماد قبل از هیجان" : "Trust before hype"}</span><h2 id="trust-title">{isFa ? "محدودیت‌ها را پنهان نمی‌کنیم" : "We do not hide the limitations"}</h2></div>
-        <div><strong>IELTS</strong><p>{isFa ? "تمرین شبیه‌سازی‌شده است؛ نمره AI رسمی نیست." : "Practice is simulated; an AI estimate is not official."}</p></div>
-        <div><strong>{isFa ? "هوش مصنوعی" : "Artificial intelligence"}</strong><p>{isFa ? "ممکن است اشتباه کند و باید قابل گزارش و اصلاح باشد." : "It can be wrong and must remain reportable and correctable."}</p></div>
-        <div><strong>{isFa ? "کنترل داده" : "Data control"}</strong><p>{isFa ? "داده آموزشی باید هدف‌دار، حداقلی و قابل توضیح باشد." : "Learning data should be purpose-bound, minimal, and explainable."}</p></div>
-      </section>
-
       <section id="faq" className={`${styles.section} ${styles.faqSection}`}><PublicFaq locale={locale} /></section>
-
-      <section id="waitlist" className={styles.waitlist}>
-        <div className={styles.waitlistCopy}><span className={styles.sectionLabel}>{isFa ? "دسترسی اولیه" : "Early access"}</span><h2>{isFa ? "وقتی آماده شد، از اولین نفرها باش" : "Be among the first when it is ready"}</h2><p>{isFa ? "فقط خبرهای پیش‌راه‌اندازی؛ بدون خبرنامه ناخواسته و بدون فروش اطلاعات تماس." : "Prelaunch updates only—no unwanted newsletter and no sale of contact information."}</p></div>
-        <div className={styles.waitlistActions}>
-          <WaitlistForm locale={locale} source="homepage" />
-          <Link href={accountPath(locale, "/auth/register")}>{isFa ? "همین حالا حساب Endoora را بساز" : "Create your Endoora account now"}<span aria-hidden="true">{isFa ? "←" : "→"}</span></Link>
-        </div>
-      </section>
     </>
   );
 }
