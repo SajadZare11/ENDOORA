@@ -1,6 +1,6 @@
 .site {
   min-height: 100vh;
-  background: var(--color-surface);
+  background: var(--color-canvas);
   color: var(--color-text);
 }
 

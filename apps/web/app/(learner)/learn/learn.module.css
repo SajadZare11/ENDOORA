@@ -2,21 +2,35 @@
 /* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
 
 .container {
-  max-inline-size: var(--content-width, 78rem);
+  width: min(var(--content-width, 78rem), calc(100% - (2 * var(--space-6))));
   margin-inline: auto;
-  padding-inline: var(--space-4);
-  padding-block: var(--space-6) var(--space-12);
+  padding-block: var(--space-8) var(--space-16);
 }
 
 .heroHeader {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
   margin-block-end: var(--space-8);
-  padding-block-end: var(--space-6);
-  border-block-end: 1px solid var(--color-border);
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+}
+
+.heroHeader::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 3px;
+  background: linear-gradient(90deg, var(--color-action), var(--color-learning-teal));
+  content: "";
 }
 
 .badgeRow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-3);
   margin-block-end: var(--space-3);
 }
@@ -26,31 +40,38 @@
   align-items: center;
   font-size: var(--font-size-meta);
   font-weight: 700;
-  color: var(--color-action-hover);
+  color: var(--color-action);
   background: var(--color-info-bg);
   padding-inline: var(--space-3);
   padding-block: var(--space-1);
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-action) 22%, transparent);
 }
 
 .badgeMotto {
   font-size: var(--font-size-meta);
+  font-weight: 600;
   color: var(--color-muted);
+  padding-inline-start: var(--space-3);
+  border-inline-start: 2px solid var(--color-border);
 }
 
 .title {
-  font-size: var(--font-size-hero);
-  font-weight: 800;
-  color: var(--color-text);
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 850;
+  color: var(--color-deep-navy, #0f172a);
+  margin: 0;
   margin-block-end: var(--space-2);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-heading-persian, 1.25);
 }
 
 .subtitle {
   font-size: var(--font-size-lead, 1.125rem);
   color: var(--color-muted);
-  max-inline-size: 46rem;
+  max-inline-size: 48rem;
   line-height: var(--line-height-body-persian);
+  margin: 0;
 }
 
 .hubWrapper {
@@ -63,9 +84,8 @@
 .filterBar {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding-block-end: var(--space-4);
-  border-block-end: 1px solid var(--color-border);
 }
 
 .filterTab {
@@ -80,15 +100,24 @@
   border: 1px solid var(--color-border);
   color: var(--color-text);
   font-size: var(--font-size-meta);
-  font-weight: 600;
+  font-weight: 650;
   cursor: pointer;
-  transition: background-color var(--motion-fast) ease, border-color var(--motion-fast) ease, color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
   font-family: inherit;
 }
 
 .filterTab:hover {
-  background: var(--color-soft-sand);
+  transform: translateY(-2px);
+  background: var(--color-surface);
   border-color: var(--color-action);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  color: var(--color-action);
 }
 
 .filterTab:focus-visible {
@@ -100,40 +129,45 @@
   background: var(--color-action);
   color: var(--color-action-text);
   border-color: var(--color-action);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
 }
 
 .filterTabActive:hover {
   background: var(--color-action-hover);
   border-color: var(--color-action-hover);
   color: var(--color-action-text);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 .filterTabIcon {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  line-height: 1;
 }
 
 .filterTabLabel {
   font-size: var(--font-size-meta);
+  font-weight: inherit;
 }
 
 .filterTabBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-inline-size: 1.35rem;
-  block-size: 1.35rem;
+  min-inline-size: 1.45rem;
+  block-size: 1.45rem;
   padding-inline: var(--space-1);
+  margin-inline-start: var(--space-2);
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
-  font-weight: 700;
-  background: var(--color-soft-sand);
-  color: var(--color-text);
+  font-weight: 750;
+  background: var(--color-canvas);
+  color: var(--color-muted);
+  transition: background var(--motion-fast) ease, color var(--motion-fast) ease;
 }
 
 .filterTabActive .filterTabBadge {
-  background: var(--color-action-text);
-  color: var(--color-action);
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 /* Categories Container */
@@ -155,8 +189,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-3);
-  padding-block-end: var(--space-4);
-  border-block-end: 2px solid var(--color-border);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
 }
 
 .categoryHeaderTitleRow {
@@ -172,17 +209,16 @@
   inline-size: 2.75rem;
   block-size: 2.75rem;
   font-size: 1.35rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
+  background: var(--color-info-bg);
+  border: 1px solid color-mix(in srgb, var(--color-action) 22%, transparent);
+  border-radius: var(--radius-control);
   flex-shrink: 0;
-  box-shadow: var(--shadow-subtle);
 }
 
 .categoryTitle {
   font-size: var(--font-size-section-title);
-  font-weight: 800;
-  color: var(--color-text);
+  font-weight: 850;
+  color: var(--color-deep-navy, #0f172a);
   margin: 0;
   margin-block-end: var(--space-1);
 }
@@ -196,9 +232,9 @@
 .categoryCountBadge {
   font-size: var(--font-size-meta);
   font-weight: 700;
-  color: var(--color-muted);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, transparent);
   padding-inline: var(--space-3);
   padding-block: var(--space-1);
   border-radius: var(--radius-pill);
@@ -236,7 +272,7 @@
   inset-inline-start: -100%;
   inline-size: 60%;
   block-size: 100%;
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.3), transparent);
   transform: skewX(-20deg);
   pointer-events: none;
   transition: inset-inline-start 0.65s ease;
@@ -245,8 +281,8 @@
 
 .hubCard:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--color-action-hover);
+  box-shadow: 0 16px 32px -8px rgba(37, 99, 235, 0.18), 0 0 16px rgba(20, 184, 166, 0.12);
+  border-color: var(--color-action);
 }
 
 .hubCard:hover::before {
@@ -277,9 +313,9 @@
 .cardBadge {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-action-hover);
+  color: var(--color-action);
   background: var(--color-info-bg);
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, transparent);
   padding-inline: var(--space-2);
   padding-block: 0.2rem;
   border-radius: var(--radius-pill);
@@ -287,8 +323,8 @@
 
 .cardTitle {
   font-size: var(--font-size-card-title);
-  font-weight: 700;
-  color: var(--color-text);
+  font-weight: 750;
+  color: var(--color-deep-navy, #0f172a);
   margin-block-end: var(--space-2);
   line-height: var(--line-height-card-title);
 }

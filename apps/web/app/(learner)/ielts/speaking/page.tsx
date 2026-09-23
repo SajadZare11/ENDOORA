@@ -438,207 +438,217 @@ function IELTSSpeakingRoomContent() {
     <div className={containerClass}>
       {/* Exam Header */}
       <header className={styles.examHeader} role="banner">
-        <div className={styles.candidateInfo}>
-          <h1 className={styles.examTitle}>اتاق شبیه‌ساز مکالمه کامپیوتری آیلتس (CD-IELTS Speaking)</h1>
-          <span className={styles.candidateSubtitle}>
-            آزمون ۳ قسمتی استاندارد شامل مصاحبه آشنایی، ارائه کارت موضوع (Cue Card) و بحث تحلیلی انتزاعی
-          </span>
-        </div>
+        <div className={styles.examHeaderInner}>
+          <div className={styles.candidateInfo}>
+            <h1 className={styles.examTitle}>اتاق شبیه‌ساز مکالمه کامپیوتری آیلتس (CD-IELTS Speaking)</h1>
+            <span className={styles.candidateSubtitle}>
+              آزمون ۳ قسمتی استاندارد شامل مصاحبه آشنایی، ارائه کارت موضوع (Cue Card) و بحث تحلیلی انتزاعی
+            </span>
+          </div>
 
-        {/* Global Interview Countdown Timer */}
-        <div
-          className={`${styles.timerBox} ${
-            secondsRemaining < 180 ? styles.timerDanger : secondsRemaining < 300 ? styles.timerWarning : ""
-          }`}
-          aria-label="زمان باقی‌مانده آزمون"
-        >
-          <span>⏱️</span>
-          <span>{formatTime(secondsRemaining)}</span>
-        </div>
+          {/* Global Interview Countdown Timer */}
+          <div
+            className={`${styles.timerBox} ${
+              secondsRemaining < 180 ? styles.timerDanger : secondsRemaining < 300 ? styles.timerWarning : ""
+            }`}
+            aria-label="زمان باقی‌مانده آزمون"
+          >
+            <span>⏱️</span>
+            <span>{formatTime(secondsRemaining)}</span>
+          </div>
 
-        {/* Header Accessibility & Actions */}
-        <div className={styles.headerActions}>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            className={styles.iconBtn}
-            onClick={() => setContrastTheme(contrastTheme === "dark" ? "standard" : "dark")}
-            title="تغییر کنتراست پوسته"
-          >
-            {contrastTheme === "dark" ? "☀️ روز" : "🌙 شب"}
-          </Button>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            className={styles.iconBtn}
-            onClick={() => {
-              if (fontScale === "standard") setFontScale("large");
-              else if (fontScale === "large") setFontScale("xl");
-              else setFontScale("standard");
-            }}
-            title="تغییر اندازه قلم"
-          >
-            اندازه متن ({fontScale})
-          </Button>
-          <Button
-            type="button"
-            variant="primary"
-            size="sm"
-            className={styles.submitBtn}
-            onClick={() => setShowSubmitModal(true)}
-            loading={submitting}
-            disabled={submitting}
-          >
-            {submitting ? "در حال ارزیابی..." : "اتمام آزمون و ارزیابی هوش مصنوعی ➔"}
-          </Button>
+          {/* Header Accessibility & Actions */}
+          <div className={styles.headerActions}>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className={styles.iconBtn}
+              onClick={() => setContrastTheme(contrastTheme === "dark" ? "standard" : "dark")}
+              title="تغییر کنتراست پوسته"
+            >
+              {contrastTheme === "dark" ? "☀️ روز" : "🌙 شب"}
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className={styles.iconBtn}
+              onClick={() => {
+                if (fontScale === "standard") setFontScale("large");
+                else if (fontScale === "large") setFontScale("xl");
+                else setFontScale("standard");
+              }}
+              title="تغییر اندازه قلم"
+            >
+              اندازه متن ({fontScale})
+            </Button>
+            <Button
+              type="button"
+              variant="primary"
+              size="sm"
+              className={styles.submitBtn}
+              onClick={() => setShowSubmitModal(true)}
+              loading={submitting}
+              disabled={submitting}
+            >
+              {submitting ? "در حال ارزیابی..." : "اتمام آزمون و ارزیابی هوش مصنوعی ➔"}
+            </Button>
+          </div>
         </div>
       </header>
 
-      {/* Mandatory IELTS Trademark Disclaimer */}
-      <aside className={styles.disclaimerBar} role="note">
-        <span className={styles.disclaimerBadge}>سلب مسئولیت قانونی</span>
-        <span>{MANDATORY_IELTS_DISCLAIMER_TEXT} — محتوای ۱۰۰٪ اصیل و آموزشی طراحی‌شده جهت آمادگی داوطلبان.</span>
-      </aside>
+      {/* 78rem Aligned Exam Body */}
+      <div className={styles.examBody}>
+        {/* Mandatory IELTS Trademark Disclaimer */}
+        <aside className={styles.disclaimerBar} role="note">
+          <span className={styles.disclaimerBadge}>سلب مسئولیت قانونی</span>
+          <span>{MANDATORY_IELTS_DISCLAIMER_TEXT} — محتوای ۱۰۰٪ اصیل و آموزشی طراحی‌شده جهت آمادگی داوطلبان.</span>
+        </aside>
 
-      {/* Part Selection Tabs */}
-      <nav className={styles.tabsBar} aria-label="Speaking Parts Navigation">
-        <Button
-          type="button"
-          variant={activePart === 1 ? "primary" : "secondary"}
-          className={`${styles.tabBtn} ${activePart === 1 ? styles.tabBtnActive : ""}`}
-          onClick={() => handleSelectPart(1)}
-        >
-          <span>پارت ۱: احوال‌پرسی و سوالات عمومی</span>
-          <span className={styles.tabPill}>۴-۵ دقیقه</span>
-        </Button>
+        {/* Part Selection Tabs */}
+        <nav className={styles.tabsBar} aria-label="Speaking Parts Navigation">
+          <Button
+            type="button"
+            variant={activePart === 1 ? "primary" : "secondary"}
+            className={`${styles.tabBtn} ${activePart === 1 ? styles.tabBtnActive : ""}`}
+            onClick={() => handleSelectPart(1)}
+          >
+            <span>پارت ۱: احوال‌پرسی و سوالات عمومی</span>
+            <span className={styles.tabPill}>۴-۵ دقیقه</span>
+          </Button>
 
-        <Button
-          type="button"
-          variant={activePart === 2 ? "primary" : "secondary"}
-          className={`${styles.tabBtn} ${activePart === 2 ? styles.tabBtnActive : ""}`}
-          onClick={() => handleSelectPart(2)}
-        >
-          <span>پارت ۲: صحبت ۲ دقیقه‌ای (Cue Card)</span>
-          <span className={styles.tabPill}>۱ دقیقه تفکر + ۲ دقیقه صحبت</span>
-        </Button>
+          <Button
+            type="button"
+            variant={activePart === 2 ? "primary" : "secondary"}
+            className={`${styles.tabBtn} ${activePart === 2 ? styles.tabBtnActive : ""}`}
+            onClick={() => handleSelectPart(2)}
+          >
+            <span>پارت ۲: صحبت ۲ دقیقه‌ای (Cue Card)</span>
+            <span className={styles.tabPill}>۱ دقیقه تفکر + ۲ دقیقه صحبت</span>
+          </Button>
 
-        <Button
-          type="button"
-          variant={activePart === 3 ? "primary" : "secondary"}
-          className={`${styles.tabBtn} ${activePart === 3 ? styles.tabBtnActive : ""}`}
-          onClick={() => handleSelectPart(3)}
-        >
-          <span>پارت ۳: بحث عمیق و تحلیلی</span>
-          <span className={styles.tabPill}>۴-۵ دقیقه</span>
-        </Button>
-      </nav>
+          <Button
+            type="button"
+            variant={activePart === 3 ? "primary" : "secondary"}
+            className={`${styles.tabBtn} ${activePart === 3 ? styles.tabBtnActive : ""}`}
+            onClick={() => handleSelectPart(3)}
+          >
+            <span>پارت ۳: بحث عمیق و تحلیلی</span>
+            <span className={styles.tabPill}>۴-۵ دقیقه</span>
+          </Button>
+        </nav>
 
-      {/* Error Alert */}
-      {error && (
-        <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)", margin: "var(--space-2) var(--space-4)", borderRadius: "var(--radius-md)", fontSize: "var(--font-size-sm)" }}>
-          {error}
-        </div>
-      )}
+        {/* Error Alert */}
+        {error && (
+          <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)", borderRadius: "var(--radius-card)", fontSize: "var(--font-size-sm)", border: "1px solid var(--color-danger-border)" }}>
+            {error}
+          </div>
+        )}
 
-      {/* Main Simulation Workspace */}
-      <main className={styles.workspace}>
-        {/* Left Pane: Prompt & Guidelines */}
-        <section className={styles.promptPane} aria-label="Speaking Prompt Pane">
-          {activePart === 1 && (
-            <div className={styles.promptCard}>
-              <h2 className={styles.promptTitle}>{currentPrompt.part1.title}</h2>
-              <p className={styles.promptInstructions}>{currentPrompt.part1.instructions}</p>
-              <div className={styles.questionsList}>
-                {currentPrompt.part1.questions.map((q, idx) => (
-                  <div key={idx} className={styles.questionItem}>
-                    <span className={styles.questionBadge}>سوال {idx + 1}:</span>
-                    <span>{q}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activePart === 2 && (
-            <div className={styles.cueCard}>
-              <div className={styles.cueCardHeader}>
-                <span className={styles.cueCardKicker}>Candidate Task Card (Cue Card)</span>
-                <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                  زمان آماده‌سازی: ۱ دقیقه | صحبت: ۱ تا ۲ دقیقه
-                </span>
-              </div>
-              <h2 className={styles.promptTitle}>{currentPrompt.part2.title}</h2>
-              <p style={{ fontSize: "var(--font-size-sm)", marginBlock: "var(--space-2)", whiteSpace: "pre-line" }}>
-                {currentPrompt.part2.cue_card_prompt}
-              </p>
-              <ul className={styles.bulletList}>
-                {currentPrompt.part2.bullet_points.map((pt, idx) => (
-                  <li key={idx}>{pt}</li>
-                ))}
-              </ul>
-
-              {/* 1-Minute Prep Countdown Widget */}
-              <div className={`${styles.prepWidget} ${prepTimerActive ? styles.prepWidgetActive : ""}`}>
-                <div>
-                  <strong style={{ fontSize: "var(--font-size-sm)" }}>زمان آماده‌سازی و نت‌برداری (۱ دقیقه):</strong>
-                  <div style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                    برای تمام بولت‌ها کلیدواژه یادداشت کنید.
-                  </div>
+        {/* Main Simulation Workspace */}
+        <main className={styles.workspace}>
+          {/* Left Pane: Prompt & Guidelines */}
+          <section className={styles.promptPane} aria-label="Speaking Prompt Pane">
+            {activePart === 1 && (
+              <div className={styles.promptCard}>
+                <div className={styles.promptHeaderLtr} dir="ltr">
+                  <h2 className={styles.promptTitle}>{currentPrompt.part1.title}</h2>
+                  <p className={styles.promptInstructions}>{currentPrompt.part1.instructions}</p>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
-                  <span className={styles.prepTimerDigits}>{formatTime(part2PrepSeconds)}</span>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    size="sm"
-                    className={styles.iconBtn}
-                    onClick={() => setPrepTimerActive(!prepTimerActive)}
-                  >
-                    {prepTimerActive ? "توقف" : "شروع ۱ دقیقه"}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    size="sm"
-                    className={styles.iconBtn}
-                    onClick={() => {
-                      setPrepTimerActive(false);
-                      setPart2PrepSeconds(60);
-                    }}
-                  >
-                    بازنشانی
-                  </Button>
+                <div className={styles.questionsList}>
+                  {currentPrompt.part1.questions.map((q, idx) => (
+                    <div key={idx} className={styles.questionItem}>
+                      <span className={styles.questionBadge}>سوال {idx + 1}:</span>
+                      <span className={styles.questionText} dir="ltr">{q}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
+            )}
 
-              {/* Scratchpad Notes */}
-              <textarea
-                className={styles.prepNotesBox}
-                placeholder="یادداشت‌های ۱ دقیقه‌ای شما (کلمات کلیدی برای بولت‌ها)..."
-                value={part2PrepNotes}
-                onChange={(e) => setPart2PrepNotes(e.target.value)}
-                aria-label="یادداشت‌های آماده‌سازی پارت ۲"
-              />
-            </div>
-          )}
+            {activePart === 2 && (
+              <div className={styles.cueCard}>
+                <div className={styles.cueCardHeader}>
+                  <span className={styles.cueCardKicker}>Candidate Task Card (Cue Card)</span>
+                  <span className={styles.cueCardTimeHint}>
+                    زمان آماده‌سازی: ۱ دقیقه | صحبت: ۱ تا ۲ دقیقه
+                  </span>
+                </div>
+                <div className={styles.cueCardContent} dir="ltr">
+                  <h2 className={styles.promptTitle}>{currentPrompt.part2.title}</h2>
+                  <p className={styles.cueCardPrompt}>
+                    {currentPrompt.part2.cue_card_prompt}
+                  </p>
+                  <ul className={styles.bulletList}>
+                    {currentPrompt.part2.bullet_points.map((pt, idx) => (
+                      <li key={idx}>{pt}</li>
+                    ))}
+                  </ul>
+                </div>
 
-          {activePart === 3 && (
-            <div className={styles.promptCard}>
-              <h2 className={styles.promptTitle}>{currentPrompt.part3.title}</h2>
-              <p className={styles.promptInstructions}>{currentPrompt.part3.instructions}</p>
-              <div className={styles.questionsList}>
-                {currentPrompt.part3.questions.map((q, idx) => (
-                  <div key={idx} className={styles.questionItem}>
-                    <span className={styles.questionBadge}>سوال تحلیلی {idx + 1}:</span>
-                    <span>{q}</span>
+                {/* 1-Minute Prep Countdown Widget */}
+                <div className={`${styles.prepWidget} ${prepTimerActive ? styles.prepWidgetActive : ""}`}>
+                  <div>
+                    <strong style={{ fontSize: "var(--font-size-sm)" }}>زمان آماده‌سازی و نت‌برداری (۱ دقیقه):</strong>
+                    <div style={{ fontSize: "var(--font-size-xs)", color: "var(--color-muted)" }}>
+                      برای تمام بولت‌ها کلیدواژه یادداشت کنید.
+                    </div>
                   </div>
-                ))}
+                  <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}>
+                    <span className={styles.prepTimerDigits}>{formatTime(part2PrepSeconds)}</span>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      size="sm"
+                      className={styles.iconBtn}
+                      onClick={() => setPrepTimerActive(!prepTimerActive)}
+                    >
+                      {prepTimerActive ? "توقف" : "شروع ۱ دقیقه"}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      size="sm"
+                      className={styles.iconBtn}
+                      onClick={() => {
+                        setPrepTimerActive(false);
+                        setPart2PrepSeconds(60);
+                      }}
+                    >
+                      بازنشانی
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Scratchpad Notes */}
+                <textarea
+                  className={styles.prepNotesBox}
+                  placeholder="یادداشت‌های ۱ دقیقه‌ای شما (کلمات کلیدی برای بولت‌ها)..."
+                  value={part2PrepNotes}
+                  onChange={(e) => setPart2PrepNotes(e.target.value)}
+                  aria-label="یادداشت‌های آماده‌سازی پارت ۲"
+                />
               </div>
-            </div>
-          )}
-        </section>
+            )}
+
+            {activePart === 3 && (
+              <div className={styles.promptCard}>
+                <div className={styles.promptHeaderLtr} dir="ltr">
+                  <h2 className={styles.promptTitle}>{currentPrompt.part3.title}</h2>
+                  <p className={styles.promptInstructions}>{currentPrompt.part3.instructions}</p>
+                </div>
+                <div className={styles.questionsList}>
+                  {currentPrompt.part3.questions.map((q, idx) => (
+                    <div key={idx} className={styles.questionItem}>
+                      <span className={styles.questionBadge}>سوال تحلیلی {idx + 1}:</span>
+                      <span className={styles.questionText} dir="ltr">{q}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
 
         {/* Right Pane: Audio Recording & Transcript Review Console */}
         <section className={styles.consolePane} aria-label="Audio Recording Console">
@@ -748,17 +758,20 @@ function IELTSSpeakingRoomContent() {
           </div>
         </section>
       </main>
+      </div>
 
       {/* Footer Info & Autosave Indicator */}
       <footer className={styles.footerBar} role="contentinfo">
-        <div className={styles.autosaveIndicator}>
-          <span>💾</span>
-          <span>{autosaveStatus}</span>
-        </div>
-        <div>
-          <span>پارت ۱: {part1Transcript.split(/\s+/).filter(Boolean).length} کلمه | </span>
-          <span>پارت ۲: {part2Transcript.split(/\s+/).filter(Boolean).length} کلمه | </span>
-          <span>پارت ۳: {part3Transcript.split(/\s+/).filter(Boolean).length} کلمه</span>
+        <div className={styles.footerBarInner}>
+          <div className={styles.autosaveIndicator}>
+            <span>💾</span>
+            <span>{autosaveStatus}</span>
+          </div>
+          <div>
+            <span>پارت ۱: {part1Transcript.split(/\s+/).filter(Boolean).length} کلمه | </span>
+            <span>پارت ۲: {part2Transcript.split(/\s+/).filter(Boolean).length} کلمه | </span>
+            <span>پارت ۳: {part3Transcript.split(/\s+/).filter(Boolean).length} کلمه</span>
+          </div>
         </div>
       </footer>
 

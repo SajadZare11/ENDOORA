@@ -201,172 +201,177 @@ function IELTSWritingRoomContent() {
     >
       {/* Examination Top Bar */}
       <header className={styles.examHeader}>
-        <div className={styles.candidateInfo}>
-          <h1 className={styles.examTitle}>IELTS Academic Writing Simulation</h1>
-          <span className={styles.candidateSubtitle}>داوطلب: نسخه شبیه‌ساز کامپیوتری استاندارد (CD-IELTS)</span>
-        </div>
+        <div className={styles.examHeaderInner}>
+          <div className={styles.candidateInfo}>
+            <h1 className={styles.examTitle}>IELTS Academic Writing Simulation</h1>
+            <span className={styles.candidateSubtitle}>داوطلب: نسخه شبیه‌ساز کامپیوتری استاندارد (CD-IELTS)</span>
+          </div>
 
-        {/* Server Countdown Clock */}
-        <div
-          className={`${styles.timerBox} ${isTimerDanger ? styles.timerDanger : isTimerWarning ? styles.timerWarning : ""}`}
-          aria-label="زمان باقی‌مانده آزمون رایتینگ"
-        >
-          <span>⏱</span>
-          <span>{timeFormatted}</span>
-        </div>
-
-        {/* Accessibility & Finish actions */}
-        <div className={styles.headerActions}>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            className={styles.iconBtn}
-            onClick={() => setFontScale((f) => (f === "standard" ? "large" : f === "large" ? "xl" : "standard"))}
-            title="اندازه فونت"
+          {/* Server Countdown Clock */}
+          <div
+            className={`${styles.timerBox} ${isTimerDanger ? styles.timerDanger : isTimerWarning ? styles.timerWarning : ""}`}
+            aria-label="زمان باقی‌مانده آزمون رایتینگ"
           >
-            اندازه قلم: {fontScale === "standard" ? "استاندارد" : fontScale === "large" ? "بزرگ" : "خیلی بزرگ"}
-          </Button>
+            <span>⏱</span>
+            <span>{timeFormatted}</span>
+          </div>
 
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            className={styles.iconBtn}
-            onClick={() => setContrastTheme((c) => (c === "standard" ? "dark" : "standard"))}
-            title="کنتراست و پوسته"
-          >
-            {contrastTheme === "standard" ? "🌙 پوسته تیره" : "☀️ پوسته روشن"}
-          </Button>
+          {/* Accessibility & Finish actions */}
+          <div className={styles.headerActions}>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className={styles.iconBtn}
+              onClick={() => setFontScale((f) => (f === "standard" ? "large" : f === "large" ? "xl" : "standard"))}
+              title="اندازه فونت"
+            >
+              اندازه قلم: {fontScale === "standard" ? "استاندارد" : fontScale === "large" ? "بزرگ" : "خیلی بزرگ"}
+            </Button>
 
-          <Button
-            type="button"
-            variant="primary"
-            size="sm"
-            className={styles.submitBtn}
-            onClick={() => setShowSubmitModal(true)}
-            loading={submitting}
-            disabled={submitting}
-          >
-            پایان و تصحیح هوشمند ➔
-          </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className={styles.iconBtn}
+              onClick={() => setContrastTheme((c) => (c === "standard" ? "dark" : "standard"))}
+              title="کنتراست و پوسته"
+            >
+              {contrastTheme === "standard" ? "🌙 پوسته تیره" : "☀️ پوسته روشن"}
+            </Button>
+
+            <Button
+              type="button"
+              variant="primary"
+              size="sm"
+              className={styles.submitBtn}
+              onClick={() => setShowSubmitModal(true)}
+              loading={submitting}
+              disabled={submitting}
+            >
+              پایان و تصحیح هوشمند ➔
+            </Button>
+          </div>
         </div>
       </header>
 
-      {/* Mandatory Disclaimer */}
-      <aside className={styles.disclaimerBar} role="note">
-        <span className={styles.disclaimerBadge}>سلب مسئولیت</span>
-        <span>{MANDATORY_IELTS_DISCLAIMER_TEXT}</span>
-      </aside>
+      {/* 78rem Aligned Exam Body */}
+      <div className={styles.examBody}>
+        {/* Mandatory Disclaimer */}
+        <aside className={styles.disclaimerBar} role="note">
+          <span className={styles.disclaimerBadge}>سلب مسئولیت</span>
+          <span>{MANDATORY_IELTS_DISCLAIMER_TEXT}</span>
+        </aside>
 
-      {error && (
-        <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)" }}>
-          {error}
-        </div>
-      )}
-
-      {/* Task Switcher Tabs */}
-      <nav className={styles.tabsBar} aria-label="انتخاب تسک رایتینگ">
-        <Button
-          type="button"
-          variant={activeTask === 1 ? "primary" : "secondary"}
-          className={`${styles.tabBtn} ${activeTask === 1 ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTask(1)}
-        >
-          <span>Task 1 (گزارش آکادمیک)</span>
-          <span className={styles.tabPill}>
-            {countWords(task1Text)} / ۱۵۰ کلمه (پیشنهاد: ۲۰ دقیقه)
-          </span>
-        </Button>
-
-        <Button
-          type="button"
-          variant={activeTask === 2 ? "primary" : "secondary"}
-          className={`${styles.tabBtn} ${activeTask === 2 ? styles.tabBtnActive : ""}`}
-          onClick={() => setActiveTask(2)}
-        >
-          <span>Task 2 (مقاله استدلالی)</span>
-          <span className={styles.tabPill}>
-            {countWords(task2Text)} / ۲۵۰ کلمه (پیشنهاد: ۴۰ دقیقه)
-          </span>
-        </Button>
-      </nav>
-
-      {/* Split Workspace */}
-      <main className={styles.workspace}>
-        {/* Left Pane: Prompt & Instructions */}
-        <section className={styles.promptPane} aria-label="صورت سوال و دستورالعمل">
-          <h2 className={styles.promptTitle}>
-            {activeTask === 1 ? "Writing Task 1 — Report" : "Writing Task 2 — Essay"}
-          </h2>
-
-          <div className={styles.promptCard}>
-            {currentPrompt?.content_text || "صورت سوال در حال بارگذاری است..."}
+        {error && (
+          <div style={{ background: "var(--color-danger-bg)", color: "var(--color-danger-text)", padding: "var(--space-3)", borderRadius: "var(--radius-card)", border: "1px solid var(--color-danger-border)" }}>
+            {error}
           </div>
+        )}
 
-          {activeTask === 1 && currentPrompt?.media_image_url && (
-            <div className={styles.diagramBox}>
-              <span style={{ fontSize: "var(--font-size-xs)", fontWeight: 700 }}>نمودار منبع (Source Diagram)</span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={currentPrompt.media_image_url}
-                alt="IELTS Task 1 Diagram"
-                className={styles.diagramImage}
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = "none";
-                }}
-              />
+        {/* Task Switcher Tabs */}
+        <nav className={styles.tabsBar} aria-label="انتخاب تسک رایتینگ">
+          <Button
+            type="button"
+            variant={activeTask === 1 ? "primary" : "secondary"}
+            className={`${styles.tabBtn} ${activeTask === 1 ? styles.tabBtnActive : ""}`}
+            onClick={() => setActiveTask(1)}
+          >
+            <span>Task 1 (گزارش آکادمیک)</span>
+            <span className={styles.tabPill}>
+              {countWords(task1Text)} / ۱۵۰ کلمه (پیشنهاد: ۲۰ دقیقه)
+            </span>
+          </Button>
+
+          <Button
+            type="button"
+            variant={activeTask === 2 ? "primary" : "secondary"}
+            className={`${styles.tabBtn} ${activeTask === 2 ? styles.tabBtnActive : ""}`}
+            onClick={() => setActiveTask(2)}
+          >
+            <span>Task 2 (مقاله استدلالی)</span>
+            <span className={styles.tabPill}>
+              {countWords(task2Text)} / ۲۵۰ کلمه (پیشنهاد: ۴۰ دقیقه)
+            </span>
+          </Button>
+        </nav>
+
+        {/* Split Workspace */}
+        <main className={styles.workspace}>
+          {/* Left Pane: Prompt & Instructions */}
+          <section className={styles.promptPane} aria-label="صورت سوال و دستورالعمل">
+            <h2 className={styles.promptTitle}>
+              {activeTask === 1 ? "Writing Task 1 — Report" : "Writing Task 2 — Essay"}
+            </h2>
+
+            <div className={styles.promptCard} dir="ltr">
+              {currentPrompt?.content_text || "صورت سوال در حال بارگذاری است..."}
             </div>
-          )}
 
-          <div className={styles.requirementsBox}>
-            <strong>نکات ضروری اگزمینر:</strong>
-            <span>• حداقل کلمات الزامی: {minWords} کلمه</span>
-            <span>• سبک نگارش: کاملاً رسمی و آکادمیک (پرهیز از کلمات عامیانه و اختصارات)</span>
-            {activeTask === 1 ? (
-              <span>• تسک ۱: درج بند Overview و تشریح تفاوت‌ها بدون ابراز نظر شخصی</span>
-            ) : (
-              <span>• تسک ۲: تبیین شفاف هر دو دیدگاه همراه با بند نتیجه‌گیری مستقل</span>
+            {activeTask === 1 && currentPrompt?.media_image_url && (
+              <div className={styles.diagramBox}>
+                <span style={{ fontSize: "var(--font-size-xs)", fontWeight: 700 }}>نمودار منبع (Source Diagram)</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={currentPrompt.media_image_url}
+                  alt="IELTS Task 1 Diagram"
+                  className={styles.diagramImage}
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = "none";
+                  }}
+                />
+              </div>
             )}
-          </div>
-        </section>
 
-        {/* Right Pane: Text Editor */}
-        <section className={styles.editorPane} aria-label="ویرایشگر پاسخ رایتینگ">
-          <div className={styles.editorToolbar}>
-            <div
-              className={`${styles.wordCountBadge} ${
-                isWordCountSufficient ? styles.wordCountSuccess : styles.wordCountWarning
-              }`}
-            >
-              <span>تعداد کلمات: {currentWordCount}</span>
-              <span>
-                {isWordCountSufficient
-                  ? "✓ حد نصاب تکمیل شد"
-                  : `(نیازمند حداقل ${minWords - currentWordCount} کلمه دیگر)`}
-              </span>
+            <div className={styles.requirementsBox}>
+              <strong>نکات ضروری اگزمینر:</strong>
+              <span>• حداقل کلمات الزامی: {minWords} کلمه</span>
+              <span>• سبک نگارش: کاملاً رسمی و آکادمیک (پرهیز از کلمات عامیانه و اختصارات)</span>
+              {activeTask === 1 ? (
+                <span>• تسک ۱: درج بند Overview و تشریح تفاوت‌ها بدون ابراز نظر شخصی</span>
+              ) : (
+                <span>• تسک ۲: تبیین شفاف هر دو دیدگاه همراه با بند نتیجه‌گیری مستقل</span>
+              )}
+            </div>
+          </section>
+
+          {/* Right Pane: Text Editor */}
+          <section className={styles.editorPane} aria-label="ویرایشگر پاسخ رایتینگ">
+            <div className={styles.editorToolbar}>
+              <div
+                className={`${styles.wordCountBadge} ${
+                  isWordCountSufficient ? styles.wordCountSuccess : styles.wordCountWarning
+                }`}
+              >
+                <span>تعداد کلمات: {currentWordCount}</span>
+                <span>
+                  {isWordCountSufficient
+                    ? "✓ حد نصاب تکمیل شد"
+                    : `(نیازمند حداقل ${minWords - currentWordCount} کلمه دیگر)`}
+                </span>
+              </div>
+
+              <div className={styles.autosaveBadge}>
+                <span className={styles.autosaveDot} />
+                <span>{autosaveStatus}</span>
+              </div>
             </div>
 
-            <div className={styles.autosaveBadge}>
-              <span className={styles.autosaveDot} />
-              <span>{autosaveStatus}</span>
-            </div>
-          </div>
-
-          <textarea
-            className={styles.textArea}
-            value={currentText}
-            onChange={handleTextChange}
-            placeholder={
-              activeTask === 1
-                ? "پاسخ تسک ۱ را اینجا بنویسید (حداقل ۱۵۰ کلمه)..."
-                : "پاسخ تسک ۲ را اینجا بنویسید (حداقل ۲۵۰ کلمه)..."
-            }
-            spellCheck={false}
-            autoFocus
-          />
-        </section>
-      </main>
+            <textarea
+              className={styles.textArea}
+              value={currentText}
+              onChange={handleTextChange}
+              placeholder={
+                activeTask === 1
+                  ? "پاسخ تسک ۱ را اینجا بنویسید (حداقل ۱۵۰ کلمه)..."
+                  : "پاسخ تسک ۲ را اینجا بنویسید (حداقل ۲۵۰ کلمه)..."
+              }
+              spellCheck={false}
+              autoFocus
+            />
+          </section>
+        </main>
+      </div>
 
       {/* Review & Submit Confirmation Modal */}
       {showSubmitModal && (
