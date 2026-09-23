@@ -1,5 +1,5 @@
 .container {
-  max-inline-size: 64rem;
+  max-inline-size: min(var(--content-width), 64rem);
   margin-inline: auto;
   padding-inline: var(--space-4);
   padding-block: var(--space-4) var(--space-12);
@@ -268,6 +268,7 @@
 }
 
 .vocabCard {
+  position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -276,12 +277,16 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-3);
-  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .vocabCard:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-subtle);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-action-hover);
 }
 
 .vocabCardLeech {

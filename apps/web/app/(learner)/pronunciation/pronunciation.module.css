@@ -2,7 +2,7 @@
 /* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
 
 .container {
-  max-inline-size: 72rem;
+  max-inline-size: var(--content-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
   padding-block: var(--space-4) var(--space-12);
@@ -232,8 +232,9 @@
 }
 
 .practiceCard:hover {
-  border-color: var(--color-border-hover);
-  box-shadow: var(--shadow-elevated);
+  transform: translateY(-6px);
+  border-color: var(--color-action-hover);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .practiceCardActive {

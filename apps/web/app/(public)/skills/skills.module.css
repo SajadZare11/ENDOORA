@@ -1,8 +1,8 @@
-﻿/* Skills Hub Module Styles */
+/* Skills Hub Module Styles */
 /* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
 
 .container {
-  max-inline-size: 76rem;
+  max-inline-size: var(--content-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
   padding-block: var(--space-6) var(--space-12);
@@ -77,13 +77,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .skillCard:hover {
-  transform: translateY(calc(-1 * var(--space-1)));
-  box-shadow: var(--shadow-card);
-  border-color: var(--color-action);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-action-hover);
 }
 
 .skillCardHeader {
@@ -209,9 +212,9 @@
 }
 
 .articleCard:hover {
-  transform: translateY(calc(-1 * var(--space-1)));
-  box-shadow: var(--shadow-card);
-  border-color: var(--color-action);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-action-hover);
 }
 
 .articleMeta {

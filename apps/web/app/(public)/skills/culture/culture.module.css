@@ -1,8 +1,8 @@
-﻿/* Culture Hub Module Styles */
+/* Culture Hub Module Styles */
 /* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
 
 .container {
-  max-inline-size: 72rem;
+  max-inline-size: var(--content-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
   padding-block: var(--space-6) var(--space-12);
@@ -58,6 +58,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-action-hover);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .cardCategory {

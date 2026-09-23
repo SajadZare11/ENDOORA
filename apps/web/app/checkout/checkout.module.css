@@ -5,7 +5,7 @@
   gap: var(--space-6);
   padding-inline: var(--space-4);
   padding-block: var(--space-8);
-  max-inline-size: 960px;
+  max-inline-size: min(var(--content-width), 960px);
   margin-inline: auto;
   inline-size: 100%;
   direction: rtl;
@@ -177,11 +177,20 @@
   border-radius: var(--radius-card);
   padding: var(--space-4);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    transform var(--motion-fast) var(--motion-ease),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
   background: var(--color-surface);
+}
+
+.methodCard:hover:not(.methodCardDisabled) {
+  transform: translateY(-2px);
+  border-color: var(--color-action-hover);
+  box-shadow: var(--shadow-subtle);
 }
 
 .methodCardSelected {

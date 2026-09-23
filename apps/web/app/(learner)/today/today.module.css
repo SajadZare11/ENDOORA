@@ -1,13 +1,13 @@
 .page {
   min-height: 100vh;
-  background: var(--color-background);
+  background: var(--color-canvas);
   color: var(--color-text);
   padding-block: var(--space-8);
   padding-inline: var(--space-4);
 }
 
 .container {
-  max-width: 54rem;
+  max-width: min(var(--content-width), 54rem);
   margin-inline: auto;
 }
 
@@ -411,6 +411,8 @@
 .optionCard:hover:not(.optionCardDisabled) {
   border-color: var(--color-primary);
   background: var(--color-surface-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
 }
 
 .optionCardSelected {
@@ -633,8 +635,8 @@
 }
 
 .homeworkBadge {
-  background: #2563eb;
-  color: #ffffff;
+  background: var(--color-action);
+  color: var(--color-action-text);
   font-size: var(--font-size-meta);
   font-weight: 700;
   padding: 0.2rem 0.6rem;
