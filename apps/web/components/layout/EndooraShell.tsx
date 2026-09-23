@@ -7,7 +7,7 @@ const nav = [
   ["چطور کار می‌کند", "/how-it-works"],
   ["تعیین سطح", "/placement"],
   ["مدرس‌ها", "/teachers"],
-  ["دوره‌ها", "/learn"],
+  ["یادگیری", "/learn"],
   ["IELTS", "/ielts"],
   ["قیمت", "/pricing"],
   ["راهنما", "/help"],

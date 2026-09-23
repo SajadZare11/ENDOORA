@@ -318,7 +318,7 @@ export default function InformationArchitecturePage() {
     ["public-how", copy.public, locale === "fa" ? "نحوه کار" : "How it works", "/how-it-works", "current"],
     ["teachers", copy.public, locale === "fa" ? "مدرس‌ها" : "Teachers", "/teachers", "current"],
     ["classes", copy.public, locale === "fa" ? "کلاس‌ها" : "Classes", "/classes", "planned"],
-    ["courses", copy.public, locale === "fa" ? "دوره‌ها" : "Courses", "/learn", "current"],
+    ["learn", copy.public, locale === "fa" ? "یادگیری" : "Learn", "/learn", "current"],
     ["ielts", copy.public, "IELTS", "/ielts", "planned"],
     ["pricing", copy.public, locale === "fa" ? "تعرفه‌ها" : "Pricing", "/pricing", "current"],
     ["help", copy.public, locale === "fa" ? "راهنما" : "Help", "/help", "current"],

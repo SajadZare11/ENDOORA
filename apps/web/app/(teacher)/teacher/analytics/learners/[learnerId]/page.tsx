@@ -13,7 +13,7 @@ import {
   type LearnerAnalyticsProfile,
 } from "../../../../../../lib/teacher-analytics";
 
-export default function LearnerAnalyticsProfilePage() {
+function LearnerAnalyticsProfileContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const learnerId = String(params?.learnerId || "");
@@ -354,5 +354,13 @@ export default function LearnerAnalyticsProfilePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function LearnerAnalyticsProfilePage() {
+  return (
+    <React.Suspense fallback={<div style={{ padding: "2rem", textAlign: "center" }}>Loading learner analytics...</div>}>
+      <LearnerAnalyticsProfileContent />
+    </React.Suspense>
   );
 }

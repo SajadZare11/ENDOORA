@@ -15,7 +15,7 @@ const nav = [
   { path: "/placement", fa: "تعیین سطح", en: "Placement" },
   { path: "/teachers", fa: "مدرس‌ها", en: "Teachers" },
   { path: "/classes", fa: "کلاس‌ها", en: "Classes" },
-  { path: "/learn", fa: "دوره‌ها", en: "Courses" },
+  { path: "/learn", fa: "یادگیری", en: "Learn" },
   { path: "/ielts", fa: "IELTS", en: "IELTS" },
   { path: "/pricing", fa: "اشتراک", en: "Membership" },
 ] as const;

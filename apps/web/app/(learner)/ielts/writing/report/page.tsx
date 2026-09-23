@@ -14,7 +14,7 @@ import {
 } from "../../../../../lib/ielts-writing";
 import { PublicShell } from "../../../../../components/marketing/PublicShell";
 
-export default function IELTSWritingReportPage() {
+function IELTSWritingReportContent() {
   const searchParams = useSearchParams();
   const submissionIdParam = searchParams.get("id");
 
@@ -328,5 +328,13 @@ export default function IELTSWritingReportPage() {
       )}
     </div>
     </PublicShell>
+  );
+}
+
+export default function IELTSWritingReportPage() {
+  return (
+    <React.Suspense fallback={<div style={{ padding: "2rem", textAlign: "center" }}>در حال بارگذاری کارنامه...</div>}>
+      <IELTSWritingReportContent />
+    </React.Suspense>
   );
 }

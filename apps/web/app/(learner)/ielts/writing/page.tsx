@@ -20,7 +20,7 @@ function countWords(str: string): number {
   return matches ? matches.length : 0;
 }
 
-export default function IELTSWritingRoomPage() {
+function IELTSWritingRoomContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const draftIdParam = searchParams.get("draftId");
@@ -434,5 +434,13 @@ export default function IELTSWritingRoomPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function IELTSWritingRoomPage() {
+  return (
+    <React.Suspense fallback={<div style={{ padding: "2rem", textAlign: "center" }}>در حال بارگذاری آزمون رایتینگ...</div>}>
+      <IELTSWritingRoomContent />
+    </React.Suspense>
   );
 }

@@ -17,7 +17,7 @@ import {
 
 const NUM_METER_BARS = 24;
 
-export default function IELTSSpeakingRoomPage() {
+function IELTSSpeakingRoomContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const draftIdParam = searchParams.get("draftId");
@@ -839,5 +839,13 @@ export default function IELTSSpeakingRoomPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function IELTSSpeakingRoomPage() {
+  return (
+    <React.Suspense fallback={<div style={{ padding: "2rem", textAlign: "center" }}>در حال بارگذاری آزمون اسپیکینگ...</div>}>
+      <IELTSSpeakingRoomContent />
+    </React.Suspense>
   );
 }

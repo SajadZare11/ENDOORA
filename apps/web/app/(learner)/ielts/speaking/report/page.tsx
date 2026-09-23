@@ -15,7 +15,7 @@ import {
 } from "../../../../../lib/ielts-speaking";
 import { PublicShell } from "../../../../../components/marketing/PublicShell";
 
-export default function IELTSSpeakingReportPage() {
+function IELTSSpeakingReportContent() {
   const searchParams = useSearchParams();
   const submissionIdParam = searchParams.get("id");
 
@@ -443,5 +443,13 @@ export default function IELTSSpeakingReportPage() {
       </section>
     </div>
     </PublicShell>
+  );
+}
+
+export default function IELTSSpeakingReportPage() {
+  return (
+    <React.Suspense fallback={<div style={{ padding: "2rem", textAlign: "center" }}>در حال بارگذاری کارنامه...</div>}>
+      <IELTSSpeakingReportContent />
+    </React.Suspense>
   );
 }
