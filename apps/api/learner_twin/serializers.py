@@ -47,3 +47,5 @@ class LearningPathSerializer(serializers.Serializer):
     timeline = LearningPathTimelineSerializer(many=True)
     limitations_fa = serializers.ListField(child=serializers.CharField())
     limitations_en = serializers.ListField(child=serializers.CharField())
+    curriculum_recommendation = serializers.DictField(required=False, default=dict)
+    class_status = serializers.DictField(required=False, default=dict)

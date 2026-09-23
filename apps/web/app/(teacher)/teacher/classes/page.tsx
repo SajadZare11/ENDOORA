@@ -24,8 +24,14 @@ import {
   type TeachingHourLedger,
   type LearnerOverview,
 } from "../../../../lib/teacher-classes";
+import {
+  fetchTeacherOpenClassRequests,
+  claimTeacherCohort,
+  logTeacherSession,
+  type OpenRequestsResponse,
+} from "../../../../lib/curriculum-classes";
 
-type TabKey = "classes" | "sessions" | "hours";
+type TabKey = "classes" | "sessions" | "hours" | "requests";
 
 export default function TeacherClassesPage() {
   const { locale } = useTeacherHome();
@@ -84,6 +90,26 @@ export default function TeacherClassesPage() {
 
   const [completingSessionId, setCompletingSessionId] = useState<string | null>(null);
 
+  // Open Requests & Cohorts
+  const [openRequestsData, setOpenRequestsData] = useState<OpenRequestsResponse | null>(null);
+  const [loadingRequests, setLoadingRequests] = useState(false);
+  const [showClaimModal, setShowClaimModal] = useState(false);
+  const [claimRequestIds, setClaimRequestIds] = useState<string[]>([]);
+  const [claimTitle, setClaimTitle] = useState("");
+  const [claimMeetingUrl, setClaimMeetingUrl] = useState("");
+  const [claimScheduleSummary, setClaimScheduleSummary] = useState("");
+  const [claiming, setClaiming] = useState(false);
+
+  // Teaching Session Log Modal
+  const [showSessionLogModal, setShowSessionLogModal] = useState(false);
+  const [logTargetClassId, setLogTargetClassId] = useState<string>("");
+  const [logUnitsCovered, setLogUnitsCovered] = useState("");
+  const [logGrammarCovered, setLogGrammarCovered] = useState("");
+  const [logVocabList, setLogVocabList] = useState("");
+  const [logHomework, setLogHomework] = useState("");
+  const [logNotes, setLogNotes] = useState("");
+  const [loggingSession, setLoggingSession] = useState(false);
+
   const newClassTitleId = useId();
   const newClassSubjectId = useId();
   const newClassLevelId = useId();
@@ -100,6 +126,14 @@ export default function TeacherClassesPage() {
   const adjustHoursId = useId();
   const adjustReasonId = useId();
   const terminateReasonId = useId();
+  const claimTitleId = useId();
+  const claimUrlId = useId();
+  const claimScheduleId = useId();
+  const logUnitsId = useId();
+  const logGrammarId = useId();
+  const logVocabId = useId();
+  const logHomeworkId = useId();
+  const logNotesId = useId();
 
   // Load Classes helper for mutations
   const loadClasses = async () => {
@@ -178,6 +212,99 @@ export default function TeacherClassesPage() {
     };
   }, [selectedClassId]);
 
+  // Load open class requests helper
+  const loadOpenRequests = async () => {
+    try {
+      setLoadingRequests(true);
+      const data = await fetchTeacherOpenClassRequests();
+      setOpenRequestsData(data);
+    } catch {
+      // fallback
+    } finally {
+      setLoadingRequests(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === "requests") {
+      void loadOpenRequests();
+    }
+  }, [activeTab]);
+
+  const handleOpenClaimModal = (requestIds: string[], defaultTitle: string, defaultSchedule?: string) => {
+    setClaimRequestIds(requestIds);
+    setClaimTitle(defaultTitle);
+    setClaimScheduleSummary(defaultSchedule || "");
+    setClaimMeetingUrl("https://www.skyroom.online/ch/endoora/");
+    setShowClaimModal(true);
+  };
+
+  const handleClaimCohort = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (claimRequestIds.length === 0) return;
+    try {
+      setClaiming(true);
+      const res = await claimTeacherCohort({
+        request_ids: claimRequestIds,
+        title: claimTitle,
+        meeting_url: claimMeetingUrl,
+        schedule_summary: claimScheduleSummary,
+      });
+      if (res.success) {
+        alert(res.message_fa || (isFa ? "کلاس با موفقیت تشکیل و زبان‌آموزان تخصیص یافتند." : "Cohort formed successfully!"));
+        setShowClaimModal(false);
+        setClaimRequestIds([]);
+        await loadOpenRequests();
+        await loadClasses();
+      } else {
+        alert(res.error || (isFa ? "خطا در تشکیل کلاس" : "Failed to claim cohort"));
+      }
+    } catch (err: any) {
+      alert(err.message || (isFa ? "خطا در تشکیل کلاس" : "Failed to claim cohort"));
+    } finally {
+      setClaiming(false);
+    }
+  };
+
+  const handleLogTeachingSession = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!logTargetClassId || !logUnitsCovered) return;
+    try {
+      setLoggingSession(true);
+      const vocabArray = logVocabList
+        .split(/[,،\n]/)
+        .map((w) => w.trim())
+        .filter(Boolean);
+
+      const res = await logTeacherSession({
+        cohort_id: logTargetClassId,
+        units_covered: logUnitsCovered,
+        grammar_covered: logGrammarCovered,
+        vocabulary_list: vocabArray,
+        homework_description: logHomework,
+        teacher_notes: logNotes,
+      });
+
+      if (res.success) {
+        alert(res.message_fa || (isFa ? "گزارش تدریس و تکالیف با موفقیت ثبت شد و به ماموریت روزانه زبان‌آموزان متصل گردید." : "Session logged and synced with learner missions!"));
+        setShowSessionLogModal(false);
+        setLogUnitsCovered("");
+        setLogGrammarCovered("");
+        setLogVocabList("");
+        setLogHomework("");
+        setLogNotes("");
+        if (selectedClassId) {
+          await loadClassDetail(selectedClassId);
+        }
+      } else {
+        alert(res.error || (isFa ? "خطا در ثبت گزارش جلسه" : "Failed to log session"));
+      }
+    } catch (err: any) {
+      alert(err.message || (isFa ? "خطا در ثبت گزارش جلسه" : "Failed to log session"));
+    } finally {
+      setLoggingSession(false);
+    }
+  };
 
   // Handlers
   const handleCreateClass = async (e: React.FormEvent) => {
@@ -372,6 +499,17 @@ export default function TeacherClassesPage() {
             </Link>
             <Button
               type="button"
+              variant="secondary"
+              className={styles.actionButtonSecondary}
+              onClick={() => {
+                setLogTargetClassId(selectedClassId || (classes[0]?.id ?? ""));
+                setShowSessionLogModal(true);
+              }}
+            >
+              {isFa ? "📝 ثبت گزارش تدریس و تکلیف" : "📝 Log Session & Homework"}
+            </Button>
+            <Button
+              type="button"
               variant="primary"
               className={styles.actionButton}
               onClick={() => setShowCreateClassModal(true)}
@@ -412,6 +550,16 @@ export default function TeacherClassesPage() {
             onClick={() => setActiveTab("hours")}
           >
             {isFa ? "دفتر ساعات تدریس و حسابرسی" : "Teaching Hours & Audit"}
+          </Button>
+          <Button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "requests"}
+            data-active={activeTab === "requests"}
+            className={styles.tabButton}
+            onClick={() => setActiveTab("requests")}
+          >
+            {isFa ? "درخواست‌های کلاس و استخر زبان‌آموزان 👥" : "Open Requests & Cohorts 👥"}
           </Button>
         </div>
       </section>
@@ -818,6 +966,198 @@ export default function TeacherClassesPage() {
                           }}
                         >
                           {isFa ? "اصلاح ساعت (با دلیل)" : "Adjust (Audit)"}
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          )}
+        </section>
+      ) : null}
+
+      {/* TAB 4: OPEN CLASS REQUESTS & COHORT MATCHING */}
+      {activeTab === "requests" ? (
+        <section aria-label={isFa ? "بخش درخواست‌های کلاس و گروه‌ها" : "Open Requests & Cohorts Section"}>
+          <div className={styles.infoBanner}>
+            <span style={{ fontSize: "1.5rem" }}>💡</span>
+            <div>
+              <strong>
+                {isFa
+                  ? "استخر تقاضای زبان‌آموزان و موتور تشکیل خودکار کلاس:"
+                  : "Learner Demand Pool & Automated Cohort Engine:"}
+              </strong>
+              <p style={{ margin: "var(--space-1) 0 0 0", color: "var(--color-muted)", fontSize: "var(--font-size-meta)" }}>
+                {isFa
+                  ? "در این بخش زبان‌آموزانی که آزمون تعیین سطح ۶ مهارتی را گذرانده، کتاب درسی مناسب سطحشان مشخص شده و درخواست کلاس زنده داده‌اند نمایش داده می‌شوند. الگوریتم هوشمند، زبان‌آموزان همسطح با زمان‌بندی هفتگی مشترک را در قالب گروه‌های ۲ تا ۴ نفره به شما پیشنهاد می‌دهد."
+                  : "Learners who completed diagnostic placement, received book recommendations, and requested live classes are pooled here. Smart matching automatically clusters learners with identical CEFR levels and overlapping availability into 2-4 student cohorts."}
+              </p>
+            </div>
+          </div>
+
+          {/* Section A: Smart Cohort Suggestions */}
+          <div className={styles.sectionHeading}>
+            <span>{isFa ? "پیشنهادهای هوشمند تشکیل گروه (همسطح و هم‌زمان)" : "Smart Cohort Suggestions (Matched Availability)"}</span>
+            <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)", fontWeight: "normal" }}>
+              {isFa
+                ? `${openRequestsData?.cohort_suggestions.length || 0} پیشنهاد فعال`
+                : `${openRequestsData?.cohort_suggestions.length || 0} active suggestions`}
+            </span>
+          </div>
+
+          {loadingRequests ? (
+            <div className={styles.emptyState}>
+              <p>{isFa ? "در حال دریافت استخر درخواست‌ها..." : "Loading requests pool..."}</p>
+            </div>
+          ) : !openRequestsData || openRequestsData.cohort_suggestions.length === 0 ? (
+            <div className={styles.emptyState} style={{ background: "var(--color-surface)", borderRadius: "var(--radius-card)", border: "1px dashed var(--color-border)" }}>
+              <p>{isFa ? "در حال حاضر پیشنهاد گروه چندنفره آماده‌ای وجود ندارد. درخواست‌های فردی زیر را بررسی کرده یا کلاسی با متقاضیان تشکیل دهید." : "No multi-student cohort suggestions available yet. Check the individual pool below."}</p>
+            </div>
+          ) : (
+            <div className={styles.cohortGrid}>
+              {openRequestsData.cohort_suggestions.map((sug, idx) => (
+                <article key={idx} className={styles.cohortCard}>
+                  <div className={styles.cohortHeader}>
+                    <h3 className={styles.cohortTitle}>{sug.book_title}</h3>
+                    <span className={styles.cohortMatchBadge}>
+                      {isFa ? "تطابق هوشمند ۹۵٪" : "95% Match"}
+                    </span>
+                  </div>
+
+                  <div className={styles.cohortMetaRow}>
+                    <span className={`${styles.badge} ${styles.badgeActive}`}>{sug.cefr_level}</span>
+                    <span className={styles.badgeGroup}>
+                      {isFa ? `${sug.member_ids.length} نفر (ظرفیت تا ${sug.suggested_capacity})` : `${sug.member_ids.length} students (cap ${sug.suggested_capacity})`}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 600, display: "block", marginBlockEnd: "var(--space-1)" }}>
+                      {isFa ? "اعضای گروه:" : "Cohort Members:"}
+                    </span>
+                    <div className={styles.cohortMembersList}>
+                      {sug.student_names.map((name, sIdx) => (
+                        <span key={sIdx} className={styles.memberPill}>
+                          👤 {name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 600, display: "block", marginBlockEnd: "var(--space-1)" }}>
+                      {isFa ? "سانس‌های زمانی مشترک:" : "Common Time Windows:"}
+                    </span>
+                    <div className={styles.cohortMembersList}>
+                      {sug.common_slots.map((slot, sIdx) => (
+                        <span key={sIdx} className={styles.slotChip}>
+                          🕒 {slot}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="primary"
+                    className={styles.actionButton}
+                    style={{ marginBlockStart: "auto" }}
+                    onClick={() =>
+                      handleOpenClaimModal(
+                        sug.member_ids,
+                        `${sug.book_title} - گروه آنلاین`,
+                        sug.common_slots.join("، ")
+                      )
+                    }
+                  >
+                    {isFa ? "تشکیل کلاس و پذیرش گروه 🤝" : "Form Class & Claim Cohort 🤝"}
+                  </Button>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Section B: Individual Requests Pool */}
+          <div className={styles.sectionHeading} style={{ marginBlockStart: "var(--space-8)" }}>
+            <span>{isFa ? "استخر متقاضیان منتظر (درخواست‌های انفرادی و گروهی)" : "All Open Learner Requests"}</span>
+            <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)", fontWeight: "normal" }}>
+              {isFa
+                ? `${openRequestsData?.total_pending || 0} درخواست در صف انتظار`
+                : `${openRequestsData?.total_pending || 0} pending in queue`}
+            </span>
+          </div>
+
+          {!openRequestsData || openRequestsData.requests.length === 0 ? (
+            <div className={styles.emptyState} style={{ background: "var(--color-surface)", borderRadius: "var(--radius-card)", border: "1px dashed var(--color-border)" }}>
+              <p>{isFa ? "هیچ زبان‌آموز در انتظار کلاسی در سیستم ثبت نشده است." : "No pending learner requests at this time."}</p>
+            </div>
+          ) : (
+            <div className={styles.tableContainer}>
+              <Table className={styles.table}>
+                <caption className={styles.srOnly}>
+                  {isFa ? "جدول استخر متقاضیان کلاس" : "Class Request Pool Table"}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{isFa ? "زبان‌آموز" : "Learner"}</th>
+                    <th scope="col">{isFa ? "سطح زبانی" : "CEFR"}</th>
+                    <th scope="col">{isFa ? "فرمت درخواستی" : "Format"}</th>
+                    <th scope="col">{isFa ? "کتاب درسی پیشنهادی" : "Coursebook Track"}</th>
+                    <th scope="col">{isFa ? "زمان‌های آزاد هفتگی" : "Available Slots"}</th>
+                    <th scope="col">{isFa ? "عملیات" : "Action"}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {openRequestsData.requests.map((req) => (
+                    <tr key={req.id}>
+                      <td>
+                        <strong>{req.student_name}</strong>
+                        <div style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
+                          {req.student_email}
+                        </div>
+                      </td>
+                      <td>
+                        <span className={`${styles.badge} ${styles.badgeActive}`}>{req.cefr_level}</span>
+                      </td>
+                      <td>
+                        <span className={req.preferred_format === "solo" ? styles.badgeSolo : styles.badgeGroup}>
+                          {req.preferred_format_display}
+                        </span>
+                      </td>
+                      <td>
+                        <strong>{req.target_book_title || (isFa ? "عمومی" : "General")}</strong>
+                      </td>
+                      <td>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.25rem", maxInlineSize: "16rem" }}>
+                          {req.available_slots && req.available_slots.length > 0 ? (
+                            req.available_slots.map((sl, sIdx) => (
+                              <span key={sIdx} className={styles.slotChip}>
+                                {sl.day} {sl.time_window}
+                              </span>
+                            ))
+                          ) : (
+                            <span style={{ color: "var(--color-muted)", fontSize: "var(--font-size-meta)" }}>
+                              {isFa ? "انعطاف‌پذیر" : "Flexible"}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td>
+                        <Button
+                          type="button"
+                          className={styles.actionButtonSecondary}
+                          onClick={() =>
+                            handleOpenClaimModal(
+                              [req.id],
+                              req.preferred_format === "solo"
+                                ? `${req.target_book_title || "English"} - کلاس خصوصی با ${req.student_name}`
+                                : `${req.target_book_title || "English"} - گروه آنلاین`,
+                              req.available_slots?.map((s) => `${s.day} ${s.time_window}`).join("، ")
+                            )
+                          }
+                        >
+                          {isFa ? "پذیرش و تشکیل کلاس" : "Claim & Form Class"}
                         </Button>
                       </td>
                     </tr>
@@ -1486,6 +1826,245 @@ export default function TeacherClassesPage() {
                 </Button>
                 <Button type="submit" variant="primary" className={styles.actionButton}>
                   {isFa ? "ثبت اصلاحیه و لاگ حسابرسی" : "Record Audited Adjustment"}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
+
+      {/* MODAL: CLAIM COHORT / FORM LIVE CLASS */}
+      {showClaimModal ? (
+        <div className={styles.modalBackdrop} role="dialog" aria-modal="true" aria-labelledby={claimTitleId}>
+          <div className={styles.modalContent}>
+            <div className={styles.modalHeader}>
+              <h2 id={claimTitleId} className={styles.modalTitle}>
+                {isFa ? "تشکیل کلاس زنده و پذیرش گروه" : "Form Class & Claim Cohort"}
+              </h2>
+              <Button
+                type="button"
+                className={styles.closeButton}
+                onClick={() => setShowClaimModal(false)}
+                aria-label={isFa ? "بستن" : "Close"}
+              >
+                ×
+              </Button>
+            </div>
+            <form onSubmit={handleClaimCohort}>
+              <div className={styles.infoBanner} style={{ marginBlockEnd: "var(--space-3)" }}>
+                <span>👥</span>
+                <span>
+                  {isFa
+                    ? `تعداد زبان‌آموزان انتخاب‌شده برای این کلاس: ${claimRequestIds.length} نفر. با ثبت نهایی، وضعیت درخواست این زبان‌آموزان به «تخصیص‌یافته» تغییر یافته و لینک جلسه به آن‌ها اعلام می‌شود.`
+                    : `Claiming ${claimRequestIds.length} student(s). Once claimed, the cohort will be created and meeting links shared with enrolled learners.`}
+                </span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor={claimTitleId} className={styles.formLabel}>
+                  {isFa ? "عنوان کلاس" : "Cohort Title"}
+                </label>
+                <Input
+                  id={claimTitleId}
+                  className={styles.formInput}
+                  type="text"
+                  required
+                  value={claimTitle}
+                  onChange={(e) => setClaimTitle(e.target.value)}
+                  placeholder={isFa ? "مثلاً: American English File 2 - گروه پنج‌شنبه‌ها" : "e.g. American English File 2 - Weekend Group"}
+                />
+              </div>
+
+              <div className={styles.formGroup} style={{ marginBlockStart: "var(--space-3)" }}>
+                <label htmlFor={claimUrlId} className={styles.formLabel}>
+                  {isFa ? "لینک کلاس آنلاین (اسکای‌روم / گوگل میت)" : "Live Meeting URL (Skyroom / Google Meet)"}
+                </label>
+                <Input
+                  id={claimUrlId}
+                  className={styles.formInput}
+                  type="url"
+                  required
+                  value={claimMeetingUrl}
+                  onChange={(e) => setClaimMeetingUrl(e.target.value)}
+                  placeholder="https://www.skyroom.online/ch/endoora/..."
+                />
+              </div>
+
+              <div className={styles.formGroup} style={{ marginBlockStart: "var(--space-3)" }}>
+                <label htmlFor={claimScheduleId} className={styles.formLabel}>
+                  {isFa ? "خلاصه زمان‌بندی هفتگی" : "Schedule Summary"}
+                </label>
+                <Input
+                  id={claimScheduleId}
+                  className={styles.formInput}
+                  type="text"
+                  value={claimScheduleSummary}
+                  onChange={(e) => setClaimScheduleSummary(e.target.value)}
+                  placeholder={isFa ? "مثلاً: پنج‌شنبه‌ها ساعت ۱۸:۰۰ تا ۱۹:۳۰" : "e.g. Thursdays 18:00 - 19:30"}
+                />
+              </div>
+
+              <div className={styles.modalFooter}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className={styles.actionButtonSecondary}
+                  onClick={() => setShowClaimModal(false)}
+                >
+                  {isFa ? "انصراف" : "Cancel"}
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className={styles.actionButton}
+                  disabled={claiming}
+                >
+                  {claiming
+                    ? isFa ? "در حال تشکیل کلاس..." : "Creating Cohort..."
+                    : isFa ? "تایید و تشکیل کلاس زنده 🚀" : "Confirm & Form Class 🚀"}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
+
+      {/* MODAL: POST-SESSION TEACHING & HOMEWORK LOG */}
+      {showSessionLogModal ? (
+        <div className={styles.modalBackdrop} role="dialog" aria-modal="true" aria-labelledby={logUnitsId}>
+          <div className={styles.modalContent} style={{ maxWidth: "38rem" }}>
+            <div className={styles.modalHeader}>
+              <h2 id={logUnitsId} className={styles.modalTitle}>
+                {isFa ? "ثبت گزارش جلسه، تدریس و تکالیف هوشمند" : "Log Teaching Session & Homework"}
+              </h2>
+              <Button
+                type="button"
+                className={styles.closeButton}
+                onClick={() => setShowSessionLogModal(false)}
+                aria-label={isFa ? "بستن" : "Close"}
+              >
+                ×
+              </Button>
+            </div>
+            <form onSubmit={handleLogTeachingSession}>
+              <div className={styles.infoBanner} style={{ marginBlockEnd: "var(--space-3)" }}>
+                <span>🎯</span>
+                <span>
+                  {isFa
+                    ? "اتصال مستقیم به ماموریت روزانه: تکالیف، واژگان و گرامر ثبت‌شده در این فرم مستقیماً به عنوان تسک اولویت‌دار در «گام ۶: ماموریت روزانه انطباقی» و بانک SRS زبان‌آموزان این کلاس قرار می‌گیرد."
+                    : "Direct Step 6 Integration: The homework, grammar, and vocabulary entered here automatically inject into the daily missions and SRS queues of all enrolled students."}
+                </span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>
+                  {isFa ? "انتخاب کلاس / گروه" : "Target Class / Cohort"}
+                </label>
+                <select
+                  className={styles.formInput}
+                  value={logTargetClassId}
+                  onChange={(e) => setLogTargetClassId(e.target.value)}
+                  required
+                >
+                  <option value="">{isFa ? "-- کلاس را انتخاب کنید --" : "-- Select Class --"}</option>
+                  {classes.map((cls) => (
+                    <option key={cls.id} value={cls.id}>
+                      {cls.title} ({cls.level})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.formGroup} style={{ marginBlockStart: "var(--space-3)" }}>
+                <label htmlFor={logUnitsId} className={styles.formLabel}>
+                  {isFa ? "درس‌ها و صفحات تدریس‌شده (اجباری)" : "Units & Pages Covered (Required)"}
+                </label>
+                <Input
+                  id={logUnitsId}
+                  className={styles.formInput}
+                  type="text"
+                  required
+                  value={logUnitsCovered}
+                  onChange={(e) => setLogUnitsCovered(e.target.value)}
+                  placeholder={isFa ? "مثلاً: American English File 2 - Unit 3A & 3B (pp. 24-27)" : "e.g. Unit 3A & 3B (pp. 24-27)"}
+                />
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-3)", marginBlockStart: "var(--space-3)" }}>
+                <div className={styles.formGroup}>
+                  <label htmlFor={logGrammarId} className={styles.formLabel}>
+                    {isFa ? "نکات گرامری تدریس‌شده" : "Grammar Focus"}
+                  </label>
+                  <Input
+                    id={logGrammarId}
+                    className={styles.formInput}
+                    type="text"
+                    value={logGrammarCovered}
+                    onChange={(e) => setLogGrammarCovered(e.target.value)}
+                    placeholder={isFa ? "Past Continuous vs Past Simple" : "e.g. Past Continuous vs Simple"}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor={logVocabId} className={styles.formLabel}>
+                    {isFa ? "واژگان جدید (با ویرگول جدا کنید)" : "Target Vocabulary (comma-separated)"}
+                  </label>
+                  <Input
+                    id={logVocabId}
+                    className={styles.formInput}
+                    type="text"
+                    value={logVocabList}
+                    onChange={(e) => setLogVocabList(e.target.value)}
+                    placeholder={isFa ? "commute, pedestrian, delay, fine" : "commute, pedestrian, delay"}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup} style={{ marginBlockStart: "var(--space-3)" }}>
+                <label htmlFor={logHomeworkId} className={styles.formLabel}>
+                  {isFa ? "شرح تکالیف محول‌شده (تمرینات کتاب کار و AI Labs)" : "Homework Description (Workbook & AI Labs)"}
+                </label>
+                <textarea
+                  id={logHomeworkId}
+                  className={styles.formTextarea}
+                  rows={3}
+                  value={logHomework}
+                  onChange={(e) => setLogHomework(e.target.value)}
+                  placeholder={isFa ? "حل تمرین‌های کتاب کار ص ۲۵؛ نگارش یک داستان کوتاه در AI Writing Mentor درباره یک اتفاق ناگهانی" : "Workbook p.25 exercises 1-4; Write a 100-word story in AI Writing Mentor about an accident."}
+                />
+              </div>
+
+              <div className={styles.formGroup} style={{ marginBlockStart: "var(--space-3)" }}>
+                <label htmlFor={logNotesId} className={styles.formLabel}>
+                  {isFa ? "یادداشت‌های تدریس و بازخورد کلاسی" : "Teacher Notes & Observations"}
+                </label>
+                <textarea
+                  id={logNotesId}
+                  className={styles.formTextarea}
+                  rows={2}
+                  value={logNotes}
+                  onChange={(e) => setLogNotes(e.target.value)}
+                  placeholder={isFa ? "سطح مشارکت عالی بود، روی تلفظ -ed در گذشته تمرکز بیشتری شود." : "Great participation, need more focus on -ed endings pronunciation."}
+                />
+              </div>
+
+              <div className={styles.modalFooter}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className={styles.actionButtonSecondary}
+                  onClick={() => setShowSessionLogModal(false)}
+                >
+                  {isFa ? "انصراف" : "Cancel"}
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className={styles.actionButton}
+                  disabled={loggingSession}
+                >
+                  {loggingSession
+                    ? isFa ? "در حال ثبت..." : "Submitting..."
+                    : isFa ? "ثبت گزارش و ارسال به زبان‌آموزان ✓" : "Save Log & Sync with Students ✓"}
                 </Button>
               </div>
             </form>

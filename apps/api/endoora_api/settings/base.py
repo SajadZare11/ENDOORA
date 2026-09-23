@@ -97,6 +97,8 @@ INSTALLED_APPS = [
     "offline_sync.apps.OfflineSyncConfig",
     "incident_response.apps.IncidentResponseConfig",
     "production_launch.apps.ProductionLaunchConfig",
+    "live_classes.apps.LiveClassesConfig",
+    "online_exams.apps.OnlineExamsConfig",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

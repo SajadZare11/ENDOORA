@@ -12,6 +12,7 @@ class DailyMissionSerializer(serializers.ModelSerializer):
     tasks = serializers.SerializerMethodField()
     next_best_action = serializers.SerializerMethodField()
     srs_due_count = serializers.SerializerMethodField()
+    teacher_homework = serializers.SerializerMethodField()
 
     class Meta:
         model = DailyMission
@@ -32,8 +33,14 @@ class DailyMissionSerializer(serializers.ModelSerializer):
             "tasks",
             "next_best_action",
             "srs_due_count",
+            "teacher_homework",
             "evidence_reason",
         ]
+
+    def get_teacher_homework(self, obj: DailyMission) -> dict | None:
+        if isinstance(obj.evidence_reason, dict):
+            return obj.evidence_reason.get("teacher_homework")
+        return None
 
     def get_target_skill(self, obj: DailyMission) -> str:
         return obj.get_target_skill()

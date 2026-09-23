@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils import timezone
 
 from assessment.services import evaluate_placement_answers, map_score_to_cefr_estimate
+from live_classes.services import get_learner_class_status, recommend_curriculum_for_user
 from placement.models import PlacementSession
 
 
@@ -60,6 +61,8 @@ SKILL_METADATA: dict[str, dict[str, str]] = {
 
 def build_unplaced_learning_path(user: Any) -> dict[str, Any]:
     """Generates an honest onboarding learning path when no placement evidence exists yet."""
+    curriculum = recommend_curriculum_for_user(user)
+    class_status = get_learner_class_status(user)
     return {
         "placement_completed": False,
         "estimated_cefr_level": None,
@@ -76,56 +79,78 @@ def build_unplaced_learning_path(user: Any) -> dict[str, Any]:
         "section_scores": [],
         "timeline": [
             {
+                "id": "onboarding_profiling",
+                "title_fa": "گام ۱: مشخصات و هدف‌گذاری آموزشی",
+                "title_en": "Step 1: Onboarding & Goal Profiling",
+                "status": "complete",
+                "description_fa": "ثبت مشخصات، اهداف یادگیری و سن برای تنظیم بهینه منابع آموزشی.",
+                "description_en": "Profile registration, age, and learning objectives established.",
+                "evidence": ["account_created"],
+                "action_href": "/dashboard",
+            },
+            {
                 "id": "placement",
-                "title_fa": "تعیین سطح و شناخت نقطه شروع",
-                "title_en": "Placement & Starting Point",
+                "title_fa": "گام ۲: ارزیابی تعیین سطح ۶ مهارتی",
+                "title_en": "Step 2: 6-Skill Diagnostic Placement Test",
                 "status": "current",
                 "description_fa": "ارزیابی ۶ مهارت (دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری، نگارش) برای تعیین دقیق نقشه راه یادگیری.",
-                "description_en": "6-skill placement (Grammar, Vocabulary, Reading, Listening, Speaking, Writing) to establish your exact baseline.",
+                "description_en": "6-skill placement to establish your exact baseline without fake scores.",
                 "evidence": ["placement_pending"],
                 "action_href": "/placement",
             },
             {
-                "id": "core_reinforcement",
-                "title_fa": "تثبیت پایه‌ها و رفع نقاط چالش",
-                "title_en": "Core Reinforcement & Growth Areas",
+                "id": "baseline_diagnosis",
+                "title_fa": "گام ۳: گزارش تحلیل سطح و تشخیص CEFR",
+                "title_en": "Step 3: Placement Analysis & CEFR Diagnosis Report",
                 "status": "locked",
-                "description_fa": "تمرین هدفمند روی مهارت‌های اولویت‌دار بعد از اتمام تعیین سطح فعال می‌شود.",
-                "description_en": "Targeted practice on priority skills unlocks after placement completion.",
+                "description_fa": "کارنامه تحلیلی نقاط قوت و نیازمند رشد پس از ارسال آزمون فعال می‌شود.",
+                "description_en": "Diagnostic breakdown unlocks upon completing the placement test.",
                 "evidence": [],
-                "action_href": "/practice-ai",
+                "action_href": "/placement",
+            },
+            {
+                "id": "curriculum_roadmap",
+                "title_fa": "گام ۴: مسیر اختصاصی و نقشه کتب آموزشی",
+                "title_en": "Step 4: Personalized Path & Visual Curriculum Roadmap",
+                "status": "locked",
+                "description_fa": "انتخاب خودکار کتاب استاندارد (American English File / Family & Friends / IELTS) و گراف پیشرفت.",
+                "description_en": "Automated standard textbook matching and syllabus milestones.",
+                "evidence": [],
+                "action_href": "/path",
+            },
+            {
+                "id": "class_enrollment",
+                "title_fa": "گام ۵: ثبت‌نام کلاس آنلاین با مدرس",
+                "title_en": "Step 5: Live Online Class Enrollment & Matching",
+                "status": "locked",
+                "description_fa": "تنظیم روزها و ساعات آزاد و انتخاب نوع کلاس (انفرادی یا گروهی تا ۴ نفر).",
+                "description_en": "Select availability and class size (1-on-1 vs up to 4 students) to match a verified teacher.",
+                "evidence": [],
+                "action_href": "/path#enroll",
             },
             {
                 "id": "adaptive_practice",
-                "title_fa": "مأموریت‌های روزانه و تمرین تطبیقی",
-                "title_en": "Daily Missions & Adaptive Practice",
+                "title_fa": "گام ۶: مأموریت‌های روزانه (تکالیف مدرس + SRS)",
+                "title_en": "Step 6: Adaptive Daily Mission",
                 "status": "upcoming",
-                "description_fa": "برنامه تمرین روزانه شخصی‌سازی‌شده متناسب با برنامه زمانی شما.",
+                "description_fa": "برنامه تمرین روزانه شخصی‌سازی‌شده متناسب با برنامه زمانی و تکالیف شما.",
                 "description_en": "Daily practice missions tailored to your pace and goals.",
                 "evidence": ["future_daily_mission"],
                 "action_href": "/today",
             },
             {
-                "id": "vocabulary_retention",
-                "title_fa": "گسترش واژگان با یادآوری فاصله‌دار (SRS)",
-                "title_en": "Active Vocabulary Retention (SRS)",
+                "id": "ai_labs",
+                "title_fa": "گام ۷: آزمایشگاه‌های هوش مصنوعی و تمرین عمیق",
+                "title_en": "Step 7: AI Labs & Deep Practice",
                 "status": "planned",
-                "description_fa": "مرور هوشمند لغات با فواصل بهینه جهت تثبیت در حافظه بلندمدت.",
-                "description_en": "Spaced repetition reviews for long-term vocabulary retention.",
-                "evidence": ["future_srs_reviews"],
-                "action_href": "/review",
-            },
-            {
-                "id": "teacher_support",
-                "title_fa": "مهارت‌های ارتباطی و پشتیبانی مدرس",
-                "title_en": "Productive Skills & Teacher Support",
-                "status": "planned",
-                "description_fa": "کلاس‌های رفع اشکال و تمرین تعاملی با مدرسان مورد تایید در صورت نیاز.",
-                "description_en": "Targeted feedback sessions and conversation practice with verified teachers.",
-                "evidence": ["future_teacher_support"],
-                "action_href": "/teachers",
+                "description_fa": "منتور نگارش، آزمایشگاه صوت و تلفظ، شبیه‌ساز مکالمه و تمرین اشتباهات پرتکرار.",
+                "description_en": "Writing Mentor, Voice/Pronunciation Lab, AI Roleplay, and Mistake Genome drills.",
+                "evidence": [],
+                "action_href": "/practice-ai",
             },
         ],
+        "curriculum_recommendation": curriculum,
+        "class_status": class_status,
         "limitations_fa": [
             "مسیر یادگیری اختصاصی نیازمند شواهد عملکرد شما در آزمون تعیین سطح است.",
             "بدون ارزیابی واقعی، هیچ سطح یا نمره اولیه‌ای حدس زده نمی‌شود.",
@@ -245,11 +270,24 @@ def build_placed_learning_path(user: Any, session: PlacementSession) -> dict[str
     twin = getattr(user, 'learner_twin', None)
     evidence_count = getattr(twin, 'evidence_count', 0) if twin else 0
 
+    curriculum = recommend_curriculum_for_user(user)
+    class_status = get_learner_class_status(user)
+
     timeline = [
         {
+            "id": "onboarding_profiling",
+            "title_fa": "گام ۱: مشخصات و هدف‌گذاری آموزشی",
+            "title_en": "Step 1: Onboarding & Goal Profiling",
+            "status": "complete",
+            "description_fa": "ثبت هدف یادگیری و ویژگی‌های آموزشی زبان‌آموز.",
+            "description_en": "Target goals and learner profile registered.",
+            "evidence": ["profile_ready"],
+            "action_href": "/dashboard",
+        },
+        {
             "id": "placement",
-            "title_fa": "ارزیابی چندبُعدی و تعیین سطح اولیه",
-            "title_en": "6-Skill Placement & Baseline Diagnosis",
+            "title_fa": "گام ۲: ارزیابی تعیین سطح ۶ مهارتی",
+            "title_en": "Step 2: 6-Skill Diagnostic Placement Test",
             "status": "complete",
             "description_fa": f"ارزیابی کامل ۶ بخش با میانگین نمره {overall_percentage}% و سطح تخمینی {estimated_cefr}.",
             "description_en": f"Completed 6-section placement with {overall_percentage}% average score and provisional {estimated_cefr} estimate.",
@@ -262,44 +300,62 @@ def build_placed_learning_path(user: Any, session: PlacementSession) -> dict[str
             "action_href": "/placement/report",
         },
         {
-            "id": "core_reinforcement",
-            "title_fa": f"تثبیت پایه‌ها و تقویت مهارت {lowest_label_fa}",
-            "title_en": f"Core Reinforcement & {lowest_label_en} Practice",
-            "status": "current",
-            "description_fa": f"تمرکز ویژه روی مهارت‌های نیازمند رشد ({lowest_label_fa}) برای توازن مهارت‌ها.",
-            "description_en": f"Targeted practice focused on priority skill ({lowest_label_en}) to build balanced proficiency.",
+            "id": "baseline_diagnosis",
+            "title_fa": f"گام ۳: گزارش تحلیل و تقویت {lowest_label_fa}",
+            "title_en": f"Step 3: Diagnostic Report & {lowest_label_en} Focus",
+            "status": "complete",
+            "description_fa": f"تمرکز تحلیلی بر روی نقاط چالش و اولویت‌بندی مهارت {lowest_label_fa}.",
+            "description_en": f"Targeted diagnosis identifying {lowest_label_en} as priority growth area.",
             "evidence": [f"priority_skill:{primary_growth['skill'] if primary_growth else 'writing'}"],
-            "action_href": next_step_href,
+            "action_href": "/placement/report",
+        },
+        {
+            "id": "curriculum_roadmap",
+            "title_fa": f"گام ۴: نقشه راه کتب آموزشی ({curriculum['book_title']})",
+            "title_en": f"Step 4: Curriculum Roadmap ({curriculum['book_title']})",
+            "status": "complete",
+            "description_fa": f"انتخاب خودکار کتاب {curriculum['book_title']} ({curriculum['publisher']}) منطبق بر سطح {estimated_cefr} و سرفصل آموزشی.",
+            "description_en": f"Assigned {curriculum['book_title']} ({curriculum['publisher']}) tailored to {estimated_cefr} baseline.",
+            "evidence": [f"book:{curriculum['slug']}", f"track:{curriculum['track']}"],
+            "action_href": "/path#curriculum",
+        },
+        {
+            "id": "class_enrollment",
+            "title_fa": "گام ۵: ثبت‌نام کلاس آنلاین و اتصال به مدرس",
+            "title_en": "Step 5: Live Online Class Enrollment & Teacher Matching",
+            "status": "complete" if class_status["is_enrolled"] else ("current" if class_status["has_active_request"] else "upcoming"),
+            "description_fa": (
+                f"عضو فعال در کلاس {class_status['cohort']['title']} با مدرس {class_status['cohort']['teacher_name']}."
+                if class_status["is_enrolled"]
+                else ("درخواست ثبت‌نام کلاس آنلاین شما ثبت شده و در انتظار پذیرش توسط مدرس است." if class_status["has_active_request"] else "ثبت ساعات آزاد و انتخاب نوع کلاس (انفرادی یا گروهی تا ۴ نفر) جهت اتصال به مدرس مجرب.")
+            ),
+            "description_en": (
+                f"Enrolled in {class_status['cohort']['title']} with teacher {class_status['cohort']['teacher_name']}."
+                if class_status["is_enrolled"]
+                else ("Class request is active in teacher queue." if class_status["has_active_request"] else "Configure weekly availability and class format (solo vs group up to 4).")
+            ),
+            "evidence": ["enrolled_cohort" if class_status["is_enrolled"] else ("pending_class_request" if class_status["has_active_request"] else "not_requested")],
+            "action_href": "/path#enroll",
         },
         {
             "id": "adaptive_practice",
-            "title_fa": "مأموریت‌های یادگیری تطبیقی روزانه",
-            "title_en": "Daily Missions & Adaptive Practice",
-            "status": "upcoming",
-            "description_fa": "تمرین‌های روزانه شخصی‌سازی‌شده متناسب با سطح و اهداف شما.",
-            "description_en": "Daily missions adapted to your proficiency and pace.",
+            "title_fa": "گام ۶: مأموریت‌های روزانه تطبیقی (تکالیف مدرس + SRS)",
+            "title_en": "Step 6: Adaptive Daily Mission",
+            "status": "current" if class_status["is_enrolled"] else "upcoming",
+            "description_fa": "برنامه روزانه شامل واژگان لایتنر، تمرین مهارت‌های هدف و تکالیف محوله مدرس.",
+            "description_en": "Daily missions tailored to your proficiency, teacher homework, and SRS retention.",
             "evidence": ["future_daily_mission"],
             "action_href": "/today",
         },
         {
-            "id": "vocabulary_retention",
-            "title_fa": "مرور فعال واژگان با یادآوری فاصله‌دار (SRS)",
-            "title_en": "Active Vocabulary Retention (SRS)",
+            "id": "ai_labs",
+            "title_fa": "گام ۷: آزمایشگاه‌های هوش مصنوعی و تمرین عمیق",
+            "title_en": "Step 7: AI Labs & Deep Practice",
             "status": "planned",
-            "description_fa": "سیستم تکرار فاصله‌دار برای تثبیت واژگان هدف در حافظه بلندمدت.",
-            "description_en": "Spaced repetition retention preventing vocabulary decay.",
-            "evidence": ["future_srs_reviews"],
-            "action_href": "/review",
-        },
-        {
-            "id": "teacher_support",
-            "title_fa": "مهارت‌های ارتباطی و پشتیبانی مدرس",
-            "title_en": "Productive Skills & Teacher Support",
-            "status": "planned",
-            "description_fa": "پشتیبانی آموزشی و جلسات مکالمه رفع اشکال با مدرسان مورد تایید.",
-            "description_en": "Live teacher feedback and guided conversation practice when ready.",
-            "evidence": ["future_teacher_evidence"],
-            "action_href": "/teachers",
+            "description_fa": "منتور نگارش مقاله، آزمایشگاه صوت و تلفظ، شبیه‌ساز مکالمه و تمرین بر روی ژنوم اشتباهات.",
+            "description_en": "Writing Mentor, Voice Lab, AI Roleplay Universe, and Mistake Genome drills.",
+            "evidence": ["ai_labs_available"],
+            "action_href": "/practice-ai",
         },
     ]
 
@@ -319,6 +375,8 @@ def build_placed_learning_path(user: Any, session: PlacementSession) -> dict[str
         "focus_areas": focus_areas,
         "section_scores": section_scores,
         "timeline": timeline,
+        "curriculum_recommendation": curriculum,
+        "class_status": class_status,
         "limitations_fa": [
             "این مسیر یادگیری بر پایه شواهد عملکرد شما در تعیین سطح ۶ مهارتی شکل گرفته و با تمرین‌های جدید به‌روزرسانی می‌شود.",
             "تخمین سطح CEFR جنبه تشخیصی و آموزشی دارد و بدون آزمون رسمی تحت نظارت مدرک معتبر محسوب نمی‌شود.",

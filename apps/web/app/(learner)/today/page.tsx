@@ -36,6 +36,14 @@ interface NextBestAction {
   reason_en: string;
 }
 
+interface TeacherHomeworkInfo {
+  cohort_title: string;
+  teacher_name: string;
+  session_number: number;
+  units_covered: string;
+  homework_description: string;
+}
+
 interface DailyMissionData {
   id: string;
   mission_date: string;
@@ -53,6 +61,7 @@ interface DailyMissionData {
   tasks: MissionTask[];
   next_best_action?: NextBestAction | null;
   srs_due_count?: number;
+  teacher_homework?: TeacherHomeworkInfo | null;
 }
 
 interface StepFeedback {
@@ -324,6 +333,27 @@ export default function TodayPage() {
             <p className={styles.missionDesc}>
               {isFa ? mission.explanation_fa : mission.explanation_en}
             </p>
+
+            {/* Teacher Live Class Homework Priority (Step 6) */}
+            {mission.teacher_homework ? (
+              <div className={styles.homeworkBanner} role="region" aria-label={isFa ? "تکلیف جلسه زنده" : "Live Session Homework"}>
+                <div className={styles.homeworkHeader}>
+                  <span className={styles.homeworkBadge}>
+                    {isFa ? "📌 تکلیف اولویت‌دار کلاس زنده" : "📌 Live Class Priority Homework"}
+                  </span>
+                  <span className={styles.homeworkTeacher}>
+                    {mission.teacher_homework.teacher_name} • {mission.teacher_homework.cohort_title} (
+                    {isFa ? `جلسه ${mission.teacher_homework.session_number}` : `Session ${mission.teacher_homework.session_number}`})
+                  </span>
+                </div>
+                <div className={styles.homeworkUnits}>
+                  {isFa ? `مباحث جلسه: ${mission.teacher_homework.units_covered}` : `Units: ${mission.teacher_homework.units_covered}`}
+                </div>
+                <div className={styles.homeworkText}>
+                  {mission.teacher_homework.homework_description}
+                </div>
+              </div>
+            ) : null}
 
             {/* Why this mission? (Rule #2 Explainable Action) */}
             <div className={styles.reasonBox}>

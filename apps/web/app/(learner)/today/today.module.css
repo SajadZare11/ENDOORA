@@ -611,3 +611,55 @@
     width: 100%;
   }
 }
+
+/* Teacher Live Class Homework Banner */
+.homeworkBanner {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.08));
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  margin-block: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.homeworkHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.homeworkBadge {
+  background: #2563eb;
+  color: #ffffff;
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+.homeworkTeacher {
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.homeworkUnits {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.homeworkText {
+  font-size: var(--font-size-meta);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  border: 1px dashed rgba(37, 99, 235, 0.3);
+}
+

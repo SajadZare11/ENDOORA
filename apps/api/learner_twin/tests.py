@@ -48,12 +48,18 @@ class LearningPathEngineTests(TestCase):
         self.assertEqual(len(data["focus_areas"]), 0)
         self.assertEqual(len(data["section_scores"]), 0)
 
-        # Timeline structure verification
+        # Timeline structure verification (7-step learner journey)
         timeline = data["timeline"]
-        self.assertGreaterEqual(len(timeline), 4)
-        self.assertEqual(timeline[0]["id"], "placement")
-        self.assertEqual(timeline[0]["status"], "current")
-        self.assertEqual(timeline[1]["status"], "locked")
+        self.assertEqual(len(timeline), 7)
+        timeline_ids = [t["id"] for t in timeline]
+        self.assertIn("onboarding_profiling", timeline_ids)
+        self.assertIn("placement", timeline_ids)
+        self.assertIn("curriculum_roadmap", timeline_ids)
+        self.assertIn("class_enrollment", timeline_ids)
+        self.assertIn("adaptive_practice", timeline_ids)
+        self.assertIn("ai_labs", timeline_ids)
+        self.assertEqual(timeline[0]["status"], "complete")
+        self.assertEqual(timeline[1]["status"], "current")
 
         # Honest educational limitations check (Product Constitution Rule #8)
         self.assertGreater(len(data["limitations_fa"]), 0)
@@ -140,14 +146,16 @@ class LearningPathEngineTests(TestCase):
         self.assertIn("next_best_step", data)
         self.assertIn("next_best_step_href", data)
 
-        # Timeline check: Phase 1 complete, Phase 2 current
+        # Timeline check: 7 steps present
         timeline = data["timeline"]
-        self.assertEqual(timeline[0]["id"], "placement")
-        self.assertEqual(timeline[0]["status"], "complete")
-        self.assertIn(str(session.id), timeline[0]["evidence"][0])
-
-        self.assertEqual(timeline[1]["id"], "core_reinforcement")
-        self.assertEqual(timeline[1]["status"], "current")
+        self.assertEqual(len(timeline), 7)
+        timeline_by_id = {t["id"]: t for t in timeline}
+        self.assertEqual(timeline_by_id["placement"]["status"], "complete")
+        self.assertIn(str(session.id), timeline_by_id["placement"]["evidence"][0])
+        self.assertEqual(timeline_by_id["baseline_diagnosis"]["status"], "complete")
+        self.assertEqual(timeline_by_id["curriculum_roadmap"]["status"], "complete")
+        self.assertIn("curriculum_recommendation", data)
+        self.assertIn("class_status", data)
 
         # Honest educational notice check (Rule #8)
         self.assertTrue(any("CEFR" in lim for lim in data["limitations_fa"]))

@@ -25,7 +25,7 @@ export type TeacherContextValue = {
   classesList: ActiveClassInfo[];
 };
 
-type TeacherIconName = "home" | "classes" | "planning" | "assessment" | "tools" | "resources" | "account" | "marketplace" | "logout";
+type TeacherIconName = "home" | "classes" | "planning" | "assessment" | "onlineExams" | "tools" | "resources" | "account" | "marketplace" | "logout";
 
 const TeacherContext = createContext<TeacherContextValue | null>(null);
 
@@ -48,6 +48,7 @@ const labels = {
     marketplace: "بازارچه درخواست‌ها",
     planning: "طرح درس و تولید",
     assessment: "تحلیل و بازخورد",
+    onlineExams: "آزمون‌های آنلاین",
     tools: "ابزارهای پیشرفته",
     resources: "کتابخانه منابع",
     account: "حساب",
@@ -75,6 +76,7 @@ const labels = {
     marketplace: "Marketplace",
     planning: "Planning & Prep",
     assessment: "Assessment & Evidence",
+    onlineExams: "Online Exams",
     tools: "Supertools",
     resources: "Resources",
     account: "Account",
@@ -102,6 +104,7 @@ const iconPaths: Record<TeacherIconName, ReactNode> = {
   classes: <><path d="M4 4h16v12H4z" /><path d="M8 21h8M12 16v5M8.5 10.5l2 2 5-5" /></>,
   planning: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /><path d="m9 9 2 2 4-4" /></>,
   assessment: <><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></>,
+  onlineExams: <><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="2" /><path d="m9 14 2 2 4-4" /></>,
   tools: <><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></>,
   resources: <><path d="M5 4.5A3.5 3.5 0 0 1 8.5 1H12v19H8.5A3.5 3.5 0 0 0 5 23z" /><path d="M19 4.5A3.5 3.5 0 0 0 15.5 1H12v19h3.5A3.5 3.5 0 0 1 19 23z" /></>,
   account: <><circle cx="12" cy="7" r="4" /><path d="M4 22a8 8 0 0 1 16 0" /></>,
@@ -267,6 +270,7 @@ export function TeacherShell({ children }: { children: ReactNode }) {
     { href: "/teacher/classes", label: t.classes, icon: "classes" as const },
     { href: "/teacher/planning", label: t.planning, icon: "planning" as const },
     { href: "/teacher/assessment", label: t.assessment, icon: "assessment" as const },
+    { href: "/teacher/online-exams", label: t.onlineExams, icon: "onlineExams" as const },
     { href: "/teacher/tools", label: t.tools, icon: "tools" as const },
     { href: "/marketplace/requests", label: t.marketplace, icon: "marketplace" as const },
     { href: "/teacher/resources", label: t.resources, icon: "resources" as const },
@@ -277,6 +281,7 @@ export function TeacherShell({ children }: { children: ReactNode }) {
     { href: "/teacher/classes", label: t.classes, icon: "classes" as const },
     { href: "/teacher/planning", label: t.planning, icon: "planning" as const },
     { href: "/teacher/assessment", label: t.assessment, icon: "assessment" as const },
+    { href: "/teacher/online-exams", label: t.onlineExams, icon: "onlineExams" as const },
     { href: "/teacher/resources", label: t.resources, icon: "resources" as const },
   ];
   const verified = data.capabilities.teacher_verified;

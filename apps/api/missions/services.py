@@ -520,6 +520,40 @@ def build_daily_mission(user) -> DailyMission:
     except Exception:
         pass
 
+    teacher_homework_info = None
+    try:
+        from live_classes.models import CohortStatus, LiveClassCohort
+        cohort = LiveClassCohort.objects.filter(students=user, status=CohortStatus.ACTIVE).first()
+        if cohort:
+            latest_log = cohort.session_logs.order_by("-session_date", "-session_number").first()
+            if latest_log and latest_log.homework_description:
+                teacher_homework_info = {
+                    "cohort_title": cohort.title,
+                    "teacher_name": cohort.teacher.get_full_name() or cohort.teacher.email,
+                    "session_number": latest_log.session_number,
+                    "units_covered": latest_log.units_covered,
+                    "homework_description": latest_log.homework_description,
+                }
+                tasks.insert(0, {
+                    "id": f"hw_session_{latest_log.session_number}",
+                    "type": "teacher_homework",
+                    "title_fa": f"تکلیف کلاسی: {cohort.title} (جلسه {latest_log.session_number})",
+                    "title_en": f"Teacher Homework: {cohort.title} (Session {latest_log.session_number})",
+                    "instruction_fa": "تکلیف محول‌شده توسط مدرس در آخرین جلسه آنلاین را انجام دهید.",
+                    "instruction_en": "Review and complete the homework assigned in your latest live session.",
+                    "prompt_en": latest_log.homework_description,
+                    "units_covered": latest_log.units_covered,
+                    "options": [
+                        {"id": "done", "text": "تکلیف انجام شد / I have completed the assigned exercises"},
+                        {"id": "in_progress", "text": "در حال انجام / Still working on it"}
+                    ],
+                    "correct_option_id": "done",
+                    "explanation_fa": "انجام منظم تکالیف کلاسی مباحث تدریس شده را در حافظه تثبیت می‌کند.",
+                    "explanation_en": "Regularly completing class assignments consolidates lesson materials."
+                })
+    except Exception:
+        pass
+
     evidence_reason = {
         "source": source,
         "target_skill": target_skill,
@@ -529,6 +563,7 @@ def build_daily_mission(user) -> DailyMission:
         "current_task_index": 0,
         "completed_task_ids": [],
         "mistake_targets": mistake_targets_info,
+        "teacher_homework": teacher_homework_info,
     }
 
     mission = DailyMission.objects.create(

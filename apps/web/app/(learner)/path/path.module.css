@@ -456,6 +456,250 @@
   margin-block-start: var(--space-4);
 }
 
+/* Step 4: Curriculum & Textbook Roadmap Styles */
+.curriculumCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bookHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-block-end: var(--space-4);
+}
+
+.bookBadge {
+  background: var(--color-primary-subtle, rgba(230, 81, 0, 0.12));
+  color: var(--color-primary);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-control);
+  display: inline-block;
+  margin-block-end: var(--space-2);
+}
+
+.bookTitle {
+  font-size: var(--font-size-title-2);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block-end: var(--space-1);
+}
+
+.bookPublisher {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+}
+
+.syllabusProgressSection {
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  margin-block-end: var(--space-5);
+}
+
+.syllabusProgressHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  margin-block-end: var(--space-2);
+}
+
+.syllabusColumnsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-block-end: var(--space-5);
+}
+
+.syllabusColumnCard {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+
+.syllabusColumnTitle {
+  font-weight: 700;
+  font-size: var(--font-size-body);
+  margin-block-end: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.bulletList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bulletItem {
+  font-size: var(--font-size-meta);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-block-end: var(--space-2);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.bulletIcon {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.milestonesSection {
+  border-top: 1px dashed var(--color-border);
+  padding-block-start: var(--space-4);
+}
+
+.milestonesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin-block-start: var(--space-3);
+}
+
+.milestonePhaseCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  background: var(--color-background);
+}
+
+.milestonePhaseTitle {
+  font-weight: 700;
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  margin-block-end: var(--space-1);
+}
+
+.milestoneUnitsBadge {
+  display: inline-block;
+  font-size: var(--font-size-caption, 11px);
+  background: var(--color-border);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-block-end: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+/* Step 5: Class Enrollment Styles */
+.enrollmentCard {
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+}
+
+.activeCohortCard {
+  background: linear-gradient(135deg, rgba(230, 81, 0, 0.08) 0%, rgba(30, 136, 229, 0.08) 100%);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+}
+
+.cohortTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+
+.formatToggleRow {
+  display: flex;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.formatButton {
+  flex: 1;
+  min-width: 140px;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-background);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.formatButtonActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle, rgba(230, 81, 0, 0.1));
+  color: var(--color-primary);
+}
+
+.slotPicker {
+  margin-block-end: var(--space-4);
+}
+
+.daySlotsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-start: var(--space-2);
+}
+
+.slotBadge {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-background);
+  cursor: pointer;
+  font-size: var(--font-size-meta);
+  user-select: none;
+  transition: all 0.2s;
+}
+
+.slotBadgeActive {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  font-weight: 700;
+}
+
+.meetingButtonLarge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: #1e88e5;
+  color: #fff;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-card);
+  font-weight: 700;
+  text-decoration: none;
+  margin-block-start: var(--space-3);
+  transition: opacity 0.2s;
+}
+
+.meetingButtonLarge:hover {
+  opacity: 0.9;
+}
+
+.latestSessionRecap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  margin-block-start: var(--space-4);
+}
+
 @media (max-width: 640px) {
   .heroTitle {
     font-size: var(--font-size-title-2);

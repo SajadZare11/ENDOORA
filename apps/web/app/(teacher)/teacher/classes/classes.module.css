@@ -498,3 +498,126 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* Open Requests & Cohort Matching Section */
+.infoBanner {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.07), rgba(16, 185, 129, 0.07));
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  margin-block-end: var(--space-5);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body-persian);
+}
+
+.cohortGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-4);
+  margin-block-end: var(--space-6);
+}
+
+.cohortCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-fast, 150ms ease), border-color var(--transition-fast, 150ms ease);
+}
+
+.cohortCard:hover {
+  border-color: var(--color-endoora-blue);
+  transform: translateY(-2px);
+}
+
+.cohortHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.cohortTitle {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.cohortMatchBadge {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-learning-teal);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.cohortMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cohortMembersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.memberPill {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.15rem 0.6rem;
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+}
+
+.slotChip {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-endoora-blue);
+  border-radius: var(--radius-pill);
+  padding: 0.15rem 0.5rem;
+  font-size: var(--font-size-meta);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badgeSolo {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: var(--font-size-meta);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.badgeGroup {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-endoora-blue);
+  font-weight: 600;
+  font-size: var(--font-size-meta);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+}
+
+.sectionHeading {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-block-end: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

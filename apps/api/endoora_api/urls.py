@@ -146,5 +146,33 @@ urlpatterns = [
         "api/launch/",
         include("production_launch.urls")
     ),
+    path(
+        "api/curriculum/",
+        include("live_classes.curriculum_urls")
+    ),
+    path(
+        "api/classes/",
+        include("live_classes.urls")
+    ),
+    path(
+        "api/teacher/classes/",
+        include("live_classes.teacher_urls")
+    ),
+    path(
+        "api/teacher/open-requests/",
+        include("live_classes.teacher_urls")
+    ),
+    path(
+        "api/teacher/sessions/log/",
+        include("live_classes.teacher_urls")
+    ),
+    path(
+        "api/learner/class-status/",
+        include("live_classes.urls")
+    ),
+    path(
+        "api/online-exams/",
+        include("online_exams.urls")
+    ),
 ]
 
