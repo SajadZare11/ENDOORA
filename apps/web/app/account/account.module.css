@@ -7,9 +7,11 @@
 .identity {
   display: grid;
   gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-5);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-subtle);
 }
 
 .email {
@@ -61,14 +63,51 @@
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
   display: grid;
   gap: var(--space-3);
   min-block-size: 10rem;
-  padding: var(--space-4);
+  padding: var(--space-5);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-subtle);
   text-decoration: none;
   color: inherit;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -160%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(56, 189, 248, 0.32) 55%,
+    rgba(255, 255, 255, 0.05) 75%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+[dir="rtl"] .card::before {
+  left: auto;
+  right: -160%;
+  transform: skewX(25deg);
+  transition: right 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card[href] {
@@ -76,7 +115,17 @@
 }
 
 .card[href]:hover {
-  border-color: var(--color-action);
+  transform: translateY(-6px);
+  border-color: var(--color-action-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card[href]:hover::before {
+  left: 160%;
+}
+
+[dir="rtl"] .card[href]:hover::before {
+  right: 160%;
 }
 
 .card[href]:focus-visible {
