@@ -131,6 +131,7 @@ export function PublicShell({
           </div>
           <div>
             <strong>{isFa ? "یادگیری" : "Learning"}</strong>
+            <Link href={localizedPath(locale, "/features")}>{isFa ? "امکانات و قابلیت‌ها" : "Features"}</Link>
             <Link href={localizedPath(locale, "/skills")}>{isFa ? "مهارت‌ها" : "Skills"}</Link>
             <Link href={localizedPath(locale, "/community")}>{isFa ? "جامعه یادگیری" : "Community"}</Link>
             <Link href={localizedPath(locale, "/resources")}>{isFa ? "منابع" : "Resources"}</Link>
