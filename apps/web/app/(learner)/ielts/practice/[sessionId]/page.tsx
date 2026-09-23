@@ -15,6 +15,7 @@ import {
   LearnerSafeQuestion,
   LearnerSafeSection,
 } from "../../../../../lib/ielts-simulator";
+import { PublicShell } from "../../../../../components/marketing/PublicShell";
 
 // Helper to extract flat list of questions
 function getAllQuestions(sess: ActiveSessionData | null): LearnerSafeQuestion[] {
@@ -206,21 +207,25 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "100vh" }}>
-        در حال آماده‌سازی محیط آزمون آیلتس...
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
+          در حال آماده‌سازی محیط آزمون آیلتس...
+        </div>
+      </PublicShell>
     );
   }
 
   if (error || !session) {
     return (
-      <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
-        <h2>خطا در ورود به جلسه آزمون</h2>
-        <p>{error || "جلسه آزمون یافت نشد."}</p>
-        <Button type="button" variant="primary" onClick={() => router.push("/ielts/practice")}>
-          بازگشت به مرکز آزمون‌ها
-        </Button>
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts">
+        <div style={{ padding: "var(--space-6)", textAlign: "center" }}>
+          <h2>خطا در ورود به جلسه آزمون</h2>
+          <p>{error || "جلسه آزمون یافت نشد."}</p>
+          <Button type="button" variant="primary" onClick={() => router.push("/ielts/practice")}>
+            بازگشت به مرکز آزمون‌ها
+          </Button>
+        </div>
+      </PublicShell>
     );
   }
 
@@ -234,9 +239,10 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   const themeClass = contrastTheme === "dark" ? styles.themeDark : styles.themeStandard;
 
   return (
-    <div className={`${styles.examContainer} ${themeClass} ${fontClass}`}>
-      {/* Top Examination Navigation Header */}
-      <header className={styles.examHeader}>
+    <PublicShell locale="fa" currentPath="/ielts">
+      <div className={`${styles.examContainer} ${themeClass} ${fontClass}`}>
+        {/* Top Examination Navigation Header */}
+        <div className={styles.examHeader} role="region" aria-label="Exam Section Information and Timer">
         <div className={styles.candidateInfo}>
           <div className={styles.testSectionIndicator}>
             <span style={{ fontSize: "var(--font-size-xs)", opacity: 0.8 }}>
@@ -311,7 +317,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
             {contrastTheme === "dark" ? "☀️ Light" : "🌙 Dark"}
           </Button>
         </div>
-      </header>
+      </div>
 
       {/* Split-Screen Examination Body */}
       <main className={styles.examBody}>
@@ -495,7 +501,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       </main>
 
       {/* Bottom Examination Navigation Ribbon */}
-      <footer className={styles.examFooter}>
+      <div className={styles.examFooter} role="region" aria-label="Exam Question Navigation">
         <div className={styles.footerLeft}>
           <Button
             type="button"
@@ -576,7 +582,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
               : "Next Section ➔"}
           </Button>
         </div>
-      </footer>
+      </div>
 
       {/* Review All Modal */}
       {showReviewModal && (
@@ -659,6 +665,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </PublicShell>
   );
 }

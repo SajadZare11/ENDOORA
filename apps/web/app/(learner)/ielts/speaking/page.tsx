@@ -14,6 +14,7 @@ import {
   DEFAULT_SPEAKING_FALLBACK_PROMPT,
   MANDATORY_IELTS_DISCLAIMER_TEXT,
 } from "../../../../lib/ielts-speaking";
+import { PublicShell } from "../../../../components/marketing/PublicShell";
 
 const NUM_METER_BARS = 24;
 
@@ -435,9 +436,10 @@ function IELTSSpeakingRoomContent() {
   }`;
 
   return (
-    <div className={containerClass}>
-      {/* Exam Header */}
-      <header className={styles.examHeader} role="banner">
+    <PublicShell locale="fa" currentPath="/ielts/speaking">
+      <div className={containerClass}>
+        {/* Exam Header */}
+        <div className={styles.examHeader} role="region" aria-label="شبیه‌ساز مکالمه آیلتس">
         <div className={styles.examHeaderInner}>
           <div className={styles.candidateInfo}>
             <h1 className={styles.examTitle}>اتاق شبیه‌ساز مکالمه کامپیوتری آیلتس (CD-IELTS Speaking)</h1>
@@ -496,7 +498,7 @@ function IELTSSpeakingRoomContent() {
             </Button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* 78rem Aligned Exam Body */}
       <div className={styles.examBody}>
@@ -761,7 +763,7 @@ function IELTSSpeakingRoomContent() {
       </div>
 
       {/* Footer Info & Autosave Indicator */}
-      <footer className={styles.footerBar} role="contentinfo">
+      <div className={styles.footerBar} role="region" aria-label="نوار وضعیت و ذخیره‌سازی آزمون مکالمه">
         <div className={styles.footerBarInner}>
           <div className={styles.autosaveIndicator}>
             <span>💾</span>
@@ -773,7 +775,7 @@ function IELTSSpeakingRoomContent() {
             <span>پارت ۳: {part3Transcript.split(/\s+/).filter(Boolean).length} کلمه</span>
           </div>
         </div>
-      </footer>
+      </div>
 
       {/* Recording Consent & Hardware Modal */}
       {showConsentModal && (
@@ -851,7 +853,8 @@ function IELTSSpeakingRoomContent() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </PublicShell>
   );
 }
 

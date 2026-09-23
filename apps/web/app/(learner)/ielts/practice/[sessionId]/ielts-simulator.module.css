@@ -3,7 +3,7 @@
 .examContainer {
   display: flex;
   flex-direction: column;
-  min-block-size: 100vh;
+  min-block-size: calc(100vh - 76px);
   background: var(--color-surface);
   color: var(--color-text-primary);
   font-family: inherit;
@@ -47,9 +47,15 @@
   padding-inline: var(--space-4);
   padding-block: var(--space-3);
   position: sticky;
-  inset-block-start: 0;
-  z-index: 100;
+  inset-block-start: 76px;
+  z-index: 30;
   direction: ltr;
+}
+
+@media (max-width: 48rem) {
+  .examHeader {
+    inset-block-start: 68px;
+  }
 }
 
 .candidateInfo {

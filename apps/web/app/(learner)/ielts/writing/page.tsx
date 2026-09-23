@@ -13,6 +13,7 @@ import {
   IELTSWritingPrompt,
   MANDATORY_IELTS_DISCLAIMER_TEXT,
 } from "../../../../lib/ielts-writing";
+import { PublicShell } from "../../../../components/marketing/PublicShell";
 
 function countWords(str: string): number {
   if (!str) return 0;
@@ -187,21 +188,24 @@ function IELTSWritingRoomContent() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "100vh" }}>
-        در حال راه‌اندازی محیط شبیه‌ساز رایتینگ آیلتس...
-      </div>
+      <PublicShell locale="fa" currentPath="/ielts/writing">
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minBlockSize: "60vh" }}>
+          در حال راه‌اندازی محیط شبیه‌ساز رایتینگ آیلتس...
+        </div>
+      </PublicShell>
     );
   }
 
   return (
-    <div
-      className={`${styles.container} ${contrastTheme === "dark" ? styles.containerDark : ""} ${
-        fontScale === "large" ? styles.fontLarge : fontScale === "xl" ? styles.fontXl : ""
-      }`}
-    >
-      {/* Examination Top Bar */}
-      <header className={styles.examHeader}>
-        <div className={styles.examHeaderInner}>
+    <PublicShell locale="fa" currentPath="/ielts/writing">
+      <div
+        className={`${styles.container} ${contrastTheme === "dark" ? styles.containerDark : ""} ${
+          fontScale === "large" ? styles.fontLarge : fontScale === "xl" ? styles.fontXl : ""
+        }`}
+      >
+        {/* Examination Top Bar */}
+        <div className={styles.examHeader} role="region" aria-label="IELTS Academic Writing Simulation">
+          <div className={styles.examHeaderInner}>
           <div className={styles.candidateInfo}>
             <h1 className={styles.examTitle}>IELTS Academic Writing Simulation</h1>
             <span className={styles.candidateSubtitle}>داوطلب: نسخه شبیه‌ساز کامپیوتری استاندارد (CD-IELTS)</span>
@@ -253,7 +257,7 @@ function IELTSWritingRoomContent() {
             </Button>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* 78rem Aligned Exam Body */}
       <div className={styles.examBody}>
@@ -438,7 +442,8 @@ function IELTSWritingRoomContent() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </PublicShell>
   );
 }
 
