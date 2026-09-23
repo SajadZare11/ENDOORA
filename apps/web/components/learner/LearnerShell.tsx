@@ -213,6 +213,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     "loading" | "ready" | "login" | "denied" | "offline" | "error"
   >("loading");
   const [reloadKey, setReloadKey] = useState(0);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -298,8 +299,6 @@ export function LearnerShell({ children }: { children: ReactNode }) {
       />
     );
   }
-
-  const [loggingOut, setLoggingOut] = useState(false);
 
   async function handleLogout() {
     if (loggingOut) return;
