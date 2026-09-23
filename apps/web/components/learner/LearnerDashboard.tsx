@@ -49,6 +49,64 @@ const text = {
     stepCurrent: "قدم فعلی",
     stepLocked: "بعد از قدم قبلی",
     active: "فعال",
+    quickServicesTitle: "مسیر رشد شخصی و یادگیری با مدرس",
+    quickServicesDesc: "برنامه آموزشی اختصاصی و ثبت درخواست جلسات رفع اشکال با اساتید",
+    quickServicesBadge: "۲ بخش کلیدی",
+    quickServicesItems: [
+      {
+        title: "مسیر رشد شخصی (Learning Path)",
+        desc: "برنامه آموزشی منطبق بر نتایج آزمون تعیین سطح شما و نقاط ضعف شناسایی‌شده در همزاد یادگیرنده.",
+        href: "/path",
+        icon: "🗺️",
+        action: "مشاهده مسیر من",
+        badge: "شخصی‌سازی‌شده",
+      },
+      {
+        title: "یادگیری سریع با مدرس (Learn Now)",
+        desc: "ثبت درخواست جلسه متمرکز رفع اشکال، اسپیکینگ یا رایتینگ و دریافت پیشنهاد از مدرسین تأییدشده.",
+        href: "/learn/now",
+        icon: "⚡",
+        action: "شروع Learn Now",
+        badge: "پاسخ سریع",
+      },
+    ],
+    communitySupportTitle: "همراهی، دستاوردها و پشتیبانی",
+    communitySupportDesc: "ارتباط با سایر زبان‌آموزان و اساتید، پیگیری دستاوردها و دریافت راهنمایی مستقیم",
+    communitySupportBadge: "۴ بخش",
+    communityItems: [
+      {
+        title: "جامعه یادگیری و هم‌افزایی",
+        desc: "تبادل تجربیات واقعی با زبان‌آموزان و اساتید، طرح درس‌های معتبر، پرسش و پاسخ‌های زبانی در فضایی امن و منضبط.",
+        href: "/community",
+        icon: "👥",
+        action: "ورود به جامعه ایندورا",
+        badge: "هم‌آموزی",
+      },
+      {
+        title: "افتخارات و نشان‌ها",
+        desc: "مشاهده نشان‌های به‌دست‌آمده، مأموریت‌های ۷ روزه، کلوپ‌های هم‌آموزی و جدول رده‌بندی امن.",
+        href: "/achievements",
+        icon: "🏆",
+        action: "مشاهده دستاوردها",
+        badge: "انگیزش و رشد",
+      },
+      {
+        title: "جستجوی یکپارچه منابع",
+        desc: "جستجوی سریع در تمام دوره‌ها، منابع، اساتید، طرح درس‌ها و پرسش‌های متداول با نرمال‌سازی فارسی و انگلیسی.",
+        href: "/search",
+        icon: "🔍",
+        action: "جستجو در پلتفرم",
+        badge: "جستجوی سریع",
+      },
+      {
+        title: "مرکز پشتیبانی و سوالات متداول",
+        desc: "پاسخ سریع به پرسش‌ها، راهنمای امکانات، ثبت تیکت هوشمند و ارتباط مستقیم با کارشناسان ایندورا.",
+        href: "/support",
+        icon: "🎧",
+        action: "ورود به پشتیبانی",
+        badge: "پاسخگویی سریع",
+      },
+    ],
   },
   en: {
     greeting: "Hello",
@@ -80,6 +138,64 @@ const text = {
     stepCurrent: "Current step",
     stepLocked: "After the previous step",
     active: "Active",
+    quickServicesTitle: "Personal Growth & Rapid Mentoring",
+    quickServicesDesc: "Personalized learning curriculum and on-demand live mentoring sessions with certified teachers",
+    quickServicesBadge: "2 Core Services",
+    quickServicesItems: [
+      {
+        title: "Personal Learning Path",
+        desc: "Curriculum aligned with your placement results and weaknesses identified by Learner Twin.",
+        href: "/path",
+        icon: "🗺️",
+        action: "View My Path",
+        badge: "Personalized",
+      },
+      {
+        title: "Learn Now with Mentors",
+        desc: "Request focused problem-solving, speaking, or writing sessions and receive offers from certified teachers.",
+        href: "/learn/now",
+        icon: "⚡",
+        action: "Start Learn Now",
+        badge: "Fast Response",
+      },
+    ],
+    communitySupportTitle: "Community, Progress & Support",
+    communitySupportDesc: "Connect with learners and teachers, track achievements, and get direct assistance",
+    communitySupportBadge: "4 sections",
+    communityItems: [
+      {
+        title: "Learning Community & Synergy",
+        desc: "Exchange real experiences, verified lesson plans, and language Q&A in a safe, constructive space.",
+        href: "/community",
+        icon: "👥",
+        action: "Join Community",
+        badge: "Peer Learning",
+      },
+      {
+        title: "Achievements & Badges",
+        desc: "View earned badges, 7-day missions, peer study clubs, and safe leaderboards.",
+        href: "/achievements",
+        icon: "🏆",
+        action: "View Achievements",
+        badge: "Growth & Motivation",
+      },
+      {
+        title: "Unified Resource Search",
+        desc: "Quick search across all courses, resources, instructors, lesson plans, and FAQs with bilingual normalization.",
+        href: "/search",
+        icon: "🔍",
+        action: "Search Platform",
+        badge: "Fast Search",
+      },
+      {
+        title: "Support Center & FAQs",
+        desc: "Get fast answers to common questions, platform guides, smart ticket submission, and direct support.",
+        href: "/support",
+        icon: "🎧",
+        action: "Open Support",
+        badge: "Fast Support",
+      },
+    ],
   },
 } as const;
 
@@ -271,6 +387,48 @@ export function LearnerDashboard() {
         </section>
       </div>
 
+      <section className="learner-growth-services" aria-labelledby="learner-services-title">
+        <header className="learner-community-support__header">
+          <div className="learner-community-support__title-row">
+            <span className="learner-community-support__icon-badge" aria-hidden="true">
+              🚀
+            </span>
+            <div>
+              <h2 id="learner-services-title" className="learner-community-support__title">
+                {t.quickServicesTitle}
+              </h2>
+              <p className="learner-community-support__desc">{t.quickServicesDesc}</p>
+            </div>
+          </div>
+          <span className="learner-community-support__count-badge">
+            {t.quickServicesBadge}
+          </span>
+        </header>
+
+        <div className="learner-growth-services__grid">
+          {t.quickServicesItems.map((item, idx) => (
+            <Link key={idx} href={item.href} className="learner-community-support__card">
+              <div className="learner-community-support__card-top">
+                <div className="learner-community-support__card-header">
+                  <span className="learner-community-support__card-icon" aria-hidden="true">{item.icon}</span>
+                  {item.badge && (
+                    <span className="learner-community-support__card-badge">{item.badge}</span>
+                  )}
+                </div>
+                <h3 className="learner-community-support__card-title">{item.title}</h3>
+                <p className="learner-community-support__card-desc">{item.desc}</p>
+              </div>
+              <div className="learner-community-support__card-action">
+                <span>{item.action}</span>
+                <span aria-hidden="true" className="learner-community-support__arrow">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="learner-overview" aria-labelledby="learner-overview-title">
         <header>
           <div>
@@ -285,6 +443,48 @@ export function LearnerDashboard() {
           <OverviewRow icon="course" title={t.course} value={data.active_course ? t.active : t.none} available={Boolean(data.active_course)} />
           <OverviewRow icon="growth" title={t.xp} value={xpValue} available={data.xp_available} />
           <OverviewRow icon="notice" title={t.notifications} value={data.notifications_available ? String(data.notification_count) : t.none} available={data.notifications_available} />
+        </div>
+      </section>
+
+      <section className="learner-community-support" aria-labelledby="learner-community-title">
+        <header className="learner-community-support__header">
+          <div className="learner-community-support__title-row">
+            <span className="learner-community-support__icon-badge" aria-hidden="true">
+              👥
+            </span>
+            <div>
+              <h2 id="learner-community-title" className="learner-community-support__title">
+                {t.communitySupportTitle}
+              </h2>
+              <p className="learner-community-support__desc">{t.communitySupportDesc}</p>
+            </div>
+          </div>
+          <span className="learner-community-support__count-badge">
+            {t.communitySupportBadge}
+          </span>
+        </header>
+
+        <div className="learner-community-support__grid">
+          {t.communityItems.map((item, idx) => (
+            <Link key={idx} href={item.href} className="learner-community-support__card">
+              <div className="learner-community-support__card-top">
+                <div className="learner-community-support__card-header">
+                  <span className="learner-community-support__card-icon" aria-hidden="true">{item.icon}</span>
+                  {item.badge && (
+                    <span className="learner-community-support__card-badge">{item.badge}</span>
+                  )}
+                </div>
+                <h3 className="learner-community-support__card-title">{item.title}</h3>
+                <p className="learner-community-support__card-desc">{item.desc}</p>
+              </div>
+              <div className="learner-community-support__card-action">
+                <span>{item.action}</span>
+                <span aria-hidden="true" className="learner-community-support__arrow">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import styles from "./learn.module.css";
 
 export const metadata: Metadata = {
   title: "مرکز یادگیری | ایندورا",
-  description: "دسترسی جامع و دسته‌بندی‌شده به دوره‌های آموزشی، پایگاه مهارت‌ها، مسیر یادگیری شخصی، واژگان و ابزارهای تعاملی.",
+  description: "دسترسی جامع و دسته‌بندی‌شده به دوره‌های آموزشی، پایگاه مهارت‌ها، واژگان و ابزارهای تعاملی.",
 };
 
 export default function LearnHubPage() {
@@ -15,7 +15,7 @@ export default function LearnHubPage() {
         <header className={styles.heroHeader}>
           <div className={styles.badgeRow}>
             <span className={styles.heroBadge}>مرکز یادگیری</span>
-            <span className={styles.badgeMotto}>۱۲ بخش در ۳ حوزه آموزشی</span>
+            <span className={styles.badgeMotto}>۱۰ بخش در ۳ حوزه آموزشی</span>
           </div>
           <h1 className={styles.title}>مرکز یادگیری ایندورا</h1>
           <p className={styles.subtitle}>

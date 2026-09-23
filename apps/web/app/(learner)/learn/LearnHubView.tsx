@@ -39,22 +39,6 @@ const CATEGORIES: HubCategory[] = [
         badge: "ساختاریافته",
       },
       {
-        title: "مسیر رشد شخصی (Learning Path)",
-        desc: "برنامه آموزشی منطبق بر نتایج آزمون تعیین سطح شما و نقاط ضعف شناسایی‌شده در همزاد یادگیرنده.",
-        href: "/path",
-        icon: "🗺️",
-        action: "مشاهده مسیر من",
-        badge: "شخصی‌سازی‌شده",
-      },
-      {
-        title: "یادگیری سریع با مدرس (Learn Now)",
-        desc: "ثبت درخواست جلسه متمرکز رفع اشکال، اسپیکینگ یا رایتینگ و دریافت پیشنهاد از مدرسین تأییدشده.",
-        href: "/learn/now",
-        icon: "⚡",
-        action: "شروع Learn Now",
-        badge: "پاسخ سریع",
-      },
-      {
         title: "کتب دبیرستان و کنکور سراسری",
         desc: "تحلیل درس‌به‌درس کتاب‌های Vision 1, 2, 3 و تست‌های گرامر و واژگان کنکور سراسری با پاسخ تشریحی.",
         href: "/skills/school",
@@ -158,6 +142,8 @@ export function LearnHubView() {
       ? CATEGORIES
       : CATEGORIES.filter((cat) => cat.id === activeCategory);
 
+  const totalItemsCount = CATEGORIES.reduce((acc, cat) => acc + cat.items.length, 0);
+
   return (
     <div className={styles.hubWrapper}>
       {/* Category Filter Tabs */}
@@ -169,7 +155,7 @@ export function LearnHubView() {
           aria-pressed={activeCategory === "all"}
         >
           <span className={styles.filterTabLabel}>همه بخش‌ها</span>
-          <span className={styles.filterTabBadge}>۱۲</span>
+          <span className={styles.filterTabBadge}>{totalItemsCount.toLocaleString("fa-IR")}</span>
         </button>
         {CATEGORIES.map((cat) => (
           <button
