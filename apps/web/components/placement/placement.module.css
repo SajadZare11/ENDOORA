@@ -1,397 +1,384 @@
+/* =====================================================================
+   Endoora Placement Engine Styles - Redesigned to Match Homepage Polish
+   100% Tokenized, CSS Logical Properties, Brand Spark & Glassmorphism
+   ===================================================================== */
+
 .container {
-  max-width: 76rem;
+  max-width: 82rem;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  padding-inline: var(--space-4);
-  padding-block: var(--space-6) var(--space-12);
+  padding-inline: clamp(var(--space-4), 3vw, var(--space-8));
+  padding-block: clamp(var(--space-8), 4vw, var(--space-12));
+  position: relative;
+  isolation: isolate;
 }
 
+.container::before {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 1%;
+  inset-inline-end: 2%;
+  inline-size: min(34rem, 48vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-learning-teal, #06b6d4) 12%, transparent),
+    transparent 70%
+  );
+  filter: blur(24px);
+  content: "";
+  pointer-events: none;
+}
+
+/* =====================================================================
+   1. Brand Spark & Gradient Hero (Matching Homepage heroNext)
+   ===================================================================== */
 .hero {
   text-align: center;
-  margin-block-end: var(--space-6);
+  max-width: 52rem;
+  margin-inline: auto;
+  margin-block: var(--space-4) var(--space-8);
+  position: relative;
+  z-index: 1;
 }
 
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 2rem;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 12%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal, #06b6d4) 32%, var(--color-border));
+  color: var(--color-action, #0284c7);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-block-end: var(--space-4);
+  box-shadow: 0 2px 10px -2px color-mix(in srgb, var(--color-learning-teal, #06b6d4) 20%, transparent);
+}
+
+.heroHeading,
 .hero h1 {
-  font-size: var(--font-size-title-1);
-  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 1.2vw, 0.75rem);
+  font-size: clamp(2.35rem, 4.5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
   color: var(--color-text);
-  margin-block: var(--space-2) var(--space-3);
+  margin-block: 0;
+  text-wrap: balance;
 }
 
 .hero p {
-  font-size: var(--font-size-body);
-  color: var(--color-text-muted);
-  max-width: 42rem;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--color-muted);
+  line-height: 2;
+  max-width: 46ch;
   margin-inline: auto;
+  margin-block: 0;
 }
 
-.headerActions {
-  display: flex;
-  justify-content: flex-end;
-  margin-block-end: var(--space-4);
-}
-
-.languageToggle {
+/* Brand Spark Badge Elements */
+.heroBrandWrap {
+  position: relative;
   display: inline-flex;
-  gap: var(--space-1);
-  background: var(--color-surface-hover);
-  padding: var(--space-1);
-  border-radius: var(--radius-control);
-  border: 1px solid var(--color-border);
-}
-
-.langBtn {
-  padding-inline: var(--space-3);
-  padding-block: var(--space-1);
-  border-radius: var(--radius-control);
-  font-size: var(--font-size-meta);
-  border: none;
-  background: transparent;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  min-height: 2.75rem;
-  min-width: 2.75rem;
-}
-
-.langBtnActive {
-  background: var(--color-surface);
-  color: var(--color-text);
-  font-weight: 700;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.statusBar {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  padding-inline: var(--space-4);
-  padding-block: var(--space-3);
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 0.18em;
+  padding-inline: 0.12em 0.3em;
+  border-radius: 0.45em;
+  vertical-align: baseline;
 }
 
-.progressBarContainer {
-  width: 100%;
-  height: 0.5rem;
-  background: var(--color-surface-hover);
-  border-radius: var(--radius-control);
-  overflow: hidden;
-  margin-block-start: var(--space-2);
+.heroBrandWrap::before {
+  position: absolute;
+  inset: -0.06em -0.12em;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    rgba(6, 182, 212, 0.22) 0%,
+    rgba(14, 165, 233, 0.1) 50%,
+    transparent 80%
+  );
+  content: "";
+  pointer-events: none;
+  z-index: 0;
 }
 
-.progressBarFill {
-  height: 100%;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
+.heroSpark {
+  display: inline-block;
+  inline-size: 0.6em;
+  block-size: 0.6em;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transform: translateY(-0.06em);
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.7));
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  align-items: start;
+.heroBrandText {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--color-text, #0f172a) 15%, #0369a1 65%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.questionCard {
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+:global([data-theme="dark"]) .heroBrandText {
+  background: linear-gradient(135deg, #ffffff 20%, #38bdf8 65%, #2dd4bf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.counter {
-  display: flex;
-  justify-content: space-between;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-meta);
-  margin-block-end: var(--space-4);
-  font-weight: 600;
-}
-
-.sectionBadge {
-  background: var(--color-primary-subtle);
-  color: var(--color-primary);
-  padding-inline: var(--space-3);
-  padding-block: var(--space-1);
-  border-radius: var(--radius-control);
-  font-weight: 700;
-}
-
-.passage {
-  background: var(--color-surface-hover);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  padding: var(--space-4);
-  margin-block-end: var(--space-4);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: start;
-}
-
-.englishPrompt {
-  font-size: var(--font-size-title-2);
-  font-weight: 700;
+.heroSubText {
   color: var(--color-text);
-  margin-block: var(--space-3) var(--space-4);
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: start;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-block-end: var(--space-6);
+.heroAccent {
+  color: var(--color-action, #0284c7);
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.option {
-  padding-inline: var(--space-4);
-  padding-block: var(--space-3);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  color: var(--color-text);
-  font-size: var(--font-size-body);
-  cursor: pointer;
-  min-height: 2.75rem;
-  transition: border-color 0.2s, background-color 0.2s;
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: start;
-}
-
-.option:hover {
-  border-color: var(--color-primary);
-  background: var(--color-surface-hover);
-}
-
-.optionActive {
-  border-color: var(--color-primary);
-  background: var(--color-primary-subtle);
-  color: var(--color-text);
-  font-weight: 700;
-}
-
-.navRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-3);
-}
-
+/* =====================================================================
+   2. Buttons Matching Homepage (.primaryButton & .secondaryButton)
+   ===================================================================== */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
+  min-block-size: 46px;
   padding-inline: var(--space-6);
   padding-block: var(--space-3);
   border-radius: var(--radius-control);
-  background: var(--color-primary);
-  color: var(--color-surface);
+  background: var(--color-action, #0284c7);
+  color: var(--color-action-text, #ffffff);
   font-weight: 700;
-  border: 1px solid rgb(255 255 255 / 0.16);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 14px -2px color-mix(in srgb, var(--color-primary) 35%, transparent);
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 1px 2px rgb(0 0 0 / 0.08),
+    0 4px 16px -2px color-mix(in srgb, var(--color-action) 38%, transparent);
   cursor: pointer;
-  min-height: 2.75rem;
-  min-width: 7rem;
   transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .btnPrimary:hover:not(:disabled) {
-  opacity: 0.95;
-  transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 6px 18px -2px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  background: var(--color-action-hover, #0369a1);
+  transform: translateY(-1.5px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.38),
+    0 6px 20px -2px color-mix(in srgb, var(--color-action) 48%, transparent);
 }
 
 .btnPrimary:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
   transform: none;
+}
+
+.btnPrimaryAlt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-block-size: 46px;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--color-action) 6%, var(--color-surface));
+  color: var(--color-action);
+  border: 1.5px solid color-mix(in srgb, var(--color-action) 45%, var(--color-border));
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.btnPrimaryAlt:hover {
+  background: color-mix(in srgb, var(--color-action) 12%, var(--color-surface));
+  border-color: var(--color-action);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--color-action) 25%, transparent);
 }
 
 .btnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding-inline: var(--space-4);
+  gap: var(--space-2);
+  min-block-size: 46px;
+  padding-inline: var(--space-5);
   padding-block: var(--space-3);
   border-radius: var(--radius-control);
   background: var(--color-surface);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   border: 1px solid var(--color-border);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
   cursor: pointer;
-  min-height: 2.75rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
   transition: all var(--motion-fast) var(--motion-ease);
 }
 
-.btnSecondary:hover {
-  color: var(--color-text);
-  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
-  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+.btnSecondary:hover:not(:disabled) {
+  color: var(--color-action);
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.06);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
 }
 
-.twin {
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-  border: 1px solid var(--color-border);
+.btnSecondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.alert {
-  padding: var(--space-4);
-  border-radius: var(--radius-control);
-  margin-block-end: var(--space-4);
-  font-size: var(--font-size-meta);
-  line-height: var(--line-height-body);
-}
-
-.alertWarning {
-  background: var(--color-warning-bg);
-  border: 1px solid var(--color-warning);
-  color: var(--color-text);
-}
-
-.alertError {
-  background: var(--color-danger-bg);
-  border: 1px solid var(--color-danger);
-  color: var(--color-text);
-}
-
-.alertSuccess {
-  background: var(--color-success-bg);
-  border: 1px solid var(--color-success);
-  color: var(--color-text);
-}
-
-.emptyState {
-  text-align: center;
-  padding: var(--space-8);
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--color-border);
-}
-
-.sectionNav {
-  display: flex;
-  gap: var(--space-2);
-  margin-block-end: var(--space-4);
-  flex-wrap: wrap;
-}
-
-.sectionPill {
+.btnGhost {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding-inline: var(--space-3);
-  padding-block: var(--space-2);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  font-size: var(--font-size-meta);
+  justify-content: center;
+  gap: var(--space-1);
+  min-block-size: 46px;
+  padding-inline: var(--space-4);
+  background: transparent;
+  color: var(--color-muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
-.sectionPillActive {
-  background: var(--color-primary-bg, var(--color-surface-hover));
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  box-shadow: var(--shadow-sm);
+.btnGhost:hover {
+  color: var(--color-action);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
 }
 
-.sectionPillDone {
-  background: var(--color-surface-hover);
+/* =====================================================================
+   3. 6 Skills Showcase Cards (Pre-Test Overview)
+   ===================================================================== */
+.skillsOverview {
+  margin-block-end: var(--space-8);
+}
+
+.skillsOverviewTitle {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 800;
   color: var(--color-text);
-  border-color: var(--color-border);
-}
-
-.autosaveBadge {
-  display: inline-flex;
+  margin-block: 0 var(--space-4);
+  display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--font-size-meta);
-  color: var(--color-text-muted);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-4);
+}
+
+.skillCard {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-fast) var(--motion-ease),
+              border-color var(--motion-fast) var(--motion-ease);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.skillCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 45%, var(--color-border));
+  box-shadow: 0 12px 24px -6px color-mix(in srgb, var(--color-learning-teal, #06b6d4) 15%, transparent);
+}
+
+.skillCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-1);
+}
+
+.skillCardIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.skillCardNumber {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 10%, var(--color-surface));
   padding-inline: var(--space-2);
-  padding-block: var(--space-1);
+  padding-block: 0.15rem;
+  border-radius: var(--radius-pill);
 }
 
-.autosaveDot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: var(--radius-full);
-  background: var(--color-success);
+.skillCardTitle {
+  font-weight: 800;
+  color: var(--color-text);
+  font-size: 1.05rem;
 }
 
-@media (max-width: 36rem) {
-  .container {
-    padding-inline: var(--space-3);
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .questionCard,
-  .twin {
-    padding: var(--space-4);
-  }
-
-  .hero h1 {
-    font-size: var(--font-size-title-2);
-  }
-
-  .englishPrompt {
-    font-size: var(--font-size-title-3);
-  }
-
-  .navRow {
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
-
-  .navRow button {
-    width: 100%;
-  }
+.skillCardDetail {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.5;
 }
 
-/* Pre-test gate & Account Notice */
+/* =====================================================================
+   4. Account Gate Card (Pre-Test)
+   ===================================================================== */
 .authGateBox {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, var(--color-border));
   border-radius: var(--radius-card);
-  padding-inline: var(--space-6);
-  padding-block: var(--space-6);
-  margin-block: var(--space-6);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  margin-block: var(--space-4);
+  box-shadow: var(--shadow-raised);
+  position: relative;
+  overflow: hidden;
 }
 
-.authGateBoxPrompt {
-  border-inline-start: 4px solid var(--color-action);
-  background: color-mix(in srgb, var(--color-surface) 96%, var(--color-action) 4%);
+.authGateBox::before {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  inline-size: 4px;
+  background: linear-gradient(180deg, var(--color-action), var(--color-learning-teal));
+  content: "";
 }
 
-.authGateBoxAuthed {
-  border-inline-start: 4px solid var(--color-success);
-  background: color-mix(in srgb, var(--color-surface) 96%, var(--color-success) 4%);
+.authGateBoxAuthed::before {
+  background: linear-gradient(180deg, #10b981, #059669);
 }
 
-.authGateCheckingText {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-meta);
-  text-align: center;
-  padding-block: var(--space-4);
+.authGateBoxPrompt::before {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
 }
 
 .authGateHeader {
@@ -402,51 +389,53 @@
   flex-wrap: wrap;
 }
 
+.authGateBadgeAuthed,
 .authGateBadgePrompt {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  background: var(--color-warning-bg);
-  color: var(--color-warning-text);
   padding-inline: var(--space-3);
   padding-block: var(--space-1);
   border-radius: var(--radius-pill);
-  font-size: var(--font-size-meta);
+  font-size: 0.82rem;
   font-weight: 700;
 }
 
 .authGateBadgeAuthed {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: var(--color-success-bg);
-  color: var(--color-success-text);
-  padding-inline: var(--space-3);
-  padding-block: var(--space-1);
-  border-radius: var(--radius-pill);
-  font-size: var(--font-size-meta);
-  font-weight: 700;
+  background: var(--color-success-bg, #ecfdf5);
+  color: var(--color-success-text, #065f46);
+  border: 1px solid color-mix(in srgb, #10b981 30%, transparent);
+}
+
+.authGateBadgePrompt {
+  background: var(--color-warning-bg, #fffbeb);
+  color: var(--color-warning-text, #92400e);
+  border: 1px solid color-mix(in srgb, #f59e0b 30%, transparent);
 }
 
 .authGateUserTag {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-meta);
-  font-weight: 600;
+  color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: var(--color-surface-hover);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
 }
 
 .authGateTitle {
-  font-size: var(--font-size-title-2);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 800;
   color: var(--color-text);
-  margin-block-end: var(--space-2);
+  margin-block: 0 var(--space-2);
   line-height: 1.4;
 }
 
 .authGateDesc {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body-persian, 1.7);
-  margin-block-end: var(--space-5);
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-block: 0 var(--space-6);
   max-width: 52rem;
 }
 
@@ -457,118 +446,837 @@
   flex-wrap: wrap;
 }
 
-.btnPrimaryAlt {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: var(--space-6);
-  padding-block: var(--space-3);
-  border-radius: var(--radius-control);
-  background: var(--color-surface);
-  color: var(--color-action);
-  border: 1.5px solid var(--color-action);
-  font-weight: 700;
-  cursor: pointer;
-  min-height: 2.75rem;
-  text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+.authGateCheckingText {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  text-align: center;
+  padding-block: var(--space-6);
 }
 
-.btnPrimaryAlt:hover {
-  background: var(--color-primary-subtle);
+/* =====================================================================
+   5. Active Test Grid & Question Card
+   ===================================================================== */
+.singleColumnTest {
+  max-inline-size: 56rem;
+  margin-inline: auto;
+  inline-size: 100%;
 }
 
-.btnGhost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: var(--space-4);
-  padding-block: var(--space-3);
-  border-radius: var(--radius-control);
-  background: transparent;
-  color: var(--color-text-muted);
-  border: 1px solid transparent;
-  cursor: pointer;
-  min-height: 2.75rem;
-  text-decoration: none;
-  font-size: var(--font-size-meta);
-  transition: color 0.2s;
-}
-
-.btnGhost:hover {
-  color: var(--color-text);
-  text-decoration: underline;
-}
-
-/* Skills overview grid */
-.skillsOverview {
-  margin-block-end: var(--space-6);
-}
-
-.skillsOverviewTitle {
-  font-size: var(--font-size-title-3);
-  font-weight: 700;
-  color: var(--color-text);
-  margin-block-end: var(--space-4);
-}
-
-.skillsGrid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+  gap: clamp(var(--space-6), 3vw, var(--space-8));
+  align-items: start;
+}
+
+.questionCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-raised);
+  overflow: hidden;
+  position: relative;
+  transition: border-color var(--motion-fast) var(--motion-ease);
+}
+
+/* macOS Window Chrome Header */
+.cardChrome {
+  min-block-size: 42px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-canvas) 50%, var(--color-surface));
+}
+
+.cardChrome > span {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-learning-teal) 40%, var(--color-border));
+}
+
+.cardChrome > span:first-child {
+  background: #f87171;
+  box-shadow: 0 0 6px rgba(248, 113, 113, 0.4);
+}
+
+.cardChrome > span:nth-child(2) {
+  background: #fbbf24;
+}
+
+.cardChrome > span:nth-child(3) {
+  background: #34d399;
+}
+
+.cardChrome strong {
+  margin-inline-start: auto;
+  font: 700 0.8rem/1 var(--font-family-latin);
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+}
+
+.cardBody {
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* 6-Stage Section Navigation Tabs */
+.sectionNav {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-block-end: var(--space-2);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-2);
+}
+
+.sectionNav::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-subtle, var(--color-surface));
+  border: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.sectionPillActive {
+  background: color-mix(in srgb, var(--color-action) 12%, var(--color-surface));
+  border-color: var(--color-action);
+  color: var(--color-action);
+  box-shadow: 0 2px 8px -1px color-mix(in srgb, var(--color-action) 25%, transparent);
+}
+
+.sectionPillDone {
+  background: color-mix(in srgb, var(--color-success) 8%, var(--color-surface));
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-success) 35%, var(--color-border));
+}
+
+.autosaveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-inline-start: auto;
+  padding-inline: var(--space-2);
+  white-space: nowrap;
+}
+
+.autosaveDot {
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Question Counter & Category Badge */
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.sectionBadge {
+  background: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 12%, var(--color-surface));
+  color: var(--color-action, #0284c7);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-size: 0.82rem;
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 30%, var(--color-border));
+}
+
+/* Animated Glowing Progress Bar */
+.progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7, #06b6d4);
+  border-radius: var(--radius-pill);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+}
+
+/* Persian Prompt Guidance Box */
+.persianPromptBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 6%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal, #06b6d4) 22%, var(--color-border));
+  border-radius: var(--radius-control);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Reading Passage Container */
+.passage {
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--color-action);
+  border-radius: var(--radius-control);
+  padding: var(--space-5);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  direction: ltr;
+  text-align: start;
+  font-family: var(--font-family-latin);
+  color: var(--color-text);
+}
+
+/* English Prompt Card */
+.englishPrompt {
+  font-family: var(--font-family-latin);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 750;
+  color: var(--color-text);
+  direction: ltr;
+  text-align: start;
+  line-height: 1.4;
+  padding: var(--space-4);
+  background: var(--color-surface-subtle, var(--color-surface));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+/* Interactive Options (Redesigned with Letter Badges like Tamrin 20) */
+.options {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
 }
 
-.skillCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
   padding-inline: var(--space-4);
   padding-block: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.skillCardNumber {
-  font-size: var(--font-size-meta);
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.skillCardTitle {
-  font-weight: 700;
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
   color: var(--color-text);
-  font-size: var(--font-size-body);
+  font-size: 1.02rem;
+  cursor: pointer;
+  min-height: 3.25rem;
+  direction: ltr;
+  text-align: start;
+  font-family: var(--font-family-latin);
+  transition: all var(--motion-fast) var(--motion-ease);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
-.skillCardDetail {
-  font-size: var(--font-size-meta);
-  color: var(--color-text-muted);
+.option:hover {
+  border-color: color-mix(in srgb, var(--color-action) 50%, var(--color-border));
+  background: color-mix(in srgb, var(--color-action) 4%, var(--color-surface));
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--color-action) 20%, transparent);
 }
 
-/* Guest banner during active test */
+[dir="rtl"] .option:hover {
+  transform: translateX(-4px);
+}
+
+.optionActive {
+  border-color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 10%, var(--color-surface));
+  color: var(--color-text);
+  font-weight: 750;
+  box-shadow: 0 0 0 1px var(--color-action),
+              0 4px 14px -2px color-mix(in srgb, var(--color-action) 25%, transparent);
+}
+
+.optionLetterBadge {
+  inline-size: 1.85rem;
+  block-size: 1.85rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.option:hover .optionLetterBadge {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+.optionActive .optionLetterBadge {
+  background: var(--color-action);
+  color: #ffffff;
+  border-color: var(--color-action);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--color-action) 40%, transparent);
+}
+
+.optionText {
+  flex: 1;
+}
+
+/* Navigation Row */
+.navRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-4);
+  border-block-end: none;
+}
+
+/* Guest Notice Pill during test */
 .guestNoticePill {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
   flex-wrap: wrap;
-  background: var(--color-warning-bg);
-  border: 1px solid var(--color-border);
-  color: var(--color-warning-text);
+  background: var(--color-warning-bg, #fffbeb);
+  border: 1px solid color-mix(in srgb, #f59e0b 35%, var(--color-border));
+  color: var(--color-warning-text, #92400e);
   padding-inline: var(--space-4);
   padding-block: var(--space-2);
   border-radius: var(--radius-control);
-  font-size: var(--font-size-meta);
-  margin-block-end: var(--space-4);
+  font-size: 0.85rem;
+  margin-block-end: var(--space-2);
 }
 
 .guestNoticeLink {
-  color: var(--color-warning-text);
-  font-weight: 700;
+  color: var(--color-warning-text, #92400e);
+  font-weight: 800;
   text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
-.guestNoticeLink:hover {
-  opacity: 0.85;
+/* =====================================================================
+   6. Learner Twin High-Tech Sidebar (Direct Homepage twinCard parity)
+   ===================================================================== */
+.twinCard {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-action) 18%, var(--color-border));
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+  transition: transform var(--motion-slow) var(--motion-ease),
+              box-shadow var(--motion-slow) var(--motion-ease),
+              border-color var(--motion-slow) var(--motion-ease);
 }
+
+.twinCard:hover {
+  border-color: color-mix(in srgb, var(--color-learning-teal) 40%, var(--color-border));
+  box-shadow: 0 20px 48px -8px rgb(15 23 42 / 0.12),
+              0 4px 16px -2px color-mix(in srgb, var(--color-learning-teal) 20%, transparent);
+}
+
+.previewChrome {
+  min-block-size: 42px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-canvas) 50%, var(--color-surface));
+}
+
+.previewChrome > span {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-learning-teal) 50%, var(--color-border));
+}
+
+.previewChrome > span:first-child {
+  background: var(--color-learning-teal, #06b6d4);
+  box-shadow: 0 0 6px var(--color-learning-teal, #06b6d4);
+}
+
+.previewChrome strong {
+  margin-inline-start: auto;
+  font: 700 0.8rem/1 var(--font-family-latin);
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+}
+
+.previewBody {
+  min-height: 26rem;
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+}
+
+.previewRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  background: color-mix(in srgb, var(--color-canvas) 85%, var(--color-surface));
+  border-inline-end: 1px solid var(--color-border);
+}
+
+.previewRail b {
+  inline-size: 2rem;
+  block-size: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  font-family: var(--font-family-latin);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-action) 35%, transparent);
+}
+
+.previewRail span {
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  border-radius: 0.375rem;
+  background: var(--color-surface);
+}
+
+.previewContent {
+  padding: clamp(var(--space-4), 2.5vw, var(--space-6));
+}
+
+.previewIntro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.previewIntro > div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.previewIntro span {
+  color: var(--color-learning-teal, #06b6d4);
+  font: 800 0.72rem/1.2 var(--font-family-latin);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.previewIntro h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.previewIntro p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.twinIdentity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block-end: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.twinIdentity strong {
+  font: 800 1.15rem/1.2 var(--font-family-latin);
+  color: var(--color-text);
+}
+
+.twinIdentity small {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.orb {
+  position: relative;
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal, #06b6d4) 40%, var(--color-border));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 10%, var(--color-surface));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 2px 10px color-mix(in srgb, var(--color-learning-teal) 18%, transparent);
+}
+
+.orb::before,
+.orb::after,
+.orb span {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+}
+
+.orb::before {
+  inset: 0.35rem;
+  border: 1.5px dashed color-mix(in srgb, var(--color-learning-teal) 60%, transparent);
+  animation: rotateOrb 12s linear infinite;
+}
+
+.orb::after {
+  inset: 0.75rem;
+  border: 1.5px solid color-mix(in srgb, var(--color-learning-teal) 40%, transparent);
+}
+
+.orb span {
+  inset: 1.1rem;
+  background: var(--color-learning-teal, #06b6d4);
+  border: 0;
+  box-shadow: 0 0 8px var(--color-learning-teal, #06b6d4);
+}
+
+@keyframes rotateOrb {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.previewBadge {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 1.65rem;
+  margin-block: var(--space-4) var(--space-3);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-learning-teal) 10%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 30%, var(--color-border));
+  color: var(--color-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* 6 Skills Live Rows */
+.skillPreviewRow {
+  margin-block-start: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.skillPreviewRow:hover {
+  border-color: color-mix(in srgb, var(--color-action) 35%, var(--color-border));
+  box-shadow: 0 2px 8px rgb(15 23 42 / 0.05);
+}
+
+.skillPreviewRowActive {
+  border-color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 6%, var(--color-surface));
+  box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--color-action) 25%, transparent);
+}
+
+.skillPreviewTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.skillPreviewTop strong {
+  font-family: var(--font-family-latin);
+  font-size: 0.88rem;
+  font-weight: 750;
+  direction: ltr;
+}
+
+.skillPreviewTop small {
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+
+.skillPreviewTrack {
+  inline-size: 100%;
+  block-size: 4px;
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.skillPreviewBar {
+  block-size: 100%;
+  background: var(--color-learning-teal, #06b6d4);
+  border-radius: var(--radius-pill);
+  transition: inline-size 0.3s ease;
+}
+
+.twinFooter {
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+/* =====================================================================
+   7. Completion Celebratory State
+   ===================================================================== */
+.emptyState {
+  text-align: center;
+  padding: clamp(var(--space-8), 5vw, var(--space-12));
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-raised);
+  max-width: 48rem;
+  margin-inline: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.emptyState::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 4px;
+  background: linear-gradient(90deg, #0284c7, #06b6d4, #10b981);
+  content: "";
+}
+
+.emptyState h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-block: var(--space-2) var(--space-3);
+}
+
+.emptyState p {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+/* =====================================================================
+   8. Status Alerts
+   ===================================================================== */
+.alert {
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-control);
+  margin-block-end: var(--space-4);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.alertWarning {
+  background: var(--color-warning-bg, #fffbeb);
+  border: 1px solid var(--color-warning, #f59e0b);
+  color: var(--color-warning-text, #92400e);
+}
+
+.alertError {
+  background: var(--color-danger-bg, #fef2f2);
+  border: 1px solid var(--color-danger, #ef4444);
+  color: var(--color-danger-text, #991b1b);
+}
+
+.alertSuccess {
+  background: var(--color-success-bg, #ecfdf5);
+  border: 1px solid var(--color-success, #10b981);
+  color: var(--color-success-text, #065f46);
+}
+
+/* =====================================================================
+   9. Responsive Breakpoints
+   ===================================================================== */
+@media (max-width: 54rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .previewBody {
+    grid-template-columns: 1fr;
+  }
+
+  .previewRail {
+    display: none;
+  }
+}
+
+@media (max-width: 36rem) {
+  .container {
+    padding-inline: var(--space-3);
+  }
+
+  .navRow {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .navRow button,
+  .navRow a {
+    width: 100%;
+  }
+
+  .authGateActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* =====================================================================
+   10. Endoora Adaptive HUD & Reading Split-Layout
+   ===================================================================== */
+.adaptiveHud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-control);
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal, #06b6d4) 25%, var(--color-border));
+  margin-block-end: var(--space-4);
+}
+
+.adaptiveLevelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-action) 12%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-action) 35%, transparent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-action);
+}
+
+.timerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-family-latin);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  direction: ltr;
+}
+
+.timerWarning {
+  border-color: var(--color-warning, #f59e0b);
+  background: color-mix(in srgb, var(--color-warning, #f59e0b) 14%, var(--color-surface));
+  color: #d97706;
+  animation: timerPulse 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes timerPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.03); opacity: 0.85; }
+}
+
+.readingSplitGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+  margin-block-end: var(--space-4);
+}
+
+.readingPassagePanel {
+  background: color-mix(in srgb, var(--color-surface) 70%, var(--color-surface-hover));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.readingPassageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+  padding-block-end: var(--space-2);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+}
+
+.readingPassageHeader strong {
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: var(--color-text);
+}
+
+.readingPassageHeader small {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.readingPassageText {
+  font-family: var(--font-family-latin);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--color-text);
+  direction: ltr;
+  text-align: left;
+  user-select: text;
+}
+
+@media (max-width: 58rem) {
+  .readingSplitGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

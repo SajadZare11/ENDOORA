@@ -322,6 +322,7 @@ class AssignmentService:
                 teacher_class_id__in=class_ids,
                 status=AssignmentStatus.PUBLISHED,
             )
+            .filter(Q(target_learner__isnull=True) | Q(target_learner=learner))
             .select_related("teacher_class", "teacher")
             .prefetch_related("accommodations", "attempts")
             .order_by("-published_at")
@@ -381,6 +382,9 @@ class AssignmentService:
         ).exists()
         if not is_enrolled:
             raise PermissionDenied("You are not enrolled in this class.")
+
+        if assignment.target_learner and assignment.target_learner != learner:
+            raise PermissionDenied("This assignment is specifically designated for another learner.")
 
         # Check existing in-progress attempt to resume
         active_attempt = AssignmentAttempt.objects.filter(

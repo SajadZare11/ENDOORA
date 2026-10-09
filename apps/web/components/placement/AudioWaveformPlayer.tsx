@@ -3,6 +3,7 @@
 import { Button } from "@endoora/ui";
 
 import { useEffect, useRef, useState } from "react";
+import { playEnglishSpeech, stopEnglishSpeech } from "@/lib/speech";
 import styles from "./audio-player.module.css";
 
 interface AudioWaveformPlayerProps {
@@ -11,6 +12,7 @@ interface AudioWaveformPlayerProps {
   title_fa?: string;
   title_en?: string;
   locale?: "fa" | "en";
+  transcript?: string;
   onPlayExhausted?: () => void;
 }
 
@@ -35,6 +37,7 @@ export function AudioWaveformPlayer({
   title_fa = "فایل صوتی سوال",
   title_en = "Question Audio",
   locale = "fa",
+  transcript,
   onPlayExhausted,
 }: AudioWaveformPlayerProps) {
   const isFa = locale === "fa";
@@ -48,8 +51,33 @@ export function AudioWaveformPlayer({
   const [isMuted, setIsMuted] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [hasStartedPlay, setHasStartedPlay] = useState(false);
+  const [isSpeakingTts, setIsSpeakingTts] = useState(false);
 
-  const isExhausted = playCount >= playLimit;
+  const isExhausted = playCount >= playLimit || playCount >= 2;
+
+  // Fallback high-fidelity native speech if audio tag fails
+  const playWebSpeechFallback = () => {
+    if (!transcript || typeof window === "undefined") return;
+    if (isExhausted) return;
+
+    if (!hasStartedPlay) {
+      setPlayCount((prev) => prev + 1);
+      setHasStartedPlay(true);
+    }
+
+    setIsSpeakingTts(true);
+    setIsPlaying(true);
+
+    playEnglishSpeech(transcript, {
+      accent: "en-US",
+      rate: playbackRate,
+      onEnd: () => {
+        setIsSpeakingTts(false);
+        setIsPlaying(false);
+        setHasStartedPlay(false);
+      },
+    });
+  };
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -88,10 +116,16 @@ export function AudioWaveformPlayer({
       audio.removeEventListener("timeupdate", onTimeUpdate);
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("error", onError);
+      stopEnglishSpeech();
     };
   }, [playCount, playLimit, onPlayExhausted]);
 
   const togglePlay = async () => {
+    if (hasError && transcript) {
+      playWebSpeechFallback();
+      return;
+    }
+
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -230,7 +264,7 @@ export function AudioWaveformPlayer({
                 : isFa ? "پخش فایل صوتی" : "Play audio"
             }
           >
-            {isPlaying ? (
+            {isPlaying || isSpeakingTts ? (
               <>
                 <span>⏸</span>
                 <span>{isFa ? "توقف" : "Pause"}</span>
@@ -274,17 +308,30 @@ export function AudioWaveformPlayer({
       {isExhausted && !isPlaying && (
         <div className={styles.exhaustedAlert}>
           {isFa
-            ? "حداکثر دفعات مجاز گوش دادن به این فایل صوتی تکمیل شد. لطفاً به سوال پاسخ دهید."
-            : "Maximum play limit for this audio has been reached. Please answer the question."}
+            ? "حداکثر دفعات مجاز گوش دادن به این فایل صوتی (۲ بار) تکمیل شد. لطفاً به سوال پاسخ دهید."
+            : "Maximum play limit for this audio (2 plays) has been reached. Please answer the question."}
         </div>
       )}
 
       {/* Error fallback */}
       {hasError && (
         <div className={styles.errorBox}>
-          {isFa
-            ? "بارگذاری فایل صوتی با مشکل مواجه شد. لطفاً اتصال اینترنت خود را بررسی کنید یا مجدداً تلاش نمایید."
-            : "Failed to load audio file. Please check your connection or retry."}
+          <p>
+            {isFa
+              ? "بارگذاری فایل صوتی با مشکل مواجه شد."
+              : "Failed to load audio file."}
+          </p>
+          {transcript && (
+            <Button
+              type="button"
+              className={styles.playButton}
+              style={{ marginTop: "0.5rem", fontSize: "0.85rem", padding: "0.4rem 0.8rem" }}
+              onClick={playWebSpeechFallback}
+              disabled={isExhausted}
+            >
+              🔊 {isFa ? "شنیدن با گوینده هوشمند مرورگر" : "Play with browser speech synthesizer"}
+            </Button>
+          )}
         </div>
       )}
     </div>

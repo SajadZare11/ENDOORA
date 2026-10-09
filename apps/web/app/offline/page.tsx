@@ -1,8 +1,8 @@
 "use client";
 
-
 import { Button } from "@endoora/ui";
 import Link from "next/link";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./offline.module.css";
 
 export default function OfflinePage() {
@@ -13,7 +13,8 @@ export default function OfflinePage() {
   };
 
   return (
-    <main className={styles.container}>
+    <PublicShell locale="fa" currentPath="/offline">
+      <main className={styles.container}>
       <div className={styles.iconWrapper} aria-hidden="true">
         📡
       </div>
@@ -57,5 +58,6 @@ export default function OfflinePage() {
         </ul>
       </div>
     </main>
+    </PublicShell>
   );
 }

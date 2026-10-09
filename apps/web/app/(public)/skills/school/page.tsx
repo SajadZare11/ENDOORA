@@ -1,5 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./school.module.css";
 
 export const metadata: Metadata = {
@@ -19,22 +20,27 @@ const GRADES = [
     grade: "پایه یازدهم (Vision 2)",
     slug: "vision_2",
     cefr: "B1",
-    lessons: ["درس ۱: درک دیگران (Understanding People) - اسامی قابل شمارش و غیرقابل شمارش", "درس ۲: سبک زندگی سالم (A Healthy Lifestyle) - زمان حال کامل", "درس ۳: هنر و فرهنگ (Art and Culture) - جملات مجهول (Passive Voice)"],
-    konkurFocus: "تفاوت حال کامل با گذشته ساده، قیدهای تکرار، کمیت‌سنج‌ها (much, many, a few) و ساختارهای مجهول زمان حال و گذشته.",
+    lessons: ["درس ۱: درک دیگران (Understanding People) - اسامی قابل شمارش و جمله ساده", "درس ۲: سبک زندگی سالم (A Healthy Lifestyle) - زمان حال کامل و اسم مصدر (Gerund)", "درس ۳: هنر و فرهنگ (Art and Culture) - جملات شرطی نوع اول و مصدر با to (Infinitives)"],
+    konkurFocus: "جملات شرطی نوع اول، حال کامل، افعال عبارتی، تمایز اسم مصدر (Gerund) و مصدر (Infinitive)، و کمیت‌سنج‌های اسامی.",
   },
   {
     grade: "پایه دوازدهم (Vision 3)",
     slug: "vision_3",
     cefr: "B1+",
-    lessons: ["درس ۱: حس فداکاری (Sense of Appreciation) - مجهول افعال مدال", "درس ۲: نگاه به آینده (Look into the Future) - ساختارهای موصولی (Relative Clauses)", "درس ۳: فناوری و ارتباطات (Renewable Energy) - حروف ربط همپایه و ناهمپایه (Tag Questions)"],
-    konkurFocus: "سؤالات ضمیمه (Tag Questions)، جملات مجهول با Can/Must/Should، ضمایر موصولی Who/Whom/Which/That و کلمات ربط.",
+    lessons: [
+      "درس ۱: حس قدردانی و احترام (Sense of Appreciation) - مجهول و سوالات ضمیمه (Tag Questions)",
+      "درس ۲: فرهنگ لغت و جستجوی واژگان (Look it Up!) - ضمایر موصولی و شرطی نوع دوم",
+      "درس ۳: انرژی‌های تجدیدپذیر (Renewable Energy) - مجهول افعال مدال و گذشته کامل",
+    ],
+    konkurFocus: "امتحانات نهایی خرداد، سوالات ضمیمه، جملات مجهول، ضمایر موصولی، کارگاه ضرب‌المثل‌ها و پاراگراف‌نویسی استاندارد.",
   },
 ];
 
 export default function SchoolHubPage() {
   return (
-    <div className={styles.container} dir="rtl">
-      <Link href="/skills" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
+    <PublicShell locale="fa" currentPath="/skills/school">
+      <div className={styles.container} dir="rtl">
+        <Link href="/skills" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
         ← بازگشت به مرکز مهارت‌ها
       </Link>
 
@@ -46,32 +52,52 @@ export default function SchoolHubPage() {
         </p>
       </header>
 
-      {/* Featured Konkur Course Card */}
-      <section className={styles.konkurBanner}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "var(--space-4)" }}>
+
+
+      {/* Featured Tamrin 20 Practice Hub Card */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
+          color: "#ffffff",
+          borderRadius: "var(--radius-card, 14px)",
+          padding: "var(--space-5, 1.25rem)",
+          marginBottom: "var(--space-6, 1.5rem)",
+          boxShadow: "0 8px 20px -4px rgba(37, 99, 235, 0.25)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-4)" }}>
           <div>
-            <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-action)" }}>دوره پیشنهادی جامع</span>
-            <h2 style={{ fontSize: "var(--font-size-h2)", fontWeight: 800, marginBlock: "var(--space-2)" }}>
-              دوره تخصصی کنکور سراسری و امتحانات نهایی (Vision ۱ تا ۳)
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+              <span style={{ background: "rgba(255,255,255,0.2)", fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "999px" }}>
+                سامانه تعاملی امتحانات نهایی
+              </span>
+              <span style={{ background: "#22c55e", fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "999px" }}>
+                پایه دوازدهم (Vision 3)
+              </span>
+            </div>
+            <h2 style={{ fontSize: "1.35rem", fontWeight: 800, margin: "0.35rem 0", color: "#ffffff" }}>
+              تمرین تا ۲۰ (بیش از ۱۰۰۰ سوال امتحانات نهایی خرداد و شهریور)
             </h2>
-            <p style={{ margin: 0, color: "var(--color-text-muted)", maxInlineSize: "40rem", lineHeight: "var(--line-height-body)" }}>
-              شامل ۲۴ ساعت آموزش تعاملی، حل ۵۰۰ تست استاندارد طبقه‌بندی‌شده، جزوه لغات کنکوری با ریشه‌شناسی و آزمون‌های سنجشی آنلاین.
+            <p style={{ margin: 0, color: "rgba(255,255,255,0.9)", fontSize: "0.9rem", maxInlineSize: "44rem", lineHeight: 1.5 }}>
+              تفکیک درس به درس در ۵ مهارت (شنیداری با صوت، واژگان، دستور زبان، درک مطلب و نگارش) با تصحیح آنی، توضیحات تکمیلی و شروع با ۲۰ سوال طلایی.
             </p>
           </div>
           <Link
-            href="/courses/konkur-english-vision-mastery"
+            href="/high-school/grade-12/tamrin20"
             style={{
-              paddingInline: "var(--space-5)",
-              paddingBlock: "var(--space-3)",
-              background: "var(--color-action)",
-              color: "var(--color-white)",
-              borderRadius: "var(--radius-control)",
-              fontWeight: 700,
+              paddingInline: "var(--space-5, 1.25rem)",
+              paddingBlock: "var(--space-3, 0.75rem)",
+              background: "#ffffff",
+              color: "#1d4ed8",
+              borderRadius: "var(--radius-control, 8px)",
+              fontWeight: 800,
               textDecoration: "none",
               display: "inline-block",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+              whiteSpace: "nowrap",
             }}
           >
-            مشاهده سرفصل‌های دوره کنکور ←
+            ورود به تمرین تا ۲۰ دوازدهم ←
           </Link>
         </div>
       </section>
@@ -100,15 +126,26 @@ export default function SchoolHubPage() {
 
             <div style={{ marginTop: "var(--space-5)", paddingTop: "var(--space-3)", borderTop: "1px solid var(--color-border)" }}>
               <Link
-                href="/courses/konkur-english-vision-mastery"
+                href={
+                  g.slug === "vision_1"
+                    ? "/high-school/grade-10"
+                    : g.slug === "vision_2"
+                    ? "/high-school/grade-11"
+                    : "/high-school/grade-12"
+                }
                 style={{ color: "var(--color-action)", fontWeight: 700, textDecoration: "none", fontSize: "var(--font-size-small)" }}
               >
-                شروع آموزش این پایه ←
+                {g.slug === "vision_1"
+                  ? "ورود به سرفصل‌های پایه دهم (تمام ۴ درس فعال) ←"
+                  : g.slug === "vision_2"
+                  ? "ورود به سرفصل‌های پایه یازدهم (تمام ۳ درس فعال) ←"
+                  : "ورود به سرفصل‌های پایه دوازدهم (تمام ۳ درس فعال) ←"}
               </Link>
             </div>
           </div>
         ))}
       </div>
     </div>
+    </PublicShell>
   );
 }

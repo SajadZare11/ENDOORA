@@ -1,0 +1,968 @@
+{
+  "id": "vision-2-lesson-2",
+  "grade": 11,
+  "bookTitle": "Vision 2",
+  "lessonNumber": 2,
+  "slug": "grade-11/lesson-2",
+  "title": {
+    "en": "A Healthy Lifestyle",
+    "fa": "سبک زندگی سالم"
+  },
+  "cefrLevel": "B1",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr11-2-1",
+        "word": "healthy lifestyle",
+        "phonetic": "/ˈhel.θi ˈlaɪf.staɪl/",
+        "persianMeaning": "سبک زندگی سالم / عادات روزمره سودمند برای تندرستی",
+        "imagePromptOrUrl": "healthy-lifestyle-heart",
+        "options": ["healthy lifestyle", "junk food", "depression"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Exercising regularly and eating vegetables help you have a healthy lifestyle.",
+          "fa": "ورزش منظم و خوردن سبزیجات به شما کمک می‌کند سبک زندگی سالمی داشته باشید."
+        }
+      },
+      {
+        "id": "gr11-2-2",
+        "word": "junk food",
+        "phonetic": "/ˈdʒʌŋk ˌfuːd/",
+        "persianMeaning": "تنقلات ناسالم / غذای بی‌ارزش و پرکالری مانند چیپس و پفک",
+        "imagePromptOrUrl": "junk-food-fastfood",
+        "options": ["balanced diet", "fresh fruit", "junk food"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Eating too much junk food causes people to gain weight rapidly.",
+          "fa": "خوردن بیش از حد تنقلات ناسالم باعث افزایش وزن سریع افراد می‌شود."
+        }
+      },
+      {
+        "id": "gr11-2-3",
+        "word": "jogging",
+        "phonetic": "/ˈdʒɒɡ.ɪŋ/",
+        "persianMeaning": "ورزش دویدن آرام و یکنواخت برای تناسب اندام",
+        "imagePromptOrUrl": "jogging-running-park",
+        "options": ["sitting", "jogging", "sleeping"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "I go jogging in the nearby park every morning at 6.",
+          "fa": "من هر روز صبح ساعت ۶ در پارک نزدیک خانه به دویدن آرام می‌پردازم."
+        }
+      },
+      {
+        "id": "gr11-2-4",
+        "word": "health risk",
+        "phonetic": "/ˈhelθ ˌrɪsk/",
+        "persianMeaning": "خطر و عامل تهدیدکننده سلامتی",
+        "imagePromptOrUrl": "health-risk-warning",
+        "options": ["health risk", "calm manner", "daily exercise"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Sitting a lot at a computer desk increases health risks.",
+          "fa": "نشستن زیاد پشت میز رایانه خطرات تهدیدکننده سلامت را افزایش می‌دهد."
+        }
+      },
+      {
+        "id": "gr11-2-5",
+        "word": "balanced diet",
+        "phonetic": "/ˌbæl.ənst ˈdaɪ.ət/",
+        "persianMeaning": "رژیم غذایی متعادل شامل همه گروه‌های غذایی ضروری",
+        "imagePromptOrUrl": "balanced-diet-fruits",
+        "options": ["fast food", "balanced diet", "sweet candy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A balanced diet contains the right amounts of fruits, grains, and proteins.",
+          "fa": "یک رژیم غذایی متعادل شامل مقادیر مناسب میوه‌ها، غلات و پروتئین‌هاست."
+        }
+      },
+      {
+        "id": "gr11-2-6",
+        "word": "physical activity",
+        "phonetic": "/ˈfɪz.ɪ.kəl ækˈtɪv.ə.ti/",
+        "persianMeaning": "فعالیت و تحرک بدنی و ورزشی",
+        "imagePromptOrUrl": "physical-activity-gym",
+        "options": ["physical activity", "daydreaming", "watching television"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Regular physical activity keeps your heart strong and healthy.",
+          "fa": "فعالیت بدنی منظم، قلب شما را قوی و سالم نگه می‌دارد."
+        }
+      },
+      {
+        "id": "gr11-2-7",
+        "word": "improve health",
+        "phonetic": "/ɪmˈpruːv helθ/",
+        "persianMeaning": "بهبود بخشیدن و تقویت سلامتی",
+        "imagePromptOrUrl": "improve-health-chart",
+        "options": ["hurt body", "improve health", "catch a cold"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Visiting friends and having laughter helps improve our mental health.",
+          "fa": "دیدار با دوستان و خندیدن به بهبود و ارتقای سلامت روحی ما کمک می‌کند."
+        }
+      },
+      {
+        "id": "gr11-2-8",
+        "word": "surfing the net",
+        "phonetic": "/ˈsɜː.fɪŋ ðə net/",
+        "persianMeaning": "گشت‌وگذار و وقت‌گذرانی در فضای وب و اینترنت",
+        "imagePromptOrUrl": "surfing-net-laptop",
+        "options": ["mountain climbing", "surfing the net", "cooking dinner"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Spending hours surfing the net late at night disrupts your sleep.",
+          "fa": "ساعت‌ها وب‌گردی در اینترنت تا دیروقت خواب شما را برهم می‌زند."
+        }
+      },
+      {
+        "id": "gr11-2-9",
+        "word": "food pyramid",
+        "phonetic": "/ˈfuːd ˌpɪr.ə.mɪd/",
+        "persianMeaning": "هرم راهنمای غذایی برای انتخاب تغذیه سالم",
+        "imagePromptOrUrl": "food-pyramid-chart",
+        "options": ["food pyramid", "traffic sign", "ancient temple"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The food pyramid shows which foods we should eat more and which less.",
+          "fa": "هرم غذایی نشان می‌دهد کدام غذاها را باید بیشتر و کدام را کمتر مصرف کنیم."
+        }
+      },
+      {
+        "id": "gr11-2-10",
+        "word": "gain weight",
+        "phonetic": "/ɡeɪn weɪt/",
+        "persianMeaning": "اضافه وزن پیدا کردن / وزن اضافه کردن",
+        "imagePromptOrUrl": "gain-weight-scale",
+        "options": ["lose weight", "gain weight", "stand up"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Because he didn't exercise, he gained five kilos in three months.",
+          "fa": "چون ورزش نمی‌کرد، طی سه ماه پنج کیلوگرم وزن اضافه کرد."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "Healthy Habits vs. Screen Time (عادات سلامت در برابر کم‌تحرکی)",
+      "situationFa": "بهزاد با دوستش سینا که به دلیل بازی‌های رایانه‌ای کم‌تحرک شده و وزن اضافه کرده تماس گرفته و او را به برنامه کوهنوردی در دربند دعوت می‌کند.",
+      "vocabulary": [
+        {
+          "id": "cb11-2-1",
+          "word": "surfing the net",
+          "phonetic": "/ˈsɜː.fɪŋ ðə net/",
+          "persianMeaning": "گشت‌وگذار در اینترنت",
+          "imagePromptOrUrl": "surfing-net-laptop",
+          "options": ["jogging", "surfing the net", "cooking"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Sina spends most of his free time surfing the net.",
+            "fa": "سینا بیشتر اوقات فراغت خود را به وب‌گردی در اینترنت می‌گذراند."
+          }
+        },
+        {
+          "id": "cb11-2-2",
+          "word": "jogging",
+          "phonetic": "/ˈdʒɒɡ.ɪŋ/",
+          "persianMeaning": "ورزش دویدن آرام",
+          "imagePromptOrUrl": "jogging-running-park",
+          "options": ["jogging", "sleeping", "smoking"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Jogging every morning keeps his energy levels high.",
+            "fa": "دویدن آرام در هر صبح سطح انرژی او را بالا نگه می‌دارد."
+          }
+        },
+        {
+          "id": "cb11-2-3",
+          "word": "hang out",
+          "phonetic": "/hæŋ aʊt/",
+          "persianMeaning": "وقت گذراندن و معاشرت با دوستان",
+          "imagePromptOrUrl": "hang-out-friends-cafe",
+          "options": ["fight", "hang out", "disappear"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "On weekends, teenagers like to hang out with their friends.",
+            "fa": "در تعطیلات آخر هفته، نوجوانان دوست دارند با دوستانشان معاشرت کنند."
+          }
+        },
+        {
+          "id": "cb11-2-4",
+          "word": "gain weight",
+          "phonetic": "/ɡeɪn weɪt/",
+          "persianMeaning": "چاق شدن و بالا رفتن وزن بدن",
+          "imagePromptOrUrl": "gain-weight-scale",
+          "options": ["lose weight", "gain weight", "die out"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Without physical exercise, people easily gain weight.",
+            "fa": "بدون تمرین بدنی، افراد به راحتی دچار اضافه وزن می‌شوند."
+          }
+        },
+        {
+          "id": "cb11-2-5",
+          "word": "depressed",
+          "phonetic": "/dɪˈprest/",
+          "persianMeaning": "افسرده و غمگین ناشی از تنهایی یا انزوا",
+          "imagePromptOrUrl": "depressed-sad-person",
+          "options": ["happy", "energetic", "depressed"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "Staying home alone for months makes people feel depressed.",
+            "fa": "ماه‌ها تنها ماندن در خانه باعث می‌شود افراد احساس افسردگی کنند."
+          }
+        },
+        {
+          "id": "cb11-2-6",
+          "word": "climbing",
+          "phonetic": "/ˈklaɪ.mɪŋ/",
+          "persianMeaning": "کوهنوردی و صعود",
+          "imagePromptOrUrl": "climbing-darband-mountain",
+          "options": ["swimming", "climbing", "sitting"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "They are going to Darband for hiking and mountain climbing.",
+            "fa": "آن‌ها برای پیاده‌روی و کوهنوردی به دربند می‌روند."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "c11-2-1",
+          "speaker": "Behzad",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🦱",
+          "enText": "Hi Sina. How is it going? I haven't seen you since Norooz.",
+          "faText": "سلام سینا. اوضاع چطور است؟ از نوروز ندیدمت.",
+          "orderIndex": 1
+        },
+        {
+          "id": "c11-2-2",
+          "speaker": "Sina",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Hi Behzad. Thanks for calling. I am home most of the time. I do different things like surfing the net and playing computer games.",
+          "faText": "سلام بهزاد. ممنون که زنگ زدی. بیشتر اوقات در خانه‌ام. کارهای مختلفی مثل وب‌گردی و بازی‌های رایانه‌ای انجام می‌دهم.",
+          "orderIndex": 2
+        },
+        {
+          "id": "c11-2-3",
+          "speaker": "Behzad",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🦱",
+          "enText": "How about your free time? Going out, jogging, playing football,...?",
+          "faText": "اوقات فراغتت چطور؟ بیرون رفتن، دویدن، فوتبال بازی کردن،...؟",
+          "orderIndex": 3
+        },
+        {
+          "id": "c11-2-4",
+          "speaker": "Sina",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Nope. I rarely go out and hang out with my friends.",
+          "faText": "نه اصلاً. من به‌ندرت بیرون می‌روم و با دوستانم وقت می‌گذرانم.",
+          "orderIndex": 4
+        },
+        {
+          "id": "c11-2-5",
+          "speaker": "Behzad",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🦱",
+          "enText": "I see. Reza and I are going to Darband for climbing and walking this Friday. Would you like to come with us?",
+          "faText": "متوجهم. من و رضا این جمعه برای کوهنوردی و پیاده‌روی به دربند می‌رویم. دوست داری با ما بیایی؟",
+          "orderIndex": 5
+        },
+        {
+          "id": "c11-2-6",
+          "speaker": "Sina",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Um... actually, you're right. I've gained five kilos in three months. I really do not like to move!",
+          "faText": "امم... راستش حق با توست. در عرض سه ماه پنج کیلو وزن اضافه کرده‌ام. واقعاً دوست ندارم تکان بخورم!",
+          "orderIndex": 6
+        },
+        {
+          "id": "c11-2-7",
+          "speaker": "Behzad",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🦱",
+          "enText": "See? I told you. Working with computers for a long time makes people sick and depressed. I've read about this somewhere.",
+          "faText": "دیدی؟ بهت گفتم. کار مداوم با کامپیوتر برای مدت طولانی آدم را بیمار و افسرده می‌کند. جایی این موضوع را خوانده‌ام.",
+          "orderIndex": 7
+        },
+        {
+          "id": "c11-2-8",
+          "speaker": "Sina",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "All right. You won!... When and where should we meet?",
+          "faText": "خیلی خب، تو بردی!... کی و کجا قرار بگذاریم؟",
+          "orderIndex": 8
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw11-2-1",
+        "word": "diet",
+        "phonetic": "/ˈdaɪ.ət/",
+        "persianMeaning": "رژیم غذایی / الگوی مصرف خوراکی‌ها",
+        "imagePromptOrUrl": "balanced-diet-fruits",
+        "options": ["diet", "factory", "airplane"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Eating vegetables is an important part of a healthy diet.",
+          "fa": "خوردن سبزیجات بخش مهمی از یک رژیم غذایی سالم است."
+        }
+      },
+      {
+        "id": "nw11-2-2",
+        "word": "blood pressure",
+        "phonetic": "/ˈblʌd ˌpreʃ.ər/",
+        "persianMeaning": "فشار خون در رگ‌ها",
+        "imagePromptOrUrl": "high-blood-pressure",
+        "options": ["heartbeat", "blood pressure", "temperature"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Eating salty food can increase your blood pressure.",
+          "fa": "خوردن غذاهای شور می‌تواند فشار خون شما را بالا ببرد."
+        }
+      },
+      {
+        "id": "nw11-2-3",
+        "word": "heartbeat",
+        "phonetic": "/ˈhɑːt.biːt/",
+        "persianMeaning": "ضربان قلب / تپش منظم قلب",
+        "imagePromptOrUrl": "heartbeat-listen-stethoscope",
+        "options": ["headache", "heartbeat", "footstep"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The doctor is listening to my grandfather's heartbeat with a stethoscope.",
+          "fa": "پزشک با گوشی پزشکی در حال گوش دادن به ضربان قلب پدربزرگم است."
+        }
+      },
+      {
+        "id": "nw11-2-4",
+        "word": "measure",
+        "phonetic": "/ˈmeʒ.ər/",
+        "persianMeaning": "اندازه‌گیری کردن وزن، قد یا فشار",
+        "imagePromptOrUrl": "measure-height-tape",
+        "options": ["measure", "destroy", "injure"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "My sister measures her weight on the scale every month.",
+          "fa": "خواهرم هر ماه وزنش را روی ترازو اندازه‌گیری می‌کند."
+        }
+      },
+      {
+        "id": "nw11-2-5",
+        "word": "serving",
+        "phonetic": "/ˈsɜː.vɪŋ/",
+        "persianMeaning": "یک وعده / سهم معین از غذا برای یک نفر",
+        "imagePromptOrUrl": "serving-rice-bowl",
+        "options": ["kilometer", "serving", "continent"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "One serving of rice is usually enough for a healthy lunch.",
+          "fa": "یک سهم از برنج معمولاً برای یک ناهار سالم کافی است."
+        }
+      },
+      {
+        "id": "nw11-2-6",
+        "word": "bad habit",
+        "phonetic": "/bæd ˈhæb.ɪt/",
+        "persianMeaning": "عادت بد و مضر برای سلامتی",
+        "imagePromptOrUrl": "bad-eating-habit",
+        "options": ["bad habit", "good deed", "healthy sport"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Sleeping very late at night is a dangerous bad habit.",
+          "fa": "بسیار دیر خوابیدن در شب یک عادت بد و زیان‌بار است."
+        }
+      },
+      {
+        "id": "nw11-2-7",
+        "word": "harmful",
+        "phonetic": "/ˈhɑːm.fəl/",
+        "persianMeaning": "مضر / زیان‌آور برای تندرستی",
+        "imagePromptOrUrl": "smoking-harmful-lungs",
+        "options": ["useful", "helpful", "harmful"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Smoking cigarettes is extremely harmful to your lungs and heart.",
+          "fa": "کشیدن سیگار به شدت برای ریه‌ها و قلب شما زیان‌آور است."
+        }
+      },
+      {
+        "id": "nw11-2-8",
+        "word": "addiction",
+        "phonetic": "/əˈdɪk.ʃən/",
+        "persianMeaning": "اعتیاد و وابستگی مفرط به چیزی",
+        "imagePromptOrUrl": "addiction-phone-screen",
+        "options": ["addiction", "recovery", "freedom"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Today, addiction to mobile phones is a big problem among teenagers.",
+          "fa": "امروزه اعتیاد به تلفن‌های همراه یک معضل بزرگ میان نوجوانان است."
+        }
+      },
+      {
+        "id": "nw11-2-9",
+        "word": "heart attack",
+        "phonetic": "/ˈhɑːt əˌtæk/",
+        "persianMeaning": "حمله قلبی / سکته قلبی",
+        "imagePromptOrUrl": "heart-attack-hospital",
+        "options": ["heart attack", "deep breath", "happy laugh"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "A balanced diet and regular walking reduce the risk of a heart attack.",
+          "fa": "یک رژیم غذایی متعادل و پیاده‌روی منظم خطر حمله قلبی را کاهش می‌دهند."
+        }
+      },
+      {
+        "id": "nw11-2-10",
+        "word": "physical",
+        "phonetic": "/ˈfɪz.ɪ.kəl/",
+        "persianMeaning": "جسمانی / بدنی و فیزیکی",
+        "imagePromptOrUrl": "physical-activity-gym",
+        "options": ["mental", "physical", "verbal"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Swimming is an excellent physical exercise for the whole body.",
+          "fa": "شنا کردن یک ورزش بدنی فوق‌العاده برای تمام بدن است."
+        }
+      },
+      {
+        "id": "nw11-2-11",
+        "word": "calm",
+        "phonetic": "/kɑːm/",
+        "persianMeaning": "آرام و بی‌دغدغه / بدون استرس و اضطراب",
+        "imagePromptOrUrl": "calm-peaceful-mind",
+        "options": ["angry", "nervous", "calm"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Our doctor has a very calm and friendly manner with patients.",
+          "fa": "پزشک ما برخوردی بسیار آرام و دوستانه با بیماران دارد."
+        }
+      },
+      {
+        "id": "nw11-2-12",
+        "word": "balanced",
+        "phonetic": "/ˈbæl.ənst/",
+        "persianMeaning": "متعادل / دارای نسبت‌های متناسب",
+        "imagePromptOrUrl": "balanced-diet-fruits",
+        "options": ["heavy", "balanced", "dangerous"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Maintaining a balanced lifestyle prevents physical and emotional stress.",
+          "fa": "حفظ یک سبک زندگی متعادل از استرس جسمی و روحی جلوگیری می‌کند."
+        }
+      },
+      {
+        "id": "nw11-2-13",
+        "word": "recent",
+        "phonetic": "/ˈriː.sənt/",
+        "persianMeaning": "اخیر / مربوط به زمان نزدیک گذشته",
+        "imagePromptOrUrl": "recent-news-calendar",
+        "options": ["ancient", "recent", "future"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Recent medical studies show that walking daily improves brain power.",
+          "fa": "مطالعات پزشکی اخیر نشان می‌دهند پیاده‌روی روزانه قدرت مغز را بهبود می‌دهد."
+        }
+      },
+      {
+        "id": "nw11-2-14",
+        "word": "emotional",
+        "phonetic": "/ɪˈməʊ.ʃən.əl/",
+        "persianMeaning": "عاطفی و احساسی / مربوط به روح و روان",
+        "imagePromptOrUrl": "emotional-feelings-smile",
+        "options": ["physical", "emotional", "wooden"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Laughter provides emotional comfort and reduces daily tensions.",
+          "fa": "خنده آرامش روحی ایجاد می‌کند و فشارهای روزمره را کاهش می‌دهد."
+        }
+      },
+      {
+        "id": "nw11-2-15",
+        "word": "unsafe (prefix un-)",
+        "phonetic": "/ʌnˈseɪf/",
+        "persianMeaning": "ناامن و پرخطر (پیشوند un- یعنی not)",
+        "imagePromptOrUrl": "prefix-unsafe-shield",
+        "options": ["safe", "unsafe", "friendly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Driving fast on wet roads is completely unsafe and dangerous.",
+          "fa": "رانندگی با سرعت زیاد در جاده‌های لغزنده کاملاً ناامن و خطرناک است."
+        }
+      },
+      {
+        "id": "nw11-2-16",
+        "word": "disagree (prefix dis-)",
+        "phonetic": "/ˌdɪs.əˈɡriː/",
+        "persianMeaning": "مخالفت کردن (پیشوند منفی‌ساز dis-)",
+        "imagePromptOrUrl": "prefix-disagree-hands",
+        "options": ["agree", "disagree", "sing"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Doctors disagree with the idea of skipping breakfast.",
+          "fa": "پزشکان با نخوردن صبحانه مخالف هستند."
+        }
+      },
+      {
+        "id": "nw11-2-17",
+        "word": "illness (suffix -ness)",
+        "phonetic": "/ˈɪl.nəs/",
+        "persianMeaning": "بیماری و ناخوشی (پسوند اسم‌ساز -ness)",
+        "imagePromptOrUrl": "suffix-illness-bed",
+        "options": ["health", "illness", "sport"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A healthy lifestyle helps prevent serious chronic illness.",
+          "fa": "یک سبک زندگی سالم به پیشگیری از بیماری‌های مزمن و جدی کمک می‌کند."
+        }
+      },
+      {
+        "id": "nw11-2-18",
+        "word": "peaceful (suffix -ful)",
+        "phonetic": "/ˈpiːs.fəl/",
+        "persianMeaning": "سرشار از آرامش (پسوند صفت‌ساز -ful)",
+        "imagePromptOrUrl": "suffix-peaceful-dove",
+        "options": ["noisy", "peaceful", "violent"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Walking in nature gives you a peaceful and calm feeling.",
+          "fa": "قدم زدن در طبیعت به شما حسی سرشار از آرامش و آسودگی می‌بخشد."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Having a Healthier and Longer Life",
+      "persianTitle": "داشتن زندگی سالم‌تر و طولانی‌تر",
+      "passageTextEn": "Have you ever thought of a healthy lifestyle to live longer? People can do many things to have a healthier life. Most people have a special diet or do lots of exercise; however, without a careful plan they may hurt themselves.\n\nTo have a healthier lifestyle, people need to do certain things. First they should check their general health. Measuring blood pressure and heartbeat is the most important thing to do. They also need to check their family health history. In this way, they understand if anyone in the family has had a special illness.\n\nAnother thing is paying attention to physical health. For example, eating healthy food helps people live longer and prevents diseases. Eating junk food makes people gain weight, and increases the risk of heart attack. Eating lots of fruits and vegetables can improve your health and reduce illnesses.\n\nEmotional health is also very important. Stress and worry can cause serious diseases like heart problems and depression. Having fun, talking to friends, and resting properly can make people calm and happy. Laughter is truly the best medicine for emotional well-being.\n\nFinally, exercising regularly is a great key to a longer life. You don't need heavy exercise; simple habits like jogging, walking, and swimming for 30 minutes every day can keep your heart strong. By planning carefully and choosing good habits, you can enjoy a healthier and longer life.",
+      "passageParagraphs": [
+        "Have you ever thought of a healthy lifestyle to live longer? People can do many things to have a healthier life. Most people have a special diet or do lots of exercise; however, without a careful plan they may hurt themselves.",
+        "To have a healthier lifestyle, people need to do certain things. First they should check their general health. Measuring blood pressure and heartbeat is the most important thing to do. They also need to check their family health history. In this way, they understand if anyone in the family has had a special illness.",
+        "Another thing is paying attention to physical health. For example, eating healthy food helps people live longer and prevents diseases. Eating junk food makes people gain weight, and increases the risk of heart attack. Eating lots of fruits and vegetables can improve your health and reduce illnesses.",
+        "Emotional health is also very important. Stress and worry can cause serious diseases like heart problems and depression. Having fun, talking to friends, and resting properly can make people calm and happy. Laughter is truly the best medicine for emotional well-being.",
+        "Finally, exercising regularly is a great key to a longer life. You don't need heavy exercise; simple habits like jogging, walking, and swimming for 30 minutes every day can keep your heart strong. By planning carefully and choosing good habits, you can enjoy a healthier and longer life."
+      ],
+      "questions": [
+        {
+          "id": "rq11-2-1",
+          "type": "mcq_general",
+          "prompt": "What is the primary message of this reading passage?",
+          "options": [
+            "Living a healthier and longer life requires checking health, eating well, managing stress, and exercising with a plan.",
+            "Only people who do heavy professional sports can live longer than others.",
+            "Eating junk food has no effect on human heartbeat and blood pressure.",
+            "Doctors say technology has solved all health problems in the twenty-first century."
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "پیام اصلی متن این است که برای داشتن زندگی سالم‌تر و طولانی‌تر باید به سلامت عمومی، تغذیه، سلامت روانی و ورزش برنامه‌ریزی‌شده توجه کرد."
+        },
+        {
+          "id": "rq11-2-2",
+          "type": "true_false",
+          "prompt": "According to the passage, doing lots of exercise or following special diets without a careful plan might hurt people.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": "True",
+          "explanationFa": "صحیح است؛ در پاراگراف اول صراحتاً بیان شده: 'without a careful plan they may hurt themselves'."
+        },
+        {
+          "id": "rq11-2-3",
+          "type": "reference",
+          "prompt": "In paragraph 2, what does the underlined pronoun 'They' refer to in 'They also need to check their family health history'?",
+          "options": ["Doctors", "People", "Diseases", "Diets"],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر فاعلی They به کلمه People (مردم) در جملات قبل از خود بازمی‌گردد."
+        },
+        {
+          "id": "rq11-2-4",
+          "type": "context_meaning",
+          "prompt": "According to paragraph 4, what is the best medicine for emotional well-being and reducing stress?",
+          "options": ["Laughter and having fun", "Sitting all day", "Taking sleeping pills", "Drinking soda"],
+          "correctAnswer": 0,
+          "explanationFa": "طبق پاراگراف چهارم، خنده و گپ زدن با دوستان بهترین دارو برای آرامش روحی و رهایی از استرس است."
+        },
+        {
+          "id": "rq11-2-5",
+          "type": "open_ended",
+          "prompt": "Why should people check their family health history according to paragraph 2?",
+          "requiredKeywordsForEvaluation": ["family", "health history", "illness", "understand"],
+          "modelAnswerEn": "People should check their family health history to understand if anyone in the family has had a special illness, so they can prevent diseases.",
+          "modelAnswerFa": "افراد باید سابقه سلامت خانوادگی خود را بررسی کنند تا بفهمند آیا کسی در خانواده به بیماری خاصی مبتلا بوده است تا بتوانند از بروز آن پیشگیری کنند.",
+          "explanationFa": "پاسخ باید توضیح دهد که بررسی سابقه سلامت خانوادگی برای شناسایی بیماری‌های ارثی و پیشگیری از آن‌ها ضروری است."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Present Perfect Tense & Phrasal Verbs",
+      "persianTopic": "زمان حال کامل (ماضی نقلی) و افعال عبارتی (See Also)",
+      "discovery": {
+        "sentenceA": {
+          "text": "Technology has influenced the lives of people in this century.",
+          "highlightedPart": "has influenced",
+          "translation": "فناوری زندگی مردم را در این قرن تحت تأثیر قرار داده است. (کاری که از گذشته آغاز شده و اثرش ادامه دارد)"
+        },
+        "sentenceB": {
+          "text": "Some people have not visited their relatives for a long time.",
+          "highlightedPart": "have not visited",
+          "translation": "برخی از مردم برای مدت طولانی اقوام خود را ملاقات نکرده‌اند. (فرمول منفی: have not + p.p.)"
+        },
+        "ccqQuestions": [
+          {
+            "question": "زمان حال کامل (Present Perfect) با چه فرمولی ساخته می‌شود؟",
+            "options": ["have / has + قسمت سوم فعل (p.p.)", "did + فعل ساده"],
+            "correctIndex": 0,
+            "explanationFa": "ماضی نقلی یا حال کامل همیشه از have/has به اضافه شکل سوم فعل (Past Participle) ساخته می‌شود."
+          },
+          {
+            "question": "برای نشان دادن طول و دوره زمانی (مانند دو هفته یا سه ماه) از کدام کلمه استفاده می‌کنیم؟",
+            "options": ["for (به مدتِ)", "since (از زمانِ)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه for برای طول مدت زمان (for two weeks) و since برای مبدأ زمان (since Norooz) به کار می‌رود."
+          }
+        ]
+      },
+      "ruleBoxFa": "زمان حال کامل (have/has + p.p.) کارهایی را بیان می‌کند که در گذشته رخ داده اما اثر یا ادامه آن به زمان حال متصل است. since برای نقطه آغاز زمان، for برای طول مدت زمان، و yet در انتهای جملات منفی و سوالی می‌آید.",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "منفی کردن حال کامل و کاربرد Yet",
+          "stepByStepExplanationFa": [
+            "۱. کلمه not را بعد از have یا has قرار می‌دهیم (haven't / hasn't).",
+            "۲. کلمه yet به معنای «هنوز» در انتهای جمله منفی قرار می‌گیرد."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "He has given up his bad eating habits.",
+            "questionPrompt": "جمله بالا را با استفاده از yet منفی کنید:",
+            "options": [
+              "He hasn't given up his bad eating habits yet.",
+              "He didn't give up his bad habits yet."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "منفی حال کامل با hasn't + p.p. ساخته می‌شود و yet در انتهای جمله منفی قرار می‌گیرد."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "سوالی کردن تجربیات با Have you ever",
+          "stepByStepExplanationFa": [
+            "۱. فعل کمکی Have یا Has را به ابتدای جمله قبل از فاعل منتقل می‌کنیم.",
+            "۲. برای پرسیدن تجربیات زندگی از کلمه ever (تا به حال) قبل از p.p. استفاده می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "You have climbed Darband mountain.",
+            "questionPrompt": "جمله را درباره تجربه کوهنوردی با ever سوالی کنید:",
+            "options": [
+              "Have you ever climbed Darband mountain?",
+              "Did you ever climbed Darband mountain?"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "برای پرسش از تجربیات در حال کامل، فرمول Have + فاعل + ever + p.p. به کار می‌رود."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp11-2-1",
+            "prompt": "I .......... in this neighborhood since 1395.",
+            "options": ["have lived", "lived", "am living", "will live"],
+            "correctIndex": 0,
+            "explanationFa": "وجود since به همراه سال مبدأ، نشانه قطعی زمان حال کامل (have lived) است."
+          },
+          {
+            "id": "gp11-2-2",
+            "prompt": "Sina hasn't finished his computer project ..........",
+            "options": ["already", "yet", "since", "never"],
+            "correctIndex": 1,
+            "explanationFa": "در انتهای جملات منفی زمان حال کامل از yet (هنوز) استفاده می‌کنیم."
+          },
+          {
+            "id": "gp11-2-3",
+            "prompt": "My grandfather has .......... smoking because it was harmful to his heart.",
+            "options": ["given up", "looked after", "checked in", "got up"],
+            "correctIndex": 0,
+            "explanationFa": "فعل عبارتی give up به معنای ترک کردن عادت مضر است (given up smoking)."
+          },
+          {
+            "id": "gp11-2-4",
+            "prompt": "Nurses at the hospital .......... the patients very kindly.",
+            "options": ["look after", "call back", "give up", "grow up"],
+            "correctIndex": 0,
+            "explanationFa": "فعل عبارتی look after به معنای مراقبت و پرستاری کردن از بیمار است."
+          }
+        ],
+        "production": {
+          "imageUrl": "healthy-jogging-transformation",
+          "imageDescriptionFa": "تصویر فردی که دویدن روزانه را آغاز کرده و وزنش کاهش یافته است",
+          "promptInstructionFa": "با استفاده از زمان حال کامل (has started / has lost) یک جمله توصیفی بسازید:",
+          "targetKeywords": ["started", "lost", "weight", "jogging"],
+          "modelSentence": "He has started jogging and has lost five kilos in recent months.",
+          "persianTranslation": "او ورزش دویدن آرام را آغاز کرده و در ماه‌های اخیر پنج کیلو وزن کم کرده است."
+        }
+      }
+    },
+    "listening": {
+      "title": "شنیداری تجربیات و لحن اضطراری (Past Experiences & Urgent Stress)",
+      "preListeningQuestions": [
+        {
+          "id": "lq11-2-1",
+          "question": "What question do we ask to find out about someone's life experiences?",
+          "options": ["Have you ever...?", "Where are you going?", "How much is it?"],
+          "correctIndex": 0
+        },
+        {
+          "id": "lq11-2-2",
+          "question": "In emergency situations (like 'Watch out!'), how are words stressed?",
+          "options": ["All words carry strong stress", "Only the first word is stressed", "No words are stressed"],
+          "correctIndex": 0
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv11-2-1",
+          "title": "مکالمه ۱: گفتگو درباره تجربه بازی سفر به مریخ",
+          "transcriptEn": "Farhad: Have you ever played the game 'Travel to Mars'?\nNavid: Oh, yes. I have learned to play it recently, but I don't want to play it again.\nFarhad: Really? Why?\nNavid: Because spending too much time playing games makes me feel tired and depressed.",
+          "transcriptFa": "فرهاد: آیا تا به حال بازی 'سفر به مریخ' را بازی کرده‌ای؟\nنوید: اوه، بله. اخیراً یاد گرفتم آن را بازی کنم، اما دیگر نمی‌خواهم بازی‌اش کنم.\nفرهاد: واقعاً؟ چرا؟\nنوید: چون گذراندن وقت زیاد پای بازی‌ها باعث می‌شود احساس خستگی و افسردگی کنم."
+        },
+        {
+          "id": "conv11-2-2",
+          "title": "مکالمه ۲: گفتگو درباره تجربیات سفر و ورزش فریده",
+          "transcriptEn": "Teacher: Farideh, have you ever traveled to the South of Iran?\nFarideh: Yes, I have visited Shiraz and Kish Island with my family.\nTeacher: Have you ever climbed Mount Damavand?\nFarideh: No, not yet. But I am planning to start mountain climbing soon.",
+          "transcriptFa": "معلم: فریده، آیا تا به حال به جنوب ایران سفر کرده‌ای؟\nفریده: بله، با خانواده‌ام از شیراز و جزیره کیش بازدید کرده‌ام.\nمعلم: آیا تا به حال از کوه دماوند صعود کرده‌ای؟\nفریده: خیر، هنوز نه. اما قصد دارم به زودی کوهنوردی را شروع کنم."
+        }
+      ],
+      "pronunciation": {
+        "title": "تکیه در موقعیت‌های اضطراری (Emergency Stress)",
+        "ruleExplanationFa": "طبق صفحه ۷۱ کتاب، در موقعیت‌های هشداری و اورژانسی (Emergencies)، تمامی کلمات حامل پیام اضطراری و حیاتی هستند؛ بنابراین همه واژگان تکیه و استرس قوی و مؤکد می‌گیرند (All words carry strong stress).",
+        "examples": [
+          {
+            "sentence": "WATCH OUT! (مواظب باش!)",
+            "intonation": "falling",
+            "patternDescriptionFa": "هر دو کلمه WATCH و OUT با بلندی و تاکید صدایی قوی تلفظ می‌شوند."
+          },
+          {
+            "sentence": "HURRY UP! (عجله کن!)",
+            "intonation": "falling",
+            "patternDescriptionFa": "هر دو کلمه HURRY و UP دارای استرس قوی هستند."
+          },
+          {
+            "sentence": "TAKE CARE! (مراقب خودت باش!)",
+            "intonation": "falling",
+            "patternDescriptionFa": "هر دو واژه TAKE و CARE تکیه مؤکد می‌گیرند."
+          },
+          {
+            "sentence": "GET AWAY! (دور شو!)",
+            "intonation": "falling",
+            "patternDescriptionFa": "در فرمان‌های اضطراری هر دو بخش فعل دوکلمه‌ای استرس دارند."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq11-2-1",
+            "sentence": "In the warning 'WATCH OUT! A car is coming', which word carries strong stress?",
+            "correctIntonation": "falling",
+            "explanationFa": "در موقعیت‌های اضطراری هر دو کلمه WATCH و OUT استرس قوی و مؤکد دارند."
+          },
+          {
+            "id": "prq11-2-2",
+            "sentence": "In 'Hurry up! We are late for the doctor appointment', both words carry stress.",
+            "correctIntonation": "falling",
+            "explanationFa": "در عبارت‌های شتابان و اضطراری تمام کلمات جمله حامل تکیه قوی هستند."
+          },
+          {
+            "id": "prq11-2-3",
+            "sentence": "Which of the following phrases is spoken with emergency double stress?",
+            "correctIntonation": "falling",
+            "explanationFa": "عبارت‌های هشداردهنده نظیر !Wake up یا !Watch out تکیه دوجزئی قوی دارند."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "اسم مصدر در نقش فاعل (Gerund as Subject)",
+        "explanationFa": "اسم مصدر (Gerund) از افزودن -ing به انتهای فعل ساخته می‌شود (مانند swimming, reading) و دقیقاً همانند یک اسم رفتار می‌کند. هرگاه اسم مصدر به تنهایی فاعل جمله باشد، فعل بعد از آن حتماً مفرد است؛ اما اگر دو اسم مصدر با and بیایند، فعل جمع خواهد بود.",
+        "categories": [
+          {
+            "categoryEn": "Single Gerund Subject (اسم مصدر مفرد)",
+            "categoryFa": "یک اسم مصدر به عنوان فاعل با فعل مفرد",
+            "examples": ["Swimming is useful for everyone.", "Reading helps us learn English.", "Walking makes me calm."]
+          },
+          {
+            "categoryEn": "Compound Gerund Subject (اسم مصدر مرکب)",
+            "categoryFa": "دو اسم مصدر متصل با and با فعل جمع",
+            "examples": ["Cycling and jogging are my favorite sports.", "Eating well and exercising prevent disease."]
+          },
+          {
+            "categoryEn": "Gerund with Object (اسم مصدر همراه با مفعول خود)",
+            "categoryFa": "اسم مصدر همراه با مفعول ولی کماکان مفرد",
+            "examples": ["Eating vegetables improves your health.", "Surfing the net for hours causes fatigue."]
+          },
+          {
+            "categoryEn": "Gerund vs Present Participle (تمایز اسم مصدر از استمراری)",
+            "categoryFa": "تمایز کاربرد اسم مصدر از فعل زمان استمراری",
+            "examples": ["Walking is good [اسم مصدر].", "He is walking in the park [فعل حال استمراری]."]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq11-2-1",
+            "prompt": "در جمله '.......... fast food makes people gain weight rapidly'، شکل صحیح فعل چیست؟",
+            "options": ["Eating (اسم مصدر)", "Eat", "Ate", "To eaten"],
+            "correctIndex": 0,
+            "explanationFa": "در جایگاه فاعل جمله به یک اسم مصدر (Eating) نیاز داریم که نقش اسم را ایفا کند."
+          },
+          {
+            "id": "wq11-2-2",
+            "prompt": "Walking and swimming .......... excellent physical exercises for older people.",
+            "options": ["are", "is", "was", "be"],
+            "correctIndex": 0,
+            "explanationFa": "دو اسم مصدر که با and به هم متصل شده‌اند فاعل مرکب جمع می‌سازند، پس فعل جمع are به کار می‌رود."
+          },
+          {
+            "id": "wq11-2-3",
+            "prompt": "در کدام گزینه کلمه مختوم به -ing یک «اسم مصدر (Gerund)» است نه فعل استمراری؟",
+            "options": [
+              "Jogging every morning is good for your heart.",
+              "He was jogging in the street when I saw him.",
+              "They are jogging right now.",
+              "She will be jogging tomorrow morning."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "در گزینه اول Jogging در جایگاه فاعل جمله نشسته است و اسم مصدر (Gerund) می‌باشد؛ در گزینه‌های دیگر فعل زمان استمراری است."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "اسم مصدر بعد از افعال پرکاربرد (Gerund after Verbs)",
+        "rulesSummaryFa": "برخی از افعال در زبان انگلیسی همواره مفعول خود را به شکل اسم مصدر (Gerund = Verb + -ing) می‌پذیرند. مهم‌ترین این افعال عبارتند از: like, enjoy, hate, love, quit, stop, finish.",
+        "regularPairs": [
+          { "singular": "enjoy + gerund", "plural": "I enjoy playing volleyball on weekends." },
+          { "singular": "like + gerund", "plural": "Sina likes surfing the net at home." },
+          { "singular": "quit / give up + gerund", "plural": "My uncle quit smoking last year." }
+        ],
+        "irregularPairs": [
+          { "singular": "stop + gerund", "plural": "The children stopped watching TV and slept." },
+          { "singular": "finish + gerund", "plural": "She finished reading the health booklet." }
+        ],
+        "exercise": [
+          {
+            "id": "sp11-2-1",
+            "prompt": "My father decided to quit .......... cigarettes after talking to his doctor.",
+            "options": ["smoking", "smoke", "to smoke", "smoked"],
+            "correctIndex": 0,
+            "explanationFa": "فعل quit از افعالی است که بلافاصله اسم مصدر (smoking) می‌گیرد."
+          },
+          {
+            "id": "sp11-2-2",
+            "prompt": "Do you enjoy .......... with your friends on Friday afternoons?",
+            "options": ["hanging out", "hang out", "hung out", "to hang out"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از فعل enjoy همیشه اسم مصدر با پسوند -ing یعنی hanging out می‌آید."
+          },
+          {
+            "id": "sp11-2-3",
+            "prompt": "After two hours of study, the students stopped .......... and ate an apple.",
+            "options": ["writing", "write", "wrote", "to written"],
+            "correctIndex": 0,
+            "explanationFa": "فعل stop هنگامی که به معنای متوقف کردن یک فعالیت است مفعول gerund (writing) می‌گیرد."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "اسم مصدر بعد از حروف اضافه (Gerund after Prepositions)",
+        "explanationFa": "قاعده کلی و ثابت زبان انگلیسی: هرگاه بعد از یک حرف اضافه (مانند of, for, about, in, at, without, before, after) فعلی بیاید، آن فعل حتماً و قطعاً باید به صورت اسم مصدر (Verb + -ing) باشد.",
+        "examples": [
+          { "common": "tired of + gerund", "proper": "He is tired of sitting at the computer desk." },
+          { "common": "thank you for + gerund", "proper": "Thank you for calling me." },
+          { "common": "interested in + gerund", "proper": "Sina is interested in climbing mountains." },
+          { "common": "without + gerund", "proper": "You cannot live well without eating healthy food." }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pn11-2-1",
+            "sentenceWithBlank": "Thank you so much for .......... (calling / call) to ask about my health.",
+            "options": ["calling", "call"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از حرف اضافه for، فعل باید -ing بگیرد: for calling."
+          },
+          {
+            "id": "pn11-2-2",
+            "sentenceWithBlank": "He went to bed without .......... (eating / eat) dinner.",
+            "options": ["eating", "eat"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه without حرف اضافه است و کلمه بعد از آن باید اسم مصدر eating باشد."
+          },
+          {
+            "id": "pn11-2-3",
+            "sentenceWithBlank": "Are you interested in .......... (learning / learn) more about a healthy lifestyle?",
+            "options": ["learning", "learn"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از عبارت interested in، فعل به صورت اسم مصدر learning می‌آید."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تمرین‌های تثبیت نگارش کتاب (Writing Review & Practice)",
+        "explanationFa": "تمرین‌های طبقه‌بندی‌شده کتاب درسی (صفحات ۷۳ الی ۷۶) برای تسلط بر تبدیل فعل به اسم مصدر و تشخیص سه نقش اصلی Gerund (فاعل، مفعول فعل، مفعول حرف اضافه).",
+        "markersList": [
+          {
+            "type": "نقش فاعلی (Subject)",
+            "typeFa": "در ابتدای جمله قبل از فعل اصلی",
+            "items": ["Walking in the morning is healthy.", "Eating fruit prevents illness."],
+            "exampleSentence": "Walking is a great exercise."
+          },
+          {
+            "type": "نقش مفعول فعل (Object of Verb)",
+            "typeFa": "بعد از افعالی مانند enjoy, like, quit",
+            "items": ["She loves cooking balanced meals.", "He stopped eating junk food."],
+            "exampleSentence": "He quit smoking."
+          },
+          {
+            "type": "نقش مفعول حرف اضافه (Object of Preposition)",
+            "typeFa": "بعد از حروف اضافه مانند for, of, in, without",
+            "items": ["Thank you for helping.", "He is tired of sitting."],
+            "exampleSentence": "She left without saying goodbye."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nm11-2-1",
+            "prompt": "در جمله 'Reading books in English helps improve our vocabulary'، کلمه 'Reading' چه نقشی دارد؟",
+            "options": [
+              "Subject of the sentence (فاعل جمله)",
+              "Object of a preposition (مفعول حرف اضافه)",
+              "Main verb in present continuous (فعل زمان حال استمراری)",
+              "Adverb of manner (قید حالت)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه Reading در ابتدای جمله آمده و اسم مصدری است که نقش فاعل جمله را بر عهده دارد."
+          },
+          {
+            "id": "nm11-2-2",
+            "prompt": "Traveling by train .......... cheap, safe, and comfortable.",
+            "options": ["is", "are", "were", "be"],
+            "correctIndex": 0,
+            "explanationFa": "فاعل جمله یک اسم مصدر منفرد (Traveling by train) است؛ بنابراین فعل حتماً مفرد (is) است."
+          },
+          {
+            "id": "nm11-2-3",
+            "prompt": "در جمله 'Behzad thanked his friend for inviting him to Darband'، نقش کلمه 'inviting' چیست؟",
+            "options": [
+              "Object of the preposition 'for' (مفعول حرف اضافه)",
+              "Subject of the sentence (فاعل جمله)",
+              "Verb in past continuous (فعل گذشته استمراری)",
+              "Adjective (صفت)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه inviting بلافاصله بعد از حرف اضافه for آمده و مفعول حرف اضافه است."
+          }
+        ]
+      }
+    }
+  }
+}

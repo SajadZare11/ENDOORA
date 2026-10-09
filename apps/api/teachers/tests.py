@@ -272,6 +272,44 @@ class TeacherClassAndHoursManagementTests(TestCase):
         self.assertEqual(response.data["subject"], "Business English")
         self.assertEqual(response.data["level"], "C1")
         self.assertEqual(response.data["enrolled_students_count"], 0)
+        self.assertTrue(bool(response.data.get("code")))
+        self.assertEqual(len(str(response.data["code"])), 7)
+        self.assertTrue(str(response.data["code"]).isdigit())
+
+    def test_7_digit_unique_code_generation_and_lookup(self):
+        # 1. Created class has a 7-digit numeric code
+        self.assertTrue(bool(self.teacher_class.code))
+        self.assertEqual(len(self.teacher_class.code), 7)
+        self.assertTrue(self.teacher_class.code.isdigit())
+
+        # 2. Public / Learner lookup by code returns class details
+        resp = self.client.get(f"/api/teachers/classes/lookup-by-code/?code={self.teacher_class.code}")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.data["id"], str(self.teacher_class.id))
+        self.assertEqual(resp.data["code"], self.teacher_class.code)
+        self.assertEqual(resp.data["title"], self.teacher_class.title)
+
+        # 3. Lookup with non-existent code returns 404
+        bad_resp = self.client.get("/api/teachers/classes/lookup-by-code/?code=0000000")
+        self.assertEqual(bad_resp.status_code, 404)
+
+        # 4. Filter by code in teacher classes list
+        self.client.force_login(self.teacher)
+        filter_resp = self.client.get(f"/api/teachers/classes/?code={self.teacher_class.code}")
+        self.assertEqual(filter_resp.status_code, 200)
+        self.assertEqual(len(filter_resp.data), 1)
+        self.assertEqual(filter_resp.data[0]["code"], self.teacher_class.code)
+
+    def test_learner_join_class_by_7_digit_code(self):
+        self.client.force_login(self.other_learner)
+        join_resp = self.client.post(
+            "/api/teachers/classes/join-by-code/",
+            {"code": self.teacher_class.code},
+            format="json",
+        )
+        self.assertIn(join_resp.status_code, [200, 201])
+        self.assertTrue(join_resp.data["success"])
+        self.assertEqual(join_resp.data["class_id"], str(self.teacher_class.id))
 
     def test_invite_learner_and_consent_flow(self):
         self.client.force_login(self.teacher)

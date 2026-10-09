@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import {
+  accountPath,
   localizedPath,
   type PublicLocale,
 } from "../../lib/public-site";
@@ -33,19 +34,19 @@ const loop7Steps: LoopStepItem[] = [
   {
     number: "01",
     stepKey: "onboarding",
-    fa: "ورود و ارزیابی هدفمند",
+    fa: "انتخاب سن و هدف",
     en: "Onboarding & Goal Profiling",
-    subtitleFa: "رده سنی و تعیین هدف اصلی",
+    subtitleFa: "مسیر متناسب با سن تو",
     subtitleEn: "Age group & core learner intent",
-    bodyFa: "ثبت مشخصات و رده سنی (خردسال ۴-۷، کودک و نوجوان ۸-۱۲ یا بزرگسال) و هدف اصلی یادگیری (عمومی، مهاجرت، آیلتس یا تافل) جهت تنظیم اولیه نقشه راه.",
+    bodyFa: "اول به ما بگو چند سالته و برای چی می‌خوای انگلیسی یاد بگیری؛ مکالمه، مدرسه یا مهاجرت؟ تا مسیرت رو آماده کنیم.",
     bodyEn: "Profile registration, age bracket (young 4–7, 8–12, adult), and core learning goals to calibrate the personalized journey from day one.",
     icon: "🎯",
-    badgeFa: "گام ۱: مشخصات هدفمند",
+    badgeFa: "گام ۱: معرفی و هدف",
     badgeEn: "Step 1: Goal Profile",
     highlightsFa: [
-      "خردسالان (۴ تا ۷ سال): شعر، داستان‌های صوتی و فونیکس قوی",
-      "کودکان و نوجوانان (۸ تا ۱۲ سال): یادگیری تعاملی و داستان‌های جذاب",
-      "بزرگسالان: مکالمه عمومی، کار، مهاجرت و آزمون‌های بین‌المللی",
+      "خردسالان (۴ تا ۷ سال): شعر، انیمیشن و بازی‌های شاد با حروف الفبا",
+      "کودکان و نوجوانان (۸ تا ۱۲ سال): داستان‌های هیجان‌انگیز و مکالمه روان",
+      "بزرگسالان: مکالمه خودمانی، کار، دانشگاه و آمادگی آزمون‌های بین‌المللی",
     ],
     highlightsEn: [
       "Young learners (4–7): songs, stories, strong phonics",
@@ -59,19 +60,19 @@ const loop7Steps: LoopStepItem[] = [
   {
     number: "02",
     stepKey: "placement",
-    fa: "آزمون تعیین سطح ۶ مهارتی",
+    fa: "تعیین سطح سریع و هوشمند",
     en: "6-Skill Placement Test",
-    subtitleFa: "سنجش متوازن، دقیق و تطبیقی",
+    subtitleFa: "سنجش بدون استرس مهارت‌ها",
     subtitleEn: "Adaptive 6-skill diagnostic assessment",
-    bodyFa: "سنجش جامع ۶ مهارت (دستور زبان، واژگان، خواندن، شنیداری، گفتاری و نگارش) بر پایه هوش مصنوعی تطبیقی بدون تخمین تصادفی و داده ساختگی.",
+    bodyFa: "توی چند دقیقه گرامر، لغت، تلفظ، شنیداری و نوشتن رو می‌سنجیم تا دقیقاً بدونیم کجای کاری و چی نیاز داری.",
     bodyEn: "Comprehensive adaptive assessment across Grammar, Vocabulary, Reading, Listening, Speaking, and Writing without synthetic score guesswork.",
     icon: "🧠",
-    badgeFa: "گام ۲: ارزیابی ۶ مهارتی",
+    badgeFa: "گام ۲: سنجش مهارت‌ها",
     badgeEn: "Step 2: 6-Skill Engine",
     highlightsFa: [
-      "سنجش تطبیقی گرامر و واژگان بر مبنای هوش مصنوعی",
-      "ارزیابی تلفظ و روانی کلام با تحلیل بلادرنگ صوت",
-      "درک مطلب، شنیداری و تحلیل ساختار نگارش",
+      "تست هوشمند گرامر و کلمات بدون سوالات تکراری",
+      "بررسی روانی صحبت کردن و لهجه با هوش مصنوعی",
+      "سنجش گوش دادن و درک مطلب، ساده و شفاف",
     ],
     highlightsEn: [
       "Adaptive grammar & vocabulary assessment powered by AI",
@@ -85,19 +86,19 @@ const loop7Steps: LoopStepItem[] = [
   {
     number: "03",
     stepKey: "report",
-    fa: "کارنامه تحلیلی CEFR",
+    fa: "کارنامه ساده و شفاف",
     en: "CEFR Diagnostic Report",
-    subtitleFa: "تراز استاندارد بین‌المللی (A1 تا C2)",
+    subtitleFa: "سطح واقعیت کجاست؟",
     subtitleEn: "Standardized international CEFR benchmark",
-    bodyFa: "ارائه نمودار تحلیلی نقاط قوت و نیازمند رشد، شواهد پاسخ‌ها و تعیین تراز دقیق استاندارد بین‌المللی CEFR از مبتدی تا پیشرفته.",
+    bodyFa: "یه کارنامه تر و تمیز می‌گیری که نشون میده تو هر مهارت کجایی؛ از مبتدی تا پیشرفته، همه چی شفافه.",
     bodyEn: "Transparent evidence summary, radar skill breakdown, and rigorous CEFR diagnostic classification from Beginner (A1) to Advanced (C2).",
     icon: "📊",
-    badgeFa: "گام ۳: کارنامه استاندارد",
+    badgeFa: "گام ۳: کارنامه شفاف",
     badgeEn: "Step 3: CEFR Benchmark",
     highlightsFa: [
-      "محاسبه تراز دقیق CEFR (A1, A2, B1, B2, C1, C2)",
-      "نمودار راداری و نمرات تفکیکی هر ۶ مهارت",
-      "مبنای علمی موثق برای انتخاب خودکار کتاب آموزشی",
+      "مشخص شدن سطح استانداردت (از A1 تا C2)",
+      "نمودار نقاط قوت و مهارت‌هایی که نیاز به تمرین دارن",
+      "انتخاب کتاب مناسب دقیقاً اندازه سطحت",
     ],
     highlightsEn: [
       "Rigorous CEFR benchmark (A1, A2, B1, B2, C1, C2)",
@@ -105,28 +106,28 @@ const loop7Steps: LoopStepItem[] = [
       "Evidence-grounded baseline for automated textbook mapping",
     ],
     actionHref: "/placement/report",
-    actionLabelFa: "مشاهده نمونه کارنامه تحلیلی",
+    actionLabelFa: "دیدن نمونه کارنامه",
     actionLabelEn: "View Diagnostic Report",
   },
   {
     number: "04",
     stepKey: "roadmap",
-    fa: "مسیر اختصاصی و کتاب آموزشی",
+    fa: "کتاب و نقشه راه اختصاصی",
     en: "Personalized Path & Book Mapping",
-    subtitleFa: "نگاشت خودکار کتاب استاندارد و گراف مسیر",
+    subtitleFa: "معتبرترین کتاب‌ها بر اساس سطحت",
     subtitleEn: "Automated textbook syllabus & progression graph",
-    bodyFa: "سیستم بر اساس سطح دقیق دانشجو، معتبرترین کتاب درسی استاندارد را اختصاص داده و نمودارهای گراف پیشرفت فعلی و آتی، سرفصل‌ها، گرامرها و اهداف مکالمه را نمایش می‌دهد.",
+    bodyFa: "سیستم بهترین کتاب آموزشی روز دنیا رو برات انتخاب میکنه و درس به درس باهات میاد جلو تا بدونی هر هفته قراره چی یاد بگیری.",
     bodyEn: "Automated curriculum matching to standard coursebooks based on placement evidence, generating interactive visual progression roadmaps for present and future phases.",
     icon: "📚",
-    badgeFa: "گام ۴: نقشه کتب درسی و سرفصل‌ها",
+    badgeFa: "گام ۴: کتاب مناسب تو",
     badgeEn: "Step 4: Textbook & Syllabus Roadmap",
     highlightsFa: [
-      "مبتدی (A1): American English File Starter (Oxford)",
-      "مقدماتی (A2): American English File 1 & 2 (Oxford)",
-      "پیش‌متوسط تا متوسط (B1): American English File 3 (Oxford)",
-      "فوق‌متوسط (B2): American English File 4 (Oxford)",
+      "مبتدی (A1): American English File Starter (شروع مکالمه و الفبا)",
+      "مقدماتی (A2): American English File 1 & 2 (مکالمه روزمره و جمله‌سازی)",
+      "متوسط (B1): American English File 3 (اصطلاحات و مکالمه روان)",
+      "فوق‌متوسط (B2): American English File 4 (بحث آزاد و گرامر پیشرفته)",
       "پیشرفته (C1–C2): American English File 5 و کتب آزمون CAE",
-      "خردسالان (۴–۷): Family and Friends — شعر، داستان، فونیکس قوی",
+      "خردسالان (۴–۷): Family and Friends — شعر، بازی و تلفظ صوتی حروف",
       "کودکان و نوجوانان (۸–۱۲): Oxford Discover، Super Minds یا Fly High",
       "آزمون‌های بین‌المللی: Cambridge IELTS، Road to IELTS، Target Band 7، Barron's TOEFL iBT، Delta TOEFL، 4000 Essential English Words",
     ],
@@ -141,27 +142,27 @@ const loop7Steps: LoopStepItem[] = [
       "Exam Prep: Cambridge IELTS series, Road to IELTS, Target Band 7, Barron's TOEFL iBT, Delta TOEFL, 4000 Essential English Words",
     ],
     actionHref: "/path",
-    actionLabelFa: "مشاهده مسیر اختصاصی و کتاب‌ها",
+    actionLabelFa: "دیدن نقشه راه و کتاب‌ها",
     actionLabelEn: "Explore Personalized Path & Books",
   },
   {
     number: "05",
     stepKey: "liveClass",
-    fa: "ثبت‌نام در کلاس آنلاین زنده",
+    fa: "کلاس آنلاین با استاد",
     en: "Live Online Class Enrollment",
-    subtitleFa: "اتصال به مدرس و گروه‌های همسطح (تا ۴ نفر)",
+    subtitleFa: "تک‌نفره یا گروه‌های صمیمی تا ۴ نفر",
     subtitleEn: "Smart teacher matching & cohort clustering (max 4)",
-    bodyFa: "زبان‌آموز روزهای آزاد و نوع کلاس (انفرادی یا گروهی با تا ۳ همکلاسی همسطح، حداکثر ۴ نفر) را انتخاب می‌کند. درخواست به استخر کلاس‌های داشبورد مدرسان ارسال شده، مدرسان گروه‌ها را تایید و پس از هر جلسه، مباحث و تکالیف تدریس‌شده را در سیستم ثبت می‌کنند.",
+    bodyFa: "روز و ساعتی که راحتی رو انتخاب کن! می‌تونی کلاس خصوصی تک‌نفره برداری یا با ۲ تا ۳ همکلاسی هم‌سطح خودت هم‌کلام بشی.",
     bodyEn: "Learners select weekly availability and preferred format (solo 1-on-1 or small group with up to 3 classmates, max 4 students). Requests appear in the teacher pool where smart cohorts cluster and teachers log taught units and homework.",
     icon: "👥",
-    badgeFa: "گام ۵: کلاس زنده + داشبورد مدرسان",
+    badgeFa: "گام ۵: کلاس زنده با استاد",
     badgeEn: "Step 5: Live Cohort Matching",
     highlightsFa: [
-      "کلاس انفرادی (خصوصی ۱ نفره) یا گروهی با حداکثر ۳ همکلاسی همسطح",
-      "تنظیم روزها و سانس‌های زمانی آزاد هفتگی توسط زبان‌آموز",
-      "استخر درخواست‌های کلاسی در داشبورد مدرسان برای پذیرش سریع",
-      "پیشنهاد هوشمند سیستم برای گروه‌بندی زبان‌آموزان همسطح با زمان مشترک",
-      "برگزاری در اسکای‌روم / گوگل میت و ثبت گزارش تدریس و تکالیف توسط مدرس",
+      "کلاس انفرادی (خصوصی ۱ نفره) یا گروهی با حداکثر ۳ همکلاسی هم‌سطح",
+      "تنظیم روزها و ساعت‌های خالی در هفته به انتخاب خودت",
+      "پیدا شدن سریع استاد و هماهنگی کلاس در محیط آنلاین",
+      "همکلاسی‌های دقیقاً هم‌سطح برای مکالمه بدون خجالت",
+      "ثبت گزارش درس و تمرین‌های اختصاصی توسط استاد بعد از هر جلسه",
     ],
     highlightsEn: [
       "1-on-1 solo private or small group with up to 3 classmates (4 students max)",
@@ -171,26 +172,26 @@ const loop7Steps: LoopStepItem[] = [
       "Skyroom / Google Meet live links and post-session teacher lesson & homework logs",
     ],
     actionHref: "/path#enroll",
-    actionLabelFa: "ثبت‌نام و انتخاب زمان کلاس",
+    actionLabelFa: "انتخاب زمان و ثبت‌نام کلاس",
     actionLabelEn: "Enroll in a Live Class",
   },
   {
     number: "06",
     stepKey: "dailyMission",
-    fa: "ماموریت روزانه انطباقی",
+    fa: "مأموریت روزانه (۱۰ دقیقه‌ای)",
     en: "Adaptive Daily Mission",
-    subtitleFa: "تکالیف مدرس در اولویت اول + مرور فاصله‌دار SRS",
+    subtitleFa: "تمرین کوتاه، ماندگاری همیشگی",
     subtitleEn: "Priority teacher homework + Spaced Repetition (SRS)",
-    bodyFa: "برنامه تمرین روزانه هوشمند و کوتاه؛ تکالیف محول‌شده توسط مدرس در آخرین جلسه زنده به عنوان اولویت اول در ماموریت امروز قرار می‌گیرد، همراه با مرور کارت‌های واژگان با متد SRS برای ماندگاری در حافظه بلندمدت.",
+    bodyFa: "لازم نیست ساعت‌ها وقت بذاری؛ فقط ۱۰ تا ۱۵ دقیقه در روز تمرین‌های استادت و فلش‌کارت‌های هوشمند رو مرور کن تا کلمات از یادت نرن.",
     bodyEn: "Manageable daily learning rhythm where homework assigned in the latest live teacher session takes priority #1, combined with spaced-repetition (SRS) vocabulary consolidation.",
     icon: "⚡",
-    badgeFa: "گام ۶: تثبیت روزانه و تکالیف",
+    badgeFa: "گام ۶: عادت روزانه ۱۰ دقیقه‌ای",
     badgeEn: "Step 6: Daily Mission & SRS",
     highlightsFa: [
-      "اولویت اول یادگیری: تکالیف محول‌شده توسط مدرس در آخرین جلسه آنلاین",
-      "مرور فاصله‌دار علمی کارت‌های واژگان (Spaced Repetition System)",
-      "تمرین روزانه کوتاه ۱۰ تا ۱۵ دقیقه‌ای برای ایجاد عادت پایدار",
-      "به‌روزرسانی خودکار پیشرفت و تطبیق مسیر با سرعت زبان‌آموز",
+      "انجام راحت تکالیفی که استادت بهت داده برای جلسه بعد",
+      "فلش‌کارت‌های هوشمند لغت که نمی‌ذارن کلمات یادت بره",
+      "فقط روزی ۱۰ الی ۱۵ دقیقه تمرین برای حفظ پیوستگی",
+      "پیشرفت قدم به قدم بدون خستگی و دلزدگی",
     ],
     highlightsEn: [
       "Priority #1: Live class homework assigned by your teacher in the latest session",
@@ -199,26 +200,26 @@ const loop7Steps: LoopStepItem[] = [
       "Continuous adaptation to your pace and newly identified learning gaps",
     ],
     actionHref: "/today",
-    actionLabelFa: "مشاهده ماموریت روزانه امروز",
+    actionLabelFa: "دیدن مأموریت امروز",
     actionLabelEn: "View Today's Mission",
   },
   {
     number: "07",
     stepKey: "aiLabs",
-    fa: "آزمایشگاه‌های تمرین عمیق AI",
+    fa: "هوش مصنوعی برای مکالمه و تمرین",
     en: "AI Labs & Deep Practice",
-    subtitleFa: "مربی نگارش، صوت، مکالمه تعاملی و ژنوم اشتباهات",
+    subtitleFa: "بدون استرس و هر چقدر خواستی تمرین کن",
     subtitleEn: "Writing Mentor, Voice Lab, AI Roleplay & Mistake Genome",
-    bodyFa: "تمرین نامحدود در مربی نگارش هوشمند (Writing Mentor)، آزمایشگاه صوت و تلفظ (Voice Lab)، شبیه‌ساز مکالمه در دنیای واقعی (AI Roleplay) و تمرین روی ژنوم اشتباهات پرتکرار (Mistake Genome).",
+    bodyFa: "هر موقع شبانه‌روز می‌تونی با هوش مصنوعی انگلیسی حرف بزنی، ترست بریزه، تلفظت رو اصلاح کنی و دستخط و انشات رو چک کنی.",
     bodyEn: "Unbounded interactive practice across the AI Writing Mentor, Voice & Pronunciation Lab, situational AI Roleplay conversations, and Mistake Genome remediation.",
     icon: "🔬",
-    badgeFa: "گام ۷: آزمایشگاه‌های هوش مصنوعی",
+    badgeFa: "گام ۷: همراه هوشمند ۲۴ ساعته",
     badgeEn: "Step 7: AI Labs & Deep Practice",
     highlightsFa: [
-      "AI Writing Mentor: تحلیل هوشمند مقالات، پیشنهاد بازنویسی و اصلاح گرامری",
-      "Voice & Pronunciation Lab: تحلیل تلفظ، اکسنت، روانی گفتار و ریتم کلام",
-      "AI Roleplay: شبیه‌سازی مکالمات واقعی (مصاحبه کاری، فرودگاه، هتل، کافه)",
-      "Mistake Genome: شناسایی الگوهای اشتباه پرتکرار و تمرین‌های میکرولرنینگ هدفمند",
+      "AI Writing Mentor: بررسی گرامر، پیشنهاد بازنویسی روان‌تر و اصلاح انشا",
+      "Voice Lab: گوش دادن به صدای تو و اصلاح تلفظ، لهجه و روانی صحبت",
+      "AI Roleplay: شبیه‌سازی مکالمات واقعی (کافه، فرودگاه، هتل، مصاحبه کاری)",
+      "Mistake Genome: پیدا کردن اشتباهات پرتکرارت و تبدیل اون‌ها به نقطه قوت",
     ],
     highlightsEn: [
       "AI Writing Mentor: Essay & paragraph analysis, rewriting suggestions & grammar check",
@@ -227,7 +228,7 @@ const loop7Steps: LoopStepItem[] = [
       "Mistake Genome: Recurring error pattern analysis and focused micro-drills",
     ],
     actionHref: "/practice-ai",
-    actionLabelFa: "ورود به آزمایشگاه‌های هوش مصنوعی",
+    actionLabelFa: "ورود به تمرین با هوش مصنوعی",
     actionLabelEn: "Open AI Practice Labs",
   },
 ];
@@ -236,7 +237,7 @@ const features = [
   {
     index: "01",
     title: "Learner Twin",
-    textFa: "یک مدل آموزشی توضیح‌پذیر که از ارزیابی و فعالیت واقعی تغذیه می‌شود؛ می‌توانی شواهدش را ببینی، اصلاح کنی یا بازنشانی کنی.",
+    textFa: "یه تصویر زنده و شفاف از سطح واقعی تو؛ سیستم دقیقاً می‌دونه کدوما رو بلدی و روی کدوما باید بیشتر تمرین کنی.",
     textEn: "An explainable learning model fed by assessment and real activity. You can inspect, correct, or reset its evidence.",
     url: "/features/learner-twin",
     visual: "twin",
@@ -244,7 +245,7 @@ const features = [
   {
     index: "02",
     title: "Mistake Genome",
-    textFa: "یک پاسخ اشتباه به برچسب دائمی تبدیل نمی‌شود. فقط الگوهای دارای شواهد کافی به تمرین هدفمند بعدی وصل می‌شوند.",
+    textFa: "از اشتباه کردن نترس! سیستم خطاهای پرتکرارت رو پیدا می‌کنه و با تمرین‌های کوتاه و هدفمند تبدیلشون می‌کنه به نقطه قوتت.",
     textEn: "One wrong answer never becomes a permanent label. Only sufficiently supported patterns inform targeted practice.",
     url: "/features/mistake-genome",
     visual: "mistakes",
@@ -252,7 +253,7 @@ const features = [
   {
     index: "03",
     title: "Daily Mission",
-    textFa: "به‌جای جست‌وجو بین صدها درس، هر روز یک مأموریت متناسب با زمان، هدف و مرورهای عقب‌افتاده پیشنهاد می‌شود.",
+    textFa: "به جای اینکه بین صدها درس گیج بشی، هر روز یه برنامه جمع‌وجور ۱۰ دقیقه‌ای اندازه وقت خالی خودت داری.",
     textEn: "Instead of searching hundreds of lessons, get one mission shaped by your time, goal, and overdue reviews.",
     url: "/features/daily-mission",
     visual: "mission",
@@ -263,27 +264,27 @@ function FeatureVisual({ type, locale }: { type: string; locale: PublicLocale })
   const isFa = locale === "fa";
   if (type === "twin") {
     return (
-      <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش شواهد Learner Twin" : "Learner Twin evidence preview"}>
+      <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش وضعیت مهارت‌های تو" : "Learner Twin evidence preview"}>
         <div className={styles.visualHeading}><span className={styles.visualMark}>E</span><strong>Learner Twin</strong></div>
         {["Vocabulary", "Grammar", "Listening"].map((skill) => (
-          <div className={styles.evidenceRow} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "در انتظار ارزیابی" : "Awaiting assessment"}</small></div>
+          <div className={styles.evidenceRow} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "منتظر تعیین سطح" : "Awaiting assessment"}</small></div>
         ))}
       </div>
     );
   }
   if (type === "mistakes") {
     return (
-      <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش تحلیل الگوی اشتباه" : "Mistake pattern preview"}>
+      <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش رفع اشتباهات" : "Mistake pattern preview"}>
         <div className={styles.patternLine}><span /><span /><span /></div>
-        <div className={styles.patternNote}><strong>{isFa ? "ابتدا شواهد" : "Evidence first"}</strong><small>{isFa ? "الگو پس از چند مشاهده معتبر می‌شود" : "A pattern needs multiple valid observations"}</small></div>
-        <div className={styles.reviewTag}>{isFa ? "قابل بازبینی توسط زبان‌آموز و مدرس" : "Reviewable by learner and teacher"}</div>
+        <div className={styles.patternNote}><strong>{isFa ? "یادگیری از اشتباهات" : "Evidence first"}</strong><small>{isFa ? "شناسایی نقاط ضعف پرتکرار" : "A pattern needs multiple valid observations"}</small></div>
+        <div className={styles.reviewTag}>{isFa ? "بررسی مشترک توسط تو و استاد" : "Reviewable by learner and teacher"}</div>
       </div>
     );
   }
   return (
-    <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش مأموریت روزانه" : "Daily Mission preview"}>
-      <div className={styles.missionHeader}><span>{isFa ? "امروز" : "Today"}</span><small>{isFa ? "متناسب با زمان تو" : "Fits your available time"}</small></div>
-      <div className={styles.missionTask}><span className={styles.taskCheck} aria-hidden="true">✓</span><div><strong>{isFa ? "مرور هدفمند" : "Focused review"}</strong><small>{isFa ? "تمرین بعد از ساخت مسیر نمایش داده می‌شود" : "Practice appears after your path is built"}</small></div></div>
+    <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش برنامه امروز" : "Daily Mission preview"}>
+      <div className={styles.missionHeader}><span>{isFa ? "امروز" : "Today"}</span><small>{isFa ? "اندازه وقت خالی تو" : "Fits your available time"}</small></div>
+      <div className={styles.missionTask}><span className={styles.taskCheck} aria-hidden="true">✓</span><div><strong>{isFa ? "تمرین ۱۰ دقیقه‌ای" : "Focused review"}</strong><small>{isFa ? "بعد از تعیین سطح فعال میشه" : "Practice appears after your path is built"}</small></div></div>
     </div>
   );
 }
@@ -294,52 +295,52 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       {
         level: isFa ? "مبتدی (A1)" : "Beginner (A1)",
         book: "American English File Starter (Oxford)",
-        desc: isFa ? "مقدمات مکالمه، واژگان پایه و فونیکس صوتی" : "Foundational speaking, starter vocabulary & phonics",
+        desc: isFa ? "شروع مکالمه‌های ساده، کلمات پرکاربرد روزمره و تلفظ حروف" : "Foundational speaking, starter vocabulary & phonics",
       },
       {
         level: isFa ? "مقدماتی (A2)" : "Elementary (A2)",
         book: "American English File 1 & 2 (Oxford)",
-        desc: isFa ? "تقویت مکالمه روزمره، جمله‌سازی و زمان‌های گذشته و آینده" : "Everyday fluency, sentence construction & past/future tenses",
+        desc: isFa ? "تقویت مکالمه روزمره، جمله‌سازی راحت و زمان‌های گذشته و آینده" : "Everyday fluency, sentence construction & past/future tenses",
       },
       {
-        level: isFa ? "پیش‌متوسط تا متوسط (B1)" : "Pre-Intermediate to Intermediate (B1)",
+        level: isFa ? "متوسط (B1)" : "Pre-Intermediate to Intermediate (B1)",
         book: "American English File 3 (Oxford)",
-        desc: isFa ? "توسعه بحث، افعال وجهی، واژگان موضوعی و اصطلاحات" : "Discussion skills, modals, topical vocab & natural idioms",
+        desc: isFa ? "بحث درباره موضوعات جذاب، اصطلاحات کاربردی و افزایش دایره لغت" : "Discussion skills, modals, topical vocab & natural idioms",
       },
       {
         level: isFa ? "فوق‌متوسط (B2)" : "Upper-Intermediate (B2)",
         book: "American English File 4 (Oxford)",
-        desc: isFa ? "تسلط بر متون نیمه‌تخصصی، مناظره و ساختارهای پیچیده گرامری" : "Nuanced debate, semi-technical texts & complex grammar",
+        desc: isFa ? "مکالمه روان و پیوسته، بیان نظر و گرامرهای پیشرفته‌تر" : "Nuanced debate, semi-technical texts & complex grammar",
       },
       {
         level: isFa ? "پیشرفته (C1–C2)" : "Advanced (C1–C2)",
         book: "American English File 5 & Cambridge CAE",
-        desc: isFa ? "تسلط بومی‌گونه، مهارت‌های آکادمیک و آمادگی عالی" : "Near-native mastery, academic nuance & CAE advanced prep",
+        desc: isFa ? "تسلط کامل مثل زبان مادری، متون پیشرفته و آمادگی عالی" : "Near-native mastery, academic nuance & CAE advanced prep",
       },
       {
         level: isFa ? "خردسالان (۴ تا ۷ سال)" : "Young Learners (4–7)",
         book: "Family and Friends (Oxford)",
-        desc: isFa ? "آهنگ‌ها، داستان‌های شاد، آموزش قوی فونیکس و الفبا" : "Joyful songs, picture stories & solid phonics foundations",
+        desc: isFa ? "آهنگ‌ها و شعرهای شاد، داستان‌های مصور و یادگیری صوتی حروف الفبا" : "Joyful songs, picture stories & solid phonics foundations",
       },
       {
         level: isFa ? "کودکان و نوجوانان (۸ تا ۱۲ سال)" : "Young Learners (8–12)",
         book: "Oxford Discover / Super Minds / Fly High",
-        desc: isFa ? "کشف جهان، پروژه‌های تعاملی و داستان‌های تقویت مکالمه" : "Inquiry-based discovery, interactive projects & spoken confidence",
+        desc: isFa ? "داستان‌های ماجراجویی، پروژه‌های جذاب و اعتمادبه‌نفس برای صحبت کردن" : "Inquiry-based discovery, interactive projects & spoken confidence",
       },
       {
         level: isFa ? "آزمون آیلتس (IELTS)" : "IELTS Exam Prep",
         book: "Cambridge IELTS Series + Road to IELTS + Target Band 7",
-        desc: isFa ? "تست‌های رسمی کمبریج، استراتژی‌های آکادمیک و لیسنینگ" : "Official Cambridge past papers, Academic strategies & timing drills",
+        desc: isFa ? "تست‌های اصلی کمبریج، ترفندهای لیسنینگ و ریدینگ و تکنیک‌های نمره‌آوری" : "Official Cambridge past papers, Academic strategies & timing drills",
       },
       {
         level: isFa ? "آزمون تافل (TOEFL)" : "TOEFL Exam Prep",
         book: "Barron's TOEFL iBT + Delta's Key to TOEFL",
-        desc: isFa ? "تمرینات شبیه‌سازی‌شده iBT، نگارش و درک مطلب پیشرفته" : "iBT practice tests, integrated writing & advanced reading skills",
+        desc: isFa ? "آزمون‌های شبیه‌سازی‌شده، ریدینگ پیشرفته و رایتینگ آکادمیک" : "iBT practice tests, integrated writing & advanced reading skills",
       },
       {
-        level: isFa ? "واژگان تخصصی" : "Vocabulary Mastery",
+        level: isFa ? "لغات کاربردی" : "Vocabulary Mastery",
         book: "4000 Essential English Words & Essential Words",
-        desc: isFa ? "تثبیت واژگان پرکاربرد با روش علمی مرور فاصله‌دار" : "Spaced-repetition mastery of high-frequency frequency corpora",
+        desc: isFa ? "یادگیری کلمات پرکاربرد روزمره با مرور مداوم برای ماندگاری تو ذهن" : "Spaced-repetition mastery of high-frequency frequency corpora",
       },
     ];
 
@@ -347,10 +348,10 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "📚 نگاشت هوشمند کتب درسی معتبر بر اساس نتیجه تعیین سطح" : "📚 Smart Textbook Mapping Grounded in Diagnostic Level"}
+            {isFa ? "📚 کتاب‌های استانداردی که بر اساس سطحت بهت پیشنهاد میشه" : "📚 Smart Textbook Mapping Grounded in Diagnostic Level"}
           </strong>
           <small style={{ color: "var(--color-muted)" }}>
-            {isFa ? "همراه با نمودار گراف پیشرفت مرحله فعلی و آتی" : "With present & future milestone progression graphs"}
+            {isFa ? "درس به درس همراه با نمودار پیشرفت" : "With present & future milestone progression graphs"}
           </small>
         </div>
         <div className={styles.showcaseBooksMatrix}>
@@ -371,29 +372,29 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "👥 ثبت‌نام کلاس آنلاین زنده با مدرس و گروه‌بندی هوشمند" : "👥 Live Class Matching & Smart Cohort Clustering"}
+            {isFa ? "👥 فرمت کلاس‌های آنلاین؛ اونجور که راحتی یاد بگیر" : "👥 Live Class Matching & Smart Cohort Clustering"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))", gap: "0.75rem" }}>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "فرمت ۱: کلاس انفرادی" : "Format 1: Solo 1-on-1"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "کلاس خصوصی اختصاصی" : "Private Dedicated Class"}</strong>
+            <span className={styles.showcaseBookLevel}>{isFa ? "فرمت ۱: کلاس خصوصی" : "Format 1: Solo 1-on-1"}</span>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "استاد اختصاصی برای خودت" : "Private Dedicated Class"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "تمرکز ۱۰۰٪ مدرس بر نیازهای شما، زمان‌بندی کاملاً منعطف و رفع اشکال شخصی‌سازی‌شده." : "100% teacher focus on your exact pace, flexible schedule, and bespoke feedback."}
+              {isFa ? "تمرکز ۱۰۰٪ استاد روی نیازهای تو، زمان‌بندی منعطف و رفع اشکال کامل." : "100% teacher focus on your exact pace, flexible schedule, and bespoke feedback."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "فرمت ۲: گروه کوچک همسطح" : "Format 2: Small Cohort"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "تا ۳ همکلاسی (حداکثر ۴ نفر)" : "Up to 3 Classmates (Max 4 Students)"}</strong>
+            <span className={styles.showcaseBookLevel}>{isFa ? "فرمت ۲: گروه دوستانه" : "Format 2: Small Cohort"}</span>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "۲ تا ۴ نفره با هم‌سطح‌های خودت" : "Up to 3 Classmates (Max 4 Students)"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "مکالمه تعاملی همتا، شبیه‌سازی فضای زنده کلاسی، هزینه اقتصادی‌تر و انگیزه یادگیری گروهی." : "Peer roleplay, vibrant classroom dynamics, cost-effective pricing, and group energy."}
+              {isFa ? "مکالمه دوستانه، فضای کلاسی شاداب، هزینه اقتصادی‌تر و انگیزه یادگیری گروهی." : "Peer roleplay, vibrant classroom dynamics, cost-effective pricing, and group energy."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "اتصال خودکار به داشبورد" : "Teacher Request Pool"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "تایید مدرس و ثبت سرفصل و تکلیف" : "Teacher Claim & Post-Session Homework"}</strong>
+            <span className={styles.showcaseBookLevel}>{isFa ? "تکلیف و پیشرفت منظم" : "Teacher Request Pool"}</span>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "ارتباط مستقیم با استاد" : "Teacher Claim & Post-Session Homework"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "مدرس پس از هر جلسه آنلاین، دروس تدریس‌شده و تکالیف را ثبت کرده و مستقیماً وارد مأموریت روزانه شما می‌کند." : "Teachers log taught topics and homework after every session, feeding straight into your Daily Mission."}
+              {isFa ? "بعد از هر کلاس، استاد تمرین‌های جدیدت رو ثبت می‌کنه تا توی برنامه روزانه‌ت حلشون کنی." : "Teachers log taught topics and homework after every session, feeding straight into your Daily Mission."}
             </small>
           </div>
         </div>
@@ -406,29 +407,29 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "⚡ ساختار مأموریت روزانه (انطباقی و متمرکز بر زمان)" : "⚡ Daily Mission Architecture (Adaptive & Habit-Forming)"}
+            {isFa ? "⚡ برنامه روزانه‌ت چطوری چیده میشه؟" : "⚡ Daily Mission Architecture (Adaptive & Habit-Forming)"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))", gap: "0.75rem" }}>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel} style={{ color: "#d97706" }}>{isFa ? "⭐ اولویت اول" : "⭐ Priority #1"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "تکالیف مدرس کلاس زنده" : "Teacher Live Class Homework"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "تکالیف کلاس آنلاین" : "Teacher Live Class Homework"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "تکالیف و تمرین‌های تعیین‌شده توسط مدرس در آخرین جلسه آنلاین جهت آمادگی برای جلسه بعدی." : "Direct homework tasks assigned by your teacher in the latest live session to prepare for your next class."}
+              {isFa ? "تمرین‌هایی که استادت توی آخرین جلسه بهت داده تا برای کلاس بعدی آماده بشی." : "Direct homework tasks assigned by your teacher in the latest live session to prepare for your next class."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>{isFa ? "🔄 اولویت دوم" : "🔄 Priority #2"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "مرور فاصله‌دار واژگان (SRS)" : "Spaced Repetition Review (SRS)"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "مرور فلش‌کارت‌های لغت" : "Spaced Repetition Review (SRS)"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "مرور کارت‌های واژگان فعال بر پایه الگوریتم فراموشی ابینگهاوس برای انتقال به حافظه بلندمدت." : "Scientific flashcard reviews scheduled at the optimal moment right before forgetting occurs."}
+              {isFa ? "مرور سریع کلمات جدید با روش علمی تا بره توی حافظه بلندمدتت و یادت نره." : "Scientific flashcard reviews scheduled at the optimal moment right before forgetting occurs."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "⏱ ریتم پایدار" : "⏱ Sustainable Rhythm"}</span>
+            <span className={styles.showcaseBookLevel}>{isFa ? "⏱ ریتم راحت" : "⏱ Sustainable Rhythm"}</span>
             <strong className={styles.showcaseBookTitle}>{isFa ? "۱۰ الی ۱۵ دقیقه در روز" : "10–15 Minutes Daily"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "تمرینات کوتاه و پیوسته که در هر برنامه‌ای جا می‌گیرد و مانع از افت انگیزه می‌شود." : "Bite-sized, focused practice designed to fit busy lifestyles without burnout."}
+              {isFa ? "تمرین‌های کوتاه و جمع‌وجور که هر روز به راحتی انجام میدی و خسته‌ت نمیکنه." : "Bite-sized, focused practice designed to fit busy lifestyles without burnout."}
             </small>
           </div>
         </div>
@@ -441,36 +442,36 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "🔬 ۴ آزمایشگاه تمرین عمیق هوش مصنوعی" : "🔬 4 Specialized AI Deep Practice Labs"}
+            {isFa ? "🔬 ۴ ابزار هوشمند برای تمرین در هر ساعتی از شبانه‌روز" : "🔬 4 Specialized AI Deep Practice Labs"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))", gap: "0.75rem" }}>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>✍️ AI Writing Mentor</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "مربی هوشمند نگارش" : "Essay & Paragraph Mentor"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "مربی نوشتن و نگارش" : "Essay & Paragraph Mentor"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "اصلاح گرامر، پیشنهاد بازنویسی روان‌تر و نمره‌دهی معیارهای آکادمیک." : "Grammar rectification, natural phrasing suggestions & band criterion feedback."}
+              {isFa ? "متنت رو بنویس تا ایرادهای گرامری رو بگیره و پیشنهاد بده چطور زیباتر بنویسی." : "Grammar rectification, natural phrasing suggestions & band criterion feedback."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>🎙️ Voice Lab</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "آزمایشگاه صوت و تلفظ" : "Voice & Pronunciation Lab"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "استودیوی تلفظ و لهجه" : "Voice & Pronunciation Lab"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "تحلیل فونتیک، استرس کلمات، سرعت کلام و روانی گفتار با بازخورد زنده." : "Phonetic breakdown, syllable stress, cadence, and real-time fluency scoring."}
+              {isFa ? "بلند بخون تا هوش مصنوعی بگه تلفظ و استرس کلماتت چقدر درسته و چطور روان‌تر حرف بزنی." : "Phonetic breakdown, syllable stress, cadence, and real-time fluency scoring."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>🎭 AI Roleplay</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "شبیه‌ساز مکالمه تعاملی" : "Situational AI Roleplay"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "مکالمه در دنیای واقعی" : "Situational AI Roleplay"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "مکالمه نامحدود در سناریوهای فرودگاه، هتل، مصاحبه شغلی و محیط‌های کاری." : "Interactive dialogues in job interviews, business negotiations, and travel scenarios."}
+              {isFa ? "بدون خجالت انگلیسی گپ بزن؛ در موقعیت‌های فرودگاه، کافه، هتل یا مصاحبه کاری." : "Interactive dialogues in job interviews, business negotiations, and travel scenarios."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>🧬 Mistake Genome</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "ژنوم اشتباهات پرتکرار" : "Mistake Pattern Genome"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "رفع اشتباهات پرتکرار" : "Mistake Pattern Genome"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "ردیابی الگوهای خطای زبان‌آموزان ایرانی و طراحی تمرین‌های دقیق میکرولرنینگ." : "Pinpoints Iranian learner error patterns with surgical targeted micro-drills."}
+              {isFa ? "پیدا کردن خطاهایی که ما ایرانی‌ها معمولاً داریم و رفع کردنشون با تمرین‌های کوتاه." : "Pinpoints Iranian learner error patterns with surgical targeted micro-drills."}
             </small>
           </div>
         </div>
@@ -483,29 +484,29 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "🎯 دسته‌بندی هوشمند بر اساس سن و هدف" : "🎯 Calibrated Demographics & Learner Intent"}
+            {isFa ? "🎯 سن و هدفت چیه؟" : "🎯 Calibrated Demographics & Learner Intent"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(14rem, 1fr))", gap: "0.75rem" }}>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>{isFa ? "۴ تا ۷ سال" : "Ages 4–7"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "خردسالان (Kids Starter)" : "Early Childhood Learners"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "خردسالان (Kids)" : "Early Childhood Learners"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "آشنایی با صداها، حروف الفبا، شعرها و بازی‌های سرگرم‌کننده بصری." : "Engaging sounds, phonics fundamentals, playful songs, and illustrated stories."}
+              {isFa ? "آشنایی با صداها، حروف الفبا، شعرها و بازی‌های شاد کودکانه بدون فشار." : "Engaging sounds, phonics fundamentals, playful songs, and illustrated stories."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>{isFa ? "۸ تا ۱۲ سال" : "Ages 8–12"}</span>
             <strong className={styles.showcaseBookTitle}>{isFa ? "کودکان و نوجوانان" : "Young Learners & Juniors"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "ایجاد اعتمادبه‌نفس مکالمه، داستان‌های جذاب و تقویت دایره لغات فعال." : "Spoken confidence, curiosity-driven themes, and active contextual vocabulary."}
+              {isFa ? "ایجاد اعتمادبه‌نفس مکالمه، داستان‌های جذاب و یادگیری راحت کلمات روزمره." : "Spoken confidence, curiosity-driven themes, and active contextual vocabulary."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
             <span className={styles.showcaseBookLevel}>{isFa ? "بزرگسالان" : "Adult Learners"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "عمومی، مهاجرت و آزمون" : "Fluency, Career & Test Prep"}</strong>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "مکالمه، کار و مهاجرت" : "Fluency, Career & Test Prep"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "مکالمه سلیس، آمادگی مصاحبه کاری، پیشرفت شغلی و آمادگی آیلتس/تافل." : "Spoken fluency, career advancement, international study & exam credentials."}
+              {isFa ? "مکالمه روان و خودمانی، موفقیت در کار و دانشگاه و آمادگی آیلتس/تافل." : "Spoken fluency, career advancement, international study & exam credentials."}
             </small>
           </div>
         </div>
@@ -518,7 +519,7 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "🧠 ارزیابی تطبیقی ۶ مهارت زبانی بدون داده‌های تصادفی" : "🧠 Adaptive 6-Skill Diagnostic Testing Engine"}
+            {isFa ? "🧠 سنجش ۶ مهارت اصلی در چند دقیقه" : "🧠 Adaptive 6-Skill Diagnostic Testing Engine"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(9.5rem, 1fr))", gap: "0.5rem" }}>
@@ -527,12 +528,12 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
               <span className={styles.showcaseBookLevel} dir="ltr">{skill}</span>
               <strong style={{ fontSize: "0.82rem" }}>
                 {isFa
-                  ? skill === "Grammar" ? "دستور زبان تطبیقی"
-                  : skill === "Vocabulary" ? "دایره واژگان"
-                  : skill === "Reading" ? "درک مطلب متنی"
-                  : skill === "Listening" ? "شنیداری چند لهجه"
-                  : skill === "Speaking" ? "تلفظ و روان‌گویی"
-                  : "نگارش و انسجام"
+                  ? skill === "Grammar" ? "دستور زبان و ساختار"
+                  : skill === "Vocabulary" ? "دایره لغات"
+                  : skill === "Reading" ? "درک مطلب متن"
+                  : skill === "Listening" ? "شنیدن و درک صدا"
+                  : skill === "Speaking" ? "صحبت و تلفظ"
+                  : "نوشتن درست"
                   : skill}
               </strong>
             </div>
@@ -547,22 +548,22 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
       <div className={styles.showcaseInteractiveBox}>
         <div style={{ marginBottom: "0.75rem" }}>
           <strong style={{ fontSize: "0.92rem", color: "var(--color-text)" }}>
-            {isFa ? "📊 کارنامه تحلیلی CEFR و نمودار راداری مهارت‌ها" : "📊 CEFR Benchmark & Radar Skill Profiling"}
+            {isFa ? "📊 کارنامه شفاف و مشخص شدن سطح واقعی" : "📊 CEFR Benchmark & Radar Skill Profiling"}
           </strong>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))", gap: "0.75rem" }}>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "تراز بین‌المللی" : "International Standard"}</span>
+            <span className={styles.showcaseBookLevel}>{isFa ? "سطح استانداردت" : "International Standard"}</span>
             <strong className={styles.showcaseBookTitle}>A1 → A2 → B1 → B2 → C1 → C2</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "تعیین سطح مطابق با چارچوب اروپایی CEFR با تفکیک نقاط قوت و ضعف." : "Rigorous mapping against CEFR scales with full transparent evidence logs."}
+              {isFa ? "خیلی ساده بهت نشون میدیم الان کجایی و تا هدف بعدیت چقدر راه داری." : "Rigorous mapping against CEFR scales with full transparent evidence logs."}
             </small>
           </div>
           <div className={styles.showcaseBookCard}>
-            <span className={styles.showcaseBookLevel}>{isFa ? "اتصال مستقیم" : "Seamless Handoff"}</span>
-            <strong className={styles.showcaseBookTitle}>{isFa ? "انتقال داده به نقشه راه و کتاب" : "Handoff to Roadmap & Syllabus"}</strong>
+            <span className={styles.showcaseBookLevel}>{isFa ? "شروع بدون معطلی" : "Seamless Handoff"}</span>
+            <strong className={styles.showcaseBookTitle}>{isFa ? "معرفی کتاب و تعیین کلاس" : "Handoff to Roadmap & Syllabus"}</strong>
             <small style={{ color: "var(--color-muted)", fontSize: "0.76rem", lineHeight: "1.4" }}>
-              {isFa ? "نتیجه ارزیابی مستقیماً مبنای کتاب استاندارد در گام ۴ و کلاس در گام ۵ قرار می‌گیرد." : "Assessment scores seamlessly dictate textbook matching in Step 4 and cohort placement in Step 5."}
+              {isFa ? "بر اساس همین کارنامه، کتاب مناسبت انتخاب میشه و کلاست آماده میشه." : "Assessment scores seamlessly dictate textbook matching in Step 4 and cohort placement in Step 5."}
             </small>
           </div>
         </div>
@@ -575,7 +576,7 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
 
 export function HomePage({ locale }: { locale: PublicLocale }) {
   const isFa = locale === "fa";
-  const [selectedStepIndex, setSelectedStepIndex] = useState<number>(3);
+  const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
   const activeStep = loop7Steps[selectedStepIndex] ?? loop7Steps[0];
   const structuredData = {
     "@context": "https://schema.org",
@@ -584,7 +585,7 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
     url: locale === "fa" ? "https://endoora.ir/" : "https://endoora.ir/en",
     inLanguage: locale === "fa" ? "fa-IR" : "en",
     description: isFa
-      ? "سیستم یادگیری انگلیسی فارسی‌محور برای زبان‌آموزان ایران"
+      ? "یادگیری خودمانی، راحت و هوشمند زبان انگلیسی در اندورا"
       : "A Persian-first English learning system for Iranian learners",
   };
 
@@ -597,20 +598,46 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
       <section className={styles.heroNext}>
         <div className={styles.heroCopy}>
           <h1>
-            {isFa ? <>یادگیری انگلیسی را به مسیری شخصی برای <span className={styles.heroAccent}>فرصت‌های واقعی</span> تبدیل کن.</> : <>Turn English learning into a personal path toward <span className={styles.heroAccent}>real opportunities.</span></>}
+            {isFa ? (
+              <>
+                <span className={styles.heroLine}>
+                  <span className={styles.heroBrandWrap}>
+                    <svg className={styles.heroSpark} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M12 2C12 7.523 7.523 12 2 12C7.523 12 12 16.477 12 22C12 16.477 16.477 12 22 12C16.477 12 12 7.523 12 2Z"
+                        fill="url(#endooraSparkGrad)"
+                      />
+                      <circle cx="12" cy="12" r="1.5" fill="#ffffff" opacity="0.9" />
+                      <defs>
+                        <linearGradient id="endooraSparkGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#06b6d4" />
+                          <stop offset="1" stopColor="#0284c7" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className={styles.heroBrandText}>ایندورا،</span>
+                  </span>
+                </span>
+                <span className={styles.heroLine}>
+                  <span className={styles.heroSubText}>انگلیسی راحت</span>
+                </span>
+                <span className={styles.heroLine}>
+                  <span className={styles.heroAccent}>و&nbsp;هوشمند</span>
+                </span>
+              </>
+            ) : (
+              <>Turn English learning into a personal path toward <span className={styles.heroAccent}>real opportunities.</span></>
+            )}
           </h1>
-          <p>{isFa ? "Endoora از سطح، هدف و الگوهای یادگیری تو یک مسیر روشن می‌سازد؛ از تعیین سطح تا تمرین روزانه و همراهی مدرس." : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
+          <p>{isFa ? "توی چند دقیقه رایگان تعیین سطح شو، بهترین کتاب آموزشی متناسب با خودت رو بگیر و با کلاس‌های آنلاین و تمرین‌های روزانه ۱۰ دقیقه‌ای، راحت انگلیسی صحبت کن." : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
           <div className={styles.heroActions}>
             <Link className={styles.primaryButton} href={localizedPath(locale, "/placement")}>
               <span>{isFa ? "شروع تعیین سطح رایگان" : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
-            <Link className={styles.secondaryButton} href={localizedPath(locale, "/how-it-works")}>
-              <span>{isFa ? "مشاهده مسیر یادگیری" : "See how the path works"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
-            </Link>
           </div>
         </div>
 
-        <div className={styles.twinCard} aria-label={isFa ? "پیش‌نمایش محصول Learner Twin" : "Learner Twin product preview"}>
+        <div className={styles.twinCard} aria-label={isFa ? "پیش‌نمایش وضعیت یادگیری تو" : "Learner Twin product preview"}>
           <div className={styles.previewChrome}><span /><span /><span /><strong>Learner Twin</strong></div>
           <div className={styles.previewBody}>
             <aside className={styles.previewRail} aria-hidden="true"><b>E</b><span /><span /><span /><span /></aside>
@@ -618,21 +645,21 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
               <div className={styles.previewIntro}>
                 <div>
                   <span>Learner Twin</span>
-                  <h2>{isFa ? "مسیر یادگیری شما" : "Your learning path"}</h2>
-                  <p>{isFa ? "یک نمای زنده و قابل اصلاح از پیشرفت تو" : "A living, correctable view of your progress"}</p>
+                  <h2>{isFa ? "مسیر یادگیری تو" : "Your learning path"}</h2>
+                  <p>{isFa ? "وضعیت زنده پیشرفت و مهارت‌هات" : "A living, correctable view of your progress"}</p>
                 </div>
                 <Link href={localizedPath(locale, "/features/learner-twin")}>{isFa ? "جزئیات" : "Details"}</Link>
               </div>
               <div className={styles.twinIdentity}>
                 <div className={styles.orb}><span /></div>
-                <div><strong>Learner Twin</strong><small>{isFa ? "تصویری قابل اصلاح از مسیر تو" : "A correctable view of your path"}</small></div>
+                <div><strong>Learner Twin</strong><small>{isFa ? "همراه هوشمند مسیر یادگیریت" : "A correctable view of your path"}</small></div>
               </div>
-              <p className={styles.previewTitle}>{isFa ? "وضعیت ارزیابی مهارت‌ها" : "Skill assessment status"}</p>
+              <p className={styles.previewTitle}>{isFa ? "وضعیت مهارت‌های زبانی" : "Skill assessment status"}</p>
               <span className={styles.previewBadge}>
-                {isFa ? "پیش‌نمایش · بدون دادهٔ ساختگی" : "Preview · no invented learner data"}
+                {isFa ? "پیش‌نمایش · بر اساس توانایی واقعی تو" : "Preview · no invented learner data"}
               </span>
               {["Vocabulary", "Grammar", "Listening"].map((skill) => (
-                <div className={styles.skillPreview} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "در انتظار تعیین سطح" : "Awaiting placement"}</small></div>
+                <div className={styles.skillPreview} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "منتظر تعیین سطح" : "Awaiting placement"}</small></div>
               ))}
             </div>
           </div>
@@ -642,14 +669,14 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
       <section id="how" className={`${styles.section} ${styles.loopSection}`}>
         <div className={styles.sectionHeading}>
           <span className={styles.sectionLabel}>
-            {isFa ? "چرخه یادگیری Endoora (مسیر ۷ مرحله‌ای)" : "The Endoora 7-Step Learning Loop"}
+            {isFa ? "مسیر یادگیری گام‌به‌گام" : "The Endoora 7-Step Learning Loop"}
           </span>
           <h2>
-            {isFa ? "از شناخت و تعیین سطح تا کلاس آنلاین و تثبیت روزانه" : "From Diagnostic Placement to Live Class & AI Deep Practice"}
+            {isFa ? "از تعیین سطح تا مکالمه روان در ۷ قدم ساده" : "From Diagnostic Placement to Live Class & AI Deep Practice"}
           </h2>
           <p>
             {isFa
-              ? "روی هر مرحله بروید یا کلیک کنید تا جزئیات کتب استاندارد، کلاس‌های آنلاین، مأموریت روزانه و آزمایشگاه‌های هوش مصنوعی را به صورت زنده مشاهده کنید."
+              ? "روی هر مرحله کلیک کن یا برو روش تا ببینی چطوری از صفر تا تسلط کامل کنارتیم:"
               : "Hover or click any stage to explore curriculum textbooks, live class matching, daily missions, and AI labs in real time."}
           </p>
         </div>
@@ -725,7 +752,11 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
           <div className={styles.showcaseFooter}>
             <Link
               className={styles.primaryButton}
-              href={localizedPath(locale, activeStep.actionHref)}
+              href={
+                activeStep.actionHref.startsWith("/auth/")
+                  ? accountPath(locale, activeStep.actionHref as "/auth/login" | "/auth/register")
+                  : localizedPath(locale, activeStep.actionHref)
+              }
             >
               <span>{isFa ? activeStep.actionLabelFa : activeStep.actionLabelEn}</span>
               <span aria-hidden="true">{isFa ? "←" : "→"}</span>
@@ -734,48 +765,39 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
               className={styles.textLink}
               href={localizedPath(locale, "/how-it-works")}
             >
-              <span>{isFa ? "مطالعه راهنمای کامل چرخه یادگیری" : "Read complete learning loop guide"}</span>
+              <span>{isFa ? "راهنمای کامل مراحل یادگیری" : "Read complete learning loop guide"}</span>
               <span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section id="features" className={`${styles.section} ${styles.featuresSection}`}>
-        <div className={styles.sectionHeading}>
-          <span className={styles.sectionLabel}>{isFa ? "یک سیستم، نه چند ابزار جدا" : "One system, not disconnected tools"}</span>
-          <h2>{isFa ? "قابلیت‌هایی که از شواهد یادگیری استفاده می‌کنند" : "Features grounded in learning evidence"}</h2>
-        </div>
-        <div className={styles.featureStories}>
-          {features.map((feature) => (
-            <article className={styles.featureStory} key={feature.title}>
-              <div className={styles.featureCopy}>
-                <span className={styles.storyIndex}>{feature.index}</span>
-                <h3 dir="ltr">{feature.title}</h3>
-                <p>{isFa ? feature.textFa : feature.textEn}</p>
-                <Link className={styles.textLink} href={localizedPath(locale, feature.url)}>{isFa ? "جزئیات و محدودیت‌ها" : "Details and limitations"}<span aria-hidden="true">{isFa ? "←" : "→"}</span></Link>
-              </div>
-              <div><FeatureVisual type={feature.visual} locale={locale} /></div>
-            </article>
-          ))}
-        </div>
-      </section>
+      {/* <section id="features" /> */}
 
       <section className={styles.humanBand}>
         <div className={styles.humanCopy}>
-          <span className={styles.sectionLabel}>{isFa ? "هوش مصنوعی + راهنمایی انسانی" : "AI + human guidance"}</span>
-          <h2>{isFa ? "شخصی‌سازی با AI؛ تصمیم‌های مهم با امکان بازبینی انسانی" : "AI for personalization, with human review where it matters"}</h2>
-          <p>{isFa ? "بازار مدرس Endoora بر تأیید، دسترسی حداقلی به داده و ارتباط روشن با شواهد یادگیری بنا می‌شود. AI ابزار کمک است، نه جایگزین قضاوت حرفه‌ای." : "Endoora’s teacher marketplace is built around verification, least-privilege data access, and clear links to learning evidence. AI supports—not replaces—professional judgment."}</p>
-          <Link className={styles.textLink} href={localizedPath(locale, "/teachers")}>{isFa ? "آشنایی با مسیر مدرس‌ها" : "Explore the teacher pathway"}<span aria-hidden="true">{isFa ? "←" : "→"}</span></Link>
+          <span className={styles.sectionLabel}>{isFa ? "استاد واقعی + هوش مصنوعی" : "AI + human guidance"}</span>
+          <h2>
+            {isFa ? (
+              <>
+                <span className={styles.humanNavyText}>یادگیری هوشمند،</span>{" "}
+                <span className={styles.humanTealHighlight}>همراهی واقعی</span>
+              </>
+            ) : (
+              "AI for personalization, with human review where it matters"
+            )}
+          </h2>
+          <p>{isFa ? "هر موقع خواستی با هوش مصنوعی تمرین کن و اشکالاتت رو بگیر؛ سر کلاس آنلاین هم استاد باهات کار می‌کنه و بهت بازخورد میده تا سریع‌تر پیشرفت کنی." : "Endoora’s teacher marketplace is built around verification, least-privilege data access, and clear links to learning evidence. AI supports—not replaces—professional judgment."}</p>
+          <Link className={styles.textLink} href={localizedPath(locale, "/teachers")}>{isFa ? "دیدن لیست استادها" : "Explore the teacher pathway"}<span aria-hidden="true">{isFa ? "←" : "→"}</span></Link>
         </div>
         <ol className={styles.humanSteps}>
-          <li><span>01</span><strong>{isFa ? "شواهد یادگیری" : "Learning evidence"}</strong><small>{isFa ? "فقط داده مرتبط" : "Only relevant data"}</small></li>
-          <li><span>02</span><strong>{isFa ? "پیشنهاد AI" : "AI suggestion"}</strong><small>{isFa ? "با محدودیت روشن" : "With explicit limits"}</small></li>
-          <li><span>03</span><strong>{isFa ? "بازخورد مدرس" : "Teacher feedback"}</strong><small>{isFa ? "در رابطه مجاز" : "Within authorized access"}</small></li>
+          <li><span>01</span><strong>{isFa ? "سنجش سطح تو" : "Learning evidence"}</strong><small>{isFa ? "دیدن توانایی‌های واقعی" : "Only relevant data"}</small></li>
+          <li><span>02</span><strong>{isFa ? "تمرین هوشمند" : "AI suggestion"}</strong><small>{isFa ? "تمرین ۲۴ ساعته" : "With explicit limits"}</small></li>
+          <li><span>03</span><strong>{isFa ? "کلاس با استاد" : "Teacher feedback"}</strong><small>{isFa ? "مکالمه و رفع اشکال" : "Within authorized access"}</small></li>
         </ol>
       </section>
 
-      <section id="faq" className={`${styles.section} ${styles.faqSection}`}><PublicFaq locale={locale} /></section>
+      {/* <section id="faq" className={`${styles.section} ${styles.faqSection}`}><PublicFaq locale={locale} /></section> */}
     </>
   );
 }

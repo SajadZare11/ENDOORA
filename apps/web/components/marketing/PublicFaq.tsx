@@ -6,8 +6,8 @@ import styles from "./marketing.module.css";
 const faqItems = [
   {
     fa: {
-      question: "Endoora الان آماده استفاده است؟",
-      answer: "پلتفرم در حال توسعه و راه‌اندازی گام‌به‌گام است. بخش‌های اصلی محصول برای آشنایی در دسترس هستند و دسترسی عمومی برای زبان‌آموزان پس از اتمام ارزیابی‌های کیفی و فنی باز می‌شود.",
+      question: "الان می‌تونم از اندورا استفاده کنم؟",
+      answer: "بله! تعیین سطح، دیدن نقشه راه، کتاب‌ها و ابزارهای تمرینی فعاله و می‌تونی همین الان رایگان امتحانشون کنی.",
     },
     en: {
       question: "Can I use Endoora today?",
@@ -16,8 +16,8 @@ const faqItems = [
   },
   {
     fa: {
-      question: "تعیین سطح چه چیزی را نشان می‌دهد؟",
-      answer: "یک برآورد توضیح‌پذیر از مهارت‌ها، پوشش شواهد و میزان اطمینان؛ نه مدرک رسمی یا برچسب دائمی.",
+      question: "تعیین سطح چطوری کار می‌کنه؟",
+      answer: "خیلی راحت و بدون استرس! توی چند دقیقه مهارت‌هات رو می‌سنجه و بهت میگه دقیقاً از چه سطحی و با چه کتابی شروع کنی.",
     },
     en: {
       question: "What will placement show?",
@@ -26,8 +26,8 @@ const faqItems = [
   },
   {
     fa: {
-      question: "آیا Endoora نمره IELTS را تضمین می‌کند؟",
-      answer: "خیر. تمرین IELTS با محتوای اصل یا مجاز ارائه می‌شود و بازخورد AI فقط یک برآورد محدود و قابل بررسی است، نه نمره رسمی ممتحن.",
+      question: "آیا اندورا نمره IELTS رو تضمین می‌کنه؟",
+      answer: "هیچ سیستمی نمی‌تونه تضمین قطعی بده، اما با تمرین روی سوالات استاندارد و فیدبک هوش مصنوعی، می‌تونی قدم‌به‌قدم به نمره هدفت برسی.",
     },
     en: {
       question: "Does Endoora guarantee an IELTS score?",
@@ -36,8 +36,8 @@ const faqItems = [
   },
   {
     fa: {
-      question: "هوش مصنوعی جای مدرس را می‌گیرد؟",
-      answer: "خیر. AI می‌تواند تمرین را شخصی‌تر کند، اما احتمال خطا دارد. مدرس و بازخورد انسانی برای تصمیم‌های مهم آموزشی در چرخه باقی می‌مانند.",
+      question: "هوش مصنوعی جای استاد رو می‌گیره؟",
+      answer: "نه اصلاً! هوش مصنوعی مثل یه پارتنر تمرینی ۲۴ ساعته‌ست تا هر چقدر دلت خواست تمرین کنی، اما برای تدریس اصلی و رفع اشکال استادهای با تجربه کنارتن.",
     },
     en: {
       question: "Does AI replace a teacher?",
@@ -46,8 +46,8 @@ const faqItems = [
   },
   {
     fa: {
-      question: "ایمیل فهرست انتظار چطور استفاده می‌شود؟",
-      answer: "فقط برای اطلاع‌رسانی پیش‌راه‌اندازی و شروع دوره‌ها در Endoora. هیچ اسکریپت تحلیل یا رهگیری شخص ثالثی بارگذاری نمی‌شود و رضایت ارتباطی شما جداگانه ثبت می‌شود.",
+      question: "ایمیل من برای چی استفاده میشه؟",
+      answer: "فقط برای ارسال اخبار، دعوت‌نامه‌ها و شروع دوره‌های جدید اندورا. خیالت راحت، هیچ ایمیل تبلیغاتی یا اسپمی برات فرستاده نمیشه.",
     },
     en: {
       question: "How is my waitlist email used?",
@@ -63,15 +63,15 @@ export function PublicFaq({ locale, compact = false }: { locale: PublicLocale; c
     <div className={compact ? styles.faqCompact : styles.faqLayout}>
       {!compact ? (
         <div className={styles.faqIntro}>
-          <span className={styles.sectionLabel}>{isFa ? "پاسخ‌های روشن" : "Clear answers"}</span>
-          <h2>{isFa ? "پرسش‌های متداول" : "Frequently asked questions"}</h2>
+          <span className={styles.sectionLabel}>{isFa ? "پاسخ به سوالاتت" : "Clear answers"}</span>
+          <h2>{isFa ? "سوال‌های پرتکرار" : "Frequently asked questions"}</h2>
           <p>
             {isFa
-              ? "اگر پاسخ مورد نیازتان اینجا نیست، صفحه تماس وضعیت فعلی کانال‌های پشتیبانی را بدون اطلاعات ساختگی توضیح می‌دهد."
+              ? "اگه سوال دیگه‌ای داری، پشتیبانی ما همیشه حاضره تا راهنماییت کنه."
               : "If your answer is not here, the contact page explains the current support-channel status without invented contact details."}
           </p>
           <Link className={styles.textLink} href={localizedPath(locale, "/contact")}>
-            {isFa ? "مشاهده مسیر تماس" : "See contact options"}
+            {isFa ? "ارتباط با ما" : "See contact options"}
             <span aria-hidden="true">{isFa ? "←" : "→"}</span>
           </Link>
         </div>

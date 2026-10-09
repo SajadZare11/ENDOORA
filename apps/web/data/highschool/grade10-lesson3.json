@@ -1,0 +1,1012 @@
+{
+  "id": "vision-1-lesson-3",
+  "grade": 10,
+  "bookTitle": "Vision 1",
+  "lessonNumber": 3,
+  "slug": "grade-10/lesson-3",
+  "title": {
+    "en": "The Value of Knowledge",
+    "fa": "ارزش علم و دانش"
+  },
+  "cefrLevel": "A2",
+  "sections": {
+    "getReady": [
+      {
+        "id": "g3-1",
+        "word": "Light bulb",
+        "phonetic": "/ˈlaɪt ˌbʌlb/",
+        "persianMeaning": "لامپ روشنایی",
+        "imagePromptOrUrl": "light-bulb-glow",
+        "options": [
+          "Telephone",
+          "Light bulb",
+          "Airplane"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "This gives us an easier life when there is no light.",
+          "fa": "این اختراع به ما زندگی آسان‌تری می‌بخشد وقتی که نوری وجود ندارد."
+        }
+      },
+      {
+        "id": "g3-2",
+        "word": "Telephone",
+        "phonetic": "/ˈtel.ɪ.fəʊn/",
+        "persianMeaning": "تلفن",
+        "imagePromptOrUrl": "telephone-communication",
+        "options": [
+          "Camera",
+          "Telephone",
+          "Light bulb"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "People use this to talk with someone in another place.",
+          "fa": "مردم از این وسیله برای صحبت کردن با کسی در جایی دیگر استفاده می‌کنند."
+        }
+      },
+      {
+        "id": "g3-3",
+        "word": "Camera",
+        "phonetic": "/ˈkæm.rə/",
+        "persianMeaning": "دوربین عکاسی",
+        "imagePromptOrUrl": "camera-taking-pictures",
+        "options": [
+          "Camera",
+          "Airplane",
+          "Telephone"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "We use this to take and keep pictures very easily.",
+          "fa": "ما از این برای گرفتن و نگهداری بسیار آسان عکس‌ها استفاده می‌کنیم."
+        }
+      },
+      {
+        "id": "g3-4",
+        "word": "Airplane",
+        "phonetic": "/ˈeə.pleɪn/",
+        "persianMeaning": "هواپیما",
+        "imagePromptOrUrl": "airplane-flying-sky",
+        "options": [
+          "Light bulb",
+          "Camera",
+          "Airplane"
+        ],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "This helps us travel very fast to far places.",
+          "fa": "این وسیله به ما کمک می‌کند خیلی سریع به جاهای دوردست سفر کنیم."
+        }
+      },
+      {
+        "id": "g3-5",
+        "word": "scientists",
+        "phonetic": "/ˈsaɪən.tɪsts/",
+        "persianMeaning": "دانشمندان و پژوهشگران",
+        "imagePromptOrUrl": "scientists-working-lab",
+        "options": [
+          "teachers",
+          "scientists",
+          "drivers"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iranian scientists have made great discoveries throughout history.",
+          "fa": "دانشمندان ایرانی در طول تاریخ کشفیات بزرگی انجام داده‌اند."
+        }
+      },
+      {
+        "id": "g3-6",
+        "word": "a laboratory",
+        "phonetic": "/ləˈbɒr.ə.tər.i/",
+        "persianMeaning": "آزمایشگاه علمی",
+        "imagePromptOrUrl": "laboratory-research-room",
+        "options": [
+          "a laboratory",
+          "a library",
+          "a hospital"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The students do experiments in the school laboratory.",
+          "fa": "دانش‌آموزان در آزمایشگاه مدرسه آزمایش انجام می‌دهند."
+        }
+      },
+      {
+        "id": "g3-7",
+        "word": "a building",
+        "phonetic": "/ˈbɪl.dɪŋ/",
+        "persianMeaning": "ساختمان / بنا",
+        "imagePromptOrUrl": "modern-building-architecture",
+        "options": [
+          "a mountain",
+          "a forest",
+          "a building"
+        ],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Maragheh Observatory was a famous scientific building.",
+          "fa": "رصدخانه مراغه یک بنای علمی بسیار مشهور بود."
+        }
+      },
+      {
+        "id": "g3-8",
+        "word": "experiment",
+        "phonetic": "/ɪkˈsper.ɪ.mənt/",
+        "persianMeaning": "آزمایش علمی",
+        "imagePromptOrUrl": "students-doing-experiments",
+        "options": [
+          "vacation",
+          "experiment",
+          "entertainment"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Edison was famous for doing thousands of experiments to find answers.",
+          "fa": "ادیسون به خاطر انجام دادن هزاران آزمایش برای یافتن پاسخ‌ها معروف بود."
+        }
+      },
+      {
+        "id": "g3-9",
+        "word": "invent",
+        "phonetic": "/ɪnˈvent/",
+        "persianMeaning": "اختراع کردن / ابداع کردن",
+        "imagePromptOrUrl": "edison-lightbulb-invention",
+        "options": [
+          "invent",
+          "destroy",
+          "forget"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Many great men and women try hard to invent useful things.",
+          "fa": "بسیاری از مردان و زنان بزرگ سخت تلاش می‌کنند تا چیزهای مفیدی اختراع کنند."
+        }
+      },
+      {
+        "id": "g3-10",
+        "word": "knowledge",
+        "phonetic": "/ˈnɒl.ɪdʒ/",
+        "persianMeaning": "دانش / علم و آگاهی",
+        "imagePromptOrUrl": "scientific-fact-globe",
+        "options": [
+          "ignorance",
+          "knowledge",
+          "danger"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Human knowledge develops with scientists' hard work.",
+          "fa": "دانش بشری با کار و تلاش خستگی‌ناپذیر دانشمندان رشد می‌کند."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "مکالمه درس سوم: گفتگو درباره دانشمندان مشهور ایرانی در کتابخانه",
+      "situationFa": "رویا و مهسا در حال خروج از کتابخانه هستند و درباره کتابی پیرامون دانشمندان مشهور ایرانی گفتگو می‌کنند.",
+      "vocabulary": [
+        {
+          "id": "cb3-1",
+          "word": "medicine",
+          "phonetic": "/ˈmed.sən/",
+          "persianMeaning": "پزشکی / دارو و درمان",
+          "imagePromptOrUrl": "medicine-bottle-pills",
+          "options": ["sports", "medicine", "travel"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Razi taught medicine to many young students.",
+            "fa": "رازی به دانشجویان جوان زیادی علم پزشکی آموخت."
+          }
+        },
+        {
+          "id": "cb3-2",
+          "word": "famous",
+          "phonetic": "/ˈfeɪ.məs/",
+          "persianMeaning": "مشهور / سرشناس و پرآوازه",
+          "imagePromptOrUrl": "famous-scientist-portrait",
+          "options": ["unknown", "famous", "lazy"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Nasireddin Toosi is a famous Iranian thinker.",
+            "fa": "نصیرالدین طوسی یک اندیشمند مشهور ایرانی است."
+          }
+        },
+        {
+          "id": "cb3-3",
+          "word": "build",
+          "phonetic": "/bɪld/",
+          "persianMeaning": "ساختن / برپا کردن بنا",
+          "imagePromptOrUrl": "build-observatory-telescope",
+          "options": ["build", "destroy", "break"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "He built Maragheh Observatory when he was studying the planets.",
+            "fa": "او زمانی که مشغول مطالعه سیارات بود رصدخانه مراغه را ساخت."
+          }
+        },
+        {
+          "id": "cb3-4",
+          "word": "Believe me!",
+          "phonetic": "/bɪˈliːv miː/",
+          "persianMeaning": "باور کن! / مطمئن باش!",
+          "imagePromptOrUrl": "believe-me-hand",
+          "options": ["Never mind!", "Believe me!", "Look out!"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "At first I had the same idea, believe me!",
+            "fa": "در ابتدا من هم همین فکر را می‌کردم، باور کن!"
+          }
+        },
+        {
+          "id": "cb3-5",
+          "word": "Cool!",
+          "phonetic": "/kuːl/",
+          "persianMeaning": "خیلی عالی! / چه باحال و جالب!",
+          "imagePromptOrUrl": "cool-thumbs-up",
+          "options": ["Boring!", "Cool!", "Terrible!"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Cool! What was the name of the book?",
+            "fa": "خیلی باحال و عالیه! اسم کتاب چی بود؟"
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "dl3-1",
+          "speaker": "Roya",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "When I came in, you were reading a book. What was it?",
+          "faText": "وقتی من وارد شدم، تو داشتی کتاب می‌خواندی. چه کتابی بود؟",
+          "orderIndex": 1
+        },
+        {
+          "id": "dl3-2",
+          "speaker": "Mahsa",
+          "speakerRole": "student",
+          "speakerAvatar": "👩",
+          "enText": "I was reading a book about famous Iranian scientists.",
+          "faText": "داشتم کتابی درباره دانشمندان مشهور ایرانی می‌خواندم.",
+          "orderIndex": 2
+        },
+        {
+          "id": "dl3-3",
+          "speaker": "Roya",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "But such books are not very interesting.",
+          "faText": "اما چنین کتاب‌هایی چندان جالب نیستند.",
+          "orderIndex": 3
+        },
+        {
+          "id": "dl3-4",
+          "speaker": "Mahsa",
+          "speakerRole": "student",
+          "speakerAvatar": "👩",
+          "enText": "At first I had the same idea, believe me!",
+          "faText": "من هم در ابتدا همین نظر را داشتم، باور کن!",
+          "orderIndex": 4
+        },
+        {
+          "id": "dl3-5",
+          "speaker": "Roya",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Did you find it useful?",
+          "faText": "آیا آن را سودمند و مفید یافتی؟",
+          "orderIndex": 5
+        },
+        {
+          "id": "dl3-6",
+          "speaker": "Mahsa",
+          "speakerRole": "student",
+          "speakerAvatar": "👩",
+          "enText": "Oh yes. Actually I learned many interesting things about our scientists' lives.",
+          "faText": "اوه بله. در واقع من چیزهای بسیار جالبی درباره زندگی دانشمندانمان یاد گرفتم.",
+          "orderIndex": 6
+        },
+        {
+          "id": "dl3-7",
+          "speaker": "Roya",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Like what?",
+          "faText": "مثلاً چه چیزهایی؟",
+          "orderIndex": 7
+        },
+        {
+          "id": "dl3-8",
+          "speaker": "Mahsa",
+          "speakerRole": "student",
+          "speakerAvatar": "👩",
+          "enText": "For example Razi taught medicine to many young people while he was working in Ray Hospital. Or Nasireddin Toosi built Maragheh Observatory when he was studying the planets.",
+          "faText": "مثلاً رازی در حالی که در بیمارستان ری کار می‌کرد، به جوانان زیادی پزشکی می‌آموخت. یا نصیرالدین طوسی زمانی که مشغول مطالعه سیارات بود رصدخانه مراغه را ساخت.",
+          "orderIndex": 8
+        },
+        {
+          "id": "dl3-9",
+          "speaker": "Roya",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Cool! What was the name of the book?",
+          "faText": "عالیه! نام این کتاب چه بود؟",
+          "orderIndex": 9
+        },
+        {
+          "id": "dl3-10",
+          "speaker": "Mahsa",
+          "speakerRole": "student",
+          "speakerAvatar": "👩",
+          "enText": "Famous Iranian Scientists.",
+          "faText": "دانشمندان مشهور ایرانی.",
+          "orderIndex": 10
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw3-1",
+        "word": "try hard",
+        "phonetic": "/traɪ hɑːd/",
+        "persianMeaning": "سخت تلاش کردن / تمام توان را به کار بستن",
+        "imagePromptOrUrl": "try-hard-studying",
+        "options": ["give up", "try hard", "rest"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Melika tries hard to learn English every single day.",
+          "fa": "ملیکا هر روز سخت تلاش می‌کند تا زبان انگلیسی را یاد بگیرد."
+        }
+      },
+      {
+        "id": "nw3-2",
+        "word": "energetic",
+        "phonetic": "/ˌen.əˈdʒet.ɪk/",
+        "persianMeaning": "پرانرژی و پرجنب‌وجوش",
+        "imagePromptOrUrl": "energetic-boy-running",
+        "options": ["tired", "energetic", "weak"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Babak is an energetic boy who loves sports and science.",
+          "fa": "بابک پسری پرانرژی است که عاشق ورزش و علم است."
+        }
+      },
+      {
+        "id": "nw3-3",
+        "word": "do experiments",
+        "phonetic": "/duː ɪkˈsper.ɪ.mənts/",
+        "persianMeaning": "آزمایش‌های علمی انجام دادن",
+        "imagePromptOrUrl": "students-doing-experiments",
+        "options": ["watch TV", "do experiments", "tell lies"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The students do experiments in the school laboratory.",
+          "fa": "دانش‌آموزان در آزمایشگاه مدرسه آزمایش انجام می‌دهند."
+        }
+      },
+      {
+        "id": "nw3-4",
+        "word": "grow up",
+        "phonetic": "/ɡrəʊ ʌp/",
+        "persianMeaning": "بزرگ شدن / رشد کردن و بالغ شدن",
+        "imagePromptOrUrl": "children-growing-rapidly",
+        "options": ["grow up", "fall down", "disappear"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Children grow up rapidly during their early years.",
+          "fa": "کودکان در سال‌های نخستین زندگی‌شان با سرعت زیادی بزرگ می‌شوند."
+        }
+      },
+      {
+        "id": "nw3-5",
+        "word": "rapidly",
+        "phonetic": "/ˈræp.ɪd.li/",
+        "persianMeaning": "به‌سرعت و با شتاب زیاد",
+        "imagePromptOrUrl": "children-growing-rapidly",
+        "options": ["slowly", "rapidly", "quietly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Modern technology is developing rapidly across the world.",
+          "fa": "فناوری نوین با شتاب زیادی در سراسر جهان در حال رشد است."
+        }
+      },
+      {
+        "id": "nw3-6",
+        "word": "flu",
+        "phonetic": "/fluː/",
+        "persianMeaning": "بیماری ویروسی آنفلوآنزا",
+        "imagePromptOrUrl": "flu-feeling-weak",
+        "options": ["flu", "health", "exercise"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "He caught the flu and had to stay in bed for three days.",
+          "fa": "او آنفلوآنزا گرفت و مجبور شد سه روز در رختخواب بماند."
+        }
+      },
+      {
+        "id": "nw3-7",
+        "word": "feel weak",
+        "phonetic": "/fiːl wiːk/",
+        "persianMeaning": "احساس ضعف و بی‌حالی کردن",
+        "imagePromptOrUrl": "flu-feeling-weak",
+        "options": ["feel strong", "feel weak", "feel happy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "He has the flu and feels weak today.",
+          "fa": "او امروز به خاطر آنفلوآنزا احساس ضعف و ناتوانی می‌کند."
+        }
+      },
+      {
+        "id": "nw3-8",
+        "word": "invent",
+        "phonetic": "/ɪnˈvent/",
+        "persianMeaning": "اختراع کردن / آفریدن وسیله‌ای نو",
+        "imagePromptOrUrl": "edison-lightbulb-invention",
+        "options": ["destroy", "invent", "lose"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Edison invented the first practical light bulb.",
+          "fa": "ادیسون نخستین لامپ روشنایی کاربردی را اختراع کرد."
+        }
+      },
+      {
+        "id": "nw3-9",
+        "word": "do research",
+        "phonetic": "/duː rɪˈsɜːtʃ/",
+        "persianMeaning": "تحقیق و پژوهش علمی انجام دادن",
+        "imagePromptOrUrl": "research-blood-cells",
+        "options": ["play games", "do research", "sleep"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "She is doing research on blood cells in the institute.",
+          "fa": "او در پژوهشکده مشغول انجام تحقیق روی سلول‌های خونی است."
+        }
+      },
+      {
+        "id": "nw3-10",
+        "word": "success",
+        "phonetic": "/səkˈses/",
+        "persianMeaning": "موفقیت / پیروزی و کامیابی",
+        "imagePromptOrUrl": "no-success-without-hard-work",
+        "options": ["failure", "success", "mistake"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "No success is possible without hard work and patience.",
+          "fa": "هیچ موفقیتی بدون کار سخت و شکیبایی دست‌یافتنی نیست."
+        }
+      },
+      {
+        "id": "nw3-11",
+        "word": "solve",
+        "phonetic": "/sɒlv/",
+        "persianMeaning": "حل کردن / پاسخ یافتن برای مسئله",
+        "imagePromptOrUrl": "solve-problem-puzzle",
+        "options": ["solve", "complicate", "hide"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "We can help you solve your difficult math problems.",
+          "fa": "ما می‌توانیم به شما کمک کنیم تا مسائل دشوار ریاضی‌تان را حل کنید."
+        }
+      },
+      {
+        "id": "nw3-12",
+        "word": "develop",
+        "phonetic": "/dɪˈvel.əp/",
+        "persianMeaning": "توسعه یافتن / رشد کردن به شکل کامل‌تر",
+        "imagePromptOrUrl": "develop-skills-growing",
+        "options": ["destroy", "develop", "stop"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "This interactive book can develop your speaking skill.",
+          "fa": "این کتاب تعاملی می‌تواند مهارت گفتاری شما را پرورش دهد."
+        }
+      },
+      {
+        "id": "nw3-13",
+        "word": "belief",
+        "phonetic": "/bɪˈliːf/",
+        "persianMeaning": "باور / ایمان و اعتقاد قلبی",
+        "imagePromptOrUrl": "belief-faith-heart",
+        "options": ["doubt", "fear", "belief"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Her belief in Allah gave her hope during difficult times.",
+          "fa": "ایمان او به خداوند در روزهای دشوار به او امید بخشید."
+        }
+      },
+      {
+        "id": "nw3-14",
+        "word": "quit / give up",
+        "phonetic": "/kwɪt / ɡɪv ʌp/",
+        "persianMeaning": "دست کشیدن / تسلیم شدن / رها کردن",
+        "imagePromptOrUrl": "quit-stop-smoking",
+        "options": ["continue", "quit / give up", "start"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Fortunately, his father is going to quit smoking.",
+          "fa": "خوشبختانه پدرش قصد دارد سیگار کشیدن را ترک کند."
+        }
+      },
+      {
+        "id": "nw3-15",
+        "word": "thousands of",
+        "phonetic": "/ˈθaʊ.zəndz əv/",
+        "persianMeaning": "هزاران / شمار بسیار زیادی از",
+        "imagePromptOrUrl": "thousands-of-stars",
+        "options": ["a few", "thousands of", "none"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "There are thousands of things scientists want to discover.",
+          "fa": "هزاران موضوع وجود دارد که دانشمندان می‌خواهند کشف کنند."
+        }
+      }
+    ],
+    "reading": {
+      "title": "No Success Without Hard Work",
+      "persianTitle": "نابرده رنج، گنج میسر نمی‌شود",
+      "passageTextEn": "Human knowledge develops with scientists' hard work. Many great men and women try hard to find facts, solve problems and invent things.\n\nSome of these scientists did not have easy lives. But they tried hard when they were working on problems. They never felt weak when they were studying. They never gave up when they were doing research.\n\nThere are great stories about scientists and their lives. One such story is about Thomas Edison. As a young boy, Edison was very interested in science. He was very energetic and always asked questions. Sadly, young Edison lost his hearing at the age of 12. He did not attend school and learned science by reading books in the library himself. When he grew up he worked in different places, but he never lost his interest for making things. Edison was famous for doing thousands of experiments to find answers to problems. He said, 'I never quit until I get what I'm after.' Edison had more than 1,000 inventions and was very successful at the end of his life.\n\nMany great names had stories like this. But the key to their success is their hard work and belief in themselves. If you want to get what you want, work hard and never give up.",
+      "passageParagraphs": [
+        "Human knowledge develops with scientists' hard work. Many great men and women try hard to find facts, solve problems and invent things.",
+        "Some of these scientists did not have easy lives. But they tried hard when they were working on problems. They never felt weak when they were studying. They never gave up when they were doing research.",
+        "There are great stories about scientists and their lives. One such story is about Thomas Edison. As a young boy, Edison was very interested in science. He was very energetic and always asked questions. Sadly, young Edison lost his hearing at the age of 12. He did not attend school and learned science by reading books in the library himself. When he grew up he worked in different places, but he never lost his interest for making things. Edison was famous for doing thousands of experiments to find answers to problems. He said, 'I never quit until I get what I'm after.' Edison had more than 1,000 inventions and was very successful at the end of his life.",
+        "Many great names had stories like this. But the key to their success is their hard work and belief in themselves. If you want to get what you want, work hard and never give up."
+      ],
+      "questions": [
+        {
+          "id": "r3-q1",
+          "type": "mcq_general",
+          "prompt": "What is the main message of the reading passage 'No Success Without Hard Work'?",
+          "options": [
+            "Success only comes to people who have easy lives from childhood",
+            "Success in science and life is achieved through hard work, persistence, and self-belief",
+            "Only people with formal university degrees can become inventors",
+            "Edison stopped working after he lost his hearing at age 12"
+          ],
+          "correctAnswer": 1,
+          "explanationFa": "پیام بنیادین این درس این است که دستیابی به موفقیت علمی و فردی نیازمند کار سخت، پشتکار خستگی‌ناپذیر و ایمان به توانایی‌های خود است."
+        },
+        {
+          "id": "r3-q2",
+          "type": "true_false",
+          "prompt": "Edison finally lost his interest in making new things after losing his hearing.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": 1,
+          "explanationFa": "غلط است؛ طبق پاراگراف سوم متن، با وجود ناشنوایی او هرگز علاقه خود به ساختن و ابداع وسایل را از دست نداد (he never lost his interest for making things)."
+        },
+        {
+          "id": "r3-q3",
+          "type": "reference",
+          "prompt": "In paragraph 2, who does the pronoun 'They' in 'They never gave up when they were doing research' refer to?",
+          "options": ["Young children", "Great scientists", "Modern schools", "Library books"],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر They در این جمله به دانشمندان بزرگ (scientists) بازمی‌گردد که با وجود شرایط دشوار زندگی، هنگام پژوهش تسلیم نمی‌شدند."
+        },
+        {
+          "id": "r3-q4",
+          "type": "context_meaning",
+          "prompt": "According to the passage, what is the best meaning of the expression 'give up'?",
+          "options": [
+            "To stop trying or quit working toward a goal",
+            "To read more books in a quiet library",
+            "To invent a new electronic device",
+            "To travel rapidly to another country"
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "اصطلاح give up به معنای تسلیم شدن و متوقف کردن تلاش برای رسیدن به یک هدف است (to stop trying)."
+        },
+        {
+          "id": "r3-q5",
+          "type": "open_ended",
+          "prompt": "How did young Edison learn science when he did not attend school, and what was the key to his success?",
+          "correctAnswer": "He learned science by reading books in the library himself, and the key to his success was hard work, thousands of experiments, and never giving up.",
+          "requiredKeywordsForEvaluation": [
+            "reading",
+            "library",
+            "experiments",
+            "hard work",
+            "never quit",
+            "give up",
+            "belief"
+          ],
+          "modelAnswerEn": "Young Edison learned science by reading books in the library himself. He conducted thousands of experiments, worked very hard, and never gave up until he achieved his goals.",
+          "modelAnswerFa": "ادیسون جوان علم را با مطالعه کتاب‌ها در کتابخانه به صورت خودآموز فراگرفت. او هزاران آزمایش انجام داد، بسیار سخت کوشید و تا رسیدن به اهدافش هرگز تسلیم نشد.",
+          "explanationFa": "طبق پاراگراف‌های ۳ و ۴ متن، ادیسون خودآموز در کتابخانه علم را آموخت و با انجام هزاران آزمایش و تسلیم‌ناپذیری به پیروزی رسید."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Past Continuous (Progressive) & Reflexive Pronouns",
+      "persianTopic": "گذشته استمراری (was/were + verb-ing) با when و while + ضمایر انعکاسی",
+      "discovery": {
+        "sentenceA": {
+          "text": "Newton was sitting under a tree when an apple hit his head.",
+          "highlightedPart": "was sitting ... hit",
+          "translation": "نیوتن زیر درخت نشسته بود (عمل مستمر) که سیبی به سرش برخورد کرد (عمل لحظه‌ای که آن را قطع کرد)."
+        },
+        "sentenceB": {
+          "text": "Alexander Fleming was doing research in his laboratory in winter 1928.",
+          "highlightedPart": "was doing research",
+          "translation": "الکساندر فلمینگ در زمستان ۱۹۲۸ در آزمایشگاهش مشغول انجام پژوهش بود (تداوم در یک بازه زمانی مشخص در گذشته)."
+        },
+        "ccqQuestions": [
+          {
+            "question": "در جمله نیوتن (Newton was sitting under a tree when an apple hit his head)، کدام کار در حال استمرار بود و کدام کار به صورت ناگهانی آن را قطع کرد؟",
+            "options": [
+              "نشستن زیر درخت در حال استمرار بود و افتادن سیب آن را قطع کرد",
+              "افتادن سیب مدتی طولانی ادامه داشت و نشستن آن را قطع کرد"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "ساختار was sitting نشان‌دهنده عملی در حال تداوم است و فعل hit (گذشته ساده) عمل ناگهانی و لحظه‌ای است."
+          },
+          {
+            "question": "آیا فعل گذشته استمراری (was/were + ing) نشان می‌دهد که یک عمل در گذشته برای مدتی در جریان بوده است؟",
+            "options": [
+              "بله، عمل در گذشته در یک بازه زمانی در حال تداوم بوده است",
+              "خیر، مربوط به برنامه‌های آینده است"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "گذشته استمراری برای توصیف فعالیتی به کار می‌رود که در زمان معینی در گذشته در حال رخ دادن بوده است."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول طلایی گذشته استمراری:\n۱. فاعل + was / were + فعل با ing (برای I/he/she/it از was و برای we/you/they از were).\n۲. همراهی با When و While: کاری که طول می‌کشد گذشته استمراری (was/were + ing) است و بعد از while می‌آید؛ کاری که ناگهان رخ می‌دهد و کار اول را قطع می‌کند گذشته ساده است و بعد از when می‌آید.",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "منفی کردن گذشته استمراری (wasn't / weren't)",
+          "stepByStepExplanationFa": [
+            "برای منفی کردن جمله، کافی است کلمه not را به فعل کمکی was یا were اضافه کنیم.",
+            "مفرد: was not ➔ wasn't | جمع: were not ➔ weren't.",
+            "فعل اصلی همواره پسوند -ing خود را حفظ می‌کند."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "Tina (not read) a novel when her mother came in.",
+            "questionPrompt": "شکل منفی صحیح گذشته استمراری برای فاعل مفرد Tina کدام است؟",
+            "options": ["wasn't reading", "weren't reading"],
+            "correctIndex": 0,
+            "explanationFa": "برای فاعل مفرد Tina از wasn't reading استفاده می‌کنیم."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "سوالی کردن گذشته استمراری و ضمایر انعکاسی",
+          "stepByStepExplanationFa": [
+            "برای ساخت سوال بله/خیر، جای فاعل و Was/Were را عوض می‌کنیم: Was Tina studying? / Were they talking?",
+            "ضمایر انعکاسی (myself, himself, herself, ...) زمانی به کار می‌روند که فاعل و مفعول یک نفر باشند یا برای تاکید بر اینکه خود شخص کار را انجام داده است: Edison invented the light bulb himself."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "Alexander Graham Bell invented the telephone .......... .",
+            "questionPrompt": "کدام ضمیر انعکاسی برای تاکید بر کار آقای بل (مذکر مفرد = he) مناسب است؟",
+            "options": ["himself", "herself"],
+            "correctIndex": 0,
+            "explanationFa": "برای فاعل مذکر مفرد (Alexander Graham Bell = he)، ضمیر انعکاسی himself صحیح است."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp3-1",
+            "prompt": "It was raining yesterday. I .......... in the living room. (sit)",
+            "options": ["was sitting", "sit", "sat"],
+            "correctIndex": 0,
+            "explanationFa": "چون در یک زمان مشخص در گذشته باران می‌بارید و عمل نشستن در حال تداوم بود، was sitting صحیح است."
+          },
+          {
+            "id": "gp3-2",
+            "prompt": "I .......... a movie about a great scientist when the phone rang. (watch)",
+            "options": ["was watching", "watched", "am watching"],
+            "correctIndex": 0,
+            "explanationFa": "عمل تماشای فیلم در حال استمرار بود که با زنگ تلفن قطع شد: was watching."
+          },
+          {
+            "id": "gp3-3",
+            "prompt": "Jamshid .......... very interested in numbers and planets. (be)",
+            "options": ["was", "is", "were"],
+            "correctIndex": 0,
+            "explanationFa": "برای فاعل مفرد Jamshid در زمان گذشته از فعل was استفاده می‌شود."
+          },
+          {
+            "id": "gp3-4",
+            "prompt": "Actually, he .......... many interesting things when he was solving math problems. (invent)",
+            "options": ["invented", "was inventing", "invents"],
+            "correctIndex": 0,
+            "explanationFa": "در حالی که مشغول حل مسائل بود (استمراری)، چیزهایی را اختراع کرد (رویداد در گذشته ساده: invented)."
+          },
+          {
+            "id": "gp3-5",
+            "prompt": "Someone killed him when he .......... in his observatory. (work)",
+            "options": ["was working", "worked", "is working"],
+            "correctIndex": 0,
+            "explanationFa": "او در رصدخانه مشغول کار بود (was working) که این واقعه رخ داد."
+          }
+        ],
+        "production": {
+          "imageUrl": "scientists-working-lab",
+          "imageDescriptionFa": "الکساندر فلمینگ در آزمایشگاه خود در حال پژوهش بود که پنی‌سیلین را کشف کرد.",
+          "promptInstructionFa": "جمله‌ای با ساختار گذشته استمراری (was doing research) و کلمه when بنویسید.",
+          "targetKeywords": [
+            "Fleming",
+            "was",
+            "research",
+            "when",
+            "found",
+            "discovered",
+            "penicillin",
+            "laboratory"
+          ],
+          "modelSentence": "Alexander Fleming was doing research in his laboratory when he discovered penicillin.",
+          "persianTranslation": "الکساندر فلمینگ در آزمایشگاه خود مشغول پژوهش بود که پنی‌سیلین را کشف کرد."
+        }
+      }
+    },
+    "listening": {
+      "title": "Listening & Pronunciation: Narrating and Emphatic Stress",
+      "preListeningQuestions": [
+        {
+          "id": "plq3-1",
+          "question": "Conversation 1: How was Leila going home?",
+          "options": ["walking home", "taking a taxi"],
+          "correctIndex": 1
+        },
+        {
+          "id": "plq3-2",
+          "question": "Conversation 1: How was the taxi driver driving?",
+          "options": ["careful", "careless"],
+          "correctIndex": 0
+        },
+        {
+          "id": "plq3-3",
+          "question": "Conversation 2: Where was Amir walking?",
+          "options": ["in a restaurant", "at the bazaar"],
+          "correctIndex": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv3-1",
+          "title": "گفتگوی ۱: سفر با تاکسی لیلا",
+          "transcriptEn": "Speaker A: Why were you late yesterday, Leila?\nSpeaker B: When I was taking a taxi home, there was heavy traffic.\nSpeaker A: Was the taxi driver driving fast?\nSpeaker B: No, he was very careful and drove slowly in the rain.",
+          "transcriptFa": "گوینده ۱: چرا دیروز دیر کردی لیلا؟\nگوینده ۲: وقتی با تاکسی به سمت خانه می‌رفتم ترافیک سنگینی بود.\nگوینده ۱: آیا راننده تند رانندگی می‌کرد؟\nگوینده ۲: خیر، او بسیار بااحتیاط بود و زیر باران آرام می‌راند."
+        },
+        {
+          "id": "conv3-2",
+          "title": "گفتگوی ۲: خرید امیر در بازار",
+          "transcriptEn": "Speaker A: What were you doing yesterday afternoon, Amir?\nSpeaker B: I was walking at the bazaar with my brother.\nSpeaker A: Did you buy anything?\nSpeaker B: Yes, we bought some books about famous inventors.",
+          "transcriptFa": "گوینده ۱: دیروز بعدازظهر مشغول چه کاری بودی امیر؟\nگوینده ۲: با برادرم در بازار قدم می‌زدم.\nگوینده ۱: آیا چیزی خریدی؟\nگوینده ۲: بله، چند جلد کتاب درباره مخترعان نامدار خریدیم."
+        }
+      ],
+      "pronunciation": {
+        "title": "استرس تأکیدی در جمله (Emphatic Stress)",
+        "ruleExplanationFa": "طبق صفحه ۸۹ کتاب، هنگامی که می‌خواهید روی مفهوم خاصی در جمله تاکید ویژه بگذارید (Special Emphasis)، آن کلمه را با قوت و بلندی صدای بیشتری تلفظ می‌کنید. تغییر کلمه دارای تکیه، پیام جمله را به کلی تغییر می‌دهد.",
+        "examples": [
+          {
+            "sentence": "MINA'S dress is white.",
+            "intonation": "falling",
+            "patternDescriptionFa": "تکیه روی Mina: تاکید بر مالک لباس (لباس میناست نه شخص دیگر)."
+          },
+          {
+            "sentence": "Mina's DRESS is white.",
+            "intonation": "falling",
+            "patternDescriptionFa": "تکیه روی dress: تاکید بر نوع پوشش (پیراهن او سفید است نه کفش یا کیفش)."
+          },
+          {
+            "sentence": "Mina's dress is WHITE.",
+            "intonation": "falling",
+            "patternDescriptionFa": "تکیه روی white: تاکید بر رنگ (رنگ آن سفید است نه قرمز یا آبی)."
+          },
+          {
+            "sentence": "Were YOU doing the research? No, Ali was.",
+            "intonation": "falling",
+            "patternDescriptionFa": "تکیه روی Ali: تاکید بر اینکه علی پژوهش را انجام می‌داد."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq3-1",
+            "sentence": "In 'MINA'S dress is white', what is the speaker emphasizing?",
+            "correctIntonation": "falling",
+            "explanationFa": "با قرار گرفتن استرس روی MINA، تاکید روی شخص صاحب لباس است (لباس میناست نه شخص دیگر)."
+          },
+          {
+            "id": "prq3-2",
+            "sentence": "In 'Mina's dress is WHITE', what is the speaker emphasizing?",
+            "correctIntonation": "falling",
+            "explanationFa": "با قرار گرفتن استرس روی WHITE، تاکید روی رنگ لباس است (سفید است نه رنگ دیگر)."
+          },
+          {
+            "id": "prq3-3",
+            "sentence": "Who broke the window? It WASN'T me!",
+            "correctIntonation": "falling",
+            "explanationFa": "استرس روی WASN'T برای رد قاطعانه و انکار شکستن پنجره به کار رفته است."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "افعال کنشی در برابر حالتی (Action vs. State Verbs)",
+        "explanationFa": "فعل کلمه‌ای است که انجام یک کار (Action) یا یک حالت روحی/ذهنی (State) را بیان می‌کند. افعال کنشی نشان‌دهنده یک عمل فیزیکی هستند، در حالی که افعال حالتی به احساسات، افکار، مالکیت و حواس مربوط می‌شوند.",
+        "categories": [
+          {
+            "categoryEn": "Action Verbs",
+            "categoryFa": "افعال کنشی (انجام یک کار فیزیکی)",
+            "examples": ["write (نوشتن)", "drink (نوشیدن)", "clean (تمیز کردن)", "go (رفتن)", "build (ساختن)"]
+          },
+          {
+            "categoryEn": "Emotion & Feeling",
+            "categoryFa": "افعال حالتی احساسی و عاطفی",
+            "examples": ["love (عاشق بودن)", "like (دوست داشتن)", "hate (متنفر بودن)", "feel (احساس کردن)"]
+          },
+          {
+            "categoryEn": "Mental & Thoughts",
+            "categoryFa": "افعال حالتی ذهنی و شناختی",
+            "examples": ["know (دانستن)", "believe (باور داشتن)", "remember (به یاد داشتن)", "understand (فهمیدن)"]
+          },
+          {
+            "categoryEn": "Need & Desire",
+            "categoryFa": "افعال حالتی نیاز و تمایل",
+            "examples": ["need (نیاز داشتن)", "want (خواستن)", "prefer (ترجیح دادن)"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq3-1",
+            "prompt": "کلمه 'believe' (باور داشتن / ایمان قلبی) چه نوع فعلی است؟",
+            "options": ["State verb (فعل حالتی)", "Action verb (فعل کنشی)"],
+            "correctIndex": 0,
+            "explanationFa": "فعل believe یک حالت ذهنی و باور قلبی را توصیف می‌کند و بنابراین State verb است."
+          },
+          {
+            "id": "wq3-2",
+            "prompt": "کلمه 'clean' (تمیز کردن اتاق) چه نوع فعلی است؟",
+            "options": ["Action verb (فعل کنشی)", "State verb (فعل حالتی)"],
+            "correctIndex": 0,
+            "explanationFa": "فعل clean نشان‌دهنده یک فعالیت فیزیکی قابل مشاهده است و Action verb به حساب می‌آید."
+          },
+          {
+            "id": "wq3-3",
+            "prompt": "کلمه 'need' (نیاز داشتن به چیزی) چه نوع فعلی است؟",
+            "options": ["State verb (فعل حالتی)", "Action verb (فعل کنشی)"],
+            "correctIndex": 0,
+            "explanationFa": "فعل need یک نیاز درونی را بیان می‌کند و در زمره State verbs قرار دارد."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "فرم استمراری در برابر ساده (Simple vs. Continuous)",
+        "rulesSummaryFa": "قاعده طلایی صفحه ۹۳ کتاب: افعال کنشی می‌توانند هم به فرم ساده و هم به فرم استمراری (با ing) به کار روند. اما افعال حالتی معمولاً فرم استمراری (Continuous) نمی‌گیرند و در فرم ساده بیان می‌شوند.",
+        "regularPairs": [
+          { "singular": "clean ➔ I cleaned yesterday", "plural": "I am cleaning now (پذیرش ing)" },
+          { "singular": "write ➔ He wrote a letter", "plural": "He is writing a letter (پذیرش ing)" },
+          { "singular": "drink ➔ He drinks milk", "plural": "He was drinking milk (پذیرش ing)" },
+          { "singular": "work ➔ He worked hard", "plural": "He was working hard (پذیرش ing)" }
+        ],
+        "irregularPairs": [
+          { "singular": "like ➔ I like reading (صحیح)", "plural": "I am liking (نادرست ❌)" },
+          { "singular": "know ➔ I know the street (صحیح)", "plural": "I am knowing (نادرست ❌)" },
+          { "singular": "need ➔ I needed a taxi (صحیح)", "plural": "I was needing (نادرست ❌)" },
+          { "singular": "love ➔ Kids love chocolate (صحیح)", "plural": "Kids are loving (نادرست ❌)" }
+        ],
+        "exercise": [
+          {
+            "id": "spe3-1",
+            "prompt": "I (don't like / am not liking) reading newspapers.",
+            "options": ["don't like", "am not liking"],
+            "correctIndex": 0,
+            "explanationFa": "فعل like حالتی است و فرم استمراری am not liking برای آن نادرست است."
+          },
+          {
+            "id": "spe3-2",
+            "prompt": "At 3 o'clock yesterday, I (needed / was needing) a taxi.",
+            "options": ["needed", "was needing"],
+            "correctIndex": 0,
+            "explanationFa": "فعل need حالتی است و فرم استمراری was needing نمی‌گیرد."
+          },
+          {
+            "id": "spe3-3",
+            "prompt": "She (watches / is watching) television at the moment.",
+            "options": ["is watching", "watches"],
+            "correctIndex": 0,
+            "explanationFa": "فعل watch کنشی است و با توجه به قید at the moment، ساختار حال استمراری is watching به کار می‌رود."
+          },
+          {
+            "id": "spe3-4",
+            "prompt": "I (want / am wanting) to go to the cinema tonight.",
+            "options": ["want", "am wanting"],
+            "correctIndex": 0,
+            "explanationFa": "فعل want بیانگر تمایل و حالتی است؛ بنابراین فرم ساده want صحیح است."
+          },
+          {
+            "id": "spe3-5",
+            "prompt": "Unfortunately, he (didn't remember / wasn't remembering) my name.",
+            "options": ["didn't remember", "wasn't remembering"],
+            "correctIndex": 0,
+            "explanationFa": "فعل remember از افعال ذهنی/حالتی است و فرم استمراری نمی‌گیرد: didn't remember."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "مقایسه کاربردی افعال کنشی و حالتی در بافت جمله",
+        "explanationFa": "در زبان انگلیسی، افعال کنشی نشان‌دهنده یک فرآیند فیزیکی در حال جریان هستند اما افعال حالتی شرایط، احساس یا نگرش پایدار را توصیف می‌کنند.",
+        "examples": [
+          { "common": "کنشی: She is writing a letter.", "proper": "حالتی: She knows the writer." },
+          { "common": "کنشی: The children are playing.", "proper": "حالتی: They love chocolate." },
+          { "common": "کنشی: They were studying science.", "proper": "حالتی: They understood the fact." }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pnb3-1",
+            "sentenceWithBlank": "Right now, I (understand / am understanding) the grammar rule.",
+            "options": ["understand", "am understanding"],
+            "correctIndex": 0,
+            "explanationFa": "فعل understand یک State verb است و حتی با قید Right now فرم استمراری نمی‌گیرد."
+          },
+          {
+            "id": "pnb3-2",
+            "sentenceWithBlank": "Listen! Someone (is knocking / knocks) on the door.",
+            "options": ["is knocking", "knocks"],
+            "correctIndex": 0,
+            "explanationFa": "فعل knock کنشی است و کلمه Listen نشان‌دهنده جریانی در حال حاضر است: is knocking."
+          },
+          {
+            "id": "pnb3-3",
+            "sentenceWithBlank": "We (believe / are believing) that hard work brings success.",
+            "options": ["believe", "are believing"],
+            "correctIndex": 0,
+            "explanationFa": "فعل believe مربوط به باور و ایمان است و فرم استمراری نمی‌پذیرد: believe."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تکمیل و ارزیابی ساختار افعال در جملات",
+        "explanationFa": "ارزیابی انتخاب ساختار صحیح بر اساس کنشی یا حالتی بودن فعل و نشانگرهای زمانی مانند yesterday, at the moment, now, when.",
+        "markersList": [
+          {
+            "type": "Action Verbs with Continuous",
+            "typeFa": "افعال کنشی با استمرار",
+            "items": ["am/is/are + verb-ing", "was/were + verb-ing"],
+            "exampleSentence": "She was watching television when her mother came in."
+          },
+          {
+            "type": "State Verbs with Simple Tense",
+            "typeFa": "افعال حالتی با فرم ساده",
+            "items": ["present simple (like, know)", "past simple (needed, remembered)"],
+            "exampleSentence": "At 3 o'clock yesterday, I needed a taxi."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nmq3-1",
+            "prompt": "Which sentence is grammatically correct according to English rules?",
+            "options": [
+              "I am knowing the answer very well.",
+              "I know the answer very well."
+            ],
+            "correctIndex": 1,
+            "explanationFa": "فعل know حالتی است و نباید به صورت استمراری (am knowing) بیان شود."
+          },
+          {
+            "id": "nmq3-2",
+            "prompt": "Why is 'I was needing a taxi' incorrect?",
+            "options": [
+              "Because 'need' is a state verb and does not usually take -ing.",
+              "Because yesterday requires future tense.",
+              "Because 'taxi' is a plural noun."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه need یک State verb است و بیانگر نیاز می‌باشد؛ لذا نمی‌تواند پسوند -ing در فرم استمراری بگیرد."
+          },
+          {
+            "id": "nmq3-3",
+            "prompt": "Melika .......... hard every day to learn English. (Action verb in simple present)",
+            "options": ["tries", "is trying", "try"],
+            "correctIndex": 0,
+            "explanationFa": "با توجه به قید تکرار every day و فاعل سوم‌شخص مفرد Melika، شکل زمان حال ساده tries صحیح است."
+          }
+        ]
+      }
+    }
+  }
+}

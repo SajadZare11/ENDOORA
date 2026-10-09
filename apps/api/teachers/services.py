@@ -45,6 +45,10 @@ class TeacherClassService:
         equipment: Optional[List[str]] = None,
         teaching_preferences: Optional[List[str]] = None,
         target_exams: str = "",
+        schedule_days: Optional[List[str]] = None,
+        schedule_time_start: str = "18:00",
+        schedule_time_end: str = "19:30",
+        meeting_url: str = "",
     ) -> TeacherClass:
         # Check teacher verification or role
         if getattr(teacher, "role", "") != "teacher" and not getattr(teacher, "is_teacher_verified", False):
@@ -67,6 +71,10 @@ class TeacherClassService:
             equipment=equipment or [],
             teaching_preferences=teaching_preferences or [],
             target_exams=target_exams.strip(),
+            schedule_days=schedule_days if schedule_days is not None else ["شنبه", "دوشنبه"],
+            schedule_time_start=(schedule_time_start or "18:00").strip(),
+            schedule_time_end=(schedule_time_end or "19:30").strip(),
+            meeting_url=(meeting_url or "").strip(),
             status=ClassStatus.ACTIVE,
         )
 
@@ -91,6 +99,10 @@ class TeacherClassService:
             "equipment",
             "teaching_preferences",
             "target_exams",
+            "schedule_days",
+            "schedule_time_start",
+            "schedule_time_end",
+            "meeting_url",
         }
         update_fields = []
         for field, val in kwargs.items():
@@ -106,12 +118,77 @@ class TeacherClassService:
 
 
     @staticmethod
-    def list_teacher_classes(teacher) -> List[TeacherClass]:
-        return list(
-            TeacherClass.objects.filter(teacher=teacher)
-            .prefetch_related("enrollments", "sessions")
-            .order_by("-created_at")
+    def list_teacher_classes(
+        teacher,
+        code: Optional[str] = None,
+        q: Optional[str] = None,
+    ) -> List[TeacherClass]:
+        from django.db.models import Q
+        qs = TeacherClass.objects.filter(teacher=teacher).prefetch_related("enrollments", "sessions")
+        if code and code.strip():
+            clean_code = code.strip()
+            qs = qs.filter(Q(code=clean_code) | Q(code__icontains=clean_code))
+        if q and q.strip():
+            clean_q = q.strip()
+            qs = qs.filter(
+                Q(code__icontains=clean_q)
+                | Q(title__icontains=clean_q)
+                | Q(subject__icontains=clean_q)
+                | Q(level__icontains=clean_q)
+            )
+        return list(qs.order_by("-created_at"))
+
+    @staticmethod
+    def lookup_class_by_code(code: str) -> Optional[TeacherClass]:
+        """Looks up an active class by its 7-digit numeric code."""
+        clean_code = code.strip()
+        return (
+            TeacherClass.objects.filter(
+                code=clean_code,
+                status=ClassStatus.ACTIVE,
+            )
+            .select_related("teacher")
+            .prefetch_related("enrollments")
+            .first()
         )
+
+    @staticmethod
+    def join_class_by_code(learner, code: str) -> TeacherLearnerLink:
+        """
+        Allows a learner to directly find and join a class using the 7-digit class code.
+        """
+        clean_code = code.strip()
+        teacher_class = TeacherClass.objects.filter(
+            code=clean_code,
+            status=ClassStatus.ACTIVE,
+        ).first()
+        if not teacher_class:
+            raise TeacherClass.DoesNotExist(f"No active class found with code {clean_code}.")
+
+        active_enrollments = teacher_class.enrollments.filter(status=LinkStatus.ACTIVE)
+        if active_enrollments.count() >= teacher_class.max_capacity:
+            existing = TeacherLearnerLink.objects.filter(
+                teacher_class=teacher_class,
+                learner=learner,
+                status=LinkStatus.ACTIVE,
+            ).first()
+            if not existing:
+                raise ValueError("این کلاس به حداکثر ظرفیت مجاز رسیده است.")
+
+        invite_code = secrets.token_urlsafe(16)
+        link, created = TeacherLearnerLink.objects.update_or_create(
+            teacher_class=teacher_class,
+            learner=learner,
+            defaults={
+                "teacher": teacher_class.teacher,
+                "status": LinkStatus.ACTIVE,
+                "invite_code": invite_code,
+                "consent_given_at": timezone.now(),
+                "terminated_at": None,
+                "termination_reason": "",
+            },
+        )
+        return link
 
     @staticmethod
     def invite_learner(teacher, class_id: str, learner) -> TeacherLearnerLink:
@@ -139,14 +216,22 @@ class TeacherClassService:
     @staticmethod
     def accept_invite(learner, invite_code: str) -> TeacherLearnerLink:
         """Learner explicitly grants consent to establish educational relationship."""
-        link = TeacherLearnerLink.objects.get(invite_code=invite_code)
-        if link.learner != learner:
-            raise PermissionDenied("This invite code was not issued for your account.")
+        clean_code = invite_code.strip()
+        try:
+            link = TeacherLearnerLink.objects.get(invite_code=clean_code)
+            if link.learner != learner:
+                raise PermissionDenied("This invite code was not issued for your account.")
 
-        link.status = LinkStatus.ACTIVE
-        link.consent_given_at = timezone.now()
-        link.save(update_fields=["status", "consent_given_at", "updated_at"])
-        return link
+            link.status = LinkStatus.ACTIVE
+            link.consent_given_at = timezone.now()
+            link.save(update_fields=["status", "consent_given_at", "updated_at"])
+            return link
+        except TeacherLearnerLink.DoesNotExist:
+            # Fallback: check if the provided code is a 7-digit class code
+            cls = TeacherClass.objects.filter(code=clean_code, status=ClassStatus.ACTIVE).first()
+            if cls:
+                return TeacherClassService.join_class_by_code(learner, clean_code)
+            raise
 
     @staticmethod
     def get_learner_overview(
@@ -434,23 +519,55 @@ class TeacherClassService:
         return ledger
 
     @staticmethod
-    def get_learner_linked_teachers(learner) -> List[Dict[str, Any]]:
+    def get_learner_linked_teachers(
+        learner,
+        code: Optional[str] = None,
+        q: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
         """Returns all educational relationships for the learner."""
+        from django.db.models import Q
         links = TeacherLearnerLink.objects.filter(
             learner=learner,
             status=LinkStatus.ACTIVE,
         ).select_related("teacher", "teacher_class")
 
+        if code and code.strip():
+            clean_code = code.strip()
+            links = links.filter(teacher_class__code=clean_code)
+
+        if q and q.strip():
+            clean_q = q.strip()
+            links = links.filter(
+                Q(teacher_class__code__icontains=clean_q)
+                | Q(teacher_class__title__icontains=clean_q)
+                | Q(teacher_class__subject__icontains=clean_q)
+                | Q(teacher__email__icontains=clean_q)
+            )
+
         result = []
         for l in links:
+            tc = l.teacher_class
+            days_str = " و ".join(tc.effective_schedule_days)
+            sched_summary = f"{days_str} ساعت {tc.schedule_time_start} الی {tc.schedule_time_end}"
+            teacher_name = getattr(l.teacher, "get_full_name", lambda: "")() or l.teacher.email.split("@")[0]
             result.append({
                 "link_id": str(l.id),
                 "teacher_id": str(l.teacher.id),
                 "teacher_email": l.teacher.email,
-                "class_id": str(l.teacher_class.id),
-                "class_title": l.teacher_class.title,
-                "subject": l.teacher_class.subject,
-                "level": l.teacher_class.level,
+                "teacher_name": teacher_name,
+                "class_id": str(tc.id),
+                "code": tc.code,
+                "class_code": tc.code,
+                "class_title": tc.title,
+                "subject": tc.subject,
+                "level": tc.level,
                 "consent_given_at": l.consent_given_at,
+                "schedule_days": tc.effective_schedule_days,
+                "schedule_time_start": tc.schedule_time_start,
+                "schedule_time_end": tc.schedule_time_end,
+                "schedule_summary": sched_summary,
+                "meeting_url": tc.effective_meeting_url,
+                "adobe_connect_url": tc.effective_meeting_url,
+                "adobe_connect_app_url": tc.effective_adobe_connect_app_url,
             })
         return result

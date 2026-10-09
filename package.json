@@ -23,7 +23,12 @@
     "check:day09": "node scripts/check-day09.mjs",
     "check:day10": "node scripts/check-day10.mjs",
     "check:day01-10": "node scripts/check-day01-10.mjs",
-    "check:lessons": "node --experimental-strip-types scripts/check-bilingual-and-lessons.mjs"
+    "check:lessons": "node --experimental-strip-types scripts/check-bilingual-and-lessons.mjs",
+    "check:highschool": "node --experimental-strip-types scripts/check-highschool-module.mjs",
+    "check:tamrin20": "node --experimental-strip-types scripts/check-tamrin-ta-20.mjs",
+    "check:skills": "node --experimental-strip-types scripts/check-skills-revamp.mjs",
+    "check:skills:games": "node --experimental-strip-types scripts/check-skills-games.mjs",
+    "check:listening": "node --experimental-strip-types scripts/check-listening-system.mjs"
   },
   "engines": {
     "node": ">=24 <25",

@@ -18,6 +18,7 @@ import {
   type LearnerHome,
   type Locale,
 } from "../../lib/learner-dashboard";
+import { PublicHeader } from "../marketing/PublicHeader";
 
 
 type ContextValue = {
@@ -191,19 +192,50 @@ const STANDALONE_PREFIXES = [
   "/placement",
   "/lessons",
   "/courses",
-  "/learn",
   "/ielts",
+  "/high-school",
   "/en/placement",
   "/en/lessons",
   "/en/courses",
-  "/en/learn",
   "/en/ielts",
+  "/en/high-school",
 ];
 
+function isLearnerRouteActive(currentPath: string, targetHref: string) {
+  if (targetHref === "/dashboard") {
+    return (
+      currentPath === "/dashboard" ||
+      currentPath === "/today" ||
+      currentPath.startsWith("/dashboard/")
+    );
+  }
+  if (targetHref === "/my-teachers") {
+    return (
+      currentPath === "/my-teachers" ||
+      currentPath.startsWith("/my-teachers/") ||
+      currentPath === "/teachers" ||
+      currentPath.startsWith("/teachers/")
+    );
+  }
+  if (targetHref === "/practice-ai") {
+    return (
+      currentPath === "/practice-ai" ||
+      currentPath.startsWith("/practice-ai/") ||
+      currentPath === "/practice" ||
+      currentPath.startsWith("/practice/")
+    );
+  }
+  return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
+}
+
 export function LearnerShell({ children }: { children: ReactNode }) {
-  const pathname = usePathname() || "";
+  const pathnameHook = usePathname();
+  const currentPath =
+    pathnameHook ||
+    (typeof window !== "undefined" ? window.location.pathname : "");
+  const pathname = currentPath;
   const isStandaloneRoute = STANDALONE_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    (prefix) => currentPath === prefix || currentPath.startsWith(`${prefix}/`)
   );
   const [data, setData] = useState<LearnerHome | null>(null);
   const [locale, setLocale] = useState<Locale>("fa");
@@ -222,7 +254,16 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   }, [locale]);
 
   useEffect(() => {
-    if (isStandaloneRoute) return;
+    const activePath =
+      pathnameHook ||
+      (typeof window !== "undefined" ? window.location.pathname : "");
+    if (
+      STANDALONE_PREFIXES.some(
+        (prefix) => activePath === prefix || activePath.startsWith(`${prefix}/`)
+      )
+    ) {
+      return;
+    }
     const controller = new AbortController();
     let mounted = true;
 
@@ -291,12 +332,19 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   if (status !== "ready" || !value) {
     const gateKind = status === "ready" ? "error" : status;
     return (
-      <Gate
-        kind={gateKind}
-        locale={locale}
-        retry={() => setReloadKey((current) => current + 1)}
-        onLocaleChange={() => setLocale((current) => current === "fa" ? "en" : "fa")}
-      />
+      <div className="learner-shell" dir={locale === "fa" ? "rtl" : "ltr"} lang={locale}>
+        <PublicHeader
+          locale={locale === "en" ? "en" : "fa"}
+          currentPath={pathname}
+          onLocaleChange={(nextLocale) => void handleLocaleChange(nextLocale)}
+        />
+        <Gate
+          kind={gateKind}
+          locale={locale}
+          retry={() => setReloadKey((current) => current + 1)}
+          onLocaleChange={() => setLocale((current) => (current === "fa" ? "en" : "fa"))}
+        />
+      </div>
     );
   }
 
@@ -320,7 +368,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     { href: "/dashboard", label: t.home, icon: "home" as const },
     { href: "/learn", label: t.learn, icon: "learn" as const },
     { href: "/practice-ai", label: t.practice, icon: "practice" as const },
-    { href: "/teachers", label: t.teachers, icon: "teachers" as const },
+    { href: "/my-teachers", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
   ];
 
@@ -331,16 +379,65 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           {locale === "fa" ? "پرش به محتوای اصلی" : "Skip to main content"}
         </a>
 
+        <PublicHeader
+          locale={locale === "en" ? "en" : "fa"}
+          currentPath={pathname}
+          onLocaleChange={(nextLocale) => void handleLocaleChange(nextLocale)}
+          extraActions={
+            <div className="learner-header__actions">
+              <Button
+                className="learner-notification"
+                type="button"
+                aria-expanded={notificationsOpen}
+                aria-controls="learner-notification-panel"
+                aria-label={t.notifications}
+                onClick={() => setNotificationsOpen((current) => !current)}
+              >
+                <Icon name="bell" />
+                {value.data.notification_count > 0 ? (
+                  <span className="learner-notification__count">{value.data.notification_count}</span>
+                ) : null}
+              </Button>
+              {notificationsOpen ? (
+                <section className="learner-notification-panel" id="learner-notification-panel" aria-live="polite">
+                  <div>
+                    <strong>{t.notifications}</strong>
+                    <Button type="button" onClick={() => setNotificationsOpen(false)} aria-label={t.close}>×</Button>
+                  </div>
+                  <p>{t.noNotifications}</p>
+                </section>
+              ) : null}
+            </div>
+          }
+        />
+
         <aside className="learner-sidebar">
-          <Link className="learner-brand-link" href="/dashboard" aria-label="Endoora dashboard">
-            <EndooraWordmark compact />
-          </Link>
+          <div className="learner-sidebar__header">
+            <div className="learner-sidebar__badge">
+              <span className="learner-sidebar__badge-dot" />
+              <span>{locale === "fa" ? "پنل دانش‌آموز" : "Learner Panel"}</span>
+            </div>
+            <div className="learner-sidebar__user">
+              <span className="learner-sidebar__user-name">
+                {value.data.greeting_name || (locale === "fa" ? "زبان‌آموز ایندورا" : "Endoora Learner")}
+              </span>
+              <span className="learner-sidebar__user-tier">
+                {value.data.streak_days > 0
+                  ? locale === "fa"
+                    ? `🔥 زنجیره ${value.data.streak_days} روزه`
+                    : `🔥 ${value.data.streak_days}-day streak`
+                  : locale === "fa"
+                  ? "مسیر فعال"
+                  : "Active Path"}
+              </span>
+            </div>
+          </div>
           <nav className="learner-nav" aria-label={locale === "fa" ? "ناوبری زبان‌آموز" : "Learner navigation"}>
             {navItems.map((item) => (
               <NavItem
                 key={item.href}
                 {...item}
-                active={pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`))}
+                active={isLearnerRouteActive(pathname, item.href)}
               />
             ))}
           </nav>
@@ -361,44 +458,6 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           </div>
         </aside>
 
-        <header className="learner-header">
-          <Link className="learner-brand-link learner-brand-link--mobile" href="/dashboard" aria-label="Endoora dashboard">
-            <EndooraWordmark compact />
-          </Link>
-          <span className="learner-header__context">{t.context}</span>
-          <div className="learner-header__actions">
-            <Button
-              className="learner-language"
-              type="button"
-              onClick={() => void handleLocaleChange(locale === "fa" ? "en" : "fa")}
-            >
-              {t.switch}
-            </Button>
-            <Button
-              className="learner-notification"
-              type="button"
-              aria-expanded={notificationsOpen}
-              aria-controls="learner-notification-panel"
-              aria-label={t.notifications}
-              onClick={() => setNotificationsOpen((current) => !current)}
-            >
-              <Icon name="bell" />
-              {value.data.notification_count > 0 ? (
-                <span className="learner-notification__count">{value.data.notification_count}</span>
-              ) : null}
-            </Button>
-          </div>
-          {notificationsOpen ? (
-            <section className="learner-notification-panel" id="learner-notification-panel" aria-live="polite">
-              <div>
-                <strong>{t.notifications}</strong>
-                <Button type="button" onClick={() => setNotificationsOpen(false)} aria-label={t.close}>×</Button>
-              </div>
-              <p>{t.noNotifications}</p>
-            </section>
-          ) : null}
-        </header>
-
         {localeError ? <p className="learner-locale-error" role="alert">{localeError}</p> : null}
 
         <main className="learner-main" id="learner-main">
@@ -410,7 +469,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
             <NavItem
               key={item.href}
               {...item}
-              active={pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`))}
+              active={isLearnerRouteActive(pathname, item.href)}
             />
           ))}
         </nav>

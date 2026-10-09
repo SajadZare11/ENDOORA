@@ -70,6 +70,8 @@ class Command(BaseCommand):
                         "min_words": item.get("min_words", 10),
                         "target_keywords": item.get("target_keywords", []),
                         "rubric": item.get("rubric", ""),
+                        "difficulty_b": item.get("difficulty_b"),
+                        "discrimination_a": item.get("discrimination_a"),
                     }
                     learner_payload = {
                         "prompt_en": item.get("question"),
@@ -89,6 +91,8 @@ class Command(BaseCommand):
                         "max_words": item.get("max_words", 100),
                         "target_keywords": item.get("target_keywords", []),
                         "rubric": item.get("rubric", ""),
+                        "difficulty_b": item.get("difficulty_b"),
+                        "discrimination_a": item.get("discrimination_a"),
                     }
                     learner_payload = {
                         "prompt_en": item.get("question"),
@@ -108,6 +112,8 @@ class Command(BaseCommand):
                         "audio_url": item.get("audio_url", ""),
                         "play_limit": item.get("play_limit", 2),
                         "transcript": item.get("transcript", ""),
+                        "difficulty_b": item.get("difficulty_b"),
+                        "discrimination_a": item.get("discrimination_a"),
                     }
                     learner_payload = {
                         "prompt_en": item.get("question"),

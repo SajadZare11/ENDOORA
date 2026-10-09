@@ -2,9 +2,10 @@
 
 
 import { Button, Input } from "@endoora/ui";
-import { useState, useMemo, type FormEvent } from "react";
+import { useState, useMemo, useEffect, type FormEvent } from "react";
 import Link from "next/link";
 import { PublicShell } from "@/components/marketing/PublicShell";
+import { lookupClassByCode, type TeacherClass } from "@/lib/teacher-classes";
 import styles from "./search.module.css";
 
 type CategoryFilter = "all" | "course" | "teacher" | "community_post" | "lesson_plan" | "faq" | "assignment";
@@ -122,6 +123,42 @@ export default function SearchPage() {
     "گرامر پیشرفته",
     "استاد رادمنش",
   ]);
+
+  const [lookedUpClass, setLookedUpClass] = useState<(TeacherClass & { teacher_name?: string; enrolled_count?: number }) | null>(null);
+  const [lookupLoading, setLookupLoading] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
+
+  useEffect(() => {
+    const clean = activeQuery.trim();
+    const match = clean.match(/\b\d{7}\b/);
+    const codeToLookup = match ? match[0] : (clean.length === 7 && /^\d+$/.test(clean) ? clean : null);
+
+    if (codeToLookup) {
+      let cancelled = false;
+      setLookupLoading(true);
+      lookupClassByCode(codeToLookup)
+        .then((cls) => {
+          if (!cancelled) {
+            setLookedUpClass(cls);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) {
+            setLookedUpClass(null);
+          }
+        })
+        .finally(() => {
+          if (!cancelled) {
+            setLookupLoading(false);
+          }
+        });
+      return () => {
+        cancelled = true;
+      };
+    } else {
+      setLookedUpClass(null);
+    }
+  }, [activeQuery]);
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -298,10 +335,102 @@ export default function SearchPage() {
           <div className={styles.resultsHeader}>
             <span>
               {activeQuery
-                ? `نمایش ${filteredResults.length} نتیجه برای «${activeQuery}»`
+                ? `نمایش ${filteredResults.length + (lookedUpClass ? 1 : 0)} نتیجه برای «${activeQuery}»`
                 : `پیشنهادهای برگزیده برای شروع جستجو (${filteredResults.length} مورد)`}
             </span>
           </div>
+
+          {lookupLoading && (
+            <div style={{ padding: "1rem", textAlign: "center", color: "var(--color-muted)", fontSize: "0.875rem" }}>
+              ⏳ در حال جستجوی کلاس اختصاصی با کد ۷ رقمی...
+            </div>
+          )}
+
+          {lookedUpClass && (
+            <div
+              style={{
+                background: "linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)",
+                border: "2px solid #86efac",
+                borderRadius: "16px",
+                padding: "1.25rem",
+                marginBlockEnd: "1.5rem",
+                boxShadow: "0 4px 16px rgba(16, 185, 129, 0.12)",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.75rem" }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBlockEnd: "0.25rem" }}>
+                    <span style={{ fontSize: "1.25rem" }}>🎯</span>
+                    <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#166534", background: "#dcfce7", padding: "2px 8px", borderRadius: "6px" }}>
+                      کلاس اختصاصی با کد ۷ رقمی یافت شد
+                    </span>
+                  </div>
+                  <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 800, color: "#14532d" }}>
+                    {lookedUpClass.title}
+                  </h3>
+                  <p style={{ margin: "4px 0 0 0", color: "#166534", fontSize: "0.875rem" }}>
+                    استاد: <strong>{lookedUpClass.teacher_name || "مدرس رسمی ایندورا"}</strong> | سطح: {lookedUpClass.level} | موضوع: {lookedUpClass.subject}
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "#ffffff", padding: "6px 12px", borderRadius: "10px", border: "1px solid #86efac" }}>
+                  <span style={{ fontSize: "0.75rem", color: "#166534", fontWeight: 600 }}>کد کلاس:</span>
+                  <strong style={{ fontFamily: "monospace", fontSize: "1.125rem", letterSpacing: "1px", color: "#15803d" }}>
+                    {lookedUpClass.code}
+                  </strong>
+                  <button
+                    type="button"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: "0.875rem",
+                      color: "#166534",
+                      padding: "2px 4px",
+                    }}
+                    onClick={() => {
+                      void navigator.clipboard.writeText(lookedUpClass.code || "");
+                      setCopiedCode(true);
+                      setTimeout(() => setCopiedCode(false), 2000);
+                    }}
+                    title="کپی کد ۷ رقمی کلاس"
+                  >
+                    {copiedCode ? "✓ کپی شد" : "📋 کپی"}
+                  </button>
+                </div>
+              </div>
+
+              {lookedUpClass.description && (
+                <p style={{ margin: "0.75rem 0 0 0", fontSize: "0.875rem", color: "#334155" }}>
+                  {lookedUpClass.description}
+                </p>
+              )}
+
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlockStart: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                <div style={{ display: "flex", gap: "0.75rem", fontSize: "0.8125rem", color: "#166534" }}>
+                  <span>📅 {(lookedUpClass.schedule_days && lookedUpClass.schedule_days.length > 0 ? lookedUpClass.schedule_days : ["شنبه", "دوشنبه"]).join(" و ")}</span>
+                  <span>⏰ {lookedUpClass.schedule_time_start || "18:00"} الی {lookedUpClass.schedule_time_end || "19:30"}</span>
+                </div>
+                <Link
+                  href="/my-teachers"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    background: "linear-gradient(135deg, #059669 0%, #047857 100%)",
+                    color: "#ffffff",
+                    padding: "6px 16px",
+                    borderRadius: "8px",
+                    fontWeight: 700,
+                    fontSize: "0.875rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  ورود و عضویت در کلاس با این کد ←
+                </Link>
+              </div>
+            </div>
+          )}
 
           {filteredResults.length > 0 ? (
             <div className={styles.resultsList}>

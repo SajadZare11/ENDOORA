@@ -1,0 +1,974 @@
+/* ==========================================================================
+   Tamrin20 ("تمرین تا ۲۰") Interactive Practice Engine Stylesheet
+   Grade 12 (Vision 3) Authentic Final Exam Practice Experience
+   Compliant with Endoora Design System Tokens (tokens.css) & RTL Logical Properties
+   ========================================================================== */
+
+/* Main Container */
+.container {
+  max-inline-size: 960px;
+  margin-inline: auto;
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-6, 1.5rem);
+  color: var(--color-text);
+  direction: rtl;
+  font-family: var(--font-family-persian);
+}
+
+/* Breadcrumbs Navigation */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  font-size: var(--font-size-meta, 0.875rem);
+  color: var(--color-muted);
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.breadcrumbs a {
+  color: var(--color-link);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--motion-fast) var(--motion-ease);
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+  color: var(--color-action-hover);
+}
+
+.breadcrumbSeparator {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+/* Header & Sticky Progress Tracker */
+.headerSticky {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card, 0.875rem);
+  padding: var(--space-4, 1rem);
+  margin-block-end: var(--space-6, 1.5rem);
+  box-shadow: var(--shadow-subtle);
+  backdrop-filter: blur(12px);
+  transition: box-shadow var(--motion-normal) var(--motion-ease);
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3, 0.75rem);
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.lessonMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-card-title, 1.25rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: var(--line-height-card-title, 1.4);
+}
+
+.titleEn {
+  font-family: var(--font-family-latin);
+  color: var(--color-action);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-inline-start: var(--space-2, 0.5rem);
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding-inline: 0.65rem;
+  padding-block: 0.25rem;
+  border-radius: var(--radius-pill, 999px);
+  border: 1px solid var(--color-border);
+}
+
+.badgeSuccess {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding-inline: 0.65rem;
+  padding-block: 0.25rem;
+  border-radius: var(--radius-pill, 999px);
+  border: 1px solid var(--color-success-green);
+}
+
+.badgeError {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding-inline: 0.65rem;
+  padding-block: 0.25rem;
+  border-radius: var(--radius-pill, 999px);
+  border: 1px solid var(--color-error-red);
+}
+
+.badgeExam {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  font-weight: 700;
+  font-size: 0.775rem;
+  padding-inline: 0.55rem;
+  padding-block: 0.2rem;
+  border-radius: var(--radius-pill, 999px);
+  border: 1px solid var(--color-warning-orange);
+}
+
+/* Stats and Progress Tracker */
+.statsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3, 0.75rem);
+  font-size: var(--font-size-meta, 0.875rem);
+  color: var(--color-muted);
+  margin-block-end: var(--space-2, 0.5rem);
+}
+
+.statItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+}
+
+.statValue {
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.progressBarContainer {
+  inline-size: 100%;
+  block-size: 8px;
+  background: var(--color-canvas);
+  border-radius: var(--radius-pill, 999px);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.progressBarFill {
+  block-size: 100%;
+  background: var(--gradient-gateway, var(--color-action));
+  border-radius: var(--radius-pill, 999px);
+  transition: inline-size var(--motion-normal) var(--motion-ease);
+}
+
+/* Question List Layout */
+.questionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 1.5rem);
+}
+
+/* Question Card */
+.questionCard {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card, 0.875rem);
+  padding: var(--space-5, 1.25rem);
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--motion-fast) var(--motion-ease),
+              background-color var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-normal) var(--motion-ease);
+  position: relative;
+}
+
+.questionCard:focus-within {
+  box-shadow: var(--shadow-raised);
+}
+
+/* Card States */
+.questionCardCorrect {
+  border-color: var(--color-success-green);
+  background: var(--color-success-bg);
+}
+
+.questionCardIncorrect {
+  border-color: var(--color-error-red);
+  background: var(--color-error-bg);
+}
+
+/* Question Card Header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-4, 1rem);
+  padding-block-end: var(--space-3, 0.75rem);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.questionNumberBadge {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+.headerBadges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+}
+
+/* Reading Passage Container */
+.passageContainer {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  padding: var(--space-4, 1rem);
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.passageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-block-end: var(--space-2, 0.5rem);
+}
+
+.passageBody {
+  font-family: var(--font-family-latin);
+  line-height: var(--line-height-body-latin, 1.5);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  white-space: pre-line;
+  direction: ltr;
+  text-align: start;
+}
+
+/* Prompt Styles */
+.promptContainer {
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.promptEn {
+  font-family: var(--font-family-latin);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: var(--color-text);
+  direction: ltr;
+  text-align: start;
+  margin-block-end: var(--space-2, 0.5rem);
+}
+
+.promptFa {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin-block-end: var(--space-2, 0.5rem);
+}
+
+/* Options Grid (MCQ / Listening / Reading) */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-3, 0.75rem);
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-3, 0.75rem);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  color: var(--color-text);
+  font-family: var(--font-family-latin);
+  font-size: 0.95rem;
+  font-weight: 500;
+  direction: ltr;
+  text-align: start;
+  cursor: pointer;
+  transition: all var(--motion-fast) var(--motion-ease);
+  position: relative;
+  min-block-size: var(--target-min, 2.75rem);
+}
+
+.optionButton:hover:not(:disabled) {
+  border-color: var(--color-action);
+  background: var(--color-canvas);
+  transform: translateY(-1px);
+}
+
+.optionButton:focus-visible {
+  outline: var(--focus-ring-width, 3px) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset, 3px);
+}
+
+.optionButton:disabled {
+  cursor: default;
+}
+
+.optionIndexBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 26px;
+  block-size: 26px;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.optionText {
+  flex-grow: 1;
+}
+
+/* Option Selected & Feedback States */
+.optionSelected {
+  border-color: var(--color-action);
+  background: var(--color-info-bg);
+}
+
+.optionCorrect {
+  border-color: var(--color-success-green);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-weight: 700;
+}
+
+.optionCorrect .optionIndexBadge {
+  background: var(--color-success-green);
+  color: var(--color-action-text);
+  border-color: var(--color-success-green);
+}
+
+.optionIncorrect {
+  border-color: var(--color-error-red);
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  text-decoration: line-through;
+}
+
+.optionIncorrect .optionIndexBadge {
+  background: var(--color-error-red);
+  color: var(--color-action-text);
+  border-color: var(--color-error-red);
+}
+
+.optionRevealed {
+  border-color: var(--color-success-green);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-weight: 700;
+  border-style: dashed;
+  animation: pulseSubtle 1.8s infinite;
+}
+
+.optionRevealed .optionIndexBadge {
+  background: var(--color-success-green);
+  color: var(--color-action-text);
+}
+
+/* Free Text Input Layout */
+.inputForm {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-4, 1rem);
+  flex-wrap: wrap;
+}
+
+.textInput {
+  flex-grow: 1;
+  min-inline-size: 220px;
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-3, 0.75rem);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-latin);
+  font-size: 0.95rem;
+  direction: ltr;
+  text-align: start;
+  transition: border-color var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+.textInput:focus {
+  outline: none;
+  border-color: var(--color-action);
+  box-shadow: 0 0 0 3px var(--color-info-bg);
+}
+
+.textInputCorrect {
+  border-color: var(--color-success-green);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.textInputIncorrect {
+  border-color: var(--color-error-red);
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-3, 0.75rem);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  border: none;
+  border-radius: var(--radius-md, 0.75rem);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color var(--motion-fast) var(--motion-ease),
+              transform var(--motion-fast) var(--motion-ease);
+  min-block-size: var(--target-min, 2.75rem);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--color-action-hover);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Revealed Answer Box (for incorrect text responses) */
+.revealedAnswerBox {
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-success-green);
+  border-radius: var(--radius-md, 0.75rem);
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-3, 0.75rem);
+  margin-block-end: var(--space-4, 1rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  font-size: 0.95rem;
+  color: var(--color-success-text);
+  direction: rtl;
+}
+
+.revealedAnswerContent {
+  font-family: var(--font-family-latin);
+  font-weight: 700;
+  color: var(--color-success-green);
+  direction: ltr;
+  display: inline-block;
+  margin-inline-start: var(--space-2, 0.5rem);
+}
+
+/* Explanation Accordion & Toggle */
+.explanationSection {
+  margin-block-start: var(--space-4, 1rem);
+  padding-block-start: var(--space-3, 0.75rem);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.explanationToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  padding-inline: var(--space-3, 0.75rem);
+  padding-block: var(--space-2, 0.5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm, 0.5rem);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.explanationToggleBtn:hover {
+  background: var(--color-canvas);
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+.explanationBox {
+  margin-block-start: var(--space-3, 0.75rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  padding: var(--space-4, 1rem);
+  box-shadow: var(--shadow-subtle);
+  animation: fadeIn var(--motion-normal) var(--motion-ease);
+}
+
+.explanationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-2, 0.5rem);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.explanationBrief {
+  font-weight: 700;
+  color: var(--color-action);
+  font-size: 0.9rem;
+  margin-block-end: var(--space-2, 0.5rem);
+  line-height: 1.5;
+}
+
+.explanationDetailed {
+  color: var(--color-text);
+  font-size: 0.875rem;
+  line-height: var(--line-height-body-persian, 1.6);
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.pedagogicalRule {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm, 0.5rem);
+  padding-inline: var(--space-3, 0.75rem);
+  padding-block: var(--space-1, 0.25rem);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* ==========================================================================
+   Tamrin20 Audio Player Component
+   ========================================================================== */
+
+.audioPlayerContainer {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card, 0.875rem);
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  margin-block-end: var(--space-4, 1rem);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3, 0.75rem);
+  box-shadow: var(--shadow-subtle);
+}
+
+.audioPlayBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--motion-fast) var(--motion-ease),
+              background-color var(--motion-fast) var(--motion-ease);
+  flex-shrink: 0;
+}
+
+.audioPlayBtn:hover {
+  background: var(--color-action-hover);
+  transform: scale(1.05);
+}
+
+.audioPlayBtn:focus-visible {
+  outline: var(--focus-ring-width, 3px) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset, 3px);
+}
+
+.audioSeekContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  min-inline-size: 160px;
+}
+
+.audioSlider {
+  flex-grow: 1;
+  block-size: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--color-canvas);
+  border-radius: var(--radius-pill, 999px);
+  outline: none;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+}
+
+.audioSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-action);
+  cursor: pointer;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+.audioSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.audioSlider::-moz-range-thumb {
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-action);
+  cursor: pointer;
+  border: none;
+}
+
+.audioTimeDisplay {
+  font-family: var(--font-family-latin);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-weight: 600;
+  direction: ltr;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+}
+
+.audioSegmentIndicator {
+  margin-inline-start: var(--space-1, 0.25rem);
+  font-size: 0.75rem;
+  font-family: var(--font-family-persian);
+  color: var(--color-action);
+  font-weight: 600;
+}
+
+/* Listening Transcript Box inside Explanation */
+.transcriptBox {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.transcriptHeader {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-block-end: var(--space-2, 0.5rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+}
+
+.transcriptBody {
+  font-family: var(--font-family-latin);
+  font-size: 0.95rem;
+  line-height: var(--line-height-body-latin, 1.6);
+  color: var(--color-text);
+  direction: ltr;
+  text-align: start;
+  white-space: pre-line;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm, 0.5rem);
+  padding: var(--space-3, 0.75rem);
+}
+
+.audioControlsGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+.audioSpeedBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm, 0.5rem);
+  color: var(--color-text);
+  font-family: var(--font-family-latin);
+  font-size: 0.775rem;
+  font-weight: 700;
+  cursor: pointer;
+  direction: ltr;
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.audioSpeedBtn:hover {
+  border-color: var(--color-action);
+  background: var(--color-info-bg);
+  color: var(--color-action);
+}
+
+.audioSpeedActive {
+  background: var(--color-action);
+  color: var(--color-action-text);
+  border-color: var(--color-action);
+}
+
+.audioMuteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.audioMuteBtn:hover {
+  color: var(--color-text);
+  border-color: var(--color-action);
+}
+
+/* ==========================================================================
+   Progressive Loading Button Section ("مایل به حل بیشتر سوال هستم")
+   ========================================================================== */
+
+.progressiveLoadSection {
+  margin-block-start: var(--space-8, 2rem);
+  margin-block-end: var(--space-8, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3, 0.75rem);
+}
+
+.loadMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3, 0.75rem);
+  padding-inline: var(--space-6, 1.5rem);
+  padding-block: var(--space-4, 1rem);
+  background: var(--gradient-gateway, var(--color-action));
+  color: var(--color-action-text);
+  border: none;
+  border-radius: var(--radius-card, 0.875rem);
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised);
+  transition: transform var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-normal) var(--motion-ease);
+  min-block-size: var(--target-min, 2.75rem);
+}
+
+.loadMoreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.loadMoreBtn:active {
+  transform: translateY(0);
+}
+
+.loadMoreBadge {
+  background: var(--color-surface);
+  color: var(--color-action);
+  padding-inline: 0.65rem;
+  padding-block: 0.2rem;
+  border-radius: var(--radius-pill, 999px);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.loadMoreHint {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.allQuestionsLoadedCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card, 0.875rem);
+  padding: var(--space-4, 1rem);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+/* Latin Text Isolation Utility */
+.isolateLtr {
+  direction: ltr;
+  text-align: start;
+  unicode-bidi: isolate;
+  font-family: var(--font-family-latin);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-success-bg);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .questionCard,
+  .optionButton,
+  .loadMoreBtn,
+  .progressBarFill,
+  .explanationBox {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   Listening Grouped Sections Layout
+   ========================================================================== */
+.listeningSectionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 2rem);
+}
+
+.listeningSectionCard {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card, 1rem);
+  padding: var(--space-5, 1.25rem);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 1.25rem);
+}
+
+.listeningSectionHeader {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 0.75rem);
+  padding: var(--space-4, 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+}
+
+.listeningSectionBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+}
+
+.listeningSectionBadge {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--color-action);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+.listeningSectionCountBadge {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill, 999px);
+  padding-inline: var(--space-3, 0.75rem);
+  padding-block: var(--space-1, 0.25rem);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.listeningSectionDesc {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+}
+
+.listeningSectionPlayer {
+  margin-block-end: 0 !important;
+}
+
+.listeningSectionQuestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+}

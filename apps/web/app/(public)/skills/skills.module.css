@@ -1,36 +1,42 @@
 /* Skills Hub Module Styles */
-/* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
+/* 100% Tokenized, Zero Raw Hex Literals, CSS Logical Properties Only */
 
 .container {
   max-inline-size: var(--content-width);
   margin-inline: auto;
-  padding-inline: var(--space-4);
-  padding-block: var(--space-6) var(--space-12);
+  padding-inline: clamp(var(--space-4), 4vw, var(--space-8));
+  padding-block: var(--space-8) var(--space-16);
 }
 
+/* =====================================================================
+   Hero Section
+   ===================================================================== */
 .heroHeader {
   text-align: center;
-  margin-block-end: var(--space-8);
-  padding-block-end: var(--space-6);
-  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-10);
+  padding-block: var(--space-2) var(--space-4);
 }
 
 .heroBadge {
-  display: inline-block;
-  padding-inline: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
   padding-block: var(--space-1);
-  background: var(--color-surface-subtle);
+  background: var(--color-info-bg);
   color: var(--color-action);
+  border: 1px solid color-mix(in srgb, var(--color-action) 22%, transparent);
   border-radius: var(--radius-pill);
   font-size: var(--font-size-meta);
-  font-weight: 700;
-  margin-block-end: var(--space-2);
+  font-weight: 750;
+  margin-block-end: var(--space-3);
 }
 
 .heroTitle {
-  font-size: clamp(var(--font-size-h2), 4vw, var(--font-size-hero));
-  font-weight: 800;
+  font-size: clamp(var(--font-size-h2), 4.5vw, var(--font-size-hero));
+  font-weight: 850;
   color: var(--color-text);
+  margin: 0;
   margin-block-end: var(--space-3);
   line-height: var(--line-height-heading);
 }
@@ -39,241 +45,330 @@
   max-inline-size: 46rem;
   margin-inline: auto;
   font-size: var(--font-size-lead);
-  color: var(--color-text-muted);
-  line-height: var(--line-height-body);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  margin-block-end: var(--space-6);
 }
 
-/* Constitution Banner */
-.noticeBanner {
+/* Quick-Action Navigation Pills */
+.quickPillsNav {
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-3);
-  background: var(--color-surface-subtle);
-  border: 1px solid var(--color-border);
-  border-inline-start: 4px solid var(--color-learning-teal);
-  border-radius: var(--radius-card);
-  padding: var(--space-4);
-  margin-block-end: var(--space-8);
-  font-size: var(--font-size-small);
-  color: var(--color-text-muted);
+  margin-block-start: var(--space-2);
+  margin-block-end: var(--space-2);
 }
 
-/* Skills Grid */
+.quickPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: 0.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 750;
+  color: var(--color-text);
+  text-decoration: none;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--motion-fast) ease;
+}
+
+.quickPill:hover {
+  background: var(--color-action);
+  color: var(--color-white, #ffffff);
+  border-color: var(--color-action);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.quickPillEn {
+  font-size: var(--font-size-small);
+  opacity: 0.75;
+  font-family: var(--font-family-latin);
+}
+
+/* =====================================================================
+   6 Core Skills Section
+   ===================================================================== */
+.roadmapSection {
+  margin-block-end: var(--space-16);
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-section-title);
+  font-weight: 850;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: 0.25rem;
+}
+
+.sectionSubtitleText {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.sectionMetaBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 750;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  padding-inline: var(--space-3);
+  padding-block: 0.2rem;
+  border-radius: var(--radius-pill);
+}
+
 .skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  gap: var(--space-5);
-  margin-block-end: var(--space-10);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--space-6);
 }
 
 .skillCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-  padding: var(--space-5);
+  padding: var(--space-6);
   box-shadow: var(--shadow-subtle);
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
 }
 
 .skillCard:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--color-action-hover);
+  box-shadow: var(--shadow-raised);
+  border-color: var(--color-action);
 }
 
 .skillCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-block-end: var(--space-3);
+  margin-block-end: var(--space-4);
 }
 
 .skillIconBox {
-  inline-size: 2.75rem;
-  block-size: 2.75rem;
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
   border-radius: var(--radius-card);
   background: var(--color-surface-subtle);
-  color: var(--color-action);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-h3);
+  font-size: 1.65rem;
 }
 
-.skillCountBadge {
+.skillCefrBadge {
   font-size: var(--font-size-meta);
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: var(--space-1);
-  background: var(--color-surface-subtle);
+  font-weight: 800;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  padding-inline: var(--space-3);
+  padding-block: 0.2rem;
   border-radius: var(--radius-pill);
-  color: var(--color-text-muted);
 }
 
 .skillTitleFa {
-  font-size: var(--font-size-h3);
-  font-weight: 700;
+  font-size: var(--font-size-card-title);
+  font-weight: 850;
   color: var(--color-text);
-  margin-block-end: var(--space-1);
+  margin: 0;
+  margin-block-end: 0.35rem;
+  line-height: var(--line-height-card-title);
 }
 
 .skillTitleEn {
-  font-size: var(--font-size-small);
-  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
   font-family: var(--font-family-latin);
+  margin: 0;
   margin-block-end: var(--space-3);
+  text-align: right;
   direction: ltr;
-  text-align: start;
+  display: block;
+}
+
+.skillCatchphrase {
+  font-size: var(--font-size-meta);
+  font-weight: 750;
+  color: var(--color-action);
+  margin: 0;
+  margin-block-end: var(--space-3);
+  line-height: var(--line-height-body-persian);
+}
+
+.skillOutcomeDesc {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  margin-block-end: var(--space-5);
+}
+
+.skillPillarsPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-5);
+}
+
+.miniPillarTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  padding-inline: var(--space-2);
+  padding-block: 0.25rem;
+  border-radius: var(--radius-control);
 }
 
 .skillFooter {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-block-start: var(--space-4);
-  padding-block-start: var(--space-3);
+  margin-block-start: auto;
+  padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-border);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-meta);
   color: var(--color-action);
-  font-weight: 700;
+  font-weight: 750;
 }
 
-/* Articles Feed Section */
-.feedSection {
-  margin-block-start: var(--space-10);
+/* =====================================================================
+   Secondary Section: Complementary Tools & Culture
+   ===================================================================== */
+.practiceSection {
+  margin-block-end: var(--space-12);
+  padding-block-start: var(--space-10);
+  border-block-start: 1px solid var(--color-border);
 }
 
-.feedHeader {
+.practiceHeader {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  margin-block-end: var(--space-6);
-}
-
-.feedTitle {
-  font-size: var(--font-size-h2);
-  font-weight: 800;
-  color: var(--color-text);
-}
-
-.filterGroup {
-  display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.filterBtn {
-  padding-inline: var(--space-3);
-  padding-block: var(--space-1);
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-small);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--motion-fast) ease;
-}
-
-.filterBtnActive {
-  background: var(--color-action);
-  color: var(--color-white);
-  border-color: var(--color-action);
-}
-
-.articlesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-  gap: var(--space-5);
-}
-
-.articleCard {
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-  padding: var(--space-5);
   box-shadow: var(--shadow-subtle);
+  margin-block-end: var(--space-6);
+}
+
+.practiceHeaderInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.practiceHeaderIcon {
+  inline-size: 3rem;
+  block-size: 3rem;
+  background: var(--color-info-bg);
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--space-5);
+}
+
+.toolCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-decoration: none;
-  color: inherit;
-  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
 }
 
-.articleCard:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--color-action-hover);
+.toolCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-raised);
+  border-color: var(--color-action);
 }
 
-.articleMeta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-block-end: var(--space-2);
-}
-
-.cefrBadge {
-  font-size: var(--font-size-meta);
-  font-weight: 800;
-  padding-inline: var(--space-2);
-  padding-block: 0.15rem;
-  border-radius: var(--radius-control);
-  background: var(--color-surface-subtle);
-  color: var(--color-action);
-}
-
-.premiumBadge {
-  font-size: var(--font-size-meta);
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: 0.15rem;
-  border-radius: var(--radius-control);
-  background: var(--color-achievement-amber);
-  color: var(--color-white);
-}
-
-.articleTitleFa {
-  font-size: var(--font-size-body);
-  font-weight: 700;
-  color: var(--color-text);
-  margin-block-end: var(--space-2);
-  line-height: var(--line-height-heading);
-}
-
-.articleTitleEn {
-  font-size: var(--font-size-small);
-  color: var(--color-text-muted);
-  font-family: var(--font-family-latin);
-  margin-block-end: var(--space-3);
-  direction: ltr;
-  text-align: start;
-}
-
-.articleSummary {
-  font-size: var(--font-size-small);
-  color: var(--color-text-muted);
-  line-height: var(--line-height-body);
-  margin-block-end: var(--space-4);
-}
-
-.articleFooter {
+.toolCardTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-block-end: var(--space-4);
+}
+
+.toolCardIcon {
+  font-size: 1.75rem;
+}
+
+.toolCardBadge {
   font-size: var(--font-size-meta);
-  color: var(--color-text-muted);
-  padding-block-start: var(--space-3);
+  font-weight: 700;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  padding-inline: var(--space-2);
+  padding-block: 0.15rem;
+  border-radius: var(--radius-pill);
+}
+
+.toolCardTitle {
+  font-size: 1.15rem;
+  font-weight: 750;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+}
+
+.toolCardDesc {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  margin-block-end: var(--space-5);
+}
+
+.toolCardAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: auto;
+  padding-block-start: var(--space-4);
   border-block-start: 1px solid var(--color-border);
+  font-size: var(--font-size-meta);
+  font-weight: 750;
+  color: var(--color-action);
 }

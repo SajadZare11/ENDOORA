@@ -66,6 +66,20 @@ class User(AbstractUser):
         return self.email_verified_at is not None
 
     @property
+    def is_premium(self) -> bool:
+        if self.is_staff or self.is_superuser:
+            return True
+        try:
+            from marketplace.models import PaymentOrderType, PaymentTransaction, PaymentTransactionStatus
+            return PaymentTransaction.objects.filter(
+                user=self,
+                order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+                status=PaymentTransactionStatus.PAID,
+            ).exists()
+        except Exception:
+            return False
+
+    @property
     def capabilities(self) -> dict[str, bool]:
         return {
             "teacher_verified": bool(self.is_teacher_verified),
@@ -75,6 +89,7 @@ class User(AbstractUser):
             "paid_class_eligible": bool(
                 self.is_teacher_verified and self.paid_class_eligible
             ),
+            "is_premium": bool(self.is_premium),
         }
 
 

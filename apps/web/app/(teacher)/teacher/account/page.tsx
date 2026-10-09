@@ -10,6 +10,7 @@ import {
   updateTeacherPreferences,
   upgradeTeacherPlan,
 } from "@/lib/teacheros-api";
+import { endooraApi } from "@/lib/endoora-api";
 import type {
   TeacherAccountSummary,
   PlanTierOption,
@@ -33,6 +34,30 @@ export default function TeacherAccountPage() {
   const [upgradeTarget, setUpgradeTarget] = useState<PlanTierOption | null>(null);
   const [upgrading, setUpgrading] = useState(false);
   const [receipt, setReceipt] = useState<{ ref_id: string; plan_name: string } | null>(null);
+
+  // Logout State & Handler
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    const confirmed = window.confirm(
+      isFa
+        ? "آیا برای خروج از حساب کاربری خود اطمینان دارید؟"
+        : "Are you sure you want to sign out?"
+    );
+    if (!confirmed) return;
+    setLoggingOut(true);
+    try {
+      await endooraApi<null>("/auth/logout/", {
+        method: "POST",
+        json: {},
+      });
+    } catch {
+      // Proceed with redirect regardless of network status
+    } finally {
+      window.location.href = "/auth/login";
+    }
+  };
 
   const loadData = () => {
     fetchTeacherAccountSummary()
@@ -497,6 +522,46 @@ export default function TeacherAccountPage() {
           </form>
         </div>
       )}
+
+      {/* Account Security & Logout Section */}
+      <div className={styles.logoutSection}>
+        <div className={styles.logoutHeader}>
+          <div className={styles.logoutIconBadge}>🚪</div>
+          <div>
+            <h2 className={styles.logoutTitle}>
+              {isFa ? "خروج از حساب کاربری" : "Sign Out of Account"}
+            </h2>
+            <p className={styles.logoutDesc}>
+              {isFa
+                ? "جهت حفظ امنیت اطلاعات حساب، می‌توانید در پایان جلسه کاری خود با اطمینان از این دستگاه خارج شوید."
+                : "Securely sign out and terminate your active session on this device."}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.logoutWarningNotice}>
+          <span>⚠️</span>
+          <span>
+            {isFa
+              ? "با خروج از حساب کاربری، نشست فعال شما در این مرورگر بسته خواهد شد و برای ورود مجدد نیاز به نام کاربری یا ایمیل و گذرواژه خواهید داشت."
+              : "Signing out will end your authenticated session. You will need your credentials to sign in again."}
+          </span>
+        </div>
+
+        <div className={styles.logoutActionWrap}>
+          <Button
+            type="button"
+            className={styles.logoutButton}
+            onClick={handleLogout}
+            loading={loggingOut}
+            disabled={loggingOut}
+          >
+            {loggingOut
+              ? (isFa ? "در حال خروج از حساب..." : "Signing out...")
+              : (isFa ? "🚪 خروج از حساب کاربری" : "🚪 Sign Out of Account")}
+          </Button>
+        </div>
+      </div>
 
       {/* Upgrade Simulation Modal (Zarinpal) */}
       {upgradeTarget && (

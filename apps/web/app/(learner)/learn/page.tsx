@@ -1,30 +1,27 @@
 import type { Metadata } from "next";
-import { PublicShell } from "@/components/marketing/PublicShell";
 import { LearnHubView } from "./LearnHubView";
 import styles from "./learn.module.css";
 
 export const metadata: Metadata = {
-  title: "مرکز یادگیری | ایندورا",
-  description: "دسترسی جامع و دسته‌بندی‌شده به دوره‌های آموزشی، پایگاه مهارت‌ها، واژگان و ابزارهای تعاملی.",
+  title: "دوره‌ها و مسیرهای آموزشی | ایندورا",
+  description: "یادگیری با ویدیوهای استاندارد Family and Friends و American English File و آموزش کامل زبان انگلیسی دبیرستان همراه با سنجش تعاملی.",
 };
 
 export default function LearnHubPage() {
   return (
-    <PublicShell locale="fa" currentPath="/learn">
-      <div className={styles.container} dir="rtl">
-        <header className={styles.heroHeader}>
-          <div className={styles.badgeRow}>
-            <span className={styles.heroBadge}>مرکز یادگیری</span>
-            <span className={styles.badgeMotto}>۱۰ بخش در ۳ حوزه آموزشی</span>
-          </div>
-          <h1 className={styles.title}>مرکز یادگیری ایندورا</h1>
-          <p className={styles.subtitle}>
-            دوره‌ها، مهارت‌ها و ابزارهای تمرینی در ۳ دسته‌بندی تفکیک‌شده. بخش مورد نیاز خود را برای شروع یادگیری انتخاب کنید.
-          </p>
-        </header>
+    <div className={styles.container} dir="rtl">
+      <header className={styles.heroHeader}>
+        <div className={styles.badgeRow}>
+          <span className={styles.heroBadge}>مسیرهای آموزشی ایندورا</span>
+          <span className={styles.badgeMotto}>۲ شیوه یادگیری هدفمند</span>
+        </div>
+        <h1 className={styles.title}>مسیرهای آموزشی ایندورا</h1>
+        <p className={styles.subtitle}>
+          انتخاب بین یادگیری چندرسانه‌ای با ویدیوهای کتب معتبر همراه با سنجش کوتاه هر ۶ مهارت زبانی، یا آموزش خط‌به‌خط و استقرایی زبان دبیرستان.
+        </p>
+      </header>
 
-        <LearnHubView />
-      </div>
-    </PublicShell>
+      <LearnHubView />
+    </div>
   );
 }

@@ -1,0 +1,1003 @@
+{
+  "id": "vision-3-lesson-1",
+  "grade": 12,
+  "bookTitle": "Vision 3",
+  "lessonNumber": 1,
+  "slug": "grade-12/lesson-1",
+  "title": {
+    "en": "Sense of Appreciation",
+    "fa": "حس قدردانی و احترام"
+  },
+  "cefrLevel": "B1+",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr12-1-1",
+        "word": "respect parents",
+        "phonetic": "/rɪˈspekt ˈpeə.rənts/",
+        "persianMeaning": "احترام گذاشتن به پدر و مادر و بزرگ‌ترها",
+        "imagePromptOrUrl": "respect-parents-elderly",
+        "options": ["respect parents", "shout at elders", "ignore advice"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "We should always respect our parents and listen to their valuable advice.",
+          "fa": "ما همیشه باید به والدین خود احترام بگذاریم و به پندهای ارزشمندشان گوش دهیم."
+        }
+      },
+      {
+        "id": "gr12-1-2",
+        "word": "elderly people",
+        "phonetic": "/ˈel.dəl.i ˈpiː.pəl/",
+        "persianMeaning": "افراد سالمند و سالخوردگان جامعه",
+        "imagePromptOrUrl": "elderly-people-care",
+        "options": ["young children", "elderly people", "school students"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Caring for elderly people is a moral duty in every compassionate society.",
+          "fa": "مراقبت از افراد سالمند در هر جامعه دلسوزی یک وظیفه اخلاقی است."
+        }
+      },
+      {
+        "id": "gr12-1-3",
+        "word": "take care of",
+        "phonetic": "/teɪk keər əv/",
+        "persianMeaning": "مراقبت کردن و نگهداری از سالمندان و بیماران",
+        "imagePromptOrUrl": "take-care-of-grandparents",
+        "options": ["give up", "take care of", "depend on"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The young nurse takes care of sick and elderly patients with great patience.",
+          "fa": "پرستار جوان با صبوری بسیار از بیماران سالمند و بیمار مراقبت می‌کند."
+        }
+      },
+      {
+        "id": "gr12-1-4",
+        "word": "listen to advice",
+        "phonetic": "/ˈlɪs.ən tuː ədˈvaɪs/",
+        "persianMeaning": "گوش دادن به پند، اندرز و تجربیات بزرگان",
+        "imagePromptOrUrl": "listen-to-advice-elders",
+        "options": ["listen to advice", "argue with elders", "forget lessons"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Wise teenagers listen to the advice of their grandparents.",
+          "fa": "نوجوانان خردمند به نصیحت‌های پدربزرگ و مادربزرگ خود گوش می‌دهند."
+        }
+      },
+      {
+        "id": "gr12-1-5",
+        "word": "donate",
+        "phonetic": "/dəʊˈneɪt/",
+        "persianMeaning": "اهدا کردن و بخشیدن کمک به نیازمندان",
+        "imagePromptOrUrl": "donate-help-poor",
+        "options": ["borrow", "waste", "donate"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Generous people donate warm clothes and food to charities every winter.",
+          "fa": "افراد سخاوتمند هر زمستان لباس‌های گرم و غذا به خیریه‌ها اهدا می‌کنند."
+        }
+      },
+      {
+        "id": "gr12-1-6",
+        "word": "kind and loving",
+        "phonetic": "/kaɪnd ænd ˈlʌv.ɪŋ/",
+        "persianMeaning": "مهربان، دلسوز و پرمحبت نسبت به دیگران",
+        "imagePromptOrUrl": "kind-loving-family",
+        "options": ["angry and selfish", "kind and loving", "tired and bored"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Our grandmother has a kind and loving heart that comforts the whole family.",
+          "fa": "مادربزرگ ما قلبی مهربان و پرمحبت دارد که مایه آرامش تمام خانواده است."
+        }
+      },
+      {
+        "id": "gr12-1-7",
+        "word": "dedicated",
+        "phonetic": "/ˈded.ɪ.keɪ.tɪd/",
+        "persianMeaning": "فداکار، متعهد و ازخودگذشته در خدمت به میهن",
+        "imagePromptOrUrl": "dedicated-national-hero",
+        "options": ["dedicated", "careless", "lazy"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Iranian national heroes like Rizali Khajavi and Hassan Omidzadeh were dedicated to saving lives.",
+          "fa": "قهرمانان ملی ایران مانند ریزعلی خواجوی و حسن امیدزاده فداکار و متعهد به نجات جان‌ها بودند."
+        }
+      },
+      {
+        "id": "gr12-1-8",
+        "word": "helpful",
+        "phonetic": "/ˈhelp.fəl/",
+        "persianMeaning": "مفید، یاری‌رسان و دستگیر افراد محتاج",
+        "imagePromptOrUrl": "helpful-volunteering-boy",
+        "options": ["harmful", "helpful", "hopeless"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Jabbar Baghcheban was very helpful in establishing the first school for deaf children in Iran.",
+          "fa": "جبار باغچه‌بان در پایه‌گذاری اولین مدرسه برای کودکان ناشنوا در ایران بسیار یاری‌رسان و منشا خدمت بود."
+        }
+      },
+      {
+        "id": "gr12-1-9",
+        "word": "polite",
+        "phonetic": "/pəˈlaɪt/",
+        "persianMeaning": "مودب، متین و باادب در سخن گفتن",
+        "imagePromptOrUrl": "polite-respectful-greeting",
+        "options": ["rude", "polite", "noisy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "He spoke in a very polite manner when addressing the elderly professor.",
+          "fa": "او هنگام خطاب قرار دادن استاد کهنسال با شیوه‌ای بسیار مودبانه سخن گفت."
+        }
+      },
+      {
+        "id": "gr12-1-10",
+        "word": "sense of appreciation",
+        "phonetic": "/sens əv əˌpriː.ʃiˈeɪ.ʃən/",
+        "persianMeaning": "حس قدردانی و سپاسگزاری از فداکاری دیگران",
+        "imagePromptOrUrl": "sense-of-appreciation-heart",
+        "options": ["sense of appreciation", "sense of humor", "fear of failure"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Expressing a deep sense of appreciation makes our teachers and parents very happy.",
+          "fa": "ابراز حس عمیق قدردانی معلمان و والدین ما را بسیار خشنود می‌سازد."
+        }
+      }
+    ],
+    "conversation": {
+      "situationFa": "سارا در یک مرکز پزشکی تخصصی کودکان متوجه تصویر قاب‌گرفته دکتر محمد قریب، پزشک نامدار و بنیانگذار طب اطفال در ایران می‌شود و با یکی از پرستاران بخش به گفتگو می‌پردازد.",
+      "vocabulary": [
+        {
+          "id": "conv-w1",
+          "word": "physician",
+          "phonetic": "/fɪˈzɪʃ.ən/",
+          "persianMeaning": "پزشک حاذق و دکتر طبابت",
+          "imagePromptOrUrl": "dr-gharib-physician",
+          "options": ["physician", "engineer", "pilot"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Dr. Mohammad Gharib was a distinguished Iranian physician.",
+            "fa": "دکتر محمد قریب یک پزشک برجسته ایرانی بود."
+          }
+        },
+        {
+          "id": "conv-w2",
+          "word": "cure",
+          "phonetic": "/kjʊər/",
+          "persianMeaning": "درمان کردن و شفا بخشیدن به بیماری",
+          "imagePromptOrUrl": "cure-healing-medicine",
+          "options": ["cause", "cure", "catch"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "He dedicated his life to cure sick children from poor families.",
+            "fa": "او زندگی‌اش را وقف درمان کودکان بیمار خانواده‌های نیازمند کرد."
+          }
+        },
+        {
+          "id": "conv-w3",
+          "word": "dedicated",
+          "phonetic": "/ˈded.ɪ.keɪ.tɪd/",
+          "persianMeaning": "فداکار، ازخودگذشته و پایبند به سوگند پزشکی",
+          "imagePromptOrUrl": "dedicated-caring-doctor",
+          "options": ["dedicated", "careless", "cruel"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "He was a dedicated doctor who never charged poor patients for their visits.",
+            "fa": "او پزشکی فداکار بود که هیچ‌گاه از بیماران نیازمند حق ویزیت دریافت نمی‌کرد."
+          }
+        },
+        {
+          "id": "conv-w4",
+          "word": "distinguished",
+          "phonetic": "/dɪˈstɪŋ.ɡwɪʃt/",
+          "persianMeaning": "برجسته، نامدار، شهیر و مورد احترام علمی",
+          "imagePromptOrUrl": "distinguished-professor-award",
+          "options": ["unknown", "ordinary", "distinguished"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "Many distinguished professors were once students in Dr. Gharib's medical classes.",
+            "fa": "بسیاری از استادان برجسته روزگاری در کلاس‌های طب دکتر قریب دانشجو بودند."
+          }
+        },
+        {
+          "id": "conv-w5",
+          "word": "textbook",
+          "phonetic": "/ˈtekst.bʊk/",
+          "persianMeaning": "کتاب درسی دانشگاهی و مرجع علمی",
+          "imagePromptOrUrl": "medical-textbook-study",
+          "options": ["textbook", "novel", "newspaper"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "The first Persian textbook on children's diseases was written by Dr. Gharib.",
+            "fa": "اولین کتاب درسی به زبان فارسی درباره بیماری‌های کودکان توسط دکتر قریب نگاشته شد."
+          }
+        },
+        {
+          "id": "conv-w6",
+          "word": "pity",
+          "phonetic": "/ˈpɪt.i/",
+          "persianMeaning": "افسوس، دریغ و جای تاسف (It's a pity)",
+          "imagePromptOrUrl": "pity-sympathy-feeling",
+          "options": ["joy", "pity", "pride"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "It is a pity that such a great physician passed away in 1975.",
+            "fa": "جای افسوس است که چنان پزشک بزرگی در سال ۱۹۷۵ از میان ما رفت."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "dl-1",
+          "orderIndex": 1,
+          "speaker": "Sara",
+          "speakerAvatar": "👩",
+          "enText": "Excuse me, whose picture is that on the hospital wall?",
+          "faText": "ببخشید، آن عکسی که روی دیوار بیمارستان نصب شده تصویر چه کسی است؟",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line1.mp3"
+        },
+        {
+          "id": "dl-2",
+          "orderIndex": 2,
+          "speaker": "Nurse",
+          "speakerAvatar": "👩‍⚕️",
+          "enText": "That is Dr. Mohammad Gharib, the distinguished Iranian physician.",
+          "faText": "آن تصویر دکتر محمد قریب است، پزشک نامدار و برجسته ایرانی.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line2.mp3"
+        },
+        {
+          "id": "dl-3",
+          "orderIndex": 3,
+          "speaker": "Sara",
+          "speakerAvatar": "👩",
+          "enText": "Why is he so well known and respected among all doctors?",
+          "faText": "چرا ایشان در میان تمام پزشکان تا این حد شناخته‌شده و محترم هستند؟",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line3.mp3"
+        },
+        {
+          "id": "dl-4",
+          "orderIndex": 4,
+          "speaker": "Nurse",
+          "speakerAvatar": "👩‍⚕️",
+          "enText": "Because he was regarded as the dedicated father of pediatrics in Iran.",
+          "faText": "زیرا او به عنوان پدر فداکار و بنیانگذار طب اطفال در ایران شناخته می‌شد.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line4.mp3"
+        },
+        {
+          "id": "dl-5",
+          "orderIndex": 5,
+          "speaker": "Sara",
+          "speakerAvatar": "👩",
+          "enText": "Did he write any important medical books as well?",
+          "faText": "آیا ایشان کتاب‌های پزشکی مهمی نیز به رشته تحریر درآوردند؟",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line5.mp3"
+        },
+        {
+          "id": "dl-6",
+          "orderIndex": 6,
+          "speaker": "Nurse",
+          "speakerAvatar": "👩‍⚕️",
+          "enText": "Yes! The first Persian textbook on children's diseases was written by him.",
+          "faText": "بله! نخستین کتاب درسی فارسی پیرامون بیماری‌های کودکان توسط او نگاشته شد.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line6.mp3"
+        },
+        {
+          "id": "dl-7",
+          "orderIndex": 7,
+          "speaker": "Sara",
+          "speakerAvatar": "👩",
+          "enText": "That is wonderful! He also cured thousands of sick children without taking money, didn't he?",
+          "faText": "فوق‌العاده است! او همچنین هزاران کودک بیمار را بدون گرفتن دستمزد درمان کرد، این‌طور نیست؟",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line7.mp3"
+        },
+        {
+          "id": "dl-8",
+          "orderIndex": 8,
+          "speaker": "Nurse",
+          "speakerAvatar": "👩‍⚕️",
+          "enText": "He certainly did. His loving heart and generosity are remembered by everyone.",
+          "faText": "مسلماً همین‌طور بود. قلب مهربان و بخشندگی او در یاد و خاطره همگان زنده است.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line8.mp3"
+        },
+        {
+          "id": "dl-9",
+          "orderIndex": 9,
+          "speaker": "Sara",
+          "speakerAvatar": "👩",
+          "enText": "It's a pity that such a great physician is no longer among us.",
+          "faText": "جای افسوس است که چنین طبیب والامقامی دیگر در میان ما حضور ندارد.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line9.mp3"
+        },
+        {
+          "id": "dl-10",
+          "orderIndex": 10,
+          "speaker": "Nurse",
+          "speakerAvatar": "👩‍⚕️",
+          "enText": "Indeed, but his noble legacy and students will continue to cure people forever.",
+          "faText": "دقیقاً، اما میراث شریف و شاگردان او تا ابد به درمان انسان‌ها ادامه خواهند داد.",
+          "audioUrl": "/audio/highschool/grade12/lesson1/conversation_line10.mp3"
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw12-1-1",
+        "word": "sofa",
+        "phonetic": "/ˈsəʊ.fə/",
+        "persianMeaning": "مبل راحتی، کاناپه نرم داخل اتاق نشیمن",
+        "imagePromptOrUrl": "comfortable-sofa-couch",
+        "options": ["sofa", "shelf", "ladder"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The old father was sitting peacefully on the sofa reading a book.",
+          "fa": "پدر پیر با آرامش روی مبل راحتی نشسته بود و کتاب می‌خواند."
+        }
+      },
+      {
+        "id": "nw12-1-2",
+        "word": "feed pigeons",
+        "phonetic": "/fiːd ˈpɪdʒ.ənz/",
+        "persianMeaning": "دانه دادن به کبوترها در حیاط یا پارک",
+        "imagePromptOrUrl": "feed-pigeons-park",
+        "options": ["chase pigeons", "feed pigeons", "catch birds"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Grandmother loves to sit by the garden window and feed pigeons every morning.",
+          "fa": "مادربزرگ دوست دارد هر روز صبح کنار پنجره باغچه بنشیند و به کبوترها دانه بدهد."
+        }
+      },
+      {
+        "id": "nw12-1-3",
+        "word": "hard of hearing",
+        "phonetic": "/hɑːd əv ˈhɪə.rɪŋ/",
+        "persianMeaning": "کم‌شنوا، سنگین‌گوش به علت کهولت سن",
+        "imagePromptOrUrl": "hard-of-hearing-ear",
+        "options": ["clear voice", "hard of hearing", "fast speaking"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "My grandfather is hard of hearing, so we speak to him loudly and patiently.",
+          "fa": "پدربزرگم سنگین‌گوش است، بنابراین ما با صدای بلند و با صبوری با او صحبت می‌کنیم."
+        }
+      },
+      {
+        "id": "nw12-1-4",
+        "word": "shout at",
+        "phonetic": "/ʃaʊt æt/",
+        "persianMeaning": "فریاد زدن و داد کشیدن بر سر کسی بر اثر کم‌حوصلگی",
+        "imagePromptOrUrl": "shout-impatient-yelling",
+        "options": ["whisper to", "smile at", "shout at"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "You should never shout at your parents, even when you feel tired or impatient.",
+          "fa": "هرگز نباید سر پدر و مادرت داد بکشی، حتی وقتی خسته یا کم‌حوصله هستی."
+        }
+      },
+      {
+        "id": "nw12-1-5",
+        "word": "hug",
+        "phonetic": "/hʌɡ/",
+        "persianMeaning": "در آغوش کشیدن، بغل کردن با عشق و محبت",
+        "imagePromptOrUrl": "warm-hug-embrace",
+        "options": ["push", "hug", "ignore"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The loving mother gave her son a warm hug before he left for university.",
+          "fa": "مادر مهربان پیش از آنکه پسرش راهی دانشگاه شود او را گرم در آغوش کشید."
+        }
+      },
+      {
+        "id": "nw12-1-6",
+        "word": "lap",
+        "phonetic": "/læp/",
+        "persianMeaning": "دامن، زانو و دامن پرمهر مادر هنگام نشستن",
+        "imagePromptOrUrl": "mothers-lap-caring",
+        "options": ["shoulder", "lap", "elbow"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The sleepy little child put her head on her mother's lap and fell asleep.",
+          "fa": "کودک خردسال خواب‌آلود سرش را روی دامن مادرش گذاشت و به خواب رفت."
+        }
+      },
+      {
+        "id": "nw12-1-7",
+        "word": "burst into tears",
+        "phonetic": "/bɜːst ˈɪn.tuː tɪəz/",
+        "persianMeaning": "زدن زیر گریه، بغض ترکیدن و ناگهان اشک ریختن",
+        "imagePromptOrUrl": "burst-into-tears-crying",
+        "options": ["burst into tears", "burst out laughing", "fall asleep"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "When the son realized how patient his mother had been, he burst into tears.",
+          "fa": "هنگامی که پسر دریافت مادرش چقدر صبور بوده است، ناگهان زد زیر گریه."
+        }
+      },
+      {
+        "id": "nw12-1-8",
+        "word": "repeatedly",
+        "phonetic": "/rɪˈpiː.tɪd.li/",
+        "persianMeaning": "مکرراً، بارها و بارها پشت سر هم",
+        "imagePromptOrUrl": "repeatedly-asking-clock",
+        "options": ["rarely", "never", "repeatedly"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "The curious three-year-old child asked the same question repeatedly.",
+          "fa": "کودک سه ساله کنجکاو همان پرسش را بارها و مکرراً تکرار کرد."
+        }
+      },
+      {
+        "id": "nw12-1-9",
+        "word": "forgive",
+        "phonetic": "/fəˈɡɪv/",
+        "persianMeaning": "بخشیدن، گذشت کردن و حلالیت طلبیدن",
+        "imagePromptOrUrl": "forgive-apologize-peace",
+        "options": ["punish", "forgive", "blame"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "He begged his elderly mother to forgive his impatient behavior.",
+          "fa": "او از مادر سالخورده‌اش التماس کرد که رفتار ناشکیبای او را ببخشد."
+        }
+      },
+      {
+        "id": "nw12-1-10",
+        "word": "calmly",
+        "phonetic": "/ˈkɑːm.li/",
+        "persianMeaning": "با آرامش، طمأنینه و بدون خشم",
+        "imagePromptOrUrl": "calmly-speaking-peaceful",
+        "options": ["calmly", "angrily", "rudely"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The wise mother answered all his repeated questions calmly and gently.",
+          "fa": "مادر دانا تمام پرسش‌های مکرر او را با آرامش و ملایمت پاسخ داد."
+        }
+      },
+      {
+        "id": "nw12-1-11",
+        "word": "diary",
+        "phonetic": "/ˈdaɪə.ri/",
+        "persianMeaning": "دفترچه خاطرات روزانه، یادداشت‌های زندگی",
+        "imagePromptOrUrl": "mother-diary-memories",
+        "options": ["dictionary", "diary", "directory"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "She wrote about her son's childhood in an old handwritten diary.",
+          "fa": "او درباره کودکی پسرش در یک دفترچه خاطرات دست‌نویس قدیمی می‌نوشت."
+        }
+      },
+      {
+        "id": "nw12-1-12",
+        "word": "feel well",
+        "phonetic": "/fiːl wel/",
+        "persianMeaning": "حال جسمی و روحی مساعد داشتن (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-feel-well",
+        "options": ["feel well", "feel heavy", "feel slow"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "I did not feel well yesterday, so I rested at home all afternoon.",
+          "fa": "من دیروز حالم مساعد نبود، بنابراین تمام بعدازظهر در خانه استراحت کردم."
+        }
+      },
+      {
+        "id": "nw12-1-13",
+        "word": "take temperature",
+        "phonetic": "/teɪk ˈtem.prə.tʃər/",
+        "persianMeaning": "تب گرفتن، اندازه‌گیری دمای بدن با دماسنج (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-take-temperature",
+        "options": ["make temperature", "take temperature", "do temperature"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The kind doctor used a thermometer to take the child's temperature.",
+          "fa": "پزشک مهربان با یک دماسنج دمای بدن و تب کودک را اندازه‌گیری کرد."
+        }
+      },
+      {
+        "id": "nw12-1-14",
+        "word": "go abroad",
+        "phonetic": "/ɡəʊ əˈbrɔːd/",
+        "persianMeaning": "به خارج از کشور رفتن جهت تحصیل یا سفر (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-go-abroad",
+        "options": ["come abroad", "go abroad", "run abroad"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Dr. Gharib decided to go abroad to study medicine in France.",
+          "fa": "دکتر قریب تصمیم گرفت برای تحصیل در رشته پزشکی به خارج از کشور (فرانسه) برود."
+        }
+      },
+      {
+        "id": "nw12-1-15",
+        "word": "spare no pains",
+        "phonetic": "/speə nəʊ peɪnz/",
+        "persianMeaning": "از هیچ تلاشی دریغ نکردن، به آب و آتش زدن برای خدمت (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-spare-no-pains",
+        "options": ["spare no pains", "waste no money", "spend no hours"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Loving parents spare no pains to educate and support their children.",
+          "fa": "والدین دلسوز از هیچ تلاشی برای تربیت و حمایت از فرزندانشان دریغ نمی‌ورزند."
+        }
+      },
+      {
+        "id": "nw12-1-16",
+        "word": "not surprisingly",
+        "phonetic": "/nɒt səˈpraɪ.zɪŋ.li/",
+        "persianMeaning": "جای تعجب نیست که، همان‌طور که انتظار می‌رفت (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-not-surprisingly",
+        "options": ["not surprisingly", "not quickly", "not clearly"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Not surprisingly, his devoted students organized a ceremony to honor him.",
+          "fa": "جای تعجبی نداشت که دانشجویان وفادارش مراسمی برای تجلیل از او برپا کردند."
+        }
+      },
+      {
+        "id": "nw12-1-17",
+        "word": "by the way",
+        "phonetic": "/baɪ ðə weɪ/",
+        "persianMeaning": "راستی، ضمناً در حین گفتگو (هم‌آیی)",
+        "imagePromptOrUrl": "collocation-by-the-way",
+        "options": ["on the way", "in the way", "by the way"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "By the way, have you visited your grandparents this week?",
+          "fa": "راستی، آیا این هفته به پدربزرگ و مادربزرگت سر زده‌ای؟"
+        }
+      }
+    ],
+    "reading": {
+      "title": "Respecting Our Parents",
+      "persianTitle": "احترام به والدین و بزرگان",
+      "strategyFa": "استراتژی تولید پرسش (Question Generation): هنگام مطالعه، با کلمات پرسشی مانند Who, What, Why, When سوالاتی طرح کنید تا متن را عمیق‌تر درک کرده و نکات کلیدی داستان را در ذهن تثبیت نمایید.",
+      "passageTextEn": "A 25-year-old son was sitting on a soft sofa in the living room together with his 80-year-old father. Suddenly, a little pigeon flew onto the window sill. The father asked his son calmly, 'What is this?' The son replied, 'It is a pigeon.' After a few minutes, the father asked for the second time, 'What is this?' The son said, 'Father, I have just told you, it is a pigeon.'\n\nAfter a little while, the old father asked for the third time, 'What is this?' At this time, some irritation was felt in the son's voice: 'It's a pigeon, a pigeon!' A little later, the father asked for the fourth time, 'What is this?' This time, the son lost his patience and shouted at his father, 'Why do you keep asking me the same question again and again, although I told you so many times?! It is a pigeon! Are you unable to understand this?!'\n\nA little later, the father quietly got up and went to his bedroom. He came back with an old handwritten diary which he had kept since his son was born. He opened a page and gently asked his son to read that page aloud. The son read: 'Today my three-year-old little son was sitting with me on the sofa, when a pigeon landed on the window. My son asked me 21 times what it was, and I answered him 21 times that it was a pigeon. I hugged him lovingly every time he asked me the same question again and again, 21 times. I felt no irritation, but only warm affection for my innocent child.'\n\nWhen the son finished reading, tears welled up in his eyes. He realized the infinite patience and boundless love his parents had shown him throughout his childhood. He burst into tears, hugged his elderly father tightly, and asked him for forgiveness. If your parents reach old age, do not repel them or shout at them, but spare no pains to respect and care for them.",
+      "passageParagraphs": [
+        "A 25-year-old son was sitting on a soft sofa in the living room together with his 80-year-old father. Suddenly, a little pigeon flew onto the window sill. The father asked his son calmly, 'What is this?' The son replied, 'It is a pigeon.' After a few minutes, the father asked for the second time, 'What is this?' The son said, 'Father, I have just told you, it is a pigeon.'",
+        "After a little while, the old father asked for the third time, 'What is this?' At this time, some irritation was felt in the son's voice: 'It's a pigeon, a pigeon!' A little later, the father asked for the fourth time, 'What is this?' This time, the son lost his patience and shouted at his father, 'Why do you keep asking me the same question again and again, although I told you so many times?! It is a pigeon! Are you unable to understand this?!'",
+        "A little later, the father quietly got up and went to his bedroom. He came back with an old handwritten diary which he had kept since his son was born. He opened a page and gently asked his son to read that page aloud. The son read: 'Today my three-year-old little son was sitting with me on the sofa, when a pigeon landed on the window. My son asked me 21 times what it was, and I answered him 21 times that it was a pigeon. I hugged him lovingly every time he asked me the same question again and again, 21 times. I felt no irritation, but only warm affection for my innocent child.'",
+        "When the son finished reading, tears welled up in his eyes. He realized the infinite patience and boundless love his parents had shown him throughout his childhood. He burst into tears, hugged his elderly father tightly, and asked him for forgiveness. If your parents reach old age, do not repel them or shout at them, but spare no pains to respect and care for them."
+      ],
+      "questions": [
+        {
+          "id": "rq-1",
+          "type": "mcq_general",
+          "questionEn": "What is the main moral message conveyed by the story of the father, the son, and the diary?",
+          "questionFa": "پیام اخلاقی و محوری اصلی داستان پدر، پسر و دفترچه خاطرات چیست؟",
+          "options": [
+            "Parents deserve our infinite patience, respect, and deep appreciation as they age.",
+            "Young children should never be allowed to keep diaries at home.",
+            "Pigeons are common birds that frequently sit on city windows."
+          ],
+          "correctIndex": 0,
+          "explanationFa": "داستان نشان می‌دهد که والدین در کودکی با صبر بی‌پایان به ده‌ها پرسش ما پاسخ داده‌اند؛ بنابراین در کهنسالی سزاوار شکیبایی، عشق و احترام کامل ما هستند."
+        },
+        {
+          "id": "rq-2",
+          "type": "true_false",
+          "questionEn": "According to the diary, the father got angry when his three-year-old son asked about the pigeon 21 times.",
+          "questionFa": "طبق دفترچه خاطرات، پدر زمانی که پسر سه ساله‌اش ۲۱ بار درباره کبوتر سوال کرد عصبانی شد.",
+          "options": ["True", "False"],
+          "correctIndex": 1,
+          "explanationFa": "این جمله غلط (False) است؛ در دفترچه ذکر شده بود که پدر هر ۲۱ بار با عشق و آغوش گرم به کودک پاسخ داده و هیچ‌گونه ناراحتی یا خشم احساس نکرده است."
+        },
+        {
+          "id": "rq-3",
+          "type": "reference",
+          "questionEn": "In the last sentence of the passage, what does the pronoun 'them' in 'care for them' refer to?",
+          "questionFa": "در جمله پایانی متن، ضمیر 'them' در عبارت 'care for them' به چه کسانی اشاره دارد؟",
+          "options": [
+            "your elderly parents",
+            "the little pigeons",
+            "the handwritten diaries"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "ضمیر 'them' به 'your parents' در عبارت آغازین جمله (If your parents reach old age) بازمی‌گردد."
+        },
+        {
+          "id": "rq-4",
+          "type": "context_meaning",
+          "questionEn": "In paragraph 4, what does the phrase 'burst into tears' mean in this context?",
+          "questionFa": "در پاراگراف چهارم، عبارت 'burst into tears' در واکنش عاطفی پسر به چه معناست؟",
+          "options": [
+            "suddenly began to cry out of deep emotion and regret",
+            "laughed out loud because the diary was amusing",
+            "closed his eyes to go to sleep on the sofa"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "عبارت 'burst into tears' یعنی ناگهان و از سر احساسات عمیق و ندامت زیر گریه زدن و اشک ریختن."
+        },
+        {
+          "id": "rq-5",
+          "type": "open_ended",
+          "questionEn": "Why did the father bring his old diary instead of shouting back at his impatient son?",
+          "questionFa": "چرا پدر پیر به جای داد کشیدن متقابل سر پسر کم‌حوصله‌اش، رفت و دفترچه خاطرات قدیمی‌اش را آورد؟",
+          "requiredKeywordsForEvaluation": ["diary", "patience", "love", "realize", "childhood"],
+          "modelAnswerEn": "The father brought the diary to remind his son of the endless patience and love he had received as a child, helping him realize his mistake without any anger.",
+          "modelAnswerFa": "پدر دفترچه را آورد تا صبوری و عشق بی‌کرانی را که پسر در کودکی دریافت کرده بود به او یادآوری کند و بدون ایجاد خشم، او را متوجه اشتباهش سازد."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Passive Voice (Simple Present & Simple Past) & Tag Questions",
+      "persianTopic": "جملات مجهول (زمان حال و گذشته ساده) و سوالات ضمیمه (See Also: Tag Questions)",
+      "discovery": {
+        "sentenceA": "People in many countries read Hafez's poems with great joy.",
+        "sentenceB": "Hafez's poems are read in many countries with great joy.",
+        "ccqQuestions": [
+          {
+            "id": "ccq-1",
+            "question": "در جمله دوم (B)، آیا تاکید اصلی روی کننده کار (People) است یا روی اثر و دیوان حافظ (Hafez's poems)؟",
+            "options": [
+              "روی اثر و اشعار حافظ که خوانده می‌شوند (مفعول به اول جمله آمده)",
+              "روی افرادی که کتاب را در دست دارند (کننده کار)"
+            ],
+            "correctIndex": 0,
+            "explanation": "در ساختار مجهول (Passive)، مفعول به ابتدای جمله می‌آید زیرا خود عمل و موضوع مهم‌تر از فاعل است."
+          },
+          {
+            "id": "ccq-2",
+            "question": "چه تغییری در ساختار فعل بین جمله A (معلوم) و جمله B (مجهول) رخ داده است؟",
+            "options": [
+              "فعل be (are) + قسمت سوم فعل (read) اضافه شده است",
+              "فعل به صورت ing دار تغییر کرده است"
+            ],
+            "correctIndex": 0,
+            "explanation": "فرمول طلایی مجهول همیشه شامل یک شکل از فعل be به همراه قسمت سوم فعل (Past Participle - p.p.) است."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول مجهول: مفعول + am / is / are / was / were + قسمت سوم فعل (p.p.) [+ by فاعل]. در زمان حال ساده از am/is/are و در زمان گذشته ساده از was/were استفاده می‌کنیم. در بخش See Also، سوالات ضمیمه (Tag Questions) پرسش‌های کوتاهی در انتهای جمله هستند که لحن تاییدیه یا پرسش می‌سازند: اگر جمله مثبت باشد تگ منفی است (Mina is happy, isn't she?) و اگر جمله منفی باشد تگ مثبت است (George wasn't hungry, was he?).",
+      "transformations": [
+        {
+          "id": "trans-1",
+          "activeSentence": "Dr. Mohammad Gharib wrote the first Persian textbook on children's diseases.",
+          "passiveSentence": "The first Persian textbook on children's diseases was written by Dr. Mohammad Gharib.",
+          "tense": "Simple Past (گذشته ساده)",
+          "formula": "Object + was/were + p.p. + by Subject"
+        },
+        {
+          "id": "trans-2",
+          "activeSentence": "They teach English and Persian in all schools across the country.",
+          "passiveSentence": "English and Persian are taught in all schools across the country.",
+          "tense": "Simple Present (حال ساده)",
+          "formula": "Object + am/is/are + p.p."
+        },
+        {
+          "id": "trans-3",
+          "activeSentence": "The young son hugged his elderly father warmly.",
+          "passiveSentence": "The elderly father was hugged warmly by his young son.",
+          "tense": "Simple Past (گذشته ساده)",
+          "formula": "Object + was/were + p.p. + by Subject"
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "cp-1",
+            "promptEn": "Millions of wonderful books ______ in national libraries every year. (print)",
+            "promptFa": "میلیون‌ها کتاب شگفت‌انگیز هر ساله در کتابخانه‌های ملی چاپ می‌شوند.",
+            "options": ["are printed", "is printed", "was printed"],
+            "correctIndex": 0,
+            "explanationFa": "چون 'Millions of books' جمع و زمان حال ساده (every year) است، از 'are printed' استفاده می‌شود."
+          },
+          {
+            "id": "cp-2",
+            "promptEn": "The brave firefighter ______ by the mayor after saving the children from fire. (reward)",
+            "promptFa": "آتش‌نشان شجاع پس از نجات کودکان از آتش توسط شهردار مورد تشویق قرار گرفت.",
+            "options": ["was rewarded", "were rewarded", "is rewarded"],
+            "correctIndex": 0,
+            "explanationFa": "فاعل مجهول 'The brave firefighter' مفرد و زمان گذشته است، پس 'was rewarded' صحیح است."
+          },
+          {
+            "id": "cp-3",
+            "promptEn": "Your sister can speak French very fluently, ______?",
+            "promptFa": "خواهرت می‌تواند خیلی روان فرانسوی صحبت کند، این‌طور نیست؟ (سوال ضمیمه)",
+            "options": ["can't she", "can she", "isn't she"],
+            "correctIndex": 0,
+            "explanationFa": "چون جمله اصلی با فعل کمکی مثبت 'can' آمده، سوال ضمیمه باید منفی باشد: 'can't she?'."
+          },
+          {
+            "id": "cp-4",
+            "promptEn": "The old diary was kept in the bedroom drawer, ______?",
+            "promptFa": "دفترچه خاطرات قدیمی در کشوی اتاق خواب نگهداری می‌شد، مگر نه؟",
+            "options": ["wasn't it", "was it", "didn't it"],
+            "correctIndex": 0,
+            "explanationFa": "جمله مثبت با فعل 'was' است؛ ضمیر غیرانسان 'it' بوده و تگ منفی 'wasn't it?' صحیح است."
+          }
+        ],
+        "production": {
+          "instructionsFa": "با استفاده از کلیدواژه‌های داده‌شده، یک جمله مجهول گذشته درباره آثار تاریخی یا مفاخر ملی بسازید.",
+          "targetKeywords": ["written", "composed", "built", "invented", "discovered"]
+        }
+      }
+    },
+    "listening": {
+      "preListeningQuestions": [
+        {
+          "id": "plq-1",
+          "questionEn": "When you want to confirm something you think is true, what tone of voice do you use in English?",
+          "questionFa": "هنگامی که می‌خواهید چیزی را که به نظرتان درست است تایید کنید، چه لحنی در انگلیسی به کار می‌برید؟"
+        },
+        {
+          "id": "plq-2",
+          "questionEn": "How do you ask about someone's health condition politely?",
+          "questionFa": "چگونه به شیوه‌ای مودبانه از وضعیت سلامت و بیماری فردی جویا می‌شوید؟"
+        }
+      ],
+      "conversations": [
+        {
+          "id": "lc-1",
+          "title": "Checking on a Sick Colleague (احوال‌پرسی از همکار بیمار)",
+          "audioUrl": "/audio/highschool/grade12/lesson1/listening_dialogue1.mp3",
+          "scriptEn": "Reza: Mr. Alavi looks very pale today, doesn't he?\nAli: Yes, he doesn't feel well at all. He has a severe cold.\nReza: He shouldn't stay at work. He was examined by the company doctor, wasn't he?\nAli: Not yet. He is going to visit Dr. Gharib's clinic this afternoon.",
+          "scriptFa": "رضا: آقای علوی امروز خیلی رنگ‌پریده به نظر می‌رسد، این‌طور نیست؟\nعلی: بله، اصلاً حالش مساعد نیست. سرماخوردگی شدیدی دارد.\nرضا: نباید سر کار بماند. توسط پزشک شرکت معاینه شد، مگر نه؟\nعلی: هنوز نه. او قرار است امروز بعدازظهر به درمانگاه دکتر قریب برود.",
+          "comprehensionQuestion": {
+            "questionEn": "Where will Mr. Alavi go this afternoon to get examined?",
+            "questionFa": "آقای علوی برای معاینه امروز بعدازظهر به کجا خواهد رفت؟",
+            "options": [
+              "To Dr. Gharib's clinic",
+              "To his own home to sleep",
+              "To the library"
+            ],
+            "correctIndex": 0
+          }
+        },
+        {
+          "id": "lc-2",
+          "title": "Playing Chess and Exercising (شطرنج و ورزش سلامت)",
+          "audioUrl": "/audio/highschool/grade12/lesson1/listening_dialogue2.mp3",
+          "scriptEn": "Behzad: You like playing chess with your grandfather, don't you?\nAmin: Yes, I do. He taught me the game when I was only six years old.\nBehzad: Chess improves memory and concentration, doesn't it?\nAmin: Exactly! That is why doctors recommend intellectual games for keeping minds active.",
+          "scriptFa": "بهزاد: تو بازی شطرنج با پدربزرگت را دوست داری، این‌طور نیست؟\nامین: بله، دقیقاً. وقتی فقط شش سالم بود او این بازی را به من یاد داد.\nبهزاد: شطرنج حافظه و تمرکز را تقویت می‌کند، مگر نه؟\nامین: کاملاً درست است! به همین دلیل پزشکان بازی‌های فکری را برای فعال نگه داشتن ذهن توصیه می‌کنند.",
+          "comprehensionQuestion": {
+            "questionEn": "Why do doctors recommend intellectual games like chess according to the dialogue?",
+            "questionFa": "بر اساس مکالمه، چرا پزشکان بازی‌های فکری مانند شطرنج را توصیه می‌کنند؟",
+            "options": [
+              "To keep minds active and improve concentration",
+              "Because it is an expensive outdoor sport",
+              "To make children go to bed early"
+            ],
+            "correctIndex": 0
+          }
+        }
+      ],
+      "pronunciation": {
+        "title": "Intonation in Tag Questions: Confirmation (↘) vs. Genuine Uncertainty (↗)",
+        "explanationFa": "در زبان انگلیسی، لحن صدا در سوالات ضمیمه (Tag Questions) نقشی تعیین‌کننده در انتقال منظور دارد:\n۱. اگر از پاسخ مطمئن هستیم و فقط تایید و تصدیق مخاطب را می‌خواهیم ➔ لحن افتان (Falling Intonation ↘) استفاده می‌شود.\n۲. اگر واقعاً مطمئن نیستیم و سوال حقیقی می‌پرسیم و تردید داریم ➔ لحن خیزان (Rising Intonation ↗) به کار می‌رود.",
+        "examples": [
+          {
+            "id": "p-ex-1",
+            "text": "Your brother works at the hospital, doesn't he? ↘",
+            "intonation": "falling",
+            "explanation": "لحن افتان ↘ : گوینده می‌داند برادر در بیمارستان کار می‌کند و تنها تایید می‌خواهد."
+          },
+          {
+            "id": "p-ex-2",
+            "text": "You haven't seen my diary, have you? ↗",
+            "intonation": "rising",
+            "explanation": "لحن خیزان ↗ : گوینده واقعاً شک دارد و نمی‌داند مخاطب دفترچه را دیده یا نه."
+          },
+          {
+            "id": "p-ex-3",
+            "text": "The soup was delicious, wasn't it? ↘",
+            "intonation": "falling",
+            "explanation": "لحن افتان ↘ : بیان یک نظر مشترک در پایان غذا برای دریافت هم‌نظری مخاطب."
+          },
+          {
+            "id": "p-ex-4",
+            "text": "They won't arrive before midnight, will they? ↗",
+            "intonation": "rising",
+            "explanation": "لحن خیزان ↗ : سوال واقعی ناشی از تردید در زمان رسیدن مسافران."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "pq-1",
+            "promptEn": "Speaker: 'Dr. Gharib was a great physician, wasn't he? ↘' What is the speaker doing?",
+            "promptFa": "گوینده با لحن افتان در این جمله چه منظوری دارد؟",
+            "options": [
+              "Expecting agreement and confirming a widely known fact",
+              "Asking a genuine doubt because he doesn't know Dr. Gharib",
+              "Expressing surprise and disbelief"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "لحن افتان (Falling ↘) در سوالات ضمیمه برای تایید گرفتن از یک حقیقت بدیهی به کار می‌رود."
+          },
+          {
+            "id": "pq-2",
+            "promptEn": "Speaker: 'You didn't forget to take grandpa's temperature, did you? ↗' What does the tone express?",
+            "promptFa": "لحن خیزان در این سوال ضمیمه بیانگر چیست؟",
+            "options": [
+              "Genuine question and uncertainty whether it was done",
+              "Complete certainty that temperature was taken",
+              "Anger and punishment"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "لحن خیزان (Rising ↗) نشان‌دهنده عدم اطمینان و پرسش واقعی است."
+          },
+          {
+            "id": "pq-3",
+            "promptEn": "Which tag question has falling intonation (↘)?",
+            "promptFa": "کدام گزینه باید با لحن افتان (تاییدیه) خوانده شود؟",
+            "options": [
+              "It's a beautiful day, isn't it? ↘ (Looking at a sunny sky together)",
+              "You haven't lost the keys, have you? ↗ (Worried about missing keys)",
+              "He didn't call, did he? ↗ (Wondering if the phone rang)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "هنگامی که هر دو نفر هوای آفتابی را می‌بینند، جمله برای دریافت تایید با لحن افتان ↘ بیان می‌شود."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "حرف ربط and و but در جملات مرکب (Compound Sentences: and & but)",
+        "explanationFa": "جمله مرکب (Compound Sentence) از اتصال دو جمله مستقل (Independent Clause) به کمک حروف ربط همپایه به وجود می‌آید. حرف ربط 'and' برای پیوند دو ایده همسو، مشابه یا توالی رخدادها به کار می‌رود؛ در حالی که حرف ربط 'but' برای بیان تضاد، تقابل و اتفاقات غیرمنتظره به کار گرفته می‌شود.",
+        "categories": [
+          {
+            "name": "حرف ربط and (هم‌پایه و همسو)",
+            "description": "اضافه کردن اطلاعات مشابه یا بیان دو کار مکمل (مثال: I got up early, and I made breakfast.)",
+            "examples": ["I get up early in the morning, and I make an omelet myself.", "She respects her parents, and she listens to their advice."]
+          },
+          {
+            "name": "حرف ربط but (تضاد و تمایز)",
+            "description": "بیان تضاد، غافلگیری یا نکته متضاد با جمله اول (مثال: The book was boring, but Tom read it.)",
+            "examples": ["The book was boring, but Tom had to read it.", "Susan has a pink dress, but she never wears it."]
+          },
+          {
+            "name": "قاعده ویرگول (کاما)",
+            "description": "حتماً قبل از حروف ربط همپایه (and, but, or, so) در اتصال دو جمله کامل کاما قرار می‌گیرد.",
+            "examples": ["Clause 1 , and Clause 2", "Clause 1 , but Clause 2"]
+          },
+          {
+            "name": "جایگزینی اسامی تکراری با ضمیر",
+            "description": "برای روانی متن، اسم‌های تکراری در جمله دوم را با ضمایر فاعلی یا مفعولی متناسب جایگزین می‌کنیم.",
+            "examples": ["Saeed studied hard, so he passed the exam.", "Mary bought a laptop, but she didn't use it."]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq-1",
+            "sentence": "The weather was very cold, ______ we decided to go for a walk in the park.",
+            "options": ["but", "and", "or"],
+            "correctIndex": 0,
+            "explanation": "چون هوا سرد بود اما با وجود سرما به پیاده‌روی رفتند، تضاد وجود دارد و 'but' صحیح است."
+          },
+          {
+            "id": "wq-2",
+            "sentence": "Ali washed all the dirty dishes, ______ his sister dried them with a clean towel.",
+            "options": ["and", "but", "so"],
+            "correctIndex": 0,
+            "explanation": "دو کار مکمل و همسو در جهت کمک در خانه؛ پس 'and' مناسب است."
+          },
+          {
+            "id": "wq-3",
+            "sentence": "My grandfather is eighty years old, ______ he still walks three kilometers every morning.",
+            "options": ["but", "or", "and"],
+            "correctIndex": 0,
+            "explanation": "سن بالا در تقابل با پیاده‌روی طولانی هر روزه است؛ پس 'but' بیانگر تقابل است."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "حرف ربط or و so برای انتخاب و نتیجه (Compound Sentences: or & so)",
+        "explanationFa": "حرف ربط 'or' برای بیان گزینه‌ها، انتخاب‌ها یا پیامدهای منفی در صورت عدم اقدام استفاده می‌شود. حرف ربط 'so' برای نشان دادن نتیجه و پیامد منطقی بند اول به کار می‌رود (علت در بند اول، نتیجه در بند دوم).",
+        "regularPairs": [
+          {
+            "singular": "or (بیان گزینه‌ها و دوراهی)",
+            "plural": "You should do your homework, or you should wash the dishes."
+          },
+          {
+            "singular": "so (بیان نتیجه و پیامد)",
+            "plural": "Saeed studied hard for the test, so he passed it successfully."
+          }
+        ],
+        "exercise": [
+          {
+            "id": "spe-1",
+            "singularPrompt": "Saeed studied hard for the university exam, ______ he passed it with an excellent score.",
+            "options": ["so", "or", "but"],
+            "correctIndex": 0,
+            "explanation": "قبولی در امتحان نتیجه مطالعه سخت است؛ بنابراین حرف ربط نتیجه 'so' به کار می‌رود."
+          },
+          {
+            "id": "spe-2",
+            "singularPrompt": "You must take your prescribed medicine on time, ______ your fever will rise again.",
+            "options": ["or", "and", "so"],
+            "correctIndex": 0,
+            "explanation": "بیان پیامد یا انتخاب دیگر؛ 'or' به معنای 'وگرنه / یا اینکه' به کار رفته است."
+          },
+          {
+            "id": "spe-3",
+            "singularPrompt": "We can eat dinner at home tonight, ______ we can go to our grandparents' house.",
+            "options": ["or", "so", "but"],
+            "correctIndex": 0,
+            "explanation": "ارائه دو گزینه و انتخاب پیش روی افراد؛ از 'or' استفاده می‌شود."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "قاعده ویرگول و پیوند دو جمله مستقل (Independent Clauses & Comma Rule)",
+        "explanationFa": "یک جمله مستقل (Independent Clause) دارای فاعل و فعل بوده و معنای کاملی می‌رساند. وقتی دو جمله مستقل را با حروف ربط همپایه (and, but, or, so) متصل می‌کنیم، قراردادن ویرگول (,) درست قبل از حرف ربط الزامی است.",
+        "examples": [
+          {
+            "category": "با ویرگول (صحیح)",
+            "items": ["Dr. Gharib loved children, and he cured thousands of them.", "She was hard of hearing, but she enjoyed the story."]
+          },
+          {
+            "category": "بدون ویرگول (ناقص)",
+            "items": ["Dr. Gharib loved children and he cured them. (نیاز به ویرگول دارد)", "She was sick so she went to bed. (نیاز به ویرگول دارد)"]
+          }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pf-1",
+            "sentenceWithBlank": "My mother was very tired after cooking, ______ she sat comfortably on the sofa to rest.",
+            "options": [", so", "so without comma", ", but"],
+            "correctIndex": 0,
+            "explanation": "ویرگول قبل از 'so' برای اتصال دو جمله مستقل ضروری است."
+          },
+          {
+            "id": "pf-2",
+            "sentenceWithBlank": "You can apologize to your father now, ______ you will regret your behavior later.",
+            "options": [", or", "or", ", and"],
+            "correctIndex": 0,
+            "explanation": "ویرگول به همراه 'or' پیوند استاندارد دو جمله مستقل است."
+          },
+          {
+            "id": "pf-3",
+            "sentenceWithBlank": "The son felt deep regret, ______ he burst into tears and begged for forgiveness.",
+            "options": [", and", "and", ", but"],
+            "correctIndex": 0,
+            "explanation": "دو رخداد پی‌درپی و همسو با ویرگول و 'and' متصل می‌شوند."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تمرین‌های تثبیت نگارش جملات مرکب کتاب درسی (Textbook Writing Exercises)",
+        "explanationFa": "تمرینات صفحات ۳۶ الی ۳۹ کتاب Vision 3: جملات داده‌شده را به کمک حرف ربط مناسب، حذف واژه‌های تکراری و افزودن کاما به هم متصل کنید.",
+        "markersList": [
+          {
+            "marker": "FANBOYS در کتاب دوازدهم",
+            "use": "چهار حرف ربط محوری: and (افزایش), but (تضاد), or (انتخاب), so (نتیجه)",
+            "example": "Always remember the comma: [Clause 1] , [coordinator] [Clause 2]."
+          },
+          {
+            "marker": "جایگزینی ضمایر (Pronoun Replacement)",
+            "use": "جلوگیری از تکرار اسم در بند دوم: Mary bought apples, and Mary washed Mary's apples ➔ Mary bought apples, and she washed them.",
+            "example": "Tom was tired, but he finished his homework."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "mq-1",
+            "question": "کدام ترکیب برای این دو جمله کتاب درسی صحیح است؟ 'Susan has a pink dress. Susan never wears the pink dress.'",
+            "options": [
+              "Susan has a pink dress, but she never wears it.",
+              "Susan has a pink dress and Susan never wears the pink dress.",
+              "Susan has a pink dress so she wears it."
+            ],
+            "correctIndex": 0,
+            "explanation": "استفاده از کاما + but به دلیل تضاد، و جایگزینی Susan با she و the pink dress با it."
+          },
+          {
+            "id": "mq-2",
+            "question": "کدام ترکیب برای این دو جمله صحیح است؟ 'I get up early in the morning. I make an omelet myself.'",
+            "options": [
+              "I get up early in the morning, and I make an omelet myself.",
+              "I get up early in the morning but I make an omelet.",
+              "I get up early in the morning, or I make an omelet."
+            ],
+            "correctIndex": 0,
+            "explanation": "دو کار همسو و متوالی با کاما و 'and' پیوند می‌خورند."
+          },
+          {
+            "id": "mq-3",
+            "question": "کدام جمله از نظر کاربرد کاما و حرف ربط کتاب درسی صحیح است؟",
+            "options": [
+              "The weather was terrible, so we cancelled the football match.",
+              "The weather was terrible so we cancelled the football match.",
+              "The weather was terrible, or we cancelled the football match."
+            ],
+            "correctIndex": 0,
+            "explanation": "قرار گرفتن ویرگول قبل از 'so' و بیان نتیجه منطقی آب‌وهوای بد."
+          }
+        ]
+      }
+    }
+  }
+}

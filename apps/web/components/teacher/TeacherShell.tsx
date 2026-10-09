@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 import { endooraApi, persistPreferredLocale } from "../../lib/endoora-api";
+import { PublicHeader } from "../marketing/PublicHeader";
 import {
   fetchTeacherHome,
   TeacherDashboardApiError,
@@ -25,7 +26,7 @@ export type TeacherContextValue = {
   classesList: ActiveClassInfo[];
 };
 
-type TeacherIconName = "home" | "classes" | "planning" | "assessment" | "onlineExams" | "tools" | "resources" | "account" | "marketplace" | "logout";
+type TeacherIconName = "home" | "classes" | "planning" | "assessment" | "onlineExams" | "tools" | "resources" | "account" | "marketplace" | "logout" | "report";
 
 const TeacherContext = createContext<TeacherContextValue | null>(null);
 
@@ -49,7 +50,8 @@ const labels = {
     planning: "طرح درس و تولید",
     assessment: "تحلیل و بازخورد",
     onlineExams: "آزمون‌های آنلاین",
-    tools: "ابزارهای پیشرفته",
+    tools: "کارنامه جامع پیشرفت",
+    report: "کارنامه جامع پیشرفت",
     resources: "کتابخانه منابع",
     account: "حساب",
     logout: "خروج",
@@ -77,7 +79,8 @@ const labels = {
     planning: "Planning & Prep",
     assessment: "Assessment & Evidence",
     onlineExams: "Online Exams",
-    tools: "Supertools",
+    tools: "Progress Report",
+    report: "Progress Report",
     resources: "Resources",
     account: "Account",
     logout: "Log out",
@@ -105,7 +108,8 @@ const iconPaths: Record<TeacherIconName, ReactNode> = {
   planning: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /><path d="m9 9 2 2 4-4" /></>,
   assessment: <><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></>,
   onlineExams: <><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="2" /><path d="m9 14 2 2 4-4" /></>,
-  tools: <><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></>,
+  tools: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></>,
+  report: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></>,
   resources: <><path d="M5 4.5A3.5 3.5 0 0 1 8.5 1H12v19H8.5A3.5 3.5 0 0 0 5 23z" /><path d="M19 4.5A3.5 3.5 0 0 0 15.5 1H12v19h3.5A3.5 3.5 0 0 1 19 23z" /></>,
   account: <><circle cx="12" cy="7" r="4" /><path d="M4 22a8 8 0 0 1 16 0" /></>,
   marketplace: <><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></>,
@@ -179,6 +183,22 @@ export function TeacherShell({ children }: { children: ReactNode }) {
   const [classesList, setClassesList] = useState<ActiveClassInfo[]>([]);
   const [activeClass, setActiveClassState] = useState<ActiveClassInfo | null>(null);
   const [usage, setUsage] = useState<TeacherUsageSummary | null>(null);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await endooraApi<null>("/auth/logout/", {
+        method: "POST",
+        json: {},
+      });
+    } catch {
+      // Proceed with redirect regardless of network status
+    } finally {
+      window.location.href = "/auth/login";
+    }
+  }
 
   const setActiveClass = (cls: ActiveClassInfo | null) => {
     setActiveClassState(cls);
@@ -261,7 +281,16 @@ export function TeacherShell({ children }: { children: ReactNode }) {
 
   if (status !== "ready" || !data) {
     const gateKind = status === "loading" || status === "login" || status === "denied" || status === "offline" ? status : "error";
-    return <Gate kind={gateKind} locale={locale} onLocaleChange={() => setLocale((value) => value === "fa" ? "en" : "fa")} retry={() => setReloadKey((value) => value + 1)} />;
+    return (
+      <div className="teacher-shell" dir={locale === "fa" ? "rtl" : "ltr"} lang={locale}>
+        <PublicHeader
+          locale={locale === "en" ? "en" : "fa"}
+          currentPath={pathname}
+          onLocaleChange={() => void changeLocale()}
+        />
+        <Gate kind={gateKind} locale={locale} onLocaleChange={() => void changeLocale()} retry={() => setReloadKey((value) => value + 1)} />
+      </div>
+    );
   }
 
   const t = labels[locale];
@@ -269,9 +298,7 @@ export function TeacherShell({ children }: { children: ReactNode }) {
     { href: "/teacher", label: t.home, icon: "home" as const },
     { href: "/teacher/classes", label: t.classes, icon: "classes" as const },
     { href: "/teacher/planning", label: t.planning, icon: "planning" as const },
-    { href: "/teacher/assessment", label: t.assessment, icon: "assessment" as const },
     { href: "/teacher/online-exams", label: t.onlineExams, icon: "onlineExams" as const },
-    { href: "/teacher/tools", label: t.tools, icon: "tools" as const },
     { href: "/marketplace/requests", label: t.marketplace, icon: "marketplace" as const },
     { href: "/teacher/resources", label: t.resources, icon: "resources" as const },
     { href: "/teacher/account", label: t.account, icon: "account" as const },
@@ -280,35 +307,22 @@ export function TeacherShell({ children }: { children: ReactNode }) {
     { href: "/teacher", label: t.home, icon: "home" as const },
     { href: "/teacher/classes", label: t.classes, icon: "classes" as const },
     { href: "/teacher/planning", label: t.planning, icon: "planning" as const },
-    { href: "/teacher/assessment", label: t.assessment, icon: "assessment" as const },
     { href: "/teacher/online-exams", label: t.onlineExams, icon: "onlineExams" as const },
     { href: "/teacher/resources", label: t.resources, icon: "resources" as const },
   ];
   const verified = data.capabilities.teacher_verified;
 
-  const [loggingOut, setLoggingOut] = useState(false);
-
-  async function handleLogout() {
-    if (loggingOut) return;
-    setLoggingOut(true);
-    try {
-      await endooraApi<null>("/auth/logout/", {
-        method: "POST",
-        json: {},
-      });
-    } catch {
-      // Proceed with redirect regardless of network status
-    } finally {
-      window.location.href = "/auth/login";
-    }
-  }
 
   return (
     <TeacherContext.Provider value={{ data, locale, online, activeClass, setActiveClass, classesList }}>
       <div className="teacher-shell" dir={locale === "fa" ? "rtl" : "ltr"} lang={locale}>
         <a className="teacher-skip-link" href="#teacher-main">{t.skip}</a>
+        <PublicHeader
+          locale={locale === "en" ? "en" : "fa"}
+          currentPath={pathname}
+          onLocaleChange={() => void changeLocale()}
+        />
         <aside className="teacher-sidebar">
-          <Link className="teacher-brand-link" href="/teacher" aria-label="Endoora teacher home"><EndooraWordmark compact /></Link>
           <nav className="teacher-nav" aria-label={t.navigation}>{sidebarNav.map((item) => <NavItem key={item.href} {...item} active={isActive(pathname, item.href)} />)}</nav>
           <div className="teacher-sidebar__footer">
             <button

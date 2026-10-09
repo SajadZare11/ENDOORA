@@ -24,6 +24,8 @@ type AccountMe = {
   id: string;
   email: string;
   preferred_locale: EndooraLocale;
+  is_premium?: boolean;
+  capabilities?: Record<string, boolean>;
 };
 
 type Props = {
@@ -130,6 +132,7 @@ export function FoundationAccountPage({
   const t = copy[locale];
   const isFa = locale === "fa";
   const sectionCopy = t.sections[section];
+  const isPremiumUser = Boolean(account?.is_premium || account?.capabilities?.is_premium);
 
   useEffect(() => {
     let cancelled = false;
@@ -412,8 +415,10 @@ export function FoundationAccountPage({
               <h2 style={{ fontSize: "var(--font-size-section-title)", margin: 0 }}>
                 {isFa ? "گزارش مصرف و سهمیه‌های روزانه" : "Daily Quotas & Usage Analytics"}
               </h2>
-              <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
-                {isFa ? "به‌روزرسانی خودکار ساعت ۰۰:۰۰" : "Resets daily at 00:00 IRST"}
+              <span style={{ fontSize: "var(--font-size-meta)", color: isPremiumUser ? "var(--color-achievement-amber)" : "var(--color-muted)", fontWeight: isPremiumUser ? 700 : 400 }}>
+                {isPremiumUser
+                  ? (isFa ? "⭐ حساب ویژه VIP: دسترسی نامحدود به هوش مصنوعی، آزمون‌ها و دوره‌ها" : "⭐ VIP Premium: Unlimited AI, quizzes & course access")
+                  : (isFa ? "به‌روزرسانی خودکار ساعت ۰۰:۰۰" : "Resets daily at 00:00 IRST")}
               </span>
             </div>
 
@@ -496,8 +501,13 @@ export function FoundationAccountPage({
                     : "Choose the plan that fits your study cadence. Upgrade, downgrade, or cancel anytime."}
                 </p>
               </div>
-              <span className={styles.status}>
-                {isFa ? "پلن فعلی: پایه (رایگان)" : "Current Plan: Starter (Free)"}
+              <span
+                className={styles.status}
+                style={isPremiumUser ? { borderColor: "var(--color-achievement-amber)", color: "var(--color-achievement-amber)", fontWeight: 700 } : undefined}
+              >
+                {isPremiumUser
+                  ? isFa ? "⭐ پلن فعال: اشتراک ویژه نامحدود (VIP Premium)" : "⭐ Current Plan: VIP Premium (Unlimited)"
+                  : isFa ? "پلن فعلی: پایه (رایگان)" : "Current Plan: Starter (Free)"}
               </span>
             </div>
 
@@ -525,13 +535,15 @@ export function FoundationAccountPage({
                   className={styles.actionButton}
                   disabled
                 >
-                  {isFa ? "پلن فعال شما" : "Current Plan"}
+                  {isPremiumUser ? (isFa ? "طرح پایه" : "Starter Plan") : (isFa ? "پلن فعال شما" : "Current Plan")}
                 </Button>
               </div>
 
               {/* Pro Plan */}
               <div className={`${styles.planCard} ${styles.planCardRecommended}`}>
-                <span className={styles.planBadge}>{isFa ? "پیشنهاد ویژه" : "Recommended"}</span>
+                <span className={styles.planBadge}>
+                  {isPremiumUser ? (isFa ? "⭐ حساب شما فعال است" : "⭐ Active VIP") : (isFa ? "پیشنهاد ویژه" : "Recommended")}
+                </span>
                 <div>
                   <h3 style={{ margin: 0, fontSize: "1.25rem" }}>{isFa ? "هوشمند (Pro)" : "Pro"}</h3>
                   <p className={styles.itemMeta} style={{ marginBlock: "var(--space-2)" }}>
@@ -552,13 +564,17 @@ export function FoundationAccountPage({
 
                 <Button
                   type="button"
-                  variant="primary"
-                  onClick={() => setActivePlanSelection("pro")}
+                  variant={isPremiumUser ? "secondary" : "primary"}
+                  onClick={() => !isPremiumUser && setActivePlanSelection("pro")}
                   className={styles.actionButton}
+                  disabled={isPremiumUser}
+                  style={isPremiumUser ? { background: "var(--color-success)", color: "white", cursor: "default", opacity: 1 } : undefined}
                 >
-                  {activePlanSelection === "pro"
-                    ? isFa ? "✓ انتخاب شده (آماده پرداخت)" : "✓ Selected"
-                    : isFa ? "ارتقا به پلن پرو" : "Upgrade to Pro"}
+                  {isPremiumUser
+                    ? isFa ? "✓ فعال است (دسترسی نامحدود)" : "✓ Active Plan (Unlimited)"
+                    : activePlanSelection === "pro"
+                      ? isFa ? "✓ انتخاب شده (آماده پرداخت)" : "✓ Selected"
+                      : isFa ? "ارتقا به پلن پرو" : "Upgrade to Pro"}
                 </Button>
               </div>
 

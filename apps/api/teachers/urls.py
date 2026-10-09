@@ -15,6 +15,8 @@ from .views import (
     TeachingHourLedgerView,
     TeachingHourAdjustView,
     LearnerLinkedTeachersView,
+    ClassByCodeLookupView,
+    LearnerJoinClassByCodeView,
 )
 from .analytics_views import (
     TeacherAnalyticsOverviewView,
@@ -91,6 +93,12 @@ from .teacheros_views import (
     TeacherAccountPreferencesView,
     TeacherAccountUpgradeView,
 )
+from .curriculum_views import (
+    TeacherClassCurriculumTreeView,
+    TeacherStudentPortfolioView,
+    TeacherStudentRecordMasteryView,
+    TeacherStudentSendHomeworkView,
+)
 
 app_name = "teachers"
 
@@ -99,8 +107,12 @@ urlpatterns = [
     path("dashboard/", TeacherDashboardView.as_view(), name="dashboard"),
     path("dashboard/events/", TeacherDashboardEventView.as_view(), name="dashboard-events"),
 
-    # Classes & Roster (Day 33)
+    # Classes & Roster (Day 33 & 7-digit code)
     path("classes/", TeacherClassListCreateView.as_view(), name="class-list-create"),
+    path("classes/lookup-by-code/", ClassByCodeLookupView.as_view(), name="class-lookup-by-code"),
+    path("classes/lookup/", ClassByCodeLookupView.as_view(), name="class-lookup"),
+    path("classes/join-by-code/", LearnerJoinClassByCodeView.as_view(), name="class-join-by-code"),
+    path("classes/join/", LearnerJoinClassByCodeView.as_view(), name="class-join"),
     path("classes/<uuid:pk>/", TeacherClassDetailView.as_view(), name="class-detail"),
     path("classes/<uuid:pk>/invite/", TeacherLearnerInviteView.as_view(), name="class-invite-learner"),
     path("classes/<uuid:class_pk>/sessions/", ClassSessionListCreateView.as_view(), name="class-session-list-create"),
@@ -193,6 +205,12 @@ urlpatterns = [
     path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/log-error/", StudentDossierLogErrorView.as_view(), name="teacheros-student-log-error"),
     path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/errors/<str:error_id>/", StudentDossierErrorStatusView.as_view(), name="teacheros-student-error-status"),
     path("classes/<uuid:class_pk>/learners/<uuid:learner_pk>/dossier/assessments/", StudentDossierAssessmentView.as_view(), name="teacheros-student-assessments"),
+
+    # Teacher Classroom Curriculum, Mastery Tracking & 10-Question Assignment Pack
+    path("classes/<uuid:class_id>/curriculum-tree/", TeacherClassCurriculumTreeView.as_view(), name="class-curriculum-tree"),
+    path("classes/<uuid:class_id>/students/<uuid:student_id>/portfolio/", TeacherStudentPortfolioView.as_view(), name="student-academic-portfolio"),
+    path("classes/<uuid:class_id>/students/<uuid:student_id>/mastery/", TeacherStudentRecordMasteryView.as_view(), name="student-record-mastery"),
+    path("classes/<uuid:class_id>/students/<uuid:student_id>/send-homework/", TeacherStudentSendHomeworkView.as_view(), name="student-send-homework"),
 
     # TeacherOS: Spaced Review Queue & SM-2 Review (Pillar 4 Supertool)
     path("classes/<uuid:class_pk>/spaced-reviews/", SpacedReviewQueueView.as_view(), name="teacheros-spaced-reviews"),

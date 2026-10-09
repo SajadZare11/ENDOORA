@@ -1,16 +1,30 @@
 "use client";
 
 import { Button } from "@endoora/ui";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { endooraApi } from "@/lib/endoora-api";
 import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
-import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
 import { AudioWaveformPlayer } from "./AudioWaveformPlayer";
 import { AudioRecorder } from "./AudioRecorder";
 import { WritingEditor } from "./WritingEditor";
+import {
+  AdaptiveItem,
+  AdaptiveState,
+  createInitialAdaptiveState,
+  updateAdaptiveState,
+  selectNextAdaptiveItem,
+  isItemCorrect,
+  calculatePlacementSummary,
+  CEFR_DESCRIPTIONS,
+  CefrLevel,
+  SectionType,
+  SECTION_ITEM_QUOTAS,
+  SECTION_DURATIONS,
+  TOTAL_ADMINISTERED_ITEMS,
+} from "@/lib/adaptive-engine";
+import { FULL_CALIBRATED_ITEMS_BANK } from "@/lib/placement-item-bank";
 import styles from "@/components/placement/placement.module.css";
 
 type Locale = "fa" | "en";
@@ -27,34 +41,14 @@ type AuthState =
   | { kind: "anonymous" }
   | { account: SessionAccount; kind: "authenticated" };
 
-interface PlacementQuestionItem {
-  id: string;
-  section: string;
-  question_type: string;
-  title_fa?: string;
-  title_en?: string;
-  prompt_fa?: string;
-  prompt_en: string;
-  instructions_fa?: string;
-  instructions_en?: string;
-  cefr_level?: string;
-  difficulty?: string;
-  passage?: string;
-  audio_url?: string;
-  play_limit?: number;
-  recording_time_limit_sec?: number;
-  min_words_expected?: number;
-  max_words_expected?: number;
-  options: string[];
-  question_version_id?: string | null;
-}
-
 interface PlacementAnswerRecord {
   idempotency_key: string;
   question_key: string;
   question_version_id?: string | null;
   answer_value: {
     selected_option?: string;
+    spoken_text?: string;
+    written_text?: string;
     [key: string]: unknown;
   };
   created_at: string;
@@ -74,363 +68,25 @@ interface PlacementSessionData {
   answers: PlacementAnswerRecord[];
 }
 
-const DEFAULT_QUESTIONS: PlacementQuestionItem[] = [
-  {
-    id: "grammar-a1-001",
-    section: "grammar",
-    question_type: "single_choice",
-    title_fa: "بخش دستور زبان (Grammar)",
-    title_en: "Grammar Section",
-    prompt_fa: "جای خالی را با شکل درست فعل کامل کنید.",
-    prompt_en: "She ___ to school every day.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "A1",
-    difficulty: "easy",
-    options: ["go", "goes", "going", "gone"],
-  },
-  {
-    id: "grammar-a2-001",
-    section: "grammar",
-    question_type: "single_choice",
-    title_fa: "بخش دستور زبان (Grammar)",
-    title_en: "Grammar Section",
-    prompt_fa: "جای خالی را با زمان گذشته مناسب کامل کنید.",
-    prompt_en: "Yesterday, they ___ to the national museum.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "A2",
-    difficulty: "easy",
-    options: ["went", "gone", "go", "goes"],
-  },
-  {
-    id: "grammar-b1-001",
-    section: "grammar",
-    question_type: "single_choice",
-    title_fa: "بخش دستور زبان (Grammar)",
-    title_en: "Grammar Section",
-    prompt_fa: "جای خالی را با ساختار زمان مناسب کامل کنید.",
-    prompt_en: "I ___ in this city since 2018.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "B1",
-    difficulty: "medium",
-    options: ["live", "have lived", "lived", "was living"],
-  },
-  {
-    id: "grammar-b2-001",
-    section: "grammar",
-    question_type: "single_choice",
-    title_fa: "بخش دستور زبان (Grammar)",
-    title_en: "Grammar Section",
-    prompt_fa: "جمله شرطی را کامل کنید.",
-    prompt_en: "If she had prepared earlier, she ___ the challenging examination.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "B2",
-    difficulty: "hard",
-    options: ["passed", "would pass", "would have passed", "will pass"],
-  },
-  {
-    id: "vocabulary-a1-001",
-    section: "vocabulary",
-    question_type: "single_choice",
-    title_fa: "بخش واژگان (Vocabulary)",
-    title_en: "Vocabulary Section",
-    prompt_fa: "کلمه مناسب با تعریف را انتخاب کنید.",
-    prompt_en: "A place where you borrow books is a...",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "A1",
-    difficulty: "easy",
-    options: ["library", "kitchen", "station", "garden"],
-  },
-  {
-    id: "vocabulary-a2-001",
-    section: "vocabulary",
-    question_type: "single_choice",
-    title_fa: "بخش واژگان (Vocabulary)",
-    title_en: "Vocabulary Section",
-    prompt_fa: "واژه مناسب سفر بین‌المللی را انتخاب کنید.",
-    prompt_en: "You need to present a valid ___ when traveling across international borders.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "A2",
-    difficulty: "easy",
-    options: ["passport", "receipt", "menu", "pillow"],
-  },
-  {
-    id: "vocabulary-b1-001",
-    section: "vocabulary",
-    question_type: "single_choice",
-    title_fa: "بخش واژگان (Vocabulary)",
-    title_en: "Vocabulary Section",
-    prompt_fa: "هم‌آیی واژگانی مناسب را انتخاب کنید.",
-    prompt_en: "The research team made an extraordinary ___ that accelerated scientific progress.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "B1",
-    difficulty: "medium",
-    options: ["discovery", "destination", "departure", "discount"],
-  },
-  {
-    id: "vocabulary-b2-001",
-    section: "vocabulary",
-    question_type: "single_choice",
-    title_fa: "بخش واژگان (Vocabulary)",
-    title_en: "Vocabulary Section",
-    prompt_fa: "صفت دقیق متناسب با موقعیت را انتخاب کنید.",
-    prompt_en: "The instructions were somewhat ___, leaving team members unsure of next steps.",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    cefr_level: "B2",
-    difficulty: "hard",
-    options: ["ambiguous", "ancient", "abundant", "accurate"],
-  },
-  {
-    id: "reading-a1-001",
-    section: "reading",
-    question_type: "single_choice",
-    title_fa: "بخش درک مطلب (Reading)",
-    title_en: "Reading Section",
-    prompt_fa: "متن کوتاه را بخوانید و به سوال پاسخ دهید.",
-    prompt_en: "Why does Ali study English?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    passage: "Ali studies English every evening because he wants to travel the world next summer.",
-    cefr_level: "A1",
-    difficulty: "easy",
-    options: ["Travel", "Work", "Cooking", "Sports"],
-  },
-  {
-    id: "reading-a2-001",
-    section: "reading",
-    question_type: "single_choice",
-    title_fa: "بخش درک مطلب (Reading)",
-    title_en: "Reading Section",
-    prompt_fa: "بر اساس جدول زمانی متن، به سوال پاسخ دهید.",
-    prompt_en: "When can visitors use the library on Saturdays?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    passage: "The city library is open from 8:00 AM to 6:00 PM on weekdays, and from 9:00 AM to 1:00 PM on Saturdays. It remains closed on Sundays.",
-    cefr_level: "A2",
-    difficulty: "medium",
-    options: ["9:00 AM to 1:00 PM", "8:00 AM to 6:00 PM", "Closed all day", "Until 8:00 PM"],
-  },
-  {
-    id: "reading-b1-001",
-    section: "reading",
-    question_type: "single_choice",
-    title_fa: "بخش درک مطلب (Reading)",
-    title_en: "Reading Section",
-    prompt_fa: "بر اساس مفهوم متن، پاسخ صحیح را انتخاب کنید.",
-    prompt_en: "According to the text, what is a primary social benefit of community gardens?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    passage: "Urban community gardens have expanded across many cities in recent years. Beyond providing fresh produce, they foster meaningful neighborhood connections and offer a calming green environment for residents.",
-    cefr_level: "B1",
-    difficulty: "hard",
-    options: ["Strengthening neighborhood connections", "Lowering property taxes", "Eliminating local markets", "Reducing automobile traffic"],
-  },
-  {
-    id: "listening-a1-001",
-    section: "listening",
-    question_type: "single_choice",
-    title_fa: "بخش مهارت شنیداری (Listening)",
-    title_en: "Listening Section",
-    prompt_fa: "به فایل صوتی کوتاه گوش دهید و هدف گوینده را انتخاب کنید.",
-    prompt_en: "What is the speaker announcing?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    audio_url: "/audio/placement/listening-a1-001.wav",
-    play_limit: 2,
-    cefr_level: "A1",
-    difficulty: "easy",
-    options: ["A train departure delay", "A library book return", "A dinner invitation", "A weather forecast"],
-  },
-  {
-    id: "listening-a2-001",
-    section: "listening",
-    question_type: "single_choice",
-    title_fa: "بخش مهارت شنیداری (Listening)",
-    title_en: "Listening Section",
-    prompt_fa: "بر اساس فایل صوتی، زمان شروع جلسه را مشخص کنید.",
-    prompt_en: "At what time does the meeting start tomorrow morning?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    audio_url: "/audio/placement/listening-a2-001.wav",
-    play_limit: 2,
-    cefr_level: "A2",
-    difficulty: "easy",
-    options: ["9:30 AM", "10:00 AM", "8:15 AM", "11:45 AM"],
-  },
-  {
-    id: "listening-b1-001",
-    section: "listening",
-    question_type: "single_choice",
-    title_fa: "بخش مهارت شنیداری (Listening)",
-    title_en: "Listening Section",
-    prompt_fa: "با توجه به توضیحات گوینده، نگرش او نسبت به شیوه کاری ترکیبی چیست؟",
-    prompt_en: "How does the speaker feel about the new hybrid work schedule?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    audio_url: "/audio/placement/listening-b1-001.wav",
-    play_limit: 2,
-    cefr_level: "B1",
-    difficulty: "medium",
-    options: ["Cautiously optimistic about productivity", "Completely opposed to remote work", "Indifferent to team changes", "Confused about daily commuting"],
-  },
-  {
-    id: "listening-b2-001",
-    section: "listening",
-    question_type: "single_choice",
-    title_fa: "بخش مهارت شنیداری (Listening)",
-    title_en: "Listening Section",
-    prompt_fa: "نکته اصلی مورد تاکید سخنران در این سخنرانی علمی چیست؟",
-    prompt_en: "What main point does the speaker emphasize regarding urban biodiversity?",
-    instructions_fa: "یک گزینه را انتخاب کنید.",
-    instructions_en: "Choose one option.",
-    audio_url: "/audio/placement/listening-b2-001.wav",
-    play_limit: 2,
-    cefr_level: "B2",
-    difficulty: "hard",
-    options: ["Green corridors significantly mitigate habitat fragmentation", "Urban expansion has negligible ecological effects", "Rooftop gardens cannot support insect populations", "Artificial lighting replaces natural circadian rhythms"],
-  },
-  {
-    id: "speaking-a1-001",
-    section: "speaking",
-    question_type: "speaking",
-    title_fa: "بخش مهارت گفتاری (Speaking)",
-    title_en: "Speaking Section",
-    prompt_fa: "خود را معرفی کنید. نام خود، محل زندگی و یکی از سرگرمی‌های مورد علاقه‌تان را بیان نمایید.",
-    prompt_en: "Introduce yourself. Mention your name, where you live, and one hobby you enjoy.",
-    instructions_fa: "دکمه ضبط صدا را فشار دهید و حداقل ۱۰ کلمه صحبت کنید. در صورت نیاز، می‌توانید پاسخ خود را تایپ نمایید.",
-    instructions_en: "Press the record button and speak at least 10 words. Alternatively, type your response if your microphone is unavailable.",
-    cefr_level: "A1",
-    difficulty: "easy",
-    recording_time_limit_sec: 60,
-    min_words_expected: 10,
-    options: [],
-  },
-  {
-    id: "speaking-a2-001",
-    section: "speaking",
-    question_type: "speaking",
-    title_fa: "بخش مهارت گفتاری (Speaking)",
-    title_en: "Speaking Section",
-    prompt_fa: "یک صبح معمول در آخر هفته خود را توصیف کنید. چه ساعتی بیدار می‌شوید و معمولاً چه کارهایی انجام می‌دهید؟",
-    prompt_en: "Describe your typical weekend morning. What time do you wake up and what activities do you usually do?",
-    instructions_fa: "دکمه ضبط را فشار دهید و در حدود ۲۰ تا ۴۰ ثانیه (حداقل ۱۵ کلمه) به انگلیسی صحبت کنید.",
-    instructions_en: "Press record and describe your routine in 20 to 40 seconds (at least 15 words).",
-    cefr_level: "A2",
-    difficulty: "easy",
-    recording_time_limit_sec: 60,
-    min_words_expected: 15,
-    options: [],
-  },
-  {
-    id: "speaking-b1-001",
-    section: "speaking",
-    question_type: "speaking",
-    title_fa: "بخش مهارت گفتاری (Speaking)",
-    title_en: "Speaking Section",
-    prompt_fa: "درباره یک سفر به‌یادماندنی در گذشته صحبت کنید. به کجا رفتید، با چه کسی بودید و چرا این سفر خاص بود؟",
-    prompt_en: "Talk about a memorable trip or journey you took in the past. Where did you go, who were you with, and why was it special?",
-    instructions_fa: "دکمه ضبط را فشار دهید و به مدت ۳۰ تا ۶۰ ثانیه (حداقل ۲۵ کلمه) درباره تجربه سفر خود صحبت نمایید.",
-    instructions_en: "Speak for 30 to 60 seconds (at least 25 words) about your travel experience using narrative tenses.",
-    cefr_level: "B1",
-    difficulty: "medium",
-    recording_time_limit_sec: 90,
-    min_words_expected: 25,
-    options: [],
-  },
-  {
-    id: "speaking-b2-001",
-    section: "speaking",
-    question_type: "speaking",
-    title_fa: "بخش مهارت گفتاری (Speaking)",
-    title_en: "Speaking Section",
-    prompt_fa: "برخی کار از راه دور در منزل را ترجیح می‌دهند، در حالی که برخی دیگر معتقدند کار در دفتر کار بهره‌ورتر است. از کدام دیدگاه حمایت می‌کنید و دلایل اصلی شما چیست؟",
-    prompt_en: "Some people prefer remote working from home, while others believe working in an office is more productive. Which viewpoint do you support, and what are the main reasons for your perspective?",
-    instructions_fa: "دیدگاه خود را با ارائه دلایل و مثال‌های منسجم در ۴۵ تا ۶۰ ثانیه (حداقل ۴۰ کلمه) بیان نمایید.",
-    instructions_en: "Express your reasoned viewpoint with supporting arguments in 45 to 60 seconds (at least 40 words).",
-    cefr_level: "B2",
-    difficulty: "hard",
-    recording_time_limit_sec: 90,
-    min_words_expected: 40,
-    options: [],
-  },
-  {
-    id: "writing-a1-001",
-    section: "writing",
-    question_type: "writing",
-    title_fa: "بخش مهارت نگارش (Writing)",
-    title_en: "Writing Section",
-    prompt_fa: "یک یادداشت کوتاه برای معرفی خود بنویسید. نام، شهر یا کشور، و سرگرمی مورد علاقه خود را بیان کنید.",
-    prompt_en: "Write a short note introducing yourself. State your name, your city or country, and what you like to do in your free time.",
-    instructions_fa: "پاسخ خود را به انگلیسی در کادر متنی بنویسید (حداقل ۱۵ کلمه).",
-    instructions_en: "Write your response in English in the editor (at least 15 words).",
-    cefr_level: "A1",
-    difficulty: "easy",
-    min_words_expected: 15,
-    max_words_expected: 60,
-    options: [],
-  },
-  {
-    id: "writing-a2-001",
-    section: "writing",
-    question_type: "writing",
-    title_fa: "بخش مهارت نگارش (Writing)",
-    title_en: "Writing Section",
-    prompt_fa: "یک ایمیل کوتاه به یکی از دوستانتان بنویسید و او را برای آخر این هفته دعوت کنید. روز، ساعت و برنامه‌ها یا غذایی که در نظر دارید را بنویسید.",
-    prompt_en: "Write a short email to invite a friend to your home this weekend. Mention the day, the time, and what activities or food you have planned.",
-    instructions_fa: "متن دعوت خود را به انگلیسی بنویسید (حداقل ۲۵ کلمه).",
-    instructions_en: "Write your invitation email in English (at least 25 words).",
-    cefr_level: "A2",
-    difficulty: "easy",
-    min_words_expected: 25,
-    max_words_expected: 90,
-    options: [],
-  },
-  {
-    id: "writing-b1-001",
-    section: "writing",
-    question_type: "writing",
-    title_fa: "بخش مهارت نگارش (Writing)",
-    title_en: "Writing Section",
-    prompt_fa: "یک نقد یا مرور کوتاه درباره مکانی به‌یادماندنی که اخیراً دیده‌اید بنویسید. ویژگی‌های خاص آن و علت توصیه به دیگران را شرح دهید.",
-    prompt_en: "Write a short review of a memorable place you visited recently (such as a park, café, or city). Describe what made it special and why you would recommend it to others.",
-    instructions_fa: "متن مرور خود را با استفاده از افعال توصیفی و کلمات ربط بنویسید (حداقل ۴۵ کلمه).",
-    instructions_en: "Write a descriptive review using transitional connectors and personal evaluation (at least 45 words).",
-    cefr_level: "B1",
-    difficulty: "medium",
-    min_words_expected: 45,
-    max_words_expected: 140,
-    options: [],
-  },
-  {
-    id: "writing-b2-001",
-    section: "writing",
-    question_type: "writing",
-    title_fa: "بخش مهارت نگارش (Writing)",
-    title_en: "Writing Section",
-    prompt_fa: "آیا مدارس امروزی باید کتاب‌های چاپی را کاملاً با تبلت و کتاب‌های الکترونیکی جایگزین کنند؟ یک پاراگراف تحلیلی بنویسید که هر دو جنبه را بررسی کرده و نتیجه‌گیری کند.",
-    prompt_en: "Should modern schools replace physical printed textbooks entirely with digital tablets and e-books? Write a structured opinion paragraph weighing both sides and stating your clear conclusion.",
-    instructions_fa: "دیدگاه مستدل خود را با مقایسه مزایا و معایب در یک ساختار منسجم بنویسید (حداقل ۷۵ کلمه).",
-    instructions_en: "Write a structured argumentative text evaluating advantages and disadvantages with clear logical links (at least 75 words).",
-    cefr_level: "B2",
-    difficulty: "hard",
-    min_words_expected: 75,
-    max_words_expected: 200,
-    options: [],
-  },
+const SECTIONS_ORDER: SectionType[] = [
+  "grammar",
+  "vocabulary",
+  "reading",
+  "listening",
+  "speaking",
+  "writing",
 ];
+
+// Dynamic 50-item quotas: Grammar 15, Vocab 15, Reading 5, Listening 5, Speaking 5, Writing 5
+
+// Full calibrated item bank (348 items across A1-C2)
+const DEFAULT_ITEMS_BANK: AdaptiveItem[] = FULL_CALIBRATED_ITEMS_BANK;
 
 const t = {
   fa: {
-    heroTag: "موتور هوشمند تعیین سطح ایندورا",
-    heroTitle: "شناخت دقیق نقطه شروع یادگیری",
-    heroDesc: "این آزمون چندمرحله‌ای (دستور زبان، واژگان، درک مطلب، شنیداری، گفتاری و نگارش) به صورت زنده ذخیره می‌شود و با هر قطعی اینترنت، پاسخ‌های تأییدشده شما حفظ خواهند شد.",
+    heroTag: "موتور انطباقی پیشرفته ایندورا (CAT)",
+    heroTitle: "سامانه سنجش و تعیین سطح هوشمند اندورا (Endoora Engine)",
+    heroDesc: "این ارزیابی چندمرحله‌ای به صورت هوشمند و انطباقی با دقت پاسخ‌های شما تنظیم می‌شود: پاسخ‌های صحیح سوالات سطح بالاتر را فعال می‌کنند تا سطح واقعی شما (از A1 تا C2) با حداکثر دقت سنجیده شود.",
     questionCounter: "سوال",
     of: "از",
     section: "بخش",
@@ -442,46 +98,50 @@ const t = {
     writing: "نگارش",
     next: "سوال بعدی",
     prev: "سوال قبلی",
-    submit: "ثبت نهایی آزمون",
-    submitting: "در حال ثبت نهایی...",
+    submit: "ثبت نهایی و صدور کارنامه",
+    submitting: "در حال ثبت نهایی و تحلیل نتایج...",
     savedStatus: "پاسخ‌ها به صورت خودکار با مهر زمانی سرور ذخیره می‌شوند.",
-    savedStatusShort: "ذخیره خودکار زنده",
+    savedStatusShort: "ذخیره زنده",
     offlineWarning: "اتصال اینترنت قطع است. آخرین پاسخ تأییدشده حفظ می‌شود؛ نگران از دست رفتن اطلاعات نباشید.",
     expiredAlert: "نشست آزمون شما منقضی شده است. برای حفظ اعتبار آموزشی، لطفا یک نشست جدید شروع کنید.",
     startNewSession: "شروع نشست جدید",
-    completedTitle: "آزمون تعیین سطح با موفقیت ثبت شد!",
-    completedDesc: "پاسخ‌های شما بررسی شده و شواهد یادگیری برای بخش‌های گرامر، واژگان، درک مطلب، شنیداری، گفتاری و نگارش ثبت گردیدند. اکنون می‌توانید کارنامه مهارتی خود را مشاهده کنید.",
-    viewReport: "مشاهده کارنامه مهارتی",
+    completedTitle: "آزمون هوشمند تعیین سطح با موفقیت ثبت شد!",
+    completedDesc: "پاسخ‌های شما توسط موتور انطباقی پردازش شد و سطح دقیق شما در شاخص ۰ تا ۱۰۰ سنجش اندورا (Endoora Index) و چارچوب بین‌المللی CEFR تعیین گردید. اکنون می‌توانید کارنامه تحلیلی خود را مشاهده کنید.",
+    viewReport: "مشاهده کارنامه جامع تعیین سطح",
     goToDashboard: "ورود به داشبورد زبان‌آموز",
     authNotice: "برای اتصال این پاسخ‌ها به پروفایل آموزشی خود، در سامانه وارد شده‌اید.",
-    pretestKicker: "آزمون جامع تعیین سطح ۶ مهارته ایندورا",
-    pretestTitle: "سنجش هوشمند و استاندارد سطح زبان انگلیسی",
-    pretestDesc: "این ارزیابی شامل ۲۴ پرسش انطباقی در ۶ مهارت تخصصی است. با تکمیل آزمون، دوقلوی یادگیری شما کالیبره شده و نقشه راه اختصاصی‌تان در داشبورد شکل می‌گیرد.",
-    skillsHeader: "مهارت‌های ۶ گانه مورد سنجش در این آزمون",
-    skill1: "دستور زبان (Grammar) · ۴ سوال",
-    skill2: "واژگان (Vocabulary) · ۴ سوال",
-    skill3: "درک مطلب (Reading) · ۴ سوال",
-    skill4: "شنیداری (Listening) · ۴ سوال صوتی",
-    skill5: "گفتاری (Speaking) · ۴ سوال ضبط صدا",
-    skill6: "نگارش (Writing) · ۴ سوال ویرایش متن",
+    pretestKicker: "سامانه سنجش و تعیین سطح هوشمند اندورا",
+    pretestTitle: "سنجش هوشمند و انطباقی سطح زبان انگلیسی (A1 تا C2)",
+    pretestDesc: "این سیستم ارزیابی انطباقی (CAT) اختصاصی اندورا بر اساس تئوری مدرن پاسخ به سوال (IRT/Rasch)، سطح دشواری سوالات را بر اساس توانایی واقعی شما تنظیم می‌کند. سوالات تکراری حذف شده و با پاسخ درست، سوالات چالشی‌تر ظاهر می‌شوند.",
+    skillsHeader: "مهارت‌های ۶ گانه مورد سنجش در این آزمون (۵۰ سوال)",
+    skill1: "دستور زبان (Grammar) · ۱۵ سوال (۱۵ دقیقه)",
+    skill2: "واژگان (Vocabulary) · ۱۵ سوال (۱۵ دقیقه)",
+    skill3: "درک مطلب (Reading) · ۵ سوال (۱۲ دقیقه)",
+    skill4: "شنیداری (Listening) · ۵ سوال (۱۰ دقیقه) با صوت بومی",
+    skill5: "گفتاری (Speaking) · ۵ سوال (۱۰ دقیقه) ضبط صدا و روانی کلام",
+    skill6: "نگارش (Writing) · ۵ سوال (۱۰ دقیقه) ارزیابی نوشتار",
     authChecking: "در حال بررسی وضعیت حساب کاربری...",
     authedNoticeTitle: "حساب کاربری متصل است",
     authedNoticeDesc: "پاسخ‌های شما با مهر زمانی سرور در پروفایلتان ذخیره می‌شوند و کارنامه نهایی به داشبورد شما اضافه خواهد شد.",
-    startTestBtn: "شروع آزمون تعیین سطح (۲۴ سوال)",
+    startTestBtn: "شروع آزمون انطباقی تعیین سطح (۵۰ سوال)",
     unauthedTitle: "برای ذخیره نتایج آزمون در پروفایل، ابتدا وارد شوید یا ثبت‌نام کنید",
-    unauthedDesc: "این آزمون ۲۴ سوالی هر ۶ مهارت زبانی را می‌سنجد. برای اینکه پاسخ‌ها، سطح دقیق CEFR و نقشه راه اختصاصی شما در پروفایل ذخیره بماند، پیشنهاد می‌کنیم وارد حساب خود شوید.",
+    unauthedDesc: "این آزمون انطباقی سطح دقیق شما را در شاخص اختصاصی ۰ تا ۱۰۰ اندورا محاسبه می‌کند. برای ثبت دائمی در پروفایل و دریافت برنامه یادگیری اختصاصی، پیشنهاد می‌کنیم وارد شوید.",
     signInBtn: "ورود به حساب کاربری",
     registerBtn: "ثبت‌نام سریع و رایگان",
-    guestBtn: "ادامه به عنوان مهمان (بدون ذخیره در پروفایل)",
-    guestPillNotice: "حالت آزمایشی (مهمان): نتایج در پروفایل ذخیره نمی‌شوند.",
-    guestPillAction: "ورود یا ثبت‌نام برای ذخیره‌سازی",
-    unauthedSubmittedDesc: "آزمون ۲۴ سوالی با موفقیت تکمیل شد! برای ذخیره دائمی این کارنامه در پروفایل و دریافت برنامه یادگیری شخصی، ثبت‌نام کنید یا وارد شوید.",
+    guestBtn: "ادامه به عنوان مهمان (آزمون آزمایشی)",
+    guestPillNotice: "حالت آزمایشی (مهمان): نتایج در حافظه موقت مرورگر ذخیره می‌شوند.",
+    guestPillAction: "ورود یا ثبت‌نام برای ذخیره‌سازی دائمی",
+    unauthedSubmittedDesc: "آزمون با موفقیت به پایان رسید! برای ذخیره دائمی این کارنامه در پروفایل و دسترسی به برنامه مطالعاتی، ثبت‌نام کنید یا وارد شوید.",
     registerSaveBtn: "ثبت‌نام و ذخیره کارنامه در پروفایل",
+    adaptiveLevelLabel: "سطح انطباقی جاری:",
+    endooraIndexEstLabel: "شاخص سنجش اندورا:",
+    sectionTimeRemaining: "زمان باقی‌مانده این بخش:",
+    passageLabel: "متن درک مطلب (Reading Passage)",
   },
   en: {
-    heroTag: "Endoora Adaptive Placement Engine",
-    heroTitle: "Discover Your True Starting Point",
-    heroDesc: "This multi-stage test (Grammar, Vocabulary, Reading, Listening, Speaking, and Writing) is saved live to the server. Your confirmed answers remain safe even if your connection drops.",
+    heroTag: "Endoora Advanced CAT Adaptive Engine",
+    heroTitle: "Proprietary Endoora Adaptive Placement Assessment",
+    heroDesc: "This multi-stage test adapts dynamically in real time to your demonstrated ability: correct answers unlock higher-level challenges to pinpoint your exact CEFR level (A1 to C2) with maximum precision.",
     questionCounter: "Question",
     of: "of",
     section: "Section",
@@ -493,41 +153,45 @@ const t = {
     writing: "Writing",
     next: "Next question",
     prev: "Previous question",
-    submit: "Submit test",
-    submitting: "Submitting...",
+    submit: "Submit and Generate Certificate",
+    submitting: "Submitting and evaluating results...",
     savedStatus: "Answers are saved automatically with server timestamps.",
     savedStatusShort: "Live Autosave",
     offlineWarning: "You are currently offline. Your last confirmed answers are preserved.",
     expiredAlert: "Your placement session has expired. Please start a new session to ensure accurate evaluation.",
     startNewSession: "Start new session",
-    completedTitle: "Placement test submitted successfully!",
-    completedDesc: "Your answers have been securely evaluated for Grammar, Vocabulary, Reading, Listening, Speaking, and Writing. You can now inspect your skill report.",
-    viewReport: "View skill report",
+    completedTitle: "Adaptive placement test completed successfully!",
+    completedDesc: "Your responses have been processed by the Computer-Adaptive Testing engine. Your verified Endoora Placement Index (0–100) and CEFR level are ready.",
+    viewReport: "View Comprehensive Placement Report",
     goToDashboard: "Go to learner dashboard",
     authNotice: "You are signed in and your answers are linked to your learning profile.",
-    pretestKicker: "Endoora 6-Skill Comprehensive Placement Test",
-    pretestTitle: "Adaptive Diagnostic Assessment (CEFR Aligned)",
-    pretestDesc: "This assessment contains 24 questions across 6 core skills. Your answers will generate your verified analytical report and calibrate your Learner Twin.",
-    skillsHeader: "Evaluated Competencies",
-    skill1: "Grammar · 4 items",
-    skill2: "Vocabulary · 4 items",
-    skill3: "Reading · 4 items",
-    skill4: "Listening · 4 audio items",
-    skill5: "Speaking · 4 voice recording items",
-    skill6: "Writing · 4 written items",
+    pretestKicker: "Endoora Proprietary Adaptive Placement System",
+    pretestTitle: "Adaptive Diagnostic Assessment (CEFR A1 to C2)",
+    pretestDesc: "This proprietary Computer-Adaptive Testing (CAT) system utilizes Item Response Theory (1-PL Rasch) to adjust question difficulty in real time based on your accuracy. Correct answers step up to advanced CEFR tiers.",
+    skillsHeader: "Evaluated Competencies (50 Items)",
+    skill1: "Grammar · 15 Items (15 min)",
+    skill2: "Vocabulary · 15 Items (15 min)",
+    skill3: "Reading · 5 Items (12 min)",
+    skill4: "Listening · 5 Items (10 min) Authentic Spoken Audio",
+    skill5: "Speaking · 5 Items (10 min) Speech & Fluency",
+    skill6: "Writing · 5 Items (10 min) Text Analysis",
     authChecking: "Checking account status...",
     authedNoticeTitle: "Learner Account Connected",
     authedNoticeDesc: "Your responses are securely autosaved to your profile, and your comprehensive diagnostic report will be accessible in your dashboard.",
-    startTestBtn: "Start Placement Test (24 questions)",
+    startTestBtn: "Start Adaptive Placement Test (50 Items)",
     unauthedTitle: "Sign in or register to save your results to your profile",
-    unauthedDesc: "This comprehensive test evaluates all 6 skills. To save your results and personalized roadmap in your profile, please sign in or create an account.",
+    unauthedDesc: "This comprehensive test calculates your precise 0-100 Endoora Placement Index. To save your results and personalized roadmap in your profile, please sign in or create an account.",
     signInBtn: "Sign in to account",
     registerBtn: "Create free account",
-    guestBtn: "Continue as guest (without saving)",
-    guestPillNotice: "Guest mode: results are not saved to a profile.",
-    guestPillAction: "Sign in / Register to save",
-    unauthedSubmittedDesc: "All 24 questions completed! To permanently save this diagnostic report to your profile and launch your adaptive curriculum, create an account or sign in.",
+    guestBtn: "Continue as guest (Practice Mode)",
+    guestPillNotice: "Guest mode: results are saved in local browser storage.",
+    guestPillAction: "Sign in / Register to save permanently",
+    unauthedSubmittedDesc: "Assessment completed! To permanently save this diagnostic report to your profile and launch your adaptive curriculum, create an account or sign in.",
     registerSaveBtn: "Register & save report to profile",
+    adaptiveLevelLabel: "Current Adaptive Level:",
+    endooraIndexEstLabel: "Endoora Index Est.:",
+    sectionTimeRemaining: "Section Time Remaining:",
+    passageLabel: "Reading Passage",
   },
 };
 
@@ -538,11 +202,22 @@ function generateIdempotencyKey(): string {
   return "idem-" + Math.random().toString(36).substring(2, 15);
 }
 
+function formatTimer(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
+}
+
 export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Locale }) {
   const [locale, setLocale] = useState<Locale>(initialLocale);
-  const [questions, setQuestions] = useState<PlacementQuestionItem[]>(DEFAULT_QUESTIONS);
+  const [allQuestionsPool, setAllQuestionsPool] = useState<AdaptiveItem[]>(DEFAULT_ITEMS_BANK);
+  const [activeQuestions, setActiveQuestions] = useState<AdaptiveItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [adaptiveState, setAdaptiveState] = useState<AdaptiveState>(createInitialAdaptiveState());
+  const [askedItemIds, setAskedItemIds] = useState<Set<string>>(new Set());
+
   const [session, setSession] = useState<PlacementSessionData | null>(null);
   const [authState, setAuthState] = useState<AuthState>({ kind: "checking" });
   const [hasStarted, setHasStarted] = useState(false);
@@ -551,9 +226,20 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   const [isExpired, setIsExpired] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
 
+  // Section countdown timer based on section durations (Grammar 15m, Vocab 15m, Reading 12m, Listening 10m, Speaking 10m, Writing 10m)
+  const [sectionTimeRemaining, setSectionTimeRemaining] = useState(SECTION_DURATIONS.grammar || 900);
+
   const copy = t[locale];
-  const question = questions[currentIndex] || DEFAULT_QUESTIONS[0];
+  const currentSection = SECTIONS_ORDER[currentSectionIndex] || "grammar";
+  const question: AdaptiveItem = activeQuestions[currentIndex] || DEFAULT_ITEMS_BANK[0];
   const selectedOption = answers[question.id] || "";
+
+  const sectionQuota = SECTION_ITEM_QUOTAS[currentSection] || 5;
+  const currentSectionQuestions = activeQuestions.filter((q) => q.section === currentSection);
+  const sectionQuestionNumber = Math.max(
+    1,
+    currentSectionQuestions.findIndex((q) => q.id === question?.id) + 1 || currentSectionQuestions.length || 1
+  );
 
   // Initialize or resume placement session
   useEffect(() => {
@@ -578,7 +264,6 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
 
     async function initSession() {
       try {
-        // 1. Try to fetch or create active session
         const res = await fetch("/api/placement/sessions/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -601,6 +286,10 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
             sessionData.answers.forEach((ans) => {
               if (ans.answer_value?.selected_option) {
                 restored[ans.question_key] = String(ans.answer_value.selected_option);
+              } else if (ans.answer_value?.spoken_text) {
+                restored[ans.question_key] = String(ans.answer_value.spoken_text);
+              } else if (ans.answer_value?.written_text) {
+                restored[ans.question_key] = String(ans.answer_value.written_text);
               }
             });
             setAnswers((prev) => ({ ...restored, ...prev }));
@@ -611,13 +300,20 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
         // Fallback for offline or local preview
       }
 
-      // 2. Fetch server-sanitized questions if available
+      // Fetch server-sanitized questions if available
       try {
         const qRes = await fetch("/api/placement/questions/");
         if (qRes.ok) {
-          const fetchedItems: PlacementQuestionItem[] = await qRes.json();
+          const fetchedItems: AdaptiveItem[] = await qRes.json();
           if (isMounted && fetchedItems.length > 0) {
-            setQuestions(fetchedItems);
+            // Merge with local items bank to ensure complete coverage
+            const merged = [...fetchedItems];
+            DEFAULT_ITEMS_BANK.forEach((defItem) => {
+              if (!merged.some((m) => m.id === defItem.id)) {
+                merged.push(defItem);
+              }
+            });
+            setAllQuestionsPool(merged);
           }
         }
       } catch {
@@ -644,12 +340,58 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     };
   }, []);
 
-  // Save an answer idempotently
+  // Section countdown timer ticker with automatic section auto-advance on timeout
+  useEffect(() => {
+    if (!hasStarted || isSubmitted || isExpired) return;
+
+    const timer = setInterval(() => {
+      setSectionTimeRemaining((prev) => {
+        if (prev <= 1) {
+          handleTimeout();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, isSubmitted, isExpired, currentSectionIndex]);
+
+  // Initialize initial adaptive question when test starts
+  useEffect(() => {
+    if (hasStarted && activeQuestions.length === 0 && allQuestionsPool.length > 0) {
+      const sectionItems = allQuestionsPool.filter((q) => q.section === "grammar");
+      const targetCefr: CefrLevel = "A2"; // Baseline starting point
+      const initialItem = selectNextAdaptiveItem(sectionItems, new Set(), targetCefr) || sectionItems[0];
+
+      if (initialItem) {
+        setActiveQuestions([initialItem]);
+        setAskedItemIds(new Set([initialItem.id]));
+        setCurrentIndex(0);
+      }
+    }
+  }, [hasStarted, activeQuestions.length, allQuestionsPool]);
+
+  // Save an answer idempotently and adaptively evaluate
   async function handleSelectOption(option: string) {
     if (isSubmitted || isExpired) return;
 
     setAnswers((prev) => ({ ...prev, [question.id]: option }));
 
+    // Real-time CAT ability calibration using strict answer verification
+    const isCorrect = isItemCorrect(question, option);
+    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
+
+    const nextState = updateAdaptiveState(adaptiveState, {
+      itemId: question.id,
+      section: question.section,
+      cefrLevel: itemCefr,
+      isCorrect,
+      scorePercentage: isCorrect ? 100 : 0,
+    });
+    setAdaptiveState(nextState);
+
+    // Persist to server if active session exists
     if (!session || !session.id) return;
 
     try {
@@ -672,7 +414,6 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
         }
       }
     } catch {
-      // Offline network catch
       setIsOffline(true);
     }
   }
@@ -683,11 +424,25 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
 
     setAnswers((prev) => ({ ...prev, [question.id]: spokenText }));
 
+    const minWords = question.min_words_expected || 10;
+    const words = spokenText.trim().split(/\s+/).filter(Boolean).length;
+    const isCorrect = isItemCorrect(question, spokenText);
+    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
+
+    const nextState = updateAdaptiveState(adaptiveState, {
+      itemId: question.id,
+      section: question.section,
+      cefrLevel: itemCefr,
+      isCorrect,
+      scorePercentage: Math.min(100, Math.round((words / minWords) * 100)),
+    });
+    setAdaptiveState(nextState);
+
     if (!session || !session.id) return;
 
     try {
       const idempotencyKey = generateIdempotencyKey();
-      const res = await fetch(`/api/placement/sessions/${session.id}/answers/`, {
+      await fetch(`/api/placement/sessions/${session.id}/answers/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -697,13 +452,6 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
           answer_value: { spoken_text: spokenText },
         }),
       });
-
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        if (errData.code === "session_expired" || errData.code === "session_inactive") {
-          setIsExpired(true);
-        }
-      }
     } catch {
       setIsOffline(true);
     }
@@ -715,11 +463,25 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
 
     setAnswers((prev) => ({ ...prev, [question.id]: writtenText }));
 
+    const minWords = question.min_words_expected || 15;
+    const words = writtenText.trim().split(/\s+/).filter(Boolean).length;
+    const isCorrect = isItemCorrect(question, writtenText);
+    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
+
+    const nextState = updateAdaptiveState(adaptiveState, {
+      itemId: question.id,
+      section: question.section,
+      cefrLevel: itemCefr,
+      isCorrect,
+      scorePercentage: Math.min(100, Math.round((words / minWords) * 100)),
+    });
+    setAdaptiveState(nextState);
+
     if (!session || !session.id) return;
 
     try {
       const idempotencyKey = generateIdempotencyKey();
-      const res = await fetch(`/api/placement/sessions/${session.id}/answers/`, {
+      await fetch(`/api/placement/sessions/${session.id}/answers/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -729,35 +491,137 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
           answer_value: { written_text: writtenText },
         }),
       });
-
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        if (errData.code === "session_expired" || errData.code === "session_inactive") {
-          setIsExpired(true);
-        }
-      }
     } catch {
       setIsOffline(true);
     }
   }
 
-  // Next Question
-  async function handleNext() {
-    if (currentIndex < questions.length - 1) {
-      const nextIndex = currentIndex + 1;
-      setCurrentIndex(nextIndex);
+  // Automatic Section Advance on Timer Timeout (autoAdvance / handleTimeout)
+  async function handleTimeout() {
+    await handleTimeExpired();
+  }
 
-      const nextQuestion = questions[nextIndex];
-      if (session && nextQuestion && nextQuestion.section !== question.section) {
+  async function handleTimeExpired() {
+    if (isSubmitted || isExpired) return;
+
+    if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
+      const nextSecIdx = currentSectionIndex + 1;
+      const nextSec = SECTIONS_ORDER[nextSecIdx];
+      setCurrentSectionIndex(nextSecIdx);
+      setSectionTimeRemaining(SECTION_DURATIONS[nextSec] || 600);
+
+      if (session && session.id) {
         try {
           await fetch(`/api/placement/sessions/${session.id}/advance/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ section: nextQuestion.section }),
+            body: JSON.stringify({ section: nextSec, action: "timeout" }),
           });
         } catch {
           // Non-blocking
         }
+      }
+
+      const secPool = allQuestionsPool.filter((q) => q.section === nextSec);
+      const targetCefr = adaptiveState.currentCefr;
+      const nextItem = selectNextAdaptiveItem(secPool, askedItemIds, targetCefr) || secPool[0];
+
+      if (nextItem) {
+        setActiveQuestions((prev) => [...prev, nextItem]);
+        setAskedItemIds((prev) => new Set([...prev, nextItem.id]));
+        setCurrentIndex(activeQuestions.length);
+      }
+    } else {
+      // Last section (writing) timed out! Trigger final submission
+      handleSubmit();
+    }
+  }
+
+  // Next Question with Computer-Adaptive Branching
+  async function handleNext() {
+    // 1. If currently viewing an earlier question, simply move forward in history
+    if (currentIndex < activeQuestions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      return;
+    }
+
+    // Determine correctness of current question's answer for dynamic difficulty branching:
+    // If correct -> next question is harder (سخت تر) or same level if at ceiling
+    // If incorrect -> next question is easier (اسون تر)
+    const currentAnswer = answers[question.id];
+    const wasCurrentCorrect =
+      currentAnswer !== undefined && currentAnswer !== null && String(currentAnswer).trim().length > 0
+        ? isItemCorrect(question, currentAnswer)
+        : false;
+
+    // 2. Count how many questions have been asked in the current section
+    const currentSectionQuestions = activeQuestions.filter((q) => q.section === currentSection);
+    const quota = SECTION_ITEM_QUOTAS[currentSection] || 5;
+
+    let nextSecIdx = currentSectionIndex;
+    let nextSec = currentSection;
+
+    // Advance to next competency section if section quota reached
+    if (currentSectionQuestions.length >= quota) {
+      if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
+        nextSecIdx = currentSectionIndex + 1;
+        nextSec = SECTIONS_ORDER[nextSecIdx];
+        setCurrentSectionIndex(nextSecIdx);
+        setSectionTimeRemaining(SECTION_DURATIONS[nextSec] || 600); // Reset timer for new section
+
+        if (session && session.id) {
+          try {
+            await fetch(`/api/placement/sessions/${session.id}/advance/`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ section: nextSec }),
+            });
+          } catch {
+            // Non-blocking
+          }
+        }
+      } else {
+        // All sections completed! Trigger submission
+        handleSubmit();
+        return;
+      }
+    }
+
+    // 3. Dynamically select the next adaptive item:
+    // When within the same section, pass wasCurrentCorrect to step up/down difficulty.
+    // When entering a new section, seed from current estimated ability tier.
+    const secPool = allQuestionsPool.filter((q) => q.section === nextSec);
+    const targetCefr = adaptiveState.currentCefr;
+    const isSameSection = nextSec === currentSection;
+    const nextItem = selectNextAdaptiveItem(
+      secPool,
+      askedItemIds,
+      targetCefr,
+      isSameSection ? wasCurrentCorrect : null
+    );
+
+    if (nextItem) {
+      setActiveQuestions((prev) => [...prev, nextItem]);
+      setAskedItemIds((prev) => new Set([...prev, nextItem.id]));
+      setCurrentIndex(activeQuestions.length);
+    } else {
+      // If pool exhausted in this section, transition to next section
+      if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
+        const nextNextSecIdx = currentSectionIndex + 1;
+        setCurrentSectionIndex(nextNextSecIdx);
+        const nextNextSec = SECTIONS_ORDER[nextNextSecIdx];
+        setSectionTimeRemaining(SECTION_DURATIONS[nextNextSec] || 600);
+        const nextSecPool = allQuestionsPool.filter((q) => q.section === nextNextSec);
+        const fallbackItem = selectNextAdaptiveItem(nextSecPool, askedItemIds, targetCefr, null) || nextSecPool[0];
+        if (fallbackItem) {
+          setActiveQuestions((prev) => [...prev, fallbackItem]);
+          setAskedItemIds((prev) => new Set([...prev, fallbackItem.id]));
+          setCurrentIndex(activeQuestions.length);
+        } else {
+          handleSubmit();
+        }
+      } else {
+        handleSubmit();
       }
     }
   }
@@ -771,12 +635,24 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
 
   // Final Submission
   async function handleSubmit() {
+    setIsSubmitting(true);
+
+    // Save evaluated report into localStorage using exact skill arithmetic averaging
+    if (typeof window !== "undefined") {
+      const guestSummary = calculatePlacementSummary(activeQuestions, answers, session?.id);
+      try {
+        localStorage.setItem("endoora_placement_guest_summary", JSON.stringify(guestSummary));
+      } catch {
+        // Quota safety
+      }
+    }
+
     if (!session || !session.id) {
       setIsSubmitted(true);
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
     try {
       const res = await fetch(`/api/placement/sessions/${session.id}/submit/`, {
         method: "POST",
@@ -805,7 +681,11 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     setIsExpired(false);
     setIsSubmitted(false);
     setAnswers({});
+    setActiveQuestions([]);
     setCurrentIndex(0);
+    setCurrentSectionIndex(0);
+    setAdaptiveState(createInitialAdaptiveState());
+    setAskedItemIds(new Set());
 
     try {
       const res = await fetch("/api/placement/sessions/", {
@@ -820,6 +700,11 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
       // Handled
     }
   }
+
+  const totalEstimatedQuestions = TOTAL_ADMINISTERED_ITEMS;
+  const isLastQuestion =
+    currentSectionIndex === SECTIONS_ORDER.length - 1 &&
+    activeQuestions.filter((q) => q.section === currentSection).length >= (SECTION_ITEM_QUOTAS[currentSection] ?? 5);
 
   return (
     <EndooraBackground>
@@ -840,42 +725,103 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
         {!hasStarted && !isSubmitted && !isExpired && (
           <GlassCard>
             <div className={styles.hero}>
-              <p className={styles.heroTag}>{copy.pretestKicker}</p>
-              <h1>{copy.pretestTitle}</h1>
-              <p>{copy.pretestDesc}</p>
+              <h1 className={styles.heroHeading}>
+                {locale === "fa" ? (
+                  <>
+                    <span className={styles.heroBrandWrap}>
+                      <svg className={styles.heroSpark} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M12 2C12 7.523 7.523 12 2 12C7.523 12 12 16.477 12 22C12 16.477 16.477 12 22 12C16.477 12 12 7.523 12 2Z"
+                          fill="url(#sparkGradPretest)"
+                        />
+                        <circle cx="12" cy="12" r="1.5" fill="#ffffff" opacity="0.9" />
+                        <defs>
+                          <linearGradient id="sparkGradPretest" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#06b6d4" />
+                            <stop offset="1" stopColor="#0284c7" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <span className={styles.heroBrandText}>ایندورا،</span>
+                    </span>
+                    <span className={styles.heroSubText}>تعیین سطح هوشمند</span>
+                  </>
+                ) : (
+                  <>
+                    <span className={styles.heroBrandWrap}>
+                      <svg className={styles.heroSpark} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M12 2C12 7.523 7.523 12 2 12C7.523 12 12 16.477 12 22C12 16.477 16.477 12 22 12C16.477 12 12 7.523 12 2Z"
+                          fill="url(#sparkGradPretest)"
+                        />
+                        <circle cx="12" cy="12" r="1.5" fill="#ffffff" opacity="0.9" />
+                        <defs>
+                          <linearGradient id="sparkGradPretest" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#06b6d4" />
+                            <stop offset="1" stopColor="#0284c7" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <span className={styles.heroBrandText}>Endoora,</span>
+                    </span>
+                    <span className={styles.heroSubText}>Smart Placement Test</span>
+                  </>
+                )}
+              </h1>
             </div>
 
             <div className={styles.skillsOverview}>
-              <h2 className={styles.skillsOverviewTitle}>{copy.skillsHeader}</h2>
+              <h2 className={styles.skillsOverviewTitle}>
+                <span>🎯</span>
+                <span>{copy.skillsHeader}</span>
+              </h2>
               <div className={styles.skillsGrid}>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۱</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "دستور زبان" : "Grammar"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>🎯</span>
+                    <span className={styles.skillCardNumber}>۰۱</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "دستور زبان (Grammar)" : "Grammar"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill1}</span>
                 </div>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۲</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "واژگان" : "Vocabulary"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>📚</span>
+                    <span className={styles.skillCardNumber}>۰۲</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "واژگان (Vocabulary)" : "Vocabulary"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill2}</span>
                 </div>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۳</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "درک مطلب" : "Reading"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>📖</span>
+                    <span className={styles.skillCardNumber}>۰۳</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "درک مطلب (Reading)" : "Reading"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill3}</span>
                 </div>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۴</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "شنیداری" : "Listening"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>🎧</span>
+                    <span className={styles.skillCardNumber}>۰۴</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "شنیداری (Listening)" : "Listening"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill4}</span>
                 </div>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۵</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "گفتاری" : "Speaking"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>🎙️</span>
+                    <span className={styles.skillCardNumber}>۰۵</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "گفتاری (Speaking)" : "Speaking"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill5}</span>
                 </div>
                 <div className={styles.skillCard}>
-                  <span className={styles.skillCardNumber}>۰۶</span>
-                  <span className={styles.skillCardTitle}>{locale === "fa" ? "نگارش" : "Writing"}</span>
+                  <div className={styles.skillCardHeader}>
+                    <span className={styles.skillCardIcon}>✍️</span>
+                    <span className={styles.skillCardNumber}>۰۶</span>
+                  </div>
+                  <span className={styles.skillCardTitle}>{locale === "fa" ? "نگارش (Writing)" : "Writing"}</span>
                   <span className={styles.skillCardDetail}>{copy.skill6}</span>
                 </div>
               </div>
@@ -901,7 +847,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                 <p className={styles.authGateDesc}>{copy.authedNoticeDesc}</p>
                 <div className={styles.authGateActions}>
                   <Button type="button" className={styles.btnPrimary} onClick={() => setHasStarted(true)}>
-                    {copy.startTestBtn}
+                    {copy.startTestBtn} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                   </Button>
                 </div>
               </div>
@@ -910,7 +856,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                 <div className={styles.authGateHeader}>
                   <span className={styles.authGateBadgePrompt}>
                     <span aria-hidden="true">🔒</span>
-                    {locale === "fa" ? "ذخیره‌سازی در پروفایل" : "Save to Profile"}
+                    {locale === "fa" ? "ذخیره‌سازی دائمی کارنامه" : "Save to Profile"}
                   </span>
                 </div>
                 <h3 className={styles.authGateTitle}>{copy.unauthedTitle}</h3>
@@ -934,27 +880,44 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
         {/* Submission Complete View */}
         {isSubmitted ? (
           <div className={styles.emptyState}>
+            <div style={{ fontSize: "3.5rem", marginBlockEnd: "var(--space-2)" }}>🏆</div>
             <h2>{copy.completedTitle}</h2>
-            <p style={{ marginBlock: "1.5rem", maxWidth: "36rem", marginInline: "auto" }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "0.75rem 1.5rem",
+                borderRadius: "var(--radius-pill)",
+                background: "color-mix(in srgb, var(--color-action) 12%, var(--color-surface))",
+                border: "1.5px solid var(--color-action)",
+                marginBlock: "1rem",
+              }}
+            >
+              <span style={{ fontSize: "1.8rem", fontWeight: 900, color: "var(--color-action)" }}>
+                {adaptiveState.currentCefr}
+              </span>
+              <span style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--color-text)" }}>
+                {locale === "fa" ? "شاخص سنجش اندورا:" : "Endoora Index:"} {adaptiveState.endooraIndex} / 100
+              </span>
+            </div>
+            <p style={{ marginBlock: "1.5rem", maxWidth: "38rem", marginInline: "auto" }}>
               {authState.kind === "anonymous" ? copy.unauthedSubmittedDesc : copy.completedDesc}
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginBlockStart: "var(--space-4)" }}>
               {authState.kind === "anonymous" ? (
                 <>
-                  <Link href="/auth/register?next=/placement/report" className={styles.btnPrimary}>
+                  <Link href="/placement/report" className={styles.btnPrimary}>
+                    {copy.viewReport} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+                  </Link>
+                  <Link href="/auth/register?next=/placement/report" className={styles.btnSecondary}>
                     {copy.registerSaveBtn}
-                  </Link>
-                  <Link href="/auth/login?next=/placement/report" className={styles.btnSecondary}>
-                    {copy.signInBtn}
-                  </Link>
-                  <Link href="/placement/report" className={styles.btnGhost}>
-                    {copy.viewReport}
                   </Link>
                 </>
               ) : (
                 <>
                   <Link href="/placement/report" className={styles.btnPrimary}>
-                    {copy.viewReport}
+                    {copy.viewReport} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                   </Link>
                   <Link href="/dashboard" className={styles.btnSecondary}>
                     {copy.goToDashboard}
@@ -963,173 +926,239 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
               )}
             </div>
           </div>
-        ) : hasStarted && !isExpired ? (
+        ) : hasStarted && !isExpired && question ? (
           <>
-              {/* Hero Banner */}
-              <GlassCard>
-                <div className={styles.hero}>
-                  <p className={styles.heroTag}>{copy.heroTag}</p>
-                  <h1>{copy.heroTitle}</h1>
-                  <p>{copy.heroDesc}</p>
-                </div>
-              </GlassCard>
-
-              {/* If guest mode, show unobtrusive alert */}
-              {authState.kind === "anonymous" && (
-                <div className={styles.guestNoticePill}>
-                  <span>{copy.guestPillNotice}</span>
-                  <Link href="/auth/register?next=/placement/demo?start=1" className={styles.guestNoticeLink}>
-                    {copy.guestPillAction}
-                  </Link>
-                </div>
-              )}
-
-              <div className={styles.grid}>
-              {/* Question Card */}
-              <div className={styles.questionCard}>
-                {/* Multi-stage Section Tabs */}
-                <div className={styles.sectionNav} role="tablist" aria-label={locale === "fa" ? "مراحل آزمون" : "Test sections"}>
-                  <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
-                    {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
-                  </div>
-                  <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (["reading", "listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
-                    {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
-                  </div>
-                  <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (["listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
-                    {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
-                  </div>
-                  <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : (["speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
-                    {locale === "fa" ? "۴. شنیداری" : "4. Listening"}
-                  </div>
-                  <div className={`${styles.sectionPill} ${question.section === "speaking" ? styles.sectionPillActive : (question.section === "writing" ? styles.sectionPillDone : "")}`}>
-                    {locale === "fa" ? "۵. گفتاری" : "5. Speaking"}
-                  </div>
-                  <div className={`${styles.sectionPill} ${question.section === "writing" ? styles.sectionPillActive : ""}`}>
-                    {locale === "fa" ? "۶. نگارش" : "6. Writing"}
-                  </div>
-                  <div className={styles.autosaveBadge}>
-                    <span className={styles.autosaveDot} />
-                    {copy.savedStatusShort}
-                  </div>
-                </div>
-
-                <div className={styles.counter}>
-                  <span>
-                    {copy.questionCounter} {currentIndex + 1} {copy.of} {questions.length}
-                  </span>
-                  <span className={styles.sectionBadge}>
-                    {locale === "fa" ? (question.title_fa || question.section) : (question.title_en || question.section)}
-                  </span>
-                </div>
-
-                <div className={styles.progressBarContainer}>
-                  <div
-                    className={styles.progressBarFill}
-                    style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
-                  />
-                </div>
-
-                {question.prompt_fa && (
-                  <p style={{ color: "var(--color-text-muted)", fontSize: "var(--font-size-meta)", marginBlockEnd: "var(--space-2)" }}>
-                    {question.prompt_fa}
-                  </p>
-                )}
-
-                {question.audio_url && (
-                  <AudioWaveformPlayer
-                    key={question.id}
-                    src={question.audio_url}
-                    playLimit={question.play_limit || 2}
-                    title_fa={question.title_fa || "فایل صوتی سوال"}
-                    title_en={question.title_en || "Question Audio"}
-                    locale={locale}
-                  />
-                )}
-
-                {question.passage && (
-                  <div className={styles.passage} dir="ltr">
-                    {question.passage}
-                  </div>
-                )}
-
-                <div className={styles.englishPrompt} dir="ltr">
-                  {question.prompt_en}
-                </div>
-
-                {question.section === "speaking" ? (
-                  <AudioRecorder
-                    key={question.id}
-                    timeLimitSec={question.recording_time_limit_sec || 60}
-                    minWordsExpected={question.min_words_expected || 10}
-                    locale={locale}
-                    initialSpokenText={answers[question.id] || ""}
-                    onConfirmAnswer={(payload) => {
-                      if (payload.spoken_text) {
-                        handleSaveSpokenAnswer(payload.spoken_text);
-                      }
-                    }}
-                  />
-                ) : question.section === "writing" ? (
-                  <WritingEditor
-                    key={question.id}
-                    minWordsExpected={question.min_words_expected || 15}
-                    maxWordsExpected={question.max_words_expected || 100}
-                    locale={locale}
-                    initialText={answers[question.id] || ""}
-                    onConfirmAnswer={(payload) => {
-                      if (payload.written_text) {
-                        handleSaveWrittenAnswer(payload.written_text);
-                      }
-                    }}
-                    onChangeText={(newText) => {
-                      setAnswers((prev) => ({ ...prev, [question.id]: newText }));
-                    }}
-                  />
-                ) : (
-                  <div className={styles.options}>
-                    {question.options.map((opt) => (
-                      <Button
-                        key={opt}
-                        type="button"
-                        dir="ltr"
-                        className={`${styles.option} ${selectedOption === opt ? styles.optionActive : ""}`}
-                        onClick={() => handleSelectOption(opt)}
-                      >
-                        {opt}
-                      </Button>
-                    ))}
-                  </div>
-                )}
-
-                <div className={styles.navRow}>
-                  <Button
-                    type="button"
-                    className={styles.btnSecondary}
-                    onClick={handlePrev}
-                    disabled={currentIndex === 0}
-                  >
-                    {copy.prev}
-                  </Button>
-
-                  {currentIndex < questions.length - 1 ? (
-                    <Button type="button" className={styles.btnPrimary} onClick={handleNext}>
-                      {copy.next}
-                    </Button>
-                  ) : (
-                    <Button
-                      type="button"
-                      className={styles.btnPrimary}
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? copy.submitting : copy.submit}
-                    </Button>
-                  )}
-                </div>
+            {/* Distraction-Free Active Test Status Bar */}
+            <div className={styles.adaptiveHud}>
+              <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", flexWrap: "wrap" }}>
+                <span className={styles.adaptiveLevelBadge}>
+                  🎯 {copy[currentSection] || currentSection}
+                </span>
+                <span style={{ fontSize: "0.88rem", color: "var(--color-text)", fontWeight: 700 }}>
+                  {copy.questionCounter} {sectionQuestionNumber} {copy.of} {sectionQuota}
+                </span>
+                <span style={{ fontSize: "0.78rem", color: "var(--color-muted)", fontWeight: 500 }}>
+                  ({copy.questionCounter} {currentIndex + 1} {copy.of} {TOTAL_ADMINISTERED_ITEMS})
+                </span>
               </div>
 
-              {/* Sidebar Preview */}
-              <LearnerTwinPreview />
+              <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
+                <span className={`${styles.timerBadge} ${sectionTimeRemaining < 120 ? styles.timerWarning : ""}`}>
+                  ⏱️ {formatTimer(sectionTimeRemaining)}
+                </span>
+                <div className={styles.autosaveBadge}>
+                  <span className={styles.autosaveDot} />
+                  {copy.savedStatusShort}
+                </div>
+              </div>
+            </div>
+
+            {/* Guest notice */}
+            {authState.kind === "anonymous" && (
+              <div className={styles.guestNoticePill}>
+                <span>{copy.guestPillNotice}</span>
+                <Link href="/auth/register?next=/placement/demo?start=1" className={styles.guestNoticeLink}>
+                  {copy.guestPillAction}
+                </Link>
+              </div>
+            )}
+
+            <div className={styles.singleColumnTest}>
+              {/* Question Card with Window Chrome Header */}
+              <div className={styles.questionCard}>
+                <div className={styles.cardChrome}>
+                  <span />
+                  <span />
+                  <span />
+                  <strong>
+                    Endoora Adaptive CAT · Item {currentIndex + 1}
+                  </strong>
+                </div>
+
+                <div className={styles.cardBody}>
+                  {/* Multi-stage Section Tabs */}
+                  <div className={styles.sectionNav} role="tablist" aria-label={locale === "fa" ? "مراحل آزمون" : "Test sections"}>
+                    <div className={`${styles.sectionPill} ${question.section === "grammar" ? styles.sectionPillActive : styles.sectionPillDone}`}>
+                      🎯 {locale === "fa" ? "۱. دستور زبان" : "1. Grammar"}
+                    </div>
+                    <div className={`${styles.sectionPill} ${question.section === "vocabulary" ? styles.sectionPillActive : (["reading", "listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
+                      📚 {locale === "fa" ? "۲. واژگان" : "2. Vocabulary"}
+                    </div>
+                    <div className={`${styles.sectionPill} ${question.section === "reading" ? styles.sectionPillActive : (["listening", "speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
+                      📖 {locale === "fa" ? "۳. درک مطلب" : "3. Reading"}
+                    </div>
+                    <div className={`${styles.sectionPill} ${question.section === "listening" ? styles.sectionPillActive : (["speaking", "writing"].includes(question.section) ? styles.sectionPillDone : "")}`}>
+                      🎧 {locale === "fa" ? "۴. شنیداری" : "4. Listening"}
+                    </div>
+                    <div className={`${styles.sectionPill} ${question.section === "speaking" ? styles.sectionPillActive : (question.section === "writing" ? styles.sectionPillDone : "")}`}>
+                      🎙️ {locale === "fa" ? "۵. گفتاری" : "5. Speaking"}
+                    </div>
+                    <div className={`${styles.sectionPill} ${question.section === "writing" ? styles.sectionPillActive : ""}`}>
+                      ✍️ {locale === "fa" ? "۶. نگارش" : "6. Writing"}
+                    </div>
+                  </div>
+
+                  <div className={styles.counter}>
+                    <span>
+                      {copy.questionCounter} {currentIndex + 1} {copy.of} ~{totalEstimatedQuestions}
+                    </span>
+                    <span className={styles.sectionBadge}>
+                      {locale === "fa" ? (question.title_fa || question.section) : (question.title_en || question.section)} · {question.cefr_level || "B1"}
+                    </span>
+                  </div>
+
+                  <div className={styles.progressBarContainer}>
+                    <div
+                      className={styles.progressBarFill}
+                      style={{ width: `${Math.min(100, ((currentIndex + 1) / totalEstimatedQuestions) * 100)}%` }}
+                    />
+                  </div>
+
+                  {question.prompt_fa && (
+                    <div className={styles.persianPromptBox}>
+                      <span aria-hidden="true">💡</span>
+                      <span>{question.prompt_fa}</span>
+                    </div>
+                  )}
+
+                  {/* Listening Section Audio Player */}
+                  {question.audio_url && (
+                    <div style={{ marginBlockEnd: "var(--space-4)" }}>
+                      <AudioWaveformPlayer
+                        key={question.id}
+                        src={question.audio_url}
+                        playLimit={question.play_limit || 2}
+                        title_fa={question.title_fa || "فایل صوتی سوال"}
+                        title_en={question.title_en || "Question Audio"}
+                        locale={locale}
+                        transcript={question.transcript}
+                      />
+                    </div>
+                  )}
+
+                  {/* Split Screen for Reading Comprehension or Linear for Others */}
+                  {question.section === "reading" && question.passage ? (
+                    <div className={styles.readingSplitGrid}>
+                      <div className={styles.readingPassagePanel}>
+                        <div className={styles.readingPassageHeader}>
+                          <strong>📖 {copy.passageLabel}</strong>
+                          <small>Level: {question.cefr_level}</small>
+                        </div>
+                        <div className={styles.readingPassageText}>
+                          {question.passage}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className={styles.englishPrompt} dir="ltr" style={{ marginTop: 0 }}>
+                          {question.prompt_en}
+                        </div>
+
+                        <div className={styles.options}>
+                          {question.options.map((opt, optIdx) => {
+                            const letter = String.fromCharCode(65 + optIdx);
+                            const isSelected = selectedOption === opt;
+                            return (
+                              <button
+                                key={opt}
+                                type="button"
+                                dir="ltr"
+                                className={`${styles.option} ${isSelected ? styles.optionActive : ""}`}
+                                onClick={() => handleSelectOption(opt)}
+                              >
+                                <span className={styles.optionLetterBadge}>{letter}</span>
+                                <span className={styles.optionText}>{opt}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className={styles.englishPrompt} dir="ltr">
+                        {question.prompt_en}
+                      </div>
+
+                      {question.section === "speaking" ? (
+                        <AudioRecorder
+                          key={question.id}
+                          timeLimitSec={question.recording_time_limit_sec || 60}
+                          minWordsExpected={question.min_words_expected || 10}
+                          locale={locale}
+                          initialSpokenText={answers[question.id] || ""}
+                          onConfirmAnswer={(payload) => {
+                            if (payload.spoken_text) {
+                              handleSaveSpokenAnswer(payload.spoken_text);
+                            }
+                          }}
+                        />
+                      ) : question.section === "writing" ? (
+                        <WritingEditor
+                          key={question.id}
+                          minWordsExpected={question.min_words_expected || 15}
+                          maxWordsExpected={question.max_words_expected || 100}
+                          locale={locale}
+                          initialText={answers[question.id] || ""}
+                          onConfirmAnswer={(payload) => {
+                            if (payload.written_text) {
+                              handleSaveWrittenAnswer(payload.written_text);
+                            }
+                          }}
+                          onChangeText={(newText) => {
+                            setAnswers((prev) => ({ ...prev, [question.id]: newText }));
+                          }}
+                        />
+                      ) : (
+                        <div className={styles.options}>
+                          {question.options.map((opt, optIdx) => {
+                            const letter = String.fromCharCode(65 + optIdx);
+                            const isSelected = selectedOption === opt;
+                            return (
+                              <button
+                                key={opt}
+                                type="button"
+                                dir="ltr"
+                                className={`${styles.option} ${isSelected ? styles.optionActive : ""}`}
+                                onClick={() => handleSelectOption(opt)}
+                              >
+                                <span className={styles.optionLetterBadge}>{letter}</span>
+                                <span className={styles.optionText}>{opt}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  <div className={styles.navRow}>
+                    <Button
+                      type="button"
+                      className={styles.btnSecondary}
+                      onClick={handlePrev}
+                      disabled={currentIndex === 0}
+                    >
+                      {copy.prev}
+                    </Button>
+
+                    {!isLastQuestion ? (
+                      <Button type="button" className={styles.btnPrimary} onClick={handleNext}>
+                        {copy.next} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+                      </Button>
+                    ) : (
+                      <Button
+                        type="button"
+                        className={styles.btnPrimary}
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? copy.submitting : copy.submit}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </>
         ) : null}

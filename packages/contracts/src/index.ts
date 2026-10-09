@@ -5,4 +5,7 @@ export type ServiceHealth = {
 
 export * from "./teacheros";
 export * from "./lesson";
+export * from "./highschool";
+export * from "./tamrin20";
+export * from "./listening";
 

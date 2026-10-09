@@ -1,0 +1,874 @@
+/* Skills Components Module Styles */
+/* 100% Tokenized, Zero Raw Hex Literals, CSS Logical Properties Only */
+
+/* Common Container & Section Layouts */
+.section {
+  margin-block-end: var(--space-12);
+  scroll-margin-block-start: var(--space-8);
+}
+
+.sectionHeader {
+  margin-block-end: var(--space-6);
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, transparent);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+  margin-block-end: var(--space-2);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-section-title);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+  line-height: var(--line-height-section-title);
+}
+
+.sectionDesc {
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  max-inline-size: 50rem;
+}
+
+/* =====================================================================
+   1. Skill Hero Section
+   ===================================================================== */
+.heroContainer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding-inline: var(--space-6);
+  padding-block: var(--space-8);
+  margin-block-end: var(--space-8);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--motion-fast) ease;
+}
+
+.backLink:hover {
+  color: var(--color-action-hover);
+}
+
+.heroBadgeGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.levelBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 800;
+  padding-inline: var(--space-3);
+  padding-block: 0.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-info-bg);
+  color: var(--color-action);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, transparent);
+}
+
+.heroTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.heroIconBox {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border-radius: var(--radius-card);
+  background: var(--color-surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.heroTitle {
+  font-size: clamp(var(--font-size-card-title), 3.5vw, var(--font-size-hero));
+  font-weight: 850;
+  color: var(--color-text);
+  margin: 0;
+  line-height: var(--line-height-heading);
+}
+
+.heroCatchphrase {
+  font-size: var(--font-size-card-title);
+  font-weight: 700;
+  color: var(--color-action);
+  margin: 0;
+  margin-block-end: var(--space-3);
+  line-height: var(--line-height-body-persian);
+}
+
+.heroDescription {
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  margin-block-end: var(--space-6);
+  max-inline-size: 52rem;
+}
+
+.heroNavPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.navPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  transition: all var(--motion-fast) ease;
+}
+
+.navPill:hover {
+  background: var(--color-info-bg);
+  border-color: var(--color-action);
+  color: var(--color-action);
+  transform: translateY(-2px);
+}
+
+/* =====================================================================
+   2. Skill Quick Toolkit Section
+   ===================================================================== */
+.toolkitGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: var(--space-4);
+}
+
+.toolkitCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+
+.toolkitCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-raised);
+  border-color: var(--color-action-hover);
+}
+
+.toolkitTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.toolkitTag {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  border-radius: var(--radius-pill);
+  padding-inline: var(--space-2);
+  padding-block: 0.15rem;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding-inline: var(--space-2);
+  padding-block: var(--space-1);
+  font-size: var(--font-size-meta);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+}
+
+.copyBtn:hover {
+  background: var(--color-info-bg);
+  color: var(--color-action);
+  border-color: var(--color-action);
+}
+
+.copyBtnCopied {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border-color: var(--color-success-green);
+}
+
+.phraseEnBox {
+  font-family: var(--font-family-latin);
+  font-size: 1.15rem;
+  font-weight: 750;
+  color: var(--color-text);
+  direction: ltr;
+  text-align: start;
+  margin-block-end: var(--space-2);
+  line-height: var(--line-height-heading);
+}
+
+.phraseFaBox {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-block-end: var(--space-3);
+  line-height: var(--line-height-body-persian);
+}
+
+.phraseContext {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin-block-end: var(--space-3);
+}
+
+.pronunciationBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-control);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+}
+
+/* =====================================================================
+   3. Skill Mini-Practice (Proven Tamrin-20 UX)
+   ===================================================================== */
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.practiceScoreRibbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+.practiceScoreStats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.statHighlight {
+  color: var(--color-action);
+}
+
+.statSuccess {
+  color: var(--color-success-text);
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+}
+
+.resetBtn:hover {
+  background: var(--color-surface);
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+/* Single Question Card */
+.questionCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--motion-fast) ease, background var(--motion-fast) ease;
+}
+
+.questionCardCorrect {
+  border-color: var(--color-success-green);
+  background: var(--color-surface);
+}
+
+.questionCardIncorrect {
+  border-color: var(--color-error-red);
+  background: var(--color-surface);
+}
+
+.questionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.questionNumberBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 800;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+}
+
+.questionStatusBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border-radius: var(--radius-pill);
+}
+
+.statusCorrect {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.statusIncorrect {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+.questionPromptFa {
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: var(--color-text);
+  line-height: var(--line-height-body-persian);
+  margin-block-end: var(--space-2);
+}
+
+.questionPromptEn {
+  font-family: var(--font-family-latin);
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  direction: ltr;
+  text-align: start;
+  margin-block-end: var(--space-4);
+}
+
+/* Options Grid */
+.optionsGrid {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+
+.optionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  padding-inline: var(--space-4);
+  padding-block: var(--space-3);
+  min-block-size: 2.75rem;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-family: var(--font-family-persian);
+  font-size: var(--font-size-body);
+  color: var(--color-text);
+  text-align: start;
+  cursor: pointer;
+  direction: rtl;
+  transition: all var(--motion-fast) ease;
+}
+
+.optionBtn:hover:not(:disabled) {
+  background: var(--color-surface);
+  border-color: var(--color-action);
+  transform: translateX(-3px);
+}
+
+.optionBtn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.optionBtn:disabled {
+  cursor: default;
+}
+
+/* Option Interactive Feedback States */
+.optionCorrect {
+  border-color: var(--color-success-green) !important;
+  background: var(--color-success-bg) !important;
+  color: var(--color-success-text) !important;
+  font-weight: 750;
+}
+
+.optionIncorrect {
+  border-color: var(--color-error-red) !important;
+  background: var(--color-error-bg) !important;
+  color: var(--color-error-text) !important;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.optionRevealed {
+  border-color: var(--color-success-green) !important;
+  background: var(--color-success-bg) !important;
+  color: var(--color-success-text) !important;
+  font-weight: 750;
+  border-style: dashed !important;
+  border-width: 2px !important;
+  animation: pulseSubtle 1.8s infinite;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success-green) 30%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-success-green) 0%, transparent);
+  }
+}
+
+.optionBadgeIcon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+/* Pedagogical Explanation Accordion */
+.explanationSection {
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.explanationToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-2);
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  cursor: pointer;
+  transition: all var(--motion-fast) ease;
+}
+
+.explanationToggleBtn:hover {
+  background: var(--color-info-bg);
+  border-color: var(--color-action);
+}
+
+.explanationHeaderAuto {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-body);
+  font-weight: 750;
+  color: var(--color-error-text);
+  margin-block-end: var(--space-3);
+}
+
+.explanationBox {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--color-action);
+  border-radius: var(--radius-control);
+  padding: var(--space-4);
+  margin-block-start: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.explanationBrief {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: var(--line-height-body-persian);
+}
+
+.explanationDetailed {
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  line-height: var(--line-height-body-persian);
+}
+
+.goldenRuleBox {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-action);
+  border-radius: var(--radius-control);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  line-height: var(--line-height-body-persian);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.goldenRuleLabel {
+  font-weight: 800;
+  color: var(--color-action);
+  flex-shrink: 0;
+}
+
+/* =====================================================================
+   4. Skill L1 Fixes Section
+   ===================================================================== */
+.l1Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-5);
+}
+
+.l1Card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.l1CardTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+  line-height: var(--line-height-heading);
+}
+
+.persianRootBox {
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-control);
+  padding: var(--space-3);
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin-block-end: var(--space-4);
+  border-inline-start: 3px solid var(--color-learning-teal);
+}
+
+.comparisonRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block-end: var(--space-4);
+}
+
+.wrongItem {
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid color-mix(in srgb, var(--color-error-red) 30%, transparent);
+  border-radius: var(--radius-control);
+  padding: var(--space-3);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-body-persian);
+}
+
+.correctItem {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid color-mix(in srgb, var(--color-success-green) 30%, transparent);
+  border-radius: var(--radius-control);
+  padding: var(--space-3);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-body-persian);
+}
+
+.comparisonEnText {
+  font-family: var(--font-family-latin);
+  font-weight: 700;
+  direction: ltr;
+  text-align: start;
+  margin-block-start: 0.2rem;
+}
+
+.l1WhyBox {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin-block-end: var(--space-3);
+}
+
+.l1MindsetTip {
+  background: var(--color-surface-subtle);
+  border: 1px dashed var(--color-action);
+  border-radius: var(--radius-control);
+  padding: var(--space-3);
+  font-size: var(--font-size-meta);
+  color: var(--color-text);
+  line-height: var(--line-height-body-persian);
+}
+
+/* =====================================================================
+   5. Skill Action Plan Section
+   ===================================================================== */
+.roadmapGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--space-5);
+}
+
+.roadmapCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepNumberBadge {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-action);
+  color: var(--color-action-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: var(--font-size-meta);
+  margin-block-end: var(--space-3);
+}
+
+.roadmapLevelBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  margin-block-end: var(--space-1);
+}
+
+.roadmapTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+  line-height: var(--line-height-heading);
+}
+
+.dailyRoutineTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+  color: var(--color-learning-teal);
+  background: var(--color-surface-subtle);
+  padding-inline: var(--space-2);
+  padding-block: 0.15rem;
+  border-radius: var(--radius-pill);
+  margin-block-end: var(--space-4);
+}
+
+.actionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-block-end: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.actionItem {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.actionBullet {
+  color: var(--color-action);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.recommendedToolBox {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: var(--space-3);
+  margin-block-start: auto;
+}
+
+.toolLinkLabel {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  display: block;
+  margin-block-end: 0.25rem;
+}
+
+.toolLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-action);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: var(--font-size-meta);
+  transition: color var(--motion-fast) ease;
+}
+
+.toolLink:hover {
+  color: var(--color-action-hover);
+}
+
+/* =====================================================================
+   6. Skill Related Links
+   ===================================================================== */
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: var(--space-4);
+}
+
+.relatedCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-subtle);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-raised);
+  border-color: var(--color-action);
+}
+
+.relatedTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.relatedIcon {
+  font-size: 1.5rem;
+}
+
+.relatedBadge {
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  background: var(--color-info-bg);
+  padding-inline: var(--space-2);
+  padding-block: 0.15rem;
+  border-radius: var(--radius-pill);
+}
+
+.relatedTitle {
+  font-size: var(--font-size-card-title);
+  font-weight: 750;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+}
+
+.relatedDesc {
+  font-size: var(--font-size-meta);
+  color: var(--color-muted);
+  line-height: var(--line-height-body-persian);
+  margin: 0;
+  margin-block-end: var(--space-4);
+}
+
+.relatedAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-meta);
+  font-weight: 700;
+  color: var(--color-action);
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+}

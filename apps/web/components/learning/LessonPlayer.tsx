@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button, BdiEn } from "@endoora/ui";
 import type { LessonData, QuizQuestion } from "@endoora/contracts";
 import { useLocale } from "../../lib/locale-context";
+import { playEnglishSpeech } from "../../lib/speech";
 import styles from "./lesson-player.module.css";
 
 export interface LessonPlayerProps {
@@ -29,15 +30,9 @@ export function LessonPlayer({ lesson, courseSlug, courseTitleFa }: LessonPlayer
   const [blankInputs, setBlankInputs] = useState<Record<string, string>>({});
   const [hintsVisible, setHintsVisible] = useState<Record<string, boolean>>({});
 
-  // Pronunciation via Web Speech API
+  // Pronunciation via high-fidelity native audio engine
   const playEnglishAudio = (text: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
-      utterance.rate = 0.88;
-      window.speechSynthesis.speak(utterance);
-    }
+    playEnglishSpeech(text, { accent: "en-US", rate: 0.92 });
   };
 
   // Quiz handlers

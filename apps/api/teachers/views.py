@@ -16,6 +16,7 @@ from .models import (
     TeacherLearnerLink,
     ClassSession,
     TeachingHourLedger,
+    ClassStatus,
     LinkStatus,
     LedgerStatus,
     SessionStatus,
@@ -136,7 +137,15 @@ class TeacherClassListCreateView(APIView):
         if error is not None:
             return error
 
+        code_filter = (request.query_params.get("code") or request.query_params.get("q") or "").strip()
         classes = TeacherClassService.list_teacher_classes(request.user)
+        if code_filter:
+            classes = [
+                c for c in classes
+                if (c.code and code_filter.lower() in c.code.lower())
+                or code_filter.lower() in c.title.lower()
+                or (c.subject and code_filter.lower() in c.subject.lower())
+            ]
         serializer = TeacherClassSerializer(classes, many=True)
         return Response(serializer.data)
 
@@ -166,6 +175,10 @@ class TeacherClassListCreateView(APIView):
             equipment=data.get("equipment", []),
             teaching_preferences=data.get("teaching_preferences", []),
             target_exams=data.get("target_exams", ""),
+            schedule_days=data.get("schedule_days"),
+            schedule_time_start=data.get("schedule_time_start", "18:00"),
+            schedule_time_end=data.get("schedule_time_end", "19:30"),
+            meeting_url=data.get("meeting_url", ""),
         )
         return Response(TeacherClassSerializer(created_class).data, status=status.HTTP_201_CREATED)
 
@@ -609,5 +622,83 @@ class LearnerLinkedTeachersView(APIView):
         if error is not None:
             return error
 
-        teachers = TeacherClassService.get_learner_linked_teachers(request.user)
+        code = (request.query_params.get("code") or request.query_params.get("class_code") or "").strip()
+        q = (request.query_params.get("q") or "").strip()
+        teachers = TeacherClassService.get_learner_linked_teachers(request.user, code=code, q=q)
         return Response(teachers, status=status.HTTP_200_OK)
+
+
+class ClassByCodeLookupView(APIView):
+    """
+    Public / Learner lookup for a class by its unique 7-digit numeric code.
+    Returns basic class info so a learner can preview and join.
+    """
+    authentication_classes = [SessionAuthentication]
+    permission_classes = []
+
+    def get(self, request):
+        code = (request.query_params.get("code") or request.query_params.get("class_code") or request.query_params.get("q") or "").strip()
+        if not code:
+            return Response({"code": "missing_code", "detail": "کد کلاس الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        teacher_class = TeacherClass.objects.filter(code=code, status=ClassStatus.ACTIVE).first()
+        if not teacher_class:
+            return Response({"code": "not_found", "detail": "کلاسی با این کد ۷ رقمی یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        teacher_name = ""
+        if teacher_class.teacher:
+            teacher_name = getattr(teacher_class.teacher, "get_full_name", lambda: "")() or teacher_class.teacher.email.split("@")[0]
+
+        return Response({
+            "id": str(teacher_class.id),
+            "code": teacher_class.code,
+            "class_code": teacher_class.code,
+            "title": teacher_class.title,
+            "subject": teacher_class.subject,
+            "level": teacher_class.level,
+            "teacher_name": teacher_name,
+            "schedule_days": teacher_class.effective_schedule_days,
+            "schedule_time_start": teacher_class.schedule_time_start,
+            "schedule_time_end": teacher_class.schedule_time_end,
+            "schedule_summary": f"{' و '.join(teacher_class.effective_schedule_days)} ساعت {teacher_class.schedule_time_start} الی {teacher_class.schedule_time_end}",
+            "enrolled_count": teacher_class.enrollments.count(),
+            "max_capacity": teacher_class.max_capacity,
+            "description": teacher_class.description,
+            "meeting_url": teacher_class.effective_meeting_url,
+        })
+
+
+class LearnerJoinClassByCodeView(APIView):
+    """
+    Enables an authenticated student/learner to request or join a class using its 7-digit code.
+    """
+    authentication_classes = [SessionAuthentication]
+    permission_classes = []
+
+    def post(self, request):
+        auth_err = require_authenticated(request)
+        if auth_err is not None:
+            return auth_err
+
+        code = str(request.data.get("code") or request.data.get("class_code") or "").strip()
+        if not code:
+            return Response({"code": "missing_code", "detail": "کد کلاس الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            link = TeacherClassService.join_class_by_code(request.user, code)
+            cls = link.teacher_class
+            return Response({
+                "success": True,
+                "class_id": str(cls.id),
+                "class_title": cls.title,
+                "code": cls.code,
+                "class_code": cls.code,
+                "status": link.status,
+                "message": "با موفقیت به کلاس متصل شدید.",
+                "class": TeacherClassSerializer(cls).data,
+                "link": TeacherLearnerLinkSerializer(link).data,
+            }, status=status.HTTP_200_OK)
+        except TeacherClass.DoesNotExist:
+            return Response({"code": "not_found", "detail": "کلاسی با این کد ۷ رقمی یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+        except ValueError as e:
+            return Response({"code": "capacity_full", "detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)

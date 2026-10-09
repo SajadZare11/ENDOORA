@@ -15,6 +15,7 @@ class AccountSerializer(serializers.ModelSerializer):
     email_verified = serializers.BooleanField(read_only=True)
     phone_verified = serializers.BooleanField(read_only=True)
     capabilities = serializers.DictField(read_only=True)
+    is_premium = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = User
@@ -28,6 +29,7 @@ class AccountSerializer(serializers.ModelSerializer):
             "preferred_locale",
             "capabilities",
             "is_active",
+            "is_premium",
         )
         read_only_fields = (
             "id",
@@ -36,6 +38,7 @@ class AccountSerializer(serializers.ModelSerializer):
             "role",
             "capabilities",
             "is_active",
+            "is_premium",
         )
 
 

@@ -51,7 +51,7 @@ const text = {
     active: "فعال",
     quickServicesTitle: "مسیر رشد شخصی و یادگیری با مدرس",
     quickServicesDesc: "برنامه آموزشی اختصاصی و ثبت درخواست جلسات رفع اشکال با اساتید",
-    quickServicesBadge: "۲ بخش کلیدی",
+    quickServicesBadge: "۳ بخش کلیدی",
     quickServicesItems: [
       {
         title: "مسیر رشد شخصی (Learning Path)",
@@ -68,6 +68,14 @@ const text = {
         icon: "⚡",
         action: "شروع Learn Now",
         badge: "پاسخ سریع",
+      },
+      {
+        title: "زبان دبیرستان — تمرین تا ۲۰",
+        desc: "بانک تعاملی بیش از ۱۰۰۰ سوال امتحانات نهایی زبان دوازدهم با تصحیح هوشمند، توضیحات تکمیلی و کارنامه تسلط.",
+        href: "/high-school/grade-12/tamrin20",
+        icon: "🎯",
+        action: "ورود به تمرین تا ۲۰",
+        badge: "امتحانات نهایی",
       },
     ],
     communitySupportTitle: "همراهی، دستاوردها و پشتیبانی",
@@ -107,6 +115,11 @@ const text = {
         badge: "پاسخگویی سریع",
       },
     ],
+    recentActivitiesTitle: "آخرین فعالیت‌های شما",
+    recentActivitiesDesc: "گزارش زنده اقدامات، تمرین‌ها و پیشرفت‌های اخیر شما در بخش‌های مختلف",
+    recentActivitiesBadge: "فعالیت‌های اخیر",
+    recentActivitiesEmpty: "هنوز فعالیتی ثبت نشده است. با تکمیل درس، تمرین یا آزمون تعیین سطح، گزارش فعالیت‌های شما در اینجا ثبت خواهد شد.",
+    recentActivitiesAction: "مشاهده و ادامه",
   },
   en: {
     greeting: "Hello",
@@ -140,7 +153,7 @@ const text = {
     active: "Active",
     quickServicesTitle: "Personal Growth & Rapid Mentoring",
     quickServicesDesc: "Personalized learning curriculum and on-demand live mentoring sessions with certified teachers",
-    quickServicesBadge: "2 Core Services",
+    quickServicesBadge: "3 Core Services",
     quickServicesItems: [
       {
         title: "Personal Learning Path",
@@ -157,6 +170,14 @@ const text = {
         icon: "⚡",
         action: "Start Learn Now",
         badge: "Fast Response",
+      },
+      {
+        title: "High School English — Practice to 20",
+        desc: "Interactive bank of 1,000+ Grade 12 final exam questions with smart feedback and skill mastery analytics.",
+        href: "/high-school/grade-12/tamrin20",
+        icon: "🎯",
+        action: "Enter Practice to 20",
+        badge: "Final Exams",
       },
     ],
     communitySupportTitle: "Community, Progress & Support",
@@ -196,6 +217,11 @@ const text = {
         badge: "Fast Support",
       },
     ],
+    recentActivitiesTitle: "Your Recent Activities",
+    recentActivitiesDesc: "Live log of your practices, lessons, and progress across all sections",
+    recentActivitiesBadge: "Recent Activities",
+    recentActivitiesEmpty: "No activities recorded yet. Once you complete a lesson, test, or practice, your activities will appear here.",
+    recentActivitiesAction: "View & Continue",
   },
 } as const;
 
@@ -386,6 +412,80 @@ export function LearnerDashboard() {
           )}
         </section>
       </div>
+
+      <section className="learner-activities" aria-labelledby="learner-activities-title">
+        <header className="learner-activities__header">
+          <div className="learner-activities__title-row">
+            <span className="learner-activities__icon-badge" aria-hidden="true">
+              ⚡
+            </span>
+            <div>
+              <h2 id="learner-activities-title" className="learner-activities__title">
+                {t.recentActivitiesTitle}
+              </h2>
+              <p className="learner-activities__desc">{t.recentActivitiesDesc}</p>
+            </div>
+          </div>
+          {data.recent_activities && data.recent_activities.length > 0 ? (
+            <span className="learner-activities__count-badge">
+              {data.recent_activities.length.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}{" "}
+              {locale === "fa" ? "فعالیت" : "Activities"}
+            </span>
+          ) : null}
+        </header>
+
+        {data.recent_activities && data.recent_activities.length > 0 ? (
+          <div className="learner-activities__list">
+            {data.recent_activities.map((act) => {
+              const title = locale === "fa" ? act.title_fa : (act.title_en || act.title_fa);
+              const desc = locale === "fa" ? act.description_fa : (act.description_en || act.description_fa);
+              const badge = locale === "fa" ? act.badge_text_fa : (act.badge_text_en || act.badge_text_fa);
+              const timeAgo = locale === "fa" ? act.time_ago_fa : (act.time_ago_en || act.time_ago_fa);
+
+              const cardContent = (
+                <>
+                  <div className="learner-activity-card__content">
+                    <span className="learner-activity-card__symbol" aria-hidden="true">
+                      {act.icon || "⚡"}
+                    </span>
+                    <div className="learner-activity-card__details">
+                      <h3 className="learner-activity-card__title">{title}</h3>
+                      {desc ? <p className="learner-activity-card__desc">{desc}</p> : null}
+                      <div className="learner-activity-card__meta">
+                        {badge ? <span className="learner-activity-card__badge">{badge}</span> : null}
+                        {timeAgo ? <span className="learner-activity-card__time">{timeAgo}</span> : null}
+                      </div>
+                    </div>
+                  </div>
+                  {act.link ? (
+                    <div className="learner-activity-card__action">
+                      <span>{t.recentActivitiesAction}</span>
+                      <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+                    </div>
+                  ) : null}
+                </>
+              );
+
+              return act.link ? (
+                <Link key={act.id} href={act.link} className="learner-activity-card">
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={act.id} className="learner-activity-card">
+                  {cardContent}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="learner-activities__empty">
+            <span className="learner-activities__empty-icon" aria-hidden="true">
+              📋
+            </span>
+            <p>{t.recentActivitiesEmpty}</p>
+          </div>
+        )}
+      </section>
 
       <section className="learner-growth-services" aria-labelledby="learner-services-title">
         <header className="learner-community-support__header">

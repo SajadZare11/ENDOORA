@@ -5,8 +5,9 @@ import styles from "./EndooraShell.module.css";
 const nav = [
   ["خانه", "/"],
   ["چطور کار می‌کند", "/how-it-works"],
-  ["تعیین سطح", "/placement"],
+  ["زبان دبیرستان", "/skills/school"],
   ["مدرس‌ها", "/teachers"],
+  ["مهارت‌ها", "/skills"],
   ["یادگیری", "/learn"],
   ["IELTS", "/ielts"],
   ["قیمت", "/pricing"],

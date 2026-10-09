@@ -12,6 +12,25 @@
   color: var(--color-text);
 }
 
+.accountPage {
+  inline-size: 100%;
+  max-inline-size: var(--content-width, 78rem);
+  margin-inline: auto;
+  padding-block: var(--space-4) var(--space-12);
+  color: var(--color-text);
+}
+
+.accountWorkspace {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-subtle);
+}
+
 .stage {
   position: relative;
   isolation: isolate;

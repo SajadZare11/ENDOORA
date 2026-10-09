@@ -99,15 +99,27 @@ class TeacherDashboardEventSerializer(serializers.Serializer):
 # Day 33 Serializers: Classes, Learners, Sessions, and Hours Ledger
 
 class TeacherClassSerializer(serializers.ModelSerializer):
+    class_code = serializers.CharField(source="code", read_only=True)
     enrolled_students_count = serializers.IntegerField(source="enrollments.count", read_only=True)
     sessions_count = serializers.IntegerField(source="sessions.count", read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
+    schedule_days = serializers.ListField(source="effective_schedule_days", read_only=True)
+    schedule_summary = serializers.SerializerMethodField()
+    meeting_url = serializers.CharField(source="effective_meeting_url", read_only=True)
+    adobe_connect_url = serializers.CharField(source="effective_meeting_url", read_only=True)
+    adobe_connect_app_url = serializers.CharField(source="effective_adobe_connect_app_url", read_only=True)
+
+    def get_schedule_summary(self, obj):
+        days_str = " و ".join(obj.effective_schedule_days)
+        return f"{days_str} ساعت {obj.schedule_time_start} الی {obj.schedule_time_end}"
 
     class Meta:
         from teachers.models import TeacherClass
         model = TeacherClass
         fields = [
             "id",
+            "code",
+            "class_code",
             "title",
             "description",
             "subject",
@@ -126,6 +138,13 @@ class TeacherClassSerializer(serializers.ModelSerializer):
             "equipment",
             "teaching_preferences",
             "target_exams",
+            "schedule_days",
+            "schedule_time_start",
+            "schedule_time_end",
+            "schedule_summary",
+            "meeting_url",
+            "adobe_connect_url",
+            "adobe_connect_app_url",
             "enrolled_students_count",
             "sessions_count",
             "created_at",
@@ -134,6 +153,8 @@ class TeacherClassSerializer(serializers.ModelSerializer):
 
 
 class TeacherLearnerLinkSerializer(serializers.ModelSerializer):
+    code = serializers.CharField(source="teacher_class.code", read_only=True)
+    class_code = serializers.CharField(source="teacher_class.code", read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
     learner_email = serializers.CharField(source="learner.email", read_only=True)
     class_title = serializers.CharField(source="teacher_class.title", read_only=True)
@@ -144,6 +165,8 @@ class TeacherLearnerLinkSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "teacher_class",
+            "code",
+            "class_code",
             "class_title",
             "learner",
             "learner_email",
@@ -158,6 +181,8 @@ class TeacherLearnerLinkSerializer(serializers.ModelSerializer):
 
 
 class ClassSessionSerializer(serializers.ModelSerializer):
+    code = serializers.CharField(source="teacher_class.code", read_only=True)
+    class_code = serializers.CharField(source="teacher_class.code", read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
     class_title = serializers.CharField(source="teacher_class.title", read_only=True)
     learner_email = serializers.CharField(source="learner.email", read_only=True, allow_null=True)
@@ -168,6 +193,8 @@ class ClassSessionSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "teacher_class",
+            "code",
+            "class_code",
             "class_title",
             "learner",
             "learner_email",
@@ -242,6 +269,10 @@ class CreateClassInputSerializer(serializers.Serializer):
     equipment = serializers.ListField(child=serializers.CharField(), required=False, default=list)
     teaching_preferences = serializers.ListField(child=serializers.CharField(), required=False, default=list)
     target_exams = serializers.CharField(required=False, default="", allow_blank=True)
+    schedule_days = serializers.ListField(child=serializers.CharField(), required=False, default=list)
+    schedule_time_start = serializers.CharField(required=False, default="18:00")
+    schedule_time_end = serializers.CharField(required=False, default="19:30")
+    meeting_url = serializers.CharField(required=False, default="", allow_blank=True)
 
 
 class UpdateClassInputSerializer(serializers.Serializer):
@@ -262,6 +293,10 @@ class UpdateClassInputSerializer(serializers.Serializer):
     equipment = serializers.ListField(child=serializers.CharField(), required=False)
     teaching_preferences = serializers.ListField(child=serializers.CharField(), required=False)
     target_exams = serializers.CharField(required=False, allow_blank=True)
+    schedule_days = serializers.ListField(child=serializers.CharField(), required=False)
+    schedule_time_start = serializers.CharField(required=False)
+    schedule_time_end = serializers.CharField(required=False)
+    meeting_url = serializers.CharField(required=False, allow_blank=True)
 
 
 class UpdateSessionInputSerializer(serializers.Serializer):

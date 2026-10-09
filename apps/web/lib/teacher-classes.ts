@@ -2,6 +2,8 @@ import { endooraApi } from "./endoora-api";
 
 export type TeacherClass = {
   id: string;
+  code?: string;
+  class_code?: string;
   title: string;
   description: string;
   subject: string;
@@ -20,6 +22,13 @@ export type TeacherClass = {
   equipment?: string[];
   teaching_preferences?: string[];
   target_exams?: string;
+  schedule_days?: string[];
+  schedule_time_start?: string;
+  schedule_time_end?: string;
+  schedule_summary?: string;
+  meeting_url?: string;
+  adobe_connect_url?: string;
+  adobe_connect_app_url?: string;
   enrolled_students_count: number;
   sessions_count: number;
   created_at: string;
@@ -29,6 +38,8 @@ export type TeacherClass = {
 export type TeacherLearnerLink = {
   id: string;
   teacher_class: string;
+  code?: string;
+  class_code?: string;
   class_title: string;
   learner: string;
   learner_email: string;
@@ -130,6 +141,10 @@ export type CreateClassPayload = {
   equipment?: string[];
   teaching_preferences?: string[];
   target_exams?: string;
+  schedule_days?: string[];
+  schedule_time_start?: string;
+  schedule_time_end?: string;
+  meeting_url?: string;
 };
 
 export type UpdateClassPayload = Partial<{
@@ -150,6 +165,10 @@ export type UpdateClassPayload = Partial<{
   equipment: string[];
   teaching_preferences: string[];
   target_exams: string;
+  schedule_days: string[];
+  schedule_time_start: string;
+  schedule_time_end: string;
+  meeting_url: string;
 }>;
 
 export type ScheduleSessionPayload = {
@@ -175,16 +194,30 @@ export type UpdateSessionPayload = Partial<{
 export type LinkedTeacher = {
   link_id: string;
   teacher_id: string;
+  teacher_name?: string;
   teacher_email: string;
   class_id: string;
+  code?: string;
+  class_code?: string;
   class_title: string;
   subject: string;
   level: string;
   consent_given_at: string | null;
+  schedule_days?: string[];
+  schedule_time_start?: string;
+  schedule_time_end?: string;
+  schedule_summary?: string;
+  meeting_url?: string;
+  adobe_connect_url?: string;
+  adobe_connect_app_url?: string;
 };
 
-export async function fetchTeacherClasses(): Promise<TeacherClass[]> {
-  return endooraApi<TeacherClass[]>("/teachers/classes/");
+export async function fetchTeacherClasses(params?: { code?: string; q?: string }): Promise<TeacherClass[]> {
+  const query = new URLSearchParams();
+  if (params?.code) query.set("code", params.code);
+  if (params?.q) query.set("q", params.q);
+  const qs = query.toString();
+  return endooraApi<TeacherClass[]>(`/teachers/classes/${qs ? `?${qs}` : ""}`);
 }
 
 export async function fetchTeacherClassDetail(classId: string): Promise<{
@@ -309,7 +342,34 @@ export async function deleteClassSession(
   });
 }
 
-export async function fetchLearnerLinkedTeachers(): Promise<LinkedTeacher[]> {
-  return endooraApi<LinkedTeacher[]>("/teachers/my-teachers/");
+export async function fetchLearnerLinkedTeachers(params?: { code?: string; q?: string }): Promise<LinkedTeacher[]> {
+  const query = new URLSearchParams();
+  if (params?.code) query.set("code", params.code);
+  if (params?.q) query.set("q", params.q);
+  const qs = query.toString();
+  return endooraApi<LinkedTeacher[]>(`/teachers/my-teachers/${qs ? `?${qs}` : ""}`);
+}
+
+export async function lookupClassByCode(code: string): Promise<TeacherClass & { teacher_name?: string; enrolled_count?: number }> {
+  return endooraApi<TeacherClass & { teacher_name?: string; enrolled_count?: number }>(
+    `/teachers/classes/lookup-by-code/?code=${encodeURIComponent(code)}`
+  );
+}
+
+export async function joinClassByCode(code: string): Promise<{
+  success: boolean;
+  class_id: string;
+  class_title: string;
+  code: string;
+  class_code: string;
+  status: string;
+  message: string;
+  class?: TeacherClass;
+  link?: TeacherLearnerLink;
+}> {
+  return endooraApi("/teachers/classes/join-by-code/", {
+    method: "POST",
+    json: { code },
+  });
 }
 

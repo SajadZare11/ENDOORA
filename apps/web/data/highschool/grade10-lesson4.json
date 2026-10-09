@@ -1,0 +1,1000 @@
+{
+  "id": "vision-1-lesson-4",
+  "grade": 10,
+  "bookTitle": "Vision 1",
+  "lessonNumber": 4,
+  "slug": "grade-10/lesson-4",
+  "title": {
+    "en": "Traveling the World",
+    "fa": "جهان‌گردی و گردشگری"
+  },
+  "cefrLevel": "A2",
+  "sections": {
+    "getReady": [
+      {
+        "id": "g4-1",
+        "word": "passport",
+        "phonetic": "/ˈpɑːs.pɔːt/",
+        "persianMeaning": "گذرنامه / پاسپورت سفر",
+        "imagePromptOrUrl": "passport-travel-document",
+        "options": [
+          "ticket",
+          "passport",
+          "booklet"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Everyone needs this to travel abroad.",
+          "fa": "همه برای سفر به خارج از کشور به این نیاز دارند."
+        }
+      },
+      {
+        "id": "g4-2",
+        "word": "tourist attractions",
+        "phonetic": "/ˈtʊə.rɪst əˈtræk.ʃənz/",
+        "persianMeaning": "جاذبه‌های گردشگری و دیدنی",
+        "imagePromptOrUrl": "tourist-attractions-map",
+        "options": [
+          "tourist attractions",
+          "emergency exits",
+          "wind towers"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Asia has many wonderful tourist attractions.",
+          "fa": "قاره آسیا جاذبه‌های گردشگری شگفت‌انگیز فراوانی دارد."
+        }
+      },
+      {
+        "id": "g4-3",
+        "word": "travel agency",
+        "phonetic": "/ˈtræv.əl ˌeɪ.dʒən.si/",
+        "persianMeaning": "آژانس مسافرتی / دفتر فروش بلیط",
+        "imagePromptOrUrl": "ticket-agency-office",
+        "options": [
+          "hospital",
+          "travel agency",
+          "laboratory"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "You may go to this place to buy air or train tickets.",
+          "fa": "شما می‌توانید به این مکان بروید تا بلیط هواپیما یا قطار بخرید."
+        }
+      },
+      {
+        "id": "g4-4",
+        "word": "destination board",
+        "phonetic": "/ˌdes.tɪˈneɪ.ʃən bɔːd/",
+        "persianMeaning": "تابلوی اعلام مقاصد و پروازها در فرودگاه",
+        "imagePromptOrUrl": "destination-board-airport",
+        "options": [
+          "drawing board",
+          "destination board",
+          "blackboard"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "You can check the destinations on this in the airport.",
+          "fa": "شما می‌توانید مقصدها را روی این تابلو در فرودگاه بررسی کنید."
+        }
+      },
+      {
+        "id": "g4-5",
+        "word": "pilgrims",
+        "phonetic": "/ˈpɪl.ɡrɪmz/",
+        "persianMeaning": "زائران اماکن متبرکه",
+        "imagePromptOrUrl": "pilgrims-holy-shrine",
+        "options": [
+          "pilgrims",
+          "inventors",
+          "drivers"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The pilgrims came to Imam Reza Holy Shrine in Mashhad.",
+          "fa": "زائران به بارگاه مطهر امام رضا (ع) در مشهد آمدند."
+        }
+      },
+      {
+        "id": "g4-6",
+        "word": "booklet",
+        "phonetic": "/ˈbʊk.lət/",
+        "persianMeaning": "دفترچه راهنما / بروشور اطلاعاتی",
+        "imagePromptOrUrl": "travel-booklet-guide",
+        "options": [
+          "novel",
+          "booklet",
+          "dictionary"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Take this information booklet and study it carefully.",
+          "fa": "این دفترچه اطلاعاتی را بردارید و آن را با دقت مطالعه کنید."
+        }
+      },
+      {
+        "id": "g4-7",
+        "word": "sites",
+        "phonetic": "/saɪts/",
+        "persianMeaning": "محوطه‌ها و اماکن تاریخی",
+        "imagePromptOrUrl": "historical-sites-ruins",
+        "options": [
+          "forests",
+          "sites",
+          "factories"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Isfahan and Shiraz have many famous historical sites.",
+          "fa": "اصفهان و شیراز اماکن تاریخی مشهور فراوانی دارند."
+        }
+      },
+      {
+        "id": "g4-8",
+        "word": "vacation",
+        "phonetic": "/veɪˈkeɪ.ʃən/",
+        "persianMeaning": "تعطیلات و اوقات فراغت",
+        "imagePromptOrUrl": "summer-vacation-beach",
+        "options": [
+          "vacation",
+          "homework",
+          "examination"
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The family spent their summer vacation in Yasooj.",
+          "fa": "آن خانواده تعطیلات تابستانی خود را در یاسوج سپری کردند."
+        }
+      },
+      {
+        "id": "g4-9",
+        "word": "travel",
+        "phonetic": "/ˈtræv.əl/",
+        "persianMeaning": "سفر کردن / سیاحت در زمین",
+        "imagePromptOrUrl": "world-travel-globe",
+        "options": [
+          "destroy",
+          "travel",
+          "worry"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Every year, about one billion tourists travel around the world.",
+          "fa": "هر ساله حدود یک میلیارد گردشگر به دور جهان سفر می‌کنند."
+        }
+      },
+      {
+        "id": "g4-10",
+        "word": "destination",
+        "phonetic": "/ˌdes.tɪˈneɪ.ʃən/",
+        "persianMeaning": "مقصد نهایی سفر",
+        "imagePromptOrUrl": "tourist-destination-pin",
+        "options": [
+          "origin",
+          "destination",
+          "ticket"
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iran is a wonderful destination for international travelers.",
+          "fa": "ایران مقصدی شگفت‌انگیز برای مسافران بین‌المللی است."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "مکالمه درس چهارم: برنامه‌ریزی سفر در آژانس مسافرتی مادرید",
+      "situationFa": "دیگو (توریست اسپانیایی) در حال برنامه‌ریزی برای تعطیلات تابستانی با کارلوس ساباتو (کارشناس آژانس مسافرتی در مادرید) گفتگو می‌کند.",
+      "vocabulary": [
+        {
+          "id": "cb4-1",
+          "word": "plan",
+          "phonetic": "/plæn/",
+          "persianMeaning": "برنامه‌ریزی کردن / قصد انجام کاری داشتن",
+          "imagePromptOrUrl": "travel-plan-calendar",
+          "options": ["forget", "plan", "stop"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "I am planning for my summer vacation in Asia.",
+            "fa": "من در حال برنامه‌ریزی برای تعطیلات تابستانی‌ام در آسیا هستم."
+          }
+        },
+        {
+          "id": "cb4-2",
+          "word": "agent",
+          "phonetic": "/ˈeɪ.dʒənt/",
+          "persianMeaning": "نماینده / کارشناس خدمات مسافرتی",
+          "imagePromptOrUrl": "travel-agent-desk",
+          "options": ["patient", "agent", "pilot"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Carlos is an experienced travel agent in Madrid.",
+            "fa": "کارلوس یک کارشناس آژانس مسافرتی باسابقه در مادرید است."
+          }
+        },
+        {
+          "id": "cb4-3",
+          "word": "choice",
+          "phonetic": "/tʃɔɪs/",
+          "persianMeaning": "حق انتخاب / گزینه پیش‌رو",
+          "imagePromptOrUrl": "travel-choice-options",
+          "options": ["problem", "choice", "danger"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Probably Iran is the best choice for your journey.",
+            "fa": "احتمالاً ایران بهترین گزینه برای سفر شماست."
+          }
+        },
+        {
+          "id": "cb4-4",
+          "word": "probably",
+          "phonetic": "/ˈprɒb.ə.bli/",
+          "persianMeaning": "احتمالاً / به احتمال زیاد",
+          "imagePromptOrUrl": "probably-thinking-cloud",
+          "options": ["certainly", "never", "probably"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "Probably Iran is the best choice for you.",
+            "fa": "به احتمال قوی ایران بهترین انتخاب برای شماست."
+          }
+        },
+        {
+          "id": "cb4-5",
+          "word": "hospitable",
+          "phonetic": "/hɒsˈpɪt.ə.bəl/",
+          "persianMeaning": "مهمان‌نواز / خونگرم با مهمانان",
+          "imagePromptOrUrl": "hospitable-warm-tea",
+          "options": ["rude", "hospitable", "careless"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Iranian people are very kind and hospitable.",
+            "fa": "مردم ایران بسیار مهربان و مهمان‌نواز هستند."
+          }
+        },
+        {
+          "id": "cb4-6",
+          "word": "suggestion",
+          "phonetic": "/səˈdʒes.tʃən/",
+          "persianMeaning": "پیشنهاد و راهکار",
+          "imagePromptOrUrl": "travel-suggestion-idea",
+          "options": ["order", "suggestion", "refusal"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Do you have any suggestion for my holiday?",
+            "fa": "آیا پیشنهادی برای تعطیلات من دارید؟"
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "dl4-1",
+          "speaker": "Diego",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Excuse me, sir! I am planning for my summer vacation.",
+          "faText": "ببخشید آقا! من در حال برنامه‌ریزی برای تعطیلات تابستانی‌ام هستم.",
+          "orderIndex": 1
+        },
+        {
+          "id": "dl4-2",
+          "speaker": "Carlos",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "How can I help you?",
+          "faText": "چگونه می‌توانم کمکتان کنم؟",
+          "orderIndex": 2
+        },
+        {
+          "id": "dl4-3",
+          "speaker": "Diego",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Actually I want to visit Asia, but I am not sure about my destination. Do you have any suggestion?",
+          "faText": "در واقع می‌خواهم به آسیا سفر کنم، اما درباره مقصدم مطمئن نیستم. آیا پیشنهادی دارید؟",
+          "orderIndex": 3
+        },
+        {
+          "id": "dl4-4",
+          "speaker": "Carlos",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "Well, you may have some choices. You can visit China. It is famous for the Great Wall.",
+          "faText": "خب، گزینه‌هایی پیش رو دارید. می‌توانید از چین بازدید کنید که به دیوار بزرگش مشهور است.",
+          "orderIndex": 4
+        },
+        {
+          "id": "dl4-5",
+          "speaker": "Diego",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Yes, but I was in Beijing two years ago.",
+          "faText": "بله، اما من دو سال پیش در پکن بودم.",
+          "orderIndex": 5
+        },
+        {
+          "id": "dl4-6",
+          "speaker": "Carlos",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "What about India? In fact, the Taj Mahal is a popular destination, but it is hot in summer. Probably Iran is the best choice.",
+          "faText": "هند چطور؟ در واقع تاج‌محل مقصدی پرطرفدار است، اما در تابستان گرم است. احتمالاً ایران بهترین گزینه است.",
+          "orderIndex": 6
+        },
+        {
+          "id": "dl4-7",
+          "speaker": "Diego",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "I heard Iran is a great and beautiful country, but I don't know much about it.",
+          "faText": "شنیده‌ام ایران کشوری عالی و زیباست، اما اطلاعات زیادی درباره‌اش ندارم.",
+          "orderIndex": 7
+        },
+        {
+          "id": "dl4-8",
+          "speaker": "Carlos",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "Well, Iran is a four-season country. It has many historical sites and amazing nature. Also, its people are very kind and hospitable.",
+          "faText": "خب، ایران کشوری چهارفصل است. اماکن تاریخی فراوان و طبیعتی شگفت‌انگیز دارد. همچنین مردمش بسیار مهربان و مهمان‌نوازند.",
+          "orderIndex": 8
+        },
+        {
+          "id": "dl4-9",
+          "speaker": "Diego",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "It seems a suitable choice. But how can I get more information about Iran?",
+          "faText": "به نظر انتخابی مناسب می‌آید. اما چگونه می‌توانم اطلاعات بیشتری درباره ایران به دست آورم؟",
+          "orderIndex": 9
+        },
+        {
+          "id": "dl4-10",
+          "speaker": "Carlos",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "You can check this booklet or may see our website.",
+          "faText": "می‌توانید این دفترچه راهنما را بررسی کنید یا وب‌سایت ما را ببینید.",
+          "orderIndex": 10
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw4-1",
+        "word": "international airport",
+        "phonetic": "/ˌɪn.təˈnæʃ.ən.əl ˈeə.pɔːt/",
+        "persianMeaning": "فرودگاه بین‌المللی",
+        "imagePromptOrUrl": "international-airport-terminal",
+        "options": ["train station", "international airport", "bus stop"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Mehrabad is one of the first international airports of Iran.",
+          "fa": "مهرآباد یکی از نخستین فرودگاه‌های بین‌المللی ایران است."
+        }
+      },
+      {
+        "id": "nw4-2",
+        "word": "attractive",
+        "phonetic": "/əˈtræk.tɪv/",
+        "persianMeaning": "جذاب / گیرا و تماشایی",
+        "imagePromptOrUrl": "attractive-tourist-view",
+        "options": ["boring", "attractive", "ugly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Ancient wind towers of Iran are attractive for tourists.",
+          "fa": "بادگیرهای باستانی ایران برای گردشگران بسیار جذاب و دیدنی هستند."
+        }
+      },
+      {
+        "id": "nw4-3",
+        "word": "pyramids",
+        "phonetic": "/ˈpɪr.ə.mɪdz/",
+        "persianMeaning": "اهرام کهن مصر",
+        "imagePromptOrUrl": "ancient-pyramids-egypt",
+        "options": ["caves", "towers", "pyramids"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "There are more than 100 pyramids in Egypt.",
+          "fa": "بیش از ۱۰۰ هرم باستانی در مصر وجود دارد."
+        }
+      },
+      {
+        "id": "nw4-4",
+        "word": "desert",
+        "phonetic": "/ˈdez.ət/",
+        "persianMeaning": "بیابان و کویر خشک",
+        "imagePromptOrUrl": "hot-dry-desert",
+        "options": ["ocean", "desert", "forest"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Camels can travel across hot and dry deserts with little water.",
+          "fa": "شترها می‌توانند در بیابان‌های گرم و خشک با آب اندک سفر کنند."
+        }
+      },
+      {
+        "id": "nw4-5",
+        "word": "entertainment",
+        "phonetic": "/ˌen.təˈteɪn.mənt/",
+        "persianMeaning": "سرگرمی / تفریح و نشاط",
+        "imagePromptOrUrl": "entertainment-park-fun",
+        "options": ["work", "entertainment", "punishment"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "He plays the piano only for his entertainment.",
+          "fa": "او پیانو را صرفاً برای سرگرمی و لذت شخصی خود می‌نوازد."
+        }
+      },
+      {
+        "id": "nw4-6",
+        "word": "domestic",
+        "phonetic": "/dəˈmes.tɪk/",
+        "persianMeaning": "داخلی / مربوط به درون یک کشور",
+        "imagePromptOrUrl": "domestic-country-flight",
+        "options": ["domestic", "international", "foreign"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Domestic flights are usually cheaper than international flights.",
+          "fa": "پروازهای داخلی معمولاً ارزان‌تر از پروازهای بین‌المللی هستند."
+        }
+      },
+      {
+        "id": "nw4-7",
+        "word": "culture",
+        "phonetic": "/ˈkʌl.tʃər/",
+        "persianMeaning": "فرهنگ / آداب و رسوم یک ملت",
+        "imagePromptOrUrl": "cultural-traditions-dance",
+        "options": ["weather", "culture", "nature"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Alice is studying Persian language and rich Iranian culture.",
+          "fa": "آلیس در حال مطالعه زبان فارسی و فرهنگ غنی ایرانی است."
+        }
+      },
+      {
+        "id": "nw4-8",
+        "word": "range",
+        "phonetic": "/reɪndʒ/",
+        "persianMeaning": "طیف / دامنه و گستره‌ای از تنوع",
+        "imagePromptOrUrl": "range-of-options-spectrum",
+        "options": ["single item", "range", "absence"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Tourists can find a wide range of activities from skiing to desert touring.",
+          "fa": "گردشگران می‌توانند طیف گسترده‌ای از فعالیت‌ها را از اسکی تا کویرگردی بیابند."
+        }
+      },
+      {
+        "id": "nw4-9",
+        "word": "ancient wind towers",
+        "phonetic": "/ˈeɪn.ʃənt wɪnd ˈtaʊ.əz/",
+        "persianMeaning": "بادگیرهای کهن و سنتی",
+        "imagePromptOrUrl": "ancient-wind-towers-yazd",
+        "options": ["modern bridges", "ancient wind towers", "water dams"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Ancient wind towers of Yazd show the smart architecture of old Iran.",
+          "fa": "بادگیرهای باستانی یزد نشان‌دهنده معماری هوشمندانه ایران کهن هستند."
+        }
+      },
+      {
+        "id": "nw4-10",
+        "word": "paradise",
+        "phonetic": "/ˈpær.ə.daɪs/",
+        "persianMeaning": "بهشت / مکانی با نهایت زیبایی",
+        "imagePromptOrUrl": "paradise-nature-garden",
+        "options": ["prison", "paradise", "desert"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iran is a true paradise for travelers who love culture and nature.",
+          "fa": "ایران بهشتی راستین برای مسافرانی است که عاشق فرهنگ و طبیعت‌اند."
+        }
+      },
+      {
+        "id": "nw4-11",
+        "word": "holy shrine",
+        "phonetic": "/ˈhəʊ.li ʃraɪn/",
+        "persianMeaning": "حرم مطهر و بارگاه مقدس",
+        "imagePromptOrUrl": "holy-shrine-dome",
+        "options": ["market", "holy shrine", "airport"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Many Muslims travel to Iran to visit holy shrines in Mashhad and Qom.",
+          "fa": "بسیاری از مسلمانان به ایران سفر می‌کنند تا به زیارت حرم‌های مطهر در مشهد و قم بروند."
+        }
+      },
+      {
+        "id": "nw4-12",
+        "word": "abroad",
+        "phonetic": "/əˈbrɔːd/",
+        "persianMeaning": "خارج از کشور / در آن‌سوی مرزها",
+        "imagePromptOrUrl": "travel-abroad-passport",
+        "options": ["at home", "abroad", "nearby"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "When people are going abroad, they must get passports and visas.",
+          "fa": "هنگامی که مردم به خارج از کشور سفر می‌کنند، باید پاسپورت و ویزا بگیرند."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Iran: A True Paradise",
+      "persianTitle": "ایران: بهشتی راستین",
+      "passageTextEn": "Every year, about one billion tourists travel around the world. Tourism is traveling for entertainment, health, sport or learning about the culture of a nation.\n\nTourism can be domestic or international. Domestic tourists travel to different parts of their own country. International tourists travel abroad.\n\nSome countries attract a lot of tourists every year. Egypt is one of the oldest countries of Africa. It is famous for its wonderful pyramids. France, Italy and Spain are three beautiful European countries. They attract many tourists from other parts of the world. Brazil, Peru and Chile are in South America. They are famous for their ancient history and amazing nature.\n\nIn Asia, Iran is a great destination for tourists. This beautiful country is a true paradise for people of the world. Each year, many people from all parts of the world visit Iran's attractions. Iran is a four-season country and tourists can find a range of activities from skiing to desert touring in different parts of the country. Many Muslims also travel to Iran and go to holy shrines in Mashhad, Qom and Shiraz. Iranian people are hospitable and kind to travelers and tourists.",
+      "passageParagraphs": [
+        "Every year, about one billion tourists travel around the world. Tourism is traveling for entertainment, health, sport or learning about the culture of a nation.",
+        "Tourism can be domestic or international. Domestic tourists travel to different parts of their own country. International tourists travel abroad.",
+        "Some countries attract a lot of tourists every year. Egypt is one of the oldest countries of Africa. It is famous for its wonderful pyramids. France, Italy and Spain are three beautiful European countries. They attract many tourists from other parts of the world. Brazil, Peru and Chile are in South America. They are famous for their ancient history and amazing nature.",
+        "In Asia, Iran is a great destination for tourists. This beautiful country is a true paradise for people of the world. Each year, many people from all parts of the world visit Iran's attractions. Iran is a four-season country and tourists can find a range of activities from skiing to desert touring in different parts of the country. Many Muslims also travel to Iran and go to holy shrines in Mashhad, Qom and Shiraz. Iranian people are hospitable and kind to travelers and tourists."
+      ],
+      "questions": [
+        {
+          "id": "r4-q1",
+          "type": "mcq_general",
+          "prompt": "What is the main topic of the reading passage 'Iran: A True Paradise'?",
+          "options": [
+            "How to book international flight tickets online",
+            "The concept of world tourism and why Iran is an attractive four-season destination",
+            "The history of ancient Egyptian pyramids and kings",
+            "Traditional skiing techniques in European countries"
+          ],
+          "correctAnswer": 1,
+          "explanationFa": "موضوع و پیام اصلی متن درباره تعریف گردشگری جهانی و چرایی جذابیت و برتری ایران به عنوان یک مقصد چهارفصل و بهشت گردشگران است."
+        },
+        {
+          "id": "r4-q2",
+          "type": "true_false",
+          "prompt": "Holy shrines in Iran are destinations only for domestic tourists.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": 1,
+          "explanationFa": "غلط است؛ طبق پاراگراف سوم متن، مسلمانان از سراسر جهان به ایران سفر می‌کنند تا به زیارت اماکن متبرکه در مشهد، قم و شیراز بروند (Many Muslims also travel to Iran and go to holy shrines...)."
+        },
+        {
+          "id": "r4-q3",
+          "type": "reference",
+          "prompt": "In paragraph 2, who does the pronoun 'They' in 'They are famous for their ancient history and amazing nature' refer to?",
+          "options": [
+            "Egypt and African pyramids",
+            "Brazil, Peru and Chile (South American countries)",
+            "European tourist agencies",
+            "International airlines"
+          ],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر They در این جمله به کشورهای آمریکای جنوبی یعنی برزیل، پرو و شیلی اشاره دارد."
+        },
+        {
+          "id": "r4-q4",
+          "type": "context_meaning",
+          "prompt": "According to the passage, what is the best meaning of the word 'hospitable'?",
+          "options": [
+            "Friendly, warm, and generous to guests and travelers",
+            "Cold and unwilling to speak with strangers",
+            "Fast at driving in desert areas",
+            "Living in ancient historical towers"
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "کلمه hospitable به معنای مهمان‌نواز، خونگرم و گشاده‌رو در برخورد با مهمانان و گردشگران است."
+        },
+        {
+          "id": "r4-q5",
+          "type": "open_ended",
+          "prompt": "Why is Iran called a 'four-season country' and a 'true paradise' for international tourists?",
+          "correctAnswer": "Because tourists can find a wide range of activities from skiing in snowy mountains to desert touring at the same time, explore ancient historical sites, visit holy shrines, and experience the kindness of hospitable people.",
+          "requiredKeywordsForEvaluation": [
+            "four-season",
+            "nature",
+            "historical sites",
+            "skiing",
+            "desert",
+            "hospitable",
+            "holy shrines"
+          ],
+          "modelAnswerEn": "Iran is called a four-season country and a true paradise because visitors can enjoy both summer and winter activities like skiing and desert touring at the same time, explore rich historical sites and holy shrines, and meet kind and hospitable people.",
+          "modelAnswerFa": "ایران کشوری چهارفصل و بهشتی راستین نامیده شده زیرا مسافران می‌توانند همزمان از فعالیت‌های زمستانی و تابستانی مانند اسکی و کویرگردی لذت ببرند، از اماکن تاریخی و بارگاه‌های مقدس دیدن کنند و مهمان‌نوازی گرم مردم ایران را تجربه نمایند.",
+          "explanationFa": "پاسخ در پاراگراف پایانی متن تشریح شده است: تنوع اقلیمی همزمان، امکان اسکی تا کویرگردی، اماکن تاریخی، زیارتگاه‌های مشهد و قم و مهمان‌نوازی ویژه ایرانیان."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Modal Auxiliaries (can, may, must, should) & Prepositions of Time and Place",
+      "persianTopic": "افعال کمکی وجهی (can, may, must, should) و حروف اضافه زمان و مکان (in, at, on)",
+      "discovery": {
+        "sentenceA": {
+          "text": "We must not break any rule if we want to have a safe trip.",
+          "highlightedPart": "must not break",
+          "translation": "اگر سفری امن می‌خواهیم، نباید هیچ قانونی را نقض کنیم (الزام و ممنوعیت قطعی قانونی)."
+        },
+        "sentenceB": {
+          "text": "You can visit China, or you may stay in Iran for two more days.",
+          "highlightedPart": "can visit ... may stay",
+          "translation": "می‌توانید از چین بازدید کنید (توانایی/امکان)، یا شاید دو روز بیشتر در ایران بمانید (احتمال و اجازه)."
+        },
+        "ccqQuestions": [
+          {
+            "question": "کدام فعل کمکی نشان‌دهنده یک قانون و الزام حتمی است که سرپیچی از آن مجاز نیست؟",
+            "options": ["must (باید قطعی)", "should (بهتر است / توصیه)"],
+            "correctIndex": 0,
+            "explanationFa": "فعل must برای بیان ضرورت حتمی و قوانین الزامی به کار می‌رود؛ در حالی که should توصیه و پیشنهاد است."
+          },
+          {
+            "question": "آیا بعد از افعال مدال (can, may, must, should)، فعل اصلی پسوند -s یا -ing می‌گیرد؟",
+            "options": ["خیر، فعل همیشه به صورت ساده و دست‌نخورده (Base Form) می‌آید", "بله، پسوند ing اضافه می‌شود"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از افعال مدال همیشه شکل ساده و مصدر بدون to به کار می‌رود: can speak, must drive, should respect."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول طلایی افعال وجهی (Modals):\n۱. فاعل + can / may / must / should + فعل ساده (بدون to، بدون s و بدون ing).\n۲. منفی‌سازی مستقیماً با افزودن not بعد از مدال (cannot/can't, must not, shouldn't, may not)؛ سوالی کردن با بردن Modal به ابتدای جمله (May I sit down? / Can you swim?).",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "منفی کردن افعال مدال و تفکیک معنایی ممنوعیت از توصیه",
+          "stepByStepExplanationFa": [
+            "برای منفی کردن جمله، کلمه not مستقیماً به فعل کمکی اضافه می‌شود.",
+            "کلمه cannot معمولاً به هم چسبیده نوشته می‌شود و مخفف آن can't است (نشان‌دهنده عدم توانایی).",
+            "کلمه must not بیانگر «نهی و ممنوعیت اکید قانونی» است (مانند: You must not smoke here).",
+            "کلمه should not (shouldn't) بیانگر «توصیه اخلاقی به انجام ندادن» است (مانند: You shouldn't eat fast food)."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "Children (must not / cannot) eat too much fast food. It is bad for their health.",
+            "questionPrompt": "کدام مدال منفی برای بیان یک توصیه و پیشگیری جدی سلامت مناسب است؟",
+            "options": ["must not", "may not"],
+            "correctIndex": 0,
+            "explanationFa": "جمله کتاب (صفحه ۱۰۸) از must not برای تاکید بر مضر بودن فست فود برای کودکان استفاده کرده است."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "سوالی‌سازی با Modals و کارگاه حروف اضافه زمان و مکان (in / at / on)",
+          "stepByStepExplanationFa": [
+            "برای ساخت سوال بله/خیر، جای فاعل و فعل مدال عوض می‌شود: Should travelers protect nature? / May I use your pencil?",
+            "کارگاه حروف اضافه طلایی (صفحات ۱۱۰ و ۱۱۱ کتاب):",
+            "حرف اضافه in: سال‌ها (in 2026)، فصل‌ها (in summer)، ماه‌ها (in Shahrivar)، بخش‌های روز (in the morning)، شهرها و کشورها (in Iran, in Tehran).",
+            "حرف اضافه at: ساعت مشخص (at 8 o'clock)، شب و ظهر (at night, at noon, at midnight).",
+            "حرف اضافه on: روزهای هفته (on Friday)، تاریخ‌ها (on 5th of May)، تعطیلات مشخص (on Norooz holiday)، روی سطوح (on the desk)."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "We are leaving for Isfahan .......... Friday morning.",
+            "questionPrompt": "کدام حرف اضافه برای روزهای هفته مانند Friday صحیح است؟",
+            "options": ["on", "at"],
+            "correctIndex": 0,
+            "explanationFa": "برای روزهای هفته و ترکیب روز با زمان (Friday morning)، همیشه از حرف اضافه on استفاده می‌شود."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp4-1",
+            "prompt": "When people get the flu, they (must / can) visit a doctor.",
+            "options": ["must", "can"],
+            "correctIndex": 0,
+            "explanationFa": "هنگام بیماری، مراجعه به پزشک یک ضرورت و الزام عقلی است؛ بنابراین must صحیح است."
+          },
+          {
+            "id": "gp4-2",
+            "prompt": "There are many clouds in the sky. It (may / can) rain.",
+            "options": ["may", "can"],
+            "correctIndex": 0,
+            "explanationFa": "برای پیش‌بینی احتمال رویدادهای طبیعی از فعل وجهی may (احتمال وقوع) استفاده می‌شود."
+          },
+          {
+            "id": "gp4-3",
+            "prompt": "I like to travel to Spain. I (should / may) learn Spanish.",
+            "options": ["should", "may"],
+            "correctIndex": 0,
+            "explanationFa": "یادگیری زبان کشور مقصد یک توصیه و اقدام منطقی است و با should بیان می‌شود."
+          },
+          {
+            "id": "gp4-4",
+            "prompt": "He (must not / may not) do more exercises. His heart is very weak.",
+            "options": ["must not", "may not"],
+            "correctIndex": 0,
+            "explanationFa": "با توجه به ضعف شدید قلب، ورزش سنگین برای او اکیداً ممنوع و خطرناک است: must not."
+          },
+          {
+            "id": "gp4-5",
+            "prompt": "You (shouldn't / cannot) listen to loud music. It hurts your ears.",
+            "options": ["shouldn't", "cannot"],
+            "correctIndex": 0,
+            "explanationFa": "گوش ندادن به صدای بلند یک توصیه حفاظتی برای سلامتی گوش است: shouldn't."
+          }
+        ],
+        "production": {
+          "imageUrl": "historical-sites-ruins",
+          "imageDescriptionFa": "گردشگران در حال بازدید از محوطه باستانی تخت جمشید در روز جمعه هستند.",
+          "promptInstructionFa": "جمله‌ای با فعل مدال (must / should) و حرف اضافه زمان یا مکان (on / in) درباره حفظ آثار باستانی بنویسید.",
+          "targetKeywords": [
+            "tourists",
+            "must",
+            "should",
+            "protect",
+            "sites",
+            "historical",
+            "in",
+            "Iran"
+          ],
+          "modelSentence": "Tourists should protect historical sites when they travel in Iran.",
+          "persianTranslation": "گردشگران باید هنگامی که در ایران سفر می‌کنند از محوطه‌های تاریخی محافظت نمایند."
+        }
+      }
+    },
+    "listening": {
+      "title": "Listening & Pronunciation: Obligations and Contrastive Stress",
+      "preListeningQuestions": [
+        {
+          "id": "plq4-1",
+          "question": "Conversation 1: How is the man feeling?",
+          "options": ["He is OK", "He is sick"],
+          "correctIndex": 1
+        },
+        {
+          "id": "plq4-2",
+          "question": "Conversation 1: Who is coming to visit him?",
+          "options": ["his son", "his wife"],
+          "correctIndex": 0
+        },
+        {
+          "id": "plq4-3",
+          "question": "Conversation 2: What must the girl do before going out?",
+          "options": ["take her medicine", "watch television"],
+          "correctIndex": 0
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv4-1",
+          "title": "گفتگوی ۱: عیادت از بیمار و ضرورت استراحت",
+          "transcriptEn": "Doctor: How are you feeling today, Mr. Ahmadi?\nPatient: Not very well, doctor. I feel weak and have a cough.\nDoctor: You have caught a bad cold. You must rest at home for two days and take your medicine. Who is taking care of you?\nPatient: My son is coming this afternoon to stay with me.",
+          "transcriptFa": "پزشک: امروز چه احساسی دارید آقای احمدی؟\nبیمار: چندان خوب نیستم دکتر. احساس ضعف و سرفه دارم.\nپزشک: سرماخوردگی شدیدی گرفته‌اید. باید دو روز در خانه استراحت کنید و داروهایتان را بخورید. چه کسی از شما مراقبت می‌کند؟\nبیمار: پسرم امروز بعدازظهر می‌آید تا کنار من بماند."
+        },
+        {
+          "id": "conv4-2",
+          "title": "گفتگوی ۲: مصرف دارو و اجازه بازی در حیاط",
+          "transcriptEn": "Girl: Mom, may I go out and play with my friends in the yard?\nMother: Only if you take your medicine first. Remember, you had a fever yesterday.\nGirl: OK mom, I am taking it right now. Should I come back soon?\nMother: Yes, you must come home before sunset.",
+          "transcriptFa": "دختر: مامان، اجازه هست بروم بیرون و با دوستانم در حیاط بازی کنم؟\nمادر: فقط در صورتی که اول دارویت را بخوری. یادت باشد دیروز تب داشتی.\nدختر: چشم مامان، همین الان می‌خورم. آیا باید زود برگردم؟\nمادر: بله، قبل از غروب آفتاب باید به خانه بیایی."
+        }
+      ],
+      "pronunciation": {
+        "title": "تکیه تقابلی (Contrastive Stress)",
+        "ruleExplanationFa": "طبق صفحه ۱۱۴ کتاب، هنگامی که دو مفهوم، مکان یا زمان را با حرف ربط or مقایسه می‌کنید یا بر سر دو راهی انتخاب قرار می‌گیرید، هر دو کلمه را با تاکید و استرس صوتی بیشتری ادا می‌کنید تا تقابل میان آن‌ها مشخص شود.",
+        "examples": [
+          {
+            "sentence": "Do you leave on TUESDAY or THURSDAY?",
+            "intonation": "rising",
+            "patternDescriptionFa": "تکیه همزمان روی Tuesday و Thursday برای ایجاد تقابل بین دو روز."
+          },
+          {
+            "sentence": "Is the Taj Mahal in INDIA or CHINA?",
+            "intonation": "rising",
+            "patternDescriptionFa": "تکیه روی دو کشور India و China جهت شفاف‌سازی انتخاب بین دو گزینه."
+          },
+          {
+            "sentence": "Should I read the BOOKLET or the WEBSITE?",
+            "intonation": "rising",
+            "patternDescriptionFa": "تکیه تقابلی روی booklet و website برای پرسش از منبع اطلاعاتی."
+          },
+          {
+            "sentence": "Were you doing RESEARCH or STUDYING?",
+            "intonation": "rising",
+            "patternDescriptionFa": "تکیه تقابلی روی دو فعالیت research و studying."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq4-1",
+            "sentence": "Do you prefer traveling by TRAIN or PLANE?",
+            "correctIntonation": "rising",
+            "explanationFa": "در جملات دارای انتخاب دوگانه با or، تکیه تقابلی روی هر دو گزینه (TRAIN و PLANE) قرار می‌گیرد."
+          },
+          {
+            "id": "prq4-2",
+            "sentence": "Are you planning to visit ISFAHAN or SHIRAZ this summer?",
+            "correctIntonation": "rising",
+            "explanationFa": "تاکید تقابلی روی هر دو شهر انتخابی (ISFAHAN و SHIRAZ) قرار دارد."
+          },
+          {
+            "id": "prq4-3",
+            "sentence": "Should tourists buy TICKETS online or at the AGENCY?",
+            "correctIntonation": "rising",
+            "explanationFa": "استرس تقابلی روی TICKETS و AGENCY جهت تفکیک روش خرید قرار می‌گیرد."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "قیدهای حالت (Adverbs of Manner)",
+        "explanationFa": "صفت ویژگی‌های اسم را بیان می‌کند (Bahar is a careful driver)، اما قید حالت نحوه و چگونگی انجام فعل را توصیف می‌کند (She drives carefully). اکثر قیدهای حالت با افزودن پسوند -ly به صفت ساخته می‌شوند.",
+        "categories": [
+          {
+            "categoryEn": "Manner & Care",
+            "categoryFa": "نحوه و دقت در انجام کار",
+            "examples": ["carefully (با دقت)", "neatly (مرتب و تمیز)", "nicely (به‌خوبی)"]
+          },
+          {
+            "categoryEn": "Emotion & Attitude",
+            "categoryFa": "احساس، نگرش و رفتار",
+            "examples": ["happily (با خوشحالی)", "politely (با ادب)", "rudely (با بی‌ادبی)"]
+          },
+          {
+            "categoryEn": "Speed & Bravery",
+            "categoryFa": "سرعت، شجاعت و صبر",
+            "examples": ["bravely (شجاعانه)", "patiently (با صبوری)", "quickly (به‌سرعت)"]
+          },
+          {
+            "categoryEn": "Adjectives vs Adverbs",
+            "categoryFa": "مقایسه نقش صفت در برابر قید",
+            "examples": ["easy (صفت: آسان) ➔ easily (قید: به‌آسانی)", "quiet (صفت: آرام) ➔ quietly (قید: به آرامی)"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq4-1",
+            "prompt": "در جمله 'She speaks French beautifully'، کلمه 'beautifully' چه نقشی در جمله دارد؟",
+            "options": ["Adverb of manner (قید حالت)", "Adjective (صفت)", "Subject (فاعل)", "Modal verb (فعل مدال)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه beautifully چگونگی و نحوه صحبت کردن (فعل speaks) را توصیف می‌کند و قید حالت است."
+          },
+          {
+            "id": "wq4-2",
+            "prompt": "کدام گزینه یک «صفت» است نه «قید»؟",
+            "options": ["careful", "carefully", "politely", "bravely"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه careful صفت است و اسم را توصیف می‌کند؛ بقیه گزینه‌ها دارای پسوند -ly و قید هستند."
+          },
+          {
+            "id": "wq4-3",
+            "prompt": "The students were waiting .......... for the school bus.",
+            "options": ["patiently (با صبوری)", "patient (صبور)"],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف نحوه منتظر ماندن (waiting)، به قید حالت patiently نیاز داریم."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "قواعد املایی ساخت قید با -ly و بی‌قاعده‌ها",
+        "rulesSummaryFa": "قاعده کلی: صفت + ly ➔ قید (quick ➔ quickly). اما به دو نکته املایی مهم توجه کنید: ۱. صفت‌های با y پسوند ily می‌گیرند (easy ➔ easily). ۲. صفت‌های با ble به bly ختم می‌شوند (probable ➔ probably). همچنین ۴ قید بی‌قاعده از قاعده -ly پیروی نمی‌کنند!",
+        "regularPairs": [
+          { "singular": "quick ➔ سریع (صفت)", "plural": "quickly ➔ به‌سرعت (قید)" },
+          { "singular": "easy ➔ آسان (صفت)", "plural": "easily ➔ به‌آسانی (قید با ily)" },
+          { "singular": "probable ➔ محتمل (صفت)", "plural": "probably ➔ احتمالاً (قید با bly)" },
+          { "singular": "polite ➔ مودب (صفت)", "plural": "politely ➔ مودبانه (قید)" }
+        ],
+        "irregularPairs": [
+          { "singular": "good (صفت: خوب)", "plural": "well (قید: به‌خوبی - نه goodly ❌)" },
+          { "singular": "fast (صفت: سریع)", "plural": "fast (قید: به‌سرعت - نه fastly ❌)" },
+          { "singular": "hard (صفت: سخت)", "plural": "hard (قید: با سختی و تلاش - نه hardly ❌)" },
+          { "singular": "late (صفت: دیر)", "plural": "late (قید: دیرقت - نه lately ❌)" }
+        ],
+        "exercise": [
+          {
+            "id": "spe4-1",
+            "prompt": "Hooshang came .......... to the class yesterday. (late)",
+            "options": ["late", "lately"],
+            "correctIndex": 0,
+            "explanationFa": "قید حالت کلمه late خودش است (late)؛ کلمه lately به معنای «اخیراً» است و در این بافت غلط است."
+          },
+          {
+            "id": "spe4-2",
+            "prompt": "The policeman answered the tourists .......... . (polite)",
+            "options": ["politely", "polite"],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف نحوه پاسخ دادن افسر پلیس (فعل answered)، از قید حالت politely استفاده می‌شود."
+          },
+          {
+            "id": "spe4-3",
+            "prompt": "Can you talk .......... , please? The baby is sleeping. (quiet)",
+            "options": ["quietly", "quiet"],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف چگونگی صحبت کردن (talk)، قید quietly صحیح است."
+          },
+          {
+            "id": "spe4-4",
+            "prompt": "Behrooz tried .......... to answer all questions. (hard)",
+            "options": ["hard", "hardly"],
+            "correctIndex": 0,
+            "explanationFa": "قید حالت فعل تلاش کردن hard است؛ hardly به معنای «به‌ندرت و به سختی» می‌باشد."
+          },
+          {
+            "id": "spe4-5",
+            "prompt": "My teacher speaks French very .......... . (good)",
+            "options": ["well", "good"],
+            "correctIndex": 0,
+            "explanationFa": "قید بی‌قاعده صفت good کلمه well است."
+          },
+          {
+            "id": "spe4-6",
+            "prompt": "The people of the town .......... helped poor families. (generous)",
+            "options": ["generously", "generous"],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف نحوه کمک کردن (helped)، قید سخاوتمندانه generously صحیح است."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "مقایسه کاربردی صفت و قید در بافت جمله",
+        "explanationFa": "صفت بعد از افعال to be یا قبل از اسم می‌آید؛ اما قید حالت برای توضیح چگونگی رخ دادن فعل جمله به کار می‌رود.",
+        "examples": [
+          { "common": "صفت: Bahar is a careful driver.", "proper": "قید: She drives carefully." },
+          { "common": "صفت: Ali is polite to everyone.", "proper": "قید: He talks politely." },
+          { "common": "صفت: It is an easy language.", "proper": "قید: We can learn it easily." }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pnb4-1",
+            "sentenceWithBlank": "The firefighters went into the burning building (bravely / brave).",
+            "options": ["bravely", "brave"],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف نحوه وارد شدن آتش‌نشانان به ساختمان، قید شجاعانه (bravely) صحیح است."
+          },
+          {
+            "id": "pnb4-2",
+            "sentenceWithBlank": "My uncle is a good painter; he painted my room (nicely / nice).",
+            "options": ["nicely", "nice"],
+            "correctIndex": 0,
+            "explanationFa": "رنگ‌آمیزی اتاق (فعل painted) با قید حالت nicely توصیف می‌شود."
+          },
+          {
+            "id": "pnb4-3",
+            "sentenceWithBlank": "Soheil is polite; he never talks to his parents (rudely / rude).",
+            "options": ["rudely", "rude"],
+            "correctIndex": 0,
+            "explanationFa": "نحوه صحبت کردن با والدین با قید منفی rudely (با گستاخی) بیان می‌شود."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تکمیل و ارزیابی ساختار قیدها و نقش‌های دستوری",
+        "explanationFa": "ارزیابی انتخاب صفت یا قید در جایگاه دستوری مناسب جملات کتاب درسی.",
+        "markersList": [
+          {
+            "type": "Adverbs of Manner with -ly",
+            "typeFa": "قیدهای حالت باقاعده با -ly",
+            "items": ["carefully", "politely", "easily", "bravely"],
+            "exampleSentence": "She looked at the child and asked politely: 'What is your name?'"
+          },
+          {
+            "type": "Golden Irregular Adverbs",
+            "typeFa": "قیدهای بی‌قاعده طلایی",
+            "items": ["fast", "hard", "late", "well"],
+            "exampleSentence": "He ran very fast and won the race."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nmq4-1",
+            "prompt": "Which sentence contains a grammatical error?",
+            "options": [
+              "He drives very fastly on the highway.",
+              "He drives very fast on the highway."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه fastly در زبان انگلیسی وجود ندارد؛ قید کلمه fast همان fast است."
+          },
+          {
+            "id": "nmq4-2",
+            "prompt": "Sara is a .......... runner and she always runs .......... .",
+            "options": [
+              "quick / quickly",
+              "quickly / quick",
+              "quick / quick"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "جای خالی اول قبل از اسم runner صفت quick می‌خواهد و جای خالی دوم بعد از فعل runs قید حالت quickly طلب می‌کند."
+          },
+          {
+            "id": "nmq4-3",
+            "prompt": "Why is 'She plays tennis good' incorrect?",
+            "options": [
+              "Because 'good' is an adjective, and we need the adverb 'well' to describe the verb 'plays'.",
+              "Because tennis is an uncountable noun.",
+              "Because plays requires an -ed ending."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "برای توصیف چگونگی بازی کردن (فعل plays)، باید از قید بی‌قاعده well استفاده شود نه صفت good."
+          }
+        ]
+      }
+    }
+  }
+}

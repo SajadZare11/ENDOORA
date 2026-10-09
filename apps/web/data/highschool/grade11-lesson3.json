@@ -1,0 +1,974 @@
+{
+  "id": "vision-2-lesson-3",
+  "grade": 11,
+  "bookTitle": "Vision 2",
+  "lessonNumber": 3,
+  "slug": "grade-11/lesson-3",
+  "title": {
+    "en": "Art and Culture",
+    "fa": "هنر و فرهنگ"
+  },
+  "cefrLevel": "B1",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr11-3-1",
+        "word": "carpet",
+        "phonetic": "/ˈkɑː.pɪt/",
+        "persianMeaning": "فرش و قالی دست‌باف ایرانی",
+        "imagePromptOrUrl": "persian-carpet-rug",
+        "options": ["carpet", "pottery", "metalwork"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The little boy was sleeping peacefully on the soft and warm carpet.",
+          "fa": "پسر کوچک با آرامش روی فرش نرم و گرم خوابیده بود."
+        }
+      },
+      {
+        "id": "gr11-3-2",
+        "word": "pottery",
+        "phonetic": "/ˈpɒt.ər.i/",
+        "persianMeaning": "سفالگری و ظروف سنتی سفالی",
+        "imagePromptOrUrl": "pottery-cup-meibod",
+        "options": ["calligraphy", "pottery", "painting"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "I bought this beautiful pottery cup during my trip to Meibod.",
+          "fa": "من در طول سفرم به میبد این فنجان سفالی زیبا را خریدم."
+        }
+      },
+      {
+        "id": "gr11-3-3",
+        "word": "tilework",
+        "phonetic": "/ˈtaɪl.wɜːk/",
+        "persianMeaning": "کاشی‌کاری سنتی مساجد و بناهای تاریخی",
+        "imagePromptOrUrl": "tilework-sheikh-lotfollah",
+        "options": ["woodwork", "tilework", "carpet"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "There are lots of magnificent tileworks in Sheikh Lotfollah Mosque in Isfahan.",
+          "fa": "کاشی‌کاری‌های باشکوه فراوانی در مسجد شیخ لطف‌الله اصفهان وجود دارد."
+        }
+      },
+      {
+        "id": "gr11-3-4",
+        "word": "painting",
+        "phonetic": "/ˈpeɪn.tɪŋ/",
+        "persianMeaning": "نقاشی و نگارگری سنتی هنرمندان",
+        "imagePromptOrUrl": "farshchian-painting-art",
+        "options": ["painting", "calligraphy", "pottery"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "There is an excellent collection of Farshchian's paintings in Astan Ghods Museum.",
+          "fa": "مجموعه‌ای عالی از نقاشی‌های استاد فرشچیان در موزه آستان قدس وجود دارد."
+        }
+      },
+      {
+        "id": "gr11-3-5",
+        "word": "calligraphy",
+        "phonetic": "/kəˈlɪɡ.rə.fi/",
+        "persianMeaning": "خوشنویسی و خطاطی اشعار کهن",
+        "imagePromptOrUrl": "calligraphy-nezami-poem",
+        "options": ["tilework", "woodwork", "calligraphy"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Can you read that calligraphy? It seems to be one of Nezami's famous poems.",
+          "fa": "آیا می‌توانی آن خطاطی را بخوانی؟ به نظر می‌رسد یکی از اشعار مشهور نظامی باشد."
+        }
+      },
+      {
+        "id": "gr11-3-6",
+        "word": "handicrafts",
+        "phonetic": "/ˈhæn.di.krɑːfts/",
+        "persianMeaning": "صنایع دستی و هنرهای بومی سنتی",
+        "imagePromptOrUrl": "handicrafts-iran-souvenir",
+        "options": ["handicrafts", "factories", "machines"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Tourists love to buy Iranian handicrafts as souvenirs for their families.",
+          "fa": "گردشگران عاشق خرید صنایع دستی ایران به عنوان سوغاتی برای خانواده‌هایشان هستند."
+        }
+      },
+      {
+        "id": "gr11-3-7",
+        "word": "woodwork",
+        "phonetic": "/ˈwʊd.wɜːk/",
+        "persianMeaning": "منبت‌کاری و صنایع چوبی دست‌ساز",
+        "imagePromptOrUrl": "woodwork-carving-craft",
+        "options": ["metalwork", "woodwork", "pottery"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iranian artists produce unique woodwork items using natural walnut wood.",
+          "fa": "هنرمندان ایرانی با استفاده از چوب گردوی طبیعی دست‌سازه‌های چوبی منحصربه‌فردی می‌سازند."
+        }
+      },
+      {
+        "id": "gr11-3-8",
+        "word": "metalwork",
+        "phonetic": "/ˈmet.əl.wɜːk/",
+        "persianMeaning": "قلم‌زنی و صنایع فلزی سنتی",
+        "imagePromptOrUrl": "metalwork-copper-craft",
+        "options": ["metalwork", "painting", "calligraphy"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Traditional metalwork on copper plates requires incredible patience and skill.",
+          "fa": "قلم‌زنی و هنر فلزکاری سنتی روی بشقاب‌های مسی نیازمند صبر و مهارتی شگفت‌انگیز است."
+        }
+      },
+      {
+        "id": "gr11-3-9",
+        "word": "cheerful",
+        "phonetic": "/ˈtʃɪə.fəl/",
+        "persianMeaning": "شادمان و پرنشاط در برابر زیبایی هنر",
+        "imagePromptOrUrl": "cheerful-happy-art",
+        "options": ["bored", "cheerful", "worried"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Looking at bright Iranian artworks makes visitors feel cheerful and lively.",
+          "fa": "تماشای آثار هنری درخشان ایرانی باعث می‌شود بازدیدکنندگان احساس شادی و نشاط کنند."
+        }
+      },
+      {
+        "id": "gr11-3-10",
+        "word": "proud and hopeful",
+        "phonetic": "/praʊd ənd ˈhəʊp.fəl/",
+        "persianMeaning": "مفتخر و امیدوار به فرهنگ و تمدن ملی",
+        "imagePromptOrUrl": "proud-hopeful-culture",
+        "options": ["uncertain", "proud and hopeful", "tired"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "We feel proud and hopeful when we see Persian artworks in world-famous museums.",
+          "fa": "هنگامی که آثار هنری ایران را در موزه‌های مشهور جهان می‌بینیم، احساس افتخار و امیدواری می‌کنیم."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "Buying Iranian Handicrafts (خرید صنایع دستی ایران)",
+      "situationFa": "یک گردشگر خارجی برای خرید سوغاتی به فروشگاه و کارگاه خانوادگی رضا می‌آید و رضا درباره فرش، ترمه، گبه و تخفیف خرید به او توضیح می‌دهد.",
+      "vocabulary": [
+        {
+          "id": "cb11-3-1",
+          "word": "hand-made",
+          "phonetic": "/ˌhændˈmeɪd/",
+          "persianMeaning": "دست‌ساز و تولید سنتی بدون ماشین‌آلات صنعتی",
+          "imagePromptOrUrl": "handmade-products-craft",
+          "options": ["machine-made", "hand-made", "digital"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Here you can find a range of Iranian hand-made products.",
+            "fa": "اینجا می‌توانید مجموعه‌ای از محصولات دست‌ساز ایرانی را پیدا کنید."
+          }
+        },
+        {
+          "id": "cb11-3-2",
+          "word": "Termeh",
+          "phonetic": "/tɛrˈmeɪ/",
+          "persianMeaning": "ترمه نفیس زربافت اصیل اصفهان و یزد",
+          "imagePromptOrUrl": "termeh-isfahan-silk",
+          "options": ["Termeh", "metal", "plastic"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "An Isfahan Termeh is an elegant and traditional Persian fabric.",
+            "fa": "ترمه اصفهان یک پارچه سنتی و بسیار برازنده ایرانی است."
+          }
+        },
+        {
+          "id": "cb11-3-3",
+          "word": "Gabbeh",
+          "phonetic": "/ɡæbˈeɪ/",
+          "persianMeaning": "گبه سنتی قشقایی با طرح‌های جذاب عشایری",
+          "imagePromptOrUrl": "gabbeh-qashqai-nomad",
+          "options": ["Gabbeh", "pottery", "tile"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "This Qashqai Gabbeh has warm colors and natural wool designs.",
+            "fa": "این گبه قشقایی رنگ‌هایی گرم و طرح‌هایی از پشم طبیعی دارد."
+          }
+        },
+        {
+          "id": "cb11-3-4",
+          "word": "touching",
+          "phonetic": "/ˈtʌtʃ.ɪŋ/",
+          "persianMeaning": "دلنشین، احساس‌برانگیز و تأثیرگذار",
+          "imagePromptOrUrl": "touching-emotional-gabbeh",
+          "options": ["boring", "touching", "ugly"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Wow! How touching this handmade Gabbeh is!",
+            "fa": "واو! چقدر این گبه دست‌ساز دلنشین و تأثیرگذار است!"
+          }
+        },
+        {
+          "id": "cb11-3-5",
+          "word": "appreciate",
+          "phonetic": "/əˈpriː.ʃi.eɪt/",
+          "persianMeaning": "ارزش قائل شدن و قدردانی کردن از فرهنگ و هنر",
+          "imagePromptOrUrl": "appreciate-culture-hand",
+          "options": ["forget", "damage", "appreciate"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "I really appreciate the rich culture and ancient art of Iran.",
+            "fa": "من واقعاً برای فرهنگ غنی و هنر باستانی ایران ارزش و احترام قائلم."
+          }
+        },
+        {
+          "id": "cb11-3-6",
+          "word": "discount",
+          "phonetic": "/ˈdɪs.kaʊnt/",
+          "persianMeaning": "تخفیف در قیمت کالا",
+          "imagePromptOrUrl": "discount-percent-shop",
+          "options": ["tax", "discount", "debt"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "If you buy more than 100 dollars, you will get a 20 percent discount.",
+            "fa": "اگر بیش از ۱۰۰ دلار خرید کنید، ۲۰ درصد تخفیف دریافت خواهید کرد."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "c11-3-1",
+          "speaker": "Reza",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍💼",
+          "enText": "How can I help you, sir?",
+          "faText": "چطور می‌توانم کمکتان کنم، قربان؟",
+          "orderIndex": 1
+        },
+        {
+          "id": "c11-3-2",
+          "speaker": "Tourist",
+          "speakerRole": "tourist",
+          "speakerAvatar": "🧔‍♂️",
+          "enText": "I am looking for some Iranian handicrafts.",
+          "faText": "من به دنبال تعدادی از صنایع دستی ایرانی هستم.",
+          "orderIndex": 2
+        },
+        {
+          "id": "c11-3-3",
+          "speaker": "Reza",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍💼",
+          "enText": "Here you can find a range of Iranian hand-made products, from carpets to pottery and tilework, but we don't sell metalwork.",
+          "faText": "اینجا می‌توانید طیفی از محصولات دست‌ساز ایرانی را بیابید، از فرش گرفته تا سفالگری و کاشی‌کاری، اما قلم‌زنی فلزی نمی‌فروشیم.",
+          "orderIndex": 3
+        },
+        {
+          "id": "c11-3-4",
+          "speaker": "Tourist",
+          "speakerRole": "tourist",
+          "speakerAvatar": "🧔‍♂️",
+          "enText": "I'd like to buy a Persian carpet, but it seems too expensive.",
+          "faText": "مایلم یک فرش ایرانی بخرم، اما به نظر بیش از حد گران می‌آید.",
+          "orderIndex": 4
+        },
+        {
+          "id": "c11-3-5",
+          "speaker": "Reza",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍💼",
+          "enText": "The price depends on its size. Instead, you can take an Isfahan Termeh or a Qashqai Gabbeh.",
+          "faText": "قیمت به اندازه‌اش بستگی دارد. به جای آن می‌توانید یک ترمه اصفهان یا یک گبه قشقایی ببرید.",
+          "orderIndex": 5
+        },
+        {
+          "id": "c11-3-6",
+          "speaker": "Tourist",
+          "speakerRole": "tourist",
+          "speakerAvatar": "🧔‍♂️",
+          "enText": "Wow! How touching this Gabbeh is! How much is it?",
+          "faText": "واو! چقدر این گبه دلنشین و زیباست! قیمتش چقدر است؟",
+          "orderIndex": 6
+        },
+        {
+          "id": "c11-3-7",
+          "speaker": "Reza",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍💼",
+          "enText": "It is 85 dollars. If you buy more than 100 dollars, you'll get a 20 percent discount. You can take this calligraphic tile for 30 dollars.",
+          "faText": "۸۵ دلار است. اگر بیش از ۱۰۰ دلار خرید کنید، ۲۰ درصد تخفیف می‌گیرید. می‌توانید این کاشی خطاطی را هم به قیمت ۳۰ دلار بردارید.",
+          "orderIndex": 7
+        },
+        {
+          "id": "c11-3-8",
+          "speaker": "Tourist",
+          "speakerRole": "tourist",
+          "speakerAvatar": "🧔‍♂️",
+          "enText": "Well done! How lucky you are to work in such a lovely shop. I really appreciate the culture and art of Iran.",
+          "faText": "آفرین! چقدر خوش‌شانسی که در چنین مغازه دوست‌داشتنی کار می‌کنی. من واقعاً برای فرهنگ و هنر ایران ارزش قائلم.",
+          "orderIndex": 8
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw11-3-1",
+        "word": "decorative",
+        "phonetic": "/ˈdek.ər.ə.tɪv/",
+        "persianMeaning": "تزئینی و دکوراتیو برای زیبایی محیط",
+        "imagePromptOrUrl": "decorative-wall-clock",
+        "options": ["decorative", "natural", "useless"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "My aunt bought a decorative wall clock made by local craftsmen.",
+          "fa": "عمه‌ام یک ساعت دیواری تزئینی خرید که توسط صنعتگران محلی ساخته شده بود."
+        }
+      },
+      {
+        "id": "nw11-3-2",
+        "word": "craftsmen",
+        "phonetic": "/ˈkrɑːfts.mən/",
+        "persianMeaning": "استادکاران و صنعتگران صنایع دستی",
+        "imagePromptOrUrl": "craftsmen-hardworking",
+        "options": ["pilots", "craftsmen", "engineers"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iranian craftsmen and craftswomen are very hard-working people.",
+          "fa": "مردان و زنان صنعتگر ایرانی مردمانی بسیار سخت‌کوش هستند."
+        }
+      },
+      {
+        "id": "nw11-3-3",
+        "word": "vast",
+        "phonetic": "/vɑːst/",
+        "persianMeaning": "بسیار وسیع، پهناور و گسترده",
+        "imagePromptOrUrl": "vast-country-map",
+        "options": ["tiny", "vast", "narrow"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Iran is a vast country in Southwest Asia with diverse climates.",
+          "fa": "ایران کشوری پهناور در جنوب غربی آسیا با آب‌وهواهای متنوع است."
+        }
+      },
+      {
+        "id": "nw11-3-4",
+        "word": "valuable metals",
+        "phonetic": "/ˈvæl.jə.bəl ˈmet.əlz/",
+        "persianMeaning": "فلزات گرانبها و باارزش مانند طلا و نقره",
+        "imagePromptOrUrl": "valuable-metals-gold",
+        "options": ["cheap stones", "valuable metals", "wood pieces"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Gold and silver are valuable metals used in traditional Persian jewelry.",
+          "fa": "طلا و نقره فلزاتی گرانبها هستند که در جواهرات سنتی ایرانی به کار می‌روند."
+        }
+      },
+      {
+        "id": "nw11-3-5",
+        "word": "fingerprint",
+        "phonetic": "/ˈfɪŋ.ɡə.prɪnt/",
+        "persianMeaning": "اثر انگشت انحصاری و منحصربه‌فرد",
+        "imagePromptOrUrl": "fingerprint-unique-id",
+        "options": ["footprint", "handshake", "fingerprint"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Each person's fingerprint is unique in the whole world.",
+          "fa": "اثر انگشت هر فرد در تمام جهان منحصربه‌فرد و یکتاست."
+        }
+      },
+      {
+        "id": "nw11-3-6",
+        "word": "unique",
+        "phonetic": "/juːˈniːk/",
+        "persianMeaning": "بی‌همتا، منحصربه‌فرد و تک",
+        "imagePromptOrUrl": "fingerprint-unique-id",
+        "options": ["ordinary", "unique", "common"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Persian silk carpets have unique patterns that you cannot find anywhere else.",
+          "fa": "فرش‌های ابریشمی ایرانی طرح‌های بی‌همتایی دارند که در هیچ جای دیگر نمی‌یابید."
+        }
+      },
+      {
+        "id": "nw11-3-7",
+        "word": "diversity",
+        "phonetic": "/daɪˈvɜː.sə.ti/",
+        "persianMeaning": "تنوع زیستی، فرهنگی یا زبانی",
+        "imagePromptOrUrl": "animal-diversity-nature",
+        "options": ["similarity", "diversity", "loneliness"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The animal and plant diversity of Lorestan province is truly amazing.",
+          "fa": "تنوع جانوری و گیاهی استان لرستان واقعاً شگفت‌انگیز است."
+        }
+      },
+      {
+        "id": "nw11-3-8",
+        "word": "weave a rug",
+        "phonetic": "/wiːv ə rʌɡ/",
+        "persianMeaning": "گلیم، جاجیم یا قالی بافتن بر روی دار قالی",
+        "imagePromptOrUrl": "weave-rug-loom",
+        "options": ["buy a car", "weave a rug", "paint a wall"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The nomadic woman knows how to weave a rug with natural wool.",
+          "fa": "آن بانوی عشایری می‌داند چگونه با پشم طبیعی گلیم ببافد."
+        }
+      },
+      {
+        "id": "nw11-3-9",
+        "word": "custom",
+        "phonetic": "/ˈkʌs.təm/",
+        "persianMeaning": "رسم، سنت و آیین کهن یک منطقه",
+        "imagePromptOrUrl": "custom-tradition-local",
+        "options": ["custom", "law", "accident"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "My uncle is deeply interested in old local customs of Iranian villages.",
+          "fa": "عمویم عمیقاً به آداب و رسوم کهن محلی روستاهای ایران علاقه‌مند است."
+        }
+      },
+      {
+        "id": "nw11-3-10",
+        "word": "identity",
+        "phonetic": "/aɪˈden.tə.ti/",
+        "persianMeaning": "هویت و چیستی اساسی یک شخص یا ملت",
+        "imagePromptOrUrl": "identity-flag-culture",
+        "options": ["appearance", "identity", "number"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Handicrafts and national language represent the cultural identity of our people.",
+          "fa": "صنایع دستی و زبان ملی، هویت فرهنگی ملت ما را نشان می‌دهند."
+        }
+      },
+      {
+        "id": "nw11-3-11",
+        "word": "reflect",
+        "phonetic": "/rɪˈflekt/",
+        "persianMeaning": "منعکس کردن، جلوه‌گر ساختن و نشان دادن",
+        "imagePromptOrUrl": "reflect-mirror-shows",
+        "options": ["hide", "reflect", "break"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "This poem beautifully reflects the poet's love of nature and truth.",
+          "fa": "این شعر به زیبایی عشق شاعر به طبیعت و حقیقت را منعکس می‌سازد."
+        }
+      },
+      {
+        "id": "nw11-3-12",
+        "word": "humankind",
+        "phonetic": "/ˌhjuː.mənˈkaɪnd/",
+        "persianMeaning": "بشریت و تمام نسل انسان‌ها",
+        "imagePromptOrUrl": "humankind-world-people",
+        "options": ["humankind", "animals", "plants"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The history of humankind is closely connected to the history of art.",
+          "fa": "تاریخ بشریت پیوندی نزدیک با تاریخ هنر دارد."
+        }
+      },
+      {
+        "id": "nw11-3-13",
+        "word": "appreciate",
+        "phonetic": "/əˈpriː.ʃi.eɪt/",
+        "persianMeaning": "قدردانی کردن، ارزش قائل شدن و تحسین کردن",
+        "imagePromptOrUrl": "appreciate-culture-hand",
+        "options": ["forget", "appreciate", "destroy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Each conscious society appreciates the value of its art and culture.",
+          "fa": "هر جامعه آگاهی ارزش هنر و فرهنگ خود را ارج می‌نهد."
+        }
+      },
+      {
+        "id": "nw11-3-14",
+        "word": "start ↔ finish (antonyms)",
+        "phonetic": "/stɑːt/ ↔ /ˈfɪn.ɪʃ/",
+        "persianMeaning": "متضادهای ریشه‌ای: شروع کردن در برابر پایان دادن",
+        "imagePromptOrUrl": "antonym-start-finish",
+        "options": ["start / begin", "start / finish", "start / produce"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "We start the handicraft project in morning and finish it by sunset.",
+          "fa": "ما پروژه صنایع دستی را صبح آغاز می‌کنیم و تا غروب آن را به پایان می‌رسانیم."
+        }
+      },
+      {
+        "id": "nw11-3-15",
+        "word": "cheap ↔ expensive (antonyms)",
+        "phonetic": "/tʃiːp/ ↔ /ɪkˈspen.sɪv/",
+        "persianMeaning": "متضادهای قیمتی: ارزان در برابر گران‌قیمت",
+        "imagePromptOrUrl": "antonym-cheap-expensive",
+        "options": ["cheap / famous", "cheap / expensive", "cheap / interesting"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A small tile is cheap, but a large handmade silk carpet is expensive.",
+          "fa": "یک کاشی کوچک ارزان است، اما یک قالی ابریشمی بزرگ دست‌باف گران‌قیمت است."
+        }
+      },
+      {
+        "id": "nw11-3-16",
+        "word": "like ↔ dislike (prefix antonyms)",
+        "phonetic": "/laɪk/ ↔ /dɪsˈlaɪk/",
+        "persianMeaning": "متضادهای پیشوندی: دوست داشتن در برابر بیزار بودن با پیشوند dis-",
+        "imagePromptOrUrl": "antonym-like-dislike",
+        "options": ["like / dislike", "like / uncurious", "like / careful"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Most people like traditional art, but some people dislike modern styles.",
+          "fa": "بیشتر مردم هنر سنتی را دوست دارند، اما برخی افراد سبک‌های مدرن را نمی‌پسندند."
+        }
+      },
+      {
+        "id": "nw11-3-17",
+        "word": "famous = well-known (synonyms)",
+        "phonetic": "/ˈfeɪ.məs/ = /ˌwelˈnəʊn/",
+        "persianMeaning": "مترادف‌های متنی ریدینگ: مشهور و پرآوازه در سراسر جهان",
+        "imagePromptOrUrl": "synonym-famous-wellknown",
+        "options": ["famous / unknown", "famous / well-known", "famous / ugly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Persian miniature art is well-known and famous among international artists.",
+          "fa": "هنر مینیاتور ایرانی در میان هنرمندان بین‌المللی مشهور و شناخته‌شده است."
+        }
+      },
+      {
+        "id": "nw11-3-18",
+        "word": "ugly ↔ beautiful (antonyms)",
+        "phonetic": "/ˈʌɡ.li/ ↔ /ˈbjuː.tɪ.fəl/",
+        "persianMeaning": "متضادهای زیبایی‌شناختی: زشت در برابر زیبا و چشم‌نواز",
+        "imagePromptOrUrl": "farshchian-painting-art",
+        "options": ["ugly / dark", "ugly / beautiful", "ugly / vast"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Art turns simple materials into beautiful objects, leaving ugly things behind.",
+          "fa": "هنر مواد ساده را به اشیایی زیبا تبدیل می‌کند و چیزهای نازیبا را پشت سر می‌گذارد."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Art, Culture and Society",
+      "persianTitle": "هنر، فرهنگ و جامعه",
+      "passageTextEn": "Art is what people create with imagination and skill. As a part of culture, it shows the way of life and identity of a nation and reflects the history of a society. In fact, the history of humankind is the history of art. If we want to know a country or a nation well, we should study its art.\n\nHandicrafts are good examples of the art and culture of a country. By handicrafts, we mean making decorative items in a skillful way using our hands. Each country and culture has its own handicrafts.\n\nMaking and selling handicrafts are good ways to help a country's economy and introduce its culture to other nations. Many people of the world produce handicrafts and sell them to tourists. In some Asian countries a part of the country's income comes from making and selling handicrafts.\n\nIran has a five-thousand-year-old history of artistic works and handicrafts including pottery, painting, calligraphy, rugs and carpets, etc. If you travel across Iran, you'll get back home with excellent handicrafts as souvenirs for your family and friends.\n\nIranian art is also quite famous all around the world. There are very excellent collections of Persian art in many important museums of the world. If we want to name countries with richest art and cultural diversity, Iran is among them. Persian art is famous in the world for reflecting moral and social values of Iranian people and the natural beauty of this vast country.\n\nIranian craftsmen and craftswomen are famous for producing very unique artworks from wood, metal and other simple materials around them. Many people of the world appreciate the art and skill of a young Iranian girl who weaves a beautiful silk carpet in a small village of Azarbaijan or Kordestan. When tourists buy Persian rugs or carpets, they take a part of Iranian art and culture to their homelands.",
+      "passageParagraphs": [
+        "Art is what people create with imagination and skill. As a part of culture, it shows the way of life and identity of a nation and reflects the history of a society. In fact, the history of humankind is the history of art. If we want to know a country or a nation well, we should study its art.",
+        "Handicrafts are good examples of the art and culture of a country. By handicrafts, we mean making decorative items in a skillful way using our hands. Each country and culture has its own handicrafts.",
+        "Making and selling handicrafts are good ways to help a country's economy and introduce its culture to other nations. Many people of the world produce handicrafts and sell them to tourists. In some Asian countries a part of the country's income comes from making and selling handicrafts.",
+        "Iran has a five-thousand-year-old history of artistic works and handicrafts including pottery, painting, calligraphy, rugs and carpets, etc. If you travel across Iran, you'll get back home with excellent handicrafts as souvenirs for your family and friends.",
+        "Iranian art is also quite famous all around the world. There are very excellent collections of Persian art in many important museums of the world. If we want to name countries with richest art and cultural diversity, Iran is among them. Persian art is famous in the world for reflecting moral and social values of Iranian people and the natural beauty of this vast country.",
+        "Iranian craftsmen and craftswomen are famous for producing very unique artworks from wood, metal and other simple materials around them. Many people of the world appreciate the art and skill of a young Iranian girl who weaves a beautiful silk carpet in a small village of Azarbaijan or Kordestan. When tourists buy Persian rugs or carpets, they take a part of Iranian art and culture to their homelands."
+      ],
+      "questions": [
+        {
+          "id": "rq11-3-1",
+          "type": "mcq_general",
+          "prompt": "What is the primary message and main purpose of this reading passage?",
+          "options": [
+            "Art reflects the identity, culture, and economy of nations, and Persian handicrafts represent five thousand years of rich artistic heritage.",
+            "Handicrafts are only made in small Asian villages with no economic value for governments.",
+            "Tourists only buy metalwork and pottery when visiting historical museums around the world.",
+            "Modern machines have completely replaced Iranian craftsmen and traditional carpet weavers."
+          ],
+          "correctIndex": 0,
+          "explanationFa": "متن بر بازتاب هویت، تاریخ، فرهنگ و تأثیر اقتصادی صنایع دستی و پیشینه ۵۰۰۰ ساله هنر ایران تأکید دارد."
+        },
+        {
+          "id": "rq11-3-2",
+          "type": "true_false",
+          "prompt": "Making and selling handicrafts can help a country's national economy and generate income from tourism.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctIndex": 0,
+          "explanationFa": "در پاراگراف سوم متن صراحتاً آمده است: Making and selling handicrafts are good ways to help a country's economy."
+        },
+        {
+          "id": "rq11-3-3",
+          "type": "reference",
+          "prompt": "طبق استراتژی مرجع ضمایر (Recognizing Reference Words صفحه ۹۱)، ضمیر 'them' در خط سوم پاراگراف ۳ به چه کلمه‌ای برمی‌گردد؟\n\n'Many people of the world produce handicrafts and sell them to tourists.'",
+          "options": ["handicrafts (صنایع دستی)", "tourists (گردشگران)", "Asian countries (کشورهای آسیایی)", "decorative items (اشیاء تزئینی)"],
+          "correctIndex": 0,
+          "explanationFa": "ضمیر مفعولی جمع them به اسم جمع handicrafts که در همان جمله تولید می‌شود و به گردشگران فروخته می‌شود اشاره دارد."
+        },
+        {
+          "id": "rq11-3-4",
+          "type": "context_meaning",
+          "prompt": "According to paragraph 6, what is the meaning of the word 'unique' in 'producing very unique artworks'?",
+          "options": [
+            "Special and one of a kind that cannot be found elsewhere",
+            "Very cheap and low quality",
+            "Produced by automated heavy factories",
+            "Boring and ordinary"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "کلمه unique به معنای منحصربه‌فرد، تک و بی‌مانند (one of a kind) است."
+        },
+        {
+          "id": "rq11-3-5",
+          "type": "open_ended",
+          "prompt": "Why is Persian art famous all around the world according to paragraph 5?",
+          "requiredKeywordsForEvaluation": ["moral", "social", "values", "beauty"],
+          "modelAnswerEn": "Persian art is famous in the world for reflecting moral and social values of Iranian people and the natural beauty of this vast country.",
+          "modelAnswerFa": "هنر ایرانی در جهان به خاطر بازتاب ارزش‌های اخلاقی و اجتماعی مردم ایران و زیبایی طبیعی این کشور پهناور مشهور است.",
+          "explanationFa": "در پاراگراف پنجم ذکر شده: Persian art is famous in the world for reflecting moral and social values of Iranian people and the natural beauty of this vast country."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Conditional Sentences Type I & Past Participles",
+      "persianTopic": "جملات شرطی نوع اول و صفت‌های مفعولی (See Also)",
+      "discovery": {
+        "sentenceA": {
+          "text": "If you enjoy art, you will become a good artist.",
+          "highlightedPart": "If you enjoy ... will become",
+          "translation": "اگر از هنر لذت ببری، هنرمند خوبی خواهی شد. (شرط در زمان حال و نتیجه محتمل در زمان آینده)"
+        },
+        "sentenceB": {
+          "text": "You'll get a 20 percent discount if you buy more than 100 dollars.",
+          "highlightedPart": "You'll get ... if you buy",
+          "translation": "اگر بیش از ۱۰۰ دلار خرید کنی، ۲۰ درصد تخفیف می‌گیری. (شروع با بند نتیجه بدون کاما)"
+        },
+        "ccqQuestions": [
+          {
+            "question": "در جمله 'If it snows, people will drive carefully'، وقوع احتیاط در رانندگی چه زمانی ممکن است رخ دهد؟",
+            "options": [
+              "In the future, if the present condition of snowing happens (در آینده، اگر شرط بارش برف محقق شود)",
+              "In the past, because the event already finished (در گذشته، چون اتفاق تمام شده است)",
+              "It is impossible and never happens (غیرممکن است و هرگز رخ نمی‌دهد)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "شرطی نوع اول برای آینده محتمل و امکان‌پذیر به کار می‌رود."
+          },
+          {
+            "question": "کدام عبارت در مورد علامت نگارشی کاما (ویرگول) در جملات شرطی صحیح است؟",
+            "options": [
+              "Only when the sentence begins with 'If' do we use a comma between clauses (فقط وقتی جمله با If شروع شود کاما می‌گذاریم)",
+              "We always need a comma regardless of which clause comes first (همیشه در هر حالتی کاما لازم است)",
+              "We never use commas in conditional sentences (هرگز در جملات شرطی کاما به کار نمی‌رود)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "اگر بند If در ابتدای جمله باشد کاما می‌گذاریم؛ اما اگر بند Main در آغاز باشد کاما حذف می‌شود."
+          }
+        ]
+      },
+      "ruleBoxFa": "جملات شرطی نوع اول با فرمول If + Present Simple, will/won't + Base Verb ساخته می‌شوند و برای بیان نتایج محتمل در آینده به کار می‌روند. اگر If در ابتدای جمله باشد کاما لازم است؛ در غیر این صورت کاما حذف می‌شود. در بخش See Also صفت‌های مفعولی (Past Participles نظیر interested, bored, excited, surprised) برای بیان احساسات درونی افراد به کار می‌روند.",
+      "transformations": [
+        {
+          "formType": "conditional_with_comma",
+          "titleFa": "ساخت جمله شرطی با شروع If و کاما",
+          "stepByStepExplanationFa": [
+            "۱. با کلمه If در ابتدای جمله شروع می‌کنیم.",
+            "۲. فعل بند شرط را به صورت زمان حال ساده می‌آوریم و در پایان بند کاما می‌گذاریم.",
+            "۳. در بند دوم از will + شکل ساده فعل استفاده می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "Reza goes to Rey. He will visit the grand bazaar.",
+            "questionPrompt": "دو جمله بالا را به یک جمله شرطی استاندارد با If تبدیل کنید:",
+            "options": [
+              "If Reza goes to Rey, he will visit the grand bazaar.",
+              "If Reza will go to Rey, he visits the grand bazaar."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "در بند If حتماً حال ساده (goes) و در بند نتیجه will visit می‌آید."
+          }
+        },
+        {
+          "formType": "conditional_without_comma",
+          "titleFa": "ساخت جمله شرطی بدون کاما (شروع با نتیجه)",
+          "stepByStepExplanationFa": [
+            "۱. ابتدا بند نتیجه اصلی (will + verb) را می‌نویسیم.",
+            "۲. کلمه if را بدون ویرگول در میانه جمله قرار می‌دهیم.",
+            "۳. بند شرط را با فعل زمان حال ساده به پایان جمله اضافه می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "I will phone you. I have free time tomorrow.",
+            "questionPrompt": "دو جمله بالا را بدون کاما به یک جمله شرطی تبدیل کنید:",
+            "options": [
+              "I will phone you if I have free time tomorrow.",
+              "I phone you if I will have free time tomorrow."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "هنگامی که بند نتیجه در ابتدا می‌آید کاما حذف می‌شود: I will phone you if I have free time."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp11-3-1",
+            "prompt": "If you .......... hard, you will pass all your final school exams.",
+            "options": ["study", "will study", "studied", "studying"],
+            "correctIndex": 0,
+            "explanationFa": "در بند If جمله شرطی نوع اول از زمان حال ساده (study) استفاده می‌شود نه will."
+          },
+          {
+            "id": "gp11-3-2",
+            "prompt": "Maryam will get a valuable prize if she .......... the difficult question correctly.",
+            "options": ["answers", "will answer", "answered", "answering"],
+            "correctIndex": 0,
+            "explanationFa": "فاعل بند If ضمیر سوم شخص مفرد (she) است؛ بنابراین فعل حال ساده به صورت answers می‌آید."
+          },
+          {
+            "id": "gp11-3-3",
+            "prompt": "We'll get to school late if the morning bus .......... on time.",
+            "options": ["does not come", "will not come", "not come", "did not come"],
+            "correctIndex": 0,
+            "explanationFa": "منفی زمان حال ساده برای فاعل the bus با does not come ساخته می‌شود."
+          },
+          {
+            "id": "gp11-3-4",
+            "prompt": "They were greatly .......... at the news of winning the international art award.",
+            "options": ["surprised", "surprising", "surprise", "to surprise"],
+            "correctIndex": 0,
+            "explanationFa": "برای بیان احساس درونی افراد از صفت مفعولی مختوم به -ed یعنی surprised استفاده می‌شود."
+          }
+        ],
+        "production": {
+          "imageUrl": "handicrafts-iran-souvenir",
+          "imageDescriptionFa": "تصویر کارگاه ساخت و فروش ظروف سفالی سنتی",
+          "promptInstructionFa": "با استفاده از شرطی نوع اول (If ... will open) یک جمله برای آینده کارگاه بسازید:",
+          "targetKeywords": ["goes", "well", "open", "store"],
+          "modelSentence": "If all goes well, we will open the new pottery store in June.",
+          "persianTranslation": "اگر همه چیز خوب پیش برود، ما فروشگاه جدید سفالگری را در ماه ژوئن باز خواهیم کرد."
+        }
+      }
+    },
+    "listening": {
+      "title": "شنیداری شرایط آینده و لحن جملات شرطی (Future Conditions & Intonation)",
+      "preListeningQuestions": [
+        {
+          "id": "lq11-3-1",
+          "question": "What speaking strategy do we use to talk about conditions and future results?",
+          "options": ["If all goes well, we will...", "Yesterday I went to...", "How much does it cost?"],
+          "correctIndex": 0
+        },
+        {
+          "id": "lq11-3-2",
+          "question": "In conditional sentences, what is the intonation of the 'If-clause'?",
+          "options": ["Rising intonation (↗)", "Falling intonation (↘)", "Flat intonation (—)"],
+          "correctIndex": 0
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv11-3-1",
+          "title": "مکالمه ۱: گفتگو درباره افتتاح فروشگاه جدید صنایع دستی",
+          "transcriptEn": "Farhad: We want to buy a new store.\nReza: Really, what for?\nFarhad: We want to make and sell more pottery works. I've heard tourists are really interested in our handicrafts.\nReza: Yeah, if all goes well, we will open the new store in June.",
+          "transcriptFa": "فرهاد: ما می‌خواهیم یک مغازه جدید بخریم.\nرضا: واقعاً، برای چه کاری؟\nفرهاد: می‌خواهیم ظروف سفالی بیشتری بسازیم و بفروشیم. شنیده‌ام گردشگران واقعاً به صنایع دستی ما علاقه‌مندند.\nرضا: آره، اگر همه چیز خوب پیش برود، فروشگاه جدید را در ماه ژوئن باز خواهیم کرد."
+        },
+        {
+          "id": "conv11-3-2",
+          "title": "مکالمه ۲: برنامه محمد و امیر برای آینده و کمک به خیریه",
+          "transcriptEn": "Teacher: Mohammad, what are your plans for next year?\nMohammad: If I pass the university exam, I will study Physics in Tehran.\nTeacher: That sounds great. What about you, Amir?\nAmir: If I have enough free time, I will take part in charity works and help disabled children.",
+          "transcriptFa": "معلم: محمد، برنامه‌ات برای سال آینده چیست؟\nمحمد: اگر در کنکور قبول شوم، در تهران فیزیک خواهم خواند.\nمعلم: عالی به نظر می‌رسد. تو چطور امیر؟\nامیر: اگر وقت آزاد کافی داشته باشم، در کارهای خیریه شرکت خواهم کرد و به کودکان توان‌یاب کمک خواهم نمود."
+        }
+      ],
+      "pronunciation": {
+        "title": "لحن جملات شرطی (Conditional Intonation: Rising vs Falling)",
+        "ruleExplanationFa": "طبق صفحه ۱۰۱ کتاب درسی، جملات شرطی دارای الگوی لحن دوتایی هستند: در بند شرط (If-clause) لحن صدا خیزان و بالا رونده (Rising ↗) است؛ و در بند نتیجه اصلی (Main clause) لحن صدا افتان و فرود آینده (Falling ↘) خواهد بود.",
+        "examples": [
+          {
+            "sentence": "If I get the money (↗), I will buy a new mobile phone (↘).",
+            "intonation": "rising",
+            "patternDescriptionFa": "بند If خیزان (بالارونده) و بند نتیجه افتان (فرودآینده) تلفظ می‌شود."
+          },
+          {
+            "sentence": "If it snows tomorrow (↗), people will drive carefully (↘).",
+            "intonation": "rising",
+            "patternDescriptionFa": "در شرطی نوع اول آهنگ صدا تا انتهای بند شرط اوج می‌گیرد و در پایان جمله فرو می‌نشیند."
+          },
+          {
+            "sentence": "We'll get to school late (↘) if the bus does not come on time (↗).",
+            "intonation": "falling",
+            "patternDescriptionFa": "هنگامی که بند نتیجه در ابتدا می‌آید لحن آغازین افتان و بند شرط انتهای جمله لحن خیزان پیدا می‌کند."
+          },
+          {
+            "sentence": "If you eat healthy food (↗), you will live longer (↘).",
+            "intonation": "rising",
+            "patternDescriptionFa": "الگوی استاندارد خیزان در شرط و افتان در نتیجه برای بیان شرط و نتیجه آینده."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq11-3-1",
+            "sentence": "در جمله 'If she studies hard, she will pass the exam'، لحن صدای گوینده در کلمه 'hard' چگونه است؟",
+            "correctIntonation": "rising",
+            "explanationFa": "کلمه hard در پایان بند شرط (If-clause) قرار دارد و آهنگ صدا در آنجا خیزان (Rising ↗) است."
+          },
+          {
+            "id": "prq11-3-2",
+            "sentence": "در پایان جمله 'If the kids answer the questions, the teacher will give them a prize'، آهنگ صدا چگونه است؟",
+            "correctIntonation": "falling",
+            "explanationFa": "در پایان بند نتیجه و انتهای کل جمله، آهنگ صدا افتان (Falling ↘) خواهد بود."
+          },
+          {
+            "id": "prq11-3-3",
+            "sentence": "در جمله 'You will hurt yourself if you jump into the river'، بخش اول جمله چه لحنی دارد؟",
+            "correctIntonation": "falling",
+            "explanationFa": "بخش اول جمله بند نتیجه است و با لحن افتان (Falling ↘) ادا می‌شود."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "مصدر با to در نقش فاعل (Infinitive as Subject)",
+        "explanationFa": "مصدر با to (Infinitive = to + Base Verb) شکلی از فعل است که می‌تواند در ابتدای جمله بنشیند و همانند یک اسم، نقش فاعل جمله را ایفا کند (مانند To learn a language can be interesting). توجه داشته باشید که هرچند مصدر با to در نقش فاعل کاملاً از نظر گرامری درست و رسمی است، اما در گفتار روزمره و طبیعی زبان انگلیسی، استفاده از اسم مصدر (Gerund) به عنوان فاعل رایج‌تر است (Smoking is bad رایج‌تر از To smoke is bad است).",
+        "categories": [
+          {
+            "categoryEn": "Infinitive as Subject (مصدر در نقش فاعل)",
+            "categoryFa": "قرار گرفتن مصدر با to در ابتدای جمله با فعل مفرد",
+            "examples": ["To learn a foreign language can be interesting.", "To smoke is very harmful to human lungs.", "To travel across Iran is a wonderful experience."]
+          },
+          {
+            "categoryEn": "Natural Gerund Equivalent (معادل طبیعی اسم مصدر)",
+            "categoryFa": "تبدیل طبیعی‌تر مصدر فاعلی به اسم مصدر در مکالمات",
+            "examples": ["Learning a foreign language can be interesting.", "Smoking is very harmful to everyone.", "Traveling across Iran is wonderful."]
+          },
+          {
+            "categoryEn": "Infinitive Subject with Predicate (مصدر با مسند)",
+            "categoryFa": "کاربرد صفت یا اسم مسندی بعد از مصدر فاعلی",
+            "examples": ["To understand Iranian culture requires study.", "To make pottery needs patience and skill."]
+          },
+          {
+            "categoryEn": "Singular Verb Agreement (تطابق با فعل مفرد)",
+            "categoryFa": "یک مصدر در نقش فاعل همواره فعل مفرد (is, requires) می‌گیرد",
+            "examples": ["To know a nation's history is important.", "To produce handicrafts helps the economy."]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq11-3-1",
+            "prompt": "در جمله '.......... a foreign language can be interesting and useful for teenagers'، شکل مصدری صحیح چیست؟",
+            "options": ["To learn", "Learn", "Learned", "Learns"],
+            "correctIndex": 0,
+            "explanationFa": "در جایگاه فاعل جمله به یک مصدر با to یعنی To learn نیاز داریم."
+          },
+          {
+            "id": "wq11-3-2",
+            "prompt": "To make traditional Persian pottery and tilework .......... great skill and patience.",
+            "options": ["requires", "require", "requiring", "to require"],
+            "correctIndex": 0,
+            "explanationFa": "فاعل جمله یک مصدر با to (To make...) است و همواره با فعل مفرد (requires) مطابقت پیدا می‌کند."
+          },
+          {
+            "id": "wq11-3-3",
+            "prompt": "کدام جمله در مکالمات روزمره طبیعی‌تر (more natural) از جمله 'To smoke is bad for health' تلقی می‌شود؟",
+            "options": [
+              "Smoking is bad for health. (با استفاده از Gerund)",
+              "Smoked is bad for health.",
+              "To smokes is bad for health.",
+              "Smoke is bad for health."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "طبق صفحه ۱۰۲ کتاب درسی، معادل اسم مصدری (Smoking is bad) در زبان انگلیسی طبیعی‌تر و رایج‌تر است."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "مصدر بعد از افعال پرکاربرد (Infinitive after Verbs)",
+        "rulesSummaryFa": "طبق جدول رسمی صفحه ۱۰۳ کتاب درسی، گروهی از افعال در زبان انگلیسی حتماً مفعول خود را به صورت مصدر با to (to + verb) می‌پذیرند. مهم‌ترین این افعال عبارتند از: choose (انتخاب کردن), decide (تصمیم گرفتن), expect (انتظار داشتن), forget (فراموش کردن), hope (امیدوار بودن), learn (یاد گرفتن), manage (موفق شدن), need (نیاز داشتن), offer (پیشنهاد دادن), plan (برنامه‌ریزی کردن), promise (قول دادن), refuse (رد کردن), remember (به یاد داشتن), try (تلاش کردن), want (خواستن).",
+        "regularPairs": [
+          { "singular": "decide + to-infinitive", "plural": "I have decided to learn Spanish this summer." },
+          { "singular": "want + to-infinitive", "plural": "She wanted to buy an Iranian handicraft as a souvenir." },
+          { "singular": "remember + to-infinitive", "plural": "Please remember to turn off the lights before leaving." }
+        ],
+        "irregularPairs": [
+          { "singular": "try + to-infinitive", "plural": "The artist tried to weave a carpet with silk threads." },
+          { "singular": "promise + to-infinitive", "plural": "Reza promised to help his father in the store." }
+        ],
+        "exercise": [
+          {
+            "id": "sp11-3-1",
+            "prompt": "Mahboobeh bought some fresh flowers .......... them to her dear mother.",
+            "options": ["to give", "giving", "give", "gave"],
+            "correctIndex": 0,
+            "explanationFa": "برای بیان هدف و بعد از خریدن گل، مصدر با to یعنی to give به کار می‌رود."
+          },
+          {
+            "id": "sp11-3-2",
+            "prompt": "Hamed wants .......... a new language because he plans to travel to Europe.",
+            "options": ["to learn", "learning", "learn", "learned"],
+            "correctIndex": 0,
+            "explanationFa": "فعل want همواره مفعول خود را به صورت مصدر با to یعنی to learn می‌پذیرد."
+          },
+          {
+            "id": "sp11-3-3",
+            "prompt": "I ran fast to the station .......... the morning bus.",
+            "options": ["to catch", "catching", "catch", "caught"],
+            "correctIndex": 0,
+            "explanationFa": "برای بیان قصد و منظور از دویدن، مصدر با to یعنی to catch the bus استفاده می‌شود."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "مصدر منفی و مصدر بعد از صفت‌ها (Negative Infinitives & Adjectives)",
+        "explanationFa": "دو نکته کلیدی صفحات ۱۰۴ و ۱۰۵ کتاب:\n۱. مصدر منفی با فرمول not + to + verb ساخته می‌شود (مثال: I told the children not to make noise).\n۲. بعد از صفت‌های احساسی و توصیفی، فعل به صورت مصدر با to می‌آید (فرمول: be + Adjective + to-infinitive). مهم‌ترین این صفت‌ها عبارتند از: happy, sad, careful, certain, ashamed, glad, fortunate, shocked, lucky, sorry, surprised, amazed.",
+        "examples": [
+          { "common": "happy + to-infinitive", "proper": "She became really happy to see her old classmate." },
+          { "common": "sad + to-infinitive", "proper": "Ali was very sad to leave his grandparents in the village." },
+          { "common": "careful + to-infinitive", "proper": "Be careful not to break the delicate pottery cups." },
+          { "common": "lucky + to-infinitive", "proper": "You are very lucky to work in such a lovely handicraft shop." }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pn11-3-1",
+            "sentenceWithBlank": "My father always tries .......... (not to forget / not forgetting) important phone numbers.",
+            "options": ["not to forget", "not forgetting"],
+            "correctIndex": 0,
+            "explanationFa": "مصدر منفی به صورت not + to + verb ساخته می‌شود: not to forget."
+          },
+          {
+            "id": "pn11-3-2",
+            "sentenceWithBlank": "The foreign tourist was surprised .......... (to see / seeing) the rich collection of Persian carpets.",
+            "options": ["to see", "seeing"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از صفت surprised، فعل به صورت مصدر با to یعنی to see می‌آید."
+          },
+          {
+            "id": "pn11-3-3",
+            "sentenceWithBlank": "I told my younger brother .......... (not to touch / not touching) the wet paintings.",
+            "options": ["not to touch", "not touching"],
+            "correctIndex": 0,
+            "explanationFa": "الگوی مصدر منفی بعد از مفعول: told him not to touch."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تمایز اسم مصدر و مصدر با to (Gerund vs Infinitive Review)",
+        "explanationFa": "تمرین‌های تثبیت و تمایز اسم مصدر (Gerund = Verb + -ing) از مصدر با to (Infinitive = to + Base Verb) بر اساس صفحات ۱۰۳ الی ۱۰۵ کتاب درسی.",
+        "markersList": [
+          {
+            "type": "افعال گیرنده اسم مصدر (Gerund)",
+            "typeFa": "بعد از افعالی مانند enjoy, quit, stop, like و بعد از تمام حروف اضافه",
+            "items": ["enjoy playing", "quit smoking", "went home after leaving school", "without making mistakes"],
+            "exampleSentence": "We can't learn English without making mistakes."
+          },
+          {
+            "type": "افعال گیرنده مصدر با to (Infinitive)",
+            "typeFa": "بعد از افعالی مانند decide, want, promise, hope, agree, learn",
+            "items": ["decided to learn", "wanted to buy", "promised to help", "remember to turn off"],
+            "exampleSentence": "I have decided to learn calligraphy."
+          },
+          {
+            "type": "مصدر بعد از صفت‌ها (After Adjectives)",
+            "typeFa": "بعد از صفت‌هایی نظیر happy, lucky, sorry, ready, excited",
+            "items": ["happy to see", "lucky to work", "ready to go", "sorry to hear"],
+            "exampleSentence": "She was glad to receive the artistic souvenir."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nm11-3-1",
+            "prompt": "I went home immediately after .......... the school.",
+            "options": ["leaving (اسم مصدر بعد از حرف اضافه after)", "to leave", "leave", "left"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه after یک حرف اضافه (preposition) است و بعد از حرف اضافه حتماً اسم مصدر مختوم به -ing (leaving) می‌آید."
+          },
+          {
+            "id": "nm11-3-2",
+            "prompt": "We cannot master any foreign language without .......... mistakes.",
+            "options": ["making (اسم مصدر بعد از without)", "to make", "make", "made"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه without حرف اضافه است و کلمه بعد از آن باید اسم مصدر (making) باشد."
+          },
+          {
+            "id": "nm11-3-3",
+            "prompt": "The young craftsman has decided .......... a new workshop in Isfahan.",
+            "options": ["to open (مصدر با to بعد از decide)", "opening", "open", "opened"],
+            "correctIndex": 0,
+            "explanationFa": "فعل decide همواره با مصدر با to یعنی to open همراه می‌شود."
+          }
+        ]
+      }
+    }
+  }
+}

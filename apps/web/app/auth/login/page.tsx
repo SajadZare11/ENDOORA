@@ -108,7 +108,7 @@ export default function LoginPage() {
     setSubmitting(true);
 
     try {
-      await endooraApi<LoginResponse>(
+      const response = await endooraApi<LoginResponse>(
         "/auth/login/",
         {
           method: "POST",
@@ -120,6 +120,8 @@ export default function LoginPage() {
       );
 
       setLoggedIn(true);
+      const destination = response?.role === "teacher" ? "/teacher" : "/dashboard";
+      window.location.href = destination;
     } catch (error) {
       setErrors(
         apiErrorMessages(error, locale),
@@ -137,10 +139,10 @@ export default function LoginPage() {
         title={t.successTitle}
         description={t.successBody}
         footer={
-          <Link href="/onboarding">
+          <Link href="/dashboard">
             {locale === "fa"
-              ? "ادامه به حساب کاربری"
-              : "Continue to account"}
+              ? "ورود به داشبورد"
+              : "Continue to dashboard"}
           </Link>
         }
       >

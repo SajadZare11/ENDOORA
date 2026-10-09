@@ -10,6 +10,7 @@ import {
   type ScheduleSlot,
   submitClassEnrollmentRequest,
 } from "../../../lib/curriculum-classes";
+import { AdobeConnectLauncherModal } from "../../../components/classroom/AdobeConnectLauncherModal";
 
 type Locale = "fa" | "en";
 
@@ -306,6 +307,7 @@ export default function LearningPathPage() {
   const [isSubmittingEnroll, setIsSubmittingEnroll] = useState(false);
   const [enrollSuccessMsg, setEnrollSuccessMsg] = useState<string | null>(null);
   const [enrollErrorMsg, setEnrollErrorMsg] = useState<string | null>(null);
+  const [showCohortLauncher, setShowCohortLauncher] = useState(false);
 
   const t = texts[locale];
 
@@ -581,14 +583,14 @@ export default function LearningPathPage() {
                       </p>
                     </div>
                     {classStatus.cohort.meeting_url && (
-                      <a
-                        href={classStatus.cohort.meeting_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        type="button"
+                        onClick={() => setShowCohortLauncher(true)}
                         className={styles.meetingButtonLarge}
+                        style={{ cursor: "pointer", border: "none" }}
                       >
-                        {t.meetingLinkBtn}
-                      </a>
+                        🎥 {t.meetingLinkBtn}
+                      </button>
                     )}
                   </div>
 
@@ -892,6 +894,21 @@ export default function LearningPathPage() {
           </div>
         )}
       </div>
+
+      {showCohortLauncher && classStatus?.cohort ? (
+        <AdobeConnectLauncherModal
+          isOpen={showCohortLauncher}
+          onClose={() => setShowCohortLauncher(false)}
+          classId={classStatus.cohort.id}
+          classTitle={classStatus.cohort.title}
+          scheduleDays={["شنبه", "دوشنبه"]}
+          scheduleTimeStart="18:00"
+          scheduleTimeEnd="19:30"
+          meetingUrl={classStatus.cohort.meeting_url}
+          isTeacher={false}
+          locale={locale}
+        />
+      ) : null}
     </main>
   );
 }

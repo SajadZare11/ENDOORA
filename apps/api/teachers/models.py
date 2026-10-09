@@ -2,6 +2,7 @@ import uuid
 from datetime import timedelta
 from decimal import Decimal
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -55,8 +56,57 @@ class LedgerStatus(models.TextChoices):
     REVISED = "revised", _("اصلاح شده")
 
 
+def generate_unique_class_code() -> str:
+    """Generates a random unique 7-digit numeric string (1000000 - 9999999)."""
+    import secrets
+    from django.apps import apps
+    model = apps.get_model("teachers", "TeacherClass", require_ready=False)
+    for _ in range(100):
+        candidate = str(secrets.randbelow(9000000) + 1000000)
+        if model is None:
+            return candidate
+        try:
+            if not model.objects.filter(code=candidate).exists():
+                return candidate
+        except Exception:
+            return candidate
+    import time
+    return str(int(time.time() * 1000))[-7:]
+
+
+class TeacherClassQuerySet(models.QuerySet):
+    def filter(self, *args, **kwargs):
+        norm_kwargs = {}
+        for k, v in kwargs.items():
+            if k == "class_code":
+                norm_kwargs["code"] = v
+            elif k.startswith("class_code__"):
+                norm_kwargs["code" + k[len("class_code"):]] = v
+            else:
+                norm_kwargs[k] = v
+        return super().filter(*args, **norm_kwargs)
+
+    def get(self, *args, **kwargs):
+        norm_kwargs = {}
+        for k, v in kwargs.items():
+            if k == "class_code":
+                norm_kwargs["code"] = v
+            elif k.startswith("class_code__"):
+                norm_kwargs["code" + k[len("class_code"):]] = v
+            else:
+                norm_kwargs[k] = v
+        return super().get(*args, **norm_kwargs)
+
+
 class TeacherClass(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    code = models.CharField(
+        max_length=7,
+        unique=True,
+        db_index=True,
+        default=generate_unique_class_code,
+        verbose_name=_("کد ۷ رقمی اختصاصی کلاس"),
+    )
     teacher = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -89,16 +139,82 @@ class TeacherClass(models.Model):
     teaching_preferences = models.JSONField(default=list, blank=True, verbose_name=_("رویکردها و ترجیحات تدریس"))
     target_exams = models.CharField(max_length=255, blank=True, default="", verbose_name=_("آزمون‌های هدف"))
 
+    # Live Classroom Schedule & Adobe Connect Configuration
+    schedule_days = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("روزهای برگزاری کلاس"),
+    )
+    schedule_time_start = models.CharField(
+        max_length=16,
+        default="18:00",
+        blank=True,
+        verbose_name=_("ساعت شروع کلاس"),
+    )
+    schedule_time_end = models.CharField(
+        max_length=16,
+        default="19:30",
+        blank=True,
+        verbose_name=_("ساعت پایان کلاس"),
+    )
+    meeting_url = models.CharField(
+        max_length=512,
+        blank=True,
+        default="",
+        verbose_name=_("لینک کلاس آنلاین ادوبی کانکت"),
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def effective_schedule_days(self):
+        if self.schedule_days and len(self.schedule_days) > 0:
+            return self.schedule_days
+        return ["شنبه", "چهارشنبه"]
+
+    @property
+    def effective_meeting_url(self):
+        if self.meeting_url and self.meeting_url.strip():
+            return self.meeting_url.strip()
+        clean_id = str(self.id).replace("-", "")[:8]
+        return f"https://live.endoora.com/class-{clean_id}"
+
+    @property
+    def effective_adobe_connect_app_url(self):
+        url = self.effective_meeting_url
+        if url.startswith("https://"):
+            return "connectpro://" + url[len("https://"):]
+        elif url.startswith("http://"):
+            return "connectpro://" + url[len("http://"):]
+        return f"connectpro://{url}"
+
+    objects = TeacherClassQuerySet.as_manager()
+
+    @property
+    def class_code(self):
+        return self.code
+
+    @class_code.setter
+    def class_code(self, value):
+        self.code = value
 
     class Meta:
         verbose_name = _("کلاس مدیریت شده مدرس")
         verbose_name_plural = _("کلاس‌های مدیریت شده مدرس")
         ordering = ["-updated_at"]
 
+    def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = generate_unique_class_code()
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.title} ({self.teacher.email})"
+        return f"{self.title} [{self.code}] ({self.teacher.email})"
+
+
+Class = TeacherClass
+
 
 
 class TeacherLearnerLink(models.Model):
@@ -292,6 +408,14 @@ class Assignment(models.Model):
         on_delete=models.CASCADE,
         related_name="teacher_assignments",
         verbose_name=_("مدرس"),
+    )
+    target_learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="targeted_assignments",
+        verbose_name=_("زبان‌آموز هدف (اختیاری؛ خالی یعنی همه کلاس)"),
     )
     title = models.CharField(max_length=255, verbose_name=_("عنوان تکلیف/تمرین"))
     description = models.TextField(blank=True, default="", verbose_name=_("توضیحات"))
@@ -1173,4 +1297,57 @@ class TeacherPedagogicalPreference(models.Model):
 
     def __str__(self):
         return f"Preferences: {self.teacher.email} ({self.plan_code})"
+
+
+class StudentLessonMastery(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="recorded_masteries",
+        verbose_name=_("مدرس ارزیاب"),
+    )
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="lesson_masteries",
+        verbose_name=_("زبان‌آموز"),
+    )
+    teacher_class = models.ForeignKey(
+        TeacherClass,
+        on_delete=models.CASCADE,
+        related_name="lesson_masteries",
+        verbose_name=_("کلاس"),
+    )
+    coursebook = models.CharField(max_length=255, verbose_name=_("کتاب آموزشی"))
+    unit_number = models.PositiveIntegerField(verbose_name=_("شماره درس/یونیت"))
+    unit_title = models.CharField(max_length=255, verbose_name=_("عنوان درس"))
+    subcategory_id = models.CharField(max_length=64, verbose_name=_("شناسه مبحث"))
+    subcategory_title = models.CharField(max_length=255, verbose_name=_("عنوان مبحث/زیرشاخه"))
+    subcategory_type = models.CharField(
+        max_length=32,
+        default="general",
+        verbose_name=_("نوع مهارت مبحث"),
+    )
+    mastery_percentage = models.PositiveIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name=_("درصد میزان یادگیری دانش‌آموز"),
+    )
+    teacher_notes = models.TextField(blank=True, default="", verbose_name=_("مشاهدات و بازخورد مدرس"))
+    session_date = models.DateField(default=timezone.now, verbose_name=_("تاریخ جلسه تدریس"))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("میزان یادگیری مبحث دانش‌آموز")
+        verbose_name_plural = _("میزان یادگیری مباحث دانش‌آموزان")
+        ordering = ["-session_date", "-created_at"]
+        indexes = [
+            models.Index(fields=["teacher_class", "learner", "coursebook"]),
+            models.Index(fields=["learner", "-session_date"]),
+        ]
+
+    def __str__(self):
+        return f"{self.learner.email} - Unit {self.unit_number} ({self.subcategory_title}): {self.mastery_percentage}%"
+
 

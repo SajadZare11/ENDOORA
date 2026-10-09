@@ -1,0 +1,1002 @@
+{
+  "id": "vision-2-lesson-1",
+  "grade": 11,
+  "bookTitle": "Vision 2",
+  "lessonNumber": 1,
+  "slug": "grade-11/lesson-1",
+  "title": {
+    "en": "Understanding People",
+    "fa": "شناخت مردم و زبان‌ها"
+  },
+  "cefrLevel": "A2+",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr11-1",
+        "word": "language",
+        "phonetic": "/ˈlæŋ.ɡwɪdʒ/",
+        "persianMeaning": "زبان / سیستم ارتباطی کلامی و نوشتاری انسان‌ها",
+        "imagePromptOrUrl": "language-globe-communication",
+        "options": ["language", "mountain", "medicine"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Language is the most important means of communication among human beings.",
+          "fa": "زبان مهم‌ترین ابزار ارتباطی میان انسان‌هاست."
+        }
+      },
+      {
+        "id": "gr11-2",
+        "word": "continent",
+        "phonetic": "/ˈkɒn.tɪ.nənt/",
+        "persianMeaning": "قاره / خشکی‌های پهناور کره زمین",
+        "imagePromptOrUrl": "continent-world-map",
+        "options": ["continent", "village", "island"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Asia is the largest continent in the world.",
+          "fa": "آسیا بزرگ‌ترین قاره در جهان است."
+        }
+      },
+      {
+        "id": "gr11-3",
+        "word": "country",
+        "phonetic": "/ˈkʌn.tri/",
+        "persianMeaning": "کشور / سرزمین دارای مرز و ملت",
+        "imagePromptOrUrl": "country-nations-flags",
+        "options": ["city", "continent", "country"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Iran is an ancient country with a rich history.",
+          "fa": "ایران کشوری باستانی با تاریخی غنی است."
+        }
+      },
+      {
+        "id": "gr11-4",
+        "word": "flag",
+        "phonetic": "/flæɡ/",
+        "persianMeaning": "پرچم / نماد رسمی ملی",
+        "imagePromptOrUrl": "country-nations-flags",
+        "options": ["ticket", "flag", "camera"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Every country has its own colorful national flag.",
+          "fa": "هر کشوری پرچم ملی و رنگارنگ مخصوص به خود را دارد."
+        }
+      },
+      {
+        "id": "gr11-5",
+        "word": "culture",
+        "phonetic": "/ˈkʌl.tʃər/",
+        "persianMeaning": "فرهنگ / آداب، رسوم و باورهای یک جامعه",
+        "imagePromptOrUrl": "peace-culture-tradition",
+        "options": ["culture", "machine", "danger"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Learning a new language helps you understand another culture.",
+          "fa": "یادگیری یک زبان جدید به شما کمک می‌کند فرهنگ دیگری را درک کنید."
+        }
+      },
+      {
+        "id": "gr11-6",
+        "word": "communicate",
+        "phonetic": "/kəˈmjuː.nɪ.keɪt/",
+        "persianMeaning": "ارتباط برقرار کردن / تبادل افکار و پیام",
+        "imagePromptOrUrl": "communicate-people-talking",
+        "options": ["destroy", "communicate", "injure"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "People communicate with each other through words, signs, and gestures.",
+          "fa": "مردم با استفاده از کلمات، علائم و حرکات با یکدیگر ارتباط برقرار می‌کنند."
+        }
+      },
+      {
+        "id": "gr11-7",
+        "word": "bilingual",
+        "phonetic": "/baɪˈlɪŋ.ɡwəl/",
+        "persianMeaning": "دوزبانه / فردی که به دو زبان تسلط دارد",
+        "imagePromptOrUrl": "bilingual-two-languages",
+        "options": ["monolingual", "bilingual", "illiterate"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Children who grow up in bilingual families can speak two languages fluently.",
+          "fa": "کودکانی که در خانواده‌های دوزبانه بزرگ می‌شوند می‌توانند به دو زبان روان صحبت کنند."
+        }
+      },
+      {
+        "id": "gr11-8",
+        "word": "native speaker",
+        "phonetic": "/ˈneɪ.tɪv ˈspiː.kər/",
+        "persianMeaning": "گوینده زبان مادری / اهل زبان بومی",
+        "imagePromptOrUrl": "native-speaker-person",
+        "options": ["foreigner", "tourist", "native speaker"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Spanish has hundreds of millions of native speakers around the world.",
+          "fa": "زبان اسپانیایی صدها میلیون گوینده زبان مادری در سراسر جهان دارد."
+        }
+      },
+      {
+        "id": "gr11-9",
+        "word": "dialect",
+        "phonetic": "/ˈdaɪ.ə.lekt/",
+        "persianMeaning": "گویش / لهجه منطقه‌ای خاص از یک زبان",
+        "imagePromptOrUrl": "dialect-regional-accent",
+        "options": ["alphabet", "dialect", "textbook"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "People in different regions of Iran speak various sweet dialects.",
+          "fa": "مردم در مناطق مختلف ایران به گویش‌های شیرین و گوناگونی سخن می‌گویند."
+        }
+      },
+      {
+        "id": "gr11-10",
+        "word": "international language",
+        "phonetic": "/ˌɪn.təˈnæʃ.ən.əl ˈlæŋ.ɡwɪdʒ/",
+        "persianMeaning": "زبان بین‌المللی / زبان مشترک ارتباط جهانی",
+        "imagePromptOrUrl": "international-languages-flag",
+        "options": ["regional song", "local food", "international language"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "English is widely studied and used as an international language.",
+          "fa": "زبان انگلیسی به عنوان یک زبان بین‌المللی به طور گسترده آموخته و استفاده می‌شود."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "Talking about Languages (گفتگو درباره زبان‌های جهان)",
+      "situationFa": "میثم با آقای بابک صابریان (مترجم صدا و سیما - IRIB) درباره چگونگی یادگیری زبان‌های مختلف و اهمیت علاقه و تلاش گفتگو می‌کند.",
+      "vocabulary": [
+        {
+          "id": "cb11-1",
+          "word": "translator",
+          "phonetic": "/trænzˈleɪ.tər/",
+          "persianMeaning": "مترجم / برگرداننده متون یا گفتار به زبان دیگر",
+          "imagePromptOrUrl": "translator-working-studio",
+          "options": ["translator", "pilot", "firefighter"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "A good translator must understand both languages and their cultures very well.",
+            "fa": "یک مترجم خوب باید هر دو زبان و فرهنگ‌هایشان را بسیار خوب درک کند."
+          }
+        },
+        {
+          "id": "cb11-2",
+          "word": "institute",
+          "phonetic": "/ˈɪn.stɪ.tʃuːt/",
+          "persianMeaning": "مؤسسه / آموزشگاه تخصصی",
+          "imagePromptOrUrl": "language-institute-building",
+          "options": ["hospital", "institute", "factory"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "He goes to an English institute three days a week.",
+            "fa": "او سه روز در هفته به یک مؤسسه زبان انگلیسی می‌رود."
+          }
+        },
+        {
+          "id": "cb11-3",
+          "word": "foreign",
+          "phonetic": "/ˈfɒr.ən/",
+          "persianMeaning": "خارجی / بیگانه / متعلق به سرزمینی دیگر",
+          "imagePromptOrUrl": "foreign-country-travel",
+          "options": ["domestic", "local", "foreign"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "Learning a foreign language opens new windows to the world.",
+            "fa": "یادگیری یک زبان خارجی پنجره‌های جدیدی رو به جهان می‌گشاید."
+          }
+        },
+        {
+          "id": "cb11-4",
+          "word": "fluently",
+          "phonetic": "/ˈfluː.ənt.li/",
+          "persianMeaning": "به‌طور روان و سلیس / بدون مکث و لکنت",
+          "imagePromptOrUrl": "fluently-speaking-english",
+          "options": ["slowly", "fluently", "silently"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "She practices speaking every day so that she can speak fluently.",
+            "fa": "او هر روز مکالمه تمرین می‌کند تا بتواند روان صحبت کند."
+          }
+        },
+        {
+          "id": "cb11-5",
+          "word": "experience",
+          "phonetic": "/ɪkˈspɪə.ri.əns/",
+          "persianMeaning": "تجربه / دانایی و مهارتی که با گذشت زمان به دست می‌آید",
+          "imagePromptOrUrl": "experience-years-knowledge",
+          "options": ["experience", "accident", "problem"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "My experience shows that practice makes perfect.",
+            "fa": "تجربه من نشان می‌دهد که تمرین باعث تسلط کامل می‌شود."
+          }
+        },
+        {
+          "id": "cb11-6",
+          "word": "mother tongue",
+          "phonetic": "/ˈmʌð.ə ˌtʌŋ/",
+          "persianMeaning": "زبان مادری / زبانی که انسان از بدو تولد یاد می‌گیرد",
+          "imagePromptOrUrl": "mother-tongue-persian",
+          "options": ["mother tongue", "sign language", "body language"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Besides his mother tongue Persian, he can speak French.",
+            "fa": "او در کنار زبان مادری‌اش فارسی، می‌تواند فرانسوی صحبت کند."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "c11-1",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "Babak Saberian is a translator who works for IRIB. Today, he is visiting our school.",
+          "faText": "بابک صابریان مترجمی است که در صدا و سیما کار می‌کند. امروز او در حال بازدید از مدرسه ماست.",
+          "orderIndex": 1
+        },
+        {
+          "id": "c11-2",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "Mr. Saberian, four languages! Really?! What languages do you know?",
+          "faText": "آقای صابریان، چهار زبان! واقعاً؟! چه زبان‌هایی را بلد هستید؟",
+          "orderIndex": 2
+        },
+        {
+          "id": "c11-3",
+          "speaker": "Mr. Saberian",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "Besides my mother tongue, Persian, I know English, French and Russian well.",
+          "faText": "علاوه بر زبان مادری‌ام فارسی، زبان‌های انگلیسی، فرانسوی و روسی را خوب بلدم.",
+          "orderIndex": 3
+        },
+        {
+          "id": "c11-4",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "Interesting! And when did you learn them?",
+          "faText": "جالب است! و چه زمانی آن‌ها را یاد گرفتید؟",
+          "orderIndex": 4
+        },
+        {
+          "id": "c11-5",
+          "speaker": "Mr. Saberian",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "I began learning English at school when I was thirteen. Then I began learning French in an institute when I was fifteen. And I learned Russian when I was a university student in Moscow.",
+          "faText": "یادگیری انگلیسی را در سن سیزده‌سالگی در مدرسه آغاز کردم. سپس یادگیری فرانسوی را در پانزده‌سالگی در یک آموزشگاه شروع کردم. و روسی را زمانی که دانشجوی دانشگاه در مسکو بودم آموختم.",
+          "orderIndex": 5
+        },
+        {
+          "id": "c11-6",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "Can you use all of them fluently?",
+          "faText": "آیا می‌توانید از همه آن‌ها به صورت روان استفاده کنید؟",
+          "orderIndex": 6
+        },
+        {
+          "id": "c11-7",
+          "speaker": "Mr. Saberian",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "I know all of them well, but I use English more.",
+          "faText": "همه آن‌ها را خوب بلدم، اما از انگلیسی بیشتر استفاده می‌کنم.",
+          "orderIndex": 7
+        },
+        {
+          "id": "c11-8",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "OK. Do you think language learning should start as early as possible?",
+          "faText": "خیلی خب. آیا فکر می‌کنید یادگیری زبان باید در سنین هر چه پایین‌تر آغاز شود؟",
+          "orderIndex": 8
+        },
+        {
+          "id": "c11-9",
+          "speaker": "Mr. Saberian",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍💼",
+          "enText": "My experience says interest and hard work are really more important than age.",
+          "faText": "تجربه من می‌گوید علاقه و پشتکار و تلاش واقعاً مهم‌تر از سن هستند.",
+          "orderIndex": 9
+        },
+        {
+          "id": "c11-10",
+          "speaker": "Meysam",
+          "speakerRole": "student",
+          "speakerAvatar": "🧑‍🎓",
+          "enText": "Hmm... that's an important point. Thank you so much for your precious time, Mr. Saberian!",
+          "faText": "هوم... نکته بسیار مهمی است. آقای صابریان، از وقت ارزشمند شما بی‌نهایت سپاسگزارم!",
+          "orderIndex": 10
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw11-1",
+        "word": "region",
+        "phonetic": "/ˈriː.dʒən/",
+        "persianMeaning": "منطقه / ناحیه جغرافیایی",
+        "imagePromptOrUrl": "mazandaran-farming-region",
+        "options": ["region", "sky", "time"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Mazandaran is one of the best farming regions of Iran.",
+          "fa": "مازندران یکی از بهترین مناطق کشاورزی ایران است."
+        }
+      },
+      {
+        "id": "nw11-2",
+        "word": "exist",
+        "phonetic": "/ɪɡˈzɪst/",
+        "persianMeaning": "وجود داشتن / پدیدار و موجود بودن",
+        "imagePromptOrUrl": "water-on-mars-exist",
+        "options": ["die out", "exist", "forget"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Does liquid water really exist on Mars?",
+          "fa": "آیا آب مایع واقعاً روی مریخ وجود دارد؟"
+        }
+      },
+      {
+        "id": "nw11-3",
+        "word": "range",
+        "phonetic": "/reɪndʒ/",
+        "persianMeaning": "در دامنه‌ای مشخص تغییر کردن / گستره داشتن",
+        "imagePromptOrUrl": "price-range-scale",
+        "options": ["range", "stop", "freeze"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Dictionary prices range from $5 to $15.",
+          "fa": "قیمت‌های لغت‌نامه در بازه ۵ تا ۱۵ دلار متغیر است."
+        }
+      },
+      {
+        "id": "nw11-4",
+        "word": "popular",
+        "phonetic": "/ˈpɒp.jə.lər/",
+        "persianMeaning": "محبوب / پرطرفدار میان عموم مردم",
+        "imagePromptOrUrl": "popular-food-rice",
+        "options": ["unknown", "popular", "dangerous"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Rice is the most popular food in Iran.",
+          "fa": "برنج پرطرفدارترین غذا در ایران است."
+        }
+      },
+      {
+        "id": "nw11-5",
+        "word": "imagine",
+        "phonetic": "/ɪˈmædʒ.ɪn/",
+        "persianMeaning": "تصور کردن / در ذهن مجسم ساختن",
+        "imagePromptOrUrl": "imagine-space-travel",
+        "options": ["imagine", "destroy", "fear"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Imagine you are traveling in outer space.",
+          "fa": "تصور کنید در فضای ماورای جو در حال سفر هستید."
+        }
+      },
+      {
+        "id": "nw11-6",
+        "word": "century",
+        "phonetic": "/ˈsen.tʃər.i/",
+        "persianMeaning": "قرن / سده (دوره زمانی یکصدساله)",
+        "imagePromptOrUrl": "century-timeline-21st",
+        "options": ["week", "month", "century"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "We are living in the twenty-first century.",
+          "fa": "ما در قرن بیست و یکم زندگی می‌کنیم."
+        }
+      },
+      {
+        "id": "nw11-7",
+        "word": "percent",
+        "phonetic": "/pəˈsent/",
+        "persianMeaning": "درصد (سهم از یکصد)",
+        "imagePromptOrUrl": "percent-village-population",
+        "options": ["percent", "meter", "kilogram"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Today, less than 40 percent of people live in villages.",
+          "fa": "امروزه کمتر از ۴۰ درصد مردم در روستاها زندگی می‌کنند."
+        }
+      },
+      {
+        "id": "nw11-8",
+        "word": "meet the needs",
+        "phonetic": "/miːt ðə niːdz/",
+        "persianMeaning": "برطرف کردن نیازها / پاسخگوی احتیاجات بودن",
+        "imagePromptOrUrl": "wind-power-meet-needs",
+        "options": ["create problems", "meet the needs", "lose hope"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Scientists say clean energy can meet the needs of the world.",
+          "fa": "دانشمندان می‌گویند انرژی پاک می‌تواند نیازهای جهان را برطرف سازد."
+        }
+      },
+      {
+        "id": "nw11-9",
+        "word": "society",
+        "phonetic": "/səˈsaɪ.ə.ti/",
+        "persianMeaning": "جامعه / گروه بزرگی از انسان‌ها که با هم زندگی می‌کنند",
+        "imagePromptOrUrl": "society-community-people",
+        "options": ["society", "jungle", "laboratory"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "People use language to communicate with each other in a society.",
+          "fa": "مردم از زبان برای ارتباط با یکدیگر در جامعه استفاده می‌کنند."
+        }
+      },
+      {
+        "id": "nw11-10",
+        "word": "ability",
+        "phonetic": "/əˈbɪl.ə.ti/",
+        "persianMeaning": "توانایی / قدرت جسمی یا ذهنی برای انجام کاری",
+        "imagePromptOrUrl": "ability-human-speech",
+        "options": ["weakness", "ability", "sickness"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Human's ability to talk makes him different from animals.",
+          "fa": "توانایی سخن گفتن، انسان را از جانوران متمایز می‌سازد."
+        }
+      },
+      {
+        "id": "nw11-11",
+        "word": "vary",
+        "phonetic": "/ˈveə.ri/",
+        "persianMeaning": "متفاوت بودن / تغییر کردن و دگرگونی داشتن",
+        "imagePromptOrUrl": "prices-vary-shops",
+        "options": ["stay the same", "vary", "stop"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "In some big cities, prices vary from shop to shop.",
+          "fa": "در برخی شهرهای بزرگ، قیمت‌ها از مغازه‌ای به مغازه دیگر متفاوت است."
+        }
+      },
+      {
+        "id": "nw11-12",
+        "word": "make up",
+        "phonetic": "/meɪk ʌp/",
+        "persianMeaning": "تشکیل دادن / سهمی از یک کل را ساختن",
+        "imagePromptOrUrl": "make-up-population-share",
+        "options": ["break down", "make up", "take away"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Endangered languages make up nearly 8 percent of all languages.",
+          "fa": "زبان‌های در حال انقراض نزدیک به ۸ درصد از کل زبان‌ها را تشکیل می‌دهند."
+        }
+      },
+      {
+        "id": "nw11-13",
+        "word": "despite",
+        "phonetic": "/dɪˈspaɪt/",
+        "persianMeaning": "علیرغم / با وجودِ اینکه",
+        "imagePromptOrUrl": "enjoy-weekend-despite-rain",
+        "options": ["despite", "because of", "so that"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "All languages are valuable, despite their differences.",
+          "fa": "همه زبان‌ها با وجود تفاوت‌هایشان ارزشمند هستند."
+        }
+      },
+      {
+        "id": "nw11-14",
+        "word": "amazing = wonderful",
+        "phonetic": "/əˈmeɪ.zɪŋ/ = /ˈwʌn.də.fəl/",
+        "persianMeaning": "شگفت‌انگیز و فوق‌العاده (مترادف‌های درس)",
+        "imagePromptOrUrl": "amazing-wonderful-pyramids",
+        "options": ["boring", "amazing = wonderful", "ugly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Every language is an amazing and wonderful means of communication.",
+          "fa": "هر زبانی یک ابزار شگفت‌انگیز و فوق‌العاده برای ارتباط است."
+        }
+      },
+      {
+        "id": "nw11-15",
+        "word": "seek = search for",
+        "phonetic": "/siːk/ = /sɜːtʃ fɔːr/",
+        "persianMeaning": "جستجو کردن / در پی چیزی گشتن (مترادف‌های درس)",
+        "imagePromptOrUrl": "seek-search-magnifying",
+        "options": ["lose", "seek = search for", "hide"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Scientists seek and search for new facts every day.",
+          "fa": "دانشمندان هر روز در پی کشف و جستجوی حقایق جدید هستند."
+        }
+      },
+      {
+        "id": "nw11-16",
+        "word": "quit = give up",
+        "phonetic": "/kwɪt/ = /ɡɪv ʌp/",
+        "persianMeaning": "دست کشیدن / متوقف کردن عادت یا کار (مترادف‌های درس)",
+        "imagePromptOrUrl": "quit-give-up-smoking",
+        "options": ["quit = give up", "continue", "start"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Never quit or give up when you are trying to learn a language.",
+          "fa": "هنگامی که تلاش می‌کنید زبانی را بیاموزید، هرگز تسلیم نشوید و دست نکشید."
+        }
+      },
+      {
+        "id": "nw11-17",
+        "word": "nearly = almost",
+        "phonetic": "/ˈnɪə.li/ = /ˈɔːl.məʊst/",
+        "persianMeaning": "تقریباً / نزدیک به (مترادف‌های صفحه ۳۳ کتاب)",
+        "imagePromptOrUrl": "nearly-almost-finish-line",
+        "options": ["exactly", "nearly = almost", "never"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The endangered languages make up nearly and almost 8 percent of all languages.",
+          "fa": "زبان‌های در معرض خطر تقریباً و نزدیک به ۸ درصد از کل زبان‌ها را تشکیل می‌دهند."
+        }
+      },
+      {
+        "id": "nw11-18",
+        "word": "fortunately = luckily",
+        "phonetic": "/ˈfɔː.tʃən.ət.li/ = /ˈlʌk.əl.i/",
+        "persianMeaning": "خوشبختانه / از بخت خوب (مترادف‌های صفحه ۳۳ کتاب)",
+        "imagePromptOrUrl": "fortunately-luckily-clover",
+        "options": ["unfortunately", "fortunately = luckily", "sadly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Fortunately and luckily, people are trying to preserve endangered local languages.",
+          "fa": "خوشبختانه و از بخت نیک، مردم در تلاشند تا زبان‌های محلی در معرض خطر را حفظ کنند."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Languages of the World",
+      "persianTitle": "زبان‌های جهان",
+      "passageTextEn": "Language is a system of communication. It uses written and spoken forms. People use language to communicate with each other in a society. They exchange knowledge, beliefs, wishes, and feelings through it.\n\nLanguages vary greatly from region to region. They are so different that a person may not understand the language of someone from another region, country or continent. It is not surprising to hear that today about 7000 languages exist in the world. There are more than 2000 languages in Africa, 1000 in the Americas, more than 2250 in Asia, about 230 in Europe, and more than 1300 in Oceania.\n\nNative speakers of these languages range in number from very large, with hundreds of millions of speakers, to very small, with fewer than 10 speakers. The most popular language in the world is Chinese. More than one billion people in the world speak Chinese.\n\nInterestingly, English has fewer native speakers than Chinese, but there are about one billion learners of English all around the world. They learn English as an international language.\n\nAbout fifty percent of the world’s languages have fewer than 5000 speakers. In the beginning of the twenty-first century, 204 languages had fewer than 10 speakers and 344 languages had between 10 and 99 speakers. The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world’s languages. We call them ‘endangered languages’. As the speakers of such languages grow old and die, their languages will die, too.\n\nAll languages are really valuable, despite their differences. Every language is an amazing means of communication that meets the needs of its own speakers. It is impossible to imagine the world without language. Therefore, we should respect all languages, no matter how different they are and how many speakers they have.",
+      "passageParagraphs": [
+        "Language is a system of communication. It uses written and spoken forms. People use language to communicate with each other in a society. They exchange knowledge, beliefs, wishes, and feelings through it.",
+        "Languages vary greatly from region to region. They are so different that a person may not understand the language of someone from another region, country or continent. It is not surprising to hear that today about 7000 languages exist in the world. There are more than 2000 languages in Africa, 1000 in the Americas, more than 2250 in Asia, about 230 in Europe, and more than 1300 in Oceania.",
+        "Native speakers of these languages range in number from very large, with hundreds of millions of speakers, to very small, with fewer than 10 speakers. The most popular language in the world is Chinese. More than one billion people in the world speak Chinese.",
+        "Interestingly, English has fewer native speakers than Chinese, but there are about one billion learners of English all around the world. They learn English as an international language.",
+        "About fifty percent of the world’s languages have fewer than 5000 speakers. In the beginning of the twenty-first century, 204 languages had fewer than 10 speakers and 344 languages had between 10 and 99 speakers. The 548 languages with fewer than 99 speakers make up nearly 8 percent of the world’s languages. We call them ‘endangered languages’. As the speakers of such languages grow old and die, their languages will die, too.",
+        "All languages are really valuable, despite their differences. Every language is an amazing means of communication that meets the needs of its own speakers. It is impossible to imagine the world without language. Therefore, we should respect all languages, no matter how different they are and how many speakers they have."
+      ],
+      "questions": [
+        {
+          "id": "rq11-1",
+          "type": "mcq_general",
+          "prompt": "What is the main idea of this reading passage?",
+          "options": [
+            "All human languages are valuable systems of communication that must be respected.",
+            "English is the only language that people must learn in the modern century.",
+            "Languages with fewer than 10 speakers are not useful at all.",
+            "Chinese will soon replace all other regional languages in Asia."
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "پیام محوری و کلیدی متن این است که همه زبان‌های دنیا با وجود تفاوت‌هایشان ابزارهای ارزشمند ارتباطی هستند و باید محترم شمرده شوند."
+        },
+        {
+          "id": "rq11-2",
+          "type": "true_false",
+          "prompt": "According to the passage, people use language to exchange ONLY scientific facts and knowledge.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": "False",
+          "explanationFa": "غلط است؛ طبق پاراگراف اول، مردم علاوه بر دانش، باورها (beliefs)، آرزوها (wishes) و احساساتشان (feelings) را نیز با زبان مبادله می‌کنند."
+        },
+        {
+          "id": "rq11-3",
+          "type": "reference",
+          "prompt": "In paragraph 1, what does the underlined pronoun 'They' refer to in 'They exchange knowledge...'?",
+          "options": ["Forms", "People", "Languages", "Wishes"],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر فاعلی They در جمله چهارم پاراگراف اول به کلمه People (مردم) در جمله قبل برمی‌گردد."
+        },
+        {
+          "id": "rq11-4",
+          "type": "context_meaning",
+          "prompt": "In paragraph 5, what does the term 'endangered languages' mean?",
+          "options": [
+            "Languages that have very few living speakers and are at risk of dying out.",
+            "Languages that are spoken by dangerous wild animals.",
+            "Languages that are forbidden to be taught in modern schools.",
+            "Languages that only exist in written form in ancient books."
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "زبان‌های در حال انقراض زبان‌هایی با تعداد بسیار اندک گویشور (کمتر از ۹۹ یا حتی ۱۰ نفر) هستند که با مرگ گویندگانشان برای همیشه نابود می‌شوند."
+        },
+        {
+          "id": "rq11-5",
+          "type": "open_ended",
+          "prompt": "According to the last paragraph, why should human beings respect all languages around the world?",
+          "requiredKeywordsForEvaluation": ["valuable", "communication", "needs", "respect"],
+          "modelAnswerEn": "We should respect all languages because every language is a valuable and amazing means of communication that meets the needs of its own speakers.",
+          "modelAnswerFa": "ما باید به تمام زبان‌ها احترام بگذاریم چرا که هر زبانی یک ابزار ارزشمند و شگفت‌انگیز برای ارتباط است که نیازهای گویشوران خود را برطرف می‌کند.",
+          "explanationFa": "پاسخ باید اشاره کند که زبان‌ها با وجود تفاوت در تعداد گویشوران، همگی ابزارهای ارتباطی ارزشمند برای برطرف کردن نیازهای بشر هستند."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Countable and Uncountable Nouns & Quantifiers",
+      "persianTopic": "اسم‌های قابل شمارش، غیرقابل شمارش و کمیت‌سنج‌ها (Many, Much, A few, A little, Some, Any)",
+      "discovery": {
+        "sentenceA": {
+          "text": "There are many apples on the kitchen table.",
+          "highlightedPart": "many apples",
+          "translation": "سیب‌های زیادی روی میز آشپزخانه وجود دارد. (قابل شمارش جمع با s و many)"
+        },
+        "sentenceB": {
+          "text": "There is much water in the glass.",
+          "highlightedPart": "much water",
+          "translation": "آب زیادی در لیوان وجود دارد. (غیرقابل شمارش مفرد با much)"
+        },
+        "ccqQuestions": [
+          {
+            "question": "کدام اسم را می‌توان به صورت دانه دانه شمرد و به آن s جمع افزود؟",
+            "options": ["apples (سیب‌ها)", "water (آب)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه apple قابل شمارش است و شکل جمع apples دارد، اما water مایع و غیرقابل شمارش است."
+          },
+          {
+            "question": "فعل همراه با اسم‌های غیرقابل شمارش (مانند water یا bread) چگونه می‌آید؟",
+            "options": ["همیشه به صورت مفرد (is / has)", "به صورت جمع (are / have)"],
+            "correctIndex": 0,
+            "explanationFa": "اسم‌های غیرقابل شمارش در زبان انگلیسی همیشه با فعل مفرد (مانند is) به کار می‌روند."
+          }
+        ]
+      },
+      "ruleBoxFa": "اسم‌های قابل شمارش (Countable) شکل جمع با s می‌گیرند و با many و a few سنجیده می‌شوند. اسم‌های غیرقابل شمارش (Uncountable) همیشه مفرد هستند و با much و a little می‌آیند. some در جملات مثبت و any در جملات منفی و سوالی کاربرد دارد.",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "منفی کردن جملات و کاربرد Any",
+          "stepByStepExplanationFa": [
+            "۱. برای اسم‌های قابل شمارش جمع در جمله منفی از not many یا not any استفاده می‌کنیم.",
+            "۲. برای اسم‌های غیرقابل شمارش از not much یا not any با فعل مفرد استفاده می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "There is some milk in the fridge.",
+            "questionPrompt": "جمله بالا را به صورت منفی بازنویسی کنید:",
+            "options": [
+              "There isn't any milk in the fridge.",
+              "There aren't some milk in the fridge."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه milk غیرقابل شمارش و مفرد است، بنابراین فعل منفی isn't می‌آید و some در حالت منفی به any تبدیل می‌شود."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "پرسیدن تعداد و مقدار با How many و How much",
+          "stepByStepExplanationFa": [
+            "۱. برای پرسیدن تعداد اسم‌های قابل شمارش جمع از فرمول How many + Plural Noun استفاده می‌کنیم.",
+            "۲. برای پرسیدن مقدار اسم‌های غیرقابل شمارش یا قیمت اجناس از فرمول How much + Uncountable Noun استفاده می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "He speaks four languages fluently.",
+            "questionPrompt": "درباره تعداد زبان‌هایی که او صحبت می‌کند سوال بسازید:",
+            "options": [
+              "How many languages does he speak?",
+              "How much languages does he speak?"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "کلمه languages قابل شمارش جمع است، بنابراین حتماً باید از How many استفاده کنیم."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp11-1",
+            "prompt": "There are only .......... students in the library today because of the heavy snow.",
+            "options": ["a few", "a little", "much", "any"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه students قابل شمارش جمع است و برای بیان تعداد کم مثبت از a few استفاده می‌کنیم."
+          },
+          {
+            "id": "gp11-2",
+            "prompt": "I don't have .......... money in my pocket right now.",
+            "options": ["many", "any", "a few", "some"],
+            "correctIndex": 1,
+            "explanationFa": "در جملات منفی با فعل don't have، برای اسم‌های غیرقابل شمارش مانند money از any استفاده می‌شود."
+          },
+          {
+            "id": "gp11-3",
+            "prompt": "How .......... tea did your father drink this morning?",
+            "options": ["many", "few", "much", "any"],
+            "correctIndex": 2,
+            "explanationFa": "چای (tea) مایع و غیرقابل شمارش است، بنابراین مقدار آن با How much پرسیده می‌شود."
+          },
+          {
+            "id": "gp11-4",
+            "prompt": "Would you like a .......... of bread with your soup?",
+            "options": ["loaf", "glass", "bottle", "drop"],
+            "correctIndex": 0,
+            "explanationFa": "نان با واحد شمارش loaf (قرص نان) یا slice (برش نان) به کار می‌رود: a loaf of bread."
+          }
+        ],
+        "production": {
+          "imageUrl": "breakfast-table-food-items",
+          "imageDescriptionFa": "یک میز صبحانه با بطری آب، فنجان چای، قرص نان، و چند عدد تخم مرغ",
+          "promptInstructionFa": "با استفاده از واحدهای شمارش See Also (a bottle of, a cup of, a loaf of) یک جمله توصیفی بسازید:",
+          "targetKeywords": ["bottle", "cup", "loaf", "table"],
+          "modelSentence": "There is a bottle of water, a cup of tea, and a loaf of bread on the table.",
+          "persianTranslation": "یک بطری آب، یک فنجان چای و یک قرص نان روی میز قرار دارد."
+        }
+      }
+    },
+    "listening": {
+      "title": "شنیداری خرید و تکیه اعداد (Shopping & Teen vs. Ten Numbers)",
+      "preListeningQuestions": [
+        {
+          "id": "lq11-1",
+          "question": "What question does a customer ask to find out the price of an item?",
+          "options": ["How much is it?", "How many is it?", "Where is it?"],
+          "correctIndex": 0
+        },
+        {
+          "id": "lq11-2",
+          "question": "In numbers like 14 (fourteen) and 40 (forty), which syllable is stressed in fourteen?",
+          "options": ["The second syllable (-teen)", "The first syllable (four-)", "Neither syllable"],
+          "correctIndex": 0
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv11-1",
+          "title": "مکالمه ۱: خرید دیکشنری در کتاب‌فروشی",
+          "transcriptEn": "Customer: Excuse me, how much is this English dictionary?\nBookseller: It's fifteen dollars. It has over thirty thousand words and clear examples.\nCustomer: Great! I'll take it.",
+          "transcriptFa": "مشتری: ببخشید، قیمت این فرهنگ لغت انگلیسی چقدر است؟\nکتاب‌فروش: ۱۵ دلار است. بیش از ۳۰ هزار واژه و مثال‌های روشن دارد.\nمشتری: عالی است! آن را برمی‌دارم."
+        },
+        {
+          "id": "conv11-2",
+          "title": "مکالمه ۲: خرید بلیط موزه زبان",
+          "transcriptEn": "Visitor: Good morning! How much is a ticket for high school students?\nClerk: It is thirteen thousand tomans for students, but forty thousand tomans for adults.\nVisitor: I need two student tickets, please.",
+          "transcriptFa": "بازدیدکننده: صبح بخیر! قیمت بلیط برای دانش‌آموزان دبیرستان چقدر است؟\nمتصدی: برای دانش‌آموزان ۱۳ هزار تومان و برای بزرگسالان ۴۰ هزار تومان است.\nبازدیدکننده: دو عدد بلیط دانش‌آموزی لطفاً."
+        }
+      ],
+      "pronunciation": {
+        "title": "تکیه و استرس اعداد: Teen Numbers در برابر Ten Numbers",
+        "ruleExplanationFa": "طبق صفحات ۳۷ و ۳۸ کتاب، در اعداد مختوم به -teen (اعداد ۱۳ تا ۱۹) استرس و تکیه اصلی صدا روی هجای دوم قرار می‌گیرد (مانند thirTEEN, fourTEEN)، اما در اعداد ده‌گان مختوم به -ty (اعداد ۳۰ تا ۹۰) استرس روی هجای اول است (مانند THIRty, FORty).",
+        "examples": [
+          {
+            "sentence": "thirTEEN (13) vs. THIRty (30)",
+            "intonation": "falling",
+            "patternDescriptionFa": "در 13 تکیه روی TEEN با صدای کشیده و بلندتر است؛ در 30 تکیه روی THIR قرار دارد."
+          },
+          {
+            "sentence": "fourTEEN (14) vs. FORty (40)",
+            "intonation": "falling",
+            "patternDescriptionFa": "در 14 تکیه روی TEEN است؛ در 40 تکیه روی FOR است."
+          },
+          {
+            "sentence": "fifTEEN (15) vs. FIFty (50)",
+            "intonation": "falling",
+            "patternDescriptionFa": "در 15 تکیه روی TEEN است؛ در 50 تکیه روی FIF است."
+          },
+          {
+            "sentence": "sixTEEN (16) vs. SIXty (60)",
+            "intonation": "falling",
+            "patternDescriptionFa": "در 16 تکیه روی TEEN است؛ در 60 تکیه روی SIX است."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq11-1",
+            "sentence": "In 'thirTEEN', which part has the stronger stress and higher pitch?",
+            "correctIntonation": "falling",
+            "explanationFa": "در اعداد مختوم به -teen (۱۳ الی ۱۹)، استرس اصلی بر روی هجای دوم یعنی -teen قرار می‌گیرد."
+          },
+          {
+            "id": "prq11-2",
+            "sentence": "In 'FORty', which syllable is pronounced with stronger energy?",
+            "correctIntonation": "falling",
+            "explanationFa": "در اعداد ده‌گان مختوم به -ty (۳۰ الی ۹۰)، استرس روی هجای اول یعنی FOR- است."
+          },
+          {
+            "id": "prq11-3",
+            "sentence": "The ticket costs fifTEEN dollars, not FIFty dollars.",
+            "correctIntonation": "falling",
+            "explanationFa": "استرس در fifteen روی هجای دوم و در fifty روی هجای اول قرار دارد تا این دو عدد با هم اشتباه نشوند."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "ساختار جمله ساده (Simple Sentence: Subject, Verb, Object)",
+        "explanationFa": "یک جمله کامل انگلیسی پیامی رسا را بیان می‌کند. ارکان اصلی جمله ساده عبارتند از: فاعل (Subject) که کار را انجام می‌دهد، فعل (Verb) که کار یا حالت را نشان می‌دهد، و مفعول (Object) که کار روی آن واقع می‌شود.",
+        "categories": [
+          {
+            "categoryEn": "Subject (فاعل)",
+            "categoryFa": "کننده کار یا مبتدای جمله (Who or What the sentence is about)",
+            "examples": ["Mahan (ماهان)", "The bird (پرنده)", "The students (دانش‌آموزان)", "She (او)"]
+          },
+          {
+            "categoryEn": "Verb (فعل)",
+            "categoryFa": "عملی که انجام شده یا حالتی که بیان می‌شود (What the sentence says)",
+            "examples": ["is sleeping (خوابیده است)", "learn (یاد می‌گیرند)", "visited (دیدار کرد)", "sings (آواز می‌خواند)"]
+          },
+          {
+            "categoryEn": "Object (مفعول)",
+            "categoryFa": "پذیرنده عمل که بعد از فعل متعدی می‌آید (Receives the action)",
+            "examples": ["English (انگلیسی)", "his doctor (پزشکش)", "milk (شیر)", "the book (کتاب)"]
+          },
+          {
+            "categoryEn": "Adverbials (قیدها)",
+            "categoryFa": "کلماتی که اطلاعات تکمیلی درباره حالت، مکان و زمان می‌دهند",
+            "examples": ["fluently (به‌روانی)", "in the library (در کتابخانه)", "yesterday (دیروز)", "at 8:00 (ساعت ۸)"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq11-1",
+            "prompt": "در جمله 'The students learn English eagerly in the classroom every day'، کلمه 'English' چه نقشی دارد؟",
+            "options": ["Object (مفعول)", "Subject (فاعل)", "Verb (فعل)", "Adverb of place (قید مکان)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه English دریافت‌کننده عمل یادگیری (learn) است و نقش مفعول (Object) را دارد."
+          },
+          {
+            "id": "wq11-2",
+            "prompt": "کدام یک از عبارات زیر یک «جمله کامل» است نه عبارت ناقص؟",
+            "options": [
+              "She laughed.",
+              "studying in the library",
+              "the baby with her small hands",
+              "a beautiful lake in the forest"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "گزینه 'She laughed' دارای فاعل (She) و فعل (laughed) است و معنای کاملی را به عنوان یک جمله ساده می‌رساند."
+          },
+          {
+            "id": "wq11-3",
+            "prompt": "در جمله 'Mahdi visited his doctor yesterday'، نقش 'his doctor' چیست؟",
+            "options": ["Object (مفعول)", "Subject (فاعل)", "Verb (فعل)", "Adverb of time (قید زمان)"],
+            "correctIndex": 0,
+            "explanationFa": "مهدی چه کسی را ویزیت کرد؟ پزشکش را؛ پس his doctor مفعول مستقیم است."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "شناسایی فاعل، فعل و مفعول (Finding S, V, O)",
+        "rulesSummaryFa": "برای یافتن فاعل می‌پرسیم جمله درباره چه کسی یا چه چیزی است؟ برای یافتن فعل می‌پرسیم فاعل چه کار کرده یا چه حالتی دارد؟ برای یافتن مفعول می‌پرسیم فعل روی چه کسی یا چه چیزی اثر گذاشته است؟",
+        "regularPairs": [
+          { "singular": "Mahan is sleeping.", "plural": "Subject: Mahan, Verb: is sleeping (No Object)" },
+          { "singular": "The bird sings.", "plural": "Subject: The bird, Verb: sings (No Object)" },
+          { "singular": "The students are drinking milk.", "plural": "Subject: The students, Verb: are drinking, Object: milk" }
+        ],
+        "irregularPairs": [
+          { "singular": "Mahdi visited his doctor.", "plural": "Subject: Mahdi, Verb: visited, Object: his doctor" },
+          { "singular": "They speak English well.", "plural": "Subject: They, Verb: speak, Object: English" }
+        ],
+        "exercise": [
+          {
+            "id": "sp11-1",
+            "prompt": "در جمله 'My sister is reading an interesting novel'، فاعل (Subject) کدام است؟",
+            "options": ["My sister", "is reading", "an interesting novel", "reading"],
+            "correctIndex": 0,
+            "explanationFa": "جمله درباره چه کسی است؟ درباره 'My sister'؛ پس خواهر من فاعل است."
+          },
+          {
+            "id": "sp11-2",
+            "prompt": "در جمله 'The little boy broke the window accidentally'، مفعول (Object) چیست؟",
+            "options": ["the window", "The little boy", "broke", "accidentally"],
+            "correctIndex": 0,
+            "explanationFa": "پسر کوچک چه چیزی را شکست؟ پنجره را؛ پس the window مفعول است."
+          },
+          {
+            "id": "sp11-3",
+            "prompt": "در جمله 'Babak translates the news every evening'، فعل (Verb) جمله کدام است؟",
+            "options": ["translates", "Babak", "the news", "every evening"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه translates عمل ترجمه کردن را نشان می‌دهد و فعل اصلی جمله است."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "انواع قیدها: حالت، مکان و زمان (Adverbs of Manner, Place, Time)",
+        "explanationFa": "قیدها (Adverbials) اطلاعات بیشتری درباره چگونگی، مکان و زمان وقوع فعل به جمله اضافه می‌کنند: قید حالت به سوال How، قید مکان به سوال Where، و قید زمان به سوال When پاسخ می‌دهد.",
+        "examples": [
+          { "common": "Adverb of Manner (قید حالت)", "proper": "fluently, quickly, well, carefully, quietly" },
+          { "common": "Adverb of Place (قید مکان)", "proper": "in the library, at school, in Isfahan, here, there" },
+          { "common": "Adverb of Time (قید زمان)", "proper": "yesterday, every day, at 8 o'clock, now, in the morning" }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pn11-1",
+            "sentenceWithBlank": "Mr. Saberian speaks English .......... (fluently / at school).",
+            "options": ["fluently (قید حالت)", "at school (قید مکان)"],
+            "correctIndex": 0,
+            "explanationFa": "برای بیان چگونگی صحبت کردن به قید حالت fluently (به‌روانی) نیاز داریم."
+          },
+          {
+            "id": "pn11-2",
+            "sentenceWithBlank": "The students are studying .......... (in the library / yesterday).",
+            "options": ["in the library (قید مکان)", "yesterday (قید زمان)"],
+            "correctIndex": 0,
+            "explanationFa": "عبارت in the library محل مطالعه دانش‌آموزان را مشخص می‌کند و قید مکان است."
+          },
+          {
+            "id": "pn11-3",
+            "sentenceWithBlank": "We will leave for Tehran .......... (tomorrow morning / quietly).",
+            "options": ["tomorrow morning (قید زمان)", "quietly (قید حالت)"],
+            "correctIndex": 0,
+            "explanationFa": "عبارت tomorrow morning زمان حرکت را نشان می‌دهد و قید زمان است."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "ترتیب قیدها در جمله و آزمون نهایی (Order of Adverbs: Manner + Place + Time)",
+        "explanationFa": "اگر در انتهای جمله چند قید داشته باشیم، طبق قاعده زبان انگلیسی به ترتیب: ۱) قید حالت (Manner)، ۲) قید مکان (Place)، و ۳) قید زمان (Time) قرار می‌گیرند (رمز یادآوری: حَمز).",
+        "markersList": [
+          {
+            "type": "Manner (حالت)",
+            "typeFa": "پاسخ به سوال How",
+            "items": ["carefully", "fluently", "fast", "well"],
+            "exampleSentence": "He drives carefully."
+          },
+          {
+            "type": "Place (مکان)",
+            "typeFa": "پاسخ به سوال Where",
+            "items": ["at home", "in the park", "here", "at school"],
+            "exampleSentence": "She works at school."
+          },
+          {
+            "type": "Time (زمان)",
+            "typeFa": "پاسخ به سوال When",
+            "items": ["every morning", "yesterday", "on Fridays", "at night"],
+            "exampleSentence": "They arrived at night."
+          },
+          {
+            "type": "Manner + Place + Time",
+            "typeFa": "ترتیب هر سه قید با هم (حالت + مکان + زمان)",
+            "items": ["Ali played football [happily] [in the yard] [yesterday]."],
+            "exampleSentence": "Ali played football happily (حالت) in the yard (مکان) yesterday (زمان)."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nm11-1",
+            "prompt": "کدام گزینه ترتیب استاندارد قیدها (حالت، مکان، زمان) را به درستی رعایت کرده است؟",
+            "options": [
+              "She practiced the piano quietly in her room yesterday.",
+              "She practiced the piano yesterday quietly in her room.",
+              "She practiced the piano in her room yesterday quietly.",
+              "She practiced the piano quietly yesterday in her room."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "ترتیب درست طبق فرمول حَمز: ابتدا quietly (حالت)، سپس in her room (مکان)، و در پایان yesterday (زمان)."
+          },
+          {
+            "id": "nm11-2",
+            "prompt": "The teacher explained the new lesson ..........",
+            "options": [
+              "clearly in the classroom this morning.",
+              "this morning clearly in the classroom.",
+              "in the classroom this morning clearly.",
+              "this morning in the classroom clearly."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "ترتیب استاندارد قیدها: clearly (حالت) + in the classroom (مکان) + this morning (زمان)."
+          },
+          {
+            "id": "nm11-3",
+            "prompt": "The children were playing ..........",
+            "options": [
+              "happily in the garden all afternoon.",
+              "all afternoon happily in the garden.",
+              "in the garden all afternoon happily.",
+              "all afternoon in the garden happily."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "قید حالت happily اول می‌آید، سپس قید مکان in the garden، و سپس قید زمان all afternoon."
+          }
+        ]
+      }
+    }
+  }
+}

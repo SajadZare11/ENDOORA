@@ -184,6 +184,283 @@ def _path_preview(placement_complete: bool) -> list[dict[str, str]]:
     ]
 
 
+def format_relative_time(dt) -> tuple[str, str]:
+    if not dt:
+        return "", ""
+    now = timezone.now()
+    diff = (now - dt).total_seconds()
+    if diff < 60:
+        return "لحظاتی پیش", "Just now"
+    if diff < 3600:
+        mins = max(1, int(diff // 60))
+        return f"{mins} دقیقه پیش", f"{mins}m ago"
+    if diff < 86400:
+        hours = int(diff // 3600)
+        return f"{hours} ساعت پیش", f"{hours}h ago"
+    if diff < 172800:
+        return "دیروز", "Yesterday"
+    days = int(diff // 86400)
+    return f"{days} روز پیش", f"{days}d ago"
+
+
+def record_learner_activity(
+    user,
+    activity_type: str,
+    title_fa: str,
+    title_en: str = "",
+    category: str = "general",
+    badge_text_fa: str = "",
+    badge_text_en: str = "",
+    icon: str = "⚡",
+    link: str = "",
+    description_fa: str = "",
+    description_en: str = "",
+    metadata: dict | None = None,
+    created_at=None,
+):
+    from .models import LearnerActivity
+    return LearnerActivity.objects.create(
+        user=user,
+        activity_type=activity_type,
+        title_fa=title_fa,
+        title_en=title_en or title_fa,
+        category=category,
+        badge_text_fa=badge_text_fa,
+        badge_text_en=badge_text_en,
+        icon=icon,
+        link=link,
+        description_fa=description_fa,
+        description_en=description_en,
+        metadata=metadata or {},
+        created_at=created_at or timezone.now(),
+    )
+
+
+def _sync_domain_activities(user) -> None:
+    from .models import LearnerActivity
+    # 1. Lesson completions
+    try:
+        from courses.models import LearnerLessonProgress
+        progs = (
+            LearnerLessonProgress.objects.filter(learner=user, is_completed=True)
+            .select_related("lesson__module__course")
+            .order_by("-updated_at")[:10]
+        )
+        for p in progs:
+            lesson = p.lesson
+            if not lesson:
+                continue
+            course = lesson.module.course if lesson.module else None
+            lesson_id_str = str(lesson.id)
+            if not LearnerActivity.objects.filter(user=user, activity_type="lesson_completed", metadata__lesson_id=lesson_id_str).exists():
+                score_badge = f"نمره {int(p.quiz_score)}٪" if p.quiz_score is not None else "تکمیل شده"
+                score_badge_en = f"Score: {int(p.quiz_score)}%" if p.quiz_score is not None else "Completed"
+                course_slug = course.slug if course else "course"
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="lesson_completed",
+                    title_fa=f"تکمیل درس: {lesson.title_fa}",
+                    title_en=f"Completed lesson: {lesson.title_en}",
+                    category=LearnerActivity.ActivityCategory.COURSE,
+                    badge_text_fa=score_badge,
+                    badge_text_en=score_badge_en,
+                    icon="🎓",
+                    link=f"/courses/{course_slug}/lessons/{lesson.id}",
+                    metadata={"lesson_id": lesson_id_str, "quiz_score": p.quiz_score},
+                    created_at=p.completed_at or p.updated_at,
+                )
+    except Exception:
+        pass
+
+    # 2. Payments & Subscription
+    try:
+        from marketplace.models import PaymentTransaction, PaymentTransactionStatus, PaymentOrderType
+        txs = (
+            PaymentTransaction.objects.filter(user=user, status=PaymentTransactionStatus.PAID)
+            .select_related("plan")
+            .order_by("-created_at")[:5]
+        )
+        for tx in txs:
+            tx_id_str = str(tx.id)
+            if not LearnerActivity.objects.filter(user=user, activity_type="payment_success", metadata__tx_id=tx_id_str).exists():
+                if tx.order_type == PaymentOrderType.SUBSCRIPTION_PLAN:
+                    title_fa = f"خرید {tx.plan.name_fa if tx.plan else 'اشتراک ویژه'}"
+                    title_en = f"Activated {tx.plan.name_en if tx.plan else 'Premium Plan'}"
+                    cat = LearnerActivity.ActivityCategory.MEMBERSHIP
+                    icon = "⭐"
+                    badge_fa = "اشتراک فعال"
+                    badge_en = "Active Plan"
+                    link = "/account/plan"
+                elif tx.order_type == PaymentOrderType.WALLET_TOPUP:
+                    title_fa = f"شارژ کیف پول ({int(tx.amount_toman):,} تومان)"
+                    title_en = f"Wallet Top-up ({int(tx.amount_toman):,} Toman)"
+                    cat = LearnerActivity.ActivityCategory.MEMBERSHIP
+                    icon = "💳"
+                    badge_fa = "شارژ موفق"
+                    badge_en = "Success"
+                    link = "/account/wallet"
+                else:
+                    title_fa = "پرداخت موفق جلسه آموزشی"
+                    title_en = "Session booking payment"
+                    cat = LearnerActivity.ActivityCategory.BOOKING
+                    icon = "📅"
+                    badge_fa = "پرداخت شد"
+                    badge_en = "Paid"
+                    link = "/account/billing"
+
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="payment_success",
+                    title_fa=title_fa,
+                    title_en=title_en,
+                    category=cat,
+                    badge_text_fa=badge_fa,
+                    badge_text_en=badge_en,
+                    icon=icon,
+                    link=link,
+                    metadata={"tx_id": tx_id_str},
+                    created_at=tx.verified_at or tx.created_at,
+                )
+    except Exception:
+        pass
+
+    # 3. Placement tests
+    try:
+        from placement.models import PlacementSession
+        placements = PlacementSession.objects.filter(user=user, status="submitted").order_by("-completed_at")[:2]
+        for pl in placements:
+            pl_id_str = str(pl.id)
+            if not LearnerActivity.objects.filter(user=user, activity_type="placement_completed", metadata__placement_id=pl_id_str).exists():
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="placement_completed",
+                    title_fa="تکمیل سنجش تعیین سطح زبان انگلیسی (CEFR)",
+                    title_en="Completed CEFR English Placement Test",
+                    category=LearnerActivity.ActivityCategory.PLACEMENT,
+                    badge_text_fa="تعیین سطح",
+                    badge_text_en="Placement",
+                    icon="🎯",
+                    link="/placement",
+                    metadata={"placement_id": pl_id_str},
+                    created_at=pl.completed_at or pl.created_at,
+                )
+    except Exception:
+        pass
+
+    # 4. Completed Daily Missions
+    try:
+        from missions.models import DailyMission
+        completed_missions = DailyMission.objects.filter(
+            user=user, status=DailyMission.Status.COMPLETED
+        ).order_by("-mission_date")[:3]
+        for m in completed_missions:
+            m_id_str = str(m.id)
+            if not LearnerActivity.objects.filter(
+                user=user, activity_type="mission_completed", metadata__mission_id=m_id_str
+            ).exists():
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="mission_completed",
+                    title_fa=f"انجام کامل مأموریت روزانه: {m.title_fa}",
+                    title_en=f"Completed Daily Mission: {m.title_en}",
+                    category=LearnerActivity.ActivityCategory.GAMIFICATION,
+                    badge_text_fa="مأموریت روز",
+                    badge_text_en="Daily Mission",
+                    icon="🌟",
+                    link="/today",
+                    metadata={"mission_id": m_id_str},
+                    created_at=timezone.now(),
+                )
+    except Exception:
+        pass
+
+    # 5. SRS Vocabulary Reviews
+    try:
+        from srs.models import SrsItem
+        reviewed_items = (
+            SrsItem.objects.filter(learner=user, last_reviewed_at__isnull=False)
+            .order_by("-last_reviewed_at")[:5]
+        )
+        for item in reviewed_items:
+            item_id_str = str(item.id)
+            if not LearnerActivity.objects.filter(
+                user=user, activity_type="vocab_reviewed", metadata__srs_id=item_id_str
+            ).exists():
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="vocab_reviewed",
+                    title_fa=f"مرور و تثبیت واژه: {item.term} ({item.meaning_fa})",
+                    title_en=f"Reviewed vocabulary: {item.term}",
+                    category=LearnerActivity.ActivityCategory.VOCABULARY,
+                    badge_text_fa=f"تکرار {item.repetition}",
+                    badge_text_en=f"Repetition {item.repetition}",
+                    icon="💡",
+                    link="/review",
+                    metadata={"srs_id": item_id_str, "term": item.term},
+                    created_at=item.last_reviewed_at or timezone.now(),
+                )
+    except Exception:
+        pass
+
+    # 6. Live Class Requests
+    try:
+        from live_classes.models import ClassEnrollmentRequest
+        requests = ClassEnrollmentRequest.objects.filter(student=user).order_by("-created_at")[:3]
+        for req in requests:
+            req_id_str = str(req.id)
+            if not LearnerActivity.objects.filter(
+                user=user, activity_type="class_request", metadata__request_id=req_id_str
+            ).exists():
+                book_title = req.target_book.book_title if req.target_book else "کلاس آنلاین"
+                LearnerActivity.objects.create(
+                    user=user,
+                    activity_type="class_request",
+                    title_fa=f"ثبت درخواست کلاس: {book_title}",
+                    title_en=f"Class request submitted: {book_title}",
+                    category=LearnerActivity.ActivityCategory.BOOKING,
+                    badge_text_fa=req.get_status_display() or "درخواست کلاس",
+                    badge_text_en=req.status,
+                    icon="📅",
+                    link="/learn/now",
+                    metadata={"request_id": req_id_str},
+                    created_at=req.created_at,
+                )
+    except Exception:
+        pass
+
+
+def get_recent_activities(user, limit: int = 10) -> list[dict[str, Any]]:
+    from .models import LearnerActivity
+    _sync_domain_activities(user)
+
+    activities = (
+        LearnerActivity.objects.filter(user=user)
+        .order_by("-created_at")[:limit]
+    )
+    result = []
+    for act in activities:
+        time_fa, time_en = format_relative_time(act.created_at)
+        result.append(
+            {
+                "id": str(act.id),
+                "activity_type": act.activity_type,
+                "title_fa": act.title_fa,
+                "title_en": act.title_en,
+                "description_fa": act.description_fa,
+                "description_en": act.description_en,
+                "category": act.category,
+                "badge_text_fa": act.badge_text_fa,
+                "badge_text_en": act.badge_text_en,
+                "icon": act.icon,
+                "link": act.link,
+                "time_ago_fa": time_fa,
+                "time_ago_en": time_en,
+                "created_at": act.created_at,
+            }
+        )
+    return result
+
+
 def build_learner_home(user) -> dict[str, Any]:
     today = timezone.localdate()
     now = timezone.now()
@@ -233,6 +510,29 @@ def build_learner_home(user) -> dict[str, Any]:
     else:
         dashboard_state = "first_time"
 
+    # Active course resolution
+    active_course = None
+    try:
+        from courses.models import LearnerCourseEnrollment
+        active_enrollment = (
+            LearnerCourseEnrollment.objects.filter(learner=user)
+            .select_related("course")
+            .order_by("-updated_at")
+            .first()
+        )
+        if active_enrollment and active_enrollment.course:
+            c = active_enrollment.course
+            active_course = {
+                "slug": c.slug,
+                "title_fa": c.title_fa,
+                "title_en": c.title_en,
+                "progress_percent": active_enrollment.progress_percent,
+            }
+    except Exception:
+        pass
+
+    recent_activities = get_recent_activities(user, limit=8)
+
     return {
         "user_id": user.id,
         "greeting_name": greeting_name,
@@ -257,7 +557,8 @@ def build_learner_home(user) -> dict[str, Any]:
         "srs_due_count": srs_due_count,
         "assignment": None,
         "next_class": None,
-        "active_course": None,
+        "active_course": active_course,
+        "recent_activities": recent_activities,
         "xp_available": XPTransaction.objects.filter(learner=user).exists(),
         "xp": (
             LearnerLevel.objects.filter(learner=user).values_list("total_xp", flat=True).first()

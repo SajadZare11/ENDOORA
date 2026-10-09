@@ -303,7 +303,7 @@ class PlacementSessionEngineTests(APITestCase):
                 self.assertIn("cefr_level", itm)
                 # Ensure difficulty is separate from CEFR
                 self.assertIn(itm["difficulty"], ("easy", "medium", "hard"))
-                self.assertIn(itm["cefr_level"], ("A1", "A2", "B1", "B2"))
+                self.assertIn(itm["cefr_level"], ("A1", "A2", "B1", "B2", "C1", "C2"))
 
     def test_advance_to_speaking_section(self):
         self.client.force_authenticate(user=self.user_a)
@@ -421,3 +421,97 @@ class PlacementSessionEngineTests(APITestCase):
 
         # No premature CEFR claims
         self.assertIn("مدرک رسمی یا نهایی CEFR محسوب نمی‌شود", sub_data["notice"])
+
+    def test_completed_at_and_dashboard_query_compatibility(self):
+        self.client.force_authenticate(user=self.user_a)
+        start_res = self.client.post("/api/placement/sessions/")
+        session_id = start_res.json()["id"]
+
+        session = PlacementSession.objects.get(pk=session_id)
+        self.assertIsNone(session.completed_at)
+        self.assertEqual(session.created_at, session.started_at)
+
+        # Serializer should expose completed_at as None while active
+        detail_res = self.client.get(f"/api/placement/sessions/{session_id}/")
+        self.assertIsNone(detail_res.json()["completed_at"])
+
+        # Submit session
+        submit_res = self.client.post(f"/api/placement/sessions/{session_id}/submit/")
+        self.assertEqual(submit_res.status_code, status.HTTP_200_OK)
+        session.refresh_from_db()
+        self.assertIsNotNone(session.completed_at)
+        self.assertEqual(session.status, "submitted")
+
+        # Verify dashboard query runs without FieldError
+        placements = list(PlacementSession.objects.filter(user=self.user_a, status="submitted").order_by("-completed_at")[:2])
+        self.assertEqual(len(placements), 1)
+        self.assertEqual(str(placements[0].id), session_id)
+
+    def test_section_advance_sequence_timers_and_answer_persistence(self):
+        self.client.force_authenticate(user=self.user_a)
+        start_res = self.client.post("/api/placement/sessions/")
+        session_id = start_res.json()["id"]
+
+        # Advance from grammar to vocabulary with answers
+        advance_res = self.client.post(
+            f"/api/placement/sessions/{session_id}/advance/",
+            {
+                "current_section": "grammar",
+                "action": "complete",
+                "answers": {
+                    "grammar-a1-001": "goes",
+                    "grammar-a1-002": {"selected_option": "are"},
+                },
+            },
+            format="json",
+        )
+        self.assertEqual(advance_res.status_code, status.HTTP_200_OK)
+        adv_data = advance_res.json()
+        self.assertEqual(adv_data["current_section"], "vocabulary")
+        self.assertEqual(adv_data["next_section"], "vocabulary")
+        self.assertEqual(adv_data["next_section_duration_seconds"], 900)
+        self.assertEqual(adv_data["session_status"], "in_progress")
+        self.assertGreater(len(adv_data["questions"]), 0)
+
+        # Verify answers were persisted
+        session = PlacementSession.objects.get(pk=session_id)
+        self.assertEqual(session.answers.count(), 2)
+
+        # Advance to reading
+        advance_res_2 = self.client.post(
+            f"/api/placement/sessions/{session_id}/advance/",
+            {
+                "current_section": "vocabulary",
+                "action": "timeout",
+            },
+            format="json",
+        )
+        self.assertEqual(advance_res_2.status_code, status.HTTP_200_OK)
+        self.assertEqual(advance_res_2.json()["next_section"], "reading")
+        self.assertEqual(advance_res_2.json()["next_section_duration_seconds"], 720)
+
+    def test_placement_result_persistence_and_zero_efset_tokens(self):
+        self.client.force_authenticate(user=self.user_a)
+        start_res = self.client.post("/api/placement/sessions/")
+        session_id = start_res.json()["id"]
+
+        # Submit session
+        self.client.post(f"/api/placement/sessions/{session_id}/submit/")
+
+        session = PlacementSession.objects.get(pk=session_id)
+        self.assertTrue(hasattr(session, "result"))
+        result = session.result
+        self.assertIsNotNone(result)
+        self.assertGreaterEqual(result.endoora_index, 0)
+        self.assertLessEqual(result.endoora_index, 100)
+        self.assertIn(result.cefr_level, ["A1", "A2", "B1", "B2", "C1", "C2"])
+        self.assertIsInstance(result.skill_subscores, dict)
+
+        # Check summary serializer response for absence of efset
+        summary_res = self.client.get(f"/api/placement/sessions/{session_id}/summary/")
+        self.assertEqual(summary_res.status_code, status.HTTP_200_OK)
+        sum_data = summary_res.json()
+        self.assertIn("endoora_index", sum_data)
+        self.assertNotIn("efset_score", sum_data)
+        self.assertNotIn("efset", str(sum_data).lower())
+

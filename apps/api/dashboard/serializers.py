@@ -53,6 +53,37 @@ class SkillSnapshotSerializer(serializers.Serializer):
     status_en = serializers.CharField(max_length=120)
 
 
+class LearnerActivitySerializer(serializers.Serializer):
+    id = serializers.CharField()
+    activity_type = serializers.CharField()
+    title_fa = serializers.CharField()
+    title_en = serializers.CharField(allow_blank=True, default="")
+    description_fa = serializers.CharField(allow_blank=True, default="")
+    description_en = serializers.CharField(allow_blank=True, default="")
+    category = serializers.CharField()
+    badge_text_fa = serializers.CharField(allow_blank=True, default="")
+    badge_text_en = serializers.CharField(allow_blank=True, default="")
+    icon = serializers.CharField(default="⚡")
+    link = serializers.CharField(allow_blank=True, default="")
+    time_ago_fa = serializers.CharField(allow_blank=True, default="")
+    time_ago_en = serializers.CharField(allow_blank=True, default="")
+    created_at = serializers.DateTimeField()
+
+
+class RecordActivityInputSerializer(serializers.Serializer):
+    activity_type = serializers.CharField(max_length=64)
+    title_fa = serializers.CharField(max_length=255)
+    title_en = serializers.CharField(max_length=255, required=False, allow_blank=True, default="")
+    description_fa = serializers.CharField(required=False, allow_blank=True, default="")
+    description_en = serializers.CharField(required=False, allow_blank=True, default="")
+    category = serializers.CharField(max_length=32, required=False, default="general")
+    badge_text_fa = serializers.CharField(max_length=64, required=False, allow_blank=True, default="")
+    badge_text_en = serializers.CharField(max_length=64, required=False, allow_blank=True, default="")
+    icon = serializers.CharField(max_length=16, required=False, default="⚡")
+    link = serializers.CharField(max_length=255, required=False, allow_blank=True, default="")
+    metadata = serializers.DictField(required=False, default=dict)
+
+
 class LearnerHomeSerializer(serializers.Serializer):
     user_id = serializers.UUIDField()
     greeting_name = serializers.CharField(max_length=150)
@@ -74,6 +105,7 @@ class LearnerHomeSerializer(serializers.Serializer):
     assignment = serializers.DictField(allow_null=True)
     next_class = serializers.DictField(allow_null=True)
     active_course = serializers.DictField(allow_null=True)
+    recent_activities = LearnerActivitySerializer(many=True, required=False, default=list)
     xp_available = serializers.BooleanField()
     xp = serializers.IntegerField(min_value=0)
     streak_days = serializers.IntegerField(min_value=0)

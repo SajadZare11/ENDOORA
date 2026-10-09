@@ -148,6 +148,7 @@ export default function ClassHubPage({ params }: { params: Promise<{ id: string 
   const [submittingInvite, setSubmittingInvite] = useState(false);
   const [inviteResultLink, setInviteResultLink] = useState<TeacherLearnerLink | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
+  const [copiedClassCode, setCopiedClassCode] = useState(false);
 
   // Pillar 1: Outcomes & Check-in
   const [outcomes, setOutcomes] = useState<LessonOutcome[]>([]);
@@ -356,6 +357,13 @@ export default function ClassHubPage({ params }: { params: Promise<{ id: string 
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
+  const handleCopyClassCode = (code: string) => {
+    if (!code) return;
+    void navigator.clipboard.writeText(code);
+    setCopiedClassCode(true);
+    setTimeout(() => setCopiedClassCode(false), 2000);
+  };
+
   // Record Outcome
   const handleRecordOutcome = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -422,6 +430,34 @@ export default function ClassHubPage({ params }: { params: Promise<{ id: string 
           <div className={styles.metaRow}>
             <h1>{cls?.title ?? (isFa ? "داشبورد هوشمند کلاس" : "Class Intelligence Hub")}</h1>
             <span className={styles.levelBadge}>{cls?.level ?? "B1"}</span>
+            {(cls?.code || cls?.class_code) && (
+              <button
+                type="button"
+                onClick={() => handleCopyClassCode(cls.code || cls.class_code || "")}
+                title={isFa ? "کپی کد ۷ رقمی کلاس" : "Copy 7-digit class code"}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "4px 10px",
+                  borderRadius: "9999px",
+                  border: "1px solid #0284c7",
+                  background: "#f0f9ff",
+                  color: "#0369a1",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.15s ease",
+                  fontFamily: "monospace",
+                }}
+              >
+                <span>🏷️</span>
+                <span>{cls.code || cls.class_code}</span>
+                <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>
+                  {copiedClassCode ? (isFa ? "✓ کپی شد" : "✓ Copied") : (isFa ? "کپی" : "Copy")}
+                </span>
+              </button>
+            )}
             {cls?.coursebook && (
               <span className={styles.coursebookBadge}>
                 📖 {isFa ? `کتاب: ${cls.coursebook}` : `Book: ${cls.coursebook}`}
@@ -574,6 +610,13 @@ export default function ClassHubPage({ params }: { params: Promise<{ id: string 
             </div>
 
             <div className={styles.profileGrid}>
+              <div className={styles.profileItem}>
+                <span className={styles.profileItemLabel}>{isFa ? "کد دائمی کلاس" : "Permanent Class Code"}</span>
+                <span className={styles.profileItemValue} style={{ fontFamily: "monospace", fontWeight: 700, color: "#0284c7" }}>
+                  {cls?.code || cls?.class_code || "-"}
+                </span>
+              </div>
+
               <div className={styles.profileItem}>
                 <span className={styles.profileItemLabel}>{isFa ? "سطح زبانی CEFR" : "CEFR Level"}</span>
                 <span className={styles.profileItemValue}>{cls?.level || "B1"}</span>

@@ -1,5 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./culture.module.css";
 
 export const metadata: Metadata = {
@@ -40,41 +41,43 @@ const CULTURE_TOPICS = [
 
 export default function CultureHubPage() {
   return (
-    <div className={styles.container} dir="rtl">
-      <Link href="/skills" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
-        ← بازگشت به مرکز مهارت‌ها
-      </Link>
+    <PublicShell locale="fa" currentPath="/skills/culture">
+      <div className={styles.container} dir="rtl">
+        <Link href="/skills" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
+          ← بازگشت به مرکز مهارت‌ها
+        </Link>
 
-      <header className={styles.heroHeader}>
-        <span className={styles.badge}>دانش بین‌فرهنگی</span>
-        <h1 className={styles.title}>فرهنگ و ارتباطات بین‌المللی</h1>
-        <p className={styles.description}>
-          یادگیری زبان بدون درک بافت فرهنگی آن ناقص است. در این بخش با آداب معاشرت، گفتگوی طبیعی، و تفاوت‌های بنیادین ارتباطی در کشورهای انگلیسی‌زبان آشنا می‌شوید.
-        </p>
-      </header>
+        <header className={styles.heroHeader}>
+          <span className={styles.badge}>دانش بین‌فرهنگی</span>
+          <h1 className={styles.title}>فرهنگ و ارتباطات بین‌المللی</h1>
+          <p className={styles.description}>
+            یادگیری زبان بدون درک بافت فرهنگی آن ناقص است. در این بخش با آداب معاشرت، گفتگوی طبیعی، و تفاوت‌های بنیادین ارتباطی در کشورهای انگلیسی‌زبان آشنا می‌شوید.
+          </p>
+        </header>
 
-      <div className={styles.cardsGrid}>
-        {CULTURE_TOPICS.map((topic, idx) => (
-          <div key={idx} className={styles.card}>
-            <div>
-              <span className={styles.cardCategory}>{topic.category}</span>
-              <h2 className={styles.cardTitleFa}>{topic.titleFa}</h2>
-              <div className={styles.cardTitleEn}>{topic.titleEn}</div>
-              <p className={styles.cardBody}>{topic.summaryFa}</p>
-              <ul style={{ margin: 0, paddingInlineStart: "1.25rem", color: "var(--color-text)", fontSize: "var(--font-size-small)" }}>
-                {topic.points.map((pt, pIdx) => (
-                  <li key={pIdx} style={{ marginBottom: "0.25rem" }}>{pt}</li>
-                ))}
-              </ul>
+        <div className={styles.cardsGrid}>
+          {CULTURE_TOPICS.map((topic, idx) => (
+            <div key={idx} className={styles.card}>
+              <div>
+                <span className={styles.cardCategory}>{topic.category}</span>
+                <h2 className={styles.cardTitleFa}>{topic.titleFa}</h2>
+                <div className={styles.cardTitleEn}>{topic.titleEn}</div>
+                <p className={styles.cardBody}>{topic.summaryFa}</p>
+                <ul style={{ margin: 0, paddingInlineStart: "1.25rem", color: "var(--color-text)", fontSize: "var(--font-size-small)" }}>
+                  {topic.points.map((pt, pIdx) => (
+                    <li key={pIdx} style={{ marginBottom: "0.25rem" }}>{pt}</li>
+                  ))}
+                </ul>
+              </div>
+              <div style={{ marginTop: "var(--space-4)", paddingTop: "var(--space-3)", borderTop: "1px solid var(--color-border)" }}>
+                <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
+                  تألیف: دپارتمان مطالعات بین‌فرهنگی ایندورا
+                </span>
+              </div>
             </div>
-            <div style={{ marginTop: "var(--space-4)", paddingTop: "var(--space-3)", borderTop: "1px solid var(--color-border)" }}>
-              <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text-muted)" }}>
-                تألیف: دپارتمان مطالعات بین‌فرهنگی ایندورا
-              </span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </PublicShell>
   );
 }

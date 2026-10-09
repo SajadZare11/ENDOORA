@@ -1,0 +1,1044 @@
+{
+  "id": "vision-3-lesson-3",
+  "grade": 12,
+  "bookTitle": "Vision 3",
+  "lessonNumber": 3,
+  "slug": "grade-12/lesson-3",
+  "title": {
+    "en": "Renewable Energy",
+    "fa": "انرژی‌های تجدیدپذیر"
+  },
+  "cefrLevel": "B1+",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr12-3-1",
+        "word": "wind turbine",
+        "phonetic": "/wɪnd ˈtɜː.baɪn/",
+        "persianMeaning": "توربین بادی برای تولید برق پاک",
+        "imagePromptOrUrl": "wind-turbine-energy",
+        "options": ["wind turbine", "water tap", "fossil plant"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Huge wind turbines in Manjeel produce clean electricity from blowing wind.",
+          "fa": "توربین‌های بادی غول‌پیکر در منجیل از وزش باد برق پاک تولید می‌کنند."
+        }
+      },
+      {
+        "id": "gr12-3-2",
+        "word": "fossil fuel",
+        "phonetic": "/ˈfɒs.əl ˌfjuː.əl/",
+        "persianMeaning": "سوخت فسیلی تجدیدناپذیر و آلاینده (نفت، گاز و زغال‌سنگ)",
+        "imagePromptOrUrl": "fossil-fuel-oil-barrel",
+        "options": ["clean air", "fossil fuel", "solar heat"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Burning fossil fuels releases harmful gases into the atmosphere.",
+          "fa": "سوزاندن سوخت‌های فسیلی گازهای زیان‌بار وارد جو زمین می‌کند."
+        }
+      },
+      {
+        "id": "gr12-3-3",
+        "word": "renewable energy",
+        "phonetic": "/rɪˈnjuː.ə.bəl ˈen.ə.dʒi/",
+        "persianMeaning": "انرژی تجدیدپذیر و پایان‌ناپذیر طبیعت (خورشید، باد، آب)",
+        "imagePromptOrUrl": "renewable-energy-sun-wind",
+        "options": ["finite resource", "renewable energy", "harmful waste"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Renewable energy sources create three times more jobs than fossil fuels.",
+          "fa": "منابع انرژی تجدیدپذیر سه برابر بیشتر از سوخت‌های فسیلی شغل ایجاد می‌کنند."
+        }
+      },
+      {
+        "id": "gr12-3-4",
+        "word": "solar power",
+        "phonetic": "/ˈsəʊ.lər ˌpaʊ.ər/",
+        "persianMeaning": "انرژی و توان خورشیدی حاصل از تابش آفتاب",
+        "imagePromptOrUrl": "solar-power-sun-rays",
+        "options": ["solar power", "nuclear waste", "coal mine"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Albert Einstein won the Nobel Prize in 1921 for his experiments with solar power.",
+          "fa": "آلبرت اینشتین در سال ۱۹۲۱ به دلیل آزمایش‌هایش پیرامون انرژی خورشیدی برنده جایزه نوبل شد."
+        }
+      },
+      {
+        "id": "gr12-3-5",
+        "word": "hydropower",
+        "phonetic": "/ˈhaɪ.drəʊˌpaʊ.ər/",
+        "persianMeaning": "برق‌آبی، تولید انرژی از جریان و ریزش آب پشت سدها",
+        "imagePromptOrUrl": "hydropower-water-dam",
+        "options": ["hydropower", "gas heater", "wood smoke"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Hydropower is produced as a result of running or falling water in dams.",
+          "fa": "برق‌آبی در نتیجه آب جاری یا ریزان پشت سدها تولید می‌گردد."
+        }
+      },
+      {
+        "id": "gr12-3-6",
+        "word": "save energy",
+        "phonetic": "/seɪv ˈen.ə.dʒi/",
+        "persianMeaning": "صرفه‌جویی در مصرف انرژی و جلوگیری از هدررفت آن",
+        "imagePromptOrUrl": "save-energy-lightbulb-off",
+        "options": ["waste electricity", "save energy", "burn oil"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "You can save energy easily by turning off lights when leaving a room.",
+          "fa": "شما می‌توانید با خاموش کردن چراغ‌ها هنگام خروج از اتاق، به سادگی در مصرف انرژی صرفه‌جویی کنید."
+        }
+      },
+      {
+        "id": "gr12-3-7",
+        "word": "wind machine",
+        "phonetic": "/wɪnd məˈʃiːn/",
+        "persianMeaning": "آسیاب و ابزار بادی در تاریخ کهن ایران‌زمین",
+        "imagePromptOrUrl": "ancient-persia-wind-machine",
+        "options": ["wind machine", "steam engine", "motor car"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The first wind machine in the world was used in ancient Persia around 300 BC.",
+          "fa": "نخستین ابزار و آسیاب بادی جهان در ایران باستان حدود ۳۰۰ سال پیش از میلاد مورد استفاده قرار گرفت."
+        }
+      },
+      {
+        "id": "gr12-3-8",
+        "word": "solar panel",
+        "phonetic": "/ˈsəʊ.lər ˌpæn.əl/",
+        "persianMeaning": "صفحات و پنل‌های خورشیدی روی بام ساختمان",
+        "imagePromptOrUrl": "solar-panel-roof",
+        "options": ["glass chimney", "solar panel", "iron fence"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Houses with solar panels on their roofs generate their own clean electricity.",
+          "fa": "خانه‌هایی که روی سقفشان پنل‌های خورشیدی دارند، برق پاک خود را تولید می‌کنند."
+        }
+      },
+      {
+        "id": "gr12-3-9",
+        "word": "cooling cost",
+        "phonetic": "/ˈkuː.lɪŋ kɒst/",
+        "persianMeaning": "هزینه سرمایش و خنک‌سازی ساختمان در فصول گرم",
+        "imagePromptOrUrl": "cooling-cost-air-conditioner",
+        "options": ["heating bill", "cooling cost", "travel price"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Planting trees around your house can significantly lower your summer cooling costs.",
+          "fa": "کاشتن درختان اطراف خانه می‌تواند هزینه‌های سرمایش تابستانی شما را به شکل چشمگیری کاهش دهد."
+        }
+      },
+      {
+        "id": "gr12-3-10",
+        "word": "light bulb",
+        "phonetic": "/ˈlaɪt ˌbʌlb/",
+        "persianMeaning": "لامپ روشنایی کم‌مصرف برای کاهش مصرف برق",
+        "imagePromptOrUrl": "led-light-bulb",
+        "options": ["candle flame", "light bulb", "glass bottle"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "LED light bulbs consume 75% less energy and last much longer.",
+          "fa": "لامپ‌های ال‌ای‌دی ۷۵ درصد انرژی کمتری مصرف کرده و بسیار بیشتر عمر می‌کنند."
+        }
+      }
+    ],
+    "conversation": {
+      "situationFa": "عماد و پدرش در مسیر سفر به استان گیلان هستند. در حین عبور از منطقه منجیل، عماد متوجه توربین‌های بادی غول‌پیکر می‌شود و با پدرش درباره انرژی پاک و بادگیرهای یزد صحبت می‌کند.",
+      "vocabulary": [
+        {
+          "id": "conv12-3-w1",
+          "word": "generate",
+          "phonetic": "/ˈdʒen.ə.reɪt/",
+          "persianMeaning": "تولید کردن، ایجاد برق یا توان مکانیکی",
+          "imagePromptOrUrl": "generate-electricity-power",
+          "options": ["generate", "destroy", "waste"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Wind turbines generate electricity without producing any air pollution.",
+            "fa": "توربین‌های بادی بدون تولید هرگونه آلودگی هوا، برق تولید می‌کنند."
+          }
+        },
+        {
+          "id": "conv12-3-w2",
+          "word": "opposite",
+          "phonetic": "/ˈɒp.ə.zɪt/",
+          "persianMeaning": "برعکس، متضاد، عملکرد معکوس",
+          "imagePromptOrUrl": "opposite-fan-turbine",
+          "options": ["similar", "opposite", "identical"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "A wind turbine works the opposite of an electric fan.",
+            "fa": "یک توربین بادی دقیقاً برعکس یک پنکه برقی کار می‌کند."
+          }
+        },
+        {
+          "id": "conv12-3-w3",
+          "word": "blow",
+          "phonetic": "/bləʊ/",
+          "persianMeaning": "وزیدن باد، به حرکت درآوردن هوا",
+          "imagePromptOrUrl": "wind-blowing-trees",
+          "options": ["fall", "freeze", "blow"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "When strong winds blow across the valley, the turbine blades turn rapidly.",
+            "fa": "وقتی بادهای شدید در دره می‌وزند، پره‌های توربین با سرعت می‌چرخند."
+          }
+        },
+        {
+          "id": "conv12-3-w4",
+          "word": "remind",
+          "phonetic": "/rɪˈmaɪnd/",
+          "persianMeaning": "به یاد آوردن، یادآوری کردن یک نکته یا خاطره",
+          "imagePromptOrUrl": "remind-wind-tower-yazd",
+          "options": ["forget", "remind", "refuse"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "These modern turbines remind me of the ancient wind towers of Yazd.",
+            "fa": "این توربین‌های مدرن مرا به یاد بادگیرهای باستانی یزد می‌اندازند."
+          }
+        },
+        {
+          "id": "conv12-3-w5",
+          "word": "air conditioner",
+          "phonetic": "/ˈeə kənˌdɪʃ.ən.ər/",
+          "persianMeaning": "کولر، دستگاه تهویه مطبوع هوا",
+          "imagePromptOrUrl": "electrical-air-conditioner",
+          "options": ["air conditioner", "water heater", "gas oven"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Wind towers act as natural air conditioners in desert cities.",
+            "fa": "بادگیرها در شهرهای کویری به عنوان کولرها و تهویه‌های طبیعی عمل می‌کنند."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "dl12-3-1",
+          "orderIndex": 1,
+          "speaker": "Emad",
+          "speakerAvatar": "👦",
+          "enText": "Daddy, look at those big fans on the mountains!",
+          "faText": "بابا، به آن پنکه‌های بزرگ روی کوه‌ها نگاه کن!",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line1.mp3"
+        },
+        {
+          "id": "dl12-3-2",
+          "orderIndex": 2,
+          "speaker": "Father",
+          "speakerAvatar": "👨",
+          "enText": "They are actually wind turbines, Emad.",
+          "faText": "آنها در واقع توربین‌های بادی هستند، عماد.",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line2.mp3"
+        },
+        {
+          "id": "dl12-3-3",
+          "orderIndex": 3,
+          "speaker": "Emad",
+          "speakerAvatar": "👦",
+          "enText": "Wind turbines? What are they used for?",
+          "faText": "توربین‌های بادی؟ برای چه کاری استفاده می‌شوند؟",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line3.mp3"
+        },
+        {
+          "id": "dl12-3-4",
+          "orderIndex": 4,
+          "speaker": "Father",
+          "speakerAvatar": "👨",
+          "enText": "Yes, wind turbines are used to produce electricity from wind power.",
+          "faText": "بله، توربین‌های بادی برای تولید برق از انرژی باد به کار می‌روند.",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line4.mp3"
+        },
+        {
+          "id": "dl12-3-5",
+          "orderIndex": 5,
+          "speaker": "Emad",
+          "speakerAvatar": "👦",
+          "enText": "How might electricity be generated from wind?",
+          "faText": "چگونه ممکن است از باد الکتریسیته تولید شود؟",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line5.mp3"
+        },
+        {
+          "id": "dl12-3-6",
+          "orderIndex": 6,
+          "speaker": "Father",
+          "speakerAvatar": "👨",
+          "enText": "Well, a wind turbine works the opposite of a fan. Instead of using electricity, it uses wind to make electricity.",
+          "faText": "خُب، توربین بادی برعکس پنکه کار می‌کند. به جای مصرف برق، از باد برای ساخت برق استفاده می‌کند.",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line6.mp3"
+        },
+        {
+          "id": "dl12-3-7",
+          "orderIndex": 7,
+          "speaker": "Emad",
+          "speakerAvatar": "👦",
+          "enText": "These wind turbines remind me of what I read about using wind power in Yazd's buildings.",
+          "faText": "این توربین‌های بادی مرا به یاد مطالبی می‌اندازد که درباره کاربرد انرژی باد در ساختمان‌های یزد خوانده بودم.",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line7.mp3"
+        },
+        {
+          "id": "dl12-3-8",
+          "orderIndex": 8,
+          "speaker": "Father",
+          "speakerAvatar": "👨",
+          "enText": "You mean historical wind towers?",
+          "faText": "منظورت بادگیرهای تاریخی است؟",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line8.mp3"
+        },
+        {
+          "id": "dl12-3-9",
+          "orderIndex": 9,
+          "speaker": "Emad",
+          "speakerAvatar": "👦",
+          "enText": "Yes! They are natural cooling systems used instead of electrical air conditioners. That's clean energy, isn't it?",
+          "faText": "بله! آنها سیستم‌های خنک‌کننده طبیعی هستند که به جای کولرهای برقی استفاده می‌شوند. آن هم انرژی پاک است، نه؟",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line9.mp3"
+        },
+        {
+          "id": "dl12-3-10",
+          "orderIndex": 10,
+          "speaker": "Father",
+          "speakerAvatar": "👨",
+          "enText": "Yes, it is! An excellent type of clean renewable energy.",
+          "faText": "بله، دقیقاً! یک نمونه عالی از انرژی پاک و تجدیدپذیر.",
+          "audioUrl": "/audio/highschool/grade12/lesson3/conversation_line10.mp3"
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw12-3-1",
+        "word": "rich in",
+        "phonetic": "/rɪtʃ ɪn/",
+        "persianMeaning": "غنی از، سرشار از ذخایر یا منابع طبیعی",
+        "imagePromptOrUrl": "rich-in-oil-persian-gulf",
+        "options": ["rich in", "poor at", "empty of"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Iran is rich in valuable oil and natural gas resources.",
+          "fa": "ایران سرشار از منابع ارزشمند نفت و گاز طبیعی است."
+        }
+      },
+      {
+        "id": "nw12-3-2",
+        "word": "resource",
+        "phonetic": "/rɪˈzɔːs/",
+        "persianMeaning": "منبع، ذخیره طبیعی برای تامین انرژی",
+        "imagePromptOrUrl": "natural-resources-earth",
+        "options": ["problem", "resource", "danger"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The main resources of the earth are fossil fuels and renewable sources.",
+          "fa": "منابع اصلی کره زمین شامل سوخت‌های فسیلی و منابع تجدیدپذیر هستند."
+        }
+      },
+      {
+        "id": "nw12-3-3",
+        "word": "consume",
+        "phonetic": "/kənˈsjuːm/",
+        "persianMeaning": "مصرف کردن برق، سوخت یا انرژی",
+        "imagePromptOrUrl": "consume-electricity-meter",
+        "options": ["produce", "consume", "invent"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Modern LED light bulbs consume significantly less electricity.",
+          "fa": "لامپ‌های مدرن ال‌ای‌دی برق به مراتب کمتری مصرف می‌کنند."
+        }
+      },
+      {
+        "id": "nw12-3-4",
+        "word": "balcony",
+        "phonetic": "/ˈbæl.kə.ni/",
+        "persianMeaning": "بالکن، ایوان نورگیر رو به آفتاب",
+        "imagePromptOrUrl": "apartment-balcony-view",
+        "options": ["basement", "balcony", "garage"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "My uncle often sits in the sunny balcony and enjoys a cup of tea.",
+          "fa": "عمویم اغلب در بالکن آفتاب‌گیر می‌نشیند و از نوشیدن یک فنجان چای لذت می‌برد."
+        }
+      },
+      {
+        "id": "nw12-3-5",
+        "word": "pollute",
+        "phonetic": "/pəˈluːt/",
+        "persianMeaning": "آلوده کردن آب، هوا یا محیط‌زیست",
+        "imagePromptOrUrl": "pollute-river-smoke",
+        "options": ["clean", "pollute", "purify"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Fossil fuels pollute the air and water with dangerous smoke and carbon.",
+          "fa": "سوخت‌های فسیلی هوا و آب را با دود و کربن خطرناک آلوده می‌کنند."
+        }
+      },
+      {
+        "id": "nw12-3-6",
+        "word": "variety",
+        "phonetic": "/vəˈraɪ.ə.ti/",
+        "persianMeaning": "تنوع، انواع و اقسام اشکال گوناگون",
+        "imagePromptOrUrl": "variety-forms-energy",
+        "options": ["variety", "single form", "danger"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Energy can take a variety of forms: mechanical, electrical, chemical and nuclear.",
+          "fa": "انرژی می‌تواند اشکال متنوعی به خود بگیرد: مکانیکی، الکتریکی، شیمیایی و هسته‌ای."
+        }
+      },
+      {
+        "id": "nw12-3-7",
+        "word": "tide",
+        "phonetic": "/taɪd/",
+        "persianMeaning": "جزر و مد دریا، بالا و پایین رفتن آب اقیانوس",
+        "imagePromptOrUrl": "ocean-tides-wave",
+        "options": ["rain", "tide", "desert"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The rise and fall of ocean tides can be used to generate clean tidal power.",
+          "fa": "بالا و پایین رفتن جزر و مد اقیانوس می‌تواند برای تولید برق پاک جزر و مدی به کار رود."
+        }
+      },
+      {
+        "id": "nw12-3-8",
+        "word": "replace",
+        "phonetic": "/rɪˈpleɪs/",
+        "persianMeaning": "جایگزین کردن، به جای چیزی قرار دادن",
+        "imagePromptOrUrl": "replace-workers-robots",
+        "options": ["keep", "replace", "destroy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Solar and wind energy will gradually replace fossil fuels in power plants.",
+          "fa": "انرژی خورشیدی و بادی به تدریج جایگزین سوخت‌های فسیلی در نیروگاه‌ها خواهند شد."
+        }
+      },
+      {
+        "id": "nw12-3-9",
+        "word": "use up",
+        "phonetic": "/juːz ʌp/",
+        "persianMeaning": "تا ته مصرف کردن، تمام کردن یک ذخیره",
+        "imagePromptOrUrl": "use-up-empty-container",
+        "options": ["use up", "save up", "store"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Once we use up oil and coal reserves, they are gone forever.",
+          "fa": "هنگامی که ذخایر نفت و زغال‌سنگ را تا انتها مصرف کنیم، برای همیشه تمام می‌شوند."
+        }
+      },
+      {
+        "id": "nw12-3-10",
+        "word": "forever",
+        "phonetic": "/fəˈre.vər/",
+        "persianMeaning": "برای همیشه، تا ابد",
+        "imagePromptOrUrl": "forever-infinity-time",
+        "options": ["for a minute", "temporarily", "forever"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Nonrenewable energy resources do not last forever.",
+          "fa": "منابع انرژی تجدیدناپذیر تا ابد دوام نمی‌آورند."
+        }
+      },
+      {
+        "id": "nw12-3-11",
+        "word": "demand",
+        "phonetic": "/dɪˈmɑːnd/",
+        "persianMeaning": "تقاضا، نیاز مصرف‌کنندگان در جامعه",
+        "imagePromptOrUrl": "market-demand-graph",
+        "options": ["demand", "waste", "refusal"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "When renewable energy is used, the demand for fossil fuels decreases.",
+          "fa": "هنگامی که از انرژی تجدیدپذیر استفاده می‌شود، تقاضا برای سوخت‌های فسیلی کاهش می‌یابد."
+        }
+      },
+      {
+        "id": "nw12-3-12",
+        "word": "convert",
+        "phonetic": "/kənˈvɜːt/",
+        "persianMeaning": "تبدیل کردن، دگرگون ساختن شکل و فرم انرژی",
+        "imagePromptOrUrl": "convert-sunlight-power",
+        "options": ["stop", "convert", "prevent"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Solar panels convert sunshine directly into electrical power.",
+          "fa": "پنل‌های خورشیدی نور آفتاب را مستقیماً به توان الکتریکی تبدیل می‌کنند."
+        }
+      },
+      {
+        "id": "nw12-3-13",
+        "word": "absorb",
+        "phonetic": "/əbˈzɔːb/",
+        "persianMeaning": "جذب کردن نور، گرما یا انرژی به صورت تدریجی",
+        "imagePromptOrUrl": "absorb-sunlight-leaves",
+        "options": ["reflect", "absorb", "throw"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Solar collectors collect heat by absorbing sunlight during the day.",
+          "fa": "گردآورنده‌های خورشیدی با جذب نور خورشید در طول روز، گرما جمع‌آوری می‌کنند."
+        }
+      },
+      {
+        "id": "nw12-3-14",
+        "word": "God helps those who help themselves",
+        "phonetic": "/ɡɒd helps ðəʊz huː help ðəmˈselvz/",
+        "persianMeaning": "از تو حرکت، از خدا برکت (ضرب‌المثل)",
+        "imagePromptOrUrl": "proverb-god-helps",
+        "options": ["God helps those who help themselves", "Easy come easy go", "Out of sight out of mind"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Do not just sit and wait; work hard because God helps those who help themselves.",
+          "fa": "دست روی دست نگذار و تلاش کن؛ چرا که از تو حرکت، از خدا برکت است."
+        }
+      },
+      {
+        "id": "nw12-3-15",
+        "word": "The early bird catches the worm",
+        "phonetic": "/ðiː ˈɜː.li bɜːd kætʃ.ɪz ðə wɜːm/",
+        "persianMeaning": "سحرخیز باش تا کامروا باشی (ضرب‌المثل)",
+        "imagePromptOrUrl": "proverb-early-bird",
+        "options": ["Actions speak louder", "The early bird catches the worm", "Practice makes perfect"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Start studying early in the morning; remember that the early bird catches the worm.",
+          "fa": "صبح زود درس خواندن را شروع کن؛ به یاد داشته باش که سحرخیز باش تا کامروا باشی."
+        }
+      },
+      {
+        "id": "nw12-3-16",
+        "word": "Actions speak louder than words",
+        "phonetic": "/ˈæk.ʃənz spiːk ˈlaʊ.dər ðæn wɜːdz/",
+        "persianMeaning": "دو صد گفته چون نیم کردار نیست (ضرب‌المثل)",
+        "imagePromptOrUrl": "proverb-actions-louder",
+        "options": ["Actions speak louder than words", "Two heads are better", "Too many cooks"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Show your dedication by taking action, because actions speak louder than words.",
+          "fa": "فداکاری‌ات را با عمل نشان بده، زیرا دو صد گفته چون نیم کردار نیست."
+        }
+      },
+      {
+        "id": "nw12-3-17",
+        "word": "Practice makes perfect",
+        "phonetic": "/ˈpræk.tɪs meɪks ˈpɜː.fɪkt/",
+        "persianMeaning": "کار نیکو کردن از پر کردن است (ضرب‌المثل)",
+        "imagePromptOrUrl": "proverb-practice-perfect",
+        "options": ["Easy come easy go", "Practice makes perfect", "Birds of a feather"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Keep solving grammar exercises every day; practice makes perfect!",
+          "fa": "هر روز به حل تمرینات گرامر ادامه بده؛ کار نیکو کردن از پر کردن است!"
+        }
+      },
+      {
+        "id": "nw12-3-18",
+        "word": "Too many cooks spoil the broth",
+        "phonetic": "/tuː ˈmen.i kʊks spɔɪl ðə brɒθ/",
+        "persianMeaning": "آشپز که دو تا شد، آش یا شور می‌شه یا بی‌نمک (ضرب‌المثل)",
+        "imagePromptOrUrl": "proverb-too-many-cooks",
+        "options": ["Too many cooks spoil the broth", "Two heads are better", "A burnt child"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Every project needs one clear leader, or too many cooks spoil the broth.",
+          "fa": "هر پروژه‌ای نیاز به یک رهبر مشخص دارد، وگرنه آشپز که دو تا شد آش شور یا بی‌نمک می‌شود."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Earth for our Children",
+      "persianTitle": "زمین برای فرزندانمان",
+      "strategyFa": "استراتژی یادداشت‌برداری (Note-taking): هنگام مطالعه متن، نکات و ایده‌های کلیدی را با عبارات خلاصه، کلمات کلیدی، اختصارات و نمادها در حاشیه متن یادداشت کنید تا مرور و به خاطرسپاری آسان گردد.",
+      "passageTextEn": "Energy is the ability to do work. It can take a variety of forms: mechanical, electrical, chemical, and nuclear. To produce any type of energy, the resources of the earth are used. The main resources of the earth are fossil fuels such as natural gas, oil, and coal. We get most of our energy from these fossil fuels, but this is harmful to the environment. Fossil fuels are nonrenewable and cannot be replaced easily. Once we use them up, they're gone forever. They are not clean as they pollute water or air.\n\nIn recent years, scientists try to use other types of energy resources. They call them clean energy resources because they do not pollute the earth. Clean energy is renewable. It is made from resources that can be replaced, like wind, water, sunshine, tides, and plants. When renewable energy resources are used, the demand for fossil fuels is reduced.\n\nThe most common type of clean energy is solar power. Solar energy is produced by the radiation that reaches the earth. People have used the sun as a heat source for thousands of years. Iranians, for instance, use special designs and arrangements of windows, balconies and yards to get the most sunshine. Different types of materials might also be used in building the houses. This keeps people warm during cold seasons and cool during hot days of the year.\n\nNowadays, solar energy can be converted into other forms of energy, such as heat and electricity. Solar energy might be used for heating water and air in homes, buildings, or swimming pools. Maybe you've seen buildings with big shiny panels on the roof. These are solar collectors that collect heat by absorbing sunlight and producing solar power. Clean energy resources are widely used in many countries. As a result, fewer fossil fuels are consumed each year and they are saved for future generations.",
+      "passageParagraphs": [
+        "Energy is the ability to do work. It can take a variety of forms: mechanical, electrical, chemical, and nuclear. To produce any type of energy, the resources of the earth are used. The main resources of the earth are fossil fuels such as natural gas, oil, and coal. We get most of our energy from these fossil fuels, but this is harmful to the environment. Fossil fuels are nonrenewable and cannot be replaced easily. Once we use them up, they're gone forever. They are not clean as they pollute water or air.",
+        "In recent years, scientists try to use other types of energy resources. They call them clean energy resources because they do not pollute the earth. Clean energy is renewable. It is made from resources that can be replaced, like wind, water, sunshine, tides, and plants. When renewable energy resources are used, the demand for fossil fuels is reduced.",
+        "The most common type of clean energy is solar power. Solar energy is produced by the radiation that reaches the earth. People have used the sun as a heat source for thousands of years. Iranians, for instance, use special designs and arrangements of windows, balconies and yards to get the most sunshine. Different types of materials might also be used in building the houses. This keeps people warm during cold seasons and cool during hot days of the year.",
+        "Nowadays, solar energy can be converted into other forms of energy, such as heat and electricity. Solar energy might be used for heating water and air in homes, buildings, or swimming pools. Maybe you've seen buildings with big shiny panels on the roof. These are solar collectors that collect heat by absorbing sunlight and producing solar power. Clean energy resources are widely used in many countries. As a result, fewer fossil fuels are consumed each year and they are saved for future generations."
+      ],
+      "questions": [
+        {
+          "id": "rq12-3-1",
+          "type": "mcq_general",
+          "questionEn": "What is the main message conveyed by the reading passage 'Earth for our Children'?",
+          "questionFa": "پیام محوری و اصلی متن 'زمین برای فرزندانمان' چیست؟",
+          "options": [
+            "Replacing polluting fossil fuels with renewable clean energy protects the earth for future generations.",
+            "Nuclear energy is the only safe way to power modern transportation.",
+            "People should stop building balconies in desert cities."
+          ],
+          "correctIndex": 0,
+          "explanationFa": "پیام اصلی این است که جایگزینی سوخت‌های فسیلی آلاینده با انرژی‌های پاک و تجدیدپذیر، زمین را برای نسل‌های آینده محافظت می‌کند."
+        },
+        {
+          "id": "rq12-3-2",
+          "type": "true_false",
+          "questionEn": "Clean energy resources such as wind, solar, and water pollute the earth's air and water.",
+          "questionFa": "منابع انرژی پاک مانند باد، خورشید و آب، هوا و آب کره زمین را آلوده می‌کنند.",
+          "options": ["True", "False"],
+          "correctIndex": 1,
+          "explanationFa": "این جمله غلط (False) است؛ متن تصریح می‌کند که این منابع انرژی پاک نامیده می‌شوند زیرا زمین را آلوده نمی‌کنند."
+        },
+        {
+          "id": "rq12-3-3",
+          "type": "reference",
+          "questionEn": "In paragraph 1, what does the pronoun 'them' in 'Once we use them up' refer to?",
+          "questionFa": "در پاراگراف اول، ضمیر 'them' در عبارت 'Once we use them up' به چه چیزی اشاره دارد؟",
+          "options": [
+            "fossil fuels",
+            "future generations",
+            "clean solar panels"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "ضمیر 'them' به سوخت‌های فسیلی (fossil fuels) در جمله قبلی اشاره دارد که تجدیدناپذیرند."
+        },
+        {
+          "id": "rq12-3-4",
+          "type": "context_meaning",
+          "questionEn": "In paragraph 4, what are 'solar collectors' described as?",
+          "questionFa": "در پاراگراف چهارم، عبارت 'solar collectors' دقیقاً چگونه توصیف شده است؟",
+          "options": [
+            "Big shiny panels on the roof that collect heat by absorbing sunlight",
+            "Special batteries buried deep underground",
+            "Glass water bottles used in gardens"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "طبق متن، صفحات براق بزرگی روی پشت‌بام هستند که با جذب نور خورشید گرما تولید می‌کنند."
+        },
+        {
+          "id": "rq12-3-5",
+          "type": "open_ended",
+          "questionEn": "How did ancient Iranian architecture utilize sunshine and natural elements to keep houses comfortable?",
+          "questionFa": "معماری اصیل ایرانی چگونه از نور خورشید و عناصر طبیعی برای آسایش دمایی خانه‌ها استفاده می‌کرد؟",
+          "requiredKeywordsForEvaluation": ["windows", "balconies", "sunshine", "warm", "cool", "materials"],
+          "modelAnswerEn": "Iranians used special arrangements of windows, balconies, yards, and building materials to absorb sunshine, keeping houses warm in winter and cool in summer.",
+          "modelAnswerFa": "ایرانیان با طراحی ویژه پنجره‌ها، بالکن‌ها، حیاط‌ها و مصالح خاص، نور آفتاب را به گونه‌ای مهار می‌کردند که خانه در زمستان گرم و در تابستان خنک بماند."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Passive Voice with Modals (can, may, must, should) & Past Perfect Tense",
+      "persianTopic": "مجهول افعال کمکی وجهی و زمان گذشته کامل (See Also)",
+      "discovery": {
+        "sentenceA": "Workers should collect garbage and take it to a landfill.",
+        "sentenceB": "Garbage should be collected and taken to a landfill by workers.",
+        "ccqQuestions": [
+          {
+            "id": "ccq12-3-1",
+            "question": "در جمله مجهول B، فعل کمکی 'should' به چه شکلی تغییر پیدا کرده است؟",
+            "options": [
+              "should + be + قسمت سوم فعل (collected) آمده است",
+              "should به شکل گذشته تبدیل شده است"
+            ],
+            "correctIndex": 0,
+            "explanation": "در ساختار مجهول افعال مدال، بعد از فعل کمکی همیشه 'be + p.p.' قرار می‌گیرد."
+          },
+          {
+            "id": "ccq12-3-2",
+            "question": "آیا معنای ضرورت و توصیه فعل 'should' در حالت مجهول حفظ شده است؟",
+            "options": [
+              "بله، ضرورت انجام کار همچنان پابرجاست اما تمرکز روی مفعول (Garbage) است",
+              "خیر، به زمان آینده تغییر یافته است"
+            ],
+            "correctIndex": 0,
+            "explanation": "افعال مدال در مجهول معنای وجهی خود (اجبار، امکان، توصیه، توانایی) را حفظ می‌کنند."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول مجهول با افعال مدال: مفعول + can / may / must / should + be + قسمت سوم فعل (p.p.) [+ by فاعل]. مثال: Traffic rules must be obeyed. در بخش See Also، زمان گذشته کامل (Past Perfect / ماضی بعید) برای کاری استفاده می‌شود که در گذشته پیش از کار دیگری انجام گرفته است: فرمول ➔ had + p.p. مثال کتاب: Before we played volleyball, we had taken some photographs. / After we had eaten lunch, we flew our kites.",
+      "transformations": [
+        {
+          "id": "trans12-3-1",
+          "activeSentence": "People must obey the traffic rules.",
+          "passiveSentence": "The traffic rules must be obeyed by everyone.",
+          "tense": "Passive with Modal 'must'",
+          "formula": "Object + must be + p.p."
+        },
+        {
+          "id": "trans12-3-2",
+          "activeSentence": "Wind turbines can generate clean electricity.",
+          "passiveSentence": "Clean electricity can be generated by wind turbines.",
+          "tense": "Passive with Modal 'can'",
+          "formula": "Object + can be + p.p."
+        },
+        {
+          "id": "trans12-3-3",
+          "activeSentence": "We ate lunch. Then we flew our kites.",
+          "passiveSentence": "After we had eaten lunch, we flew our kites.",
+          "tense": "Past Perfect Tense (Past of the Past)",
+          "formula": "After + Subject + had + p.p. , Past Simple"
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "cp12-3-1",
+            "promptEn": "Something ______ about air pollution immediately, or cities will become unlivable. (should / do)",
+            "promptFa": "باید فوراً کاری در مورد آلودگی هوا انجام شود. (مجهول با should)",
+            "options": ["should be done", "should do", "should been done"],
+            "correctIndex": 0,
+            "explanationFa": "فرمول مجهول مدال: should + be + p.p. است، پس 'should be done' صحیح است."
+          },
+          {
+            "id": "cp12-3-2",
+            "promptEn": "The restaurant bill ______ before leaving the table. (must / pay)",
+            "promptFa": "صورت‌حساب رستوران باید قبل از ترک میز پرداخت شود.",
+            "options": ["must be paid", "must pay", "must paid"],
+            "correctIndex": 0,
+            "explanationFa": "ساختار مجهول با فعل کمکی اجبار: must + be + paid."
+          },
+          {
+            "id": "cp12-3-3",
+            "promptEn": "Before we played volleyball, we ______ some wonderful photographs. (take)",
+            "promptFa": "قبل از اینکه والیبال بازی کنیم، عکس‌های فوق‌العاده‌ای گرفته بودیم. (گذشته کامل)",
+            "options": ["had taken", "have taken", "took"],
+            "correctIndex": 0,
+            "explanationFa": "چون عمل عکس گرفتن پیش از والیبال رخ داده است، زمان گذشته کامل (had taken) به کار می‌رود."
+          },
+          {
+            "id": "cp12-3-4",
+            "promptEn": "When I arrived at the party, my grandparents ______ home already. (go)",
+            "promptFa": "وقتی به مهمانی رسیدم، پدربزرگ و مادربزرگم قبلاً به خانه رفته بودند.",
+            "options": ["had already gone", "have already gone", "went already"],
+            "correctIndex": 0,
+            "explanationFa": "رفتن پدربزرگ و مادربزرگ قبل از رسیدن گوینده رخ داده، پس گذشته کامل (had gone) است."
+          }
+        ],
+        "production": {
+          "instructionsFa": "با استفاده از افعال مدال مجهول یا گذشته کامل، دو جمله درباره حفظ انرژی و تجربیات گذشته بسازید.",
+          "targetKeywords": ["can be produced", "should be saved", "must be protected", "had done", "before"]
+        }
+      }
+    },
+    "listening": {
+      "preListeningQuestions": [
+        {
+          "id": "plq12-3-1",
+          "questionEn": "When talking about two events in the past, which action takes the past perfect tense?",
+          "questionFa": "هنگام گفتگو درباره دو اتفاق در گذشته، کدام عمل زمان گذشته کامل (ماضی بعید) می‌گیرد؟"
+        },
+        {
+          "id": "plq12-3-2",
+          "questionEn": "How do you emphasize a prior action using 'before' or 'after'?",
+          "questionFa": "چگونه با استفاده از 'before' یا 'after' بر رخداد قبلی تاکید می‌نمایید؟"
+        }
+      ],
+      "conversations": [
+        {
+          "id": "lc12-3-1",
+          "title": "Trying New Sauce at Restaurant (چشیدن سس در رستوران)",
+          "audioUrl": "/audio/highschool/grade12/lesson3/listening_dialogue1.mp3",
+          "scriptEn": "Hamid: Had Rasool tried that delicious tomato sauce before going to the Italian restaurant?\nFarhad: No, he hadn't. He told me that he had never tasted such a spicy sauce before yesterday!\nHamid: Did he go to the restaurant alone?\nFarhad: No, after he had finished work, he went there with his colleagues.",
+          "scriptFa": "حمید: آیا رسول قبل از رفتن به رستوران ایتالیایی آن سس گوجه لذیذ را چشیده بود؟\nفرهاد: خیر، نچشیده بود. او به من گفت قبل از دیروز هرگز چنین سس تندی را نچشیده بود!\nحمید: آیا تنهایی به رستوران رفت؟\nفرهاد: خیر، بعد از اینکه کارش را تمام کرده بود با همکارانش به آنجا رفت.",
+          "comprehensionQuestion": {
+            "questionEn": "Had Rasool tasted that special spicy sauce before yesterday?",
+            "questionFa": "آیا رسول پیش از دیروز آن سس تند مخصوص را چشیده بود؟",
+            "options": [
+              "No, he had never tasted it before",
+              "Yes, he eats it every day",
+              "He cooked it himself"
+            ],
+            "correctIndex": 0
+          }
+        },
+        {
+          "id": "lc12-3-2",
+          "title": "Visiting the National Museum (بازدید از موزه ملی)",
+          "audioUrl": "/audio/highschool/grade12/lesson3/listening_dialogue2.mp3",
+          "scriptEn": "Maryam: When had Samira and her friends gone to the historical museum?\nShiva: They had visited the museum early in the morning before their guests arrived.\nMaryam: When did their guests leave their home?\nShiva: Their guests left around 9 p.m. after they had had dinner together.",
+          "scriptFa": "مریم: سمیرا و دوستانش چه زمانی به موزه تاریخی رفته بودند؟\nشیوا: آنها صبح زود قبل از رسیدن مهمانانشان از موزه بازدید کرده بودند.\nمریم: مهمانانشان چه ساعتی منزل آنها را ترک کردند؟\nشیوا: مهمانانشان حدود ساعت ۹ شب پس از اینکه شام خورده بودند رفتند.",
+          "comprehensionQuestion": {
+            "questionEn": "When had Samira and her friends visited the museum?",
+            "questionFa": "سمیرا و دوستانش چه زمانی از موزه بازدید کرده بودند؟",
+            "options": [
+              "Before their guests arrived at their home",
+              "Late at night after midnight",
+              "Next week"
+            ],
+            "correctIndex": 0
+          }
+        }
+      ],
+      "pronunciation": {
+        "title": "Intonation in Time Clauses: Rising (↗) on Time Clause & Falling (↘) on Main Clause",
+        "explanationFa": "در جملات بیانگر توالی زمانی (با Before و After):\n۱. بند زمان (Time clause) دارای لحن خیزان (Rising ↗) است چون مخاطب منتظر اصل رخداد است.\n۲. بند اصلی (Main clause) با لحن افتان (Falling ↘) پایان می‌پذیرد.",
+        "examples": [
+          {
+            "id": "p12-3-ex-1",
+            "text": "Before we played volleyball ↗, we had taken some photographs ↘.",
+            "intonation": "rising-falling",
+            "explanation": "صعود صدا در Before we played volleyball ↗ و فرود صدا در we had taken some photos ↘."
+          },
+          {
+            "id": "p12-3-ex-2",
+            "text": "After we had eaten lunch ↗, we flew our kites ↘.",
+            "intonation": "rising-falling",
+            "explanation": "لحن خیزان در بند پس از ناهار و افتان در پرواز بادبادک‌ها."
+          },
+          {
+            "id": "p12-3-ex-3",
+            "text": "Before he moved to China ↗, Joe had studied Chinese ↘.",
+            "intonation": "rising-falling",
+            "explanation": "خیز صدا در قید زمان و فرود صدا در گزاره قطعی پیشین."
+          },
+          {
+            "id": "p12-3-ex-4",
+            "text": "When I arrived at the party ↗, my grandparents had already gone home ↘.",
+            "intonation": "rising-falling",
+            "explanation": "صعود صدا در رسیدن به مهمانی و افت صدا در رفتن پدربزرگ و مادربزرگ."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "pq12-3-1",
+            "promptEn": "In the sentence 'Before the bell rang ↗, all students had entered the class ↘', what is the tone of the 'Before' clause?",
+            "promptFa": "در این جمله، لحن بند 'Before' چگونه است؟",
+            "options": [
+              "Rising intonation (↗)",
+              "Falling intonation (↘)",
+              "Flat monotone"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "بند قید زمان با لحن خیزان (Rising ↗) خوانده می‌شود."
+          },
+          {
+            "id": "pq12-3-2",
+            "promptEn": "Where does falling intonation (↘) naturally occur in 'After we had washed the dishes, we watched TV'?",
+            "promptFa": "در این جمله، لحن افتان در کجای جمله واقع می‌شود؟",
+            "options": [
+              "At the end of 'we watched TV ↘'",
+              "Right after 'After'",
+              "Nowhere in the sentence"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "در انتهای جمله اصلی برای نشان دادن پایان کلام، لحن افتان ↘ است."
+          },
+          {
+            "id": "pq12-3-3",
+            "promptEn": "Which audio pitch pattern is standard for: 'After he had finished work ↗, he went home ↘'?",
+            "promptFa": "کدام الگوی آوایی برای این جمله توالی زمانی استاندارد است؟",
+            "options": [
+              "Rising on dependent clause (↗), Falling on independent clause (↘)",
+              "Falling on dependent clause (↘), Rising on independent clause (↗)",
+              "Falling on both clauses (↘ ... ↘)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "صعود در بند زمان (↗) و فرود در بند نتیجه پایانی (↘)."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "جملات پشتیبان و شناسایی جملات نامربوط (Supporting Sentences & Unity)",
+        "explanationFa": "جملات پشتیبان (Supporting Sentences) بعد از جمله موضوعی قرار می‌گیرند و وظایف زیر را بر عهده دارند:\n۱. توضیح ایده اصلی\n۲. ارائه دلایل\n۳. ذکر مثال‌ها و شواهد\n۴. روایت یک ماجرای کوتاه.\nاصل وحدت (Unity) ایجاب می‌کند که هر جمله‌ای که به ایده اصلی مرتبط نیست (Irrelevant Sentence) حذف یا خط زده شود.",
+        "categories": [
+          {
+            "name": "توضیح ایده (Explaining the Idea)",
+            "description": "بسط و روشن کردن مفهوم اصلی Topic Sentence به زبانی ساده‌تر.",
+            "examples": ["Clean energy comes from natural renewable resources like wind and sun.", "It does not produce air or water pollution."]
+          },
+          {
+            "name": "ارائه دلایل (Giving Reasons)",
+            "description": "بیان چرایی اهمیت موضوع با کلمات ربطی چون because و since.",
+            "examples": ["Fossil fuels are harmful because they release greenhouse gases.", "We need solar energy because oil reserves will finish."]
+          },
+          {
+            "name": "ارائه مثال‌ها (Giving Examples)",
+            "description": "ذکر مصادیق عینی با عباراتی چون For example و For instance.",
+            "examples": ["For example, wind turbines in Manjeel generate electricity.", "Iranians, for instance, used wind towers in Yazd."]
+          },
+          {
+            "name": "حذف جملات نامربوط (Irrelevant Sentences)",
+            "description": "جملاتی که وحدت پاراگراف را می‌شکنند و هیچ حمایتی از ایده اصلی نمی‌کنند.",
+            "examples": ["Ants have strong legs. (Irrelevant: 'I can run fast too.')", "Phones help communication. (Irrelevant: 'Students should not use phones in schools.')"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq12-3-1",
+            "sentence": "In a paragraph about 'Trees are valuable for the environment', which sentence is irrelevant and should be crossed out?",
+            "options": [
+              "My younger brother bought a toy car yesterday.",
+              "Trees absorb carbon dioxide and produce clean oxygen.",
+              "Trees help prevent soil erosion during heavy rains."
+            ],
+            "correctIndex": 0,
+            "explanation": "جمله مربوط به اسباب‌بازی برادر هیچ ارتباطی با ارزش درختان برای محیط زیست ندارد و باید حذف شود."
+          },
+          {
+            "id": "wq12-3-2",
+            "sentence": "What is the primary function of supporting sentences in a well-written paragraph?",
+            "options": [
+              "To explain, give reasons, provide examples, or support the topic sentence",
+              "To introduce three completely different and unrelated topics",
+              "To write poetry lines with rhymes"
+            ],
+            "correctIndex": 0,
+            "explanation": "وظیفه اصلی جملات پشتیبان، تشریح، ارائه دلیل، ذکر مثال و پشتیبانی از جمله موضوعی است."
+          },
+          {
+            "id": "wq12-3-3",
+            "sentence": "In the textbook paragraph about ants: 'Ants are strange insects... Yesterday I saw an ant. I can run quickly too.' Which sentence breaks unity?",
+            "options": [
+              "I can run quickly too.",
+              "Ants have six legs.",
+              "Each leg has three joints."
+            ],
+            "correctIndex": 0,
+            "explanation": "جمله 'I can run quickly too' درباره توانایی نویسنده است و هیچ فکتی درباره شگفتی‌های مورچه ارائه نمی‌دهد."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "جمله نتیجه‌گیری و بازنویسی با واژگان مترادف (Concluding Sentence & Synonyms)",
+        "explanationFa": "جمله نتیجه‌گیری (Concluding Sentence) آخرین جمله پاراگراف است. این جمله ایده جمله موضوعی را تکرار می‌کند، اما با کلماتی دیگر و واژگان مترادف (Restatement/Paraphrase). برای شروع آن از عباراتی مانند In short, In conclusion, Thus, To sum up استفاده می‌شود.",
+        "regularPairs": [
+          {
+            "singular": "Topic: Trees are very valuable.",
+            "plural": "Concluding: In short, trees are the best friends of man. (valuable ⬌ best friends)"
+          },
+          {
+            "singular": "Topic: Energy is important.",
+            "plural": "Concluding: It is thus at the heart of everybody's life. (important ⬌ at the heart of)"
+          }
+        ],
+        "exercise": [
+          {
+            "id": "spe12-3-1",
+            "singularPrompt": "If the Topic Sentence is 'Horses are useful farm animals', what is the best Concluding Sentence?",
+            "options": [
+              "In short, these farm animals provide great help to humans.",
+              "Horses eat grass in the field.",
+              "A horse has four legs."
+            ],
+            "correctIndex": 0,
+            "explanation": "شروع با 'In short' و تکرار ایده سودمندی اسب با واژگان معادل 'provide great help'."
+          },
+          {
+            "id": "spe12-3-2",
+            "singularPrompt": "Which connector is commonly used to introduce a Concluding Sentence?",
+            "options": ["In conclusion,", "First of all,", "Yesterday,"],
+            "correctIndex": 0,
+            "explanation": "عبارت 'In conclusion,' یا 'In short,' برای جمع‌بندی پاراگراف به کار می‌رود."
+          },
+          {
+            "id": "spe12-3-3",
+            "singularPrompt": "Topic: 'Regular exercise is essential for health.' Concluding: 'To sum up, daily workout ______.'",
+            "options": [
+              "keeps our body and mind fit and active.",
+              "is boring and expensive.",
+              "was invented long ago."
+            ],
+            "correctIndex": 0,
+            "explanation": "بازنویسی ایده تندرستی با عبارت مترادف 'keeps our body and mind fit and active'."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "چیدمان و مرتب‌سازی جملات به هم ریخته پاراگراف (Unscrambling Paragraphs)",
+        "explanationFa": "تمرینات صفحات ۹۳ و ۹۴ کتاب: مرتب‌سازی جملات برای تشکیل پاراگراف منسجم (منظومه شمسی و درختان).",
+        "examples": [
+          {
+            "category": "پاراگراف منظومه شمسی (صفحه ۹۳)",
+            "items": [
+              "1. The Solar System consists of the Sun, Moon and Planets. (Topic Sentence)",
+              "2. The Sun is the largest member of the Solar System.",
+              "3. The Sun is at the centre and planets revolve around it.",
+              "4. In order of distance from Sun, planets are Mercury, Venus, Earth..."
+            ]
+          },
+          {
+            "category": "پاراگراف درختان (صفحه ۹۴)",
+            "items": [
+              "Topic (T): Trees are very valuable.",
+              "Supporting (S): They take carbon dioxide and fill air with oxygen.",
+              "Concluding (C): In short, trees are the best friends of man."
+            ]
+          }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pf12-3-1",
+            "sentenceWithBlank": "In the Solar System paragraph, which sentence is the Topic Sentence (T)?",
+            "options": [
+              "The Solar System consists of the Sun, Moon and Planets.",
+              "Pluto is the farthest planet.",
+              "The Sun is hot."
+            ],
+            "correctIndex": 0,
+            "explanation": "جمله کلی معرف اجزای منظومه شمسی، جمله موضوعی اصلی است."
+          },
+          {
+            "id": "pf12-3-2",
+            "sentenceWithBlank": "In the trees paragraph, 'In short, trees are the best friends of man' is the: ______",
+            "options": [
+              "Concluding Sentence (C)",
+              "Topic Sentence (T)",
+              "Irrelevant Sentence"
+            ],
+            "correctIndex": 0,
+            "explanation": "این جمله با 'In short' آغاز شده و نتیجه‌گیری کل پاراگراف است."
+          },
+          {
+            "id": "pf12-3-3",
+            "sentenceWithBlank": "Sentences like 'They cause rain' and 'They supply us with necessary things' are: ______",
+            "options": [
+              "Supporting Sentences (S)",
+              "Title of the book",
+              "Topic Sentence"
+            ],
+            "correctIndex": 0,
+            "explanation": "این جملات دلایل و شواهد ارزش درختان را به عنوان جملات پشتیبان بیان می‌کنند."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "فرمول نگارش پاراگراف استاندارد برای نمره کامل امتحان نهایی (Exam Writing Mastery)",
+        "explanationFa": "فرمول ۳ مرحله‌ای طلایی برای کسب نمره ۲۰ امتحانات نهایی در سوال پاراگراف‌نویسی:\n۱. یک جمله موضوعی شفاف (Topic + Controlling Idea)\n۲. دو تا سه جمله پشتیبان هماهنگ با کلمات ربط (First, Also, For example)\n۳. یک جمله نتیجه‌گیری هماهنگ با 'In short,' یا 'In conclusion,' که ایده جمله اول را با کلماتی دیگر بازنویسی می‌کند.",
+        "markersList": [
+          {
+            "marker": "ساختار ۳ مرحله‌ای امتحان نهایی",
+            "use": "Topic Sentence ➔ 2-3 Supporting Sentences ➔ Concluding Sentence",
+            "example": "Always remember transitions: First, In addition, For example, In conclusion."
+          },
+          {
+            "marker": "تطبیق واژگان هم‌ارز (Synonym Pairing)",
+            "use": "ایده کلیدی جمله اول را در جمله آخر تکرار کنید اما کلمه را عوض کنید تا نمره کامل نگارش بگیرید.",
+            "example": "valuable ⬌ essential / best friends; important ⬌ vital / at the heart of."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "mq12-3-1",
+            "question": "برای نوشتن یک پاراگراف کامل و استاندارد در امتحان نهایی، کدام ساختار الزامی است؟",
+            "options": [
+              "Topic Sentence + Supporting Sentences + Concluding Sentence",
+              "فقط نوشتن ۵ کلمه لغت جداگانه",
+              "یک خط شعر انگلیسی بدون علائم نگارشی"
+            ],
+            "correctIndex": 0,
+            "explanation": "ساختار سه بخشی (جمله موضوعی، جملات پشتیبان و نتیجه‌گیری) بارم‌بندی استاندارد امتحانات نهایی است."
+          },
+          {
+            "id": "mq12-3-2",
+            "question": "کدام جفت واژگان نشان‌دهنده بازنویسی هوشمندانه ایده بین Topic Sentence و Concluding Sentence است؟",
+            "options": [
+              "valuable ⬌ best friends of man",
+              "cold ⬌ sunny",
+              "ant ⬌ elephant"
+            ],
+            "correctIndex": 0,
+            "explanation": "تطبیق ارزشمندی درختان با صفت بهترین دوستان انسان، بازنویسی مفهومی مترادف است."
+          },
+          {
+            "id": "mq12-3-3",
+            "question": "بهترین عبارت برای شروع جمله نتیجه‌گیری پاراگراف در امتحان کدام است؟",
+            "options": [
+              "In short, / In conclusion,",
+              "Suddenly,",
+              "Once upon a time,"
+            ],
+            "correctIndex": 0,
+            "explanation": "عبارات 'In short,' و 'In conclusion,' علائم استاندارد آغاز جمله پایانی پاراگراف هستند."
+          }
+        ]
+      }
+    }
+  }
+}

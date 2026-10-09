@@ -40,3 +40,4 @@ voice_recordings/
 apps/api/voice_recordings/
 *.dump
 *.sql
+.agents/

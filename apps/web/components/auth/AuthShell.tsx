@@ -78,6 +78,42 @@ export function AuthShell({
     root.dir = isPersian ? "rtl" : "ltr";
   }, [isPersian, locale]);
 
+  const isAccountRoute =
+    effectivePath.startsWith("/account") || effectivePath.startsWith("/en/account");
+
+  if (isAccountRoute) {
+    return (
+      <div
+        className={styles.accountPage}
+        lang={locale}
+        dir={isPersian ? "rtl" : "ltr"}
+      >
+        <section id="auth-content" className={styles.accountWorkspace} aria-labelledby="auth-title">
+          <div className={styles.heading}>
+            <span className={styles.securityIcon} aria-hidden="true"><ShieldIcon /></span>
+            <div>
+              <h1 id="auth-title" className={styles.title}>{title}</h1>
+              <p className={styles.description}>{description}</p>
+            </div>
+          </div>
+
+          <div className={styles.body}>{children}</div>
+          {footer ? <footer className={styles.footer}>{footer}</footer> : null}
+
+          <aside className={styles.securityPanel} aria-label={t.securityTitle}>
+            <div className={styles.securityHeading}>
+              <ShieldIcon />
+              <strong>{t.securityTitle}</strong>
+            </div>
+            <ul>
+              {t.trust.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </aside>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <PublicShell
       locale={locale}

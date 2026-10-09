@@ -40,6 +40,8 @@ class PlacementSessionSerializer(serializers.ModelSerializer):
     is_expired = serializers.BooleanField(read_only=True)
     is_active = serializers.BooleanField(read_only=True)
     answers_count = serializers.IntegerField(read_only=True)
+    completed_at = serializers.DateTimeField(read_only=True, allow_null=True)
+    endoora_index = serializers.SerializerMethodField()
 
     class Meta:
         model = PlacementSession
@@ -50,31 +52,64 @@ class PlacementSessionSerializer(serializers.ModelSerializer):
             "started_at",
             "updated_at",
             "expires_at",
+            "completed_at",
             "is_expired",
             "is_active",
             "answers_count",
             "answers",
+            "endoora_index",
         ]
         read_only_fields = [
             "id",
             "started_at",
             "updated_at",
             "expires_at",
+            "completed_at",
             "is_expired",
             "is_active",
             "answers_count",
+            "endoora_index",
         ]
+
+    def get_endoora_index(self, obj) -> int | None:
+        if obj.status == PlacementSession.Status.SUBMITTED:
+            res = getattr(obj, "result", None)
+            if res and hasattr(res, "endoora_index"):
+                return res.endoora_index
+        return None
 
 
 class PlacementSectionAdvanceSerializer(serializers.Serializer):
-    VALID_SECTIONS = {"grammar", "vocabulary", "reading", "listening", "speaking", "writing", "review"}
+    VALID_SECTIONS = {
+        "grammar",
+        "vocabulary",
+        "reading",
+        "listening",
+        "speaking",
+        "writing",
+        "review",
+        "completed",
+    }
 
-    section = serializers.CharField(max_length=50)
+    section = serializers.CharField(max_length=50, required=False, allow_blank=True)
+    current_section = serializers.CharField(max_length=50, required=False, allow_blank=True)
+    action = serializers.CharField(max_length=50, required=False, default="complete")
+    answers = serializers.JSONField(required=False, allow_null=True)
 
     def validate_section(self, value):
+        if not value:
+            return value
         norm = value.strip().lower()
         if norm not in self.VALID_SECTIONS:
             raise serializers.ValidationError(f"Invalid section: {value}. Allowed: {sorted(self.VALID_SECTIONS)}")
+        return norm
+
+    def validate_current_section(self, value):
+        if not value:
+            return value
+        norm = value.strip().lower()
+        if norm not in self.VALID_SECTIONS:
+            raise serializers.ValidationError(f"Invalid current_section: {value}. Allowed: {sorted(self.VALID_SECTIONS)}")
         return norm
 
 
@@ -90,11 +125,13 @@ class PlacementQuestionItemSerializer(serializers.Serializer):
     title_fa = serializers.CharField(required=False, default="")
     title_en = serializers.CharField(required=False, default="")
     prompt_fa = serializers.CharField(required=False, default="")
-    prompt_en = serializers.CharField()
+    prompt_en = serializers.CharField(required=False, default="")
     instructions_fa = serializers.CharField(required=False, default="")
     instructions_en = serializers.CharField(required=False, default="")
     cefr_level = serializers.CharField(default="A1")
     difficulty = serializers.CharField(default="easy")
+    difficulty_b = serializers.FloatField(required=False, default=0.0)
+    discrimination_a = serializers.FloatField(required=False, default=1.0)
     passage = serializers.CharField(required=False, default="")
     audio_url = serializers.CharField(required=False, default="", allow_blank=True)
     play_limit = serializers.IntegerField(required=False, default=2)
@@ -111,6 +148,8 @@ class PlacementSectionSummaryItemSerializer(serializers.Serializer):
     answered = serializers.IntegerField()
     correct = serializers.IntegerField(required=False, default=0)
     score_percentage = serializers.FloatField(required=False, default=0.0)
+    endoora_index = serializers.IntegerField(required=False, default=0)
+    cefr_level = serializers.CharField(required=False, default="A1")
     objectives_covered = serializers.ListField(child=serializers.CharField(), required=False, default=list)
 
 
@@ -121,11 +160,17 @@ class PlacementSessionSummarySerializer(serializers.Serializer):
     current_section = serializers.CharField()
     started_at = serializers.DateTimeField()
     expires_at = serializers.DateTimeField()
+    completed_at = serializers.DateTimeField(allow_null=True, required=False)
     is_expired = serializers.BooleanField()
     total_questions = serializers.IntegerField()
     total_answered = serializers.IntegerField()
     overall_percentage = serializers.FloatField(allow_null=True, required=False)
+    endoora_index = serializers.IntegerField(allow_null=True, required=False)
+    theta = serializers.FloatField(allow_null=True, required=False)
+    standard_error = serializers.FloatField(allow_null=True, required=False)
     estimated_cefr_level = serializers.CharField(allow_null=True, required=False, default="A1")
     sections = serializers.DictField(child=PlacementSectionSummaryItemSerializer())
     evidence = serializers.ListField(child=serializers.DictField(), required=False, default=list)
+    can_do_statements = serializers.ListField(child=serializers.DictField(), required=False, default=list)
+    curriculum_recommendations = serializers.ListField(child=serializers.DictField(), required=False, default=list)
     notice = serializers.CharField()

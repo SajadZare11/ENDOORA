@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@endoora/ui";
 import { useEffect, useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { Tamrin20ProgressWidget } from "@/components/highschool/tamrin20";
 import styles from "./progress.module.css";
 
 interface SkillMetric {
@@ -362,6 +363,11 @@ export default function ProgressPage() {
             );
           })}
         </div>
+      </section>
+
+      {/* High School Vision 3 Tamrin 20 Reporting Section */}
+      <section className={styles.card} style={{ padding: 0, border: "none", background: "transparent" }}>
+        <Tamrin20ProgressWidget />
       </section>
 
       {/* Immutable XP Ledger Section */}

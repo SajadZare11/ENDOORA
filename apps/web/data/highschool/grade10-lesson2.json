@@ -1,0 +1,879 @@
+{
+  "id": "vision-1-lesson-2",
+  "grade": 10,
+  "bookTitle": "Vision 1",
+  "lessonNumber": 2,
+  "slug": "grade-10/lesson-2",
+  "title": {
+    "en": "Wonders of Creation",
+    "fa": "شگفتی‌های خلقت"
+  },
+  "cefrLevel": "A2",
+  "sections": {
+    "getReady": [
+      {
+        "id": "g2-1",
+        "word": "Planets go around the Sun.",
+        "phonetic": "/ˈplæn.ɪts ɡəʊ əˈraʊnd ðə sʌn/",
+        "persianMeaning": "سیارات به دور خورشید می‌چرخند.",
+        "imagePromptOrUrl": "planets-sun-solar-system",
+        "options": [
+          "The Sun goes around Earth.",
+          "Planets go around the Sun.",
+          "Moons are larger than planets."
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "All eight planets go around the Sun in elliptical orbits.",
+          "fa": "همه هشت سیاره در مدارهای بیضوی به دور خورشید می‌چرخند."
+        }
+      },
+      {
+        "id": "g2-2",
+        "word": "Ants are amazing animals.",
+        "phonetic": "/ænts ɑːr əˈmeɪ.zɪŋ ˈæn.ɪ.məlz/",
+        "persianMeaning": "مورچه‌ها حیوانات شگفت‌انگیزی هستند.",
+        "imagePromptOrUrl": "amazing-ants-working",
+        "options": [
+          "Ants are dangerous microbes.",
+          "Ants are amazing animals.",
+          "Ants live in deep oceans."
+        ],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Ants can carry things much heavier than their own bodies.",
+          "fa": "مورچه‌ها می‌توانند اجسامی بسیار سنگین‌تر از بدن خود را حمل کنند."
+        }
+      },
+      {
+        "id": "g2-3",
+        "word": "Our body is a wonderful system.",
+        "phonetic": "/aʊər ˈbɒd.i ɪz ə ˈwʌn.də.fəl ˈsɪs.təm/",
+        "persianMeaning": "بدن ما یک سامانه شگفت‌انگیز است.",
+        "imagePromptOrUrl": "human-body-system",
+        "options": [
+          "Our body is a wonderful system.",
+          "Our body has no liquid.",
+          "Microbes protect our body."
+        ],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Our body is doing millions of essential jobs all the time.",
+          "fa": "بدن ما در تمام طول زمان در حال انجام میلیون‌ها وظیفه حیاتی است."
+        }
+      },
+      {
+        "id": "g2-4",
+        "word": "Camels can live without water for a long time.",
+        "phonetic": "/ˈkæm.əlz kæn lɪv wɪˈðaʊt ˈwɔː.tər fɔːr ə lɒŋ taɪm/",
+        "persianMeaning": "شترها می‌توانند مدت طولانی بدون آب زنده بمانند.",
+        "imagePromptOrUrl": "camel-in-desert",
+        "options": [
+          "Camels cannot live in hot deserts.",
+          "Camels drink water every minute.",
+          "Camels can live without water for a long time."
+        ],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "A camel survives in hot dry deserts because it stores energy.",
+          "fa": "شتر در بیابان‌های گرم و خشک زنده می‌ماند زیرا انرژی ذخیره می‌کند."
+        }
+      },
+      {
+        "id": "g2-5",
+        "word": "heart",
+        "phonetic": "/hɑːt/",
+        "persianMeaning": "قلب / دل",
+        "imagePromptOrUrl": "human-heart-organ",
+        "options": ["brain", "heart", "bone"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The heart pumps blood continuously round the human body.",
+          "fa": "قلب خون را به طور پیوسته در سراسر بدن انسان پمپاژ می‌کند."
+        }
+      },
+      {
+        "id": "g2-6",
+        "word": "blood",
+        "phonetic": "/blʌd/",
+        "persianMeaning": "خون",
+        "imagePromptOrUrl": "blood-drop-red",
+        "options": ["water", "plasma", "blood"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Blood delivers vital oxygen and nutrients to every cell.",
+          "fa": "خون اکسیژن و مواد مغذی حیاتی را به تک‌تک سلول‌ها می‌رساند."
+        }
+      },
+      {
+        "id": "g2-7",
+        "word": "telescope",
+        "phonetic": "/ˈtel.ɪ.skəʊp/",
+        "persianMeaning": "تلسکوپ",
+        "imagePromptOrUrl": "astronomy-telescope",
+        "options": ["telescope", "microscope", "camera"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Astronomers use a powerful telescope to observe distant planets.",
+          "fa": "ستاره‌شناسان از تلسکوپ قدرتمند برای رصد سیارات دوردست استفاده می‌کنند."
+        }
+      },
+      {
+        "id": "g2-8",
+        "word": "microscope",
+        "phonetic": "/ˈmaɪ.krə.skəʊp/",
+        "persianMeaning": "میکروسکوپ",
+        "imagePromptOrUrl": "laboratory-microscope",
+        "options": ["telescope", "microscope", "glasses"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Scientists study tiny blood cells under a modern microscope.",
+          "fa": "دانشمندان سلول‌های ریز خون را زیر یک میکروسکوپ پیشرفته بررسی می‌کنند."
+        }
+      },
+      {
+        "id": "g2-9",
+        "word": "observatory",
+        "phonetic": "/əbˈzɜː.və.tri/",
+        "persianMeaning": "رصدخانه",
+        "imagePromptOrUrl": "observatory-dome-mountain",
+        "options": ["hospital", "observatory", "library"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Maragheh Observatory is a famous historic place in Iran.",
+          "fa": "رصدخانه مراغه مکانی تاریخی و مشهور در ایران است."
+        }
+      },
+      {
+        "id": "g2-10",
+        "word": "ring",
+        "phonetic": "/rɪŋ/",
+        "persianMeaning": "حلقه (حلقه‌های دور سیاره)",
+        "imagePromptOrUrl": "saturn-rings-planet",
+        "options": ["orbit", "star", "ring"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Saturn is famous for its beautiful and bright rings.",
+          "fa": "زحل به خاطر حلقه‌های زیبا و درخشانش مشهور است."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "مکالمه درس دوم: دیدار از رصدخانه و شگفتی‌های سیارات",
+      "situationFa": "علیرضا در رصدخانه در حال گفتگو با خانم تابش (کارشناس نجوم) درباره سیارات منظومه شمسی است.",
+      "vocabulary": [
+        {
+          "id": "c2-v1",
+          "word": "near",
+          "phonetic": "/nɪər/",
+          "persianMeaning": "نزدیک / در مجاورت",
+          "imagePromptOrUrl": "near-distance-planets",
+          "options": ["far", "near", "deep"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Mercury is the planet nearest to the Sun.",
+            "fa": "عطارد نزدیک‌ترین سیاره به خورشید است."
+          }
+        },
+        {
+          "id": "c2-v2",
+          "word": "rocky",
+          "phonetic": "/ˈrɒk.i/",
+          "persianMeaning": "صخره‌ای / سنگی",
+          "imagePromptOrUrl": "rocky-surface-mars",
+          "options": ["liquid", "rocky", "gaseous"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "Mars has a dry and rocky surface with mountains.",
+            "fa": "مریخ سطحی خشک و صخره‌ای همراه با کوه‌ها دارد."
+          }
+        },
+        {
+          "id": "c2-v3",
+          "word": "orbit",
+          "phonetic": "/ˈɔː.bɪt/",
+          "persianMeaning": "مدار چرخش / مسیر گردش",
+          "imagePromptOrUrl": "planetary-orbit",
+          "options": ["orbit", "rocket", "station"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Planets go around the Sun in different elliptical orbits.",
+            "fa": "سیارات در مدارهای مختلف به دور خورشید گردش می‌کنند."
+          }
+        },
+        {
+          "id": "c2-v4",
+          "word": "powerful",
+          "phonetic": "/ˈpaʊə.fəl/",
+          "persianMeaning": "قدرتمند / پرتوان",
+          "imagePromptOrUrl": "powerful-telescope-lens",
+          "options": ["weak", "slow", "powerful"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "We can see distant stars only with powerful telescopes.",
+            "fa": "ما ستاره‌های دوردست را تنها با تلسکوپ‌های قدرتمند می‌توانیم ببینیم."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "l2-line-1",
+          "speaker": "Ms. Tabesh",
+          "speakerRole": "teacher",
+          "speakerAvatar": "👩‍🏫",
+          "enText": "Are you interested in the planets?",
+          "faText": "آیا به سیارات علاقه‌مند هستی؟",
+          "orderIndex": 1
+        },
+        {
+          "id": "l2-line-2",
+          "speaker": "Alireza",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Yes! They are really interesting for me, but I don't know much about them.",
+          "faText": "بله! آن‌ها برای من واقعاً جالب هستند، اما اطلاعات زیادی درباره‌شان ندارم.",
+          "orderIndex": 2
+        },
+        {
+          "id": "l2-line-3",
+          "speaker": "Ms. Tabesh",
+          "speakerRole": "teacher",
+          "speakerAvatar": "👩‍🏫",
+          "enText": "Planets are really amazing but not so much alike. Do you know how they are different?",
+          "faText": "سیارات واقعاً شگفت‌انگیزند اما چندان شبیه هم نیستند. آیا می‌دانی چه تفاوت‌هایی با هم دارند؟",
+          "orderIndex": 3
+        },
+        {
+          "id": "l2-line-4",
+          "speaker": "Alireza",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "Umm... I know they go around the Sun in different orbits.",
+          "faText": "امم... می‌دانم که آن‌ها در مدارهای متفاوتی به دور خورشید می‌گردند.",
+          "orderIndex": 4
+        },
+        {
+          "id": "l2-line-5",
+          "speaker": "Ms. Tabesh",
+          "speakerRole": "teacher",
+          "speakerAvatar": "👩‍🏫",
+          "enText": "That's right. They have different colors and sizes, too. Some are rocky like Mars, some have rings like Saturn and some have moons like Uranus.",
+          "faText": "درست است. رنگ‌ها و اندازه‌های متفاوتی هم دارند. بعضی مثل مریخ صخره‌ای هستند، بعضی مثل زحل حلقه دارند و بعضی مثل اورانوس قمر دارند.",
+          "orderIndex": 5
+        },
+        {
+          "id": "l2-line-6",
+          "speaker": "Alireza",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "How wonderful! Can we see them without a telescope?",
+          "faText": "چقدر شگفت‌انگیز! آیا می‌توانیم بدون تلسکوپ آن‌ها را ببینیم؟",
+          "orderIndex": 6
+        },
+        {
+          "id": "l2-line-7",
+          "speaker": "Ms. Tabesh",
+          "speakerRole": "teacher",
+          "speakerAvatar": "👩‍🏫",
+          "enText": "Yeah..., we can see the planets nearer to us without a telescope, such as Mercury, Venus, Mars, Jupiter and Saturn. We can see Uranus and Neptune only with powerful telescopes.",
+          "faText": "بله... سیارات نزدیک‌تر به خودمان مثل عطارد، زهره، مریخ، مشتری و زحل را می‌توانیم بدون تلسکوپ ببینیم. اورانوس و نپتون را فقط با تلسکوپ‌های قوی می‌توان دید.",
+          "orderIndex": 7
+        },
+        {
+          "id": "l2-line-8",
+          "speaker": "Alireza",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "And which planet is the largest of all?",
+          "faText": "و کدام سیاره از همه بزرگ‌تر است؟",
+          "orderIndex": 8
+        },
+        {
+          "id": "l2-line-9",
+          "speaker": "Ms. Tabesh",
+          "speakerRole": "teacher",
+          "speakerAvatar": "👩‍🏫",
+          "enText": "Jupiter is the largest one. It has more than sixty moons. Do you want to look at it?",
+          "faText": "مشتری بزرگ‌ترین سیاره است. بیش از شصت ماه (قمر) دارد. می‌خواهی به آن نگاه کنی؟",
+          "orderIndex": 9
+        },
+        {
+          "id": "l2-line-10",
+          "speaker": "Alireza",
+          "speakerRole": "student",
+          "speakerAvatar": "👦",
+          "enText": "I really like that.",
+          "faText": "واقعاً دوست دارم این کار را بکنم.",
+          "orderIndex": 10
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw2-1",
+        "word": "liquid",
+        "phonetic": "/ˈlɪk.wɪd/",
+        "persianMeaning": "مایع / حالت مایع ماده",
+        "imagePromptOrUrl": "liquid-beaker-water",
+        "options": ["solid", "liquid", "gas"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Water and blood are essential types of liquid.",
+          "fa": "آب و خون انواع حیاتی مایع هستند."
+        }
+      },
+      {
+        "id": "nw2-2",
+        "word": "drop",
+        "phonetic": "/drɒp/",
+        "persianMeaning": "قطره",
+        "imagePromptOrUrl": "single-blood-drop",
+        "options": ["drop", "ocean", "river"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "There are millions of cells in one drop of blood.",
+          "fa": "در یک قطره خون میلیون‌ها سلول وجود دارد."
+        }
+      },
+      {
+        "id": "nw2-3",
+        "word": "blood cell",
+        "phonetic": "/blʌd sel/",
+        "persianMeaning": "گلبول خون / یاخته خونی",
+        "imagePromptOrUrl": "blood-cells-microscope",
+        "options": ["skin cell", "blood cell", "plant cell"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Red blood cells carry oxygen all over the body.",
+          "fa": "گلبول‌های قرمز خون اکسیژن را به سراسر بدن حمل می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-4",
+        "word": "thousand",
+        "phonetic": "/ˈθaʊ.zənd/",
+        "persianMeaning": "هزار (عدد ۱۰۰۰)",
+        "imagePromptOrUrl": "thousand-number-count",
+        "options": ["hundred", "million", "thousand"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "There are thousands of white cells defending our health.",
+          "fa": "هزاران گلبول سفید وجود دارند که از سلامت ما دفاع می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-5",
+        "word": "microbe",
+        "phonetic": "/ˈmaɪ.krəʊb/",
+        "persianMeaning": "میکروب / عامل بیماری‌زا",
+        "imagePromptOrUrl": "microbe-bacteria-germ",
+        "options": ["cell", "microbe", "organ"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "White blood cells defend our body against dangerous microbes.",
+          "fa": "گلبول‌های سفید خون از بدن ما در برابر میکروب‌های خطرناک دفاع می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-6",
+        "word": "useful",
+        "phonetic": "/ˈjuːs.fəl/",
+        "persianMeaning": "مفید / سودمند",
+        "imagePromptOrUrl": "useful-daily-exercise",
+        "options": ["harmful", "useful", "boring"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Doing daily exercise is very useful for your heart.",
+          "fa": "انجام ورزش روزانه برای قلب شما بسیار مفید است."
+        }
+      },
+      {
+        "id": "nw2-7",
+        "word": "pump",
+        "phonetic": "/pʌmp/",
+        "persianMeaning": "پمپاژ کردن / تلمبه زدن",
+        "imagePromptOrUrl": "heart-pumping-blood",
+        "options": ["stop", "pump", "clean"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The heart pumps blood round the body day and night.",
+          "fa": "قلب شب و روز خون را به سراسر بدن پمپاژ می‌کند."
+        }
+      },
+      {
+        "id": "nw2-8",
+        "word": "clear",
+        "phonetic": "/klɪər/",
+        "persianMeaning": "شفاف / زلال / واضح",
+        "imagePromptOrUrl": "clear-mountain-lake",
+        "options": ["dark", "clear", "dirty"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Plasma is a clear and yellowish liquid in blood.",
+          "fa": "پلاسما یک مایع شفاف و مایل به زرد در خون است."
+        }
+      },
+      {
+        "id": "nw2-9",
+        "word": "healthy",
+        "phonetic": "/ˈhel.θi/",
+        "persianMeaning": "سالم / تندرست",
+        "imagePromptOrUrl": "healthy-athletic-person",
+        "options": ["sick", "healthy", "tired"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A healthy diet gives you more energy throughout the day.",
+          "fa": "یک رژیم غذایی سالم انرژی بیشتری در طول روز به شما می‌دهد."
+        }
+      },
+      {
+        "id": "nw2-10",
+        "word": "defend",
+        "phonetic": "/dɪˈfend/",
+        "persianMeaning": "دفاع کردن / محافظت کردن در برابر خطر",
+        "imagePromptOrUrl": "defend-soldiers-shield",
+        "options": ["attack", "defend", "destroy"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Brave white blood cells defend the body from diseases.",
+          "fa": "گلبول‌های سفید شجاع از بدن در برابر بیماری‌ها دفاع می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-11",
+        "word": "carry",
+        "phonetic": "/ˈkær.i/",
+        "persianMeaning": "حمل کردن / جابجا کردن",
+        "imagePromptOrUrl": "monkey-carrying-baby",
+        "options": ["leave", "carry", "drop"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Red blood cells carry oxygen from lungs to all organs.",
+          "fa": "گلبول‌های قرمز اکسیژن را از ریه‌ها به تمام اندام‌ها حمل می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-12",
+        "word": "collect",
+        "phonetic": "/kəˈlekt/",
+        "persianMeaning": "جمع‌آوری کردن / گردآوری",
+        "imagePromptOrUrl": "school-bus-collecting-kids",
+        "options": ["collect", "scatter", "throw"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Blood cells collect carbon dioxide from body tissues.",
+          "fa": "سلول‌های خونی دی‌اکسید کربن را از بافت‌های بدن جمع‌آوری می‌کنند."
+        }
+      },
+      {
+        "id": "nw2-13",
+        "word": "fact",
+        "phonetic": "/fækt/",
+        "persianMeaning": "حقیقت علمی / واقعیت مسلم",
+        "imagePromptOrUrl": "scientific-fact-globe",
+        "options": ["story", "lie", "fact"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "It is an established scientific fact that Earth orbits the Sun.",
+          "fa": "این یک واقعیت علمی اثبات‌شده است که زمین به دور خورشید می‌چرخد."
+        }
+      }
+    ],
+    "reading": {
+      "title": "A Wonderful Liquid",
+      "persianTitle": "مایع شگفت‌انگیز",
+      "passageTextEn": "The human body is a real wonder. It is sometimes good to think about our body and how it works. Our body is doing millions of jobs all the time.\n\nOne of the most important parts of the body is blood. The heart pumps this red liquid around the body. This keeps us healthy and alive.\n\nMore than half of blood is plasma. This is a clear and yellow liquid. It carries red and white cells. There are millions of red blood cells in one small drop of blood. They carry oxygen round the body and collect carbon dioxide from body parts. There are thousands of white cells in a drop of blood. They are bigger than red cells. They defend our body against microbes.\n\nThis wonderful liquid is a great gift from Allah. We can thank Allah by keeping our body healthy. One way to do that is eating healthy food and doing daily exercises. Another way is to donate our blood to those who need it.",
+      "passageParagraphs": [
+        "The human body is a real wonder. It is sometimes good to think about our body and how it works. Our body is doing millions of jobs all the time.",
+        "One of the most important parts of the body is blood. The heart pumps this red liquid around the body. This keeps us healthy and alive.",
+        "More than half of blood is plasma. This is a clear and yellow liquid. It carries red and white cells. There are millions of red blood cells in one small drop of blood. They carry oxygen round the body and collect carbon dioxide from body parts. There are thousands of white cells in a drop of blood. They are bigger than red cells. They defend our body against microbes.",
+        "This wonderful liquid is a great gift from Allah. We can thank Allah by keeping our body healthy. One way to do that is eating healthy food and doing daily exercises. Another way is to donate our blood to those who need it."
+      ],
+      "questions": [
+        {
+          "id": "r2-q1",
+          "type": "mcq_general",
+          "prompt": "What is the main topic of the reading passage?",
+          "options": [
+            "The digestive system of animals",
+            "The wonders of blood and its vital role in the human body",
+            "How to become an astronomer",
+            "The history of ancient medicine"
+          ],
+          "correctAnswer": 1,
+          "explanationFa": "موضوع اصلی متن درباره خون، ساختار آن (پلاسما، گلبول‌های قرمز و سفید) و اهمیت حیاتی آن در بدن انسان است."
+        },
+        {
+          "id": "r2-q2",
+          "type": "true_false",
+          "prompt": "Red blood cells are bigger than white blood cells.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": 1,
+          "explanationFa": "غلط است؛ طبق پاراگراف سوم متن، گلبول‌های سفید بزرگ‌تر از گلبول‌های قرمز هستند (They are bigger than red cells)."
+        },
+        {
+          "id": "r2-q3",
+          "type": "reference",
+          "prompt": "In paragraph 3, what does the pronoun 'They' in 'They defend our body against microbes' refer to?",
+          "options": ["Red cells", "White cells", "Lakes", "Microbes"],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر They در این جمله به گلبول‌های سفید (White cells) اشاره دارد که اندازه بزرگ‌تری دارند و در برابر میکروب‌ها دفاع می‌کنند."
+        },
+        {
+          "id": "r2-q4",
+          "type": "context_meaning",
+          "prompt": "Based on the text, what is the best meaning of the word 'defend'?",
+          "options": [
+            "To protect someone or something from danger or disease",
+            "To pump water quickly",
+            "To swim in deep lakes",
+            "To sleep for a long time"
+          ],
+          "correctAnswer": 0,
+          "explanationFa": "کلمه defend به معنای محافظت و مراقبت در برابر آسیب، خطر و بیماری است."
+        },
+        {
+          "id": "r2-q5",
+          "type": "open_ended",
+          "prompt": "According to the text, how can we keep our body healthy and thank Allah?",
+          "correctAnswer": "By eating healthy food, doing daily exercises, and donating blood to those who need it.",
+          "requiredKeywordsForEvaluation": [
+            "eating",
+            "healthy food",
+            "daily exercises",
+            "donate",
+            "blood",
+            "thank"
+          ],
+          "modelAnswerEn": "We can keep our body healthy and thank Allah by eating healthy food, doing daily exercises, and donating our blood to people in need.",
+          "modelAnswerFa": "ما می‌توانیم با خوردن غذای سالم، انجام ورزش روزانه و اهدای خون خود به نیازمندان، بدنمان را سالم نگه داریم و شکرگزاری کنیم.",
+          "explanationFa": "پاسخ در پاراگراف آخر متن آمده است: One way to do that is eating healthy food and doing daily exercises. Another way is to donate our blood to those who need it."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Adjectives: Equality, Comparative, Superlative, and Irregulars",
+      "persianTopic": "صفت‌ها: برابری (as...as)، تفضیلی (-er/more)، عالی (-est/most) و بی‌قاعده‌ها",
+      "discovery": {
+        "sentenceA": {
+          "text": "Mars is smaller than Jupiter.",
+          "highlightedPart": "smaller than",
+          "translation": "مریخ کوچکتر از مشتری است (مقایسه دو پدیده)."
+        },
+        "sentenceB": {
+          "text": "Jupiter is the largest planet of all.",
+          "highlightedPart": "the largest",
+          "translation": "مشتری بزرگ‌ترین سیاره از میان همه است (برتری یک مورد بر کل گروه)."
+        },
+        "ccqQuestions": [
+          {
+            "question": "در جمله اول (Mars is smaller than Jupiter)، آیا دو سیاره هم‌اندازه هستند؟",
+            "options": ["خیر، یکی کوچکتر از دیگری است", "بله، کاملاً برابرند"],
+            "correctIndex": 0,
+            "explanationFa": "پسوند -er همراه با than برای مقایسه نابرابر دو شیء به کار می‌رود."
+          },
+          {
+            "question": "کدام عبارت برای بیان بیشترین مقدار یک ویژگی در میان همه اعضای یک مجموعه به کار می‌رود؟",
+            "options": ["the largest (صفت عالی)", "larger than (صفت تفضیلی)"],
+            "correctIndex": 0,
+            "explanationFa": "ساختار the + adjective + est برای بیان صفت عالی (Superlative) به کار می‌رود."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول طلایی: برابری با [as + صفت ساده + as]؛ صفت تفضیلی کوتاه با [صفت + er than] و صفت بلند با [more + صفت + than]؛ صفت عالی کوتاه با [the + صفت + est] و صفت بلند با [the most + صفت].",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "صفت‌های تفضیلی کوتاه در برابر بلند",
+          "stepByStepExplanationFa": [
+            "برای صفت‌های یک سیلابی و کوتاه، پسوند -er اضافه می‌شود: tall ➔ taller than",
+            "برای صفت‌های چندسیلابی و بلند، کلمه more قبل از صفت می‌آید: expensive ➔ more expensive than",
+            "کلمه than (به معنای از) همیشه بعد از صفت مقایسه‌ای می‌آید."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "Gold is .......... than silver. (expensive)",
+            "questionPrompt": "شکل تفضیلی صحیح برای صفت بلند expensive کدام است؟",
+            "options": ["more expensive than", "expensiver than"],
+            "correctIndex": 0,
+            "explanationFa": "چون expensive چندسیلابی و بلند است، از more expensive than استفاده می‌شود."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "صفت‌های بی‌قاعده (Irregular Adjectives)",
+          "stepByStepExplanationFa": [
+            "good (خوب) ➔ better than (بهتر از) ➔ the best (بهترین)",
+            "bad (بد) ➔ worse than (بدتر از) ➔ the worst (بدترین)",
+            "far (دور) ➔ farther than (دورتر از) ➔ the farthest (دورترین)",
+            "many/much (زیاد) ➔ more than (بیشتر از) ➔ the most (بیشترین)"
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "This movie is good, but that one is .......... .",
+            "questionPrompt": "شکل مقایسه‌ای بی‌قاعده برای good کدام است؟",
+            "options": ["better", "gooder"],
+            "correctIndex": 0,
+            "explanationFa": "صفت good بی‌قاعده است و شکل تفضیلی آن better می‌باشد."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp2-1",
+            "prompt": "Karoon is the .......... river of Iran.",
+            "options": ["longest", "longer than", "as long as"],
+            "correctIndex": 0,
+            "explanationFa": "وجود the قبل از جای خالی نشان‌دهنده صفت عالی (longest) است."
+          },
+          {
+            "id": "gp2-2",
+            "prompt": "Persian zebras are .......... African zebras.",
+            "options": ["more beautiful than", "the most beautiful", "as beautiful"],
+            "correctIndex": 0,
+            "explanationFa": "مقایسه دو نوع گورخر نیازمند صفت تفضیلی است: more beautiful than."
+          },
+          {
+            "id": "gp2-3",
+            "prompt": "Tigers are .......... dangerous as lions.",
+            "options": ["as", "more", "than"],
+            "correctIndex": 0,
+            "explanationFa": "ساختار برابری به صورت as + adjective + as است."
+          }
+        ],
+        "production": {
+          "imageUrl": "saturn-rings-planet",
+          "imageDescriptionFa": "تصویر مقایسه‌ای اندازه دو سیاره مریخ (کوچک) و مشتری (بزرگ‌ترین سیاره).",
+          "promptInstructionFa": "با استفاده از صفت‌های تفضیلی (-er than) یا عالی (the largest)، یک جمله مقایسه‌ای درباره Jupiter و Mars بنویسید.",
+          "targetKeywords": ["jupiter", "larger", "mars", "largest", "planet"],
+          "modelSentence": "Jupiter is larger than Mars.",
+          "persianTranslation": "مشتری بزرگ‌تر از مریخ است."
+        }
+      }
+    },
+    "listening": {
+      "title": "Listening & Pronunciation: Details and Rising Tone",
+      "preListeningQuestions": [
+        {
+          "id": "plq2-1",
+          "question": "Conversation 1: What did the woman buy?",
+          "options": ["a dress", "a coat"],
+          "correctIndex": 0
+        },
+        {
+          "id": "plq2-2",
+          "question": "Conversation 2: What kind of food does she like to cook?",
+          "options": ["fast food", "healthy food"],
+          "correctIndex": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv2-1",
+          "title": "گفتگوی ۱: خرید لباس",
+          "transcriptEn": "Speaker A: Did you buy anything yesterday?\nSpeaker B: Yes, I bought a beautiful dress for the party.\nSpeaker A: Was it expensive?\nSpeaker B: No, actually it was cheaper than other dresses in that store.",
+          "transcriptFa": "گوینده ۱: آیا دیروز چیزی خریدی؟\nگوینده ۲: بله، یک لباس مجلسی زیبا برای مهمانی خریدم.\nگوینده ۱: آیا گران بود؟\nگوینده ۲: خیر، در واقع از سایر لباس‌های آن فروشگاه ارزان‌تر بود."
+        },
+        {
+          "id": "conv2-2",
+          "title": "گفتگوی ۲: آشپزی غذای سالم",
+          "transcriptEn": "Speaker A: Do you cook at home?\nSpeaker B: Yes, I love cooking healthy food for my family. Fast food is not good for our body.\nSpeaker A: Is cooking difficult for you?\nSpeaker B: Not at all! It is easier than you think.",
+          "transcriptFa": "گوینده ۱: آیا در خانه آشپزی می‌کنی؟\nگوینده ۲: بله، عاشق پختن غذای سالم برای خانواده‌ام هستم. فست فود برای بدن ما خوب نیست.\nگوینده ۱: آیا آشپزی برایت دشوار است؟\nگوینده ۲: اصلاً! از آنچه فکر می‌کنی آسان‌تر است."
+        }
+      ],
+      "pronunciation": {
+        "title": "آهنگ کلام خیزان (Rising Intonation ↗)",
+        "ruleExplanationFa": "هنگامی که اطلاعاتی را بررسی می‌کنید (Checking Information) یا سوالات بله/خیر (Yes/No Questions) می‌پرسید، آهنگ صدا در انتهای جمله اوج می‌گیرد و خیزان (Rising ↗) می‌شود.",
+        "examples": [
+          {
+            "sentence": "Is this your new car? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "سوال Yes/No: لحن صدا در انتهای جمله خیزان است."
+          },
+          {
+            "sentence": "Was the book interesting? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "بررسی اطلاعات با سوال بله/خیر: آهنگ صدا اوج می‌گیرد."
+          },
+          {
+            "sentence": "Is this problem easier than that one? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "سوال مقایسه‌ای بله/خیر: آهنگ خیزان به سمت بالا."
+          },
+          {
+            "sentence": "Are they the most expensive houses in this city? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "بررسی صفت عالی با سوال Yes/No: آهنگ خیزان."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq2-1",
+            "sentence": "Do you like to travel to Japan again?",
+            "correctIntonation": "rising",
+            "explanationFa": "این یک سوال Yes/No است؛ بنابراین آهنگ کلام آن خیزان (Rising ↗) است."
+          },
+          {
+            "id": "prq2-2",
+            "sentence": "How was your trip to Tokyo?",
+            "correctIntonation": "falling",
+            "explanationFa": "این یک سوال Wh با کلمه How است؛ آهنگ کلام در سوالات Wh افتان (Falling ↘) است."
+          },
+          {
+            "id": "prq2-3",
+            "sentence": "Can we see Saturn without a telescope?",
+            "correctIntonation": "rising",
+            "explanationFa": "این یک سوال Yes/No با فعل کمکی Can است، پس لحن آن خیزان (Rising ↗) است."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "طبقه‌بندی صفت‌ها (Types of Adjectives)",
+        "explanationFa": "صفت‌ها ویژگی‌های اسم را توصیف می‌کنند و در ۶ دسته اصلی جای می‌گیرند: کیفیت/نظر (Quality)، اندازه (Size)، سن (Age)، رنگ (Color)، ملیت (Nationality) و جنس/ماده (Material).",
+        "categories": [
+          {
+            "categoryEn": "Quality / Opinion",
+            "categoryFa": "کیفیت و نظر شخصی",
+            "examples": ["beautiful", "nice", "boring", "amazing", "careful"]
+          },
+          {
+            "categoryEn": "Size",
+            "categoryFa": "اندازه و ابعاد",
+            "examples": ["small", "big", "tall", "short", "large"]
+          },
+          {
+            "categoryEn": "Age",
+            "categoryFa": "سن و دوره زمانی",
+            "examples": ["young", "old", "new", "modern", "ancient"]
+          },
+          {
+            "categoryEn": "Color & Material",
+            "categoryFa": "رنگ و جنس ماده",
+            "examples": ["blue", "red", "wooden", "golden", "plastic"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq2-1",
+            "prompt": "کلمه 'modern' (مدرن / امروزی) چه نوع صفتی است؟",
+            "options": ["Age (سن و زمان)", "Color (رنگ)", "Size (اندازه)", "Material (جنس)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه modern برای بیان قدمت و سن به کار می‌رود و در دسته Age قرار دارد."
+          },
+          {
+            "id": "wq2-2",
+            "prompt": "کلمه 'golden' (طلایی / از جنس طلا) چه نوع صفتی است؟",
+            "options": ["Material (جنس و ماده)", "Opinion (نظر)", "Size (اندازه)", "Nationality (ملیت)"],
+            "correctIndex": 0,
+            "explanationFa": "کلمه golden جنس ماده تشکیل‌دهنده شیء را بیان می‌کند."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "جایگاه صفت در جمله (Position of Adjectives)",
+        "rulesSummaryFa": "صفت‌ها در زبان انگلیسی در دو جایگاه اصلی قرار می‌گیرند: ۱. قبل از اسم (مانند an interesting planet یا red cells) | ۲. بعد از افعال be (مانند Human body is amazing یا Venus is smaller than Earth).",
+        "regularPairs": [
+          { "singular": "hot", "plural": "hotter (دو برابر شدن صامت)" },
+          { "singular": "big", "plural": "bigger (دو برابر شدن صامت)" },
+          { "singular": "easy", "plural": "easier (تغییر y به i)" },
+          { "singular": "cloudy", "plural": "cloudier (تغییر y به i)" }
+        ],
+        "irregularPairs": [
+          { "singular": "the hottest", "plural": "the biggest" },
+          { "singular": "the easiest", "plural": "the cloudiest" },
+          { "singular": "the happiest", "plural": "the reddest" }
+        ],
+        "exercise": [
+          {
+            "id": "spe2-1",
+            "prompt": "Mary lost her .......... watch in the park. (از بین صفات: golden / careful / tall)",
+            "options": ["golden", "careful", "tall"],
+            "correctIndex": 0,
+            "explanationFa": "ساعت مچی با صفت جنس ماده (golden watch) توصیف می‌شود."
+          },
+          {
+            "id": "spe2-2",
+            "prompt": "Be .......... ! Look both ways when you cross the street.",
+            "options": ["careful", "funny", "cloudy"],
+            "correctIndex": 0,
+            "explanationFa": "بعد از فعل be از صفت careful (مراقب و بااحتیاط) استفاده می‌شود."
+          },
+          {
+            "id": "spe2-3",
+            "prompt": "It's not .......... ! Don't laugh please.",
+            "options": ["funny", "golden", "tall"],
+            "correctIndex": 0,
+            "explanationFa": "صفت funny (خنده‌دار / بامزه) برای موقعیتی که نباید خندید به کار می‌رود."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "نکات املایی صفت‌های مقایسه‌ای (Spelling Hints)",
+        "explanationFa": "هنگام اضافه کردن er یا est: اگر صفت به یک حرف صدادار کوتاه + یک حرف صامت ختم شود، حرف صامت دوبار نوشته می‌شود (hot ➔ hotter / big ➔ biggest). اگر صفت به حرف صامت + y ختم شود، y به i تبدیل می‌شود (easy ➔ easier / happy ➔ happiest).",
+        "examples": [
+          { "common": "hot", "proper": "hotter ➔ the hottest" },
+          { "common": "big", "proper": "bigger ➔ the biggest" },
+          { "common": "easy", "proper": "easier ➔ the easiest" }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pnb2-1",
+            "sentenceWithBlank": "Today the weather is (hotter / hoter) than yesterday.",
+            "options": ["hotter", "hoter"],
+            "correctIndex": 0,
+            "explanationFa": "در کلمه hot حرف t دوبار تکرار می‌شود: hotter."
+          },
+          {
+            "id": "pnb2-2",
+            "sentenceWithBlank": "This math exercise is (easier / easyer) than the first one.",
+            "options": ["easier", "easyer"],
+            "correctIndex": 0,
+            "explanationFa": "حرف y در کلمه easy به i تبدیل می‌شود: easier."
+          },
+          {
+            "id": "pnb2-3",
+            "sentenceWithBlank": "Jupiter is the (biggest / bigest) planet of all.",
+            "options": ["biggest", "bigest"],
+            "correctIndex": 0,
+            "explanationFa": "در صفت big حرف g دوبار تکرار می‌شود: biggest."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تکمیل جملات با صفت‌های مقایسه‌ای و عالی",
+        "explanationFa": "تشخیص کاربرد صفت تفضیلی (با than) یا عالی (با the) در جملات استاندارد صفحه ۶۷ کتاب درسی.",
+        "markersList": [
+          {
+            "type": "Comparative with Than",
+            "typeFa": "صفت تفضیلی با than",
+            "items": ["smaller than", "better than", "more expensive than"],
+            "exampleSentence": "Pluto is smaller than the moon of Earth."
+          },
+          {
+            "type": "Superlative with The",
+            "typeFa": "صفت عالی با the",
+            "items": ["the deepest", "the best", "the most dangerous"],
+            "exampleSentence": "Are you sure this is the best way of doing it?"
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nmq2-1",
+            "prompt": "Pluto is .......... than the moon of Earth. (small)",
+            "options": ["smaller", "the smallest", "small"],
+            "correctIndex": 0,
+            "explanationFa": "وجود than نشان‌دهنده صفت تفضیلی smaller است."
+          },
+          {
+            "id": "nmq2-2",
+            "prompt": "Are you sure this is the .......... way of doing it? (good)",
+            "options": ["best", "better", "gooder"],
+            "correctIndex": 0,
+            "explanationFa": "وجود the قبل از صفت بی‌قاعده good، شکل عالی the best را طلب می‌کند."
+          }
+        ]
+      }
+    }
+  }
+}

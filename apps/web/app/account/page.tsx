@@ -26,6 +26,7 @@ type AccountSummary = {
       teacher_verified: boolean;
       marketplace_eligible: boolean;
       paid_class_eligible: boolean;
+      is_premium?: boolean;
     };
   };
 
@@ -414,6 +415,12 @@ export default function AccountPage() {
             <span className={styles.badge}>
               {roleLabel}
             </span>
+
+            {summary.account.capabilities.is_premium ? (
+              <span className={styles.badge} style={{ background: "var(--color-achievement-amber, #f59e0b)", color: "var(--color-navy, #0f172a)", fontWeight: 800 }}>
+                ⭐ {locale === "fa" ? "اشتراک ویژه فعال (VIP)" : "VIP Premium"}
+              </span>
+            ) : null}
 
             <span className={styles.badge}>
               {summary.onboarding?.is_completed

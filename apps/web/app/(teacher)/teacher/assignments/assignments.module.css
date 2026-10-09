@@ -4,14 +4,26 @@
   gap: var(--space-6);
   padding-block-end: var(--space-12);
   inline-size: 100%;
+  animation: assignmentEntrance 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes assignmentEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .headerCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-subtle);
+  border-radius: 16px;
+  padding: clamp(var(--space-5), 2.5vw, var(--space-6));
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
   position: relative;
   overflow: hidden;
 }
@@ -74,6 +86,7 @@
   line-height: var(--line-height-page-title);
   color: var(--color-text);
   margin: 0;
+  letter-spacing: -0.02em;
 }
 
 .description {
@@ -96,22 +109,24 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  background: var(--color-endoora-blue);
-  color: var(--color-surface);
-  font-weight: 600;
+  background: linear-gradient(135deg, var(--color-endoora-blue), #2563eb);
+  color: #ffffff;
+  font-weight: 700;
   font-size: var(--font-size-body);
   padding-inline: var(--space-5);
   padding-block: var(--space-2-5);
-  border-radius: var(--radius-button);
-  border: none;
+  border-radius: var(--radius-control);
+  border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .primaryButton:hover {
-  background: var(--color-endoora-blue-hover, var(--color-endoora-blue));
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.05);
 }
 
 .secondaryButton {
@@ -125,16 +140,19 @@
   font-size: var(--font-size-body);
   padding-inline: var(--space-4);
   padding-block: var(--space-2-5);
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-control);
   border: 1px solid var(--color-border);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .secondaryButton:hover {
   background: var(--color-surface-subtle);
-  border-color: var(--color-border-hover, var(--color-border));
+  border-color: var(--color-endoora-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
 }
 
 .dangerButton {
@@ -165,13 +183,21 @@
 }
 
 .metricCard {
-  background: var(--color-surface-subtle);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
+  border-radius: 14px;
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.metricCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-endoora-blue);
 }
 
 .metricLabel {
@@ -188,41 +214,57 @@
 .tabBar {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  border-block-end: 1px solid var(--color-border);
-  padding-block-start: var(--space-2);
+  gap: 6px;
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 6px;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabBar::-webkit-scrollbar {
+  display: none;
 }
 
 .tabButton {
   background: transparent;
-  border: none;
-  border-block-end: 3px solid transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
   color: var(--color-muted);
   font-size: var(--font-size-body);
   font-weight: 600;
   padding-inline: var(--space-4);
-  padding-block: var(--space-3);
+  padding-block: 8px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.15s ease;
+  flex-shrink: 0;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
 
 .tabButton:hover {
   color: var(--color-text);
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
 }
 
 .activeTabButton {
+  background: var(--color-surface);
   color: var(--color-endoora-blue);
-  border-block-end-color: var(--color-endoora-blue);
+  border-color: color-mix(in srgb, var(--color-endoora-blue) 25%, var(--color-border));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+  font-weight: 700;
 }
 
 .contentCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
+  border-radius: 16px;
   padding: var(--space-6);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+  animation: assignmentEntrance 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .tableWrapper {

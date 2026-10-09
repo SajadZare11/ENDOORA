@@ -176,12 +176,11 @@ def calculate_section_result(
     total: int | None = None,
 ) -> PlacementSectionResult:
     """Calculate deterministic score and evidence for a placement section."""
-    answered = len(answers)
+    answered = len([a for a in answers if a.get("has_answered", True)])
     tot = total if total is not None else answered
     correct = sum(1 for item in answers if item.get("is_correct") is True)
 
     if section in ("speaking", "writing") and tot > 0:
-        # For speaking and writing, score percentage is the average of evaluated items
         item_scores = [item.get("score_percentage", 0.0) for item in answers if "score_percentage" in item]
         if item_scores:
             percentage = round(sum(item_scores) / tot, 2)

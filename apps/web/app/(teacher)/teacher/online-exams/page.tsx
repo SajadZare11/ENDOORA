@@ -92,7 +92,7 @@ export default function TeacherOnlineExamsPage() {
   return (
     <div className={styles.container} dir={isFa ? "rtl" : "ltr"}>
       {/* Header */}
-      <header className={styles.header}>
+      <header className={styles.headerCard}>
         <div>
           <h1 className={styles.title}>آزمون‌های آنلاین و سامانه ضد تقلب</h1>
           <p className={styles.subtitle}>
@@ -101,18 +101,28 @@ export default function TeacherOnlineExamsPage() {
         </div>
 
         <div className={styles.actions}>
-          <Link href="/teacher/online-exams/create">
-            <Button
+          <Link href="/teacher/online-exams/create" style={{ textDecoration: "none" }}>
+            <button
               type="button"
               style={{
-                background: "var(--color-primary, #4f46e5)",
+                background: "linear-gradient(135deg, var(--color-endoora-blue), #2563eb)",
                 color: "#ffffff",
+                border: "none",
+                borderRadius: "var(--radius-control)",
                 fontWeight: 700,
                 padding: "0.625rem 1.25rem",
+                cursor: "pointer",
+                boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                fontSize: "0.875rem",
+                transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
-              + ساخت آزمون جدید
-            </Button>
+              <span>+</span>
+              <span>{isFa ? "ساخت آزمون جدید" : "Create New Exam"}</span>
+            </button>
           </Link>
         </div>
       </header>

@@ -5,6 +5,9 @@ class PlacementSection(models.TextChoices):
     GRAMMAR = "grammar", "Grammar"
     VOCABULARY = "vocabulary", "Vocabulary"
     READING = "reading", "Reading"
+    LISTENING = "listening", "Listening"
+    SPEAKING = "speaking", "Speaking"
+    WRITING = "writing", "Writing"
 
 
 class PlacementResponse(models.Model):

@@ -1,0 +1,834 @@
+{
+  "id": "vision-1-lesson-1",
+  "grade": 10,
+  "bookTitle": "Vision 1",
+  "lessonNumber": 1,
+  "slug": "grade-10/lesson-1",
+  "title": {
+    "en": "Saving Nature",
+    "fa": "نجات طبیعت"
+  },
+  "cefrLevel": "A2",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr-1",
+        "word": "putting out the fire",
+        "phonetic": "/ˈpʊtɪŋ aʊt ðə ˈfaɪər/",
+        "persianMeaning": "خاموش کردن آتش / اطفای حریق",
+        "imagePromptOrUrl": "firefighter-extinguishing-forest-fire",
+        "options": ["cutting trees", "putting out the fire", "hurting the animals"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The brave rangers are putting out the fire in the forest.",
+          "fa": "محیط‌بانان شجاع در حال خاموش کردن آتش در جنگل هستند."
+        }
+      },
+      {
+        "id": "gr-2",
+        "word": "hurting the animals",
+        "phonetic": "/ˈhɜːrtɪŋ ðiː ˈænɪməlz/",
+        "persianMeaning": "آسیب رساندن به حیوانات / آزار حیوانات",
+        "imagePromptOrUrl": "trapped-wild-animal",
+        "options": ["hurting the animals", "helping the injured animals", "putting out the fire"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Cruel hunters are hurting the animals in the mountain.",
+          "fa": "شکارچیان بی‌رحم در حال آسیب رساندن به حیوانات در کوهستان هستند."
+        }
+      },
+      {
+        "id": "gr-3",
+        "word": "cutting trees",
+        "phonetic": "/ˈkʌtɪŋ triːz/",
+        "persianMeaning": "قطع کردن درختان / درخت‌افکنی",
+        "imagePromptOrUrl": "cutting-down-forest-trees",
+        "options": ["planting flowers", "putting out the fire", "cutting trees"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Cutting trees destroys the natural homes of birds.",
+          "fa": "قطع کردن درختان زیستگاه طبیعی پرندگان را نابود می‌کند."
+        }
+      },
+      {
+        "id": "gr-4",
+        "word": "helping the injured animals",
+        "phonetic": "/ˈhelpɪŋ ðiː ˈɪndʒərd ˈænɪməlz/",
+        "persianMeaning": "کمک به حیوانات آسیب‌دیده / تیمار حیوانات",
+        "imagePromptOrUrl": "vet-caring-for-injured-deer",
+        "options": ["hurting the animals", "helping the injured animals", "cutting trees"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The kind vet is helping the injured animals with care.",
+          "fa": "دامپزشک مهربان با دقت به حیوانات آسیب‌دیده کمک می‌کند."
+        }
+      },
+      {
+        "id": "gr-5",
+        "word": "leopard",
+        "phonetic": "/ˈlep.əd/",
+        "persianMeaning": "پلنگ",
+        "imagePromptOrUrl": "persian-leopard-on-rocks",
+        "options": ["leopard", "whale", "goat"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The Persian leopard lives in the rocky mountains of Iran.",
+          "fa": "پلنگ ایرانی در کوهستان‌های صخره‌ای ایران زندگی می‌کند."
+        }
+      },
+      {
+        "id": "gr-6",
+        "word": "whale",
+        "phonetic": "/weɪl/",
+        "persianMeaning": "نهنگ / وال",
+        "imagePromptOrUrl": "blue-whale-swimming-ocean",
+        "options": ["duck", "elephant", "whale"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "The blue whale is the largest animal on Earth.",
+          "fa": "نهنگ آبی بزرگ‌ترین حیوان روی کره زمین است."
+        }
+      },
+      {
+        "id": "gr-7",
+        "word": "wolf",
+        "phonetic": "/wʊlf/",
+        "persianMeaning": "گرگ",
+        "imagePromptOrUrl": "grey-wolf-in-forest",
+        "options": ["cat", "wolf", "goat"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A wild wolf lives with its pack in cold regions.",
+          "fa": "گرگ وحشی همراه با دسته‌اش در مناطق سردسیر زندگی می‌کند."
+        }
+      },
+      {
+        "id": "gr-8",
+        "word": "elephant",
+        "phonetic": "/ˈel.ɪ.fənt/",
+        "persianMeaning": "فیل",
+        "imagePromptOrUrl": "asian-elephant-walking",
+        "options": ["elephant", "panda", "leopard"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Asian elephants need vast plains and clean water.",
+          "fa": "فیل‌های آسیایی به دشت‌های پهناور و آب تمیز نیاز دارند."
+        }
+      }
+    ],
+    "conversation": {
+      "title": "مکالمه درس اول: دیدار از موزه طبیعت و حیات‌وحش",
+      "situationFa": "مریم در موزه طبیعت و حیات‌وحش در حال بازدید است و با آقای رضوی، کارشناس موزه، درباره یوزپلنگ ایرانی گفتگو می‌کند.",
+      "vocabulary": [
+        {
+          "id": "cv-1",
+          "word": "endangered",
+          "phonetic": "/ɪnˈdeɪn.dʒəd/",
+          "persianMeaning": "در معرض خطر انقراض",
+          "imagePromptOrUrl": "endangered-cheetah-symbol",
+          "options": ["alive", "endangered", "safe"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "The Iranian cheetah is an endangered animal.",
+            "fa": "یوزپلنگ ایرانی حیوانی در معرض خطر انقراض است."
+          }
+        },
+        {
+          "id": "cv-2",
+          "word": "alive",
+          "phonetic": "/əˈlaɪv/",
+          "persianMeaning": "زنده / دارای حیات",
+          "imagePromptOrUrl": "heartbeat-life-alive",
+          "options": ["alive", "dead", "injured"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "Only around seventy cheetahs are still alive in the plains.",
+            "fa": "تنها حدود هفتاد یوزپلنگ هنوز در دشت‌ها زنده هستند."
+          }
+        },
+        {
+          "id": "cv-3",
+          "word": "increase",
+          "phonetic": "/ɪnˈkriːs/",
+          "persianMeaning": "افزایش یافتن / رشد کردن",
+          "imagePromptOrUrl": "graph-going-up-arrow",
+          "options": ["decrease", "destroy", "increase"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "With proper protection, their number will increase soon.",
+            "fa": "با حفاظت مناسب، تعداد آن‌ها به‌زودی افزایش خواهد یافت."
+          }
+        },
+        {
+          "id": "cv-4",
+          "word": "protect",
+          "phonetic": "/prəˈtekt/",
+          "persianMeaning": "محافظت کردن / پاسداری کردن",
+          "imagePromptOrUrl": "shield-protecting-wildlife",
+          "options": ["hunt", "protect", "hurt"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "We are going to protect their natural habitats.",
+            "fa": "ما قصد داریم از زیستگاه‌های طبیعی آن‌ها محافظت کنیم."
+          }
+        },
+        {
+          "id": "cv-5",
+          "word": "hear",
+          "phonetic": "/hɪər/",
+          "persianMeaning": "شنیدن / به گوش رسیدن",
+          "imagePromptOrUrl": "ear-listening-audio",
+          "options": ["see", "speak", "hear"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "I heard good news about wildlife conservation today.",
+            "fa": "امروز خبرهای خوبی درباره حفاظت از حیات‌وحش شنیدم."
+          }
+        },
+        {
+          "id": "cv-6",
+          "word": "for example",
+          "phonetic": "/fər ɪɡˈzɑːm.pəl/",
+          "persianMeaning": "به عنوان مثال / برای نمونه",
+          "imagePromptOrUrl": "lightbulb-example-icon",
+          "options": ["for example", "instead", "finally"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "For example, we will make educational movies for students.",
+            "fa": "به عنوان مثال، فیلم‌های آموزشی برای دانش‌آموزان خواهیم ساخت."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "line-1",
+          "speaker": "Maryam",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Excuse me, what is it? Is it a leopard?",
+          "faText": "ببخشید، این چیست؟ آیا این یک پلنگ است؟",
+          "orderIndex": 1
+        },
+        {
+          "id": "line-2",
+          "speaker": "Mr. Razavi",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "No, it is a cheetah.",
+          "faText": "خیر، این یک یوزپلنگ است.",
+          "orderIndex": 2
+        },
+        {
+          "id": "line-3",
+          "speaker": "Maryam",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Oh, a cheetah?",
+          "faText": "اوه، یک یوزپلنگ؟",
+          "orderIndex": 3
+        },
+        {
+          "id": "line-4",
+          "speaker": "Mr. Razavi",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "Yeah, an Iranian cheetah. It is an endangered animal.",
+          "faText": "بله، یوزپلنگ ایرانی. این حیوانی در معرض خطر انقراض است.",
+          "orderIndex": 4
+        },
+        {
+          "id": "line-5",
+          "speaker": "Maryam",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "I know. I heard around 70 of them are alive. Yes?",
+          "faText": "می‌دانم. شنیده‌ام حدود ۷۰ قلاده از آن‌ها زنده هستند. درست است؟",
+          "orderIndex": 5
+        },
+        {
+          "id": "line-6",
+          "speaker": "Mr. Razavi",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "Right, but the number will increase.",
+          "faText": "درست است، اما این تعداد افزایش خواهد یافت.",
+          "orderIndex": 6
+        },
+        {
+          "id": "line-7",
+          "speaker": "Maryam",
+          "speakerRole": "student",
+          "speakerAvatar": "👧",
+          "enText": "Really?! How?",
+          "faText": "واقعاً؟! چگونه؟",
+          "orderIndex": 7
+        },
+        {
+          "id": "line-8",
+          "speaker": "Mr. Razavi",
+          "speakerRole": "expert",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "Well, we have some plans. For example, we are going to protect their homes, to make movies about their life, and to teach people how to take more care of them.",
+          "faText": "خب، ما برنامه‌هایی داریم. برای مثال قصد داریم از زیستگاه‌هایشان حفاظت کنیم، فیلم‌هایی درباره زندگی‌شان بسازیم، و به مردم یاد دهیم که چگونه بیشتر مراقب آن‌ها باشند.",
+          "orderIndex": 8
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw-1",
+        "word": "Earth",
+        "phonetic": "/ɜːθ/",
+        "persianMeaning": "کره زمین / زمین",
+        "imagePromptOrUrl": "planet-earth-space",
+        "options": ["Mars", "Earth", "Moon"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "We live on Earth and must protect its beauty.",
+          "fa": "ما روی کره زمین زندگی می‌کنیم و باید از زیبایی‌اش محافظت کنیم."
+        }
+      },
+      {
+        "id": "nw-2",
+        "word": "wild",
+        "phonetic": "/waɪld/",
+        "persianMeaning": "وحشی / غیر اهلی",
+        "imagePromptOrUrl": "wild-bengal-tiger",
+        "options": ["domestic", "wild", "quiet"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A tiger is a wild animal that hunts in the jungle.",
+          "fa": "ببر یک حیوان وحشی است که در جنگل شکار می‌کند."
+        }
+      },
+      {
+        "id": "nw-3",
+        "word": "destroy",
+        "phonetic": "/dɪˈstrɔɪ/",
+        "persianMeaning": "نابود کردن / تخریب کردن",
+        "imagePromptOrUrl": "bulldozer-destroying-forest",
+        "options": ["build", "repair", "destroy"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Humans are destroying the jungle by cutting ancient trees.",
+          "fa": "انسان‌ها دارند جنگل را با قطع کردن درختان کهنسال تخریب می‌کنند."
+        }
+      },
+      {
+        "id": "nw-4",
+        "word": "die out",
+        "phonetic": "/daɪ aʊt/",
+        "persianMeaning": "منقرض شدن / از بین رفتن نسل",
+        "imagePromptOrUrl": "extinct-persian-lion",
+        "options": ["die out", "survive", "increase"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The Persian lion died out about 75 years ago.",
+          "fa": "شیر ایرانی حدود ۷۵ سال پیش منقرض شد."
+        }
+      },
+      {
+        "id": "nw-5",
+        "word": "natural home",
+        "phonetic": "/ˈnætʃ.ər.əl həʊm/",
+        "persianMeaning": "زیستگاه طبیعی / موطن اصلی",
+        "imagePromptOrUrl": "tooran-plain-zebra-habitat",
+        "options": ["zoo cage", "natural home", "city apartment"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Tooran is the natural home of the Persian zebra.",
+          "fa": "توران زیستگاه طبیعی گورخر ایرانی است."
+        }
+      },
+      {
+        "id": "nw-6",
+        "word": "pay attention",
+        "phonetic": "/peɪ əˈten.ʃən/",
+        "persianMeaning": "توجه کردن / دقت کردن",
+        "imagePromptOrUrl": "warning-sign-pay-attention",
+        "options": ["forget", "pay attention", "ignore"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Pay attention! Swimming is forbidden in this river.",
+          "fa": "توجه کنید! شنا کردن در این رودخانه ممنوع است."
+        }
+      },
+      {
+        "id": "nw-7",
+        "word": "injured",
+        "phonetic": "/ˈɪn.dʒəd/",
+        "persianMeaning": "آسیب‌دیده / زخمی",
+        "imagePromptOrUrl": "bandaged-animal-leg",
+        "options": ["healthy", "strong", "injured"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "They hope to save the injured gazelle with medical care.",
+          "fa": "آن‌ها امیدوارند آهوی آسیب‌دیده را با مراقبت‌های پزشکی نجات دهند."
+        }
+      },
+      {
+        "id": "nw-8",
+        "word": "plain",
+        "phonetic": "/pleɪn/",
+        "persianMeaning": "دشت / جلگه هموار",
+        "imagePromptOrUrl": "green-open-plain-grassland",
+        "options": ["mountain", "plain", "ocean"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Moghan Plain is a nice and fertile place in Iran.",
+          "fa": "دشت مغان منطقه‌ای زیبا و حاصلخیز در ایران است."
+        }
+      },
+      {
+        "id": "nw-9",
+        "word": "a few",
+        "phonetic": "/ə fjuː/",
+        "persianMeaning": "تعداد کمی / اندک",
+        "imagePromptOrUrl": "three-small-items-a-few",
+        "options": ["a few", "a lot of", "hundreds of"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "There are only a few cheetahs surviving in the wild.",
+          "fa": "تنها تعداد اندکی یوزپلنگ در طبیعت باقی مانده‌اند."
+        }
+      },
+      {
+        "id": "nw-10",
+        "word": "human",
+        "phonetic": "/ˈhjuː.mən/",
+        "persianMeaning": "انسان / بشر",
+        "imagePromptOrUrl": "person-holding-nature",
+        "options": ["animal", "plant", "human"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "All humans must take responsible care of nature.",
+          "fa": "همه انسان‌ها باید مسئولانه از طبیعت مراقبت کنند."
+        }
+      },
+      {
+        "id": "nw-11",
+        "word": "instead",
+        "phonetic": "/ɪnˈsted/",
+        "persianMeaning": "به جای آن / در عوض",
+        "imagePromptOrUrl": "coffee-tea-choice-alternative",
+        "options": ["together", "instead", "always"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "There is no coffee. Would you like a cup of tea instead?",
+          "fa": "قهوه موجود نیست. مایلید به جای آن یک فنجان چای میل کنید؟"
+        }
+      },
+      {
+        "id": "nw-12",
+        "word": "future",
+        "phonetic": "/ˈfjuː.tʃər/",
+        "persianMeaning": "آینده / زمان پیش رو",
+        "imagePromptOrUrl": "calendar-arrow-future",
+        "options": ["past", "present", "future"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "Everyone needs to plan wisely for the future.",
+          "fa": "همه نیاز دارند برای آینده هوشمندانه برنامه‌ریزی کنند."
+        }
+      }
+    ],
+    "reading": {
+      "title": "Endangered Animals",
+      "persianTitle": "حیوانات در معرض خطر انقراض",
+      "passageTextEn": "Today, there are some endangered animals on Earth. It means that we can find only a few of them around us. Some examples are whales, pandas, tigers and Asian elephants.\n\nHumans destroy the natural homes of the animals in the forests, lakes, and plains. When the number of people on Earth increases, they need more places for living. They cut trees and destroy lakes. They make homes and roads instead. Then the animals won't have a place to live. They will die out.\n\nThe Iranian cheetah is among these animals. This wild animal lives only in the plains of Iran. Now there are only a few Iranian cheetahs alive. If people take care of them, there is hope for this beautiful animal to live.\n\nRecently, families are paying more attention to nature, students learn about saving wildlife, and some hunters don't go hunting anymore. Hopefully, the number of cheetahs is going to increase in the future.",
+      "passageParagraphs": [
+        "Today, there are some endangered animals on Earth. It means that we can find only a few of them around us. Some examples are whales, pandas, tigers and Asian elephants.",
+        "Humans destroy the natural homes of the animals in the forests, lakes, and plains. When the number of people on Earth increases, they need more places for living. They cut trees and destroy lakes. They make homes and roads instead. Then the animals won't have a place to live. They will die out.",
+        "The Iranian cheetah is among these animals. This wild animal lives only in the plains of Iran. Now there are only a few Iranian cheetahs alive. If people take care of them, there is hope for this beautiful animal to live.",
+        "Recently, families are paying more attention to nature, students learn about saving wildlife, and some hunters don't go hunting anymore. Hopefully, the number of cheetahs is going to increase in the future."
+      ],
+      "questions": [
+        {
+          "id": "rq-1",
+          "type": "mcq_general",
+          "prompt": "Which animal is NOT mentioned as an endangered animal in the first paragraph?",
+          "options": ["Whale", "Horse", "Panda", "Tiger"],
+          "correctAnswer": 1,
+          "explanationFa": "در پاراگراف اول از وال، پاندا، ببر و فیل آسیایی نام برده شده است؛ اسب (Horse) حیوان در معرض خطر نیست."
+        },
+        {
+          "id": "rq-2",
+          "type": "true_false",
+          "prompt": "In the past, many hunters paid attention to wildlife and stopped hunting.",
+          "options": ["True (صحیح)", "False (غلط)"],
+          "correctAnswer": 1,
+          "explanationFa": "غلط است؛ طبق متن، اخیراً (Recently) برخی شکارچیان دیگر به شکار نمی‌روند، نه در گذشته."
+        },
+        {
+          "id": "rq-3",
+          "type": "reference",
+          "prompt": "In paragraph 2, what does the pronoun 'They' in 'They make homes and roads instead' refer to?",
+          "options": ["Animals", "Humans / People", "Cheetahs", "Trees"],
+          "correctAnswer": 1,
+          "explanationFa": "ضمیر They در این جمله به انسان‌ها (Humans / People on Earth) برمی‌گردد که درختان را قطع کرده و به جای آن خانه و جاده می‌سازند."
+        },
+        {
+          "id": "rq-4",
+          "type": "context_meaning",
+          "prompt": "Based on the text, what is the best meaning of 'die out'?",
+          "options": ["To stop existing completely (become extinct)", "To migrate to other cities", "To increase rapidly", "To sleep during winter"],
+          "correctAnswer": 0,
+          "explanationFa": "عبارت die out به معنای از بین رفتن کامل نسل و منقرض شدن (become extinct) است."
+        },
+        {
+          "id": "rq-5",
+          "type": "open_ended",
+          "prompt": "Why do humans destroy the natural homes of animals?",
+          "correctAnswer": "Because the number of people increases and they need more places for living.",
+          "requiredKeywordsForEvaluation": ["number", "people", "increase", "places", "living", "homes", "roads"],
+          "modelAnswerEn": "Because when the number of people on Earth increases, they need more places for living and build homes and roads instead.",
+          "modelAnswerFa": "زیرا وقتی جمعیت انسان‌ها روی کره زمین افزایش می‌یابد، به جاهای بیشتری برای زندگی نیاز دارند و به جای طبیعت خانه و جاده می‌سازند.",
+          "explanationFa": "پاسخ در پاراگراف دوم متن آمده است: When the number of people on Earth increases, they need more places for living. کلیدهای پاسخ شامل افزایش جمعیت و نیاز به مکان برای زندگی است."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Simple Future: Will vs. Be Going To",
+      "persianTopic": "زمان آینده ساده: کاربرد Will در برابر Be going to",
+      "discovery": {
+        "sentenceA": {
+          "text": "Look at the dark clouds! It is going to rain.",
+          "highlightedPart": "is going to rain",
+          "translation": "به ابرهای تیره نگاه کن! قرار است باران ببارد (شواهد عینی)."
+        },
+        "sentenceB": {
+          "text": "The cheetah is injured. I think I will help it.",
+          "highlightedPart": "will help",
+          "translation": "یوزپلنگ زخمی است. فکر می‌کنم به آن کمک خواهم کرد (تصمیم لحظه‌ای/حدس)."
+        },
+        "ccqQuestions": [
+          {
+            "question": "این دو جمله درباره چه بازه زمانی صحبت می‌کنند؟",
+            "options": ["گذشته (Past)", "آینده (Future)"],
+            "correctIndex": 1,
+            "explanationFa": "هر دو ساختار برای صحبت کردن درباره اتفاقات آینده به کار می‌روند."
+          },
+          {
+            "question": "کدام ساختار بر اساس شواهد عینی حاضر در لحظه (مثل ابرهای تیره در آسمان) یا قصد و برنامه قبلی است؟",
+            "options": ["be going to", "will"],
+            "correctIndex": 0,
+            "explanationFa": "از be going to هنگامی استفاده می‌کنیم که شواهدی قطعی در لحظه وجود دارد یا از قبل برای انجام کاری تصمیم‌گیری و برنامه‌ریزی کرده‌ایم."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول: برای برنامه‌ها و پیش‌بینی با شواهد عینی از [am/is/are + going to + verb] و برای تصمیمات ناگهانی، حدس و قول‌ها از [will + verb] استفاده می‌شود.",
+      "transformations": [
+        {
+          "formType": "negative",
+          "titleFa": "منفی کردن جملات آینده",
+          "stepByStepExplanationFa": [
+            "برای منفی کردن will، کافی است not را بعد از will قرار دهیم: will not که شکل مخفف آن won't است.",
+            "برای منفی کردن be going to، کلمه not را بعد از am / is / are قرار می‌دهیم: is not going to یا aren't going to."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "The animals will lose their homes.",
+            "questionPrompt": "شکل منفی صحیح این جمله کدام است؟",
+            "options": [
+              "The animals won't lose their homes.",
+              "The animals not will lose their homes."
+            ],
+            "correctIndex": 0,
+            "explanationFa": "منفی will به صورت will not یا مخفف won't نوشته می‌شود."
+          }
+        },
+        {
+          "formType": "wh_question",
+          "titleFa": "ساخت سوالات Wh در زمان آینده",
+          "stepByStepExplanationFa": [
+            "مرحله ۱: فعل کمکی (Will یا مشتقات Be) را به ابتدای فاعل می‌آوریم.",
+            "مرحله ۲: کلمه پرسشی (Where, When, Who, What) را در ابتدای کل جمله قرار می‌دهیم.",
+            "مرحله ۳: بخشی از جمله که پاسخ سوال است را حتماً حذف می‌کنیم."
+          ],
+          "interactiveChallenge": {
+            "originalSentence": "The tourists will visit Shiraz next summer. (Shiraz = مکان)",
+            "questionPrompt": "کدام سوال با Where برای پرسیدن درباره شیراز صحیح است؟",
+            "options": [
+              "Where will the tourists visit next summer?",
+              "Where the tourists will visit Shiraz next summer?"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "در سوال با Where، کلمه Shiraz (پاسخ) حذف شده و will قبل از فاعل the tourists قرار می‌گیرد."
+          }
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "gp-1",
+            "prompt": "Look at those books! They are falling off the shelf. They .......... hit the floor!",
+            "options": ["will", "are going to", "went"],
+            "correctIndex": 1,
+            "explanationFa": "چون شواهد عینی سقوط (در حال افتادن) وجود دارد، از be going to استفاده می‌شود."
+          },
+          {
+            "id": "gp-2",
+            "prompt": "I don't have enough time right now. I .......... call you tonight, I promise.",
+            "options": ["am going to", "will", "called"],
+            "correctIndex": 1,
+            "explanationFa": "برای قول دادن (promise) و تصمیم در لحظه از will استفاده می‌شود."
+          },
+          {
+            "id": "gp-3",
+            "prompt": "Alfredo bought an airplane ticket. He .......... travel to Iran next week.",
+            "options": ["is going to", "will", "travels"],
+            "correctIndex": 0,
+            "explanationFa": "خرید بلیط نشان‌دهنده برنامه از پیش تعیین‌شده است؛ بنابراین is going to پاسخ صحیح است."
+          }
+        ],
+        "production": {
+          "imageUrl": "volunteers-planting-sapling-trees",
+          "imageDescriptionFa": "گروهی از داوطلبان که تعدادی نهال درخت خریده‌اند و آماده کاشتن آن‌ها در پارک جنگلی هستند.",
+          "promptInstructionFa": "با توجه به تصویر، یک جمله با ساختار آینده (be going to یا will) بنویسید که بیان کند آن‌ها قصد دارند درخت بکارند.",
+          "targetKeywords": ["they", "are going to", "plant", "trees"],
+          "modelSentence": "They are going to plant trees in the park.",
+          "persianTranslation": "آن‌ها قصد دارند در پارک درخت بکارند."
+        }
+      }
+    },
+    "listening": {
+      "title": "Listening & Speaking: Future Plans",
+      "preListeningQuestions": [
+        {
+          "id": "plq-1",
+          "question": "Conversation 1: Where is Alice going to go?",
+          "options": ["Australia", "Brazil"],
+          "correctIndex": 1
+        },
+        {
+          "id": "plq-2",
+          "question": "Conversation 2: What is Shahab going to do this weekend?",
+          "options": ["Stay home and rest", "Go out and enjoy wildlife in Varamin"],
+          "correctIndex": 1
+        }
+      ],
+      "conversations": [
+        {
+          "id": "conv-1",
+          "title": "گفتگوی ۱: برنامه سفر آلیس",
+          "transcriptEn": "Speaker A: What are you going to do for vacation, Alice?\nAlice: I am going to travel to Brazil. I want to visit the Amazon rainforest.\nSpeaker A: Wow, that's exciting! Will you see wildlife there?\nAlice: Yes, I will take lots of pictures of wild animals.",
+          "transcriptFa": "گوینده ۱: آلیس برای تعطیلات چه برنامه‌ای داری؟\nآلیس: قصد دارم به برزیل سفر کنم. می‌خواهم از جنگل بارانی آمازون دیدن کنم.\nگوینده ۱: واو، هیجان‌انگیز است! آیا حیات‌وحش را در آنجا خواهی دید؟\nآلیس: بله، عکس‌های زیادی از حیوانات وحشی خواهم گرفت."
+        },
+        {
+          "id": "conv-2",
+          "title": "گفتگوی ۲: تعطیلات آخر هفته شهاب",
+          "transcriptEn": "Speaker B: Are you going to stay home this weekend, Shahab?\nShahab: No, I am going to go out. My family and I will go to Varamin to see the protected plains.\nSpeaker B: That sounds wonderful! Have a great trip.",
+          "transcriptFa": "گوینده ۲: شهاب، آیا این آخر هفته در خانه می‌مانی؟\nشهاب: خیر، قصد دارم بیرون بروم. من و خانواده‌ام برای دیدن دشت‌های حفاظت‌شده به ورامین خواهیم رفت.\nگوینده ۲: عالی به نظر می‌رسد! سفر خوبی داشته باشید."
+        }
+      ],
+      "pronunciation": {
+        "title": "آهنگ کلام (Intonation): افتان ↘ و خیزان ↗",
+        "ruleExplanationFa": "در جملات خبری (Statements) و سوالات Wh، در انتهای جمله آهنگ صدا افتان (Falling ↘) است. اما در سوالات بله/خیر (Yes/No Questions)، لحن صدا در انتهای جمله خیزان (Rising ↗) می‌شود.",
+        "examples": [
+          {
+            "sentence": "Where are you going to go? ↘",
+            "intonation": "falling",
+            "patternDescriptionFa": "سوال Wh: آهنگ صدا در انتهای جمله پایین می‌آید."
+          },
+          {
+            "sentence": "We will go on a school trip tomorrow. ↘",
+            "intonation": "falling",
+            "patternDescriptionFa": "جمله خبری: آهنگ صدا در انتهای جمله می‌افتد."
+          },
+          {
+            "sentence": "Are you going to visit a museum? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "سوال Yes/No: آهنگ صدا در انتها اوج می‌گیرد."
+          },
+          {
+            "sentence": "Will our family buy a new car? ↗",
+            "intonation": "rising",
+            "patternDescriptionFa": "سوال Yes/No: لحن خیزان به سمت بالا."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "prq-1",
+            "sentence": "What will you do to save nature?",
+            "correctIntonation": "falling",
+            "explanationFa": "این یک سوال Wh است، پس لحن آن افتان (Falling ↘) است."
+          },
+          {
+            "id": "prq-2",
+            "sentence": "Is Reza going to watch TV tonight?",
+            "correctIntonation": "rising",
+            "explanationFa": "این یک سوال Yes/No است، پس لحن آن خیزان (Rising ↗) است."
+          },
+          {
+            "id": "prq-3",
+            "sentence": "The students will protect the endangered cheetahs.",
+            "correctIntonation": "falling",
+            "explanationFa": "این یک جمله خبری است، بنابراین آهنگ کلام افتان (Falling ↘) است."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "دسته‌بندی اسم‌ها (Noun Classification)",
+        "explanationFa": "اسم (Noun) کلمه‌ای است که نام یک فرد یا حیوان (Person/Animal)، مکان (Place)، شیء (Thing) یا ایده/مفهوم انتزاعی (Idea) را مشخص می‌کند.",
+        "categories": [
+          {
+            "categoryEn": "Person / Animal",
+            "categoryFa": "شخص یا حیوان",
+            "examples": ["farmer", "brother", "Maryam", "cheetah", "leopard"]
+          },
+          {
+            "categoryEn": "Place",
+            "categoryFa": "مکان",
+            "examples": ["school", "cinema", "sea", "park", "forest"]
+          },
+          {
+            "categoryEn": "Thing",
+            "categoryFa": "شیء و پدیده عینی",
+            "examples": ["computer", "apple", "car", "book", "tree"]
+          },
+          {
+            "categoryEn": "Idea",
+            "categoryFa": "ایده و مفهوم ذهنی",
+            "examples": ["pain", "attention", "danger", "future", "love"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq-1",
+            "prompt": "کلمه 'danger' (خطر) در کدام دسته از اسم‌ها قرار می‌گیرد؟",
+            "options": ["Place (مکان)", "Thing (شیء)", "Idea (ایده/مفهوم)", "Person (شخص)"],
+            "correctIndex": 2,
+            "explanationFa": "خطر (danger) یک مفهوم ذهنی و انتزاعی است و در دسته Idea قرار دارد."
+          },
+          {
+            "id": "wq-2",
+            "prompt": "کلمه 'Golestan Forest' در کدام دسته از اسم‌ها قرار می‌گیرد؟",
+            "options": ["Place (مکان)", "Animal (حیوان)", "Idea (ایده)", "Thing (شیء)"],
+            "correctIndex": 0,
+            "explanationFa": "جنگل گلستان نام یک مکان مشخص (Place) است."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "اسم‌های مفرد و جمع (Singular & Plural Nouns)",
+        "rulesSummaryFa": "بیشتر اسم‌ها با اضافه کردن s یا es جمع بسته می‌شوند (Regular). اما برخی اسم‌ها بی‌قاعده هستند (Irregular) و فرم ظاهری‌شان تغییر می‌کند.",
+        "regularPairs": [
+          { "singular": "book", "plural": "books" },
+          { "singular": "lake", "plural": "lakes" },
+          { "singular": "box", "plural": "boxes" },
+          { "singular": "bus", "plural": "buses" }
+        ],
+        "irregularPairs": [
+          { "singular": "man", "plural": "men" },
+          { "singular": "woman", "plural": "women" },
+          { "singular": "child", "plural": "children" },
+          { "singular": "foot", "plural": "feet" },
+          { "singular": "wolf", "plural": "wolves" },
+          { "singular": "life", "plural": "lives" }
+        ],
+        "exercise": [
+          {
+            "id": "spe-1",
+            "prompt": "Frank is a farmer. He has four .......... (child).",
+            "options": ["childs", "children", "childes"],
+            "correctIndex": 1,
+            "explanationFa": "کلمه child بی‌قاعده است و شکل جمع آن children است."
+          },
+          {
+            "id": "spe-2",
+            "prompt": "I saw an old man and two young .......... (woman) sitting near the lake.",
+            "options": ["womans", "women", "womans'"],
+            "correctIndex": 1,
+            "explanationFa": "جمع کلمه woman به صورت بی‌قاعده women است."
+          },
+          {
+            "id": "spe-3",
+            "prompt": "There are two .......... (bus stop) near your school.",
+            "options": ["bus stops", "buses stops", "buses stop"],
+            "correctIndex": 0,
+            "explanationFa": "در اسم‌های ترکیبی مانند bus stop، علامت جمع به کلمه دوم (stops) اضافه می‌شود."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "اسم‌های عام و خاص (Common vs. Proper Nouns)",
+        "explanationFa": "اسم‌های خاص (Proper Nouns) نام افراد، شهرها، کشورها، کوه‌ها و روزهای خاص هستند و همیشه با حرف بزرگ (Capital letter) آغاز می‌شوند.",
+        "examples": [
+          { "common": "country (کشور)", "proper": "Iran (ایران)" },
+          { "common": "mountain (کوه)", "proper": "Damavand (دماوند)" },
+          { "common": "scientist (دانشمند)", "proper": "Avicenna (ابن سینا)" }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pnb-1",
+            "sentenceWithBlank": "Today, (Iran / iran)'s mountains and plains are the natural home of many animals.",
+            "options": ["Iran", "iran"],
+            "correctIndex": 0,
+            "explanationFa": "نام کشورها اسم خاص است و باید با حرف بزرگ (Iran) نوشته شود."
+          },
+          {
+            "id": "pnb-2",
+            "sentenceWithBlank": "Amin Askari is a pilot. He lives with his family in (Mashhad / mashhad).",
+            "options": ["Mashhad", "mashhad"],
+            "correctIndex": 0,
+            "explanationFa": "نام شهرها اسم خاص است و با حرف بزرگ (Mashhad) نوشته می‌شود."
+          },
+          {
+            "id": "pnb-3",
+            "sentenceWithBlank": "The (Persian / persian) Gulf is a very important sea in the south.",
+            "options": ["Persian", "persian"],
+            "correctIndex": 0,
+            "explanationFa": "نام خلیج فارس یک اسم خاص جغرافیایی است و با حرف بزرگ (Persian) شروع می‌شود."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "نشانگرهای اسم (Noun Markers)",
+        "explanationFa": "کلماتی هستند که قبل از اسم می‌آیند و وضعیت معرفه/نکره، اشاره یا مالکیت آن را مشخص می‌کنند.",
+        "markersList": [
+          {
+            "type": "Articles (حروف تعریف)",
+            "typeFa": "حروف تعریف a / an / the",
+            "items": ["a hunter", "an elephant", "the cheetah"],
+            "exampleSentence": "The ranger protected an injured leopard."
+          },
+          {
+            "type": "Demonstratives (ضمایر اشاره)",
+            "typeFa": "اشاره به نزدیک و دور (مفرد و جمع)",
+            "items": ["this bird", "that tiger", "these children", "those mountains"],
+            "exampleSentence": "This mountain is low, but those mountains are high."
+          },
+          {
+            "type": "Possessive Adjectives (صفات ملکی)",
+            "typeFa": "بیان مالکیت",
+            "items": ["my book", "his car", "our planet", "their natural home"],
+            "exampleSentence": "Humans must save their planet for future generations."
+          },
+          {
+            "type": "Numbers (اعداد)",
+            "typeFa": "شمارش اسم",
+            "items": ["one cheetah", "two wolves", "seventy animals"],
+            "exampleSentence": "I saw two wolves in the Golestan park."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "nmq-1",
+            "prompt": "در جمله 'I saw two wolves in the zoo'، کلمه 'two' چه نوع نشانگری برای اسم wolves است؟",
+            "options": ["Article (حرف تعریف)", "Number (عدد)", "Possessive (صفت ملکی)", "Demonstrative (اشاره)"],
+            "correctIndex": 1,
+            "explanationFa": "کلمه two یک عدد (Number) است که به عنوان نشانگر قبل از اسم wolves آمده است."
+          },
+          {
+            "id": "nmq-2",
+            "prompt": "کدام نشانگر برای اشاره به کوه‌های دور به شکل جمع مناسب است؟",
+            "options": ["This", "That", "Those", "These"],
+            "correctIndex": 2,
+            "explanationFa": "برای اشاره به اسم‌های جمع در فاصله دور از Those (آن‌ها / آن کوه‌ها) استفاده می‌شود."
+          }
+        ]
+      }
+    }
+  }
+}

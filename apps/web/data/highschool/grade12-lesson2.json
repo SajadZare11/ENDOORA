@@ -1,0 +1,1056 @@
+{
+  "id": "vision-3-lesson-2",
+  "grade": 12,
+  "bookTitle": "Vision 3",
+  "lessonNumber": 2,
+  "slug": "grade-12/lesson-2",
+  "title": {
+    "en": "Look it Up!",
+    "fa": "فرهنگ لغت و جستجوی واژگان"
+  },
+  "cefrLevel": "B1+",
+  "sections": {
+    "getReady": [
+      {
+        "id": "gr12-2-1",
+        "word": "monolingual dictionary",
+        "phonetic": "/ˌmɒn.əʊˈlɪŋ.ɡwəl ˈdɪk.ʃən.ər.i/",
+        "persianMeaning": "فرهنگ لغت تک‌زبانه (مانند انگلیسی به انگلیسی)",
+        "imagePromptOrUrl": "monolingual-dictionary-book",
+        "options": ["monolingual dictionary", "bilingual dictionary", "pocket notebook"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "A monolingual dictionary explains English words using English definitions.",
+          "fa": "یک فرهنگ لغت تک‌زبانه واژگان انگلیسی را با تعاریف انگلیسی توضیح می‌دهد."
+        }
+      },
+      {
+        "id": "gr12-2-2",
+        "word": "bilingual dictionary",
+        "phonetic": "/baɪˈlɪŋ.ɡwəl ˈdɪk.ʃən.ər.i/",
+        "persianMeaning": "فرهنگ لغت دوزبانه (مانند انگلیسی به فارسی)",
+        "imagePromptOrUrl": "bilingual-dictionary-flags",
+        "options": ["audio player", "bilingual dictionary", "grammar workbook"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Beginners often prefer using a bilingual English-Persian dictionary.",
+          "fa": "زبان‌آموزان مبتدی اغلب ترجیح می‌دهند از یک فرهنگ لغت دوزبانه انگلیسی-فارسی استفاده کنند."
+        }
+      },
+      {
+        "id": "gr12-2-3",
+        "word": "look up",
+        "phonetic": "/lʊk ʌp/",
+        "persianMeaning": "جستجو کردن و پیدا کردن معنی واژه در لغت‌نامه",
+        "imagePromptOrUrl": "look-up-magnifying-word",
+        "options": ["give up", "look up", "take care"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Whenever you encounter an unfamiliar word in reading, look it up in your dictionary.",
+          "fa": "هر زمان در متن با واژه‌ای ناآشنا روبه‌رو شدید، آن را در لغت‌نامه‌تان جستجو کنید."
+        }
+      },
+      {
+        "id": "gr12-2-4",
+        "word": "entry",
+        "phonetic": "/ˈen.tri/",
+        "persianMeaning": "مدخل، واژه ثبت‌شده در فرهنگ لغت همراه با توضیحات",
+        "imagePromptOrUrl": "dictionary-entry-article",
+        "options": ["entry", "exit", "error"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Each dictionary entry includes the word, its pronunciation, and its part of speech.",
+          "fa": "هر مدخل لغت‌نامه شامل خود کلمه، تلفظ آن و نقش دستوری‌اش است."
+        }
+      },
+      {
+        "id": "gr12-2-5",
+        "word": "definition",
+        "phonetic": "/ˌdef.ɪˈnɪʃ.ən/",
+        "persianMeaning": "تعریف دقیق و توضیح معنای کلمه",
+        "imagePromptOrUrl": "definition-meaning-bulb",
+        "options": ["destination", "definition", "direction"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Read the clear definition to see how the word is used in different contexts.",
+          "fa": "تعریف دقیق را بخوانید تا متوجه شوید کلمه در بافت‌های مختلف چگونه به کار می‌رود."
+        }
+      },
+      {
+        "id": "gr12-2-6",
+        "word": "pronunciation symbol",
+        "phonetic": "/prəˌnʌn.siˈeɪ.ʃən ˈsɪm.bəl/",
+        "persianMeaning": "نماد آوایی و علائم تلفظ واژگان (IPA)",
+        "imagePromptOrUrl": "pronunciation-symbol-ipa",
+        "options": ["punctuation mark", "pronunciation symbol", "capital letter"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Pronunciation symbols help language learners say words with the correct accent.",
+          "fa": "نمادهای تلفظ به زبان‌آموزان کمک می‌کنند کلمات را با لهجه صحیح بیان کنند."
+        }
+      },
+      {
+        "id": "gr12-2-7",
+        "word": "compile a dictionary",
+        "phonetic": "/kəmˈpaɪl ə ˈdɪk.ʃən.ər.i/",
+        "persianMeaning": "تالیف کردن و گردآوری یک فرهنگ لغت جامع",
+        "imagePromptOrUrl": "compile-dictionary-writer",
+        "options": ["compile a dictionary", "destroy a book", "borrow a novel"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Loghat-e Fors was compiled by Asadi Tusi more than nine centuries ago.",
+          "fa": "لغت فُرس بیش از نه قرن پیش توسط اسدی طوسی تالیف و گردآوری شد."
+        }
+      },
+      {
+        "id": "gr12-2-8",
+        "word": "magnifying glass",
+        "phonetic": "/ˈmæɡ.nɪ.faɪ.ɪŋ ɡlɑːs/",
+        "persianMeaning": "ذره‌بین برای خواندن خطوط بسیار ریز",
+        "imagePromptOrUrl": "magnifying-glass-zoom",
+        "options": ["sunglasses", "microscope", "magnifying glass"],
+        "correctOptionIndex": 2,
+        "exampleSentence": {
+          "en": "The smallest printed dictionary in the world must be read with a magnifying glass.",
+          "fa": "کوچک‌ترین لغت‌نامه چاپی جهان باید با یک ذره‌بین خوانده شود."
+        }
+      },
+      {
+        "id": "gr12-2-9",
+        "word": "pocket dictionary",
+        "phonetic": "/ˈpɒk.ɪt ˈdɪk.ʃən.ər.i/",
+        "persianMeaning": "فرهنگ لغت جیبی و کم‌حجم برای همراه داشتن در کلاس",
+        "imagePromptOrUrl": "pocket-dictionary-small",
+        "options": ["heavy encyclopedia", "pocket dictionary", "wall poster"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "A pocket dictionary is lightweight and convenient to carry in your school backpack.",
+          "fa": "یک لغت‌نامه جیبی سبک‌وزن بوده و برای حمل در کوله‌پشتی مدرسه بسیار مناسب است."
+        }
+      },
+      {
+        "id": "gr12-2-10",
+        "word": "identify needs",
+        "phonetic": "/aɪˈden.tɪ.faɪ niːdz/",
+        "persianMeaning": "شناسایی کردن نیازهای یادگیری و اهداف زبانی خود",
+        "imagePromptOrUrl": "identify-needs-checklist",
+        "options": ["identify needs", "ignore questions", "forget goals"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Before buying a dictionary, identify your language learning needs carefully.",
+          "fa": "پیش از خرید فرهنگ لغت، نیازهای یادگیری زبان خود را با دقت شناسایی کنید."
+        }
+      }
+    ],
+    "conversation": {
+      "situationFa": "مجید قصد دارد برای کلاس زبان انگلیسی خود یک فرهنگ لغت مناسب انتخاب کند. او در زنگ تفریح با دبیر زبان انگلیسی‌اش، آقای ایران‌مهر، به گفتگو می‌نشیند.",
+      "vocabulary": [
+        {
+          "id": "conv12-2-w1",
+          "word": "recommend",
+          "phonetic": "/ˌrek.əˈmend/",
+          "persianMeaning": "توصیه کردن، پیشنهاد دادن",
+          "imagePromptOrUrl": "teacher-recommend-advice",
+          "options": ["recommend", "refuse", "regret"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "The English teacher recommended a helpful learner's dictionary to Majid.",
+            "fa": "دبیر زبان انگلیسی یک فرهنگ لغت آموزشی مفید را به مجید پیشنهاد کرد."
+          }
+        },
+        {
+          "id": "conv12-2-w2",
+          "word": "suppose",
+          "phonetic": "/səˈpəʊz/",
+          "persianMeaning": "گمان کردن، تصور کردن، فرض کردن",
+          "imagePromptOrUrl": "suppose-think-thought",
+          "options": ["forget", "suppose", "shout"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "I suppose an elementary monolingual dictionary is best for your current level.",
+            "fa": "من گمان می‌کنم یک لغت‌نامه تک‌زبانه مقدماتی برای سطح فعلی شما بهترین گزینه باشد."
+          }
+        },
+        {
+          "id": "conv12-2-w3",
+          "word": "elementary",
+          "phonetic": "/ˌel.ɪˈmen.tər.i/",
+          "persianMeaning": "مقدماتی، سطح پایه و آسان",
+          "imagePromptOrUrl": "elementary-level-start",
+          "options": ["elementary", "advanced", "impossible"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "High school students should start with an elementary or intermediate learner's dictionary.",
+            "fa": "دانش‌آموزان دبیرستان باید با یک لغت‌نامه آموزشی مقدماتی یا متوسط شروع کنند."
+          }
+        },
+        {
+          "id": "conv12-2-w4",
+          "word": "intermediate",
+          "phonetic": "/ˌɪn.təˈmiː.di.ət/",
+          "persianMeaning": "متوسط، میانجی در سطوح یادگیری",
+          "imagePromptOrUrl": "intermediate-level-middle",
+          "options": ["elementary", "intermediate", "final"],
+          "correctOptionIndex": 1,
+          "exampleSentence": {
+            "en": "This dictionary contains over 40,000 words suitable for intermediate learners.",
+            "fa": "این لغت‌نامه شامل بیش از ۴۰ هزار واژه مناسب برای زبان‌آموزان سطح متوسط است."
+          }
+        },
+        {
+          "id": "conv12-2-w5",
+          "word": "advanced",
+          "phonetic": "/ədˈvɑːnst/",
+          "persianMeaning": "پیشرفته، سطح تخصصی و دانشگاهی",
+          "imagePromptOrUrl": "advanced-level-expert",
+          "options": ["simple", "ordinary", "advanced"],
+          "correctOptionIndex": 2,
+          "exampleSentence": {
+            "en": "Advanced dictionaries provide in-depth etymology and subtle nuances of words.",
+            "fa": "لغت‌نامه‌های پیشرفته ریشه‌شناسی عمیق و ظرافت‌های معنایی واژگان را ارائه می‌دهند."
+          }
+        },
+        {
+          "id": "conv12-2-w6",
+          "word": "smart phone app",
+          "phonetic": "/ˈsmɑːt.fəʊn æp/",
+          "persianMeaning": "اپلیکیشن و برنامه کاربردی تلفن هوشمند",
+          "imagePromptOrUrl": "smartphone-app-dictionary",
+          "options": ["smart phone app", "printed paper", "chalkboard"],
+          "correctOptionIndex": 0,
+          "exampleSentence": {
+            "en": "You can install a free dictionary app on your smart phone for instant lookups.",
+            "fa": "می‌توانید یک اپلیکیشن رایگان لغت‌نامه را برای جستجوی فوری روی گوشی هوشمندتان نصب کنید."
+          }
+        }
+      ],
+      "dialogueLines": [
+        {
+          "id": "dl12-2-1",
+          "orderIndex": 1,
+          "speaker": "Majid",
+          "speakerAvatar": "👦",
+          "enText": "Excuse me Mr. Iranmehr, I wonder if you could help me.",
+          "faText": "ببخشید آقای ایران‌مهر، ممکن است لطفاً به من کمک کنید؟",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line1.mp3"
+        },
+        {
+          "id": "dl12-2-2",
+          "orderIndex": 2,
+          "speaker": "Mr. Iranmehr",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "Sure. How can I help you?",
+          "faText": "حتماً. چطور می‌توانم کمکت کنم؟",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line2.mp3"
+        },
+        {
+          "id": "dl12-2-3",
+          "orderIndex": 3,
+          "speaker": "Majid",
+          "speakerAvatar": "👦",
+          "enText": "I'd like some information about a good English dictionary.",
+          "faText": "من اطلاعاتی درباره یک فرهنگ لغت انگلیسی خوب می‌خواهم.",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line3.mp3"
+        },
+        {
+          "id": "dl12-2-4",
+          "orderIndex": 4,
+          "speaker": "Mr. Iranmehr",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "First, I recommend a learner's dictionary designed for foreign students.",
+          "faText": "ابتدا یک فرهنگ لغت آموزشی (learner's dictionary) را پیشنهاد می‌کنم که ویژه دانش‌آموزان خارجی طراحی شده است.",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line4.mp3"
+        },
+        {
+          "id": "dl12-2-5",
+          "orderIndex": 5,
+          "speaker": "Majid",
+          "speakerAvatar": "👦",
+          "enText": "What type do you suggest for me?",
+          "faText": "شما چه نوعی را برای من پیشنهاد می‌کنید؟",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line5.mp3"
+        },
+        {
+          "id": "dl12-2-6",
+          "orderIndex": 6,
+          "speaker": "Mr. Iranmehr",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "I suppose a monolingual dictionary is more suitable, because you can find word info in English.",
+          "faText": "تصور می‌کنم یک فرهنگ لغت تک‌زبانه مناسب‌تر است، زیرا اطلاعات واژگان را به انگلیسی پیدا می‌کنی.",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line6.mp3"
+        },
+        {
+          "id": "dl12-2-7",
+          "orderIndex": 7,
+          "speaker": "Majid",
+          "speakerAvatar": "👦",
+          "enText": "And what about levels?",
+          "faText": "و در مورد سطوح چطور؟",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line7.mp3"
+        },
+        {
+          "id": "dl12-2-8",
+          "orderIndex": 8,
+          "speaker": "Mr. Iranmehr",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "There are three levels: elementary, intermediate and advanced. For you, an elementary one is OK.",
+          "faText": "معمولاً سه سطح وجود دارد: مقدماتی، متوسط و پیشرفته. برای تو، سطح مقدماتی مناسب است.",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line8.mp3"
+        },
+        {
+          "id": "dl12-2-9",
+          "orderIndex": 9,
+          "speaker": "Majid",
+          "speakerAvatar": "👦",
+          "enText": "Do I need a small size one? Like a pocket dictionary?",
+          "faText": "آیا به سایز کوچک نیاز دارم؟ مثل یک لغت‌نامه جیبی؟",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line9.mp3"
+        },
+        {
+          "id": "dl12-2-10",
+          "orderIndex": 10,
+          "speaker": "Mr. Iranmehr",
+          "speakerAvatar": "👨‍🏫",
+          "enText": "Yes! You can carry it wherever you go, and also install apps on your smart phone.",
+          "faText": "بله! می‌توانی هر کجا می‌روی همراهت ببری، و همچنین اپلیکیشن‌های آن را روی گوشی هوشمندت نصب کنی.",
+          "audioUrl": "/audio/highschool/grade12/lesson2/conversation_line10.mp3"
+        }
+      ]
+    },
+    "newWords": [
+      {
+        "id": "nw12-2-1",
+        "word": "contain",
+        "phonetic": "/kənˈteɪn/",
+        "persianMeaning": "شامل بودن، در بر داشتن مقداری از یک ماده یا اطلاعات",
+        "imagePromptOrUrl": "contain-box-items",
+        "options": ["contain", "empty", "refuse"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Try to avoid fast foods that contain a lot of unhealthy fat.",
+          "fa": "سعی کنید از غذاهای آماده‌ای که حاوی مقدار زیادی چربی ناسالم هستند پرهیز نمایید."
+        }
+      },
+      {
+        "id": "nw12-2-2",
+        "word": "symbol",
+        "phonetic": "/ˈsɪm.bəl/",
+        "persianMeaning": "نماد، نشانه، علامت اختصاری در علم یا زبان",
+        "imagePromptOrUrl": "symbol-chemical-carbon",
+        "options": ["story", "symbol", "mistake"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The letter 'C' is the international chemical symbol for carbon.",
+          "fa": "حرف 'C' نماد شیمیایی بین‌المللی برای عنصر کربن است."
+        }
+      },
+      {
+        "id": "nw12-2-3",
+        "word": "purpose",
+        "phonetic": "/ˈpɜː.pəs/",
+        "persianMeaning": "هدف، مقصود و منظور از انجام یک کار",
+        "imagePromptOrUrl": "purpose-target-arrow",
+        "options": ["purpose", "problem", "accident"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The student circled the dictionary entry to understand the word's primary purpose.",
+          "fa": "دانش‌آموز دور مدخل لغت‌نامه خط کشید تا هدف و مقصود اصلی کاربرد کلمه را دریابد."
+        }
+      },
+      {
+        "id": "nw12-2-4",
+        "word": "figure out",
+        "phonetic": "/ˈfɪɡ.ər aʊt/",
+        "persianMeaning": "پی بردن، سر درآوردن و حل کردن یک مسئله مبهم",
+        "imagePromptOrUrl": "figure-out-solve-puzzle",
+        "options": ["throw away", "figure out", "give in"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Mehran couldn't figure out what the complicated grammar rule meant at first.",
+          "fa": "مهران در ابتدا نتوانست سر در بیاورد که معنی آن قاعده گرامری پیچیده چیست."
+        }
+      },
+      {
+        "id": "nw12-2-5",
+        "word": "stand for",
+        "phonetic": "/stænd fɔːr/",
+        "persianMeaning": "مخفف چیزی بودن، نماد و نماینده عبارتی بودن",
+        "imagePromptOrUrl": "stand-for-abbreviation",
+        "options": ["stand for", "stand up", "stand by"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "The abbreviation 'I.R.' stands for Islamic Republic.",
+          "fa": "حروف اختصاری 'I.R.' مخفف عبارت جمهوری اسلامی است."
+        }
+      },
+      {
+        "id": "nw12-2-6",
+        "word": "combination",
+        "phonetic": "/ˌkɒm.bɪˈneɪ.ʃən/",
+        "persianMeaning": "ترکیب، آرایش و چینش چند عنصر در کنار هم",
+        "imagePromptOrUrl": "combination-letters-xy",
+        "options": ["separation", "combination", "destruction"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "From the two letters X and Y, we can get two different combinations: XY and YX.",
+          "fa": "از دو حرف X و Y می‌توانیم دو ترکیب متمایز به دست آوریم: XY و YX."
+        }
+      },
+      {
+        "id": "nw12-2-7",
+        "word": "introduction",
+        "phonetic": "/ˌɪn.trəˈdʌk.ʃən/",
+        "persianMeaning": "مقدمه و دیباچه در ابتدای کتاب برای معرفی کلی",
+        "imagePromptOrUrl": "introduction-first-page",
+        "options": ["conclusion", "introduction", "index"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The author wrote an inspiring two-page introduction explaining how to use the book.",
+          "fa": "نویسنده یک مقدمه الهام‌بخش دو صفحه‌ای نوشت و توضیح داد که چگونه از کتاب استفاده شود."
+        }
+      },
+      {
+        "id": "nw12-2-8",
+        "word": "effectively",
+        "phonetic": "/ɪˈfek.tɪv.li/",
+        "persianMeaning": "به‌طور موثر، کارآمد و با نتیجه موفقیت‌آمیز",
+        "imagePromptOrUrl": "effectively-success-arrow",
+        "options": ["effectively", "slowly", "hopelessly"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "If you know how to study more effectively, you will be able to learn much faster.",
+          "fa": "اگر بدانید چگونه موثرتر مطالعه کنید، خواهید توانست بسیار سریع‌تر یاد بگیرید."
+        }
+      },
+      {
+        "id": "nw12-2-9",
+        "word": "arrange",
+        "phonetic": "/əˈreɪndʒ/",
+        "persianMeaning": "مرتب چیدن، منظم کردن به ترتیبی مفید و زیبا",
+        "imagePromptOrUrl": "arrange-chairs-order",
+        "options": ["disorder", "arrange", "scatter"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "The librarian arranged all English dictionaries in alphabetical order on the shelves.",
+          "fa": "کتابدار تمام فرهنگ‌های لغت انگلیسی را به ترتیب الفبا در قفسه‌ها مرتب چید."
+        }
+      },
+      {
+        "id": "nw12-2-10",
+        "word": "jump into",
+        "phonetic": "/dʒʌmp ˈɪn.tuː/",
+        "persianMeaning": "پریدن به / شتاب‌زده وارد کاری شدن بدون آمادگی",
+        "imagePromptOrUrl": "jump-into-action",
+        "options": ["jump into", "walk away", "step back"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Do not jump into doing advanced exercises before reading the introductory guide.",
+          "fa": "پیش از خواندن راهنمای مقدماتی، شتاب‌زده وارد حل تمرینات پیشرفته نشوید."
+        }
+      },
+      {
+        "id": "nw12-2-11",
+        "word": "word family",
+        "phonetic": "/wɜːd ˈfæm.əl.i/",
+        "persianMeaning": "خانواده کلمات، واژگان هم‌ریشه با پیشوندها و پسوندها",
+        "imagePromptOrUrl": "word-family-roots-tree",
+        "options": ["word family", "strange word", "single letter"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "Understanding word families helps students figure out the meaning of unknown words.",
+          "fa": "درک خانواده کلمات به دانش‌آموزان کمک می‌کند تا معنای واژگان ناشناخته را کشف کنند."
+        }
+      },
+      {
+        "id": "nw12-2-12",
+        "word": "disconnection",
+        "phonetic": "/ˌdɪs.kəˈnek.ʃən/",
+        "persianMeaning": "قطع ارتباط (ریشه: connect ➔ disconnect ➔ disconnection)",
+        "imagePromptOrUrl": "disconnect-cable-broken",
+        "options": ["disconnection", "connection", "collection"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "A temporary disconnection of the Internet caused our online dictionary to stop working.",
+          "fa": "قطع موقت اینترنت باعث شد لغت‌نامه آنلاین ما از کار بیفتد."
+        }
+      },
+      {
+        "id": "nw12-2-13",
+        "word": "increasingly",
+        "phonetic": "/ɪnˈkriː.sɪŋ.li/",
+        "persianMeaning": "به‌طور فزاینده، روزافزون (ریشه: increase)",
+        "imagePromptOrUrl": "effectively-success-arrow",
+        "options": ["rarely", "increasingly", "quietly"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Online dictionaries have become increasingly popular among high school students.",
+          "fa": "لغت‌نامه‌های آنلاین به‌طور فزاینده‌ای در میان دانش‌آموزان دبیرستان محبوب شده‌اند."
+        }
+      },
+      {
+        "id": "nw12-2-14",
+        "word": "communicative",
+        "phonetic": "/kəˈmjuː.nɪ.kə.tɪv/",
+        "persianMeaning": "ارتباطی، اهل گفتگو و تعامل (ریشه: communicate)",
+        "imagePromptOrUrl": "teacher-recommend-advice",
+        "options": ["silent", "communicative", "selfish"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Modern language teaching focuses on developing interactive and communicative skills.",
+          "fa": "آموزش نوین زبان بر پرورش مهارت‌های تعاملی و ارتباطی تمرکز دارد."
+        }
+      },
+      {
+        "id": "nw12-2-15",
+        "word": "accidentally",
+        "phonetic": "/ˌæk.sɪˈden.təl.i/",
+        "persianMeaning": "اتفاقی، به صورت تصادفی و غیرعمد (ریشه: accident)",
+        "imagePromptOrUrl": "unexpectedly-surprise-gift",
+        "options": ["accidentally", "deliberately", "carefully"],
+        "correctOptionIndex": 0,
+        "exampleSentence": {
+          "en": "He accidentally deleted the dictionary file from his mobile phone.",
+          "fa": "او به صورت تصادفی و غیرعمدی فایل فرهنگ لغت را از تلفن همراهش پاک کرد."
+        }
+      },
+      {
+        "id": "nw12-2-16",
+        "word": "endangering",
+        "phonetic": "/ɪnˈdeɪn.dʒər.ɪŋ/",
+        "persianMeaning": "به خطر انداختن، در معرض تهدید قرار دادن (ریشه: danger)",
+        "imagePromptOrUrl": "contain-box-items",
+        "options": ["protecting", "endangering", "saving"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Environmental pollution is seriously endangering the lives of many rare plants and animals.",
+          "fa": "آلودگی محیط‌زیست زندگی بسیاری از گیاهان و جانوران کمیاب را شدیداً به خطر انداخته است."
+        }
+      },
+      {
+        "id": "nw12-2-17",
+        "word": "international",
+        "phonetic": "/ˌɪn.təˈnæʃ.ən.əl/",
+        "persianMeaning": "بین‌المللی، میان ملت‌ها (پیشوند inter + nation + al)",
+        "imagePromptOrUrl": "international-world-globe",
+        "options": ["local", "international", "individual"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "English is widely recognized as a major international language of science and trade.",
+          "fa": "انگلیسی به عنوان یک زبان بین‌المللی عمده در علم و تجارت شناخته می‌شود."
+        }
+      },
+      {
+        "id": "nw12-2-18",
+        "word": "unchangeable",
+        "phonetic": "/ʌnˈtʃeɪn.dʒə.bəl/",
+        "persianMeaning": "تغییرناپذیر، ثابت و دگرگونی‌ناپذیر (پیشوند un + change + able)",
+        "imagePromptOrUrl": "unchangeable-lock-stone",
+        "options": ["flexible", "unchangeable", "moving"],
+        "correctOptionIndex": 1,
+        "exampleSentence": {
+          "en": "Natural laws of physics remain unchangeable throughout the entire universe.",
+          "fa": "قوانین طبیعی فیزیک در سراسر جهان تغییرناپذیر و ثابت باقی می‌مانند."
+        }
+      }
+    ],
+    "reading": {
+      "title": "How to Use a Dictionary",
+      "persianTitle": "چگونه از یک فرهنگ لغت استفاده کنیم؟",
+      "strategyFa": "استراتژی هایلایتینگ (Highlighting): هنگام مطالعه متن، نکات کلیدی و ایده‌های اصلی را به جای کل جملات مشخص کنید. از هایلایت کردن بیش از حد جزئیات فرعی خودداری نمایید تا تمرکز ذهن روی اصول مهم باقی بماند.",
+      "passageTextEn": "A good dictionary gives the user information about words such as spellings, pronunciations and definitions. It also gives examples of how to use the words in sentences correctly. Therefore, it is essential to know how to use a dictionary. In this lesson, we provide you with some helpful tips on how to use a dictionary effectively.\n\n1. Choose the Right Dictionary. There are many different types of dictionaries such as learner's dictionaries, general dictionaries, picture dictionaries, etc. Therefore, first identify your needs. Without choosing the right one you cannot meet your language needs.\n\n2. Read the Introduction. The best way to learn how to use your dictionary effectively is to read its introduction. This section explains issues like how entries are arranged, what information is offered in entries and what abbreviations and pronunciation symbols are used throughout the entries.\n\n3. Learn the Abbreviations. Different types of abbreviations are often used in the definitions for a word. This can be confusing if you do not know what the abbreviations stand for.\n\n4. Learn the Guide to Pronunciation. If you immediately jump into using the dictionary without understanding the pronunciation guide, it can be difficult to figure it out.\n\n5. Read the Guide Words. These are the two words at the top of each page that show the first and last entries on the page. These words will help you find the word you are looking for in the right letter section.\n\n6. Read the Definitions. Once you find an entry, you can find the exact meaning of the word, its pronunciation, part of speech, synonyms, antonyms, and probably its origin.\n\n7. Look for Collocations. Learning the meaning of a single word is not usually enough. Through sentence examples, try to learn 'words in combination' to expand your vocabulary naturally.",
+      "passageParagraphs": [
+        "A good dictionary gives the user information about words such as spellings, pronunciations and definitions. It also gives examples of how to use the words in sentences correctly. Therefore, it is essential to know how to use a dictionary. In this lesson, we provide you with some helpful tips on how to use a dictionary effectively.",
+        "1. Choose the Right Dictionary. There are many different types of dictionaries such as learner's dictionaries, general dictionaries, picture dictionaries, etc. Therefore, first identify your needs. Without choosing the right one you cannot meet your language needs.",
+        "2. Read the Introduction. The best way to learn how to use your dictionary effectively is to read its introduction. This section explains issues like how entries are arranged, what information is offered in entries and what abbreviations and pronunciation symbols are used throughout the entries.",
+        "3. Learn the Abbreviations. Different types of abbreviations are often used in the definitions for a word. This can be confusing if you do not know what the abbreviations stand for. 4. Learn the Guide to Pronunciation. If you immediately jump into using the dictionary without understanding the pronunciation guide, it can be difficult to figure it out.",
+        "5. Read the Guide Words. These are the two words at the top of each page that show the first and last entries on the page. These words will help you find the word you are looking for in the right letter section. 6. Read the Definitions. Once you find an entry, you can find the exact meaning of the word, its pronunciation, part of speech, synonyms, antonyms, and probably its origin.",
+        "7. Look for Collocations. Learning the meaning of a single word is not usually enough. Through sentence examples, try to learn 'words in combination' to expand your vocabulary naturally."
+      ],
+      "questions": [
+        {
+          "id": "rq12-2-1",
+          "type": "mcq_general",
+          "questionEn": "What is the primary purpose of the passage 'How to Use a Dictionary'?",
+          "questionFa": "هدف اصلی متن 'چگونه از یک فرهنگ لغت استفاده کنیم؟' چیست؟",
+          "options": [
+            "Providing practical guidelines to help students use dictionaries more effectively",
+            "Encouraging students to only buy expensive electronic translators",
+            "Explaining the history of Persian poetry and 5th-century literature"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "متن با ارائه ۷ راهکار کلیدی به دانش‌آموزان آموزش می‌دهد که چگونه به شیوه‌ای اثربخش و کارآمد از لغت‌نامه‌های خود استفاده کنند."
+        },
+        {
+          "id": "rq12-2-2",
+          "type": "true_false",
+          "questionEn": "According to Tip 5, reading guide words at the top of each page helps you locate entries more quickly.",
+          "questionFa": "طبق توصیه شماره ۵، خواندن کلمات راهنما (Guide Words) در بالای صفحات به یافتن سریع‌تر مدخل‌ها کمک می‌کند.",
+          "options": ["True", "False"],
+          "correctIndex": 0,
+          "explanationFa": "این جمله صحیح (True) است؛ کلمات راهنما اولین و آخرین مدخل صفحه را نشان می‌دهند و یافتن واژه در بخش حرف مربوطه را آسان می‌سازند."
+        },
+        {
+          "id": "rq12-2-3",
+          "type": "reference",
+          "questionEn": "In Tip 2 of the text, what does the pronoun 'its' in 'read its introduction' refer to?",
+          "questionFa": "در توصیه شماره ۲، ضمیر ملکی 'its' در عبارت 'read its introduction' به چه چیزی اشاره دارد؟",
+          "options": [
+            "your dictionary",
+            "the pronunciation guide",
+            "the foreign student"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "ضمیر 'its' به لغت‌نامه مخاطب (your dictionary) در جمله قبلی اشاره دارد."
+        },
+        {
+          "id": "rq12-2-4",
+          "type": "context_meaning",
+          "questionEn": "In Tip 5, what do 'guide words' specifically refer to in a printed dictionary?",
+          "questionFa": "در توصیه شماره ۵، واژه 'guide words' در یک لغت‌نامه چاپی به چه کلماتی اطلاق می‌شود؟",
+          "options": [
+            "The two words at the top of each page showing the first and last entries on that page",
+            "The author's biography on the back cover",
+            "The table of contents at the beginning of the book"
+          ],
+          "correctIndex": 0,
+          "explanationFa": "کلمات راهنما، دو کلمه بالای هر صفحه هستند که اولین و آخرین مدخل آن صفحه را مشخص می‌نمایند."
+        },
+        {
+          "id": "rq12-2-5",
+          "type": "open_ended",
+          "questionEn": "Why is it important to learn collocations rather than memorizing single, isolated words?",
+          "questionFa": "چرا یادگیری هم‌آیی‌ها (Collocations) مهم‌تر از به خاطرسپاری تک‌کلمه‌های جداگانه است؟",
+          "requiredKeywordsForEvaluation": ["collocations", "combination", "expand", "sentences", "natural"],
+          "modelAnswerEn": "Learning collocations helps learners see words in natural combinations and use them correctly in sentences to expand their vocabulary.",
+          "modelAnswerFa": "یادگیری هم‌آیی‌ها به زبان‌آموزان کمک می‌کند کلمات را در ترکیب‌های طبیعی درون جمله ببینند و دایره واژگان خود را به شکل اصولی گسترش دهند."
+        }
+      ]
+    },
+    "grammar": {
+      "topic": "Relative Clauses (who, which, that, whom) & Conditional Sentences (Type II)",
+      "persianTopic": "جملات موصولی (ضمایر who, which, that) و شرطی نوع دوم (See Also)",
+      "discovery": {
+        "sentenceA": "Loghat-e Fors was compiled by Asadi Tusi who was a famous poet in the 5th century.",
+        "sentenceB": "The first Persian dictionary which is still published was compiled more than 900 years ago.",
+        "ccqQuestions": [
+          {
+            "id": "ccq12-2-1",
+            "question": "در جمله A برای توصیف یک انسان (Asadi Tusi) از کدام ضمیر موصولی استفاده شده است؟",
+            "options": [
+              "از ضمیر موصولی who (مخصوص انسان)",
+              "از ضمیر موصولی which (مخصوص اشیاء)"
+            ],
+            "correctIndex": 0,
+            "explanation": "برای انسان و اشخاص از who (یا that) استفاده می‌شود."
+          },
+          {
+            "id": "ccq12-2-2",
+            "question": "در جمله B برای توصیف یک کتاب و شیء غیرانسان (The first Persian dictionary) از کدام ضمیر موصولی استفاده شده است؟",
+            "options": [
+              "از ضمیر موصولی which (یا that مخصوص اشیاء و مفاهیم)",
+              "از ضمیر who (مخصوص افراد)"
+            ],
+            "correctIndex": 0,
+            "explanation": "برای اشیاء، حیوانات و مفاهیم غیرانسان از which یا that استفاده می‌گردد."
+          }
+        ]
+      },
+      "ruleBoxFa": "فرمول جملات موصولی (Relative Clauses): برای توصیف انسان از who یا that (در حالت فاعلی) و whom (در حالت مفعولی رسمی)، و برای توصیف اشیاء و حیوانات از which یا that استفاده می‌کنیم. در بخش See Also، جملات شرطی نوع دوم (Conditional Type II) برای موقعیت‌های غیرواقعی، خیالی و آرزوهای حال به کار می‌روند: فرمول ➔ If + گذشته ساده (Past Simple) , فاعل + would / could + فعل ساده. در بند شرط فعل be برای تمام فاعل‌ها معمولاً به صورت were می‌آید: If I were you, I would buy that dictionary.",
+      "transformations": [
+        {
+          "id": "trans12-2-1",
+          "activeSentence": "The man plays golf. The man lives at No. 10.",
+          "passiveSentence": "The man who plays golf lives at No. 10.",
+          "tense": "Relative Clause (Subject Person)",
+          "formula": "Person + who + Verb"
+        },
+        {
+          "id": "trans12-2-2",
+          "activeSentence": "I found the keys. I lost the keys yesterday.",
+          "passiveSentence": "I found the keys which I lost yesterday.",
+          "tense": "Relative Clause (Object Thing)",
+          "formula": "Thing + which/that + Clause"
+        },
+        {
+          "id": "trans12-2-3",
+          "activeSentence": "The old man doesn't have his glasses, so he cannot read the newspaper.",
+          "passiveSentence": "If the old man had his glasses, he could read the newspaper.",
+          "tense": "Conditional Type II (Imaginary Situation)",
+          "formula": "If + Past Simple , could + base verb"
+        }
+      ],
+      "practices": {
+        "controlled": [
+          {
+            "id": "cp12-2-1",
+            "promptEn": "Mr. Sanders is a dedicated doctor ______ lives in a beautiful village near Tehran.",
+            "promptFa": "آقای سندرز پزشک فداکاری است که در روستایی زیبا نزدیک تهران زندگی می‌کند.",
+            "options": ["who", "which", "whom"],
+            "correctIndex": 0,
+            "explanationFa": "چون مرجع یک شخص فاعل (a dedicated doctor) است، از 'who' استفاده می‌شود."
+          },
+          {
+            "id": "cp12-2-2",
+            "promptEn": "The train ______ enters the central station at 7:30 is usually not very crowded.",
+            "promptFa": "قطاری که ساعت ۷:۳۰ وارد ایستگاه مرکزی می‌شود معمولاً چندان شلوغ نیست.",
+            "options": ["which", "who", "whom"],
+            "correctIndex": 0,
+            "explanationFa": "چون مرجع یک وسیله غیرانسان (The train) است، از 'which' (یا that) استفاده می‌گردد."
+          },
+          {
+            "id": "cp12-2-3",
+            "promptEn": "If I ______ enough money right now, I would buy a complete set of encyclopedias.",
+            "promptFa": "اگر همین الان پول کافی داشتم، یک دوره کامل دایره‌المعارف می‌خریدم. (شرطی نوع دوم)",
+            "options": ["had", "have", "will have"],
+            "correctIndex": 0,
+            "explanationFa": "در شرطی نوع دوم، فعل بند شرط بعد از If باید در زمان گذشته ساده (had) باشد."
+          },
+          {
+            "id": "cp12-2-4",
+            "promptEn": "If my best friend were here today, we ______ solve this difficult puzzle together.",
+            "promptFa": "اگر بهترین دوستم امروز اینجا بود، می‌توانستیم این پازل دشوار را با هم حل کنیم.",
+            "options": ["could", "can", "will"],
+            "correctIndex": 0,
+            "explanationFa": "در بند نتیجه شرطی نوع دوم از would یا could همراه با فعل ساده استفاده می‌شود."
+          }
+        ],
+        "production": {
+          "instructionsFa": "با استفاده از کلیدواژه‌های داده‌شده، دو جمله فرضی (شرطی نوع دوم یا موصولی) درباره آرزوها یا ابزارهای مورد علاقه‌تان بنویسید.",
+          "targetKeywords": ["who", "which", "would", "could", "were"]
+        }
+      }
+    },
+    "listening": {
+      "preListeningQuestions": [
+        {
+          "id": "plq12-2-1",
+          "questionEn": "What would you do if you were on a long summer holiday right now?",
+          "questionFa": "اگر همین حالا در یک تعطیلات طولانی تابستانی بودید، چه کاری انجام می‌دادید؟"
+        },
+        {
+          "id": "plq12-2-2",
+          "questionEn": "How do you express an unreal or imaginary wish politely in English?",
+          "questionFa": "چگونه یک آرزوی فرضی یا غیرواقعی را در زبان انگلیسی با لحنی مودبانه بیان می‌کنید؟"
+        }
+      ],
+      "conversations": [
+        {
+          "id": "lc12-2-1",
+          "title": "Inviting Mina to the Gathering (دعوت از مینا برای دورهمی)",
+          "audioUrl": "/audio/highschool/grade12/lesson2/listening_dialogue1.mp3",
+          "scriptEn": "Zohreh: Where does Mina live these days?\nSara: She lives in a distant town with her grandparents.\nZohreh: Why haven't you invited her to our study group yet?\nSara: If she lived closer to our school, I would definitely invite her every weekend!",
+          "scriptFa": "زهره: مینا این روزها کجا زندگی می‌کند؟\nسارا: او در یک شهر دوردست با پدربزرگ و مادربزرگش زندگی می‌کند.\nزهره: چرا تا به حال او را به گروه درسی‌مان دعوت نکرده‌ای؟\nسارا: اگر نزدیک‌تر به مدرسه ما زندگی می‌کرد، قطعاً هر آخر هفته او را دعوت می‌کردم!",
+          "comprehensionQuestion": {
+            "questionEn": "Why hasn't Sara invited Mina to their study group yet?",
+            "questionFa": "چرا سارا تا به حال مینا را به گروه مطالعه‌شان دعوت نکرده است؟",
+            "options": [
+              "Because Mina lives far away in a distant town",
+              "Because Mina doesn't like studying English",
+              "Because they had an argument"
+            ],
+            "correctIndex": 0
+          }
+        },
+        {
+          "id": "lc12-2-2",
+          "title": "Buying a Useful Dictionary App (خرید برنامه لغت‌نامه)",
+          "audioUrl": "/audio/highschool/grade12/lesson2/listening_dialogue2.mp3",
+          "scriptEn": "Mehran: What did you want to buy for your laptop yesterday, Bijan?\nBijan: I wanted to buy an advanced medical dictionary software.\nMehran: Why didn't you tell me about the payment problem?\nBijan: If I had my debit card with me, I would have purchased it right away!",
+          "scriptFa": "مهران: دیروز می‌خواستی چه چیزی برای لپ‌تاپت بخری، بیژن؟\nبیژن: می‌خواستم یک نرم‌افزار پیشرفته لغت‌نامه پزشکی بخرم.\nمهران: چرا مشکل پرداخت را به من نگفتی؟\nبیژن: اگر کارت بانکی‌ام همراهم بود، همان موقع آن را خریداری می‌کردم!",
+          "comprehensionQuestion": {
+            "questionEn": "What did Bijan want to buy for his computer?",
+            "questionFa": "بیژن می‌خواست چه چیزی برای رایانه‌اش خریداری کند؟",
+            "options": [
+              "An advanced dictionary software",
+              "A new computer game",
+              "A pair of headphones"
+            ],
+            "correctIndex": 0
+          }
+        }
+      ],
+      "pronunciation": {
+        "title": "Intonation in Conditional Sentences: Rising (↗) in If-Clause & Falling (↘) in Main Clause",
+        "explanationFa": "در جملات شرطی (Conditional Sentences)، لحن صدا الگوی مشخصی را دنبال می‌کند:\n۱. در بند شرط (If-clause) چون جمله هنوز ناتمام است، لحن خیزان (Rising ↗) است.\n۲. در بند نتیجه اصلی (Main clause) برای اعلام پایان گزاره، لحن افتان (Falling ↘) استفاده می‌شود.",
+        "examples": [
+          {
+            "id": "p12-2-ex-1",
+            "text": "If it were sunny ↗, I would go to the park ↘.",
+            "intonation": "rising-falling",
+            "explanation": "خیز صدا در If it were sunny ↗ و فرود صدا در I would go to the park ↘."
+          },
+          {
+            "id": "p12-2-ex-2",
+            "text": "If I had wings ↗, I would fly across the oceans ↘.",
+            "intonation": "rising-falling",
+            "explanation": "لحن خیزان در شرط و افتان در بند پایانی نتیجه."
+          },
+          {
+            "id": "p12-2-ex-3",
+            "text": "What would you do ↗ if you were an astronaut ↘?",
+            "intonation": "question",
+            "explanation": "در سوالات شرطی، لحن پرسشی در ابتدای عبارت قرار می‌گیرد."
+          },
+          {
+            "id": "p12-2-ex-4",
+            "text": "If he were home ↗, he could fix the car ↘.",
+            "intonation": "rising-falling",
+            "explanation": "صعود صدا در بند شرط فرضی و فرود اطمینان‌بخش در بند نتیجه."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "pq12-2-1",
+            "promptEn": "In the sentence 'If they lived in a village ↗, they would be healthier ↘', what is the intonation of the If-clause?",
+            "promptFa": "در این جمله شرطی، لحن بند شرط (If-clause) چگونه است؟",
+            "options": [
+              "Rising intonation (↗) indicating incomplete thought",
+              "Falling intonation (↘) indicating final sentence end",
+              "Flat monotone without any pitch change"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "بند شرط با لحن خیزان (Rising ↗) خوانده می‌شود چون شنونده منتظر بند نتیجه است."
+          },
+          {
+            "id": "pq12-2-2",
+            "promptEn": "Where does the falling intonation (↘) occur in a standard conditional sentence?",
+            "promptFa": "در یک جمله شرطی استاندارد، لحن افتان (↘) در کجای جمله اتفاق می‌افتد؟",
+            "options": [
+              "At the end of the main result clause",
+              "Right after the word 'If'",
+              "Nowhere in the sentence"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "لحن افتان (Falling ↘) در انتهای بند اصلی نتیجه برای نشان دادن اتمام جمله به کار می‌رود."
+          },
+          {
+            "id": "pq12-2-3",
+            "promptEn": "Which audio intonation pattern correctly represents: 'If I knew the answer ↗, I would tell you ↘'?",
+            "promptFa": "کدام الگوی آوایی برای این جمله صحیح است؟",
+            "options": [
+              "Rising on condition (↗), Falling on result (↘)",
+              "Falling on condition (↘), Rising on result (↗)",
+              "Rising on both clauses (↗ ... ↗)"
+            ],
+            "correctIndex": 0,
+            "explanationFa": "الگوی استاندارد: صعود در شرط (↗) و فرود در نتیجه (↘)."
+          }
+        ]
+      }
+    },
+    "writing": {
+      "nounClassification": {
+        "title": "تعریف و ساختار ظاهری پاراگراف (Paragraph Structure & Format)",
+        "explanationFa": "پاراگراف مجموعه‌ای از جملات مرتبط است که پیرامون یک ایده واحد نوشته می‌شوند. یک پاراگراف می‌تواند اطلاعات بدهد، نظری را بیان کند، چیزی را توضیح دهد یا داستانی کوتاه بگوید. تمام جملات یک پاراگراف پشت سر هم می‌آیند، با حروف بزرگ آغاز شده و با نقطه، علامت سوال یا علامت تعجب پایان می‌پذیرند.",
+        "categories": [
+          {
+            "name": "وحدت موضوعی (Unity of Idea)",
+            "description": "تمام جملات پاراگراف باید صرفاً درباره همان ایده اصلی باشند و به موضوعات نامربوط نپردازند.",
+            "examples": ["Every sentence in a paragraph must relate to the central idea.", "Begin a new paragraph when switching to a new topic."]
+          },
+          {
+            "name": "فرمت و پیوستگی جملات (Paragraph Format)",
+            "description": "جملات مانند خطوط شعر زیر هم نوشته نمی‌شوند، بلکه پشت سر هم در قالب یک بلوک متنی قرار می‌گیرند.",
+            "examples": ["Sentences are grouped together and follow one after another.", "Never write each sentence on a separate bullet in a formal paragraph."]
+          },
+          {
+            "name": "علائم نگارشی و شروع جمله (Mechanics)",
+            "description": "شروع هر جمله با حرف بزرگ (Capital letter) و پایان آن با نشانه پایانی (. / ? / !).",
+            "examples": ["Start with a capital letter: 'A good dictionary gives...'", "End with punctuation: '...expand your vocabulary.'"]
+          },
+          {
+            "name": "وظایف پاراگراف (Functions of a Paragraph)",
+            "description": "اطلاع‌رسانی (Information)، بیان دیدگاه (Opinion)، توضیح مسئله (Explanation) یا روایت داستان (Story).",
+            "examples": ["Giving information about oceans and lakes", "Telling an opinion about healthy habits"]
+          }
+        ],
+        "quiz": [
+          {
+            "id": "wq12-2-1",
+            "sentence": "What should a writer do when moving to discuss a completely new idea?",
+            "options": [
+              "Begin a new paragraph",
+              "Continue in the same paragraph without space",
+              "Add several exclamation marks"
+            ],
+            "correctIndex": 0,
+            "explanation": "کتاب تصریح می‌کند که با شروع یک ایده جدید، حتماً باید یک پاراگراف جدید را آغاز نمود."
+          },
+          {
+            "id": "wq12-2-2",
+            "sentence": "Which of the following is true about the visual format of a formal paragraph?",
+            "options": [
+              "Sentences come one after another in a unified block of text",
+              "Each sentence must be written on a separate isolated line",
+              "Sentences do not need any punctuation at the end"
+            ],
+            "correctIndex": 0,
+            "explanation": "جملات پاراگراف در کنار هم و پشت سر هم قرار می‌گیرند و یک بلوک متنی پیوسته تشکیل می‌دهند."
+          },
+          {
+            "id": "wq12-2-3",
+            "sentence": "A paragraph about the benefits of learning a foreign language should NOT include:",
+            "options": [
+              "Unrelated sentences about how to repair a motorcycle engine",
+              "Sentences explaining improved brain memory",
+              "Sentences discussing better job opportunities"
+            ],
+            "correctIndex": 0,
+            "explanation": "اصل وحدت موضوعی ایجاب می‌کند که جملات متفرقه و بی‌ارتباط حذف گردند."
+          }
+        ]
+      },
+      "singularPlural": {
+        "title": "جمله موضوعی و ایده کنترل‌کننده (Topic & Controlling Idea)",
+        "explanationFa": "مهم‌ترین جمله هر پاراگراف، جمله موضوعی (Topic Sentence) است. این جمله معمولاً در ابتدای پاراگراف قرار می‌گیرد و دارای دو جزء اساسی است:\n۱. موضوع (Topic): پاراگراف درباره چه چیزی صحبت می‌کند.\n۲. ایده کنترل‌کننده (Controlling Idea): تمرکز و دیدگاه خاص نویسنده روی آن موضوع چیست.",
+        "regularPairs": [
+          {
+            "singular": "Topic: Language",
+            "plural": "Controlling idea: is a system of communication."
+          },
+          {
+            "singular": "Topic: Bad habits and addiction",
+            "plural": "Controlling idea: can be harmful to health."
+          }
+        ],
+        "exercise": [
+          {
+            "id": "spe12-2-1",
+            "singularPrompt": "In the topic sentence 'Art is what people create with imagination and skill', what is the Topic?",
+            "options": ["Art", "imagination and skill", "people"],
+            "correctIndex": 0,
+            "explanation": "کلمه 'Art' موضوع کلی (Topic) است که نویسنده روی آن تمرکز دارد."
+          },
+          {
+            "id": "spe12-2-2",
+            "singularPrompt": "In 'Handicrafts are good examples of the art and culture of a country', what is the Controlling Idea?",
+            "options": [
+              "are good examples of the art and culture of a country",
+              "Handicrafts",
+              "a country"
+            ],
+            "correctIndex": 0,
+            "explanation": "بخش 'are good examples of...' ایده کنترل‌کننده است که زاویه دید نویسنده را هدایت می‌کند."
+          },
+          {
+            "id": "spe12-2-3",
+            "singularPrompt": "In 'A cheetah is a wild animal from the cat family', what is the controlling idea?",
+            "options": [
+              "is a wild animal from the cat family",
+              "A cheetah",
+              "wild animal"
+            ],
+            "correctIndex": 0,
+            "explanation": "توصیف حیوان وحشی از خانواده گربه‌سانان ایده هدایت‌کننده جمله است."
+          }
+        ]
+      },
+      "properNouns": {
+        "title": "تشخیص جمله موضوعی در پاراگراف‌های واقعی کتاب (Textbook Paragraphs)",
+        "explanationFa": "بررسی ۴ پاراگراف معتبر صفحات ۶۶ و ۶۷ کتاب Vision 3: مورچه‌ها، ستارگان، لغت‌نامه آنلاین و سمعک هوشمند.",
+        "examples": [
+          {
+            "category": "پاراگراف مورچه‌ها (صفحه ۶۶)",
+            "items": [
+              "Topic Sentence: Ants are found everywhere in the world.",
+              "Topic: Ants | Controlling idea: are found everywhere in the world."
+            ]
+          },
+          {
+            "category": "پاراگراف ستارگان (صفحه ۶۶)",
+            "items": [
+              "Topic Sentence: The stars are tiny points of light in the space.",
+              "Topic: The stars | Controlling idea: are tiny points of light in the space."
+            ]
+          }
+        ],
+        "paragraphFillInTheBlank": [
+          {
+            "id": "pf12-2-1",
+            "sentenceWithBlank": "Read: 'Ants are found everywhere in the world. They make their home in buildings, gardens, etc.' The topic sentence is: ______",
+            "options": [
+              "Ants are found everywhere in the world.",
+              "They live in anthills.",
+              "Ants are generally red and black."
+            ],
+            "correctIndex": 0,
+            "explanation": "جمله اول ایده محوری و پراکندگی مورچه‌ها در سراسر زمین را مشخص می‌سازد."
+          },
+          {
+            "id": "pf12-2-2",
+            "sentenceWithBlank": "Read: 'The stars are tiny points of light in the space. On a clear night we can see 2000 stars...' The topic sentence is: ______",
+            "options": [
+              "The stars are tiny points of light in the space.",
+              "On a clear night we can see around 2,000 stars.",
+              "Stars look tiny in the sky."
+            ],
+            "correctIndex": 0,
+            "explanation": "جمله نخستین به عنوان Topic Sentence کل پاراگراف را پوشش می‌دهد."
+          },
+          {
+            "id": "pf12-2-3",
+            "sentenceWithBlank": "Read: 'An online dictionary is one that is available on the Internet or World Wide Web...' The topic is: ______",
+            "options": [
+              "An online dictionary",
+              "World Wide Web",
+              "Mobile device"
+            ],
+            "correctIndex": 0,
+            "explanation": "موضوع اصلی و محور بحث، فرهنگ لغت آنلاین (An online dictionary) است."
+          }
+        ]
+      },
+      "nounMarkers": {
+        "title": "تمرین‌های نگارش جمله موضوعی کتاب درسی (Topic Sentence Writing)",
+        "explanationFa": "تمرین صفحه ۶۸ کتاب درسی: انتخاب و نگارش موثرترین جمله موضوعی (Topic Sentence) برای موضوعات مختلف.",
+        "markersList": [
+          {
+            "marker": "فرمول نگارش Topic Sentence",
+            "use": "Topic (موضوع محدودشده) + Controlling Idea (دیدگاه مشخص و قابل دفاع)",
+            "example": "Exercise [Topic] improves physical and mental health [Controlling Idea]."
+          },
+          {
+            "marker": "پرهیز از جملات خیلی عام یا خیلی جزئی",
+            "use": "جمله موضوعی نباید بیش از حد کلی یا صرفاً یک فکت جزئی باشد.",
+            "example": "Clean energy is essential for protecting the future of our planet."
+          }
+        ],
+        "quiz": [
+          {
+            "id": "mq12-2-1",
+            "question": "کدام گزینه بهترین Topic Sentence برای موضوع 'Clean Energy' (انرژی پاک) است؟",
+            "options": [
+              "Clean energy plays a vital role in reducing environmental pollution.",
+              "The sun is yellow and hot in the sky.",
+              "I saw a wind turbine yesterday."
+            ],
+            "correctIndex": 0,
+            "explanation": "این جمله هم موضوع (Clean energy) و هم دیدگاه مشخص (نقش حیاتی در کاهش آلودگی) را داراست."
+          },
+          {
+            "id": "mq12-2-2",
+            "question": "کدام گزینه مناسب‌ترین Topic Sentence برای موضوع 'Firefighters' (آتش‌نشانان) است؟",
+            "options": [
+              "Brave firefighters risk their lives daily to save people and protect property.",
+              "Fire trucks are usually painted red.",
+              "Water puts out fire quickly."
+            ],
+            "correctIndex": 0,
+            "explanation": "بیان موضوع آتش‌نشانان همراه با شجاعت و فداکاری روزمره آنها به عنوان ایده کنترل‌کننده."
+          },
+          {
+            "id": "mq12-2-3",
+            "question": "کدام گزینه یک Topic Sentence مناسب برای موضوع 'Reading Books' است؟",
+            "options": [
+              "Reading books regularly expands our knowledge and enhances our vocabulary.",
+              "A book has a cover and many pages.",
+              "My friend bought two novels last Friday."
+            ],
+            "correctIndex": 0,
+            "explanation": "پوشش جامع فواید کتابخوانی بر گسترش دانش و تقویت دامنه واژگان."
+          }
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,23 @@ export type PrimaryActionId =
   | "join_next_class"
   | "start_learning";
 
+export interface LearnerActivity {
+  id: string;
+  activity_type: string;
+  title_fa: string;
+  title_en: string;
+  description_fa?: string;
+  description_en?: string;
+  category: string;
+  badge_text_fa?: string;
+  badge_text_en?: string;
+  icon: string;
+  link?: string;
+  time_ago_fa?: string;
+  time_ago_en?: string;
+  created_at: string;
+}
+
 export type LearnerHome = {
   user_id: string;
   greeting_name: string;
@@ -55,6 +72,7 @@ export type LearnerHome = {
   assignment: Record<string, unknown> | null;
   next_class: Record<string, unknown> | null;
   active_course: Record<string, unknown> | null;
+  recent_activities?: LearnerActivity[];
   xp_available: boolean;
   xp: number;
   streak_days: number;
@@ -141,3 +159,54 @@ export async function trackPrimaryAction(actionId: PrimaryActionId): Promise<voi
     // Analytics must never block navigation.
   }
 }
+
+export interface RecordActivityPayload {
+  activity_type: string;
+  title_fa: string;
+  title_en?: string;
+  description_fa?: string;
+  description_en?: string;
+  category?: string;
+  badge_text_fa?: string;
+  badge_text_en?: string;
+  icon?: string;
+  link?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export async function recordLearnerActivity(payload: RecordActivityPayload): Promise<LearnerActivity | null> {
+  const token = await csrfToken();
+  try {
+    const response = await fetch("/api/dashboard/activities/record/", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(token ? { "X-CSRFToken": token } : {}),
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) return null;
+    return (await response.json()) as LearnerActivity;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchLearnerActivities(limit = 10): Promise<LearnerActivity[]> {
+  try {
+    const response = await fetch(`/api/dashboard/activities/?limit=${limit}`, {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok) return [];
+    const data = (await response.json()) as { results?: LearnerActivity[] };
+    return data.results ?? [];
+  } catch {
+    return [];
+  }
+}
+

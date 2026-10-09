@@ -24,6 +24,8 @@ import type {
 
 export interface ActiveClassInfo {
   id: string;
+  code?: string;
+  class_code?: string;
   title: string;
   level: string;
   subject?: string;
@@ -683,5 +685,198 @@ export async function upgradeTeacherPlan(
   if (!response.ok) throw new Error("Failed to upgrade teacher plan.");
   return response.json();
 }
+
+// ==========================================
+// Teacher Classroom Curriculum & Student Operations
+// ==========================================
+
+export interface SubcategoryItem {
+  id: string;
+  title_fa: string;
+  title_en: string;
+  type: string;
+}
+
+export interface CurriculumUnit {
+  unit_number: number;
+  title_fa: string;
+  title_en: string;
+  subcategories: SubcategoryItem[];
+}
+
+export interface CurriculumTreeResponse {
+  coursebook: string;
+  book_title: string;
+  level: string;
+  publisher: string;
+  units: CurriculumUnit[];
+}
+
+export interface StudentAcademicPortfolio {
+  student_info: {
+    id: string;
+    email: string;
+    name: string;
+    cefr_level: string;
+    cefr_skills: Record<string, any>;
+    target_goals: Record<string, any>;
+    learning_preferences: Record<string, any>;
+    strengths: string[];
+    areas_for_development: string[];
+    coursebook: string;
+  };
+  academic_status: {
+    past_sessions: Array<{
+      id: string;
+      title: string;
+      scheduled_start: string;
+      scheduled_end: string;
+      duration_minutes: number;
+      status: string;
+      session_notes: string;
+      completed_at: string | null;
+      confirmed_by_teacher: boolean;
+      confirmed_by_learner: boolean;
+    }>;
+    past_assignments: Array<{
+      id: string;
+      title: string;
+      description: string;
+      due_date: string | null;
+      status: string;
+      total_points: number;
+      questions_count: number;
+      submission: {
+        attempt_id: string;
+        status: string;
+        percentage: number | null;
+        score_awarded: number | null;
+        submitted_at: string | null;
+        teacher_feedback: string;
+      } | null;
+    }>;
+    past_outcomes: Array<{
+      id: string;
+      title: string;
+      status: string;
+      reflection_notes: string;
+      created_at: string;
+    }>;
+  };
+  learning_portfolio: {
+    coursebook: string;
+    overall_book_mastery: number;
+    total_evaluated_topics: number;
+    units_portfolio: Array<{
+      unit_number: number;
+      unit_title: string;
+      evaluated_count: number;
+      total_subcategories: number;
+      average_mastery: number;
+      subcategories: Array<{
+        id: string;
+        title: string;
+        type: string;
+        mastery_percentage: number | null;
+        last_evaluated: string | null;
+        teacher_notes: string;
+      }>;
+    }>;
+    recent_masteries: Array<{
+      id: string;
+      unit_number: number;
+      unit_title: string;
+      subcategory_id: string;
+      subcategory_title: string;
+      subcategory_type: string;
+      mastery_percentage: number;
+      teacher_notes: string;
+      session_date: string;
+      created_at: string;
+    }>;
+  };
+  curriculum: {
+    id?: string;
+    slug?: string;
+    book_title: string;
+    publisher?: string;
+    units: CurriculumUnit[];
+  };
+}
+
+export interface RecordMasteryPayload {
+  unit_number: number;
+  unit_title: string;
+  subcategory_id: string;
+  subcategory_title: string;
+  subcategory_type?: string;
+  mastery_percentage: number;
+  teacher_notes?: string;
+  session_date?: string;
+}
+
+export interface SendHomeworkPayload {
+  unit_number: number;
+  unit_title: string;
+  subcategory_id: string;
+  subcategory_title: string;
+  question_format?: "mcq" | "descriptive" | "multi_select" | "gap" | "mixed";
+  due_days?: number;
+  instructions?: string;
+}
+
+export async function fetchClassCurriculumTree(classId: string): Promise<CurriculumTreeResponse> {
+  const response = await fetch(`/api/teachers/classes/${classId}/curriculum-tree/`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) throw new Error("Failed to fetch curriculum tree.");
+  return response.json();
+}
+
+export async function fetchStudentAcademicPortfolio(
+  classId: string,
+  studentId: string
+): Promise<StudentAcademicPortfolio> {
+  const response = await fetch(`/api/teachers/classes/${classId}/students/${studentId}/portfolio/`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) throw new Error("Failed to fetch student academic portfolio.");
+  return response.json();
+}
+
+export async function recordStudentLessonMastery(
+  classId: string,
+  studentId: string,
+  payload: RecordMasteryPayload
+): Promise<{ message: string; recorded_mastery: any; portfolio: StudentAcademicPortfolio }> {
+  const response = await fetch(`/api/teachers/classes/${classId}/students/${studentId}/mastery/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || err.message || "Failed to record lesson mastery.");
+  }
+  return response.json();
+}
+
+export async function sendStudent10QuestionHomework(
+  classId: string,
+  studentId: string,
+  payload: SendHomeworkPayload
+): Promise<{ message: string; assignment: any }> {
+  const response = await fetch(`/api/teachers/classes/${classId}/students/${studentId}/send-homework/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || err.message || "Failed to dispatch homework pack.");
+  }
+  return response.json();
+}
+
 
 

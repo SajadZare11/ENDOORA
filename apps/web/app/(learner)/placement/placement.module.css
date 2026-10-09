@@ -1,31 +1,160 @@
+/* =====================================================================
+   Endoora Placement App Route Styles (Landing, Report, Listening Ready)
+   100% Tokenized, CSS Logical Properties, Brand Spark & Modern Cards
+   ===================================================================== */
+
 .page {
   min-height: 100vh;
-  background: var(--color-background);
+  background: var(--color-canvas, var(--color-background));
   color: var(--color-text);
-  padding-block: var(--space-8);
-  padding-inline: var(--space-4);
+  padding-block: clamp(var(--space-8), 4vw, var(--space-12));
+  padding-inline: clamp(var(--space-4), 3vw, var(--space-8));
+  position: relative;
+  isolation: isolate;
+}
+
+.page::before {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 2%;
+  inset-inline-end: 4%;
+  inline-size: min(34rem, 48vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-learning-teal, #06b6d4) 10%, transparent),
+    transparent 68%
+  );
+  filter: blur(20px);
+  content: "";
+  pointer-events: none;
 }
 
 .container {
-  max-width: 68rem;
+  max-width: 76rem;
   margin-inline: auto;
 }
 
+/* =====================================================================
+   Hero Section (Matching Homepage Hero)
+   ===================================================================== */
 .hero {
   text-align: center;
+  max-width: 50rem;
+  margin-inline: auto;
   margin-block-end: var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 2rem;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-learning-teal, #06b6d4) 12%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal, #06b6d4) 30%, var(--color-border));
+  color: var(--color-action, #0284c7);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-block-end: var(--space-4);
+  box-shadow: 0 2px 10px -2px color-mix(in srgb, var(--color-learning-teal, #06b6d4) 20%, transparent);
 }
 
 .hero h1 {
-  font-size: var(--font-size-title-1);
-  font-weight: 800;
-  margin-block-end: var(--space-3);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.35;
   color: var(--color-text);
+  margin-block: 0 var(--space-4);
+  text-wrap: balance;
 }
 
 .hero p {
-  font-size: var(--font-size-body);
-  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--color-muted);
+  line-height: 2;
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-block: 0;
+}
+
+/* Brand Spark Badge Elements */
+.heroBrandWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18em;
+  padding-inline: 0.12em 0.3em;
+  border-radius: 0.45em;
+  vertical-align: baseline;
+}
+
+.heroBrandWrap::before {
+  position: absolute;
+  inset: -0.06em -0.12em;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    rgba(6, 182, 212, 0.22) 0%,
+    rgba(14, 165, 233, 0.1) 50%,
+    transparent 80%
+  );
+  content: "";
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroSpark {
+  display: inline-block;
+  inline-size: 0.6em;
+  block-size: 0.6em;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transform: translateY(-0.06em);
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.7));
+}
+
+.heroBrandText {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--color-text, #0f172a) 15%, #0369a1 65%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:global([data-theme="dark"]) .heroBrandText {
+  background: linear-gradient(135deg, #ffffff 20%, #38bdf8 65%, #2dd4bf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubText {
+  color: var(--color-text);
+}
+
+.heroAccent {
+  color: var(--color-action, #0284c7);
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =====================================================================
+   Cards & Layout Elements
+   ===================================================================== */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-raised);
+  position: relative;
 }
 
 .progress {
@@ -37,89 +166,54 @@
 }
 
 .progressBar {
-  height: 0.625rem;
-  border-radius: var(--radius-control);
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
   background: var(--color-surface-hover);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #0284c7, #06b6d4);
+  transition: width 0.4s ease;
 }
 
-.card {
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  padding: var(--space-8);
-  border: 1px solid var(--color-border);
-}
-
-.question {
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: start;
-  font-size: var(--font-size-title-2);
-  font-weight: 700;
-  color: var(--color-text);
-  margin-block-end: var(--space-6);
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.option {
-  padding-block: var(--space-3);
-  padding-inline: var(--space-4);
-  border-radius: var(--radius-control);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  cursor: pointer;
-  font-size: var(--font-size-body);
-  transition: border-color 0.2s, background-color 0.2s;
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: start;
-  min-height: 2.75rem;
-}
-
-.option:hover {
-  border-color: var(--color-primary);
-  background: var(--color-surface-hover);
-}
-
-.selected {
-  background: var(--color-primary-subtle);
-  border-color: var(--color-primary);
-  font-weight: 700;
-}
-
+/* Buttons */
 .button {
-  margin-block-start: var(--space-6);
-  padding-block: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-block-size: 46px;
   padding-inline: var(--space-6);
+  padding-block: var(--space-3);
   border-radius: var(--radius-control);
-  border: none;
-  background: var(--color-primary);
-  color: var(--color-surface);
-  font-size: var(--font-size-body);
+  background: var(--color-action, #0284c7);
+  color: var(--color-action-text, #ffffff);
+  font-size: 0.95rem;
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
-  min-height: 2.75rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 1px 2px rgb(0 0 0 / 0.08),
+    0 4px 16px -2px color-mix(in srgb, var(--color-action) 38%, transparent);
+  transition: all var(--motion-fast) var(--motion-ease);
 }
 
 .button:hover {
-  opacity: 0.92;
+  background: var(--color-action-hover, #0369a1);
+  transform: translateY(-1.5px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.38),
+    0 6px 20px -2px color-mix(in srgb, var(--color-action) 48%, transparent);
 }
 
+/* Report 6-Skill Grid */
 .reportGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr));
   gap: var(--space-4);
   margin-block: var(--space-6);
 }
@@ -128,26 +222,43 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-  padding: var(--space-6);
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-fast) var(--motion-ease),
+              border-color var(--motion-fast) var(--motion-ease);
+}
+
+.sectionCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-learning-teal) 45%, var(--color-border));
+  box-shadow: 0 10px 24px -4px color-mix(in srgb, var(--color-learning-teal) 15%, transparent);
+}
+
+.sectionCard h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
 }
 
 .sectionScore {
-  font-size: var(--font-size-title-1);
-  font-weight: 800;
-  color: var(--color-primary);
+  font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+  font-weight: 900;
+  color: var(--color-action, #0284c7);
+  line-height: 1;
 }
 
 .noticeBox {
-  background: var(--color-surface-hover);
-  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-learning-teal) 6%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 25%, var(--color-border));
   border-radius: var(--radius-card);
   padding: var(--space-6);
   margin-block: var(--space-6);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.8;
 }
 
@@ -158,21 +269,108 @@
   margin-block-start: var(--space-6);
 }
 
-@media (max-width: 36rem) {
-  .page {
-    padding-block: var(--space-4);
-    padding-inline: var(--space-3);
+/* Landing Page Feature Cards */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-5);
+  margin-block: var(--space-8);
+}
+
+.featureCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-raised);
+  transition: transform var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-fast) var(--motion-ease);
+}
+
+.featureCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-action) 40%, var(--color-border));
+  box-shadow: 0 14px 28px -6px color-mix(in srgb, var(--color-action) 18%, transparent);
+}
+
+.featureIcon {
+  inline-size: 3rem;
+  block-size: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-learning-teal) 14%, var(--color-surface));
+  font-size: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-learning-teal) 30%, var(--color-border));
+}
+
+.featureTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.featureDesc {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* CEFR Level Ladder */
+.ladderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block: var(--space-6);
+}
+
+.ladderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-inline: var(--space-5);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all var(--motion-fast) var(--motion-ease);
+}
+
+.ladderRow:hover {
+  border-color: var(--color-action);
+  transform: translateX(-4px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.ladderBadge {
+  font-weight: 800;
+  font-size: 1rem;
+  font-family: var(--font-family-latin);
+  padding-inline: var(--space-3);
+  padding-block: 0.2rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-action) 12%, var(--color-surface));
+  color: var(--color-action);
+}
+
+@media (max-width: 48rem) {
+  .actionsRow {
+    flex-direction: column;
   }
 
-  .card {
-    padding: var(--space-4);
+  .actionsRow button,
+  .actionsRow a {
+    width: 100%;
   }
 
-  .hero h1 {
-    font-size: var(--font-size-title-2);
-  }
-
-  .question {
-    font-size: var(--font-size-title-3);
+  .ladderRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
