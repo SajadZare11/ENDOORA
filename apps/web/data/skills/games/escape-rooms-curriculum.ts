@@ -75,7 +75,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "یادداشت رمز گاوصندوق",
         speakerPromptEn: "Front desk speaking! How can we assist you with room 302?",
         speakerRoleFa: "پذیرش هتل",
-        taskInstructionFa: "گوشی رو بردار و خیلی شیک و باادب بگو کارتم کار نمی‌کنه و کمک می‌خوام (بگو: 'Excuse me, my key card isn't working').",
+        taskInstructionFa: "گوشی رو بردار و خیلی شیک و باادب به پذیرش بگو کارت اتاقت کار نمی‌کنه و کمک می‌خوای.",
         targetKeywords: [
           { phrase: "Excuse me", hintFa: "(ببخشید)", weight: 30 },
           { phrase: "isn't working", hintFa: "(کار نمی‌کنه)", weight: 35 },
@@ -99,7 +99,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "کلید طلایی خروج",
         speakerPromptEn: "VOICE LOCK: Please state the master emergency numbers clearly.",
         speakerRoleFa: "هوش مصنوعی گاوصندوق",
-        taskInstructionFa: "رمز چهار رقمی رو شمرده و رسا بخون تا قفل باز بشه: 'Seven, two, four, nine'.",
+        taskInstructionFa: "رمز اضطراری یعنی عدد چهار رقمی (هفت، دو، چهار، نه) رو به انگلیسی شمرده بخون تا قفل گاوصندوق باز بشه.",
         targetKeywords: [
           { phrase: "Seven", hintFa: "(هفت)", weight: 20 },
           { phrase: "two", hintFa: "(دو)", weight: 20 },
@@ -125,7 +125,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "فرار موفقیت‌آمیز به لابی",
         speakerPromptEn: "SECURITY LATCH: Insert golden key and state formal checkout phrase.",
         speakerRoleFa: "قفل هوشمند درب",
-        taskInstructionFa: "کلید طلایی رو بچرخون و با گفتن جمله قشنگ 'Thank you for your help, goodbye!' در رو باز کن و بزن بیرون!",
+        taskInstructionFa: "کلید طلایی رو بچرخون، از کمکی که بهت کردن تشکر کن و باهاشون خداحافظی کن تا در باز بشه و بزنی بیرون!",
         targetKeywords: [
           { phrase: "Thank you for your help", hintFa: "(ممنون برای کمکتون)", weight: 40 },
           { phrase: "goodbye", hintFa: "(خداحافظ)", weight: 25 },
@@ -165,7 +165,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "ماگ قهوه رمزدار",
         speakerPromptEn: "COFFEE PROTOCOL: State your drink order correctly to disarm the pressure valve.",
         speakerRoleFa: "سیستم صوتی اسپرسو",
-        taskInstructionFa: "خیلی باحال و انگلیسی سفارش لاته بده تا دستگاه شروع به کار کنه: 'Can I have a hot latte with oat milk, please?'.",
+        taskInstructionFa: "خیلی باحال و به زبان انگلیسی یه لاته داغ با شیر جو دوسر سفارش بده تا دستگاه به راه بیفته.",
         targetKeywords: [
           { phrase: "Can I have", hintFa: "(می‌تونم داشته باشم)", weight: 35 },
           { phrase: "oat milk", hintFa: "(شیر جو دوسر)", weight: 30 },
@@ -189,7 +189,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "رسید حاوی بارکد خروج",
         speakerPromptEn: "REGISTER PROMPT: How will you be paying for this order today?",
         speakerRoleFa: "صندوق فروشگاه",
-        taskInstructionFa: "به صندوق بگو با کارت پرداخت می‌کنی و بفرما: 'By credit card, please. Here you go!'.",
+        taskInstructionFa: "به صندوق بگو می‌خوای با کارت اعتباری حساب کنی و کارتت رو بهش بده.",
         targetKeywords: [
           { phrase: "By credit card", hintFa: "(با کارت اعتباری)", weight: 35 },
           { phrase: "Here you go", hintFa: "(بفرمایید خدمت شما)", weight: 30 },
@@ -213,7 +213,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "فرار موفق به خیابان",
         speakerPromptEn: "BARISTA BOB: Leaving so soon? Have a wonderful day in New York!",
         speakerRoleFa: "باریستای کافه",
-        taskInstructionFa: "با جمله گرم 'You too! Have a great day, see you soon!' در خروج رو باز کن و فرار کن!",
+        taskInstructionFa: "جواب آرزوی خوب باریستا رو بده، بهش بگو اونم روز خوبی داشته باشه و به‌زودی می‌بینیش تا در کوچه باز بشه!",
         targetKeywords: [
           { phrase: "You too", hintFa: "(همچنین شما)", weight: 30 },
           { phrase: "See you soon", hintFa: "(به زودی می‌بینمت)", weight: 30 },
@@ -253,7 +253,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "بلیت ساعت طلایی",
         speakerPromptEn: "DISPATCH AUTOMATION: State the current train departure time.",
         speakerRoleFa: "ساعت گویای ایستگاه",
-        taskInstructionFa: "ساعت را به انگلیسی بخوان: 'It is quarter past four' (ساعت چهار و ربع است).",
+        taskInstructionFa: "به ساعت دیواری نگاه کن و ساعت رو (چهار و ربع) به انگلیسی بگو تا سیستم زمان‌بندی آزاد بشه.",
         targetKeywords: [
           { phrase: "quarter past", hintFa: "(یک ربع گذشته از...)", weight: 40 },
           { phrase: "four", hintFa: "(چهار)", weight: 25 },
@@ -277,7 +277,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "کلید استارت لکوموتیو",
         speakerPromptEn: "TRAIN DRIVER: Conductor, do you require a single or return journey?",
         speakerRoleFa: "راننده لکوموتیو",
-        taskInstructionFa: "بگو بلیت تک‌سفره به مرکز لندن می‌خواهی: 'A single ticket to central London, please.'.",
+        taskInstructionFa: "به راننده بگو یه بلیت تک‌سفره به مرکز لندن می‌خوای.",
         targetKeywords: [
           { phrase: "single ticket", hintFa: "(بلیت یک‌طرفه)", weight: 35 },
           { phrase: "central London", hintFa: "(مرکز لندن)", weight: 30 },
@@ -301,7 +301,7 @@ export const A1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "سوار شدن به قطار اکسپرس",
         speakerPromptEn: "GATE AGENT: Ticket verified! What is your final passenger clearance?",
         speakerRoleFa: "متصدی گیت",
-        taskInstructionFa: "تشکر کن و بگو روز خوبی داشته باشید: 'Thank you very much, have a safe trip!'.",
+        taskInstructionFa: "خیلی گرم و صمیمی تشکر کن و برای بقیه یه سفر امن و بی‌خطر آرزو کن تا گیت خروج باز بشه!",
         targetKeywords: [
           { phrase: "Thank you very much", hintFa: "(خیلی متشکرم)", weight: 35 },
           { phrase: "safe trip", hintFa: "(سفر بی‌خطر)", weight: 30 },
@@ -347,7 +347,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "برچسب بار تأییدشده",
         speakerPromptEn: "CUSTOMS OFFICER: Describe your missing suitcase and what distinguishing feature it has.",
         speakerRoleFa: "مأمور بازرسی گمرک",
-        taskInstructionFa: "چمدانت را توصیف کن: 'It is a black suitcase with a red ribbon on the handle.'.",
+        taskInstructionFa: "چمدونت رو برای مأمور توصیف کن: بگو یه چمدان مشکیه که یه روبان قرمز به دسته‌ش بسته شده.",
         targetKeywords: [
           { phrase: "black suitcase", hintFa: "(چمدان مشکی)", weight: 30 },
           { phrase: "red ribbon", hintFa: "(روبان قرمز)", weight: 35 },
@@ -371,7 +371,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "برگه ترخیص رسمی بار",
         speakerPromptEn: "SCANNER VOICE: State the purpose of your trip and your accommodation.",
         speakerRoleFa: "دستگاه بیومتریک گمرک",
-        taskInstructionFa: "بگو برای تعطیلات آمده‌ام و در هتل اقامت دارم: 'I am traveling for holiday and staying at a hotel.'.",
+        taskInstructionFa: "به اسکنر بیومتریک بگو برای گذروندن تعطیلات اومدی و قراره توی هتل بمونی.",
         targetKeywords: [
           { phrase: "traveling for holiday", hintFa: "(سفر برای تعطیلات)", weight: 35 },
           { phrase: "staying at a hotel", hintFa: "(اقامت در هتل)", weight: 30 },
@@ -395,7 +395,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "خروج به سمت تاکسی‌های شهر",
         speakerPromptEn: "CUSTOMS OFFICER: You are cleared! What a relief, isn't it?",
         speakerRoleFa: "مأمور بازرسی گمرک",
-        taskInstructionFa: "تشکر کن و بگو چه خیالی آسوده شد: 'What a relief! Thank you so much for your assistance.'.",
+        taskInstructionFa: "بگو آخیش خیالم راحت شد! و از مأمور بازرسی بابت راهنماییش حسابی تشکر کن.",
         targetKeywords: [
           { phrase: "What a relief", hintFa: "(چه خیالی راحت شد / چه آرامشی!)", weight: 40 },
           { phrase: "assistance", hintFa: "(کمک و راهنمایی)", weight: 25 },
@@ -435,7 +435,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "کارت کلید اتاق طبقه پنجم",
         speakerPromptEn: "CONCIERGE: Front desk! Is everything to your satisfaction in room 204?",
         speakerRoleFa: "مسئول تشریفات هتل",
-        taskInstructionFa: "بگو اتاق خیلی پر سر و صداست و تقاضای اتاق آرام کن: 'Could I possibly change to a quiet room?'.",
+        taskInstructionFa: "با پذیرش تماس بگیر، بگو این اتاق خیلی سروصدا داره و با احترام خواهش کن اتاقت رو با یه اتاق ساکت عوض کنن.",
         targetKeywords: [
           { phrase: "Could I possibly", hintFa: "(آیا امکانش هست که...)", weight: 35 },
           { phrase: "quiet room", hintFa: "(اتاق آرام و ساکت)", weight: 30 },
@@ -459,7 +459,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "کلید بازگشایی مینی‌بار",
         speakerPromptEn: "MINIBAR SENSOR: State the item name you would like to consume without charge.",
         speakerRoleFa: "سنسور مینی‌بار",
-        taskInstructionFa: "بگو آب معدنی می‌خواهی: 'I would like a bottle of still mineral water, please.'.",
+        taskInstructionFa: "از روم‌سرویس بخواه برات یه بطری آب‌معدنی بدون گاز بیارن.",
         targetKeywords: [
           { phrase: "would like", hintFa: "(میل دارم / می‌خواهم)", weight: 30 },
           { phrase: "mineral water", hintFa: "(آب معدنی)", weight: 35 },
@@ -483,7 +483,7 @@ export const A2_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "خروج به باغ آرام هتل",
         speakerPromptEn: "CONCIERGE: We moved you to suite 514 facing the garden! How does that sound?",
         speakerRoleFa: "مسئول تشریفات هتل",
-        taskInstructionFa: "بگو عالی به نظر می‌رسد و تشکر کن: 'That sounds fantastic! Thank you for your assistance.'.",
+        taskInstructionFa: "بگو این پیشنهاد عالی به نظر می‌رسه، تشکر کن و کلید اتاق جدید رو تحویل بگیر!",
         targetKeywords: [
           { phrase: "sounds fantastic", hintFa: "(فوق‌العاده به نظر می‌رسد)", weight: 35 },
           { phrase: "for your assistance", hintFa: "(برای کمک و پیگیریتون)", weight: 30 },
@@ -529,7 +529,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "نوار شنود مکالمه فرودگاه",
         speakerPromptEn: "INTERCEPTED AUDIO: '...The flight was grounded due to unexpected engine complications, so we are rerouting the courier via Frankfurt...'",
         speakerRoleFa: "شنود فرکانس دشمن",
-        taskInstructionFa: "علت تاخیر را با عبارت 'The flight was delayed due to technical difficulties' خلاصه کن.",
+        taskInstructionFa: "علت تاخیر پرواز رو که توی شنود شنیدی به انگلیسی توضیح بده: بگو پرواز به خاطر نقص فنی به تعویق افتاده.",
         targetKeywords: [
           { phrase: "delayed due to", hintFa: "(به دلیلِ... به تعویق افتاد)", weight: 35 },
           { phrase: "technical difficulties", hintFa: "(مشکلات و نقص‌های فنی)", weight: 35 },
@@ -553,7 +553,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "نقشه فرار از محاصره",
         speakerPromptEn: "HANDLER (STATIC): 'Agent, HQ here. What alternative rerouting options do they have? Over!'",
         speakerRoleFa: "فرمانده عملیات در بیسیم",
-        taskInstructionFa: "دکمه بیسیم را فشار بده و بگو: 'They are rerouting via Frankfurt to catch a connecting flight. Over!'.",
+        taskInstructionFa: "دکمه بیسیم رو نگه دار و گزارش بده که اونا دارن مسیرشون رو از فرانکفورت عوض می‌کنن تا به پرواز بعدی برسن.",
         targetKeywords: [
           { phrase: "rerouting via", hintFa: "(تغییر مسیر از طریقِ...)", weight: 35 },
           { phrase: "connecting flight", hintFa: "(پرواز اتصالی)", weight: 30 },
@@ -577,7 +577,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "فرار موفق قبل از ردیابی",
         speakerPromptEn: "HANDLER (STATIC): 'Signal trace incoming in fifteen seconds! State clearance code to pop the hatch!'",
         speakerRoleFa: "فرمانده عملیات در بیسیم",
-        taskInstructionFa: "کد خروج را بگو: 'Mission accomplished, sorting this out immediately, signing off!'.",
+        taskInstructionFa: "پشت بیسیم اعلام کن مأموریت تموم شد، داری بهش سروسامان می‌دی و ارتباط رو قطع کن تا در باز بشه!",
         targetKeywords: [
           { phrase: "Mission accomplished", hintFa: "(مأموریت با موفقیت انجام شد)", weight: 35 },
           { phrase: "sorting this out", hintFa: "(سروسامان دادن به موضوع)", weight: 35 },
@@ -617,7 +617,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "گزارش تست عملکرد سرور",
         speakerPromptEn: "SENIOR LEAD: Relational databases worked for ten years. Why abandon what is already familiar?",
         speakerRoleFa: "توسعه‌دهنده ارشد سنتی",
-        taskInstructionFa: "با فرمول مؤدبانه بگو: 'I see your point, but modern databases handle concurrency much better.'.",
+        taskInstructionFa: "محترمانه به همکارت بگو نظرش رو درک می‌کنی ولی دیتابیس‌های مدرن خیلی بهتر پردازش‌های همزمان رو مدیریت می‌کنن.",
         targetKeywords: [
           { phrase: "I see your point", hintFa: "(نظرت رو کاملاً درک می‌کنم، اما...)", weight: 35 },
           { phrase: "concurrency", hintFa: "(هم‌روندی و پردازش همزمان)", weight: 30 },
@@ -641,7 +641,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "راهکار توافقی اسپرینت",
         speakerPromptEn: "SENIOR LEAD: Migrating now will delay our release by two weeks! Who justifies that cost?",
         speakerRoleFa: "توسعه‌دهنده ارشد سنتی",
-        taskInstructionFa: "دفاع کن: 'Taking the time now will prevent massive technical debt later on.'.",
+        taskInstructionFa: "از ایده‌ت دفاع کن و بگو وقت گذاشتن روی این کار جلوی بدهی‌های فنی سنگین رو در آینده می‌گیره.",
         targetKeywords: [
           { phrase: "technical debt", hintFa: "(بدهی و زیان فنی آینده)", weight: 40 },
           { phrase: "prevent massive", hintFa: "(جلوگیری از زیان‌های سنگین)", weight: 25 },
@@ -665,7 +665,7 @@ export const B1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "خروج با توافق کامل تیم",
         speakerPromptEn: "TEAM SPONSOR: We need a sensible compromise before unlocking the conference room!",
         speakerRoleFa: "اسپانسر پروژه",
-        taskInstructionFa: "توافق منطقی پیشنهاد بده: 'Let us adopt a sensible compromise and run benchmark tests today.'.",
+        taskInstructionFa: "یه توافق منطقی پیشنهاد بده و بگو بیاید امروز آزمون‌های سنجش عملکرد رو با هم ران کنیم تا در باز بشه!",
         targetKeywords: [
           { phrase: "sensible compromise", hintFa: "(سازش و توافق منطقی و معقول)", weight: 40 },
           { phrase: "run benchmark tests", hintFa: "(اجرای آزمون‌های سنجش عملکرد)", weight: 30 },
@@ -711,7 +711,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "تأیید هویت دیپلماتیک",
         speakerPromptEn: "SECURITY AI: 'Unidentified operative detected! Why should this vault not trigger lethal lockdown countermeasures?'",
         speakerRoleFa: "هوش مصنوعی امنیتی گاوصندوق",
-        taskInstructionFa: "با استدلال قاطع اتهام را رد کن: 'I unequivocally reject the premise of unauthorized intrusion; I am conducting an emergency forensic audit.'.",
+        taskInstructionFa: "اتهام ورود غیرقانونی رو با قاطعیت رد کن و با دلیل محکم بگو برای یه حسابرسی فوری سیستم اینجایی.",
         targetKeywords: [
           { phrase: "unequivocally reject the premise", hintFa: "(قاطعانه فرض و اتهام مطرح‌شده را رد می‌کنم)", weight: 45 },
           { phrase: "forensic audit", hintFa: "(حسابرسی مستقل قانونی-فنی)", weight: 35 },
@@ -735,7 +735,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "کاهش سوءظن نگهبان به ۱۵٪",
         speakerPromptEn: "CHIEF GUARDIAN: 'Our market telemetry indicated severe volatility prior to your arrival! Explain this correlation!'",
         speakerRoleFa: "سرپرست نگهبانان گاوصندوق",
-        taskInstructionFa: "پاسخ حرفه‌ای بده: 'Market sentiment fluctuates in the wake of incomplete disclosures; empirical verification will anchor certainty.'.",
+        taskInstructionFa: "پاسخ تحلیلی بده: بگو نوسانات بازار به خاطر نبود شفافیته و با راستی‌آزمایی داده‌ها آرامش برمی‌گرده.",
         targetKeywords: [
           { phrase: "Market sentiment fluctuates", hintFa: "(احساسات بازار دچار نوسان موقت می‌شود)", weight: 40 },
           { phrase: "empirical verification", hintFa: "(راستی‌آزمایی و اثبات عینی)", weight: 40 },
@@ -759,7 +759,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "فرار تاریخی و باز شدن گاوصندوق",
         speakerPromptEn: "VAULT SYSTEM: 'Suspicion lowered to fifteen percent! State your final clearance thesis to release the titanium locks!'",
         speakerRoleFa: "سیستم کنترل هیدرولیک درب",
-        taskInstructionFa: "جمله باشکوه پایانی را ادا کن: 'Transparency is the bedrock of enduring stability; disarm all locks post-haste!'.",
+        taskInstructionFa: "جمله قاطعانه مدیریتی رو بگو: شفافیت اساس پایداریه و دستور بده تمام قفل‌های لیزری سریعاً غیرفعال بشن!",
         targetKeywords: [
           { phrase: "bedrock of enduring stability", hintFa: "(سنگ‌بنای ثبات و اعتماد پایدار)", weight: 45 },
           { phrase: "post-haste", hintFa: "(بدون اتلاف وقت و با حداکثر سرعت)", weight: 35 },
@@ -799,7 +799,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "سند اثبات تناقض شاهد",
         speakerPromptEn: "INVESTIGATOR: 'The eyewitness swears they observed you holding the contraband beyond reasonable doubt!'",
         speakerRoleFa: "قاضی تحقیق دادگاه",
-        taskInstructionFa: "تناقض را بکوب: 'In their sworn deposition, they attested that torrential rain obscured their visibility completely.'.",
+        taskInstructionFa: "تناقض شهادت طرف مقابل رو مطرح کن و بگو اونا قبلاً سوگند یاد کرده بودن که باران سیل‌آسا دیدشون رو کاملاً کور کرده بود.",
         targetKeywords: [
           { phrase: "sworn deposition", hintFa: "(شهادت‌نامه رسمی سوگندخورده)", weight: 40 },
           { phrase: "obscured their visibility", hintFa: "(دید آن‌ها را کاملاً مسدود و کدر کرده بود)", weight: 40 },
@@ -823,7 +823,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "حکم برائت قانونی",
         speakerPromptEn: "JUDGE: 'Does counsel contend that this evidence fails the evidentiary threshold of the court?'",
         speakerRoleFa: "رئیس دیوان دادگاه",
-        taskInstructionFa: "با اصطلاح حقوقی بگو: 'Precisely, Your Honor; the prosecution cannot sustain its burden of proof.'.",
+        taskInstructionFa: "با اتکا به منطق حقوقی به قاضی بگو دادستان نتونسته بار اثبات ادعاش رو برآورده کنه و مدارکش کافی نیست.",
         targetKeywords: [
           { phrase: "Your Honor", hintFa: "(عالیجناب / جناب قاضی)", weight: 30 },
           { phrase: "burden of proof", hintFa: "(بار اثبات دعوی بر عهده دادستان)", weight: 45 },
@@ -847,7 +847,7 @@ export const C1_ESCAPE_ROOMS: EscapeRoomStage[] = [
         unlockedItemNameFa: "آزادی کامل و خروج سرافرازانه",
         speakerPromptEn: "CHIEF JUSTICE: 'The court orders immediate release! Deliver your closing statement to the assembly!'",
         speakerRoleFa: "رئیس دیوان دادگاه",
-        taskInstructionFa: "جمله آزادگی را با طنین بگو: 'Justice thrives on accountability, not courtroom theater. I rest my case!'.",
+        taskInstructionFa: "دفاعیه نهاییت رو با طنین رسا اعلام کن: بگو عدالت بر پایه پاسخگوییه نه نمایش دادگاهی، و دفاع تو تموم شده!",
         targetKeywords: [
           { phrase: "Justice thrives on accountability", hintFa: "(عدالت بر پایه پاسخگویی شکوفا می‌شود)", weight: 45 },
           { phrase: "I rest my case", hintFa: "(دفاع من تمام است و پرونده بسته شد)", weight: 40 },

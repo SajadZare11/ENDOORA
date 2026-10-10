@@ -260,7 +260,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
   // Main Countdown Timer & Elapsed Stopwatch
   useEffect(() => {
-    if (!isTimerRunning || isGameOver) return;
+    if (!isTimerRunning || isGameOver || isAtGoalTerminal) return;
     const interval = setInterval(() => {
       setElapsedSeconds((prev) => Number((prev + 0.1).toFixed(1)));
       setTimeLeft((prev) => {
@@ -272,7 +272,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
       });
     }, 100);
     return () => clearInterval(interval);
-  }, [isTimerRunning, isGameOver]);
+  }, [isTimerRunning, isGameOver, isAtGoalTerminal]);
 
   // Freeze countdown timer
   useEffect(() => {
@@ -291,6 +291,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
   // Time ran out handler
   const handleTimeExpired = () => {
+    if (isAtGoalTerminal || isGameOver) return;
     setIsTimerRunning(false);
     setIsGameOver(true);
     setStagePassed(false);
@@ -328,6 +329,11 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
       const nextNode = activeCircuit?.nodes.find((n) => n.id === option.nextNodeId);
       const isGoalStep = nextNode?.isGoal || !option.nextNodeId || nextNode?.options.length === 0;
 
+      // Stop timer immediately on goal step so countdown never depletes while viewing final laser
+      if (isGoalStep) {
+        setIsTimerRunning(false);
+      }
+
       // 1. Let the green laser complete its transit on the edge (420ms)
       setTimeout(() => {
         // Record completed step into the left mini-trail
@@ -354,6 +360,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
           if (isGoalStep) {
             // Reached Goal Terminal!
+            setIsTimerRunning(false);
             setIsAtGoalTerminal(true);
             setIsWarping(false);
             soundSynth.playFanfare();

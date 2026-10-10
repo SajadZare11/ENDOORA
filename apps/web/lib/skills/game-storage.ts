@@ -442,6 +442,16 @@ export function calculateTotalStars(all?: AllSkillsProgress): number {
   return stars;
 }
 
+export function calculateCefrTotalXp(cefr: CefrLevel, all?: AllSkillsProgress): number {
+  const progress = all || loadAllSkillsProgress();
+  let total = 0;
+  const skills: SkillKey[] = ["vocabulary", "grammar", "listening", "reading", "writing", "speaking"];
+  for (const skill of skills) {
+    total += progress[skill]?.[cefr]?.totalXp || 0;
+  }
+  return total;
+}
+
 // ==========================================
 // 5. USER PROFILE & DUAL LEADERBOARD SYSTEM
 // ==========================================
@@ -925,17 +935,20 @@ const SKILL_PEER_MODIFIERS: Record<SkillKey, (peerId: string) => number> = {
  */
 export function getLevelLeaderboard(
   cefr: CefrLevel,
-  period?: LeaderboardPeriod
+  period?: LeaderboardPeriod,
+  customProgress?: AllSkillsProgress
 ): { entries: LeaderboardEntry[]; userRank: number; pointsToLeader: number };
 export function getLevelLeaderboard(
   skill: SkillKey,
   cefr: CefrLevel,
-  period?: LeaderboardPeriod
+  period?: LeaderboardPeriod,
+  customProgress?: AllSkillsProgress
 ): { entries: LeaderboardEntry[]; userRank: number; pointsToLeader: number };
 export function getLevelLeaderboard(
   skillOrCefr: SkillKey | CefrLevel,
   cefrOrPeriod?: CefrLevel | LeaderboardPeriod,
-  maybePeriod?: LeaderboardPeriod
+  maybePeriod?: LeaderboardPeriod | AllSkillsProgress,
+  customProgress?: AllSkillsProgress
 ): {
   entries: LeaderboardEntry[];
   userRank: number;
@@ -944,6 +957,7 @@ export function getLevelLeaderboard(
   let skill: SkillKey = "vocabulary";
   let cefr: CefrLevel = "A1";
   let period: LeaderboardPeriod = "daily";
+  let effectiveProgress: AllSkillsProgress | undefined = customProgress;
 
   const CEFR_SET = new Set<string>(["A1", "A2", "B1", "B2", "C1", "C2"]);
 
@@ -952,18 +966,23 @@ export function getLevelLeaderboard(
     if (cefrOrPeriod && (cefrOrPeriod === "daily" || cefrOrPeriod === "weekly" || cefrOrPeriod === "all-time")) {
       period = cefrOrPeriod as LeaderboardPeriod;
     }
+    if (maybePeriod && typeof maybePeriod === "object") {
+      effectiveProgress = maybePeriod as AllSkillsProgress;
+    }
   } else {
     skill = skillOrCefr as SkillKey;
     if (cefrOrPeriod && CEFR_SET.has(cefrOrPeriod as string)) {
       cefr = cefrOrPeriod as CefrLevel;
     }
-    if (maybePeriod) {
-      period = maybePeriod;
+    if (maybePeriod && typeof maybePeriod === "string") {
+      period = maybePeriod as LeaderboardPeriod;
+    } else if (maybePeriod && typeof maybePeriod === "object") {
+      effectiveProgress = maybePeriod as AllSkillsProgress;
     }
   }
 
   const user = getLocalUserProfile();
-  const allProgress = loadAllSkillsProgress();
+  const allProgress = effectiveProgress || loadAllSkillsProgress();
   const currentSkillCefr = allProgress[skill]?.[cefr] || { ...DEFAULT_SKILL_PROGRESS };
 
   const totalWeighted = calculateLevelTotalWeightedScore(skill, cefr, allProgress);
@@ -1108,6 +1127,55 @@ export function getLevelLeaderboard(
     entries: rankedEntries,
     userRank,
     pointsToLeader,
+  };
+}
+
+export interface BestSkillRankResult {
+  bestRank: number;
+  bestSkill: SkillKey;
+  skillTitleFa: string;
+}
+
+/**
+ * Returns the learner's best rank across all skills in a specific CEFR level.
+ */
+export function getBestSkillRankForCefr(
+  cefr: CefrLevel,
+  allProgress?: AllSkillsProgress
+): BestSkillRankResult {
+  const skills: SkillKey[] = ["grammar", "vocabulary", "speaking", "listening", "reading", "writing"];
+  const skillNamesFa: Record<SkillKey, string> = {
+    grammar: "دستور زبان",
+    vocabulary: "واژگان",
+    speaking: "مکالمه",
+    listening: "شنیداری",
+    reading: "درک مطلب",
+    writing: "نگارش",
+  };
+
+  const progress = allProgress || loadAllSkillsProgress();
+  let bestRank = 999;
+  let bestSkill: SkillKey = "grammar";
+
+  for (const skill of skills) {
+    const dailyRank = getLevelLeaderboard(skill, cefr, "daily", progress).userRank;
+    const allTimeRank = getLevelLeaderboard(skill, cefr, "all-time", progress).userRank;
+    const skillBestRank = Math.min(dailyRank, allTimeRank);
+
+    if (skillBestRank < bestRank) {
+      bestRank = skillBestRank;
+      bestSkill = skill;
+    }
+  }
+
+  if (bestRank > 7 || bestRank === 999) {
+    bestRank = 7;
+  }
+
+  return {
+    bestRank,
+    bestSkill,
+    skillTitleFa: skillNamesFa[bestSkill] || "مهارت‌ها",
   };
 }
 

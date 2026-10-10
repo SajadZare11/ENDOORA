@@ -9,6 +9,8 @@ import {
   loadAllSkillsProgress,
   calculateGrandTotalXp,
   calculateTotalStars,
+  calculateCefrTotalXp,
+  getLevelLeaderboard,
   getLevelDailyHighScore,
   getStageBestPoints,
 } from "../../../lib/skills/game-storage";
@@ -140,11 +142,22 @@ export function DedicatedSkillGameClient({ skill }: Props) {
           </div>
 
           <div className={styles.statsCluster}>
-            <div className={`${styles.statBadge} ${styles.xp}`}>
-              ⚡ {calculateGrandTotalXp(allProgress).toLocaleString("fa-IR")} XP
+            <div
+              className={`${styles.statBadge} ${styles.xp}`}
+              title={`مجموع امتیاز شما در تمام مهارت‌های سطح ${cefr}`}
+            >
+              ⚡ {calculateCefrTotalXp(cefr, allProgress).toLocaleString("fa-IR")} XP
             </div>
-            <div className={`${styles.statBadge} ${styles.stars}`}>
-              ⭐ {calculateTotalStars(allProgress)} ستاره
+            <div
+              className={`${styles.statBadge} ${styles.rank}`}
+              title={`رتبه شما در مهارت ${skillInfo.fa} سطح ${cefr}`}
+              onClick={() => setIsLeaderboardOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
+              🏅 رتبه {Math.min(
+                getLevelLeaderboard(skill, cefr, "daily", allProgress).userRank,
+                getLevelLeaderboard(skill, cefr, "all-time", allProgress).userRank
+              ).toLocaleString("fa-IR")}
             </div>
             {dailyRecord > 0 && (
               <div

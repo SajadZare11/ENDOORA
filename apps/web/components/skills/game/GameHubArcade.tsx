@@ -9,6 +9,8 @@ import {
   loadAllSkillsProgress,
   calculateGrandTotalXp,
   calculateTotalStars,
+  calculateCefrTotalXp,
+  getBestSkillRankForCefr,
 } from "../../../lib/skills/game-storage";
 import { GameArena } from "./GameArena";
 import { VocabTimeAttackArena } from "./VocabTimeAttackArena";
@@ -134,6 +136,9 @@ export function GameHubArcade() {
     refreshProgress();
   };
 
+  const cefrTotalXp = calculateCefrTotalXp(selectedCefr, skillsProgress);
+  const bestRankInfo = getBestSkillRankForCefr(selectedCefr, skillsProgress);
+
   return (
     <section className={styles.arcadeContainer} aria-label="آرکید بازی‌های مهارتی ایندورا">
       {/* Top Arcade Header */}
@@ -150,15 +155,29 @@ export function GameHubArcade() {
           </div>
 
           <div className={styles.statsCluster}>
-            <div className={`${styles.statBadge} ${styles.xp}`}>
-              ⚡ {totalXp.toLocaleString("fa-IR")} XP
+            <div
+              className={`${styles.statBadge} ${styles.xp}`}
+              title={`مجموع امتیاز شما در تمام مهارت‌های سطح ${selectedCefr}`}
+            >
+              ⚡ {cefrTotalXp.toLocaleString("fa-IR")} XP
             </div>
-            <div className={`${styles.statBadge} ${styles.stars}`}>
-              ⭐ {totalStars.toLocaleString("fa-IR")} ستاره
+            <div
+              className={`${styles.statBadge} ${styles.rank}`}
+              title={`بهترین رتبه شما در سطح ${selectedCefr}: رتبه ${bestRankInfo.bestRank.toLocaleString("fa-IR")} در ${bestRankInfo.skillTitleFa}`}
+              onClick={() => {
+                setLeaderboardSkill(bestRankInfo.bestSkill);
+                setIsLeaderboardOpen(true);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              🏅 رتبه {bestRankInfo.bestRank.toLocaleString("fa-IR")}
             </div>
             <button
               className={styles.leaderboardBtn}
-              onClick={() => setIsLeaderboardOpen(true)}
+              onClick={() => {
+                setLeaderboardSkill(bestRankInfo.bestSkill);
+                setIsLeaderboardOpen(true);
+              }}
               type="button"
             >
               🏆 جدول برترین‌ها
