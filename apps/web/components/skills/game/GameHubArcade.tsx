@@ -14,6 +14,8 @@ import { GameArena } from "./GameArena";
 import { VocabTimeAttackArena } from "./VocabTimeAttackArena";
 import { WordCascadeArena } from "./WordCascadeArena";
 import { SpeedDialogueArena } from "./SpeedDialogueArena";
+import { GrammarHexArena } from "./GrammarHexArena";
+import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
 
 interface SkillCardMeta {
@@ -36,11 +38,11 @@ const SKILL_METAS: SkillCardMeta[] = [
   },
   {
     key: "grammar",
-    icon: "🧩",
+    icon: "⚡",
     titleFa: "گرامر و ساختار",
     titleEn: "Grammar",
-    gameName: "Syntax Architect",
-    descFa: "چیدمان بلوک‌های مغناطیسی کلمات و تصحیح هوشمند خطاهای دستوری.",
+    gameName: "Hex Wire Routing (سیم‌کشی شش‌ضلعی نحو)",
+    descFa: "مسیریابی یال‌محور روی شبکه ۱۲ شش‌ضلعی با جریان سبز الکتریکی، تله‌های خطای فارسی (L1 Traps) و مسابقه سیم‌کشی همزمان بر اساس American English File.",
   },
   {
     key: "listening",
@@ -71,8 +73,8 @@ const SKILL_METAS: SkillCardMeta[] = [
     icon: "🎙️",
     titleFa: "مکالمه و گفتار",
     titleEn: "Speaking",
-    gameName: "Voice Echo",
-    descFa: "تکرار صوتی با میکروفون، سنجش تلفظ و افزایش اعتماد به نفس کلامی.",
+    gameName: "Voice Escape Room (اتاق فرار صوتی AEF)",
+    descFa: "توی اتاق فرار قفل شدی! اشیای اتاق رو بگرد، با مکالمه درست انگلیسی قفل‌ها رو وا کن و قبل از تموم شدن وقت بزن بیرون!",
   },
 ];
 
@@ -89,6 +91,7 @@ export function GameHubArcade() {
   const [selectedCefr, setSelectedCefr] = useState<CefrLevel>("A1");
   const [activeLevel, setActiveLevel] = useState<GameLevel | null>(null);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [leaderboardSkill, setLeaderboardSkill] = useState<SkillKey>("grammar");
   const [totalXp, setTotalXp] = useState(0);
   const [totalStars, setTotalStars] = useState(0);
   const [skillsProgress, setSkillsProgress] = useState(loadAllSkillsProgress());
@@ -106,6 +109,7 @@ export function GameHubArcade() {
   }, []);
 
   const handleStartGame = (skill: SkillKey) => {
+    setLeaderboardSkill(skill);
     const currentProgress = skillsProgress[skill]?.[selectedCefr];
     const targetLevelNum = Math.min(10, Math.max(1, currentProgress?.unlockedLevel || 1));
     const levelData = getSkillLevel(skill, selectedCefr, targetLevelNum);
@@ -268,8 +272,9 @@ export function GameHubArcade() {
       </div>
 
       {/* Active Game Arena Modal */}
-      {activeLevel && activeLevel.skill === "vocabulary" && (activeLevel.cefr === "C1" || activeLevel.cefr === "C2") ? (
-        <SpeedDialogueArena
+      {activeLevel && activeLevel.skill === "grammar" ? (
+        <GrammarHexArena
+          key={`grammar-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -278,12 +283,30 @@ export function GameHubArcade() {
           onNextLevel={handleNextLevel}
           onOpenLeaderboard={() => {
             setActiveLevel(null);
+            setLeaderboardSkill("grammar");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "vocabulary" && (activeLevel.cefr === "C1" || activeLevel.cefr === "C2") ? (
+        <SpeedDialogueArena
+          key={`dialogue-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("vocabulary");
             setIsLeaderboardOpen(true);
             refreshProgress();
           }}
         />
       ) : activeLevel && activeLevel.skill === "vocabulary" ? (
         <WordCascadeArena
+          key={`vocab-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -292,12 +315,30 @@ export function GameHubArcade() {
           onNextLevel={handleNextLevel}
           onOpenLeaderboard={() => {
             setActiveLevel(null);
+            setLeaderboardSkill("vocabulary");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "speaking" ? (
+        <SpeakingEscapeRoomArena
+          key={`speaking-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("speaking");
             setIsLeaderboardOpen(true);
             refreshProgress();
           }}
         />
       ) : activeLevel ? (
         <GameArena
+          key={`generic-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -312,7 +353,7 @@ export function GameHubArcade() {
         isOpen={isLeaderboardOpen}
         onClose={() => setIsLeaderboardOpen(false)}
         initialCefr={selectedCefr}
-        initialSkill="vocabulary"
+        initialSkill={leaderboardSkill}
       />
     </section>
   );

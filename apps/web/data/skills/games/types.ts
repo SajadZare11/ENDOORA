@@ -101,7 +101,140 @@ export interface LeaderboardEntry {
   isCurrentUser?: boolean;
   bestStreak?: number;
   bestTimeSeconds?: number;
+  honoraryBadge?: string;
+  grammarTitle?: string;
+  trapsDisarmed?: number;
 }
 
 export type LeaderboardPeriod = "daily" | "weekly" | "all-time";
 export type LeaderboardScope = "level" | "global";
+
+// Hexagonal Edge-Based Grammar Routing Types
+export interface HexEdgeOption {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+  isTrap?: boolean; // Persian L1 error trap
+  trapExplanationFa?: string; // Concise Persian explanation of the L1 error
+  isBranchingClause?: boolean; // Leads to a longer/more complex grammatical structure
+  comboBoost?: number;
+  nextNodeId?: string; // Destination node ID when this edge is routed
+}
+
+export interface HexCircuitNode {
+  id: string;
+  stepIndex: number;
+  label?: string; // Current node token / accumulated fragment
+  options: HexEdgeOption[];
+  isGoal?: boolean;
+}
+
+export interface GrammarCircuitRound {
+  id: string;
+  titleFa: string;
+  titleEn: string;
+  targetConcept: string;
+  aefReference: string; // e.g. "AEF Starter Unit 3B", "AEF 5 Unit 6A"
+  startingPrompt: string;
+  translationFa: string;
+  nodes: HexCircuitNode[];
+  branchingExplanationFa?: string;
+}
+
+export interface GrammarStageData {
+  levelNumber: number;
+  cefr: CefrLevel;
+  titleFa: string;
+  titleEn: string;
+  descriptionFa: string;
+  aefUnit: string;
+  circuits: GrammarCircuitRound[];
+}
+
+export interface GrammarCircuitResult {
+  levelNumber: number;
+  cefr: CefrLevel;
+  finalScore: number;
+  cleanStreak: number;
+  speedrunSeconds: number;
+  trapsDisarmed: number;
+  wonDualRace: boolean;
+  accuracy: number;
+  stars: number;
+  xpEarned: number;
+  honoraryTitle?: string;
+}
+
+// Speaking Mission & Voice Arena Types
+export interface SpeakingKeywordObjective {
+  id: string;
+  phrase: string;
+  phoneticOrHintFa: string;
+  weight: number;
+}
+
+export interface SpeakingVocabUpgrade {
+  learnerPhrase: string;
+  nativeUpgrade: string;
+  explanationFa: string;
+  audioText: string;
+}
+
+export interface SpeakingTurn {
+  turnNumber: number; // 1, 2, or 3
+  characterSpeaker: DialogueSpeaker;
+  idealResponse: {
+    text: string;
+    audioText?: string;
+    explanationFa: string;
+  };
+  keywords: SpeakingKeywordObjective[];
+  fallbackOptions: string[];
+  vocabUpgrades: SpeakingVocabUpgrade[];
+  reactionWindowSeconds: number;
+}
+
+export interface SpeakingGhostProfile {
+  name: string;
+  avatar: string;
+  city: string;
+  reactionTimeAvg: number;
+  targetScore: number;
+  wpm: number;
+  title: string;
+}
+
+export interface SpeakingMission {
+  levelNumber: number;
+  cefr: CefrLevel;
+  titleFa: string;
+  titleEn: string;
+  scenarioFa: string;
+  locationContextFa: string;
+  xpReward: number;
+  timeLimitTotalSeconds: number;
+  minPassScore: number;
+  ghostRival: SpeakingGhostProfile;
+  turns: SpeakingTurn[];
+}
+
+export interface SpeakingEvaluationResult {
+  levelNumber: number;
+  cefr: CefrLevel;
+  finalScore: number;
+  passed: boolean;
+  stars: number;
+  xpEarned: number;
+  wpm: number;
+  hesitationsCount: number;
+  accuracyPct: number;
+  fluencyPct: number;
+  keywordsFound: string[];
+  totalKeywordsCount: number;
+  avgReactionSeconds: number;
+  beatGhostRival: boolean;
+  awardedBadges: string[];
+  vocabUpgrades: SpeakingVocabUpgrade[];
+  usedEmergencyFallback: boolean;
+}
+

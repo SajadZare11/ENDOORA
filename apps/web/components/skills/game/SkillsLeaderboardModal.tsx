@@ -457,7 +457,13 @@ export function SkillsLeaderboardModal({
             }}
           >
             <div>
-              {levelData.userRank === 1 ? (
+              {selectedSkill === "grammar" ? (
+                levelData.userRank === 1 ? (
+                  <span>👑 تبریک! شما در حال حاضر دارنده نشان «معمار ارشد نحو» در سطح {selectedCefr} هستید!</span>
+                ) : (
+                  <span>⚡ رتبه شما در گرامر سطح {selectedCefr}: #{levelData.userRank} (در رقابت برای عنوان «معمار ارشد نحو» 👑)</span>
+                )
+              ) : levelData.userRank === 1 ? (
                 <span>👑 تبریک! شما در حال حاضر رتبه ۱ {currentSkillObj.labelFa} سطح {selectedCefr} هستید!</span>
               ) : (
                 <span>⚡ رتبه شما در {currentSkillObj.labelFa} سطح {selectedCefr}: #{levelData.userRank}</span>
@@ -465,6 +471,11 @@ export function SkillsLeaderboardModal({
               {isCurrentCLevel && selectedSkill === "vocabulary" && (
                 <span style={{ marginRight: "0.75rem", fontSize: "0.78rem", color: "#64748b" }}>
                   (اسپیدران مکالمه — رده‌بندی بر اساس کمترین ثانیه)
+                </span>
+              )}
+              {selectedSkill === "grammar" && (
+                <span style={{ marginRight: "0.75rem", fontSize: "0.78rem", color: "#a855f7" }}>
+                  (رده‌بندی: استریک بدون غلط 🔥 $\rightarrow$ زمان اسپیدران ⏱️)
                 </span>
               )}
             </div>
@@ -507,9 +518,25 @@ export function SkillsLeaderboardModal({
                   <div className={styles.userCell}>
                     <span className={styles.userAvatar}>{item.avatar}</span>
                     <div className={styles.userNameBlock}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", flexWrap: "wrap" }}>
                         <span className={styles.userNameText}>{item.name}</span>
                         {isCurrentUser && <span className={styles.youBadge}>شما</span>}
+                        {item.honoraryBadge && (
+                          <span
+                            style={{
+                              fontSize: "0.7rem",
+                              fontWeight: 800,
+                              padding: "0.1rem 0.45rem",
+                              borderRadius: "9999px",
+                              background: item.rank === 1 ? "rgba(217, 70, 239, 0.15)" : "rgba(99, 102, 241, 0.15)",
+                              color: item.rank === 1 ? "#d946ef" : "#6366f1",
+                              border: `1px solid ${item.rank === 1 ? "#d946ef" : "rgba(99, 102, 241, 0.4)"}`,
+                              boxShadow: item.rank === 1 ? "0 0 10px rgba(217, 70, 239, 0.3)" : "none",
+                            }}
+                          >
+                            {item.honoraryBadge}
+                          </span>
+                        )}
                       </div>
                       <span className={styles.userMeta}>
                         {item.city}
@@ -517,9 +544,25 @@ export function SkillsLeaderboardModal({
                     </div>
                   </div>
 
-                  {/* Score badge or Speed Time for C1/C2 */}
+                  {/* Score badge or Speed/Streak for Grammar / C1/C2 */}
                   <div className={styles.scoreCell}>
-                    {item.bestTimeSeconds && selectedSkill === "vocabulary" && isCurrentCLevel ? (
+                    {selectedSkill === "grammar" ? (
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.2rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", direction: "ltr" }}>
+                          <span style={{ color: "#f97316", fontWeight: 800, fontSize: "0.85rem" }}>
+                            🔥 {item.bestStreak || 0}x
+                          </span>
+                          {item.bestTimeSeconds && (
+                            <span style={{ color: "#0284c7", fontWeight: 700, fontSize: "0.85rem" }}>
+                              ⏱️ {item.bestTimeSeconds.toFixed(1)}s
+                            </span>
+                          )}
+                        </div>
+                        <span className={styles.scoreUnit} style={{ color: "#64748b", fontWeight: 700 }}>
+                          {item.score.toLocaleString("fa-IR")} امتیاز
+                        </span>
+                      </div>
+                    ) : item.bestTimeSeconds && selectedSkill === "vocabulary" && isCurrentCLevel ? (
                       <>
                         <span
                           className={styles.scoreNumber}

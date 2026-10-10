@@ -17,6 +17,7 @@ import {
 } from "./levels-b1.ts";
 import { getTierLevels } from "./levels-b2-c1-c2.ts";
 import { A1_ENHANCED_VOCAB_LEVELS } from "./vocab-curriculum.ts";
+import { SPEAKING_MISSIONS_BY_TIER } from "./speaking-missions.ts";
 
 // ==========================================
 // VOCABULARY: VOCAB BLITZ (A1 Levels 1-10)
@@ -2470,6 +2471,41 @@ export const A1_SPEAKING_LEVELS: GameLevel[] = [
 ];
 
 // Helper registry linking skills and CEFR
+function speakingMissionToGameLevel(m: (typeof SPEAKING_MISSIONS_BY_TIER)["A1"][0]): GameLevel {
+  return {
+    levelNumber: m.levelNumber,
+    cefr: m.cefr,
+    skill: "speaking",
+    titleFa: m.titleFa,
+    titleEn: m.titleEn,
+    descriptionFa: m.scenarioFa,
+    xpReward: m.xpReward,
+    timeLimitSeconds: m.timeLimitTotalSeconds,
+    stageFocus: "dialogues",
+    questions: m.turns.map((t) => ({
+      id: `spk-${m.cefr.toLowerCase()}-${m.levelNumber}-${t.turnNumber}`,
+      type: "dialogue-reply",
+      prompt: t.characterSpeaker.text,
+      promptFa: t.characterSpeaker.roleFa,
+      speakerA: t.characterSpeaker,
+      explanationFa: t.idealResponse.explanationFa,
+      targetSentence: t.idealResponse.text,
+      audioText: t.idealResponse.audioText || t.idealResponse.text,
+      options: t.fallbackOptions,
+      correctAnswer: 0,
+    })),
+  };
+}
+
+export const SPEAKING_GAME_LEVELS: Record<CefrLevel, GameLevel[]> = {
+  A1: SPEAKING_MISSIONS_BY_TIER.A1.map(speakingMissionToGameLevel),
+  A2: SPEAKING_MISSIONS_BY_TIER.A2.map(speakingMissionToGameLevel),
+  B1: SPEAKING_MISSIONS_BY_TIER.B1.map(speakingMissionToGameLevel),
+  B2: SPEAKING_MISSIONS_BY_TIER.B2.map(speakingMissionToGameLevel),
+  C1: SPEAKING_MISSIONS_BY_TIER.C1.map(speakingMissionToGameLevel),
+  C2: SPEAKING_MISSIONS_BY_TIER.C2.map(speakingMissionToGameLevel),
+};
+
 export const SKILLS_GAME_DATA: Record<SkillKey, Record<CefrLevel, GameLevel[]>> = {
   vocabulary: {
     A1: A1_ENHANCED_VOCAB_LEVELS,
@@ -2511,14 +2547,7 @@ export const SKILLS_GAME_DATA: Record<SkillKey, Record<CefrLevel, GameLevel[]>> 
     C1: getTierLevels("C1", "writing"),
     C2: getTierLevels("C2", "writing"),
   },
-  speaking: {
-    A1: A1_SPEAKING_LEVELS,
-    A2: A2_SPEAKING_LEVELS,
-    B1: B1_SPEAKING_LEVELS,
-    B2: getTierLevels("B2", "speaking"),
-    C1: getTierLevels("C1", "speaking"),
-    C2: getTierLevels("C2", "speaking"),
-  },
+  speaking: SPEAKING_GAME_LEVELS,
 };
 
 // Generates starter levels for A2 through C2

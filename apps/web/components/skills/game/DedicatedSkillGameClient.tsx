@@ -17,7 +17,10 @@ import { VocabTimeAttackArena } from "./VocabTimeAttackArena";
 import { WordCascadeArena } from "./WordCascadeArena";
 import { ChatPingPongArena } from "./ChatPingPongArena";
 import { SpeedDialogueArena } from "./SpeedDialogueArena";
+import { GrammarHexArena } from "./GrammarHexArena";
+import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
+
 
 interface Props {
   skill: SkillKey;
@@ -127,7 +130,11 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                 نقشه ۱۰ مرحله‌ای {skillInfo.fa} ({cefr})
               </h1>
               <p className={styles.arcadeSubtitle}>
-                مراحل ۱۰ گانه را با حداقل حد نصاب قبولی پشت سر بگذار؛ با انتخاب هر کلمه تایل‌ها شافل می‌شوند، زمان فشرده‌تر می‌شود و کلمات جدیدی ارائه می‌گردند!
+                {skill === "grammar"
+                  ? "مدارهای شش‌ضلعی نحو را با سیم‌کشی جریان سبز و انتخاب اضلاع درست هدایت کن؛ مراقب شوک اتصال کوتاه و تله‌های خطای فارسی باش و سریع‌تر از شبح لیدربرد به گره پایانی برس!"
+                  : skill === "speaking"
+                  ? "توی اتاق فرار صوتی، اشیای قفل‌شده اتاق رو بررسی کن؛ با تلفظ انگلیسی و گفتن کلمات کلیدی، قفل‌ها رو وا کن و قبل از اینکه وقتت تموم بشه بزن بیرون و رکورد شبح رقیب رو بشکن!"
+                  : "مراحل ۱۰ گانه را با حداقل حد نصاب قبولی پشت سر بگذار؛ با انتخاب هر کلمه تایل‌ها شافل می‌شوند، زمان فشرده‌تر می‌شود و کلمات جدیدی ارائه می‌گردند!"}
               </p>
             </div>
           </div>
@@ -187,7 +194,21 @@ export function DedicatedSkillGameClient({ skill }: Props) {
 
           // Focus label
           const isConversationalC1C2 = skill === "vocabulary" && (cefr === "C1" || cefr === "C2");
-          const focusLabel = isConversationalC1C2
+          const isGrammar = skill === "grammar";
+          const isSpeaking = skill === "speaking";
+          const focusLabel = isSpeaking
+            ? cefr === "A1" || cefr === "A2"
+              ? "🎙️ مکالمه هدایت‌شده و سناریو"
+              : cefr === "B1" || cefr === "B2"
+              ? "🗣️ حل مسئله و دفاع از نظر"
+              : "⚡ بداهه‌گویی و مناظره زیر فشار"
+            : isGrammar
+            ? cefr === "A1" || cefr === "A2"
+              ? "⚡ معمار پایه نحو (AEF 1-2)"
+              : cefr === "B1" || cefr === "B2"
+              ? "🧩 مهندسی بندها و شرطی‌ها (AEF 3-4)"
+              : "👑 سوپرلیگ وارونگی و ساختار (AEF 5)"
+            : isConversationalC1C2
             ? "🏓 پینگ‌پنگ مکالمه"
             : lvl.stageFocus === "dialogues" || lvl.levelNumber >= 8
             ? "💬 مکالمه واقعی"
@@ -195,13 +216,26 @@ export function DedicatedSkillGameClient({ skill }: Props) {
             ? "🧩 چانک‌های محاوره‌ای"
             : "📚 لغات و همایندها";
 
-          const focusColor = isConversationalC1C2
+          const focusColor = isSpeaking
+            ? cefr === "C1" || cefr === "C2"
+              ? "#ef4444"
+              : cefr === "B1" || cefr === "B2"
+              ? "#f59e0b"
+              : "#10b981"
+            : isGrammar
+            ? cefr === "C1" || cefr === "C2"
+              ? "#d946ef"
+              : cefr === "B1" || cefr === "B2"
+              ? "#6366f1"
+              : "#0284c7"
+            : isConversationalC1C2
             ? "#6366f1"
             : lvl.stageFocus === "dialogues" || lvl.levelNumber >= 8
             ? "#8b5cf6"
             : lvl.stageFocus === "chunks" || (lvl.levelNumber >= 5 && lvl.levelNumber <= 7)
             ? "#0284c7"
             : "#059669";
+
 
           return (
             <div
@@ -294,7 +328,9 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                 onClick={() => isUnlocked && setActiveLevel(lvl)}
                 style={{
                   background: isUnlocked
-                    ? isConversationalC1C2
+                    ? isSpeaking
+                      ? "linear-gradient(135deg, #10b981, #059669)"
+                      : isConversationalC1C2
                       ? "linear-gradient(135deg, #6366f1, #4f46e5)"
                       : "linear-gradient(135deg, #2563eb, #1d4ed8)"
                     : "#94a3b8",
@@ -303,9 +339,13 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               >
                 {isUnlocked
                   ? starsEarned > 0
-                    ? isConversationalC1C2
+                    ? isSpeaking
+                      ? "🔄 دوئل صوتی و رکورد مجدد"
+                      : isConversationalC1C2
                       ? "🔄 رقابت مجدد سرعت و زمان"
                       : "🔄 بازی سرعتی و رکورد"
+                    : isSpeaking
+                    ? "🎙️ شروع مأموریت صوتی"
                     : isConversationalC1C2
                     ? "⚡ شروع چالش مکالمه پیوسته"
                     : "▶️ شروع استیج"
@@ -317,8 +357,39 @@ export function DedicatedSkillGameClient({ skill }: Props) {
       </div>
 
       {/* Active Game Arena Modal */}
-      {activeLevel && skill === "vocabulary" && (activeLevel.cefr === "C1" || activeLevel.cefr === "C2") ? (
+      {activeLevel && skill === "speaking" ? (
+        <SpeakingEscapeRoomArena
+          key={`speaking-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && skill === "grammar" ? (
+        <GrammarHexArena
+          key={`grammar-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && skill === "vocabulary" && (activeLevel.cefr === "C1" || activeLevel.cefr === "C2") ? (
         <SpeedDialogueArena
+          key={`dialogue-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -333,6 +404,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
         />
       ) : activeLevel && skill === "vocabulary" ? (
         <WordCascadeArena
+          key={`vocab-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -347,6 +419,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
         />
       ) : activeLevel ? (
         <GameArena
+          key={`generic-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
@@ -355,6 +428,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
           onNextLevel={handleNextLevel}
         />
       ) : null}
+
 
       {/* Dual Leaderboard Modal */}
       <SkillsLeaderboardModal

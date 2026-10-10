@@ -1,0 +1,430 @@
+import type { CefrLevel, GrammarCircuitRound } from "./types";
+
+/**
+ * American English File (Starter to Level 5) - Comprehensive Grammar Sentence Bank.
+ * Provides a dynamic pool of authentic circuits for all CEFR micro-levels (A1 to C2).
+ * Every replay draws a fresh sentence from this bank matching the exact grammar concept!
+ */
+
+export const GRAMMAR_SENTENCE_BANK: Record<CefrLevel, Record<number, GrammarCircuitRound[]>> = {
+  A1: {
+    1: [
+      {
+        id: "a1-01-bank-1",
+        titleFa: "بانک جملات ۱: معرفی شغل و ضمیر فاعلی",
+        titleEn: "He is an architect",
+        targetConcept: "Subject-Verb Agreement (He / is)",
+        aefReference: "AEF Starter 1A",
+        startingPrompt: "He",
+        translationFa: "او یک معمار برجسته در این شرکت بزرگ است.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "He",
+            options: [
+              { id: "b1-e0-1", text: "is", isCorrect: true, nextNodeId: "n1" },
+              { id: "b1-e0-2", text: "are", isCorrect: false, isTrap: true, trapExplanationFa: "در زبان انگلیسی برای فاعل مفرد He همیشه فعل is می‌نشیند." },
+              { id: "b1-e0-3", text: "am", isCorrect: false },
+              { id: "b1-e0-4", text: "be", isCorrect: false },
+              { id: "b1-e0-5", text: "has", isCorrect: false },
+              { id: "b1-e0-6", text: "have", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "He is",
+            options: [
+              { id: "b1-e1-1", text: "an architect", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b1-e1-2", text: "a famous architect who designs", isCorrect: true, isBranchingClause: true, comboBoost: 2, nextNodeId: "n2_branch" },
+              { id: "b1-e1-3", text: "a architect", isCorrect: false, isTrap: true, trapExplanationFa: "قبل از کلماتی که با حرف صدادار مثل a شروع می‌شوند باید an بیاید." },
+              { id: "b1-e1-4", text: "architect", isCorrect: false },
+              { id: "b1-e1-5", text: "the architects", isCorrect: false },
+              { id: "b1-e1-6", text: "of architect", isCorrect: false },
+            ],
+          },
+          {
+            id: "n2_branch",
+            stepIndex: 2,
+            label: "He is a famous architect who designs",
+            options: [
+              { id: "b1-e2-1", text: "modern buildings.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b1-e2-2", text: "for building modern.", isCorrect: false },
+              { id: "b1-e2-3", text: "with builds.", isCorrect: false },
+              { id: "b1-e2-4", text: "in buildings.", isCorrect: false },
+              { id: "b1-e2-5", text: "at modern.", isCorrect: false },
+              { id: "b1-e2-6", text: "to build.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+      {
+        id: "a1-01-bank-2",
+        titleFa: "بانک جملات ۲: فاعل جمع و توصیف مکان",
+        titleEn: "We are at the new library",
+        targetConcept: "Plural Pronouns & are",
+        aefReference: "AEF Starter 1B",
+        startingPrompt: "We",
+        translationFa: "ما امروز برای مطالعه در کتابخانه دانشگاه هستیم.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "We",
+            options: [
+              { id: "b2-e0-1", text: "are", isCorrect: true, nextNodeId: "n1" },
+              { id: "b2-e0-2", text: "is", isCorrect: false, isTrap: true, trapExplanationFa: "فاعل We جمع است و حتماً با are به کار می‌رود." },
+              { id: "b2-e0-3", text: "am", isCorrect: false },
+              { id: "b2-e0-4", text: "be", isCorrect: false },
+              { id: "b2-e0-5", text: "has", isCorrect: false },
+              { id: "b2-e0-6", text: "have", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "We are",
+            options: [
+              { id: "b2-e1-1", text: "at the library", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b2-e1-2", text: "at the central library preparing", isCorrect: true, isBranchingClause: true, comboBoost: 2, nextNodeId: "n2_branch" },
+              { id: "b2-e1-3", text: "on the library", isCorrect: false, isTrap: true, trapExplanationFa: "برای قرار داشتن در مکان مشخص عمومی از حرف اضافه at استفاده می‌شود نه on." },
+              { id: "b2-e1-4", text: "to library", isCorrect: false },
+              { id: "b2-e1-5", text: "by libraries", isCorrect: false },
+              { id: "b2-e1-6", text: "of the library", isCorrect: false },
+            ],
+          },
+          {
+            id: "n2_branch",
+            stepIndex: 2,
+            label: "We are at the central library preparing",
+            options: [
+              { id: "b2-e2-1", text: "for final exams.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b2-e2-2", text: "to exams final.", isCorrect: false },
+              { id: "b2-e2-3", text: "with exam final.", isCorrect: false },
+              { id: "b2-e2-4", text: "at finals.", isCorrect: false },
+              { id: "b2-e2-5", text: "on final exam.", isCorrect: false },
+              { id: "b2-e2-6", text: "in final exams.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+      {
+        id: "a1-01-bank-3",
+        titleFa: "بانک جملات ۳: ضمیر اول شخص و حالت منفی",
+        titleEn: "I am not tired",
+        targetConcept: "First Person Negative (I am not)",
+        aefReference: "AEF Starter 1B",
+        startingPrompt: "I",
+        translationFa: "من بعد از این سفر طولانی خسته نیستم.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "I",
+            options: [
+              { id: "b3-e0-1", text: "am not", isCorrect: true, nextNodeId: "n1" },
+              { id: "b3-e0-2", text: "not am", isCorrect: false, isTrap: true, trapExplanationFa: "کلمه not بعد از فعل کمکی am می‌آید نه قبل از آن." },
+              { id: "b3-e0-3", text: "isn't", isCorrect: false },
+              { id: "b3-e0-4", text: "aren't", isCorrect: false },
+              { id: "b3-e0-5", text: "don't be", isCorrect: false },
+              { id: "b3-e0-6", text: "no am", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "I am not",
+            options: [
+              { id: "b3-e1-1", text: "tired today.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b3-e1-2", text: "exhausted even though I walked", isCorrect: true, isBranchingClause: true, comboBoost: 2, nextNodeId: "n2_branch" },
+              { id: "b3-e1-3", text: "tiring today.", isCorrect: false },
+              { id: "b3-e1-4", text: "a tired.", isCorrect: false },
+              { id: "b3-e1-5", text: "of tired.", isCorrect: false },
+              { id: "b3-e1-6", text: "at tired.", isCorrect: false },
+            ],
+          },
+          {
+            id: "n2_branch",
+            stepIndex: 2,
+            label: "I am not exhausted even though I walked",
+            options: [
+              { id: "b3-e2-1", text: "for five miles.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b3-e2-2", text: "since five miles.", isCorrect: false },
+              { id: "b3-e2-3", text: "during five miles.", isCorrect: false },
+              { id: "b3-e2-4", text: "in five miles away.", isCorrect: false },
+              { id: "b3-e2-5", text: "to miles five.", isCorrect: false },
+              { id: "b3-e2-6", text: "with five miles.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+    2: [
+      {
+        id: "a1-02-bank-1",
+        titleFa: "بانک سوالات منفی: فاعل سوم شخص و doesn't",
+        titleEn: "He doesn't drink coffee",
+        targetConcept: "Present Simple Negative (doesn't + base verb)",
+        aefReference: "AEF 1 Unit 2A",
+        startingPrompt: "He",
+        translationFa: "او شب‌ها قبل از خواب قهوه نمی‌نوشد.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "He",
+            options: [
+              { id: "a12b-e0-1", text: "doesn't", isCorrect: true, nextNodeId: "n1" },
+              { id: "a12b-e0-2", text: "don't", isCorrect: false, isTrap: true, trapExplanationFa: "برای فاعل مفرد He باید از doesn't استفاده شود نه don't." },
+              { id: "a12b-e0-3", text: "isn't", isCorrect: false },
+              { id: "a12b-e0-4", text: "not", isCorrect: false },
+              { id: "a12b-e0-5", text: "no", isCorrect: false },
+              { id: "a12b-e0-6", text: "hasn't", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "He doesn't",
+            options: [
+              { id: "a12b-e1-1", text: "drink coffee", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "a12b-e1-2", text: "drink coffee late at night because", isCorrect: true, isBranchingClause: true, comboBoost: 2, nextNodeId: "n2_branch" },
+              { id: "a12b-e1-3", text: "drinks coffee", isCorrect: false, isTrap: true, trapExplanationFa: "بعد از فعل کمکی doesn't، فعل اصلی به شکل ساده (بدون s) می‌آید." },
+              { id: "a12b-e1-4", text: "drinking coffee", isCorrect: false },
+              { id: "a12b-e1-5", text: "drank coffee", isCorrect: false },
+              { id: "a12b-e1-6", text: "to drink coffee", isCorrect: false },
+            ],
+          },
+          {
+            id: "n2_branch",
+            stepIndex: 2,
+            label: "He doesn't drink coffee late at night because",
+            options: [
+              { id: "a12b-e2-1", text: "it keeps him awake.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "a12b-e2-2", text: "it keep he awake.", isCorrect: false },
+              { id: "a12b-e2-3", text: "for him awake.", isCorrect: false },
+              { id: "a12b-e2-4", text: "he awake staying.", isCorrect: false },
+              { id: "a12b-e2-5", text: "keeping he wake.", isCorrect: false },
+              { id: "a12b-e2-6", text: "it is keep awake.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+  A2: {
+    1: [
+      {
+        id: "a2-01-bank-1",
+        titleFa: "بانک جملات گذشته استمراری با When",
+        titleEn: "I was cooking when the phone rang",
+        targetConcept: "Past Continuous + when + Past Simple",
+        aefReference: "AEF 2 Unit 2B",
+        startingPrompt: "I was cooking",
+        translationFa: "داشتم شام می‌پختم که ناگهان تلفن زنگ زد.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "I was cooking",
+            options: [
+              { id: "a21b-e0-1", text: "when", isCorrect: true, nextNodeId: "n1" },
+              { id: "a21b-e0-2", text: "while", isCorrect: false, isTrap: true, trapExplanationFa: "قبل از عمل کوتاهی که اتفاق می‌افتد (past simple) کلمه when به کار می‌رود نه while." },
+              { id: "a21b-e0-3", text: "during", isCorrect: false },
+              { id: "a21b-e0-4", text: "since", isCorrect: false },
+              { id: "a21b-e0-5", text: "as soon", isCorrect: false },
+              { id: "a21b-e0-6", text: "for", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "I was cooking when",
+            options: [
+              { id: "a21b-e1-1", text: "the phone rang.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "a21b-e1-2", text: "the alarm suddenly sounded throughout the house.", isCorrect: true, isBranchingClause: true, comboBoost: 2, nextNodeId: "n_goal" },
+              { id: "a21b-e1-3", text: "the phone was ringing.", isCorrect: false },
+              { id: "a21b-e1-4", text: "the phone ring.", isCorrect: false },
+              { id: "a21b-e1-5", text: "rang the phone.", isCorrect: false },
+              { id: "a21b-e1-6", text: "phone is rang.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+  B1: {
+    1: [
+      {
+        id: "b1-01-bank-1",
+        titleFa: "بانک جملات شرطی نوع دوم فرضی",
+        titleEn: "If I lived in Tokyo",
+        targetConcept: "Second Conditional (If + past simple, would)",
+        aefReference: "AEF 3 Unit 7B",
+        startingPrompt: "If I lived in Tokyo,",
+        translationFa: "اگر در توکیو زندگی می‌کردم، زبان ژاپنی را خیلی سریع یاد می‌گرفتم.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "If I lived in Tokyo,",
+            options: [
+              { id: "b11b-e0-1", text: "I would", isCorrect: true, nextNodeId: "n1" },
+              { id: "b11b-e0-2", text: "I will", isCorrect: false, isTrap: true, trapExplanationFa: "در شرطی نوع دوم فرضی، در جواب شرط حتماً از would استفاده می‌شود نه will." },
+              { id: "b11b-e0-3", text: "I had", isCorrect: false },
+              { id: "b11b-e0-4", text: "I am", isCorrect: false },
+              { id: "b11b-e0-5", text: "I do", isCorrect: false },
+              { id: "b11b-e0-6", text: "I can", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "If I lived in Tokyo, I would",
+            options: [
+              { id: "b11b-e1-1", text: "learn Japanese quickly.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b11b-e1-2", text: "master the Japanese language by practicing daily with locals.", isCorrect: true, isBranchingClause: true, comboBoost: 2.2, nextNodeId: "n_goal" },
+              { id: "b11b-e1-3", text: "learned Japanese quickly.", isCorrect: false, isTrap: true, trapExplanationFa: "بعد از فعل کمکی would، فعل اصلی باید به شکل ساده بدون پسوند بیاید." },
+              { id: "b11b-e1-4", text: "to learn Japanese.", isCorrect: false },
+              { id: "b11b-e1-5", text: "learning Japanese fast.", isCorrect: false },
+              { id: "b11b-e1-6", text: "have learn Japanese.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+  B2: {
+    1: [
+      {
+        id: "b2-01-bank-1",
+        titleFa: "بانک جملات شرطی نوع سوم گذشته",
+        titleEn: "If we had checked the weather,",
+        targetConcept: "Third Conditional (had done -> would have done)",
+        aefReference: "AEF 4 Unit 6B",
+        startingPrompt: "If we had checked the weather forecast,",
+        translationFa: "اگر پیش‌بینی هواشناسی را بررسی کرده بودیم، چترمان را فراموش نمی‌کردیم.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "If we had checked the weather forecast,",
+            options: [
+              { id: "b21b-e0-1", text: "we would not have", isCorrect: true, nextNodeId: "n1" },
+              { id: "b21b-e0-2", text: "we had not", isCorrect: false, isTrap: true, trapExplanationFa: "در بند اصلی شرطی نوع سوم باید ساختار would have + p.p قرار گیرد." },
+              { id: "b21b-e0-3", text: "we will not have", isCorrect: false },
+              { id: "b21b-e0-4", text: "we did not", isCorrect: false },
+              { id: "b21b-e0-5", text: "we wouldn't", isCorrect: false },
+              { id: "b21b-e0-6", text: "we haven't", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "If we had checked the weather forecast, we would not have",
+            options: [
+              { id: "b21b-e1-1", text: "forgotten our umbrellas.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "b21b-e1-2", text: "been completely soaked during the heavy downpour.", isCorrect: true, isBranchingClause: true, comboBoost: 2.4, nextNodeId: "n_goal" },
+              { id: "b21b-e1-3", text: "forget our umbrellas.", isCorrect: false },
+              { id: "b21b-e1-4", text: "forgot our umbrellas.", isCorrect: false },
+              { id: "b21b-e1-5", text: "forgetting the umbrellas.", isCorrect: false },
+              { id: "b21b-e1-6", text: "to forget our umbrellas.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+  C1: {
+    1: [
+      {
+        id: "c1-01-bank-1",
+        titleFa: "بانک جملات وارونگی با Rarely",
+        titleEn: "Rarely have scientists discovered",
+        targetConcept: "Negative Inversion with Rarely",
+        aefReference: "AEF 5 Unit 4B",
+        startingPrompt: "Rarely",
+        translationFa: "به ندرت دانشمندان چنین شواهد قانع‌کننده‌ای در فضا یافته‌اند.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "Rarely",
+            options: [
+              { id: "c11b-e0-1", text: "have scientists discovered", isCorrect: true, nextNodeId: "n1" },
+              { id: "c11b-e0-2", text: "scientists have discovered", isCorrect: false, isTrap: true, trapExplanationFa: "وقتی قید منفی Rarely در آغاز جمله می‌آید، ترتیب فاعل و فعل کمکی وارونه می‌شود." },
+              { id: "c11b-e0-3", text: "did scientists discovered", isCorrect: false },
+              { id: "c11b-e0-4", text: "have discovered scientists", isCorrect: false },
+              { id: "c11b-e0-5", text: "scientists discovered", isCorrect: false },
+              { id: "c11b-e0-6", text: "had scientists discovering", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "Rarely have scientists discovered",
+            options: [
+              { id: "c11b-e1-1", text: "such compelling evidence.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "c11b-e1-2", text: "evidence of such extraordinary magnitude in astrophysics.", isCorrect: true, isBranchingClause: true, comboBoost: 2.8, nextNodeId: "n_goal" },
+              { id: "c11b-e1-3", text: "so compelling evidence.", isCorrect: false },
+              { id: "c11b-e1-4", text: "such a compelling evidences.", isCorrect: false },
+              { id: "c11b-e1-5", text: "much compelling evidence.", isCorrect: false },
+              { id: "c11b-e1-6", text: "too compelling evidence.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+  C2: {
+    1: [
+      {
+        id: "c2-01-bank-1",
+        titleFa: "بانک جملات وجه التزامی فرمایشی",
+        titleEn: "It is crucial that he remain",
+        targetConcept: "Mandative Subjunctive with Base Form",
+        aefReference: "AEF 5 Unit 8B",
+        startingPrompt: "It is crucial that the committee",
+        translationFa: "بسیار حیاتی است که کمیته در تمام مراحل کاملاً بی‌طرف بماند.",
+        nodes: [
+          {
+            id: "n0",
+            stepIndex: 0,
+            label: "It is crucial that the committee",
+            options: [
+              { id: "c21b-e0-1", text: "remain", isCorrect: true, nextNodeId: "n1" },
+              { id: "c21b-e0-2", text: "remains", isCorrect: false, isTrap: true, trapExplanationFa: "در وجه التزامی رسمی بعد از صفات ضروری (crucial / imperative)، فعل به شکل پایه (بدون s) می‌آید." },
+              { id: "c21b-e0-3", text: "is remaining", isCorrect: false },
+              { id: "c21b-e0-4", text: "remained", isCorrect: false },
+              { id: "c21b-e0-5", text: "has remained", isCorrect: false },
+              { id: "c21b-e0-6", text: "to remain", isCorrect: false },
+            ],
+          },
+          {
+            id: "n1",
+            stepIndex: 1,
+            label: "It is crucial that the committee remain",
+            options: [
+              { id: "c21b-e1-1", text: "completely objective.", isCorrect: true, nextNodeId: "n_goal" },
+              { id: "c21b-e1-2", text: "impartial and transparent throughout the formal inquiry.", isCorrect: true, isBranchingClause: true, comboBoost: 3.0, nextNodeId: "n_goal" },
+              { id: "c21b-e1-3", text: "with complete objectivity.", isCorrect: false },
+              { id: "c21b-e1-4", text: "objectively.", isCorrect: false },
+              { id: "c21b-e1-5", text: "in objectiveness.", isCorrect: false },
+              { id: "c21b-e1-6", text: "as objective.", isCorrect: false },
+            ],
+          },
+          { id: "n_goal", stepIndex: 2, label: "Goal", options: [], isGoal: true },
+        ],
+      },
+    ],
+  },
+};

@@ -365,6 +365,58 @@ export function recordLevelCompletion(
   );
 }
 
+export function recordGrammarHexCompletion(
+  cefr: CefrLevel,
+  levelNumber: number,
+  result: {
+    finalScore: number;
+    cleanStreak: number;
+    speedrunSeconds: number;
+    trapsDisarmed: number;
+    wonDualRace: boolean;
+    accuracy: number;
+    stars: number;
+  },
+  baseXp: number = 100
+): SaveOutcome {
+  if (result.speedrunSeconds > 0) {
+    saveStageBestTime("grammar", cefr, levelNumber, result.speedrunSeconds);
+  }
+  return recordVocabRushCompletion(
+    "grammar",
+    cefr,
+    levelNumber,
+    result.finalScore,
+    result.accuracy,
+    Math.round((result.accuracy / 100) * 10),
+    10,
+    baseXp
+  );
+}
+
+export function recordSpeakingMissionCompletion(
+  cefr: CefrLevel,
+  levelNumber: number,
+  finalScore: number,
+  accuracyPct: number,
+  fluencyPct: number,
+  wpm: number,
+  baseXp: number = 80
+): SaveOutcome {
+  saveStageBestPoints("speaking", cefr, levelNumber, finalScore);
+  return recordVocabRushCompletion(
+    "speaking",
+    cefr,
+    levelNumber,
+    finalScore,
+    accuracyPct,
+    Math.round((accuracyPct / 100) * 10),
+    10,
+    baseXp
+  );
+}
+
+
 export function calculateGrandTotalXp(all?: AllSkillsProgress): number {
   const progress = all || loadAllSkillsProgress();
   let total = 0;
@@ -946,6 +998,12 @@ export function getLevelLeaderboard(
     }
 
     const peerSpeed = peer.baseSpeeds?.[cefr as "C1" | "C2"];
+    let computedSpeed: number | undefined = undefined;
+    if (skill === "grammar") {
+      computedSpeed = Number((18.0 + ((peer.id.charCodeAt(peer.id.length - 1) * 3) % 12) + (10 - Math.min(peerScore / 300, 8))).toFixed(1));
+    } else if ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking")) {
+      computedSpeed = peerSpeed ?? Math.max(18.5, Number((55 - peerScore / 60 + (idx % 3) * 1.5).toFixed(1)));
+    }
 
     return {
       id: peer.id,
@@ -958,17 +1016,14 @@ export function getLevelLeaderboard(
       starsCount: Math.round(peerScore / 100),
       streakDays: peer.streakDays,
       rank: 0,
-      bestStreak: Math.round(peerScore / 150) + 3,
-      bestTimeSeconds:
-        (cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking")
-          ? peerSpeed ?? Math.max(18.5, Number((55 - peerScore / 60 + (idx % 3) * 1.5).toFixed(1)))
-          : undefined,
+      bestStreak: skill === "grammar" ? Math.min(10, Math.round(peerScore / 250) + 4) : Math.round(peerScore / 150) + 3,
+      bestTimeSeconds: computedSpeed,
     };
   });
 
-  // Look up best completion time for user in C1/C2
+  // Look up best completion time for user
   let userBestTime: number | undefined = undefined;
-  if ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking")) {
+  if (skill === "grammar" || ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking"))) {
     let minTime = 0;
     for (let st = 1; st <= 10; st++) {
       const t = getStageBestTime(skill, cefr, st);
@@ -990,20 +1045,59 @@ export function getLevelLeaderboard(
     streakDays: userScore > 0 ? 3 : 1,
     rank: 0,
     isCurrentUser: true,
-    bestStreak: Math.round(userScore / 140),
+    bestStreak: skill === "grammar" ? Math.min(10, Math.round(userScore / 280) || (userScore > 0 ? 6 : 0)) : Math.round(userScore / 140),
     bestTimeSeconds: userBestTime,
   };
 
   entries.push(userEntry);
 
-  // Sort descending by score
-  entries.sort((a, b) => b.score - a.score);
+  // Sorting
+  if (skill === "grammar") {
+    // Grammar Tie-Breaker:
+    // 1. Clean Streak (bestStreak descending)
+    // 2. Speedrun Time (bestTimeSeconds ascending, lower is better)
+    // 3. Total Weighted Score (descending)
+    entries.sort((a, b) => {
+      const streakA = a.bestStreak || 0;
+      const streakB = b.bestStreak || 0;
+      if (streakB !== streakA) return streakB - streakA;
 
-  // Assign ranks
-  const rankedEntries = entries.map((item, idx) => ({
-    ...item,
-    rank: idx + 1,
-  }));
+      const timeA = a.bestTimeSeconds || 999;
+      const timeB = b.bestTimeSeconds || 999;
+      if (timeA !== timeB) return timeA - timeB;
+
+      return b.score - a.score;
+    });
+  } else {
+    // Standard score sort
+    entries.sort((a, b) => b.score - a.score);
+  }
+
+  // Assign ranks & dynamic honorary badges
+  const rankedEntries = entries.map((item, idx) => {
+    let honoraryBadge: string | undefined = undefined;
+    let grammarTitle: string | undefined = undefined;
+
+    if (skill === "grammar") {
+      if (idx === 0) {
+        honoraryBadge = "👑 معمار ارشد نحو";
+        grammarTitle = "معمار ارشد نحو";
+      } else if (idx === 1 || idx === 2) {
+        honoraryBadge = "⚡ مهندس سازه";
+        grammarTitle = "مهندس سازه";
+      } else if ((item.bestStreak || 0) >= 10) {
+        honoraryBadge = "🛡️ دست‌نیافتنی (Zero Error)";
+        grammarTitle = "شکارچی خطای نحو";
+      }
+    }
+
+    return {
+      ...item,
+      rank: idx + 1,
+      honoraryBadge,
+      grammarTitle,
+    };
+  });
 
   const userRankItem = rankedEntries.find((e) => e.isCurrentUser);
   const userRank = userRankItem?.rank || rankedEntries.length;

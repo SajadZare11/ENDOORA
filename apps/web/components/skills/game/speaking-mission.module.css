@@ -1,0 +1,894 @@
+/* Speaking Mission Arena - Modern Futuristic & Esports HUD Styling */
+
+.arenaOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 15, 29, 0.94);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  direction: rtl;
+  font-family: inherit;
+}
+
+.arenaContainer {
+  width: 100%;
+  max-width: 1040px;
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  color: #f8fafc;
+}
+
+/* Header HUD */
+.arenaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  background: rgba(15, 23, 42, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.missionMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cefrPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-weight: 900;
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.missionTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.locationBadge {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hudButton {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border-radius: 12px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hudButton:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.closeButton {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(239, 68, 68, 0.25);
+  transform: scale(1.05);
+}
+
+/* Ghost Rival Track (Top Race) */
+.ghostRaceTrack {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 0.85rem 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.trackInfoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.trackRivalMeta {
+  color: #a855f7;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.trackUserMeta {
+  color: #38bdf8;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.trackGroove {
+  height: 14px;
+  background: #1e293b;
+  border-radius: 9999px;
+  position: relative;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trackGhostBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.4), rgba(168, 85, 247, 0.9));
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trackUserBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+  border-radius: 9999px;
+  transition: width 0.4s ease-out;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.ghostPin {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  transition: left 0.6s ease;
+}
+
+.userPin {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  transition: left 0.4s ease;
+}
+
+/* Turn Tracker (1 of 3) */
+.turnProgressCluster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.turnIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.turnIndicator.active {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
+}
+
+.turnIndicator.completed {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Main Mission Stage */
+.stageBody {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: 480px;
+}
+
+/* Dialogue Speaker Card */
+.characterCard {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.characterAvatarBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 80px;
+}
+
+.characterAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #334155, #1e293b);
+  border: 2px solid #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 0 16px rgba(96, 165, 250, 0.3);
+}
+
+.characterRoleBadge {
+  font-size: 0.75rem;
+  background: rgba(96, 165, 250, 0.15);
+  color: #93c5fd;
+  padding: 0.15rem 0.55rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.characterDialogueBox {
+  flex: 1;
+}
+
+.characterNameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.characterName {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #e2e8f0;
+}
+
+.listenAudioBtn {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  border-radius: 10px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s;
+}
+
+.listenAudioBtn:hover {
+  background: rgba(59, 130, 246, 0.3);
+  color: #ffffff;
+}
+
+.dialogueTextPrompt {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #f8fafc;
+  font-weight: 600;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Pressure Clock & Waveform HUD */
+.pressureClockHud {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.pressureGauge {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.pressureTimerCircle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 3px solid #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+  transition: all 0.3s;
+}
+
+.pressureTimerCircle.warning {
+  border-color: #f59e0b;
+  color: #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+}
+
+.pressureTimerCircle.danger {
+  border-color: #ef4444;
+  color: #ef4444;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.6);
+  animation: pulseDanger 1s infinite alternate;
+}
+
+@keyframes pulseDanger {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.pressureMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pressureLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.pressureBonusText {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #34d399;
+}
+
+/* Audio Visualizer Waves */
+.waveformBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 48px;
+}
+
+.waveBar {
+  width: 4px;
+  height: 8px;
+  background: #38bdf8;
+  border-radius: 4px;
+  transition: height 0.15s ease;
+}
+
+.waveBar.listening {
+  background: #10b981;
+  animation: wavePulse 0.8s infinite ease-in-out alternate;
+}
+
+@keyframes wavePulse {
+  0% { height: 6px; }
+  100% { height: 42px; }
+}
+
+/* Keyword Objectives Deck */
+.keywordsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.keywordsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.keywordsTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.keywordsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.keywordCard {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px dashed rgba(251, 191, 36, 0.4);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.keywordCard.discovered {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
+}
+
+.keywordText {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  direction: ltr;
+}
+
+.keywordHint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+.keywordBadge {
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.keywordCard.discovered .keywordBadge {
+  background: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+}
+
+/* User Speech Action Zone */
+.actionZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.micCluster {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.recordBtn {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.recordBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 35px rgba(37, 99, 235, 0.7);
+}
+
+.recordBtn.listening {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border-color: #fca5a5;
+  box-shadow: 0 0 35px rgba(220, 38, 38, 0.8);
+  animation: micRecordingPulse 1.2s infinite alternate;
+}
+
+@keyframes micRecordingPulse {
+  0% { transform: scale(1); box-shadow: 0 0 20px rgba(220, 38, 38, 0.5); }
+  100% { transform: scale(1.1); box-shadow: 0 0 40px rgba(220, 38, 38, 0.9); }
+}
+
+.liveTranscriptCard {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.transcriptText {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  direction: ltr;
+}
+
+.transcriptPlaceholder {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Fallback Emergency Options (Without Microphone) */
+.fallbackContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.fallbackHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.fallbackOptionBtn {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  color: #f1f5f9;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  direction: ltr;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fallbackOptionBtn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #60a5fa;
+  transform: translateX(4px);
+}
+
+/* Victory Scorecard Modal (Full Screen Debrief) */
+.scorecardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 29, 0.96);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.scorecardContent {
+  width: 100%;
+  max-width: 820px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.scorecardHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.victoryTitle {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #60a5fa, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.starsRow {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 2rem;
+}
+
+/* Head to Head Duel Box (You vs Ghost) */
+.duelComparisonGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.25rem;
+}
+
+.duelPlayerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.duelPlayerCard.winner {
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.duelAvatar {
+  font-size: 2.2rem;
+}
+
+.duelName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #f1f5f9;
+}
+
+.duelScore {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #38bdf8;
+}
+
+.duelVsDivider {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #94a3b8;
+}
+
+/* 4 Metrics Clusters */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metricCard {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metricValue {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Badges Showcase */
+.badgesCluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* Native Vocabulary Expansion Box */
+.vocabExpansionBox {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vocabBoxTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vocabItemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 10px;
+  gap: 1rem;
+}
+
+.vocabPhrases {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  direction: ltr;
+  text-align: left;
+}
+
+.learnerPhraseOld {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.nativePhraseNew {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.vocabNoteFa {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  direction: rtl;
+  text-align: right;
+  flex: 1;
+}
+
+.playAudioMiniBtn {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.playAudioMiniBtn:hover {
+  background: rgba(59, 130, 246, 0.35);
+  color: #ffffff;
+}
+
+/* Scorecard Action Buttons */
+.scorecardActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.primaryActionBtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.9rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primaryActionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.6);
+}
+
+.secondaryActionBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border-radius: 14px;
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondaryActionBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

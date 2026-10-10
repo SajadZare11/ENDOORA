@@ -1,0 +1,1209 @@
+/* ==========================================================================
+   Grammar Progressive Single-Hexagon Arena CSS Module
+   Optimized for focal single-hexagon view, animated edge lasers, 3D warp depth,
+   radar scanner, and zero page scrolling.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Arena Overlay (Fixed Modal Wrapper)
+   -------------------------------------------------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  overflow: hidden; /* Zero vertical scrolling */
+  animation: fadeIn 0.25s ease-out;
+}
+
+:global([data-theme="dark"]) .overlay {
+  background: rgba(3, 7, 18, 0.9);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   Arena Card Container (Full Screen Utilization - Zero Scroll)
+   -------------------------------------------------------------------------- */
+.arenaCard {
+  position: relative;
+  width: 98vw;
+  max-width: 1300px;
+  height: 95vh;
+  max-height: 96vh;
+  background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f8fafc 55%, #e2e8f0 100%);
+  border: 1.5px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.18), 0 0 35px rgba(99, 102, 241, 0.08);
+  border-radius: 1.25rem;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: inherit;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:global([data-theme="dark"]) .arenaCard {
+  background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 45px rgba(99, 102, 241, 0.2);
+  color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   Top HUD Bar (Compact & Full-Width)
+   -------------------------------------------------------------------------- */
+.hudBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 1.5rem;
+  background: rgba(248, 250, 252, 0.95);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  flex-shrink: 0;
+}
+
+:global([data-theme="dark"]) .hudBar {
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.stageMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cefrPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.stageTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+:global([data-theme="dark"]) .stageTitle {
+  color: #f1f5f9;
+}
+
+.aefBadge {
+  font-size: 0.75rem;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid #cbd5e1;
+}
+
+:global([data-theme="dark"]) .aefBadge {
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.hudMetrics {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.metricBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+:global([data-theme="dark"]) .metricBadge {
+  background: rgba(30, 41, 59, 0.65);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.stopwatch {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .stopwatch {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.streakFire {
+  color: #ea580c;
+  border-color: rgba(234, 88, 12, 0.3);
+  background: rgba(249, 115, 22, 0.08);
+}
+
+:global([data-theme="dark"]) .streakFire {
+  color: #f97316;
+  border-color: rgba(249, 115, 22, 0.4);
+  background: rgba(249, 115, 22, 0.12);
+}
+
+.scoreGlow {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.3);
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .scoreGlow {
+  color: #eab308;
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.closeBtn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  border-radius: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .closeBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+}
+
+.closeBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* --------------------------------------------------------------------------
+   Energy & Time Countdown Track
+   -------------------------------------------------------------------------- */
+.energyTrack {
+  width: 100%;
+  height: 5px;
+  background: rgba(148, 163, 184, 0.2);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.energyFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  box-shadow: 0 0 10px #10b981;
+  transition: width 0.2s linear;
+}
+
+.energyFillDanger {
+  background: linear-gradient(90deg, #ef4444, #f97316) !important;
+  box-shadow: 0 0 12px #ef4444 !important;
+  animation: pulseDanger 0.8s infinite;
+}
+
+@keyframes pulseDanger {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; filter: brightness(1.3); }
+}
+
+/* --------------------------------------------------------------------------
+   Pathway Breadcrumbs Rail
+   -------------------------------------------------------------------------- */
+.breadcrumbRail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  background: rgba(241, 245, 249, 0.8);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  flex-shrink: 0;
+  direction: ltr;
+}
+
+:global([data-theme="dark"]) .breadcrumbRail {
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.breadcrumbNode {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  transition: all 0.25s ease;
+}
+
+:global([data-theme="dark"]) .breadcrumbNode {
+  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.breadcrumbCurrent {
+  color: #4f46e5 !important;
+  border-color: #6366f1 !important;
+  background: #eef2ff !important;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .breadcrumbCurrent {
+  color: #38bdf8 !important;
+  border-color: #38bdf8 !important;
+  background: rgba(14, 165, 233, 0.18) !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.5);
+}
+
+.breadcrumbDone {
+  color: #065f46 !important;
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+}
+
+:global([data-theme="dark"]) .breadcrumbDone {
+  color: #34d399 !important;
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.15) !important;
+}
+
+.checkMark {
+  color: #10b981;
+  font-weight: 900;
+  margin-right: 0.2rem;
+}
+
+.breadcrumbArrow {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+:global([data-theme="dark"]) .breadcrumbArrow {
+  color: #475569;
+}
+
+/* --------------------------------------------------------------------------
+   Prompt Banner & Target Slot
+   -------------------------------------------------------------------------- */
+.circuitPromptBanner {
+  text-align: center;
+  margin: 0.4rem 0 0.1rem 0;
+  padding: 0 1.5rem;
+  max-width: 900px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.accumulatedSentence {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.4rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(99, 102, 241, 0.35);
+  border-radius: 0.95rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  direction: ltr;
+}
+
+:global([data-theme="dark"]) .accumulatedSentence {
+  background: rgba(30, 41, 59, 0.65);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.sentenceFragment {
+  color: #0284c7;
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .sentenceFragment {
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+.activeTargetSlot {
+  color: #9333ea;
+  padding: 0.1rem 0.5rem;
+  border-bottom: 2px dashed #9333ea;
+  animation: pulseSlot 1.5s infinite;
+}
+
+:global([data-theme="dark"]) .activeTargetSlot {
+  color: #c084fc;
+  border-bottom-color: #c084fc;
+}
+
+@keyframes pulseSlot {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.sentenceTranslation {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #475569;
+  direction: rtl;
+  font-weight: 600;
+}
+
+:global([data-theme="dark"]) .sentenceTranslation {
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Progressive Single-Hexagon Canvas
+   -------------------------------------------------------------------------- */
+.circuitCanvas {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 1rem 0.5rem 1rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.singleHexWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 960px;
+  max-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+}
+
+.warpingOut {
+  transform: scale(1.35) rotate(4deg);
+  opacity: 0;
+  filter: blur(5px);
+}
+
+.warpingIn {
+  animation: warpInAnim 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes warpInAnim {
+  0% {
+    transform: scale(0.8) rotate(-4deg);
+    opacity: 0;
+    filter: blur(3px);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.singleHexSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.12));
+}
+
+:global([data-theme="dark"]) .singleHexSvg {
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.7));
+}
+
+/* --------------------------------------------------------------------------
+   Concentric Radar Rings & Scanning Line
+   -------------------------------------------------------------------------- */
+.radarRingSmall {
+  fill: none;
+  stroke: rgba(99, 102, 241, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.radarRingMed {
+  fill: none;
+  stroke: rgba(99, 102, 241, 0.25);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.radarRingLarge {
+  fill: none;
+  stroke: rgba(99, 102, 241, 0.18);
+  stroke-width: 2;
+}
+
+:global([data-theme="dark"]) .radarRingSmall {
+  stroke: rgba(56, 189, 248, 0.4);
+}
+:global([data-theme="dark"]) .radarRingMed {
+  stroke: rgba(99, 102, 241, 0.35);
+}
+:global([data-theme="dark"]) .radarRingLarge {
+  stroke: rgba(99, 102, 241, 0.25);
+}
+
+.radarScannerGroup {
+  animation: radarSpin 5s linear infinite;
+}
+
+@keyframes radarSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.radarSweepLine {
+  stroke: #38bdf8;
+  stroke-width: 2;
+  opacity: 0.65;
+  filter: drop-shadow(0 0 8px #38bdf8);
+}
+
+/* --------------------------------------------------------------------------
+   Main Hexagon Polygon Styling
+   -------------------------------------------------------------------------- */
+.mainHexPolygon {
+  fill: #ffffff;
+  stroke: #6366f1;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.25));
+  transition: all 0.3s;
+}
+
+:global([data-theme="dark"]) .mainHexPolygon {
+  fill: radial-gradient(circle, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+  stroke: #818cf8;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 24px rgba(99, 102, 241, 0.5));
+}
+
+.mainHexGoalPolygon {
+  fill: #f0fdf4 !important;
+  stroke: #10b981 !important;
+  stroke-width: 5 !important;
+  filter: drop-shadow(0 0 32px #10b981) !important;
+  animation: goalPulse 1s alternate infinite ease-in-out;
+}
+
+:global([data-theme="dark"]) .mainHexGoalPolygon {
+  fill: rgba(6, 78, 59, 0.5) !important;
+  stroke: #34d399 !important;
+  filter: drop-shadow(0 0 38px #10b981) !important;
+}
+
+@keyframes goalPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.02); filter: brightness(1.25); }
+}
+
+.innerHexTrim {
+  fill: none;
+  stroke: rgba(148, 163, 184, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+:global([data-theme="dark"]) .innerHexTrim {
+  stroke: rgba(255, 255, 255, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   LEFT SIDE: Mini-Hex Trail & Electric Current Wire Flow
+   -------------------------------------------------------------------------- */
+.miniHexGroup {
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.miniHexGroup:hover {
+  transform: scale(1.14);
+  filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.9));
+}
+
+.miniHexPolygon {
+  fill: #fffbeb;
+  stroke: #f59e0b;
+  stroke-width: 3.2;
+  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
+  transition: all 0.25s;
+}
+
+:global([data-theme="dark"]) .miniHexPolygon {
+  fill: rgba(245, 158, 11, 0.1);
+  stroke: #fbbf24;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.6));
+}
+
+.miniHexActiveEdge {
+  stroke: #10b981 !important;
+  stroke-width: 6.5 !important;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 14px #10b981) !important;
+}
+
+.miniHexLabel {
+  fill: #065f46;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: central;
+  direction: ltr;
+  pointer-events: none;
+}
+
+:global([data-theme="dark"]) .miniHexLabel {
+  fill: #6ee7b7;
+  font-size: 11.5px;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.9);
+}
+
+.electricCurrentWire {
+  stroke: #10b981;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 8 5;
+  filter: drop-shadow(0 0 10px #10b981);
+  animation: electricFlow 1.2s linear infinite;
+}
+
+.electricFeederLine {
+  stroke: #10b981;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 6 4;
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.8));
+  animation: electricFlow 0.8s linear infinite;
+}
+
+@keyframes electricFlow {
+  from {
+    stroke-dashoffset: 26;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Physical Hexagon Edge Wires & Laser Currents
+   -------------------------------------------------------------------------- */
+.edgeBaseWire {
+  stroke: rgba(148, 163, 184, 0.5);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+:global([data-theme="dark"]) .edgeBaseWire {
+  stroke: rgba(148, 163, 184, 0.35);
+}
+
+/* Animated Green Laser running from vertex to vertex along the edge */
+.edgeLaserRunning {
+  stroke: #10b981 !important;
+  stroke-width: 8 !important;
+  stroke-linecap: round;
+  stroke-dasharray: 210;
+  stroke-dashoffset: 210;
+  animation: laserTravel 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes laserTravel {
+  0% {
+    stroke-dashoffset: 210;
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Animated Red Short-Circuit Shock line */
+.edgeShockRunning {
+  stroke: #ef4444 !important;
+  stroke-width: 8 !important;
+  stroke-linecap: round;
+  animation: redFlicker 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes redFlicker {
+  0%, 100% { opacity: 1; transform: translateX(0); }
+  20%, 60% { opacity: 0.3; transform: translateX(-4px); }
+  40%, 80% { opacity: 1; transform: translateX(4px); }
+}
+
+.vertexSparkCorrect {
+  fill: #34d399;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 14px #10b981);
+  animation: sparkBurst 0.4s ease-out forwards;
+}
+
+.vertexSparkWrong {
+  fill: #f87171;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 14px #ef4444);
+  animation: sparkBurst 0.4s ease-out forwards;
+}
+
+@keyframes sparkBurst {
+  0% { r: 6; opacity: 1; }
+  100% { r: 16; opacity: 0; }
+}
+
+.vertexDot {
+  fill: #38bdf8;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 10px #38bdf8);
+}
+
+.vertexDotGoal {
+  fill: #10b981;
+  stroke: #ffffff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 14px #10b981);
+}
+
+.corePortTitle {
+  fill: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  text-anchor: middle;
+  letter-spacing: 0.1em;
+}
+
+:global([data-theme="dark"]) .corePortTitle {
+  fill: #94a3b8;
+}
+
+.coreCurrentPrompt {
+  fill: #0284c7;
+  font-size: 20px;
+  font-weight: 900;
+  text-anchor: middle;
+  dominant-baseline: central;
+  direction: ltr;
+}
+
+:global([data-theme="dark"]) .coreCurrentPrompt {
+  fill: #38bdf8;
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   6 Edge Capsule Buttons Situated Directly ON the Hexagon Edges
+   -------------------------------------------------------------------------- */
+.edgePillsOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.edgePillButton {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.15rem;
+  max-width: 210px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1.8px solid #cbd5e1;
+  color: #0f172a;
+  font-size: 0.96rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  direction: ltr;
+  z-index: 20;
+}
+
+:global([data-theme="dark"]) .edgePillButton {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.45);
+  color: #f8fafc;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.65), 0 0 12px rgba(99, 102, 241, 0.25);
+}
+
+/* Hover Elevation & Zoom with NEUTRAL INDIGO highlight */
+.edgePillButton:hover:not(:disabled) {
+  z-index: 100 !important;
+  transform: translate(-50%, -50%) scale(1.15) translateY(-3px) !important;
+  background: #eff6ff;
+  border-color: #4f46e5;
+  color: #1e1b4b;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18), 0 0 22px rgba(79, 70, 229, 0.35) !important;
+}
+
+:global([data-theme="dark"]) .edgePillButton:hover:not(:disabled) {
+  background: rgba(30, 41, 59, 0.98);
+  border-color: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.7) !important;
+}
+
+.edgePillButton.correct {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  border-color: #34d399 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 30px #10b981, inset 0 0 10px rgba(255, 255, 255, 0.5) !important;
+  transform: translate(-50%, -50%) scale(1.18) !important;
+  z-index: 80 !important;
+  animation: greenPulse 0.4s ease-out;
+}
+
+.edgePillButton.wrong {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  border-color: #f87171 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 30px #ef4444, inset 0 0 10px rgba(255, 255, 255, 0.6) !important;
+  animation: redShockShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes greenPulse {
+  0% { transform: translate(-50%, -50%) scale(0.96); filter: brightness(1.8); }
+  100% { transform: translate(-50%, -50%) scale(1.18); filter: brightness(1); }
+}
+
+@keyframes redShockShake {
+  10%, 90% { transform: translate(-52%, -50%); }
+  20%, 80% { transform: translate(-48%, -50%); }
+  30%, 50%, 70% { transform: translate(-54%, -50%); }
+  40%, 60% { transform: translate(-46%, -50%); }
+}
+
+/* --------------------------------------------------------------------------
+   Goal Hexagon Terminal Card (When Sentence is Complete)
+   -------------------------------------------------------------------------- */
+.goalTerminalCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 120;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #10b981;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 35px rgba(16, 185, 129, 0.4);
+  border-radius: 1.5rem;
+  padding: 1.8rem 2.2rem;
+  text-align: center;
+  max-width: 520px;
+  width: 90%;
+  animation: scaleInGoal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+:global([data-theme="dark"]) .goalTerminalCard {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: #10b981;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(16, 185, 129, 0.5);
+  color: #f8fafc;
+}
+
+@keyframes scaleInGoal {
+  0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.goalTerminalIcon {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+.goalTerminalTitle {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #10b981;
+  margin: 0 0 0.8rem;
+}
+
+.goalCompletedSentence {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0.5rem 0;
+  direction: ltr;
+  line-height: 1.4;
+}
+
+:global([data-theme="dark"]) .goalCompletedSentence {
+  color: #ffffff;
+}
+
+.goalTranslation {
+  font-size: 0.92rem;
+  color: #64748b;
+  margin-bottom: 1.2rem;
+  direction: rtl;
+}
+
+:global([data-theme="dark"]) .goalTranslation {
+  color: #94a3b8;
+}
+
+.goalBadgeRewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+
+.goalRewardPill {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+:global([data-theme="dark"]) .goalRewardPill {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+}
+
+.goalRewardPillBonus {
+  background: rgba(234, 88, 12, 0.15);
+  border: 1px solid #ea580c;
+  color: #ea580c;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.goalNextLevelBtn {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 0.85rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.goalNextLevelBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.6);
+}
+
+.goalContinueBtn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 0.85rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.goalContinueBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(16, 185, 129, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   Frozen Circuit Notice
+   -------------------------------------------------------------------------- */
+.freezeBanner {
+  position: absolute;
+  bottom: 1.25rem;
+  background: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  padding: 0.55rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+  z-index: 110;
+  animation: redFlicker 0.45s;
+}
+
+/* --------------------------------------------------------------------------
+   Vocabulary-Style Victory & Game Over Modal
+   -------------------------------------------------------------------------- */
+.victoryOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.victoryCard {
+  background: #ffffff;
+  border: 1.5px solid rgba(99, 102, 241, 0.3);
+  border-radius: 1.5rem;
+  padding: 2.2rem 2.5rem;
+  max-width: 540px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .victoryCard {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #f8fafc;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.25);
+}
+
+.victoryStars {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.5));
+}
+
+.victoryTitle {
+  font-size: 1.45rem;
+  font-weight: 900;
+  margin: 0 0 0.4rem;
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .victoryTitle {
+  color: #ffffff;
+  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.victoryDesc {
+  font-size: 0.92rem;
+  color: #475569;
+  margin: 0 0 1rem;
+}
+
+:global([data-theme="dark"]) .victoryDesc {
+  color: #94a3b8;
+}
+
+.victoryHonorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  background: rgba(217, 70, 239, 0.12);
+  border: 1.5px solid #d946ef;
+  color: #a21caf;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+:global([data-theme="dark"]) .victoryHonorBadge {
+  background: rgba(217, 70, 239, 0.2);
+  color: #f5d0fe;
+  box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
+}
+
+.victoryStatsRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.victoryStatItem {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 105px;
+}
+
+:global([data-theme="dark"]) .victoryStatItem {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.victoryStatVal {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .victoryStatVal {
+  color: #ffffff;
+}
+
+.victoryStatLbl {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+:global([data-theme="dark"]) .victoryStatLbl {
+  color: #94a3b8;
+}
+
+.victoryActions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 0.85rem;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.5);
+}
+
+.secondaryBtn {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.85rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+:global([data-theme="dark"]) .secondaryBtn {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+}
+
+.secondaryBtn:hover {
+  background: #e2e8f0;
+}
+
+:global([data-theme="dark"]) .secondaryBtn:hover {
+  background: rgba(51, 65, 85, 0.9);
+}
+
+.tabBtn {
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.85rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+:global([data-theme="dark"]) .tabBtn {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+}
+
+.tabBtn:hover {
+  background: rgba(37, 99, 235, 0.16);
+}
