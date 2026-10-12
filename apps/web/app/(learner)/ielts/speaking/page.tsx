@@ -22,6 +22,7 @@ function IELTSSpeakingRoomContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const draftIdParam = searchParams.get("draftId");
+  const examIdParam = searchParams.get("examId") || searchParams.get("testId");
 
   const [prompts, setPrompts] = useState<IELTSSpeakingPrompt[]>([DEFAULT_SPEAKING_FALLBACK_PROMPT]);
   const [activePart, setActivePart] = useState<1 | 2 | 3>(1);
@@ -111,7 +112,7 @@ function IELTSSpeakingRoomContent() {
       setLoading(true);
       setError(null);
       try {
-        const fetchedPrompts = await fetchSpeakingPrompts();
+        const fetchedPrompts = await fetchSpeakingPrompts(examIdParam || undefined);
         if (fetchedPrompts && fetchedPrompts.length > 0) {
           setPrompts(fetchedPrompts);
         }
@@ -139,7 +140,7 @@ function IELTSSpeakingRoomContent() {
       }
     }
     init();
-  }, [draftIdParam]);
+  }, [draftIdParam, examIdParam]);
 
   // Overall Exam Clock Countdown
   useEffect(() => {

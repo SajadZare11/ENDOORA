@@ -135,7 +135,39 @@ export interface IELTSWritingHistoryItem {
 // API CLIENT METHODS WITH SECURE FALLBACKS
 // =============================================================================
 
-export async function fetchWritingPrompts(): Promise<IELTSWritingPrompt[]> {
+import { getIeltsExamById } from "../data/ielts/index.ts";
+
+export async function fetchWritingPrompts(examId?: string): Promise<IELTSWritingPrompt[]> {
+  if (examId) {
+    const exam = getIeltsExamById(examId);
+    if (exam) {
+      const wMod = exam.modules.find((m) => m.skill === "writing");
+      if (wMod && wMod.sections.length >= 2) {
+        return [
+          {
+            id: wMod.sections[0].id,
+            title: wMod.sections[0].passage_title,
+            content_text: wMod.sections[0].passage_content,
+            word_count: 150,
+            task_type:
+              exam.category === "General"
+                ? "writing_task1_general"
+                : "writing_task1_academic",
+            test_id: exam.id,
+          },
+          {
+            id: wMod.sections[1].id,
+            title: wMod.sections[1].passage_title,
+            content_text: wMod.sections[1].passage_content,
+            word_count: 250,
+            task_type: "writing_task2_essay",
+            test_id: exam.id,
+          },
+        ];
+      }
+    }
+  }
+
   try {
     const data = await endooraApi<IELTSWritingPrompt[]>("/api/ielts/writing/prompts/");
     return data;

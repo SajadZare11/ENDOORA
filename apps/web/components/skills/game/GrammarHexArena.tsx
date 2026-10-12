@@ -6,6 +6,7 @@ import type { GameLevel, HexEdgeOption, HexCircuitNode, GrammarCircuitRound } fr
 import { getGrammarStageData } from "../../../data/skills/games/grammar-aef-curriculum";
 import { recordGrammarHexCompletion, formatStopwatchTime } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
+import { SkillStageBriefingModal, BriefingTriggerButton } from "./SkillStageBriefingModal";
 
 interface Props {
   level: GameLevel;
@@ -141,7 +142,8 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
   // Countdown Timer & Energy Bar
   const [timeLeft, setTimeLeft] = useState(stageTimeLimit);
-  const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [isBriefingOpen, setIsBriefingOpen] = useState(true);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
   // Results & Stage Completion (Vocabulary-style Modal)
@@ -247,7 +249,8 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
   useEffect(() => {
     setIsGameOver(false);
     setIsAtGoalTerminal(false);
-    setIsTimerRunning(true);
+    setIsBriefingOpen(true);
+    setIsTimerRunning(false);
     setRoundIndex(0);
     setScore(0);
     setCleanStreak(0);
@@ -260,7 +263,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
   // Main Countdown Timer & Elapsed Stopwatch
   useEffect(() => {
-    if (!isTimerRunning || isGameOver || isAtGoalTerminal) return;
+    if (!isTimerRunning || isBriefingOpen || isGameOver || isAtGoalTerminal) return;
     const interval = setInterval(() => {
       setElapsedSeconds((prev) => Number((prev + 0.1).toFixed(1)));
       setTimeLeft((prev) => {
@@ -471,6 +474,19 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
 
   return (
     <div className={styles.overlay}>
+      <SkillStageBriefingModal
+        skill="grammar"
+        cefr={level.cefr}
+        levelNumber={level.levelNumber}
+        isOpen={isBriefingOpen}
+        onStart={() => {
+          setIsBriefingOpen(false);
+          setIsTimerRunning(true);
+        }}
+        titleFa={stageData?.titleFa || level.titleFa}
+        titleEn={stageData?.titleEn || level.titleEn}
+      />
+
       <div className={styles.arenaCard}>
         {/* HUD Top Bar */}
         <div className={styles.hudBar}>
@@ -487,6 +503,13 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
           </div>
 
           <div className={styles.hudMetrics}>
+            <BriefingTriggerButton
+              onClick={() => {
+                setIsTimerRunning(false);
+                setIsBriefingOpen(true);
+              }}
+            />
+
             <div
               className={`${styles.metricBadge} ${styles.stopwatch}`}
               style={{ color: isDangerTime ? "#ef4444" : undefined }}

@@ -25,6 +25,7 @@ function IELTSWritingRoomContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const draftIdParam = searchParams.get("draftId");
+  const examIdParam = searchParams.get("examId") || searchParams.get("testId");
 
   const [prompts, setPrompts] = useState<IELTSWritingPrompt[]>([]);
   const [activeTask, setActiveTask] = useState<1 | 2>(1);
@@ -56,7 +57,7 @@ function IELTSWritingRoomContent() {
       setLoading(true);
       setError(null);
       try {
-        const fetchedPrompts = await fetchWritingPrompts();
+        const fetchedPrompts = await fetchWritingPrompts(examIdParam || undefined);
         setPrompts(fetchedPrompts);
 
         try {
@@ -80,7 +81,7 @@ function IELTSWritingRoomContent() {
     }
 
     initWritingRoom();
-  }, [draftIdParam]);
+  }, [draftIdParam, examIdParam]);
 
   // Overall timer effect
   useEffect(() => {
@@ -142,7 +143,7 @@ function IELTSWritingRoomContent() {
   const isTimerWarning = secondsRemaining < 600 && !isTimerDanger;
 
   // Active prompt
-  const task1Prompt = prompts.find((p) => p.task_type === "writing_task1_academic") || prompts[0];
+  const task1Prompt = prompts.find((p) => p.task_type === "writing_task1_academic" || p.task_type === "writing_task1_general") || prompts[0];
   const task2Prompt = prompts.find((p) => p.task_type === "writing_task2_essay") || prompts[1];
 
   const currentPrompt = activeTask === 1 ? task1Prompt : task2Prompt;
@@ -166,6 +167,7 @@ function IELTSWritingRoomContent() {
     try {
       const res = await submitWriting({
         submission_id: submissionId,
+        test_id: examIdParam || undefined,
         task1_prompt_title: task1Prompt?.title,
         task1_prompt_text: task1Prompt?.content_text,
         task1_image_url: task1Prompt?.media_image_url,

@@ -417,6 +417,209 @@ export function recordSpeakingMissionCompletion(
 }
 
 
+export function recordReadingOdysseyCompletion(
+  cefr: CefrLevel,
+  levelNumber: number,
+  storyIndex: number,
+  endingId: number,
+  result: {
+    finalScore: number;
+    heartsRemaining: number;
+    speedBonus: number;
+    stars: number;
+    elapsedSeconds?: number;
+    baseXp?: number;
+  }
+): SaveOutcome & { isNewEnding: boolean; totalStoryEndings: number } {
+  const endingOutcome = recordDiscoveredEnding(cefr, levelNumber, storyIndex, endingId);
+  saveStageBestPoints("reading", cefr, levelNumber, result.finalScore);
+
+  if (result.elapsedSeconds !== undefined && result.elapsedSeconds > 0) {
+    saveStageBestTime("reading", cefr, levelNumber, result.elapsedSeconds);
+  }
+
+  const baseXp = result.baseXp || 80;
+  const accuracy = result.heartsRemaining === 3 ? 100 : result.heartsRemaining === 2 ? 85 : 70;
+  const scaledScore = result.heartsRemaining === 3 ? 1300 : result.heartsRemaining === 2 ? 900 : 700;
+
+  const outcome = recordVocabRushCompletion(
+    "reading",
+    cefr,
+    levelNumber,
+    scaledScore,
+    accuracy,
+    Math.round((accuracy / 100) * 10),
+    10,
+    baseXp
+  );
+
+  return {
+    ...outcome,
+    isNewEnding: endingOutcome.isNew,
+    totalStoryEndings: endingOutcome.totalForStory,
+  };
+}
+
+const LAST_PLAYED_STORY_KEY = "endoora_reading_last_played_v1";
+
+export function getLastPlayedStoryIndex(cefr: CefrLevel, stageNum: number): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    const raw = sessionStorage.getItem(LAST_PLAYED_STORY_KEY) || localStorage.getItem(LAST_PLAYED_STORY_KEY);
+    if (!raw) return 0;
+    const parsed = JSON.parse(raw);
+    return parsed[`${cefr}_${stageNum}`] || 0;
+  } catch {
+    return 0;
+  }
+}
+
+export function setLastPlayedStoryIndex(cefr: CefrLevel, stageNum: number, storyIndex: number): void {
+  if (typeof window === "undefined") return;
+  try {
+    const raw = sessionStorage.getItem(LAST_PLAYED_STORY_KEY) || localStorage.getItem(LAST_PLAYED_STORY_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    parsed[`${cefr}_${stageNum}`] = storyIndex;
+    sessionStorage.setItem(LAST_PLAYED_STORY_KEY, JSON.stringify(parsed));
+    localStorage.setItem(LAST_PLAYED_STORY_KEY, JSON.stringify(parsed));
+  } catch {}
+}
+
+const WRITING_CASES_STORAGE_KEY = "endoora_writing_clue_cases_v1";
+
+export function getWritingSolvedCases(cefr: CefrLevel): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(WRITING_CASES_STORAGE_KEY);
+    if (!raw) return [];
+    const map: Record<string, string[]> = JSON.parse(raw);
+    return map[cefr] || [];
+  } catch {
+    return [];
+  }
+}
+
+export function recordWritingCaseCompletion(
+  cefr: CefrLevel,
+  levelNumber: number,
+  result: {
+    caseCode: string;
+    finalScore: number;
+    accuracyPct: number;
+    speedBonus: number;
+    stylePoints: number;
+    stars: number;
+    passed: boolean;
+    baseXp?: number;
+    isDailyBounty?: boolean;
+  }
+): SaveOutcome {
+  saveStageBestPoints("writing", cefr, levelNumber, result.finalScore);
+
+  // Store solved case code
+  if (typeof window !== "undefined" && result.passed) {
+    try {
+      const raw = localStorage.getItem(WRITING_CASES_STORAGE_KEY);
+      const map: Record<string, string[]> = raw ? JSON.parse(raw) : {};
+      const list = map[cefr] || [];
+      if (!list.includes(result.caseCode)) {
+        list.push(result.caseCode);
+        map[cefr] = list;
+        localStorage.setItem(WRITING_CASES_STORAGE_KEY, JSON.stringify(map));
+      }
+    } catch {}
+  }
+
+  const baseXp = result.baseXp || (result.isDailyBounty ? 160 : 90);
+  return recordVocabRushCompletion(
+    "writing",
+    cefr,
+    levelNumber,
+    result.finalScore,
+    result.accuracyPct,
+    Math.round((result.accuracyPct / 100) * 10),
+    10,
+    baseXp
+  );
+}
+
+const READING_ENDINGS_STORAGE_KEY = "endoora_reading_odyssey_endings_v1";
+
+export function getDiscoveredEndings(
+  cefr: CefrLevel,
+  levelNumber: number,
+  storyIndex: number
+): number[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(READING_ENDINGS_STORAGE_KEY);
+    if (!raw) return [];
+    const map: Record<string, number[]> = JSON.parse(raw);
+    const key = `${cefr}_l${levelNumber}_s${storyIndex}`;
+    return map[key] || [];
+  } catch {
+    return [];
+  }
+}
+
+export function recordDiscoveredEnding(
+  cefr: CefrLevel,
+  levelNumber: number,
+  storyIndex: number,
+  endingId: number
+): { isNew: boolean; totalForStory: number } {
+  if (typeof window === "undefined") return { isNew: false, totalForStory: 0 };
+  try {
+    const raw = localStorage.getItem(READING_ENDINGS_STORAGE_KEY);
+    const map: Record<string, number[]> = raw ? JSON.parse(raw) : {};
+    const key = `${cefr}_l${levelNumber}_s${storyIndex}`;
+    const current = map[key] || [];
+    const isNew = !current.includes(endingId);
+    if (isNew) {
+      current.push(endingId);
+      current.sort((a, b) => a - b);
+      map[key] = current;
+      localStorage.setItem(READING_ENDINGS_STORAGE_KEY, JSON.stringify(map));
+    }
+    return { isNew, totalForStory: current.length };
+  } catch {
+    return { isNew: false, totalForStory: 0 };
+  }
+}
+
+export function getStageDiscoveredEndingsCount(cefr: CefrLevel, levelNumber: number): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    const raw = localStorage.getItem(READING_ENDINGS_STORAGE_KEY);
+    if (!raw) return 0;
+    const map: Record<string, number[]> = JSON.parse(raw);
+    let count = 0;
+    for (let s = 1; s <= 10; s++) {
+      const key = `${cefr}_l${levelNumber}_s${s}`;
+      count += (map[key] || []).length;
+    }
+    return count;
+  } catch {
+    return 0;
+  }
+}
+
+export function getTotalReadingEndingsDiscovered(): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    const raw = localStorage.getItem(READING_ENDINGS_STORAGE_KEY);
+    if (!raw) return 0;
+    const map: Record<string, number[]> = JSON.parse(raw);
+    let total = 0;
+    for (const list of Object.values(map)) {
+      total += list.length;
+    }
+    return total;
+  } catch {
+    return 0;
+  }
+}
+
 export function calculateGrandTotalXp(all?: AllSkillsProgress): number {
   const progress = all || loadAllSkillsProgress();
   let total = 0;
@@ -1020,6 +1223,8 @@ export function getLevelLeaderboard(
     let computedSpeed: number | undefined = undefined;
     if (skill === "grammar") {
       computedSpeed = Number((18.0 + ((peer.id.charCodeAt(peer.id.length - 1) * 3) % 12) + (10 - Math.min(peerScore / 300, 8))).toFixed(1));
+    } else if (skill === "reading") {
+      computedSpeed = Number((14.0 + ((peer.id.charCodeAt(peer.id.length - 1) * 3) % 15) + (10 - Math.min(peerScore / 250, 8))).toFixed(1));
     } else if ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking")) {
       computedSpeed = peerSpeed ?? Math.max(18.5, Number((55 - peerScore / 60 + (idx % 3) * 1.5).toFixed(1)));
     }
@@ -1042,7 +1247,7 @@ export function getLevelLeaderboard(
 
   // Look up best completion time for user
   let userBestTime: number | undefined = undefined;
-  if (skill === "grammar" || ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking"))) {
+  if (skill === "grammar" || skill === "reading" || ((cefr === "C1" || cefr === "C2") && (skill === "vocabulary" || skill === "speaking"))) {
     let minTime = 0;
     for (let st = 1; st <= 10; st++) {
       const t = getStageBestTime(skill, cefr, st);
@@ -1086,6 +1291,14 @@ export function getLevelLeaderboard(
       if (timeA !== timeB) return timeA - timeB;
 
       return b.score - a.score;
+    });
+  } else if (skill === "reading") {
+    // Reading Tie-Breaker: Score descending -> Lower completion time ascending
+    entries.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      const timeA = a.bestTimeSeconds || 999;
+      const timeB = b.bestTimeSeconds || 999;
+      return timeA - timeB;
     });
   } else {
     // Standard score sort

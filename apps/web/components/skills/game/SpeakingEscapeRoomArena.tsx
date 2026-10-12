@@ -11,6 +11,7 @@ import {
 import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
+import { SkillStageBriefingModal, BriefingTriggerButton } from "./SkillStageBriefingModal";
 
 interface Props {
   level: GameLevel;
@@ -34,6 +35,7 @@ export function SpeakingEscapeRoomArena({
   const [elapsedSeconds, setElapsedSeconds] = useState<number>(0);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isVictory, setIsVictory] = useState<boolean>(false);
+  const [isBriefingOpen, setIsBriefingOpen] = useState<boolean>(true);
 
   // Solved Objects tracking
   const [solvedObjectIds, setSolvedObjectIds] = useState<string[]>([]);
@@ -77,7 +79,7 @@ export function SpeakingEscapeRoomArena({
 
   // Main Escape Room countdown and elapsed timer
   useEffect(() => {
-    if (isGameOver || isVictory) return;
+    if (isGameOver || isVictory || isBriefingOpen) return;
 
     timerRef.current = setInterval(() => {
       setElapsedSeconds((prev) => prev + 1);
@@ -374,6 +376,16 @@ export function SpeakingEscapeRoomArena({
 
   return (
     <div className={styles.escapeOverlay}>
+      <SkillStageBriefingModal
+        skill="speaking"
+        cefr={level.cefr}
+        levelNumber={level.levelNumber}
+        isOpen={isBriefingOpen}
+        onStart={() => setIsBriefingOpen(false)}
+        titleFa={stage.titleFa || level.titleFa}
+        titleEn={stage.titleEn || level.titleEn}
+      />
+
       <div className={styles.escapeContainer}>
         {/* ================================================================= */}
         {/* 1. TOP ESCAPE HUD BAR                                             */}
@@ -411,6 +423,8 @@ export function SpeakingEscapeRoomArena({
               </span>
             </div>
           </div>
+
+          <BriefingTriggerButton onClick={() => setIsBriefingOpen(true)} />
 
           <button
             type="button"

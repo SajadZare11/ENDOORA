@@ -18,6 +18,8 @@ import { WordCascadeArena } from "./WordCascadeArena";
 import { SpeedDialogueArena } from "./SpeedDialogueArena";
 import { GrammarHexArena } from "./GrammarHexArena";
 import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
+import { ReadingOdysseyArena } from "./ReadingOdysseyArena";
+import { WritingClueHunterArena } from "./WritingClueHunterArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
 
 interface SkillCardMeta {
@@ -59,16 +61,16 @@ const SKILL_METAS: SkillCardMeta[] = [
     icon: "📖",
     titleFa: "خواندن و درک مطلب",
     titleEn: "Reading",
-    gameName: "Speed Reader Sprint",
-    descFa: "تندخوانی متون کوتاه سطح‌بندی شده و پاسخ به معماهای محتوایی.",
+    gameName: "Reading Odyssey (ماجراهای سرنوشت‌ساز)",
+    descFa: "ماجراجویی داستانی تعاملی با ۱۰ پایان شگفت‌انگیز در هر داستان، آزمون درک مطلب سرعتی و رقابت در تالار افتخارات.",
   },
   {
     key: "writing",
     icon: "✍️",
     titleFa: "نگارش و رایتینگ",
     titleEn: "Writing",
-    gameName: "Sentence Smith",
-    descFa: "نشانه‌گذاری، تصحیح املا و اتصال ایده‌ها با حروف ربط در قالب بازی.",
+    gameName: "کارآگاهان کلمه: شکارچی سرنخ (Clue Hunter)",
+    descFa: "حل ۶۰ پرونده کارآگاهی، مونتاژ پازلی قطعات جمله، اتصال شواهد با کلمات ربط و تایپ سند نهایی در ۳ تم روبات‌ها، نوآر و اسناد سایبری.",
   },
   {
     key: "speaking",
@@ -154,10 +156,11 @@ export function GameHubArcade() {
             </div>
           </div>
 
-          <div className={styles.statsCluster}>
+          <div className={styles.statsCluster} suppressHydrationWarning>
             <div
               className={`${styles.statBadge} ${styles.xp}`}
               title={`مجموع امتیاز شما در تمام مهارت‌های سطح ${selectedCefr}`}
+              suppressHydrationWarning
             >
               ⚡ {cefrTotalXp.toLocaleString("fa-IR")} XP
             </div>
@@ -169,6 +172,7 @@ export function GameHubArcade() {
                 setIsLeaderboardOpen(true);
               }}
               style={{ cursor: "pointer" }}
+              suppressHydrationWarning
             >
               🏅 رتبه {bestRankInfo.bestRank.toLocaleString("fa-IR")}
             </div>
@@ -351,6 +355,38 @@ export function GameHubArcade() {
           onOpenLeaderboard={() => {
             setActiveLevel(null);
             setLeaderboardSkill("speaking");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "reading" ? (
+        <ReadingOdysseyArena
+          key={`reading-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("reading");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "writing" ? (
+        <WritingClueHunterArena
+          key={`writing-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("writing");
             setIsLeaderboardOpen(true);
             refreshProgress();
           }}

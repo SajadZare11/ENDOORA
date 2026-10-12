@@ -1,0 +1,344 @@
+/* IELTS Diagnostic Results & Analytics Screen */
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  font-family: inherit;
+  color: #0f172a;
+  direction: rtl;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.kicker {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+/* Hero Score Card */
+.heroCard {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 36px 40px;
+  color: #ffffff;
+  margin-bottom: var(--space-8);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.heroScoreLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.bandCircle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #2563eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.3);
+}
+
+.bandCircleNum {
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.bandCircleLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #bfdbfe;
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.examTitleMeta {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.cefrBadge {
+  display: inline-block;
+  background: #10b981;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  width: fit-content;
+}
+
+.cefrDesc {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+/* Right Stats Columns */
+.heroStatsGrid {
+  display: flex;
+  gap: 20px;
+}
+
+.statItem {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.statVal {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #38bdf8;
+}
+
+.statLbl {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* Diagnostic Breakdown Section */
+.diagSection {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: var(--space-8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.sectionHeader {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.typeStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.typeStatCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.typeStatTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.progressBarBg {
+  background: #e2e8f0;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.adviceList {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  list-style: disc inside;
+  color: #166534;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Question-by-Question Review Section */
+.reviewSection {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: var(--space-8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.filterPillsRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filterPill {
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filterPillActive {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.questionReviewCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  direction: ltr; /* Questions are English */
+}
+
+.questionReviewCardCorrect {
+  border-left: 5px solid #16a34a;
+}
+
+.questionReviewCardIncorrect {
+  border-left: 5px solid #dc2626;
+}
+
+.qReviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.statusBadgeCorrect {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.statusBadgeIncorrect {
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.qPromptText {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.answersCompareRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 0.875rem;
+}
+
+.explanationBox {
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #1e40af;
+  line-height: 1.6;
+}
+
+.actionsBar {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: var(--space-8);
+}
+
+.primaryActionBtn {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.secondaryActionBtn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+}

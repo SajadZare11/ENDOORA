@@ -478,6 +478,11 @@ export function SkillsLeaderboardModal({
                   (رده‌بندی: استریک بدون غلط 🔥 $\rightarrow$ زمان اسپیدران ⏱️)
                 </span>
               )}
+              {selectedSkill === "reading" && (
+                <span style={{ marginRight: "0.75rem", fontSize: "0.78rem", color: "#8b5cf6" }}>
+                  (رده‌بندی: امتیاز قصه 🏆 $\rightarrow$ کمترین زمان مطالعه و حل معما ⏱️)
+                </span>
+              )}
             </div>
 
             {!(isCurrentCLevel && selectedSkill === "vocabulary") && levelData.userRank > 1 && levelData.pointsToLeader > 0 && (
@@ -544,7 +549,7 @@ export function SkillsLeaderboardModal({
                     </div>
                   </div>
 
-                  {/* Score badge or Speed/Streak for Grammar / C1/C2 */}
+                  {/* Score badge or Speed/Streak for Grammar / Reading / C1/C2 */}
                   <div className={styles.scoreCell}>
                     {selectedSkill === "grammar" ? (
                       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.2rem" }}>
@@ -554,6 +559,19 @@ export function SkillsLeaderboardModal({
                           </span>
                           {item.bestTimeSeconds && (
                             <span style={{ color: "#0284c7", fontWeight: 700, fontSize: "0.85rem" }}>
+                              ⏱️ {item.bestTimeSeconds.toFixed(1)}s
+                            </span>
+                          )}
+                        </div>
+                        <span className={styles.scoreUnit} style={{ color: "#64748b", fontWeight: 700 }}>
+                          {item.score.toLocaleString("fa-IR")} امتیاز
+                        </span>
+                      </div>
+                    ) : selectedSkill === "reading" ? (
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.2rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", direction: "ltr" }}>
+                          {item.bestTimeSeconds && (
+                            <span style={{ color: "#8b5cf6", fontWeight: 700, fontSize: "0.85rem" }}>
                               ⏱️ {item.bestTimeSeconds.toFixed(1)}s
                             </span>
                           )}

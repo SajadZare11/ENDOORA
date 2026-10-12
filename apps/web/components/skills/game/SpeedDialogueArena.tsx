@@ -16,6 +16,7 @@ import {
 } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
+import { SkillStageBriefingModal, BriefingTriggerButton } from "./SkillStageBriefingModal";
 
 interface Props {
   level: GameLevel;
@@ -71,6 +72,7 @@ export function SpeedDialogueArena({
   const [combo, setCombo] = useState(1);
   const [maxCombo, setMaxCombo] = useState(1);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isBriefingOpen, setIsBriefingOpen] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [isPartnerTyping, setIsPartnerTyping] = useState(false);
   const [isEvaluationLocked, setIsEvaluationLocked] = useState(false);
@@ -146,6 +148,7 @@ export function SpeedDialogueArena({
       setCombo(1);
       setMaxCombo(1);
       setIsGameOver(false);
+      setIsBriefingOpen(true);
       setIsEvaluationLocked(false);
       setNuanceAlert(null);
       setMissedTurns([]);
@@ -166,7 +169,7 @@ export function SpeedDialogueArena({
 
   // Stopwatch timer interval (counts UP every 100ms)
   useEffect(() => {
-    if (isGameOver) {
+    if (isGameOver || isBriefingOpen) {
       if (stopwatchTimerRef.current) clearInterval(stopwatchTimerRef.current);
       return;
     }
@@ -599,6 +602,16 @@ export function SpeedDialogueArena({
   // =========================================================================
   return (
     <div className={styles.arenaOverlay}>
+      <SkillStageBriefingModal
+        skill="vocabulary"
+        cefr={level.cefr}
+        levelNumber={level.levelNumber}
+        isOpen={isBriefingOpen}
+        onStart={() => setIsBriefingOpen(false)}
+        titleFa={scenario.titleFa || level.titleFa}
+        titleEn={scenario.titleEn || level.titleEn}
+      />
+
       <div className={styles.speedArenaModal}>
         {/* Floating Time Penalty Toast */}
         {penaltyToast && (
@@ -635,6 +648,8 @@ export function SpeedDialogueArena({
           </div>
 
           <div className={styles.pingPongStatusPills}>
+            <BriefingTriggerButton onClick={() => setIsBriefingOpen(true)} />
+
             {/* Live Forward-Counting Stopwatch Badge */}
             <div
               className={styles.speedStopwatchBadge}

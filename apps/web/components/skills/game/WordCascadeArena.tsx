@@ -14,6 +14,7 @@ import {
 } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
+import { SkillStageBriefingModal, BriefingTriggerButton } from "./SkillStageBriefingModal";
 
 interface Props {
   level: GameLevel;
@@ -100,6 +101,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
   const [correctMatches, setCorrectMatches] = useState(0);
   const [totalAttempts, setTotalAttempts] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isBriefingOpen, setIsBriefingOpen] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const canAdvance = correctMatches >= requiredMatches;
   const [teacherTip, setTeacherTip] = useState(defaultTeacherTip);
@@ -272,6 +274,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     setCorrectMatches(0);
     setTotalAttempts(0);
     setIsGameOver(false);
+    setIsBriefingOpen(true);
     setMissedPairs([]);
     setResult(null);
     setTeacherTip(defaultTeacherTip);
@@ -423,7 +426,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
 
   // Countdown timer effect
   useEffect(() => {
-    if (isGameOver) return;
+    if (isGameOver || isBriefingOpen) return;
 
     timerIntervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
@@ -1009,6 +1012,16 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
   // =========================================================================
   return (
     <div className={styles.arenaOverlay}>
+      <SkillStageBriefingModal
+        skill="vocabulary"
+        cefr={level.cefr}
+        levelNumber={level.levelNumber}
+        isOpen={isBriefingOpen}
+        onStart={() => setIsBriefingOpen(false)}
+        titleFa={level.titleFa}
+        titleEn={level.titleEn}
+      />
+
       <div
         className={`${styles.cascadeArenaModal} ${
           isSupernova ? styles.supernovaActive : ""
@@ -1036,6 +1049,8 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
           </div>
 
           <div className={styles.cascadeScoreBox}>
+            <BriefingTriggerButton onClick={() => setIsBriefingOpen(true)} />
+
             {canAdvance && onNextLevel && !isGameOver && (
               <button
                 type="button"

@@ -28,7 +28,11 @@
     "check:tamrin20": "node --experimental-strip-types scripts/check-tamrin-ta-20.mjs",
     "check:skills": "node --experimental-strip-types scripts/check-skills-revamp.mjs",
     "check:skills:games": "node --experimental-strip-types scripts/check-skills-games.mjs",
-    "check:listening": "node --experimental-strip-types scripts/check-listening-system.mjs"
+    "check:listening": "node --experimental-strip-types scripts/check-listening-system.mjs",
+    "seed:ielts": "node --experimental-strip-types scripts/seed-ielts.ts",
+    "seed:ielts:py": "powershell -Command \"cd apps/api; ./.venv/Scripts/python.exe seed_ielts.py\"",
+    "import:ielts": "powershell -Command \"cd apps/api; ./.venv/Scripts/python.exe ../../scripts/bulk_import_ielts.py\"",
+    "test:ielts": "node --experimental-strip-types scripts/test-ielts-engine.mjs"
   },
   "engines": {
     "node": ">=24 <25",

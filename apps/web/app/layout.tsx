@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "./globals.css";
 import "@endoora/ui/tokens.css";
 import "@endoora/ui/components.css";
@@ -69,12 +68,14 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
       suppressHydrationWarning
     >
       <head>
-        <Script id="endoora-theme-bootstrap" strategy="beforeInteractive">
-          {themeBootstrap}
-        </Script>
-        <Script id="endoora-locale-bootstrap" strategy="beforeInteractive">
-          {localeBootstrap}
-        </Script>
+        <script
+          id="endoora-theme-bootstrap"
+          dangerouslySetInnerHTML={{ __html: themeBootstrap }}
+        />
+        <script
+          id="endoora-locale-bootstrap"
+          dangerouslySetInnerHTML={{ __html: localeBootstrap }}
+        />
       </head>
       <body>
         <LocaleProvider>

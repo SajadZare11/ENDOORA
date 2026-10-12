@@ -1,0 +1,339 @@
+/* ==========================================================================
+   SKILL STAGE BRIEFING MODAL — ULTRA-CLEAN, MINIMAL & FRIENDLY
+   Displays 1-sentence Context + 1-sentence Mission before each stage.
+   Supports Dark/Light mode, Glassmorphism, and Keyboard (Enter/Space) shortcuts.
+   ========================================================================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  direction: rtl;
+  font-family: var(--font-vazirmatn, system-ui, -apple-system, sans-serif);
+  animation: overlayFadeIn 0.22s ease-out forwards;
+}
+
+:global([data-theme="dark"]) .overlay {
+  background: rgba(2, 6, 23, 0.88);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalCard {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.25), 0 0 40px rgba(99, 102, 241, 0.08);
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  color: #0f172a;
+  animation: modalScaleUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+:global([data-theme="dark"]) .modalCard {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.75), 0 0 45px rgba(99, 102, 241, 0.15);
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Subtle top glowing bar */
+.topGlowBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+}
+
+/* Top Badges Row */
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.badgeGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.skillBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(99, 102, 241, 0.12);
+  color: #4f46e5;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+:global([data-theme="dark"]) .skillBadge {
+  background: rgba(99, 102, 241, 0.22);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.levelBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+:global([data-theme="dark"]) .levelBadge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.themeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+:global([data-theme="dark"]) .themeBadge {
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+}
+
+/* Titles */
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.titleFa {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  font-weight: 900;
+  line-height: 1.4;
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .titleFa {
+  color: #ffffff;
+}
+
+.titleEn {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  direction: ltr;
+  text-align: right;
+  color: #64748b;
+}
+
+:global([data-theme="dark"]) .titleEn {
+  color: #94a3b8;
+}
+
+/* 2 Minimal Cards: Context and Mission */
+.contentStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.briefCard {
+  border-radius: 1rem;
+  padding: 0.9rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.contextCard {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+}
+
+:global([data-theme="dark"]) .contextCard {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.missionCard {
+  background: rgba(59, 130, 246, 0.05);
+  border: 1.5px solid rgba(59, 130, 246, 0.25);
+}
+
+:global([data-theme="dark"]) .missionCard {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+:global([data-theme="dark"]) .cardHeader {
+  color: #cbd5e1;
+}
+
+.missionHeader {
+  color: #2563eb;
+}
+
+:global([data-theme="dark"]) .missionHeader {
+  color: #93c5fd;
+}
+
+.cardIcon {
+  font-size: 1rem;
+}
+
+.cardText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.68;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+:global([data-theme="dark"]) .cardText {
+  color: #e2e8f0;
+}
+
+.missionText {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .missionText {
+  color: #f1f5f9;
+}
+
+/* Action Area */
+.actionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.startBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.45), 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.startBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.55), 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
+}
+
+.startBtn:active {
+  transform: translateY(0);
+}
+
+.keyboardHint {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.78;
+  letter-spacing: -0.2px;
+}
+
+/* Reopen / Header Trigger Button */
+.briefingTriggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+:global([data-theme="dark"]) .briefingTriggerBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+}
+
+.briefingTriggerBtn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+:global([data-theme="dark"]) .briefingTriggerBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+}

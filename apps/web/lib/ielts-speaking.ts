@@ -235,7 +235,55 @@ export const DEFAULT_SPEAKING_FALLBACK_PROMPT: IELTSSpeakingPrompt = {
 // API CLIENT METHODS
 // =============================================================================
 
-export async function fetchSpeakingPrompts(): Promise<IELTSSpeakingPrompt[]> {
+import { getIeltsExamById } from "../data/ielts/index.ts";
+
+export async function fetchSpeakingPrompts(testId?: string): Promise<IELTSSpeakingPrompt[]> {
+  if (testId) {
+    const exam = getIeltsExamById(testId);
+    if (exam) {
+      const sMod = exam.modules.find((m) => m.skill === "speaking");
+      if (sMod && sMod.sections.length >= 3) {
+        return [
+          {
+            id: sMod.id,
+            title: exam.title,
+            test_id: exam.id,
+            part1: {
+              title: sMod.sections[0].passage_title,
+              instructions: sMod.sections[0].instructions || "Answer the examiner's questions clearly.",
+              questions: [
+                "What aspects of your daily routine do you find most productive?",
+                "How has digital communication transformed how you interact with friends?",
+                "What hobbies do you typically pursue during weekend free time?",
+              ],
+            },
+            part2: {
+              title: sMod.sections[1].passage_title,
+              cue_card_prompt: sMod.sections[1].passage_content,
+              bullet_points: [
+                "What the topic or experience was",
+                "Why it was meaningful or challenging",
+                "What actions you took",
+                "And explain what you learned from this experience.",
+              ],
+              prep_time_seconds: 60,
+              speaking_time_seconds: 120,
+            },
+            part3: {
+              title: sMod.sections[2].passage_title,
+              instructions: sMod.sections[2].instructions || "Discuss these abstract themes with the examiner.",
+              questions: [
+                "How do generational differences influence attitudes toward this topic?",
+                "What role should government policy play in regulating these societal changes?",
+                "Do you believe future technological advances will resolve these challenges?",
+              ],
+            },
+          },
+        ];
+      }
+    }
+  }
+
   try {
     const data = await endooraApi<IELTSSpeakingPrompt[]>("/api/ielts/speaking/prompts/");
     return data && data.length > 0 ? data : [DEFAULT_SPEAKING_FALLBACK_PROMPT];
