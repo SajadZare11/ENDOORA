@@ -19,6 +19,7 @@ import { WordCascadeArena } from "./WordCascadeArena";
 import { SpeedDialogueArena } from "./SpeedDialogueArena";
 import { GrammarHexArena } from "./GrammarHexArena";
 import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
+import { SherlockSpeakingArena } from "./SherlockSpeakingArena";
 import { ReadingOdysseyArena } from "./ReadingOdysseyArena";
 import { WritingClueHunterArena } from "./WritingClueHunterArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
@@ -79,8 +80,8 @@ const SKILL_METAS: SkillCardMeta[] = [
     icon: "🎙️",
     titleFa: "مکالمه و گفتار",
     titleEn: "Speaking",
-    gameName: "Voice Escape Room (اتاق فرار صوتی AEF)",
-    descFa: "توی اتاق فرار قفل شدی! اشیای اتاق رو بگرد، با مکالمه درست انگلیسی قفل‌ها رو وا کن و قبل از تموم شدن وقت بزن بیرون!",
+    gameName: "پرونده جنایی لندن (Sherlock Holmes Detective Cases)",
+    descFa: "همراه با شرلوک هلمز وارد پرونده‌های سریالی معمایی شو! مظنونین رو بازجویی کن، با صحبت انگلیسی سرنخ‌ها رو کشف کن و راز توطئه‌های پیچیده لندن رو حل کن!",
   },
 ];
 
@@ -349,6 +350,22 @@ export function GameHubArcade() {
           onOpenLeaderboard={() => {
             setActiveLevel(null);
             setLeaderboardSkill("vocabulary");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "speaking" && activeLevel.cefr === "A1" ? (
+        <SherlockSpeakingArena
+          key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("speaking");
             setIsLeaderboardOpen(true);
             refreshProgress();
           }}

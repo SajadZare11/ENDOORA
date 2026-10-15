@@ -18,6 +18,7 @@ import {
 import { getTierLevels } from "./levels-b2-c1-c2.ts";
 import { A1_ENHANCED_VOCAB_LEVELS } from "./vocab-curriculum.ts";
 import { SPEAKING_MISSIONS_BY_TIER } from "./speaking-missions.ts";
+import { A1_SHERLOCK_CASE } from "./sherlock-detective-curriculum.ts";
 
 // ==========================================
 // VOCABULARY: VOCAB BLITZ (A1 Levels 1-10)
@@ -2497,8 +2498,33 @@ function speakingMissionToGameLevel(m: (typeof SPEAKING_MISSIONS_BY_TIER)["A1"][
   };
 }
 
+function sherlockStageToGameLevel(s: (typeof A1_SHERLOCK_CASE)[0]): GameLevel {
+  return {
+    levelNumber: s.levelNumber,
+    cefr: s.cefr,
+    skill: "speaking",
+    titleFa: s.titleFa,
+    titleEn: s.titleEn,
+    descriptionFa: s.storyIntroFa,
+    xpReward: 150,
+    timeLimitSeconds: 75,
+    stageFocus: "dialogues",
+    questions: s.tasks.map((t) => ({
+      id: t.id,
+      type: "dialogue-reply",
+      prompt: t.speakerPromptEn,
+      promptFa: t.speakerRoleFa,
+      explanationFa: t.taskInstructionFa,
+      targetSentence: t.idealVoiceResponseEn,
+      audioText: t.idealVoiceResponseEn,
+      options: t.fallbackChoices,
+      correctAnswer: 0,
+    })),
+  };
+}
+
 export const SPEAKING_GAME_LEVELS: Record<CefrLevel, GameLevel[]> = {
-  A1: SPEAKING_MISSIONS_BY_TIER.A1.map(speakingMissionToGameLevel),
+  A1: A1_SHERLOCK_CASE.map(sherlockStageToGameLevel),
   A2: SPEAKING_MISSIONS_BY_TIER.A2.map(speakingMissionToGameLevel),
   B1: SPEAKING_MISSIONS_BY_TIER.B1.map(speakingMissionToGameLevel),
   B2: SPEAKING_MISSIONS_BY_TIER.B2.map(speakingMissionToGameLevel),

@@ -25,6 +25,7 @@ import { ChatPingPongArena } from "./ChatPingPongArena";
 import { SpeedDialogueArena } from "./SpeedDialogueArena";
 import { GrammarHexArena } from "./GrammarHexArena";
 import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
+import { SherlockSpeakingArena } from "./SherlockSpeakingArena";
 import { ReadingOdysseyArena } from "./ReadingOdysseyArena";
 import { WritingClueHunterArena } from "./WritingClueHunterArena";
 import {
@@ -160,7 +161,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                   : skill === "grammar"
                   ? "مدارهای شش‌ضلعی نحو را با سیم‌کشی جریان سبز و انتخاب اضلاع درست هدایت کن؛ مراقب شوک اتصال کوتاه و تله‌های خطای فارسی باش و سریع‌تر از شبح لیدربرد به گره پایانی برس!"
                   : skill === "speaking"
-                  ? "توی اتاق فرار صوتی، اشیای قفل‌شده اتاق رو بررسی کن؛ با تلفظ انگلیسی و گفتن کلمات کلیدی، قفل‌ها رو وا کن و قبل از اینکه وقتت تموم بشه بزن بیرون و رکورد شبح رقیب رو بشکن!"
+                  ? "در پرونده‌های جنایی لندن همراه با کارآگاه وایت و شرلوک هلمز، مظنونین را بازجویی کن، با مکالمه انگلیسی سرنخ‌ها را کشف کن و قبل از اینکه دیر بشه راز توطئه بزرگ موریارتی رو برملا کن!"
                   : skill === "reading"
                   ? "بپر توی قصه‌های هیجان‌انگیز! 📖 قصه انگلیسی رو با آرامش بخون، معما رو زرنگ‌بازی حدس بزن، با انتخاب درهای جادویی آخر داستان رو بساز و ۱۰ تا راز و پایان خفن رو کشف کن! ✨"
                   : "مراحل ۱۰ گانه را با حداقل حد نصاب قبولی پشت سر بگذار؛ با انتخاب هر کلمه تایل‌ها شافل می‌شوند، زمان فشرده‌تر می‌شود و کلمات جدیدی ارائه می‌گردند!"}
@@ -357,8 +358,10 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               ? "🧪 آزمایشگاه سری (۱۰ داستان • ۱۰ پایان)"
               : "🛸 فرماندهی کهکشانی (۱۰ داستان • ۱۰ پایان)"
             : isSpeaking
-            ? cefr === "A1" || cefr === "A2"
-              ? "🎙️ مکالمه هدایت‌شده و سناریو"
+            ? cefr === "A1"
+              ? "🕵️‍♂️ پرونده نجات لیلی (تحقیقات شبانه لندن)"
+              : cefr === "A2"
+              ? "🩺 شرلوک و دکتر واتسون (ردگیری موریارتی)"
               : cefr === "B1" || cefr === "B2"
               ? "🗣️ حل مسئله و دفاع از نظر"
               : "⚡ بداهه‌گویی و مناظره زیر فشار"
@@ -589,6 +592,21 @@ export function DedicatedSkillGameClient({ skill }: Props) {
       {activeLevel && skill === "writing" ? (
         <WritingClueHunterArena
           key={`writing-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && skill === "speaking" && activeLevel.cefr === "A1" ? (
+        <SherlockSpeakingArena
+          key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);
