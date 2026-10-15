@@ -14,6 +14,14 @@ import type {
 import { recordWritingCaseCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { SkillStageBriefingModal } from "./SkillStageBriefingModal";
+import {
+  evaluateStudentWriting,
+  ERROR_TAXONOMY,
+  LEVEL_REQUIREMENTS,
+  getStageRequirements,
+  getStageScenarioPrompt,
+  type WritingEvaluationOutput,
+} from "../../../lib/skills/writing-evaluator";
 
 interface Props {
   level: GameLevel;
@@ -93,8 +101,18 @@ export function WritingClueHunterArena({
   const isDailyBounty =
     dailyBounty.cefr === level.cefr && dailyBounty.levelNumber === level.levelNumber;
 
-  // Active Investigative Round: 1, 2, or 3
+  // Phase Workflow: Warm-up -> Main Draft 1 -> Self-Editing Draft 2 -> Final Result
+  type ArenaPhase = "warmup" | "main-draft1" | "self-editing-draft2" | "final-result";
+  const [phase, setPhase] = useState<ArenaPhase>("warmup");
+
+  // Active Investigative Warm-up Round: 1, 2, or 3
   const [currentRound, setCurrentRound] = useState<1 | 2 | 3>(1);
+
+  // Main Writing Task States
+  const [draft1Text, setDraft1Text] = useState<string>("");
+  const [draft2Text, setDraft2Text] = useState<string>("");
+  const [draft1Eval, setDraft1Eval] = useState<WritingEvaluationOutput | null>(null);
+  const [finalEval, setFinalEval] = useState<WritingEvaluationOutput | null>(null);
 
   // Scoring & Stats
   const [score, setScore] = useState<number>(0);
@@ -107,6 +125,7 @@ export function WritingClueHunterArena({
   const [isTimerPaused, setIsTimerPaused] = useState<boolean>(false);
   const [showBriefing, setShowBriefing] = useState<boolean>(true);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const arenaRef = useRef<HTMLDivElement | null>(null);
 
   // Gentle Magnifier Modal State (ذره‌بین مهربان)
   const [magnifierInfo, setMagnifierInfo] = useState<{
@@ -143,6 +162,62 @@ export function WritingClueHunterArena({
     speedBonus: number;
   } | null>(null);
 
+  // Target Vocabulary Deck for Live Checklist
+  const targetWordsList = React.useMemo(() => {
+    if (activeCase.targetVocabularyDeck && activeCase.targetVocabularyDeck.length > 0) {
+      return activeCase.targetVocabularyDeck;
+    }
+    const list: Array<{ id: string; wordEn: string; meaningFa: string; cefrLevel: string }> = [];
+    if (activeCase.round3.targetBlank) {
+      list.push({
+        id: "tw-1",
+        wordEn: activeCase.round3.targetBlank,
+        meaningFa: activeCase.round3.explanationFa?.slice(0, 36) || "واژه کلیدی سناریو",
+        cefrLevel: level.cefr,
+      });
+    }
+    if (activeCase.round2.lexicalUpgrade?.upgrades?.[0]?.text) {
+      list.push({
+        id: "tw-2",
+        wordEn: activeCase.round2.lexicalUpgrade.upgrades[0].text,
+        meaningFa: "واژه ارتقایافته",
+        cefrLevel: level.cefr,
+      });
+    }
+    const correctConn = activeCase.round2.connectorOptions?.find((c) => c.isCorrect);
+    if (correctConn) {
+      list.push({
+        id: "tw-3",
+        wordEn: correctConn.text,
+        meaningFa: "کلمه ربط طلایی",
+        cefrLevel: level.cefr,
+      });
+    }
+    return list;
+  }, [activeCase, level.cefr]);
+
+  // Detected simple words that can be upgraded
+  const detectedUpgradeTip = React.useMemo(() => {
+    if (!typedInput) return null;
+    const simpleWordSuggestions: Record<string, string> = {
+      good: "fantastic یا impressive",
+      nice: "friendly یا pleasant",
+      bad: "terrible یا unacceptable",
+      big: "substantial یا prominent",
+      happy: "delighted یا cheerful",
+      sad: "gloomy یا distressed",
+      like: "appreciate یا admire",
+    };
+    const words = typedInput.toLowerCase().split(/\s+/);
+    for (const w of words) {
+      const cleanW = w.replace(/[.,!?;]/g, "");
+      if (simpleWordSuggestions[cleanW]) {
+        return `✨ پیشنهاد ارتقای لغوی کتاب: می‌توانی به جای «${cleanW}» از «${simpleWordSuggestions[cleanW]}» استفاده کنی!`;
+      }
+    }
+    return null;
+  }, [typedInput]);
+
   // Initialize Round 1 chips
   useEffect(() => {
     if (activeCase?.round1) {
@@ -151,6 +226,11 @@ export function WritingClueHunterArena({
       setAvailableChips(chips);
       setPlacedChips([]);
       setCurrentRound(1);
+      setPhase("warmup");
+      setDraft1Text("");
+      setDraft2Text("");
+      setDraft1Eval(null);
+      setFinalEval(null);
       setScore(0);
       setCombo(0);
       setStylePoints(0);
@@ -162,6 +242,36 @@ export function WritingClueHunterArena({
       setIsTimerPaused(false);
     }
   }, [activeCase]);
+
+  // Aggregate Suggested Words from Warm-up for Main Writing Task
+  const suggestedWords = React.useMemo(() => {
+    const s = new Set<string>();
+    activeCase.round1.correctSequence.forEach((w) => {
+      const c = w.replace(/[.,!?;]/g, "").trim();
+      if (c.length > 2 && !["the", "and", "but", "for"].includes(c.toLowerCase())) {
+        s.add(c);
+      }
+    });
+    const conn = activeCase.round2.connectorOptions?.find((c) => c.isCorrect);
+    if (conn) s.add(conn.text.trim());
+    const upg = activeCase.round2.lexicalUpgrade?.upgrades?.find((u) => u.isCorrect);
+    if (upg) s.add(upg.text.trim());
+    if (activeCase.round3.targetBlank) s.add(activeCase.round3.targetBlank.trim());
+    if (activeCase.targetVocabularyDeck) {
+      activeCase.targetVocabularyDeck.forEach((t) => s.add(t.wordEn.trim()));
+    }
+    return Array.from(s);
+  }, [activeCase]);
+
+  // Stage-specific requirements (escalates from stage 1 to 10)
+  const stageReq = React.useMemo(() => {
+    return getStageRequirements(level.cefr, level.levelNumber);
+  }, [level.cefr, level.levelNumber]);
+
+  // Stage-specific scenario prompt
+  const stagePromptFa = React.useMemo(() => {
+    return getStageScenarioPrompt(activeCase, level.cefr, level.levelNumber);
+  }, [activeCase, level.cefr, level.levelNumber]);
 
   // Start mission handler from briefing
   const handleStartMission = () => {
@@ -191,6 +301,13 @@ export function WritingClueHunterArena({
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [isCaseSolved, isTimerPaused, showBriefing, secondsLeft]);
+
+  // Reset scroll position when transitioning between phases
+  useEffect(() => {
+    if (arenaRef.current) {
+      arenaRef.current.scrollTop = 0;
+    }
+  }, [phase]);
 
   // Handle clicking an available chip in Round 1
   const handlePickChip = (chip: {
@@ -317,7 +434,7 @@ export function WritingClueHunterArena({
     }
   };
 
-  // Round 3: Check Typed Punchline
+  // Round 3: Check Typed Punchline (Completes Warm-up & activates Main Writing Task)
   const handleVerifyRound3 = () => {
     const cleaned = typedInput.trim().toLowerCase().replace(/[.,!?;]/g, "");
     const targetCleaned = activeCase.round3.targetBlank.trim().toLowerCase().replace(/[.,!?;]/g, "");
@@ -328,36 +445,16 @@ export function WritingClueHunterArena({
     const isMatch = cleaned === targetCleaned || accepted.includes(cleaned);
 
     if (isMatch) {
-      soundSynth.playFanfare();
+      soundSynth.playCorrect();
       setTypingFeedback("correct");
+      const bonus = 150 + stylePoints;
+      setScore((s) => s + bonus);
+      setCombo((c) => c + 1);
 
-      const speedBonus = Math.max(0, secondsLeft * 5);
-      const totalPoints = score + 200 + speedBonus + stylePoints;
-      const accuracy = Math.max(70, Math.round(100 - mistakesCount * 10));
-      const stars = mistakesCount === 0 ? 3 : mistakesCount <= 2 ? 2 : 1;
-
-      // Save to storage
-      const outcome = recordWritingCaseCompletion(level.cefr, level.levelNumber, {
-        caseCode: activeCase.caseCode,
-        finalScore: totalPoints,
-        accuracyPct: accuracy,
-        speedBonus,
-        stylePoints,
-        stars,
-        passed: true,
-        baseXp: activeCase.xpReward,
-        isDailyBounty,
-      });
-
-      setSummaryOutcome({
-        finalScore: totalPoints,
-        accuracyPct: accuracy,
-        stars,
-        xpEarned: outcome.xpEarned || activeCase.xpReward,
-        speedBonus,
-      });
-
-      setIsCaseSolved(true);
+      // Transition to Main Writing Task
+      setTimeout(() => {
+        setPhase("main-draft1");
+      }, 700);
     } else {
       soundSynth.playWrong();
       setTypingFeedback("wrong");
@@ -371,7 +468,113 @@ export function WritingClueHunterArena({
     }
   };
 
-  // Determine theme style class
+  // Submit Draft 1 for Coded Feedback (Self-Editing)
+  const handleSubmitDraft1 = () => {
+    if (!draft1Text.trim()) return;
+    const evaluation = evaluateStudentWriting(
+      draft1Text,
+      level.cefr,
+      suggestedWords,
+      "draft1",
+      0,
+      level.levelNumber
+    );
+    setDraft1Eval(evaluation);
+    setDraft2Text(draft1Text);
+    setPhase("self-editing-draft2");
+    soundSynth.playClick();
+  };
+
+  // Submit Draft 2 for Final Scoring and Progression
+  const handleSubmitDraft2 = () => {
+    if (!draft2Text.trim()) return;
+    const evaluation = evaluateStudentWriting(
+      draft2Text,
+      level.cefr,
+      suggestedWords,
+      "draft2",
+      draft1Eval?.score || 0,
+      level.levelNumber
+    );
+    setFinalEval(evaluation);
+
+    const speedBonus = Math.max(0, secondsLeft * 3);
+    const totalPoints = score + evaluation.score * 5 + (evaluation.improvementBonusXp || 0) + speedBonus;
+    const stars = evaluation.score >= 85 ? 3 : evaluation.score >= 70 ? 2 : 1;
+
+    // Save to storage
+    const outcome = recordWritingCaseCompletion(level.cefr, level.levelNumber, {
+      caseCode: activeCase.caseCode,
+      finalScore: totalPoints,
+      accuracyPct: evaluation.score,
+      speedBonus,
+      stylePoints: evaluation.improvementBonusXp || 0,
+      stars,
+      passed: evaluation.isReadyForNextLevel,
+      baseXp: activeCase.xpReward + (evaluation.improvementBonusXp || 0),
+      isDailyBounty,
+    });
+
+    setSummaryOutcome({
+      finalScore: totalPoints,
+      accuracyPct: evaluation.score,
+      stars,
+      xpEarned: outcome.xpEarned || activeCase.xpReward + (evaluation.improvementBonusXp || 0),
+      speedBonus,
+    });
+
+    soundSynth.playFanfare();
+    setIsCaseSolved(true);
+    setPhase("final-result");
+    if (arenaRef.current) {
+      arenaRef.current.scrollTop = 0;
+    }
+  };
+
+  // Render Draft 1 with Color-Coded Error Tags
+  const renderAnnotatedDraft1 = () => {
+    if (!draft1Eval || draft1Eval.detectedErrors.length === 0) {
+      return <span>{draft1Text}</span>;
+    }
+    const sorted = [...draft1Eval.detectedErrors].sort((a, b) => a.startIndex - b.startIndex);
+    const elements: React.ReactNode[] = [];
+    let lastIdx = 0;
+
+    sorted.forEach((err, idx) => {
+      if (err.startIndex > lastIdx) {
+        elements.push(<span key={`txt-${idx}`}>{draft1Text.slice(lastIdx, err.startIndex)}</span>);
+      }
+      const tax = ERROR_TAXONOMY[err.code] || ERROR_TAXONOMY.SENTENCE;
+      elements.push(
+        <span key={`err-${idx}`} className={styles.codedErrorItem} title={err.shortHintFa}>
+          <span
+            className={styles.codedTagAbove}
+            style={{ background: tax.color, color: "#ffffff" }}
+          >
+            [{err.code}]
+          </span>
+          <mark
+            className={styles.codedTextMark}
+            style={{
+              background: tax.bgColor,
+              color: tax.textColor,
+              borderBottomColor: tax.color,
+            }}
+          >
+            {err.originalText}
+          </mark>
+        </span>
+      );
+      lastIdx = Math.max(lastIdx, err.endIndex);
+    });
+
+    if (lastIdx < draft1Text.length) {
+      elements.push(<span key="txt-end">{draft1Text.slice(lastIdx)}</span>);
+    }
+
+    return elements;
+  };
+
   const themeClass =
     activeCase.theme === "word-bot-factory"
       ? styles.themeWordBot
@@ -381,7 +584,7 @@ export function WritingClueHunterArena({
 
   return (
     <div className={styles.modalBackdrop} onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className={`${styles.arenaContainer} ${themeClass}`}>
+      <div ref={arenaRef} className={`${styles.arenaContainer} ${themeClass}`}>
         {/* ================================================================
             STAGE CONTEXT BRIEFING MODAL (1-sentence context + 1-sentence mission)
             ================================================================ */}
@@ -396,112 +599,158 @@ export function WritingClueHunterArena({
         />
 
         {/* Top Header Bar */}
-        <div className={styles.topBar}>
-          <div className={styles.caseIdentity}>
-            <span className={styles.caseIcon}>
-              {activeCase.theme === "word-bot-factory"
-                ? "🤖"
-                : activeCase.theme === "noir-evidence-board"
-                ? "🕵️"
-                : "🛰️"}
-            </span>
-            <div>
-              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-                <span className={styles.caseCode}>{activeCase.caseCode}</span>
-                <span className={styles.themeBadge}>{activeCase.themeTitleFa}</span>
-                {isDailyBounty && (
-                  <span
-                    style={{
-                      background: "#fef08a",
-                      color: "#854d0e",
-                      fontSize: "0.75rem",
-                      fontWeight: 800,
-                      padding: "0.2rem 0.5rem",
-                      borderRadius: "0.4rem",
-                    }}
-                  >
-                    👑 پرونده طلایی روز
-                  </span>
-                )}
+        {phase !== "final-result" ? (
+          <div className={styles.topBar}>
+            <div className={styles.caseIdentity}>
+              <span className={styles.caseIcon}>
+                {activeCase.theme === "word-bot-factory"
+                  ? "🤖"
+                  : activeCase.theme === "noir-evidence-board"
+                  ? "🕵️"
+                  : "🛰️"}
+              </span>
+              <div>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                  <span className={styles.caseCode}>{activeCase.caseCode}</span>
+                  <span className={styles.themeBadge}>{activeCase.themeTitleFa}</span>
+                  {isDailyBounty && (
+                    <span
+                      style={{
+                        background: "#fef08a",
+                        color: "#854d0e",
+                        fontSize: "0.75rem",
+                        fontWeight: 800,
+                        padding: "0.2rem 0.5rem",
+                        borderRadius: "0.4rem",
+                      }}
+                    >
+                      👑 پرونده طلایی روز
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.statsCluster}>
-            <button
-              className={styles.briefingToggleBtn}
-              onClick={() => {
-                setIsTimerPaused(true);
-                setShowBriefing(true);
-              }}
-              title="مرور سناریو و مأموریت پرونده"
-              type="button"
-            >
-              📜 سناریو و راهنما
-            </button>
+            <div className={styles.statsCluster}>
+              <button
+                className={styles.briefingToggleBtn}
+                onClick={() => {
+                  setIsTimerPaused(true);
+                  setShowBriefing(true);
+                }}
+                title="مرور سناریو و مأموریت پرونده"
+                type="button"
+              >
+                📜 سناریو و راهنما
+              </button>
 
-            <div className={`${styles.timerBadge} ${secondsLeft <= 15 ? styles.timerLow : ""}`}>
-              ⏳ {secondsLeft}s
+              <div className={`${styles.timerBadge} ${secondsLeft <= 15 ? styles.timerLow : ""}`}>
+                ⏳ {secondsLeft}s
+              </div>
+
+              <div className={styles.scoreBadge}>🏆 {score} PTS</div>
+
+              {combo >= 2 && <div className={styles.comboBadge}>🔥 x{combo}</div>}
+
+              <button className={styles.closeBtn} onClick={onClose} title="بستن">
+                ✕
+              </button>
             </div>
-
-            <div className={styles.scoreBadge}>🏆 {score} PTS</div>
-
-            {combo >= 2 && <div className={styles.comboBadge}>🔥 x{combo}</div>}
-
+          </div>
+        ) : (
+          <div style={{ display: "flex", justifyContent: "flex-end", width: "100%", paddingBottom: "0.25rem", flexShrink: 0 }}>
             <button className={styles.closeBtn} onClick={onClose} title="بستن">
               ✕
             </button>
           </div>
-        </div>
+        )}
 
-        {/* Round Stepper */}
-        <div className={styles.stepperTrack}>
-          <div
-            className={`${styles.stepPill} ${
-              currentRound === 1
-                ? styles.stepActive
-                : currentRound > 1
-                ? styles.stepCompleted
-                : ""
-            }`}
-          >
-            <span className={styles.stepNumber}>۱</span>
-            <span>مونتاژ قطعات جمله</span>
+        {/* Phase & Round Stepper */}
+        {phase !== "final-result" && (
+          <div className={styles.stepperTrack}>
+            {phase === "warmup" ? (
+              <>
+                <div
+                  className={`${styles.stepPill} ${
+                    currentRound === 1
+                      ? styles.stepActive
+                      : currentRound > 1
+                      ? styles.stepCompleted
+                      : ""
+                  }`}
+                >
+                  <span className={styles.stepNumber}>۱</span>
+                  <span>دست‌گرمی: قطعات جمله</span>
+                </div>
+
+                <div
+                  className={`${styles.stepPill} ${
+                    currentRound === 2
+                      ? styles.stepActive
+                      : currentRound > 2
+                      ? styles.stepCompleted
+                      : ""
+                  }`}
+                >
+                  <span className={styles.stepNumber}>۲</span>
+                  <span>دست‌گرمی: کلمات ربط</span>
+                </div>
+
+                <div
+                  className={`${styles.stepPill} ${
+                    currentRound === 3 ? styles.stepActive : ""
+                  }`}
+                >
+                  <span className={styles.stepNumber}>۳</span>
+                  <span>دست‌گرمی: رمز نهایی</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={`${styles.stepPill} ${styles.stepCompleted}`}>
+                  <span className={styles.stepNumber}>✓</span>
+                  <span>دست‌گرمی کلمات</span>
+                </div>
+
+                <div
+                  className={`${styles.stepPill} ${
+                    phase === "main-draft1"
+                      ? styles.stepActive
+                      : styles.stepCompleted
+                  }`}
+                >
+                  <span className={styles.stepNumber}>۴</span>
+                  <span>نگارش اصلی (Draft 1)</span>
+                </div>
+
+                <div
+                  className={`${styles.stepPill} ${
+                    phase === "self-editing-draft2" ? styles.stepActive : ""
+                  }`}
+                >
+                  <span className={styles.stepNumber}>۵</span>
+                  <span>خودویرایشی با کدها</span>
+                </div>
+              </>
+            )}
           </div>
+        )}
 
-          <div
-            className={`${styles.stepPill} ${
-              currentRound === 2
-                ? styles.stepActive
-                : currentRound > 2
-                ? styles.stepCompleted
-                : ""
-            }`}
-          >
-            <span className={styles.stepNumber}>۲</span>
-            <span>کلمات ربط و ارتقا</span>
-          </div>
-
-          <div
-            className={`${styles.stepPill} ${
-              currentRound === 3 ? styles.stepActive : ""
-            }`}
-          >
-            <span className={styles.stepNumber}>۳</span>
-            <span>تایپ رمز نهایی</span>
-          </div>
-        </div>
-
-        {/* Case Scenario Briefing */}
-        <div className={styles.briefingCard}>
-          <div>
-            <div className={styles.scenarioTitle}>
-              {activeCase.stageTitleFa} ({activeCase.stageTitleEn})
+        {/* ================================================================
+            WARM-UP INVESTIGATIVE ROUNDS (1, 2, 3)
+            ================================================================ */}
+        {phase === "warmup" && (
+          <>
+            {/* Case Scenario Briefing */}
+            <div className={styles.briefingCard}>
+              <div>
+                <div className={styles.scenarioTitle}>
+                  {activeCase.stageTitleFa} ({activeCase.stageTitleEn})
+                </div>
+                <div className={styles.scenarioText}>{activeCase.scenarioFa}</div>
+                <div className={styles.locationPin}>📍 {activeCase.locationFa}</div>
+              </div>
             </div>
-            <div className={styles.scenarioText}>{activeCase.scenarioFa}</div>
-            <div className={styles.locationPin}>📍 {activeCase.locationFa}</div>
-          </div>
-        </div>
 
         {/* ================================================================
             ROUND 1: FRAGMENT TILE PUZZLE
@@ -688,14 +937,286 @@ export function WritingClueHunterArena({
               )}
             </div>
 
+            {/* Live Target Vocabulary Deck (Checklist) */}
+            <div className={styles.vocabDeckBox}>
+              <div className={styles.vocabDeckHeader}>
+                <span className={styles.vocabDeckTitle}>
+                  📋 چک‌لیست زنده واژگان هدف سطح {level.cefr} (Books & CEFR):
+                </span>
+                <span className={styles.vocabDeckScoreBadge}>
+                  {targetWordsList.filter((item) =>
+                    typedInput.toLowerCase().includes(item.wordEn.toLowerCase())
+                  ).length} / {targetWordsList.length} واژه به کار رفته
+                </span>
+              </div>
+
+              <div className={styles.vocabChipsGrid}>
+                {targetWordsList.map((item) => {
+                  const isChecked = typedInput
+                    .toLowerCase()
+                    .includes(item.wordEn.toLowerCase());
+                  return (
+                    <div
+                      key={item.id}
+                      className={`${styles.vocabDeckChip} ${
+                        isChecked ? styles.vocabDeckChipChecked : ""
+                      }`}
+                      title={item.meaningFa}
+                    >
+                      <span className={styles.vocabCheckmark}>{isChecked ? "✓" : "○"}</span>
+                      <span>{item.wordEn}</span>
+                      <small style={{ opacity: 0.7, fontSize: "0.7rem" }}>
+                        ({item.meaningFa})
+                      </small>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {detectedUpgradeTip && (
+                <div className={styles.upgradePromptToast}>
+                  {detectedUpgradeTip}
+                </div>
+              )}
+            </div>
+
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <button
                 className={styles.submitBtn}
                 onClick={handleVerifyRound3}
                 disabled={!typedInput.trim()}
               >
-                ثبت سند نهایی و حل پرونده 🚀
+                تکمیل دست‌گرمی و ورود به تسک اصلی رایتینگ 🚀
               </button>
+            </div>
+          </div>
+        )}
+      </>
+    )}
+
+    {/* ================================================================
+        MAIN WRITING TASK: DRAFT 1
+        ================================================================ */}
+        {phase === "main-draft1" && (
+          <div className={styles.mainWritingSection}>
+            <div className={styles.taskHeaderBanner}>
+              <div className={styles.taskTopRow}>
+                <span className={styles.taskTitleText}>
+                  📝 تسک اصلی رایتینگ سطح {level.cefr} - پیش‌نویس اول (Draft 1)
+                </span>
+                <span className={styles.taskGenreBadge}>
+                  {stageReq.genreFa}
+                </span>
+              </div>
+              <div className={styles.taskScenarioPrompt}>
+                <strong>سناریو و موضوع: </strong>
+                {stagePromptFa}
+              </div>
+            </div>
+
+            {/* Suggested Words Box */}
+            <div className={styles.suggestedBox}>
+              <div className={styles.suggestedHeader}>
+                <span>💡 کلمات کلیدی پیشنهادی از بخش دست‌گرمی (Books & CEFR):</span>
+                <span style={{ fontSize: "0.8rem", color: "#10b981", fontWeight: 700 }}>
+                  {suggestedWords.filter((w) => draft1Text.toLowerCase().includes(w.toLowerCase())).length} / {suggestedWords.length} کلمه استفاده شده
+                </span>
+              </div>
+              <div className={styles.suggestedChipsRow}>
+                {suggestedWords.map((word, idx) => {
+                  const isUsed = draft1Text.toLowerCase().includes(word.toLowerCase());
+                  return (
+                    <span
+                      key={`sw-${idx}`}
+                      className={`${styles.suggestedChip} ${isUsed ? styles.suggestedChipUsed : ""}`}
+                    >
+                      {isUsed ? "✓" : "○"} {word}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Editor Textarea */}
+            <div className={styles.writingEditorWrapper}>
+              <textarea
+                className={styles.writingTextarea}
+                placeholder={`متن انگلیسی خود را اینجا بنویسید (حداقل ${stageReq.minSentences} جمله و ${stageReq.minWords} کلمه)...`}
+                value={draft1Text}
+                onChange={(e) => setDraft1Text(e.target.value)}
+                autoFocus
+              />
+              <div className={styles.wordCountBar}>
+                <span>
+                  تعداد کلمات:{" "}
+                  <strong
+                    className={
+                      (draft1Text.trim() ? draft1Text.trim().split(/\s+/).length : 0) >=
+                      stageReq.minWords
+                        ? styles.wordCountMet
+                        : ""
+                    }
+                  >
+                    {draft1Text.trim() ? draft1Text.trim().split(/\s+/).length : 0}
+                  </strong>{" "}
+                  / حداقل {stageReq.minWords} کلمه
+                </span>
+                <span>
+                  تعداد جملات:{" "}
+                  <strong
+                    className={
+                      (draft1Text.trim()
+                        ? draft1Text.trim().split(/[.!?]+/).filter((s) => s.trim().length > 0).length
+                        : 0) >= stageReq.minSentences
+                        ? styles.wordCountMet
+                        : ""
+                    }
+                  >
+                    {draft1Text.trim()
+                      ? draft1Text.trim().split(/[.!?]+/).filter((s) => s.trim().length > 0).length
+                      : 0}
+                  </strong>{" "}
+                  / حداقل {stageReq.minSentences} جمله
+                </span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <button
+                type="button"
+                className={styles.briefingToggleBtn}
+                onClick={() => setPhase("warmup")}
+              >
+                ← مرور دست‌گرمی
+              </button>
+
+              <button
+                type="button"
+                className={styles.submitBtn}
+                onClick={handleSubmitDraft1}
+                disabled={!draft1Text.trim()}
+              >
+                ارسال پیش‌نویس ۱ و دریافت کدهای خودویرایشی 🔍
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ================================================================
+            MAIN WRITING TASK: SELF-EDITING (DRAFT 2)
+            ================================================================ */}
+        {phase === "self-editing-draft2" && draft1Eval && (
+          <div className={styles.mainWritingSection}>
+            <div className={styles.taskHeaderBanner} style={{ borderLeftColor: "#8b5cf6" }}>
+              <div className={styles.taskTopRow}>
+                <span className={styles.taskTitleText}>
+                  🔍 مرحله خودویرایشی (Self-Editing) - پیش‌نویس دوم
+                </span>
+                <span className={styles.taskGenreBadge} style={{ background: "#8b5cf6" }}>
+                  نمره پیش‌نویس ۱: {draft1Eval.score} از ۱۰۰
+                </span>
+              </div>
+              <div className={styles.taskScenarioPrompt}>
+                با توجه به کدهای خطای رنگی در متن بالا، اشتباهات را خودتان پیدا کرده و در کادر ویرایشگر اصلاح نمایید.
+                پاسخ مستقیم ارائه نشده است تا مهارت خودویرایشی و تحلیل شما تقویت شود.
+              </div>
+            </div>
+
+            <div className={styles.selfEditingLayout}>
+              {/* Left Column: Coded Draft 1 Preview + Draft 2 Editor */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div className={styles.codedFeedbackDisplay}>
+                  <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#64748b" }}>
+                    متن پیش‌نویس اول با کدهای خطای شناسایی‌شده:
+                  </div>
+                  <div className={styles.codedAnnotatedText}>
+                    {renderAnnotatedDraft1()}
+                  </div>
+                </div>
+
+                <div className={styles.writingEditorWrapper}>
+                  <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "#334155" }}>
+                    ✏️ پیش‌نویس اصلاح‌شده شما (Draft 2):
+                  </label>
+                  <textarea
+                    className={styles.writingTextarea}
+                    value={draft2Text}
+                    onChange={(e) => setDraft2Text(e.target.value)}
+                    placeholder="متن اصلاح‌شده خود را اینجا بنویسید..."
+                    autoFocus
+                  />
+                  <div className={styles.wordCountBar}>
+                    <span>
+                      کلمات:{" "}
+                      <strong
+                        className={
+                          (draft2Text.trim() ? draft2Text.trim().split(/\s+/).length : 0) >=
+                          stageReq.minWords
+                            ? styles.wordCountMet
+                            : ""
+                        }
+                      >
+                        {draft2Text.trim() ? draft2Text.trim().split(/\s+/).length : 0}
+                      </strong>{" "}
+                      / حداقل {stageReq.minWords} کلمه
+                    </span>
+                    <span>
+                      جملات:{" "}
+                      <strong
+                        className={
+                          (draft2Text.trim()
+                            ? draft2Text.trim().split(/[.!?]+/).filter((s) => s.trim().length > 0).length
+                            : 0) >= stageReq.minSentences
+                            ? styles.wordCountMet
+                            : ""
+                        }
+                      >
+                        {draft2Text.trim()
+                          ? draft2Text.trim().split(/[.!?]+/).filter((s) => s.trim().length > 0).length
+                          : 0}
+                      </strong>{" "}
+                      / حداقل {stageReq.minSentences} جمله
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <button
+                    type="button"
+                    className={styles.submitBtn}
+                    onClick={handleSubmitDraft2}
+                    disabled={!draft2Text.trim()}
+                  >
+                    ثبت نهایی اصلاحات و محاسبه نمره 🚀
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Error Code Legend */}
+              <div className={styles.codedLegendBox}>
+                <div className={styles.legendTitle}>
+                  <span>🏷️ راهنمای کدهای خطا</span>
+                </div>
+                <div className={styles.legendList}>
+                  {Object.values(ERROR_TAXONOMY).map((tax) => (
+                    <div key={tax.code} className={styles.legendItem}>
+                      <span
+                        className={styles.legendCodePill}
+                        style={{
+                          background: tax.bgColor,
+                          color: tax.textColor,
+                          border: `1px solid ${tax.color}`,
+                        }}
+                      >
+                        [{tax.code}]
+                      </span>
+                      <div>
+                        <strong>{tax.titleFa}:</strong> {tax.descriptionFa}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -720,11 +1241,11 @@ export function WritingClueHunterArena({
         )}
 
         {/* ================================================================
-            CASE SOLVED CELEBRATION OVERLAY
+            FINAL CELEBRATION & REVIEW
             ================================================================ */}
-        {isCaseSolved && summaryOutcome && (
+        {phase === "final-result" && summaryOutcome && (
           <div className={styles.caseSolvedOverlay}>
-            <div className={styles.stampBadge}>پرونده با موفقیت حل شد! 🎖️</div>
+            <div className={styles.stampBadge}>مرحله با موفقیت به پایان رسید! 🎖️</div>
 
             <div className={styles.starsRow}>
               {Array.from({ length: summaryOutcome.stars }).map((_, i) => (
@@ -746,21 +1267,93 @@ export function WritingClueHunterArena({
                 <span className={styles.summaryScoreVal}>
                   {summaryOutcome.finalScore}
                 </span>
-                <span className={styles.summaryScoreLabel}>مجموع امتیاز پرونده</span>
+                <span className={styles.summaryScoreLabel}>مجموع امتیاز مرحله</span>
               </div>
 
               <div className={styles.summaryScoreItem}>
                 <span className={styles.summaryScoreVal}>
                   {summaryOutcome.accuracyPct}%
                 </span>
-                <span className={styles.summaryScoreLabel}>دقت نگارش</span>
+                <span className={styles.summaryScoreLabel}>دقت نگارش و لغات</span>
               </div>
             </div>
+
+            {/* Improvement Bonus Banner */}
+            {finalEval && finalEval.improvementBonusXp && finalEval.improvementBonusXp > 0 && (
+              <div className={styles.improvementBanner}>
+                <span>
+                  🌟 جهش نمره از {draft1Eval?.score} به {finalEval.score}!
+                </span>
+                <span>+{finalEval.improvementBonusXp} XP پاداش خودویرایشی</span>
+              </div>
+            )}
+
+            {/* Student's Final Written Text */}
+            <div className={styles.finalSubmittedTextBox}>
+              <div className={styles.finalSubmittedTextHeader}>
+                <span>📝 متن نهایی نگارش‌شده شما:</span>
+                <span className={styles.finalWordCountBadge}>
+                  {(draft2Text || draft1Text).trim().split(/\s+/).filter(Boolean).length} کلمه •{" "}
+                  {(draft2Text || draft1Text).trim().split(/[.!?]+/).filter((s) => s.trim().length > 0).length} جمله
+                </span>
+              </div>
+              <div className={styles.finalSubmittedTextContent}>
+                {draft2Text || draft1Text}
+              </div>
+            </div>
+
+            {/* Final Concise Direct Corrections or Perfect Notice */}
+            {finalEval && finalEval.detectedErrors.length > 0 ? (
+              <div className={styles.finalCorrectionSection}>
+                <div className={styles.finalCorrectionTitle}>
+                  📌 تصحیح اشکالات نهایی:
+                </div>
+                <div className={styles.correctionCardsGrid}>
+                  {finalEval.detectedErrors.map((err) => (
+                    <div key={err.id} className={styles.correctionCard}>
+                      <span className={styles.correctionWrong}>{err.originalText}</span>
+                      <span className={styles.correctionArrow}>➔</span>
+                      <span className={styles.correctionRight}>{err.directCorrection}</span>
+                      <span
+                        className={styles.legendCodePill}
+                        style={{
+                          background: ERROR_TAXONOMY[err.code]?.bgColor,
+                          color: ERROR_TAXONOMY[err.code]?.textColor,
+                        }}
+                      >
+                        [{err.code}]
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className={styles.perfectTextNotice}>
+                <span>✨ تمام اشکالات برطرف شدند و متن نهایی بدون نقص است!</span>
+              </div>
+            )}
+
+            {/* Secret Quest Unlock Reward (Unlocked when score or accuracy >= 85%) */}
+            {summaryOutcome.accuracyPct >= 85 && (
+              <div className={styles.secretQuestBanner}>
+                <div className={styles.secretQuestHeader}>
+                  <span className={styles.secretQuestTitle}>
+                    🗝️ ماموریت ویژه باز شد! (نمره بالای ۸۵٪)
+                  </span>
+                  <span className={styles.secretQuestCode}>
+                    SECRET-QUEST-{level.cefr}
+                  </span>
+                </div>
+                <div className={styles.secretQuestDesc}>
+                  با تسلط بر ساختار و لغات این مرحله، قفل ماموریت ویژه را باز کردید! ۵۰+ XP امتیاز ویژه به شما تعلق گرفت.
+                </div>
+              </div>
+            )}
 
             <div className={styles.celebrationActionRow}>
               {level.levelNumber < 10 && onNextLevel && (
                 <button className={styles.nextLevelBtn} onClick={onNextLevel}>
-                  پرونده مرحله بعد ←
+                  مرحله بعد ←
                 </button>
               )}
 

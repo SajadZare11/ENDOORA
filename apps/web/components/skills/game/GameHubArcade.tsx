@@ -6,6 +6,7 @@ import styles from "./skills-game.module.css";
 import { CefrLevel, SkillKey, GameLevel } from "../../../data/skills/games/types";
 import { getSkillLevels, getSkillLevel } from "../../../data/skills/games/game-data";
 import {
+  getDefaultProgress,
   loadAllSkillsProgress,
   calculateGrandTotalXp,
   calculateTotalStars,
@@ -21,6 +22,7 @@ import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
 import { ReadingOdysseyArena } from "./ReadingOdysseyArena";
 import { WritingClueHunterArena } from "./WritingClueHunterArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
+import { ReadingAdventureHub } from "./ReadingAdventureHub";
 
 interface SkillCardMeta {
   key: SkillKey;
@@ -69,8 +71,8 @@ const SKILL_METAS: SkillCardMeta[] = [
     icon: "✍️",
     titleFa: "نگارش و رایتینگ",
     titleEn: "Writing",
-    gameName: "کارآگاهان کلمه: شکارچی سرنخ (Clue Hunter)",
-    descFa: "حل ۶۰ پرونده کارآگاهی، مونتاژ پازلی قطعات جمله، اتصال شواهد با کلمات ربط و تایپ سند نهایی در ۳ تم روبات‌ها، نوآر و اسناد سایبری.",
+    gameName: "استودیوی نویسندگان برتر (Writing Arena & Secret Quests)",
+    descFa: "ماموریت‌های واقعی از A1 تا C2، دست‌گرمی با ۳ جمله طلایی، شکار کلمات کلیدی کتاب در چک‌لیست زنده و باز کردن پرونده‌های مخفی با نمره بالای ۸۵!",
   },
   {
     key: "speaking",
@@ -94,11 +96,13 @@ const CEFR_LEVELS: { id: CefrLevel; labelFa: string; descFa: string }[] = [
 export function GameHubArcade() {
   const [selectedCefr, setSelectedCefr] = useState<CefrLevel>("A1");
   const [activeLevel, setActiveLevel] = useState<GameLevel | null>(null);
+  const [isReadingShowcaseOpen, setIsReadingShowcaseOpen] = useState(false);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [leaderboardSkill, setLeaderboardSkill] = useState<SkillKey>("grammar");
   const [totalXp, setTotalXp] = useState(0);
   const [totalStars, setTotalStars] = useState(0);
-  const [skillsProgress, setSkillsProgress] = useState(loadAllSkillsProgress());
+  const [isMounted, setIsMounted] = useState(false);
+  const [skillsProgress, setSkillsProgress] = useState(getDefaultProgress());
 
   // Refresh progress from storage
   const refreshProgress = () => {
@@ -109,12 +113,17 @@ export function GameHubArcade() {
   };
 
   useEffect(() => {
+    setIsMounted(true);
     refreshProgress();
   }, []);
 
   const handleStartGame = (skill: SkillKey) => {
+    if (skill === "reading") {
+      setIsReadingShowcaseOpen(true);
+      return;
+    }
     setLeaderboardSkill(skill);
-    const currentProgress = skillsProgress[skill]?.[selectedCefr];
+    const currentProgress = (isMounted ? skillsProgress : getDefaultProgress())[skill]?.[selectedCefr];
     const targetLevelNum = Math.min(10, Math.max(1, currentProgress?.unlockedLevel || 1));
     const levelData = getSkillLevel(skill, selectedCefr, targetLevelNum);
     if (levelData) {
@@ -138,8 +147,9 @@ export function GameHubArcade() {
     refreshProgress();
   };
 
-  const cefrTotalXp = calculateCefrTotalXp(selectedCefr, skillsProgress);
-  const bestRankInfo = getBestSkillRankForCefr(selectedCefr, skillsProgress);
+  const effectiveProgress = isMounted ? skillsProgress : getDefaultProgress();
+  const cefrTotalXp = calculateCefrTotalXp(selectedCefr, effectiveProgress);
+  const bestRankInfo = getBestSkillRankForCefr(selectedCefr, effectiveProgress);
 
   return (
     <section className={styles.arcadeContainer} aria-label="آرکید بازی‌های مهارتی ایندورا">
@@ -212,7 +222,7 @@ export function GameHubArcade() {
       {/* 6 Core Skills Game Cards Grid */}
       <div className={styles.skillsGrid}>
         {SKILL_METAS.map((meta) => {
-          const progress = skillsProgress[meta.key]?.[selectedCefr] || {
+          const progress = effectiveProgress[meta.key]?.[selectedCefr] || {
             unlockedLevel: selectedCefr === "A1" ? 1 : 0,
             stars: {},
             highScores: {},
@@ -402,6 +412,78 @@ export function GameHubArcade() {
           onNextLevel={handleNextLevel}
         />
       ) : null}
+
+      {/* Reading 5-Adventure Showcase Modal */}
+      {isReadingShowcaseOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            background: "rgba(15, 23, 42, 0.75)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1rem",
+            overflowY: "auto",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 1100,
+              maxHeight: "92vh",
+              overflowY: "auto",
+              borderRadius: "1.5rem",
+              background: "var(--color-bg-surface, #ffffff)",
+              border: "1.5px solid var(--color-border-subtle, #cbd5e1)",
+              padding: "1.75rem",
+              boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlockEnd: "1.25rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <span style={{ fontSize: "1.8rem" }}>📖</span>
+                <div>
+                  <h2 style={{ margin: 0, fontSize: "1.3rem", fontWeight: 800 }}>ماجراجویی‌های ریدینگ تعاملی</h2>
+                  <p style={{ margin: "0.2rem 0 0", fontSize: "0.85rem", color: "#64748b" }}>سطح {selectedCefr} • برای عبور، ۲ داستان را تکمیل کنید</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsReadingShowcaseOpen(false);
+                  refreshProgress();
+                }}
+                style={{
+                  background: "#f1f5f9",
+                  border: "none",
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  fontSize: "1.1rem",
+                  fontWeight: 900,
+                  color: "#64748b",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                title="بستن"
+              >
+                ✕
+              </button>
+            </div>
+            <ReadingAdventureHub
+              cefr={selectedCefr}
+              onRefreshParent={refreshProgress}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Leaderboard Modal */}
       <SkillsLeaderboardModal

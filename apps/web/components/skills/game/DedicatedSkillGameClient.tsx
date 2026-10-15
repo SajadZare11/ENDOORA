@@ -6,6 +6,7 @@ import styles from "./skills-game.module.css";
 import { SkillKey, CefrLevel, GameLevel } from "../../../data/skills/games/types";
 import { getSkillLevels, getSkillLevel } from "../../../data/skills/games/game-data";
 import {
+  getDefaultProgress,
   loadAllSkillsProgress,
   calculateGrandTotalXp,
   calculateTotalStars,
@@ -31,6 +32,7 @@ import {
   getWritingDailyBounty,
 } from "../../../data/skills/games/writing-clue-curriculum";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
+import { ReadingAdventureHub } from "./ReadingAdventureHub";
 
 
 interface Props {
@@ -52,7 +54,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
   const [cefr, setCefr] = useState<CefrLevel>("A1");
   const [activeLevel, setActiveLevel] = useState<GameLevel | null>(null);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [allProgress, setAllProgress] = useState(loadAllSkillsProgress());
+  const [isMounted, setIsMounted] = useState(false);
+  const [allProgress, setAllProgress] = useState(getDefaultProgress());
 
   const skillInfo = SKILL_NAMES[skill] || { fa: skill, en: skill, icon: "🎮" };
 
@@ -61,12 +64,21 @@ export function DedicatedSkillGameClient({ skill }: Props) {
   };
 
   useEffect(() => {
+    setIsMounted(true);
     refreshProgress();
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const paramCefr = params.get("cefr")?.toUpperCase() as CefrLevel | undefined;
+      if (paramCefr && CEFR_TABS.includes(paramCefr)) {
+        setCefr(paramCefr);
+      }
+    }
   }, []);
 
-  const dailyBounty = skill === "writing" ? getWritingDailyBounty() : null;
+  const dailyBounty = isMounted && skill === "writing" ? getWritingDailyBounty() : null;
 
-  const progress = allProgress[skill]?.[cefr] || {
+  const currentProgressData = isMounted ? allProgress : getDefaultProgress();
+  const progress = currentProgressData[skill]?.[cefr] || {
     unlockedLevel: cefr === "A1" ? 1 : 0,
     stars: {},
     highScores: {},
@@ -75,7 +87,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
   };
 
   const levels = getSkillLevels(skill, cefr);
-  const dailyRecord = getLevelDailyHighScore(skill, cefr);
+  const dailyRecord = isMounted ? getLevelDailyHighScore(skill, cefr) : 0;
 
   const handleNextLevel = () => {
     if (!activeLevel) return;
@@ -162,7 +174,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               title={`مجموع امتیاز شما در تمام مهارت‌های سطح ${cefr}`}
               suppressHydrationWarning
             >
-              ⚡ {calculateCefrTotalXp(cefr, allProgress).toLocaleString("fa-IR")} XP
+              ⚡ {calculateCefrTotalXp(cefr, currentProgressData).toLocaleString("fa-IR")} XP
             </div>
             <div
               className={`${styles.statBadge} ${styles.rank}`}
@@ -172,8 +184,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               suppressHydrationWarning
             >
               🏅 رتبه {Math.min(
-                getLevelLeaderboard(skill, cefr, "daily", allProgress).userRank,
-                getLevelLeaderboard(skill, cefr, "all-time", allProgress).userRank
+                getLevelLeaderboard(skill, cefr, "daily", currentProgressData).userRank,
+                getLevelLeaderboard(skill, cefr, "all-time", currentProgressData).userRank
               ).toLocaleString("fa-IR")}
             </div>
             {dailyRecord > 0 && (
@@ -292,29 +304,34 @@ export function DedicatedSkillGameClient({ skill }: Props) {
         </div>
       )}
 
-      {/* 10-Level Roadmap Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
-          gap: "1.5rem",
-          marginBlockStart: "2rem",
-        }}
-      >
-        {levels.map((lvl) => {
+      {skill === "reading" ? (
+        <div style={{ marginBlockStart: "2rem" }}>
+          <ReadingAdventureHub cefr={cefr} onRefreshParent={refreshProgress} />
+        </div>
+      ) : (
+        /* 10-Level Roadmap Grid */
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+            gap: "1.5rem",
+            marginBlockStart: "2rem",
+          }}
+        >
+          {levels.map((lvl) => {
           const isUnlocked = progress.unlockedLevel >= lvl.levelNumber;
           const starsEarned = progress.stars[lvl.levelNumber] || 0;
           const highScoreAccuracy = progress.highScores[lvl.levelNumber];
-          const bestRawPoints = getStageBestPoints(skill, cefr, lvl.levelNumber);
+          const bestRawPoints = isMounted ? getStageBestPoints(skill, cefr, lvl.levelNumber) : 0;
 
           // Focus label
           const isConversationalC1C2 = skill === "vocabulary" && (cefr === "C1" || cefr === "C2");
           const isGrammar = skill === "grammar";
           const isSpeaking = skill === "speaking";
-          const isReading = skill === "reading";
+          const isReading = (skill as string) === "reading";
           const isWriting = skill === "writing";
-          const readingEndings = isReading ? getStageDiscoveredEndingsCount(cefr, lvl.levelNumber) : 0;
-          const readingBestTime = isReading ? getStageBestTime("reading", cefr, lvl.levelNumber) : 0;
+          const readingEndings = isMounted && isReading ? getStageDiscoveredEndingsCount(cefr, lvl.levelNumber) : 0;
+          const readingBestTime = isMounted && isReading ? getStageBestTime("reading", cefr, lvl.levelNumber) : 0;
           const writingCase = isWriting ? getWritingStageCase(cefr, lvl.levelNumber) : undefined;
           const isWritingBounty =
             isWriting &&
@@ -566,6 +583,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
           );
         })}
       </div>
+      )}
 
       {/* Active Game Arena Modal */}
       {activeLevel && skill === "writing" ? (

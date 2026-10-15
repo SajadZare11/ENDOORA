@@ -31,6 +31,7 @@ interface ActiveTile {
   audioText: string;
   category: "word" | "chunk" | "dialogue";
   contextFa?: string;
+  powerUp?: "bomb" | "freeze" | "star";
   col: number; // 0..4
   row: number; // 0..3
   isExploding?: boolean;
@@ -61,27 +62,25 @@ function shuffleArray<T>(array: T[]): T[] {
 /**
  * Stage-by-stage progressive time limits for Word Cascade:
  * Stage 1: 40s
- * Stage 2: 30s
- * Stage 3: 20s
+ * Stage 2: 35s
+ * Stage 3: 30s
  * Stages 4 - 10: 40s
  */
 export function getVocabStageTimeLimit(stageNumber: number): number {
   if (stageNumber === 1) return 40;
-  if (stageNumber === 2) return 30;
-  if (stageNumber === 3) return 20;
+  if (stageNumber === 2) return 35;
+  if (stageNumber === 3) return 30;
   return 40; // Stages 4 to 10
 }
 
 /**
  * Minimum correct matches required to pass/advance to the next stage:
- * Stage 1: 4
- * Stage 2: 3
- * Stage 3: 3
- * Stages 4 - 10: 4
+ * Stages 1-2: 5
+ * Stages 3-10: 6
  */
 export function getVocabStagePassThreshold(stageNumber: number): number {
-  if (stageNumber === 2 || stageNumber === 3) return 3;
-  return 4;
+  if (stageNumber <= 2) return 5;
+  return 6;
 }
 
 export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboard }: Props) {
@@ -93,8 +92,12 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     ? "🔍 Find synonyms. Match the words on the left with their synonyms on the right!"
     : "روی کلمه انگلیسی (آبی) و ترجمه فارسی (کهربایی) کلیک کن تا انفجار رخ بده! 💥";
 
+  const isA1A2 = level.cefr === "A1" || level.cefr === "A2";
+
   // Game metrics & state
   const [timeLeft, setTimeLeft] = useState(stageTimeLimit);
+  const [isTimerFrozen, setIsTimerFrozen] = useState(false);
+  const [isScreenShaking, setIsScreenShaking] = useState(false);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(1);
   const [maxCombo, setMaxCombo] = useState(1);
@@ -119,6 +122,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
   const [result, setResult] = useState<VocabRushResult | null>(null);
   const previousDailyBest = useRef<number>(0);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const freezeTimerTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const floatingIdCounter = useRef(0);
   const tileIdCounter = useRef(0);
 
@@ -198,7 +202,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     [isMuted]
   );
 
-  // Stop speech and lock background body scroll while modal is active
+  // Stop speech, clear freeze timer and lock background body scroll while modal is active
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     const originalOverscroll = document.body.style.overscrollBehavior;
@@ -208,6 +212,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
       document.body.style.overflow = originalOverflow;
       document.body.style.overscrollBehavior = originalOverscroll;
       stopEnglishSpeech();
+      if (freezeTimerTimeoutRef.current) clearTimeout(freezeTimerTimeoutRef.current);
     };
   }, []);
 
@@ -223,6 +228,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
   // Initialize board and reserves
   const initializeGame = useCallback(() => {
     previousDailyBest.current = getLevelDailyHighScore(level.skill, level.cefr);
+    if (freezeTimerTimeoutRef.current) clearTimeout(freezeTimerTimeoutRef.current);
 
     // Get fresh shuffled pairs strictly from this level's vocabulary and stage group (fresh words every 2 stages)
     const shuffledPool = getShuffledCascadePairs(level.cefr, level.levelNumber);
@@ -242,6 +248,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
         audioText: pair.english,
         category: pair.category,
         contextFa: pair.contextFa,
+        powerUp: pair.powerUp,
         col: 0,
         row: 0,
         isFalling: false,
@@ -255,6 +262,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
         audioText: matchText,
         category: pair.category,
         contextFa: pair.contextFa,
+        powerUp: pair.powerUp,
         col: 0,
         row: 0,
         isFalling: false,
@@ -268,6 +276,8 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     setPairReserve(reserve);
     setSelectedTile(null);
     setTimeLeft(currentStageTime);
+    setIsTimerFrozen(false);
+    setIsScreenShaking(false);
     setScore(0);
     setCombo(1);
     setMaxCombo(1);
@@ -424,12 +434,13 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     onNextLevel,
   ]);
 
-  // Countdown timer effect
+  // Countdown timer effect with Freeze mechanic
   useEffect(() => {
     if (isGameOver || isBriefingOpen) return;
 
     timerIntervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
+        if (isTimerFrozen) return prev; // Freeze active!
         if (prev <= 1) {
           clearInterval(timerIntervalRef.current!);
           handleFinishRound();
@@ -442,57 +453,79 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
     return () => {
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
-  }, [isGameOver, handleFinishRound]);
+  }, [isGameOver, isBriefingOpen, isTimerFrozen, handleFinishRound]);
 
   // Execute match replacement and scramble ALL 16 tiles across the board on CORRECT MATCH
-  const executeMatchAndScramble = (tileId1: string, tileId2: string) => {
+  const executeMatchAndScramble = (tileId1: string, tileId2: string, hasBomb: boolean = false) => {
     setTiles((prevTiles) => {
       const tile1 = prevTiles.find((t) => t.tileId === tileId1);
       const tile2 = prevTiles.find((t) => t.tileId === tileId2);
       if (!tile1 || !tile2) return prevTiles;
 
       const removedIds = new Set([tileId1, tileId2]);
+
+      // If bomb power-up: also clear another unsolved pair!
+      let extraPairsCount = 0;
+      if (hasBomb) {
+        const otherPair = prevTiles.find(
+          (t) => !removedIds.has(t.tileId) && t.pairId !== tile1.pairId
+        );
+        if (otherPair) {
+          const matchingPairTiles = prevTiles.filter((t) => t.pairId === otherPair.pairId);
+          matchingPairTiles.forEach((t) => removedIds.add(t.tileId));
+          extraPairsCount = 1;
+        }
+      }
+
       const surviving = prevTiles.filter((t) => !removedIds.has(t.tileId));
 
-      // Need 2 new tiles from reserve
+      // Need new tiles from reserve
       let currentReserve = [...pairReserve];
-      if (currentReserve.length < 2) {
-        currentReserve = [
-          ...currentReserve,
-          ...getShuffledCascadePairs(level.cefr, level.levelNumber),
-        ];
+      const newTilesToAdd: ActiveTile[] = [];
+      const totalPairsNeeded = 1 + extraPairsCount;
+
+      for (let i = 0; i < totalPairsNeeded; i++) {
+        if (currentReserve.length < 1) {
+          currentReserve = [
+            ...currentReserve,
+            ...getShuffledCascadePairs(level.cefr, level.levelNumber),
+          ];
+        }
+        const newPair = currentReserve.shift();
+        if (!newPair) break;
+
+        newTilesToAdd.push({
+          tileId: `t-${++tileIdCounter.current}`,
+          pairId: newPair.id,
+          side: "english",
+          text: newPair.english,
+          audioText: newPair.english,
+          category: newPair.category,
+          contextFa: newPair.contextFa,
+          powerUp: newPair.powerUp,
+          col: 0,
+          row: 0,
+          isFalling: true,
+        });
+
+        const matchText = isB1B2 && newPair.synonym ? newPair.synonym : newPair.match;
+        newTilesToAdd.push({
+          tileId: `t-${++tileIdCounter.current}`,
+          pairId: newPair.id,
+          side: "match",
+          text: matchText,
+          audioText: matchText,
+          category: newPair.category,
+          contextFa: newPair.contextFa,
+          powerUp: newPair.powerUp,
+          col: 0,
+          row: 0,
+          isFalling: true,
+        });
       }
-      const newPair = currentReserve.shift()!;
+
       setPairReserve(currentReserve);
-
-      const newTileA: ActiveTile = {
-        tileId: `t-${++tileIdCounter.current}`,
-        pairId: newPair.id,
-        side: "english",
-        text: newPair.english,
-        audioText: newPair.english,
-        category: newPair.category,
-        contextFa: newPair.contextFa,
-        col: 0,
-        row: 0,
-        isFalling: true,
-      };
-
-      const matchText = isB1B2 && newPair.synonym ? newPair.synonym : newPair.match;
-      const newTileB: ActiveTile = {
-        tileId: `t-${++tileIdCounter.current}`,
-        pairId: newPair.id,
-        side: "match",
-        text: matchText,
-        audioText: matchText,
-        category: newPair.category,
-        contextFa: newPair.contextFa,
-        col: 0,
-        row: 0,
-        isFalling: true,
-      };
-
-      const combined = [...surviving, newTileA, newTileB];
+      const combined = [...surviving, ...newTilesToAdd];
       return scrambleTilePositions(combined);
     });
 
@@ -539,43 +572,80 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
 
     if (isMatch) {
       // SUCCESS MATCH: Both tiles explode, new tiles enter, and ALL 16 TILES SHUFFLE!
+      const hasStar = selectedTile.powerUp === "star" || clicked.powerUp === "star";
+      const hasFreeze = selectedTile.powerUp === "freeze" || clicked.powerUp === "freeze";
+      const hasBomb = selectedTile.powerUp === "bomb" || clicked.powerUp === "bomb";
+
       const isSupernova = combo >= 5;
+      let multiplier = isSupernova ? 2 : 1;
+      if (hasStar) multiplier *= 2;
+
       const basePoints = 120;
       const comboBonus = combo * 35;
-      const ptsEarned = (basePoints + comboBonus) * (isSupernova ? 2 : 1);
+      const ptsEarned = (basePoints + comboBonus) * multiplier + (hasBomb ? 150 : 0);
 
       setScore((prev) => prev + ptsEarned);
-      setCorrectMatches((prev) => prev + 1);
+      const addedMatches = 1 + (hasBomb ? 1 : 0);
+      setCorrectMatches((prev) => prev + addedMatches);
 
       const nextCombo = combo + 1;
       setCombo(nextCombo);
       setMaxCombo((prev) => Math.max(prev, nextCombo));
 
-      // Bonus time (+2.5s)
-      setTimeLeft((prev) => Math.min(120, prev + 2.5));
+      // Pronunciation:
+      const englishAudio = selectedTile.side === "english" ? selectedTile.audioText : clicked.audioText;
+      speakText(englishAudio);
+
+      // Bonus time (+2s)
+      setTimeLeft((prev) => Math.min(120, prev + 2.0));
 
       // Floating badges
-      triggerFloatingBadge(`+${ptsEarned} pts 🔥`, "#2563eb");
-      triggerFloatingBadge(`+2.5s ⏳`, "#10b981");
+      triggerFloatingBadge(`+2s ⏱️`, "#10b981");
+      triggerFloatingBadge(`+${ptsEarned} pts 🔥`, hasStar ? "#f59e0b" : "#2563eb");
+
+      if (hasStar) {
+        triggerFloatingBadge(`⭐ ستاره دوبل x2!`, "#f59e0b");
+      }
+
+      if (hasFreeze) {
+        triggerFloatingBadge(`❄️ زمان یخ زد! (۴ ثانیه)`, "#06b6d4");
+        setIsTimerFrozen(true);
+        if (freezeTimerTimeoutRef.current) clearTimeout(freezeTimerTimeoutRef.current);
+        freezeTimerTimeoutRef.current = setTimeout(() => {
+          setIsTimerFrozen(false);
+        }, 4000);
+      }
+
+      if (hasBomb) {
+        triggerFloatingBadge(`💣 بمب ترکید! (+۱۵۰)`, "#ef4444");
+      }
 
       if (isSupernova) {
         triggerFloatingBadge(`💥 سوپرنوا x2!`, "#ec4899");
       }
 
-      // Audio: sound effects only (no automatic speech)
-      if (!isMuted) {
-        soundSynth.playCorrect();
-        if (nextCombo > 2) soundSynth.playCombo(nextCombo);
+      if (isA1A2) {
+        setIsScreenShaking(true);
+        setTimeout(() => setIsScreenShaking(false), 420);
       }
 
-      // Trigger explosion animation on both
-      setTiles((prev) =>
-        prev.map((t) =>
-          t.tileId === selectedTile.tileId || t.tileId === clicked.tileId
-            ? { ...t, isExploding: true }
-            : t
-        )
-      );
+      // Audio: sound effects only
+      if (!isMuted) {
+        soundSynth.playCorrect();
+        if (nextCombo > 2 || hasBomb) soundSynth.playCombo(nextCombo);
+      }
+
+      // Trigger explosion animation on both (and other pair if bomb)
+      setTiles((prev) => {
+        const explodingPairIds = new Set([selectedTile.pairId]);
+        if (hasBomb) {
+          const otherP = prev.find((t) => t.pairId !== selectedTile.pairId);
+          if (otherP) explodingPairIds.add(otherP.pairId);
+        }
+        return prev.map((t) =>
+          explodingPairIds.has(t.pairId) ? { ...t, isExploding: true } : t
+        );
+      });
 
       const t1Id = selectedTile.tileId;
       const t2Id = clicked.tileId;
@@ -583,7 +653,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
 
       // Execute replacement AND SHUFFLE whole board on correct match!
       setTimeout(() => {
-        executeMatchAndScramble(t1Id, t2Id);
+        executeMatchAndScramble(t1Id, t2Id, hasBomb);
       }, 250);
     } else {
       // MISMATCH
@@ -983,6 +1053,23 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
           </span>
         )}
 
+        {/* Power-Up Special Tile Badge */}
+        {tile.powerUp === "bomb" && (
+          <span className={`${styles.tilePowerUpBadge} ${styles.powerUpBomb}`} title="کاشی بمب: انفجار یک جفت دیگر را پاک می‌کند!">
+            💣 BOMB
+          </span>
+        )}
+        {tile.powerUp === "freeze" && (
+          <span className={`${styles.tilePowerUpBadge} ${styles.powerUpFreeze}`} title="کاشی یخ: زمان را ۴ ثانیه متوقف می‌کند!">
+            ❄️ FREEZE
+          </span>
+        )}
+        {tile.powerUp === "star" && (
+          <span className={`${styles.tilePowerUpBadge} ${styles.powerUpStar}`} title="کاشی ستاره: امتیاز دوبل می‌دهد!">
+            ⭐ 2X XP
+          </span>
+        )}
+
         {/* Tile Content */}
         <div
           style={{
@@ -1025,7 +1112,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
       <div
         className={`${styles.cascadeArenaModal} ${
           isSupernova ? styles.supernovaActive : ""
-        }`}
+        } ${isScreenShaking ? styles.screenShaking : ""}`}
       >
         {/* Floating Badges */}
         {floatingList.map((f) => (
@@ -1040,6 +1127,9 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
             <span className={styles.cascadeCefrBadge}>{level.cefr}</span>
             <span className={styles.cascadeStageBadge}>
               استیج {level.levelNumber} از ۱۰ ({level.titleFa})
+            </span>
+            <span className={styles.quotaPill}>
+              🎯 {correctMatches} / {requiredMatches} جفت
             </span>
             {combo > 1 && (
               <span className={styles.cascadeComboPill}>
@@ -1092,7 +1182,7 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
           <div
             className={`${styles.cascadeEnergyFill} ${
               isDangerTime ? styles.cascadeEnergyDanger : ""
-            }`}
+            } ${isTimerFrozen ? styles.timerFrozen : ""}`}
             style={{ width: `${energyPercent}%` }}
           />
         </div>
@@ -1102,8 +1192,26 @@ export function WordCascadeArena({ level, onClose, onNextLevel, onOpenLeaderboar
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
             <span>{teacherTip}</span>
           </div>
-          <span style={{ fontWeight: 800, color: isDangerTime ? "#ef4444" : "#2563eb" }}>
-            ⏳ {Math.ceil(timeLeft)} ثانیه
+          <span
+            className={`${isDangerTime && !isTimerFrozen ? styles.timerPulsing : ""} ${
+              isTimerFrozen ? styles.timerFrozen : ""
+            }`}
+            style={{
+              fontWeight: 800,
+              padding: "0.25rem 0.75rem",
+              borderRadius: "9999px",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              color: isTimerFrozen ? "#ffffff" : isDangerTime ? "#ef4444" : "#2563eb",
+              background: isTimerFrozen
+                ? undefined
+                : isDangerTime
+                ? "rgba(239, 68, 68, 0.12)"
+                : "rgba(37, 99, 235, 0.1)",
+            }}
+          >
+            {isTimerFrozen ? "❄️ زمان یخ‌زده!" : `⏳ ${Math.ceil(timeLeft)} ثانیه`}
           </span>
         </div>
 

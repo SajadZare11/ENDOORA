@@ -103,6 +103,7 @@ export function ReadingOdysseyArena({
   // Endings & Celebration state
   const [currentEnding, setCurrentEnding] = useState<OdysseyEnding | null>(null);
   const [discoveredEndingIds, setDiscoveredEndingIds] = useState<number[]>([]);
+  const [totalStageEndingsFound, setTotalStageEndingsFound] = useState<number>(0);
   const [completionResult, setCompletionResult] = useState<{
     finalScore: number;
     heartsRemaining: number;
@@ -121,6 +122,7 @@ export function ReadingOdysseyArena({
     if (!story) return;
     const ids = getDiscoveredEndings(level.cefr, level.levelNumber, story.storyIndex);
     setDiscoveredEndingIds(ids);
+    setTotalStageEndingsFound(getStageDiscoveredEndingsCount(level.cefr, level.levelNumber));
   }, [level.cefr, level.levelNumber, story]);
 
   // Reset Game loop for the selected story
@@ -138,6 +140,7 @@ export function ReadingOdysseyArena({
 
     const ids = getDiscoveredEndings(level.cefr, level.levelNumber, storyItem.storyIndex);
     setDiscoveredEndingIds(ids);
+    setTotalStageEndingsFound(getStageDiscoveredEndingsCount(level.cefr, level.levelNumber));
   }, [level.cefr, level.levelNumber]);
 
   // Handle Story Change
@@ -247,8 +250,6 @@ export function ReadingOdysseyArena({
       : stage.theme === "secret-lab"
       ? styles.themeLab
       : styles.themeSpace;
-
-  const totalStageEndingsFound = getStageDiscoveredEndingsCount(level.cefr, level.levelNumber);
 
   return (
     <div className={styles.modalBackdrop}>

@@ -66,7 +66,52 @@ export interface WritingPunchlineRound {
   quickChips?: string[]; // Clickable helper chips for faster typing on mobile
 }
 
-// Full 3-Round Case Stage
+// Pre-writing 3-sentence warmup challenge
+export interface PreWritingWarmupItem {
+  id: string;
+  orderNumber: number; // 1, 2, 3
+  promptFa: string;
+  templateSentence: string;
+  targetWord: string;
+  acceptableAnswers: string[];
+  cefrWordTag: string; // e.g. "A1", "A2", "B1", "B2", "C1", "C2"
+  explanationFa: string;
+  options?: string[];
+}
+
+// Live Target Vocabulary for interactive writing checklist
+export interface LiveTargetWord {
+  id: string;
+  wordEn: string;
+  meaningFa: string;
+  cefrLevel: CefrLevel;
+  collocationEn?: string;
+  variations: string[]; // for regex matching in student's live typed text
+  upgradesFromSimple?: string[]; // simple words that prompt upgrade to this target word
+}
+
+// Secret Quest unlocked when user scores >= 85% with target CEFR vocabulary
+export interface SecretQuestMeta {
+  questCode: string;
+  titleFa: string;
+  titleEn: string;
+  scenarioFa: string;
+  secretBriefFa: string;
+  targetMysteryWord: string;
+  bonusXp: number;
+}
+
+// Main Writing Task (executed after the 3-round warm-up)
+export interface MainWritingTaskMeta {
+  titleFa: string;
+  scenarioFa: string;
+  minSentences: number;
+  minWords: number;
+  suggestedWords: string[];
+  guidingQuestionsFa?: string[];
+}
+
+// Full Stage Case with Warm-up and Main Writing Task
 export interface WritingStageCase {
   levelNumber: number; // 1 to 10
   cefr: CefrLevel;
@@ -82,10 +127,18 @@ export interface WritingStageCase {
   timeLimitSeconds: number;
   isBossStage?: boolean;
 
-  // The 3 investigative rounds
+  // The 3 investigative rounds (Used as Warm-up)
   round1: WritingFragmentRound;
   round2: WritingConnectorRound;
   round3: WritingPunchlineRound;
+
+  // Main Writing Task after Warm-up
+  mainWritingTask?: MainWritingTaskMeta;
+
+  // Studio Progression Enhancements (Writing Arena & Secret Quests)
+  warmupItems?: PreWritingWarmupItem[];
+  targetVocabularyDeck?: LiveTargetWord[];
+  secretQuest?: SecretQuestMeta;
 }
 
 // Result of solving a case
