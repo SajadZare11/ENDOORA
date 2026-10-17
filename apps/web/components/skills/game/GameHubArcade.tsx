@@ -354,7 +354,7 @@ export function GameHubArcade() {
             refreshProgress();
           }}
         />
-      ) : activeLevel && activeLevel.skill === "speaking" && activeLevel.cefr === "A1" ? (
+      ) : activeLevel && activeLevel.skill === "speaking" && (activeLevel.cefr === "A1" || activeLevel.cefr === "A2") ? (
         <SherlockSpeakingArena
           key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}

@@ -1,7 +1,7 @@
 import type { CefrLevel } from "./types";
 
 export interface CutsceneDialogue {
-  speakerId: "white" | "sherlock" | "aunt" | "flower_seller" | "driver" | "clerk" | "guard" | "henchman" | "lily" | "watson" | "moriarty";
+  speakerId: "white" | "sherlock" | "aunt" | "flower_seller" | "driver" | "clerk" | "guard" | "henchman" | "lily" | "watson" | "moriarty" | "judge" | "lestrade";
   speakerNameFa: string;
   speakerRoleFa: string;
   speakerAvatar: string;
@@ -80,7 +80,7 @@ export interface DetectiveStageBranchVariant {
 }
 
 export interface DetectiveStageEnding {
-  endingType: "ending-1-vault-trap" | "ending-2-girl-rescue";
+  endingType: "ending-1-vault-trap" | "ending-2-girl-rescue" | "ending-1-case-solved" | "ending-2-case-failed";
   titleFa: string;
   titleEn: string;
   badgeTitleFa: string;
@@ -1621,8 +1621,13 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
   },
 ];
 
-export function getSherlockStage(levelNum: number): DetectiveStage {
-  const found = A1_SHERLOCK_CASE.find((s) => s.levelNumber === levelNum);
+import { A2_SHERLOCK_CASE } from "./sherlock-case-a2";
+export { A2_SHERLOCK_CASE };
+
+export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): DetectiveStage {
+  const caseList = cefr === "A2" ? A2_SHERLOCK_CASE : A1_SHERLOCK_CASE;
+  const found = caseList.find((s) => s.levelNumber === levelNum);
   if (found) return found;
-  return A1_SHERLOCK_CASE[0];
+  return caseList[0];
 }
+

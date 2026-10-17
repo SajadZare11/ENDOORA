@@ -604,7 +604,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
             refreshProgress();
           }}
         />
-      ) : activeLevel && skill === "speaking" && activeLevel.cefr === "A1" ? (
+      ) : activeLevel && skill === "speaking" && (activeLevel.cefr === "A1" || activeLevel.cefr === "A2") ? (
         <SherlockSpeakingArena
           key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}

@@ -26,8 +26,10 @@ export function SherlockSpeakingArena({
   onNextLevel,
   onOpenLeaderboard,
 }: Props) {
-  // Load official A1 Sherlock Detective Stage (1 to 10)
-  const stage: DetectiveStage = getSherlockStage(level.levelNumber);
+  // Load official Sherlock Detective Stage (1 to 10) for active CEFR level (A1 or A2)
+  const stage: DetectiveStage = getSherlockStage(level.levelNumber, level.cefr);
+
+  const storageKey = `endoora_sherlock_${(level.cefr || "a1").toLowerCase()}_decisions`;
 
   // Flow State
   const [isCutsceneOpen, setIsCutsceneOpen] = useState<boolean>(true);
@@ -36,7 +38,7 @@ export function SherlockSpeakingArena({
   const [storyDecisions, setStoryDecisions] = useState<Record<number, string>>(() => {
     if (typeof window === "undefined") return {};
     try {
-      const saved = sessionStorage.getItem("endoora_sherlock_a1_decisions");
+      const saved = sessionStorage.getItem(storageKey);
       return saved ? JSON.parse(saved) : {};
     } catch {
       return {};
@@ -295,15 +297,47 @@ export function SherlockSpeakingArena({
     const finalAccuracy = calculateFinalAccuracy();
 
     if (activeStage.levelNumber === 10) {
-      // Climax Evaluation for Ending 1 vs Ending 2
-      // Choice in Stage 9 combined with detective intelligence and accuracy!
-      const choseRightDoor = storyDecisions[9] === "choice-9a";
-      const hasHighCredibility = score >= 900 && finalAccuracy >= 60;
+      if (level.cefr === "A2") {
+        // A2 Climax Evaluation: 16-Branch Consequence Matrix
+        // Decisions: Stage 2 (1A/1B), Stage 5 (2A/2B), Stage 7 (3A/3B), Stage 9 (4A/4B)
+        const d1 = storyDecisions[2]; // "choice-1a" (Code 77) or "choice-1b" (Antidote)
+        const d2 = storyDecisions[5]; // "choice-2a" (Trust Watson) or "choice-2b" (Handcuff Watson)
+        const d3 = storyDecisions[7]; // "choice-3a" (Treat Judge / Wire trick) or "choice-3b" (Rush to station)
+        const d4 = storyDecisions[9]; // "choice-4a" (Cut Black wire) or "choice-4b" (Cut White wire)
 
-      const wonRescue = choseRightDoor && hasHighCredibility;
-      setActiveEndingType(wonRescue ? "ending2" : "ending1");
-      setIsFinalClimaxRevealed(true);
-      soundSynth.playFanfare();
+        let isSuccess = false;
+        if (d4 === "choice-4a") {
+          // Cutting the black wire:
+          // Branches 1 to 7 succeed (Ending 1: Case Solved)
+          // Branch 9 (1B + 2B + 3B + 4A) fails without Code 77, without Judge, and without Watson's early bond
+          if (d1 === "choice-1b" && d2 === "choice-2b" && d3 === "choice-3b") {
+            isSuccess = false; // Branch 9 -> Ending 2
+          } else {
+            isSuccess = true; // Branches 1 to 7 -> Ending 1
+          }
+        } else {
+          // d4 === "choice-4b" (Cutting the white wire):
+          // Branch 8 (1A + 2A + 3A + 4B) succeeds because Code 77 + high trust locked the valve in advance!
+          if (d1 === "choice-1a" && d2 === "choice-2a" && d3 === "choice-3a") {
+            isSuccess = true; // Branch 8 -> Ending 1
+          } else {
+            isSuccess = false; // Branches 10 to 16 -> Ending 2
+          }
+        }
+
+        setActiveEndingType(isSuccess ? "ending1" : "ending2");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
+      } else {
+        // Climax Evaluation for A1 Ending 1 vs Ending 2
+        const choseRightDoor = storyDecisions[9] === "choice-9a";
+        const hasHighCredibility = score >= 900 && finalAccuracy >= 60;
+
+        const wonRescue = choseRightDoor && hasHighCredibility;
+        setActiveEndingType(wonRescue ? "ending2" : "ending1");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
+      }
     } else {
       setIsStageComplete(true);
       soundSynth.playFanfare();
@@ -336,7 +370,7 @@ export function SherlockSpeakingArena({
     setStoryDecisions(updated);
     if (typeof window !== "undefined") {
       try {
-        sessionStorage.setItem("endoora_sherlock_a1_decisions", JSON.stringify(updated));
+        sessionStorage.setItem(storageKey, JSON.stringify(updated));
       } catch {}
     }
     setScore((prev) => prev + choice.pointsDelta);
