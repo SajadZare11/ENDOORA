@@ -49,6 +49,22 @@ export function IELTSCatalog() {
 
   return (
     <div className={styles.container}>
+      {/* Header Navigation Tabs between IELTS modules */}
+      <nav className={styles.headerNavTabs} aria-label="بخش‌های آیلتس اندورا">
+        <Link href="/ielts" className={`${styles.navTab} ${styles.navTabActive}`}>
+          📑 بانک آزمون‌های ماک
+        </Link>
+        <Link href="/ielts/clinics" className={styles.navTab}>
+          🎯 کلینیک‌های استراتژی و تله‌زدایی
+        </Link>
+        <Link href="/ielts/writing" className={styles.navTab}>
+          ✍️ شبیه‌ساز رایتینگ
+        </Link>
+        <Link href="/ielts/speaking" className={styles.navTab}>
+          🎙️ شبیه‌ساز اسپیکینگ
+        </Link>
+      </nav>
+
       {/* Page Header */}
       <header className={styles.header}>
         <span className={styles.kicker}>IELTS Simulation & Mock Exam Library</span>
@@ -58,6 +74,19 @@ export function IELTSCatalog() {
           پخش صوت، تصحیح خودکار هوشمند و تبدیل نمره خام به باند ۱ تا ۹ بر اساس جدول رسمی کمبریج.
         </p>
       </header>
+
+      {/* Clinics Spotlight Banner */}
+      <aside className={styles.clinicsSpotlight} aria-label="معرفی کلینیک‌های استراتژی">
+        <div className={styles.clinicsSpotlightContent}>
+          <h3>🎯 کلینیک‌های جدید استراتژی و تله‌زدایی آیلتس (باند ۷ و ۸)</h3>
+          <p>
+            تله‌شناسی اختصاصی سوالات Not Given، فرمول طلایی اورویو تسک ۱، جهت‌یابی نقشه‌ها و تکنیک داستان‌سرایی PPF با تمرین‌های تشخیصی زنده.
+          </p>
+        </div>
+        <Link href="/ielts/clinics" className={styles.clinicsSpotlightBtn}>
+          ورود به کلینیک‌ها ←
+        </Link>
+      </aside>
 
       {/* Legal & Educational Disclaimer */}
       <aside className={styles.disclaimerBanner} role="note">

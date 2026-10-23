@@ -174,5 +174,9 @@ urlpatterns = [
         "api/online-exams/",
         include("online_exams.urls")
     ),
+    path(
+        "api/live-classes/",
+        include("live_classes.live_urls")
+    ),
 ]
 

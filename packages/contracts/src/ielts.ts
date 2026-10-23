@@ -122,3 +122,81 @@ export interface ExamAttempt {
     recommendations: string[];
   };
 }
+
+// =============================================================================
+// IELTS SKILL CLINICS & STRATEGY HUB CONTRACTS
+// =============================================================================
+
+export type ClinicSkill = "reading" | "writing" | "listening" | "speaking";
+
+export interface ClinicTrapDeconstruction {
+  id: string;
+  trapTitleFa: string;
+  trapTitleEn: string;
+  contextPassageOrPrompt: string;
+  commonWrongChoice: string;
+  whyWrongFa: string;
+  correctChoice: string;
+  whyCorrectFa: string;
+  examinerSecretFa: string;
+}
+
+export interface ClinicDrillQuestion {
+  id: string;
+  orderNumber: number;
+  promptFa: string;
+  promptEn: string;
+  passageSnippet?: string;
+  audioUrl?: string;
+  audioTimestamp?: string;
+  options: string[];
+  correctAnswerIndex: number; // 0-based
+  trapTypeBadge: string;
+  explanation: {
+    briefFa: string;
+    detailedFa: string;
+    cambridgeTipFa: string;
+    vocabularyExtracted?: Array<{ word: string; fa: string; ipa?: string }>;
+  };
+}
+
+export interface IeltsClinicData {
+  id: string;
+  skill: ClinicSkill;
+  titleFa: string;
+  titleEn: string;
+  targetBands: string; // e.g. "Band 6.5 -> 8.0"
+  estimatedMinutes: number;
+  heroIcon: string;
+  hurdleSummaryFa: string;
+  badgeLabelFa: string;
+
+  // Stage 1
+  strategyGuide: {
+    corePrinciplesFa: string[];
+    goldenFormulaFa: string;
+    goldenFormulaEn?: string;
+    timeManagementTipFa: string;
+    keyVocabulary?: Array<{ word: string; fa: string; ipa?: string }>;
+  };
+
+  // Stage 2
+  trapDeconstructions: ClinicTrapDeconstruction[];
+
+  // Stage 3
+  drills: ClinicDrillQuestion[];
+}
+
+export interface ClinicProgressRecord {
+  clinicId: string;
+  skill: ClinicSkill;
+  completed: boolean;
+  score: number; // e.g. 5
+  totalQuestions: number; // e.g. 6
+  accuracyPercentage: number;
+  timeSpentSeconds: number;
+  badgeUnlocked: boolean;
+  lastAttemptedAt: string;
+  userAnswers: Record<string, number>; // questionId -> selectedIndex
+}
+

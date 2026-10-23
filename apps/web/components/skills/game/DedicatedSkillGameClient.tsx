@@ -34,6 +34,8 @@ import {
 } from "../../../data/skills/games/writing-clue-curriculum";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
 import { ReadingAdventureHub } from "./ReadingAdventureHub";
+import { StreetVibeArena } from "./StreetVibeArena";
+import { getStreetVibeStage, STREET_VIBE_LOCATIONS } from "../../../data/skills/games/street-vibe-data";
 
 
 interface Props {
@@ -80,7 +82,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
 
   const currentProgressData = isMounted ? allProgress : getDefaultProgress();
   const progress = currentProgressData[skill]?.[cefr] || {
-    unlockedLevel: cefr === "A1" ? 1 : 0,
+    unlockedLevel: 1,
     stars: {},
     highScores: {},
     bestPoints: {},
@@ -320,12 +322,15 @@ export function DedicatedSkillGameClient({ skill }: Props) {
           }}
         >
           {levels.map((lvl) => {
-          const isUnlocked = progress.unlockedLevel >= lvl.levelNumber;
+          const isUnlocked = Math.max(1, progress.unlockedLevel || 1) >= lvl.levelNumber;
           const starsEarned = progress.stars[lvl.levelNumber] || 0;
           const highScoreAccuracy = progress.highScores[lvl.levelNumber];
           const bestRawPoints = isMounted ? getStageBestPoints(skill, cefr, lvl.levelNumber) : 0;
 
           // Focus label
+          const isStreetVibeA1 = skill === "vocabulary" && cefr === "A1";
+          const streetVibeStage = isStreetVibeA1 ? getStreetVibeStage(lvl.levelNumber) : undefined;
+          const streetVibeLocation = streetVibeStage ? STREET_VIBE_LOCATIONS[streetVibeStage.locationId] : undefined;
           const isConversationalC1C2 = skill === "vocabulary" && (cefr === "C1" || cefr === "C2");
           const isGrammar = skill === "grammar";
           const isSpeaking = skill === "speaking";
@@ -341,9 +346,19 @@ export function DedicatedSkillGameClient({ skill }: Props) {
 
           const cardTitleFa = writingCase
             ? `${writingCase.caseCode}: ${writingCase.stageTitleFa}`
+            : streetVibeStage
+            ? streetVibeStage.titleFa
             : lvl.titleFa;
-          const cardTitleEn = writingCase ? writingCase.stageTitleEn : lvl.titleEn;
-          const cardDescFa = writingCase ? writingCase.scenarioFa : lvl.descriptionFa;
+          const cardTitleEn = writingCase
+            ? writingCase.stageTitleEn
+            : streetVibeStage
+            ? streetVibeStage.titleEn
+            : lvl.titleEn;
+          const cardDescFa = writingCase
+            ? writingCase.scenarioFa
+            : streetVibeStage
+            ? streetVibeStage.descriptionFa
+            : lvl.descriptionFa;
 
           const focusLabel = isWriting
             ? cefr === "A1" || cefr === "A2"
@@ -371,6 +386,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               : cefr === "B1" || cefr === "B2"
               ? "🧩 مهندسی بندها و شرطی‌ها (AEF 3-4)"
               : "👑 سوپرلیگ وارونگی و ساختار (AEF 5)"
+            : isStreetVibeA1 && streetVibeLocation
+            ? `${streetVibeLocation.icon} ${streetVibeLocation.titleEn} (لوپ ۹۰ ثانیه)`
             : isConversationalC1C2
             ? "🏓 پینگ‌پنگ مکالمه"
             : lvl.stageFocus === "dialogues" || lvl.levelNumber >= 8
@@ -403,6 +420,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               : cefr === "B1" || cefr === "B2"
               ? "#6366f1"
               : "#0284c7"
+            : isStreetVibeA1 && streetVibeLocation
+            ? streetVibeLocation.themeColor
             : isConversationalC1C2
             ? "#6366f1"
             : lvl.stageFocus === "dialogues" || lvl.levelNumber >= 8
@@ -416,6 +435,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
             <div
               key={lvl.levelNumber}
               className={styles.skillGameCard}
+              onClick={() => isUnlocked && setActiveLevel(lvl)}
               style={{
                 opacity: isUnlocked ? 1 : 0.65,
                 borderColor: isWritingBounty
@@ -424,6 +444,7 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                   ? "#cbd5e1"
                   : "#f1f5f9",
                 boxShadow: isWritingBounty ? "0 0 16px rgba(245, 158, 11, 0.2)" : undefined,
+                cursor: isUnlocked ? "pointer" : "not-allowed",
               }}
             >
               <div className={styles.cardHeader}>
@@ -553,6 +574,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                       ? "linear-gradient(135deg, #10b981, #059669)"
                       : isReading
                       ? "linear-gradient(135deg, #8b5cf6, #6366f1)"
+                      : isStreetVibeA1
+                      ? "linear-gradient(135deg, #ec4899, #8b5cf6)"
                       : isConversationalC1C2
                       ? "linear-gradient(135deg, #6366f1, #4f46e5)"
                       : "linear-gradient(135deg, #2563eb, #1d4ed8)"
@@ -568,6 +591,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                       ? "🔄 دوئل صوتی و رکورد مجدد"
                       : isReading
                       ? "🔄 پیدا کردن بقیه پایان‌ها"
+                      : isStreetVibeA1
+                      ? "🔄 مسابقه مجدد ۹۰ ثانیه"
                       : isConversationalC1C2
                       ? "🔄 رقابت مجدد سرعت و زمان"
                       : "🔄 بازی سرعتی و رکورد"
@@ -577,6 +602,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                     ? "🎙️ شروع مأموریت صوتی"
                     : isReading
                     ? "🚀 بزن بریم توی قصه!"
+                    : isStreetVibeA1
+                    ? "🎮 شروع استریت‌وایب (۹۰ ثانیه)"
                     : isConversationalC1C2
                     ? "⚡ شروع چالش مکالمه پیوسته"
                     : "▶️ شروع استیج"
@@ -652,6 +679,21 @@ export function DedicatedSkillGameClient({ skill }: Props) {
       ) : activeLevel && skill === "vocabulary" && (activeLevel.cefr === "C1" || activeLevel.cefr === "C2") ? (
         <SpeedDialogueArena
           key={`dialogue-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && skill === "vocabulary" && activeLevel.cefr === "A1" ? (
+        <StreetVibeArena
+          key={`streetvibe-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);

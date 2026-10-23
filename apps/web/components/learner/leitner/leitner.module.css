@@ -1,0 +1,871 @@
+/* =============================================================================
+   ENDOORA LEITNER 5-BOX MISTAKE HUB DESIGN SYSTEM
+   Modern, token-friendly, responsive, RTL-native with 3D Flip Card transitions
+   ============================================================================= */
+
+/* Shelf Container */
+.shelfContainer {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-card, 16px);
+  padding: 1.5rem;
+  margin-block-end: 2rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  direction: rtl;
+}
+
+:global(.dark) .shelfContainer {
+  background: #0f172a;
+  border-color: #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.shelfHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.shelfTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shelfIcon {
+  font-size: 1.75rem;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 12px;
+}
+
+.shelfTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
+  margin: 0;
+}
+
+:global(.dark) .shelfTitle {
+  color: #f8fafc;
+}
+
+.shelfSubtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #64748b);
+  margin: 0.25rem 0 0 0;
+}
+
+:global(.dark) .shelfSubtitle {
+  color: #94a3b8;
+}
+
+.shelfActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.addMistakeButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: rgba(20, 184, 166, 0.1);
+  color: #0d9488;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addMistakeButton:hover {
+  background: rgba(20, 184, 166, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Due Today Banner */
+.dueTodayBanner {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.dueTodayContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.duePulseBadge {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
+}
+
+.dueTextTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.dueTextSub {
+  font-size: 0.825rem;
+  opacity: 0.9;
+  margin: 0.25rem 0 0 0;
+}
+
+.startStudyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1d4ed8;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.startStudyButton:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background: #f8fafc;
+}
+
+/* 5-Box Shelf Grid */
+.boxesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .boxesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .boxesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.boxCard {
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+:global(.dark) .boxCard {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.boxCard:hover {
+  transform: translateY(-3px);
+}
+
+.boxAccentBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+}
+
+.boxCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-block-end: 0.75rem;
+}
+
+.boxNumberBadge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.boxIntervalText {
+  font-size: 0.72rem;
+  color: var(--color-text-muted, #64748b);
+  font-weight: 600;
+}
+
+:global(.dark) .boxIntervalText {
+  color: #94a3b8;
+}
+
+.boxCardCount {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--color-text-primary, #0f172a);
+  margin-block: 0.25rem 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+:global(.dark) .boxCardCount {
+  color: #f8fafc;
+}
+
+.boxCardCountUnit {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #64748b);
+}
+
+.boxTitleFa {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #0f172a);
+  margin-block-end: 0.5rem;
+}
+
+:global(.dark) .boxTitleFa {
+  color: #e2e8f0;
+}
+
+.progressBarTrack {
+  height: 6px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+/* =============================================================================
+   LEITNER STUDY ARENA (Full Interactive Mode)
+   ============================================================================= */
+
+.arenaContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem 1rem;
+  direction: rtl;
+}
+
+.arenaTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+}
+
+.arenaBackLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.arenaBackLink:hover {
+  transform: translateX(4px);
+}
+
+.arenaSessionProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progressCounterText {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-muted, #64748b);
+}
+
+.arenaMeterTrack {
+  width: 140px;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+:global(.dark) .arenaMeterTrack {
+  background: #334155;
+}
+
+.arenaMeterFill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* 3D Flip Card Scene */
+.cardScene {
+  perspective: 1200px;
+  width: 100%;
+  min-height: 420px;
+  margin-block-end: 1.5rem;
+  cursor: pointer;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 20px;
+}
+
+.cardInnerFlipped {
+  transform: rotateY(180deg);
+}
+
+.cardFace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Front Face (Error & Challenge) */
+.cardFront {
+  background: var(--color-surface, #ffffff);
+  border: 2px solid #e2e8f0;
+}
+
+:global(.dark) .cardFront {
+  background: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Back Face (Correct & Explanation) */
+.cardBack {
+  background: var(--color-surface, #ffffff);
+  border: 2px solid #10b981;
+  transform: rotateY(180deg);
+}
+
+:global(.dark) .cardBack {
+  background: #091e1c;
+  border-color: #059669;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+}
+
+/* Card Header Meta */
+.cardHeaderMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-end: 1.25rem;
+}
+
+.badgeCategory {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+:global(.dark) .badgeCategory {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.cardBoxBadge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+/* Mistake Display (Front) */
+.mistakeDisplayBox {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px dashed rgba(239, 68, 68, 0.4);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-block: 1rem;
+}
+
+.mistakeLabel {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ef4444;
+  margin-block-end: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mistakeSentence {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #dc2626;
+  direction: ltr;
+  text-align: left;
+  line-height: 1.5;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.challengePrompt {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary, #475569);
+  line-height: 1.6;
+  margin-block-start: 1rem;
+}
+
+:global(.dark) .challengePrompt {
+  color: #cbd5e1;
+}
+
+.tapToFlipHint {
+  text-align: center;
+  font-size: 0.825rem;
+  color: var(--color-text-muted, #94a3b8);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  background: rgba(148, 163, 184, 0.08);
+  border-radius: 8px;
+}
+
+/* Back Face Elements */
+.correctDisplayBox {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-block-end: 1rem;
+}
+
+.correctLabelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 0.5rem;
+}
+
+.correctLabel {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.audioSpeakerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.audioSpeakerBtn:hover {
+  background: #059669;
+  transform: scale(1.05);
+}
+
+.correctSentence {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #059669;
+  direction: ltr;
+  text-align: left;
+  line-height: 1.5;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:global(.dark) .correctSentence {
+  color: #34d399;
+}
+
+.rootCauseCard {
+  background: var(--color-surface-subtle, #f8fafc);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-block-end: 1rem;
+  border-right: 4px solid #f59e0b;
+}
+
+:global(.dark) .rootCauseCard {
+  background: #1e293b;
+}
+
+.rootCauseTitle {
+  font-size: 0.825rem;
+  font-weight: 800;
+  color: #d97706;
+  margin-block-end: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rootCauseText {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #334155);
+  line-height: 1.6;
+  margin: 0;
+}
+
+:global(.dark) .rootCauseText {
+  color: #cbd5e1;
+}
+
+.exampleEn {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #64748b);
+  direction: ltr;
+  text-align: left;
+  font-style: italic;
+  margin-block-start: 0.5rem;
+}
+
+/* Action Controls (Fail / Pass) */
+.controlsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.btnFail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnFail:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
+  border-color: #ef4444;
+}
+
+.btnPass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: 2px solid #059669;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnPass:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+}
+
+.btnShortcutHint {
+  font-size: 0.725rem;
+  opacity: 0.85;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* Keyboard Help Bar */
+.keyboardHintsBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #94a3b8);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.kbdKey {
+  display: inline-block;
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #cbd5e1);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+:global(.dark) .kbdKey {
+  background: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+/* Celebration Screen */
+.celebrationCard {
+  background: var(--color-surface, #ffffff);
+  border: 2px solid #10b981;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(16, 185, 129, 0.15);
+}
+
+:global(.dark) .celebrationCard {
+  background: #0f172a;
+  border-color: #059669;
+}
+
+.celebrationIcon {
+  font-size: 4rem;
+  margin-block-end: 1rem;
+}
+
+.celebrationTitle {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-text-primary, #0f172a);
+  margin-block-end: 0.5rem;
+}
+
+:global(.dark) .celebrationTitle {
+  color: #f8fafc;
+}
+
+.celebrationSub {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary, #475569);
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+}
+
+:global(.dark) .celebrationSub {
+  color: #94a3b8;
+}
+
+.celebrationStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.statBadgeItem {
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+:global(.dark) .statBadgeItem {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.statBadgeVal {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #2563eb;
+}
+
+.statBadgeLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted, #64748b);
+  margin-block-start: 0.25rem;
+}
+
+.celebrationActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Modal for Custom Mistake */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  direction: rtl;
+}
+
+.modalContent {
+  background: var(--color-surface, #ffffff);
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+:global(.dark) .modalContent {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
+  margin-block-end: 0.5rem;
+}
+
+:global(.dark) .modalTitle {
+  color: #f8fafc;
+}
+
+.formGroup {
+  margin-block-end: 1rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #1e293b);
+  margin-block-end: 0.35rem;
+}
+
+:global(.dark) .formLabel {
+  color: #e2e8f0;
+}
+
+.formInput,
+.formTextarea,
+.formSelect {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border, #cbd5e1);
+  background: var(--color-surface, #ffffff);
+  font-size: 0.9rem;
+  color: var(--color-text-primary, #0f172a);
+  box-sizing: border-box;
+}
+
+:global(.dark) .formInput,
+:global(.dark) .formTextarea,
+:global(.dark) .formSelect {
+  background: #1e293b;
+  border-color: #475569;
+  color: #f8fafc;
+}
+
+.formInput:focus,
+.formTextarea:focus,
+.formSelect:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-block-start: 1.5rem;
+}

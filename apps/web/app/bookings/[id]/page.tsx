@@ -372,14 +372,36 @@ export default function BookingDetailPage() {
 
       {(booking.status === "confirmed" || booking.status === "in_progress") && (
         <div className={styles.roomCard}>
-          <h2 className={styles.roomTitle}>اتاق گفتگوی زنده اختصاصی</h2>
-          <p className={styles.roomDesc}>
-            لینک اتاق جلسه به صورت خودکار ایجاد شده است. در زمان آغاز جلسه می‌توانید با زدن دکمه زیر وارد اتاق شوید.
-          </p>
-          <div className={styles.roomActions}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
+            <div>
+              <h2 className={styles.roomTitle}>🎓 استودیوی کلاس تعاملی زنده ایندورا</h2>
+              <p className={styles.roomDesc}>
+                محیط اختصاصی کلاس آنلاین با تخته مشترک، ثبت لحظه‌ای اشتباهات و بازنویسی استاندارد، پایش صوتی و انتقال خودکار به جعبه لایتنر.
+              </p>
+            </div>
+            <Link
+              href={`/bookings/${booking.id}/room`}
+              className={styles.btnPrimary}
+              style={{
+                background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+                boxShadow: "0 4px 14px rgba(37, 99, 235, 0.3)",
+                fontSize: "1rem",
+                padding: "0.75rem 1.5rem",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <span>ورود به استودیوی کلاس زنده</span>
+              <span>⚡</span>
+            </Link>
+          </div>
+
+          <div className={styles.roomActions} style={{ marginTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "0.75rem" }}>
             {booking.can_start && (
               <Button type="button" variant="primary" onClick={handleStart} disabled={isPending} className={styles.btnPrimary}>
-                آغاز جلسه زنده ⚡
+                آغاز رسمی جلسه در سرور
               </Button>
             )}
 
@@ -388,9 +410,10 @@ export default function BookingDetailPage() {
                 href={booking.meeting_room_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.btnPrimary}
+                className={styles.btnSecondary}
+                style={{ fontSize: "0.85rem" }}
               >
-                ورود به اتاق جلسه زنده ↗
+                اتصال از طریق لینک جانبی خارجی ↗
               </a>
             )}
           </div>

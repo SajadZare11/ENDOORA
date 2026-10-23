@@ -71,12 +71,12 @@ export function getDefaultProgress(): AllSkillsProgress {
 
   for (const skill of skills) {
     progress[skill] = {
-      A1: { ...DEFAULT_SKILL_PROGRESS },
-      A2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 0 },
-      B1: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 0 },
-      B2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 0 },
-      C1: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 0 },
-      C2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 0 },
+      A1: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
+      A2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
+      B1: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
+      B2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
+      C1: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
+      C2: { ...DEFAULT_SKILL_PROGRESS, unlockedLevel: 1 },
     };
   }
 

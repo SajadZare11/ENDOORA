@@ -220,6 +220,59 @@ export function GameHubArcade() {
         </div>
       </div>
 
+      {/* IELTS Clinics Strategic Spotlight */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+          border: "1px solid #334155",
+          borderRadius: "1rem",
+          padding: "1.25rem 1.75rem",
+          marginBlockEnd: "1.75rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+          color: "#ffffff",
+          boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.15)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <span style={{ fontSize: "2rem" }}>🎯</span>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBlockEnd: "0.25rem" }}>
+              <span style={{ background: "#2563eb", color: "#fff", fontSize: "0.75rem", fontWeight: 800, padding: "0.15rem 0.5rem", borderRadius: "9999px" }}>
+                آیلتس بند ۷+
+              </span>
+              <h3 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800, color: "#38bdf8" }}>
+                کلینیک‌های تخصصی استراتژی و تله‌زدایی آیلتس (IELTS Clinics)
+              </h3>
+            </div>
+            <p style={{ margin: 0, fontSize: "0.9rem", color: "#cbd5e1", lineHeight: 1.6 }}>
+              کالبدشکافی تله‌های True/False/Not Given، فرمول طلایی اورویو تسک ۱، و داستان‌سرایی PPF با تمرین‌های تعاملی تشخیصی.
+            </p>
+          </div>
+        </div>
+        <Link
+          href="/ielts/clinics"
+          style={{
+            background: "#2563eb",
+            color: "#ffffff",
+            padding: "0.6rem 1.25rem",
+            borderRadius: "0.5rem",
+            fontWeight: 800,
+            fontSize: "0.9rem",
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.4rem",
+            boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
+          }}
+        >
+          ورود به کلینیک‌ها ←
+        </Link>
+      </div>
+
       {/* 6 Core Skills Game Cards Grid */}
       <div className={styles.skillsGrid}>
         {SKILL_METAS.map((meta) => {

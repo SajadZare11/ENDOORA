@@ -451,5 +451,61 @@ export interface BatchMaterialActionPayload {
   material_ids: string[];
 }
 
+// =============================================================================
+// INTERACTIVE CLASSROOM STUDIO CONTRACTS
+// =============================================================================
+
+export type ErrorCategory =
+  | "grammar"
+  | "vocabulary"
+  | "pronunciation"
+  | "l1_persian"
+  | "cohesion";
+
+export interface ClassroomLoggedError {
+  id: string;
+  timestamp: string;
+  category: ErrorCategory;
+  categoryLabelFa: string;
+  learnerSpoke: string;
+  nativeCorrection: string;
+  explanationFa: string;
+  syncedToLeitner: boolean;
+}
+
+export interface ClassroomVocabItem {
+  id: string;
+  wordEn: string;
+  ipa?: string;
+  meaningFa: string;
+  exampleSentenceEn: string;
+  syncedToVocabBank: boolean;
+}
+
+export interface ClassroomAgendaItem {
+  id: string;
+  titleFa: string;
+  durationMinutes: number;
+  completed: boolean;
+}
+
+export interface ClassroomSessionData {
+  bookingId: string;
+  teacherName: string;
+  learnerName: string;
+  skillNameFa: string;
+  durationMinutes: number;
+  startTimeIso: string;
+  notesMarkdown: string;
+  agenda: ClassroomAgendaItem[];
+  loggedErrors: ClassroomLoggedError[];
+  vocabItems: ClassroomVocabItem[];
+  homeworkAssigned?: string;
+  teacherFinalNotes?: string;
+  isCompleted: boolean;
+  completedAt?: string;
+}
+
+
 
 

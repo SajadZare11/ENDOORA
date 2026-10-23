@@ -8,6 +8,8 @@ import {
   DetectiveStage,
   DetectiveSpeakingTask,
   DetectiveDecisionChoice,
+  calculateA1DecisionScore,
+  A1_WIN_THRESHOLD,
 } from "../../../data/skills/games/sherlock-detective-curriculum";
 import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
@@ -38,7 +40,7 @@ export function SherlockSpeakingArena({
   const [storyDecisions, setStoryDecisions] = useState<Record<number, string>>(() => {
     if (typeof window === "undefined") return {};
     try {
-      const saved = sessionStorage.getItem(storageKey);
+      const saved = sessionStorage.getItem(storageKey) || localStorage.getItem(storageKey);
       return saved ? JSON.parse(saved) : {};
     } catch {
       return {};
@@ -329,11 +331,10 @@ export function SherlockSpeakingArena({
         setIsFinalClimaxRevealed(true);
         soundSynth.playFanfare();
       } else {
-        // Climax Evaluation for A1 Ending 1 vs Ending 2
-        const choseRightDoor = storyDecisions[9] === "choice-9a";
-        const hasHighCredibility = score >= 900 && finalAccuracy >= 60;
-
-        const wonRescue = choseRightDoor && hasHighCredibility;
+        // Climax Evaluation for A1:
+        // Cumulative decision score from stages 3, 5, 6, 7, 9 must strictly exceed 610 threshold
+        const a1DecisionScore = calculateA1DecisionScore(storyDecisions);
+        const wonRescue = a1DecisionScore > A1_WIN_THRESHOLD;
         setActiveEndingType(wonRescue ? "ending2" : "ending1");
         setIsFinalClimaxRevealed(true);
         soundSynth.playFanfare();
@@ -371,9 +372,13 @@ export function SherlockSpeakingArena({
     if (typeof window !== "undefined") {
       try {
         sessionStorage.setItem(storageKey, JSON.stringify(updated));
+        localStorage.setItem(storageKey, JSON.stringify(updated));
       } catch {}
     }
-    setScore((prev) => prev + choice.pointsDelta);
+    // In A1, the decision score is strictly secret during the story, so do NOT leak it into the visible episode score!
+    if (activeStage.cefr !== "A1") {
+      setScore((prev) => prev + choice.pointsDelta);
+    }
   };
 
   // =========================================================================
@@ -429,7 +434,7 @@ export function SherlockSpeakingArena({
               💡 {activeEnding.nextTierHintFa}
             </div>
 
-            <div style={{ display: "flex", gap: "2.5rem", margin: "0.5rem 0" }}>
+            <div style={{ display: "flex", gap: "2.5rem", margin: "0.5rem 0", flexWrap: "wrap", justifyContent: "center" }}>
               <div style={{ textAlign: "center" }}>
                 <span style={{ fontSize: "0.82rem", color: "#64748b" }}>امتیاز نهایی پرونده:</span>
                 <div style={{ fontSize: "1.8rem", fontWeight: 900, color: "#b45309" }}>{score}</div>
@@ -440,6 +445,23 @@ export function SherlockSpeakingArena({
                   {finalAccuracy}%
                 </div>
               </div>
+              {level.cefr === "A1" && (
+                <div style={{ textAlign: "center" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#64748b" }}>مجموع امتیاز تصمیمات (محرمانه):</span>
+                  <div
+                    style={{
+                      fontSize: "1.8rem",
+                      fontWeight: 900,
+                      color: calculateA1DecisionScore(storyDecisions) > A1_WIN_THRESHOLD ? "#10b981" : "#ef4444",
+                    }}
+                  >
+                    {calculateA1DecisionScore(storyDecisions)}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                      (حد نصاب: {A1_WIN_THRESHOLD})
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
@@ -483,7 +505,7 @@ export function SherlockSpeakingArena({
           <div className={styles.standaloneDebriefContainer}>
             <span className={styles.caseBadge} style={{ marginBottom: "0.25rem" }}>
               <span>🎖️</span>
-              <span>پرونده جنایی لندن (A1) • پایان موفق اپیزود {activeStage.levelNumber}</span>
+              <span>پرونده جنایی لندن ({activeStage.cefr}) • پایان موفق اپیزود {activeStage.levelNumber}</span>
             </span>
 
             <span style={{ fontSize: "4rem", filter: "drop-shadow(0 6px 16px rgba(217, 119, 6, 0.35))" }}>
@@ -495,7 +517,9 @@ export function SherlockSpeakingArena({
             </h2>
 
             <p style={{ maxWidth: 580, color: "#475569", lineHeight: 1.7, margin: 0, fontSize: "1rem" }}>
-              مکالمه انگلیسی این بخش با موفقیت به پایان رسید و شواهد در پرونده اسکاتلندیارد ثبت شدند. کارآگاه وایت در حال همراهی شما برای پیگیری سرنخ بعدی است.
+              {activeStage.cefr === "A2"
+                ? "مکالمه انگلیسی این بخش با موفقیت به پایان رسید و شواهد در پرونده اسکاتلندیارد ثبت شدند. دکتر جان واتسون در حال همراهی شما برای پیگیری سرنخ بعدی است."
+                : "مکالمه انگلیسی این بخش با موفقیت به پایان رسید و شواهد در پرونده اسکاتلندیارد ثبت شدند. کارآگاه وایت در حال همراهی شما برای پیگیری سرنخ بعدی است."}
             </p>
 
             <div className={styles.standaloneScoreCard}>
@@ -562,8 +586,8 @@ export function SherlockSpeakingArena({
         <header className={styles.hudTopBar}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
             <span className={styles.caseBadge}>
-              <span>🕵️‍♂️</span>
-              <span>پرونده جنایی لندن (A1) • مرحله {activeStage.levelNumber} از ۱۰</span>
+              <span>{activeStage.cefr === "A2" ? "🩺" : "🕵️‍♂️"}</span>
+              <span>پرونده جنایی لندن ({activeStage.cefr}) • مرحله {activeStage.levelNumber} از ۱۰</span>
             </span>
             <span style={{ fontSize: "0.95rem", fontWeight: 800 }}>
               {activeStage.titleFa}
@@ -753,7 +777,8 @@ export function SherlockSpeakingArena({
                     <span className={styles.speakerAvatarEmoji}>{currentTask.speakerAvatar}</span>
                     <span className={styles.speakerNameText}>
                       {currentTask.speakerRoleFa
-                        .replace(" (کارآگاه اسکاتلندیارد)", "")
+                        .replace(/\s*\((?:کارآگاه\s*)?اسکاتلندیارد\)/g, "")
+                        .replace(/\s*\((?:کارآگاه\s*)?مشاور\)/g, "")
                         .replace("کارآگاه اسکاتلندیارد", "کارآگاه وایت")
                         .replace("کارآگاه مشاور", "شرلوک هلمز")}:
                     </span>
@@ -811,7 +836,7 @@ export function SherlockSpeakingArena({
                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                           <span style={{ fontSize: "1.3rem" }}>{currentTask.npcResponse.speakerAvatar}</span>
                           <span style={{ fontWeight: 800, fontSize: "0.95rem", color: "#0369a1" }}>
-                            {currentTask.npcResponse.speakerRoleFa} ({currentTask.npcResponse.speakerNameFa}):
+                            {currentTask.npcResponse.speakerNameFa}:
                           </span>
                         </div>
                         <button
@@ -932,12 +957,14 @@ export function SherlockSpeakingArena({
                   {/* ERROR STATE: DETECTIVE WHITE'S HINT + KEYWORDS + FALLBACK CHOICES REVEALED */}
                   {taskHasMistake && (
                     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                      {/* Detective White Guidance Banner */}
+                      {/* Detective White / Watson Guidance Banner */}
                       <div className={styles.whiteHintCard}>
-                        <div style={{ fontSize: "2.2rem" }}>🕵️‍♂️</div>
+                        <div style={{ fontSize: "2.2rem" }}>
+                          {activeStage.cefr === "A2" ? "🩺" : "🕵️‍♂️"}
+                        </div>
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
                           <span className={styles.whiteHintName}>
-                            کارآگاه وایت:
+                            {activeStage.cefr === "A2" ? "دکتر واتسون:" : "کارآگاه وایت:"}
                           </span>
                           <span className={styles.whiteHintSpeech}>
                             {currentTask.whiteHintFa}

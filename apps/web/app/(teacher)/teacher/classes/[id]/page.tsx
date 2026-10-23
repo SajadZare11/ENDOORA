@@ -809,7 +809,27 @@ export default function ClassHubPage({ params }: { params: Promise<{ id: string 
                             {session.session_notes || "-"}
                           </td>
                           <td>
-                            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
+                              <Link
+                                href={`/classroom/${session.id}?role=teacher`}
+                                target="_blank"
+                                style={{
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  gap: "4px",
+                                  padding: "5px 12px",
+                                  backgroundColor: "#0284c7",
+                                  color: "#ffffff",
+                                  borderRadius: "6px",
+                                  fontWeight: 700,
+                                  fontSize: "0.8rem",
+                                  textDecoration: "none",
+                                  boxShadow: "0 2px 6px rgba(2, 132, 199, 0.3)",
+                                }}
+                              >
+                                🚀 {isFa ? "ورود به کلاس آنلاین" : "Live Classroom"}
+                              </Link>
+
                               {session.status === "scheduled" && (
                                 <>
                                   <button

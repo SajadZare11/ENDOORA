@@ -726,7 +726,7 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
     cutscene: {
       titleFa: "گفتگو با کارآگاه وایت در محوطه مه‌آلود کلیسا",
       titleEn: "Conversation in the Rainy Churchyard",
-      imageSrc: "/images/skills/speaking/sherlock_stage4_carriage_driver.jpg",
+      imageSrc: "/images/skills/speaking/sherlock_stage5_st_pauls.jpg",
       dialogues: [
         {
           speakerId: "white",
@@ -912,7 +912,7 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
           labelEn: "Stealth Infiltration: Climb through the broken window",
           labelFa: "نفوذ پنهانی: بالا رفتن از پنجره شکسته انبار",
           descriptionFa: "ورود در سکوت مطلق از پنجره چوبی شکسته بالای سطح آب",
-          pointsDelta: 140,
+          pointsDelta: 150,
         },
       ],
     },
@@ -1190,7 +1190,7 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
           labelEn: "Descend directly via the central stone staircase",
           labelFa: "پایین رفتن مستقیم از پله‌های سنگی مرکزی انبار",
           descriptionFa: "ورود مستقیم و پرسرعت از دهانه اصلی پله‌های سنگی به سمت درگاه زیرزمین",
-          pointsDelta: 95,
+          pointsDelta: 150,
         },
         {
           id: "choice-7b",
@@ -1411,14 +1411,14 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
           labelEn: "Breach the locked iron door on the right corridor",
           labelFa: "بررسی در سنگین آهنی سمت راست دالان",
           descriptionFa: "تمرکز بر دالان سنگی و گوش سپردن به صداهای مبهم پشت در آهنی",
-          pointsDelta: 120,
+          pointsDelta: 200,
         },
         {
           id: "choice-9b",
           labelEn: "Advance toward the underground river boat slipway",
           labelFa: "حرکت به سمت اسکله زیرزمینی قایق‌ها در دالان چپ",
           descriptionFa: "پیشروی سریع به سمت دالان تاریک چپ و بررسی مسیر خروجی قایق‌های متصل به رودخانه",
-          pointsDelta: 60,
+          pointsDelta: 0,
         },
       ],
     },
@@ -1621,7 +1621,7 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
   },
 ];
 
-import { A2_SHERLOCK_CASE } from "./sherlock-case-a2";
+import { A2_SHERLOCK_CASE } from "./sherlock-case-a2.ts";
 export { A2_SHERLOCK_CASE };
 
 export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): DetectiveStage {
@@ -1630,4 +1630,30 @@ export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): Dete
   if (found) return found;
   return caseList[0];
 }
+
+export const A1_DECISION_SCORES: Record<string, number> = {
+  "choice-3b": 150,
+  "choice-3a": 100,
+  "choice-5b": 150,
+  "choice-5a": 50,
+  "choice-6a": 150,
+  "choice-6b": 150,
+  "choice-7a": 150,
+  "choice-7b": 100,
+  "choice-9a": 200,
+  "choice-9b": 0,
+};
+
+export const A1_WIN_THRESHOLD = 610;
+
+export function calculateA1DecisionScore(decisions: Record<number, string>): number {
+  let total = 0;
+  for (const choiceId of Object.values(decisions || {})) {
+    if (typeof A1_DECISION_SCORES[choiceId] === "number") {
+      total += A1_DECISION_SCORES[choiceId];
+    }
+  }
+  return total;
+}
+
 

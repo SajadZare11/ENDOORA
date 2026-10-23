@@ -261,3 +261,200 @@ class TeacherSessionLog(models.Model):
 
     def __str__(self):
         return f"Log #{self.session_number} for {self.cohort.title} ({self.session_date})"
+
+
+class AttendanceStatus(models.TextChoices):
+    PRESENT = "present", _("حاضر")
+    ABSENT = "absent", _("غایب")
+    TARDY = "tardy", _("حضور ناقص / تاخیر")
+    EXCUSED = "excused", _("مرخصی موجه")
+
+
+class AttendanceRecord(models.Model):
+    """
+    Automatic in-class attendance record based on >= 70% active WebRTC presence.
+    Tracks exact connected seconds, first join, last leave, and supports teacher review/override.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session_id = models.CharField(max_length=64, db_index=True, verbose_name=_("شناسه جلسه"))
+    class_session = models.ForeignKey(
+        "teachers.ClassSession",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="attendance_records",
+        verbose_name=_("جلسه کلاسی"),
+    )
+    cohort = models.ForeignKey(
+        LiveClassCohort,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="cohort_attendance_records",
+        verbose_name=_("گروه کلاسی"),
+    )
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="live_attendances",
+        verbose_name=_("دانش‌آموز"),
+    )
+    first_joined_at = models.DateTimeField(null=True, blank=True, verbose_name=_("زمان اولین ورود"))
+    last_left_at = models.DateTimeField(null=True, blank=True, verbose_name=_("زمان آخرین خروج"))
+    total_connected_seconds = models.PositiveIntegerField(default=0, verbose_name=_("مجموع ثانیه‌های حضور فعال"))
+    attendance_percentage = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        default=0.0,
+        verbose_name=_("درصد حضور در جلسه"),
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=AttendanceStatus.choices,
+        default=AttendanceStatus.ABSENT,
+        db_index=True,
+        verbose_name=_("وضعیت حضور و غیاب"),
+    )
+    is_auto_verified = models.BooleanField(default=True, verbose_name=_("محاسبه خودکار سیستم"))
+    teacher_override = models.BooleanField(default=False, verbose_name=_("ویرایش دستی دبیر"))
+    teacher_override_reason = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        verbose_name=_("دلیل تغییر توسط دبیر"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("سجل حضور و غیاب آنلاین")
+        verbose_name_plural = _("سجلات حضور و غیاب آنلاین")
+        unique_together = ("session_id", "student")
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.student.email} in {self.session_id}: {self.get_status_display()} ({self.attendance_percentage}%)"
+
+
+class LiveClassQuiz(models.Model):
+    """
+    Real-time in-class quiz / poll launched during live sessions.
+    Supports on-the-fly 4-option / 2-option quick polls or structured questions.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session_id = models.CharField(max_length=64, db_index=True, verbose_name=_("شناسه جلسه"))
+    class_session = models.ForeignKey(
+        "teachers.ClassSession",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="live_quizzes",
+        verbose_name=_("جلسه کلاسی"),
+    )
+    prompt = models.TextField(blank=True, default="", verbose_name=_("متن سوال"))
+    options = models.JSONField(default=list, verbose_name=_("گزینه‌های تست"))
+    correct_option_index = models.IntegerField(null=True, blank=True, verbose_name=_("گزینه صحیح (۰-ایندکس)"))
+    duration_seconds = models.PositiveIntegerField(default=45, verbose_name=_("مهلت پاسخ (ثانیه)"))
+    is_active = models.BooleanField(default=True, verbose_name=_("فعال بودن کوییز"))
+    is_results_published = models.BooleanField(default=False, verbose_name=_("نمایش نتایج به دانش‌آموزان"))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("کوییز زنده کلاس")
+        verbose_name_plural = _("کوییزهای زنده کلاس")
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Quiz in {self.session_id} ({len(self.options)} options) - active={self.is_active}"
+
+
+class LiveClassQuizResponse(models.Model):
+    """
+    Student response submitted for a real-time live class quiz.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    quiz = models.ForeignKey(
+        LiveClassQuiz,
+        on_delete=models.CASCADE,
+        related_name="responses",
+        verbose_name=_("کوییز"),
+    )
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="quiz_responses",
+        verbose_name=_("دانش‌آموز"),
+    )
+    selected_option_index = models.IntegerField(verbose_name=_("گزینه انتخابی"))
+    time_to_respond_seconds = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        default=0.0,
+        verbose_name=_("زمان پاسخ‌دهی (ثانیه)"),
+    )
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("پاسخ کوییز زنده")
+        verbose_name_plural = _("پاسخ‌های کوییز زنده")
+        unique_together = ("quiz", "student")
+
+    def __str__(self):
+        return f"{self.student.email} -> Quiz {self.quiz_id} [Option {self.selected_option_index}]"
+
+
+class SessionWhiteboardExport(models.Model):
+    """
+    Exported handwritten whiteboard notes & annotated PDF slides from the live session.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session_id = models.CharField(max_length=64, unique=True, db_index=True, verbose_name=_("شناسه جلسه"))
+    class_session = models.ForeignKey(
+        "teachers.ClassSession",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="whiteboard_exports",
+        verbose_name=_("جلسه کلاسی"),
+    )
+    pdf_file = models.FileField(upload_to="whiteboards/%Y/%m/", verbose_name=_("فایل PDF جزوه تخته"))
+    page_count = models.PositiveIntegerField(default=1, verbose_name=_("تعداد صفحات"))
+    file_size_bytes = models.PositiveIntegerField(default=0, verbose_name=_("حجم فایل (بایت)"))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("خروجی PDF تخته کلاسی")
+        verbose_name_plural = _("خروجی‌های PDF تخته کلاسی")
+
+    def __str__(self):
+        return f"Whiteboard PDF for {self.session_id} ({self.page_count} pages)"
+
+
+class SessionAiRecap(models.Model):
+    """
+    Smart educational summary, golden exam tips, and common pitfalls generated by Gemini AI.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session_id = models.CharField(max_length=64, unique=True, db_index=True, verbose_name=_("شناسه جلسه"))
+    class_session = models.ForeignKey(
+        "teachers.ClassSession",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="ai_recaps",
+        verbose_name=_("جلسه کلاسی"),
+    )
+    topics_covered = models.JSONField(default=list, verbose_name=_("مباحث تدریس‌شده"))
+    key_points = models.JSONField(default=list, verbose_name=_("نکات کلیدی و فرمول‌ها"))
+    quiz_pitfalls = models.JSONField(default=list, verbose_name=_("دام‌ها و خطاهای رایج در کوییزها"))
+    suggested_homework = models.TextField(blank=True, default="", verbose_name=_("تکالیف و تمرین‌های پیشنهادی"))
+    raw_markdown = models.TextField(blank=True, default="", verbose_name=_("متن کامل مارک‌داون خلاصه"))
+    generated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("خلاصه هوشمند تدریس (Gemini AI)")
+        verbose_name_plural = _("خلاصه‌های هوشمند تدریس (Gemini AI)")
+
+    def __str__(self):
+        return f"AI Recap for {self.session_id} ({len(self.key_points)} key points)"
+

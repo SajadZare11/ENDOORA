@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
+import { LeitnerShelf } from "../../../components/learner/leitner";
 import styles from "./mistakes.module.css";
 
 interface MistakePatternItem {
@@ -232,17 +233,23 @@ export default function MistakesPage() {
         </div>
 
         <div className={styles.actionRow}>
-          <Link className={styles.buttonPrimary} href="/practice">
-            {isFa ? "🎯 شروع تمرین متمرکز بر خطاها" : "🎯 Practice Recurring Mistakes"}
+          <Link className={styles.buttonPrimary} href="/mistakes/leitner">
+            {isFa ? "🗃️ مرور فلش‌کارت‌های لایتنر (Due Today)" : "🗃️ Leitner Mistake Flashcards"}
+          </Link>
+          <Link className={styles.buttonSecondary} href="/practice">
+            {isFa ? "🎯 تمرین متمرکز" : "🎯 Targeted Drills"}
           </Link>
           <Link className={styles.buttonSecondary} href="/today">
             {isFa ? "مأموریت روزانه" : "Daily Mission"}
           </Link>
           <Link className={styles.buttonSecondary} href="/review">
-            {isFa ? "مرور واژگان لایتنر (SRS)" : "SRS Vocabulary Review"}
+            {isFa ? "مرور واژگان (SRS)" : "SRS Vocab"}
           </Link>
         </div>
       </section>
+
+      {/* 5-Box Leitner Spaced Repetition Shelf */}
+      <LeitnerShelf />
 
       {/* Summary Statistics Grid */}
       <section className={styles.summaryGrid}>
