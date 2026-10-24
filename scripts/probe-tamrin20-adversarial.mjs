@@ -189,22 +189,29 @@ for (const lessonNum of lessons) {
       // Audio checks
       if (q.audioUrl) {
         audioFilesReferenced.add(q.audioUrl);
-        const diskPath = path.join(publicDir, q.audioUrl.startsWith("/") ? q.audioUrl.slice(1) : q.audioUrl);
-        if (!fs.existsSync(diskPath)) {
-          anomalies.push({ type: "AUDIO_MISSING", msg: `Question ${q.id} references missing audio: ${diskPath}` });
+        if (q.audioUrl.startsWith("http://") || q.audioUrl.startsWith("https://")) {
+          if (!q.audioUrl.startsWith("https://sajadzare11.github.io/vision3-listening/audio/")) {
+            anomalies.push({ type: "AUDIO_INVALID_REMOTE", msg: `Question ${q.id} references non-GitHub audio: ${q.audioUrl}` });
+          }
         } else {
-          const stat = fs.statSync(diskPath);
-          if (stat.size === 0) {
-            anomalies.push({ type: "AUDIO_EMPTY", msg: `Question ${q.id} references 0-byte audio: ${diskPath}` });
+          const diskPath = path.join(publicDir, q.audioUrl.startsWith("/") ? q.audioUrl.slice(1) : q.audioUrl);
+          if (!fs.existsSync(diskPath)) {
+            anomalies.push({ type: "AUDIO_MISSING", msg: `Question ${q.id} references missing audio: ${diskPath}` });
+          } else {
+            const stat = fs.statSync(diskPath);
+            if (stat.size === 0) {
+              anomalies.push({ type: "AUDIO_EMPTY", msg: `Question ${q.id} references 0-byte audio: ${diskPath}` });
+            }
           }
         }
       }
     }
 
-    if (initialCountInSkill !== 20) {
+    const expectedInitialInSkill = skill === "listening" ? batch.questions.length : 20;
+    if (initialCountInSkill !== expectedInitialInSkill) {
       anomalies.push({
         type: "INITIAL_COUNT_VIOLATION",
-        msg: `Lesson ${lessonNum} [${skill}] initial count is ${initialCountInSkill}, expected exactly 20!`,
+        msg: `Lesson ${lessonNum} [${skill}] initial count is ${initialCountInSkill}, expected exactly ${expectedInitialInSkill}!`,
       });
     }
   }

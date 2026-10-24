@@ -396,7 +396,7 @@ def build_listening_questions():
             "prompt": "Amin is working on a new project.",
             "promptFa": "آیا امین در حال کار بر روی یک پروژه جدید است؟",
             "passage": "Behzad: Hi Amin. You look exhausted! What are you doing?\nAmin: I'm working on a new project for our company. It takes a lot of time.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -411,7 +411,7 @@ def build_listening_questions():
             "prompt": "Health is more important than work for Amin.",
             "promptFa": "آیا برای امین سلامتی مهم‌تر از کار است؟",
             "passage": "Behzad: Don't you think your health is in danger?\nAmin: Well, work comes first. I can rest when the project finishes.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -426,7 +426,7 @@ def build_listening_questions():
             "prompt": "Behzad thinks that money is on top of everything.",
             "promptFa": "آیا بهزاد فکر می‌کند پول بالاتر از همه چیز است؟",
             "passage": "Behzad: But remember, health is on top of everything, not money! You cannot buy good health when you lose it.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -442,7 +442,7 @@ def build_listening_questions():
             "prompt": "Do you know why it is important to care for our elders? Because they teach us how to love, how to care, and how to (11) ............ others.",
             "promptFa": "با توجه به فایل صوتی درباره احترام به سالمندان، جای خالی را پر کنید.",
             "passage": "Do you know why it is important to care for our elders? Because they are our mothers and fathers, and our first teachers. They teach us how to love, how to care, and how to respect others.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1401.mp3",
             "correctAnswer": "respect",
             "explanation": {
                 "briefFa": "respect (احترام گذاشتن)",
@@ -456,7 +456,7 @@ def build_listening_questions():
             "prompt": "Elders have more (12) ............ and wisdom than any one of us.",
             "promptFa": "سالمندان نسبت به ما چه ویژگی دارند؟",
             "passage": "Elders have more experience and wisdom than any one of us. They've come so far and learned so much.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1401.mp3",
             "correctAnswer": "experience",
             "explanation": {
                 "briefFa": "experience (تجربه)",
@@ -471,7 +471,7 @@ def build_listening_questions():
             "prompt": "Dr. Gharib was born in Tehran in 1288. After receiving his (13) ............ , he went abroad to study medicine.",
             "promptFa": "دکتر قریب پس از دریافت چه مدرکی برای تحصیل پزشکی به خارج رفت؟",
             "passage": "Dr. Gharib was born in Tehran in 1288. After receiving his diploma, he went abroad to study medicine in France.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "correctAnswer": "diploma",
             "explanation": {
                 "briefFa": "diploma (دیپلم)",
@@ -485,7 +485,7 @@ def build_listening_questions():
             "prompt": "Dr. Mohammad Gharib returned to Iran to help cure sick (14) ............ .",
             "promptFa": "دکتر قریب برای درمان چه کسانی به ایران بازگشت؟",
             "passage": "After finishing his medical studies, he returned to Iran and devoted his life to cure sick children.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "correctAnswer": "children",
             "explanation": {
                 "briefFa": "children (کودکان)",
@@ -500,7 +500,7 @@ def build_listening_questions():
             "prompt": "Sam has come to work today.",
             "promptFa": "آیا سام امروز سر کار آمده است؟",
             "passage": "A: Where is Sam today? He hasn't come to the office.\nB: He felt sick yesterday and had to stay home.",
-            "audioUrl": "/audio/highschool/grade12/dey-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1402.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -515,7 +515,7 @@ def build_listening_questions():
             "prompt": "The doctors are checking Sam's health condition.",
             "promptFa": "آیا پزشکان در حال بررسی وضعیت سلامت سام هستند؟",
             "passage": "B: His family took him to the medical center, and doctors are checking his health condition right now.",
-            "audioUrl": "/audio/highschool/grade12/dey-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1402.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -531,7 +531,7 @@ def build_listening_questions():
             "prompt": "One of Mehran's friends is in trouble and needs some (8) ............ .",
             "promptFa": "دوست مهران دچار مشکل شده و به چه چیزی نیاز دارد؟",
             "passage": "Bijan: Why are you so upset Mehran?\nMehran: One of my close friends is in trouble and needs some money for his mother's surgery.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1400.mp3",
             "correctAnswer": "money",
             "explanation": {
                 "briefFa": "money (پول)",
@@ -545,7 +545,7 @@ def build_listening_questions():
             "prompt": "What does the proverb 'A friend in need is a friend indeed' mean?",
             "promptFa": "ضرب‌المثل «دوست آن است که در سختی به کار آید» چه مفهومی دارد؟",
             "passage": "Bijan tells Mehran: Don't worry. A friend in need is a friend indeed. We should always support our friends when they face difficulties.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1400.mp3",
             "options": [
                 "We should leave our friends alone",
                 "We should help and support our friends in hard times",
@@ -566,7 +566,7 @@ def build_listening_questions():
             "prompt": "What is the main topic of Sara and her friend's dialogue?",
             "promptFa": "موضوع اصلی گفتگوی سارا و دوستش چیست؟",
             "passage": "Sara: Have you ever thought about doing small acts of kindness to people around us?\nFriend: Yes, kindness to others, even strangers, makes our society much warmer and happier.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1403.mp3",
             "options": [
                 "Buying expensive gifts",
                 "Acts of kindness to others",
@@ -586,7 +586,7 @@ def build_listening_questions():
             "prompt": "Why is kindness to strangers important according to the dialogue?",
             "promptFa": "چرا مهربانی با غریبه‌ها اهمیت دارد؟",
             "passage": "Kindness helps people feel valued and improves the general moral spirit of the whole community.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1403.mp3",
             "options": [
                 "It makes people feel valued and creates a warmer community",
                 "It makes people rich quickly",
@@ -607,7 +607,7 @@ def build_listening_questions():
             "prompt": "Always remember that your health is very important because you cannot get it back once lost.",
             "promptFa": "سلامتی بسیار مهم است چون پس از از دست رفتن به آسانی بازنمی‌گردد.",
             "passage": "Speaker: Always remember that your health is very important, as you might find you are unable to return good health once you have lost it.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -622,7 +622,7 @@ def build_listening_questions():
             "prompt": "When you are sick, the doctor advises you to stay home and have enough (10) ............ .",
             "promptFa": "هنگام بیماری، پزشک چه توصیه‌ای می‌کند؟",
             "passage": "The doctor examined him and told him to stay in bed and have enough rest.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "correctAnswer": "rest",
             "explanation": {
                 "briefFa": "rest (استراحت)",
@@ -637,7 +637,7 @@ def build_listening_questions():
             "prompt": "Dr. Gharib was a dedicated man who spared no (8) ............ to cure sick children.",
             "promptFa": "دکتر قریب از هیچ تلاشی برای درمان کودکان بیمار دریغ نکرد.",
             "passage": "He was a dedicated physician who spared no pains to cure sick children day and night.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "correctAnswer": "pains",
             "explanation": {
                 "briefFa": "pains (spare no pains - دریغ نکردن از هیچ زحمتی)",
@@ -651,7 +651,7 @@ def build_listening_questions():
             "prompt": "The first children's medical center in Iran was founded in (7) ............ by Dr. Gharib.",
             "promptFa": "نخستین مرکز طبی کودکان در چه سالی تأسیس شد؟",
             "passage": "Dr. Mohammad Gharib founded the Children's Medical Center in Tehran in 1347.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "correctAnswer": "1347",
             "explanation": {
                 "briefFa": "1347 (سال ۱۳۴۷)",
@@ -666,7 +666,7 @@ def build_listening_questions():
             "prompt": "Which collocation is correct according to the audio clip?",
             "promptFa": "کدام هم‌آیی (Collocation) طبق فایل صوتی صحیح است؟",
             "passage": "Speaker: In English medical contexts, we say 'take temperature' when measuring a patient's fever, not make temperature.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1398.mp3",
             "options": ["make temperature", "take temperature", "do temperature", "give temperature"],
             "correctAnswer": 1,
             "explanation": {
@@ -681,7 +681,7 @@ def build_listening_questions():
             "prompt": "Who started the first children's medical center in Tehran?",
             "promptFa": "چه کسی اولین مرکز طبی کودکان را در تهران بنیان نهاد؟",
             "passage": "Dr. Mohammad Gharib, the father of Iranian modern pediatrics, started the first children's medical center.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1398.mp3",
             "options": ["Dr. Hessabi", "Dr. Mohammad Gharib", "Dr. Yalda", "Avicenna"],
             "correctAnswer": 1,
             "explanation": {
@@ -697,7 +697,7 @@ def build_listening_questions():
             "prompt": "When the customer entered the restaurant, he politely asked: 'Could I have a (1) ............ , please?'",
             "promptFa": "مشتری در ابتدای ورود به رستوران مودبانه چه چیزی درخواست کرد؟",
             "passage": "Customer: Good evening. Could I have a menu, please?\nWaiter: Sure, here you are.",
-            "audioUrl": "/audio/highschool/grade12/dey-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1401.mp3",
             "correctAnswer": "menu",
             "explanation": {
                 "briefFa": "menu (منوی غذا)",
@@ -712,7 +712,7 @@ def build_listening_questions():
             "prompt": "Waiter: Would you like something to drink?\nCustomer: I would like (8) ............ , please.",
             "promptFa": "مشتری چه نوشیدنی درخواست کرد؟",
             "passage": "Waiter: Would you like something to drink?\nCustomer: I would like water, please.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "correctAnswer": "water",
             "explanation": {
                 "briefFa": "water (آب)",
@@ -726,7 +726,7 @@ def build_listening_questions():
             "prompt": "Grandparents play an essential role in passing cultural heritage to young children.",
             "promptFa": "پدربزرگ‌ها و مادربزرگ‌ها نقشی اساسی در انتقال میراث فرهنگی به کودکان ایفا می‌کنند.",
             "passage": "Elders and grandparents are bridges between our past and future. They share traditions and moral values with the younger generation.",
-            "audioUrl": "/audio/highschool/grade12/dey-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1403.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -741,7 +741,7 @@ def build_listening_questions():
             "prompt": "Behzad believes that health is a gift that we should never (3) ............ for granted.",
             "promptFa": "بهزاد بر این باور است که سلامتی موهبتی است که نباید آن را نادیده بگیریم.",
             "passage": "Behzad: Health is a precious gift. We should never take it for granted because once you lose it, you can't buy it.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1399.mp3",
             "correctAnswer": "take",
             "explanation": {
                 "briefFa": "take (take for granted = نادیده گرفتن و قدر ندانستن)",
@@ -755,7 +755,7 @@ def build_listening_questions():
             "prompt": "Who greeted the young man in the hospital corridor?",
             "promptFa": "چه کسی در راهروی بیمارستان با جوان احوالپرسی کرد؟",
             "passage": "A friendly nurse walked towards him with a warm smile and asked how his grandfather was feeling.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1398.mp3",
             "options": ["A police officer", "A friendly nurse", "A teacher", "A shopkeeper"],
             "correctAnswer": 1,
             "explanation": {
@@ -770,7 +770,7 @@ def build_listening_questions():
             "prompt": "Children must learn to show deep (5) ............ to their teachers and parents.",
             "promptFa": "کودکان باید یاد بگیرند که به والدین و معلمان خود چه احساسی نشان دهند؟",
             "passage": "Teaching children to show deep respect and appreciation to their parents makes them responsible citizens in the future.",
-            "audioUrl": "/audio/highschool/grade12/dey-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1398.mp3",
             "correctAnswer": "respect",
             "explanation": {
                 "briefFa": "respect (احترام)",
@@ -792,7 +792,7 @@ def build_listening_questions():
             "prompt": "In this lesson, we provide you with helpful tips on how to use a (15) ............ effectively.",
             "promptFa": "در این بخش نکاتی درباره استفاده مؤثر از چه کتابی ارائه می‌شود؟",
             "passage": "In this lesson, we provide you with some helpful tips on how to use a dictionary effectively.",
-            "audioUrl": "/audio/highschool/grade12/dey-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1402.mp3",
             "correctAnswer": "dictionary",
             "explanation": {
                 "briefFa": "dictionary (فرهنگ لغت)",
@@ -806,7 +806,7 @@ def build_listening_questions():
             "prompt": "A dictionary entry gives the pronunciation, part of speech, and (16) ............ of each word.",
             "promptFa": "مدخل فرهنگ لغت چه مواردی را علاوه بر تلفظ و نقش دستوری ارائه می‌دهد؟",
             "passage": "Once you look up a word, the dictionary entry will show its pronunciation, part of speech, and definition.",
-            "audioUrl": "/audio/highschool/grade12/dey-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1402.mp3",
             "correctAnswer": "definition",
             "explanation": {
                 "briefFa": "definition (تعریف کلمه)",
@@ -821,7 +821,7 @@ def build_listening_questions():
             "prompt": "Mr. Iranmehr: For you as a high school student, an (11) ............ dictionary is OK.",
             "promptFa": "آقای ایران‌مهر چه نوع لغت‌نامه‌ای را برای دانش‌آموز دبیرستانی مناسب می‌داند؟",
             "passage": "Student: What dictionary should I buy, Mr. Iranmehr?\nMr. Iranmehr: For you as a high school student, an elementary or learner's dictionary is suitable.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1401.m4a",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1401.m4a",
             "correctAnswer": "elementary",
             "explanation": {
                 "briefFa": "elementary (مقدماتی / سطح پایه)",
@@ -835,7 +835,7 @@ def build_listening_questions():
             "prompt": "Mr. Iranmehr: First, I suggest a (9) ............ dictionary for learning new vocabulary.",
             "promptFa": "پیشنهاد اول آقای ایران‌مهر چه لغت‌نامه‌ای است؟",
             "passage": "Mr. Iranmehr: First, I suggest a learner's dictionary because it explains words with simple language and examples.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1401.m4a",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1401.m4a",
             "correctAnswer": "learner's",
             "explanation": {
                 "briefFa": "learner's (ویژه زبان‌آموزان)",
@@ -850,7 +850,7 @@ def build_listening_questions():
             "prompt": "Dictionaries tell us how to say words in the right way.",
             "promptFa": "لغت‌نامه‌ها نحوه تلفظ صحیح کلمات را به ما نشان می‌دهند.",
             "passage": "Speaker: Dictionaries are essential tools for learners. They tell us how to pronounce and say words in the right way.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1400.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -865,7 +865,7 @@ def build_listening_questions():
             "prompt": "A picture in a dictionary cannot help you understand what a word means.",
             "promptFa": "تصویر در فرهنگ لغت نمی‌تواند به فهم معنای کلمه کمک کند.",
             "passage": "Many modern learner's dictionaries include illustrations. A clear picture can immediately help you understand complex meanings.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1400.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -880,7 +880,7 @@ def build_listening_questions():
             "prompt": "If we know more words, we can learn more about the world.",
             "promptFa": "اگر کلمات بیشتری بدانیم، می‌توانیم بیشتر درباره جهان بیاموزیم.",
             "passage": "Vocabulary is the key to knowledge. If we know more words, we can understand texts better and learn more about the world.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1400.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -896,7 +896,7 @@ def build_listening_questions():
             "prompt": "Majid knows how to use a dictionary properly.",
             "promptFa": "آیا مجید می‌داند چگونه از فرهنگ لغت به درستی استفاده کند؟",
             "passage": "Teacher: Majid, why haven't you looked up this word?\nMajid: To be honest, I really don't know how to use a dictionary properly.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1403.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -911,7 +911,7 @@ def build_listening_questions():
             "prompt": "What kind of dictionary does the teacher suggest to Majid?",
             "promptFa": "معلم چه نوع لغت‌نامه‌ای را به مجید پیشنهاد می‌کند؟",
             "passage": "Teacher: I suggest you start with a bilingual learner's dictionary that has clear examples.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1403.mp3",
             "options": [
                 "An advanced medical dictionary",
                 "A bilingual learner's dictionary",
@@ -932,7 +932,7 @@ def build_listening_questions():
             "prompt": "Writing new words on small cards is called using (9) ............ .",
             "promptFa": "نوشتن کلمات جدید روی کارت‌های کوچک چه نامیده می‌شود؟",
             "passage": "You can make learning new vocabulary easier by making flashcards and reviewing them every day.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "correctAnswer": "flashcards",
             "explanation": {
                 "briefFa": "flashcards (فلش‌کارت‌ها)",
@@ -946,7 +946,7 @@ def build_listening_questions():
             "prompt": "Where can students stick paper notes with English words?",
             "promptFa": "دانش‌آموزان می‌توانند یادداشت‌های کلمات انگلیسی را کجا بچسبانند؟",
             "passage": "You can stick vocabulary notes on your refrigerator, desk, or computer screen to see them frequently.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "options": [
                 "Under the carpet",
                 "On refrigerators, desks or computer screens",
@@ -967,7 +967,7 @@ def build_listening_questions():
             "prompt": "Woman: What type of websites do you often search for?\nMan: I search for (9) ............ and education websites.",
             "promptFa": "مرد چه نوع وب‌سایت‌هایی را جستجو می‌کند؟",
             "passage": "Woman: What type of websites do you often search for?\nMan: I search for entertainment and education websites.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "correctAnswer": "entertainment",
             "explanation": {
                 "briefFa": "entertainment (سرگرمی)",
@@ -981,7 +981,7 @@ def build_listening_questions():
             "prompt": "Why does the man visit educational websites in English?",
             "promptFa": "چرا مرد از سایت‌های آموزشی انگلیسی‌زبان بازدید می‌کند؟",
             "passage": "Man: I use them to study online or relax after working. Most informative websites are written in English.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "options": [
                 "To buy gaming consoles",
                 "To study online and improve his English knowledge",
@@ -1002,7 +1002,7 @@ def build_listening_questions():
             "prompt": "Words in a printed dictionary are arranged in alphabetical (13) ............ .",
             "promptFa": "کلمات در فرهنگ لغت چاپی بر چه اساسی مرتب شده‌اند؟",
             "passage": "Remember that words in a dictionary are arranged in alphabetical order from A to Z.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "correctAnswer": "order",
             "explanation": {
                 "briefFa": "order (ترتیب - alphabetical order)",
@@ -1016,7 +1016,7 @@ def build_listening_questions():
             "prompt": "Looking up a word provides valuable (12) ............ about its origin and spelling.",
             "promptFa": "جستجوی یک کلمه چه چیزی درباره ریشه و املای آن ارائه می‌دهد؟",
             "passage": "Looking up a word provides valuable information about its origin, collocations, and spelling.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "correctAnswer": "information",
             "explanation": {
                 "briefFa": "information (اطلاعات)",
@@ -1031,7 +1031,7 @@ def build_listening_questions():
             "prompt": "What is the best technique to remember vocabulary during English lectures?",
             "promptFa": "بهترین روش به خاطر سپردن لغات حین تدریس چیست؟",
             "passage": "Studies prove that active note-taking in your own words helps students remember vocabulary much better than passive listening.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1401.mp3",
             "options": [
                 "Active note-taking in your own words",
                 "Sleeping during the lecture",
@@ -1052,7 +1052,7 @@ def build_listening_questions():
             "prompt": "When you encounter an unfamiliar word while reading, you should first try to guess its (3) ............ from context.",
             "promptFa": "هنگام مواجهه با واژه ناآشنا، نخست چه چیزی را از متن حدس بزنیم؟",
             "passage": "Before checking the dictionary, try to guess the word's meaning from the surrounding sentences.",
-            "audioUrl": "/audio/highschool/grade12/dey-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1403.mp3",
             "correctAnswer": "meaning",
             "explanation": {
                 "briefFa": "meaning (معنا)",
@@ -1066,7 +1066,7 @@ def build_listening_questions():
             "prompt": "A monolingual dictionary explains English words using Persian translations.",
             "promptFa": "آیا دیکشنری تک‌زبانه کلمات انگلیسی را با ترجمه فارسی توضیح می‌دهد؟",
             "passage": "A monolingual dictionary defines English words using simple English, whereas a bilingual dictionary translates words into Persian.",
-            "audioUrl": "/audio/highschool/grade12/dey-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1403.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -1082,7 +1082,7 @@ def build_listening_questions():
             "prompt": "Students should not copy word-for-word, but write notes in their own (12) ............ .",
             "promptFa": "دانش‌آموزان نباید کلمه به کلمه کپی کنند، بلکه یادداشت‌ها را چگونه بنویسند؟",
             "passage": "Good note-takers summarize ideas in their own words rather than copying every single sentence verbatim.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1403.mp3",
             "correctAnswer": "words",
             "explanation": {
                 "briefFa": "words (کلمات خودشان - in their own words)",
@@ -1096,7 +1096,7 @@ def build_listening_questions():
             "prompt": "Which foreign language is mostly taught in Iranian high schools?",
             "promptFa": "کدام زبان خارجی بیشترین تدریس را در مدارس ایران دارد؟",
             "passage": "Speaker: In the Iranian education system, English is the primary foreign language taught in secondary schools.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1398.mp3",
             "options": ["French", "English", "German", "Spanish"],
             "correctAnswer": 1,
             "explanation": {
@@ -1112,7 +1112,7 @@ def build_listening_questions():
             "prompt": "Checking the pronunciation guide in a dictionary prevents common speaking errors.",
             "promptFa": "بررسی راهنمای تلفظ در دیکشنری از خطاهای رایج در گفتار جلوگیری می‌کند.",
             "passage": "By consulting phonetic symbols and audio guides, learners can avoid pronouncing words incorrectly.",
-            "audioUrl": "/audio/highschool/grade12/dey-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1399.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -1127,7 +1127,7 @@ def build_listening_questions():
             "prompt": "The abbreviation 'e.g.' in dictionary definitions stands for 'for (2) ............'.",
             "promptFa": "مخفف e.g. در تعاریف لغت‌نامه نشان‌دهنده چیست؟",
             "passage": "In dictionary entries, you often see 'e.g.', which means for example.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1398.mp3",
             "correctAnswer": "example",
             "explanation": {
                 "briefFa": "example (for example = به عنوان مثال)",
@@ -1141,7 +1141,7 @@ def build_listening_questions():
             "prompt": "Learners should keep a pocket dictionary to look up unknown words on the (4) ............ .",
             "promptFa": "زبان‌آموزان می‌توانند فرهنگ لغت جیبی داشته باشند تا در حال حرکت کلمات را چک کنند.",
             "passage": "A pocket dictionary is convenient to carry around and look up words on the go.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1399.mp3",
             "correctAnswer": "go",
             "explanation": {
                 "briefFa": "go (on the go = در حال رفت‌وآمد)",
@@ -1155,7 +1155,7 @@ def build_listening_questions():
             "prompt": "Which part of a dictionary entry indicates whether a verb is transitive or intransitive?",
             "promptFa": "کدام بخش مدخل مشخص می‌کند فعل متعدی است یا لازم؟",
             "passage": "The part of speech label immediately indicates whether a verb is transitive [T] or intransitive [I].",
-            "audioUrl": "/audio/highschool/grade12/dey-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1398.mp3",
             "options": ["The part of speech label", "The page header", "The price tag", "The cover color"],
             "correctAnswer": 0,
             "explanation": {
@@ -1170,7 +1170,7 @@ def build_listening_questions():
             "prompt": "Online dictionaries allow users to listen to both British and American (12) ............ .",
             "promptFa": "لغت‌نامه‌های آنلاین امکان شنیدن تلفظ بریتیش و امریکن را فراهم می‌کنند.",
             "passage": "One big advantage of digital dictionaries is hearing native British and American pronunciations with one click.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "correctAnswer": "pronunciations",
             "explanation": {
                 "briefFa": "pronunciations (تلفظ‌ها)",
@@ -1192,7 +1192,7 @@ def build_listening_questions():
             "prompt": "The most common type of clean energy is solar (13) ............ .",
             "promptFa": "رایج‌ترین نوع انرژی پاک چه نوع انرژی است؟",
             "passage": "The most common type of clean energy is the solar power. Solar energy is produced by the radiation that reaches the earth.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "correctAnswer": "power",
             "explanation": {
                 "briefFa": "power (solar power = انرژی خورشیدی)",
@@ -1206,7 +1206,7 @@ def build_listening_questions():
             "prompt": "Solar energy is produced by the (14) ............ that reaches the earth.",
             "promptFa": "انرژی خورشیدی از چه چیزی تولید می‌شود که به زمین می‌رسد؟",
             "passage": "Solar energy is produced by the radiation that reaches the earth from the sun.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "correctAnswer": "radiation",
             "explanation": {
                 "briefFa": "radiation (تابش / پرتو)",
@@ -1220,7 +1220,7 @@ def build_listening_questions():
             "prompt": "The sun is an endless (15) ............ of renewable energy for humanity.",
             "promptFa": "خورشید چه نوع منبعی از انرژی تجدیدپذیر است؟",
             "passage": "The sun is an endless source of clean power that will never run out.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "correctAnswer": "source",
             "explanation": {
                 "briefFa": "source (منبع)",
@@ -1234,7 +1234,7 @@ def build_listening_questions():
             "prompt": "Iranians use special designs and (16) ............ of windows and balconies to capture sunshine.",
             "promptFa": "ایرانیان از چه چیدمان‌هایی برای جذب بیشترین نور آفتاب بهره می‌برند؟",
             "passage": "For centuries, Iranians have used special designs and arrangements of windows and yards to make the best use of sunlight.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3",
             "correctAnswer": "arrangements",
             "explanation": {
                 "briefFa": "arrangements (چیدمان‌ها / ترتیبات)",
@@ -1249,7 +1249,7 @@ def build_listening_questions():
             "prompt": "A kind of renewable energy that comes from the sun is called (13) ............ energy.",
             "promptFa": "نوعی از انرژی تجدیدپذیر که از خورشید می‌آید چه نامیده می‌شود؟",
             "passage": "A kind of renewable energy that comes from the sun is called solar energy. It is clean and never pollutes our environment.",
-            "audioUrl": "/audio/highschool/grade12/dey-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1403.mp3",
             "correctAnswer": "solar",
             "explanation": {
                 "briefFa": "solar (خورشیدی)",
@@ -1263,7 +1263,7 @@ def build_listening_questions():
             "prompt": "The natural movement of air across open areas is called (14) ............ .",
             "promptFa": "حرکت طبیعی هوا در پهنه‌های وسیع چه نام دارد؟",
             "passage": "The natural movement of the air is called wind. Wind turbines convert this movement into clean electricity.",
-            "audioUrl": "/audio/highschool/grade12/dey-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1403.mp3",
             "correctAnswer": "wind",
             "explanation": {
                 "briefFa": "wind (باد)",
@@ -1278,7 +1278,7 @@ def build_listening_questions():
             "prompt": "Energy gives (1) ............ to many things around us, from machines to electric vehicles.",
             "promptFa": "انرژی به ابزارها و اتومبیل‌های برقی چه چیزی می‌بخشد؟",
             "passage": "Energy gives power to many things. Most of the energy that people use comes from coal, oil, and natural gas.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "correctAnswer": "power",
             "explanation": {
                 "briefFa": "power (قدرت / توان)",
@@ -1292,7 +1292,7 @@ def build_listening_questions():
             "prompt": "Why are scientists looking for alternative renewable energy sources?",
             "promptFa": "چرا دانشمندان به دنبال منابع جایگزین تجدیدپذیر هستند؟",
             "passage": "Fossil fuels are running out rapidly, and burning them releases greenhouse gases that warm up our planet.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1403.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1403.mp3",
             "options": [
                 "Because fossil fuels are running out and cause global warming",
                 "Because fossil fuels are too cold",
@@ -1313,7 +1313,7 @@ def build_listening_questions():
             "prompt": "The woman thinks recycling unwanted food to fuel will become common in the future.",
             "promptFa": "خانم فکر می‌کند بازیافت زباله‌های غذایی به سوخت در آینده رواج خواهد یافت.",
             "passage": "Woman: Did you know we can convert organic waste into clean biofuel?\nMan: Really? Can that power cars?\nWoman: Yes! Recycling unwanted food waste to fuel will be very common in the future.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1399.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -1328,7 +1328,7 @@ def build_listening_questions():
             "prompt": "What does converting waste to energy help reduce?",
             "promptFa": "تبدیل پسماند به انرژی به کاهش چه چیزی کمک می‌کند؟",
             "passage": "Transforming waste into energy reduces landfill pollution and helps keep our cities clean.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1399.mp3",
             "options": [
                 "Environmental and landfill pollution",
                 "Daily sleep duration",
@@ -1349,7 +1349,7 @@ def build_listening_questions():
             "prompt": "Which one is the most common and accessible type of clean energy?",
             "promptFa": "کدام مورد رایج‌ترین و در دسترس‌ترین نوع انرژی پاک است؟",
             "passage": "Speaker: Among clean resources, solar power is the most common type because sunshine is available almost everywhere.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1398.mp3",
             "options": ["Coal power", "Solar power", "Oil fuel", "Diesel power"],
             "correctAnswer": 1,
             "explanation": {
@@ -1365,7 +1365,7 @@ def build_listening_questions():
             "prompt": "Unlike fossil fuels, renewable energy resources will never run (15) ............ .",
             "promptFa": "برخلاف سوخت‌های فسیلی، منابع تجدیدپذیر هیچ‌گاه تمام نمی‌شوند.",
             "passage": "Renewable resources like sunlight and wind will never run out because nature replenishes them continuously.",
-            "audioUrl": "/audio/highschool/grade12/dey-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1401.mp3",
             "correctAnswer": "out",
             "explanation": {
                 "briefFa": "out (run out = تمام شدن)",
@@ -1379,7 +1379,7 @@ def build_listening_questions():
             "prompt": "Fossil fuels do not pollute our air when they burn.",
             "promptFa": "سوخت‌های فسیلی هنگام سوختن هوای ما را آلوده نمی‌کنند.",
             "passage": "Burning fossil fuels produces heavy smoke and harmful gases that pollute our atmosphere.",
-            "audioUrl": "/audio/highschool/grade12/dey-1401.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1401.mp3",
             "options": ["True", "False"],
             "correctAnswer": "False",
             "explanation": {
@@ -1395,7 +1395,7 @@ def build_listening_questions():
             "prompt": "Huge wind (12) ............ are installed on windy hills to generate clean electricity.",
             "promptFa": "توربین‌های بادی در تپه‌های بادخیز برای تولید برق پاک نصب می‌شوند.",
             "passage": "Engineers install huge wind turbines in windy regions to generate clean electricity for thousands of homes.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1400.mp3",
             "correctAnswer": "turbines",
             "explanation": {
                 "briefFa": "turbines (توربین‌ها)",
@@ -1409,7 +1409,7 @@ def build_listening_questions():
             "prompt": "Where do engineers prefer to build wind farms?",
             "promptFa": "مهندسان ترجیح می‌دهند مزارع بادی را در کجا احداث کنند؟",
             "passage": "Wind farms are mostly built in open plains and windy hills where strong winds blow consistently.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1400.mp3",
             "options": [
                 "Deep inside dark caves",
                 "In open plains and windy hills",
@@ -1430,7 +1430,7 @@ def build_listening_questions():
             "prompt": "Every single person has a duty to protect our (14) ............ for future generations.",
             "promptFa": "هر انسانی وظیفه دارد از چه چیزی برای نسل‌های آینده محافظت کند؟",
             "passage": "Earth is our only home. We must protect our planet for our children and future generations.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1401.m4a",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1401.m4a",
             "correctAnswer": "planet",
             "explanation": {
                 "briefFa": "planet (سیاره زمین)",
@@ -1445,7 +1445,7 @@ def build_listening_questions():
             "prompt": "Passive solar design in buildings keeps houses warm in winter and cool in summer.",
             "promptFa": "طراحی خورشیدی در ساختمان‌ها خانه‌ها را در زمستان گرم و در تابستان خنک نگه می‌دارد.",
             "passage": "Special architectural designs help buildings capture winter sunlight for heating and block hot summer rays to stay cool naturally.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -1460,7 +1460,7 @@ def build_listening_questions():
             "prompt": "Using natural sunlight lowers the electric (15) ............ of households.",
             "promptFa": "استفاده از نور خورشید هزینه برق خانوارها را کاهش می‌دهد.",
             "passage": "Making good use of sunlight significantly lowers the electricity bills of families.",
-            "audioUrl": "/audio/highschool/grade12/dey-1400.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1400.mp3",
             "correctAnswer": "bills",
             "explanation": {
                 "briefFa": "bills (قبوض / هزینه‌ها)",
@@ -1475,7 +1475,7 @@ def build_listening_questions():
             "prompt": "What device converts sunlight directly into electrical energy?",
             "promptFa": "چه وسیله‌ای نور خورشید را مستقیماً به الکتریسیته بدل می‌سازد؟",
             "passage": "Solar cells and photovoltaic panels directly convert solar radiation into electricity.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "options": ["Solar panels", "Coal furnaces", "Diesel generators", "Gas heaters"],
             "correctAnswer": 0,
             "explanation": {
@@ -1490,7 +1490,7 @@ def build_listening_questions():
             "prompt": "Solar cells can be placed on the (16) ............ of residential houses.",
             "promptFa": "سلول‌های خورشیدی را می‌توان بر روی کدام قسمت خانه‌ها قرار داد؟",
             "passage": "Homeowners can install solar panels on their rooftops to supply their daily electricity needs.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1402.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1402.mp3",
             "correctAnswer": "roofs",
             "explanation": {
                 "briefFa": "roofs (پشت‌بام‌ها)",
@@ -1505,7 +1505,7 @@ def build_listening_questions():
             "prompt": "Wind energy does not produce greenhouse gases during electricity generation.",
             "promptFa": "انرژی باد هنگام تولید الکتریسیته هیچ‌گونه گاز گلخانه‌ای تولید نمی‌کند.",
             "passage": "Wind energy is completely clean; during power generation, wind turbines produce zero emissions and no greenhouse gases.",
-            "audioUrl": "/audio/highschool/grade12/dey-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1399.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {
@@ -1520,7 +1520,7 @@ def build_listening_questions():
             "prompt": "Hydroelectric power plants generate electricity using the movement of flowing (8) ............ .",
             "promptFa": "نیروگاه‌های برق‌آبی با استفاده از حرکت چه چیزی برق تولید می‌کنند؟",
             "passage": "Hydroelectric power uses the energy of flowing water in rivers and dams to turn generator turbines.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1399.mp3",
             "correctAnswer": "water",
             "explanation": {
                 "briefFa": "water (آب)",
@@ -1534,7 +1534,7 @@ def build_listening_questions():
             "prompt": "Why are fossil fuels called 'non-renewable'?",
             "promptFa": "چرا به سوخت‌های فسیلی «تجدیدناپذیر» گفته می‌شود؟",
             "passage": "Fossil fuels take millions of years to form deep beneath the ground, so once used up, they cannot be replaced in human lifetimes.",
-            "audioUrl": "/audio/highschool/grade12/dey-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Dey1398.mp3",
             "options": [
                 "Because they take millions of years to form and cannot be replaced quickly",
                 "Because they are made of fresh fruits",
@@ -1554,7 +1554,7 @@ def build_listening_questions():
             "prompt": "Electric cars help keep city air clean because they have zero (9) ............ .",
             "promptFa": "خودروهای برقی به تمیز ماندن هوای شهر کمک می‌کنند چون چه چیزی ندارند؟",
             "passage": "Electric vehicles do not have tailpipes and produce zero exhaust emissions in city streets.",
-            "audioUrl": "/audio/highschool/grade12/shahrivar-1398.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Shahrivar1398.mp3",
             "correctAnswer": "emissions",
             "explanation": {
                 "briefFa": "emissions (آلایندگی‌ها / خروجی اگزوز)",
@@ -1568,7 +1568,7 @@ def build_listening_questions():
             "prompt": "Saving energy at home is an easy way to help reduce global warming.",
             "promptFa": "صرفه‌جویی در مصرف انرژی در خانه روشی آسان برای کمک به کاهش گرمایش جهانی است.",
             "passage": "Simple actions like turning off unused lights and unplugging appliances save energy and lower carbon emissions.",
-            "audioUrl": "/audio/highschool/grade12/khordad-1399.mp3",
+            "audioUrl": "https://sajadzare11.github.io/vision3-listening/audio/Khordad1399.mp3",
             "options": ["True", "False"],
             "correctAnswer": "True",
             "explanation": {

@@ -16,6 +16,8 @@ import {
   STORAGE_KEY_PROGRESS,
   SKILL_TITLES_FA,
   SKILL_TITLES_EN,
+  getTamrin20GitHubPageUrl,
+  getTamrin20TrackId,
 } from "@/lib/tamrin20-data";
 import { Tamrin20QuestionCard } from "./Tamrin20QuestionCard";
 import { Tamrin20AudioPlayer } from "./Tamrin20AudioPlayer";
@@ -274,6 +276,19 @@ export const Tamrin20Player: React.FC<Tamrin20PlayerProps> = ({
                   <span className={styles.listeningSectionCountBadge}>
                     سوالات {section.questions[0]?.globalIndex} تا {section.questions[section.questions.length - 1]?.globalIndex}
                   </span>
+                  {section.audioUrl && (
+                    <a
+                      href={getTamrin20GitHubPageUrl(section.audioUrl) ?? "https://sajadzare11.github.io/vision3-listening/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.listeningSourceBadge}
+                      title="پخش آنلاین و دانلود در سامانه شنیداری گیت‌هاب"
+                      aria-label="پخش آنلاین در سامانه شنیداری گیت‌هاب"
+                    >
+                      <span>🌐</span>
+                      <span>منبع صوت: گیت‌هاب {getTamrin20TrackId(section.audioUrl) ? `(${getTamrin20TrackId(section.audioUrl)})` : ""}</span>
+                    </a>
+                  )}
                 </div>
                 <p className={styles.listeningSectionDesc}>
                   {section.descriptionFa}

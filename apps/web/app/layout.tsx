@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import "@endoora/ui/tokens.css";
 import "@endoora/ui/components.css";
-import { vazirmatn, inter } from "./fonts";
+import { iranyekan, vazirmatn, inter } from "./fonts";
 import { ThemeToggle } from "../components/theme/ThemeToggle";
 import { NetworkBandwidthBanner } from "../components/pwa/NetworkBandwidthBanner";
 import { PWARegistration } from "../components/pwa/PWARegistration";
@@ -65,7 +65,7 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
     <html
       lang="fa"
       dir="rtl"
-      className={`${vazirmatn.variable} ${inter.variable}`}
+      className={`${iranyekan.variable} ${vazirmatn.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       <head>

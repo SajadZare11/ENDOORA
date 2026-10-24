@@ -42,10 +42,10 @@
 .pageHero h1 {
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(2.45rem, 4.25vw, 4.15rem);
+  font-size: clamp(2.25rem, 4vw, 3.85rem);
   font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
   text-wrap: balance;
 }
 
@@ -65,8 +65,9 @@
   max-width: 62ch;
   margin-block: var(--space-6) 0;
   color: var(--color-muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  line-height: 2;
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  font-weight: 450;
+  line-height: 1.85;
 }
 
 [dir="ltr"] .heroCopy > p,
@@ -370,10 +371,10 @@
 .planSection h2 {
   margin-block: var(--space-3) 0;
   color: var(--color-text);
-  font-size: clamp(2rem, 3.5vw, 3.25rem);
-  font-weight: 880;
-  letter-spacing: -0.035em;
-  line-height: 1.32;
+  font-size: clamp(1.75rem, 2.75vw, 2.45rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  line-height: 1.34;
   text-wrap: balance;
 }
 
@@ -390,9 +391,11 @@
 .waitlistCopy > p,
 .planSection > div > p {
   max-width: 65ch;
-  margin-block: var(--space-4) 0;
+  margin-block: var(--space-3) 0;
   color: var(--color-muted);
-  line-height: 1.9;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.85;
 }
 
 .waitlistActions { display: grid; gap: var(--space-4); }
@@ -402,9 +405,9 @@
 .sectionLabel,
 .kicker {
   color: var(--color-action-hover);
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
 }
 
 .loopGrid {
@@ -577,8 +580,8 @@
 
 .loopStepTitle {
   margin: var(--space-1) 0 0 0;
-  font-size: 0.96rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 750;
   color: var(--color-text);
   line-height: 1.35;
 }
@@ -665,8 +668,8 @@
 
 .showcaseHeading {
   margin: 0;
-  font-size: 1.35rem;
-  font-weight: 880;
+  font-size: 1.3rem;
+  font-weight: 850;
   color: var(--color-text);
 }
 
@@ -687,7 +690,8 @@
 }
 
 .showcaseBodyText {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 400;
   line-height: 1.8;
   color: var(--color-text);
   margin-block-end: var(--space-5);

@@ -102,8 +102,8 @@
   min-block-size: 44px;
   padding-inline: var(--space-1);
   color: color-mix(in srgb, var(--color-text) 82%, var(--color-muted));
-  font-size: 0.9rem;
-  font-weight: 650;
+  font-size: 0.875rem;
+  font-weight: 550;
 }
 
 .desktopNav a::after {
@@ -239,12 +239,12 @@
 }
 
 .footerGrid > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
-.footerGrid > div > strong:not(.footerBrand) { margin-block-end: var(--space-2); font-size: 0.9rem; }
-.footerGrid a { min-block-size: 34px; color: var(--color-muted); font-size: 0.9rem; }
+.footerGrid > div > strong:not(.footerBrand) { margin-block-end: var(--space-2); font-size: 0.875rem; font-weight: 750; }
+.footerGrid a { min-block-size: 34px; color: var(--color-muted); font-size: 0.8125rem; }
 .footerBrandWrap { display: inline-flex; align-items: center; gap: var(--space-2); }
 .footerLogo { inline-size: 1.85rem; block-size: auto; aspect-ratio: 38 / 45; object-fit: contain; }
-.footerBrand { color: var(--color-text); font-size: 1.55rem; }
-.footerText { max-width: 31rem; margin-block: var(--space-3) 0; color: var(--color-muted); }
+.footerBrand { color: var(--color-text); font-size: 1.45rem; }
+.footerText { max-width: 31rem; margin-block: var(--space-3) 0; color: var(--color-muted); font-size: 0.8125rem; line-height: 1.7; }
 
 .copyright {
   width: min(var(--content-width), calc(100% - (2 * var(--space-6))));
@@ -252,7 +252,7 @@
   padding-block: var(--space-4);
   border-block-start: 1px solid var(--color-border);
   color: var(--color-muted);
-  font-size: 0.82rem;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 72rem) {

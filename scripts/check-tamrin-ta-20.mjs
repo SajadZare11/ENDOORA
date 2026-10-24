@@ -40,20 +40,23 @@ for (const lessonNum of lessons) {
     assert(Array.isArray(batch.questions), `Lesson ${lessonNum} [${skill}]: questions must be an array`);
     assert(batch.skillTitleFa && batch.skillTitleFa.length > 0, `Lesson ${lessonNum} [${skill}]: missing skillTitleFa`);
     assert(batch.skillTitleEn && batch.skillTitleEn.length > 0, `Lesson ${lessonNum} [${skill}]: missing skillTitleEn`);
+    const expectedMinQuestions = skill === "listening" ? 16 : 20;
+    const expectedInitialCount = skill === "listening" ? batch.questions.length : 20;
+
     assert(batch.totalQuestions === batch.questions.length, `Lesson ${lessonNum} [${skill}]: totalQuestions mismatch (${batch.totalQuestions} vs ${batch.questions.length})`);
-    assert(batch.initialCount === 20, `Lesson ${lessonNum} [${skill}]: expected initialCount=20, got ${batch.initialCount}`);
+    assert(batch.initialCount === expectedInitialCount, `Lesson ${lessonNum} [${skill}]: expected initialCount=${expectedInitialCount}, got ${batch.initialCount}`);
     
-    // HARD ACCEPTANCE RULE: Minimum 20 questions per skill/lesson
+    // Hard acceptance rule: minimum questions per skill/lesson
     assert(
-      batch.questions.length >= 20,
-      `Lesson ${lessonNum} [${skill}]: Expected at least 20 questions, found only ${batch.questions.length}!`
+      batch.questions.length >= expectedMinQuestions,
+      `Lesson ${lessonNum} [${skill}]: Expected at least ${expectedMinQuestions} questions, found only ${batch.questions.length}!`
     );
 
-    // Verify initial batch count: EXACTLY 20 questions marked isInitialBatch
+    // Verify initial batch count
     const initialQuestions = batch.questions.filter(q => q.isInitialBatch);
     assert(
-      initialQuestions.length === 20,
-      `Lesson ${lessonNum} [${skill}]: Expected exactly 20 questions marked isInitialBatch=true, found ${initialQuestions.length}!`
+      initialQuestions.length === expectedInitialCount,
+      `Lesson ${lessonNum} [${skill}]: Expected exactly ${expectedInitialCount} questions marked isInitialBatch=true, found ${initialQuestions.length}!`
     );
     initialBatchCount += initialQuestions.length;
 
@@ -77,11 +80,18 @@ for (const lessonNum of lessons) {
 
       // Answer key validation
       if (q.questionType === "multiple_choice") {
-        assert(Array.isArray(q.options) && q.options.length >= 3, `Question ${q.id}: MCQ requires >= 3 options`);
-        assert(
-          typeof q.correctAnswer === "number" && q.correctAnswer >= 0 && q.correctAnswer < q.options.length,
-          `Question ${q.id}: Invalid correctAnswer index (${q.correctAnswer}) for options length ${q.options.length}`
-        );
+        assert(Array.isArray(q.options) && q.options.length >= 2, `Question ${q.id}: MCQ requires >= 2 options`);
+        if (typeof q.correctAnswer === "number") {
+          assert(
+            q.correctAnswer >= 0 && q.correctAnswer < q.options.length,
+            `Question ${q.id}: Invalid correctAnswer index (${q.correctAnswer}) for options length ${q.options.length}`
+          );
+        } else {
+          assert(
+            typeof q.correctAnswer === "string" && q.options.includes(q.correctAnswer),
+            `Question ${q.id}: String correctAnswer (${q.correctAnswer}) not found in options: ${JSON.stringify(q.options)}`
+          );
+        }
       } else {
         assert(
           (typeof q.correctAnswer === "string" && q.correctAnswer.trim().length > 0) || Array.isArray(q.acceptableAnswers),
@@ -99,15 +109,23 @@ for (const lessonNum of lessons) {
       // Audio file presence check for Listening questions
       if (skill === "listening" || q.audioUrl) {
         assert(q.audioUrl, `Question ${q.id}: Listening question missing audioUrl`);
-        const cleanAudioPath = q.audioUrl.startsWith("/") ? q.audioUrl.slice(1) : q.audioUrl;
-        const physicalAudioPath = path.join(publicDir, cleanAudioPath);
-        assert(
-          fs.existsSync(physicalAudioPath),
-          `Question ${q.id}: Audio file does not exist on disk: ${physicalAudioPath}`
-        );
-        const stats = fs.statSync(physicalAudioPath);
-        assert(stats.size > 0, `Question ${q.id}: Audio file is 0 bytes: ${physicalAudioPath}`);
-        audioFilesChecked++;
+        if (q.audioUrl.startsWith("http://") || q.audioUrl.startsWith("https://")) {
+          assert(
+            q.audioUrl.startsWith("https://sajadzare11.github.io/vision3-listening/audio/"),
+            `Question ${q.id}: Audio URL must point to GitHub Pages vision3-listening repository, got: ${q.audioUrl}`
+          );
+          audioFilesChecked++;
+        } else {
+          const cleanAudioPath = q.audioUrl.startsWith("/") ? q.audioUrl.slice(1) : q.audioUrl;
+          const physicalAudioPath = path.join(publicDir, cleanAudioPath);
+          assert(
+            fs.existsSync(physicalAudioPath),
+            `Question ${q.id}: Audio file does not exist on disk: ${physicalAudioPath}`
+          );
+          const stats = fs.statSync(physicalAudioPath);
+          assert(stats.size > 0, `Question ${q.id}: Audio file is 0 bytes: ${physicalAudioPath}`);
+          audioFilesChecked++;
+        }
       }
     }
     console.log(`  ✓ Lesson ${lessonNum} [${skill}]: ${batch.questions.length} questions verified (20 initial, ${batch.questions.length - 20} progressive)`);

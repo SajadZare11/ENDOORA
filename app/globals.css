@@ -22,6 +22,56 @@ body {
   line-height: var(--line-height-body-persian);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: 0;
+  font-family: var(--font-family-persian);
+  color: var(--color-text);
+  line-height: 1.32;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--font-size-hero);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--font-size-page-title);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: var(--font-size-section-title);
+  font-weight: 750;
+}
+
+h4 {
+  font-size: var(--font-size-card-title);
+  font-weight: 700;
+}
+
+h5 {
+  font-size: var(--font-size-lg, 1rem);
+  font-weight: 650;
+}
+
+h6 {
+  font-size: var(--font-size-meta);
+  font-weight: 600;
+}
+
+p {
+  margin-block-start: 0;
+  line-height: var(--line-height-body-persian);
+}
+
 a {
   color: var(--color-link);
 }

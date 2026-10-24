@@ -57,6 +57,107 @@ export const SKILL_TITLES_EN: Record<Tamrin20Skill, string> = {
 export const STORAGE_KEY_PROGRESS = "endoora_tamrin20_progress_v1";
 
 /**
+ * Official GitHub Pages listening ecosystem configuration for Vision 3 (Grade 12).
+ * Hosted repository: https://github.com/SajadZare11/vision3-listening
+ * Live web player: https://sajadzare11.github.io/vision3-listening/
+ */
+export const VISION3_GITHUB_PAGES_BASE = "https://sajadzare11.github.io/vision3-listening";
+export const VISION3_GITHUB_AUDIO_BASE = `${VISION3_GITHUB_PAGES_BASE}/audio`;
+
+/**
+ * Mapping table from local filenames / track keys to exact case-sensitive filenames on GitHub Pages.
+ */
+const GITHUB_AUDIO_FILE_MAP: Record<string, string> = {
+  "dey-1398.mp3": "Dey1398.mp3",
+  "dey-1399.mp3": "Dey1399.mp3",
+  "dey-1400.mp3": "Dey1400.mp3",
+  "dey-1401.mp3": "Dey1401.mp3",
+  "dey-1402.mp3": "Dey1402.mp3",
+  "dey-1403.mp3": "Dey1403.mp3",
+  "khordad-1398.mp3": "Khordad1398.mp3",
+  "khordad-1399.mp3": "Khordad1399.mp3",
+  "khordad-1400.mp3": "Khordad1400.mp3",
+  "khordad-1401.mp3": "Khordad1401.mp3",
+  "khordad-1402.mp3": "Khordad1402.mp3",
+  "khordad-1403.mp3": "Khordad1403.mp3",
+  "shahrivar-1398.mp3": "Shahrivar1398.mp3",
+  "shahrivar-1399.mp3": "Shahrivar1399.mp3",
+  "shahrivar-1400.mp3": "Shahrivar1400.mp3",
+  "shahrivar-1401.m4a": "Shahrivar1401.m4a",
+  "shahrivar-1402.mp3": "Shahrivar1402.mp3",
+  "shahrivar-1403.mp3": "Shahrivar1403.mp3",
+  "l1_textbook_conv1.wav": "L1_Textbook_Conv1.wav",
+  "l1_textbook_conv2.wav": "L1_Textbook_Conv2.wav",
+  "l2_textbook_conv1.wav": "L2_Textbook_Conv1.wav",
+  "l2_textbook_conv2.wav": "L2_Textbook_Conv2.wav",
+  "l3_textbook_conv1.wav": "L3_Textbook_Conv1.wav",
+  "l3_textbook_conv2.wav": "L3_Textbook_Conv2.wav",
+};
+
+/**
+ * Normalizes any filename, path, or URL to the exact case-sensitive filename on GitHub Pages.
+ */
+export function normalizeTamrin20AudioFileName(input: string): string {
+  if (!input) return "";
+  const cleanInput = input.trim();
+  const baseName = cleanInput.split("/").pop() || cleanInput;
+  const lower = baseName.toLowerCase();
+
+  if (GITHUB_AUDIO_FILE_MAP[lower]) {
+    return GITHUB_AUDIO_FILE_MAP[lower];
+  }
+
+  // If already matches exact case in map values, return it
+  for (const target of Object.values(GITHUB_AUDIO_FILE_MAP)) {
+    if (target.toLowerCase() === lower) return target;
+  }
+
+  return baseName;
+}
+
+/**
+ * Returns the track ID used on the GitHub Pages website:
+ * e.g. "https://sajadzare11.github.io/vision3-listening/?track=Khordad1402" -> "Khordad1402"
+ *      "/audio/highschool/grade12/khordad-1402.mp3" -> "Khordad1402"
+ */
+export function getTamrin20TrackId(rawUrl?: string): string | null {
+  if (!rawUrl) return null;
+  const fileName = normalizeTamrin20AudioFileName(rawUrl);
+  if (!fileName) return null;
+  return fileName.replace(/\.[^/.]+$/, "");
+}
+
+/**
+ * Returns the full web player URL on GitHub Pages for this audio track:
+ * e.g. "https://sajadzare11.github.io/vision3-listening/?track=Khordad1402"
+ */
+export function getTamrin20GitHubPageUrl(rawUrl?: string): string | null {
+  const trackId = getTamrin20TrackId(rawUrl);
+  if (!trackId) return null;
+  return `${VISION3_GITHUB_PAGES_BASE}/?track=${trackId}`;
+}
+
+/**
+ * Resolves any audio URL (relative local path, filename, or GitHub URL)
+ * directly to the live streaming audio asset hosted on GitHub Pages:
+ * e.g. "/audio/highschool/grade12/khordad-1402.mp3" -> "https://sajadzare11.github.io/vision3-listening/audio/Khordad1402.mp3"
+ */
+export function resolveTamrin20AudioUrl(rawUrl?: string): string {
+  if (!rawUrl) return "";
+  const trimmed = rawUrl.trim();
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    if (trimmed.includes("sajadzare11.github.io/vision3-listening/audio/")) {
+      const parts = trimmed.split("/audio/");
+      const file = normalizeTamrin20AudioFileName(parts[1]);
+      return `${VISION3_GITHUB_AUDIO_BASE}/${file}`;
+    }
+    return trimmed;
+  }
+  const file = normalizeTamrin20AudioFileName(trimmed);
+  return `${VISION3_GITHUB_AUDIO_BASE}/${file}`;
+}
+
+/**
  * Returns the typed lesson data for lesson 1, 2, or 3.
  */
 export function getTamrin20Lesson(
