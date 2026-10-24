@@ -11,6 +11,7 @@ import {
   submitClassEnrollmentRequest,
 } from "../../../lib/curriculum-classes";
 import { AdobeConnectLauncherModal } from "../../../components/classroom/AdobeConnectLauncherModal";
+import { VisualSkillTree } from "../../../components/learner/path";
 
 type Locale = "fa" | "en";
 
@@ -294,6 +295,7 @@ const texts = {
 
 export default function LearningPathPage() {
   const [locale, setLocale] = useState<Locale>("fa");
+  const [viewMode, setViewMode] = useState<"tree" | "curriculum">("tree");
   const [pathData, setPathData] = useState<LearningPathData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -410,12 +412,65 @@ export default function LearningPathPage() {
           </div>
         </div>
 
-        {/* Hero Section */}
-        <header className={styles.hero}>
-          <p className={styles.heroKicker}>{isPlaced ? t.kicker : t.unplacedKicker}</p>
-          <h1 className={styles.heroTitle}>{isPlaced ? t.title : t.unplacedTitle}</h1>
-          <p className={styles.heroDesc}>{isPlaced ? t.desc : t.unplacedDesc}</p>
-        </header>
+        {/* View Mode Toggle: Interactive Winding Tree vs Curriculum/Classes */}
+        <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.75rem", flexWrap: "wrap" }}>
+          <button
+            type="button"
+            style={{
+              padding: "0.75rem 1.25rem",
+              borderRadius: "14px",
+              fontWeight: 800,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              border: viewMode === "tree" ? "2px solid #2563eb" : "1px solid var(--color-border, #cbd5e1)",
+              background: viewMode === "tree" ? "#2563eb" : "var(--color-surface, #ffffff)",
+              color: viewMode === "tree" ? "#ffffff" : "var(--color-text-primary, #0f172a)",
+              boxShadow: viewMode === "tree" ? "0 4px 14px rgba(37, 99, 235, 0.25)" : "none",
+              transition: "all 0.2s ease",
+            }}
+            onClick={() => setViewMode("tree")}
+          >
+            <span>🗺️</span>
+            <span>درخت مهارت‌ها و نقشه ماجراجویانه (Interactive Skill Tree)</span>
+          </button>
+
+          <button
+            type="button"
+            style={{
+              padding: "0.75rem 1.25rem",
+              borderRadius: "14px",
+              fontWeight: 800,
+              fontSize: "0.95rem",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              border: viewMode === "curriculum" ? "2px solid #2563eb" : "1px solid var(--color-border, #cbd5e1)",
+              background: viewMode === "curriculum" ? "#2563eb" : "var(--color-surface, #ffffff)",
+              color: viewMode === "curriculum" ? "#ffffff" : "var(--color-text-primary, #0f172a)",
+              boxShadow: viewMode === "curriculum" ? "0 4px 14px rgba(37, 99, 235, 0.25)" : "none",
+              transition: "all 0.2s ease",
+            }}
+            onClick={() => setViewMode("curriculum")}
+          >
+            <span>📚</span>
+            <span>کتاب آموزشی، کارنامه و کلاس آنلاین (Curriculum & Classes)</span>
+          </button>
+        </div>
+
+        {viewMode === "tree" ? (
+          <VisualSkillTree />
+        ) : (
+          <div>
+            {/* Hero Section */}
+            <header className={styles.hero}>
+              <p className={styles.heroKicker}>{isPlaced ? t.kicker : t.unplacedKicker}</p>
+              <h1 className={styles.heroTitle}>{isPlaced ? t.title : t.unplacedTitle}</h1>
+              <p className={styles.heroDesc}>{isPlaced ? t.desc : t.unplacedDesc}</p>
+            </header>
 
         {loading ? (
           <div className={styles.card} style={{ textAlign: "center", padding: "var(--space-8)" }}>
@@ -894,6 +949,8 @@ export default function LearningPathPage() {
           </div>
         )}
       </div>
+    )}
+  </div>
 
       {showCohortLauncher && classStatus?.cohort ? (
         <AdobeConnectLauncherModal
