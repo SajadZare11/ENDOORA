@@ -1,0 +1,831 @@
+/* =============================================================================
+   ENDOORA LIVE CLASSES & COHORTS HUB DESIGN SYSTEM
+   Modern, tokenized, RTL-first, responsive with interactive capacity meters
+   ============================================================================= */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem 1rem;
+  direction: rtl;
+  color: var(--color-text-primary, #0f172a);
+}
+
+/* =============================================================================
+   ACTIVE ENROLLED CLASSES BANNER
+   ============================================================================= */
+
+.enrolledBanner {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-end: 2rem;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+}
+
+.enrolledContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.enrolledIcon {
+  font-size: 2.2rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enrolledTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+}
+
+.enrolledSub {
+  font-size: 0.85rem;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.enterStudioBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #047857;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.enterStudioBtn:hover {
+  transform: translateY(-2px);
+  background: #f0fdf4;
+}
+
+/* =============================================================================
+   HERO SECTION (COMPACT & SLEEK)
+   ============================================================================= */
+
+.heroSection {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  color: #ffffff;
+  margin-block-end: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
+}
+
+.heroSection::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.heroBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-end: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.heroBadgePrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.heroBadgeSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e0f2fe;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.heroTitle {
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin: 0 0 0.35rem 0;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.heroSubtitle {
+  font-size: 0.825rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.55;
+  margin: 0 0 0.85rem 0;
+}
+
+.heroChipsRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.heroStatChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* =============================================================================
+   FILTER & SEARCH CONTROLS
+   ============================================================================= */
+
+.filterSection {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-block-end: 2rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+:global(.dark) .filterSection {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.searchBarWrapper {
+  position: relative;
+  margin-block-end: 1rem;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 2.75rem 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border, #cbd5e1);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-primary, #0f172a);
+  font-size: 0.925rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+:global(.dark) .searchInput {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.filterRowsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.formatToggleGroup {
+  display: inline-flex;
+  background: var(--color-surface-subtle, #f1f5f9);
+  padding: 0.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+:global(.dark) .formatToggleGroup {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.formatBtn {
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary, #475569);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+:global(.dark) .formatBtn {
+  color: #94a3b8;
+}
+
+.formatBtnActive {
+  background: #ffffff !important;
+  color: #2563eb !important;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+:global(.dark) .formatBtnActive {
+  background: #0f172a !important;
+  color: #60a5fa !important;
+}
+
+.categoriesScrollGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.categoryPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #cbd5e1);
+  color: var(--color-text-secondary, #475569);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+:global(.dark) .categoryPill {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+.categoryPill:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.categoryPillActive {
+  background: rgba(37, 99, 235, 0.1) !important;
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  font-weight: 800;
+}
+
+/* =============================================================================
+   COHORT CARDS GRID
+   ============================================================================= */
+
+.cohortsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-block-end: 3rem;
+}
+
+@media (max-width: 860px) {
+  .cohortsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cohortCard {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+:global(.dark) .cohortCard {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.cohortCard:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.1);
+}
+
+.cardTopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badgeCategory {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.badgeLevel {
+  background: rgba(20, 184, 166, 0.1);
+  color: #0d9488;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.badgeStatusFull {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.badgeStatusOpen {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.cohortTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+:global(.dark) .cohortTitle {
+  color: #f8fafc;
+}
+
+.cohortDesc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #475569);
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+}
+
+:global(.dark) .cohortDesc {
+  color: #94a3b8;
+}
+
+/* Teacher Profile Row */
+.teacherRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-surface-subtle, #f8fafc);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-block-end: 1rem;
+}
+
+:global(.dark) .teacherRow {
+  background: #1e293b;
+}
+
+.teacherAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.teacherInfoBox {
+  flex: 1;
+}
+
+.teacherNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-text-primary, #0f172a);
+}
+
+:global(.dark) .teacherNameRow {
+  color: #f1f5f9;
+}
+
+.verifiedCheck {
+  color: #2563eb;
+  font-size: 0.85rem;
+}
+
+.teacherTitleText {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #64748b);
+  margin: 0.15rem 0 0 0;
+}
+
+:global(.dark) .teacherTitleText {
+  color: #94a3b8;
+}
+
+/* Schedule Specs Row */
+.scheduleSpecsBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  background: var(--color-surface-subtle, #f8fafc);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-block-end: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary, #334155);
+}
+
+:global(.dark) .scheduleSpecsBox {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+.scheduleSpecItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Capacity Progress Meter */
+.capacityBox {
+  margin-block-end: 1.25rem;
+}
+
+.capacityHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-block-end: 0.4rem;
+}
+
+.capacityTrack {
+  height: 8px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.capacityFill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Card Actions & Pricing */
+.cardFooterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border, #e2e8f0);
+  padding-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+:global(.dark) .cardFooterRow {
+  border-color: #1e293b;
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.priceLabel {
+  font-size: 0.725rem;
+  color: var(--color-text-muted, #64748b);
+  font-weight: 600;
+}
+
+.priceValue {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--color-text-primary, #0f172a);
+}
+
+:global(.dark) .priceValue {
+  color: #f8fafc;
+}
+
+.enrollBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enrollBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.waitlistBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* =============================================================================
+   ENROLLMENT & PLACEMENT GATE MODAL
+   ============================================================================= */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  direction: rtl;
+}
+
+.modalContent {
+  background: var(--color-surface, #ffffff);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+:global(.dark) .modalContent {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  padding-bottom: 1rem;
+  margin-block-end: 1.25rem;
+}
+
+:global(.dark) .modalHeader {
+  border-color: #1e293b;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--color-text-primary, #0f172a);
+  margin: 0;
+}
+
+:global(.dark) .modalTitle {
+  color: #f8fafc;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: #ef4444;
+}
+
+/* Mandatory Placement Warning Box */
+.placementWarningCard {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-block-end: 1.5rem;
+}
+
+.placementWarningTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #d97706;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.placementWarningText {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #475569);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+:global(.dark) .placementWarningText {
+  color: #cbd5e1;
+}
+
+.takePlacementBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f59e0b;
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* Booking Details Summary */
+.bookingSummaryCard {
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-block-end: 1.5rem;
+}
+
+:global(.dark) .bookingSummaryCard {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--color-border, #cbd5e1);
+}
+
+:global(.dark) .summaryRow {
+  border-color: #334155;
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+}
+
+.formGroup {
+  margin-block-end: 1.25rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #1e293b);
+  margin-block-end: 0.35rem;
+}
+
+:global(.dark) .formLabel {
+  color: #e2e8f0;
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border, #cbd5e1);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text-primary, #0f172a);
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+:global(.dark) .formTextarea {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+/* Success Confirmation Screen */
+.successCard {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.successIcon {
+  font-size: 4rem;
+  margin-block-end: 1rem;
+}
+
+.successTitle {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #10b981;
+  margin: 0 0 0.5rem 0;
+}
+
+.digitalPassCard {
+  background: var(--color-surface-subtle, #f8fafc);
+  border: 2px dashed #10b981;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: right;
+}
+
+:global(.dark) .digitalPassCard {
+  background: #091e1c;
+}

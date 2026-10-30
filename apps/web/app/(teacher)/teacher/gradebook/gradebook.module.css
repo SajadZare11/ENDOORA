@@ -1,4 +1,4 @@
-/* Day 35 - Teacher Class Gradebook Matrix (100% Tokenized & Logical) */
+/* Day 35 - Teacher Class Gradebook Matrix & Educational Psychometrics Suite */
 
 .container {
   max-inline-size: var(--content-width);
@@ -7,7 +7,7 @@
   padding-block: var(--space-6, 1.5rem);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6, 1.5rem);
+  gap: var(--space-5, 1.25rem);
   animation: gradebookEntrance 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -64,6 +64,69 @@
   font-size: var(--font-size-sm, 0.875rem);
   color: var(--color-muted);
   margin: 0;
+}
+
+/* Tabs Navigation Bar */
+.tabsContainer {
+  display: flex;
+  gap: var(--space-2, 0.5rem);
+  border-bottom: 2px solid var(--color-border-subtle, #e2e8f0);
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #64748b);
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  color: var(--color-primary-600, #2563eb);
+  background: var(--color-bg-muted, rgba(37, 99, 235, 0.04));
+}
+
+.tabButtonActive {
+  color: var(--color-primary-600, #2563eb);
+  font-weight: 800;
+  background: var(--color-surface, #ffffff);
+}
+
+.tabButtonActive::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary-600, #2563eb);
+  border-radius: 3px 3px 0 0;
+}
+
+.tabBadge {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--color-bg-muted, #f1f5f9);
+  color: var(--color-text-secondary, #475569);
+  font-weight: 700;
+}
+
+.tabBadgeActive {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-primary-600, #2563eb);
 }
 
 .kpiGrid {
@@ -216,4 +279,30 @@
 .gradeSubmitted {
   background: var(--color-warning-subtle);
   color: var(--color-warning-dark);
+}
+
+/* Print Optimization for window.print() */
+@media print {
+  :global(body) {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .header,
+  .controlsBar,
+  .tabsContainer,
+  :global(.teacher-shell-header),
+  :global(.teacher-shell-sidebar),
+  :global(header),
+  :global(nav),
+  :global(aside),
+  :global(.no-print) {
+    display: none !important;
+  }
+
+  .container {
+    max-inline-size: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 }

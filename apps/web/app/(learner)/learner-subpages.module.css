@@ -34,11 +34,13 @@
 
 /* Header & Hero Panels */
 .heroCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--glass-background) 88%, var(--color-surface));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
   border-radius: var(--radius-card);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-subtle);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  box-shadow: 0 10px 30px -6px rgba(15, 23, 42, 0.06);
   margin-block-end: var(--space-6);
   position: relative;
   overflow: hidden;
@@ -64,9 +66,9 @@
 
 .heroTitle {
   font-size: var(--font-size-page-title);
-  font-weight: 800;
+  font-weight: 850;
   line-height: var(--line-height-page-title);
-  color: var(--color-text);
+  color: var(--color-deep-navy, #0f172a);
   margin: 0;
 }
 
@@ -86,21 +88,23 @@
   padding-block: var(--space-1);
   border-radius: var(--radius-pill);
   font-size: var(--font-size-meta);
-  font-weight: 700;
+  font-weight: 750;
   background: var(--color-info-bg);
   color: var(--color-info-text);
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-action) 20%, transparent);
   white-space: nowrap;
 }
 
 .heroBadgeSuccess {
   background: var(--color-success-bg);
   color: var(--color-success-text);
+  border-color: color-mix(in srgb, var(--color-success-green) 30%, transparent);
 }
 
 .heroBadgeWarning {
   background: var(--color-warning-bg);
   color: var(--color-warning-text);
+  border-color: color-mix(in srgb, var(--color-warning-orange) 30%, transparent);
 }
 
 .actionRow {
@@ -115,22 +119,24 @@
 .card {
   position: relative;
   overflow: hidden;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--glass-background) 86%, var(--color-surface));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   border-radius: var(--radius-card);
   padding: var(--space-6);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
   margin-block-end: var(--space-6);
   transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-action-hover);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+  border-color: var(--color-action);
+  box-shadow: 0 14px 32px -6px rgba(37, 99, 235, 0.16);
 }
 
 .cardTitle {
@@ -160,30 +166,37 @@
 
 .statItem {
   padding: var(--space-4);
-  background: var(--color-canvas);
-  border-radius: var(--radius-control);
-  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 90%, var(--color-canvas));
+  border-radius: var(--radius-card);
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -3px rgba(15, 23, 42, 0.08);
 }
 
 .statLabel {
   font-size: var(--font-size-meta);
   color: var(--color-muted);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .statValue {
   font-size: var(--font-size-hero);
-  font-weight: 800;
-  color: var(--color-action);
+  font-weight: 850;
+  color: var(--color-deep-navy, #0f172a);
   line-height: 1.1;
 }
 
 .statSubtext {
   font-size: var(--font-size-meta);
-  color: var(--color-text);
+  color: var(--color-muted);
   font-weight: 600;
 }
 
@@ -196,24 +209,26 @@
 }
 
 .skillCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--glass-background) 88%, var(--color-surface));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   border-radius: var(--radius-card);
   padding: var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
   transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .skillCard:hover {
-  border-color: var(--color-action-hover);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-action);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.14);
 }
 
 .skillCardHeader {

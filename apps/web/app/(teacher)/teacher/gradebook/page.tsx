@@ -1,8 +1,7 @@
 "use client";
 
 import { Input, Table } from "@endoora/ui";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import styles from "./gradebook.module.css";
 import { useTeacherHome } from "../../../../components/teacher/TeacherShell";
@@ -12,6 +11,17 @@ import {
   getClassGradebookExportCsvUrl,
   type ClassGradebookMatrix,
 } from "../../../../lib/teacher-gradebook";
+import {
+  loadSidaGradebook,
+  saveSidaGradebook,
+  SidaGradebookState,
+} from "../../../../lib/teacher-sida-gradebook";
+import { GradeEntryTab } from "../../../../components/teacher/GradeEntryTab";
+import { PsychometricsTab } from "../../../../components/teacher/PsychometricsTab";
+import { OfficialReportCardA4 } from "../../../../components/teacher/OfficialReportCardA4";
+import { HistogramBin } from "../../../../components/analytics/BellCurveHistogram";
+
+type ActiveTab = "grade_entry" | "assignments_matrix" | "psychometrics" | "official_report";
 
 export default function TeacherGradebookPage() {
   const { locale } = useTeacherHome();
@@ -23,6 +33,15 @@ export default function TeacherGradebookPage() {
   const [loading, setLoading] = useState(true);
   const [searchStudent, setSearchStudent] = useState("");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Active Tab State (Default: Grade Entry as requested)
+  const [activeTab, setActiveTab] = useState<ActiveTab>("grade_entry");
+
+  // SIDA Gradebook State (Synced with localStorage and enrolled learners)
+  const [sidaState, setSidaState] = useState<SidaGradebookState | null>(null);
+
+  // Cross-Tab Histogram Filter State
+  const [selectedHistogramBin, setSelectedHistogramBin] = useState<HistogramBin | null>(null);
 
   // Initial load classes
   useEffect(() => {
@@ -40,7 +59,7 @@ export default function TeacherGradebookPage() {
     void loadClasses();
   }, []);
 
-  // Load gradebook whenever selectedClassId changes
+  // Load platform gradebook matrix whenever selectedClassId changes
   useEffect(() => {
     async function loadMatrix() {
       if (!selectedClassId) return;
@@ -49,8 +68,20 @@ export default function TeacherGradebookPage() {
       try {
         const data = await fetchClassGradebook(selectedClassId);
         setGradebook(data);
+
+        // Map enrolled learners to initialize or sync SIDA gradebook
+        const enrolled = data.students.map((s) => ({
+          id: s.student_id,
+          name: s.name,
+          email: s.email,
+        }));
+        const sida = loadSidaGradebook(selectedClassId, enrolled);
+        setSidaState(sida);
       } catch (err: unknown) {
         setErrorMsg(err instanceof Error ? err.message : "Failed to load gradebook.");
+        // Fallback load SIDA gradebook with default seeds
+        const fallback = loadSidaGradebook(selectedClassId);
+        setSidaState(fallback);
       } finally {
         setLoading(false);
       }
@@ -58,6 +89,22 @@ export default function TeacherGradebookPage() {
     void loadMatrix();
   }, [selectedClassId]);
 
+  // Handle SIDA gradebook change with auto-save to localStorage
+  const handleSidaChange = (updated: SidaGradebookState) => {
+    setSidaState(updated);
+    saveSidaGradebook(updated);
+  };
+
+  const selectedClass = useMemo(
+    () => classes.find((c) => c.id === selectedClassId),
+    [classes, selectedClassId]
+  );
+
+  const classTitle = selectedClass
+    ? `${selectedClass.title} (${selectedClass.level})`
+    : gradebook?.class_title || "کلاس جاری";
+
+  // Filter for Platform Assignment Matrix
   const filteredStudents = gradebook?.students.filter((s) => {
     if (!searchStudent) return true;
     const q = searchStudent.toLowerCase();
@@ -81,11 +128,13 @@ export default function TeacherGradebookPage() {
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.titleArea}>
-          <h1 className={styles.title}>{isFa ? "کارنامه و ماتریس نمرات کلاس‌ها" : "Class Gradebook"}</h1>
+          <h1 className={styles.title}>
+            {isFa ? "مجموعه جامع کارنامه، روان‌سنجی و نمرات کلاس" : "Educational Psychometrics & Gradebook"}
+          </h1>
           <p className={styles.subtitle}>
             {isFa
-              ? "مشاهده ماتریس جامع عملکرد، نمرات تکالیف، نرخ انجام و خروجی اکسل."
-              : "Comprehensive academic matrix, assignment performance, completion rates, and CSV export."}
+              ? "ورود نمرات رسمی سیدا، موتور محاسبات روان‌سنجی، نمودارهای تشخیصی و صدور کارنامه A4."
+              : "Standardized psychometrics engine, SIDA-compatible grade entry, diagnostic analytics, and print report cards."}
           </p>
         </div>
         <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }}>
@@ -104,16 +153,22 @@ export default function TeacherGradebookPage() {
         </div>
       </header>
 
-      {/* Class Selector & Controls Bar */}
+      {/* Class Selector & Top Bar */}
       <div className={styles.controlsBar}>
         <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center", flexWrap: "wrap" }}>
           <label style={{ fontWeight: 600, fontSize: "var(--font-size-sm)" }}>
-            {isFa ? "انتخاب کلاس:" : "Select Class:"}
+            {isFa ? "انتخاب کلاس فعال:" : "Select Active Class:"}
           </label>
           <select
             value={selectedClassId || ""}
             onChange={(e) => setSelectedClassId(e.target.value)}
-            style={{ padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-border-subtle)" }}
+            style={{
+              padding: "var(--space-2) var(--space-3)",
+              borderRadius: "var(--radius-sm)",
+              border: "1px solid var(--color-border-subtle)",
+              backgroundColor: "var(--color-bg-surface, #ffffff)",
+              fontWeight: 600,
+            }}
           >
             {classes.map((c) => (
               <option key={c.id} value={c.id}>
@@ -121,26 +176,65 @@ export default function TeacherGradebookPage() {
               </option>
             ))}
           </select>
-
-          <Input
-            type="text"
-            placeholder={isFa ? "جستجوی زبان‌آموز..." : "Search student..."}
-            value={searchStudent}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchStudent(e.target.value)}
-            style={{ padding: "var(--space-2) var(--space-3)", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-border-subtle)" }}
-          />
         </div>
 
-        {selectedClassId && (
+        {selectedClassId && activeTab === "assignments_matrix" && (
           <a
             href={getClassGradebookExportCsvUrl(selectedClassId)}
             className="teacher-button teacher-button--secondary"
             download
           >
-            {isFa ? "خروجی فایل اکسل (CSV)" : "Export CSV"}
+            {isFa ? "خروجی فایل اکسل تکالیف (CSV)" : "Export CSV"}
           </a>
         )}
       </div>
+
+      {/* 4 Interactive Hub Tabs */}
+      <nav className={styles.tabsContainer} aria-label="بخش‌های دفتر نمرات و روان‌سنجی">
+        <button
+          type="button"
+          onClick={() => setActiveTab("grade_entry")}
+          className={`${styles.tabButton} ${activeTab === "grade_entry" ? styles.tabButtonActive : ""}`}
+        >
+          <span>✍️ ثبت و مدیریت نمرات سیدا و کلاسی</span>
+          <span className={`${styles.tabBadge} ${activeTab === "grade_entry" ? styles.tabBadgeActive : ""}`}>
+            {sidaState?.students.length || 0} نفر
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("psychometrics")}
+          className={`${styles.tabButton} ${activeTab === "psychometrics" ? styles.tabButtonActive : ""}`}
+        >
+          <span>📊 داشبورد روان‌سنجی، نمودارها و تریاژ</span>
+          <span className={`${styles.tabBadge} ${activeTab === "psychometrics" ? styles.tabBadgeActive : ""}`}>
+            ۵ نمودار
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("assignments_matrix")}
+          className={`${styles.tabButton} ${activeTab === "assignments_matrix" ? styles.tabButtonActive : ""}`}
+        >
+          <span>📋 ماتریس تکالیف آنلاین پلتفرم</span>
+          <span className={`${styles.tabBadge} ${activeTab === "assignments_matrix" ? styles.tabBadgeActive : ""}`}>
+            {gradebook?.total_assignments || 0} تکلیف
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("official_report")}
+          className={`${styles.tabButton} ${activeTab === "official_report" ? styles.tabButtonActive : ""}`}
+        >
+          <span>🖨️ صدور کارنامه رسمی چاپی A4</span>
+          <span className={`${styles.tabBadge} ${activeTab === "official_report" ? styles.tabBadgeActive : ""}`}>
+            سیدا
+          </span>
+        </button>
+      </nav>
 
       {errorMsg && (
         <div style={{ padding: "var(--space-3)", background: "var(--color-danger-subtle)", color: "var(--color-danger-dark)", borderRadius: "var(--radius-sm)" }}>
@@ -148,135 +242,182 @@ export default function TeacherGradebookPage() {
         </div>
       )}
 
-      {loading ? (
+      {loading && !sidaState ? (
         <div style={{ textAlign: "center", padding: "var(--space-8)" }}>
-          {isFa ? "در حال محاسبه و بارگیری ماتریس نمرات..." : "Calculating gradebook matrix..."}
-        </div>
-      ) : !gradebook ? (
-        <div style={{ textAlign: "center", padding: "var(--space-8)" }}>
-          {isFa ? "هیچ کلاسی یافت نشد." : "No class gradebook data available."}
+          {isFa ? "در حال محاسبه و بارگیری اطلاعات کلاس..." : "Loading class gradebook..."}
         </div>
       ) : (
         <>
-          {/* KPI Summary Cards */}
-          <div className={styles.kpiGrid}>
-            <div className={styles.kpiCard}>
-              <span className={styles.kpiLabel}>{isFa ? "میانگین نمره کلاس" : "Class Average"}</span>
-              <span className={styles.kpiValue}>{gradebook.class_average_percentage}%</span>
-            </div>
-            <div className={styles.kpiCard}>
-              <span className={styles.kpiLabel}>{isFa ? "تعداد کل زبان‌آموزان" : "Enrolled Students"}</span>
-              <span className={styles.kpiValue}>{gradebook.total_students}</span>
-            </div>
-            <div className={styles.kpiCard}>
-              <span className={styles.kpiLabel}>{isFa ? "تعداد تکالیف منتشرشده" : "Published Assignments"}</span>
-              <span className={styles.kpiValue}>{gradebook.total_assignments}</span>
-            </div>
-          </div>
+          {/* TAB 1: SIDA Grade Entry & Live Score Management */}
+          {activeTab === "grade_entry" && sidaState && (
+            <GradeEntryTab
+              gradebook={sidaState}
+              onChange={handleSidaChange}
+              classTitle={classTitle}
+              activeFilterBinLabel={selectedHistogramBin?.label}
+              onClearBinFilter={() => setSelectedHistogramBin(null)}
+              filteredStudentIds={selectedHistogramBin?.studentIds}
+            />
+          )}
 
-          {/* Matrix Grid Table */}
-          <div className={styles.matrixWrapper}>
-            <Table className={styles.matrixTable}>
-              <thead>
-                <tr>
-                  <th className={styles.stickyCol}>{isFa ? "زبان‌آموز (Student)" : "Student"}</th>
-                  <th>{isFa ? "میانگین کل" : "Overall %"}</th>
-                  <th>{isFa ? "رتبه" : "Grade"}</th>
-                  <th>{isFa ? "انجام شده" : "Completed"}</th>
-                  <th>{isFa ? "غیبت/نقص" : "Missing"}</th>
-                  {gradebook.assignments.map((a) => (
-                    <th key={a.id}>
-                      <div>{a.title}</div>
-                      <div style={{ fontSize: "var(--font-size-xs)", fontWeight: 400, color: "var(--color-text-secondary)" }}>
-                        {a.total_points} pts | {a.average_percentage}% avg
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {filteredStudents && filteredStudents.length > 0 ? (
-                  filteredStudents.map((s) => (
-                    <tr key={s.student_id}>
-                      <td className={styles.stickyCol}>
-                        <div>
-                          <strong>{s.name}</strong>
-                          <div style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
-                            {s.email}
+          {/* TAB 2: Psychometrics Engine, Charts, Early Warning Triage */}
+          {activeTab === "psychometrics" && sidaState && (
+            <PsychometricsTab
+              gradebook={sidaState}
+              selectedBin={selectedHistogramBin}
+              onFilterBinSelect={(bin) => setSelectedHistogramBin(bin)}
+            />
+          )}
+
+          {/* TAB 3: Official Report Card A4 View & Print */}
+          {activeTab === "official_report" && sidaState && (
+            <OfficialReportCardA4
+              gradebook={sidaState}
+              classTitle={classTitle}
+              onClose={() => setActiveTab("grade_entry")}
+            />
+          )}
+
+          {/* TAB 4: Original Platform Assignment Matrix */}
+          {activeTab === "assignments_matrix" && gradebook && (
+            <>
+              {/* KPI Summary Cards */}
+              <div className={styles.kpiGrid}>
+                <div className={styles.kpiCard}>
+                  <span className={styles.kpiLabel}>{isFa ? "میانگین نمره کلاس" : "Class Average"}</span>
+                  <span className={styles.kpiValue}>{gradebook.class_average_percentage}%</span>
+                </div>
+                <div className={styles.kpiCard}>
+                  <span className={styles.kpiLabel}>{isFa ? "تعداد کل زبان‌آموزان" : "Enrolled Students"}</span>
+                  <span className={styles.kpiValue}>{gradebook.total_students}</span>
+                </div>
+                <div className={styles.kpiCard}>
+                  <span className={styles.kpiLabel}>{isFa ? "تعداد تکالیف منتشرشده" : "Published Assignments"}</span>
+                  <span className={styles.kpiValue}>{gradebook.total_assignments}</span>
+                </div>
+              </div>
+
+              {/* Search Filter for Platform Table */}
+              <div style={{ marginBlock: "8px" }}>
+                <Input
+                  type="text"
+                  placeholder={isFa ? "جستجوی زبان‌آموز در ماتریس تکالیف..." : "Search student..."}
+                  value={searchStudent}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchStudent(e.target.value)}
+                  style={{
+                    padding: "var(--space-2) var(--space-3)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--color-border-subtle)",
+                    maxWidth: "320px",
+                  }}
+                />
+              </div>
+
+              {/* Matrix Grid Table */}
+              <div className={styles.matrixWrapper}>
+                <Table className={styles.matrixTable}>
+                  <thead>
+                    <tr>
+                      <th className={styles.stickyCol}>{isFa ? "زبان‌آموز (Student)" : "Student"}</th>
+                      <th>{isFa ? "میانگین کل" : "Overall %"}</th>
+                      <th>{isFa ? "رتبه" : "Grade"}</th>
+                      <th>{isFa ? "انجام شده" : "Completed"}</th>
+                      <th>{isFa ? "غیبت/نقص" : "Missing"}</th>
+                      {gradebook.assignments.map((a) => (
+                        <th key={a.id}>
+                          <div>{a.title}</div>
+                          <div style={{ fontSize: "var(--font-size-xs)", fontWeight: 400, color: "var(--color-text-secondary)" }}>
+                            {a.total_points} pts | {a.average_percentage}% avg
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <strong>{s.overall_percentage}%</strong>
-                      </td>
-                      <td>
-                        <span className={styles.gradePill} style={{ background: "var(--color-bg-muted)" }}>
-                          {s.letter_grade}
-                        </span>
-                      </td>
-                      <td>{s.completed_count}</td>
-                      <td style={{ color: s.missing_count > 0 ? "var(--color-danger-600)" : "inherit" }}>
-                        {s.missing_count}
-                      </td>
-                      {gradebook.assignments.map((a) => {
-                        const cell = s.grades[a.id];
-                        if (!cell) return <td key={a.id}>-</td>;
-
-                        let label = "-";
-                        if (cell.score !== null) {
-                          label = `${cell.score} (${cell.percentage}%)`;
-                        } else if (cell.status === "missing") {
-                          label = isFa ? "غایب" : "Missing";
-                        } else if (cell.status === "submitted") {
-                          label = isFa ? "تصحیح نشده" : "Submitted";
-                        }
-
-                        const pillClass = getPillClass(cell.percentage, cell.status);
-
-                        return (
-                          <td key={a.id}>
-                            {cell.attempt_id ? (
-                              <Link
-                                href={`/teacher/grading/${cell.attempt_id}`}
-                                className={`${styles.gradePill} ${pillClass}`}
-                                title={isFa ? "کلیک برای مشاهده یا تصحیح تلاش" : "Click to view or grade attempt"}
-                              >
-                                {label}
-                              </Link>
-                            ) : (
-                              <span className={`${styles.gradePill} ${pillClass}`}>
-                                {label}
-                              </span>
-                            )}
-                          </td>
-                        );
-                      })}
+                        </th>
+                      ))}
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={5 + gradebook.assignments.length} style={{ textAlign: "center", padding: "var(--space-4)" }}>
-                      {isFa ? "زبان‌آموزی در این کلاس ثبت نشده است." : "No students found."}
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-              <tfoot>
-                <tr className={styles.footerRow}>
-                  <td className={styles.stickyCol}>{isFa ? "میانگین کلاس" : "Class Average"}</td>
-                  <td>{gradebook.class_average_percentage}%</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  {gradebook.assignments.map((a) => (
-                    <td key={a.id}>
-                      {a.average_percentage}% ({a.completion_rate}% comp)
-                    </td>
-                  ))}
-                </tr>
-              </tfoot>
-            </Table>
-          </div>
+                  </thead>
+                  <tbody>
+                    {filteredStudents && filteredStudents.length > 0 ? (
+                      filteredStudents.map((s) => (
+                        <tr key={s.student_id}>
+                          <td className={styles.stickyCol}>
+                            <div>
+                              <strong>{s.name}</strong>
+                              <div style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-secondary)" }}>
+                                {s.email}
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <strong>{s.overall_percentage}%</strong>
+                          </td>
+                          <td>
+                            <span className={styles.gradePill} style={{ background: "var(--color-bg-muted)" }}>
+                              {s.letter_grade}
+                            </span>
+                          </td>
+                          <td>{s.completed_count}</td>
+                          <td style={{ color: s.missing_count > 0 ? "var(--color-danger-600)" : "inherit" }}>
+                            {s.missing_count}
+                          </td>
+                          {gradebook.assignments.map((a) => {
+                            const cell = s.grades[a.id];
+                            if (!cell) return <td key={a.id}>-</td>;
+
+                            let label = "-";
+                            if (cell.score !== null) {
+                              label = `${cell.score} (${cell.percentage}%)`;
+                            } else if (cell.status === "missing") {
+                              label = isFa ? "غایب" : "Missing";
+                            } else if (cell.status === "submitted") {
+                              label = isFa ? "تصحیح نشده" : "Submitted";
+                            }
+
+                            const pillClass = getPillClass(cell.percentage, cell.status);
+
+                            return (
+                              <td key={a.id}>
+                                {cell.attempt_id ? (
+                                  <Link
+                                    href={`/teacher/grading/${cell.attempt_id}`}
+                                    className={`${styles.gradePill} ${pillClass}`}
+                                    title={isFa ? "کلیک برای مشاهده یا تصحیح تلاش" : "Click to view or grade attempt"}
+                                  >
+                                    {label}
+                                  </Link>
+                                ) : (
+                                  <span className={`${styles.gradePill} ${pillClass}`}>
+                                    {label}
+                                  </span>
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5 + gradebook.assignments.length} style={{ textAlign: "center", padding: "var(--space-4)" }}>
+                          {isFa ? "زبان‌آموزی در این کلاس ثبت نشده است." : "No students found."}
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                  <tfoot>
+                    <tr className={styles.footerRow}>
+                      <td className={styles.stickyCol}>{isFa ? "میانگین کلاس" : "Class Average"}</td>
+                      <td>{gradebook.class_average_percentage}%</td>
+                      <td>-</td>
+                      <td>-</td>
+                      <td>-</td>
+                      {gradebook.assignments.map((a) => (
+                        <td key={a.id}>
+                          {a.average_percentage}% ({a.completion_rate}% comp)
+                        </td>
+                      ))}
+                    </tr>
+                  </tfoot>
+                </Table>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>

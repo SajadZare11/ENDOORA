@@ -17,6 +17,7 @@ type AuthShellProps = {
   footer?: ReactNode;
   variant?: "auth" | "wide";
   currentPath?: string;
+  showScene?: boolean;
 };
 
 const copy = {
@@ -66,6 +67,7 @@ export function AuthShell({
   footer,
   variant = "auth",
   currentPath,
+  showScene = true,
 }: AuthShellProps) {
   const isPersian = locale === "fa";
   const t = copy[locale];
@@ -125,7 +127,15 @@ export function AuthShell({
         lang={locale}
         dir={isPersian ? "rtl" : "ltr"}
       >
-        <div className={`${styles.stage} ${variant === "wide" ? styles.stageWide : ""}`}>
+        <div
+          className={[
+            styles.stage,
+            !showScene ? styles.stageSingle : "",
+            variant === "wide" ? styles.stageWide : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           <section id="auth-content" className={styles.workspace} aria-labelledby="auth-title">
             <div className={styles.heading}>
               <span className={styles.securityIcon} aria-hidden="true"><ShieldIcon /></span>
@@ -149,20 +159,22 @@ export function AuthShell({
             </aside>
           </section>
 
-          <aside className={styles.scene} aria-labelledby="auth-scene-title">
-            <Image
-              className={styles.sceneImage}
-              src="/images/auth/endoora-door-to-success-v2.png"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 38vw, 31rem"
-            />
-            <div className={styles.sceneCopy}>
-              <h2 id="auth-scene-title">{t.sceneTitle}</h2>
-              <p>{t.sceneBody}</p>
-            </div>
-          </aside>
+          {showScene ? (
+            <aside className={styles.scene} aria-labelledby="auth-scene-title">
+              <Image
+                className={styles.sceneImage}
+                src="/images/auth/endoora-door-to-success-v2.png"
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 38vw, 31rem"
+              />
+              <div className={styles.sceneCopy}>
+                <h2 id="auth-scene-title">{t.sceneTitle}</h2>
+                <p>{t.sceneBody}</p>
+              </div>
+            </aside>
+          ) : null}
         </div>
       </div>
     </PublicShell>

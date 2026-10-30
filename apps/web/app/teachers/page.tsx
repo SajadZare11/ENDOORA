@@ -3,23 +3,22 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { PublicShell } from "../../components/marketing/PublicShell";
-import { Button, SearchInput } from "@endoora/ui";
 import {
   fetchPublicTeachers,
   type TeacherDirectoryItem,
 } from "../../lib/marketplace";
 import styles from "./teachers.module.css";
 
-const SKILL_OPTIONS: { id: string; label: string }[] = [
-  { id: "", label: "همه مهارت‌ها" },
-  { id: "speaking", label: "مکالمه (Speaking)" },
-  { id: "ielts_prep", label: "آیلتس (IELTS)" },
-  { id: "writing", label: "نگارش (Writing)" },
-  { id: "listening", label: "شنیداری (Listening)" },
-  { id: "pronunciation", label: "تلفظ (Pronunciation)" },
-  { id: "grammar", label: "گرامر (Grammar)" },
-  { id: "vocabulary", label: "واژگان (Vocabulary)" },
-  { id: "business_english", label: "انگلیسی تجاری" },
+const SKILL_OPTIONS: { id: string; label: string; icon: string }[] = [
+  { id: "", label: "همه تخصص‌ها", icon: "✨" },
+  { id: "speaking", label: "مکالمه (Speaking)", icon: "🗣️" },
+  { id: "ielts_prep", label: "آیلتس (IELTS)", icon: "🎯" },
+  { id: "writing", label: "نگارش (Writing)", icon: "✍️" },
+  { id: "listening", label: "شنیداری (Listening)", icon: "🎧" },
+  { id: "pronunciation", label: "تلفظ و لهجه", icon: "🎙️" },
+  { id: "grammar", label: "دستور زبان (Grammar)", icon: "📐" },
+  { id: "vocabulary", label: "واژگان (Vocabulary)", icon: "📖" },
+  { id: "business_english", label: "انگلیسی تجاری", icon: "💼" },
 ];
 
 const RATING_OPTIONS = [
@@ -30,19 +29,19 @@ const RATING_OPTIONS = [
 ];
 
 const MAX_RATE_OPTIONS = [
-  { value: 0, label: "همه مبالغ" },
+  { value: 0, label: "همه مبالغ شهریه" },
   { value: 250000, label: "تا ۲۵۰,۰۰۰ تومان" },
-  { value: 400000, label: "تا ۴۰۰,۰۰۰ تومان" },
-  { value: 600000, label: "تا ۶۰۰,۰۰۰ تومان" },
+  { value: 350000, label: "تا ۳۵۰,۰۰۰ تومان" },
+  { value: 500000, label: "تا ۵۰۰,۰۰۰ تومان" },
   { value: 1000000, label: "تا ۱,۰۰۰,۰۰۰ تومان" },
 ];
 
 const SORT_OPTIONS = [
-  { id: "rating", label: "بالاترین امتیاز" },
-  { id: "reviews", label: "بیشترین تعداد نظر" },
-  { id: "rate_asc", label: "کمترین هزینه ساعتی" },
-  { id: "rate_desc", label: "بیشترین هزینه ساعتی" },
+  { id: "rating", label: "بالاترین امتیاز رضایت" },
+  { id: "reviews", label: "بیشترین تعداد نظرات" },
   { id: "experience", label: "بیشترین سابقه تدریس" },
+  { id: "rate_asc", label: "مناسب‌ترین شهریه ساعتی" },
+  { id: "rate_desc", label: "بیشترین شهریه ساعتی" },
 ];
 
 function toPersianDigits(val: number | string): string {
@@ -104,30 +103,6 @@ export default function TeachersDirectoryPage() {
     };
   }, [search, selectedSkill, minRating, maxRate, sortBy]);
 
-  const handleRetry = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetchPublicTeachers({
-        search: search.trim() || undefined,
-        skill: selectedSkill || undefined,
-        min_rating: minRating > 0 ? minRating : undefined,
-        max_rate: maxRate > 0 ? maxRate : undefined,
-        sort_by: sortBy,
-      });
-      setTeachers(res.teachers || []);
-      setTotalCount(res.count || 0);
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "خطا در بارگذاری فهرست مدرسین."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleResetFilters = () => {
     setSearch("");
     setSelectedSkill("");
@@ -145,37 +120,50 @@ export default function TeachersDirectoryPage() {
       <main className={styles.container}>
         {/* Hero Section */}
         <section className={styles.hero} aria-labelledby="teachers-heading">
-          <h1 id="teachers-heading" className={styles.heroTitle}>
-            مدرس‌های برتر زبان انگلیسی در ایندورا
-          </h1>
-          <p className={styles.heroSubtitle}>
-            اساتید ارزیابی‌شده و دارای گواهینامه‌های معتبر بین‌المللی (CELTA، TESOL، IELTS 8.5+).
-            پروفایل و ویدیوی مدرسین را بررسی کنید، نظرات تاییدشده دانشجویان را بخوانید و جلسه خود را رزرو نمایید.
-          </p>
-          <div className={styles.trustRow}>
-            <span className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">✓</span>
-              احراز صلاحیت و مصاحبه تخصصی
-            </span>
-            <span className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">★</span>
-              ۱۰۰٪ نظرات بر اساس جلسات واقعی
-            </span>
-            <span className={styles.trustItem}>
-              <span className={styles.trustIcon} aria-hidden="true">🔒</span>
-              ضمانت بازگشت وجه در صورت عدم رضایت
-            </span>
+          <div className={styles.heroContent}>
+            <div className={styles.heroBadgeRow}>
+              <span className={styles.heroBadgePrimary}>
+                <span>⭐</span>
+                <span>اساتید تاییدشده و ارزیابی‌شده ایندورا</span>
+              </span>
+            </div>
+
+            <h1 id="teachers-heading" className={styles.heroTitle}>
+              مدرس‌های برتر زبان انگلیسی در ایندورا
+            </h1>
+
+            <p className={styles.heroSubtitle}>
+              اساتید برجسته دارای گواهینامه‌های بین‌المللی کمبریج (DELTA، CELTA، TESOL، IELTS 8.5+).
+              رزومه و تخصص هر استاد را بررسی کنید و زمان جلسه اختصاصی خود را در تقویم زنده رزرو نمایید.
+            </p>
+
+            <div className={styles.trustRow}>
+              <span className={styles.trustItem}>
+                <span className={styles.trustIcon} aria-hidden="true">✓</span>
+                احراز صلاحیت و آزمون ارزیابی تدریس
+              </span>
+              <span className={styles.trustItem}>
+                <span className={styles.trustIcon} aria-hidden="true">★</span>
+                ۱۰۰٪ نظرات مبتنی بر جلسات واقعی برگزارشده
+              </span>
+              <span className={styles.trustItem}>
+                <span className={styles.trustIcon} aria-hidden="true">🔒</span>
+                ضمانت کامل بازگشت وجه در صورت عدم رضایت
+              </span>
+            </div>
           </div>
         </section>
 
         {/* Filters Card */}
         <section className={styles.filterCard} aria-label="فیلترها و جستجوی مدرسین">
-          {/* Search Row */}
+          {/* Search and Sort Row */}
           <div className={styles.searchRow}>
             <div className={styles.searchInputWrapper}>
-              <SearchInput
+              <span className={styles.searchIcon} aria-hidden="true">🔍</span>
+              <input
+                type="search"
                 className={styles.searchInput}
-                placeholder="جستجوی نام مدرس، تخصص یا رزومه (مثال: آیلتس، CELTA، مکالمه)..."
+                placeholder="جستجوی نام استاد، تخصص، مدرک (مثال: آیلتس، DELTA، مکالمه)..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 aria-label="جستجوی مدرس"
@@ -201,17 +189,16 @@ export default function TeachersDirectoryPage() {
             {SKILL_OPTIONS.map((skill) => {
               const active = selectedSkill === skill.id;
               return (
-                <Button
+                <button
                   key={skill.id}
                   type="button"
-                  variant={active ? "primary" : "secondary"}
-                  size="sm"
                   className={`${styles.skillPill} ${active ? styles.skillPillActive : ""}`}
                   onClick={() => setSelectedSkill(skill.id)}
                   aria-pressed={active}
                 >
-                  {skill.label}
-                </Button>
+                  <span>{skill.icon}</span>
+                  <span>{skill.label}</span>
+                </button>
               );
             })}
           </div>
@@ -238,7 +225,7 @@ export default function TeachersDirectoryPage() {
 
             <div className={styles.controlGroup}>
               <label htmlFor="rate-filter" className={styles.controlLabel}>
-                حداکثر شهریه:
+                حداکثر شهریه ساعتی:
               </label>
               <select
                 id="rate-filter"
@@ -255,15 +242,13 @@ export default function TeachersDirectoryPage() {
             </div>
 
             {hasActiveFilters && (
-              <Button
+              <button
                 type="button"
-                variant="tertiary"
-                size="sm"
                 className={styles.resetButton}
                 onClick={handleResetFilters}
               >
-                پاک کردن همه فیلترها
-              </Button>
+                پاک کردن فیلترها
+              </button>
             )}
           </div>
         </section>
@@ -272,38 +257,22 @@ export default function TeachersDirectoryPage() {
         <div className={styles.resultsSummary}>
           <span>
             {loading ? (
-              "در حال بارگذاری..."
+              "در حال بارگذاری اساتید..."
             ) : (
               `نمایش ${toPersianDigits(teachers.length)} مدرس از ${toPersianDigits(totalCount)} مدرس منتخب`
             )}
           </span>
         </div>
 
-        {/* Error State */}
-        {error && (
-          <div className={styles.emptyState}>
-            <p className={styles.emptyTitle}>خطایی رخ داد</p>
-            <p className={styles.emptySubtitle}>{error}</p>
-            <Button
-              type="button"
-              variant="primary"
-              className={styles.viewProfileButton}
-              onClick={handleRetry}
-            >
-              تلاش مجدد
-            </Button>
-          </div>
-        )}
-
         {/* Loading Skeletons */}
         {loading && !error && (
           <div className={styles.teacherGrid}>
-            {[1, 2, 3, 4, 5, 6].map((idx) => (
+            {[1, 2, 3, 4].map((idx) => (
               <div key={idx} className={styles.skeletonCard}>
-                <div className={styles.skeletonLine} style={{ inlineSize: "60%" }} />
+                <div className={styles.skeletonLine} style={{ inlineSize: "50%" }} />
                 <div className={styles.skeletonLine} style={{ inlineSize: "80%" }} />
                 <div className={styles.skeletonLine} style={{ inlineSize: "40%" }} />
-                <div className={styles.skeletonLine} style={{ inlineSize: "100%", blockSize: "60px" }} />
+                <div className={styles.skeletonLine} style={{ inlineSize: "100%", blockSize: "50px" }} />
               </div>
             ))}
           </div>
@@ -316,7 +285,7 @@ export default function TeachersDirectoryPage() {
               const rating = teacher.social_proof?.average_rating || 5.0;
               const reviewCount = teacher.social_proof?.review_count || 0;
               const completedCount = teacher.social_proof?.completed_sessions || 0;
-              const initial = (teacher.name || "م").charAt(0);
+              const initial = (teacher.name || "اس").slice(5, 7) || "اس";
 
               return (
                 <article key={teacher.id} className={styles.card}>
@@ -357,7 +326,7 @@ export default function TeachersDirectoryPage() {
                     </div>
 
                     {/* Social Proof & Metrics */}
-                    <div className={styles.socialProofBar} style={{ marginBlock: "var(--space-3)" }}>
+                    <div className={styles.socialProofBar}>
                       <span className={styles.ratingBadge}>
                         <span className={styles.ratingStar} aria-hidden="true">★</span>
                         {toPersianDigits(rating.toFixed(1))}
@@ -381,10 +350,7 @@ export default function TeachersDirectoryPage() {
 
                     {/* Specialties */}
                     {teacher.specialties && teacher.specialties.length > 0 && (
-                      <div
-                        className={styles.specialtiesList}
-                        style={{ marginBlockStart: "var(--space-3)" }}
-                      >
+                      <div className={styles.specialtiesList}>
                         {teacher.specialties.slice(0, 4).map((spec, i) => (
                           <span key={i} className={styles.specialtyBadge}>
                             {spec}
@@ -408,7 +374,7 @@ export default function TeachersDirectoryPage() {
                       </span>
                       {teacher.response_time_minutes && (
                         <span className={styles.responseTimeTag}>
-                          ⏱ پاسخ در کمتر از {toPersianDigits(teacher.response_time_minutes)} دقیقه
+                          ⏱ پاسخگویی میانگین: کمتر از {toPersianDigits(teacher.response_time_minutes)} دقیقه
                         </span>
                       )}
                     </div>
@@ -417,7 +383,8 @@ export default function TeachersDirectoryPage() {
                       href={`/teachers/${teacher.id}`}
                       className={styles.viewProfileButton}
                     >
-                      مشاهده پروفایل و رزرو
+                      <span>مشاهده پروفایل و تقویم</span>
+                      <span>&larr;</span>
                     </Link>
                   </div>
                 </article>
@@ -433,14 +400,13 @@ export default function TeachersDirectoryPage() {
             <p className={styles.emptySubtitle}>
               لطفاً فیلترهای اعمال‌شده را تغییر دهید یا واژه جستجوی دیگری را امتحان نمایید.
             </p>
-            <Button
+            <button
               type="button"
-              variant="secondary"
               className={styles.viewProfileButton}
               onClick={handleResetFilters}
             >
-              پاک کردن همه فیلترها
-            </Button>
+              نمایش همه مدرسین
+            </button>
           </div>
         )}
       </main>

@@ -3,6 +3,8 @@ import { endooraApi } from "./endoora-api";
 export type ExamStatus = "draft" | "published" | "closed" | "archived";
 export type SubmissionStatus = "in_progress" | "submitted" | "auto_graded" | "manually_graded" | "timed_out";
 
+export type AntiCheatPreset = "strict" | "standard" | "practice" | "custom";
+
 export type AntiCheatConfig = {
   enforce_fullscreen: boolean;
   max_blur_events: number;
@@ -11,6 +13,10 @@ export type AntiCheatConfig = {
   block_devtools: boolean;
   auto_submit_on_violation: boolean;
   violation_threshold: number;
+  watermark_enabled?: boolean;
+  sequential_navigation?: boolean;
+  security_preset?: AntiCheatPreset;
+  allow_negative_marking?: boolean;
 };
 
 export type OnlineExamListItem = {
@@ -156,6 +162,12 @@ export type ExamSubmissionDetail = {
   updated_at: string;
 };
 
+export type ViolationLog = {
+  reason: string;
+  client_timestamp: string;
+  formatted_time: string;
+};
+
 export type ProctoringEvent = {
   event_type:
     | "blur"
@@ -165,8 +177,11 @@ export type ProctoringEvent = {
     | "fullscreen_exit"
     | "fullscreen_enter"
     | "paste_attempt"
+    | "cut_attempt"
+    | "copy_attempt"
     | "devtools_attempt"
     | "shortcut_blocked"
+    | "print_screen_attempt"
     | "window_resize"
     | "exam_started"
     | "exam_submitted";

@@ -28,6 +28,7 @@ export default function TeacherSubmissionGradingPage({
   const [savingAnswerId, setSavingAnswerId] = useState<string | null>(null);
   const [scores, setScores] = useState<Record<string, number>>({});
   const [feedbacks, setFeedbacks] = useState<Record<string, string>>({});
+  const [showLogsTable, setShowLogsTable] = useState(true);
 
   useEffect(() => {
     async function load() {
@@ -91,6 +92,29 @@ export default function TeacherSubmissionGradingPage({
     );
   }
 
+  // Parse proctoring & audit details
+  const details = (submission.integrity_details || {}) as Record<string, unknown>;
+  const tabSwitchCount = Number(details.tab_switch_count ?? details.blur_count ?? 0);
+  const fullscreenExitsCount = Number(details.fullscreen_exits_count ?? 0);
+  const pasteAttemptsCount = Number(details.paste_attempts_count ?? details.shortcuts_count ?? 0);
+  const devtoolsAttemptsCount = Number(details.devtools_attempts_count ?? 0);
+
+  // Extract warning logs array
+  let warningLogs: string[] = [];
+  if (Array.isArray(details.warning_logs)) {
+    warningLogs = details.warning_logs.map(String);
+  } else if (Array.isArray(details.warningLogsJson)) {
+    warningLogs = details.warningLogsJson.map(String);
+  } else if (typeof details.warningLogsJson === "string") {
+    try {
+      warningLogs = JSON.parse(details.warningLogsJson) as string[];
+    } catch {
+      warningLogs = [details.warningLogsJson];
+    }
+  }
+
+  const numericIntegrity = submission.integrity_score !== null ? Number(submission.integrity_score) : 100;
+
   return (
     <div className={styles.container} dir={isFa ? "rtl" : "ltr"}>
       <div style={{ marginBottom: "1rem" }}>
@@ -100,7 +124,7 @@ export default function TeacherSubmissionGradingPage({
       </div>
 
       {/* Submission Header Card */}
-      <div className={styles.tableCard} style={{ padding: "1.5rem 2rem", marginBottom: "2rem" }}>
+      <div className={styles.tableCard} style={{ padding: "1.5rem 2rem", marginBottom: "1.5rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <h1 className={styles.title} style={{ fontSize: "1.5rem", margin: "0 0 0.25rem 0" }}>
@@ -108,6 +132,7 @@ export default function TeacherSubmissionGradingPage({
             </h1>
             <p className={styles.subtitle}>
               تلاش #{submission.attempt_number} | شروع: {new Date(submission.started_at).toLocaleTimeString("fa-IR")}
+              {submission.submitted_at && ` | پایان: ${new Date(submission.submitted_at).toLocaleTimeString("fa-IR")}`}
             </p>
           </div>
 
@@ -121,6 +146,143 @@ export default function TeacherSubmissionGradingPage({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* 10. Proctoring & Security Audit Trail Card */}
+      <div className={styles.tableCard} style={{ padding: "1.5rem 2rem", marginBottom: "2rem", borderRight: numericIntegrity < 70 ? "4px solid #dc2626" : "4px solid #10b981" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ fontSize: "1.5rem" }}>🛡️</span>
+            <div>
+              <h2 style={{ fontSize: "1.125rem", fontWeight: 800, margin: 0, color: "#1e293b" }}>
+                ردپای نظارتی و پایش سلامت آزمون (Anti-Cheat Audit Trail)
+              </h2>
+              <p style={{ margin: "0.15rem 0 0 0", fontSize: "0.8125rem", color: "#64748b" }}>
+                ثبت دقیق تله‌متری رفتار داوطلب، خروج از تب، فوکوس و تلاش‌های دسترسی به ابزارهای غیرمجاز
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowLogsTable((prev) => !prev)}
+            style={{
+              background: "#f1f5f9",
+              border: "1px solid #cbd5e1",
+              borderRadius: "0.5rem",
+              padding: "0.35rem 0.75rem",
+              fontSize: "0.8125rem",
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            {showLogsTable ? "بستن لاگ‌ها ▲" : "مشاهده لاگ‌های دقیق ▼"}
+          </button>
+        </div>
+
+        {/* 4 Summary Metric Pills */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1rem", marginBottom: "1.25rem" }}>
+          <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "0.75rem", border: "1px solid #e2e8f0" }}>
+            <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>خروج از تب / بلور</span>
+            <div style={{ fontSize: "1.375rem", fontWeight: 800, color: tabSwitchCount > 0 ? "#dc2626" : "#0f172a", marginTop: "0.25rem" }}>
+              {tabSwitchCount} بار
+            </div>
+          </div>
+
+          <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "0.75rem", border: "1px solid #e2e8f0" }}>
+            <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>خروج از تمام‌صفحه</span>
+            <div style={{ fontSize: "1.375rem", fontWeight: 800, color: fullscreenExitsCount > 0 ? "#d97706" : "#0f172a", marginTop: "0.25rem" }}>
+              {fullscreenExitsCount} بار
+            </div>
+          </div>
+
+          <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "0.75rem", border: "1px solid #e2e8f0" }}>
+            <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>کپی/پیست و میانبرها</span>
+            <div style={{ fontSize: "1.375rem", fontWeight: 800, color: pasteAttemptsCount + devtoolsAttemptsCount > 0 ? "#dc2626" : "#0f172a", marginTop: "0.25rem" }}>
+              {pasteAttemptsCount + devtoolsAttemptsCount} تلاش مسدودشده
+            </div>
+          </div>
+
+          <div style={{ background: "#f8fafc", padding: "1rem", borderRadius: "0.75rem", border: "1px solid #e2e8f0" }}>
+            <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>نمره اصالت و سلامت</span>
+            <div
+              style={{
+                fontSize: "1.375rem",
+                fontWeight: 800,
+                color: numericIntegrity >= 85 ? "#059669" : numericIntegrity >= 65 ? "#d97706" : "#dc2626",
+                marginTop: "0.25rem",
+              }}
+            >
+              {numericIntegrity}%
+            </div>
+          </div>
+        </div>
+
+        {/* Detailed Timeline Table */}
+        {showLogsTable && (
+          <div>
+            {warningLogs.length > 0 ? (
+              <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "0.75rem", overflow: "hidden" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
+                  <thead>
+                    <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0", textAlign: "right" }}>
+                      <th style={{ padding: "0.75rem 1rem", fontWeight: 700, width: "60px" }}>ردیف</th>
+                      <th style={{ padding: "0.75rem 1rem", fontWeight: 700 }}>عنوان تخلف و زمان وقوع</th>
+                      <th style={{ padding: "0.75rem 1rem", fontWeight: 700, width: "130px" }}>سطح ریسک</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {warningLogs.map((log, lIdx) => {
+                      const isHighRisk = log.includes("خروج") || log.includes("تمام‌صفحه") || log.includes("F12");
+                      return (
+                        <tr key={lIdx} style={{ borderBottom: "1px solid #f1f5f9" }}>
+                          <td style={{ padding: "0.75rem 1rem", color: "#64748b", fontWeight: 600 }}>{lIdx + 1}</td>
+                          <td style={{ padding: "0.75rem 1rem", fontWeight: 500 }}>
+                            <span style={{ marginRight: "0.35rem" }}>⚠️</span>
+                            {log}
+                          </td>
+                          <td style={{ padding: "0.75rem 1rem" }}>
+                            <span
+                              style={{
+                                padding: "0.2rem 0.6rem",
+                                borderRadius: "9999px",
+                                fontSize: "0.75rem",
+                                fontWeight: 700,
+                                background: isHighRisk ? "#fee2e2" : "#fef3c7",
+                                color: isHighRisk ? "#991b1b" : "#92400e",
+                              }}
+                            >
+                              {isHighRisk ? "پرخطر" : "متوسط"}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div
+                style={{
+                  background: "#ecfdf5",
+                  border: "1px solid #a7f3d0",
+                  borderRadius: "0.75rem",
+                  padding: "1rem",
+                  color: "#065f46",
+                  fontSize: "0.875rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
+              >
+                <span>✅</span>
+                <span>
+                  هیچ‌گونه تخلف امنیتی یا خروج از صفحه در طول مدت آزمون این داوطلب ثبت نشده است. پاسخ‌نامه دارای سلامت ۱۰۰٪ می‌باشد.
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Questions Grading List */}

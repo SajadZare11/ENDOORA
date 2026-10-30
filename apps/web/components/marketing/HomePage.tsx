@@ -630,37 +630,144 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
             )}
           </h1>
           <p>{isFa ? "توی چند دقیقه رایگان تعیین سطح شو، بهترین کتاب آموزشی متناسب با خودت رو بگیر و با کلاس‌های آنلاین و تمرین‌های روزانه ۱۰ دقیقه‌ای، راحت انگلیسی صحبت کن." : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
-          <div className={styles.heroActions}>
+                    <div className={styles.heroActions}>
             <Link className={styles.primaryButton} href={localizedPath(locale, "/placement")}>
               <span>{isFa ? "شروع تعیین سطح رایگان" : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
+            </Link>
+            <Link className={styles.secondaryButton} href="#how">
+              <span>{isFa ? "مراحل یادگیری و کلاس‌ها" : "Explore learning loop"}</span><span aria-hidden="true">↓</span>
             </Link>
           </div>
         </div>
 
-        <div className={styles.twinCard} aria-label={isFa ? "پیش‌نمایش وضعیت یادگیری تو" : "Learner Twin product preview"}>
-          <div className={styles.previewChrome}><span /><span /><span /><strong>Learner Twin</strong></div>
-          <div className={styles.previewBody}>
-            <aside className={styles.previewRail} aria-hidden="true"><b>E</b><span /><span /><span /><span /></aside>
-            <div className={styles.previewContent}>
-              <div className={styles.previewIntro}>
-                <div>
-                  <span>Learner Twin</span>
-                  <h2>{isFa ? "مسیر یادگیری تو" : "Your learning path"}</h2>
-                  <p>{isFa ? "وضعیت زنده پیشرفت و مهارت‌هات" : "A living, correctable view of your progress"}</p>
-                </div>
-                <Link href={localizedPath(locale, "/features/learner-twin")}>{isFa ? "جزئیات" : "Details"}</Link>
+        <div className={styles.floatingShowcase} aria-label={isFa ? "پیش‌نمایش تعاملی پلتفرم ایندورا" : "Interactive Endoora platform preview"}>
+          {/* Ambient backlight glow */}
+          <div className={styles.showcaseAura} aria-hidden="true" />
+          
+          {/* Floating Badge 1: AI Voice Tutor Waveform */}
+          <div className={`${styles.floatingBadge} ${styles.badgeVoice}`}>
+            <div className={styles.voiceIconBox}>
+              <span className={styles.micPulse}>🎙️</span>
+            </div>
+            <div className={styles.voiceDetails}>
+              <div className={styles.voiceTopRow}>
+                <span className={styles.voiceTitle}>{isFa ? "تمرین هوشمند تلفظ" : "AI Voice Lab"}</span>
+                <span className={styles.voiceScore}>۹۴٪ روانی کلام</span>
               </div>
-              <div className={styles.twinIdentity}>
-                <div className={styles.orb}><span /></div>
-                <div><strong>Learner Twin</strong><small>{isFa ? "همراه هوشمند مسیر یادگیریت" : "A correctable view of your path"}</small></div>
+              <div className={styles.waveformAnimation} aria-hidden="true">
+                <span style={{ height: "14px", animationDelay: "0ms" }} />
+                <span style={{ height: "22px", animationDelay: "150ms" }} />
+                <span style={{ height: "12px", animationDelay: "300ms" }} />
+                <span style={{ height: "26px", animationDelay: "100ms" }} />
+                <span style={{ height: "18px", animationDelay: "250ms" }} />
+                <span style={{ height: "10px", animationDelay: "350ms" }} />
+                <span style={{ height: "20px", animationDelay: "200ms" }} />
               </div>
-              <p className={styles.previewTitle}>{isFa ? "وضعیت مهارت‌های زبانی" : "Skill assessment status"}</p>
-              <span className={styles.previewBadge}>
-                {isFa ? "پیش‌نمایش · بر اساس توانایی واقعی تو" : "Preview · no invented learner data"}
+            </div>
+          </div>
+
+          {/* Floating Badge 2: Live Cohort Class Reminder */}
+          <div className={`${styles.floatingBadge} ${styles.badgeClass}`}>
+            <div className={styles.classIconBox}>👥</div>
+            <div className={styles.classDetails}>
+              <div className={styles.classTimeRow}>
+                <strong>{isFa ? "کلاس آنلاین امروز" : "Live Session Today"}</strong>
+                <span className={styles.timeTag}>۱۸:۳۰</span>
+              </div>
+              <span className={styles.cohortSub}>
+                {isFa ? "گروه دوستانه ۴ نفره · با استاد رضایی" : "Small Cohort (4 max) · Live"}
               </span>
-              {["Vocabulary", "Grammar", "Listening"].map((skill) => (
-                <div className={styles.skillPreview} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "منتظر تعیین سطح" : "Awaiting placement"}</small></div>
-              ))}
+            </div>
+          </div>
+
+          {/* Main Glassmorphic Canvas Card */}
+          <div className={styles.canvasCard}>
+            {/* Window Topbar */}
+            <div className={styles.canvasHeader}>
+              <div className={styles.canvasDots} aria-hidden="true">
+                <span className={styles.dotRed} />
+                <span className={styles.dotYellow} />
+                <span className={styles.dotGreen} />
+              </div>
+              <div className={styles.canvasStatus}>
+                <span className={styles.livePulse} />
+                <span>{isFa ? "مسیر فعال یادگیری" : "Active Learning Path"}</span>
+              </div>
+              <span className={styles.canvasTag}>Endoora Twin v2</span>
+            </div>
+
+            {/* Profile & Current Level Bar */}
+            <div className={styles.canvasProfile}>
+              <div className={styles.avatarWrap}>
+                <div className={styles.avatarOrb}>
+                  <span>E</span>
+                </div>
+                <div className={styles.avatarInfo}>
+                  <div className={styles.avatarTitleRow}>
+                    <strong>{isFa ? "مسیر یادگیری من" : "My Learning Path"}</strong>
+                    <span className={styles.levelBadge}>B1 · Intermediate</span>
+                  </div>
+                  <span className={styles.goalText}>
+                    {isFa ? "🎯 هدف: مکالمه روان و مصاحبه کاری" : "🎯 Goal: Fluency & Career"}
+                  </span>
+                </div>
+              </div>
+              <div className={styles.streakBadge}>
+                <span className={styles.streakIcon}>🔥</span>
+                <div>
+                  <strong>۷ روز</strong>
+                  <small>{isFa ? "تمرین متوالی" : "Streak"}</small>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Skills Progress Grid */}
+            <div className={styles.canvasSkills}>
+              <div className={styles.skillsHeading}>
+                <span>{isFa ? "وضعیت مهارت‌های زبانی (تحلیل هوش مصنوعی)" : "AI Skill Diagnosis"}</span>
+                <span className={styles.accuracyTag}>{isFa ? "دقت ۹۶٪" : "96% Calibrated"}</span>
+              </div>
+              <div className={styles.skillBars}>
+                <div className={styles.skillRow}>
+                  <div className={styles.skillLabelRow}>
+                    <span className={styles.skillName}>Speaking & Fluency</span>
+                    <span className={styles.skillScore}>۷۸٪</span>
+                  </div>
+                  <div className={styles.progressBar}>
+                    <div className={`${styles.progressFill} ${styles.fillTeal}`} style={{ width: "78%" }} />
+                  </div>
+                </div>
+
+                <div className={styles.skillRow}>
+                  <div className={styles.skillLabelRow}>
+                    <span className={styles.skillName}>Vocabulary & Idioms</span>
+                    <span className={styles.skillScore}>۸۵٪</span>
+                  </div>
+                  <div className={styles.progressBar}>
+                    <div className={`${styles.progressFill} ${styles.fillCyan}`} style={{ width: "85%" }} />
+                  </div>
+                </div>
+
+                <div className={styles.skillRow}>
+                  <div className={styles.skillLabelRow}>
+                    <span className={styles.skillName}>Listening & Pronunciation</span>
+                    <span className={styles.skillScore}>۸۲٪</span>
+                  </div>
+                  <div className={styles.progressBar}>
+                    <div className={`${styles.progressFill} ${styles.fillIndigo}`} style={{ width: "82%" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Recommended Milestone */}
+            <div className={styles.milestoneFooter}>
+              <div className={styles.milestoneIcon}>📚</div>
+              <div className={styles.milestoneText}>
+                <strong>American English File 3</strong>
+                <small>{isFa ? "کتاب اختصاصی سطح متوسط · جلسه ۴ از ۱۲" : "Recommended Syllabus · Session 4/12"}</small>
+              </div>
+
             </div>
           </div>
         </div>

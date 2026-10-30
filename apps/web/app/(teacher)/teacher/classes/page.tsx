@@ -533,6 +533,18 @@ export default function TeacherClassesPage() {
           <div className={styles.headerActions}>
             <button
               type="button"
+              className={styles.actionButtonPrimary}
+              onClick={() => setShowCreateClassModal(true)}
+            >
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              <span>{isFa ? "ایجاد کلاس جدید" : "Create New Class"}</span>
+            </button>
+
+            <button
+              type="button"
               className={styles.actionButtonSecondary}
               onClick={() => {
                 setLogTargetClassId(selectedClassId || (classes[0]?.id ?? ""));
@@ -544,18 +556,6 @@ export default function TeacherClassesPage() {
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
               </svg>
               <span>{isFa ? "ثبت گزارش جلسه و تکلیف" : "Log Session & Homework"}</span>
-            </button>
-
-            <button
-              type="button"
-              className={styles.actionButtonPrimary}
-              onClick={() => setShowCreateClassModal(true)}
-            >
-              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-              <span>{isFa ? "ایجاد کلاس جدید" : "Create New Class"}</span>
             </button>
           </div>
         </div>

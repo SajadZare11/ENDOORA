@@ -69,15 +69,19 @@ export function PublicHeader({
         </Link>
 
         <nav className={styles.desktopNav} aria-label={isFa ? "ناوبری اصلی" : "Primary navigation"}>
-          {PUBLIC_NAV.map((item) => (
-            <Link
-              key={item.path}
-              href={localizedPath(locale, item.path)}
-              aria-current={isCurrentRoute(currentPath, item.path) ? "page" : undefined}
-            >
-              {isFa ? item.fa : item.en}
-            </Link>
-          ))}
+          {PUBLIC_NAV.map((item) => {
+            const active = isCurrentRoute(currentPath, item.path);
+            return (
+              <Link
+                key={item.path}
+                href={localizedPath(locale, item.path)}
+                className={active ? styles.navActiveLink : styles.navLink}
+                aria-current={active ? "page" : undefined}
+              >
+                <span>{isFa ? item.fa : item.en}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         <div className={styles.actions}>

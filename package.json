@@ -36,7 +36,9 @@
     "test:ielts:clinics": "node --experimental-strip-types scripts/test-ielts-clinics.mjs",
     "test:classroom": "node --experimental-strip-types scripts/test-classroom-studio.mjs",
     "test:leitner": "node --experimental-strip-types scripts/test-leitner-engine.mjs",
-    "test:path": "node --experimental-strip-types scripts/test-learning-path-engine.mjs"
+    "test:path": "node --experimental-strip-types scripts/test-learning-path-engine.mjs",
+    "test:classes": "node --experimental-strip-types scripts/test-classes-engine.mjs",
+    "test:teachers": "node --experimental-strip-types scripts/test-teachers-engine.mjs"
   },
   "engines": {
     "node": ">=24 <25",

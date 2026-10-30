@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   createContext,
@@ -18,8 +19,6 @@ import {
   type LearnerHome,
   type Locale,
 } from "../../lib/learner-dashboard";
-import { PublicHeader } from "../marketing/PublicHeader";
-
 
 type ContextValue = {
   data: LearnerHome;
@@ -27,7 +26,7 @@ type ContextValue = {
   setLocale: (locale: Locale) => void;
 };
 
-type IconName = "home" | "learn" | "practice" | "teachers" | "account" | "bell" | "logout";
+type IconName = "home" | "learn" | "practice" | "teachers" | "account" | "bell" | "logout" | "fire" | "zap" | "school";
 
 const LearnerContext = createContext<ContextValue | null>(null);
 
@@ -41,38 +40,46 @@ const labels = {
   fa: {
     home: "خانه",
     learn: "یادگیری",
-    practice: "تمرین",
+    practice: "تمرین هوشمند",
     teachers: "معلم‌ها و کلاس‌ها",
-    account: "حساب",
+    account: "حساب من",
+    school: "تمرین تا ۲۰ (نهایی)",
     logout: "خروج",
     loggingOut: "در حال خروج…",
     switch: "English",
-    context: "خانه یادگیری",
+    context: "خانه یادگیری ایندورا",
     notifications: "اعلان‌ها",
-    noNotifications: "اعلان تازه‌ای نداری.",
-    close: "بستن اعلان‌ها",
+    noNotifications: "اعلان تازه‌ای نداری. همه چیز به‌روز است! ✨",
+    close: "بستن",
     localeError: "تغییر زبان ذخیره نشد؛ دوباره تلاش کن.",
+    learnerBadge: "پنل دانش‌آموز",
+    streakUnit: "روز پیاپی",
+    levelTier: "سطح یادگیرنده",
   },
   en: {
     home: "Home",
     learn: "Learn",
-    practice: "Practice",
+    practice: "AI Practice",
     teachers: "Teachers & Classes",
     account: "Account",
+    school: "Practice to 20 (Finals)",
     logout: "Log out",
     loggingOut: "Logging out…",
     switch: "فارسی",
-    context: "Learning home",
+    context: "Endoora Learner Home",
     notifications: "Notifications",
-    noNotifications: "You have no new notifications.",
-    close: "Close notifications",
+    noNotifications: "No new notifications. You're all caught up! ✨",
+    close: "Close",
     localeError: "The language change was not saved. Please retry.",
+    learnerBadge: "Student Panel",
+    streakUnit: "day streak",
+    levelTier: "Learner Tier",
   },
 } as const;
 
 const gateCopy = {
   fa: {
-    loading: ["در حال آماده‌کردن خانه یادگیری…", "یک قدم روشن برای امروز در حال آماده‌شدن است."],
+    loading: ["در حال آماده‌کردن خانه یادگیری…", "مأموریت و برنامه‌های امروز شما در حال بارگیری است."],
     login: ["برای ادامه وارد حساب شو", "خانه یادگیری فقط بعد از ورود امن نمایش داده می‌شود."],
     denied: ["این بخش برای حساب زبان‌آموز است", "نقش فعلی اجازه دسترسی به این خانه را ندارد."],
     offline: ["اتصال اینترنت در دسترس نیست", "بعد از بازگشت اتصال دوباره تلاش کن."],
@@ -83,7 +90,7 @@ const gateCopy = {
     switch: "English",
   },
   en: {
-    loading: ["Preparing your learning home…", "Your one clear next step is being prepared."],
+    loading: ["Preparing your learning home…", "Your mission and steps for today are loading."],
     login: ["Sign in to continue", "Your learning home appears only after a secure sign-in."],
     denied: ["This area is for learner accounts", "Your current role cannot access this learning home."],
     offline: ["You are offline", "Retry when your connection returns."],
@@ -104,10 +111,13 @@ function Icon({ name }: { name: IconName }) {
     account: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
     bell: <><path d="M18 9a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" /><path d="M10 21h4" /></>,
     logout: <><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></>,
+    fire: <><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z" /></>,
+    zap: <><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></>,
+    school: <><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></>,
   };
 
   return (
-    <svg className="learner-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="learner-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       {paths[name]}
     </svg>
   );
@@ -222,10 +232,140 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath === "/practice-ai" ||
       currentPath.startsWith("/practice-ai/") ||
       currentPath === "/practice" ||
-      currentPath.startsWith("/practice/")
+      currentPath.startsWith("/practice/") ||
+      currentPath === "/review"
     );
   }
   return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
+}
+
+/** Dedicated, high-focus Student App Header (replacing marketing PublicHeader) */
+function LearnerAppHeader({
+  data,
+  locale,
+  onLocaleChange,
+  notificationsOpen,
+  setNotificationsOpen,
+}: {
+  data: LearnerHome;
+  locale: Locale;
+  onLocaleChange: (next: Locale) => void;
+  notificationsOpen: boolean;
+  setNotificationsOpen: (val: boolean | ((curr: boolean) => boolean)) => void;
+}) {
+  const t = labels[locale];
+  const userInitials = (data.greeting_name || "ی")[0]?.toUpperCase() || "E";
+  const streakDays = data.xp_available ? data.streak_days : 0;
+  const xpPoints = data.xp_available ? data.xp : 0;
+
+  return (
+    <header className="learner-header" role="banner">
+      {/* Brand & Context */}
+      <div className="learner-header__brand-group">
+        <Link href="/dashboard" className="learner-header__logo" aria-label={t.home}>
+          <Image
+            src="/images/endoora-mark.png"
+            alt="Endoora"
+            width={34}
+            height={40}
+            priority
+          />
+          <span className="learner-header__logo-text" dir="ltr">Endoora</span>
+        </Link>
+        <span className="learner-header__badge">{t.learnerBadge}</span>
+      </div>
+
+      {/* Center Live HUD (Streak, XP, Level) */}
+      <div className="learner-header__hud" aria-label="Quick Stats">
+        {/* Streak Pill */}
+        <div
+          className={`learner-header-hud-pill learner-header-hud-pill--streak ${streakDays > 0 ? "is-active" : ""}`}
+          title={`${streakDays} ${t.streakUnit}`}
+        >
+          <span className="learner-header-hud-pill__icon" aria-hidden="true">🔥</span>
+          <strong className="learner-header-hud-pill__val">
+            {streakDays.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
+          </strong>
+          <span className="learner-header-hud-pill__lbl">{t.streakUnit}</span>
+        </div>
+
+        {/* XP Pill */}
+        <div className="learner-header-hud-pill learner-header-hud-pill--xp" title={`${xpPoints} XP`}>
+          <span className="learner-header-hud-pill__icon" aria-hidden="true">⚡</span>
+          <strong className="learner-header-hud-pill__val">
+            {xpPoints.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
+          </strong>
+          <span className="learner-header-hud-pill__lbl">XP</span>
+        </div>
+      </div>
+
+      {/* Right Actions & Profile */}
+      <div className="learner-header__actions">
+        {/* Language switch */}
+        <button
+          type="button"
+          className="learner-language-btn"
+          onClick={() => onLocaleChange(locale === "fa" ? "en" : "fa")}
+          title="تغییر زبان / Switch Language"
+        >
+          {t.switch}
+        </button>
+
+        {/* Notification Bell */}
+        <div className="learner-notification-container">
+          <Button
+            className="learner-notification"
+            type="button"
+            aria-expanded={notificationsOpen}
+            aria-controls="learner-notification-panel"
+            aria-label={t.notifications}
+            onClick={() => setNotificationsOpen((current) => !current)}
+          >
+            <Icon name="bell" />
+            {data.notification_count > 0 ? (
+              <span className="learner-notification__count">
+                {data.notification_count > 9 ? "9+" : data.notification_count}
+              </span>
+            ) : null}
+          </Button>
+
+          {notificationsOpen ? (
+            <section
+              className="learner-notification-panel"
+              id="learner-notification-panel"
+              aria-live="polite"
+            >
+              <div className="learner-notification-panel__top">
+                <strong>{t.notifications}</strong>
+                <button
+                  type="button"
+                  className="learner-notification-panel__close"
+                  onClick={() => setNotificationsOpen(false)}
+                  aria-label={t.close}
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="learner-notification-panel__body">
+                <span className="learner-notification-panel__empty-emoji" aria-hidden="true">✨</span>
+                <p>{t.noNotifications}</p>
+              </div>
+            </section>
+          ) : null}
+        </div>
+
+        {/* User Profile Chip */}
+        <Link href="/account" className="learner-user-chip" aria-label={t.account}>
+          <div className="learner-user-chip__avatar" aria-hidden="true">
+            {userInitials}
+          </div>
+          <span className="learner-user-chip__name">
+            {data.greeting_name || (locale === "fa" ? "دانش‌آموز" : "Student")}
+          </span>
+        </Link>
+      </div>
+    </header>
+  );
 }
 
 export function LearnerShell({ children }: { children: ReactNode }) {
@@ -306,7 +446,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
       window.removeEventListener("online", online);
       window.removeEventListener("offline", offline);
     };
-  }, [reloadKey, isStandaloneRoute]);
+  }, [reloadKey, isStandaloneRoute, pathnameHook]);
 
   async function handleLocaleChange(nextLocale: Locale) {
     const previousLocale = locale;
@@ -333,11 +473,6 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     const gateKind = status === "ready" ? "error" : status;
     return (
       <div className="learner-shell" dir={locale === "fa" ? "rtl" : "ltr"} lang={locale}>
-        <PublicHeader
-          locale={locale === "en" ? "en" : "fa"}
-          currentPath={pathname}
-          onLocaleChange={(nextLocale) => void handleLocaleChange(nextLocale)}
-        />
         <Gate
           kind={gateKind}
           locale={locale}
@@ -368,6 +503,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     { href: "/dashboard", label: t.home, icon: "home" as const },
     { href: "/learn", label: t.learn, icon: "learn" as const },
     { href: "/practice-ai", label: t.practice, icon: "practice" as const },
+    { href: "/high-school/grade-12/tamrin20", label: t.school, icon: "school" as const },
     { href: "/my-teachers", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
   ];
@@ -379,44 +515,18 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           {locale === "fa" ? "پرش به محتوای اصلی" : "Skip to main content"}
         </a>
 
-        <PublicHeader
-          locale={locale === "en" ? "en" : "fa"}
-          currentPath={pathname}
+        {/* Focused Student App Header */}
+        <LearnerAppHeader
+          data={value.data}
+          locale={locale}
           onLocaleChange={(nextLocale) => void handleLocaleChange(nextLocale)}
-          extraActions={
-            <div className="learner-header__actions">
-              <Button
-                className="learner-notification"
-                type="button"
-                aria-expanded={notificationsOpen}
-                aria-controls="learner-notification-panel"
-                aria-label={t.notifications}
-                onClick={() => setNotificationsOpen((current) => !current)}
-              >
-                <Icon name="bell" />
-                {value.data.notification_count > 0 ? (
-                  <span className="learner-notification__count">{value.data.notification_count}</span>
-                ) : null}
-              </Button>
-              {notificationsOpen ? (
-                <section className="learner-notification-panel" id="learner-notification-panel" aria-live="polite">
-                  <div>
-                    <strong>{t.notifications}</strong>
-                    <Button type="button" onClick={() => setNotificationsOpen(false)} aria-label={t.close}>×</Button>
-                  </div>
-                  <p>{t.noNotifications}</p>
-                </section>
-              ) : null}
-            </div>
-          }
+          notificationsOpen={notificationsOpen}
+          setNotificationsOpen={setNotificationsOpen}
         />
 
-        <aside className="learner-sidebar">
+        {/* Desktop Modern Glassmorphic Sidebar */}
+        <aside className="learner-sidebar" aria-label={locale === "fa" ? "ناوبری اصلی پنل" : "Main panel navigation"}>
           <div className="learner-sidebar__header">
-            <div className="learner-sidebar__badge">
-              <span className="learner-sidebar__badge-dot" />
-              <span>{locale === "fa" ? "پنل دانش‌آموز" : "Learner Panel"}</span>
-            </div>
             <div className="learner-sidebar__user">
               <span className="learner-sidebar__user-name">
                 {value.data.greeting_name || (locale === "fa" ? "زبان‌آموز ایندورا" : "Endoora Learner")}
@@ -427,11 +537,12 @@ export function LearnerShell({ children }: { children: ReactNode }) {
                     ? `🔥 زنجیره ${value.data.streak_days} روزه`
                     : `🔥 ${value.data.streak_days}-day streak`
                   : locale === "fa"
-                  ? "مسیر فعال"
-                  : "Active Path"}
+                  ? "آماده شروع تداوم"
+                  : "Ready to start streak"}
               </span>
             </div>
           </div>
+
           <nav className="learner-nav" aria-label={locale === "fa" ? "ناوبری زبان‌آموز" : "Learner navigation"}>
             {navItems.map((item) => (
               <NavItem
@@ -441,6 +552,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
               />
             ))}
           </nav>
+
           <div className="learner-sidebar__footer">
             <button
               type="button"
@@ -453,18 +565,20 @@ export function LearnerShell({ children }: { children: ReactNode }) {
               <span>{loggingOut ? t.loggingOut : t.logout}</span>
             </button>
             <p className="learner-sidebar__note">
-              {locale === "fa" ? "هر بار فقط یک قدم روشن." : "One clear step at a time."}
+              {locale === "fa" ? "هر روز، یک قدم روشن و مؤثر." : "Every day, one clear step."}
             </p>
           </div>
         </aside>
 
         {localeError ? <p className="learner-locale-error" role="alert">{localeError}</p> : null}
 
+        {/* Main Content Area */}
         <main className="learner-main" id="learner-main">
           {children}
         </main>
 
-        <nav className="learner-bottom-nav" aria-label={locale === "fa" ? "ناوبری پایین" : "Bottom navigation"}>
+        {/* Mobile Floating Bottom Navigation Dock */}
+        <nav className="learner-bottom-nav" aria-label={locale === "fa" ? "ناوبری سریع موبایل" : "Mobile quick navigation"}>
           {navItems.map((item) => (
             <NavItem
               key={item.href}
