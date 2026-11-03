@@ -2,10 +2,67 @@
   --learner-sidebar-width: 15.5rem;
   --header-height: 76px;
   min-block-size: 100vh;
+
+  /* Academic Oxford & Royal Navy Color Tokens */
+  --color-oxford-navy: #0f172a;
+  --color-royal-blue: #1e40af;
+  --color-royal-hover: #1d4ed8;
+  --color-royal-light: #eff6ff;
+  --color-royal-border: #bfdbfe;
+
+  /* Primary Action & Brand Overrides */
+  --color-action: #1e40af;
+  --color-action-hover: #1d4ed8;
+  --color-action-active: #172554;
+  --color-primary: #1e40af;
+  --color-primary-hover: #1d4ed8;
+  --color-endoora-blue: #1e40af;
+  --color-link: #1d4ed8;
+  --color-focus: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-info-text: #1e40af;
+  --color-info-border: #bfdbfe;
+
+  /* Accent Prestige Gold */
+  --color-prestige-gold: #f59e0b;
+  --color-prestige-gold-hover: #d97706;
+  --color-prestige-gold-light: #fef3c7;
+  --color-achievement-gold: #fbbf24;
+  --color-achievement-amber: #f59e0b;
+
+  /* Buttons & Shadows */
+  --btn-royal-gradient: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  --btn-royal-shadow: 0 4px 14px rgba(30, 64, 175, 0.25);
+
   background:
     radial-gradient(circle at 68% 4%, color-mix(in srgb, var(--color-info-bg) 68%, transparent), transparent 30rem),
     color-mix(in srgb, var(--color-surface) 74%, var(--color-canvas));
   color: var(--color-text);
+}
+
+[data-theme="dark"] .learner-shell,
+:global(.dark) .learner-shell {
+  --color-canvas: #0b1329;
+  --color-background: #0b1329;
+  --color-surface: #0f172a;
+  --color-border: #1e293b;
+  --color-text: #f8fafc;
+  --color-muted: #94a3b8;
+
+  --color-action: #3b82f6;
+  --color-action-hover: #60a5fa;
+  --color-action-active: #2563eb;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-endoora-blue: #3b82f6;
+  --color-link: #60a5fa;
+  --color-focus: #60a5fa;
+  --color-info-bg: rgba(30, 64, 175, 0.25);
+  --color-info-text: #93c5fd;
+  --color-info-border: rgba(96, 165, 250, 0.35);
+
+  --btn-royal-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --btn-royal-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .learner-skip-link {
@@ -136,10 +193,22 @@
 }
 
 .learner-nav__item[data-active="true"] {
+  position: relative;
   border-color: color-mix(in srgb, var(--color-action) 24%, var(--color-border));
   background: var(--color-info-bg);
-  color: var(--color-info-text);
+  color: var(--color-action);
   box-shadow: 0 8px 22px color-mix(in srgb, var(--color-action) 10%, transparent);
+}
+
+.learner-nav__item[data-active="true"]::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3.5px;
+  border-radius: 4px;
+  background: var(--color-action);
 }
 
 .learner-icon,
@@ -445,7 +514,7 @@
 
 .learner-user-chip:hover {
   border-color: var(--color-action);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.12);
   transform: translateY(-1px);
 }
 
@@ -455,7 +524,7 @@
   inline-size: 2rem;
   block-size: 2rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-action), #4338ca);
+  background: var(--btn-royal-gradient, linear-gradient(135deg, var(--color-action), #1e40af));
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 850;
@@ -539,7 +608,7 @@
 }
 
 .learner-greeting__name {
-  background: linear-gradient(135deg, var(--color-action), #4338ca);
+  background: linear-gradient(135deg, var(--color-action), #1d4ed8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -860,11 +929,11 @@
 }
 
 .learner-button--glowing {
-  background: linear-gradient(115deg, var(--color-action), #4338ca);
+  background: var(--btn-royal-gradient, linear-gradient(115deg, var(--color-action), #1e40af));
   color: #ffffff;
   box-shadow:
     0 8px 24px -2px color-mix(in srgb, var(--color-action) 45%, transparent),
-    0 0 16px rgba(99, 102, 241, 0.3);
+    0 0 16px rgba(30, 64, 175, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.25);
   font-size: 1.05rem;
   padding: var(--space-3) var(--space-6);
@@ -874,7 +943,7 @@
   transform: translateY(-2px);
   box-shadow:
     0 12px 32px 0 color-mix(in srgb, var(--color-action) 55%, transparent),
-    0 0 24px rgba(99, 102, 241, 0.45);
+    0 0 24px rgba(30, 64, 175, 0.45);
 }
 
 .learner-button {
@@ -2388,9 +2457,9 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
     inset-block-end: 0;
     z-index: 50;
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0.15rem;
-    padding: 0.4rem max(0.25rem, env(safe-area-inset-right)) max(0.4rem, env(safe-area-inset-bottom)) max(0.25rem, env(safe-area-inset-left));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.25rem;
+    padding: 0.45rem max(0.5rem, env(safe-area-inset-right)) max(0.45rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
     border-block-start: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
     background: color-mix(in srgb, var(--color-surface) 92%, transparent);
     box-shadow: 0 -8px 24px -4px rgba(15, 23, 42, 0.1);
@@ -2400,29 +2469,41 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
 
   .learner-bottom-nav .learner-nav__item {
     min-inline-size: 0;
-    min-block-size: 3.25rem;
+    min-block-size: 3.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.15rem;
+    gap: 0.2rem;
     overflow: hidden;
-    padding: 0.25rem 0.1rem;
-    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.25rem;
+    border-radius: var(--radius-md);
     text-align: center;
-    font-size: 0.625rem;
-    line-height: 1.1;
+    font-size: 0.72rem;
+    line-height: 1.15;
     font-weight: 750;
+    position: relative;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
   }
 
   .learner-bottom-nav .learner-icon {
-    inline-size: 1.25rem;
-    block-size: 1.25rem;
+    inline-size: 1.35rem;
+    block-size: 1.35rem;
   }
 
   .learner-bottom-nav .learner-nav__item[data-active="true"] {
-    background: color-mix(in srgb, var(--color-action) 12%, transparent);
+    background: color-mix(in srgb, var(--color-action) 14%, transparent);
     color: var(--color-action);
+  }
+
+  .learner-bottom-nav .learner-nav__item[data-active="true"]::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 0.2rem;
+    inline-size: 1.25rem;
+    block-size: 3px;
+    border-radius: 999px;
+    background: var(--color-action);
   }
 
   .learner-bottom-nav .learner-nav__item:hover { transform: none; }

@@ -46,10 +46,6 @@ export default function Header() {
         <button>
           ورود
         </button>
-
-        <button>
-          English
-        </button>
       </div>
 
     </header>

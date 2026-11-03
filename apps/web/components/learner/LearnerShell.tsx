@@ -40,9 +40,9 @@ const labels = {
   fa: {
     home: "خانه",
     learn: "یادگیری",
-    practice: "تمرین هوشمند",
+    practice: "تمرین و لایتنر",
     teachers: "معلم‌ها و کلاس‌ها",
-    account: "حساب من",
+    account: "حساب و خدمات",
     school: "تمرین تا ۲۰ (نهایی)",
     logout: "خروج",
     loggingOut: "در حال خروج…",
@@ -59,9 +59,9 @@ const labels = {
   en: {
     home: "Home",
     learn: "Learn",
-    practice: "AI Practice",
+    practice: "Practice & Leitner",
     teachers: "Teachers & Classes",
-    account: "Account",
+    account: "Account & More",
     school: "Practice to 20 (Finals)",
     logout: "Log out",
     loggingOut: "Logging out…",
@@ -219,12 +219,18 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/dashboard/")
     );
   }
-  if (targetHref === "/my-teachers") {
+  if (targetHref === "/learn") {
     return (
-      currentPath === "/my-teachers" ||
-      currentPath.startsWith("/my-teachers/") ||
-      currentPath === "/teachers" ||
-      currentPath.startsWith("/teachers/")
+      currentPath === "/learn" ||
+      currentPath.startsWith("/learn/") ||
+      currentPath === "/path" ||
+      currentPath.startsWith("/path/") ||
+      currentPath === "/high-school" ||
+      currentPath.startsWith("/high-school/") ||
+      currentPath === "/courses" ||
+      currentPath.startsWith("/courses/") ||
+      currentPath === "/lessons" ||
+      currentPath.startsWith("/lessons/")
     );
   }
   if (targetHref === "/practice-ai") {
@@ -233,7 +239,48 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/practice-ai/") ||
       currentPath === "/practice" ||
       currentPath.startsWith("/practice/") ||
-      currentPath === "/review"
+      currentPath === "/mistakes" ||
+      currentPath.startsWith("/mistakes/") ||
+      currentPath === "/ielts" ||
+      currentPath.startsWith("/ielts/") ||
+      currentPath === "/review" ||
+      currentPath.startsWith("/review/") ||
+      currentPath === "/exam" ||
+      currentPath.startsWith("/exam/") ||
+      currentPath === "/listening" ||
+      currentPath.startsWith("/listening/") ||
+      currentPath === "/pronunciation" ||
+      currentPath.startsWith("/pronunciation/") ||
+      currentPath === "/writing" ||
+      currentPath.startsWith("/writing/") ||
+      currentPath === "/roleplay" ||
+      currentPath.startsWith("/roleplay/") ||
+      currentPath === "/vocabulary" ||
+      currentPath.startsWith("/vocabulary/")
+    );
+  }
+  if (targetHref === "/account") {
+    return (
+      currentPath === "/account" ||
+      currentPath.startsWith("/account/") ||
+      currentPath === "/my-teachers" ||
+      currentPath.startsWith("/my-teachers/") ||
+      currentPath === "/teachers" ||
+      currentPath.startsWith("/teachers/") ||
+      currentPath === "/classes" ||
+      currentPath.startsWith("/classes/") ||
+      currentPath === "/classroom" ||
+      currentPath.startsWith("/classroom/") ||
+      currentPath === "/bookings" ||
+      currentPath.startsWith("/bookings/") ||
+      currentPath === "/achievements" ||
+      currentPath.startsWith("/achievements/") ||
+      currentPath === "/badges" ||
+      currentPath.startsWith("/badges/") ||
+      currentPath === "/grades" ||
+      currentPath.startsWith("/grades/") ||
+      currentPath === "/progress" ||
+      currentPath.startsWith("/progress/")
     );
   }
   return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
@@ -503,8 +550,6 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     { href: "/dashboard", label: t.home, icon: "home" as const },
     { href: "/learn", label: t.learn, icon: "learn" as const },
     { href: "/practice-ai", label: t.practice, icon: "practice" as const },
-    { href: "/high-school/grade-12/tamrin20", label: t.school, icon: "school" as const },
-    { href: "/my-teachers", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
   ];
 

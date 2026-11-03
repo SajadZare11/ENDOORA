@@ -2,10 +2,28 @@
 /* 100% Tokenized, Zero Raw Hex Literals, CSS Logical Properties Only */
 
 .container {
+  --color-action: #047857;
+  --color-action-hover: #064e3b;
+  --color-action-focus: #059669;
+  --color-primary: #047857;
+  --color-primary-hover: #064e3b;
+  --color-info-bg: #ecfdf5;
+  --color-info-border: #a7f3d0;
   max-inline-size: var(--content-width);
   margin-inline: auto;
   padding-inline: clamp(var(--space-4), 4vw, var(--space-8));
   padding-block: var(--space-8) var(--space-16);
+}
+
+:global(.dark) .container,
+:global([data-theme="dark"]) .container {
+  --color-action: #10b981;
+  --color-action-hover: #34d399;
+  --color-action-focus: #059669;
+  --color-primary: #10b981;
+  --color-primary-hover: #34d399;
+  --color-info-bg: rgba(6, 78, 59, 0.3);
+  --color-info-border: rgba(52, 211, 153, 0.3);
 }
 
 /* =====================================================================

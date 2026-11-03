@@ -22,6 +22,7 @@ import { SpeakingEscapeRoomArena } from "./SpeakingEscapeRoomArena";
 import { SherlockSpeakingArena } from "./SherlockSpeakingArena";
 import { ReadingOdysseyArena } from "./ReadingOdysseyArena";
 import { WritingClueHunterArena } from "./WritingClueHunterArena";
+import { WiretapCipherArena } from "./WiretapCipherArena";
 import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
 import { ReadingAdventureHub } from "./ReadingAdventureHub";
 
@@ -56,8 +57,8 @@ const SKILL_METAS: SkillCardMeta[] = [
     icon: "🎧",
     titleFa: "شنیداری و صوت",
     titleEn: "Listening",
-    gameName: "Audio Detective",
-    descFa: "درک گفتار طبیعی و رمزگشایی جزئیات صوتی با موتور تلفظ مرورگر.",
+    gameName: "استودیوی شنیداری رادیویی (Radio Wave Studio)",
+    descFa: "تنظیم موج رادیو، شنیدن مکالمات روزمره انگلیسی، شکار کلمات کلیدی، تکمیل جاهای خالی و آزمون درک مطلب در محیطی روشن و دوستانه.",
   },
   {
     key: "reading",
@@ -241,10 +242,10 @@ export function GameHubArcade() {
           <span style={{ fontSize: "2rem" }}>🎯</span>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBlockEnd: "0.25rem" }}>
-              <span style={{ background: "#2563eb", color: "#fff", fontSize: "0.75rem", fontWeight: 800, padding: "0.15rem 0.5rem", borderRadius: "9999px" }}>
+              <span style={{ background: "#9f1239", color: "#fff", fontSize: "0.75rem", fontWeight: 800, padding: "0.15rem 0.5rem", borderRadius: "9999px" }}>
                 آیلتس بند ۷+
               </span>
-              <h3 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800, color: "#38bdf8" }}>
+              <h3 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800, color: "#fecdd3" }}>
                 کلینیک‌های تخصصی استراتژی و تله‌زدایی آیلتس (IELTS Clinics)
               </h3>
             </div>
@@ -256,7 +257,7 @@ export function GameHubArcade() {
         <Link
           href="/ielts/clinics"
           style={{
-            background: "#2563eb",
+            background: "linear-gradient(135deg, #be123c, #9f1239)",
             color: "#ffffff",
             padding: "0.6rem 1.25rem",
             borderRadius: "0.5rem",
@@ -266,7 +267,7 @@ export function GameHubArcade() {
             display: "inline-flex",
             alignItems: "center",
             gap: "0.4rem",
-            boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
+            boxShadow: "0 4px 12px rgba(159, 18, 57, 0.35)",
           }}
         >
           ورود به کلینیک‌ها ←
@@ -451,6 +452,22 @@ export function GameHubArcade() {
           onOpenLeaderboard={() => {
             setActiveLevel(null);
             setLeaderboardSkill("reading");
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && activeLevel.skill === "listening" ? (
+        <WiretapCipherArena
+          key={`wiretap-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setLeaderboardSkill("listening");
             setIsLeaderboardOpen(true);
             refreshProgress();
           }}

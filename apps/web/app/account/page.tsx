@@ -192,9 +192,14 @@ const copy = {
   },
 } as const;
 
+export type AccountTab = "profile" | "teachers" | "settings";
+
 export default function AccountPage() {
   const [locale, setLocale] =
     useState<EndooraLocale>("fa");
+
+  const [activeTab, setActiveTab] =
+    useState<AccountTab>("profile");
 
   const [summary, setSummary] =
     useState<AccountSummary | null>(null);
@@ -248,6 +253,24 @@ export default function AccountPage() {
       cancelled = true;
     };
   }, []);
+
+  function handleTabChange(tab: AccountTab) {
+
+    setActiveTab(tab);
+
+    if (typeof window !== "undefined") {
+
+      const url = new URL(window.location.href);
+
+      url.searchParams.set("tab", tab);
+
+      window.history.replaceState({}, "", url.toString());
+
+    }
+
+  }
+
+
 
   async function handleLocaleChange(nextLocale: EndooraLocale) {
     const previousLocale = locale;

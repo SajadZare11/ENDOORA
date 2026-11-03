@@ -543,6 +543,61 @@ export function recordWritingCaseCompletion(
   );
 }
 
+const WIRETAP_CASES_STORAGE_KEY = "endoora_listening_wiretap_cases_v1";
+
+export function getSolvedWiretapCases(cefr: CefrLevel): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(WIRETAP_CASES_STORAGE_KEY);
+    if (!raw) return [];
+    const map: Record<string, string[]> = JSON.parse(raw);
+    return map[cefr] || [];
+  } catch {
+    return [];
+  }
+}
+
+export function recordWiretapCompletion(
+  cefr: CefrLevel,
+  levelNumber: number,
+  result: {
+    caseCode: string;
+    finalScore: number;
+    accuracyPct: number;
+    signalIntegrity: number;
+    stars: number;
+    passed: boolean;
+    baseXp?: number;
+  }
+): SaveOutcome {
+  saveStageBestPoints("listening", cefr, levelNumber, result.finalScore);
+
+  if (typeof window !== "undefined" && result.passed) {
+    try {
+      const raw = localStorage.getItem(WIRETAP_CASES_STORAGE_KEY);
+      const map: Record<string, string[]> = raw ? JSON.parse(raw) : {};
+      const list = map[cefr] || [];
+      if (!list.includes(result.caseCode)) {
+        list.push(result.caseCode);
+        map[cefr] = list;
+        localStorage.setItem(WIRETAP_CASES_STORAGE_KEY, JSON.stringify(map));
+      }
+    } catch {}
+  }
+
+  const baseXp = result.baseXp || 100;
+  return recordVocabRushCompletion(
+    "listening",
+    cefr,
+    levelNumber,
+    result.finalScore,
+    result.accuracyPct,
+    Math.round((result.accuracyPct / 100) * 10),
+    10,
+    baseXp
+  );
+}
+
 const READING_ENDINGS_STORAGE_KEY = "endoora_reading_odyssey_endings_v1";
 
 export function getDiscoveredEndings(

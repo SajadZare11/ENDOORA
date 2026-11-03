@@ -32,7 +32,6 @@ export function EndooraShell({ children }: { children: ReactNode }) {
         </nav>
 
         <div className={styles.actions}>
-          <Link href="/en" className={styles.language}>English</Link>
           <Link href="/auth/login" className={styles.cta}>ورود</Link>
         </div>
       </header>

@@ -26,37 +26,7 @@ export interface LanguageSwitcherProps {
  *   and minimum touch target of 44px (var(--target-min)).
  */
 export function LanguageSwitcher({ pinned = false, className = "", variant = "toggle" }: LanguageSwitcherProps) {
-  const { locale, toggleLocale, isFa } = useLocale();
-
-  const buttonContent =
-    variant === "badge" ? (
-      <>
-        <span className={isFa ? styles.activeLang : styles.inactiveLang}>فا</span>
-        <span className={styles.langDivider} aria-hidden="true">/</span>
-        <span className={!isFa ? styles.activeLang : styles.inactiveLang}>EN</span>
-      </>
-    ) : (
-      // Clean toggle showing the target language or label (EN when Persian, فا when English)
-      <span>{isFa ? "EN" : "فا"}</span>
-    );
-
-  const button = (
-    <button
-      type="button"
-      className={`${styles.switcherBtn} ${className}`.trim()}
-      onClick={toggleLocale}
-      aria-label={isFa ? "تغییر زبان به انگلیسی (Switch to English)" : "تغییر زبان به فارسی (Switch to Persian)"}
-      title={isFa ? "تغییر زبان به انگلیسی (Switch to English)" : "تغییر زبان به فارسی (Switch to Persian)"}
-    >
-      {buttonContent}
-    </button>
-  );
-
-  // When pinned is requested (top-right utility corner), return null as the global site header
-  // already contains the prominent language toggle on the opposite side.
-  if (pinned) {
-    return null;
-  }
-
-  return button;
+  // Website language is strictly Persian; language switcher toggleLocale is disabled and removed.
+  // Preserved for endoora_ui_locale compatibility.
+  return null;
 }

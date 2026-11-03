@@ -5,6 +5,7 @@ const apiInternalUrl = (
 ).replace(/\/+$/, "");
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   transpilePackages: ["@endoora/ui"],
   poweredByHeader: false,
 

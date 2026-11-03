@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button, BdiEn } from "@endoora/ui";
 import { useLocale } from "../../lib/locale-context";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -45,7 +44,6 @@ export default function Header() {
         <Button variant="secondary">
           {t("nav.login")}
         </Button>
-        <LanguageSwitcher variant="toggle" />
       </div>
     </header>
   );

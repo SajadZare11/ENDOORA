@@ -187,3 +187,78 @@
     display: grid;
   }
 }
+
+/* Sticky Segmented Switcher for Account Hub */
+.stickySwitcherContainer {
+  position: sticky;
+  top: 1rem;
+  z-index: 30;
+  margin-block-end: var(--space-6);
+  padding: 0.35rem;
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill, 9999px);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.segmentedTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill, 9999px);
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.segmentedTab:hover {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-action) 6%, transparent);
+}
+
+.segmentedTabActive {
+  background: var(--color-action);
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.3);
+}
+
+.segmentedTabActive:hover {
+  background: var(--color-action-hover, var(--color-action));
+  color: #ffffff;
+}
+
+.tabIcon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+@media (max-width: 48rem) {
+  .stickySwitcherContainer {
+    top: 0.5rem;
+    gap: 0.2rem;
+    padding: 0.25rem;
+    margin-block-end: var(--space-4);
+  }
+  .segmentedTab {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+    gap: 0.2rem;
+  }
+  .tabIcon {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,108 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: endoora-prod-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${ENDOORA_DB_NAME:-endoora}
+      POSTGRES_USER: ${ENDOORA_DB_USER:-endoora}
+      POSTGRES_PASSWORD: ${ENDOORA_DB_PASSWORD:-endoora_secure_prod_password}
+    volumes:
+      - endoora_prod_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ENDOORA_DB_USER:-endoora} -d ${ENDOORA_DB_NAME:-endoora}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - endoora-internal
+
+  redis:
+    image: redis:8-alpine
+    container_name: endoora-prod-redis
+    restart: always
+    volumes:
+      - endoora_prod_redisdata:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - endoora-internal
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    container_name: endoora-prod-api
+    restart: always
+    environment:
+      ENDOORA_ENV: production
+      DJANGO_SETTINGS_MODULE: endoora_api.settings.production
+      ENDOORA_DEBUG: "0"
+      ENDOORA_DJANGO_SECRET_KEY: ${ENDOORA_DJANGO_SECRET_KEY}
+      ENDOORA_TIMEZONE: Asia/Tehran
+      ENDOORA_ALLOWED_HOSTS: endoora.ir,www.endoora.ir,api.endoora.ir,api,web,localhost,127.0.0.1
+      ENDOORA_CORS_ALLOWED_ORIGINS: https://endoora.ir,https://www.endoora.ir
+      ENDOORA_CSRF_TRUSTED_ORIGINS: https://endoora.ir,https://www.endoora.ir
+      ENDOORA_DB_NAME: ${ENDOORA_DB_NAME:-endoora}
+      ENDOORA_DB_USER: ${ENDOORA_DB_USER:-endoora}
+      ENDOORA_DB_PASSWORD: ${ENDOORA_DB_PASSWORD:-endoora_secure_prod_password}
+      ENDOORA_DB_HOST: postgres
+      ENDOORA_DB_PORT: "5432"
+      ENDOORA_REDIS_URL: redis://redis:6379/0
+      ENDOORA_OTP_PROVIDER: ${ENDOORA_OTP_PROVIDER:-kavenegar}
+      ENDOORA_SMS_API_KEY: ${ENDOORA_SMS_API_KEY}
+      ZARINPAL_MERCHANT_ID: ${ZARINPAL_MERCHANT_ID}
+      ZARINPAL_SANDBOX: ${ZARINPAL_SANDBOX:-0}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - endoora-internal
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    container_name: endoora-prod-web
+    restart: always
+    environment:
+      NODE_ENV: production
+      ENDOORA_PUBLIC_URL: https://endoora.ir
+      ENDOORA_API_INTERNAL_URL: http://api:8000
+    depends_on:
+      - api
+    networks:
+      - endoora-internal
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: endoora-prod-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./ssl:/etc/letsencrypt:ro
+      - certbot_challenge:/var/www/certbot:ro
+    depends_on:
+      - web
+      - api
+    networks:
+      - endoora-internal
+
+networks:
+  endoora-internal:
+    driver: bridge
+
+volumes:
+  endoora_prod_pgdata:
+  endoora_prod_redisdata:
+  certbot_challenge:

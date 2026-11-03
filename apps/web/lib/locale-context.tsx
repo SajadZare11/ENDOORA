@@ -71,25 +71,14 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem("endoora_ui_locale") as Locale | null;
-      if (saved && (saved === "fa" || saved === "en")) {
-        setLocaleState(saved);
-        applyLocaleToDom(saved);
-      } else {
-        applyLocaleToDom("fa");
+      if (saved === "en") {
+        window.localStorage.removeItem("endoora_ui_locale");
       }
     } catch {
-      applyLocaleToDom("fa");
+      // ignore storage errors
     }
-
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === "endoora_ui_locale" && e.newValue && (e.newValue === "fa" || e.newValue === "en")) {
-        setLocaleState(e.newValue as Locale);
-        applyLocaleToDom(e.newValue as Locale);
-      }
-    };
-
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    setLocaleState("fa");
+    applyLocaleToDom("fa");
   }, []);
 
   const setLocale = (newLocale: Locale) => {

@@ -2,8 +2,65 @@
   --header-height: 58px;
   --sidebar-width: 16rem;
   min-block-size: 100vh;
+
+  /* Academic Oxford & Royal Navy Color Tokens */
+  --color-oxford-navy: #0f172a;
+  --color-royal-blue: #1e40af;
+  --color-royal-hover: #1d4ed8;
+  --color-royal-light: #eff6ff;
+  --color-royal-border: #bfdbfe;
+
+  /* Primary Action & Brand Overrides */
+  --color-action: #1e40af;
+  --color-action-hover: #1d4ed8;
+  --color-action-active: #172554;
+  --color-primary: #1e40af;
+  --color-primary-hover: #1d4ed8;
+  --color-endoora-blue: #1e40af;
+  --color-link: #1d4ed8;
+  --color-focus: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-info-text: #1e40af;
+  --color-info-border: #bfdbfe;
+
+  /* Accent Prestige Gold */
+  --color-prestige-gold: #f59e0b;
+  --color-prestige-gold-hover: #d97706;
+  --color-prestige-gold-light: #fef3c7;
+  --color-achievement-gold: #fbbf24;
+  --color-achievement-amber: #f59e0b;
+
+  /* Buttons & Shadows */
+  --btn-royal-gradient: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  --btn-royal-shadow: 0 4px 14px rgba(30, 64, 175, 0.25);
+
   background: var(--color-canvas);
   color: var(--color-text);
+}
+
+[data-theme="dark"] .teacher-shell,
+:global(.dark) .teacher-shell {
+  --color-canvas: #0b1329;
+  --color-background: #0b1329;
+  --color-surface: #0f172a;
+  --color-border: #1e293b;
+  --color-text: #f8fafc;
+  --color-muted: #94a3b8;
+
+  --color-action: #3b82f6;
+  --color-action-hover: #60a5fa;
+  --color-action-active: #2563eb;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-endoora-blue: #3b82f6;
+  --color-link: #60a5fa;
+  --color-focus: #60a5fa;
+  --color-info-bg: rgba(30, 64, 175, 0.25);
+  --color-info-text: #93c5fd;
+  --color-info-border: rgba(96, 165, 250, 0.35);
+
+  --btn-royal-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --btn-royal-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .teacher-shell *,
@@ -160,10 +217,23 @@
 }
 
 .teacher-nav__item[data-active="true"] {
-  border-color: color-mix(in srgb, var(--color-action) 20%, transparent);
+  border-color: color-mix(in srgb, var(--color-action) 22%, transparent);
   background: var(--color-info-bg);
   color: var(--color-action);
   font-weight: 800;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-action) 12%, transparent);
+  position: relative;
+}
+
+.teacher-nav__item[data-active="true"]::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3.5px;
+  border-radius: 4px;
+  background: var(--color-action);
 }
 
 .teacher-nav__item[data-active="true"] svg {
@@ -307,7 +377,7 @@
 .teacher-class-select:focus {
   outline: none;
   border-color: var(--color-action);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-action) 18%, transparent);
 }
 
 .teacher-quota-badge {
@@ -462,13 +532,17 @@
 }
 
 .teacher-btn--primary {
-  background: var(--color-action);
+  background: var(--btn-royal-gradient, linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%));
   color: #ffffff;
-  border-color: var(--color-action);
+  border-color: #1e40af;
+  box-shadow: var(--btn-royal-shadow, 0 4px 14px rgba(30, 64, 175, 0.25));
 }
 
 .teacher-btn--primary:hover {
-  background: var(--color-action-hover);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(30, 64, 175, 0.35);
 }
 
 .teacher-btn--secondary {
@@ -1215,7 +1289,7 @@
 }
 
 .teacher-button--primary {
-  background: linear-gradient(115deg, var(--color-action), #3b82f6);
+  background: var(--btn-royal-gradient, linear-gradient(115deg, var(--color-action), #1d4ed8));
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 24px -2px color-mix(in srgb, var(--color-action) 45%, transparent);
@@ -1229,7 +1303,7 @@
 .teacher-button--glowing {
   box-shadow:
     0 8px 24px -2px color-mix(in srgb, var(--color-action) 45%, transparent),
-    0 0 16px rgba(59, 130, 246, 0.35);
+    0 0 16px rgba(30, 64, 175, 0.35);
 }
 
 .teacher-button--quick-create {
@@ -1351,7 +1425,7 @@
   border: 1px solid color-mix(in srgb, var(--color-endoora-blue) 35%, var(--color-border));
   border-radius: var(--radius-card);
   box-shadow:
-    0 10px 30px -4px rgba(37, 99, 235, 0.16),
+    0 10px 30px -4px rgba(30, 64, 175, 0.16),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
 }
 
@@ -1374,7 +1448,7 @@
   border-radius: 50%;
   background: linear-gradient(135deg, color-mix(in srgb, var(--color-endoora-blue) 20%, var(--color-surface)), var(--color-surface));
   border: 2px solid color-mix(in srgb, var(--color-endoora-blue) 45%, transparent);
-  box-shadow: 0 0 22px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 22px rgba(30, 64, 175, 0.25);
   z-index: 1;
 }
 

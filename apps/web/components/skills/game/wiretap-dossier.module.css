@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Wiretap Friendly Briefing Modal - Compact, Light & Welcoming (Language Coach)
+   ========================================================================== */
+
+.dossierBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+  direction: rtl;
+  font-family: inherit;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dossierFolder {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #0f172a;
+  padding: 1.75rem 2rem;
+  gap: 1.25rem;
+  animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.96) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.levelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+}
+
+.closeIconBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.closeIconBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.dossierTitle {
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.speakerPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.coachCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  line-height: 1.65;
+}
+
+.coachAvatar {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+  background: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.coachText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.targetFreqBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  font-size: 0.88rem;
+  color: #166534;
+  font-weight: 700;
+}
+
+.targetFreqValue {
+  font-family: monospace;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #15803d;
+  direction: ltr;
+}
+
+.startMissionBtn {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s ease;
+  font-family: inherit;
+  margin-top: 0.35rem;
+}
+
+.startMissionBtn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 25px -5px rgba(37, 99, 235, 0.5);
+}
+
+.startMissionBtn:active {
+  transform: translateY(0);
+}

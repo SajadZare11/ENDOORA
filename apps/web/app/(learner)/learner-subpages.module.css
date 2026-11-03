@@ -1,8 +1,37 @@
 .container {
+  --color-action: #1e40af;
+  --color-action-hover: #1d4ed8;
+  --color-action-active: #172554;
+  --color-primary: #1e40af;
+  --color-primary-hover: #1d4ed8;
+  --color-endoora-blue: #1e40af;
+  --color-link: #1d4ed8;
+  --color-focus: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-info-text: #1e40af;
+  --color-info-border: #bfdbfe;
+  --btn-royal-gradient: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+
   max-inline-size: var(--content-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
   padding-block: var(--space-4) var(--space-12);
+}
+
+:global(.dark) .container,
+:global([data-theme="dark"]) .container {
+  --color-action: #3b82f6;
+  --color-action-hover: #60a5fa;
+  --color-action-active: #2563eb;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-endoora-blue: #3b82f6;
+  --color-link: #60a5fa;
+  --color-focus: #60a5fa;
+  --color-info-bg: rgba(30, 64, 175, 0.25);
+  --color-info-text: #93c5fd;
+  --color-info-border: rgba(96, 165, 250, 0.35);
+  --btn-royal-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 }
 
 .backLink {
@@ -52,7 +81,7 @@
   inset-inline: 0;
   inset-block-start: 0;
   block-size: 4px;
-  background: linear-gradient(90deg, var(--color-endoora-blue), var(--color-learning-teal), var(--color-intelligence-purple));
+  background: linear-gradient(90deg, #1e40af, #1d4ed8, #f59e0b);
 }
 
 .heroHeader {
@@ -136,7 +165,7 @@
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--color-action);
-  box-shadow: 0 14px 32px -6px rgba(37, 99, 235, 0.16);
+  box-shadow: 0 14px 32px -6px rgba(30, 64, 175, 0.16);
 }
 
 .cardTitle {
@@ -228,7 +257,7 @@
 .skillCard:hover {
   border-color: var(--color-action);
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.14);
+  box-shadow: 0 12px 28px -4px rgba(30, 64, 175, 0.14);
 }
 
 .skillCardHeader {
@@ -490,5 +519,92 @@
   .buttonPrimary,
   .buttonSecondary {
     inline-size: 100%;
+  }
+}
+
+/* Sticky Segmented Switcher for Practice & Subpages */
+.stickySwitcherContainer {
+  position: sticky;
+  top: 1rem;
+  z-index: 30;
+  margin-block-end: var(--space-6);
+  padding: 0.35rem;
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill, 9999px);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.segmentedTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill, 9999px);
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.segmentedTab:hover {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-action) 6%, transparent);
+}
+
+.segmentedTabActive {
+  background: var(--color-action);
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(30, 64, 175, 0.3);
+}
+
+.segmentedTabActive:hover {
+  background: var(--color-action-hover, var(--color-action));
+  color: #ffffff;
+}
+
+.tabIcon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.tabBadge {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+@media (max-width: 48rem) {
+  .stickySwitcherContainer {
+    top: 0.5rem;
+    gap: 0.2rem;
+    padding: 0.25rem;
+    margin-block-end: var(--space-4);
+  }
+  .segmentedTab {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+    gap: 0.2rem;
+  }
+  .tabIcon {
+    font-size: 0.95rem;
+  }
+  .tabBadge {
+    display: none;
   }
 }

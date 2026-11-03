@@ -339,7 +339,7 @@ export function SkillsLeaderboardModal({
             <button
               className={styles.tabBtn}
               onClick={() => setIsEditingProfile(!isEditingProfile)}
-              style={{ fontSize: "0.8rem", borderColor: "#93c5fd", color: "#2563eb" }}
+              style={{ fontSize: "0.8rem", borderColor: "#a7f3d0", color: "#047857" }}
               type="button"
             >
               ✏️ {isEditingProfile ? "بستن ویرایش" : "پروفایل من"}
@@ -377,8 +377,8 @@ export function SkillsLeaderboardModal({
                     fontSize: "1.25rem",
                     padding: "0.2rem 0.4rem",
                     borderRadius: "0.5rem",
-                    border: userProfile.avatar === av ? "2px solid #3b82f6" : "1px solid transparent",
-                    background: userProfile.avatar === av ? "rgba(59, 130, 246, 0.1)" : "none",
+                    border: userProfile.avatar === av ? "2px solid #059669" : "1px solid transparent",
+                    background: userProfile.avatar === av ? "rgba(5, 150, 105, 0.1)" : "none",
                     cursor: "pointer",
                   }}
                 >
@@ -424,7 +424,7 @@ export function SkillsLeaderboardModal({
                   padding: "0.5rem 1rem",
                   borderRadius: "0.5rem",
                   border: "none",
-                  background: "#2563eb",
+                  background: "#047857",
                   color: "#fff",
                   fontWeight: 700,
                   fontSize: "0.85rem",
@@ -444,9 +444,9 @@ export function SkillsLeaderboardModal({
               margin: "0.75rem 1.5rem 0.25rem",
               padding: "0.65rem 1rem",
               borderRadius: "0.75rem",
-              background: levelData.userRank === 1 ? "#ecfdf5" : "#eff6ff",
-              border: levelData.userRank === 1 ? "1px solid #a7f3d0" : "1px solid #bfdbfe",
-              color: levelData.userRank === 1 ? "#065f46" : "#1e40af",
+              background: levelData.userRank === 1 ? "#ecfdf5" : "#fefce8",
+              border: levelData.userRank === 1 ? "1px solid #a7f3d0" : "1px solid #fde68a",
+              color: levelData.userRank === 1 ? "#065f46" : "#92400e",
               fontSize: "0.85rem",
               fontWeight: 700,
               display: "flex",
@@ -486,7 +486,7 @@ export function SkillsLeaderboardModal({
             </div>
 
             {!(isCurrentCLevel && selectedSkill === "vocabulary") && levelData.userRank > 1 && levelData.pointsToLeader > 0 && (
-              <span style={{ fontSize: "0.8rem", color: "#2563eb" }}>
+              <span style={{ fontSize: "0.8rem", color: "#047857" }}>
                 تنها {levelData.pointsToLeader.toLocaleString("fa-IR")} امتیاز تا رتبه ۱
               </span>
             )}
@@ -584,7 +584,7 @@ export function SkillsLeaderboardModal({
                       <>
                         <span
                           className={styles.scoreNumber}
-                          style={{ color: "#2563eb", direction: "ltr", fontSize: "0.95rem" }}
+                          style={{ color: "#047857", direction: "ltr", fontSize: "0.95rem" }}
                         >
                           ⏱️ {item.bestTimeSeconds.toFixed(1)}s
                         </span>
@@ -638,7 +638,7 @@ export function SkillsLeaderboardModal({
                   <span style={{ fontSize: "1.4rem" }}>{globalData.podiumTop3[1]?.avatar}</span>
                   <strong style={{ fontSize: "0.85rem", marginTop: 4 }}>{globalData.podiumTop3[1]?.name}</strong>
                   <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{globalData.podiumTop3[1]?.city}</span>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "#2563eb", marginTop: 4 }}>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "#047857", marginTop: 4 }}>
                     {globalData.podiumTop3[1]?.score.toLocaleString("fa-IR")} XP
                   </span>
                 </div>
@@ -684,7 +684,7 @@ export function SkillsLeaderboardModal({
                   <span style={{ fontSize: "1.4rem" }}>{globalData.podiumTop3[2]?.avatar}</span>
                   <strong style={{ fontSize: "0.85rem", marginTop: 4 }}>{globalData.podiumTop3[2]?.name}</strong>
                   <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{globalData.podiumTop3[2]?.city}</span>
-                  <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "#2563eb", marginTop: 4 }}>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "#047857", marginTop: 4 }}>
                     {globalData.podiumTop3[2]?.score.toLocaleString("fa-IR")} XP
                   </span>
                 </div>

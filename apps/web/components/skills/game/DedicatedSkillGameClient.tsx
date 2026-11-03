@@ -36,6 +36,8 @@ import { SkillsLeaderboardModal } from "./SkillsLeaderboardModal";
 import { ReadingAdventureHub } from "./ReadingAdventureHub";
 import { StreetVibeArena } from "./StreetVibeArena";
 import { getStreetVibeStage, STREET_VIBE_LOCATIONS } from "../../../data/skills/games/street-vibe-data";
+import { WiretapCipherArena } from "./WiretapCipherArena";
+import { getWiretapStage } from "../../../data/skills/games/wiretap-cipher-curriculum";
 
 
 interface Props {
@@ -336,6 +338,9 @@ export function DedicatedSkillGameClient({ skill }: Props) {
           const isSpeaking = skill === "speaking";
           const isReading = (skill as string) === "reading";
           const isWriting = skill === "writing";
+          const isListening = skill === "listening";
+          const isWiretapListening = isListening;
+          const wiretapStage = isWiretapListening ? getWiretapStage(cefr, lvl.levelNumber) : undefined;
           const readingEndings = isMounted && isReading ? getStageDiscoveredEndingsCount(cefr, lvl.levelNumber) : 0;
           const readingBestTime = isMounted && isReading ? getStageBestTime("reading", cefr, lvl.levelNumber) : 0;
           const writingCase = isWriting ? getWritingStageCase(cefr, lvl.levelNumber) : undefined;
@@ -346,16 +351,22 @@ export function DedicatedSkillGameClient({ skill }: Props) {
 
           const cardTitleFa = writingCase
             ? `${writingCase.caseCode}: ${writingCase.stageTitleFa}`
+            : wiretapStage
+            ? `${wiretapStage.tapeCode}: ${wiretapStage.caseTitleFa}`
             : streetVibeStage
             ? streetVibeStage.titleFa
             : lvl.titleFa;
           const cardTitleEn = writingCase
             ? writingCase.stageTitleEn
+            : wiretapStage
+            ? wiretapStage.caseTitleEn
             : streetVibeStage
             ? streetVibeStage.titleEn
             : lvl.titleEn;
           const cardDescFa = writingCase
             ? writingCase.scenarioFa
+            : wiretapStage
+            ? wiretapStage.audioScriptFa
             : streetVibeStage
             ? streetVibeStage.descriptionFa
             : lvl.descriptionFa;
@@ -366,6 +377,18 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               : cefr === "B1" || cefr === "B2"
               ? "🕵️ تخته شواهد کارآگاه نوآر"
               : "🛰️ اتاق سایبری اسناد محرمانه"
+            : isWiretapListening
+            ? cefr === "A1"
+              ? "📻 گشت رادیویی پلیس لندن (موج ۹۰.۰)"
+              : cefr === "A2"
+              ? "🔍 تلگراف کارآموز اسکاتلندیارد (موج ۹۱.۰)"
+              : cefr === "B1"
+              ? "🎧 سرقت موزه بریتانیا (موج ۹۴.۲)"
+              : cefr === "B2"
+              ? "🚂 شبح اورینت اکسپرس (موج ۹۳.۴)"
+              : cefr === "C1"
+              ? "🏛️ اسناد سفارت ژنو (موج ۹۱.۸)"
+              : "🕸️ شبکه سایه‌ای موریارتی (موج ۹۰.۵)"
             : isReading
             ? cefr === "A1" || cefr === "A2"
               ? "✨ مدرسه جادوگری (۱۰ داستان • ۱۰ پایان)"
@@ -402,6 +425,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
               : cefr === "B1" || cefr === "B2"
               ? "#b45309"
               : "#10b981"
+            : isWiretapListening
+            ? "#10b981"
             : isReading
             ? cefr === "A1" || cefr === "A2"
               ? "#eab308"
@@ -570,6 +595,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                         : cefr === "B1" || cefr === "B2"
                         ? "linear-gradient(135deg, #d97706, #b45309)"
                         : "linear-gradient(135deg, #10b981, #059669)"
+                      : isWiretapListening
+                      ? "linear-gradient(135deg, #059669, #047857)"
                       : isSpeaking
                       ? "linear-gradient(135deg, #10b981, #059669)"
                       : isReading
@@ -587,6 +614,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                   ? starsEarned > 0
                     ? isWriting
                       ? "🔄 حل مجدد و ارتقای پرونده"
+                      : isWiretapListening
+                      ? "🔄 شنود مجدد و ارتقای رکورد"
                       : isSpeaking
                       ? "🔄 دوئل صوتی و رکورد مجدد"
                       : isReading
@@ -598,6 +627,8 @@ export function DedicatedSkillGameClient({ skill }: Props) {
                       : "🔄 بازی سرعتی و رکورد"
                     : isWriting
                     ? "🕵️‍♂️ بررسی پرونده و حل معما"
+                    : isWiretapListening
+                    ? "🎙️ شنود و کدشکنی نوار"
                     : isSpeaking
                     ? "🎙️ شروع مأموریت صوتی"
                     : isReading
@@ -709,6 +740,21 @@ export function DedicatedSkillGameClient({ skill }: Props) {
       ) : activeLevel && skill === "vocabulary" ? (
         <WordCascadeArena
           key={`vocab-${activeLevel.cefr}-${activeLevel.levelNumber}`}
+          level={activeLevel}
+          onClose={() => {
+            setActiveLevel(null);
+            refreshProgress();
+          }}
+          onNextLevel={handleNextLevel}
+          onOpenLeaderboard={() => {
+            setActiveLevel(null);
+            setIsLeaderboardOpen(true);
+            refreshProgress();
+          }}
+        />
+      ) : activeLevel && skill === "listening" ? (
+        <WiretapCipherArena
+          key={`wiretap-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);

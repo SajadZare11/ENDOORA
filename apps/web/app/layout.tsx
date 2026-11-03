@@ -28,16 +28,12 @@ const localeBootstrap = `
   try {
     var savedLocale = window.localStorage.getItem("endoora_ui_locale");
     if (savedLocale === "en") {
-      document.documentElement.lang = "en";
-      document.documentElement.dir = "ltr";
-      document.documentElement.setAttribute("data-locale", "en");
-      document.documentElement.style.setProperty("--font-family-body", "var(--font-family-latin)");
-    } else {
-      document.documentElement.lang = "fa";
-      document.documentElement.dir = "rtl";
-      document.documentElement.setAttribute("data-locale", "fa");
-      document.documentElement.style.setProperty("--font-family-body", "var(--font-family-persian)");
+      window.localStorage.removeItem("endoora_ui_locale");
     }
+    document.documentElement.lang = "fa";
+    document.documentElement.dir = "rtl";
+    document.documentElement.setAttribute("data-locale", "fa");
+    document.documentElement.style.setProperty("--font-family-body", "var(--font-family-persian)");
   } catch (_) {}
 })();`;
 

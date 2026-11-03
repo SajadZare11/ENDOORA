@@ -4,12 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import {
-  alternatePath,
   localizedPath,
   type PublicLocale,
 } from "../../lib/public-site";
 import styles from "./public-shell.module.css";
-import { AccountEntryLink } from "./AccountEntryLink";
+import { AccountActions } from "./AccountEntryLink";
 
 export const PUBLIC_NAV = [
   { path: "/skills/school", fa: "زبان دبیرستان", en: "High School English" },
@@ -86,40 +85,39 @@ export function PublicHeader({
 
         <div className={styles.actions}>
           {extraActions}
-          {onLocaleChange ? (
-            <button
-              type="button"
-              className={styles.language}
-              onClick={() => onLocaleChange(isFa ? "en" : "fa")}
-              aria-label={isFa ? "Switch to English" : "تغییر به فارسی"}
-            >
-              {isFa ? "English" : "فارسی"}
-            </button>
-          ) : (
-            <Link
-              className={styles.language}
-              href={alternatePath(locale, currentPath)}
-              hrefLang={isFa ? "en" : "fa-IR"}
-            >
-              {isFa ? "English" : "فارسی"}
-            </Link>
-          )}
-          <AccountEntryLink className={styles.primaryCta} locale={locale} />
+          <div className={styles.desktopAuthGroup}>
+            <AccountActions
+              locale={locale}
+              primaryClassName={styles.primaryCta}
+              secondaryClassName={styles.secondaryCta}
+            />
+          </div>
           <details className={styles.mobileMenu}>
             <summary aria-label={isFa ? "باز کردن منوی اصلی" : "Open main menu"}>
               <span aria-hidden="true" className={styles.menuIcon} />
               <span>{isFa ? "منو" : "Menu"}</span>
             </summary>
             <nav aria-label={isFa ? "ناوبری موبایل" : "Mobile navigation"}>
-              {PUBLIC_NAV.map((item) => (
-                <Link
-                  key={item.path}
-                  href={localizedPath(locale, item.path)}
-                  aria-current={isCurrentRoute(currentPath, item.path) ? "page" : undefined}
-                >
-                  {isFa ? item.fa : item.en}
-                </Link>
-              ))}
+              <div className={styles.mobileNavLinks}>
+                {PUBLIC_NAV.map((item) => (
+                  <Link
+                    key={item.path}
+                    href={localizedPath(locale, item.path)}
+                    className={isCurrentRoute(currentPath, item.path) ? styles.mobileActiveLink : undefined}
+                    aria-current={isCurrentRoute(currentPath, item.path) ? "page" : undefined}
+                  >
+                    {isFa ? item.fa : item.en}
+                  </Link>
+                ))}
+              </div>
+              <div className={styles.mobileAuthSection}>
+                <AccountActions
+                  locale={locale}
+                  primaryClassName={styles.mobilePrimaryCta}
+                  secondaryClassName={styles.mobileSecondaryCta}
+                  mobile
+                />
+              </div>
             </nav>
           </details>
         </div>

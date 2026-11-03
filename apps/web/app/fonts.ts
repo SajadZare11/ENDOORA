@@ -1,20 +1,54 @@
-import { Vazirmatn, Inter } from "next/font/google";
+import localFont from "next/font/local";
 
 /**
  * Global bilingual typography configuration:
- * - Vazirmatn: Persian primary font applied to Persian prose, RTL layouts, and Arabic-script numerals.
- * - Inter: Latin primary font applied to English content, code, IPA transcriptions, and LTR layouts.
- * Both fonts are self-hosted by Next.js at build time to prevent network failures in Iran.
+ * Fully self-hosted local fonts for 100% resilience against national network
+ * shutdowns, international internet routing blackouts, and CDN timeouts in Iran.
+ *
+ * - vazirmatn: Self-hosted Persian typography using IranYekan embedded woff assets.
+ * - inter: Local system UI typography stack for Latin scripts (zero external fetch).
  */
-export const vazirmatn = Vazirmatn({
-  subsets: ["arabic", "latin"],
+export const vazirmatn = localFont({
+  src: [
+    {
+      path: "./fonts/iranyekan/iranyekan-light.woff",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/iranyekan/iranyekan-regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/iranyekan/iranyekan-medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/iranyekan/iranyekan-bold.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/iranyekan/iranyekan-extrabold.woff",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/iranyekan/iranyekan-black.woff",
+      weight: "900",
+      style: "normal",
+    },
+  ],
   variable: "--font-vazirmatn",
   display: "swap",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
 });
 
-export const inter = Inter({
-  subsets: ["latin"],
+export const inter = {
   variable: "--font-inter",
-  display: "swap",
-});
+  className: "font-inter-resilient",
+};
+
 
