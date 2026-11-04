@@ -1,0 +1,67 @@
+/* Skills Root Ecosystem Tokens - Academic Emerald & Antique Gold */
+
+.skillsRoot {
+  /* Scoped Academic Emerald & Antique Gold Tokens */
+  --skills-emerald-base: #047857;
+  --skills-emerald-hover: #064e3b;
+  --skills-emerald-deep: #065f46;
+  --skills-emerald-dark: #022c22;
+  --skills-emerald-light: #ecfdf5;
+  --skills-emerald-border: #a7f3d0;
+  --skills-emerald-glow: rgba(4, 120, 87, 0.28);
+  --skills-emerald-subtle: rgba(4, 120, 87, 0.08);
+
+  --skills-gold-base: #f59e0b;
+  --skills-gold-deep: #b45309;
+  --skills-gold-light: #fef3c7;
+  --skills-gold-border: #fde68a;
+  --skills-gold-subtle: rgba(245, 158, 11, 0.12);
+
+  /* Primary Action & Brand Overrides */
+  --color-action: #047857;
+  --color-action-hover: #064e3b;
+  --color-action-focus: #059669;
+  --color-primary: #047857;
+  --color-primary-hover: #064e3b;
+  --color-link: #047857;
+  --color-focus: #059669;
+  --color-info-bg: #ecfdf5;
+  --color-info-text: #065f46;
+  --color-info-border: #a7f3d0;
+  --color-learning-teal: #059669;
+
+  min-block-size: 100vh;
+}
+
+:global(.dark) .skillsRoot,
+:global([data-theme="dark"]) .skillsRoot {
+  --skills-canvas: #041a13;
+  --skills-surface: #06281e;
+  --skills-border: #0d4a38;
+
+  --skills-emerald-base: #10b981;
+  --skills-emerald-hover: #34d399;
+  --skills-emerald-deep: #059669;
+  --skills-emerald-dark: #064e3b;
+  --skills-emerald-light: rgba(6, 78, 59, 0.35);
+  --skills-emerald-border: rgba(52, 211, 153, 0.3);
+
+  --skills-gold-base: #fbbf24;
+  --skills-gold-deep: #f59e0b;
+  --skills-gold-light: rgba(245, 158, 11, 0.16);
+  --skills-gold-border: rgba(251, 191, 36, 0.35);
+
+  --color-action: #10b981;
+  --color-action-hover: #34d399;
+  --color-action-focus: #059669;
+  --color-primary: #10b981;
+  --color-primary-hover: #34d399;
+  --color-link: #34d399;
+  --color-focus: #10b981;
+  --color-surface: #06281e;
+  --color-border: #0d4a38;
+  --color-info-bg: rgba(6, 78, 59, 0.35);
+  --color-info-text: #a7f3d0;
+  --color-info-border: rgba(52, 211, 153, 0.3);
+  --color-learning-teal: #34d399;
+}

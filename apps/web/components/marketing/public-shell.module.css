@@ -74,6 +74,218 @@
   filter: drop-shadow(0 4px 14px rgba(37, 99, 235, 0.35));
 }
 
+/* ----------------------------------------------------
+ * Dynamic Section Theming: Exact Page-Matching Palettes
+ * ---------------------------------------------------- */
+
+/* 1. School (High School English) -> Academic Royal Violet & Amethyst (#6d28d9 / #7c3aed) */
+.header[data-section-theme="school"] .brandLogo {
+  filter: hue-rotate(45deg) saturate(160%) brightness(1.05) drop-shadow(0 2px 8px rgba(109, 40, 217, 0.45));
+}
+.header[data-section-theme="school"] .brand:hover .brandLogo {
+  filter: hue-rotate(45deg) saturate(180%) brightness(1.15) drop-shadow(0 4px 16px rgba(109, 40, 217, 0.65));
+}
+.header[data-section-theme="school"] .brandName {
+  color: #6d28d9;
+}
+.header[data-section-theme="school"] .navActiveLink {
+  background: rgba(109, 40, 217, 0.12) !important;
+  color: #6d28d9 !important;
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.18) !important;
+}
+.header[data-section-theme="school"] .primaryCta,
+.header[data-section-theme="school"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #6d28d9 0%, #4c1d95 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(109, 40, 217, 0.48), 0 1px 3px rgba(76, 29, 149, 0.3) !important;
+}
+.header[data-section-theme="school"] .primaryCta:hover,
+.header[data-section-theme="school"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(109, 40, 217, 0.62), 0 2px 6px rgba(76, 29, 149, 0.35) !important;
+}
+
+/* 2. Teachers -> Warm Academic Amber & Burnt Orange (#ea580c / #c2410c) */
+.header[data-section-theme="teachers"] .brandLogo {
+  filter: hue-rotate(185deg) saturate(180%) brightness(1.08) drop-shadow(0 2px 8px rgba(234, 88, 12, 0.45));
+}
+.header[data-section-theme="teachers"] .brand:hover .brandLogo {
+  filter: hue-rotate(185deg) saturate(200%) brightness(1.18) drop-shadow(0 4px 16px rgba(234, 88, 12, 0.65));
+}
+.header[data-section-theme="teachers"] .brandName {
+  color: #ea580c;
+}
+.header[data-section-theme="teachers"] .navActiveLink {
+  background: rgba(234, 88, 12, 0.12) !important;
+  color: #c2410c !important;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.18) !important;
+}
+.header[data-section-theme="teachers"] .primaryCta,
+.header[data-section-theme="teachers"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(234, 88, 12, 0.48), 0 1px 3px rgba(194, 65, 12, 0.3) !important;
+}
+.header[data-section-theme="teachers"] .primaryCta:hover,
+.header[data-section-theme="teachers"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(234, 88, 12, 0.62), 0 2px 6px rgba(194, 65, 12, 0.35) !important;
+}
+
+/* 3. Classes -> Royal Blue & Studio Navy (#2563eb / #1e3a8a) */
+.header[data-section-theme="classes"] .brandLogo {
+  filter: hue-rotate(0deg) saturate(125%) brightness(1.02) drop-shadow(0 2px 8px rgba(37, 99, 235, 0.38));
+}
+.header[data-section-theme="classes"] .brand:hover .brandLogo {
+  filter: hue-rotate(0deg) saturate(145%) brightness(1.12) drop-shadow(0 4px 16px rgba(37, 99, 235, 0.6));
+}
+.header[data-section-theme="classes"] .brandName {
+  color: #2563eb;
+}
+.header[data-section-theme="classes"] .navActiveLink {
+  background: rgba(37, 99, 235, 0.12) !important;
+  color: #1d4ed8 !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.18) !important;
+}
+.header[data-section-theme="classes"] .primaryCta,
+.header[data-section-theme="classes"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(37, 99, 235, 0.45), 0 1px 3px rgba(30, 58, 138, 0.3) !important;
+}
+.header[data-section-theme="classes"] .primaryCta:hover,
+.header[data-section-theme="classes"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(37, 99, 235, 0.6), 0 2px 6px rgba(30, 58, 138, 0.35) !important;
+}
+
+/* 4. Skills -> Emerald & Forest Arcade (#047857 / #10b981) */
+.header[data-section-theme="skills"] .brandLogo {
+  filter: hue-rotate(280deg) saturate(135%) brightness(1.05) drop-shadow(0 2px 8px rgba(4, 120, 87, 0.4));
+}
+.header[data-section-theme="skills"] .brand:hover .brandLogo {
+  filter: hue-rotate(280deg) saturate(155%) brightness(1.15) drop-shadow(0 4px 16px rgba(4, 120, 87, 0.6));
+}
+.header[data-section-theme="skills"] .brandName {
+  color: #047857;
+}
+.header[data-section-theme="skills"] .navActiveLink {
+  background: rgba(4, 120, 87, 0.12) !important;
+  color: #047857 !important;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.18) !important;
+}
+.header[data-section-theme="skills"] .primaryCta,
+.header[data-section-theme="skills"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #047857 0%, #064e3b 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(4, 120, 87, 0.45), 0 1px 3px rgba(6, 78, 59, 0.3) !important;
+}
+.header[data-section-theme="skills"] .primaryCta:hover,
+.header[data-section-theme="skills"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(4, 120, 87, 0.6), 0 2px 6px rgba(6, 78, 59, 0.35) !important;
+}
+
+/* 5. Learn -> Gateway Gradient (Endoora Blue + Learning Teal) */
+.header[data-section-theme="learn"] .brandLogo {
+  filter: hue-rotate(345deg) saturate(135%) brightness(1.05) drop-shadow(0 2px 8px rgba(20, 184, 166, 0.35));
+}
+.header[data-section-theme="learn"] .brand:hover .brandLogo {
+  filter: hue-rotate(345deg) saturate(155%) brightness(1.1) drop-shadow(0 4px 16px rgba(37, 99, 235, 0.55));
+}
+.header[data-section-theme="learn"] .brandName {
+  background: linear-gradient(135deg, #2563eb, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header[data-section-theme="learn"] .navActiveLink {
+  background: color-mix(in srgb, #14b8a6 14%, transparent) !important;
+  color: #0f766e !important;
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.18) !important;
+}
+.header[data-section-theme="learn"] .primaryCta,
+.header[data-section-theme="learn"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(20, 184, 166, 0.4), 0 1px 3px rgba(37, 99, 235, 0.25) !important;
+}
+.header[data-section-theme="learn"] .primaryCta:hover,
+.header[data-section-theme="learn"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(20, 184, 166, 0.55), 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* 6. IELTS -> Academic Crimson & Champagne Gold (#9f1239 / #d97706) */
+.header[data-section-theme="ielts"] .brandLogo {
+  filter: hue-rotate(135deg) saturate(170%) brightness(1.05) drop-shadow(0 2px 8px rgba(159, 18, 57, 0.45));
+}
+.header[data-section-theme="ielts"] .brand:hover .brandLogo {
+  filter: hue-rotate(135deg) saturate(190%) brightness(1.15) drop-shadow(0 4px 16px rgba(159, 18, 57, 0.65));
+}
+.header[data-section-theme="ielts"] .brandName {
+  color: #9f1239;
+}
+.header[data-section-theme="ielts"] .navActiveLink {
+  background: rgba(159, 18, 57, 0.12) !important;
+  color: #9f1239 !important;
+  box-shadow: 0 2px 8px rgba(159, 18, 57, 0.18) !important;
+}
+.header[data-section-theme="ielts"] .primaryCta,
+.header[data-section-theme="ielts"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #9f1239 0%, #4c0519 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(159, 18, 57, 0.48), 0 1px 3px rgba(76, 5, 25, 0.3) !important;
+}
+.header[data-section-theme="ielts"] .primaryCta:hover,
+.header[data-section-theme="ielts"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #be123c 0%, #881337 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(159, 18, 57, 0.62), 0 2px 6px rgba(76, 5, 25, 0.35) !important;
+}
+
+/* 7. Pricing (Membership) -> Premium Sky Blue & Indigo (#0284c7 / #4f46e5) */
+.header[data-section-theme="pricing"] .brandLogo {
+  filter: hue-rotate(345deg) saturate(140%) brightness(1.05) drop-shadow(0 2px 8px rgba(2, 132, 199, 0.4));
+}
+.header[data-section-theme="pricing"] .brand:hover .brandLogo {
+  filter: hue-rotate(345deg) saturate(160%) brightness(1.15) drop-shadow(0 4px 16px rgba(2, 132, 199, 0.6));
+}
+.header[data-section-theme="pricing"] .brandName {
+  color: #0284c7;
+}
+.header[data-section-theme="pricing"] .navActiveLink {
+  background: rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.18) !important;
+}
+.header[data-section-theme="pricing"] .primaryCta,
+.header[data-section-theme="pricing"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(2, 132, 199, 0.45), 0 1px 3px rgba(79, 70, 229, 0.28) !important;
+}
+.header[data-section-theme="pricing"] .primaryCta:hover,
+.header[data-section-theme="pricing"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(2, 132, 199, 0.6), 0 2px 6px rgba(79, 70, 229, 0.35) !important;
+}
+
+/* 8. Home & General Routes -> Soft Rainbow Aurora Brand Gradient */
+.header[data-section-theme="home"] .brandLogo {
+  filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.25)) drop-shadow(0 0 12px rgba(139, 92, 246, 0.18));
+}
+.header[data-section-theme="home"] .brand:hover .brandLogo {
+  filter: drop-shadow(0 4px 14px rgba(37, 99, 235, 0.4)) drop-shadow(0 0 16px rgba(20, 184, 166, 0.28));
+}
+.header[data-section-theme="home"] .brandName {
+  background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 50%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header[data-section-theme="home"] .primaryCta,
+.header[data-section-theme="home"] .mobilePrimaryCta {
+  background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 55%, #14b8a6 100%) !important;
+  box-shadow: 0 3px 14px -1px rgba(139, 92, 246, 0.4), 0 1px 3px rgba(37, 99, 235, 0.25) !important;
+}
+.header[data-section-theme="home"] .primaryCta:hover,
+.header[data-section-theme="home"] .mobilePrimaryCta:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #a78bfa 55%, #2dd4bf 100%) !important;
+  box-shadow: 0 6px 20px -2px rgba(139, 92, 246, 0.55), 0 2px 6px rgba(20, 184, 166, 0.3) !important;
+}
+
+
 .brandCopy {
   display: flex;
   flex-direction: column;

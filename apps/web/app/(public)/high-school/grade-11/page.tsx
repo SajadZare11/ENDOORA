@@ -55,11 +55,11 @@ export default function Grade11OverviewPage() {
           marginBottom: "1.25rem",
         }}
       >
-        <Link href="/" style={{ color: "var(--color-link, #1d4ed8)", textDecoration: "none", fontWeight: 600 }}>
+        <Link href="/" style={{ color: "var(--school-violet-hover, #7c3aed)", textDecoration: "none", fontWeight: 600 }}>
           خانه
         </Link>
         <span>/</span>
-        <Link href="/skills/school" style={{ color: "var(--color-link, #1d4ed8)", textDecoration: "none", fontWeight: 600 }}>
+        <Link href="/skills/school" style={{ color: "var(--school-violet-hover, #7c3aed)", textDecoration: "none", fontWeight: 600 }}>
           زبان دبیرستان
         </Link>
         <span>/</span>
@@ -70,7 +70,7 @@ export default function Grade11OverviewPage() {
 
       <header style={{ marginBottom: "2rem", borderBottom: "1px solid var(--color-border, #e2e8f0)", paddingBottom: "1rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
-          <span style={{ background: "#eff6ff", color: "#2563eb", fontWeight: 700, fontSize: "0.8rem", padding: "0.25rem 0.65rem", borderRadius: "9999px" }}>
+          <span style={{ background: "#ede9fe", color: "#6d28d9", fontWeight: 700, fontSize: "0.8rem", padding: "0.25rem 0.65rem", borderRadius: "9999px", border: "1px solid #c4b5fd" }}>
             متوسطه دوم • پایه یازدهم
           </span>
           <span style={{ background: "#f0fdf4", color: "#166534", fontWeight: 700, fontSize: "0.8rem", padding: "0.25rem 0.65rem", borderRadius: "9999px" }}>
@@ -94,18 +94,18 @@ export default function Grade11OverviewPage() {
               key={lesson.number}
               style={{
                 background: "var(--color-surface, #ffffff)",
-                border: isActive ? "2px solid #3b82f6" : "1px solid var(--color-border, #e2e8f0)",
+                border: isActive ? "2px solid #7c3aed" : "1px solid var(--color-border, #e2e8f0)",
                 borderRadius: "14px",
                 padding: "1.25rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                boxShadow: isActive ? "0 4px 12px rgba(59, 130, 246, 0.12)" : "none",
+                boxShadow: isActive ? "0 4px 14px rgba(124, 58, 237, 0.20)" : "none",
               }}
             >
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <span style={{ fontWeight: 800, color: "#2563eb", fontSize: "0.9rem" }}>
+                  <span style={{ fontWeight: 800, color: "#6d28d9", fontSize: "0.9rem" }}>
                     درس شماره {lesson.number}
                   </span>
                   <span
@@ -122,19 +122,19 @@ export default function Grade11OverviewPage() {
                   </span>
                 </div>
 
-                <h2 style={{ margin: "0 0 0.25rem 0", fontSize: "1.25rem", fontWeight: 800, color: "#0f172a" }}>
+                <h2 style={{ margin: "0 0 0.25rem 0", fontSize: "1.25rem", fontWeight: 800, color: "var(--color-text, #0f172a)" }}>
                   {lesson.titleFa}
                 </h2>
-                <div style={{ fontFamily: "var(--font-family-latin, sans-serif)", color: "#3b82f6", fontSize: "0.9rem", fontWeight: 600, marginBottom: "0.75rem", direction: "ltr", textAlign: "right" }}>
+                <div style={{ fontFamily: "var(--font-family-latin, sans-serif)", color: "#7c3aed", fontSize: "0.9rem", fontWeight: 600, marginBottom: "0.75rem", direction: "ltr", textAlign: "right" }}>
                   {lesson.titleEn}
                 </div>
 
-                <div style={{ padding: "0.5rem 0.75rem", background: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0", marginBottom: "0.75rem", fontSize: "0.85rem" }}>
-                  <strong style={{ color: "#334155" }}>مبحث گرامر: </strong>
-                  <span style={{ color: "#475569" }}>{lesson.grammarTopic}</span>
+                <div style={{ padding: "0.5rem 0.75rem", background: "var(--color-canvas, #f8fafc)", borderRadius: "8px", border: "1px solid var(--color-border, #e2e8f0)", marginBottom: "0.75rem", fontSize: "0.85rem" }}>
+                  <strong style={{ color: "var(--color-text, #334155)" }}>مبحث گرامر: </strong>
+                  <span style={{ color: "var(--color-text-secondary, #475569)" }}>{lesson.grammarTopic}</span>
                 </div>
 
-                <p style={{ margin: "0 0 1rem 0", color: "#64748b", fontSize: "0.85rem", lineHeight: 1.5 }}>
+                <p style={{ margin: "0 0 1rem 0", color: "var(--color-muted, #64748b)", fontSize: "0.85rem", lineHeight: 1.5 }}>
                   {lesson.description}
                 </p>
               </div>
@@ -147,13 +147,14 @@ export default function Grade11OverviewPage() {
                       display: "block",
                       textAlign: "center",
                       padding: "0.65rem 1rem",
-                      background: "#2563eb",
+                      background: "linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)",
                       color: "#ffffff",
                       borderRadius: "8px",
                       fontWeight: 700,
                       textDecoration: "none",
                       fontSize: "0.9rem",
-                      transition: "background 0.2s ease",
+                      boxShadow: "0 4px 12px rgba(124, 58, 237, 0.25)",
+                      transition: "transform 0.2s ease, box-shadow 0.2s ease",
                     }}
                   >
                     شروع آموزش ۷ بخشی درس {lesson.number} ←

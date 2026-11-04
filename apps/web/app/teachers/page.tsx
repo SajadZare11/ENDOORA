@@ -126,6 +126,10 @@ export default function TeachersDirectoryPage() {
                 <span>⭐</span>
                 <span>اساتید تاییدشده و ارزیابی‌شده ایندورا</span>
               </span>
+              <span className={styles.heroBadgeSecondary}>
+                <span>🎓</span>
+                <span>استاندارد بین‌المللی تدریس ۲۰۲۶</span>
+              </span>
             </div>
 
             <h1 id="teachers-heading" className={styles.heroTitle}>
@@ -138,18 +142,18 @@ export default function TeachersDirectoryPage() {
             </p>
 
             <div className={styles.trustRow}>
-              <span className={styles.trustItem}>
+              <div className={styles.trustItem}>
                 <span className={styles.trustIcon} aria-hidden="true">✓</span>
-                احراز صلاحیت و آزمون ارزیابی تدریس
-              </span>
-              <span className={styles.trustItem}>
+                <span>احراز صلاحیت و آزمون ارزیابی تدریس</span>
+              </div>
+              <div className={styles.trustItem}>
                 <span className={styles.trustIcon} aria-hidden="true">★</span>
-                ۱۰۰٪ نظرات مبتنی بر جلسات واقعی برگزارشده
-              </span>
-              <span className={styles.trustItem}>
+                <span>۱۰۰٪ نظرات مبتنی بر جلسات واقعی برگزارشده</span>
+              </div>
+              <div className={styles.trustItem}>
                 <span className={styles.trustIcon} aria-hidden="true">🔒</span>
-                ضمانت کامل بازگشت وجه در صورت عدم رضایت
-              </span>
+                <span>ضمانت کامل بازگشت وجه در صورت عدم رضایت</span>
+              </div>
             </div>
           </div>
         </section>

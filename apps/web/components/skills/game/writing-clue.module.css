@@ -311,7 +311,7 @@
 .stepActive {
   background: #eff6ff !important;
   border-color: #3b82f6 !important;
-  color: #1d4ed8 !important;
+  color: #064e3b !important;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
 }
 :global([data-theme="dark"]) .stepActive {
@@ -484,7 +484,7 @@
 .wordChipPlaced {
   background: #3b82f6 !important;
   color: #ffffff !important;
-  border-color: #2563eb !important;
+  border-color: #047857 !important;
   box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
 }
 
@@ -531,7 +531,7 @@
 }
 
 .submitBtn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #047857, #064e3b);
   color: #ffffff;
   border: none;
   border-radius: 0.75rem;
@@ -951,7 +951,7 @@
 .summaryScoreVal {
   font-size: 1.25rem;
   font-weight: 900;
-  color: #2563eb;
+  color: #047857;
 }
 :global([data-theme="dark"]) .summaryScoreVal {
   color: #60a5fa;
@@ -1342,7 +1342,7 @@
 }
 
 .briefingStartBtn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #047857, #064e3b);
   color: #ffffff;
   border: none;
   border-radius: 0.75rem;
@@ -2014,7 +2014,7 @@
 
 .finalWordCountBadge {
   font-size: 0.72rem;
-  color: #2563eb;
+  color: #047857;
   background: #eff6ff;
   padding: 0.15rem 0.55rem;
   border-radius: 9999px;

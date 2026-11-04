@@ -6,13 +6,48 @@
 
 /* Main Container */
 .container {
-  max-inline-size: 960px;
+  --color-action: #5b21b6;
+  --color-action-hover: #4c1d95;
+  --color-action-active: #3b0764;
+  --color-primary: #5b21b6;
+  --color-primary-hover: #4c1d95;
+  --color-link: #5b21b6;
+  --color-focus: #7c3aed;
+  --color-info-bg: #f5f3ff;
+  --color-info-text: #4c1d95;
+  --color-info-border: #ddd6fe;
+
+  --tamrin-gold-base: #f59e0b;
+  --tamrin-gold-deep: #b45309;
+  --tamrin-gold-light: #fef3c7;
+  --tamrin-gold-border: #fde68a;
+
+  max-inline-size: min(1680px, 96vw);
   margin-inline: auto;
-  padding-inline: var(--space-4, 1rem);
+  padding-inline: clamp(1rem, 3vw, 3rem);
   padding-block: var(--space-6, 1.5rem);
   color: var(--color-text);
   direction: rtl;
   font-family: var(--font-family-persian);
+}
+
+:global(.dark) .container,
+:global([data-theme="dark"]) .container {
+  --color-action: #a78bfa;
+  --color-action-hover: #c4b5fd;
+  --color-action-active: #8b5cf6;
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #a78bfa;
+  --color-link: #c4b5fd;
+  --color-focus: #a78bfa;
+  --color-info-bg: rgba(109, 40, 217, 0.22);
+  --color-info-text: #ddd6fe;
+  --color-info-border: rgba(167, 139, 250, 0.35);
+
+  --tamrin-gold-base: #fbbf24;
+  --tamrin-gold-deep: #f59e0b;
+  --tamrin-gold-light: rgba(245, 158, 11, 0.16);
+  --tamrin-gold-border: rgba(251, 191, 36, 0.35);
 }
 
 /* Breadcrumbs Navigation */
@@ -1016,4 +1051,594 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4, 1rem);
+}
+
+/* ==========================================================================
+   Tamrin20 Hub Page ("تمرین تا ۲۰") - Premium Academic Royal Violet & Gold Theme
+   ========================================================================== */
+
+/* Hero Banner */
+.hubHero {
+  position: relative;
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 40%, #6d28d9 75%, #7c3aed 100%);
+  color: #ffffff;
+  border-radius: var(--radius-card, 20px);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  margin-block-end: var(--space-8, 2rem);
+  box-shadow: 0 16px 36px -8px rgba(76, 29, 149, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.hubHeroGlow {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  inline-size: 260px;
+  block-size: 260px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.hubHeroGlowAlt {
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  inline-size: 300px;
+  block-size: 300px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(30px);
+}
+
+.hubHeroBadgeRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-3, 0.85rem);
+  position: relative;
+  z-index: 2;
+}
+
+.hubHeroBadgeGrade {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill, 999px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hubHeroBadgeYears {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.hubHeroBadgeGold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hubHeroTitle {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  margin: 0 0 var(--space-3, 0.75rem) 0;
+  line-height: 1.3;
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.02em;
+}
+
+.hubHeroTitleGold {
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hubHeroDesc {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+  line-height: 1.7;
+  opacity: 0.95;
+  max-inline-size: min(100%, 85rem);
+  position: relative;
+  z-index: 2;
+  font-weight: 400;
+}
+
+/* Hero Mini Analytics Tracker */
+.hubStatsDashboard {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hubStatItem {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  backdrop-filter: blur(8px);
+}
+
+.hubStatLabel {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.hubStatValue {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: block;
+}
+
+.hubStatLink {
+  grid-column: 1 / -1;
+  color: #fef08a;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.hubStatLink:hover {
+  transform: translateX(-3px);
+  color: #ffffff;
+}
+
+/* Lesson Selector Tabs Section */
+.hubSection {
+  margin-block-end: var(--space-8, 2rem);
+}
+
+.hubSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.hubSectionTitle {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 850;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+.hubSectionSubtitle {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.lessonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-4, 1.25rem);
+}
+
+.lessonCard {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card, 16px);
+  padding: 1.15rem;
+  text-align: right;
+  cursor: pointer;
+  transition: all var(--motion-normal) var(--motion-ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+}
+
+.lessonCard:hover {
+  transform: translateY(-3px);
+  border-color: #a78bfa;
+  box-shadow: 0 8px 20px -4px rgba(109, 40, 217, 0.15);
+}
+
+.lessonCardActive {
+  background: var(--color-surface);
+  border: 2px solid #6d28d9;
+  border-top: 4px solid var(--tamrin-gold-base, #f59e0b);
+  box-shadow: 0 10px 24px -4px rgba(109, 40, 217, 0.25);
+  transform: translateY(-2px);
+}
+
+.lessonCardTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.lessonCardIconBox {
+  inline-size: 42px;
+  block-size: 42px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.lessonCard:hover .lessonCardIconBox {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.lessonCardPill {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-canvas);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+}
+
+.lessonCardPillActive {
+  background: #f5f3ff;
+  color: #5b21b6;
+  border-color: #ddd6fe;
+}
+
+.lessonCardTitleFa {
+  font-size: 1.1rem;
+  font-weight: 850;
+  color: var(--color-text);
+  margin-block-end: 0.25rem;
+  display: block;
+}
+
+.lessonCardTitleEn {
+  font-size: 0.85rem;
+  color: #6d28d9;
+  font-family: var(--font-family-latin);
+  font-weight: 700;
+  display: block;
+  margin-block-end: var(--space-2, 0.5rem);
+}
+
+.lessonCardProgressTag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill, 999px);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* 5 Skills Practice Grid */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-5, 1.25rem);
+}
+
+.skillCard {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-top: 3.5px solid #6d28d9;
+  border-radius: var(--radius-card, 18px);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  transition: all var(--motion-normal) var(--motion-ease);
+  position: relative;
+}
+
+.skillCard:hover {
+  transform: translateY(-4px);
+  border-color: #a78bfa;
+  border-top-color: var(--tamrin-gold-base, #f59e0b);
+  box-shadow: 0 12px 28px -6px rgba(109, 40, 217, 0.2);
+}
+
+.skillCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.skillIconContainer {
+  inline-size: 46px;
+  block-size: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border: 1px solid #ddd6fe;
+  box-shadow: 0 2px 6px rgba(109, 40, 217, 0.08);
+}
+
+.skillTotalPill {
+  font-size: 0.78rem;
+  font-weight: 750;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--school-violet-light, #f5f3ff);
+  color: var(--school-violet-base, #5b21b6);
+  border: 1px solid var(--school-violet-border, #ddd6fe);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.skillTitleFa {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 850;
+  color: var(--color-text);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.skillTitleEn {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-family: var(--font-family-latin);
+  font-weight: 600;
+}
+
+.skillDesc {
+  margin: 0 0 var(--space-3, 0.75rem) 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  font-weight: 450;
+}
+
+.skillGoldenBadge {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-block-end: var(--space-3, 0.75rem);
+}
+
+.skillProgressWrapper {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  margin-block-end: var(--space-3, 0.75rem);
+  font-size: 0.8rem;
+}
+
+.skillProgressMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 0.35rem;
+}
+
+.skillProgressBarOuter {
+  inline-size: 100%;
+  block-size: 6px;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skillProgressBarInner {
+  block-size: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.skillStartButton {
+  display: block;
+  text-align: center;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(135deg, #5b21b6 0%, #4c1d95 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 14px rgba(91, 33, 182, 0.28);
+  transition: all var(--motion-fast) ease;
+  margin-block-start: var(--space-2, 0.5rem);
+}
+
+.skillStartButton:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+  box-shadow: 0 6px 20px rgba(91, 33, 182, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* 4-Step Golden 20 Strategy Roadmap */
+.strategyRoadmap {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-top: 4px solid var(--tamrin-gold-base, #f59e0b);
+  border-radius: var(--radius-card, 20px);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+}
+
+.strategyHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-block-end: var(--space-4, 1rem);
+}
+
+.strategyHeaderTitle {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.strategyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4, 1rem);
+}
+
+.strategyCard {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.strategyCard:hover {
+  transform: translateY(-2px);
+  border-color: #fde68a;
+}
+
+.strategyCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.strategyStepNumber {
+  inline-size: 26px;
+  block-size: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
+}
+
+.strategyStepIcon {
+  font-size: 1.25rem;
+}
+
+.strategyCardTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.strategyCardDesc {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark Mode Overrides for Hub Page */
+:global(.dark) .hubHero,
+:global([data-theme="dark"]) .hubHero {
+  background: linear-gradient(135deg, #2e1065 0%, #3b0764 45%, #4c1d95 85%, #5b21b6 100%);
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6);
+}
+
+:global(.dark) .lessonCardActive,
+:global([data-theme="dark"]) .lessonCardActive {
+  background: #1e1136;
+  border-color: #a78bfa;
+  border-top-color: #fbbf24;
+}
+
+:global(.dark) .skillCard,
+:global([data-theme="dark"]) .skillCard {
+  background: #160b24;
+  border-color: #2e1065;
+  border-top-color: #a78bfa;
+}
+
+:global(.dark) .skillCard:hover,
+:global([data-theme="dark"]) .skillCard:hover {
+  border-color: #a78bfa;
+  border-top-color: #fbbf24;
+  box-shadow: 0 12px 28px -6px rgba(109, 40, 217, 0.35);
+}
+
+:global(.dark) .skillIconContainer,
+:global([data-theme="dark"]) .skillIconContainer {
+  background: #2e1065;
+  border-color: #4c1d95;
+}
+
+:global(.dark) .skillGoldenBadge,
+:global([data-theme="dark"]) .skillGoldenBadge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fde047;
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+:global(.dark) .strategyRoadmap,
+:global([data-theme="dark"]) .strategyRoadmap {
+  background: #160b24;
+  border-color: #2e1065;
+  border-top-color: #fbbf24;
+}
+
+:global(.dark) .strategyCard,
+:global([data-theme="dark"]) .strategyCard {
+  background: #11071c;
+  border-color: #2e1065;
 }

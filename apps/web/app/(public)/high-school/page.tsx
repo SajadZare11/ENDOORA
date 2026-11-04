@@ -15,6 +15,10 @@ const HIGH_SCHOOL_GRADES = [
     status: "active",
     highlight: "تمام ۴ درس پایه دهم (نجات طبیعت، شگفتی‌های خلقت، ارزش دانش، جهان‌گردی) کاملاً آماده و تعاملی هستند.",
     description: "شامل ۴ درس جامع: نجات طبیعت، شگفتی‌های خلقت، ارزش دانش، و ایران‌گردی و جهان‌گردی.",
+    themeColor: "#8b5cf6",
+    themeGradient: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+    themeShadow: "0 4px 14px rgba(139, 92, 246, 0.18)",
+    badgeBg: "#f5f3ff",
   },
   {
     grade: "پایه یازدهم (Grade 11)",
@@ -24,6 +28,10 @@ const HIGH_SCHOOL_GRADES = [
     status: "active",
     highlight: "تمام ۳ درس پایه یازدهم (شناخت مردم، سبک زندگی سالم، هنر و فرهنگ) کاملاً آماده و تعاملی هستند.",
     description: "شامل ۳ درس تخصصی برای ارتقای دامنه واژگان و مهارت درک مطلب کنکور و نهایی.",
+    themeColor: "#7c3aed",
+    themeGradient: "linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)",
+    themeShadow: "0 4px 14px rgba(124, 58, 237, 0.20)",
+    badgeBg: "#ede9fe",
   },
   {
     grade: "پایه دوازدهم (Grade 12)",
@@ -33,6 +41,10 @@ const HIGH_SCHOOL_GRADES = [
     status: "active",
     highlight: "تمام ۳ درس پایه دوازدهم (حس قدردانی، فرهنگ لغت و انرژی‌های تجدیدپذیر) کاملاً آماده، استقرایی و تعاملی هستند.",
     description: "تمرکز ویژه بر امتحانات نهایی خرداد، تست‌های کنکور سراسری، گرامر مجهول و شرطی، کارگاه ضرب‌المثل‌ها و پاراگراف‌نویسی کامل.",
+    themeColor: "#5b21b6",
+    themeGradient: "linear-gradient(135deg, #5b21b6 0%, #4c1d95 100%)",
+    themeShadow: "0 4px 14px rgba(91, 33, 182, 0.25)",
+    badgeBg: "#f5f3ff",
   },
 ];
 
@@ -40,7 +52,7 @@ export default function HighSchoolRootPage() {
   return (
     <div style={{ maxInlineSize: "1050px", marginInline: "auto", padding: "1.5rem 1rem", direction: "rtl" }}>
       <header style={{ marginBottom: "2rem", borderBottom: "1px solid var(--color-border, #e2e8f0)", paddingBottom: "1rem" }}>
-        <span style={{ background: "#eff6ff", color: "#2563eb", fontWeight: 700, fontSize: "0.8rem", padding: "0.25rem 0.65rem", borderRadius: "9999px" }}>
+        <span style={{ background: "var(--school-violet-light, #f5f3ff)", color: "var(--school-violet-base, #6d28d9)", fontWeight: 700, fontSize: "0.8rem", padding: "0.25rem 0.65rem", borderRadius: "9999px", border: "1px solid var(--school-violet-border, #ddd6fe)" }}>
           مرکز آموزش دوره دوم متوسطه
         </span>
         <h1 style={{ margin: "0.5rem 0", fontSize: "1.75rem", fontWeight: 800, color: "var(--color-text, #0f172a)" }}>
@@ -54,7 +66,7 @@ export default function HighSchoolRootPage() {
       {/* Featured Tamrin 20 Card */}
       <section
         style={{
-          background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
+          background: "linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%)",
           color: "#ffffff",
           borderRadius: "14px",
           padding: "1.5rem",
@@ -64,7 +76,7 @@ export default function HighSchoolRootPage() {
           alignItems: "center",
           flexWrap: "wrap",
           gap: "1.25rem",
-          boxShadow: "0 8px 20px -4px rgba(37, 99, 235, 0.25)",
+          boxShadow: "0 10px 28px -4px rgba(109, 40, 217, 0.35)",
         }}
       >
         <div>
@@ -76,20 +88,23 @@ export default function HighSchoolRootPage() {
                 fontWeight: 700,
                 padding: "0.2rem 0.6rem",
                 borderRadius: "999px",
+                backdropFilter: "blur(4px)",
               }}
             >
               بخش ویژه امتحانات نهایی
             </span>
             <span
               style={{
-                background: "#22c55e",
+                background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+                color: "#ffffff",
                 fontSize: "0.75rem",
                 fontWeight: 700,
                 padding: "0.2rem 0.6rem",
                 borderRadius: "999px",
+                boxShadow: "0 2px 8px rgba(245, 158, 11, 0.4)",
               }}
             >
-              زبان دوازدهم (Vision 3)
+              ⭐ زبان دوازدهم (Vision 3)
             </span>
           </div>
           <h2 style={{ margin: "0.25rem 0", fontSize: "1.35rem", fontWeight: 800 }}>
@@ -104,7 +119,7 @@ export default function HighSchoolRootPage() {
           href="/high-school/grade-12/tamrin20"
           style={{
             background: "#ffffff",
-            color: "#1d4ed8",
+            color: "#5b21b6",
             padding: "0.75rem 1.25rem",
             borderRadius: "10px",
             fontWeight: 800,
@@ -113,7 +128,7 @@ export default function HighSchoolRootPage() {
             display: "inline-flex",
             alignItems: "center",
             gap: "0.5rem",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
             whiteSpace: "nowrap",
           }}
         >
@@ -130,18 +145,18 @@ export default function HighSchoolRootPage() {
               key={idx}
               style={{
                 background: "var(--color-surface, #ffffff)",
-                border: isActive ? "2px solid #2563eb" : "1px solid var(--color-border, #e2e8f0)",
+                border: isActive ? `2px solid ${g.themeColor}` : "1px solid var(--color-border, #e2e8f0)",
                 borderRadius: "14px",
                 padding: "1.25rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                boxShadow: isActive ? "0 4px 14px rgba(37, 99, 235, 0.15)" : "none",
+                boxShadow: isActive ? g.themeShadow : "none",
               }}
             >
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#2563eb" }}>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: g.themeColor }}>
                     کتاب درسی: {g.book}
                   </span>
                   <span
@@ -158,15 +173,15 @@ export default function HighSchoolRootPage() {
                   </span>
                 </div>
 
-                <h2 style={{ margin: "0 0 0.5rem 0", fontSize: "1.3rem", fontWeight: 800, color: "#0f172a" }}>
+                <h2 style={{ margin: "0 0 0.5rem 0", fontSize: "1.3rem", fontWeight: 800, color: "var(--color-text, #0f172a)" }}>
                   {g.grade}
                 </h2>
 
-                <p style={{ margin: "0 0 0.75rem 0", color: "#475569", fontSize: "0.85rem", lineHeight: 1.5 }}>
+                <p style={{ margin: "0 0 0.75rem 0", color: "var(--color-text-secondary, #475569)", fontSize: "0.85rem", lineHeight: 1.5 }}>
                   {g.description}
                 </p>
 
-                <div style={{ padding: "0.5rem 0.75rem", background: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0", marginBottom: "1rem", fontSize: "0.8rem", color: "#1e293b" }}>
+                <div style={{ padding: "0.5rem 0.75rem", background: "var(--color-canvas, #f8fafc)", borderRadius: "8px", border: "1px solid var(--color-border, #e2e8f0)", marginBottom: "1rem", fontSize: "0.8rem", color: "var(--color-text, #1e293b)" }}>
                   💡 <strong>نکته: </strong>{g.highlight}
                 </div>
               </div>
@@ -179,12 +194,13 @@ export default function HighSchoolRootPage() {
                       display: "block",
                       textAlign: "center",
                       padding: "0.65rem 1rem",
-                      background: "#2563eb",
+                      background: g.themeGradient,
                       color: "#ffffff",
                       borderRadius: "8px",
                       fontWeight: 700,
                       textDecoration: "none",
                       fontSize: "0.9rem",
+                      boxShadow: `0 3px 10px -2px ${g.themeColor}55`,
                     }}
                   >
                     ورود به دروس {g.book} ({g.grade.split(" ")[0]} {g.grade.split(" ")[1]}) ←

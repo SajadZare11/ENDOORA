@@ -28,6 +28,39 @@ const SKILL_DESCRIPTIONS: Record<Tamrin20Skill, string> = {
   writing: "جملات مرکب، ربط‌دهنده‌ها، ساختار پاراگراف و Topic Sentence",
 };
 
+const LESSON_THEMES: Record<number, { icon: string; highlight: string }> = {
+  1: { icon: "🤝", highlight: "حس قدردانی و احترام" },
+  2: { icon: "📚", highlight: "فرهنگ لغت و کاربردها" },
+  3: { icon: "⚡", highlight: "انرژی‌های پاک و تجدیدپذیر" },
+};
+
+const STRATEGY_STEPS = [
+  {
+    step: 1,
+    icon: "🌟",
+    title: "شروع با ۲۰ تست طلایی",
+    desc: "حل ۲۰ سوال پرتکرار و منتخب از امتحانات نهایی ادوار گذشته برای سنجش سریع مهم‌ترین تیپ‌های تستی.",
+  },
+  {
+    step: 2,
+    icon: "⚡",
+    title: "بازخورد هوشمند آنی",
+    desc: "دریافت فوری رنگ سبز با نکات تکمیلی یا رنگ قرمز همراه با پاسخ تشریحی کامل بلافاصله پس از هر پاسخ.",
+  },
+  {
+    step: 3,
+    icon: "🔍",
+    title: "تحلیل تشریحی خط‌به‌خط",
+    desc: "بررسی عمیق مترادف‌ها، متضادها، تله‌های تستی پرتکرار و ساختارهای گرامری مهم به کار رفته در هر تست.",
+  },
+  {
+    step: 4,
+    icon: "🏆",
+    title: "تسلط کامل بر ۱۰۰۰ تست",
+    desc: "امکان حل نامحدود کل سوالات طبقه‌بندی‌شده آزمون‌های نهایی جهت تثبیت کامل نمره ۲۰ در خردادماه.",
+  },
+];
+
 export const Tamrin20HubView: React.FC = () => {
   const { progress } = useTamrin20Progress();
   const [selectedLessonTab, setSelectedLessonTab] = useState<number>(1);
@@ -50,62 +83,26 @@ export const Tamrin20HubView: React.FC = () => {
       </nav>
 
       {/* Hero Header */}
-      <header
-        style={{
-          background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
-          color: "#ffffff",
-          borderRadius: "16px",
-          padding: "2rem 1.5rem",
-          marginBottom: "2rem",
-          boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.3)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.75rem" }}>
-          <span
-            style={{
-              background: "rgba(255, 255, 255, 0.2)",
-              color: "#ffffff",
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              padding: "0.25rem 0.75rem",
-              borderRadius: "999px",
-              backdropFilter: "blur(4px)",
-            }}
-          >
+      <header className={styles.hubHero}>
+        <div className={styles.hubHeroGlow} aria-hidden="true" />
+        <div className={styles.hubHeroGlowAlt} aria-hidden="true" />
+
+        <div className={styles.hubHeroBadgeRow}>
+          <span className={styles.hubHeroBadgeGrade}>
             پایه دوازدهم • Vision 3
           </span>
-          <span
-            style={{
-              background: "#22c55e",
-              color: "#ffffff",
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              padding: "0.25rem 0.75rem",
-              borderRadius: "999px",
-            }}
-          >
+          <span className={styles.hubHeroBadgeYears}>
             امتحانات نهایی ۱۳۹۸ تا ۱۴۰۴
           </span>
-          <span
-            style={{
-              background: "rgba(255, 255, 255, 0.15)",
-              color: "#ffffff",
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              padding: "0.25rem 0.75rem",
-              borderRadius: "999px",
-            }}
-          >
-            بیش از ۱۰۰۰ سوال طبقه‌بندی‌شده
+          <span className={styles.hubHeroBadgeGold}>
+            ⭐ بیش از ۱۰۰۰ سوال طبقه‌بندی‌شده
           </span>
         </div>
 
-        <h1 style={{ fontSize: "1.85rem", fontWeight: 900, margin: "0 0 0.5rem 0", lineHeight: 1.3 }}>
-          تمرین تا ۲۰ (زبان انگلیسی پایه دوازدهم)
+        <h1 className={styles.hubHeroTitle}>
+          <span className={styles.hubHeroTitleGold}>تمرین تا ۲۰</span> (زبان انگلیسی پایه دوازدهم)
         </h1>
-        <p style={{ margin: 0, fontSize: "0.95rem", lineHeight: 1.6, opacity: 0.95, maxInlineSize: "48rem" }}>
+        <p className={styles.hubHeroDesc}>
           بانک تعاملی و طبقه‌بندی‌شده سوالات امتحانات نهایی به تفکیک درس و مهارت. در هر بخش ابتدا ۲۰ سوال پرتکرار
           و مهم را تمرین کنید؛ با هر پاسخ، بازخورد آنی (سبز با توضیحات تکمیلی یا قرمز با پاسخ صحیح تشریحی) دریافت
           کنید و در انتها به تمام سوالات دسترسی پیدا نمایید.
@@ -113,51 +110,48 @@ export const Tamrin20HubView: React.FC = () => {
 
         {/* Live Mini Stats Tracker */}
         {totalAttempted > 0 && (
-          <div
-            style={{
-              marginTop: "1.25rem",
-              paddingTop: "1rem",
-              borderTop: "1px solid rgba(255, 255, 255, 0.2)",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "1.5rem",
-              fontSize: "0.85rem",
-            }}
-          >
-            <span>
-              🎯 سوالات حل شده: <strong>{totalAttempted}</strong> ({totalCorrect} درست)
-            </span>
-            <span>
-              📊 دقت کلی: <strong>{accuracy}٪</strong>
-            </span>
-            <span>
-              ⏱️ زمان مطالعه: <strong>{formatTimeSpentFa(totalTimeSeconds)}</strong>
-            </span>
-            <Link
-              href="/progress"
-              style={{
-                color: "#fef08a",
-                fontWeight: 700,
-                textDecoration: "underline",
-                marginInlineStart: "auto",
-              }}
-            >
-              مشاهده کارنامه کامل در پنل ←
+          <div className={styles.hubStatsDashboard}>
+            <div className={styles.hubStatItem}>
+              <span className={styles.hubStatLabel}>🎯 سوالات حل شده</span>
+              <strong className={styles.hubStatValue}>{totalAttempted}</strong>
+            </div>
+            <div className={styles.hubStatItem}>
+              <span className={styles.hubStatLabel}>✅ پاسخ‌های درست</span>
+              <strong className={styles.hubStatValue}>{totalCorrect}</strong>
+            </div>
+            <div className={styles.hubStatItem}>
+              <span className={styles.hubStatLabel}>📊 درصد دقت کلی</span>
+              <strong className={styles.hubStatValue}>{accuracy}٪</strong>
+            </div>
+            <div className={styles.hubStatItem}>
+              <span className={styles.hubStatLabel}>⏱️ زمان مطالعه</span>
+              <strong className={styles.hubStatValue}>{formatTimeSpentFa(totalTimeSeconds)}</strong>
+            </div>
+            <Link href="/progress" className={styles.hubStatLink}>
+              مشاهده کارنامه تحلیلی کامل در پنل کاربر ←
             </Link>
           </div>
         )}
       </header>
 
       {/* Lesson Selector Tabs */}
-      <section style={{ marginBottom: "1.5rem" }} aria-label="انتخاب درس">
-        <h2 style={{ fontSize: "1.1rem", fontWeight: 800, marginBottom: "0.75rem", color: "var(--color-text, #0f172a)" }}>
-          درس مورد نظر را انتخاب کنید:
-        </h2>
+      <section className={styles.hubSection} aria-label="انتخاب درس">
+        <div className={styles.hubSectionHeader}>
+          <div>
+            <h2 className={styles.hubSectionTitle}>
+              <span>📚</span> انتخاب درس کتاب انگلیسی ۳ (Vision 3):
+            </h2>
+            <p className={styles.hubSectionSubtitle}>
+              درس مورد نظر را برای حل سوالات طبقه‌بندی‌شده انتخاب کنید:
+            </p>
+          </div>
+        </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "0.75rem" }}>
+        <div className={styles.lessonGrid}>
           {[1, 2, 3].map((num) => {
             const lessonObj = ALL_LESSONS[num];
             const isSelected = selectedLessonTab === num;
+            const theme = LESSON_THEMES[num] || { icon: "📖", highlight: "" };
 
             // Compute student stats for this lesson
             let lessonAttempted = 0;
@@ -178,43 +172,51 @@ export const Tamrin20HubView: React.FC = () => {
                 key={num}
                 type="button"
                 onClick={() => setSelectedLessonTab(num)}
-                style={{
-                  background: isSelected ? "var(--color-surface, #ffffff)" : "var(--color-canvas, #f8fafc)",
-                  border: isSelected ? "2px solid #2563eb" : "1px solid var(--color-border, #e2e8f0)",
-                  borderRadius: "12px",
-                  padding: "1rem",
-                  textAlign: "right",
-                  cursor: "pointer",
-                  boxShadow: isSelected ? "0 4px 12px rgba(37, 99, 235, 0.12)" : "none",
-                  transition: "all 0.2s ease",
-                }}
+                className={`${styles.lessonCard} ${isSelected ? styles.lessonCardActive : ""}`}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 700, color: isSelected ? "#2563eb" : "#64748b" }}>
-                    درس {num}
+                <div>
+                  <div className={styles.lessonCardTopRow}>
+                    <div className={styles.lessonCardIconBox}>
+                      {theme.icon}
+                    </div>
+                    <span className={`${styles.lessonCardPill} ${isSelected ? styles.lessonCardPillActive : ""}`}>
+                      درس {num}
+                    </span>
+                  </div>
+
+                  <strong className={styles.lessonCardTitleFa}>
+                    {lessonObj?.titleFa}
+                  </strong>
+                  <span className={styles.lessonCardTitleEn}>
+                    {lessonObj?.titleEn}
                   </span>
-                  {lessonAttempted > 0 && (
+                </div>
+
+                <div>
+                  {lessonAttempted > 0 ? (
                     <span
+                      className={styles.lessonCardProgressTag}
                       style={{
-                        fontSize: "0.75rem",
-                        fontWeight: 700,
-                        padding: "0.15rem 0.45rem",
-                        borderRadius: "999px",
                         background: lessonAcc >= 70 ? "#dcfce7" : "#fef3c7",
                         color: lessonAcc >= 70 ? "#166534" : "#92400e",
+                        border: `1px solid ${lessonAcc >= 70 ? "#86efac" : "#fde68a"}`,
                       }}
                     >
-                      {lessonAcc}٪ ({lessonAttempted} تست)
+                      {lessonAcc >= 70 ? "✅" : "⚠️"} {lessonAcc}٪ دقت ({lessonAttempted} تست)
+                    </span>
+                  ) : (
+                    <span
+                      className={styles.lessonCardProgressTag}
+                      style={{
+                        background: isSelected ? "var(--school-violet-light, #f5f3ff)" : "var(--color-canvas, #f8fafc)",
+                        color: isSelected ? "var(--school-violet-base, #6d28d9)" : "var(--color-muted, #64748b)",
+                        border: "1px solid var(--color-border, #e2e8f0)",
+                      }}
+                    >
+                      {isSelected ? "✨ درس انتخاب‌شده" : "آماده تمرین"}
                     </span>
                   )}
                 </div>
-
-                <strong style={{ fontSize: "1rem", color: "var(--color-text, #0f172a)", display: "block" }}>
-                  {lessonObj?.titleFa}
-                </strong>
-                <span style={{ fontSize: "0.8rem", color: "#2563eb", fontFamily: "var(--font-family-latin)", display: "block", marginTop: "0.2rem" }}>
-                  {lessonObj?.titleEn}
-                </span>
               </button>
             );
           })}
@@ -222,19 +224,19 @@ export const Tamrin20HubView: React.FC = () => {
       </section>
 
       {/* Selected Lesson: 5 Skills Grid */}
-      <section style={{ marginBottom: "2rem" }} aria-label={`مهارت‌های درس ${selectedLessonTab}`}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+      <section className={styles.hubSection} aria-label={`مهارت‌های درس ${selectedLessonTab}`}>
+        <div className={styles.hubSectionHeader}>
           <div>
-            <h3 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 800, color: "var(--color-text, #0f172a)" }}>
-              مهارت‌های ۵گانه درس {currentLesson.lesson}: {currentLesson.titleFa}
+            <h3 className={styles.hubSectionTitle}>
+              <span>🎯</span> مهارت‌های ۵گانه درس {currentLesson.lesson}: {currentLesson.titleFa}
             </h3>
-            <span style={{ fontSize: "0.85rem", color: "var(--color-muted, #64748b)" }}>
+            <p className={styles.hubSectionSubtitle}>
               یک مهارت را انتخاب کنید تا ۲۰ سوال منتخب اولیه برای شما باز شود:
-            </span>
+            </p>
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+        <div className={styles.skillsGrid}>
           {ALL_SKILLS.map((skill) => {
             const batch = currentLesson.skills[skill];
             const icon = SKILL_ICONS[skill];
@@ -251,61 +253,41 @@ export const Tamrin20HubView: React.FC = () => {
             const practiceHref = `/high-school/grade-12/tamrin20/lesson-${selectedLessonTab}/${skill}`;
 
             return (
-              <div
-                key={skill}
-                style={{
-                  background: "var(--color-surface, #ffffff)",
-                  border: "1px solid var(--color-border, #e2e8f0)",
-                  borderRadius: "14px",
-                  padding: "1.25rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  boxShadow: "var(--shadow-subtle, 0 1px 3px rgba(0,0,0,0.05))",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                }}
-              >
+              <div key={skill} className={styles.skillCard}>
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                    <span style={{ fontSize: "1.5rem" }}>{icon}</span>
-                    <span
-                      style={{
-                        fontSize: "0.75rem",
-                        fontWeight: 700,
-                        padding: "0.2rem 0.55rem",
-                        borderRadius: "999px",
-                        background: "#eff6ff",
-                        color: "#2563eb",
-                      }}
-                    >
+                  <div className={styles.skillCardHeader}>
+                    <div className={styles.skillIconContainer}>
+                      {icon}
+                    </div>
+                    <span className={styles.skillTotalPill}>
                       {batch?.totalQuestions || 0} سوال نهایی
                     </span>
                   </div>
 
-                  <h4 style={{ margin: "0 0 0.25rem 0", fontSize: "1.1rem", fontWeight: 800, color: "var(--color-text, #0f172a)" }}>
+                  <h4 className={styles.skillTitleFa}>
                     بخش {titleFa}
-                    <span style={{ fontSize: "0.85rem", color: "#64748b", marginInlineStart: "0.35rem", fontFamily: "var(--font-family-latin)" }}>
-                      ({titleEn})
-                    </span>
+                    <span className={styles.skillTitleEn}>({titleEn})</span>
                   </h4>
 
-                  <p style={{ margin: "0 0 1rem 0", fontSize: "0.825rem", color: "var(--color-muted, #64748b)", lineHeight: 1.5 }}>
-                    {desc}
-                  </p>
+                  <p className={styles.skillDesc}>{desc}</p>
+
+                  <div className={styles.skillGoldenBadge}>
+                    <span>⭐</span> شروع با ۲۰ تست منتخب نهایی
+                  </div>
 
                   {attempted > 0 && (
-                    <div style={{ background: "var(--color-canvas, #f8fafc)", padding: "0.5rem 0.75rem", borderRadius: "8px", marginBottom: "1rem", fontSize: "0.8rem" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
+                    <div className={styles.skillProgressWrapper}>
+                      <div className={styles.skillProgressMeta}>
                         <span>وضعیت تمرین:</span>
                         <strong style={{ color: skillAccuracy >= 70 ? "#166534" : "#b45309" }}>
                           {correct} از {attempted} درست ({skillAccuracy}٪)
                         </strong>
                       </div>
-                      <div style={{ inlineSize: "100%", blockSize: "5px", background: "#e2e8f0", borderRadius: "999px", overflow: "hidden" }}>
+                      <div className={styles.skillProgressBarOuter}>
                         <div
+                          className={styles.skillProgressBarInner}
                           style={{
                             inlineSize: `${skillAccuracy}%`,
-                            blockSize: "100%",
                             background: skillAccuracy >= 70 ? "#16a34a" : "#d97706",
                           }}
                         />
@@ -314,21 +296,7 @@ export const Tamrin20HubView: React.FC = () => {
                   )}
                 </div>
 
-                <Link
-                  href={practiceHref}
-                  style={{
-                    display: "block",
-                    textAlign: "center",
-                    padding: "0.65rem 1rem",
-                    background: "var(--color-action, #2563eb)",
-                    color: "#ffffff",
-                    borderRadius: "10px",
-                    fontWeight: 700,
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    marginTop: "0.5rem",
-                  }}
-                >
+                <Link href={practiceHref} className={styles.skillStartButton}>
                   شروع ۲۰ سوال اول {titleFa} ←
                 </Link>
               </div>
@@ -337,27 +305,27 @@ export const Tamrin20HubView: React.FC = () => {
         </div>
       </section>
 
-      {/* Guide & Pedagogical Tips */}
-      <footer
-        style={{
-          background: "var(--color-canvas, #f8fafc)",
-          border: "1px solid var(--color-border, #e2e8f0)",
-          borderRadius: "14px",
-          padding: "1.25rem 1.5rem",
-          fontSize: "0.875rem",
-          color: "var(--color-muted, #64748b)",
-          lineHeight: 1.6,
-        }}
-      >
-        <strong style={{ color: "var(--color-text, #0f172a)", display: "block", marginBottom: "0.5rem" }}>
-          💡 راهنمای مطالعه برای نمره ۲۰ امتحان نهایی:
-        </strong>
-        <ul style={{ margin: 0, paddingInlineStart: "1.25rem" }}>
-          <li>در ابتدا ۲۰ سوال پرتکرار از آزمون‌های اخیر به شما ارائه می‌شود تا مهم‌ترین تیپ‌های تستی را بسنجید.</li>
-          <li>اگر به پاسخی اشتباه دهید، کادر فوراً قرمز شده و پاسخ صحیح به همراه نکته تشریحی کامل برایتان نمایان می‌شود.</li>
-          <li>در صورت پاسخ صحیح، کادر سبز می‌شود و با کلیک بر روی «توضیحات تکمیلی» می‌توانید تحلیل عمیق‌تری را مشاهده کنید.</li>
-          <li>با کلیک روی «مایل به حل بیشتر سوال هستم» در انتهای صفحه، کل سوالات نهایی آن مهارت بدون پاک شدن پاسخ‌های قبلی بارگذاری می‌شوند.</li>
-        </ul>
+      {/* 4-Step Golden 20 Strategy Roadmap */}
+      <footer className={styles.strategyRoadmap}>
+        <div className={styles.strategyHeader}>
+          <span style={{ fontSize: "1.4rem" }}>💡</span>
+          <h3 className={styles.strategyHeaderTitle}>
+            نقشه راه ۴ مرحله‌ای کسب نمره ۲۰ امتحان نهایی زبان دوازدهم
+          </h3>
+        </div>
+
+        <div className={styles.strategyGrid}>
+          {STRATEGY_STEPS.map((st) => (
+            <div key={st.step} className={styles.strategyCard}>
+              <div className={styles.strategyCardTop}>
+                <span className={styles.strategyStepNumber}>{st.step}</span>
+                <span className={styles.strategyStepIcon}>{st.icon}</span>
+              </div>
+              <strong className={styles.strategyCardTitle}>{st.title}</strong>
+              <p className={styles.strategyCardDesc}>{st.desc}</p>
+            </div>
+          ))}
+        </div>
       </footer>
     </div>
   );

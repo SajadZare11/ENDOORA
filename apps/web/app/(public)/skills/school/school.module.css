@@ -1,96 +1,669 @@
-/* School & Konkur Module Styles */
-/* 100% Tokenized, Zero Raw Hex Literals, Logical CSS Properties Only */
+/* ==========================================================================
+   School & Konkur Module Styles
+   Theme: Academic Royal Violet & Amber Gold
+   ========================================================================== */
 
 .container {
-  max-inline-size: var(--content-width);
+  /* Scoped Academic Violet & Gold Tokens */
+  --school-violet-base: #6d28d9;
+  --school-violet-hover: #5b21b6;
+  --school-violet-active: #4c1d95;
+  --school-violet-deep: #3b0764;
+  --school-violet-light: #f5f3ff;
+  --school-violet-subtle: rgba(109, 40, 217, 0.05);
+  --school-violet-border: #ddd6fe;
+
+  --school-gold-base: #d97706;
+  --school-gold-hover: #b45309;
+  --school-gold-light: #fffbeb;
+  --school-gold-border: #fde68a;
+  --school-gold-text: #92400e;
+
+  /* Card and Surface Base Variables */
+  --school-surface: #ffffff;
+  --school-surface-muted: #f8fafc;
+  --school-border-subtle: #e2e8f0;
+  --school-border-focus: #c4b5fd;
+
+  max-inline-size: 1140px;
   margin-inline: auto;
-  padding-inline: var(--space-4);
-  padding-block: var(--space-6) var(--space-12);
+  padding-inline: var(--space-4, 1rem);
+  padding-block: var(--space-5, 1.25rem) var(--space-12, 3rem);
 }
 
+/* ==========================================================================
+   Dark Theme Adaptations
+   ========================================================================== */
+:global(.dark) .container,
+:global([data-theme="dark"]) .container {
+  --school-violet-base: #a78bfa;
+  --school-violet-hover: #c4b5fd;
+  --school-violet-active: #8b5cf6;
+  --school-violet-deep: #1e1136;
+  --school-violet-light: rgba(109, 40, 217, 0.18);
+  --school-violet-subtle: rgba(109, 40, 217, 0.08);
+  --school-violet-border: rgba(167, 139, 250, 0.28);
+
+  --school-gold-base: #fbbf24;
+  --school-gold-hover: #f59e0b;
+  --school-gold-light: rgba(245, 158, 11, 0.12);
+  --school-gold-border: rgba(251, 191, 36, 0.28);
+  --school-gold-text: #fde68a;
+
+  --school-surface: #140d21;
+  --school-surface-muted: #1c132d;
+  --school-border-subtle: #2b1d42;
+  --school-border-focus: #5b21b6;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-block-end: 1.5rem;
+}
+
+.backLink {
+  color: var(--school-violet-base);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  background: var(--school-violet-subtle);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.backLink:hover {
+  background: var(--school-violet-light);
+  border-color: var(--school-violet-border);
+  color: var(--school-violet-hover);
+  transform: translateX(2px);
+}
+
+.backIcon {
+  flex-shrink: 0;
+  transform: rotate(0deg);
+}
+
+.navDivider {
+  color: var(--color-muted, #94a3b8);
+  font-size: 0.75rem;
+}
+
+.navCurrent {
+  color: var(--color-muted, #64748b);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Hero Header Section
+   ========================================================================== */
 .heroHeader {
   text-align: center;
-  margin-block-end: var(--space-8);
-  padding-block-end: var(--space-6);
-  border-block-end: 1px solid var(--color-border);
+  margin-block-end: 2rem;
+  padding: 2.25rem 1.5rem 1.75rem;
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 20px;
+  background: var(--school-surface);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -6px rgba(109, 40, 217, 0.07);
 }
 
-.badge {
-  display: inline-block;
-  padding-inline: var(--space-3);
-  padding-block: var(--space-1);
-  background: var(--color-surface-subtle);
-  color: var(--color-action);
-  border-radius: var(--radius-pill);
-  font-size: var(--font-size-meta);
-  font-weight: 700;
-  margin-block-end: var(--space-2);
+.heroHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6d28d9 0%, #a855f7 50%, #f59e0b 100%);
+}
+
+.heroBadgeRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-block-end: 1rem;
+}
+
+.badgeSystem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--school-violet-light);
+  color: var(--school-violet-base);
+  border: 1px solid var(--school-violet-border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.badgeLevel {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--school-surface-muted);
+  color: var(--color-muted, #64748b);
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .title {
-  font-size: clamp(var(--font-size-h2), 4vw, var(--font-size-hero));
-  font-weight: 800;
-  color: var(--color-text);
-  margin-block-end: var(--space-3);
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  font-weight: 900;
+  color: var(--color-text, #0f172a);
+  margin-block-end: 0.75rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.titleAccent {
+  color: var(--school-violet-base);
+  position: relative;
+  white-space: nowrap;
 }
 
 .description {
   max-inline-size: 46rem;
   margin-inline: auto;
-  font-size: var(--font-size-lead);
-  color: var(--color-text-muted);
-  line-height: var(--line-height-body);
+  font-size: 0.98rem;
+  color: var(--color-muted, #475569);
+  line-height: 1.75;
+  margin-block-end: 1.75rem;
+}
+
+.description strong {
+  color: var(--color-text, #0f172a);
+  font-weight: 750;
+}
+
+/* Quick Stats Bar */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.85rem;
+  max-inline-size: 52rem;
+  margin-inline: auto;
+  padding-block-start: 1.25rem;
+  border-block-start: 1px dashed var(--school-border-subtle);
+}
+
+.statItem {
+  padding: 0.65rem 0.5rem;
+  background: var(--school-surface-muted);
+  border-radius: 12px;
+  border: 1px solid var(--school-border-subtle);
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-2px);
+  border-color: var(--school-violet-border);
+}
+
+.statValue {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--school-violet-base);
+  line-height: 1.2;
+  margin-block-end: 0.2rem;
+}
+
+.statLabel {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--color-text, #0f172a);
+  line-height: 1.3;
+}
+
+.statSub {
+  font-size: 0.7rem;
+  color: var(--color-muted, #64748b);
+  margin-block-start: 0.15rem;
+}
+
+/* ==========================================================================
+   Featured Card: Tamrin 20
+   (Clean light surface with refined accents - NOT filled with purple!)
+   ========================================================================== */
+.featuredCard {
+  background: var(--school-surface);
+  border: 1.5px solid var(--school-border-subtle);
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
+  margin-block-end: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px -4px rgba(109, 40, 217, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.featuredCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--school-violet-border);
+  box-shadow: 0 14px 32px -4px rgba(109, 40, 217, 0.14), 0 4px 10px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* Right accent gradient stripe */
+.featuredAccentBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #f59e0b 0%, #7c3aed 100%);
+}
+
+.featuredInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.featuredContent {
+  flex: 1 1 30rem;
+  min-inline-size: 16rem;
+}
+
+.featuredBadgesRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-block-end: 0.65rem;
+}
+
+.featuredPillSpecial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--school-gold-light);
+  color: var(--school-gold-text);
+  border: 1px solid var(--school-gold-border);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.featuredPillGrade {
+  background: var(--school-violet-light);
+  color: var(--school-violet-base);
+  border: 1px solid var(--school-violet-border);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.featuredPillStatus {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-size: 0.72rem;
+  font-weight: 750;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+}
+
+:global(.dark) .featuredPillStatus,
+:global([data-theme="dark"]) .featuredPillStatus {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.featuredTitle {
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: var(--color-text, #0f172a);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.featuredDescription {
+  margin: 0 0 1rem 0;
+  color: var(--color-muted, #475569);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  max-inline-size: 44rem;
+}
+
+.skillsTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.skillTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted, #475569);
+  background: var(--school-surface-muted);
+  border: 1px solid var(--school-border-subtle);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.featuredAction {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .featuredAction {
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+.featuredBtn {
+  padding: 0.75rem 1.4rem;
+  background: var(--school-violet-base);
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.3);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.featuredBtn:hover {
+  background: var(--school-violet-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(109, 40, 217, 0.4);
+  color: #ffffff;
+}
+
+.featuredMetaNote {
+  font-size: 0.72rem;
+  color: var(--color-muted, #64748b);
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+
+/* ==========================================================================
+   Grades Section & Cards Grid
+   ========================================================================== */
+.sectionHeader {
+  margin-block-end: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: var(--color-text, #0f172a);
+  margin: 0 0 0.35rem 0;
+}
+
+.sectionSubtitle {
+  margin: 0;
+  color: var(--color-muted, #64748b);
+  font-size: 0.88rem;
 }
 
 .gradesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
-  gap: var(--space-5);
-  margin-block-end: var(--space-10);
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1.5rem;
+  margin-block-end: 2.5rem;
 }
 
 .gradeCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: var(--space-5);
-  box-shadow: var(--shadow-subtle);
+  background: var(--school-surface);
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 18px;
+  padding: 1.4rem;
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, border-color var(--motion-fast) ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
 }
 
 .gradeCard:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-action-hover);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-5px);
+  border-color: var(--school-violet-base);
+  box-shadow: 0 12px 28px -6px rgba(109, 40, 217, 0.16);
 }
 
-.gradePill {
-  font-size: var(--font-size-meta);
-  font-weight: 700;
-  padding-inline: var(--space-2);
-  padding-block: var(--space-1);
-  background: var(--color-surface-subtle);
-  border-radius: var(--radius-pill);
-  color: var(--color-action);
-  display: inline-block;
-  margin-block-end: var(--space-2);
+/* Card Header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-block-end: 0.75rem;
+}
+
+.bookInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.gradeNumberBadge {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background: var(--school-violet-light);
+  color: var(--school-violet-base);
+  border: 1px solid var(--school-violet-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.bookSub {
+  font-size: 0.75rem;
+  font-weight: 750;
+  color: var(--school-violet-base);
+  display: block;
+  line-height: 1.2;
 }
 
 .gradeTitle {
-  font-size: var(--font-size-h3);
-  font-weight: 700;
-  color: var(--color-text);
-  margin-block-end: var(--space-2);
+  font-size: 1.1rem;
+  font-weight: 850;
+  color: var(--color-text, #0f172a);
+  margin: 0;
+  line-height: 1.3;
 }
 
-.konkurBanner {
-  background: linear-gradient(135deg, var(--color-surface), var(--color-surface-subtle));
-  border: 1px solid var(--color-border);
-  border-inline-start: 4px solid var(--color-action);
-  border-radius: var(--radius-card);
-  padding: var(--space-6);
-  margin-block-end: var(--space-10);
+.gradeCefrPill {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.22rem 0.55rem;
+  background: var(--school-surface-muted);
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 999px;
+  color: var(--color-muted, #475569);
+  white-space: nowrap;
+}
+
+.gradeDesc {
+  font-size: 0.85rem;
+  color: var(--color-muted, #64748b);
+  line-height: 1.55;
+  margin: 0 0 1rem 0;
+}
+
+/* Lessons Subsection inside Card */
+.lessonsWrapper {
+  margin-block-end: 1rem;
+  background: var(--school-surface-muted);
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+}
+
+.lessonsHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 0.65rem;
+}
+
+.lessonsHeaderTitle {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-text, #0f172a);
+}
+
+.lessonsBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--school-surface);
+  border: 1px solid var(--school-border-subtle);
+  color: var(--school-violet-base);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.lessonsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.lessonItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.35rem 0.45rem;
+  background: var(--school-surface);
+  border: 1px solid var(--school-border-subtle);
+  border-radius: 8px;
+  transition: border-color 0.15s ease;
+}
+
+.lessonItem:hover {
+  border-color: var(--school-violet-border);
+}
+
+.lessonMain {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.lessonNum {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 4px;
+  background: var(--school-violet-light);
+  color: var(--school-violet-base);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lessonTitle {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--color-text, #0f172a);
+  line-height: 1.35;
+}
+
+.grammarTag {
+  font-size: 0.72rem;
+  color: var(--color-muted, #64748b);
+  padding-inline-start: 1.7rem;
+  line-height: 1.3;
+}
+
+/* Konkur & Final Exam Box */
+.konkurBox {
+  padding: 0.75rem 0.85rem;
+  background: var(--school-gold-light);
+  border: 1px solid var(--school-gold-border);
+  border-radius: 10px;
+  margin-block-end: 1rem;
+}
+
+.konkurHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--school-gold-text);
+  margin-block-end: 0.25rem;
+}
+
+.konkurText {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--school-gold-text);
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+/* Card Footer */
+.gradeCardFooter {
+  margin-block-start: auto;
+  padding-block-start: 0.5rem;
+}
+
+.gradeFooterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  background: var(--school-violet-subtle);
+  color: var(--school-violet-base);
+  border: 1.5px solid var(--school-violet-border);
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.86rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.gradeFooterBtn:hover {
+  background: var(--school-violet-base);
+  color: #ffffff;
+  border-color: var(--school-violet-base);
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.25);
+  transform: translateY(-1px);
 }

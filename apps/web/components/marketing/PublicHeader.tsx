@@ -20,6 +20,41 @@ export const PUBLIC_NAV = [
   { path: "/pricing", fa: "اشتراک", en: "Membership" },
 ] as const;
 
+export type HeaderSectionTheme =
+  | "school"
+  | "teachers"
+  | "classes"
+  | "skills"
+  | "learn"
+  | "ielts"
+  | "pricing"
+  | "home";
+
+export function getHeaderSectionTheme(currentPath: string): HeaderSectionTheme {
+  if (currentPath === "/skills/school" || currentPath.startsWith("/skills/school/")) {
+    return "school";
+  }
+  if (currentPath === "/teachers" || currentPath.startsWith("/teachers/")) {
+    return "teachers";
+  }
+  if (currentPath === "/classes" || currentPath.startsWith("/classes/")) {
+    return "classes";
+  }
+  if (currentPath === "/skills" || currentPath.startsWith("/skills/")) {
+    return "skills";
+  }
+  if (currentPath === "/learn" || currentPath.startsWith("/learn/")) {
+    return "learn";
+  }
+  if (currentPath === "/ielts" || currentPath.startsWith("/ielts/")) {
+    return "ielts";
+  }
+  if (currentPath === "/pricing" || currentPath.startsWith("/pricing/")) {
+    return "pricing";
+  }
+  return "home";
+}
+
 export function isCurrentRoute(currentPath: string, path: string) {
   if (path === "/") return currentPath === "/";
   if (path === "/skills") {
@@ -44,9 +79,10 @@ export function PublicHeader({
   extraActions,
 }: PublicHeaderProps) {
   const isFa = locale === "fa";
+  const sectionTheme = getHeaderSectionTheme(currentPath);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-section-theme={sectionTheme}>
       <div className={styles.headerInner}>
         <Link
           className={styles.brand}

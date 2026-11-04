@@ -1,0 +1,62 @@
+/* High School Ecosystem Root Scoped Styles - Academic Royal Violet & Gold */
+
+.highSchoolRoot {
+  /* Scoped Academic Violet & Gold Tokens */
+  --school-violet-base: #6d28d9;
+  --school-violet-hover: #7c3aed;
+  --school-violet-deep: #4c1d95;
+  --school-violet-dark: #3b0764;
+  --school-violet-light: #f5f3ff;
+  --school-violet-border: #ddd6fe;
+
+  --school-gold-base: #f59e0b;
+  --school-gold-deep: #b45309;
+  --school-gold-light: #fef3c7;
+  --school-gold-border: #fde68a;
+
+  /* Primary Action & Brand Overrides */
+  --color-action: #6d28d9;
+  --color-action-hover: #7c3aed;
+  --color-action-active: #5b21b6;
+  --color-primary: #6d28d9;
+  --color-primary-hover: #7c3aed;
+  --color-link: #6d28d9;
+  --color-focus: #7c3aed;
+  --color-info-bg: #f5f3ff;
+  --color-info-text: #5b21b6;
+  --color-info-border: #ddd6fe;
+
+  min-block-size: 100vh;
+}
+
+:global(.dark) .highSchoolRoot,
+:global([data-theme="dark"]) .highSchoolRoot {
+  --school-canvas: #0d0714;
+  --school-surface: #160b24;
+  --school-border: #2e1065;
+
+  --school-violet-base: #a78bfa;
+  --school-violet-hover: #c4b5fd;
+  --school-violet-deep: #7c3aed;
+  --school-violet-dark: #2e1065;
+  --school-violet-light: rgba(109, 40, 217, 0.22);
+  --school-violet-border: rgba(167, 139, 250, 0.35);
+
+  --school-gold-base: #fbbf24;
+  --school-gold-deep: #f59e0b;
+  --school-gold-light: rgba(245, 158, 11, 0.16);
+  --school-gold-border: rgba(251, 191, 36, 0.35);
+
+  --color-action: #a78bfa;
+  --color-action-hover: #c4b5fd;
+  --color-action-active: #8b5cf6;
+  --color-primary: #a78bfa;
+  --color-primary-hover: #c4b5fd;
+  --color-link: #c4b5fd;
+  --color-focus: #a78bfa;
+  --color-surface: #160b24;
+  --color-border: #2e1065;
+  --color-info-bg: rgba(109, 40, 217, 0.22);
+  --color-info-text: #ddd6fe;
+  --color-info-border: rgba(167, 139, 250, 0.35);
+}

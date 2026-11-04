@@ -148,15 +148,15 @@
 }
 
 .stopwatch {
-  color: #0284c7;
-  border-color: rgba(2, 132, 199, 0.3);
+  color: #047857;
+  border-color: rgba(4, 120, 87, 0.3);
   font-variant-numeric: tabular-nums;
   font-weight: 800;
 }
 
 :global([data-theme="dark"]) .stopwatch {
-  color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.3);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .streakFire {
@@ -946,7 +946,7 @@
 }
 
 .goalNextLevelBtn {
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  background: linear-gradient(135deg, #047857, #065f46);
   color: #ffffff;
   border: none;
   padding: 0.85rem 2rem;
@@ -954,7 +954,7 @@
   font-weight: 800;
   font-size: 1.05rem;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 25px rgba(4, 120, 87, 0.4);
   transition: all 0.2s;
   width: 100%;
   margin-bottom: 0.75rem;
@@ -1143,7 +1143,7 @@
 }
 
 .primaryBtn {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #047857, #065f46);
   color: #ffffff;
   border: none;
   padding: 0.85rem 2rem;
@@ -1151,13 +1151,13 @@
   font-weight: 800;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 10px 22px rgba(4, 120, 87, 0.35);
   transition: all 0.2s;
 }
 
 .primaryBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.5);
+  box-shadow: 0 14px 28px rgba(4, 120, 87, 0.5);
 }
 
 .secondaryBtn {
@@ -1187,9 +1187,9 @@
 }
 
 .tabBtn {
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid #bfdbfe;
-  color: #2563eb;
+  background: rgba(4, 120, 87, 0.08);
+  border: 1px solid #a7f3d0;
+  color: #047857;
   padding: 0.85rem 1.5rem;
   border-radius: 0.85rem;
   font-weight: 700;
@@ -1199,11 +1199,11 @@
 }
 
 :global([data-theme="dark"]) .tabBtn {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.4);
-  color: #a5b4fc;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #6ee7b7;
 }
 
 .tabBtn:hover {
-  background: rgba(37, 99, 235, 0.16);
+  background: rgba(4, 120, 87, 0.16);
 }

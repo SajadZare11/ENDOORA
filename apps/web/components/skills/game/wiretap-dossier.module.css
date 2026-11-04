@@ -65,7 +65,7 @@
   align-items: center;
   gap: 0.5rem;
   background: #eff6ff;
-  color: #2563eb;
+  color: #047857;
   border: 1px solid #bfdbfe;
   font-size: 0.82rem;
   font-weight: 800;
@@ -170,7 +170,7 @@
 }
 
 .startMissionBtn {
-  background: #2563eb;
+  background: #047857;
   color: #ffffff;
   border: none;
   border-radius: 14px;
@@ -189,7 +189,7 @@
 }
 
 .startMissionBtn:hover {
-  background: #1d4ed8;
+  background: #064e3b;
   transform: translateY(-2px);
   box-shadow: 0 14px 25px -5px rgba(37, 99, 235, 0.5);
 }

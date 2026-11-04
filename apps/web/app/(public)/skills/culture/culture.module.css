@@ -11,16 +11,21 @@
 .heroHeader {
   text-align: center;
   margin-block-end: var(--space-8);
-  padding-block-end: var(--space-6);
-  border-block-end: 1px solid var(--color-border);
+  padding: var(--space-8) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--skills-emerald-base, #047857);
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-subtle);
 }
 
 .badge {
   display: inline-block;
   padding-inline: var(--space-3);
   padding-block: var(--space-1);
-  background: var(--color-surface-subtle);
-  color: var(--color-action);
+  background: var(--skills-emerald-light, #ecfdf5);
+  color: var(--skills-emerald-base, #047857);
+  border: 1px solid var(--skills-emerald-border, #a7f3d0);
   border-radius: var(--radius-pill);
   font-size: var(--font-size-meta);
   font-weight: 700;
@@ -52,6 +57,7 @@
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-top: 3.5px solid var(--skills-emerald-base, #047857);
   border-radius: var(--radius-card);
   padding: var(--space-5);
   box-shadow: var(--shadow-subtle);
@@ -62,15 +68,15 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-action-hover);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+  border-color: #34d399;
+  box-shadow: 0 12px 24px -4px rgba(4, 120, 87, 0.15);
 }
 
 .cardCategory {
   font-size: var(--font-size-meta);
   font-weight: 700;
-  color: var(--color-learning-teal);
+  color: var(--skills-emerald-base, #047857);
   margin-block-end: var(--space-2);
 }
 

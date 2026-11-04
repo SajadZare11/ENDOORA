@@ -229,7 +229,7 @@
 }
 
 .missionHeader {
-  color: #2563eb;
+  color: #047857;
 }
 
 :global([data-theme="dark"]) .missionHeader {
@@ -281,7 +281,7 @@
   font-weight: 800;
   border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #047857 0%, #4f46e5 100%);
   color: #ffffff;
   box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.45), 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -290,7 +290,7 @@
 .startBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.55), 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
+  background: linear-gradient(135deg, #064e3b 0%, #4338ca 100%);
 }
 
 .startBtn:active {

@@ -4,35 +4,90 @@ import { PublicShell } from "@/components/marketing/PublicShell";
 import styles from "./school.module.css";
 
 export const metadata: Metadata = {
-  title: "بخش اختصاصی کتب دبیرستان و کنکور سراسری | ایندورا",
-  description: "آموزش و تحلیل خط‌به‌خط کتب درسی Vision 1, Vision 2, Vision 3 و تکنیک‌های تست‌زنی کنکور زبان انگلیسی.",
+  title: "مرکز آموزش زبان دبیرستان و کنکور سراسری | ایندورا",
+  description:
+    "آموزش خط‌به‌خط کتب درسی Vision 1, Vision 2, Vision 3، بانک سوالات امتحانات نهایی خرداد و شهریور، و تکنیک‌های تست‌زنی کنکور سراسری زبان انگلیسی.",
 };
 
-const GRADES = [
+interface LessonItem {
+  num: string;
+  title: string;
+  grammar: string;
+}
+
+interface GradeData {
+  grade: string;
+  bookTitle: string;
+  gradeNum: string;
+  slug: string;
+  cefr: string;
+  lessonsCount: string;
+  description: string;
+  lessons: LessonItem[];
+  konkurFocus: string;
+  href: string;
+  btnLabel: string;
+}
+
+const STATS = [
+  { label: "پایه‌های تحصیلی", value: "۳ پایه", sub: "دهم، یازدهم و دوازدهم" },
+  { label: "دروس تخصصی", value: "۱۰ درس", sub: "آموزش خط‌به‌خط و استقرایی" },
+  { label: "بانک سوالات نهایی", value: "+۱۰۰۰ سوال", sub: "تفکیک‌شده با پاسخ تشریحی" },
+  { label: "مهارت‌های استاندارد", value: "۵ مهارت", sub: "شنیداری، لغات، گرامر، درک، نگارش" },
+];
+
+const GRADES: GradeData[] = [
   {
-    grade: "پایه دهم (Vision 1)",
+    grade: "پایه دهم دبیرستان",
+    bookTitle: "Vision 1",
+    gradeNum: "۱۰",
     slug: "vision_1",
     cefr: "A2",
-    lessons: ["درس ۱: نجات طبیعت (Saving Nature) - زمان‌های آینده", "درس ۲: شگفتی‌های خلقت (Wonders of Creation) - صفت‌های مقایسه‌ای", "درس ۳: ارزش علم (The Value of Knowledge) - گذشته استمراری", "درس ۴: جهان‌گردی و ایران‌گردی (Traveling the World) - افعال کمکی"],
-    konkurFocus: "زمان‌های آینده با Will و Be going to، صفات برتر و برترین، و افعال با قاعده و بی‌قاعده.",
+    lessonsCount: "۴ درس جامع",
+    description: "پایه‌ریزی واژگان بنیادین، قواعد زمان‌های آینده و ساختارهای مقایسه‌ای زبان انگلیسی دوره متوسطه دوم.",
+    lessons: [
+      { num: "۱", title: "نجات طبیعت (Saving Nature)", grammar: "زمان‌های آینده (Will & Be going to)" },
+      { num: "۲", title: "شگفتی‌های خلقت (Wonders of Creation)", grammar: "صفت‌های مقایسه‌ای و عالی" },
+      { num: "۳", title: "ارزش علم (The Value of Knowledge)", grammar: "گذشته استمراری و تمایز با گذشته ساده" },
+      { num: "۴", title: "جهان‌گردی و گردشگری (Traveling the World)", grammar: "افعال کمکی وجهی (Modals)" },
+    ],
+    konkurFocus: "تسلط بر زمان‌های آینده، مقایسه صفات، شناخت اسم‌ها و افعال بی‌قاعده پرتکرار در سوالات واژگان.",
+    href: "/high-school/grade-10",
+    btnLabel: "ورود به سرفصل‌های دهم (Vision 1) ←",
   },
   {
-    grade: "پایه یازدهم (Vision 2)",
+    grade: "پایه یازدهم دبیرستان",
+    bookTitle: "Vision 2",
+    gradeNum: "۱۱",
     slug: "vision_2",
     cefr: "B1",
-    lessons: ["درس ۱: درک دیگران (Understanding People) - اسامی قابل شمارش و جمله ساده", "درس ۲: سبک زندگی سالم (A Healthy Lifestyle) - زمان حال کامل و اسم مصدر (Gerund)", "درس ۳: هنر و فرهنگ (Art and Culture) - جملات شرطی نوع اول و مصدر با to (Infinitives)"],
-    konkurFocus: "جملات شرطی نوع اول، حال کامل، افعال عبارتی، تمایز اسم مصدر (Gerund) و مصدر (Infinitive)، و کمیت‌سنج‌های اسامی.",
+    lessonsCount: "۳ درس جامع",
+    description: "توسعه ساختارهای گرامری مرکب، زمان حال کامل، جملات شرطی و تقویت درک مطلب تحلیلی.",
+    lessons: [
+      { num: "۱", title: "درک دیگران (Understanding People)", grammar: "اسامی قابل شمارش / غیرقابل شمارش" },
+      { num: "۲", title: "سبک زندگی سالم (A Healthy Lifestyle)", grammar: "زمان حال کامل و اسم مصدر (Gerund)" },
+      { num: "۳", title: "هنر و فرهنگ (Art and Culture)", grammar: "جملات شرطی نوع اول و مصدر با to" },
+    ],
+    konkurFocus: "شرطی نوع ۱، تمایز کاربرد Gerund و Infinitive، کمیت‌سنج‌های اسامی و تکنیک‌های کلوزتست.",
+    href: "/high-school/grade-11",
+    btnLabel: "ورود به سرفصل‌های یازدهم (Vision 2) ←",
   },
   {
-    grade: "پایه دوازدهم (Vision 3)",
+    grade: "پایه دوازدهم دبیرستان",
+    bookTitle: "Vision 3",
+    gradeNum: "۱۲",
     slug: "vision_3",
     cefr: "B1+",
+    lessonsCount: "۳ درس تخصصی",
+    description: "آمادگی حداکثری برای امتحانات نهایی کشوری خرداد و شهریور، جملات مجهول و مهارت پاراگراف‌نویسی.",
     lessons: [
-      "درس ۱: حس قدردانی و احترام (Sense of Appreciation) - مجهول و سوالات ضمیمه (Tag Questions)",
-      "درس ۲: فرهنگ لغت و جستجوی واژگان (Look it Up!) - ضمایر موصولی و شرطی نوع دوم",
-      "درس ۳: انرژی‌های تجدیدپذیر (Renewable Energy) - مجهول افعال مدال و گذشته کامل",
+      { num: "۱", title: "حس قدردانی و احترام (Sense of Appreciation)", grammar: "جملات مجهول و سوالات ضمیمه (Tag)" },
+      { num: "۲", title: "فرهنگ لغت و جستجوی واژگان (Look it Up!)", grammar: "ضمایر موصولی و شرطی نوع دوم" },
+      { num: "۳", title: "انرژی‌های تجدیدپذیر (Renewable Energy)", grammar: "مجهول افعال مدال و گذشته کامل" },
     ],
-    konkurFocus: "امتحانات نهایی خرداد، سوالات ضمیمه، جملات مجهول، ضمایر موصولی، کارگاه ضرب‌المثل‌ها و پاراگراف‌نویسی استاندارد.",
+    konkurFocus: "پوشش ۱۰۰٪ سوالات امتحان نهایی خرداد، کارگاه ضرب‌المثل‌ها، جملات مجهول و نگارش پاراگراف استاندارد.",
+    href: "/high-school/grade-12",
+    btnLabel: "ورود به سرفصل‌های دوازدهم (Vision 3) ←",
   },
 ];
 
@@ -40,112 +95,184 @@ export default function SchoolHubPage() {
   return (
     <PublicShell locale="fa" currentPath="/skills/school">
       <div className={styles.container} dir="rtl">
-        <Link href="/skills" style={{ color: "var(--color-link)", fontWeight: 700, textDecoration: "none", display: "inline-block", marginBottom: "var(--space-4)" }}>
-        ← بازگشت به مرکز مهارت‌ها
-      </Link>
-
-      <header className={styles.heroHeader}>
-        <span className={styles.badge}>برنامه درسی ملی ایران</span>
-        <h1 className={styles.title}>مرکز آموزش زبان دبیرستان و کنکور</h1>
-        <p className={styles.description}>
-          آموزش جامع کتب سه گانه Vision (پایه‌های دهم، یازدهم و دوازدهم) همراه با حل تشریحی تست‌های کنکور سراسری سال‌های اخیر و تکنیک‌های کلوزتست.
-        </p>
-      </header>
-
-
-
-      {/* Featured Tamrin 20 Practice Hub Card */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
-          color: "#ffffff",
-          borderRadius: "var(--radius-card, 14px)",
-          padding: "var(--space-5, 1.25rem)",
-          marginBottom: "var(--space-6, 1.5rem)",
-          boxShadow: "0 8px 20px -4px rgba(37, 99, 235, 0.25)",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-4)" }}>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
-              <span style={{ background: "rgba(255,255,255,0.2)", fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "999px" }}>
-                سامانه تعاملی امتحانات نهایی
-              </span>
-              <span style={{ background: "#22c55e", fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "999px" }}>
-                پایه دوازدهم (Vision 3)
-              </span>
-            </div>
-            <h2 style={{ fontSize: "1.35rem", fontWeight: 800, margin: "0.35rem 0", color: "#ffffff" }}>
-              تمرین تا ۲۰ (بیش از ۱۰۰۰ سوال امتحانات نهایی خرداد و شهریور)
-            </h2>
-            <p style={{ margin: 0, color: "rgba(255,255,255,0.9)", fontSize: "0.9rem", maxInlineSize: "44rem", lineHeight: 1.5 }}>
-              تفکیک درس به درس در ۵ مهارت (شنیداری با صوت، واژگان، دستور زبان، درک مطلب و نگارش) با تصحیح آنی، توضیحات تکمیلی و شروع با ۲۰ سوال طلایی.
-            </p>
-          </div>
-          <Link
-            href="/high-school/grade-12/tamrin20"
-            style={{
-              paddingInline: "var(--space-5, 1.25rem)",
-              paddingBlock: "var(--space-3, 0.75rem)",
-              background: "#ffffff",
-              color: "#1d4ed8",
-              borderRadius: "var(--radius-control, 8px)",
-              fontWeight: 800,
-              textDecoration: "none",
-              display: "inline-block",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            ورود به تمرین تا ۲۰ دوازدهم ←
+        {/* Navigation Breadcrumb */}
+        <nav aria-label="راهنمای مسیر" className={styles.navBar}>
+          <Link href="/skills" className={styles.backLink}>
+            <svg
+              className={styles.backIcon}
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+            <span>بازگشت به مرکز مهارت‌های ایندورا</span>
           </Link>
-        </div>
-      </section>
+          <span className={styles.navDivider}>/</span>
+          <span className={styles.navCurrent}>کتب دبیرستان و کنکور</span>
+        </nav>
 
-      {/* High School Grades Grid */}
-      <div className={styles.gradesGrid}>
-        {GRADES.map((g, idx) => (
-          <div key={idx} className={styles.gradeCard}>
-            <div>
-              <span className={styles.gradePill}>سطح: {g.cefr}</span>
-              <h3 className={styles.gradeTitle}>{g.grade}</h3>
-              
-              <div style={{ marginBlockEnd: "var(--space-4)" }}>
-                <strong style={{ fontSize: "var(--font-size-small)", color: "var(--color-text)" }}>دروس کتاب:</strong>
-                <ul style={{ margin: 0, paddingInlineStart: "1.25rem", color: "var(--color-text-muted)", fontSize: "var(--font-size-small)", marginTop: "0.25rem" }}>
-                  {g.lessons.map((l, lIdx) => (
-                    <li key={lIdx} style={{ marginBottom: "0.25rem" }}>{l}</li>
-                  ))}
-                </ul>
+        {/* Hero Section */}
+        <header className={styles.heroHeader}>
+          <div className={styles.heroBadgeRow}>
+            <span className={styles.badgeSystem}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              برنامه درسی ملی ایران
+            </span>
+            <span className={styles.badgeLevel}>دوره دوم متوسطه • نظری و فنی</span>
+          </div>
+
+          <h1 className={styles.title}>
+            مرکز تخصصی آموزش زبان <span className={styles.titleAccent}>دبیرستان و کنکور</span>
+          </h1>
+
+          <p className={styles.description}>
+            آموزش تعاملی و خط‌به‌خط کتب سه‌گانه <strong>Vision</strong>، تحلیل تشریحی تست‌های کنکور سراسری، و کارگاه‌های آمادگی امتحانات نهایی با پاسخنامه استاندارد و سیستم تصحیح هوشمند.
+          </p>
+
+          {/* Quick Stats Grid */}
+          <div className={styles.statsGrid}>
+            {STATS.map((stat, i) => (
+              <div key={i} className={styles.statItem}>
+                <div className={styles.statValue}>{stat.value}</div>
+                <div className={styles.statLabel}>{stat.label}</div>
+                <div className={styles.statSub}>{stat.sub}</div>
+              </div>
+            ))}
+          </div>
+        </header>
+
+        {/* Featured Tamrin 20 Card (Clean, light surface with elegant violet/gold accents) */}
+        <section className={styles.featuredCard}>
+          <div className={styles.featuredAccentBar} aria-hidden="true" />
+          <div className={styles.featuredInner}>
+            <div className={styles.featuredContent}>
+              <div className={styles.featuredBadgesRow}>
+                <span className={styles.featuredPillSpecial}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  ویژه امتحانات نهایی کشوری
+                </span>
+                <span className={styles.featuredPillGrade}>پایه دوازدهم (Vision 3)</span>
+                <span className={styles.featuredPillStatus}>فعال و تعاملی</span>
               </div>
 
-              <div style={{ padding: "var(--space-3)", background: "var(--color-surface-subtle)", borderRadius: "var(--radius-control)", fontSize: "var(--font-size-meta)", color: "var(--color-text)" }}>
-                <strong>نکته کنکوری: </strong>{g.konkurFocus}
+              <h2 className={styles.featuredTitle}>
+                سامانه «تمرین تا ۲۰» نهایی خرداد و شهریور
+              </h2>
+
+              <p className={styles.featuredDescription}>
+                بانک تعاملی بیش از ۱۰۰۰ سوال آزمون‌های سراسری نهایی به تفکیک درس‌به‌درس در ۵ مهارت اصلی همراه با فایل صوتی اورجینال، تحلیل گرامر و شروع با ۲۰ سوال طلایی تضمینی.
+              </p>
+
+              {/* Skill chips preview */}
+              <div className={styles.skillsTagList}>
+                <span className={styles.skillTag}>🎧 سوالات لیسنینگ با صوت</span>
+                <span className={styles.skillTag}>📖 درک مطلب و کلوزتست</span>
+                <span className={styles.skillTag}>🧩 واژگان و اصطلاحات</span>
+                <span className={styles.skillTag}>✍️ دستور زبان و نگارش</span>
               </div>
             </div>
 
-            <div style={{ marginTop: "var(--space-5)", paddingTop: "var(--space-3)", borderTop: "1px solid var(--color-border)" }}>
-              <Link
-                href={
-                  g.slug === "vision_1"
-                    ? "/high-school/grade-10"
-                    : g.slug === "vision_2"
-                    ? "/high-school/grade-11"
-                    : "/high-school/grade-12"
-                }
-                style={{ color: "var(--color-action)", fontWeight: 700, textDecoration: "none", fontSize: "var(--font-size-small)" }}
-              >
-                {g.slug === "vision_1"
-                  ? "ورود به سرفصل‌های پایه دهم (تمام ۴ درس فعال) ←"
-                  : g.slug === "vision_2"
-                  ? "ورود به سرفصل‌های پایه یازدهم (تمام ۳ درس فعال) ←"
-                  : "ورود به سرفصل‌های پایه دوازدهم (تمام ۳ درس فعال) ←"}
+            <div className={styles.featuredAction}>
+              <Link href="/high-school/grade-12/tamrin20" className={styles.featuredBtn}>
+                <span>ورود به سامانه تمرین تا ۲۰</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
               </Link>
+              <span className={styles.featuredMetaNote}>تصحیح خودکار • مرور نامحدود سوالات</span>
             </div>
           </div>
-        ))}
+        </section>
+
+        {/* High School Grades Grid */}
+        <section aria-labelledby="grades-heading">
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitleWrapper}>
+              <h2 id="grades-heading" className={styles.sectionTitle}>
+                سرفصل‌های آموزشی به تفکیک پایه تحصیلی
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                برای ورود به تمارین تعاملی، آموزش‌های استقرایی و تست‌های مربوطه، کتاب پایه خود را انتخاب کنید:
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.gradesGrid}>
+            {GRADES.map((g) => (
+              <article key={g.slug} className={styles.gradeCard}>
+                {/* Card Top: Grade Header */}
+                <div className={styles.cardHeader}>
+                  <div className={styles.bookInfo}>
+                    <div className={styles.gradeNumberBadge}>{g.gradeNum}</div>
+                    <div>
+                      <span className={styles.bookSub}>{g.bookTitle}</span>
+                      <h3 className={styles.gradeTitle}>{g.grade}</h3>
+                    </div>
+                  </div>
+                  <span className={styles.gradeCefrPill} title={`سطح استاندارد اروپایی: ${g.cefr}`}>
+                    سطح {g.cefr}
+                  </span>
+                </div>
+
+                <p className={styles.gradeDesc}>{g.description}</p>
+
+                {/* Lessons List */}
+                <div className={styles.lessonsWrapper}>
+                  <div className={styles.lessonsHeaderRow}>
+                    <span className={styles.lessonsHeaderTitle}>دروس و سرفصل‌ها</span>
+                    <span className={styles.lessonsBadge}>{g.lessonsCount}</span>
+                  </div>
+
+                  <ul className={styles.lessonsList}>
+                    {g.lessons.map((lesson) => (
+                      <li key={lesson.num} className={styles.lessonItem}>
+                        <div className={styles.lessonMain}>
+                          <span className={styles.lessonNum}>{lesson.num}</span>
+                          <span className={styles.lessonTitle}>{lesson.title}</span>
+                        </div>
+                        <span className={styles.grammarTag}>{lesson.grammar}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Konkur & Final Exam Insight Box */}
+                <div className={styles.konkurBox}>
+                  <div className={styles.konkurHeader}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <strong>تمرکز امتحانی و کنکور:</strong>
+                  </div>
+                  <p className={styles.konkurText}>{g.konkurFocus}</p>
+                </div>
+
+                {/* Card Footer CTA */}
+                <div className={styles.gradeCardFooter}>
+                  <Link href={g.href} className={styles.gradeFooterBtn}>
+                    <span>{g.btnLabel}</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
-    </div>
     </PublicShell>
   );
 }
