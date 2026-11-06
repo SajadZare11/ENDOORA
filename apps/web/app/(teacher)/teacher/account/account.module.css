@@ -637,3 +637,698 @@
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
 }
+
+
+/* ==========================================================================
+   Public Profile Showcase Editor & Account Tabs Styles
+   ========================================================================== */
+
+/* Tabs Navigation */
+.tabsNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px;
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl, 16px);
+  overflow-x: auto;
+}
+
+.tabButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: 10px;
+  border-radius: var(--radius-lg, 12px);
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabButtonActive {
+  background: linear-gradient(135deg, var(--color-endoora-blue), #1d4ed8);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.tabIcon {
+  font-size: 1.125rem;
+}
+
+.tabBadge {
+  font-size: 0.6875rem;
+  font-weight: 750;
+  padding-inline: 6px;
+  padding-block: 2px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  animation: fadeInTab 0.25s ease;
+}
+
+@keyframes fadeInTab {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Completion Meter & Live Preview Header */
+.completionMeterCard {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.completionMeterTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.completionMeterInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.completionMeterTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.completionMeterDesc {
+  font-size: 0.84rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.completionMeterActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.previewLiveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: 8px;
+  border-radius: var(--radius-lg, 12px);
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  font-size: 0.875rem;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.previewLiveBtn:hover {
+  transform: translateY(-1px);
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.completionProgressBarTrack {
+  inline-size: 100%;
+  block-size: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.completionProgressBarFill {
+  block-size: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 9999px;
+  transition: inline-size 0.5s ease;
+}
+
+.completionTipsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 12px;
+  border-radius: var(--radius-md, 8px);
+}
+
+/* Public Profile Form Cards */
+.formCard {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.formCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.formCardTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formTextarea {
+  inline-size: 100%;
+  min-block-size: 110px;
+  padding: var(--space-3);
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--color-endoora-blue);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Dynamic Collection Cards */
+.dynamicListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dynamicItemCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg, 12px);
+  position: relative;
+}
+
+.dynamicItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-end: var(--space-2);
+  border-block-end: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dynamicItemTitle {
+  font-size: 0.875rem;
+  font-weight: 750;
+  color: var(--color-endoora-blue);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.deleteItemBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.deleteItemBtn:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.addItemBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  border: 1.5px dashed var(--color-endoora-blue);
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--color-endoora-blue);
+  border-radius: var(--radius-lg, 12px);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addItemBtn:hover {
+  background: rgba(37, 99, 235, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Tags Management */
+.tagsManager {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tagsCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tagItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-inline: var(--space-3);
+  padding-block: 4px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  border-radius: 9999px;
+  color: var(--color-endoora-blue);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.removeTagBtn {
+  background: none;
+  border: none;
+  color: var(--color-endoora-blue);
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.addTagRow {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.saveStickyActions {
+  position: sticky;
+  inset-block-end: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-4);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl, 16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+
+/* ==========================================================================
+   Teacher Switcher, Video & Avatar Uploaders, and Smart Pricing Suite
+   ========================================================================== */
+
+/* Teacher Switcher */
+.teacherSwitcherBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(234, 88, 12, 0.08) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.teacherSwitcherInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.teacherSelectDropdown {
+  padding-inline: var(--space-3);
+  padding-block: 6px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--glass-border);
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text, #0f172a);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
+.teacherSelectDropdown:focus {
+  border-color: var(--color-endoora-blue);
+}
+
+/* Upload Controls */
+.uploadDropArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 2px dashed rgba(37, 99, 235, 0.35);
+  border-radius: var(--radius-xl, 16px);
+  background: rgba(37, 99, 235, 0.03);
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.uploadDropArea:hover {
+  border-color: var(--color-endoora-blue);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.uploadIcon {
+  font-size: 2rem;
+  color: var(--color-endoora-blue);
+}
+
+.uploadPromptText {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.uploadSubText {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.fileInputHidden {
+  display: none;
+}
+
+/* Video Preview Player */
+.videoPreviewBox {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl, 16px);
+  overflow: hidden;
+  background: #0f172a;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.videoElement {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+.videoIframePreview {
+  inline-size: 100%;
+  block-size: 100%;
+  border: none;
+}
+
+/* Avatar Upload Row */
+.avatarUploadRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.avatarPreviewCircle {
+  inline-size: 80px;
+  block-size: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-endoora-blue), #8b5cf6);
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.avatarPreviewImg {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.avatarControls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+/* Smart Pricing & Discount Suite */
+.pricingLiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+  margin-block-start: var(--space-3);
+}
+
+.pricingLiveItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.pricingLiveLabel {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.pricingLivePrice {
+  font-size: 1.125rem;
+  font-weight: 850;
+  color: var(--color-text);
+}
+
+.pricingDiscountBadge {
+  font-size: 0.6875rem;
+  font-weight: 750;
+  color: #10b981;
+}
+
+
+/* ==========================================================================
+   Collapsible Accordion Cards for Account Sections
+   ========================================================================== */
+
+.accordionControlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-inline: var(--space-2);
+  margin-block-end: var(--space-2);
+}
+
+.accordionControlsTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.accordionControlsBtns {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.accordionActionBtn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.accordionActionBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-endoora-blue);
+  color: var(--color-endoora-blue);
+}
+
+.accordionCard {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordionCardActive {
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-5);
+  background: transparent;
+  border: none;
+  inline-size: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: start;
+  transition: background 0.15s ease;
+}
+
+.accordionHeader:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.accordionHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.accordionTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.accordionSummaryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 750;
+  padding-inline: 8px;
+  padding-block: 3px;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: var(--color-endoora-blue);
+}
+
+.accordionChevron {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  transition: transform 0.25s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.accordionChevronRotated {
+  transform: rotate(180deg);
+  color: var(--color-endoora-blue);
+}
+
+.accordionContent {
+  padding-inline: var(--space-6);
+  padding-block: var(--space-6);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: accordionOpen 0.25s ease;
+}
+
+@keyframes accordionOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

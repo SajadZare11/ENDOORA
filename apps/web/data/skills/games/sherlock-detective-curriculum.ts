@@ -1625,10 +1625,13 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
 ];
 
 import { A2_SHERLOCK_CASE } from "./sherlock-case-a2.ts";
-export { A2_SHERLOCK_CASE };
+import { B1_SHERLOCK_CASE } from "./sherlock-case-b1.ts";
+export { A2_SHERLOCK_CASE, B1_SHERLOCK_CASE };
 
 export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): DetectiveStage {
-  const caseList = cefr === "A2" ? A2_SHERLOCK_CASE : A1_SHERLOCK_CASE;
+  let caseList = A1_SHERLOCK_CASE;
+  if (cefr === "A2") caseList = A2_SHERLOCK_CASE;
+  else if (cefr === "B1") caseList = B1_SHERLOCK_CASE;
   const found = caseList.find((s) => s.levelNumber === levelNum);
   if (found) return found;
   return caseList[0];
@@ -1654,6 +1657,29 @@ export function calculateA1DecisionScore(decisions: Record<number, string>): num
   for (const choiceId of Object.values(decisions || {})) {
     if (typeof A1_DECISION_SCORES[choiceId] === "number") {
       total += A1_DECISION_SCORES[choiceId];
+    }
+  }
+  return total;
+}
+
+export const B1_DECISION_SCORES: Record<string, number> = {
+  "choice-1a": 150,
+  "choice-1b": 50,
+  "choice-2a": 150,
+  "choice-2b": 50,
+  "choice-3a": 150,
+  "choice-3b": 100,
+  "choice-4a": 150,
+  "choice-4b": 100,
+};
+
+export const B1_WIN_THRESHOLD = 500;
+
+export function calculateB1DecisionScore(decisions: Record<number, string>): number {
+  let total = 0;
+  for (const choiceId of Object.values(decisions || {})) {
+    if (typeof B1_DECISION_SCORES[choiceId] === "number") {
+      total += B1_DECISION_SCORES[choiceId];
     }
   }
   return total;

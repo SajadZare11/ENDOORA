@@ -10,6 +10,8 @@ import {
   DetectiveDecisionChoice,
   calculateA1DecisionScore,
   A1_WIN_THRESHOLD,
+  calculateB1DecisionScore,
+  B1_WIN_THRESHOLD,
 } from "../../../data/skills/games/sherlock-detective-curriculum";
 import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
@@ -330,6 +332,14 @@ export function SherlockSpeakingArena({
         setActiveEndingType(isSuccess ? "ending1" : "ending2");
         setIsFinalClimaxRevealed(true);
         soundSynth.playFanfare();
+      } else if (level.cefr === "B1") {
+        // B1 Climax Evaluation: 600-point system, threshold 500 + Decision 4
+        const b1Score = calculateB1DecisionScore(storyDecisions);
+        const d4 = storyDecisions[9]; // "choice-4a" (Snow Depot) or "choice-4b" (Decoupling)
+        const isWin = b1Score >= B1_WIN_THRESHOLD && d4 === "choice-4a";
+        setActiveEndingType(isWin ? "ending1" : "ending2");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
       } else {
         // Climax Evaluation for A1:
         // Cumulative decision score from stages 3, 5, 6, 7, 9 must strictly exceed 610 threshold
@@ -458,6 +468,23 @@ export function SherlockSpeakingArena({
                     {calculateA1DecisionScore(storyDecisions)}{" "}
                     <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
                       (حد نصاب: {A1_WIN_THRESHOLD})
+                    </span>
+                  </div>
+                </div>
+              )}
+              {level.cefr === "B1" && (
+                <div style={{ textAlign: "center" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#64748b" }}>مجموع امتیاز تصمیمات (محرمانه):</span>
+                  <div
+                    style={{
+                      fontSize: "1.8rem",
+                      fontWeight: 900,
+                      color: calculateB1DecisionScore(storyDecisions) >= B1_WIN_THRESHOLD ? "#10b981" : "#ef4444",
+                    }}
+                  >
+                    {calculateB1DecisionScore(storyDecisions)}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                      (حد نصاب: {B1_WIN_THRESHOLD})
                     </span>
                   </div>
                 </div>

@@ -141,15 +141,18 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.65rem 1.25rem;
-  border-radius: 12px;
-  background: var(--color-surface, #ffffff);
-  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   color: var(--color-text-secondary, #475569);
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
 
 :global(.dark) .tierTabBtn {
@@ -161,13 +164,14 @@
 .tierTabBtn:hover {
   border-color: #2563eb;
   color: #2563eb;
+  transform: translateY(-1px);
 }
 
 .tierTabActive {
-  background: #2563eb !important;
+  background: linear-gradient(135deg, #1e40af, #2563eb) !important;
   color: #ffffff !important;
   border-color: #2563eb !important;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 6px 18px -2px rgba(37, 99, 235, 0.4) !important;
 }
 
 /* =============================================================================
@@ -180,17 +184,29 @@
 }
 
 .unitCardHeader {
-  background: var(--color-surface, #ffffff);
-  border: 1px solid var(--color-border, #e2e8f0);
-  border-radius: 18px;
-  padding: 1.25rem 1.75rem;
+  position: relative;
+  background: radial-gradient(100% 100% at 50% 0%, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.5rem;
+  padding: 1.35rem 1.85rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 6px 20px -4px rgba(15, 23, 42, 0.06);
   margin-block-end: 2.5rem;
+  overflow: hidden;
+}
+
+.unitCardHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #10b981);
 }
 
 :global(.dark) .unitCardHeader {
@@ -232,6 +248,40 @@
   color: #94a3b8;
 }
 
+.unitProgressBarTrack {
+  width: 100%;
+  height: 6px;
+  background: rgba(226, 232, 240, 0.8);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+:global(.dark) .unitProgressBarTrack {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.unitProgressBarFill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #2563eb, #10b981);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tierTabProgressBadge {
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+}
+
+.tierTabActive .tierTabProgressBadge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
 .testOutBtn {
   display: inline-flex;
   align-items: center;
@@ -264,6 +314,57 @@
   gap: 2.5rem;
   position: relative;
   padding-block: 1rem;
+}
+
+.svgRoadLayer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.svgRoadPathCompleted {
+  stroke: #10b981;
+  stroke-width: 8;
+  stroke-linecap: round;
+  fill: none;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4));
+}
+
+.svgRoadPathActive {
+  stroke: #2563eb;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 12 8;
+  fill: none;
+  animation: roadFlow 1.5s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+}
+
+@keyframes roadFlow {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svgRoadPathLocked {
+  stroke: var(--color-border, #cbd5e1);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 8 6;
+  fill: none;
+  opacity: 0.6;
+}
+
+:global(.dark) .svgRoadPathLocked {
+  stroke: #334155;
 }
 
 /* Winding offsets for alternating nodes */

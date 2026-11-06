@@ -1,15 +1,38 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { VideoLesson, TranscriptLine } from "@/lib/video-learning";
+import { TranscriptLine } from "@/lib/video-learning";
 import styles from "./video-learning.module.css";
 
+export interface VideoLessonLike {
+  id: string;
+  titleFa: string;
+  titleEn: string;
+  bookLevel: string;
+  unit: string;
+  cefr: string;
+  duration: string;
+  durationSec: number;
+  videoUrl?: string;
+  embedType?: "direct" | "aparat" | "youtube";
+  posterGradient: string;
+  posterIcon: string;
+  summaryFa: string;
+  summaryEn: string;
+  transcript: TranscriptLine[];
+  seriesTitleFa?: string;
+}
+
 interface VideoLessonPlayerProps {
-  lesson: VideoLesson;
+  lesson: VideoLessonLike;
   currentTime: number;
   onTimeChange: (time: number) => void;
   seekTarget?: number | null;
   onSeekHandled?: () => void;
+  maxWatchedSeconds?: number;
+  onMaxWatchedSecondsChange?: (sec: number) => void;
+  watchPercentage?: number;
+  allowForwardScrubbing?: boolean;
 }
 
 export default function VideoLessonPlayer({
@@ -18,19 +41,51 @@ export default function VideoLessonPlayer({
   onTimeChange,
   seekTarget,
   onSeekHandled,
+  maxWatchedSeconds = 0,
+  onMaxWatchedSecondsChange,
+  watchPercentage = 0,
+  allowForwardScrubbing = false,
 }: VideoLessonPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
   const [subtitleMode, setSubtitleMode] = useState<"dual" | "en" | "fa" | "off">("dual");
   const [showTranscript, setShowTranscript] = useState(true);
+  const [skipWarning, setSkipWarning] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
-  // Playback timer ticker simulation
+  const videoElementRef = useRef<HTMLVideoElement | null>(null);
+
+  const togglePlayPause = () => {
+    if (videoElementRef.current) {
+      if (videoElementRef.current.paused) {
+        videoElementRef.current.play().catch((err) => {
+          console.warn("Video play interrupted:", err);
+        });
+      } else {
+        videoElementRef.current.pause();
+      }
+    } else {
+      setIsPlaying((prev) => !prev);
+    }
+  };
+
+  // Synchronize internal time and max watched time
+  useEffect(() => {
+    if (currentTime > maxWatchedSeconds) {
+      onMaxWatchedSecondsChange?.(currentTime);
+    }
+  }, [currentTime, maxWatchedSeconds, onMaxWatchedSecondsChange]);
+
+  // Simulated video playback ticker if no native video tag is playing
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
-    if (isPlaying) {
+    const hasNativeVideo = Boolean(lesson.videoUrl && !lesson.videoUrl.includes("aparat") && !lesson.videoUrl.includes("youtube"));
+
+    if (isPlaying && !hasNativeVideo) {
       interval = setInterval(() => {
-        onTimeChange(currentTime + 1);
-        if (currentTime + 1 >= lesson.durationSec) {
+        const nextTime = currentTime + 1;
+        onTimeChange(nextTime);
+        if (nextTime >= lesson.durationSec) {
           setIsPlaying(false);
         }
       }, 1000 / playbackSpeed);
@@ -38,12 +93,15 @@ export default function VideoLessonPlayer({
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isPlaying, currentTime, playbackSpeed, lesson.durationSec, onTimeChange]);
+  }, [isPlaying, currentTime, playbackSpeed, lesson.durationSec, lesson.videoUrl, onTimeChange]);
 
   // Handle external seek requests (e.g. from quiz replay button)
   useEffect(() => {
     if (typeof seekTarget === "number") {
       onTimeChange(seekTarget);
+      if (videoElementRef.current) {
+        videoElementRef.current.currentTime = seekTarget;
+      }
       setIsPlaying(true);
       if (onSeekHandled) onSeekHandled();
     }
@@ -72,73 +130,315 @@ export default function VideoLessonPlayer({
     const clickX = e.clientX - rect.left;
     const ratio = Math.max(0, Math.min(1, clickX / rect.width));
     const newSeconds = Math.floor(ratio * lesson.durationSec);
+
+    // Anti-skipping check: cannot seek beyond maxWatchedSeconds + 3 before 80% watch
+    if (!allowForwardScrubbing && watchPercentage < 80 && newSeconds > maxWatchedSeconds + 3) {
+      setSkipWarning(true);
+      setTimeout(() => setSkipWarning(false), 3500);
+      return;
+    }
+
     onTimeChange(newSeconds);
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = newSeconds;
+    }
+  };
+
+  const handleStepForward = () => {
+    const target = Math.min(lesson.durationSec, currentTime + 5);
+    if (!allowForwardScrubbing && watchPercentage < 80 && target > maxWatchedSeconds + 3) {
+      setSkipWarning(true);
+      setTimeout(() => setSkipWarning(false), 3500);
+      return;
+    }
+    onTimeChange(target);
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = target;
+    }
+  };
+
+  const handleStepBackward = () => {
+    const target = Math.max(0, currentTime - 5);
+    onTimeChange(target);
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = target;
+    }
   };
 
   const jumpToLine = (seconds: number) => {
+    if (!allowForwardScrubbing && watchPercentage < 80 && seconds > maxWatchedSeconds + 3) {
+      setSkipWarning(true);
+      setTimeout(() => setSkipWarning(false), 3500);
+      return;
+    }
     onTimeChange(seconds);
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = seconds;
+    }
     setIsPlaying(true);
   };
 
   const progressPercent = Math.min(100, (currentTime / (lesson.durationSec || 1)) * 100);
+  const maxWatchBarPercent = Math.min(100, (maxWatchedSeconds / (lesson.durationSec || 1)) * 100);
+
+  // Check if direct video exists
+  const isDirectVideo = lesson.videoUrl && (lesson.videoUrl.endsWith(".mp4") || lesson.videoUrl.endsWith(".webm") || lesson.embedType === "direct");
+  const isAparat = lesson.videoUrl && (lesson.videoUrl.includes("aparat.com") || lesson.embedType === "aparat");
 
   return (
     <div className={styles.playerCard}>
-      {/* Screen Frame */}
-      <div className={styles.playerScreenWrapper}>
-        {/* Background Visual Stage */}
+      {/* Anti-skipping Warning Toast */}
+      {skipWarning && (
         <div
-          className={styles.playerVisualStage}
           style={{
-            background: lesson.posterGradient,
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            left: "1rem",
+            zIndex: 40,
+            background: "#fff1f2",
+            border: "1px solid #fecdd3",
+            color: "#be123c",
+            padding: "0.75rem 1rem",
+            borderRadius: "10px",
+            fontSize: "0.825rem",
+            fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            boxShadow: "0 8px 16px -2px rgba(0,0,0,0.1)",
           }}
         >
-          <div className={styles.playerStageGlow} />
+          <span>⚠️</span>
+          <span>برای یادگیری موثر، امکان جلو زدن ویدیو پیش از تماشای ۸۰٪ غیرفعال است. (عقب زدن مجاز است)</span>
+        </div>
+      )}
 
-          <div className={styles.playerStageContent}>
-            <div className={styles.stageSeriesBadge}>
-              {lesson.seriesTitleFa} · {lesson.unit}
-            </div>
+      {/* Screen Frame */}
+      <div className={styles.playerScreenWrapper}>
+        {/* If Aparat embed */}
+        {isAparat ? (
+          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }}>
+            <iframe
+              src={lesson.videoUrl}
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+              allow="autoplay; fullscreen"
+              title={lesson.titleFa}
+            />
+          </div>
+        ) : isDirectVideo ? (
+          /* Native HTML5 Video */
+          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <video
+              ref={videoElementRef}
+              src={lesson.videoUrl}
+              playsInline
+              preload="metadata"
+              style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000000", cursor: "pointer" }}
+              onClick={togglePlayPause}
+              onTimeUpdate={(e) => {
+                const sec = Math.floor(e.currentTarget.currentTime);
+                onTimeChange(sec);
+              }}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              onError={(e) => {
+                console.error("Video load error:", e);
+                setVideoError(true);
+              }}
+            />
 
-            {/* If video stopped or at start */}
-            {!isPlaying && currentTime === 0 && (
-              <div style={{ marginBottom: "1rem" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>{lesson.posterIcon}</div>
-                <h3 style={{ margin: 0, fontSize: "1.1rem", fontWeight: 700 }}>
-                  {lesson.titleFa}
-                </h3>
+            {/* Centered Play Button Overlay when paused */}
+            {!isPlaying && !videoError && (
+              <button
+                type="button"
+                onClick={togglePlayPause}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "4.75rem",
+                  height: "4.75rem",
+                  borderRadius: "50%",
+                  background: "rgba(37, 99, 235, 0.92)",
+                  color: "#ffffff",
+                  border: "none",
+                  fontSize: "2rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+                  transition: "transform 0.2s, background 0.2s",
+                  zIndex: 10,
+                }}
+                title="پخش ویدیو"
+                aria-label="پخش ویدیو"
+              >
+                ▶
+              </button>
+            )}
+
+            {/* Active Subtitles Display on Video */}
+            {subtitleMode !== "off" && activeLine && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1.25rem",
+                  left: "1rem",
+                  right: "1rem",
+                  textAlign: "center",
+                  pointerEvents: "none",
+                  zIndex: 15,
+                }}
+              >
+                <div
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(0, 0, 0, 0.8)",
+                    backdropFilter: "blur(4px)",
+                    borderRadius: "8px",
+                    padding: "0.4rem 1rem",
+                    maxWidth: "90%",
+                  }}
+                >
+                  {(subtitleMode === "dual" || subtitleMode === "en") && (
+                    <div style={{ color: "#ffffff", fontSize: "1.05rem", fontWeight: 700, direction: "ltr" }}>
+                      {activeLine.textEn}
+                    </div>
+                  )}
+                  {(subtitleMode === "dual" || subtitleMode === "fa") && (
+                    <div style={{ color: "#facc15", fontSize: "0.95rem", fontWeight: 600, marginTop: "0.2rem", direction: "rtl" }}>
+                      {activeLine.textFa}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
-            {/* Active Subtitles Display */}
-            {subtitleMode !== "off" && activeLine && (
-              <div>
-                <span className={styles.stageSpeaker}>{activeLine.speaker}</span>
-                {(subtitleMode === "dual" || subtitleMode === "en") && (
-                  <p className={styles.stageActiveSubtitleEn}>{activeLine.textEn}</p>
-                )}
-                {(subtitleMode === "dual" || subtitleMode === "fa") && (
-                  <p className={styles.stageActiveSubtitleFa}>{activeLine.textFa}</p>
-                )}
+            {/* Error Overlay with Retry */}
+            {videoError && (
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(15, 23, 42, 0.92)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#ffffff",
+                  padding: "2rem",
+                  textAlign: "center",
+                  zIndex: 20,
+                }}
+              >
+                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>⚠️</div>
+                <div style={{ fontWeight: 800, fontSize: "1.1rem", marginBottom: "0.5rem" }}>
+                  بارگذاری ویدیو با تاخیر مواجه شد
+                </div>
+                <p style={{ fontSize: "0.85rem", color: "#94a3b8", maxWidth: "26rem", margin: "0 0 1rem" }}>
+                  ممکن است فایل در حال بافر باشد. لطفاً مجدداً تلاش کنید:
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setVideoError(false);
+                    if (videoElementRef.current) {
+                      videoElementRef.current.load();
+                      videoElementRef.current.play().catch(console.error);
+                    }
+                  }}
+                  style={{
+                    background: "#2563eb",
+                    color: "#ffffff",
+                    border: "none",
+                    padding: "0.6rem 1.25rem",
+                    borderRadius: "10px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                  }}
+                >
+                  تلاش مجدد بارگذاری ↺
+                </button>
               </div>
             )}
           </div>
-        </div>
+        ) : (
+          /* Visual Interactive Stage Fallback */
+          <div
+            className={styles.playerVisualStage}
+            style={{
+              background: lesson.posterGradient,
+            }}
+          >
+            <div className={styles.playerStageGlow} />
+
+            <div className={styles.playerStageContent}>
+              <div className={styles.stageSeriesBadge}>
+                {lesson.seriesTitleFa || "American English File"} · {lesson.unit}
+              </div>
+
+              {/* If video stopped or at start */}
+              {!isPlaying && currentTime === 0 && (
+                <div style={{ marginBottom: "1rem" }}>
+                  <div style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>{lesson.posterIcon}</div>
+                  <h3 style={{ margin: 0, fontSize: "1.1rem", fontWeight: 700 }}>
+                    {lesson.titleFa}
+                  </h3>
+                </div>
+              )}
+
+              {/* Active Subtitles Display */}
+              {subtitleMode !== "off" && activeLine && (
+                <div>
+                  <span className={styles.stageSpeaker}>{activeLine.speaker}</span>
+                  {(subtitleMode === "dual" || subtitleMode === "en") && (
+                    <p className={styles.stageActiveSubtitleEn}>{activeLine.textEn}</p>
+                  )}
+                  {(subtitleMode === "dual" || subtitleMode === "fa") && (
+                    <p className={styles.stageActiveSubtitleFa}>{activeLine.textFa}</p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Video Controls Bar */}
         <div className={styles.playerControls}>
-          {/* Scrubber */}
-          <div className={styles.scrubberTrack} onClick={handleScrubberClick}>
+          {/* Scrubber Track with max-watched buffer */}
+          <div
+            className={styles.scrubberTrack}
+            onClick={handleScrubberClick}
+            title={watchPercentage < 80 ? "جلو زدن ویدیو تا زمان ۸۰٪ قفل است" : "جابجایی آزاد در ویدیو"}
+          >
+            {/* Max reached buffer track */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                width: `${maxWatchBarPercent}%`,
+                background: "rgba(255, 255, 255, 0.35)",
+                borderRadius: "9999px",
+                pointerEvents: "none",
+              }}
+            />
+            {/* Current playback fill */}
             <div className={styles.scrubberFilled} style={{ width: `${progressPercent}%` }} />
           </div>
 
           <div className={styles.controlButtonsRow}>
-            {/* Left Controls (Standard player layout) */}
+            {/* Left Controls */}
             <div className={styles.ctrlLeft}>
               <button
                 type="button"
                 className={styles.ctrlIconBtn}
-                onClick={() => setIsPlaying(!isPlaying)}
+                onClick={togglePlayPause}
                 title={isPlaying ? "توقف (Pause)" : "پخش (Play)"}
                 aria-label={isPlaying ? "توقف" : "پخش"}
               >
@@ -148,7 +448,7 @@ export default function VideoLessonPlayer({
               <button
                 type="button"
                 className={styles.ctrlIconBtn}
-                onClick={() => onTimeChange(Math.max(0, currentTime - 5))}
+                onClick={handleStepBackward}
                 title="۵ ثانیه عقب"
                 aria-label="۵ ثانیه عقب"
               >
@@ -158,7 +458,7 @@ export default function VideoLessonPlayer({
               <button
                 type="button"
                 className={styles.ctrlIconBtn}
-                onClick={() => onTimeChange(Math.min(lesson.durationSec, currentTime + 5))}
+                onClick={handleStepForward}
                 title="۵ ثانیه جلو"
                 aria-label="۵ ثانیه جلو"
               >
@@ -176,7 +476,13 @@ export default function VideoLessonPlayer({
               <select
                 className={styles.ctrlSelect}
                 value={playbackSpeed}
-                onChange={(e) => setPlaybackSpeed(parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const spd = parseFloat(e.target.value);
+                  setPlaybackSpeed(spd);
+                  if (videoElementRef.current) {
+                    videoElementRef.current.playbackRate = spd;
+                  }
+                }}
                 title="سرعت پخش"
                 aria-label="سرعت پخش"
               >
@@ -195,9 +501,9 @@ export default function VideoLessonPlayer({
                 aria-label="زیرنویس"
               >
                 <option value="dual">دوزبانه (انگلیسی/فارسی)</option>
-                <option value="en">انگلیسی</option>
-                <option value="fa">فارسی</option>
-                <option value="off">خاموش</option>
+                <option value="en">فقط انگلیسی</option>
+                <option value="fa">فقط فارسی</option>
+                <option value="off">زیرنویس خاموش</option>
               </select>
 
               {/* Toggle Transcript drawer */}

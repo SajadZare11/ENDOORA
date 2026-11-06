@@ -46,6 +46,9 @@ export const LeitnerShelf: React.FC<LeitnerShelfProps> = ({ onDeckChange }) => {
 
   useEffect(() => {
     refreshDeck();
+    const handleUpdate = () => refreshDeck();
+    window.addEventListener("endoora:leitner-updated", handleUpdate);
+    return () => window.removeEventListener("endoora:leitner-updated", handleUpdate);
   }, []);
 
   const handleAddMistake = (e: React.FormEvent) => {

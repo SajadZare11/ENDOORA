@@ -15,6 +15,14 @@ interface PathHeroBannerProps {
   onSelectNode?: (nodeId: string, unitId: string) => void;
 }
 
+const TIER_NAMES: Record<string, string> = {
+  A1: "مقدماتی (Breakthrough)",
+  A2: "پیش‌متوسط (Waystage)",
+  B1: "متوسط (Threshold)",
+  B2: "فوق‌متوسط (Vantage)",
+  C1: "پیشرفته و آیلتس ۷.۵+ (Mastery)",
+};
+
 export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSelectNode }) => {
   const nextStep = getNextBestNode(progress);
 
@@ -29,35 +37,66 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
   // Count total stars
   const totalStars = Object.values(progress.nodeStars).reduce((acc, curr) => acc + curr, 0);
 
+  // Overall CEFR progression
+  const totalNodes = CURRICULUM_UNITS.reduce((sum, u) => sum + u.nodes.length, 0);
+  const completedCount = progress.completedNodeIds.length;
+  const overallPercent = Math.min(100, Math.round((completedCount / (totalNodes || 1)) * 100));
+
   return (
     <div className={styles.heroBanner}>
       <div className={styles.heroContent}>
+        {/* Top Badges Row */}
         <div className={styles.heroBadgeRow}>
           <span className={styles.cefrLevelPill}>
             <span>🏆</span>
-            <span>سطح فعلی: {activeTier}</span>
+            <span>
+              سطح شما: {activeTier} ({TIER_NAMES[activeTier] || activeTier})
+            </span>
           </span>
+
           <span className={styles.streakPill}>
             <span>🔥</span>
             <span>{progress.currentStreak} روز رگه پیوسته</span>
           </span>
-          <span className={styles.streakPill} style={{ borderColor: "#10b981", color: "#34d399" }}>
+
+          <span className={styles.streakPill} style={{ borderColor: "#10b981", color: "#34d399", background: "rgba(16, 185, 129, 0.15)" }}>
             <span>⭐</span>
             <span>{totalStars} ستاره تسلط</span>
           </span>
-          <span className={styles.streakPill} style={{ borderColor: "#8b5cf6", color: "#a78bfa" }}>
+
+          <span className={styles.streakPill} style={{ borderColor: "#8b5cf6", color: "#a78bfa", background: "rgba(139, 92, 246, 0.15)" }}>
             <span>⚡</span>
             <span>{progress.totalXp} XP</span>
           </span>
         </div>
 
-        <h1 className={styles.heroTitle}>نقشه راه جامع و درخت مهارت‌های تسلط (Master Path)</h1>
+        {/* Title & Subtitle */}
+        <h1 className={styles.heroTitle}>مرکز جامع و درخت مهارت‌های یادگیری CEFR</h1>
         <p className={styles.heroSub}>
-          مسیر پیوسته از مقدماتی تا آیلتس ۸.۵ با گذر از ۱۵ یونیت، دروازه‌های چالش‌برانگیز غول‌آزمون و
-          تثبیت دائمی در جعبه ۵ خانه‌ای لایتنر.
+          مسیر پیوسته از مکالمه پایه (A1) تا تسلط آکادمیک (C1) با ۱۵ یونیت آموزشی، دروازه‌های چالش‌برانگیز غول‌آزمون و تثبیت در جعبه ۵ خانه‌ای لایتنر.
         </p>
+
+        {/* Overall Progress Meter */}
+        <div style={{ marginBlockStart: "1.25rem", maxWidth: "480px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "#94a3b8", marginBlockEnd: "0.4rem", fontWeight: 700 }}>
+            <span>پیشرفت کل در مسیر استقرایی CEFR</span>
+            <span style={{ color: "#38bdf8" }}>{completedCount} از {totalNodes} مرحله ({overallPercent}٪)</span>
+          </div>
+          <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.1)", borderRadius: "9999px", overflow: "hidden" }}>
+            <div
+              style={{
+                width: `${overallPercent}%`,
+                height: "100%",
+                background: "linear-gradient(90deg, #2563eb, #38bdf8, #10b981)",
+                borderRadius: "9999px",
+                transition: "width 0.5s ease",
+              }}
+            />
+          </div>
+        </div>
       </div>
 
+      {/* Action Box: Next Step CTA & Video Courses Link */}
       <div className={styles.nextStepActionBox}>
         {nextStep ? (
           <>
@@ -71,7 +110,7 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
               }}
             >
               <span>{nextStep.node.icon}</span>
-              <span>ادامه مسیر: {nextStep.node.titleFa}</span>
+              <span>ادامه یادگیری: {nextStep.node.titleFa}</span>
               <span aria-hidden="true">←</span>
             </Link>
             <span className={styles.nextStepHint}>
@@ -84,6 +123,36 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
             <span>تبریک! تمام گره‌ها با موفقیت فتح شده‌اند</span>
           </span>
         )}
+
+        {/* Link to Video Courses Hub */}
+        <Link
+          href="/learn/video"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.4rem",
+            fontSize: "0.8rem",
+            color: "#94a3b8",
+            textDecoration: "none",
+            marginBlockStart: "0.4rem",
+            padding: "0.3rem 0.6rem",
+            borderRadius: "8px",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            transition: "all 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "#ffffff";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "#94a3b8";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+          }}
+        >
+          <span>🎬</span>
+          <span>مشاهده دوره‌های ویدیویی (Speakout & AEF) ←</span>
+        </Link>
       </div>
     </div>
   );

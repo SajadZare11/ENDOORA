@@ -8,15 +8,20 @@ import { StudentQuizOverlay } from './StudentQuizOverlay';
 import { ClassroomAttendeesPanel, type ParticipantInfo } from './ClassroomAttendeesPanel';
 import { ClassroomChatPanel, type ChatMessage } from './ClassroomChatPanel';
 import { SessionRecapModal, type AttendanceRow, type AiRecapData } from './SessionRecapModal';
+import { StudioVideoStage } from './StudioVideoStage';
 
 interface LiveKitClassroomShellProps {
   sessionId: string;
   initialRole?: 'teacher' | 'student';
+  classTitle?: string;
+  teacherName?: string;
 }
 
 export function LiveKitClassroomShell({
   sessionId,
   initialRole = 'student',
+  classTitle,
+  teacherName,
 }: LiveKitClassroomShellProps) {
   const router = useRouter();
 
@@ -117,6 +122,7 @@ export function LiveKitClassroomShell({
 
   // Hand-raising state for current user
   const [myHandRaised, setMyHandRaised] = useState<boolean>(false);
+  const [showPodium, setShowPodium] = useState<boolean>(true);
 
   // 1. Fetch Room Token from Django API
   useEffect(() => {
@@ -435,7 +441,7 @@ export function LiveKitClassroomShell({
           {/* Session Title & Intranet Badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#e2e8f0' }}>
-              جلسه آنلاین ریاضی و فیزیک (اتاق {sessionId})
+              {classTitle || `جلسه آنلاین کلاس (اتاق ${sessionId})`}
             </span>
             <span
               style={{
@@ -452,13 +458,35 @@ export function LiveKitClassroomShell({
               }}
             >
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#22c55e' }} />
-              شبکه ملی اطلاعات (ترافیک داخلی و نیم‌بها)
+              شبکه ملی اطلاعات (ترافیک نیم‌بها)
             </span>
           </div>
         </div>
 
         {/* Center / Right Control Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Toggle Video Podium Button */}
+          <button
+            type="button"
+            onClick={() => setShowPodium(!showPodium)}
+            style={{
+              padding: '6px 12px',
+              borderRadius: '8px',
+              backgroundColor: showPodium ? '#4338ca' : '#1e293b',
+              color: '#ffffff',
+              border: '1px solid #4f46e5',
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+            title="نمایش یا پنهان‌سازی کادر تصویر و وب‌کم"
+          >
+            <span>📹</span>
+            <span>{showPodium ? 'پودیوم تصویر' : 'نمایش تصویر'}</span>
+          </button>
+
           {/* Microphone toggle */}
           <button
             type="button"
@@ -552,6 +580,28 @@ export function LiveKitClassroomShell({
               مشاهده خلاصه و جزوه
             </button>
           )}
+
+          {/* Exit Button */}
+          <button
+            type="button"
+            onClick={handleExit}
+            style={{
+              padding: '6px 12px',
+              borderRadius: '8px',
+              backgroundColor: '#1e293b',
+              color: '#f87171',
+              border: '1px solid #7f1d1d',
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+            }}
+            title="خروج و بازگشت به کلاس‌های من"
+          >
+            <span>🚪</span>
+            <span>خروج</span>
+          </button>
         </div>
       </header>
 
@@ -565,6 +615,29 @@ export function LiveKitClassroomShell({
             onSendStrokeData={handleSendStroke}
             incomingStrokeData={incomingStroke}
           />
+
+          {/* Floating Teacher Video Podium & Screen Share */}
+          {showPodium && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '16px',
+                left: '16px',
+                zIndex: 25,
+                width: '320px',
+                maxWidth: 'calc(100% - 32px)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.45)',
+                borderRadius: '12px',
+                overflow: 'hidden',
+              }}
+            >
+              <StudioVideoStage
+                teacherName={teacherName || 'استاد کلاس'}
+                learnerName="زبان‌آموزان"
+                role={role === 'teacher' ? 'teacher' : 'learner'}
+              />
+            </div>
+          )}
         </div>
 
         {/* Right Side: Collapsible Control Panels (Chat, Attendees, Quiz) */}

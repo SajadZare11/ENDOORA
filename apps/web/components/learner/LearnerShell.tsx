@@ -19,6 +19,7 @@ import {
   type LearnerHome,
   type Locale,
 } from "../../lib/learner-dashboard";
+import { PublicHeader } from "../marketing/PublicHeader";
 
 type ContextValue = {
   data: LearnerHome;
@@ -26,7 +27,7 @@ type ContextValue = {
   setLocale: (locale: Locale) => void;
 };
 
-type IconName = "home" | "learn" | "practice" | "teachers" | "account" | "bell" | "logout" | "fire" | "zap" | "school";
+type IconName = "home" | "learn" | "video" | "practice" | "teachers" | "account" | "bell" | "logout" | "fire" | "zap" | "school";
 
 const LearnerContext = createContext<ContextValue | null>(null);
 
@@ -38,13 +39,14 @@ export function useLearnerHome(): ContextValue {
 
 const labels = {
   fa: {
-    home: "خانه",
-    learn: "یادگیری",
-    practice: "تمرین و لایتنر",
-    teachers: "معلم‌ها و کلاس‌ها",
-    account: "حساب و خدمات",
+    home: "داشبورد و خانه",
+    learn: "یادگیری و دروس",
+    videoCourses: "دوره‌های ویدیویی",
+    practice: "جعبه لایتنر",
+    teachers: "کلاس‌ها و مدرس‌ها",
+    account: "حساب کاربری و تنظیمات",
     school: "تمرین تا ۲۰ (نهایی)",
-    logout: "خروج",
+    logout: "خروج از حساب",
     loggingOut: "در حال خروج…",
     switch: "English",
     context: "خانه یادگیری ایندورا",
@@ -57,11 +59,12 @@ const labels = {
     levelTier: "سطح یادگیرنده",
   },
   en: {
-    home: "Home",
-    learn: "Learn",
-    practice: "Practice & Leitner",
-    teachers: "Teachers & Classes",
-    account: "Account & More",
+    home: "Dashboard & Home",
+    learn: "Learn & Lessons",
+    videoCourses: "Video Courses",
+    practice: "Leitner Box",
+    teachers: "Classes & Teachers",
+    account: "Account & Settings",
     school: "Practice to 20 (Finals)",
     logout: "Log out",
     loggingOut: "Logging out…",
@@ -106,7 +109,8 @@ function Icon({ name }: { name: IconName }) {
   const paths: Record<IconName, ReactNode> = {
     home: <><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10.5V20h13v-9.5M9.5 20v-5h5v5" /></>,
     learn: <><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v18H7.5A3.5 3.5 0 0 0 4 23.5Z" /><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v18h3.5a3.5 3.5 0 0 1 3.5 3.5Z" /></>,
-    practice: <><path d="m4 20 4.2-1 10.9-10.9a2.1 2.1 0 0 0-3-3L5.2 16Z" /><path d="m14.8 6.4 2.8 2.8M4 20h5" /></>,
+    video: <><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></>,
+    practice: <><rect x="3" y="4" width="18" height="16" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="10" y1="15" x2="14" y2="15" /></>,
     teachers: <><path d="M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" /><path d="M2.5 21a7 7 0 0 1 14 0M17 8.5a3.2 3.2 0 0 1 0 6.2M18 16.5a5.3 5.3 0 0 1 3.5 4.5" /></>,
     account: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
     bell: <><path d="M18 9a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" /><path d="M10 21h4" /></>,
@@ -219,7 +223,11 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/dashboard/")
     );
   }
+  if (targetHref === "/learn/video") {
+    return currentPath === "/learn/video" || currentPath.startsWith("/learn/video/");
+  }
   if (targetHref === "/learn") {
+    if (currentPath.startsWith("/learn/video")) return false;
     return (
       currentPath === "/learn" ||
       currentPath.startsWith("/learn/") ||
@@ -233,46 +241,36 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/lessons/")
     );
   }
-  if (targetHref === "/practice-ai") {
+  if (targetHref === "/leitner" || targetHref === "/practice-ai") {
     return (
+      currentPath === "/leitner" ||
+      currentPath.startsWith("/leitner/") ||
       currentPath === "/practice-ai" ||
       currentPath.startsWith("/practice-ai/") ||
       currentPath === "/practice" ||
       currentPath.startsWith("/practice/") ||
       currentPath === "/mistakes" ||
-      currentPath.startsWith("/mistakes/") ||
-      currentPath === "/ielts" ||
-      currentPath.startsWith("/ielts/") ||
-      currentPath === "/review" ||
-      currentPath.startsWith("/review/") ||
-      currentPath === "/exam" ||
-      currentPath.startsWith("/exam/") ||
-      currentPath === "/listening" ||
-      currentPath.startsWith("/listening/") ||
-      currentPath === "/pronunciation" ||
-      currentPath.startsWith("/pronunciation/") ||
-      currentPath === "/writing" ||
-      currentPath.startsWith("/writing/") ||
-      currentPath === "/roleplay" ||
-      currentPath.startsWith("/roleplay/") ||
-      currentPath === "/vocabulary" ||
-      currentPath.startsWith("/vocabulary/")
+      currentPath.startsWith("/mistakes/")
+    );
+  }
+  if (targetHref === "/teachers") {
+    return (
+      currentPath === "/teachers" ||
+      currentPath.startsWith("/teachers/") ||
+      currentPath === "/my-teachers" ||
+      currentPath.startsWith("/my-teachers/") ||
+      currentPath === "/classes" ||
+      currentPath.startsWith("/classes/") ||
+      currentPath === "/classroom" ||
+      currentPath.startsWith("/classroom/") ||
+      currentPath === "/bookings" ||
+      currentPath.startsWith("/bookings/")
     );
   }
   if (targetHref === "/account") {
     return (
       currentPath === "/account" ||
       currentPath.startsWith("/account/") ||
-      currentPath === "/my-teachers" ||
-      currentPath.startsWith("/my-teachers/") ||
-      currentPath === "/teachers" ||
-      currentPath.startsWith("/teachers/") ||
-      currentPath === "/classes" ||
-      currentPath.startsWith("/classes/") ||
-      currentPath === "/classroom" ||
-      currentPath.startsWith("/classroom/") ||
-      currentPath === "/bookings" ||
-      currentPath.startsWith("/bookings/") ||
       currentPath === "/achievements" ||
       currentPath.startsWith("/achievements/") ||
       currentPath === "/badges" ||
@@ -284,135 +282,6 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
     );
   }
   return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
-}
-
-/** Dedicated, high-focus Student App Header (replacing marketing PublicHeader) */
-function LearnerAppHeader({
-  data,
-  locale,
-  onLocaleChange,
-  notificationsOpen,
-  setNotificationsOpen,
-}: {
-  data: LearnerHome;
-  locale: Locale;
-  onLocaleChange: (next: Locale) => void;
-  notificationsOpen: boolean;
-  setNotificationsOpen: (val: boolean | ((curr: boolean) => boolean)) => void;
-}) {
-  const t = labels[locale];
-  const userInitials = (data.greeting_name || "ی")[0]?.toUpperCase() || "E";
-  const streakDays = data.xp_available ? data.streak_days : 0;
-  const xpPoints = data.xp_available ? data.xp : 0;
-
-  return (
-    <header className="learner-header" role="banner">
-      {/* Brand & Context */}
-      <div className="learner-header__brand-group">
-        <Link href="/dashboard" className="learner-header__logo" aria-label={t.home}>
-          <Image
-            src="/images/endoora-mark.png"
-            alt="Endoora"
-            width={34}
-            height={40}
-            priority
-          />
-          <span className="learner-header__logo-text" dir="ltr">Endoora</span>
-        </Link>
-        <span className="learner-header__badge">{t.learnerBadge}</span>
-      </div>
-
-      {/* Center Live HUD (Streak, XP, Level) */}
-      <div className="learner-header__hud" aria-label="Quick Stats">
-        {/* Streak Pill */}
-        <div
-          className={`learner-header-hud-pill learner-header-hud-pill--streak ${streakDays > 0 ? "is-active" : ""}`}
-          title={`${streakDays} ${t.streakUnit}`}
-        >
-          <span className="learner-header-hud-pill__icon" aria-hidden="true">🔥</span>
-          <strong className="learner-header-hud-pill__val">
-            {streakDays.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-          </strong>
-          <span className="learner-header-hud-pill__lbl">{t.streakUnit}</span>
-        </div>
-
-        {/* XP Pill */}
-        <div className="learner-header-hud-pill learner-header-hud-pill--xp" title={`${xpPoints} XP`}>
-          <span className="learner-header-hud-pill__icon" aria-hidden="true">⚡</span>
-          <strong className="learner-header-hud-pill__val">
-            {xpPoints.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-          </strong>
-          <span className="learner-header-hud-pill__lbl">XP</span>
-        </div>
-      </div>
-
-      {/* Right Actions & Profile */}
-      <div className="learner-header__actions">
-        {/* Language switch */}
-        <button
-          type="button"
-          className="learner-language-btn"
-          onClick={() => onLocaleChange(locale === "fa" ? "en" : "fa")}
-          title="تغییر زبان / Switch Language"
-        >
-          {t.switch}
-        </button>
-
-        {/* Notification Bell */}
-        <div className="learner-notification-container">
-          <Button
-            className="learner-notification"
-            type="button"
-            aria-expanded={notificationsOpen}
-            aria-controls="learner-notification-panel"
-            aria-label={t.notifications}
-            onClick={() => setNotificationsOpen((current) => !current)}
-          >
-            <Icon name="bell" />
-            {data.notification_count > 0 ? (
-              <span className="learner-notification__count">
-                {data.notification_count > 9 ? "9+" : data.notification_count}
-              </span>
-            ) : null}
-          </Button>
-
-          {notificationsOpen ? (
-            <section
-              className="learner-notification-panel"
-              id="learner-notification-panel"
-              aria-live="polite"
-            >
-              <div className="learner-notification-panel__top">
-                <strong>{t.notifications}</strong>
-                <button
-                  type="button"
-                  className="learner-notification-panel__close"
-                  onClick={() => setNotificationsOpen(false)}
-                  aria-label={t.close}
-                >
-                  ✕
-                </button>
-              </div>
-              <div className="learner-notification-panel__body">
-                <span className="learner-notification-panel__empty-emoji" aria-hidden="true">✨</span>
-                <p>{t.noNotifications}</p>
-              </div>
-            </section>
-          ) : null}
-        </div>
-
-        {/* User Profile Chip */}
-        <Link href="/account" className="learner-user-chip" aria-label={t.account}>
-          <div className="learner-user-chip__avatar" aria-hidden="true">
-            {userInitials}
-          </div>
-          <span className="learner-user-chip__name">
-            {data.greeting_name || (locale === "fa" ? "دانش‌آموز" : "Student")}
-          </span>
-        </Link>
-      </div>
-    </header>
-  );
 }
 
 export function LearnerShell({ children }: { children: ReactNode }) {
@@ -427,7 +296,6 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   const [data, setData] = useState<LearnerHome | null>(null);
   const [locale, setLocale] = useState<Locale>("fa");
   const [localeError, setLocaleError] = useState("");
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [status, setStatus] = useState<
     "loading" | "ready" | "login" | "denied" | "offline" | "error"
   >("loading");
@@ -546,10 +414,16 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   }
 
   const t = labels[locale];
+  const userInitials = (value.data.greeting_name || "ی")[0]?.toUpperCase() || "E";
+  const studentShortId = value.data.user_id ? `EN-${value.data.user_id.slice(-6).toUpperCase()}` : "EN-10482";
+  const currentLevel = Math.max(1, Math.floor((value.data.xp || 0) / 200) + 1);
+
   const navItems = [
     { href: "/dashboard", label: t.home, icon: "home" as const },
     { href: "/learn", label: t.learn, icon: "learn" as const },
-    { href: "/practice-ai", label: t.practice, icon: "practice" as const },
+    { href: "/learn/video", label: t.videoCourses, icon: "video" as const },
+    { href: "/leitner", label: t.practice, icon: "practice" as const },
+    { href: "/teachers", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
   ];
 
@@ -560,35 +434,59 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           {locale === "fa" ? "پرش به محتوای اصلی" : "Skip to main content"}
         </a>
 
-        {/* Focused Student App Header */}
-        <LearnerAppHeader
-          data={value.data}
+        {/* Global Endoora Header (هدر سراسری و رسمی ایندورا) */}
+        <PublicHeader
           locale={locale}
+          currentPath={pathname}
           onLocaleChange={(nextLocale) => void handleLocaleChange(nextLocale)}
-          notificationsOpen={notificationsOpen}
-          setNotificationsOpen={setNotificationsOpen}
         />
 
-        {/* Desktop Modern Glassmorphic Sidebar */}
-        <aside className="learner-sidebar" aria-label={locale === "fa" ? "ناوبری اصلی پنل" : "Main panel navigation"}>
-          <div className="learner-sidebar__header">
-            <div className="learner-sidebar__user">
-              <span className="learner-sidebar__user-name">
-                {value.data.greeting_name || (locale === "fa" ? "زبان‌آموز ایندورا" : "Endoora Learner")}
+        {/* Desktop Modern Glassmorphic Right Sidebar (سایدبار سمت راست با مشخصات دانش‌آموز) */}
+        <aside className="learner-sidebar" aria-label={locale === "fa" ? "سایدبار مشخصات و ناوبری" : "Student profile and navigation sidebar"}>
+          {/* 1. Student Profile Card (کارت شیشه‌ای مشخصات دانش‌آموز) */}
+          <div className="learner-profile-card">
+            <div className="learner-profile-card__top">
+              <div className="learner-profile-card__avatar-box" aria-hidden="true">
+                <span className="learner-profile-card__initial">
+                  {userInitials}
+                </span>
+                <span className="learner-profile-card__online-indicator" title={locale === "fa" ? "آنلاین" : "Online"} />
+              </div>
+
+              <div className="learner-profile-card__info">
+                <strong className="learner-profile-card__name">
+                  {value.data.greeting_name || (locale === "fa" ? "زبان‌آموز ایندورا" : "Endoora Learner")}
+                </strong>
+                <span className="learner-profile-card__id">
+                  {locale === "fa" ? "شناسه: " : "ID: "}
+                  <bdi>{studentShortId}</bdi>
+                </span>
+              </div>
+            </div>
+
+            <div className="learner-profile-card__chips">
+              <span className="learner-profile-chip learner-profile-chip--tier">
+                <span className="learner-profile-chip__dot" />
+                {locale === "fa" ? `سطح ${currentLevel}` : `Tier ${currentLevel}`}
               </span>
-              <span className="learner-sidebar__user-tier">
-                {value.data.streak_days > 0
-                  ? locale === "fa"
-                    ? `🔥 زنجیره ${value.data.streak_days} روزه`
-                    : `🔥 ${value.data.streak_days}-day streak`
-                  : locale === "fa"
-                  ? "آماده شروع تداوم"
-                  : "Ready to start streak"}
+              <span className="learner-profile-chip learner-profile-chip--membership">
+                {locale === "fa" ? "عضویت فعال" : "Active Member"}
               </span>
             </div>
+
+            <Link href="/account" className="learner-profile-card__edit-btn">
+              <span>{locale === "fa" ? "مشاهده و ویرایش مشخصات" : "View & Edit Profile"}</span>
+              <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+            </Link>
           </div>
 
+          <div className="learner-sidebar__divider" aria-hidden="true" />
+
+          {/* 2. Organized Navigation Menu (ناوبری مرتب و شیک) */}
           <nav className="learner-nav" aria-label={locale === "fa" ? "ناوبری زبان‌آموز" : "Learner navigation"}>
+            <span className="learner-nav__category-label">
+              {locale === "fa" ? "منوی اصلی" : "Main Menu"}
+            </span>
             {navItems.map((item) => (
               <NavItem
                 key={item.href}
@@ -598,6 +496,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
+          {/* 3. Sidebar Footer */}
           <div className="learner-sidebar__footer">
             <button
               type="button"

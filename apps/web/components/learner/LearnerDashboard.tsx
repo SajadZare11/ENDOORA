@@ -46,7 +46,7 @@ const text = {
     stepCurrent: "قدم فعلی",
     stepLocked: "قفل",
 
-    // Vital Stats Dock
+    // Vital Stats Dock & Cockpit
     streakTitle: "استریک تداوم",
     streakDaysLabel: "روز پیاپی",
     streakActiveBadge: "آتشین 🔥",
@@ -59,7 +59,7 @@ const text = {
     srsCompleted: "همه تکمیل ✨",
 
     // Mission Card
-    missionTodayBadge: "🚀 مأموریت طلایی امروز",
+    missionTodayBadge: "مأموریت طلایی امروز",
     missionEstTime: "⏱️ ۱۵ دقیقه تمرکز عمیق",
     missionReward: "🏆 +۵۰ XP و ۱ گام در مسیر",
     missionStatusReady: "آماده شروع",
@@ -78,7 +78,7 @@ const text = {
 
     // Golden Tools
     goldenToolsTitle: "ابزارهای طلایی یادگیری",
-    goldenToolsSubtitle: "دسترسی مستقیم و بدون معطلی به قدرتمندترین ابزارهای زبان‌آموزی",
+    goldenToolsSubtitle: "دسترسی مستقیم و بدون معطلی به قدرتمندترین ابزارهای زبان‌آموزی ایندورا",
     tool1Title: "مکالمه هوش مصنوعی (AI Speaking)",
     tool1Desc: "شبیه‌سازی مکالمات واقعی، اصلاح بلادرنگ لهجه و گرامر در محیطی امن و بدون استرس.",
     tool1Badge: "اسپیکینگ و تلفظ",
@@ -135,7 +135,7 @@ const text = {
     stepCurrent: "Current step",
     stepLocked: "Locked",
 
-    // Vital Stats Dock
+    // Vital Stats Dock & Cockpit
     streakTitle: "Daily Streak",
     streakDaysLabel: "days streak",
     streakActiveBadge: "On Fire 🔥",
@@ -148,7 +148,7 @@ const text = {
     srsCompleted: "All Done ✨",
 
     // Mission Card
-    missionTodayBadge: "🚀 Today's Golden Mission",
+    missionTodayBadge: "Today's Golden Mission",
     missionEstTime: "⏱️ 15 min deep focus",
     missionReward: "🏆 +50 XP & Step Progress",
     missionStatusReady: "Ready to Start",
@@ -282,14 +282,14 @@ export function LearnerDashboard() {
   const streakCount = data.xp_available ? data.streak_days : 0;
   const streakBadgeText = streakCount > 0 ? t.streakActiveBadge : t.streakStartBadge;
 
-  // XP status
+  // XP status & Level Progress
   const xpCount = data.xp_available ? data.xp : 0;
+  const currentLevel = Math.max(1, Math.floor(xpCount / 200) + 1);
+  const xpProgressInLevel = xpCount % 200;
+  const xpProgressPercent = Math.min(100, Math.round((xpProgressInLevel / 200) * 100));
 
   // SRS status
   const srsCount = data.srs_available ? data.srs_due_count : 0;
-
-  // Path progress
-  const pathPercent = data.path_progress_percent ?? 0;
 
   return (
     <div className="learner-dashboard">
@@ -302,217 +302,175 @@ export function LearnerDashboard() {
         </div>
       ) : null}
 
-      {/* 1. Header & Welcome Area */}
-      <section className="learner-welcome" aria-labelledby="learner-dashboard-title">
-        <div className="learner-welcome__content">
-          <p className="learner-greeting">
-            {t.greeting}، <bdi className="learner-greeting__name">{data.greeting_name}</bdi> 👋
-          </p>
-          <h1 id="learner-dashboard-title">{t.question}</h1>
-          <p className="learner-welcome__intro">{t.intro}</p>
-        </div>
-      </section>
-
-      {/* 2. Focused 3-Metric Vital Stats Dock (Streak, XP, SRS) */}
-      <section className="learner-stats-dock" aria-label={t.todayOverview}>
-        {/* Card 1: Streak */}
-        <div className={`learner-stat-card learner-stat-card--streak ${streakCount > 0 ? "is-active" : ""}`}>
-          <div className="learner-stat-card__icon-wrapper learner-stat-card__icon--streak">
-            <span className="learner-stat-card__flame-emoji" aria-hidden="true">🔥</span>
-          </div>
-          <div className="learner-stat-card__body">
-            <span className="learner-stat-card__title">{t.streakTitle}</span>
-            <div className="learner-stat-card__value-row">
-              <strong className="learner-stat-card__value">
-                {streakCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <small className="learner-stat-card__unit">{t.streakDaysLabel}</small>
+      {/* 1. Unified Mission Control Glass Hero (خوش‌آمدگویی، داک گیمیفیکیشن و مأموریت طلایی امروز) */}
+      <section className="learner-mission-control" aria-labelledby="today-action">
+        {/* Cockpit Top Bar: Greeting + Gamified Status Dock */}
+        <div className="learner-mission-control__topbar">
+          <div className="learner-mission-control__user-intro">
+            <div className="learner-mission-control__avatar-orbit" aria-hidden="true">
+              <span className="learner-mission-control__avatar-initial">
+                {data.greeting_name ? data.greeting_name.charAt(0) : "🌟"}
+              </span>
+              <span className="learner-mission-control__online-ping" />
             </div>
-            <span className="learner-stat-card__pill learner-stat-card__pill--fire">
-              {streakBadgeText}
-            </span>
-          </div>
-        </div>
-
-        {/* Card 2: XP */}
-        <div className="learner-stat-card learner-stat-card--xp">
-          <div className="learner-stat-card__icon-wrapper learner-stat-card__icon--xp">
-            <DashboardIcon name="zap" />
-          </div>
-          <div className="learner-stat-card__body">
-            <span className="learner-stat-card__title">{t.xpTitle}</span>
-            <div className="learner-stat-card__value-row">
-              <strong className="learner-stat-card__value">
-                {xpCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <small className="learner-stat-card__unit">XP</small>
-            </div>
-            <span className="learner-stat-card__pill learner-stat-card__pill--xp">
-              {t.xpLevelBadge}
-            </span>
-          </div>
-        </div>
-
-        {/* Card 3: SRS Reviews */}
-        <Link href="/review" className="learner-stat-card learner-stat-card--srs" data-actionable="true">
-          <div className="learner-stat-card__icon-wrapper learner-stat-card__icon--srs">
-            <DashboardIcon name="review" />
-          </div>
-          <div className="learner-stat-card__body">
-            <span className="learner-stat-card__title">{t.srsTitle}</span>
-            <div className="learner-stat-card__value-row">
-              <strong className="learner-stat-card__value">
-                {srsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <small className="learner-stat-card__unit">
-                {srsCount > 0 ? t.due : ""}
-              </small>
-            </div>
-            <span className="learner-stat-card__pill learner-stat-card__pill--srs">
-              {srsCount > 0 ? `${srsCount} ${t.srsWordsReady}` : t.srsCompleted}
-            </span>
-          </div>
-        </Link>
-      </section>
-
-      {/* 3. Hero Mission Hub: Radiant, High-Impact Quest Card */}
-      <section className="learner-today-card" aria-labelledby="today-action">
-        <div className="learner-today-card__copy">
-          <div className="learner-today-card__badge-row">
-            <span className="learner-today-card__badge">
-              {t.missionTodayBadge}
-            </span>
-            <span className="learner-today-card__status-tag">
-              {mission?.status === "completed"
-                ? t.missionStatusCompleted
-                : mission?.status === "in_progress"
-                ? t.missionStatusInProgress
-                : t.missionStatusReady}
-            </span>
-          </div>
-
-          <h2 id="today-action" className="learner-today-card__title">{displayTitle}</h2>
-          <p className="learner-today-card__description">{displayDescription}</p>
-
-          <div className="learner-today-card__meta-pills" aria-label="Mission details">
-            <span className="learner-meta-pill">
-              {t.missionEstTime}
-            </span>
-            <span className="learner-meta-pill learner-meta-pill--reward">
-              {t.missionReward}
-            </span>
-          </div>
-
-          <div className="learner-today-card__actions">
-            <Link
-              className="learner-button learner-button--primary learner-button--glowing"
-              href={action.href}
-              onClick={() => void trackPrimaryAction(action.id)}
-            >
-              <span>{actionTitle}</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </Link>
-
-            <details className="learner-why">
-              <summary>{t.why}</summary>
-              <p>{actionReason}</p>
-            </details>
-          </div>
-        </div>
-
-        {/* Visual / Medal Hub */}
-        <div className="learner-today-card__hub-wrapper">
-          {action.id === "start_placement" ? (
-            <div className="learner-today-card__visual" aria-hidden="true">
-              <Image
-                src="/images/dashboard/placement-path.png"
-                alt=""
-                width={300}
-                height={300}
-                priority
-                sizes="(max-width: 768px) 160px, 260px"
-              />
-            </div>
-          ) : (
-            <div className="learner-mission-hub" aria-hidden="true">
-              <div className="learner-mission-hub__glow" />
-              <div className="learner-mission-hub__medal">
-                <span className="learner-mission-hub__medal-icon">🏅</span>
-                <div className="learner-mission-hub__ring" />
+            <div className="learner-mission-control__intro-text">
+              <div className="learner-mission-control__greeting-tag">
+                <span className="learner-mission-control__greeting-label">{t.greeting}،</span>
+                <strong className="learner-mission-control__user-name">{data.greeting_name}</strong>
+                <span className="learner-mission-control__wave">👋</span>
               </div>
-              <div className="learner-mission-hub__stats">
-                <div className="learner-mission-hub__stat-item">
-                  <span className="learner-mission-hub__stat-label">
-                    {locale === "fa" ? "پاداش مأموریت" : "Mission Reward"}
-                  </span>
-                  <strong className="learner-mission-hub__stat-value">+50 XP</strong>
+              <p className="learner-mission-control__subtitle">{t.greetingSubtitle}</p>
+            </div>
+          </div>
+
+          {/* Gamification Badges Dock: Streak + XP + SRS */}
+          <div className="learner-gamify-dock" aria-label={t.todayOverview}>
+            {/* Streak Badge */}
+            <div className={`learner-gamify-pill learner-gamify-pill--streak ${streakCount > 0 ? "is-active" : ""}`}>
+              <span className="learner-gamify-pill__icon learner-gamify-pill__flame" aria-hidden="true">🔥</span>
+              <div className="learner-gamify-pill__content">
+                <div className="learner-gamify-pill__metric">
+                  <strong>{streakCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
+                  <span>{t.streakDaysLabel}</span>
                 </div>
-                <div className="learner-mission-hub__divider" />
-                <div className="learner-mission-hub__stat-item">
-                  <span className="learner-mission-hub__stat-label">
-                    {locale === "fa" ? "پیشرفت مسیر" : "Path Step"}
+                <small className="learner-gamify-pill__sub">{streakBadgeText}</small>
+              </div>
+            </div>
+
+            {/* XP Level Badge with Mini Progress */}
+            <div className="learner-gamify-pill learner-gamify-pill--xp">
+              <span className="learner-gamify-pill__icon" aria-hidden="true">⚡</span>
+              <div className="learner-gamify-pill__content">
+                <div className="learner-gamify-pill__metric">
+                  <strong>{xpCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
+                  <span>XP</span>
+                </div>
+                <div className="learner-gamify-pill__level-row">
+                  <span className="learner-gamify-pill__level-tag">
+                    {locale === "fa" ? `سطح ${currentLevel}` : `Tier ${currentLevel}`}
                   </span>
-                  <strong className="learner-mission-hub__stat-value">
-                    {data.path_steps.filter((s) => s.state === "complete").length} / {data.path_steps.length}
-                  </strong>
+                  <div className="learner-gamify-pill__bar" title={`${xpProgressPercent}%`}>
+                    <div className="learner-gamify-pill__fill" style={{ width: `${xpProgressPercent}%` }} />
+                  </div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </section>
 
-      {/* 4. Dedicated Grade 12 & Final Exams Showcase (ویژه امتحانات نهایی زبان دوازدهم — تمرین تا ۲۰) */}
-      <section className="learner-exam-showcase" aria-labelledby="learner-exam-showcase-title">
-        <div className="learner-exam-showcase__content">
-          <div className="learner-exam-showcase__badge-row">
-            <span className="learner-exam-showcase__badge">
-              <span className="learner-exam-showcase__pulse-dot" aria-hidden="true" />
-              {t.examShowcaseBadge}
-            </span>
-            <span className="learner-exam-showcase__tag">
-              {locale === "fa" ? "تضمین نمره نهایی" : "Final Score Booster"}
-            </span>
-          </div>
-
-          <h2 id="learner-exam-showcase-title" className="learner-exam-showcase__title">
-            {t.examShowcaseTitle}
-          </h2>
-          <p className="learner-exam-showcase__desc">
-            {t.examShowcaseDesc}
-          </p>
-
-          <div className="learner-exam-showcase__chips">
-            <span className="learner-exam-chip">✨ {t.examShowcaseStat1}</span>
-            <span className="learner-exam-chip">🎙️ {t.examShowcaseStat2}</span>
-            <span className="learner-exam-chip">📈 {t.examShowcaseStat3}</span>
-          </div>
-
-          <div className="learner-exam-showcase__actions">
+            {/* SRS Leitner Reviews Badge */}
             <Link
-              href="/high-school/grade-12/tamrin20"
-              className="learner-button learner-button--exam"
+              href="/review"
+              className="learner-gamify-pill learner-gamify-pill--srs"
+              title={srsCount > 0 ? `${srsCount} ${t.srsWordsReady}` : t.srsCompleted}
             >
-              <span>{t.examShowcaseAction}</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
+              <span className="learner-gamify-pill__icon" aria-hidden="true">📚</span>
+              <div className="learner-gamify-pill__content">
+                <div className="learner-gamify-pill__metric">
+                  <strong>{srsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
+                  <span>{locale === "fa" ? "مرور" : "due"}</span>
+                </div>
+                <small className="learner-gamify-pill__sub">
+                  {srsCount > 0 ? `${srsCount} ${t.srsWordsReady}` : t.srsCompleted}
+                </small>
+              </div>
             </Link>
           </div>
         </div>
 
-        <div className="learner-exam-showcase__visual" aria-hidden="true">
-          <div className="learner-exam-showcase__score-card">
-            <span className="learner-exam-showcase__score-num">۲۰</span>
-            <span className="learner-exam-showcase__score-lbl">هدف نهایی</span>
-            <div className="learner-exam-showcase__score-glow" />
+        {/* Cockpit Divider */}
+        <div className="learner-mission-control__divider" aria-hidden="true" />
+
+        {/* Cockpit Body: Primary Quest / Mission */}
+        <div className="learner-mission-control__quest-body">
+          <div className="learner-mission-control__quest-copy">
+            <div className="learner-mission-control__badge-row">
+              <span className="learner-mission-control__quest-badge">
+                <DashboardIcon name="sparkles" />
+                <span>{t.missionTodayBadge}</span>
+              </span>
+              <span className={`learner-mission-control__status-tag ${mission?.status === "completed" ? "is-complete" : ""}`}>
+                {mission?.status === "completed"
+                  ? t.missionStatusCompleted
+                  : mission?.status === "in_progress"
+                  ? t.missionStatusInProgress
+                  : t.missionStatusReady}
+              </span>
+            </div>
+
+            <h1 id="today-action" className="learner-mission-control__title">{displayTitle}</h1>
+            <p className="learner-mission-control__description">{displayDescription}</p>
+
+            <div className="learner-mission-control__meta-pills" aria-label="Mission details">
+              <span className="learner-meta-pill">
+                {t.missionEstTime}
+              </span>
+              <span className="learner-meta-pill learner-meta-pill--reward">
+                {t.missionReward}
+              </span>
+            </div>
+
+            <div className="learner-mission-control__actions">
+              <Link
+                className="learner-button learner-button--primary learner-button--glowing"
+                href={action.href}
+                onClick={() => void trackPrimaryAction(action.id)}
+              >
+                <span>{actionTitle}</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </Link>
+
+              <details className="learner-why">
+                <summary>{t.why}</summary>
+                <p>{actionReason}</p>
+              </details>
+            </div>
+          </div>
+
+          {/* Visual / Medal Hub on the Right */}
+          <div className="learner-mission-control__hub-wrapper">
+            {action.id === "start_placement" ? (
+              <div className="learner-today-card__visual" aria-hidden="true">
+                <Image
+                  src="/images/dashboard/placement-path.png"
+                  alt=""
+                  width={300}
+                  height={300}
+                  priority
+                  sizes="(max-width: 768px) 160px, 260px"
+                />
+              </div>
+            ) : (
+              <div className="learner-mission-hub" aria-hidden="true">
+                <div className="learner-mission-hub__glow" />
+                <div className="learner-mission-hub__medal">
+                  <span className="learner-mission-hub__medal-icon">🏅</span>
+                  <div className="learner-mission-hub__ring" />
+                </div>
+                <div className="learner-mission-hub__stats">
+                  <div className="learner-mission-hub__stat-item">
+                    <span className="learner-mission-hub__stat-label">
+                      {locale === "fa" ? "پاداش مأموریت" : "Mission Reward"}
+                    </span>
+                    <strong className="learner-mission-hub__stat-value">+50 XP</strong>
+                  </div>
+                  <div className="learner-mission-hub__divider" />
+                  <div className="learner-mission-hub__stat-item">
+                    <span className="learner-mission-hub__stat-label">
+                      {locale === "fa" ? "پیشرفت مسیر" : "Path Step"}
+                    </span>
+                    <strong className="learner-mission-hub__stat-value">
+                      {data.path_steps.filter((s) => s.state === "complete").length} / {data.path_steps.length}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* 5. Golden Learning Tools Row (3 Direct Glass Cards - No hidden tabs) */}
+      {/* 2. Golden Learning Tools Row (3 Direct Glass Bento Cards) */}
       <section className="learner-golden-tools" aria-labelledby="golden-tools-title">
         <header className="learner-section-header">
           <div>
@@ -525,7 +483,7 @@ export function LearnerDashboard() {
 
         <div className="learner-golden-tools__grid">
           {/* Tool 1: AI Speaking */}
-          <Link href="/practice-ai" className="learner-golden-card learner-golden-card--mic">
+          <Link href="/ielts/speaking" className="learner-golden-card learner-golden-card--mic">
             <div className="learner-golden-card__header">
               <span className="learner-golden-card__icon" aria-hidden="true">
                 <DashboardIcon name="mic" />
@@ -543,7 +501,7 @@ export function LearnerDashboard() {
           </Link>
 
           {/* Tool 2: Leitner Box */}
-          <Link href="/review" className="learner-golden-card learner-golden-card--brain">
+          <Link href="/leitner" className="learner-golden-card learner-golden-card--brain">
             <div className="learner-golden-card__header">
               <span className="learner-golden-card__icon" aria-hidden="true">
                 <DashboardIcon name="brain" />
@@ -580,7 +538,7 @@ export function LearnerDashboard() {
         </div>
       </section>
 
-      {/* 6. Parallel 2-Column Section: Skills Mastery Radar & Recent Milestones */}
+      {/* 4. Parallel 2-Column Section: Skills Mastery Radar & Recent Milestones */}
       <section className="learner-dual-section" aria-label="Progress and Activities">
         {/* Column 1: Skills Mastery */}
         <div className="learner-dual-col">
@@ -686,7 +644,7 @@ export function LearnerDashboard() {
         </div>
       </section>
 
-      {/* 7. Subtle Info Modal / Trigger (Replaces the dry, ugly big details block) */}
+      {/* 5. Subtle Info Modal / Trigger */}
       <footer className="learner-info-footer">
         <button
           type="button"

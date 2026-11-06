@@ -4,6 +4,7 @@ import { Button, Input, Table } from "@endoora/ui";
 
 import React, { useState, useEffect, useId } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styles from "./classes.module.css";
 import { useTeacherHome } from "../../../../components/teacher/TeacherShell";
 import {
@@ -38,6 +39,7 @@ import { PERSIAN_DAYS } from "../../../../lib/classroom-schedule";
 type TabKey = "classes" | "sessions" | "hours" | "feedback" | "requests" | "report";
 
 export default function TeacherClassesPage() {
+  const router = useRouter();
   const { locale, activeClass } = useTeacherHome();
   const isFa = locale === "fa";
 
@@ -846,33 +848,58 @@ export default function TeacherClassesPage() {
                       {isFa ? `${cls.sessions_count} جلسه` : `${cls.sessions_count} Sessions`}
                     </span>
                   </div>
-                  <button
-                    type="button"
-                    style={{
-                      marginBlockStart: "var(--space-2)",
-                      width: "100%",
-                      padding: "var(--space-2) var(--space-3)",
-                      background: "linear-gradient(135deg, #0284c7 0%, #0369a1 100%)",
-                      color: "#ffffff",
-                      border: "none",
-                      borderRadius: "var(--radius-md, 0.375rem)",
-                      fontSize: "var(--font-size-meta)",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "var(--space-2)",
-                      boxShadow: "0 2px 8px rgba(2, 132, 199, 0.25)",
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedClassId(cls.id);
-                      setLauncherClass(cls);
-                    }}
-                  >
-                    🎥 {isFa ? "ورود به کلاس (Adobe Connect)" : "Join Adobe Connect"}
-                  </button>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBlockStart: "var(--space-2)" }}>
+                    <button
+                      type="button"
+                      style={{
+                        width: "100%",
+                        padding: "var(--space-2) var(--space-3)",
+                        background: "linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)",
+                        color: "#ffffff",
+                        border: "none",
+                        borderRadius: "var(--radius-md, 0.375rem)",
+                        fontSize: "var(--font-size-meta)",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "var(--space-2)",
+                        boxShadow: "0 2px 8px rgba(79, 70, 229, 0.25)",
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/teacher/classes/${cls.id}/live`);
+                      }}
+                    >
+                      🚀 {isFa ? "ورود به کلاس زنده ایندورا" : "Join Endoora Live Studio"}
+                    </button>
+                    <button
+                      type="button"
+                      style={{
+                        width: "100%",
+                        padding: "6px 10px",
+                        background: "#ffffff",
+                        color: "#0369a1",
+                        border: "1px solid #bae6fd",
+                        borderRadius: "var(--radius-md, 0.375rem)",
+                        fontSize: "0.8125rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "var(--space-2)",
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedClassId(cls.id);
+                        setLauncherClass(cls);
+                      }}
+                    >
+                      🎥 {isFa ? "ادوبی کانکت (Adobe Connect)" : "Adobe Connect"}
+                    </button>
+                  </div>
                 </article>
               ))}
             </div>
@@ -973,7 +1000,7 @@ export default function TeacherClassesPage() {
                   <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", marginBlockEnd: "var(--space-1)" }}>
                     <span style={{ fontSize: "1.25rem" }}>🎙️</span>
                     <strong style={{ fontSize: "var(--font-size-body)", color: "#0369a1" }}>
-                      {isFa ? "برنامه برگزاری و کلاس آنلاین Adobe Connect" : "Adobe Connect Schedule & Online Room"}
+                      {isFa ? "برنامه برگزاری و ورود به کلاس آنلاین" : "Class Schedule & Online Classroom"}
                     </strong>
                   </div>
                   <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap", fontSize: "var(--font-size-meta)", color: "#0f172a" }}>
@@ -1004,6 +1031,22 @@ export default function TeacherClassesPage() {
                 </div>
 
                 <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap", alignItems: "center" }}>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    style={{
+                      background: "linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)",
+                      color: "#ffffff",
+                      fontWeight: 700,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "var(--space-2)",
+                      boxShadow: "0 4px 14px rgba(79, 70, 229, 0.35)",
+                    }}
+                    onClick={() => router.push(`/teacher/classes/${selectedClass.id}/live`)}
+                  >
+                    🚀 {isFa ? "ورود به استودیوی زنده ایندورا (تخته، تصویر و کوئیز)" : "Enter Endoora Live Studio"}
+                  </Button>
                   <button
                     type="button"
                     style={{
@@ -1022,24 +1065,28 @@ export default function TeacherClassesPage() {
                     }}
                     onClick={() => setLauncherClass(selectedClass)}
                   >
-                    ⚙️ {isFa ? "تنظیم / ویرایش لینک کلاس" : "Configure Room Link"}
+                    🎥 {isFa ? "اتصال به Adobe Connect" : "Join Adobe Connect"}
                   </button>
-                  <Button
+                  <button
                     type="button"
-                    variant="primary"
                     style={{
-                      background: "linear-gradient(135deg, #0284c7 0%, #0369a1 100%)",
-                      color: "#ffffff",
-                      fontWeight: 700,
+                      background: "transparent",
+                      border: "1px dashed #94a3b8",
+                      color: "#64748b",
+                      borderRadius: "var(--radius-md, 0.375rem)",
+                      padding: "8px 12px",
+                      fontSize: "0.8125rem",
+                      fontWeight: 500,
+                      cursor: "pointer",
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "var(--space-2)",
-                      boxShadow: "0 4px 14px rgba(2, 132, 199, 0.35)",
+                      gap: "4px",
                     }}
                     onClick={() => setLauncherClass(selectedClass)}
+                    title={isFa ? "تنظیم یا ویرایش لینک ادوبی کانکت" : "Configure Room Link"}
                   >
-                    🎥 {isFa ? "ورود به کلاس (Adobe Connect)" : "Join Adobe Connect Room"}
-                  </Button>
+                    ⚙️ {isFa ? "تنظیم لینک ادوبی" : "Config Link"}
+                  </button>
                 </div>
               </div>
 

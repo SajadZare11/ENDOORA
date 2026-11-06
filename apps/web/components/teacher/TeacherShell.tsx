@@ -4,6 +4,7 @@ import { EndooraWordmark, Button } from "@endoora/ui";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { PublicHeader } from "../marketing/PublicHeader";
 
 import { endooraApi, persistPreferredLocale } from "../../lib/endoora-api";
 import {
@@ -82,6 +83,12 @@ const labels = {
     navigation: "ناوبری مدرس",
     bottomNavigation: "ناوبری پایین مدرس",
     skip: "پرش به محتوای اصلی",
+    viewProfile: "مشاهده و ویرایش مشخصات",
+    teacherPanel: "پنل مدرسی",
+    idLabel: "شناسه: ",
+    teacherFallback: "مدرس ایندورا",
+    sidebarNote: "هر روز، یک گام مؤثر در آموزش زبان.",
+    sidebarAria: "سایدبار مشخصات و ناوبری مدرس",
   },
   en: {
     sectionWorkspace: "Workspace",
@@ -113,6 +120,12 @@ const labels = {
     navigation: "Teacher navigation",
     bottomNavigation: "Teacher bottom navigation",
     skip: "Skip to main content",
+    viewProfile: "View & Edit Profile",
+    teacherPanel: "Educator Hub",
+    idLabel: "ID: ",
+    teacherFallback: "Endoora Teacher",
+    sidebarNote: "Every day, inspiring confident learners.",
+    sidebarAria: "Teacher profile and navigation sidebar",
   },
 } as const;
 
@@ -428,10 +441,11 @@ export function TeacherShell({ children }: { children: ReactNode }) {
     };
   }, [reloadKey]);
 
-  async function changeLocale() {
+  async function changeLocale(targetLocale?: TeacherLocale) {
     if (savingLocale) return;
     const previous = locale;
-    const next = previous === "fa" ? "en" : "fa";
+    const next = targetLocale ?? (previous === "fa" ? "en" : "fa");
+    if (next === previous) return;
     setLocale(next);
     setLocaleError(false);
     setSavingLocale(true);
@@ -480,7 +494,6 @@ export function TeacherShell({ children }: { children: ReactNode }) {
         { href: "/teacher/online-exams", label: t.onlineExams, icon: "onlineExams" as const },
         { href: "/teacher/question-bank", label: t.questionBank, icon: "question" as const },
         { href: "/teacher/gradebook", label: t.gradebook, icon: "gradebook" as const },
-        { href: "/teacher/planning", label: t.planning, icon: "planning" as const },
       ],
     },
     {
@@ -502,6 +515,18 @@ export function TeacherShell({ children }: { children: ReactNode }) {
   ];
 
   const verified = data.capabilities.teacher_verified;
+  const userInitials = (data.greeting_name || "م")[0]?.toUpperCase() || "T";
+  const teacherShortId = data.user_id ? `EN-T${data.user_id.slice(-5).toUpperCase()}` : "EN-T10482";
+
+  if (pathname.includes("/live")) {
+    return (
+      <TeacherContext.Provider value={{ data, locale, online, activeClass, setActiveClass, classesList }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999, backgroundColor: "#090d16" }}>
+          {children}
+        </div>
+      </TeacherContext.Provider>
+    );
+  }
 
   return (
     <TeacherContext.Provider value={{ data, locale, online, activeClass, setActiveClass, classesList }}>
@@ -510,19 +535,55 @@ export function TeacherShell({ children }: { children: ReactNode }) {
           {t.skip}
         </a>
 
-        {/* 1. Sleek Minimalist Sidebar (Linear/Notion-Style) */}
-        <aside className="teacher-sidebar">
-          <div className="teacher-sidebar__brand">
-            <Link
-              className="teacher-brand-link"
-              href="/"
-              aria-label="Endoora"
-              title={locale === "fa" ? "بازگشت به صفحه اول سایت" : "Back to Website Home"}
-            >
-              <EndooraWordmark compact />
-              <span className="teacher-brand-badge">Teacher</span>
+        {/* Global Endoora Header (هدر سراسری و رسمی ایندورا) */}
+        <PublicHeader
+          locale={locale}
+          currentPath={pathname}
+          onLocaleChange={(nextLocale) => void changeLocale(nextLocale)}
+        />
+
+        {/* 1. Sleek Modern Glassmorphic Right Sidebar (Student-Panel Style) */}
+        <aside className="teacher-sidebar" aria-label={t.sidebarAria}>
+          {/* Teacher Profile Card */}
+          <div className="teacher-profile-card">
+            <div className="teacher-profile-card__top">
+              <div className="teacher-profile-card__avatar-box" aria-hidden="true">
+                <span className="teacher-profile-card__initial">
+                  {userInitials}
+                </span>
+                <span className="teacher-profile-card__online-indicator" title={locale === "fa" ? "آنلاین" : "Online"} />
+              </div>
+
+              <div className="teacher-profile-card__info">
+                <strong className="teacher-profile-card__name">
+                  {data.greeting_name
+                    ? (locale === "fa" ? `استاد ${data.greeting_name}` : `Teacher ${data.greeting_name}`)
+                    : t.teacherFallback}
+                </strong>
+                <span className="teacher-profile-card__id">
+                  {t.idLabel}
+                  <bdi>{teacherShortId}</bdi>
+                </span>
+              </div>
+            </div>
+
+            <div className="teacher-profile-card__chips">
+              <span className={`teacher-profile-chip ${verified ? "teacher-profile-chip--verified" : "teacher-profile-chip--warning"}`}>
+                <span className="teacher-profile-chip__dot" aria-hidden="true" />
+                {verified ? t.verified : t.unverified}
+              </span>
+              <span className="teacher-profile-chip teacher-profile-chip--role">
+                {t.teacherPanel}
+              </span>
+            </div>
+
+            <Link href="/teacher/account" className="teacher-profile-card__edit-btn">
+              <span>{t.viewProfile}</span>
+              <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
             </Link>
           </div>
+
+          <div className="teacher-sidebar__divider" aria-hidden="true" />
 
           <nav className="teacher-nav" aria-label={t.navigation}>
             {navGroups.map((group, gIdx) => (
@@ -538,10 +599,6 @@ export function TeacherShell({ children }: { children: ReactNode }) {
           </nav>
 
           <div className="teacher-sidebar__footer">
-            <div className={`teacher-sidebar__status ${verified ? "is-verified" : "is-warning"}`}>
-              <span className="teacher-status-dot" aria-hidden="true" />
-              <p>{verified ? t.verified : t.unverified}</p>
-            </div>
             <button
               type="button"
               className="teacher-nav__item teacher-nav__item--logout"
@@ -552,20 +609,15 @@ export function TeacherShell({ children }: { children: ReactNode }) {
               <TeacherIcon name="logout" />
               <span>{loggingOut ? t.loggingOut : t.logout}</span>
             </button>
+            <p className="teacher-sidebar__note">
+              {t.sidebarNote}
+            </p>
           </div>
         </aside>
 
         {/* 2. Top Minimal App Header */}
         <header className="teacher-header">
           <div className="teacher-header__start">
-            <Link
-              className="teacher-mobile-brand"
-              href="/"
-              aria-label="Endoora"
-              title={locale === "fa" ? "بازگشت به صفحه اول سایت" : "Back to Website Home"}
-            >
-              <EndooraWordmark compact />
-            </Link>
             <div className="teacher-header__title">
               <strong>{t.workspace}</strong>
             </div>

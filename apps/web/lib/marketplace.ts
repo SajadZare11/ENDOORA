@@ -440,6 +440,25 @@ export interface TeacherDirectoryItem {
   social_proof: TeacherSocialProof;
 }
 
+export interface TeacherMethodologyStep {
+  step_number: number;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface TeacherCourseMaterial {
+  title: string;
+  category: string;
+  description?: string;
+  badge?: string;
+}
+
+export interface TeacherFAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface TeacherPublicProfile extends TeacherDirectoryItem {
   video_intro_url?: string | null;
   education?: string | null;
@@ -447,6 +466,13 @@ export interface TeacherPublicProfile extends TeacherDirectoryItem {
   city?: string | null;
   languages?: string[] | null;
   reviews: TeacherReview[];
+  methodology?: TeacherMethodologyStep[];
+  course_materials?: TeacherCourseMaterial[];
+  faqs?: TeacherFAQItem[];
+  highlight_tags?: string[];
+  trial_discount_percent?: number;
+  package_5_discount_percent?: number;
+  package_10_discount_percent?: number;
 }
 
 export interface TeacherReview {

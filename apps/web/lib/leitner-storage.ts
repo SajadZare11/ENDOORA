@@ -248,6 +248,7 @@ export function saveLeitnerDeck(deck: LeitnerCard[]): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(deck));
+    window.dispatchEvent(new CustomEvent("endoora:leitner-updated"));
   } catch (err) {
     console.error("Failed to save Leitner deck:", err);
   }
@@ -389,3 +390,44 @@ export function addCustomMistakeCard(cardData: {
   saveLeitnerDeck(deck);
   return newCard;
 }
+
+export function deleteLeitnerCard(cardId: string): LeitnerCard[] {
+  const deck = getLeitnerDeck();
+  const filtered = deck.filter((c) => c.id !== cardId);
+  saveLeitnerDeck(filtered);
+  return filtered;
+}
+
+export function updateLeitnerCard(
+  cardId: string,
+  updates: Partial<Pick<LeitnerCard, "originalMistake" | "correctedText" | "explanationFa" | "category" | "categoryLabelFa" | "boxLevel">>
+): LeitnerCard[] {
+  const deck = getLeitnerDeck();
+  const targetIndex = deck.findIndex((c) => c.id === cardId);
+  if (targetIndex !== -1) {
+    deck[targetIndex] = {
+      ...deck[targetIndex],
+      ...updates,
+    };
+    saveLeitnerDeck(deck);
+  }
+  return deck;
+}
+
+export function resetCardProgress(cardId: string): LeitnerCard[] {
+  const deck = getLeitnerDeck();
+  const targetIndex = deck.findIndex((c) => c.id === cardId);
+  if (targetIndex !== -1) {
+    deck[targetIndex] = {
+      ...deck[targetIndex],
+      boxLevel: 1,
+      intervalDays: 1,
+      nextReviewAt: new Date().toISOString(),
+      consecutiveSuccesses: 0,
+      isMastered: false,
+    };
+    saveLeitnerDeck(deck);
+  }
+  return deck;
+}
+

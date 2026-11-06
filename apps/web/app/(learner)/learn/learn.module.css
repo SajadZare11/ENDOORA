@@ -396,7 +396,7 @@
   }
 }
 
-/* Sticky Segmented Switcher for Learn Hub */
+/* Sticky Segmented Switcher for Learn Hub (2 Tracks: CEFR + Video) */
 .stickySwitcherContainer {
   position: sticky;
   top: 1rem;
@@ -410,8 +410,11 @@
   border-radius: var(--radius-pill, 9999px);
   box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 36rem;
+  margin-inline: auto;
   gap: 0.35rem;
+  width: 100%;
 }
 
 .segmentedTab {
@@ -447,6 +450,576 @@
 .segmentedTabActive:hover {
   background: var(--color-action-hover, var(--color-action));
   color: #ffffff;
+}
+
+/* =====================================================================
+   LUXURY GLASSMORHPIC HERO SHOWCASE
+   ===================================================================== */
+.luxuryHero {
+  position: relative;
+  background: radial-gradient(120% 120% at 50% 10%, #ffffff 0%, #f8fafc 60%, #edf2f7 100%);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.75rem;
+  padding: clamp(2rem, 4.5vw, 3.25rem);
+  margin-block-end: 2.5rem;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.heroGlowOverlay {
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 50%;
+  height: 160%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(20, 184, 166, 0.04) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.heroMainContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.heroTopBadgeRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.heroPillBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: #1d4ed8;
+  font-size: 0.825rem;
+  font-weight: 800;
+}
+
+.heroPillPulseDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.heroSubTag {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #64748b;
+  padding-inline-start: 0.75rem;
+  border-inline-start: 2px solid #cbd5e1;
+}
+
+.heroHeading {
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.heroGradientText {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0d9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroLeadSubtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  color: #475569;
+  line-height: 1.7;
+  max-width: 52rem;
+  margin: 0;
+}
+
+.heroStatsDock {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 1.25rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(8px);
+  margin-top: 0.5rem;
+}
+
+.heroStatCard {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.heroStatIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.heroStatInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.heroStatInfo strong {
+  font-size: 0.95rem;
+  font-weight: 850;
+  color: #0f172a;
+}
+
+.heroStatInfo span {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.heroStatDivider {
+  width: 1px;
+  height: 2.25rem;
+  background: #e2e8f0;
+  align-self: center;
+}
+
+@media (max-width: 52rem) {
+  .heroStatsDock {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .heroStatDivider {
+    display: none;
+  }
+}
+
+/* =====================================================================
+   HIGH-TECH FLOATING SEGMENTED SWITCHER
+   ===================================================================== */
+.highTechSwitcher {
+  position: sticky;
+  top: 1rem;
+  z-index: 35;
+  margin-block-end: 2.5rem;
+  padding: 0.45rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 9999px;
+  box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  max-width: 38rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.highTechTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  min-height: 3rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 0.925rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.highTechTab:hover {
+  color: #0f172a;
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.highTechTabActive {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px -2px rgba(37, 99, 235, 0.4);
+}
+
+.tabLabel {
+  letter-spacing: -0.01em;
+}
+
+.tabNeonBadge {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  color: inherit;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* =====================================================================
+   PRO-TIP RULE & INSTRUCTIONS LUXURY CARD
+   ===================================================================== */
+.proTipBanner {
+  position: relative;
+  background: radial-gradient(100% 100% at 50% 0%, #ffffff 0%, #f0fdf4 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  margin-block-end: 2.25rem;
+  box-shadow: 0 6px 20px -4px rgba(16, 185, 129, 0.08);
+  overflow: hidden;
+}
+
+.proTipGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25rem;
+  height: 100%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.proTipContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.proTipHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.proTipIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.proTipTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 850;
+  color: #0f172a;
+}
+
+.proTipSubtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.proTipStepsRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.85rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.proTipStepItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 14rem;
+}
+
+.stepNumBadge {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.stepItemSuccess .stepNumBadge {
+  background: #10b981;
+}
+
+.stepInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.stepInfo strong {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.stepInfo span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.stepConnector {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #94a3b8;
+  padding-inline: 0.25rem;
+}
+
+/* =====================================================================
+   CINEMATIC 6 CEFR LEVEL COURSE CARDS
+   ===================================================================== */
+.cinematicGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 1.75rem;
+}
+
+.cinematicCard {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+  position: relative;
+}
+
+.cinematicCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.12);
+  border-color: #3b82f6;
+}
+
+.cardCoverStage {
+  position: relative;
+  height: 8.5rem;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.cardCoverGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cardCoverTopRow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.levelFrostedPill {
+  font-size: 0.775rem;
+  font-weight: 850;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bookMiniTag {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.22);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.cardCoverIconBox {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.cardCover3DIcon {
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+  transform: translateY(0.25rem);
+}
+
+.cardMainBody {
+  padding: 1.35rem 1.45rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.bookTitleRow {
+  margin-block-end: 0.35rem;
+}
+
+.bookTitleAccent {
+  font-size: 0.825rem;
+  font-weight: 750;
+  color: #2563eb;
+}
+
+.cinematicTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.cinematicDesc {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.skillChipsRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block-end: 1.15rem;
+}
+
+.skillChip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.progressDashboardBox {
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  margin-block-end: 1rem;
+}
+
+.progressTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 0.45rem;
+}
+
+.progressLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.progressFraction {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.progressFraction strong {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 0.5rem;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-block-end: 0.65rem;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.progressMetricsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.metricDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+}
+
+.cinematicActionStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-start: 0.85rem;
+  border-block-start: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.actionArrowIcon {
+  font-size: 1.15rem;
+  transition: transform 0.2s ease;
+}
+
+.cinematicCard:hover .actionArrowIcon {
+  transform: translateX(-5px);
 }
 
 .tabIcon {

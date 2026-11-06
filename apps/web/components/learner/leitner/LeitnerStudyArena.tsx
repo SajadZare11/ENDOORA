@@ -177,9 +177,9 @@ export const LeitnerStudyArena: React.FC = () => {
           </div>
 
           <div className={styles.celebrationActions}>
-            <Link href="/mistakes" className={styles.startStudyButton}>
+            <Link href="/leitner" className={styles.startStudyButton}>
               <span>←</span>
-              <span>بازگشت به ژنوم خطاهای یادگیری</span>
+              <span>بازگشت به قفسه لایتنر</span>
             </Link>
             <button
               type="button"
@@ -202,7 +202,7 @@ export const LeitnerStudyArena: React.FC = () => {
     <div className={styles.arenaContainer}>
       {/* Top Header & Progress */}
       <div className={styles.arenaTopBar}>
-        <Link href="/mistakes" className={styles.arenaBackLink}>
+        <Link href="/leitner" className={styles.arenaBackLink}>
           <span>←</span>
           <span>بازگشت به قفسه لایتنر</span>
         </Link>
