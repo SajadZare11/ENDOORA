@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PathUnit, BossQuestion } from "../../../lib/learning-path-storage";
+import { playEnglishAudio } from "../../../lib/interactive-lesson-engine";
 import styles from "./learning-path.module.css";
 
 interface BossGateModalProps {
@@ -21,6 +22,14 @@ export const BossGateModal: React.FC<BossGateModalProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [scorePercent, setScorePercent] = useState(0);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   const handleSelectOption = (questionId: string, optionIdx: number) => {
     if (isSubmitted) return;
     setSelectedAnswers((prev) => ({
@@ -30,12 +39,7 @@ export const BossGateModal: React.FC<BossGateModalProps> = ({
   };
 
   const handlePlayAudio = (text: string) => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.rate = 0.9;
-    window.speechSynthesis.speak(utterance);
+    playEnglishAudio(text);
   };
 
   const handleSubmit = (e: React.FormEvent) => {

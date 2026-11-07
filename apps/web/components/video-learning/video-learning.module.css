@@ -664,7 +664,9 @@
 .lineSpeaker {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #475569;
+  color: #3b82f6;
+  direction: ltr;
+  text-align: left;
   margin-bottom: 0.2rem;
 }
 
@@ -673,7 +675,8 @@
   font-weight: 600;
   color: #0f172a;
   direction: ltr;
-  text-align: right;
+  text-align: left;
+  line-height: 1.5;
   margin-bottom: 0.2rem;
 }
 
@@ -681,6 +684,8 @@
   font-size: 0.8rem;
   color: #64748b;
   margin: 0;
+  direction: rtl;
+  text-align: right;
 }
 
 /* ==============================================================

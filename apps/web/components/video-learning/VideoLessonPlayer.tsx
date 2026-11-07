@@ -48,12 +48,12 @@ export default function VideoLessonPlayer({
 }: VideoLessonPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
-  const [subtitleMode, setSubtitleMode] = useState<"dual" | "en" | "fa" | "off">("dual");
   const [showTranscript, setShowTranscript] = useState(true);
   const [skipWarning, setSkipWarning] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
   const videoElementRef = useRef<HTMLVideoElement | null>(null);
+  const activeLineRef = useRef<HTMLDivElement | null>(null);
 
   const togglePlayPause = () => {
     if (videoElementRef.current) {
@@ -116,8 +116,15 @@ export default function VideoLessonPlayer({
     return currentTime >= line.seconds;
   });
 
-  const activeLine: TranscriptLine | undefined =
-    activeTranscriptIndex !== -1 ? lesson.transcript[activeTranscriptIndex] : lesson.transcript[0];
+  // Auto-scroll transcript container to active line during playback
+  useEffect(() => {
+    if (activeLineRef.current && isPlaying) {
+      activeLineRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [activeTranscriptIndex, isPlaying]);
 
   const formatSeconds = (sec: number) => {
     const m = Math.floor(sec / 60);
@@ -166,14 +173,12 @@ export default function VideoLessonPlayer({
   };
 
   const jumpToLine = (seconds: number) => {
-    if (!allowForwardScrubbing && watchPercentage < 80 && seconds > maxWatchedSeconds + 3) {
-      setSkipWarning(true);
-      setTimeout(() => setSkipWarning(false), 3500);
-      return;
-    }
     onTimeChange(seconds);
     if (videoElementRef.current) {
       videoElementRef.current.currentTime = seconds;
+      videoElementRef.current.play().catch((err) => {
+        console.warn("Video play interrupted:", err);
+      });
     }
     setIsPlaying(true);
   };
@@ -281,43 +286,6 @@ export default function VideoLessonPlayer({
               </button>
             )}
 
-            {/* Active Subtitles Display on Video */}
-            {subtitleMode !== "off" && activeLine && (
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "1.25rem",
-                  left: "1rem",
-                  right: "1rem",
-                  textAlign: "center",
-                  pointerEvents: "none",
-                  zIndex: 15,
-                }}
-              >
-                <div
-                  style={{
-                    display: "inline-block",
-                    background: "rgba(0, 0, 0, 0.8)",
-                    backdropFilter: "blur(4px)",
-                    borderRadius: "8px",
-                    padding: "0.4rem 1rem",
-                    maxWidth: "90%",
-                  }}
-                >
-                  {(subtitleMode === "dual" || subtitleMode === "en") && (
-                    <div style={{ color: "#ffffff", fontSize: "1.05rem", fontWeight: 700, direction: "ltr" }}>
-                      {activeLine.textEn}
-                    </div>
-                  )}
-                  {(subtitleMode === "dual" || subtitleMode === "fa") && (
-                    <div style={{ color: "#facc15", fontSize: "0.95rem", fontWeight: 600, marginTop: "0.2rem", direction: "rtl" }}>
-                      {activeLine.textFa}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
             {/* Error Overlay with Retry */}
             {videoError && (
               <div
@@ -388,19 +356,6 @@ export default function VideoLessonPlayer({
                   <h3 style={{ margin: 0, fontSize: "1.1rem", fontWeight: 700 }}>
                     {lesson.titleFa}
                   </h3>
-                </div>
-              )}
-
-              {/* Active Subtitles Display */}
-              {subtitleMode !== "off" && activeLine && (
-                <div>
-                  <span className={styles.stageSpeaker}>{activeLine.speaker}</span>
-                  {(subtitleMode === "dual" || subtitleMode === "en") && (
-                    <p className={styles.stageActiveSubtitleEn}>{activeLine.textEn}</p>
-                  )}
-                  {(subtitleMode === "dual" || subtitleMode === "fa") && (
-                    <p className={styles.stageActiveSubtitleFa}>{activeLine.textFa}</p>
-                  )}
                 </div>
               )}
             </div>
@@ -492,20 +447,6 @@ export default function VideoLessonPlayer({
                 <option value="1.5">1.5x</option>
               </select>
 
-              {/* Subtitles mode selector */}
-              <select
-                className={styles.ctrlSelect}
-                value={subtitleMode}
-                onChange={(e) => setSubtitleMode(e.target.value as any)}
-                title="زیرنویس"
-                aria-label="زیرنویس"
-              >
-                <option value="dual">دوزبانه (انگلیسی/فارسی)</option>
-                <option value="en">فقط انگلیسی</option>
-                <option value="fa">فقط فارسی</option>
-                <option value="off">زیرنویس خاموش</option>
-              </select>
-
               {/* Toggle Transcript drawer */}
               <button
                 type="button"
@@ -537,6 +478,7 @@ export default function VideoLessonPlayer({
               return (
                 <div
                   key={line.id}
+                  ref={isActive ? activeLineRef : null}
                   className={`${styles.transcriptLineItem} ${
                     isActive ? styles.transcriptLineItemActive : ""
                   }`}
@@ -544,9 +486,9 @@ export default function VideoLessonPlayer({
                 >
                   <span className={styles.lineTimestamp}>{line.timeDisplay}</span>
                   <div style={{ flex: 1 }}>
-                    <div className={styles.lineSpeaker}>{line.speaker}</div>
+                    {line.speaker ? <div className={styles.lineSpeaker}>{line.speaker}</div> : null}
                     <div className={styles.lineTextEn}>{line.textEn}</div>
-                    <div className={styles.lineTextFa}>{line.textFa}</div>
+                    {line.textFa ? <div className={styles.lineTextFa}>{line.textFa}</div> : null}
                   </div>
                 </div>
               );

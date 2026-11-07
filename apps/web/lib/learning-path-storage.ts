@@ -2375,3 +2375,42 @@ export function getNodeStatus(
 
   return "locked";
 }
+
+// Reset all progress back to pristine starting state
+export function resetLearnerPathProgress(): LearnerPathProgress {
+  const defaultProgress: LearnerPathProgress = {
+    completedNodeIds: [],
+    unlockedUnitIds: ["unit-1"],
+    nodeStars: {},
+    totalXp: 0,
+    currentStreak: 1,
+    lastActiveDate: new Date().toISOString(),
+  };
+  saveLearnerPathProgress(defaultProgress);
+  return defaultProgress;
+}
+
+// Unlock all units & nodes for demonstration and testing purposes
+export function unlockAllPathNodes(): LearnerPathProgress {
+  const allUnitIds = CURRICULUM_UNITS.map((u) => u.id);
+  const allNodeIds = CURRICULUM_UNITS.flatMap((u) => u.nodes.map((n) => n.id));
+  const starsMap: Record<string, number> = {};
+  let totalXp = 0;
+  for (const u of CURRICULUM_UNITS) {
+    for (const n of u.nodes) {
+      starsMap[n.id] = 3;
+      totalXp += n.xpReward;
+    }
+  }
+  const unlockedProgress: LearnerPathProgress = {
+    completedNodeIds: allNodeIds,
+    unlockedUnitIds: allUnitIds,
+    nodeStars: starsMap,
+    totalXp,
+    currentStreak: 7,
+    lastActiveDate: new Date().toISOString(),
+  };
+  saveLearnerPathProgress(unlockedProgress);
+  return unlockedProgress;
+}
+

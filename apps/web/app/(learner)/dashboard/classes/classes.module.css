@@ -1,0 +1,346 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 1.25rem);
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: var(--space-4, 1rem);
+}
+
+.headerCard {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-xl, 1.25rem);
+  padding: var(--space-6, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text, #0f172a);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-muted, #64748b);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.marketplaceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--color-primary-600, #4f46e5);
+  border: 1px solid var(--color-primary-600, #4f46e5);
+  border-radius: var(--radius-md, 0.5rem);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.marketplaceBtn:hover {
+  background: #f5f3ff;
+}
+
+.joinCodeSection {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg, 0.75rem);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.joinCodeTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.joinCodeForm {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.codeFeedback {
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.codeFeedbackSuccess {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.codeFeedbackError {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.tabsContainer {
+  display: flex;
+  border-bottom: 2px solid #e2e8f0;
+  gap: 0.5rem;
+}
+
+.tabBtn {
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.tabBtn:hover {
+  color: #0f172a;
+}
+
+.tabBtnActive {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+  font-weight: 700;
+}
+
+.tabCount {
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.tabBtnActive .tabCount {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.searchBar {
+  margin-block: 0.5rem;
+}
+
+.classesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1.25rem;
+}
+
+.classCard {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 0.75rem);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.classCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.08);
+}
+
+.classCardPast {
+  background: #fafafa;
+  border-color: #e5e5e5;
+  opacity: 0.92;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.classTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  background: #e0e7ff;
+  color: #4338ca;
+  white-space: nowrap;
+}
+
+.badgePast {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.teacherInfo {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.codeBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+}
+
+.codeBoxPast {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.codeLabel {
+  font-size: 0.8125rem;
+  color: #166534;
+}
+
+.codeLabelPast {
+  color: #64748b;
+}
+
+.codeDigits {
+  font-family: monospace;
+  letter-spacing: 1px;
+  color: #15803d;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.codeDigitsPast {
+  color: #475569;
+}
+
+.copyCodeBtn {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  background: #ffffff;
+  border: 1px solid #86efac;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #166534;
+  font-weight: 600;
+}
+
+.copyCodeBtn:hover {
+  background: #f0fdf4;
+}
+
+.scheduleBox {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+.scheduleBoxPast {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.scheduleRow {
+  display: flex;
+  justify-content: space-between;
+  color: #0369a1;
+}
+
+.scheduleRowPast {
+  display: flex;
+  justify-content: space-between;
+  color: #64748b;
+}
+
+.liveGatePill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.liveGatePillActive {
+  color: #15803d;
+}
+
+.liveGatePillLocked {
+  color: #b45309;
+}
+
+.joinOnlineBtn {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+  transition: all 0.15s ease;
+}
+
+.joinOnlineBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.emptyState {
+  background: var(--color-surface, #ffffff);
+  border: 1px dashed var(--color-border, #cbd5e1);
+  border-radius: var(--radius-lg, 0.75rem);
+  padding: var(--space-8, 2.5rem);
+  text-align: center;
+  color: var(--color-muted, #64748b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}

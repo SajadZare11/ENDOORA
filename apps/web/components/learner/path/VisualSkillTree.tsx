@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   CURRICULUM_UNITS,
   CEFRTier,
@@ -14,10 +13,13 @@ import {
   getNodeStatus,
   completePathNode,
   passBossGate,
+  resetLearnerPathProgress,
+  unlockAllPathNodes,
 } from "../../../lib/learning-path-storage";
 import { PathHeroBanner } from "./PathHeroBanner";
 import { BossGateModal } from "./BossGateModal";
 import { LessonPreviewModal } from "./LessonPreviewModal";
+import { InteractiveLessonModal } from "./InteractiveLessonModal";
 import styles from "./learning-path.module.css";
 
 const TIERS: { id: CEFRTier; labelFa: string; descFa: string }[] = [
@@ -29,7 +31,6 @@ const TIERS: { id: CEFRTier; labelFa: string; descFa: string }[] = [
 ];
 
 export const VisualSkillTree: React.FC = () => {
-  const router = useRouter();
   const [progress, setProgress] = useState<LearnerPathProgress>({
     completedNodeIds: [],
     unlockedUnitIds: ["unit-1"],
@@ -52,6 +53,12 @@ export const VisualSkillTree: React.FC = () => {
     unit: PathUnit;
     status: PathNodeStatus;
     starsCount: number;
+  } | null>(null);
+
+  // In-App Interactive Lesson Runner state
+  const [interactiveModal, setInteractiveModal] = useState<{
+    node: PathNode;
+    unit: PathUnit;
   } | null>(null);
 
   const refreshProgress = () => {
@@ -122,9 +129,22 @@ export const VisualSkillTree: React.FC = () => {
     if (node.type === "boss") {
       setActiveBossModalUnit({ unit, isTestOut: false });
     } else {
-      completePathNode(node.id, 3);
-      refreshProgress();
-      router.push(node.deepLinkHref);
+      setInteractiveModal({ node, unit });
+    }
+  };
+
+  const handleInteractiveComplete = (starsCount: number, xpReward: number) => {
+    if (!interactiveModal) return;
+    completePathNode(interactiveModal.node.id, starsCount, xpReward);
+    setInteractiveModal(null);
+    refreshProgress();
+  };
+
+  const handleStartNodeDirectly = (node: PathNode, unit: PathUnit) => {
+    if (node.type === "boss") {
+      setActiveBossModalUnit({ unit, isTestOut: false });
+    } else {
+      setInteractiveModal({ node, unit });
     }
   };
 
@@ -151,8 +171,19 @@ export const VisualSkillTree: React.FC = () => {
 
   return (
     <div className={styles.pathContainer}>
-      {/* Master Command Center Hero Banner */}
-      <PathHeroBanner progress={progress} />
+      {/* Master Command Center Hero Banner with Working Controls */}
+      <PathHeroBanner
+        progress={progress}
+        onStartNode={handleStartNodeDirectly}
+        onResetProgress={() => {
+          resetLearnerPathProgress();
+          refreshProgress();
+        }}
+        onUnlockAll={() => {
+          unlockAllPathNodes();
+          refreshProgress();
+        }}
+      />
 
       {/* Tier Switcher Navigation with Live Progress */}
       <div className={styles.tierNavTrack} role="tablist" aria-label="انتخاب سطح آموزشی">
@@ -227,7 +258,7 @@ export const VisualSkillTree: React.FC = () => {
                         style={{
                           fontSize: "0.75rem",
                           fontWeight: 800,
-                          padding: "0.15rem 0.5rem",
+                          padding: "0.2rem 0.6rem",
                           borderRadius: "9999px",
                           background: "#10b98118",
                           color: "#059669",
@@ -387,15 +418,16 @@ export const VisualSkillTree: React.FC = () => {
                     {status === "available" && (
                       <div
                         style={{
-                          marginBlockStart: "0.35rem",
-                          background: "#2563eb",
+                          marginBlockStart: "0.4rem",
+                          background: "linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%)",
                           color: "#ffffff",
-                          fontSize: "0.7rem",
-                          fontWeight: 800,
-                          padding: "0.15rem 0.5rem",
+                          fontSize: "0.72rem",
+                          fontWeight: 850,
+                          padding: "0.2rem 0.65rem",
                           borderRadius: "9999px",
-                          boxShadow: "0 2px 8px rgba(37, 99, 235, 0.4)",
+                          boxShadow: "0 4px 12px rgba(37, 99, 235, 0.45)",
                           whiteSpace: "nowrap",
+                          border: "1px solid rgba(255, 255, 255, 0.3)",
                         }}
                       >
                         ⚡ نوبت شماست
@@ -414,13 +446,13 @@ export const VisualSkillTree: React.FC = () => {
             {/* Optional Side Quest Branch */}
             {unit.sideQuest && isUnitUnlocked && (
               <div className={styles.sideQuestCard}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                  <span style={{ fontSize: "1.5rem" }}>{unit.sideQuest.icon}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+                  <span style={{ fontSize: "1.75rem" }}>{unit.sideQuest.icon}</span>
                   <div>
                     <h4 className={styles.sideQuestTitle}>
                       ماموریت جانبی: {unit.sideQuest.titleFa}
                     </h4>
-                    <p style={{ margin: "0.2rem 0 0 0", fontSize: "0.78rem", color: "#64748b" }}>
+                    <p style={{ margin: "0.2rem 0 0 0", fontSize: "0.82rem", color: "#64748b" }}>
                       {unit.sideQuest.descriptionFa}
                     </p>
                   </div>
@@ -457,6 +489,16 @@ export const VisualSkillTree: React.FC = () => {
             refreshProgress();
           }}
           onPass={handleBossPass}
+        />
+      )}
+
+      {/* In-App Interactive Lesson Runner Modal */}
+      {interactiveModal && (
+        <InteractiveLessonModal
+          node={interactiveModal.node}
+          unit={interactiveModal.unit}
+          onClose={() => setInteractiveModal(null)}
+          onComplete={handleInteractiveComplete}
         />
       )}
     </div>

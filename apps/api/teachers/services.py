@@ -523,12 +523,17 @@ class TeacherClassService:
         learner,
         code: Optional[str] = None,
         q: Optional[str] = None,
+        include_past: bool = True,
     ) -> List[Dict[str, Any]]:
-        """Returns all educational relationships for the learner."""
+        """Returns all educational relationships for the learner (both active and past)."""
         from django.db.models import Q
+        allowed_statuses = [LinkStatus.ACTIVE]
+        if include_past:
+            allowed_statuses.append(LinkStatus.TERMINATED)
+
         links = TeacherLearnerLink.objects.filter(
             learner=learner,
-            status=LinkStatus.ACTIVE,
+            status__in=allowed_statuses,
         ).select_related("teacher", "teacher_class")
 
         if code and code.strip():
@@ -550,6 +555,10 @@ class TeacherClassService:
             days_str = " و ".join(tc.effective_schedule_days)
             sched_summary = f"{days_str} ساعت {tc.schedule_time_start} الی {tc.schedule_time_end}"
             teacher_name = getattr(l.teacher, "get_full_name", lambda: "")() or l.teacher.email.split("@")[0]
+            is_past = (
+                l.status == LinkStatus.TERMINATED
+                or tc.status in [ClassStatus.COMPLETED, ClassStatus.ARCHIVED]
+            )
             result.append({
                 "link_id": str(l.id),
                 "teacher_id": str(l.teacher.id),
@@ -561,6 +570,9 @@ class TeacherClassService:
                 "class_title": tc.title,
                 "subject": tc.subject,
                 "level": tc.level,
+                "class_status": tc.status,
+                "link_status": l.status,
+                "is_past": is_past,
                 "consent_given_at": l.consent_given_at,
                 "schedule_days": tc.effective_schedule_days,
                 "schedule_time_start": tc.schedule_time_start,

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { PathNode, PathUnit, PathNodeStatus } from "../../../lib/learning-path-storage";
 import styles from "./learning-path.module.css";
 
@@ -20,37 +20,37 @@ const SKILL_THEME_MAP: Record<
   concept: {
     labelFa: "درس مفهومی و ساختاری",
     color: "#2563eb",
-    bg: "rgba(37, 99, 235, 0.1)",
+    bg: "rgba(37, 99, 235, 0.12)",
     icon: "📖",
   },
   receptive: {
     labelFa: "درک مطلب و شنیداری",
     color: "#0d9488",
-    bg: "rgba(13, 148, 136, 0.1)",
+    bg: "rgba(13, 148, 136, 0.12)",
     icon: "🎧",
   },
   speaking: {
-    labelFa: "مکالمه فعال و هوش مصنوعی",
+    labelFa: "مکالمه فعال و تعاملی",
     color: "#8b5cf6",
-    bg: "rgba(139, 92, 246, 0.1)",
+    bg: "rgba(139, 92, 246, 0.12)",
     icon: "🎙️",
   },
   leitner: {
     labelFa: "تثبیت در جعبه لایتنر",
     color: "#f59e0b",
-    bg: "rgba(245, 158, 11, 0.1)",
+    bg: "rgba(245, 158, 11, 0.12)",
     icon: "🧠",
   },
   boss: {
     labelFa: "غول‌آزمون جامع یونیت",
     color: "#ef4444",
-    bg: "rgba(239, 68, 68, 0.1)",
+    bg: "rgba(239, 68, 68, 0.12)",
     icon: "🏆",
   },
   side_quest: {
     labelFa: "ماموریت جانبی ماجراجویی",
     color: "#ec4899",
-    bg: "rgba(236, 72, 153, 0.1)",
+    bg: "rgba(236, 72, 153, 0.12)",
     icon: "✨",
   },
 };
@@ -66,19 +66,27 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
   const theme = SKILL_THEME_MAP[node.type] || {
     labelFa: node.typeLabelFa,
     color: "#2563eb",
-    bg: "rgba(37, 99, 235, 0.1)",
+    bg: "rgba(37, 99, 235, 0.12)",
     icon: node.icon,
   };
 
   const isLocked = status === "locked";
   const isCompleted = status === "completed";
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <div className={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true">
       <div
         className={styles.modalContent}
         onClick={(e) => e.stopPropagation()}
-        style={{ maxWidth: "520px", padding: "1.75rem", position: "relative" }}
+        style={{ maxWidth: "520px", position: "relative" }}
       >
         {/* Close Button */}
         <button
@@ -86,16 +94,6 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
           onClick={onClose}
           className={styles.closeBtn}
           aria-label="بستن پنجره"
-          style={{
-            position: "absolute",
-            top: "1.25rem",
-            left: "1.25rem",
-            background: "none",
-            border: "none",
-            fontSize: "1.25rem",
-            color: "var(--color-muted, #94a3b8)",
-            cursor: "pointer",
-          }}
         >
           ✕
         </button>
@@ -149,7 +147,7 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
         {/* Title */}
         <h3
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1.25rem",
             fontWeight: 850,
             color: "var(--color-text-primary, #0f172a)",
             margin: "0 0 0.25rem 0",
@@ -165,7 +163,7 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
             fontSize: "0.85rem",
             fontWeight: 600,
             color: "var(--color-text-muted, #64748b)",
-            marginBlockEnd: "1rem",
+            marginBlockEnd: "1.2rem",
             textAlign: "start",
           }}
         >
@@ -175,9 +173,9 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
         {/* Lesson Summary Card */}
         <div
           style={{
-            background: "var(--color-canvas, #f8fafc)",
-            border: "1px solid var(--color-border, #e2e8f0)",
-            borderRadius: "12px",
+            background: "rgba(241, 245, 249, 0.6)",
+            border: "1px solid rgba(226, 232, 240, 0.8)",
+            borderRadius: "14px",
             padding: "1rem",
             marginBlockEnd: "1.25rem",
           }}
@@ -279,6 +277,7 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
               padding: "0.5rem",
               background: "rgba(245, 158, 11, 0.08)",
               borderRadius: "10px",
+              border: "1px solid rgba(245, 158, 11, 0.2)",
             }}
           >
             <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#d97706" }}>امتیاز تسلط شما:</span>
@@ -311,29 +310,8 @@ export const LessonPreviewModal: React.FC<LessonPreviewModalProps> = ({
           <button
             type="button"
             onClick={onStart}
-            style={{
-              width: "100%",
-              padding: "0.9rem 1.5rem",
-              borderRadius: "12px",
-              background: isCompleted
-                ? "linear-gradient(135deg, #10b981, #059669)"
-                : "linear-gradient(135deg, #2563eb, #1d4ed8)",
-              color: "#ffffff",
-              fontSize: "1rem",
-              fontWeight: 800,
-              border: "none",
-              cursor: "pointer",
-              boxShadow: isCompleted
-                ? "0 4px 14px rgba(16, 185, 129, 0.35)"
-                : "0 4px 14px rgba(37, 99, 235, 0.35)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.5rem",
-              transition: "transform 0.15s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+            className={styles.nextStepBtn}
+            style={{ width: "100%", justifyContent: "center" }}
           >
             <span>{isCompleted ? "مرور مجدد درس" : "شروع یادگیری این مرحله"}</span>
             <span aria-hidden="true">←</span>

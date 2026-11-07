@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   LearnerPathProgress,
   getNextBestNode,
   PathUnit,
+  PathNode,
   CURRICULUM_UNITS,
 } from "../../../lib/learning-path-storage";
 import styles from "./learning-path.module.css";
@@ -13,6 +14,9 @@ import styles from "./learning-path.module.css";
 interface PathHeroBannerProps {
   progress: LearnerPathProgress;
   onSelectNode?: (nodeId: string, unitId: string) => void;
+  onStartNode?: (node: PathNode, unit: PathUnit) => void;
+  onResetProgress?: () => void;
+  onUnlockAll?: () => void;
 }
 
 const TIER_NAMES: Record<string, string> = {
@@ -23,7 +27,14 @@ const TIER_NAMES: Record<string, string> = {
   C1: "پیشرفته و آیلتس ۷.۵+ (Mastery)",
 };
 
-export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSelectNode }) => {
+export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({
+  progress,
+  onSelectNode,
+  onStartNode,
+  onResetProgress,
+  onUnlockAll,
+}) => {
+  const [showConfirmReset, setShowConfirmReset] = useState(false);
   const nextStep = getNextBestNode(progress);
 
   // Determine current active level tier
@@ -42,6 +53,15 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
   const completedCount = progress.completedNodeIds.length;
   const overallPercent = Math.min(100, Math.round((completedCount / (totalNodes || 1)) * 100));
 
+  const handleNextClick = () => {
+    if (!nextStep) return;
+    if (onStartNode) {
+      onStartNode(nextStep.node, nextStep.unit);
+    } else if (onSelectNode) {
+      onSelectNode(nextStep.node.id, nextStep.unit.id);
+    }
+  };
+
   return (
     <div className={styles.heroBanner}>
       <div className={styles.heroContent}>
@@ -50,21 +70,35 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
           <span className={styles.cefrLevelPill}>
             <span>🏆</span>
             <span>
-              سطح شما: {activeTier} ({TIER_NAMES[activeTier] || activeTier})
+              سطح فعلی: {activeTier} ({TIER_NAMES[activeTier] || activeTier})
             </span>
           </span>
 
           <span className={styles.streakPill}>
             <span>🔥</span>
-            <span>{progress.currentStreak} روز رگه پیوسته</span>
+            <span>{progress.currentStreak} روز تداوم</span>
           </span>
 
-          <span className={styles.streakPill} style={{ borderColor: "#10b981", color: "#34d399", background: "rgba(16, 185, 129, 0.15)" }}>
+          <span
+            className={styles.streakPill}
+            style={{
+              borderColor: "#10b981",
+              color: "#34d399",
+              background: "rgba(16, 185, 129, 0.15)",
+            }}
+          >
             <span>⭐</span>
             <span>{totalStars} ستاره تسلط</span>
           </span>
 
-          <span className={styles.streakPill} style={{ borderColor: "#8b5cf6", color: "#a78bfa", background: "rgba(139, 92, 246, 0.15)" }}>
+          <span
+            className={styles.streakPill}
+            style={{
+              borderColor: "#8b5cf6",
+              color: "#a78bfa",
+              background: "rgba(139, 92, 246, 0.15)",
+            }}
+          >
             <span>⚡</span>
             <span>{progress.totalXp} XP</span>
           </span>
@@ -78,11 +112,30 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
 
         {/* Overall Progress Meter */}
         <div style={{ marginBlockStart: "1.25rem", maxWidth: "480px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "#94a3b8", marginBlockEnd: "0.4rem", fontWeight: 700 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: "0.8rem",
+              color: "#94a3b8",
+              marginBlockEnd: "0.4rem",
+              fontWeight: 700,
+            }}
+          >
             <span>پیشرفت کل در مسیر استقرایی CEFR</span>
-            <span style={{ color: "#38bdf8" }}>{completedCount} از {totalNodes} مرحله ({overallPercent}٪)</span>
+            <span style={{ color: "#38bdf8" }}>
+              {completedCount} از {totalNodes} مرحله ({overallPercent}٪)
+            </span>
           </div>
-          <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.1)", borderRadius: "9999px", overflow: "hidden" }}>
+          <div
+            style={{
+              width: "100%",
+              height: "8px",
+              background: "rgba(255,255,255,0.1)",
+              borderRadius: "9999px",
+              overflow: "hidden",
+            }}
+          >
             <div
               style={{
                 width: `${overallPercent}%`,
@@ -94,25 +147,71 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
             />
           </div>
         </div>
+
+        {/* Management & Testing Tools Bar */}
+        <div className={styles.heroToolsRow}>
+          <span className={styles.heroToolsLabel}>ابزارهای پیشرفت:</span>
+
+          {!showConfirmReset ? (
+            <button
+              type="button"
+              className={styles.toolPillBtn}
+              onClick={() => setShowConfirmReset(true)}
+              title="بازنشانی تمام مراحل و ستاره‌ها به نقطه آغاز"
+            >
+              <span>🔄</span>
+              <span>بازنشانی پیشرفت (Reset)</span>
+            </button>
+          ) : (
+            <div className={styles.confirmResetGroup}>
+              <span className={styles.confirmResetText}>پیشرفت ریست شود؟</span>
+              <button
+                type="button"
+                className={styles.confirmResetYesBtn}
+                onClick={() => {
+                  setShowConfirmReset(false);
+                  if (onResetProgress) onResetProgress();
+                }}
+              >
+                بله، بازنشانی
+              </button>
+              <button
+                type="button"
+                className={styles.confirmResetNoBtn}
+                onClick={() => setShowConfirmReset(false)}
+              >
+                انصراف
+              </button>
+            </div>
+          )}
+
+          {onUnlockAll && (
+            <button
+              type="button"
+              className={styles.toolPillBtn}
+              onClick={onUnlockAll}
+              title="باز کردن تمام ۱۵ یونیت و ۷۵ مرحله جهت تست و ارزیابی"
+            >
+              <span>🔓</span>
+              <span>حالت تست (آنلاک همه)</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Action Box: Next Step CTA & Video Courses Link */}
       <div className={styles.nextStepActionBox}>
         {nextStep ? (
           <>
-            <Link
-              href={nextStep.node.deepLinkHref}
+            <button
+              type="button"
               className={styles.nextStepBtn}
-              onClick={() => {
-                if (onSelectNode) {
-                  onSelectNode(nextStep.node.id, nextStep.unit.id);
-                }
-              }}
+              onClick={handleNextClick}
             >
               <span>{nextStep.node.icon}</span>
               <span>ادامه یادگیری: {nextStep.node.titleFa}</span>
               <span aria-hidden="true">←</span>
-            </Link>
+            </button>
             <span className={styles.nextStepHint}>
               {nextStep.unit.titleFa} • مرحله {nextStep.orderInUnit} از ۵
             </span>
@@ -125,31 +224,7 @@ export const PathHeroBanner: React.FC<PathHeroBannerProps> = ({ progress, onSele
         )}
 
         {/* Link to Video Courses Hub */}
-        <Link
-          href="/learn/video"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.4rem",
-            fontSize: "0.8rem",
-            color: "#94a3b8",
-            textDecoration: "none",
-            marginBlockStart: "0.4rem",
-            padding: "0.3rem 0.6rem",
-            borderRadius: "8px",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            transition: "all 0.2s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#ffffff";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#94a3b8";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-          }}
-        >
+        <Link href="/learn/video" className={styles.videoHubLink}>
           <span>🎬</span>
           <span>مشاهده دوره‌های ویدیویی (Speakout & AEF) ←</span>
         </Link>

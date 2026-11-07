@@ -159,44 +159,108 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "لهجه آمریکایی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 1: Jenny Arrives in New York.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۱: ورود جنی به نیویورک و معرفی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 29,
-        "timeDisplay": "0:29",
-        "textEn": "Detailed conversation and communicative exchange regarding معرفی خود و شغل.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون معرفی خود و شغل.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 87,
-        "timeDisplay": "1:27",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 1: Jenny Arrives in New York.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۱: ورود جنی به نیویورک و معرفی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Hi. My name's Rob Walker.",
+                "textFa": "سلام. نام من راب واکر است."
+        },
+        {
+                "id": 2,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "I live here in London, I work in London, and I write about London!",
+                "textFa": "من اینجا در لندن زندگی می‌کنم، در لندن کار می‌کنم و درباره لندن می‌نویسم!"
+        },
+        {
+                "id": 3,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "I work for a magazine called London 24seven.",
+                "textFa": "من برای مجله‌ای به نام London 24seven کار می‌کنم."
+        },
+        {
+                "id": 4,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Rob",
+                "textEn": "I write about life in London - the people, the theater, the restaurants... It's fun!",
+                "textFa": "من درباره زندگی در لندن می‌نویسم: مردم، تئاتر، رستوران‌ها... واقعاً لذت‌بخش است!"
+        },
+        {
+                "id": 5,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Rob",
+                "textEn": "I love London. It's a great city.",
+                "textFa": "من عاشق لندن هستم. شهر فوق‌العاده‌ای است."
+        },
+        {
+                "id": 6,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Jenny",
+                "textEn": "Hi. My name's Jenny Zielinski.",
+                "textFa": "سلام. نام من جنی زیلینسکی است."
+        },
+        {
+                "id": 7,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Jenny",
+                "textEn": "I'm from New York. The number one city in the world.",
+                "textFa": "من اهل نیویورک هستم؛ برترین شهر جهان."
+        },
+        {
+                "id": 8,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Jenny",
+                "textEn": "I'm the assistant editor of a magazine, New York 24seven.",
+                "textFa": "من دستیار سردبیر یک مجله به نام New York 24seven هستم."
+        },
+        {
+                "id": 9,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Jenny",
+                "textEn": "I'm the new assistant editor.",
+                "textFa": "من دستیار سردبیر جدید این مجله هستم."
+        },
+        {
+                "id": 10,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "Jenny",
+                "textEn": "But this week, I'm on a business trip to London.",
+                "textFa": "اما این هفته، در یک سفر کاری به لندن آمده‌ام."
+        },
+        {
+                "id": 11,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Jenny",
+                "textEn": "This is my first time in the UK. It's very exciting!",
+                "textFa": "این اولین بار است که به بریتانیا می‌آیم. بسیار هیجان‌انگیز است!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۱: ورود جنی به نیویورک و معرفی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 1: Jenny Arrives in New York', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 38,
-        "timestampDisplay": "0:38",
-        "explanationFa": "در این صحنه، تمرکز بر معرفی خود و شغل و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:56]. What key point is stated by Narrator?",
+        "timestampSeconds": 56,
+        "timestampDisplay": "0:56",
+        "explanationFa": "در ثانیه 0:56 ویدیو، Narrator به صراحت بیان می‌کند: «I love London. It’s a great city. Jenny Hi. My name’s Jenny Zielinski. I’m from New York.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny Zielinski, an assistant editor on a New York magazine, introduces herself,...",
-            "textFa": "تمرکز اصلی بر جنی زیلینسکی، دستیار سردبیر یک مجله در نیویورک، خود، زندگی پرمشغله در ... است."
+            "textEn": "Narrator states: \"I love London. It’s a great city. Jenny Hi. My name’s Jenny Zieli...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -355,44 +419,124 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "رمز وای‌فای"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 2: Checking In at a New York Hotel.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۲: ورود و پذیرش در هتل منهتن.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 18,
-        "timeDisplay": "0:18",
-        "textEn": "Detailed conversation and communicative exchange regarding اصطلاحات پذیرش هتل (Check in, reservation).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون اصطلاحات پذیرش هتل (Check in, reservation).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 54,
-        "timeDisplay": "0:54",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 2: Checking In at a New York Hotel.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۲: ورود و پذیرش در هتل منهتن.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Receptionist",
+                "textEn": "Good evening, madam.",
+                "textFa": "عصر بخیر، خانم."
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "Hello. I have a reservation. My name's Jennifer Zielinski.",
+                "textFa": "سلام. من رزرو قبلی دارم. نام من جنیفر زیلینسکی است."
+        },
+        {
+                "id": 3,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Receptionist",
+                "textEn": "Can you spell that, please?",
+                "textFa": "می‌توانید آن را هجی (اسپل) کنید، لطفاً؟"
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "Z-I-E-L-I-N-S-K-I...",
+                "textFa": "زد - آی - ای - ال - آی - ان - اس - کی - آی..."
+        },
+        {
+                "id": 5,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Receptionist",
+                "textEn": "For five nights?",
+                "textFa": "برای پنج شب؟"
+        },
+        {
+                "id": 6,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Jenny",
+                "textEn": "Yes, that's right.",
+                "textFa": "بله، درست است."
+        },
+        {
+                "id": 7,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Receptionist",
+                "textEn": "Can I have your passport, please?",
+                "textFa": "می‌توانم پاسپورت شما را داشته باشم، لطفاً؟"
+        },
+        {
+                "id": 8,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Jenny",
+                "textEn": "Just a second... Here you are.",
+                "textFa": "فقط یک لحظه... بفرمایید."
+        },
+        {
+                "id": 9,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Receptionist",
+                "textEn": "Thank you. Can you sign here, please? Thank you.",
+                "textFa": "متشکرم. ممکن است اینجا را امضا بفرمایید؟ ممنون."
+        },
+        {
+                "id": 10,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Receptionist",
+                "textEn": "Here's your key. It's room 306, on the third floor. The lift is over there.",
+                "textFa": "این کلید شماست. اتاق ۳۰۶، در طبقه سوم. آسانسور آنجا قرار دارد."
+        },
+        {
+                "id": 11,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Jenny",
+                "textEn": "The lift? Oh, the elevator.",
+                "textFa": "لیفت؟ اوه، همان آسانسور."
+        },
+        {
+                "id": 12,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Receptionist",
+                "textEn": "Yes. Enjoy your stay, Ms. Zielinski.",
+                "textFa": "بله. اقامت خوبی داشته باشید، خانم زیلینسکی."
+        },
+        {
+                "id": 13,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Jenny",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۲: ورود و پذیرش در هتل منهتن»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 2: Checking In at a New York Hotel', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 24,
-        "timestampDisplay": "0:24",
-        "explanationFa": "در این صحنه، تمرکز بر اصطلاحات پذیرش هتل (Check in, reservation) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:38]. What key point is stated by Receptionist?",
+        "timestampSeconds": 38,
+        "timestampDisplay": "0:38",
+        "explanationFa": "در ثانیه 0:38 ویدیو، Receptionist به صراحت بیان می‌کند: «Good evening, madam. Jenny Hello. I have a reservation. My name’s Jennifer Zielinski.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob arrives at his Manhattan hotel, speaks to the receptionist, verifies his boo...",
-            "textFa": "تمرکز اصلی بر راب به هتل خود در منهتن می‌رسد، با مسئول پذیرش صحبت می‌کند، رزرو اتاقش... است."
+            "textEn": "Receptionist states: \"Good evening, madam. Jenny Hello. I have a reservation. My name’s...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -551,44 +695,212 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "صحبت درباره خستگی پرواز (Jet lag)"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 3: Jenny Calls Rob in His Hotel Room.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۳: تماس تلفنی جنی با راب در اتاق هتل.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 20,
-        "timeDisplay": "0:20",
-        "textEn": "Detailed conversation and communicative exchange regarding مکالمات تلفنی انگلیسی (Is that Rob?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مکالمات تلفنی انگلیسی (Is that Rob?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 62,
-        "timeDisplay": "1:02",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 3: Jenny Calls Rob in His Hotel Room.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۳: تماس تلفنی جنی با راب در اتاق هتل.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Waitress",
+                "textEn": "Is your tea OK?",
+                "textFa": "چای شما خوب است؟"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Yes, thank you... It's very quiet this evening.",
+                "textFa": "بله، متشکرم... امشب هتل خیلی آرام و خلوت است."
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Waitress",
+                "textEn": "Yes, very relaxing! Are you on holiday?",
+                "textFa": "بله، خیلی آرامش‌بخش است! آیا در تعطیلات هستید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "No, I'm here on business.",
+                "textFa": "خیر، برای سفر کاری به اینجا آمده‌ام."
+        },
+        {
+                "id": 5,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Waitress",
+                "textEn": "Where are you from?",
+                "textFa": "اهل کجا هستید؟"
+        },
+        {
+                "id": 6,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Jenny",
+                "textEn": "I'm from New York. What about you?",
+                "textFa": "من اهل نیویورک هستم. شما چطور؟"
+        },
+        {
+                "id": 7,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Waitress",
+                "textEn": "I'm from Budapest, in Hungary.",
+                "textFa": "من اهل بوداپست در مجارستان هستم."
+        },
+        {
+                "id": 8,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Jenny",
+                "textEn": "Really? Oh, sorry.",
+                "textFa": "واقعاً؟ اوه، عذرخواهی می‌کنم [تلفنم زنگ می‌خورد]."
+        },
+        {
+                "id": 9,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Waitress",
+                "textEn": "No problem.",
+                "textFa": "خواهش می‌کنم، مشکلی نیست."
+        },
+        {
+                "id": 10,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Jenny",
+                "textEn": "Hello?",
+                "textFa": "الو؟"
+        },
+        {
+                "id": 11,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Rob",
+                "textEn": "Is that Jennifer?",
+                "textFa": "جنیفر هستید؟"
+        },
+        {
+                "id": 12,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "Yes...",
+                "textFa": "بله..."
+        },
+        {
+                "id": 13,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Rob",
+                "textEn": "This is Rob. Rob Walker... From London 24seven?",
+                "textFa": "راب هستم. راب واکر... از مجله London 24seven؟"
+        },
+        {
+                "id": 14,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Jenny",
+                "textEn": "Oh Rob, yes, of course. Hi.",
+                "textFa": "اوه راب، بله البته. سلام."
+        },
+        {
+                "id": 15,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "Hi. How are you?",
+                "textFa": "سلام. حالت چطور است؟"
+        },
+        {
+                "id": 16,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Jenny",
+                "textEn": "Oh, I'm fine, thanks. A little tired, that's all.",
+                "textFa": "اوه، خوبم، ممنون. فقط کمی خسته‌ام، همین."
+        },
+        {
+                "id": 17,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "I can meet you at the hotel tomorrow morning. Is nine OK for you?",
+                "textFa": "می‌توانم فردا صبح در هتل ببینمتان. ساعت نه برایتان مناسب است؟"
+        },
+        {
+                "id": 18,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Jenny",
+                "textEn": "That's perfect.",
+                "textFa": "عالی است."
+        },
+        {
+                "id": 19,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "Rob",
+                "textEn": "Great. OK, see you tomorrow at nine.",
+                "textFa": "بسیار عالی. پس فردا ساعت نه می‌بینمت."
+        },
+        {
+                "id": 20,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "Thanks. See you then. Bye.",
+                "textFa": "متشکرم. می‌بینمت. خداحافظ."
+        },
+        {
+                "id": 21,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Waitress",
+                "textEn": "Would you like another tea?",
+                "textFa": "چای دیگری میل دارید؟"
+        },
+        {
+                "id": 22,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Jenny",
+                "textEn": "No, thanks. It's time for bed.",
+                "textFa": "نه متشکرم. دیگر وقت خواب است."
+        },
+        {
+                "id": 23,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Waitress",
+                "textEn": "Good night, and enjoy your stay.",
+                "textFa": "شب بخیر، و اقامت خوشی داشته باشید."
+        },
+        {
+                "id": 24,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Jenny",
+                "textEn": "Good night.",
+                "textFa": "شب بخیر."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۳: تماس تلفنی جنی با راب در اتاق هتل»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 3: Jenny Calls Rob in His Hotel Room', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 27,
-        "timestampDisplay": "0:27",
-        "explanationFa": "در این صحنه، تمرکز بر مکالمات تلفنی انگلیسی (Is that Rob?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:42]. What key point is stated by Tip six?",
+        "timestampSeconds": 42,
+        "timestampDisplay": "0:42",
+        "explanationFa": "در ثانیه 0:42 ویدیو، Tip six به صراحت بیان می‌کند: «If you have children in the car, take books, games, and tablets with you. Then the children can watch videos or read.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny phones Rob in his hotel room to welcome him to America, check if everythin...",
-            "textFa": "تمرکز اصلی بر جنی با اتاق راب در هتل تماس می‌گیرد تا به او خوشامد بگوید، از شرایط ات... است."
+            "textEn": "Tip six states: \"If you have children in the car, take books, games, and tablets w...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -747,44 +1059,164 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "محیط اداری منهتن"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 1: Rob and Jenny Meet at the Magazine.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۱: دیدار راب و جنی در دفتر مجله.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 16,
-        "timeDisplay": "0:16",
-        "textEn": "Detailed conversation and communicative exchange regarding معرفی همکاران جدید.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون معرفی همکاران جدید.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 49,
-        "timeDisplay": "0:49",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 1: Rob and Jenny Meet at the Magazine.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۱: دیدار راب و جنی در دفتر مجله.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "Um... Jennifer?",
+                "textFa": "ام... جنیفر؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "Rob?",
+                "textFa": "راب؟"
+        },
+        {
+                "id": 3,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Rob",
+                "textEn": "Yes, hello.",
+                "textFa": "بله، سلام."
+        },
+        {
+                "id": 4,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Rob",
+                "textEn": "Nice to meet you, Jennifer.",
+                "textFa": "از دیدنت خوشحالم، جنیفر."
+        },
+        {
+                "id": 5,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "Call me Jenny. Good to meet you, too.",
+                "textFa": "مرا جنی صدا کن. من هم از دیدنت خوشحالم."
+        },
+        {
+                "id": 6,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "Welcome to London. Am I late?",
+                "textFa": "به لندن خوش آمدی. آیا دیر کرده‌ام؟"
+        },
+        {
+                "id": 7,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "Um... just a little.",
+                "textFa": "ام... فقط کمی."
+        },
+        {
+                "id": 8,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Rob",
+                "textEn": "What time is it?",
+                "textFa": "ساعت چند است؟"
+        },
+        {
+                "id": 9,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "Nine fifteen.",
+                "textFa": "نه و ربع."
+        },
+        {
+                "id": 10,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Rob",
+                "textEn": "I'm really sorry. The traffic is terrible today.",
+                "textFa": "واقعاً متاسفم. ترافیک امروز وحشتناک است."
+        },
+        {
+                "id": 11,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Jenny",
+                "textEn": "No problem.",
+                "textFa": "مشکلی نیست."
+        },
+        {
+                "id": 12,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Rob",
+                "textEn": "How are you? How's the hotel?",
+                "textFa": "حالت چطور است؟ هتل چطور است؟"
+        },
+        {
+                "id": 13,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Jenny",
+                "textEn": "The hotel's very nice. But breakfast isn't great. I'd like a good cup of coffee. Not hotel coffee - real coffee.",
+                "textFa": "هتل خیلی خوب است، اما صبحانه‌اش چندان تعریفی ندارد. دلم یک فنجان قهوه خوب می‌خواهد؛ نه قهوه هتل، قهوه واقعی."
+        },
+        {
+                "id": 14,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "OK, let's get a coffee.",
+                "textFa": "خیلی خوب، برویم یک قهوه بگیریم."
+        },
+        {
+                "id": 15,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Jenny",
+                "textEn": "Do I have time? I have a meeting at nine thirty.",
+                "textFa": "آیا وقت دارم؟ من ساعت نه و نیم جلسه دارم."
+        },
+        {
+                "id": 16,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Rob",
+                "textEn": "With Daniel?",
+                "textFa": "با دانیل؟"
+        },
+        {
+                "id": 17,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Jenny",
+                "textEn": "Yes.",
+                "textFa": "بله."
+        },
+        {
+                "id": 18,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Rob",
+                "textEn": "Don't worry. We have lots of time, the office is very near. So, Jenny, where do you want to go?",
+                "textFa": "نگران نباش. کلی وقت داریم، دفتر خیلی نزدیک است. خب جنی، کجا دوست داری برویم؟"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۱: دیدار راب و جنی در دفتر مجله»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 1: Rob and Jenny Meet at the Magazine', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 22,
-        "timestampDisplay": "0:22",
-        "explanationFa": "در این صحنه، تمرکز بر معرفی همکاران جدید و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:32]. What key point is stated by Narrator?",
+        "timestampSeconds": 32,
+        "timestampDisplay": "0:32",
+        "explanationFa": "در ثانیه 0:32 ویدیو، Narrator به صراحت بیان می‌کند: «Jenny The hotel’s very nice. But breakfast isn’t great. I’d like a good cup of coffee. Not hotel coffee, real coffee.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob arrives at the office in New York and meets Jenny in person for the very fir...",
-            "textFa": "تمرکز اصلی بر راب به دفتر کار نیویورک می‌رسد و برای نخستین بار جنی و مدیرشان دانیل ر... است."
+            "textEn": "Narrator states: \"Jenny The hotel’s very nice. But breakfast isn’t great. I’d like ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -943,44 +1375,172 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "قیمت و پرداخت پول"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 2: Buying a Coffee in Manhattan.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۲: سفارش قهوه و پرداخت در کافی‌شاپ.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 15,
-        "timeDisplay": "0:15",
-        "textEn": "Detailed conversation and communicative exchange regarding سفارش نوشیدنی (Can I have a latte?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون سفارش نوشیدنی (Can I have a latte?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 45,
-        "timeDisplay": "0:45",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 2: Buying a Coffee in Manhattan.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۲: سفارش قهوه و پرداخت در کافی‌شاپ.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Barista",
+                "textEn": "Can I help you?",
+                "textFa": "می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "What would you like, Jenny?",
+                "textFa": "چی میل داری، جنی؟"
+        },
+        {
+                "id": 3,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Jenny",
+                "textEn": "An espresso, please.",
+                "textFa": "یک اسپرسو، لطفاً."
+        },
+        {
+                "id": 4,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Barista",
+                "textEn": "Single or double?",
+                "textFa": "یک شات (سینگل) یا دو شات (دابل)؟"
+        },
+        {
+                "id": 5,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "Double.",
+                "textFa": "دابل."
+        },
+        {
+                "id": 6,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "Can I have a latte, please?",
+                "textFa": "می‌توانم یک لاته داشته باشم، لطفاً؟"
+        },
+        {
+                "id": 7,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Barista",
+                "textEn": "Regular or large?",
+                "textFa": "متوسط (معمولی) یا بزرگ؟"
+        },
+        {
+                "id": 8,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Rob",
+                "textEn": "Large.",
+                "textFa": "بزرگ."
+        },
+        {
+                "id": 9,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Barista",
+                "textEn": "To have here or take away?",
+                "textFa": "برای میل کردن در اینجا یا بیرون‌بر؟"
+        },
+        {
+                "id": 10,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Rob",
+                "textEn": "To take away.",
+                "textFa": "بیرون‌بر."
+        },
+        {
+                "id": 11,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Barista",
+                "textEn": "Anything else?",
+                "textFa": "چیز دیگری میل دارید؟"
+        },
+        {
+                "id": 12,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Jenny",
+                "textEn": "No, thanks.",
+                "textFa": "نه، متشکرم."
+        },
+        {
+                "id": 13,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "A brownie for me, please... and a croissant.",
+                "textFa": "یک کیک براونی برای من، لطفاً... و یک کروسان."
+        },
+        {
+                "id": 14,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Barista",
+                "textEn": "OK. That's twelve forty-five, please.",
+                "textFa": "بسیار خب. می‌شود ۱۲ پوند و ۴۵ پنس، لطفاً."
+        },
+        {
+                "id": 15,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Rob",
+                "textEn": "Sorry, how much?",
+                "textFa": "ببخشید، چقدر؟"
+        },
+        {
+                "id": 16,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Barista",
+                "textEn": "Twelve forty-five.",
+                "textFa": "دوازده و چهل و پنج."
+        },
+        {
+                "id": 17,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "Here you are.",
+                "textFa": "بفرمایید."
+        },
+        {
+                "id": 18,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Barista",
+                "textEn": "Thank you. And your change.",
+                "textFa": "متشکرم. این هم باقی پولتان."
+        },
+        {
+                "id": 19,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "Thanks.",
+                "textFa": "ممنون."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۲: سفارش قهوه و پرداخت در کافی‌شاپ»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 2: Buying a Coffee in Manhattan', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 20,
-        "timestampDisplay": "0:20",
-        "explanationFa": "در این صحنه، تمرکز بر سفارش نوشیدنی (Can I have a latte?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:29]. What key point is stated by Narrator?",
+        "timestampSeconds": 29,
+        "timestampDisplay": "0:29",
+        "explanationFa": "در ثانیه 0:29 ویدیو، Narrator به صراحت بیان می‌کند: «Buying a coffee − listen and repeat Barista Can I help you? Rob What would you like, Jenny? Jenny An espresso, please.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob orders coffee and a pastry at a bustling New York coffee shop, choosing betw...",
-            "textFa": "تمرکز اصلی بر راب در یک کافه شلوغ نیویورکی قهوه و کیک سفارش می‌دهد و بین سایزها، نوع... است."
+            "textEn": "Narrator states: \"Buying a coffee − listen and repeat Barista Can I help you? Rob W...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -1139,44 +1699,180 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "برنامه‌ریزی ساعات کاری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 3: First Day in the Office with Daniel.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۳: نخستین روز در دفتر کار و گفتگو با دانیل.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 22,
-        "timeDisplay": "0:22",
-        "textEn": "Detailed conversation and communicative exchange regarding معرفی فضاهای اداری.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون معرفی فضاهای اداری.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 68,
-        "timeDisplay": "1:08",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 3: First Day in the Office with Daniel.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۳: نخستین روز در دفتر کار و گفتگو با دانیل.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Rob",
+                "textEn": "Here we are. This is the office. And this is Karen.",
+                "textFa": "رسیدیم. این دفتر کار است. و این هم کارن است."
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Jenny",
+                "textEn": "Hello, Karen.",
+                "textFa": "سلام، کارن."
+        },
+        {
+                "id": 3,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Karen, this is Jennifer Zielinski from the New York office.",
+                "textFa": "کارن، ایشان جنیفر زیلینسکی از دفتر نیویورک هستند."
+        },
+        {
+                "id": 4,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Karen",
+                "textEn": "Hello, Jennifer. Nice to meet you.",
+                "textFa": "سلام، جنیفر. از دیدنت خوشحالم."
+        },
+        {
+                "id": 5,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Jenny",
+                "textEn": "Call me Jenny.",
+                "textFa": "مرا جنی صدا کنید."
+        },
+        {
+                "id": 6,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Karen",
+                "textEn": "Welcome to London.",
+                "textFa": "به لندن خوش آمدید."
+        },
+        {
+                "id": 7,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Jenny",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 8,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Karen",
+                "textEn": "Is this your first time in the UK?",
+                "textFa": "آیا این اولین بار است که به بریتانیا می‌آیید؟"
+        },
+        {
+                "id": 9,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Jenny",
+                "textEn": "Yes, it is.",
+                "textFa": "بله، همین‌طور است."
+        },
+        {
+                "id": 10,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Karen",
+                "textEn": "Would you like a cup of tea?",
+                "textFa": "یک فنجان چای میل دارید؟"
+        },
+        {
+                "id": 11,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Jenny",
+                "textEn": "No, thanks. I'm fine. We have a coffee.",
+                "textFa": "نه متشکرم، خوبم. قهوه داریم."
+        },
+        {
+                "id": 12,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Karen",
+                "textEn": "OK. Sit down here.",
+                "textFa": "بسیار خب، اینجا بنشینید."
+        },
+        {
+                "id": 13,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "And this is Daniel O'Connor. He's the editor of the magazine.",
+                "textFa": "و این هم دانیل اوکانر است. او سردبیر مجله است."
+        },
+        {
+                "id": 14,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Daniel",
+                "textEn": "Jennifer, hi. Nice to meet you.",
+                "textFa": "جنیفر، سلام. از آشنایی با شما خوشحالم."
+        },
+        {
+                "id": 15,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "Call me Jenny. Nice to meet you, too.",
+                "textFa": "جنی صدایم کنید. من هم از آشنایی با شما خوشحالم."
+        },
+        {
+                "id": 16,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Daniel",
+                "textEn": "Welcome to London. And welcome to London 24seven.",
+                "textFa": "به لندن خوش آمدید. و به نشریه London 24seven خوش آمدید."
+        },
+        {
+                "id": 17,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Jenny",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 18,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Daniel",
+                "textEn": "I need to talk to Rob now. Can you wait here for a few minutes?",
+                "textFa": "الان باید چند کلمه‌ای با راب صحبت کنم. ممکن است چند دقیقه اینجا منتظر بمانید؟"
+        },
+        {
+                "id": 19,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Jenny",
+                "textEn": "Yes, of course.",
+                "textFa": "بله، حتماً."
+        },
+        {
+                "id": 20,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Daniel",
+                "textEn": "Thanks. See you in a minute.",
+                "textFa": "ممنون. تا چند دقیقه دیگر می‌بینمتان."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۳: نخستین روز در دفتر کار و گفتگو با دانیل»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 3: First Day in the Office with Daniel', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 30,
-        "timestampDisplay": "0:30",
-        "explanationFa": "در این صحنه، تمرکز بر معرفی فضاهای اداری و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:44]. What key point is stated by Karen?",
+        "timestampSeconds": 44,
+        "timestampDisplay": "0:44",
+        "explanationFa": "در ثانیه 0:44 ویدیو، Karen به صراحت بیان می‌کند: «But diet is not the only reason why they live so long.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Daniel introduces Rob to the office layout and equipment, discussing their upcom...",
-            "textFa": "تمرکز اصلی بر دانیل بخش‌های مختلف دفتر کار و امکانات را به راب نشان می‌دهد و درباره ... است."
+            "textEn": "Karen states: \"But diet is not the only reason why they live so long....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -1335,44 +2031,124 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مشغله‌های محیط کار مدرن"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 1: Jenny's on the Phone.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۱: تماس‌های مکرر تلفنی جنی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 21,
-        "timeDisplay": "0:21",
-        "textEn": "Detailed conversation and communicative exchange regarding عبارات انتظار پای تلفن (Hold on, please).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون عبارات انتظار پای تلفن (Hold on, please).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 63,
-        "timeDisplay": "1:03",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 1: Jenny's on the Phone.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۱: تماس‌های مکرر تلفنی جنی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Hey, Jenny!",
+                "textFa": "هی، جنی!"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "Oh hi, Rob. Is that coffee for me?",
+                "textFa": "اوه سلام راب. آن قهوه برای من است؟"
+        },
+        {
+                "id": 3,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Yes. A double espresso.",
+                "textFa": "بله. یک دابل اسپرسو."
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "Oh wow, thanks. That's really nice of you.",
+                "textFa": "اوه واو، ممنون. واقعاً لطف کردی."
+        },
+        {
+                "id": 5,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Rob",
+                "textEn": "No problem. Do you have a meeting with Daniel?",
+                "textFa": "خواهش می‌کنم. با دانیل جلسه داری؟"
+        },
+        {
+                "id": 6,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Jenny",
+                "textEn": "Yes, another meeting. And you?",
+                "textFa": "بله، یک جلسه دیگر. تو چطور؟"
+        },
+        {
+                "id": 7,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "I'm going to the office, too. I have an interview with an artist.",
+                "textFa": "من هم به دفتر می‌روم. با یک هنرمند مصاحبه دارم."
+        },
+        {
+                "id": 8,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Jenny",
+                "textEn": "Great. Oh, Rob... what's that on your shirt?",
+                "textFa": "عالی است. اوه راب... آن چیست روی پیراهنت؟"
+        },
+        {
+                "id": 9,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Rob",
+                "textEn": "What? Oh, no! It's coffee!",
+                "textFa": "چی؟ اوه نه! لکه قهوه است!"
+        },
+        {
+                "id": 10,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Jenny",
+                "textEn": "You need a new shirt.",
+                "textFa": "به یک پیراهن نو نیاز داری."
+        },
+        {
+                "id": 11,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Rob",
+                "textEn": "Yes, I do. Where can I buy a shirt near here?",
+                "textFa": "بله، واقعاً نیاز دارم. این دور و بر کجا می‌توانم پیراهن بخرم؟"
+        },
+        {
+                "id": 12,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "There's a clothes store over there.",
+                "textFa": "آن طرف یک فروشگاه لباس هست."
+        },
+        {
+                "id": 13,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Rob",
+                "textEn": "OK, let's go.",
+                "textFa": "بسیار خب، برویم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۱: تماس‌های مکرر تلفنی جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 1: Jenny's on the Phone', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 28,
-        "timestampDisplay": "0:28",
-        "explanationFa": "در این صحنه، تمرکز بر عبارات انتظار پای تلفن (Hold on, please) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:47]. What key point is stated by Narrator?",
+        "timestampSeconds": 47,
+        "timestampDisplay": "0:47",
+        "explanationFa": "در ثانیه 0:47 ویدیو، Narrator به صراحت بیان می‌کند: «Jenny Oh no. Are you OK? I’m so sorry! Rob I’m fine! Jenny I’m really sorry.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny is busy juggling multiple phone calls and deadlines, while Rob needs her a...",
-            "textFa": "تمرکز اصلی بر جنی در حال پاسخگویی به تماس‌های فشرده کاری و ضرب‌الاجل‌هاست، در حالی ک... است."
+            "textEn": "Narrator states: \"Jenny Oh no. Are you OK? I’m so sorry! Rob I’m fine! Jenny I’m re...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -1531,44 +2307,108 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "پرداخت با کارت اعتباری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 2: Buying Clothes in a Retail Store.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۲: خرید لباس و پرو در فروشگاه.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 12,
-        "timeDisplay": "0:12",
-        "textEn": "Detailed conversation and communicative exchange regarding مکالمات فروشگاه لباس (What size are you?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مکالمات فروشگاه لباس (What size are you?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 38,
-        "timeDisplay": "0:38",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 2: Buying Clothes in a Retail Store.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۲: خرید لباس و پرو در فروشگاه.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Salesperson",
+                "textEn": "Can I help you?",
+                "textFa": "می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Yes, what size is this shirt?",
+                "textFa": "بله، سایز این پیراهن چیست؟"
+        },
+        {
+                "id": 3,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Salesperson",
+                "textEn": "Let's see. It's a small. What size do you need?",
+                "textFa": "بگذارید ببینم. اسمال (کوچک) است. چه سایزی نیاز دارید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "A medium.",
+                "textFa": "مدیوم (متوسط)."
+        },
+        {
+                "id": 5,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Salesperson",
+                "textEn": "This is a medium.",
+                "textFa": "این پیراهن سایز مدیوم است."
+        },
+        {
+                "id": 6,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Rob",
+                "textEn": "Thanks. Where can I try it on?",
+                "textFa": "ممنون. کجا می‌توانم پرو کنم؟"
+        },
+        {
+                "id": 7,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Salesperson",
+                "textEn": "The changing rooms are over there.",
+                "textFa": "اتاق‌های پرو آنجا هستند."
+        },
+        {
+                "id": 8,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Rob",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 9,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Salesperson",
+                "textEn": "How is it?",
+                "textFa": "چطور است؟ اندازه است؟"
+        },
+        {
+                "id": 10,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Rob",
+                "textEn": "It's fine. How much is it?",
+                "textFa": "خوب است. قیمتش چقدر است؟"
+        },
+        {
+                "id": 11,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Salesperson",
+                "textEn": "It's thirty-four ninety-nine.",
+                "textFa": "۳۴ پوند و ۹۹ پنس است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۲: خرید لباس و پرو در فروشگاه»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 2: Buying Clothes in a Retail Store', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 17,
-        "timestampDisplay": "0:17",
-        "explanationFa": "در این صحنه، تمرکز بر مکالمات فروشگاه لباس (What size are you?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:24]. What key point is stated by Salesperson?",
+        "timestampSeconds": 24,
+        "timestampDisplay": "0:24",
+        "explanationFa": "در ثانیه 0:24 ویدیو، Salesperson به صراحت بیان می‌کند: «It’s £44.99. Buying clothes − listen and repeat».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob visits a retail store to buy a new shirt and sweater, asking the shop assist...",
-            "textFa": "تمرکز اصلی بر راب برای خرید پیراهن و پلیور نو به فروشگاه پوشاک می‌رود، درباره سایز و... است."
+            "textEn": "Salesperson states: \"It’s £44.99. Buying clothes − listen and repeat...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -1727,44 +2567,204 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمه غیررسمی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 3: Meeting on the Street.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۳: برخورد غیرمنتظره در خیابان.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 16,
-        "timeDisplay": "0:16",
-        "textEn": "Detailed conversation and communicative exchange regarding برخورد اتفاقی در خیابان (What a surprise!).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون برخورد اتفاقی در خیابان (What a surprise!).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 50,
-        "timeDisplay": "0:50",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 3: Meeting on the Street.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۳: برخورد غیرمنتظره در خیابان.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Eddie",
+                "textEn": "So, Jenny, what do you think of London?",
+                "textFa": "خب جنی، نظرت درباره لندن چیست؟"
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Jenny",
+                "textEn": "I love it, Eddie! It's so cool!",
+                "textFa": "عاشقشم، ادی! واقعاً محشره!"
+        },
+        {
+                "id": 3,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Eddie",
+                "textEn": "What about the people in the office?",
+                "textFa": "همکارهای اداره چطورند؟"
+        },
+        {
+                "id": 4,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "They're really nice. And they're very polite!",
+                "textFa": "خیلی خوبند. و خیلی هم مودب و باادبند!"
+        },
+        {
+                "id": 5,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Eddie",
+                "textEn": "What about the food?",
+                "textFa": "غذاها چطور است؟"
+        },
+        {
+                "id": 6,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Jenny",
+                "textEn": "The food is OK. It's not great, but it's OK.",
+                "textFa": "غذا بد نیست. عالی نیست، ولی قابل قبوله."
+        },
+        {
+                "id": 7,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Eddie",
+                "textEn": "And what about the weather?",
+                "textFa": "و آب و هوا چطور؟"
+        },
+        {
+                "id": 8,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Jenny",
+                "textEn": "It's cold and it's raining.",
+                "textFa": "سرد است و باران می‌بارد."
+        },
+        {
+                "id": 9,
+                "seconds": 37,
+                "timeDisplay": "0:37",
+                "speaker": "Eddie",
+                "textEn": "Oh, well, it's London!",
+                "textFa": "اوه خب، اینجا لندنه دیگر!"
+        },
+        {
+                "id": 10,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Jenny",
+                "textEn": "Wait a minute, Eddie. There's a call on my other line. Can you hold on?",
+                "textFa": "یک لحظه صبر کن، ادی. پشت خطی دارم. می‌توانی نگه داری؟"
+        },
+        {
+                "id": 11,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Eddie",
+                "textEn": "Sure.",
+                "textFa": "حتماً."
+        },
+        {
+                "id": 12,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Jenny",
+                "textEn": "Hello?",
+                "textFa": "الو؟"
+        },
+        {
+                "id": 13,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Rob",
+                "textEn": "Hi, Jenny. It's Rob.",
+                "textFa": "سلام جنی. راب هستم."
+        },
+        {
+                "id": 14,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Jenny",
+                "textEn": "Oh, hi, Rob.",
+                "textFa": "اوه سلام راب."
+        },
+        {
+                "id": 15,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Rob",
+                "textEn": "Are you ready for lunch?",
+                "textFa": "برای ناهار آماده‌ای؟"
+        },
+        {
+                "id": 16,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "Jenny",
+                "textEn": "Yes, I am. I'm really hungry!",
+                "textFa": "بله، آماده‌ام. واقعاً گرسنه‌ام!"
+        },
+        {
+                "id": 17,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Rob",
+                "textEn": "Great. See you downstairs in five minutes.",
+                "textFa": "عالیه. پنج دقیقه دیگر طبقه پایین می‌بینمت."
+        },
+        {
+                "id": 18,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Jenny",
+                "textEn": "OK, see you.",
+                "textFa": "باشه، می‌بینمت."
+        },
+        {
+                "id": 19,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Jenny",
+                "textEn": "Eddie, are you there?",
+                "textFa": "ادی، گوشی دستته؟"
+        },
+        {
+                "id": 20,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Eddie",
+                "textEn": "Yeah, I'm here.",
+                "textFa": "آره، هستم."
+        },
+        {
+                "id": 21,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Jenny",
+                "textEn": "Listen, Eddie, I have to go. It's time for lunch.",
+                "textFa": "گوش کن ادی، من باید برم. وقت ناهاره."
+        },
+        {
+                "id": 22,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Eddie",
+                "textEn": "OK, talk to you later.",
+                "textFa": "باشه، بعداً باهات صحبت می‌کنم."
+        },
+        {
+                "id": 23,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Jenny",
+                "textEn": "Bye!",
+                "textFa": "خداحافظ!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۳: برخورد غیرمنتظره در خیابان»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 3: Meeting on the Street', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 22,
-        "timestampDisplay": "0:22",
-        "explanationFa": "در این صحنه، تمرکز بر برخورد اتفاقی در خیابان (What a surprise!) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:33]. What key point is stated by Narrator?",
+        "timestampSeconds": 33,
+        "timestampDisplay": "0:33",
+        "explanationFa": "در ثانیه 0:33 ویدیو، Narrator به صراحت بیان می‌کند: «Most big cities are busy and there are lots of buskers, which means you can’t just play music wherever you like.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob runs into Jenny on the street carrying his shopping bags, and they share a h...",
-            "textFa": "تمرکز اصلی بر راب در خیابان با کیسه‌های خرید با جنی برخورد می‌کند و گفتگویی صمیمانه ... است."
+            "textEn": "Narrator states: \"Most big cities are busy and there are lots of buskers, which mea...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -1923,44 +2923,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مدیریت زمان در سفر کاری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 1: A Free Morning in New York.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۱: صبح آزاد و گشت‌وگذار در شهر.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 20,
-        "timeDisplay": "0:20",
-        "textEn": "Detailed conversation and communicative exchange regarding برنامه‌ریزی اوقات فراغت.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون برنامه‌ریزی اوقات فراغت.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 62,
-        "timeDisplay": "1:02",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 1: A Free Morning in New York.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۱: صبح آزاد و گشت‌وگذار در شهر.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "So, Jenny, we have a free morning. What do you want to do?",
+                "textFa": "خب جنی، یک صبح آزاد و بی‌برنامه داریم. دوست داری چه کار کنیم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "Well, you're the expert on London life! What do you suggest?",
+                "textFa": "خب، تو کارشناس زندگی در لندن هستی! چه پیشنهادی داری؟"
+        },
+        {
+                "id": 3,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Rob",
+                "textEn": "Well, we can go cycling...",
+                "textFa": "خب، می‌توانیم برویم دوچرخه‌سواری..."
+        },
+        {
+                "id": 4,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Jenny",
+                "textEn": "I don't have a bike.",
+                "textFa": "من دوچرخه ندارم."
+        },
+        {
+                "id": 5,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "We can rent bikes. It's easy.",
+                "textFa": "می‌توانیم دوچرخه کرایه کنیم. کار آسانی است."
+        },
+        {
+                "id": 6,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Jenny",
+                "textEn": "I don't know, Rob. It's a bit cold today.",
+                "textFa": "نمی‌دانم راب. امروز هوا کمی سرد است."
+        },
+        {
+                "id": 7,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Rob",
+                "textEn": "OK. How about a museum? There are lots of great museums in London.",
+                "textFa": "باشه. موزه چطور است؟ موزه‌های فوق‌العاده زیادی در لندن هست."
+        },
+        {
+                "id": 8,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Jenny",
+                "textEn": "That sounds good. What museum?",
+                "textFa": "ایده خوبی به نظر می‌رسد. چه موزه‌ای؟"
+        },
+        {
+                "id": 9,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Rob",
+                "textEn": "The Tate Modern. It's a museum of modern art.",
+                "textFa": "تیت مدرن (Tate Modern). موزه هنرهای معاصر است."
+        },
+        {
+                "id": 10,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Jenny",
+                "textEn": "I love modern art!",
+                "textFa": "من عاشق هنر مدرن هستم!"
+        },
+        {
+                "id": 11,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Rob",
+                "textEn": "Great! And then we can have lunch near the river.",
+                "textFa": "عالیه! و بعد می‌توانیم کنار رودخانه ناهار بخوریم."
+        },
+        {
+                "id": 12,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "Perfect. Let's go.",
+                "textFa": "فوق‌العاده است. برویم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۱: صبح آزاد و گشت‌وگذار در شهر»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 1: A Free Morning in New York', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 27,
-        "timestampDisplay": "0:27",
-        "explanationFa": "در این صحنه، تمرکز بر برنامه‌ریزی اوقات فراغت و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:40]. What key point is stated by Narrator?",
+        "timestampSeconds": 40,
+        "timestampDisplay": "0:40",
+        "explanationFa": "در ثانیه 0:40 ویدیو، Narrator به صراحت بیان می‌کند: «Daniel, hi! Daniel Hi Rob. You need to do an interview this morning with an artist. He’s at the Tate Modern.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob has a free morning before afternoon meetings and decides to explore some of ...",
-            "textFa": "تمرکز اصلی بر راب پیش از جلسات بعدازظهر یک صبح آزاد دارد و تصمیم می‌گیرد برخی از جاه... است."
+            "textEn": "Narrator states: \"Daniel, hi! Daniel Hi Rob. You need to do an interview this morni...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -2119,44 +3191,124 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "حروف اضافه جهت و مکان"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 2: Asking for Directions in New York.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۲: پرسیدن آدرس و جهت‌یابی در خیابان.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 29,
-        "timeDisplay": "0:29",
-        "textEn": "Detailed conversation and communicative exchange regarding پرسیدن مسیر (Excuse me, is there a station near here?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون پرسیدن مسیر (Excuse me, is there a station near here?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 87,
-        "timeDisplay": "1:27",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 2: Asking for Directions in New York.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۲: پرسیدن آدرس و جهت‌یابی در خیابان.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "Excuse me, please. Where's the Tate Modern?",
+                "textFa": "ببخشید، لطفاً. موزه تیت مدرن کجاست؟"
+        },
+        {
+                "id": 2,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Passerby 1",
+                "textEn": "Sorry, I don't live here.",
+                "textFa": "شرمنده، من اهل اینجا نیستم."
+        },
+        {
+                "id": 3,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Jenny",
+                "textEn": "Excuse me. Is the Tate Modern near here?",
+                "textFa": "ببخشید. آیا تیت مدرن نزدیک اینجاست؟"
+        },
+        {
+                "id": 4,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Passerby 2",
+                "textEn": "The Tate Modern? It's near the river. Go straight on, down this street.",
+                "textFa": "تیت مدرن؟ نزدیک رودخانه است. مستقیم در این خیابان بروید جلو."
+        },
+        {
+                "id": 5,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Passerby 2",
+                "textEn": "Turn left at the traffic lights. Then go past the subway station. It's on your right.",
+                "textFa": "سر چراغ راهنمایی به چپ بپیچید. بعد از ایستگاه مترو عبور کنید. سمت راستتان قرار دارد."
+        },
+        {
+                "id": 6,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Jenny",
+                "textEn": "Sorry, could you say that again, please?",
+                "textFa": "ببخشید، ممکن است یک بار دیگر بفرمایید، لطفاً؟"
+        },
+        {
+                "id": 7,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Passerby 2",
+                "textEn": "Yes. Go straight on. Turn left at the traffic lights.",
+                "textFa": "بله. مستقیم بروید. سر چراغ راهنمایی به چپ بروید."
+        },
+        {
+                "id": 8,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Passerby 2",
+                "textEn": "Go past the subway station, and the Tate Modern is on your right.",
+                "textFa": "ایستگاه مترو را رد کنید، تیت مدرن سمت راستتان خواهد بود."
+        },
+        {
+                "id": 9,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Jenny",
+                "textEn": "Thank you very much.",
+                "textFa": "بسیار متشکرم."
+        },
+        {
+                "id": 10,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Passerby 2",
+                "textEn": "You're welcome.",
+                "textFa": "خواهش می‌کنم."
+        },
+        {
+                "id": 11,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Jenny",
+                "textEn": "Excuse me. Where's the entrance?",
+                "textFa": "ببخشید، ورودی کجاست؟"
+        },
+        {
+                "id": 12,
+                "seconds": 106,
+                "timeDisplay": "1:46",
+                "speaker": "Passerby 3",
+                "textEn": "It's around the corner, over there.",
+                "textFa": "سر نبش، همان طرف است."
+        },
+        {
+                "id": 13,
+                "seconds": 113,
+                "timeDisplay": "1:53",
+                "speaker": "Jenny",
+                "textEn": "Thanks.",
+                "textFa": "ممنون."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۲: پرسیدن آدرس و جهت‌یابی در خیابان»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 2: Asking for Directions in New York', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 39,
-        "timestampDisplay": "0:39",
-        "explanationFa": "در این صحنه، تمرکز بر پرسیدن مسیر (Excuse me, is there a station near here?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:57]. What key point is stated by Passer-by?",
+        "timestampSeconds": 57,
+        "timestampDisplay": "0:57",
+        "explanationFa": "در ثانیه 0:57 ویدیو، Passer-by به صراحت بیان می‌کند: «And it’s at the end of the street. You can’t miss it! Jenny Thank you.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob gets lost looking for a subway station and asks friendly New Yorkers for dir...",
-            "textFa": "تمرکز اصلی بر راب برای یافتن ایستگاه مترو مسیر را گم می‌کند و از عابران نیویورکی با ... است."
+            "textEn": "Passer-by states: \"And it’s at the end of the street. You can’t miss it! Jenny Thank...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -2315,44 +3467,132 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "روایت خاطرات شهری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 3: Jenny and Rob Go Sightseeing.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 32,
-        "timeDisplay": "0:32",
-        "textEn": "Detailed conversation and communicative exchange regarding توصیف پل‌ها و آسمان‌خراش‌ها.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون توصیف پل‌ها و آسمان‌خراش‌ها.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 96,
-        "timeDisplay": "1:36",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 3: Jenny and Rob Go Sightseeing.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Rob",
+                "textEn": "Sorry about the weather.",
+                "textFa": "شرمنده بابت آب و هوا."
+        },
+        {
+                "id": 2,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Jenny",
+                "textEn": "Yeah... but what a view! It's a great bridge, too.",
+                "textFa": "آره... ولی چه منظره‌ای! پل بسیار قشنگی هم هست."
+        },
+        {
+                "id": 3,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "It's the Millennium Bridge. It's for people only, no cars.",
+                "textFa": "این پل هزاره (Millennium Bridge) است. فقط برای عابران پیاده است، نه خودروها."
+        },
+        {
+                "id": 4,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Jenny",
+                "textEn": "What's that building over there?",
+                "textFa": "آن ساختمان آن طرف چیست؟"
+        },
+        {
+                "id": 5,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Rob",
+                "textEn": "That's St. Paul's Cathedral. It's very old and very famous.",
+                "textFa": "آن کلیسای جامع سنت پل است. بسیار قدیمی و بسیار معروف است."
+        },
+        {
+                "id": 6,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Jenny",
+                "textEn": "It's beautiful. I love the dome.",
+                "textFa": "زیباست. گنبدش را خیلی دوست دارم."
+        },
+        {
+                "id": 7,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "And look at that tower over there - that's the Shard. It's the tallest building in the UK.",
+                "textFa": "و به آن برج در آن سمت نگاه کن؛ آن شارد (The Shard) است، بلندترین ساختمان بریتانیا."
+        },
+        {
+                "id": 8,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Jenny",
+                "textEn": "Wow, it's huge! How tall is it?",
+                "textFa": "واو، واقعاً غول‌پیکره! چقدر بلنده؟"
+        },
+        {
+                "id": 9,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Rob",
+                "textEn": "Over three hundred meters.",
+                "textFa": "بیش از سیصد متر."
+        },
+        {
+                "id": 10,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "That's amazing. London really has everything: old buildings, modern skyscrapers, great views...",
+                "textFa": "شگفت‌انگیزه. لندن واقعاً همه چیز دارد: بناهای کهن، آسمان‌خراش‌های مدرن، مناظر فوق‌العاده..."
+        },
+        {
+                "id": 11,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Rob",
+                "textEn": "Are you hungry?",
+                "textFa": "گرسنه‌ات است؟"
+        },
+        {
+                "id": 12,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Jenny",
+                "textEn": "Yes, starving! Where are we going for lunch?",
+                "textFa": "آره، دارم از گرسنگی می‌میرم! برای ناهار کجا می‌رویم؟"
+        },
+        {
+                "id": 13,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Rob",
+                "textEn": "There's a great pub near Borough Market.",
+                "textFa": "نزدیک بازار بورو (Borough Market) یک میخانه/رستوران سنتی عالی هست."
+        },
+        {
+                "id": 14,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Jenny",
+                "textEn": "A pub? Perfect. I'd love some fish and chips!",
+                "textFa": "یک پاب سنتی؟ عالیه. دلم یک فیش اند چیپس دبش می‌خواهد!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 3: Jenny and Rob Go Sightseeing', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 42,
-        "timestampDisplay": "0:42",
-        "explanationFa": "در این صحنه، تمرکز بر توصیف پل‌ها و آسمان‌خراش‌ها و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:02]. What key point is stated by Narrator?",
+        "timestampSeconds": 62,
+        "timestampDisplay": "1:02",
+        "explanationFa": "در ثانیه 1:02 ویدیو، Narrator به صراحت بیان می‌کند: «During this time, a small monastery was built. There’s a church here now in place of the monastery.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny joins Rob to guide him past famous sights like the Brooklyn Bridge and sha...",
-            "textFa": "تمرکز اصلی بر جنی به راب می‌پیوندد تا او را از کنار مناظر معروفی چون پل بروکلین عبور... است."
+            "textEn": "Narrator states: \"During this time, a small monastery was built. There’s a church h...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -2511,44 +3751,156 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "انتخاب نوع رستوران"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 1: An Invitation to Dinner.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 23,
-        "timeDisplay": "0:23",
-        "textEn": "Detailed conversation and communicative exchange regarding دعوت کردن رسمی (Would you like to join us?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دعوت کردن رسمی (Would you like to join us?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 69,
-        "timeDisplay": "1:09",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 1: An Invitation to Dinner.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Jenny",
+                "textEn": "Thanks for showing me around London yesterday. I had a great time.",
+                "textFa": "ممنون که دیروز لندن را به من نشان دادی. خیلی بهم خوش گذشت."
+        },
+        {
+                "id": 2,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "Me too. So, what did you do last night?",
+                "textFa": "من هم همین‌طور. خب، دیشب چه کار کردی؟"
+        },
+        {
+                "id": 3,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Jenny",
+                "textEn": "Nothing really. I had a lot of work to do. Emails, phone calls... What did you do?",
+                "textFa": "کار خاصی نکردم. کارهای اداری زیادی داشتم: ایمیل‌ها، تماس‌های تلفنی... تو چه کردی؟"
+        },
+        {
+                "id": 4,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "I wrote my article... about the Tate Modern.",
+                "textFa": "مقاله‌ام را نوشتم... درباره موزه تیت مدرن."
+        },
+        {
+                "id": 5,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Jenny",
+                "textEn": "Great. Can I read it?",
+                "textFa": "عالیه. می‌توانم بخوانمش؟"
+        },
+        {
+                "id": 6,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Rob",
+                "textEn": "Sure. It's on my laptop.",
+                "textFa": "حتماً. روی لپ‌تاپم است."
+        },
+        {
+                "id": 7,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jenny",
+                "textEn": "Thanks. Hey, Rob...",
+                "textFa": "ممنون. راستی، راب..."
+        },
+        {
+                "id": 8,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Rob",
+                "textEn": "Yes?",
+                "textFa": "بله؟"
+        },
+        {
+                "id": 9,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Jenny",
+                "textEn": "Are you free tonight?",
+                "textFa": "امشب وقتت آزاده؟"
+        },
+        {
+                "id": 10,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "Tonight? Yes, I am. Why?",
+                "textFa": "امشب؟ آره، آزادم. چطور؟"
+        },
+        {
+                "id": 11,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Jenny",
+                "textEn": "Would you like to come to dinner?",
+                "textFa": "دوست داری برای شام بیایی؟"
+        },
+        {
+                "id": 12,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Rob",
+                "textEn": "I'd love to! Where are we going?",
+                "textFa": "با کمال میل! کجا می‌رویم؟"
+        },
+        {
+                "id": 13,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "An Italian restaurant near my hotel. Daniel says it's very good.",
+                "textFa": "یک رستوران ایتالیایی نزدیک هتلم. دانیل می‌گوید خیلی خوب است."
+        },
+        {
+                "id": 14,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Rob",
+                "textEn": "Sounds great. What time?",
+                "textFa": "عالی به نظر می‌رسد. چه ساعتی؟"
+        },
+        {
+                "id": 15,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "Eight o'clock?",
+                "textFa": "ساعت هشت؟"
+        },
+        {
+                "id": 16,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Rob",
+                "textEn": "Eight o'clock is perfect.",
+                "textFa": "ساعت هشت عالیه."
+        },
+        {
+                "id": 17,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Jenny",
+                "textEn": "Great. See you tonight.",
+                "textFa": "عالیه. امشب می‌بینمت."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 1: An Invitation to Dinner', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 30,
-        "timestampDisplay": "0:30",
-        "explanationFa": "در این صحنه، تمرکز بر دعوت کردن رسمی (Would you like to join us?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:49]. What key point is stated by Narrator?",
+        "timestampSeconds": 49,
+        "timestampDisplay": "0:49",
+        "explanationFa": "در ثانیه 0:49 ویدیو، Narrator به صراحت بیان می‌کند: «Eddie OK. Jenny Yeah, later. Eddie Have fun. Jenny OK. Sorry. But it’s my birthday today. Rob Really? Happy birthday!».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny and Daniel invite Rob to join them for a celebratory business dinner at a ...",
-            "textFa": "تمرکز اصلی بر جنی و دانیل از راب دعوت می‌کنند تا برای یک شام کاری و جشن موفقیت در یک... است."
+            "textEn": "Narrator states: \"Eddie OK. Jenny Yeah, later. Eddie Have fun. Jenny OK. Sorry. But...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -2707,44 +4059,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمات رستوران"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 2: Ordering a Meal in a Restaurant.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 15,
-        "timeDisplay": "0:15",
-        "textEn": "Detailed conversation and communicative exchange regarding سفارش غذا (I'll have the grilled salmon, please).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون سفارش غذا (I'll have the grilled salmon, please).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 45,
-        "timeDisplay": "0:45",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 2: Ordering a Meal in a Restaurant.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Waiter",
+                "textEn": "Good evening. Do you have a reservation?",
+                "textFa": "عصر بخیر. آیا رزرو قبلی دارید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Daniel",
+                "textEn": "Yes, a table for two. My name's Daniel O'Connor.",
+                "textFa": "بله، میزی برای دو نفر. نام من دانیل اوکانر است."
+        },
+        {
+                "id": 3,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Waiter",
+                "textEn": "Come this way, please.",
+                "textFa": "از این طرف تشریف بیاورید، لطفاً."
+        },
+        {
+                "id": 4,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Waiter",
+                "textEn": "Are you ready to order?",
+                "textFa": "برای سفارش آماده‌اید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Jenny",
+                "textEn": "Yes. The soup to start, and then the roast chicken, please.",
+                "textFa": "بله. برای پیش‌غذا سوپ، و سپس مرغ بریان، لطفاً."
+        },
+        {
+                "id": 6,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Waiter",
+                "textEn": "And for you, sir?",
+                "textFa": "و برای شما جناب؟"
+        },
+        {
+                "id": 7,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Daniel",
+                "textEn": "I'll have the mozzarella salad, and then the salmon.",
+                "textFa": "من سالاد موزارلا و بعد از آن سالمون می‌خورم."
+        },
+        {
+                "id": 8,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Waiter",
+                "textEn": "And to drink?",
+                "textFa": "و برای نوشیدنی؟"
+        },
+        {
+                "id": 9,
+                "seconds": 37,
+                "timeDisplay": "0:37",
+                "speaker": "Daniel",
+                "textEn": "A bottle of sparkling water, please.",
+                "textFa": "یک بطری آب گازدار، لطفاً."
+        },
+        {
+                "id": 10,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Waiter",
+                "textEn": "Certainly. Thank you.",
+                "textFa": "حتماً. متشکرم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 2: Ordering a Meal in a Restaurant', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 20,
-        "timestampDisplay": "0:20",
-        "explanationFa": "در این صحنه، تمرکز بر سفارش غذا (I'll have the grilled salmon, please) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:31]. What key point is stated by Narrator?",
+        "timestampSeconds": 31,
+        "timestampDisplay": "0:31",
+        "explanationFa": "در ثانیه 0:31 ویدیو، Narrator به صراحت بیان می‌کند: «Do you have a reservation? Daniel Yes, a table for two. My name’s Daniel O’Connor. Waiter Come this way, please.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is The waiter takes their order: appetizers, main courses like grilled salmon and p...",
-            "textFa": "تمرکز اصلی بر پیشخدمت سفارش پیش‌غذا، غذای اصلی نظیر ماهی سالمون گریل‌شده و پاستا، نو... است."
+            "textEn": "Narrator states: \"Do you have a reservation? Daniel Yes, a table for two. My name’s...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -2903,44 +4311,140 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "پرداخت دنگی یا مهمان کردن"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 3: The End of the Meal and the Bill.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۳: پایان غذا، درخواست صورتحساب و انعام.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 30,
-        "timeDisplay": "0:30",
-        "textEn": "Detailed conversation and communicative exchange regarding درخواست صورتحساب (Could we have the check, please?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون درخواست صورتحساب (Could we have the check, please?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 90,
-        "timeDisplay": "1:30",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 3: The End of the Meal and the Bill.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۳: پایان غذا، درخواست صورتحساب و انعام.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Daniel",
+                "textEn": "So, Jenny, I hear it's your birthday today.",
+                "textFa": "خب جنی، شنیده‌ام امروز روز تولدت است."
+        },
+        {
+                "id": 2,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "Yes, that's right.",
+                "textFa": "بله، درست است."
+        },
+        {
+                "id": 3,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Daniel",
+                "textEn": "Well, Happy Birthday! How does it feel to be twenty-eight?",
+                "textFa": "خب، تولدت مبارک! بیست و هشت ساله شدن چه حسی دارد؟"
+        },
+        {
+                "id": 4,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Jenny",
+                "textEn": "Oh, Daniel! Don't remind me!",
+                "textFa": "اوه دانیل! یادم نینداز!"
+        },
+        {
+                "id": 5,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Daniel",
+                "textEn": "You have a great job here in London, and a great future.",
+                "textFa": "تو یک شغل عالی اینجا داری و آینده‌ای درخشان."
+        },
+        {
+                "id": 6,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Jenny",
+                "textEn": "Thanks, Daniel. I really appreciate everything.",
+                "textFa": "ممنون دانیل. واقعاً از همه زحماتت سپاسگزارم."
+        },
+        {
+                "id": 7,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Waiter",
+                "textEn": "Would you like any dessert?",
+                "textFa": "دسر میل دارید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "No, thank you. Just coffee for me.",
+                "textFa": "نه متشکرم. برای من فقط قهوه."
+        },
+        {
+                "id": 9,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Daniel",
+                "textEn": "An espresso for me, please.",
+                "textFa": "یک اسپرسو برای من، لطفاً."
+        },
+        {
+                "id": 10,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Daniel",
+                "textEn": "And could we have the check, please?",
+                "textFa": "و ممکن است صورت‌حساب را بیاورید، لطفاً؟"
+        },
+        {
+                "id": 11,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Waiter",
+                "textEn": "Certainly, sir.",
+                "textFa": "حتماً، جناب."
+        },
+        {
+                "id": 12,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Daniel",
+                "textEn": "This is on me, Jenny. A birthday treat.",
+                "textFa": "این مهمان من هستی، جنی. به عنوان کادوی تولد."
+        },
+        {
+                "id": 13,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Jenny",
+                "textEn": "Oh, Daniel, you don't have to!",
+                "textFa": "اوه دانیل، اصلاً لازم نبود زحمت بکشی!"
+        },
+        {
+                "id": 14,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Daniel",
+                "textEn": "I insist. It's the least I can do.",
+                "textFa": "خواهش می‌کنم، اصرار دارم. این کمترین کاری است که می‌توانم بکنم."
+        },
+        {
+                "id": 15,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Jenny",
+                "textEn": "Thank you so much. That's very kind of you.",
+                "textFa": "خیلی ممنونم. این واقعاً لطف شماست."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۳: پایان غذا، درخواست صورتحساب و انعام»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 3: The End of the Meal and the Bill', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 40,
-        "timestampDisplay": "0:40",
-        "explanationFa": "در این صحنه، تمرکز بر درخواست صورتحساب (Could we have the check, please?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:58]. What key point is stated by Narrator?",
+        "timestampSeconds": 58,
+        "timestampDisplay": "0:58",
+        "explanationFa": "در ثانیه 0:58 ویدیو، Narrator به صراحت بیان می‌کند: «And very soon you’re going to get married. Jane Married? To Jim! But am I going to be happy with him?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is The dinner concludes with desserts, Rob asking for the check/bill, and Daniel di...",
-            "textFa": "تمرکز اصلی بر ضیافت شام با دسر به پایان می‌رسد، راب صورتحساب را درخواست می‌کند و دان... است."
+            "textEn": "Narrator states: \"And very soon you’re going to get married. Jane Married? To Jim! ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -3099,44 +4603,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "احساسات پایان سفر"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 1: Jenny's Last Morning.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۱: آخرین صبح اقامت و بستن چمدان.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 25,
-        "timeDisplay": "0:25",
-        "textEn": "Detailed conversation and communicative exchange regarding تسویه‌حساب هتل (Check out).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون تسویه‌حساب هتل (Check out).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 75,
-        "timeDisplay": "1:15",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 1: Jenny's Last Morning.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۱: آخرین صبح اقامت و بستن چمدان.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Jenny",
+                "textEn": "Rob!",
+                "textFa": "راب!"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Jenny, hi. Sorry I'm a bit late.",
+                "textFa": "جنی، سلام. ببخشید کمی دیر کردم."
+        },
+        {
+                "id": 3,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "No problem.",
+                "textFa": "مشکلی نیست."
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "Really?",
+                "textFa": "واقعاً؟"
+        },
+        {
+                "id": 5,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Jenny",
+                "textEn": "Really! I got your message.",
+                "textFa": "واقعاً! پیامت را دریافت کردم."
+        },
+        {
+                "id": 6,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Jenny",
+                "textEn": "Would you like a coffee or something?",
+                "textFa": "قهوه‌ای چیزی میل داری؟"
+        },
+        {
+                "id": 7,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "No, I'm fine thanks. So what time is your flight?",
+                "textFa": "نه، ممنون، خوبم. خب، پروازت چه ساعتی است؟"
+        },
+        {
+                "id": 8,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jenny",
+                "textEn": "At three thirty. But I have to check in at one thirty.",
+                "textFa": "ساعت سه و نیم. ولی باید ساعت یک و نیم پذیرش (چک‌این) کنم."
+        },
+        {
+                "id": 9,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Rob",
+                "textEn": "Right. That means you have about two hours.",
+                "textFa": "درسته. یعنی حدود دو ساعت وقت داری."
+        },
+        {
+                "id": 10,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Jenny",
+                "textEn": "Yes. I need to buy some souvenirs for my family.",
+                "textFa": "بله. باید مقداری سوغاتی برای خانواده‌ام بخرم."
+        },
+        {
+                "id": 11,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Rob",
+                "textEn": "I know just the place. Let's walk through Covent Garden.",
+                "textFa": "دقیقاً جای مناسبش را بلدم. بیا در محله کاونت گاردن (Covent Garden) قدم بزنیم."
+        },
+        {
+                "id": 12,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Jenny",
+                "textEn": "That sounds lovely.",
+                "textFa": "عالیه، بسیار دلنشینه."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۱: آخرین صبح اقامت و بستن چمدان»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 1: Jenny's Last Morning', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 33,
-        "timestampDisplay": "0:33",
-        "explanationFa": "در این صحنه، تمرکز بر تسویه‌حساب هتل (Check out) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:54]. What key point is stated by Narrator?",
+        "timestampSeconds": 54,
+        "timestampDisplay": "0:54",
+        "explanationFa": "در ثانیه 0:54 ویدیو، Narrator به صراحت بیان می‌کند: «So...would you like to come over to New York and work for us. Just for a month.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob prepares for his return flight to London, packing his bags in the hotel room...",
-            "textFa": "تمرکز اصلی بر راب برای پرواز بازگشت به لندن آماده می‌شود، چمدان‌هایش را در هتل می‌بن... است."
+            "textEn": "Narrator states: \"So...would you like to come over to New York and work for us. Jus...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -3295,44 +4871,124 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "ترمینال‌های فرودگاه"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 2: Getting to the Airport in Traffic.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۲: حرکت در ترافیک شهر به سمت فرودگاه.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 20,
-        "timeDisplay": "0:20",
-        "textEn": "Detailed conversation and communicative exchange regarding تاکسی‌های زرد نیویورک (Yellow cab).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون تاکسی‌های زرد نیویورک (Yellow cab).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 60,
-        "timeDisplay": "1:00",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 2: Getting to the Airport in Traffic.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۲: حرکت در ترافیک شهر به سمت فرودگاه.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "Could you call me a taxi, please?",
+                "textFa": "می‌شود برای من یک تاکسی بگیرید، لطفاً؟"
+        },
+        {
+                "id": 2,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Receptionist",
+                "textEn": "Yes, of course. Where to?",
+                "textFa": "بله، البته. به چه مقصدی؟"
+        },
+        {
+                "id": 3,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "To Paddington station.",
+                "textFa": "به ایستگاه پدینگتون."
+        },
+        {
+                "id": 4,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Receptionist",
+                "textEn": "Right away, Ms. Zielinski.",
+                "textFa": "فوراً، خانم زیلینسکی."
+        },
+        {
+                "id": 5,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Receptionist",
+                "textEn": "The taxi is here.",
+                "textFa": "تاکسی رسید."
+        },
+        {
+                "id": 6,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Jenny",
+                "textEn": "Thank you. Goodbye!",
+                "textFa": "متشکرم. خداحافظ!"
+        },
+        {
+                "id": 7,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Receptionist",
+                "textEn": "Have a safe flight!",
+                "textFa": "سفر بی‌خطر و پرواز خوبی داشته باشید!"
+        },
+        {
+                "id": 8,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Taxi driver",
+                "textEn": "Where to, love?",
+                "textFa": "کجا تشریف می‌برید، خانم؟"
+        },
+        {
+                "id": 9,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Jenny",
+                "textEn": "Paddington station, please. And I'm in a bit of a hurry.",
+                "textFa": "ایستگاه پدینگتون، لطفاً. و کمی هم عجله دارم."
+        },
+        {
+                "id": 10,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Taxi driver",
+                "textEn": "No worries. We'll be there in ten minutes.",
+                "textFa": "نگران نباشید. ده دقیقه‌ای آنجاییم."
+        },
+        {
+                "id": 11,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Taxi driver",
+                "textEn": "Here we are, love. That'll be fourteen pounds.",
+                "textFa": "رسیدیم خانم. می‌شود ۱۴ پوند."
+        },
+        {
+                "id": 12,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Jenny",
+                "textEn": "Here's twenty pounds. Keep the change.",
+                "textFa": "این بیست پوندی خدمت شما. بقیه‌اش انعام خودتان."
+        },
+        {
+                "id": 13,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Taxi driver",
+                "textEn": "Thank you very much, love. Have a good trip.",
+                "textFa": "بسیار متشکرم خانم. سفر خوبی داشته باشید."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۲: حرکت در ترافیک شهر به سمت فرودگاه»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 2: Getting to the Airport in Traffic', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 26,
-        "timestampDisplay": "0:26",
-        "explanationFa": "در این صحنه، تمرکز بر تاکسی‌های زرد نیویورک (Yellow cab) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:43]. What key point is stated by Receptionist?",
+        "timestampSeconds": 43,
+        "timestampDisplay": "0:43",
+        "explanationFa": "در ثانیه 0:43 ویدیو، Receptionist به صراحت بیان می‌کند: «Ticket clerk Standard or first class? Jenny Standard, please. Ticket clerk That’s £18. Jenny Can I pay by credit card?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob rides a yellow cab through heavy Manhattan traffic, chatting with the driver...",
-            "textFa": "تمرکز اصلی بر راب با یک تاکسی زرد در ترافیک سنگین منهتن به سوی فرودگاه می‌رود و با ر... است."
+            "textEn": "Receptionist states: \"Ticket clerk Standard or first class? Jenny Standard, please. Tic...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -3491,44 +5147,132 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "پایان داستان فصل اول"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 3: Saying Goodbye at the Departure Gate.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۳: خداحافظی در فرودگاه و امید به دیدار دوباره.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 29,
-        "timeDisplay": "0:29",
-        "textEn": "Detailed conversation and communicative exchange regarding اصطلاحات خداحافظی گرم (Have a safe flight!).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون اصطلاحات خداحافظی گرم (Have a safe flight!).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 89,
-        "timeDisplay": "1:29",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 3: Saying Goodbye at the Departure Gate.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۳: خداحافظی در فرودگاه و امید به دیدار دوباره.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Where is it? Where's my phone?!",
+                "textFa": "کجاست؟ گوشیم کجاست؟!"
+        },
+        {
+                "id": 2,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Are you looking for this?",
+                "textFa": "دنبال این می‌گردی؟"
+        },
+        {
+                "id": 3,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Jenny",
+                "textEn": "Rob! I can't believe it! My phone! Where was it?",
+                "textFa": "راب! باورم نمی‌شود! گوشی من! کجا بود؟"
+        },
+        {
+                "id": 4,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Rob",
+                "textEn": "You left it at the cafe.",
+                "textFa": "در کافه جا گذاشته بودی‌اش."
+        },
+        {
+                "id": 5,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Jenny",
+                "textEn": "Oh, thank goodness! I have all my contacts on this phone.",
+                "textFa": "اوه، خدای من را شکر! تمام شماره‌ها و مخاطبانم در این گوشی بود."
+        },
+        {
+                "id": 6,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "I'm glad I caught you before you got on the train.",
+                "textFa": "خوشحالم قبل از اینکه سوار قطار شوی بهت رسیدم."
+        },
+        {
+                "id": 7,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Jenny",
+                "textEn": "You came all the way to Paddington just to give me my phone?",
+                "textFa": "تمام این راه را تا پدینگتون آمدی فقط برای اینکه گوشیم را بهم برسانی؟"
+        },
+        {
+                "id": 8,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Rob",
+                "textEn": "Well, I wanted to say goodbye properly, too.",
+                "textFa": "خب، می‌خواستم یک خداحافظی حسابی هم با تو داشته باشم."
+        },
+        {
+                "id": 9,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "That's so sweet of you, Rob.",
+                "textFa": "این واقعاً نهایت محبت توئه، راب."
+        },
+        {
+                "id": 10,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Rob",
+                "textEn": "Have a safe trip back to New York, Jenny.",
+                "textFa": "سفر سلامت و بی‌خطری در بازگشت به نیویورک داشته باشی، جنی."
+        },
+        {
+                "id": 11,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "Thank you. I'm going to miss London. And I'm going to miss you, Rob.",
+                "textFa": "ممنون. دلم برای لندن تنگ می‌شود. و دلم برای تو هم تنگ می‌شود، راب."
+        },
+        {
+                "id": 12,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "Rob",
+                "textEn": "I'm going to miss you too, Jenny. Call me when you get home.",
+                "textFa": "من هم دلم برایت تنگ خواهد شد، جنی. وقتی رسیدی خانه با من تماس بگیر."
+        },
+        {
+                "id": 13,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Jenny",
+                "textEn": "I will. Bye, Rob.",
+                "textFa": "حتماً تماس می‌گیرم. خداحافظ، راب."
+        },
+        {
+                "id": 14,
+                "seconds": 106,
+                "timeDisplay": "1:46",
+                "speaker": "Rob",
+                "textEn": "Goodbye, Jenny.",
+                "textFa": "خداحافظ، جنی."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۳: خداحافظی در فرودگاه و امید به دیدار دوباره»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 3: Saying Goodbye at the Departure Gate', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 39,
-        "timestampDisplay": "0:39",
-        "explanationFa": "در این صحنه، تمرکز بر اصطلاحات خداحافظی گرم (Have a safe flight!) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:58]. What key point is stated by Narrator?",
+        "timestampSeconds": 58,
+        "timestampDisplay": "0:58",
+        "explanationFa": "در ثانیه 0:58 ویدیو، Narrator به صراحت بیان می‌کند: «The first of these was the James Bond movie, GoldenEye, where Dench played Bond’s boss, M, usually a part for a man.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny meets Rob at the airport gate to say goodbye, give him a farewell gift, an...",
-            "textFa": "تمرکز اصلی بر جنی در گیت فرودگاه برای خداحافظی به راب می‌رسد، هدیه یادبودی به او می‌... است."
+            "textEn": "Narrator states: \"The first of these was the James Bond movie, GoldenEye, where Den...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -3687,44 +5431,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "احوالپرسی دوستان قدیمی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 1: Rob Returns to New York.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۱: بازگشت راب به نیویورک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 31,
-        "timeDisplay": "0:31",
-        "textEn": "Detailed conversation and communicative exchange regarding بازگشت به شهر جدید.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون بازگشت به شهر جدید.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 94,
-        "timeDisplay": "1:34",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 1: Rob Returns to New York.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۱: بازگشت راب به نیویورک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "My name's Jenny Zielinski. I live and work in New York.",
+                "textFa": "نام من جنی زیلینسکی است. من در نیویورک زندگی و کار می‌کنم."
+        },
+        {
+                "id": 2,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "I'm the assistant editor of a magazine called New York 24seven.",
+                "textFa": "من دستیار سردبیر مجله‌ای به نام New York 24seven هستم."
+        },
+        {
+                "id": 3,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "A few months ago, I visited our office in London to learn more about the company.",
+                "textFa": "چند ماه پیش، برای آشنایی بیشتر با شرکت از دفترمان در لندن بازدید کردم."
+        },
+        {
+                "id": 4,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Jenny",
+                "textEn": "I met the manager, Daniel O'Connor. I had lots of meetings with him, of course. And a working dinner on my birthday...",
+                "textFa": "با مدیر، دنیل اوکانر، ملاقات کردم؛ البته جلسات کاری متعددی با او داشتم و در روز تولدم هم یک شام کاری با هم خوردیم..."
+        },
+        {
+                "id": 5,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Jenny",
+                "textEn": "But I spent more time with Rob Walker. He's one of the writers on the London magazine.",
+                "textFa": "اما زمان بیشتری را با راب واکر گذراندم. او یکی از نویسندگان مجله لندن است."
+        },
+        {
+                "id": 6,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Jenny",
+                "textEn": "We had coffees together. We went sightseeing. I even helped Rob buy a shirt!",
+                "textFa": "با هم قهوه خوردیم، به دیدن جاهای دیدنی شهر رفتیم و حتی به راب کمک کردم یک پیراهن بخرد!"
+        },
+        {
+                "id": 7,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Jenny",
+                "textEn": "He was fun to be with. I liked him a lot. I think he liked me, too.",
+                "textFa": "بودن با او بسیار لذت‌بخش بود. خیلی از او خوشم آمد و فکر می‌کنم او هم از من خوشش آمد."
+        },
+        {
+                "id": 8,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Jenny",
+                "textEn": "Rob isn't the most punctual person in the world, but he is a great writer.",
+                "textFa": "راب وقت‌شناس‌ترین فرد دنیا نیست، اما نویسنده‌ای فوق‌العاده است."
+        },
+        {
+                "id": 9,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Jenny",
+                "textEn": "We invited him to work for the New York magazine for a month... and he agreed!",
+                "textFa": "ما از او دعوت کردیم تا به مدت یک ماه برای مجله نیویورک کار کند... و او پذیرفت!"
+        },
+        {
+                "id": 10,
+                "seconds": 105,
+                "timeDisplay": "1:45",
+                "speaker": "Jenny",
+                "textEn": "So now Rob's coming to New York. I know he's really excited about it. It's going to be great to see him again.",
+                "textFa": "بنابراین حالا راب در حال آمدن به نیویورک است. می‌دانم حسابی هیجان‌زده است و دیدار دوباره‌اش عالی خواهد بود."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۱: بازگشت راب به نیویورک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 1: Rob Returns to New York', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 42,
-        "timestampDisplay": "0:42",
-        "explanationFa": "در این صحنه، تمرکز بر بازگشت به شهر جدید و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:08]. What key point is stated by Rob?",
+        "timestampSeconds": 68,
+        "timestampDisplay": "1:08",
+        "explanationFa": "در ثانیه 1:08 ویدیو، Rob به صراحت بیان می‌کند: «buy a shirt! He was fun to be with. I liked him a lot. I think he liked me, too.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob is back in New York City on a permanent assignment for the magazine, excited...",
-            "textFa": "تمرکز اصلی بر راب برای ماموریت کاری دائمی در مجله به نیویورک بازگشته و مشتاق دیدار م... است."
+            "textEn": "Rob states: \"buy a shirt! He was fun to be with. I liked him a lot. I think he...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -3883,44 +5683,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "حل فوری مشکل"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 2: Calling Reception to Fix an Issue.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۲: تماس با پذیرش هتل برای حل مشکل.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 14,
-        "timeDisplay": "0:14",
-        "textEn": "Detailed conversation and communicative exchange regarding گزارش مشکلات اتاق هتل (The air conditioning isn't working).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون گزارش مشکلات اتاق هتل (The air conditioning isn't working).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 42,
-        "timeDisplay": "0:42",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 2: Calling Reception to Fix an Issue.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۲: تماس با پذیرش هتل برای حل مشکل.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Receptionist",
+                "textEn": "Hello, reception.",
+                "textFa": "الو، پذیرش در خدمت شماست."
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Hello. This is room 613.",
+                "textFa": "سلام. از اتاق ۶۱۳ تماس می‌گیرم."
+        },
+        {
+                "id": 3,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Receptionist",
+                "textEn": "How can I help you?",
+                "textFa": "چطور می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 4,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "There's a problem with the air conditioning. It isn't working, and it's very hot in my room.",
+                "textFa": "تهویه مطبوع مشکلی دارد؛ کار نمی‌کند و هوای اتاقم بسیار گرم است."
+        },
+        {
+                "id": 5,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Receptionist",
+                "textEn": "I'm sorry, sir. I'll send somebody up to look at it right now.",
+                "textFa": "متاسفم قربان. همین الان کسی را می‌فرستم تا آن را بررسی کند."
+        },
+        {
+                "id": 6,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Rob",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 7,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Receptionist",
+                "textEn": "Good evening, reception.",
+                "textFa": "عصر بخیر، پذیرش."
+        },
+        {
+                "id": 8,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Rob",
+                "textEn": "Hello. I'm sorry to bother you again. This is room 613.",
+                "textFa": "سلام. ببخشید باز هم مزاحم شدم؛ از اتاق ۶۱۳ هستم."
+        },
+        {
+                "id": 9,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Receptionist",
+                "textEn": "How can I help you?",
+                "textFa": "چطور می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 10,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Rob",
+                "textEn": "I have a problem with the wi-fi. I can't get a signal.",
+                "textFa": "با اینترنت وای‌فای مشکل دارم؛ سیگنالی دریافت نمی‌کنم."
+        },
+        {
+                "id": 11,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Receptionist",
+                "textEn": "I'm sorry sir. I'll put you through to IT.",
+                "textFa": "عذرخواهی می‌کنم قربان. شما را به بخش فناوری اطلاعات وصل می‌کنم."
+        },
+        {
+                "id": 12,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Rob",
+                "textEn": "Thanks.",
+                "textFa": "ممنون."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۲: تماس با پذیرش هتل برای حل مشکل»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 2: Calling Reception to Fix an Issue', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 19,
-        "timestampDisplay": "0:19",
-        "explanationFa": "در این صحنه، تمرکز بر گزارش مشکلات اتاق هتل (The air conditioning isn't working) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:27]. What key point is stated by Receptionist?",
+        "timestampSeconds": 27,
+        "timestampDisplay": "0:27",
+        "explanationFa": "در ثانیه 0:27 ویدیو، Receptionist به صراحت بیان می‌کند: «Hello, reception. Rob Hello. This is room 613.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob phones the hotel reception desk from his room to report a problem with the r...",
-            "textFa": "تمرکز اصلی بر راب از اتاقش با پذیرش هتل تماس می‌گیرد تا مشکل سیستم تهویه هوا و نیاز ... است."
+            "textEn": "Receptionist states: \"Hello, reception. Rob Hello. This is room 613....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -4079,44 +5951,228 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "برنامه‌ریزی ملاقات کاری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 3: Jenny and Rob Meet Again.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۳: تجدید دیدار جنی و راب در هتل.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 23,
-        "timeDisplay": "0:23",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدار مجدد پس از مدت طولانی (Long time no see).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدار مجدد پس از مدت طولانی (Long time no see).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 71,
-        "timeDisplay": "1:11",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 3: Jenny and Rob Meet Again.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۳: تجدید دیدار جنی و راب در هتل.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Jenny",
+                "textEn": "So, here you are in New York at last.",
+                "textFa": "خب، بالاخره به نیویورک رسیدی!"
+        },
+        {
+                "id": 2,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Rob",
+                "textEn": "Yeah, it's great to be here. It's really exciting.",
+                "textFa": "بله، عالیه که اینجام. واقعاً هیجان‌انگیزه."
+        },
+        {
+                "id": 3,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "And how's your hotel?",
+                "textFa": "هتل چطوره؟"
+        },
+        {
+                "id": 4,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "It's fine. My room is really... nice.",
+                "textFa": "خوبه. اتاقم واقعاً... قشنگه."
+        },
+        {
+                "id": 5,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "Do you have a good view from your room?",
+                "textFa": "منظره خوبی از اتاقت داری؟"
+        },
+        {
+                "id": 6,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Rob",
+                "textEn": "I can see lots of other buildings.",
+                "textFa": "می‌توانم کلی ساختمان‌های دیگر را ببینم."
+        },
+        {
+                "id": 7,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Jenny",
+                "textEn": "Tomorrow I'm going to show you around the office and introduce you to the team.",
+                "textFa": "فردا قصد دارم دفتر را به تو نشان بدهم و تو را به بقیه اعضای تیم معرفی کنم."
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "Barbara's looking forward to meeting you. You remember Barbara, my boss?",
+                "textFa": "باربارا بسیار مشتاق دیدار با توست؛ باربارا، رئیسم را که یادت هست؟"
+        },
+        {
+                "id": 9,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Rob",
+                "textEn": "Oh... yeah, sorry.",
+                "textFa": "اوه... بله، حواسم نبود."
+        },
+        {
+                "id": 10,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jenny",
+                "textEn": "And then you can start thinking about your blog and the column. Have you got any ideas yet, Rob? ... Rob?",
+                "textFa": "و بعد می‌توانی به وبلاگ و ستون اختصاصی‌ات فکر کنی. تا الان ایده‌ای به ذهنت رسیده راب؟ ... راب؟"
+        },
+        {
+                "id": 11,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "What? Sorry, Jenny.",
+                "textFa": "چی؟ ببخشید جنی، متوجه نشدم."
+        },
+        {
+                "id": 12,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Jenny",
+                "textEn": "You must be really tired.",
+                "textFa": "باید حسابی خسته باشی."
+        },
+        {
+                "id": 13,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Rob",
+                "textEn": "Yes, I am a bit. What time is it now?",
+                "textFa": "بله، کمی خسته‌ام. الان ساعت چنده؟"
+        },
+        {
+                "id": 14,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "It's nine o'clock.",
+                "textFa": "ساعت ۹ شبه."
+        },
+        {
+                "id": 15,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Rob",
+                "textEn": "Nine o'clock? That's two o'clock in the morning for me.",
+                "textFa": "ساعت ۹؟ این به وقت من یعنی ۲ نصفه شب!"
+        },
+        {
+                "id": 16,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Jenny",
+                "textEn": "Let's finish our drinks. You need to go to bed.",
+                "textFa": "بیا نوشیدنی‌مان را تمام کنیم؛ باید بروی بخوابی."
+        },
+        {
+                "id": 17,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Rob",
+                "textEn": "I guess you're right.",
+                "textFa": "فکر کنم حق با توئه."
+        },
+        {
+                "id": 18,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "So, I'll see you in the office at eleven in the morning.",
+                "textFa": "پس فردا ساعت ۱۱ صبح در دفتر می‌بینمت."
+        },
+        {
+                "id": 19,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Rob",
+                "textEn": "At eleven?",
+                "textFa": "ساعت ۱۱؟"
+        },
+        {
+                "id": 20,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Jenny",
+                "textEn": "Is that OK?",
+                "textFa": "مناسبه؟"
+        },
+        {
+                "id": 21,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Rob",
+                "textEn": "It's perfect. Thanks, Jenny.",
+                "textFa": "عالیه، ممنون جنی."
+        },
+        {
+                "id": 22,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "There's just one thing.",
+                "textFa": "فقط یک نکته هست."
+        },
+        {
+                "id": 23,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Rob",
+                "textEn": "What's that?",
+                "textFa": "چی؟"
+        },
+        {
+                "id": 24,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Jenny",
+                "textEn": "Don't be late.",
+                "textFa": "دیر نکن!"
+        },
+        {
+                "id": 25,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Rob",
+                "textEn": "By the way. It's great to see you again.",
+                "textFa": "راستی، دیدن دوباره‌ات فوق‌العاده است."
+        },
+        {
+                "id": 26,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Jenny",
+                "textEn": "Yeah. It's great to see you, too.",
+                "textFa": "آره، من هم از دیدنت خیلی خوشحالم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۳: تجدید دیدار جنی و راب در هتل»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 3: Jenny and Rob Meet Again', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 31,
-        "timestampDisplay": "0:31",
-        "explanationFa": "در این صحنه، تمرکز بر دیدار مجدد پس از مدت طولانی (Long time no see) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:46]. What key point is stated by Hannah?",
+        "timestampSeconds": 46,
+        "timestampDisplay": "0:46",
+        "explanationFa": "در ثانیه 0:46 ویدیو، Hannah به صراحت بیان می‌کند: «H What? What’s happened? P Jamie had an accident this evening. H Oh no. What kind of accident?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny arrives at the hotel lobby to welcome Rob, catch up on life, and invite hi...",
-            "textFa": "تمرکز اصلی بر جنی به لابی هتل می‌آید تا به راب خوشامد بگوید، از احوال هم باخبر شوند ... است."
+            "textEn": "Hannah states: \"H What? What’s happened? P Jamie had an accident this evening. H ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -4275,44 +6331,204 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمات رسمی اداری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 1: In the New York Office with Holly.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۱: حضور در دفتر نیویورک و آشنایی با هالی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 23,
-        "timeDisplay": "0:23",
-        "textEn": "Detailed conversation and communicative exchange regarding آشنایی با همکاران جدید.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون آشنایی با همکاران جدید.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 70,
-        "timeDisplay": "1:10",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 1: In the New York Office with Holly.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۱: حضور در دفتر نیویورک و آشنایی با هالی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Jenny",
+                "textEn": "Well, I think that's everything. What do you think of the office?",
+                "textFa": "خب، فکر کنم همه‌چیز رو گفتم. نظرت درباره دفتر چیه؟"
+        },
+        {
+                "id": 2,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "It's brilliant. Much bigger than our place in London.",
+                "textFa": "فوق‌العاده است؛ خیلی بزرگ‌تر از محل کار ما در لندنه."
+        },
+        {
+                "id": 3,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "Oh, here's Barbara. Rob, this is Barbara, the editor of the magazine.",
+                "textFa": "اوه، باربارا آمد. راب، ایشان باربارا، سردبیر مجله هستند."
+        },
+        {
+                "id": 4,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Barbara",
+                "textEn": "It's good to finally meet you, Rob.",
+                "textFa": "خوشحالم که بالاخره از نزدیک می‌بینمت، راب."
+        },
+        {
+                "id": 5,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Rob",
+                "textEn": "It's great to be here.",
+                "textFa": "بسیار باعث افتخاره که اینجام."
+        },
+        {
+                "id": 6,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Barbara",
+                "textEn": "Is this your first time in New York?",
+                "textFa": "اولین باره که به نیویورک می‌آیی؟"
+        },
+        {
+                "id": 7,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "No, I came here when I was eighteen. But only for a few days.",
+                "textFa": "خیر، وقتی هجده سالم بود آمدم؛ اما فقط برای چند روز."
+        },
+        {
+                "id": 8,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Barbara",
+                "textEn": "Well, I hope you get to know New York much better this time!",
+                "textFa": "خب، امیدوارم این بار نیویورک را خیلی بهتر بشناسی!"
+        },
+        {
+                "id": 9,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Jenny",
+                "textEn": "Barbara, I'm going to take Rob out for lunch. Would you like to come with us?",
+                "textFa": "باربارا، می‌خواهم راب را برای ناهار بیرون ببرم؛ مایلید همراه ما بیایید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Barbara",
+                "textEn": "I'd love to, but unfortunately I have a meeting at one. So, I'll see you later. We're meeting at three, I think.",
+                "textFa": "خیلی دوست داشتم، اما متاسفانه ساعت یک جلسه دارم. پس بعداً می‌بینمتان؛ گمانم ساعت سه جلسه داریم."
+        },
+        {
+                "id": 11,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Jenny",
+                "textEn": "That's right.",
+                "textFa": "درسته."
+        },
+        {
+                "id": 12,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Barbara",
+                "textEn": "Have a nice lunch.",
+                "textFa": "ناهار خوبی داشته باشید."
+        },
+        {
+                "id": 13,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Holly",
+                "textEn": "Hey, are you Rob Walker?",
+                "textFa": "سلام، شما راب واکر هستید؟"
+        },
+        {
+                "id": 14,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Rob",
+                "textEn": "Yes.",
+                "textFa": "بله خودم هستم."
+        },
+        {
+                "id": 15,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Holly",
+                "textEn": "Hi, I'm Holly. Holly Tyler.",
+                "textFa": "سلام، من هالی هستم؛ هالی تایلر."
+        },
+        {
+                "id": 16,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Rob",
+                "textEn": "Hello, Holly.",
+                "textFa": "سلام، هالی."
+        },
+        {
+                "id": 17,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Holly",
+                "textEn": "We're going to be working together.",
+                "textFa": "قرار است با هم همکار باشیم."
+        },
+        {
+                "id": 18,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "Really?",
+                "textFa": "واقعاً؟"
+        },
+        {
+                "id": 19,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Holly",
+                "textEn": "Didn't Barbara tell you? I'm going to be Rob's photographer!",
+                "textFa": "باربارا بهت نگفت؟ من عکاس پروژه‌های راب خواهم بود!"
+        },
+        {
+                "id": 20,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Jenny",
+                "textEn": "Oh, well... We're just going for lunch.",
+                "textFa": "اوه، خب... ما تازه می‌خواستیم برویم ناهار."
+        },
+        {
+                "id": 21,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Holly",
+                "textEn": "Cool! I can come with you. I mean, I had a sandwich earlier, so I don't need to eat. But Rob and I can talk. Is that OK?",
+                "textFa": "عالیه! می‌توانم همراهتان بیایم. البته قبلاً یک ساندویچ خوردم و غذا نمی‌خواهم، اما من و راب می‌توانیم صحبت کنیم؛ مشکلی نیست؟"
+        },
+        {
+                "id": 22,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Jenny",
+                "textEn": "Sure.",
+                "textFa": "حتماً، مشکلی نیست."
+        },
+        {
+                "id": 23,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Holly",
+                "textEn": "So, let's go.",
+                "textFa": "پس بزن بریم!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۱: حضور در دفتر نیویورک و آشنایی با هالی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 1: In the New York Office with Holly', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 31,
-        "timestampDisplay": "0:31",
-        "explanationFa": "در این صحنه، تمرکز بر آشنایی با همکاران جدید و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:49]. What key point is stated by Barbara?",
+        "timestampSeconds": 49,
+        "timestampDisplay": "0:49",
+        "explanationFa": "در ثانیه 0:49 ویدیو، Barbara به صراحت بیان می‌کند: «I’d love to, but unfortunately I have a meeting at one. So, I’ll see you later. We’re meeting at three, I think.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob is introduced to Holly, another talented staff writer at the magazine, and t...",
-            "textFa": "تمرکز اصلی بر راب با هالی، یکی دیگر از نویسندگان بااستعداد مجله آشنا می‌شود و درباره... است."
+            "textEn": "Barbara states: \"I’d love to, but unfortunately I have a meeting at one. So, I’ll ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -4471,44 +6687,196 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "فرهنگ ناهار کاری در آمریکا"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 2: At the Restaurant with the Team.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۲: صرف ناهار کاری در رستوران.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 21,
-        "timeDisplay": "0:21",
-        "textEn": "Detailed conversation and communicative exchange regarding سفارش غذا و مخلفات در رستوران.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون سفارش غذا و مخلفات در رستوران.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 64,
-        "timeDisplay": "1:04",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 2: At the Restaurant with the Team.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۲: صرف ناهار کاری در رستوران.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Waitress",
+                "textEn": "Are you ready to order?",
+                "textFa": "برای ثبت سفارش آماده‌اید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Jenny",
+                "textEn": "Yes, please.",
+                "textFa": "بله، لطفاً."
+        },
+        {
+                "id": 3,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Waitress",
+                "textEn": "Can I get you something to start with?",
+                "textFa": "برای پیش‌غذا چیزی میل دارید براتون بیاورم؟"
+        },
+        {
+                "id": 4,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "No, thank you. I'd like the tuna with a green salad.",
+                "textFa": "خیر، متشکرم. من ماهی تن با سالاد سبزیجات می‌خواهم."
+        },
+        {
+                "id": 5,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Waitress",
+                "textEn": "And for you, sir?",
+                "textFa": "و برای شما قربان؟"
+        },
+        {
+                "id": 6,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "I'll have the steak, please.",
+                "textFa": "من استیک میل دارم، لطفاً."
+        },
+        {
+                "id": 7,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Waitress",
+                "textEn": "Would you like that with fries, or a baked potato?",
+                "textFa": "میل دارید همراه با سیب‌زمینی سرخ‌کرده باشد یا سیب‌زمینی تنوری؟"
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Rob",
+                "textEn": "Fries, please.",
+                "textFa": "سیب‌زمینی سرخ‌کرده، لطفاً."
+        },
+        {
+                "id": 9,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Waitress",
+                "textEn": "How would you like your steak? Rare, medium, or well done?",
+                "textFa": "استیکتان چطور پخته شود؟ آبدار (کم‌پخت)، متوسط، یا کاملاً مغزپخت؟"
+        },
+        {
+                "id": 10,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Rob",
+                "textEn": "Well done.",
+                "textFa": "کاملاً مغزپخت."
+        },
+        {
+                "id": 11,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Holly",
+                "textEn": "Nothing for me.",
+                "textFa": "برای من چیزی لازم نیست."
+        },
+        {
+                "id": 12,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Waitress",
+                "textEn": "OK. And to drink?",
+                "textFa": "بسیار خب. و برای نوشیدنی؟"
+        },
+        {
+                "id": 13,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Jenny",
+                "textEn": "Water, please.",
+                "textFa": "آب، لطفاً."
+        },
+        {
+                "id": 14,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Waitress",
+                "textEn": "Still or sparkling?",
+                "textFa": "آب معمولی یا گازدار؟"
+        },
+        {
+                "id": 15,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Jenny",
+                "textEn": "Sparkling.",
+                "textFa": "گازدار."
+        },
+        {
+                "id": 16,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Waitress",
+                "textEn": "The tuna for you ma'am, and the steak for you, sir.",
+                "textFa": "ماهی تن برای شما خانم، و استیک برای شما قربان."
+        },
+        {
+                "id": 17,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Jenny",
+                "textEn": "I'm sorry, but I asked for a green salad, not fries.",
+                "textFa": "ببخشید، اما من سالاد سبزیجات خواسته بودم، نه سیب‌زمینی سرخ‌کرده."
+        },
+        {
+                "id": 18,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Waitress",
+                "textEn": "No problem. I'll change it.",
+                "textFa": "مشکلی نیست، عوضش می‌کنم."
+        },
+        {
+                "id": 19,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Rob",
+                "textEn": "Excuse me.",
+                "textFa": "ببخشید."
+        },
+        {
+                "id": 20,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Waitress",
+                "textEn": "Yes, sir?",
+                "textFa": "بله قربان؟"
+        },
+        {
+                "id": 21,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Rob",
+                "textEn": "Sorry, I asked for my steak well done and this is rare.",
+                "textFa": "معذرت می‌خواهم، من استیک کاملاً مغزپخت خواسته بودم ولی این کاملاً خامه."
+        },
+        {
+                "id": 22,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Waitress",
+                "textEn": "I'm really sorry. I'll take it back to the kitchen.",
+                "textFa": "واقعاً عذرخواهی می‌کنم؛ الان برمی‌گردانمش به آشپزخانه."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۲: صرف ناهار کاری در رستوران»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 2: At the Restaurant with the Team', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 28,
-        "timestampDisplay": "0:28",
-        "explanationFa": "در این صحنه، تمرکز بر سفارش غذا و مخلفات در رستوران و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:44]. What key point is stated by Narrator?",
+        "timestampSeconds": 44,
+        "timestampDisplay": "0:44",
+        "explanationFa": "در ثانیه 0:44 ویدیو، Narrator به صراحت بیان می‌کند: «Jenny Yes, please. Waitress Can I get you something to start with? Jenny No, thank you.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob, Jenny, and Holly enjoy lunch together at a restaurant, ordering specialty s...",
-            "textFa": "تمرکز اصلی بر راب، جنی و هالی در یک رستوران ناهار می‌خورند، ساندویچ‌های مخصوص سفارش ... است."
+            "textEn": "Narrator states: \"Jenny Yes, please. Waitress Can I get you something to start with...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -4667,44 +7035,180 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "برنامه‌ریزی آخر هفته"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 3: Holly and Rob Make Friends.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۳: ایجاد دوستی و صمیمیت میان راب و هالی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 28,
-        "timeDisplay": "0:28",
-        "textEn": "Detailed conversation and communicative exchange regarding کشف علایق مشترک (Do you like jazz?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون کشف علایق مشترک (Do you like jazz?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 84,
-        "timeDisplay": "1:24",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 3: Holly and Rob Make Friends.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۳: ایجاد دوستی و صمیمیت میان راب و هالی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Holly",
+                "textEn": "So tell me, Rob. What are you going to write about?",
+                "textFa": "خب برام بگو راب، قراره درباره چی بنویسی؟"
+        },
+        {
+                "id": 2,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "Well, to start with, my first impressions of New York. You know, the nightlife, the music, things like that.",
+                "textFa": "خب، برای شروع، اولین برداشت‌هایم از نیویورک: زندگی شبانه، موسیقی و چیزهایی مثل این."
+        },
+        {
+                "id": 3,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Holly",
+                "textEn": "Are you planning to do any interviews?",
+                "textFa": "برنامه‌ای برای انجام مصاحبه هم داری؟"
+        },
+        {
+                "id": 4,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Rob",
+                "textEn": "I'd like to. Do you have any suggestions?",
+                "textFa": "خیلی دوست دارم. پیشنهادی داری؟"
+        },
+        {
+                "id": 5,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Holly",
+                "textEn": "Well, I know some great musicians.",
+                "textFa": "خب، چند تا موزیسین عالی و سرشناس می‌شناسم."
+        },
+        {
+                "id": 6,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Rob",
+                "textEn": "Musicians?",
+                "textFa": "نوازنده‌ها؟"
+        },
+        {
+                "id": 7,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Holly",
+                "textEn": "You know, guys in bands. And I also have some contacts in the theater and dance.",
+                "textFa": "آره دیگه، بچه‌های گروه‌های موسیقی. تازه ارتباطاتی هم در تئاتر و رقص دارم."
+        },
+        {
+                "id": 8,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Rob",
+                "textEn": "That would be great.",
+                "textFa": "فوق‌العاده خواهد بود."
+        },
+        {
+                "id": 9,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Holly",
+                "textEn": "Maybe we could go to a show, and after you could talk to the actors.",
+                "textFa": "شاید بتوانیم با هم به یک نمایش برویم و بعدش بتوانی با بازیگران صحبت کنی."
+        },
+        {
+                "id": 10,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "I really like that idea.",
+                "textFa": "واقعاً از این ایده خوشم آمد."
+        },
+        {
+                "id": 11,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Waitress",
+                "textEn": "Can I bring you anything else?",
+                "textFa": "چیز دیگری میل دارید براتون بیارم؟"
+        },
+        {
+                "id": 12,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "Jenny",
+                "textEn": "Could we have the check, please?",
+                "textFa": "می‌توانید صورت‌حساب را بیاورید، لطفاً؟"
+        },
+        {
+                "id": 13,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Waitress",
+                "textEn": "Yes, ma'am. Here's your check.",
+                "textFa": "بله خانم، این صورت‌حساب شما."
+        },
+        {
+                "id": 14,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Jenny",
+                "textEn": "Thanks. Excuse me. I think there's a mistake. We had two bottles of water, not three.",
+                "textFa": "ممنون. ببخشید، فکر کنم اشتباهی شده؛ ما دو بطری آب داشتیم، نه سه تا."
+        },
+        {
+                "id": 15,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Waitress",
+                "textEn": "You're right. I'm really sorry. It's not my day today! I'll get you a new check.",
+                "textFa": "حق با شماست، واقعاً شرمنده‌ام؛ امروز اصلاً روز من نیست! الان صورت‌حساب جدیدی می‌آورم."
+        },
+        {
+                "id": 16,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Jenny",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 17,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Holly",
+                "textEn": "We're going to have a fun month, Rob.",
+                "textFa": "ماه پر از تفریحی پیش رو خواهیم داشت، راب."
+        },
+        {
+                "id": 18,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Rob",
+                "textEn": "Yeah, I think it's going to be fantastic.",
+                "textFa": "آره، منم فکر می‌کنم معرکه خواهد شد."
+        },
+        {
+                "id": 19,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Jenny",
+                "textEn": "OK, time to go. You have your meeting with Barbara at three.",
+                "textFa": "خب، وقت رفتنه. ساعت ۳ با باربارا جلسه داری."
+        },
+        {
+                "id": 20,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Rob",
+                "textEn": "Oh yeah, right.",
+                "textFa": "اوه آره، درسته."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۳: ایجاد دوستی و صمیمیت میان راب و هالی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 3: Holly and Rob Make Friends', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 37,
-        "timestampDisplay": "0:37",
-        "explanationFa": "در این صحنه، تمرکز بر کشف علایق مشترک (Do you like jazz?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:54]. What key point is stated by Narrator?",
+        "timestampSeconds": 54,
+        "timestampDisplay": "0:54",
+        "explanationFa": "در ثانیه 0:54 ویدیو، Narrator به صراحت بیان می‌کند: «Narrator In addition, about 45 percent of Americans use about two hours each weekend to shop for food, clothes, and home goods.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Holly and Rob discover common musical interests and recommend comedy clubs and c...",
-            "textFa": "تمرکز اصلی بر هالی و راب علایق مشترک موسیقیایی خود را کشف می‌کنند و باشگاه‌های کمدی ... است."
+            "textEn": "Narrator states: \"Narrator In addition, about 45 percent of Americans use about two...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -4863,44 +7367,212 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مشکلات کالای معیوب"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 1: Taking Something Back to a Store.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۱: مرجوع کردن کالا و تعویض در فروشگاه.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 26,
-        "timeDisplay": "0:26",
-        "textEn": "Detailed conversation and communicative exchange regarding مرجوع کردن جنس (Return an item).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مرجوع کردن جنس (Return an item).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 80,
-        "timeDisplay": "1:20",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 1: Taking Something Back to a Store.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۱: مرجوع کردن کالا و تعویض در فروشگاه.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Salesperson",
+                "textEn": "Can I help you, sir?",
+                "textFa": "می‌توانم کمکتان کنم قربان؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Yes. Do you have these in an eight?",
+                "textFa": "بله. از این مدل سایز ۸ دارید؟"
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Salesperson",
+                "textEn": "Just a minute, I'll go and check.",
+                "textFa": "یک لحظه صبر کنید، می‌روم چک کنم."
+        },
+        {
+                "id": 4,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Salesperson",
+                "textEn": "Here you are, these are an eight. Do you want to try them on?",
+                "textFa": "بفرمایید، این‌ها سایز ۸ هستند. مایلید امتحانشان کنید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "No, thanks. I'm sure they'll be fine. How much are they?",
+                "textFa": "نه ممنون، مطمئنم اندازه‌اند. قیمتشون چقدره؟"
+        },
+        {
+                "id": 6,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Salesperson",
+                "textEn": "They're $83.94.",
+                "textFa": "می‌شود ۸۳ دلار و ۹۴ سنت."
+        },
+        {
+                "id": 7,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "Oh, it says $72.99.",
+                "textFa": "اوه، ولی روی برچسب زده ۷۲ دلار و ۹۹ سنت."
+        },
+        {
+                "id": 8,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Salesperson",
+                "textEn": "Yes, but there's an added sales tax of 15%.",
+                "textFa": "بله، اما ۱۵ درصد مالیات بر فروش به آن اضافه می‌شود."
+        },
+        {
+                "id": 9,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Rob",
+                "textEn": "Oh, OK. Do you take Mastercard?",
+                "textFa": "اوه، متوجه شدم. مسترکارت قبول می‌کنید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Salesperson",
+                "textEn": "Sure.",
+                "textFa": "حتماً."
+        },
+        {
+                "id": 11,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Salesperson",
+                "textEn": "Can I help you?",
+                "textFa": "می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 12,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Rob",
+                "textEn": "Yes, I bought these about half an hour ago.",
+                "textFa": "بله، من حدود نیم ساعت پیش این‌ها را خریدم."
+        },
+        {
+                "id": 13,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Salesperson",
+                "textEn": "Yes, I remember. Is there a problem?",
+                "textFa": "بله یادم هست؛ مشکلی پیش آمده؟"
+        },
+        {
+                "id": 14,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Rob",
+                "textEn": "Yes, I'm afraid they're too small.",
+                "textFa": "بله، متاسفانه برای پایم خیلی کوچکند."
+        },
+        {
+                "id": 15,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Salesperson",
+                "textEn": "What size are they?",
+                "textFa": "سایزشان چنده؟"
+        },
+        {
+                "id": 16,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Rob",
+                "textEn": "They're an eight. But I take a UK eight.",
+                "textFa": "سایز ۸ هستند، اما من سایز ۸ بریتانیا هستم."
+        },
+        {
+                "id": 17,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Salesperson",
+                "textEn": "Oh right. Yes, a UK eight is a US nine.",
+                "textFa": "اوه درسته! بله، سایز ۸ بریتانیا معادل سایز ۹ آمریکاست."
+        },
+        {
+                "id": 18,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Rob",
+                "textEn": "Do you have a pair?",
+                "textFa": "از آن سایز موجود دارید؟"
+        },
+        {
+                "id": 19,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Salesperson",
+                "textEn": "I'll go and check. Just a minute.",
+                "textFa": "می‌روم انبار را بررسی کنم، یک دقیقه."
+        },
+        {
+                "id": 20,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Salesperson",
+                "textEn": "I'm sorry, but we don't have these in a nine. But we do have these and they're the same price. Or you can have a refund.",
+                "textFa": "متاسفم، این مدل سایز ۹ نداریم؛ اما این مدل دیگر را داریم که هم‌قیمت است، یا اینکه می‌توانید وجهتان را پس بگیرید."
+        },
+        {
+                "id": 21,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Rob",
+                "textEn": "Uh... I'll take this pair then, please.",
+                "textFa": "اه... پس همین جفت را برمی‌دارم، لطفاً."
+        },
+        {
+                "id": 22,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "Salesperson",
+                "textEn": "No problem. Do you have the receipt?",
+                "textFa": "مشکلی نیست. رسید خرید را همراه دارید؟"
+        },
+        {
+                "id": 23,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Rob",
+                "textEn": "Yes, here you are.",
+                "textFa": "بله، بفرمایید."
+        },
+        {
+                "id": 24,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Salesperson",
+                "textEn": "Brilliant.",
+                "textFa": "عالیه."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۱: مرجوع کردن کالا و تعویض در فروشگاه»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 1: Taking Something Back to a Store', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 35,
-        "timestampDisplay": "0:35",
-        "explanationFa": "در این صحنه، تمرکز بر مرجوع کردن جنس (Return an item) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:52]. What key point is stated by Narrator?",
+        "timestampSeconds": 52,
+        "timestampDisplay": "0:52",
+        "explanationFa": "در ثانیه 0:52 ویدیو، Narrator به صراحت بیان می‌کند: «Holly So why don’t you get a bike here? Rob I’m only here for another three weeks.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob returns a defective electronic charger to an electronics shop, presenting hi...",
-            "textFa": "تمرکز اصلی بر راب یک شارژر معیوب را به فروشگاه لوازم الکترونیکی برمی‌گرداند، فاکتور ... است."
+            "textEn": "Narrator states: \"Holly So why don’t you get a bike here? Rob I’m only here for ano...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -5059,44 +7731,172 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مشاوره تندرستی بین همکاران"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 2: Rob Has a Fitness Problem.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۲: چالش راب در تناسب اندام و خستگی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 26,
-        "timeDisplay": "0:26",
-        "textEn": "Detailed conversation and communicative exchange regarding بیان خستگی و آمادگی جسمانی (Out of shape).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون بیان خستگی و آمادگی جسمانی (Out of shape).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 78,
-        "timeDisplay": "1:18",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 2: Rob Has a Fitness Problem.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۲: چالش راب در تناسب اندام و خستگی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Holly",
+                "textEn": "Hey, Rob, come on. Keep up.",
+                "textFa": "هی راب، یالا! عقب نمون."
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Sorry. I'm a bit tired this morning.",
+                "textFa": "ببخشید، امروز صبح کمی خسته‌ام."
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Holly",
+                "textEn": "You aren't exactly in good shape, are you?",
+                "textFa": "زیاد روی فرم نیستی، درسته؟"
+        },
+        {
+                "id": 4,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "I know, I know. I think I'm eating too much.",
+                "textFa": "می‌دونم، می‌دونم. فکر کنم زیادی غذا می‌خورم."
+        },
+        {
+                "id": 5,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Holly",
+                "textEn": "Then eat less!",
+                "textFa": "خب کمتر بخور!"
+        },
+        {
+                "id": 6,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "It isn't easy. I eat out all the time. And the portions in American restaurants are enormous.",
+                "textFa": "کار راحتی نیست؛ مدام بیرون غذا می‌خورم و حجم وعده‌های غذایی در رستوران‌های آمریکایی هم غول‌پیکره!"
+        },
+        {
+                "id": 7,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Holly",
+                "textEn": "You don't do enough exercise.",
+                "textFa": "ورزش کافی انجام نمی‌دهی."
+        },
+        {
+                "id": 8,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Rob",
+                "textEn": "I walk a lot.",
+                "textFa": "خیلی پیاده‌روی می‌کنم."
+        },
+        {
+                "id": 9,
+                "seconds": 37,
+                "timeDisplay": "0:37",
+                "speaker": "Holly",
+                "textEn": "Walking isn't enough, Rob. Do you do anything to keep fit?",
+                "textFa": "پیاده‌روی کافی نیست راب. کار خاصی برای تناسب اندام انجام می‌دهی؟"
+        },
+        {
+                "id": 10,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Rob",
+                "textEn": "I cycle when I'm in London...",
+                "textFa": "وقتی در لندن هستم دوچرخه‌سواری می‌کنم..."
+        },
+        {
+                "id": 11,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Holly",
+                "textEn": "So why don't you get a bike here?",
+                "textFa": "خب چرا اینجا هم یک دوچرخه نمی‌گیری؟"
+        },
+        {
+                "id": 12,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "I'm only here for another three weeks. Anyway, my hotel's near the office. I don't need a bike.",
+                "textFa": "فقط برای سه هفته دیگر اینجام؛ از طرفی هتلم نزدیک دفتره و نیازی به دوچرخه ندارم."
+        },
+        {
+                "id": 13,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Holly",
+                "textEn": "You know, Jennifer goes running all the time. Before and after work. But I just think that running's so boring. I mean, where's the fun?",
+                "textFa": "می‌دونی، جنیفر مدام می‌ره دویدن؛ قبل و بعد از کار. ولی به نظر من دویدن خیلی کسل‌کننده‌ست؛ کجاش حال می‌ده آخه؟"
+        },
+        {
+                "id": 14,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Rob",
+                "textEn": "Yeah, I'm not very keen on running.",
+                "textFa": "آره، منم علاقه چندانی به دویدن ندارم."
+        },
+        {
+                "id": 15,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Holly",
+                "textEn": "So why don't you play basketball with me and my friends?",
+                "textFa": "پس چرا با من و دوستانم بسکتبال بازی نمی‌کنی؟"
+        },
+        {
+                "id": 16,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Rob",
+                "textEn": "OK. That's a great idea! But I don't have any trainers.",
+                "textFa": "باشه، ایده عالی‌ایه! ولی من کفش ورزشی ندارم."
+        },
+        {
+                "id": 17,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Holly",
+                "textEn": "Trainers? Sneakers! You can buy some.",
+                "textFa": "کفش ورزشی بریتانیایی؟ اینجا بهش می‌گیم اسنیکرز! می‌تونی بخری."
+        },
+        {
+                "id": 18,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Rob",
+                "textEn": "Is there a sports shop near here?",
+                "textFa": "این اطراف فروشگاه لوازم ورزشی هست؟"
+        },
+        {
+                "id": 19,
+                "seconds": 98,
+                "timeDisplay": "1:38",
+                "speaker": "Holly",
+                "textEn": "Sure, there's one across the street.",
+                "textFa": "حتماً، آن سمت خیابان یکی هست."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۲: چالش راب در تناسب اندام و خستگی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 2: Rob Has a Fitness Problem', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 35,
-        "timestampDisplay": "0:35",
-        "explanationFa": "در این صحنه، تمرکز بر بیان خستگی و آمادگی جسمانی (Out of shape) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:53]. What key point is stated by Salesperson?",
+        "timestampSeconds": 53,
+        "timestampDisplay": "0:53",
+        "explanationFa": "در ثانیه 0:53 ویدیو، Salesperson به صراحت بیان می‌کند: «Can I help you, sir? Rob Yes. Do you have these in an eight?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob feels out of shape and exhausted from long office hours, asking Jenny about ...",
-            "textFa": "تمرکز اصلی بر راب به دلیل ساعات کاری طولانی احساس خستگی و افت آمادگی جسمانی دارد و ا... است."
+            "textEn": "Salesperson states: \"Can I help you, sir? Rob Yes. Do you have these in an eight?...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -5255,44 +8055,164 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "برنامه‌ریزی صبح زود"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 3: Rob Decides to Start Running.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۳: تصمیم قاطع راب برای دویدن صبحگاهی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 23,
-        "timeDisplay": "0:23",
-        "textEn": "Detailed conversation and communicative exchange regarding تعیین ساعت قرار ورزشی.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون تعیین ساعت قرار ورزشی.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 69,
-        "timeDisplay": "1:09",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 3: Rob Decides to Start Running.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۳: تصمیم قاطع راب برای دویدن صبحگاهی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "Hi Jenny.",
+                "textFa": "سلام جنی."
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Oh, hi.",
+                "textFa": "اوه، سلام."
+        },
+        {
+                "id": 3,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Have you had a good day?",
+                "textFa": "روز خوبی داشتی؟"
+        },
+        {
+                "id": 4,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Jenny",
+                "textEn": "Oh, you know. Meetings! What about you?",
+                "textFa": "اوه، می‌دونی دیگه... مدام جلسه! تو چطور؟"
+        },
+        {
+                "id": 5,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "It was OK. I went to Brooklyn with Holly and took some photos of the bridge.",
+                "textFa": "خوب بود. با هالی رفتیم بروکلین و چند تا عکس عالی از پل گرفتیم."
+        },
+        {
+                "id": 6,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "They're probably great photos.",
+                "textFa": "احتمالاً عکس‌های فوق‌العاده‌ای شدند."
+        },
+        {
+                "id": 7,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Rob",
+                "textEn": "Yeah, they're nice. But Holly thinks I'm out of shape.",
+                "textFa": "آره قشنگند، ولی هالی فکر می‌کنه من بدنم از فرم خارج شده."
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "Well, are you?",
+                "textFa": "خب، مگه نیستی؟"
+        },
+        {
+                "id": 9,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Rob",
+                "textEn": "Well, maybe a little. I bought these sneakers.",
+                "textFa": "خب، شاید یه کمی! این کفش‌های ورزشی رو خریدم."
+        },
+        {
+                "id": 10,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Jenny",
+                "textEn": "Oh, they're nice. Are you going to play basketball with Holly?",
+                "textFa": "اوه، خیلی قشنگند. قراره با هالی بری بسکتبال بازی کنی؟"
+        },
+        {
+                "id": 11,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "Actually, I was thinking about running. You go running, don't you?",
+                "textFa": "راستش داشتم به دویدن فکر می‌کردم. تو می‌ری می‌دوی، نه؟"
+        },
+        {
+                "id": 12,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Jenny",
+                "textEn": "Yeah, every morning in Central Park.",
+                "textFa": "آره، هر روز صبح در سنترال پارک."
+        },
+        {
+                "id": 13,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Rob",
+                "textEn": "Can I come with you tomorrow?",
+                "textFa": "می‌توانم فردا باهات بیام؟"
+        },
+        {
+                "id": 14,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Jenny",
+                "textEn": "Sure! But I go early, around seven.",
+                "textFa": "حتماً! ولی من خیلی زود می‌رم، حدود ساعت ۷ صبح."
+        },
+        {
+                "id": 15,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Rob",
+                "textEn": "Seven? In the morning?",
+                "textFa": "ساعت ۷؟ صبح به این زودی؟"
+        },
+        {
+                "id": 16,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Jenny",
+                "textEn": "Yeah. Is that too early for you?",
+                "textFa": "آره، برات زیادی زوده؟"
+        },
+        {
+                "id": 17,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Rob",
+                "textEn": "No, of course not. Seven is great. See you tomorrow!",
+                "textFa": "نه، اصلاً و ابداً! ساعت ۷ عالیه. فردا می‌بینمت!"
+        },
+        {
+                "id": 18,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Jenny",
+                "textEn": "See you tomorrow, Rob. Don't be late!",
+                "textFa": "فردا می‌بینمت راب. دیر نکنیا!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۳: تصمیم قاطع راب برای دویدن صبحگاهی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 3: Rob Decides to Start Running', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 30,
-        "timestampDisplay": "0:30",
-        "explanationFa": "در این صحنه، تمرکز بر تعیین ساعت قرار ورزشی و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:45]. What key point is stated by Narrator?",
+        "timestampSeconds": 45,
+        "timestampDisplay": "0:45",
+        "explanationFa": "در ثانیه 0:45 ویدیو، Narrator به صراحت بیان می‌کند: «it could mean you have very strong feelings for someone.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny agrees to join Rob for an early morning jog in Central Park, setting a cha...",
-            "textFa": "تمرکز اصلی بر جنی موافقت می‌کند تا فردا برای دویدن صبحگاهی در سنترال پارک همراه راب ... است."
+            "textEn": "Narrator states: \"it could mean you have very strong feelings for someone....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -5451,44 +8371,180 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات تشویق ورزشی (Keep going!)"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 1: Running in Central Park.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۱: دویدن صبحگاهی در سنترال پارک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 24,
-        "timeDisplay": "0:24",
-        "textEn": "Detailed conversation and communicative exchange regarding ورزش در طبیعت شهری.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون ورزش در طبیعت شهری.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 74,
-        "timeDisplay": "1:14",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 1: Running in Central Park.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۱: دویدن صبحگاهی در سنترال پارک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "Are you OK?",
+                "textFa": "حالت خوبه؟"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Me? Never better.",
+                "textFa": "من؟ از این بهتر نمی‌شم!"
+        },
+        {
+                "id": 3,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Jenny",
+                "textEn": "It's beautiful here, isn't it? I think this is my favorite place in New York.",
+                "textFa": "اینجا واقعاً زیباست، اینطور نیست؟ فکر کنم محبوب‌ترین جای من در کل نیویورکه."
+        },
+        {
+                "id": 4,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "Yeah, it's great.",
+                "textFa": "آره، فوق‌العاده‌ست."
+        },
+        {
+                "id": 5,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "So how's it all going? Are you happy you came?",
+                "textFa": "خب، اوضاع چطور پیش می‌ره؟ از اینکه آمدی خوشحالی؟"
+        },
+        {
+                "id": 6,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Rob",
+                "textEn": "To Central Park? At seven fifteen in the morning?",
+                "textFa": "به سنترال پارک؟ ساعت هفت و ربع صبح؟"
+        },
+        {
+                "id": 7,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Jenny",
+                "textEn": "To New York, Rob.",
+                "textFa": "منظورم به نیویورکه، راب!"
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Rob",
+                "textEn": "Yeah. Of course, I'm happy. It's fantastic.",
+                "textFa": "آره، البته که خوشحالم. محشره."
+        },
+        {
+                "id": 9,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Jenny",
+                "textEn": "Really? You aren't just saying that.",
+                "textFa": "واقعاً؟ فقط برای تعارف که نمی‌گی؟"
+        },
+        {
+                "id": 10,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "No, I mean it.",
+                "textFa": "نه، از ته دلم می‌گم."
+        },
+        {
+                "id": 11,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Jenny",
+                "textEn": "You need to get in shape, Rob.",
+                "textFa": "باید بدنت رو روی فرم بیاری راب."
+        },
+        {
+                "id": 12,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "I know. I am a bit tired of eating out all the time. It isn't good for my figure.",
+                "textFa": "می‌دونم. از غذا خوردن مداوم توی رستوران‌ها کمی خسته شدم؛ برای هیکلم خوب نیست."
+        },
+        {
+                "id": 13,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Jenny",
+                "textEn": "It's the restaurants you go to! Why don't you come over to my place after work? I could make you something a little healthier.",
+                "textFa": "به خاطر رستوران‌هایی‌ایه که می‌ری! چرا بعد از کار نمی‌آیی خونه من؟ می‌توانم برات یک غذای کمی سالم‌تر درست کنم."
+        },
+        {
+                "id": 14,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Rob",
+                "textEn": "I'd really like that. Thanks.",
+                "textFa": "واقعاً عالی می‌شه، ممنون."
+        },
+        {
+                "id": 15,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "So, how do you feel now? Are you ready to go again?",
+                "textFa": "خب، الان چه حسی داری؟ آماده‌ای دوباره بدویم؟"
+        },
+        {
+                "id": 16,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Rob",
+                "textEn": "Oh yes! I'm ready for anything.",
+                "textFa": "اوه بله! برای هر چالشی آماده‌ام."
+        },
+        {
+                "id": 17,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "Are you sure you're OK?",
+                "textFa": "مطمئنی حالت روبه‌راهه؟"
+        },
+        {
+                "id": 18,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Rob",
+                "textEn": "Absolutely.",
+                "textFa": "کاملاً مطمئنم."
+        },
+        {
+                "id": 19,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Jenny",
+                "textEn": "OK. We'll only go around two more times.",
+                "textFa": "باشه، فقط دو دور دیگه می‌زنیم."
+        },
+        {
+                "id": 20,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Rob",
+                "textEn": "Two? Excellent!",
+                "textFa": "دو دور دیگه؟ معرکه‌ست!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۱: دویدن صبحگاهی در سنترال پارک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 1: Running in Central Park', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 33,
-        "timestampDisplay": "0:33",
-        "explanationFa": "در این صحنه، تمرکز بر ورزش در طبیعت شهری و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:53]. What key point is stated by Narrator?",
+        "timestampSeconds": 53,
+        "timestampDisplay": "0:53",
+        "explanationFa": "در ثانیه 0:53 ویدیو، Narrator به صراحت بیان می‌کند: «It isn’t good for my figure. Jenny It’s the restaurants you go to!».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob struggles to keep up with Jenny's fast jogging pace in Central Park and ends...",
-            "textFa": "تمرکز اصلی بر راب برای همراهی با سرعت دویدن بالای جنی در سنترال پارک به تقلا می‌افتد... است."
+            "textEn": "Narrator states: \"It isn’t good for my figure. Jenny It’s the restaurants you go to...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -5647,44 +8703,156 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "داروهای بدون نسخه (Over-the-counter)"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 2: Going to a Pharmacy in New York.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۲: مراجعه به داروخانه و خرید داروی سرماخوردگی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 15,
-        "timeDisplay": "0:15",
-        "textEn": "Detailed conversation and communicative exchange regarding اصطلاحات داروخانه (Pharmacy / Drugstore).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون اصطلاحات داروخانه (Pharmacy / Drugstore).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 45,
-        "timeDisplay": "0:45",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 2: Going to a Pharmacy in New York.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۲: مراجعه به داروخانه و خرید داروی سرماخوردگی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Pharmacist",
+                "textEn": "Good morning. Can I help you?",
+                "textFa": "صبح بخیر. می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "I'm not feeling very well. I think I have flu.",
+                "textFa": "زیاد حالم خوب نیست؛ فکر کنم آنفولانزا گرفتم."
+        },
+        {
+                "id": 3,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Pharmacist",
+                "textEn": "What are your symptoms?",
+                "textFa": "علائمتان چیست؟"
+        },
+        {
+                "id": 4,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "I have a headache and a cough.",
+                "textFa": "سردرد و سرفه دارم."
+        },
+        {
+                "id": 5,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Pharmacist",
+                "textEn": "Do you have a temperature?",
+                "textFa": "تب هم دارید؟"
+        },
+        {
+                "id": 6,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Rob",
+                "textEn": "No, I don't think so.",
+                "textFa": "نه، فکر نمی‌کنم تب داشته باشم."
+        },
+        {
+                "id": 7,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Pharmacist",
+                "textEn": "Are you allergic to any drugs?",
+                "textFa": "به داروی خاصی حساسیت دارید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Rob",
+                "textEn": "I'm allergic to penicillin.",
+                "textFa": "به پنی‌سیلین حساسیت دارم."
+        },
+        {
+                "id": 9,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Pharmacist",
+                "textEn": "No problem. This is ibuprofen. It'll make you feel better.",
+                "textFa": "مشکلی نیست. این ایبوپروفن است و حالتان را بهتر می‌کند."
+        },
+        {
+                "id": 10,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Rob",
+                "textEn": "How many do I have to take?",
+                "textFa": "هر بار چند تا باید مصرف کنم؟"
+        },
+        {
+                "id": 11,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Pharmacist",
+                "textEn": "Two every four hours.",
+                "textFa": "دو عدد هر چهار ساعت یک‌بار."
+        },
+        {
+                "id": 12,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Rob",
+                "textEn": "Sorry? How often?",
+                "textFa": "ببخشید؟ هر چند وقت یک‌بار؟"
+        },
+        {
+                "id": 13,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Pharmacist",
+                "textEn": "Two every four hours. If you don't feel better in 48 hours, you should see a doctor.",
+                "textFa": "دو عدد هر چهار ساعت. اگر تا ۴۸ ساعت آینده بهتر نشدید، باید به پزشک مراجعه کنید."
+        },
+        {
+                "id": 14,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Rob",
+                "textEn": "OK, thanks. How much is that?",
+                "textFa": "باشه، ممنون. قیمتش چقدر می‌شود؟"
+        },
+        {
+                "id": 15,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Pharmacist",
+                "textEn": "That's $6.99, please.",
+                "textFa": "می‌شود ۶ دلار و ۹۹ سنت، لطفاً."
+        },
+        {
+                "id": 16,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Rob",
+                "textEn": "Thank you.",
+                "textFa": "متشکرم."
+        },
+        {
+                "id": 17,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Pharmacist",
+                "textEn": "You're welcome.",
+                "textFa": "خواهش می‌کنم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۲: مراجعه به داروخانه و خرید داروی سرماخوردگی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 2: Going to a Pharmacy in New York', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 20,
-        "timestampDisplay": "0:20",
-        "explanationFa": "در این صحنه، تمرکز بر اصطلاحات داروخانه (Pharmacy / Drugstore) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:30]. What key point is stated by Pharmacist?",
+        "timestampSeconds": 30,
+        "timestampDisplay": "0:30",
+        "explanationFa": "در ثانیه 0:30 ویدیو، Pharmacist به صراحت بیان می‌کند: «Good morning. Can I help you? Rob I’m not feeling very well. I think I have flu.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob visits an American pharmacy / drugstore to describe his sore throat and head...",
-            "textFa": "تمرکز اصلی بر راب به یک داروخانه آمریکایی مراجعه می‌کند تا گلودرد و سردرد خود را توض... است."
+            "textEn": "Pharmacist states: \"Good morning. Can I help you? Rob I’m not feeling very well. I th...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -5843,44 +9011,196 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمه صمیمانه"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 3: Dinner at Jenny's Apartment.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۳: مهمانی شام در آپارتمان جنی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 29,
-        "timeDisplay": "0:29",
-        "textEn": "Detailed conversation and communicative exchange regarding مهمانی خانگی (Dinner at home).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مهمانی خانگی (Dinner at home).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 89,
-        "timeDisplay": "1:29",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 3: Dinner at Jenny's Apartment.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۳: مهمانی شام در آپارتمان جنی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "That was a lovely meal. Thanks, Jenny.",
+                "textFa": "غذای بسیار دلپذیری بود، دستت درد نکنه جنی."
+        },
+        {
+                "id": 2,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Jenny",
+                "textEn": "That's OK.",
+                "textFa": "خواهش می‌کنم، نوش جان."
+        },
+        {
+                "id": 3,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "It's been great being in New York. You know, your offer to work here came at a very good time for me.",
+                "textFa": "حضور در نیویورک عالی بوده؛ می‌دونی، پیشنهاد کاری تو برای آمدن به اینجا در بهترین زمان ممکن به دستم رسید."
+        },
+        {
+                "id": 4,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "Really?",
+                "textFa": "واقعاً؟"
+        },
+        {
+                "id": 5,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Rob",
+                "textEn": "Yeah, I was looking for something new. Something different. You see, I broke up with my girlfriend a few months before I met you.",
+                "textFa": "آره، دنبال یک تغییر و فضای جدید بودم. راستش چند ماه قبل از اینکه تو رو ببینم از نامزدم جدا شده بودم."
+        },
+        {
+                "id": 6,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Jenny",
+                "textEn": "Oh... right...",
+                "textFa": "اوه... که اینطور..."
+        },
+        {
+                "id": 7,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "What about you?",
+                "textFa": "تو چطور؟"
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "What about me?",
+                "textFa": "من چطور؟"
+        },
+        {
+                "id": 9,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Rob",
+                "textEn": "You know... relationships?",
+                "textFa": "می‌دونی دیگه... روابط عاطفی؟"
+        },
+        {
+                "id": 10,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Jenny",
+                "textEn": "Oh, I've been too busy recently to think about relationships. Getting this job at the magazine was a really big thing for me. I guess that's taken up all my time and energy.",
+                "textFa": "اوه، این اواخر آنقدر سرم شلوغ بوده که فرصت فکر کردن به رابطه رو نداشتم. گرفتن این شغل در مجله برایم اتفاق خیلی بزرگی بود و تمام وقت و انرژیم رو گرفت."
+        },
+        {
+                "id": 11,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "But that isn't very good for you. Only thinking about work, I mean.",
+                "textFa": "ولی این برایت چندان خوب نیست؛ منظورم اینه که فقط به کار فکر کنی."
+        },
+        {
+                "id": 12,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "Jenny",
+                "textEn": "Why didn't you tell me you weren't feeling well this morning? We didn't have to go for a run.",
+                "textFa": "چرا امروز صبح نگفتی حالت خوب نیست؟ مجبور نبودیم بریم بدویم."
+        },
+        {
+                "id": 13,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Rob",
+                "textEn": "I wanted to go. It was nice.",
+                "textFa": "خودم می‌خواستم بیام؛ خیلی خوب بود."
+        },
+        {
+                "id": 14,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Jenny",
+                "textEn": "Well, I'm glad you're feeling better. Would you like another coffee?",
+                "textFa": "خب، خوشحالم حالت بهتره. قهوه دیگری میل داری؟"
+        },
+        {
+                "id": 15,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Rob",
+                "textEn": "No, thanks. I think I should get back to the hotel now, I've got a really busy day tomorrow. Do you have a telephone number for a taxi?",
+                "textFa": "نه ممنون، فکر کنم الان باید برگردم هتل؛ فردا روز بسیار پرمشغله‌ای دارم. شماره تلفن تاکسی داری؟"
+        },
+        {
+                "id": 16,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Jenny",
+                "textEn": "Yeah... but it's much easier to get a cab on the street.",
+                "textFa": "آره... ولی از توی خیابان تاکسی گرفتن خیلی راحت‌تره."
+        },
+        {
+                "id": 17,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Rob",
+                "textEn": "Oh, OK, then.",
+                "textFa": "اوه، پس همون کار رو می‌کنم."
+        },
+        {
+                "id": 18,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Jenny",
+                "textEn": "I'll see you in the morning, if you're feeling OK.",
+                "textFa": "فردا صبح در دفتر می‌بینمت، البته اگه حالت خوب بود."
+        },
+        {
+                "id": 19,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Rob",
+                "textEn": "Oh, I'm sure I'll be fine! Thanks again for a great evening.",
+                "textFa": "اوه، مطمئنم حالم کاملاً خوب می‌شه! باز هم برای این شب عالی ممنونم."
+        },
+        {
+                "id": 20,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Jenny",
+                "textEn": "Anytime.",
+                "textFa": "خواهش می‌کنم، وظیفه بود."
+        },
+        {
+                "id": 21,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Rob",
+                "textEn": "Good night.",
+                "textFa": "شب بخیر."
+        },
+        {
+                "id": 22,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Jenny",
+                "textEn": "Night, Rob.",
+                "textFa": "شب بخیر راب."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۳: مهمانی شام در آپارتمان جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 3: Dinner at Jenny's Apartment', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 39,
-        "timestampDisplay": "0:39",
-        "explanationFa": "در این صحنه، تمرکز بر مهمانی خانگی (Dinner at home) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:59]. What key point is stated by Narrator?",
+        "timestampSeconds": 59,
+        "timestampDisplay": "0:59",
+        "explanationFa": "در ثانیه 0:59 ویدیو، Narrator به صراحت بیان می‌کند: «Tell me, Vivienne, is there …is there someone else? Vivienne You shouldn't ask that, Mr. Hartley, but I will tell you.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny cooks dinner for Rob at her Brooklyn apartment, sharing home-cooked food a...",
-            "textFa": "تمرکز اصلی بر جنی در آپارتمانش در بروکلین برای راب شام می‌پزد، غذای خانگی میل می‌کنن... است."
+            "textEn": "Narrator states: \"Tell me, Vivienne, is there …is there someone else? Vivienne You ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -6039,44 +9359,188 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات زمان‌بندی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 1: Rob is Late Again.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۱: تاخیر دوباره راب در رسیدن به قرار.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 27,
-        "timeDisplay": "0:27",
-        "textEn": "Detailed conversation and communicative exchange regarding عذرخواهی برای تاخیر (I'm running late).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون عذرخواهی برای تاخیر (I'm running late).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 82,
-        "timeDisplay": "1:22",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 1: Rob is Late Again.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۱: تاخیر دوباره راب در رسیدن به قرار.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Rob",
+                "textEn": "Jenny! I'm here.",
+                "textFa": "جنی! من آمدم."
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Hi.",
+                "textFa": "سلام."
+        },
+        {
+                "id": 3,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "I'm so sorry. There was a problem on the underground.",
+                "textFa": "واقعاً متاسفم؛ در مترو مشکلی پیش آمده بود."
+        },
+        {
+                "id": 4,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Jenny",
+                "textEn": "We call it the subway here.",
+                "textFa": "ما اینجا بهش می‌گیم ساب‌وی (subway)."
+        },
+        {
+                "id": 5,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "Right. Anyway, the train stopped for about twenty minutes. I tried to call, but there was no signal.",
+                "textFa": "درسته. به هر حال، قطار حدود بیست دقیقه متوقف شد؛ سعی کردم تماس بگیرم اما آنتن نبود."
+        },
+        {
+                "id": 6,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "I've been here since seven forty-five.",
+                "textFa": "من از ساعت هفت و چهل و پنج دقیقه اینجا منتظرم."
+        },
+        {
+                "id": 7,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Rob",
+                "textEn": "I know. I ran from the underground... subway station... I'm so sorry.",
+                "textFa": "می‌دونم، از ایستگاه مترو تمام راه رو دویدم... واقعاً معذرت می‌خوام."
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "You're always late. It's funny, isn't it?",
+                "textFa": "تو همیشه دیر می‌رسی؛ خنده‌داره، نه؟"
+        },
+        {
+                "id": 9,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Rob",
+                "textEn": "I said I'm sorry. Look, why don't we go back inside the restaurant?",
+                "textFa": "گفتم که متاسفم. ببین، چرا برنمی‌گردیم داخل رستوران؟"
+        },
+        {
+                "id": 10,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Jenny",
+                "textEn": "I waited for an hour for you. I don't want to stay here anymore.",
+                "textFa": "من یک ساعت تمام منتظرت بودم؛ دیگه نمی‌خوام اینجا بمونم."
+        },
+        {
+                "id": 11,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "Maybe we could... we could go for a walk. We could find another restaurant.",
+                "textFa": "شاید بتونیم... بتونیم بریم قدم بزنیم و یک رستوران دیگه پیدا کنیم."
+        },
+        {
+                "id": 12,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Jenny",
+                "textEn": "I don't feel like a walk. It's been a long day.",
+                "textFa": "اصلاً حوصله پیاده‌روی ندارم؛ روز طولانی و خسته‌کننده‌ای داشتم."
+        },
+        {
+                "id": 13,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Rob",
+                "textEn": "OK.",
+                "textFa": "باشه."
+        },
+        {
+                "id": 14,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "But the night is still young. Maybe you have time to meet up with Holly again.",
+                "textFa": "اما هنوز اول شبه؛ شاید وقت داشته باشی دوباره با هالی قرار بذاری!"
+        },
+        {
+                "id": 15,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Rob",
+                "textEn": "Holly?",
+                "textFa": "هالی؟"
+        },
+        {
+                "id": 16,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Jenny",
+                "textEn": "I'm sorry. I didn't mean to say that.",
+                "textFa": "ببخشید، نمی‌خواستم این حرف رو بزنم."
+        },
+        {
+                "id": 17,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Rob",
+                "textEn": "I don't care about Holly.",
+                "textFa": "هالی برام هیچ اهمیتی نداره."
+        },
+        {
+                "id": 18,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "Forget it, Rob. Now if you don't mind, I'd like to go home.",
+                "textFa": "فراموشش کن راب. حالا اگه اجازه بدی، می‌خوام برم خونه."
+        },
+        {
+                "id": 19,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Rob",
+                "textEn": "Listen to me, Jenny. Holly is just a colleague.",
+                "textFa": "به حرفم گوش کن جنی؛ هالی فقط یک همکاره."
+        },
+        {
+                "id": 20,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "I said forget it. It's OK.",
+                "textFa": "گفتم بیخیال شو؛ طوری نیست."
+        },
+        {
+                "id": 21,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Rob",
+                "textEn": "No, it isn't OK. Look. I know I'm always late. And I know the underground is the subway. But that's not the point! I'm not interested in Holly. I came to New York because of you. The only person I'm interested in is you!",
+                "textFa": "نه، اصلاً طوری نیست! گوش کن: می‌دونم همیشه دیر می‌کنم، می‌دونم اینجا به مترو می‌گن ساب‌وی، اما اصل قضیه این نیست! من هیچ علاقه‌ای به هالی ندارم؛ من فقط و فقط به خاطر تو به نیویورک آمدم. تنها کسی که بهش علاقه دارم تویی!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۱: تاخیر دوباره راب در رسیدن به قرار»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 1: Rob is Late Again', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 36,
-        "timestampDisplay": "0:36",
-        "explanationFa": "در این صحنه، تمرکز بر عذرخواهی برای تاخیر (I'm running late) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:59]. What key point is stated by Narrator?",
+        "timestampSeconds": 59,
+        "timestampDisplay": "0:59",
+        "explanationFa": "در ثانیه 0:59 ویدیو، Narrator به صراحت بیان می‌کند: «I need to go to “the rest room.” Holly That’s very American. I’ll order more coffees. Rob OK. Jenny Rob?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob loses track of time and gets delayed on the subway, frantically texting Jenn...",
-            "textFa": "تمرکز اصلی بر راب متوجه گذشت زمان نمی‌شود و در مترو معطل می‌ماند و با ارسال پیامک به... است."
+            "textEn": "Narrator states: \"I need to go to “the rest room.” Holly That’s very American. I’ll...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -6235,44 +9699,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مفهوم قطار تندرو و محلی (Express vs Local train)"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 2: Asking How to Get to Brooklyn.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۲: پرسیدن مسیر و نحوه رسیدن به بروکلین.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 18,
-        "timeDisplay": "0:18",
-        "textEn": "Detailed conversation and communicative exchange regarding مسیریابی در مترو (Which train do I take?).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مسیریابی در مترو (Which train do I take?).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 56,
-        "timeDisplay": "0:56",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 2: Asking How to Get to Brooklyn.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۲: پرسیدن مسیر و نحوه رسیدن به بروکلین.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "How do I get to Greenwich Village on the subway?",
+                "textFa": "چطور می‌توانم با مترو به گرینویچ ویلیج بروم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Jenny",
+                "textEn": "Go to the subway station at Prospect Park. Take the B train to West 4th Street.",
+                "textFa": "برو به ایستگاه مترو در پراسپکت پارک؛ سوار قطار خط B شو و تا ایستگاه خیابان چهارم غربی برو."
+        },
+        {
+                "id": 3,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Rob",
+                "textEn": "How many stops is that?",
+                "textFa": "چند تا ایستگاه راهه؟"
+        },
+        {
+                "id": 4,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Jenny",
+                "textEn": "Six or seven.",
+                "textFa": "شش یا هفت ایستگاه."
+        },
+        {
+                "id": 5,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Rob",
+                "textEn": "OK. And then?",
+                "textFa": "باشه، و بعدش؟"
+        },
+        {
+                "id": 6,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "From West 4th Street take the A train, and get off at 14th Street.",
+                "textFa": "از ایستگاه خیابان چهارم غربی، سوار قطار خط A شو و در ایستگاه خیابان چهاردهم پیاده شو."
+        },
+        {
+                "id": 7,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "Could you say that again?",
+                "textFa": "می‌توانی یک بار دیگه بگی؟"
+        },
+        {
+                "id": 8,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "OK. From Prospect Park take the B train to West 4th Street, and then take the A train to 14th Street. That's only one stop.",
+                "textFa": "باشه: از پراسپکت پارک خط B به خیابان چهارم غربی، و بعد خط A به خیابان چهاردهم؛ اونجا فقط یک ایستگاهه."
+        },
+        {
+                "id": 9,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Rob",
+                "textEn": "Where's the restaurant?",
+                "textFa": "رستوران کجاست؟"
+        },
+        {
+                "id": 10,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Jenny",
+                "textEn": "Come out of the subway on Eighth Avenue, go straight on for about 50 yards and take the first left. That's Greenwich Avenue. The restaurant's on the right. It's called The Tea Set.",
+                "textFa": "از ایستگاه در خیابان هشتم بیا بیرون، حدود ۵۰ یارد مستقیم برو و اولین کوچه به سمت چپ بپیچ. اونجا خیابان گرینویچ است؛ رستوران سمت راستته به اسم The Tea Set."
+        },
+        {
+                "id": 11,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "Rob",
+                "textEn": "OK, thanks. See you later.",
+                "textFa": "عالیه، ممنون. بعداً می‌بینمت."
+        },
+        {
+                "id": 12,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Jenny",
+                "textEn": "And don't get lost!",
+                "textFa": "و لطفاً گم نشو!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۲: پرسیدن مسیر و نحوه رسیدن به بروکلین»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 2: Asking How to Get to Brooklyn', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 25,
-        "timestampDisplay": "0:25",
-        "explanationFa": "در این صحنه، تمرکز بر مسیریابی در مترو (Which train do I take?) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:36]. What key point is stated by Narrator?",
+        "timestampSeconds": 36,
+        "timestampDisplay": "0:36",
+        "explanationFa": "در ثانیه 0:36 ویدیو، Narrator به صراحت بیان می‌کند: «Asking how to get there – listen and repeat Rob How do I get to Greenwich Village on the subway?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob asks a subway attendant for instructions on transferring between lines to re...",
-            "textFa": "تمرکز اصلی بر راب از متصدی ایستگاه مترو درباره نحوه تعویض خط برای رسیدن به نمایشگاه ... است."
+            "textEn": "Narrator states: \"Asking how to get there – listen and repeat Rob How do I get to G...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -6431,44 +9967,204 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "توصیف فضا و اتمسفر محله"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 3: Holly and Rob Explore Brooklyn.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۳: گشت‌وگذار راب و هالی در محله بروکلین.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 24,
-        "timeDisplay": "0:24",
-        "textEn": "Detailed conversation and communicative exchange regarding هنر خیابانی و محله‌های هنری.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون هنر خیابانی و محله‌های هنری.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 73,
-        "timeDisplay": "1:13",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 3: Holly and Rob Explore Brooklyn.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۳: گشت‌وگذار راب و هالی در محله بروکلین.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Holly",
+                "textEn": "That was a good day's work, Rob. You did a great interview.",
+                "textFa": "یک روز کاری عالی بود راب؛ مصاحبه خیلی خوبی انجام دادی."
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "You took some great photos, too. They're really nice.",
+                "textFa": "تو هم عکس‌های فوق‌العاده‌ای گرفتی؛ واقعاً عالین."
+        },
+        {
+                "id": 3,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Holly",
+                "textEn": "Thanks. Hey, let's have another coffee.",
+                "textFa": "ممنون. هی، بیا یک قهوه دیگه بخوریم."
+        },
+        {
+                "id": 4,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Rob",
+                "textEn": "I don't know. I have to get to Manhattan.",
+                "textFa": "نمی‌دونم؛ باید سریع خودم رو به منهتن برسونم."
+        },
+        {
+                "id": 5,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Holly",
+                "textEn": "You don't have to go right now.",
+                "textFa": "مجبور نیستی همین الان بری."
+        },
+        {
+                "id": 6,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "I'm not sure. I don't want to be late.",
+                "textFa": "مطمئن نیستم؛ نمی‌خوام دیر برسم."
+        },
+        {
+                "id": 7,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Holly",
+                "textEn": "Why do you have to go to Manhattan?",
+                "textFa": "چرا باید بری منهتن؟"
+        },
+        {
+                "id": 8,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Rob",
+                "textEn": "I've got a... um...",
+                "textFa": "یک... ام... قرار دارم."
+        },
+        {
+                "id": 9,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Holly",
+                "textEn": "A date? You have a date?",
+                "textFa": "قرار عاشقانه؟ قرار داری؟"
+        },
+        {
+                "id": 10,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Rob",
+                "textEn": "Mm-hmm.",
+                "textFa": "اوهوم."
+        },
+        {
+                "id": 11,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Holly",
+                "textEn": "Is it with anybody I know?",
+                "textFa": "با کسیه که من می‌شناسم؟"
+        },
+        {
+                "id": 12,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Rob",
+                "textEn": "No, it isn't. Anyway, excuse me a minute. I need to go to 'the rest room.'",
+                "textFa": "نه نیست. به هر حال، یک دقیقه ببخشید؛ باید برم دستشویی."
+        },
+        {
+                "id": 13,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Holly",
+                "textEn": "That's very American. I'll order more coffees.",
+                "textFa": "چه اصطلاح آمریکایی تمیزی! من قهوه سفارش می‌دم."
+        },
+        {
+                "id": 14,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Rob",
+                "textEn": "OK.",
+                "textFa": "باشه."
+        },
+        {
+                "id": 15,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "Rob?",
+                "textFa": "راب؟"
+        },
+        {
+                "id": 16,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Holly",
+                "textEn": "Is that you, Jennifer?",
+                "textFa": "تویی جنیفر؟"
+        },
+        {
+                "id": 17,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Jenny",
+                "textEn": "Oh, hi Holly. Um... is Rob there?",
+                "textFa": "اوه سلام هالی. ام... راب اونجاست؟"
+        },
+        {
+                "id": 18,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Holly",
+                "textEn": "Yeah, one second. Rob! Not anybody I know, huh?",
+                "textFa": "آره یک ثانیه وایسا. راب! گفتی با کسی نیست که من بشناسمش، ها؟! کلک!"
+        },
+        {
+                "id": 19,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Rob",
+                "textEn": "Hi, Jenny.",
+                "textFa": "سلام جنی."
+        },
+        {
+                "id": 20,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "Rob? Are you still in Brooklyn?",
+                "textFa": "راب؟ هنوز توی بروکلینی؟"
+        },
+        {
+                "id": 21,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Rob",
+                "textEn": "Yeah.",
+                "textFa": "آره."
+        },
+        {
+                "id": 22,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Jenny",
+                "textEn": "You know the reservation at the restaurant's for eight, right?",
+                "textFa": "می‌دونی که رزرو رستوران برای ساعت هشته، درسته؟"
+        },
+        {
+                "id": 23,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Rob",
+                "textEn": "Don't worry. I'll be there! Oh, how do I get to Greenwich Village on the subway?",
+                "textFa": "نگران نباش، به‌موقع می‌رسم! راستی، چطور با مترو برم گرینویچ ویلیج؟"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۳: گشت‌وگذار راب و هالی در محله بروکلین»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 3: Holly and Rob Explore Brooklyn', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 32,
-        "timestampDisplay": "0:32",
-        "explanationFa": "در این صحنه، تمرکز بر هنر خیابانی و محله‌های هنری و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:48]. What key point is stated by Holly?",
+        "timestampSeconds": 48,
+        "timestampDisplay": "0:48",
+        "explanationFa": "در ثانیه 0:48 ویدیو، Holly به صراحت بیان می‌کند: «With the help of her husband, an electrician, she developed a camera that you could put by the front door.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Holly shows Rob around Williamsburg's artistic streets, vintage shops, and trend...",
-            "textFa": "تمرکز اصلی بر هالی خیابان‌های هنری، فروشگاه‌های کلاسیک و کافه‌های جذاب ویلیامزبورگ ر... است."
+            "textEn": "Holly states: \"With the help of her husband, an electrician, she developed a cam...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -6627,44 +10323,196 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "بیان تردید و تامل"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 1: Crucial Phone Calls.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۱: تماس‌های تلفنی حساس و تصمیم‌گیری.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 26,
-        "timeDisplay": "0:26",
-        "textEn": "Detailed conversation and communicative exchange regarding پیشنهادهای شغلی کاری (Job offer).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون پیشنهادهای شغلی کاری (Job offer).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 80,
-        "timeDisplay": "1:20",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 1: Crucial Phone Calls.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۱: تماس‌های تلفنی حساس و تصمیم‌گیری.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Man",
+                "textEn": "Hello. Broadway Grill.",
+                "textFa": "الو، برادوی گریل در خدمت شماست."
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Oh, sorry. I have the wrong number.",
+                "textFa": "اوه ببخشید، شماره را اشتباه گرفتم."
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Receptionist",
+                "textEn": "NewYork24seven. How can I help you?",
+                "textFa": "دفتر NewYork24seven، چطور می‌توانم کمکتان کنم؟"
+        },
+        {
+                "id": 4,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "Hello. Can I speak to Barbara Keaton, please?",
+                "textFa": "سلام. می‌توانم با باربارا کیتون صحبت کنم، لطفاً؟"
+        },
+        {
+                "id": 5,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Receptionist",
+                "textEn": "Just a second. I'll put you through. Hello.",
+                "textFa": "یک لحظه گوشی خدمتتان، وصل می‌کنم... الو؟"
+        },
+        {
+                "id": 6,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Rob",
+                "textEn": "Hi, is that Barbara?",
+                "textFa": "سلام، باربارا شما هستید؟"
+        },
+        {
+                "id": 7,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Receptionist",
+                "textEn": "No, I'm sorry. She's not at her desk right now.",
+                "textFa": "خیر متاسفم، در حال حاضر پشت میزشان نیستند."
+        },
+        {
+                "id": 8,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Rob",
+                "textEn": "Can I leave a message, please?",
+                "textFa": "می‌توانم پیغامی بگذارم، لطفاً؟"
+        },
+        {
+                "id": 9,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Receptionist",
+                "textEn": "Sure.",
+                "textFa": "حتماً."
+        },
+        {
+                "id": 10,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "Can you tell her Rob Walker called. I'll call back later.",
+                "textFa": "می‌توانید به ایشان بگویید راب واکر تماس گرفت؛ بعداً دوباره تماس می‌گیرم."
+        },
+        {
+                "id": 11,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Receptionist",
+                "textEn": "I'll give her the message. You could try her cell phone.",
+                "textFa": "پیغامتان را به ایشان می‌رسانم؛ می‌توانید تلفن همراهشان را هم امتحان کنید."
+        },
+        {
+                "id": 12,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Rob",
+                "textEn": "Yes, I'll do that. Thank you.",
+                "textFa": "بله، همین کار را می‌کنم. متشکرم."
+        },
+        {
+                "id": 13,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Barbara",
+                "textEn": "I'm sorry, I can't take your call at the moment. Please leave a message after the beep.",
+                "textFa": "متاسفم، در حال حاضر قادر به پاسخگویی نیستم. لطفاً پس از شنیدن بوق پیغام بگذارید."
+        },
+        {
+                "id": 14,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Rob",
+                "textEn": "Hello, Barbara. This is Rob returning your call.",
+                "textFa": "سلام باربارا، راب هستم در پاسخ به تماستان."
+        },
+        {
+                "id": 15,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Receptionist",
+                "textEn": "NewYork24seven. How can I help you?",
+                "textFa": "مجله NewYork24seven، بفرمایید؟"
+        },
+        {
+                "id": 16,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Rob",
+                "textEn": "Hello. It's Rob again. Can I speak to Barbara, please?",
+                "textFa": "سلام، مجدداً راب هستم؛ می‌توانم با باربارا صحبت کنم؟"
+        },
+        {
+                "id": 17,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Receptionist",
+                "textEn": "Just a second. I'm sorry, the line's busy. Do you want to hold?",
+                "textFa": "یک لحظه... متاسفم خطشان اشغال است؛ مایلید پشت خط منتظر بمانید؟"
+        },
+        {
+                "id": 18,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Rob",
+                "textEn": "OK, I'll hold.",
+                "textFa": "باشه، منتظر می‌مانم."
+        },
+        {
+                "id": 19,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Barbara",
+                "textEn": "Hello.",
+                "textFa": "الو."
+        },
+        {
+                "id": 20,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Rob",
+                "textEn": "Hi, Barbara. It's me, Rob.",
+                "textFa": "سلام باربارا، منم راب."
+        },
+        {
+                "id": 21,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Barbara",
+                "textEn": "Rob, hi! I tried to call you earlier.",
+                "textFa": "راب سلام! زودتر سعی کردم باهات تماس بگیرم."
+        },
+        {
+                "id": 22,
+                "seconds": 101,
+                "timeDisplay": "1:41",
+                "speaker": "Rob",
+                "textEn": "What did you want to talk about?",
+                "textFa": "می‌خواستی در چه موردی صحبت کنی؟"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۱: تماس‌های تلفنی حساس و تصمیم‌گیری»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 1: Crucial Phone Calls', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 35,
-        "timestampDisplay": "0:35",
-        "explanationFa": "در این صحنه، تمرکز بر پیشنهادهای شغلی کاری (Job offer) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:52]. What key point is stated by Narrator?",
+        "timestampSeconds": 52,
+        "timestampDisplay": "0:52",
+        "explanationFa": "در ثانیه 0:52 ویدیو، Narrator به صراحت بیان می‌کند: «You’ve just got this job. Jenny That’s true. Rob Well, we still have some time together. We’re going out for dinner tonight!».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob receives an important phone call from London with exciting career offers, pu...",
-            "textFa": "تمرکز اصلی بر راب یک تماس تلفنی مهم از لندن با پیشنهادهای شغلی جذاب دریافت می‌کند که... است."
+            "textEn": "Narrator states: \"You’ve just got this job. Jenny That’s true. Rob Well, we still h...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -6823,44 +10671,228 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "پایان ماموریت کاری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 2: In Central Park Again.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۲: قدم زدن دوباره در سنترال پارک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 32,
-        "timeDisplay": "0:32",
-        "textEn": "Detailed conversation and communicative exchange regarding مرور خاطرات مشترک.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مرور خاطرات مشترک.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 97,
-        "timeDisplay": "1:37",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 2: In Central Park Again.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۲: قدم زدن دوباره در سنترال پارک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Rob",
+                "textEn": "Jenny!",
+                "textFa": "جنی!"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Rob! I have something to tell you.",
+                "textFa": "راب! باید موضوعی را بهت بگویم."
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "I have something to tell you, too. You go first.",
+                "textFa": "من هم باید چیزی بهت بگویم؛ اول تو بگو."
+        },
+        {
+                "id": 4,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "Well. I thought again about moving to London...",
+                "textFa": "خب، من دوباره در مورد نقل مکان به لندن فکر کردم..."
+        },
+        {
+                "id": 5,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Rob",
+                "textEn": "But you don't need to move to London.",
+                "textFa": "اما تو نیازی نداری به لندن نقل مکان کنی!"
+        },
+        {
+                "id": 6,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Jenny",
+                "textEn": "What?",
+                "textFa": "چی؟"
+        },
+        {
+                "id": 7,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Rob",
+                "textEn": "Barbara called me earlier.",
+                "textFa": "باربارا چند ساعت پیش با من تماس گرفت."
+        },
+        {
+                "id": 8,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Jenny",
+                "textEn": "What about?",
+                "textFa": "در چه موردی؟"
+        },
+        {
+                "id": 9,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Rob",
+                "textEn": "She offered me a job. Here, in New York!",
+                "textFa": "او به من پیشنهاد کار دائمی داد؛ همین‌جا در نیویورک!"
+        },
+        {
+                "id": 10,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Jenny",
+                "textEn": "What? Oh, that's great news.",
+                "textFa": "چی؟ اوه، این خبر فوق‌العاده‌ایه!"
+        },
+        {
+                "id": 11,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Rob",
+                "textEn": "You don't seem very pleased.",
+                "textFa": "خیلی خوشحال به نظر نمی‌رسی."
+        },
+        {
+                "id": 12,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Jenny",
+                "textEn": "I am, I mean, it's great! It's just that...",
+                "textFa": "هستم، یعنی عالیه! فقط موضوع اینه که..."
+        },
+        {
+                "id": 13,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Rob",
+                "textEn": "What?",
+                "textFa": "چی شده؟"
+        },
+        {
+                "id": 14,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Jenny",
+                "textEn": "I sent Barbara an email this morning.",
+                "textFa": "من امروز صبح به باربارا یک ایمیل زدم."
+        },
+        {
+                "id": 15,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Rob",
+                "textEn": "And?",
+                "textFa": "خب، و بعدش؟"
+        },
+        {
+                "id": 16,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Jenny",
+                "textEn": "I told her I was quitting and moving to London.",
+                "textFa": "بهش گفتم دارم استعفا می‌دم و می‌رم لندن زندگی کنم!"
+        },
+        {
+                "id": 17,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Rob",
+                "textEn": "Don't worry. Maybe she hasn't read your email yet.",
+                "textFa": "نگران نباش؛ شاید هنوز ایمیلت رو نخونده باشه."
+        },
+        {
+                "id": 18,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Jenny",
+                "textEn": "I'll call her.",
+                "textFa": "الان بهش زنگ می‌زنم."
+        },
+        {
+                "id": 19,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Barbara",
+                "textEn": "Hello, Barbara Keaton.",
+                "textFa": "الو، باربارا کیتون هستم."
+        },
+        {
+                "id": 20,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Jenny",
+                "textEn": "Barbara? It's Jenny.",
+                "textFa": "باربارا؟ جنی هستم."
+        },
+        {
+                "id": 21,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Barbara",
+                "textEn": "Oh, hi Jenny.",
+                "textFa": "اوه سلام جنی."
+        },
+        {
+                "id": 22,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Jenny",
+                "textEn": "Um, have you read your emails recently? There's one from me.",
+                "textFa": "ام، اخیراً ایمیل‌هات رو چک کردی؟ یک ایمیل از طرف من برات اومده."
+        },
+        {
+                "id": 23,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Barbara",
+                "textEn": "Oh yes. I can see it. I haven't opened it yet.",
+                "textFa": "اوه بله، دارمش می‌بینم؛ اما هنوز بازش نکردم."
+        },
+        {
+                "id": 24,
+                "seconds": 106,
+                "timeDisplay": "1:46",
+                "speaker": "Jenny",
+                "textEn": "Don't open it! Delete it! Please just delete it. I'll explain later.",
+                "textFa": "بازش نکن! پاکش کن! خواهش می‌کنم فقط دلیتش کن؛ بعداً برات توضیح می‌دم!"
+        },
+        {
+                "id": 25,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Barbara",
+                "textEn": "OK, it's gone. Is everything alright, Jenny?",
+                "textFa": "باشه، پاک شد. همه‌چیز روبه‌راهه جنی؟"
+        },
+        {
+                "id": 26,
+                "seconds": 122,
+                "timeDisplay": "2:02",
+                "speaker": "Jenny",
+                "textEn": "Yes, thanks. Never better.",
+                "textFa": "بله ممنون، از این بهتر نمی‌شه!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۲: قدم زدن دوباره در سنترال پارک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 2: In Central Park Again', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 43,
-        "timestampDisplay": "0:43",
-        "explanationFa": "در این صحنه، تمرکز بر مرور خاطرات مشترک و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:06]. What key point is stated by Receptionist?",
+        "timestampSeconds": 66,
+        "timestampDisplay": "1:06",
+        "explanationFa": "در ثانیه 1:06 ویدیو، Receptionist به صراحت بیان می‌کند: «On the phone – listen and repeat Man Hello. Broadway Grill. Rob Oh, sorry. I have the wrong number.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob and Jenny take an evening walk across Central Park, reflecting on their memo...",
-            "textFa": "تمرکز اصلی بر راب و جنی در هنگام غروب در سنترال پارک قدم می‌زنند و خاطرات ماندگار، م... است."
+            "textEn": "Receptionist states: \"On the phone – listen and repeat Man Hello. Broadway Grill. Rob O...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7019,44 +11051,172 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "پایان هیجان‌انگیز داستان"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 6 · Part 3: Rob and Jenny Talk About the Future.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۶ · بخش ۳: گفتگوی صمیمانه راب و جنی درباره آینده.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 38,
-        "timeDisplay": "0:38",
-        "textEn": "Detailed conversation and communicative exchange regarding بیان تصمیم بزرگ زندگی.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون بیان تصمیم بزرگ زندگی.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 114,
-        "timeDisplay": "1:54",
-        "textEn": "Concluding remarks and key language takeaway for Episode 6 · Part 3: Rob and Jenny Talk About the Future.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۶ · بخش ۳: گفتگوی صمیمانه راب و جنی درباره آینده.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "I can't believe it. Your month here is nearly over. It's gone so fast.",
+                "textFa": "باورم نمی‌شه؛ یک ماه اقامتت اینجا تقریباً تموم شده و انقدر سریع گذشت."
+        },
+        {
+                "id": 2,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Rob",
+                "textEn": "I know. I've had a great time, Jenny.",
+                "textFa": "می‌دونم؛ اوقات فوق‌العاده‌ای با تو داشتم جنی."
+        },
+        {
+                "id": 3,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Jenny",
+                "textEn": "Me too. It's been really special. But...",
+                "textFa": "من هم همینطور؛ روزهای واقعاً خاصی بود. اما..."
+        },
+        {
+                "id": 4,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "But what?",
+                "textFa": "اما چی؟"
+        },
+        {
+                "id": 5,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Jenny",
+                "textEn": "It won't be the same when you're in London and I'm here.",
+                "textFa": "وقتی تو در لندن باشی و من اینجا، دیگه مثل قبل نخواهد بود."
+        },
+        {
+                "id": 6,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Rob",
+                "textEn": "But we'll still be in touch. You can visit me in London and I can come back here to see you.",
+                "textFa": "ولی ما هنوز با هم در ارتباط خواهیم بود؛ تو می‌تونی بیایی لندن پیشم و من هم می‌تونم بیام اینجا دیدنت."
+        },
+        {
+                "id": 7,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Jenny",
+                "textEn": "It still won't be the same.",
+                "textFa": "باز هم مثل الان نمی‌شه."
+        },
+        {
+                "id": 8,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "No. No, it won't.",
+                "textFa": "نه... درسته، مثل الان نمی‌شه."
+        },
+        {
+                "id": 9,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Jenny",
+                "textEn": "Maybe... I could come back to London with you?",
+                "textFa": "شاید... بتونم همراه با تو برگردم به لندن؟"
+        },
+        {
+                "id": 10,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Rob",
+                "textEn": "You can't do that, Jenny. You've just got this job.",
+                "textFa": "نمی‌تونی این کار رو بکنی جنی؛ تازه این شغل مهم رو به دست آوردی."
+        },
+        {
+                "id": 11,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "That's true.",
+                "textFa": "حق با توئه."
+        },
+        {
+                "id": 12,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Rob",
+                "textEn": "Well, we still have some time together. We're going out for dinner tonight!",
+                "textFa": "خب، هنوز مقداری زمان با هم داریم؛ امشب می‌ریم با هم شام می‌خوریم!"
+        },
+        {
+                "id": 13,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Jenny",
+                "textEn": "Yes, and I'm going to take you somewhere really nice.",
+                "textFa": "آره، و می‌خوام ببرمت به یک جای واقعاً قشنگ."
+        },
+        {
+                "id": 14,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Rob",
+                "textEn": "Look at the time. I have to go now; it's my last interview in New York. I don't want to be late.",
+                "textFa": "ساعت رو ببین! الان باید برم؛ آخرین مصاحبه‌ام در نیویورکه و نمی‌خوام دیر برسم."
+        },
+        {
+                "id": 15,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Jenny",
+                "textEn": "OK. See you later then.",
+                "textFa": "باشه، پس بعداً می‌بینمت."
+        },
+        {
+                "id": 16,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Rob",
+                "textEn": "Bye.",
+                "textFa": "خداحافظ."
+        },
+        {
+                "id": 17,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Barbara",
+                "textEn": "Jenny, is Rob here?",
+                "textFa": "جنی، راب اینجاست؟"
+        },
+        {
+                "id": 18,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Jenny",
+                "textEn": "Oh, you just missed him, Barbara.",
+                "textFa": "اوه، همین چند لحظه پیش رفت باربارا."
+        },
+        {
+                "id": 19,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Barbara",
+                "textEn": "I really need to talk to him. I'll try him on his cell phone. Hello, Rob? It's Barbara. Can you give me a call? There's something I'd like to talk about.",
+                "textFa": "خیلی واجبه که باهاش صحبت کنم؛ موبایلش رو می‌گیرم. الو راب؟ باربارا هستم؛ می‌تونی با من تماس بگیری؟ می‌خواهم در مورد موضوعی باهات صحبت کنم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۶ · بخش ۳: گفتگوی صمیمانه راب و جنی درباره آینده»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 6 · Part 3: Rob and Jenny Talk About the Future', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 50,
-        "timestampDisplay": "0:50",
-        "explanationFa": "در این صحنه، تمرکز بر بیان تصمیم بزرگ زندگی و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:16]. What key point is stated by Barbara?",
+        "timestampSeconds": 76,
+        "timestampDisplay": "1:16",
+        "explanationFa": "در ثانیه 1:16 ویدیو، Barbara به صراحت بیان می‌کند: «Question 5: What was Beethoven’s first name? And the final round is Geography.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is In the season finale, Rob reveals his big decision to stay in New York with Jenn...",
-            "textFa": "تمرکز اصلی بر در پایان فصل، راب تصمیم بزرگ خود مبنی بر ماندن در نیویورک در کنار جنی ... است."
+            "textEn": "Barbara states: \"Question 5: What was Beethoven’s first name? And the final round ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7215,44 +11375,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "بیان دلتنگی و احساسات"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 1: Rob and Jenny's Long-Distance Life.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۱: واقعیت ارتباط از راه دور راب و جنی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 40,
-        "timeDisplay": "0:40",
-        "textEn": "Detailed conversation and communicative exchange regarding ارتباط از راه دور (Long distance).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون ارتباط از راه دور (Long distance).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 120,
-        "timeDisplay": "2:00",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 1: Rob and Jenny's Long-Distance Life.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۱: واقعیت ارتباط از راه دور راب و جنی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "My name’s Jenny Zielinski. And New York is my city. I live here and I work for a magazine, New York 24seven.",
+                "textFa": "اسم من جنی زیلینسکیه. و نیویورک شهر منه. من اینجا زندگی می‌کنم و در یک مجله به نام نیویورک ۲۴سون کار می‌کنم."
+        },
+        {
+                "id": 2,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Rob",
+                "textEn": "My name’s Rob Walker. I’m a writer on NewYork 24seven. You can probably tell from my accent that I’m not actually from New York. I’m British, and I came over to the States a few months ago.",
+                "textFa": "اسم من راب واکره. من نویسنده مجله نیویورک ۲۴سون هستم. احتمالاً از لهجه‌ام می‌تونید متوجه بشید که در واقع اهل نیویورک نیستم. من بریتانیایی هستم و چند ماه پیش به آمریکا اومدم."
+        },
+        {
+                "id": 3,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jenny",
+                "textEn": "I met Rob in London when I was visiting the UK on a work trip. He was writing for the London edition of 24seven. We got along well right away. I really liked him.",
+                "textFa": "من راب رو توی لندن وقتی که برای یک سفر کاری به بریتانیا رفته بودم ملاقات کردم. اون برای نسخه لندنی مجله ۲۴سون می‌نوشت. ما فوراً خیلی خوب با هم کنار اومدیم. من واقعاً ازش خوشم اومد."
+        },
+        {
+                "id": 4,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Rob",
+                "textEn": "So why am I in New York? Because of Jenny, of course. When they gave me the opportunity to work here for a month, I took it immediately. It gave us the chance to get to know each other better. When they offered me a permanent job I couldn’t believe it!",
+                "textFa": "پس چرا من در نیویورکم؟ به خاطر جنی، معلومه. وقتی اون‌ها به من فرصت کار یک‌ماهه در اینجا رو دادن، بلافاصله قبولش کردم. این به ما این شانس رو داد که همدیگه رو بهتر بشناسیم. وقتی به من یک شغل دائمی پیشنهاد دادن، اصلاً باورم نمی‌شد!"
+        },
+        {
+                "id": 5,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Jenny",
+                "textEn": "I helped Rob find an apartment. And now here we are. Together in New York. I’m so happy. I just hope Rob’s happy here, too.",
+                "textFa": "من به راب کمک کردم تا یک آپارتمان پیدا کنه. و حالا هر دو اینجاییم. با هم در نیویورک. من خیلی خوشحالم. فقط امیدوارم راب هم اینجا خوشحال باشه."
+        },
+        {
+                "id": 6,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Rob",
+                "textEn": "I really loved living in London. A lot of my friends and family are there so of course I still miss it. But New York’s a fantastic city. I’ve got a great job and Jenny’s here too.",
+                "textFa": "من واقعاً زندگی در لندن رو دوست داشتم. خیلی از دوستان و خانواده‌ام اونجان پس طبیعتاً هنوز دلم براش تنگ میشه. اما نیویورک یک شهر فوق‌العاده‌ست. من یک شغل عالی دارم و جنی هم اینجاست."
+        },
+        {
+                "id": 7,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "Jenny",
+                "textEn": "Things are changing pretty fast in the office. We have a new boss, Don Taylor.",
+                "textFa": "اوضاع توی دفتر کار خیلی سریع داره تغییر می‌کنه. ما یک رئیس جدید داریم به نام دان تیلور."
+        },
+        {
+                "id": 8,
+                "seconds": 134,
+                "timeDisplay": "2:14",
+                "speaker": "Jenny",
+                "textEn": "And things are changing in my personal life, too. This evening’s kind of important. I’m taking Rob to meet my parents for the very first time. I just hope it goes well!",
+                "textFa": "و همین‌طور اوضاع توی زندگی شخصی من هم داره تغییر می‌کنه. امشب خیلی مهمه. من دارم راب رو برای اولین بار می‌برم تا با والدینم آشنا بشه. فقط امیدوارم همه‌چیز خوب پیش بره!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۱: واقعیت ارتباط از راه دور راب و جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 1: Rob and Jenny's Long-Distance Life', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 53,
-        "timestampDisplay": "0:53",
-        "explanationFa": "در این صحنه، تمرکز بر ارتباط از راه دور (Long distance) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:21]. What key point is stated by Jenny?",
+        "timestampSeconds": 81,
+        "timestampDisplay": "1:21",
+        "explanationFa": "در ثانیه 1:21 ویدیو، Jenny به صراحت بیان می‌کند: «Sorry we’re late. So, this is my mom and dad, Harry and Sally. And this, of course, is Rob. Rob Hello.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny is in New York and Rob is still in London. They discuss navigating their l...",
-            "textFa": "تمرکز اصلی بر جنی در نیویورک و راب همچنان در لندن هستند. آن‌ها درباره مدیریت رابطه ا... است."
+            "textEn": "Jenny states: \"Sorry we’re late. So, this is my mom and dad, Harry and Sally. An...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7411,44 +11611,188 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات بریتانیایی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 2: Harry Learns More About Rob.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۲: هری درباره زندگی راب بیشتر می‌داند.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 27,
-        "timeDisplay": "0:27",
-        "textEn": "Detailed conversation and communicative exchange regarding گپ‌وگفت دوستانه در کافه.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون گپ‌وگفت دوستانه در کافه.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 81,
-        "timeDisplay": "1:21",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 2: Harry Learns More About Rob.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۲: هری درباره زندگی راب بیشتر می‌داند.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Harry",
+                "textEn": "You know, our Jenny has done incredibly well, Rob. She’s the first member of our family to study at Harvard. She’s a very capable and ambitious young woman.",
+                "textFa": "می‌دونی راب، جنی ما پیشرفت فوق‌العاده‌ای داشته. اون اولین عضو خانواده ماست که در هاروارد درس خونده. اون یک زن جوان بسیار توانمند و با پشتکاره."
+        },
+        {
+                "id": 2,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Jenny",
+                "textEn": "Oh, Dad.",
+                "textFa": "اوه، بابا."
+        },
+        {
+                "id": 3,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "No, it’s true, Jenny.",
+                "textFa": "نه جنی، کاملاً درسته."
+        },
+        {
+                "id": 4,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Harry",
+                "textEn": "But what about you, Rob? How do you see your career? Do you see yourself going into management?",
+                "textFa": "اما در مورد خودت چطور راب؟ مسیر شغلیت رو چطور می‌بینی؟ آیا خودت رو در سمت‌های مدیریتی می‌بینی؟"
+        },
+        {
+                "id": 5,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Me? No. Not really. I’m more of a... a writer.",
+                "textFa": "من؟ نه، نه واقعاً. من بیشتر یک... یک نویسنده‌ام."
+        },
+        {
+                "id": 6,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Harry",
+                "textEn": "Really? What kind of things do you write?",
+                "textFa": "خب این خیلی خوبه، اما آیا آینده‌ای در اون هست؟ نویسنده‌ها اون‌قدرها درآمد ندارن، مگه اینکه یک کتاب پرفروش بنویسی."
+        },
+        {
+                "id": 7,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Rob",
+                "textEn": "Oh... you know, interviews, reviews... things like that... and I’m doing a lot of work for the online magazine.",
+                "textFa": "بله، حق با شماست، هری. اما من واقعاً از نوشتن لذت می‌برم."
+        },
+        {
+                "id": 8,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Jenny",
+                "textEn": "Rob’s a very talented writer, Dad. He’s very creative.",
+                "textFa": "البته که لذت می‌بری. اما در زندگی به جاه‌طلبی هم نیاز داری. من وقتی هم‌سن تو بودم، وکیل بودم و روزی چهارده ساعت کار می‌کردم. اون‌طوری بود که به جایی که الان هستم رسیدم."
+        },
+        {
+                "id": 9,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Harry",
+                "textEn": "That’s great, but being creative doesn’t always pay the bills.",
+                "textFa": "می‌دونم هری. جنی بهم گفته که چقدر سخت تلاش کردی."
+        },
+        {
+                "id": 10,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "You know, my Dad’s a very keen photographer. He took all of these photos.",
+                "textFa": "دقیقاً. و من می‌خوام مطمئن بشم جنی با کسی هست که بتونه یک زندگی راحت براش فراهم کنه."
+        },
+        {
+                "id": 11,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Harry",
+                "textEn": "Oh, Rob won’t be interested in them.",
+                "textFa": "بابا، لطفاً! راب تازه به نیویورک اومده."
+        },
+        {
+                "id": 12,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Rob",
+                "textEn": "But I am interested. I mean, I like photography. And I think I recognize some of these people…",
+                "textFa": "من فقط واقع‌بینم، جنی. نیویورک شهر گرونیه."
+        },
+        {
+                "id": 13,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Harry",
+                "textEn": "That’s because most of them are of Jenny.",
+                "textFa": "می‌فهمم چی می‌گید هری. و من واقعاً می‌خوام اینجا موفق بشم."
+        },
+        {
+                "id": 14,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Rob",
+                "textEn": "But there are some great jazz musicians, too. That’s Miles Davis... and isn’t that John Coltrane? And that’s Wynton Marsalis.",
+                "textFa": "خوبه، از شنیدنش خوشحالم."
+        },
+        {
+                "id": 15,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Harry",
+                "textEn": "You know about Wynton Marsalis?",
+                "textFa": "بفرمایید، کوکی‌های تازه براتون آوردم!"
+        },
+        {
+                "id": 16,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Rob",
+                "textEn": "Know about him? I’ve interviewed him!",
+                "textFa": "ممنون سالی، عالی به نظر می‌رسن."
+        },
+        {
+                "id": 17,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Harry",
+                "textEn": "How incredible! I love that guy. He’s a hero of mine.",
+                "textFa": "سالی بهترین کوکی‌های کل نیویورک رو درست می‌کنه."
+        },
+        {
+                "id": 18,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Rob",
+                "textEn": "Well, he’s a really nice guy. I spent a whole day with him, chatting and watching him rehearse.",
+                "textFa": "اوه هری، این‌طوری نگو. راب، یکی دیگه بردار."
+        },
+        {
+                "id": 19,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Harry",
+                "textEn": "Really? I want to hear all about it.",
+                "textFa": "خیلی ممنون، حتماً یکی دیگه می‌خورم."
+        },
+        {
+                "id": 20,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Sally",
+                "textEn": "Have a cookie, Rob.",
+                "textFa": "پس راب، برنامه‌هات برای تعطیلات آخر هفته چیه؟"
+        },
+        {
+                "id": 21,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Harry",
+                "textEn": "Go ahead, son! Sally makes the best cookies in New York! --- PAGE 3 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 3 of 24 2B Video Listening The Great OUP Bake Sale Narrator People do many different things to raise money for charity. These runners are doing the New York Marathon. Every year, the race raises about $40 million. And these people are doing a sponsored skydive. There are also ways to raise money without exercising or jumping out of an airplane. These people are bringing cakes to a charity bake sale. The popularity of bake sales has increased dramatically over the last decade, thanks in part at least to the popularity of The Great British Baking Show. This show, which began in 2010, has encouraged people of all abilities to bake, especially when it’s for charity. Today’s sale – at Oxford University Press – will raise money for two charities: MacMillan Cancer Support and Adelante Africa, a charity that supports education and other projects in a rural area of Uganda. But this bake sale is different – it’s also a competition and will be judged by Daisy Watt and Emma Collen, who are chefs and professional bakers. And from the minute the posters appeared, people have tried to persuade their colleagues to join in. Emma is going to make Viennese Whirls – cookies with buttercream and jam. Emma I bake quite often, probably once or twice a month. It’s one of my main hobbies that enjoy – um, kind of a stress-reliever for me, just being in the kitchen by myself, with some music on, just enjoying baking. Um, and it’s just an added bonus to do it for charity as well, combining one of my hobbies with raising some money for some really great causes. It’s not the first time I’ve taken part in a bake sale. I’ve done several different kinds of bake sales for work and other things. Narrator James is going to make a sponge cake with blueberries. James I bake not that often, maybe about, I don’t know, once a month or something I might bake. Um, when I, when I do, it’s usually baking with my kids, I suppose, so, um, you know, we make something really easy like cookies or something like that. The cake that I’ve baked today – I have baked that one in the past before. And so I’m quite confident, that it’s going to be OK at least, but, you know, I couldn’t say that it’s actually a speciality. I don’t bake often enough to have a speciality to be honest. I mean, I’m baking now, because it’s for a charity, right, so, so I wouldn’t say I have a speciality. Narrator The finalists in this competition bake sale are a Baklava Cake, a Neapolitan Cake, Emma’s Viennese Whirls, a loaf cake, and a chocolate cake. Although this isn’t The Great British Baking Show, Daisy is looking for certain criteria in the cakes. --- PAGE 4 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 4 of 24 Daisy There are a few things I was looking for – refinement. It sounds harsh, but there were good cakes out there, so it was really important to choose the cakes that looked like someone had put real effort into the decoration and you can see the ones that put the effort in. Narrator And it’s now time to judge the five finalists. Daisy That’s fantastic! Very clever and you’ve even done the different- colored icing in between – a labor of love. Really good sponge. The chocolate sponge is delicious. It’s not over chocolatey, it's just… Narrator And then to choose the winner. Daisy So I’ve conferred enough, because it is really close, but there is one winner, who has obviously put so much effort, not just in the decoration, but also her sponge is technically brilliant. So, are you going to come up here? Narrator And now the only thing left to do is to eat the cake – and give money to the two charities. Laura Obviously really happy that my cake was chosen and it’s really nice to bake for such a great cause as well. Emma They were really complimentary about my bake, which was great. But a biscuit, I don’t think, is going to stand up to those beautifully-iced cakes that we had, so the standard was really high. James I mean I’m not the best baker in the world. I know that, but you know, as I say, it came out really well and it raised loads of money for the charities, so no, I’m really pleased I did it, yeah. Narrator The cake sale raised over £270 for Macmillan Cancer Support and Adelante Africa. Review and Check Can you understand these people? 1&2 1 Philomena Interviewer What do you eat to cheer yourself up when you’re feeling sad? Philomena I love roast potatoes, baked potatoes. They’re warm, buttery, nice olive oil. They make me feel good. Interviewer Does it make you feel better? Philomena Yeah, usually it does. I think they’re quite refreshing, warm. When you’re feeling down, I think they’re the perfect remedy. 2 Mark Interviewer How often do you eat out? Mark  Well, my wife would probably like me to eat out a little bit less, but probably about 2-3 times a week. Interviewer What kind of places do you go to? Mark  You know, it always kind of depends. I think people like to eat in 3 or 4 different restaurants in their town no matter what, and it’s usually one of those three or four, usually pizza, Mexican, or Asian. Interviewer Why do you like these kinds of restaurants? Mark  I guess part of it is it’s the type of food that you can’t normally prepare at home, so it’s something a little bit different. Otherwise it’s just tasty. 3 Ross Interviewer Do you have brothers and sisters? Ross  I have step brothers and sisters. Two --- PAGE 5 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 5 of 24 stepsisters and one stepbrother. Interviewer Do you get along with them well? Ross  Yes, we didn’t grow up together, but we’re now all adults and we get on really well. 4 Coleen Interviewer Have you ever won any money, for example in a lottery? Tyler No, I haven’t...ah well ...actually I’ve won like five dollars just from a scratch off lottery thing. Interviewer What did you do with it? Tyler I’m pretty sure I went to MacDonald’s and treated myself. 5 Richard Interviewer Have you ever taken part in a charity event? Richard I have, yes. I ran the London Marathon, I think about eight years ago now. For Cancer Research. Interviewer How much money did you raise? Richard About six and a half thousand pounds.",
+                "textFa": "راستش، جنی قراره چند جای دیدنی نیویورک رو نشونم بده."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۲: هری درباره زندگی راب بیشتر می‌داند»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 2: Harry Learns More About Rob', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 36,
-        "timestampDisplay": "0:36",
-        "explanationFa": "در این صحنه، تمرکز بر گپ‌وگفت دوستانه در کافه و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:54]. What key point is stated by Harry?",
+        "timestampSeconds": 54,
+        "timestampDisplay": "0:54",
+        "explanationFa": "در ثانیه 0:54 ویدیو، Harry به صراحت بیان می‌کند: «Today’s sale – at Oxford University Press – will raise money for two charities: MacMillan Cancer Support and Adelante Africa,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob meets his friend Harry at a London pub to chat about his job prospects and u...",
-            "textFa": "تمرکز اصلی بر راب دوستش هری را در یک پاب در لندن ملاقات می‌کند تا درباره چشم‌انداز ش... است."
+            "textEn": "Harry states: \"Today’s sale – at Oxford University Press – will raise money for ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7607,44 +11951,268 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمه خودمانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 1 · Part 3: Reacting to News and Conversational Cues.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۱ · بخش ۳: واکنش طبیعی به صحبت‌ها و خبرهای روزمره.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 33,
-        "timeDisplay": "0:33",
-        "textEn": "Detailed conversation and communicative exchange regarding واکنش‌های تعاملی (That's awesome!, What a shame!).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون واکنش‌های تعاملی (That's awesome!, What a shame!).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 100,
-        "timeDisplay": "1:40",
-        "textEn": "Concluding remarks and key language takeaway for Episode 1 · Part 3: Reacting to News and Conversational Cues.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۱ · بخش ۳: واکنش طبیعی به صحبت‌ها و خبرهای روزمره.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Jenny",
+                "textEn": "I can’t believe we got here so late.",
+                "textFa": "باورم نمیشه این‌قدر دیر رسیدیم."
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "I’m sorry, Jenny. I had to finish that article for Don.",
+                "textFa": "من معذرت می‌خوام جنی. باید اون مقاله رو برای دان تموم می‌کردم."
+        },
+        {
+                "id": 3,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "Don’t forget the chocolates.",
+                "textFa": "شکلات‌ها رو فراموش نکن."
+        },
+        {
+                "id": 4,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "OK. Oh no!",
+                "textFa": "باشه. اوه نه!"
+        },
+        {
+                "id": 5,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "I don’t believe it. Don’t tell me you forgot them?",
+                "textFa": "باورم نمیشه. نگو که جاشون گذاشتی؟"
+        },
+        {
+                "id": 6,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Rob",
+                "textEn": "I think they’re still on my desk.",
+                "textFa": "فکر کنم هنوز روی میز کارم موندن."
+        },
+        {
+                "id": 7,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Jenny",
+                "textEn": "You’re kidding.",
+                "textFa": "داری شوخی می‌کنی."
+        },
+        {
+                "id": 8,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "You know what my desk’s like.",
+                "textFa": "خودت که می‌دونی میز کارم چه شکلیه."
+        },
+        {
+                "id": 9,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Jenny",
+                "textEn": "Yeah, it’s a complete mess. Why don’t you ever tidy it?",
+                "textFa": "آره، کاملاً به هم ریخته‌ست. چرا هیچ‌وقت مرتبش نمی‌کنی؟"
+        },
+        {
+                "id": 10,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Rob",
+                "textEn": "We could go and buy some more.",
+                "textFa": "می‌تونیم بریم و چند تا دیگه بخریم."
+        },
+        {
+                "id": 11,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Jenny",
+                "textEn": "How can we get some more? We’re already late!",
+                "textFa": "چطور می‌تونیم بخریم؟ همین الانشم دیر کردیم!"
+        },
+        {
+                "id": 12,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Jenny",
+                "textEn": "Hi there!",
+                "textFa": "سلام به همگی!"
+        },
+        {
+                "id": 13,
+                "seconds": 37,
+                "timeDisplay": "0:37",
+                "speaker": "Harry",
+                "textEn": "You made it!",
+                "textFa": "بالاخره رسیدید!"
+        },
+        {
+                "id": 14,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Jenny",
+                "textEn": "Sorry we’re late. So, this is my mom and dad, Harry and Sally. And this, of course, is Rob.",
+                "textFa": "ببخشید دیر کردیم. خب، این مامان و بابای من هستن، هری و سالی. و ایشون هم البته راب هست."
+        },
+        {
+                "id": 15,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Rob",
+                "textEn": "Hello.",
+                "textFa": "سلام."
+        },
+        {
+                "id": 16,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Sally",
+                "textEn": "It’s so nice to meet you at last.",
+                "textFa": "از دیدنت بالاخره خیلی خوشحالم."
+        },
+        {
+                "id": 17,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Harry",
+                "textEn": "Yes, Jenny’s finally decided to introduce you to us.",
+                "textFa": "بله، بالاخره جنی تصمیم گرفت تو رو به ما معرفی کنه."
+        },
+        {
+                "id": 18,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "Sally",
+                "textEn": "Come in, come in!",
+                "textFa": "بفرمایید داخل، خوش اومدید!"
+        },
+        {
+                "id": 19,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Jenny",
+                "textEn": "Mom, I’m really sorry – we bought you some chocolates, but we left them at the office.",
+                "textFa": "مامان خیلی متأسفم – براتون مقداری شکلات خریدیم، اما توی دفتر کار جا موندن."
+        },
+        {
+                "id": 20,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Sally",
+                "textEn": "What a pity. Never mind.",
+                "textFa": "چه حیف. عیبی نداره، فدای سرت."
+        },
+        {
+                "id": 21,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Harry",
+                "textEn": "Yeah, don’t worry about it. We know what a busy young woman you are. And your mom has made way too much food for this evening anyway.",
+                "textFa": "آره، اصلاً نگرانش نباش. ما می‌دونیم چقدر دختر پرمشغله‌ای هستی. و به هر حال مامانت برای امشب کلی غذای خوشمزه درست کرده."
+        },
+        {
+                "id": 22,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Sally",
+                "textEn": "Oh, Harry.",
+                "textFa": "اوه، هری."
+        },
+        {
+                "id": 23,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Jenny",
+                "textEn": "But I also have some good news.",
+                "textFa": "اما من یک خبر خوب هم دارم."
+        },
+        {
+                "id": 24,
+                "seconds": 76,
+                "timeDisplay": "1:16",
+                "speaker": "Sally",
+                "textEn": "Really? What’s that?",
+                "textFa": "واقعاً؟ چی هست؟"
+        },
+        {
+                "id": 25,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Jenny",
+                "textEn": "Well, you know we have a new boss? He’s still new to the job and needs support, so today he made me the Managing Editor of the magazine.",
+                "textFa": "خب، می‌دونید که یک رئیس جدید داریم؟ اون هنوز توی این شغل تازه‌کاره و نیاز به حمایت داره، برای همین امروز من رو سردبیر ارشد مجله کرد."
+        },
+        {
+                "id": 26,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Sally",
+                "textEn": "So you’ve got a promotion? How fantastic!",
+                "textFa": "پس ارتقای شغلی گرفتی؟ چقدر فوق‌العاده!"
+        },
+        {
+                "id": 27,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Harry",
+                "textEn": "That’s great news! Hey, does that mean Jenny’s going to be your boss, Rob? --- PAGE 2 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 2 of 24",
+                "textFa": "این خبر فوق‌العاده‌ست! هی راب، این یعنی جنی قراره رئیس تو بشه؟"
+        },
+        {
+                "id": 28,
+                "seconds": 108,
+                "timeDisplay": "1:48",
+                "speaker": "Rob",
+                "textEn": "Uh... yes, I guess so.",
+                "textFa": "اوه... بله، فکر می‌کنم همین‌طوره."
+        },
+        {
+                "id": 29,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Jenny",
+                "textEn": "Well, not exactly. I’m a manager, but I’m not Rob’s manager.",
+                "textFa": "خب، دقیقاً نه. من یک مدیرم، ولی مدیر مستقیم راب نیستم."
+        },
+        {
+                "id": 30,
+                "seconds": 114,
+                "timeDisplay": "1:54",
+                "speaker": "Sally",
+                "textEn": "Let’s go and have dinner.",
+                "textFa": "بریم شام بخوریم."
+        },
+        {
+                "id": 31,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Jenny",
+                "textEn": "What a great idea!",
+                "textFa": "چه ایده عالی‌ای!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۱ · بخش ۳: واکنش طبیعی به صحبت‌ها و خبرهای روزمره»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 1 · Part 3: Reacting to News and Conversational Cues', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 44,
-        "timestampDisplay": "0:44",
-        "explanationFa": "در این صحنه، تمرکز بر واکنش‌های تعاملی (That's awesome!, What a shame!) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:06]. What key point is stated by Harry?",
+        "timestampSeconds": 66,
+        "timestampDisplay": "1:06",
+        "explanationFa": "در ثانیه 1:06 ویدیو، Harry به صراحت بیان می‌کند: «But this bake sale is different – it’s also a competition and will be judged by Daisy Watt and Emma Collen,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Learn essential conversational phrases to react with empathy, excitement, or sur...",
-            "textFa": "تمرکز اصلی بر اصطلاحات کلیدی برای ابراز همدلی، اشتیاق یا تعجب در واکنش به خبرهای خوب... است."
+            "textEn": "Harry states: \"But this bake sale is different – it’s also a competition and wil...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7803,44 +12371,204 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "انگلیسی حرفه‌ای"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 1: Rob's Job Interview with Daniel.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۱: مصاحبه شغلی راب با دانیل در نیویورک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 41,
-        "timeDisplay": "0:41",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه کاری در محیط اداری.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه کاری در محیط اداری.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 125,
-        "timeDisplay": "2:05",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 1: Rob's Job Interview with Daniel.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۱: مصاحبه شغلی راب با دانیل در نیویورک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Kerri",
+                "textEn": "You work hard but your money’s all spent Haven’t got enough to pay the rent You know it’s not right and it makes no sense To go chasing, chasing those dollars and cents Chasing, chasing those dollars and cents",
+                "textFa": "سخت کار می‌کنی ولی همه پولت خرج میشه / پول کافی برای اجاره خونه نداری / می‌دونی که درست نیست و هیچ منطقی نداره / که به دنبال اون دلارها و پوندها بدوی."
+        },
+        {
+                "id": 2,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Rob",
+                "textEn": "That was great, Kerri.",
+                "textFa": "کری، این فوق‌العاده بود!"
+        },
+        {
+                "id": 3,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Kerri",
+                "textEn": "Thanks.",
+                "textFa": "ممنون راب."
+        },
+        {
+                "id": 4,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Rob",
+                "textEn": "Kerri, you used to be in a band, now you play solo. Why did you change?",
+                "textFa": "پس، آلبوم جدیدت بالاخره هفته آینده بیرون میاد. چه حسی داری؟"
+        },
+        {
+                "id": 5,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Kerri",
+                "textEn": "What happened with the band is private. I’ve already said I don’t want to talk about it in interviews. All I’ll say is that I have a lot more freedom this way. I can play – and say – what I want.",
+                "textFa": "خیلی هیجان‌زده‌ام. ساختنش کار زیادی برد، ولی واقعاً بهش افتخار می‌کنم."
+        },
+        {
+                "id": 6,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Rob",
+                "textEn": "Did your relationship with the band’s lead guitarist affect the break up?",
+                "textFa": "ترانه‌ها خیلی شخصی به نظر میان. آیا از زندگی واقعی خودت الهام گرفتی؟"
+        },
+        {
+                "id": 7,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Kerri",
+                "textEn": "No comment. I never talk about my private life.",
+                "textFa": "قطعاً. بیشتر اون‌ها درباره تجربیات من در لندنه، و تغییراتی که از سر گذروندم."
+        },
+        {
+                "id": 8,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Rob",
+                "textEn": "Your dad was in a famous punk  band and your mum’s a classical pianist. Have they influenced your music?",
+                "textFa": "تو مدتیه که در نیویورک زندگی می‌کنی. دلت برای بریتانیا تنگ نشده؟"
+        },
+        {
+                "id": 9,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Kerri",
+                "textEn": "Of course they have – what do you think? Isn’t everyone influenced by their parents?",
+                "textFa": "البته که دلم تنگ شده. دلتنگ دوستانم، خونواده‌ام، و بارون لندن میشم!"
+        },
+        {
+                "id": 10,
+                "seconds": 72,
+                "timeDisplay": "1:12",
+                "speaker": "Rob",
+                "textEn": "When did you start playing?",
+                "textFa": "من هم همین حس رو دارم!"
+        },
+        {
+                "id": 11,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Kerri",
+                "textEn": "I started playing the guitar when I was about four.",
+                "textFa": "اما نیویورک انرژی باورنکردنی‌ای داره. از لحظه‌ای که از خواب بیدار میشی، احساس می‌کنی همه‌چیز ممکن و شدنیه."
+        },
+        {
+                "id": 12,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Rob",
+                "textEn": "Four? That’s pretty young.",
+                "textFa": "در مقایسه با لندن، فرهنگ کاری رو چطور می‌بینی؟"
+        },
+        {
+                "id": 13,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Kerri",
+                "textEn": "Yeah, the guitar was nearly as big as me!",
+                "textFa": "اینجا مردم بدون وقفه کار می‌کنن. سرعت زندگی خیلی بالاتره."
+        },
+        {
+                "id": 14,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Rob",
+                "textEn": "I think that your new album is your best yet. It’s a lot quieter and more experimental than your earlier albums.",
+                "textFa": "آیا این موضوع، نوشتن موسیقی جدید رو سخت‌تر می‌کنه؟"
+        },
+        {
+                "id": 15,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "Kerri",
+                "textEn": "Thank you! I think it’s my best work.",
+                "textFa": "نه واقعاً. این شهر به من الهام زیادی میده. آدم‌های متفاوتی که هر روز می‌بینم عالی هستن."
+        },
+        {
+                "id": 16,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Rob",
+                "textEn": "So what have you been doing recently?",
+                "textFa": "برنامه بعدیت چیه؟ قراره تور کنسرت داشته باشی؟"
+        },
+        {
+                "id": 17,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Kerri",
+                "textEn": "Well, I’ve been writing and recording some new songs. And I’ve played at some of the summer festivals in the UK.",
+                "textFa": "بله، ما تور رو ماه آینده از بوستون شروع می‌کنیم و بعد به شیکاگو و لس‌آنجلس میریم."
+        },
+        {
+                "id": 18,
+                "seconds": 108,
+                "timeDisplay": "1:48",
+                "speaker": "Rob",
+                "textEn": "And what are you doing while you’re in the States?",
+                "textFa": "عالیه. شنوندگان ما حتماً بی‌صبرانه منتظرش هستن."
+        },
+        {
+                "id": 19,
+                "seconds": 112,
+                "timeDisplay": "1:52",
+                "speaker": "Kerri",
+                "textEn": "I’m going to play at some clubs here in New York, then I’m doing some small gigs in other places. I just want to get to know the country and the people. It’s all very new to me.",
+                "textFa": "امیدوارم همین‌طور باشه!"
+        },
+        {
+                "id": 20,
+                "seconds": 126,
+                "timeDisplay": "2:06",
+                "speaker": "Jenny",
+                "textEn": "Good job, Rob. She isn’t the easiest person to interview.",
+                "textFa": "کری، خیلی ممنون که وقت گذاشتی و با ما صحبت کردی."
+        },
+        {
+                "id": 21,
+                "seconds": 131,
+                "timeDisplay": "2:11",
+                "speaker": "Rob",
+                "textEn": "She’s OK. And this video clip will work great online.",
+                "textFa": "خواهش می‌کنم راب، گفتگوی لذت‌بخشی بود."
+        },
+        {
+                "id": 22,
+                "seconds": 135,
+                "timeDisplay": "2:15",
+                "speaker": "Don",
+                "textEn": "Well, thank you for coming in today, Kerri. Now I suggest we have some lunch. Rob, could you call a taxi?",
+                "textFa": "امیدوارم در تور کنسرتت موفق باشی."
+        },
+        {
+                "id": 23,
+                "seconds": 144,
+                "timeDisplay": "2:24",
+                "speaker": "Rob",
+                "textEn": "Uh, sure.",
+                "textFa": "حتماً، ممنون."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۱: مصاحبه شغلی راب با دانیل در نیویورک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 1: Rob's Job Interview with Daniel', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 55,
-        "timestampDisplay": "0:55",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه کاری در محیط اداری و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:26]. What key point is stated by Narrator?",
+        "timestampSeconds": 86,
+        "timestampDisplay": "1:26",
+        "explanationFa": "در ثانیه 1:26 ویدیو، Narrator به صراحت بیان می‌کند: «Kerri Yeah, the guitar was nearly as big as me! Rob I think that your new album is your best yet.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob interviews with Daniel for a permanent writing position at the Manhattan mag...",
-            "textFa": "تمرکز اصلی بر راب برای موقعیت شغلی نویسندگی دائم در مجله با دانیل مصاحبه می‌کند و در... است."
+            "textEn": "Narrator states: \"Kerri Yeah, the guitar was nearly as big as me! Rob I think that ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -7999,44 +12727,228 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "ارتباطات کاری"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 2: Giving Opinions and Disagreeing Politely.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۲: بیان دیدگاه‌ها و مخالفت محترمانه.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 41,
-        "timeDisplay": "0:41",
-        "textEn": "Detailed conversation and communicative exchange regarding اصطلاحات بیان نظر (In my opinion, If you ask me).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون اصطلاحات بیان نظر (In my opinion, If you ask me).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 124,
-        "timeDisplay": "2:04",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 2: Giving Opinions and Disagreeing Politely.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۲: بیان دیدگاه‌ها و مخالفت محترمانه.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Don",
+                "textEn": "So when will you be coming back to New York, Kerri? --- PAGE 6 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 6 of 24",
+                "textFa": "خب کری، کِی دوباره به نیویورک برمی‌گردی؟"
+        },
+        {
+                "id": 2,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Kerri",
+                "textEn": "Oh, I don’t know.",
+                "textFa": "اوه، هنوز نمی‌دونم. بعد از پایان تور، احتمالاً چند هفته‌ای به لندن برمی‌گردم تا استراحت کنم."
+        },
+        {
+                "id": 3,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Waitress",
+                "textEn": "Hi guys, is everything OK?",
+                "textFa": "لندن شهر فوق‌العاده‌ایه، اما فکر نمی‌کنی نیویورک هیجان‌انگیزتره؟"
+        },
+        {
+                "id": 4,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Don",
+                "textEn": "Yes, it’s delicious, thank you.",
+                "textFa": "راستش به نظر من مردم در لندن خیلی راحت‌تر و خونسردترن. زندگی توی لندن به اندازه اینجا پرتنش و شتاب‌زده نیست."
+        },
+        {
+                "id": 5,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Waitress",
+                "textEn": "That’s great!",
+                "textFa": "اما من حس می‌کنم همین شتاب و انرژی نیویورکه که باعث موفقیت آدم‌ها میشه."
+        },
+        {
+                "id": 6,
+                "seconds": 28,
+                "timeDisplay": "0:28",
+                "speaker": "Kerri",
+                "textEn": "New York waiters never leave you alone! I really don’t like all this, “Hi guys! Is everything OK?” stuff.",
+                "textFa": "شاید، ولی این بستگی به این داره که از زندگی چی بخوای."
+        },
+        {
+                "id": 7,
+                "seconds": 36,
+                "timeDisplay": "0:36",
+                "speaker": "Don",
+                "textEn": "What? You mean waiters aren’t friendly in London?",
+                "textFa": "راب، نظر تو چیه؟ تو هم لندن زندگی کردی هم نیویورک."
+        },
+        {
+                "id": 8,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "Oh, they’re very friendly!",
+                "textFa": "خب، با هر دو موافقم. لندن تاریخ و فرهنگ بی‌نظیری داره، ولی نیویورک مدرن و سرشار از تحرکه."
+        },
+        {
+                "id": 9,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Kerri",
+                "textEn": "Yes, they’re friendly, but not too friendly. They don’t bother you all the time.",
+                "textFa": "به نظر من غذای نیویورک هم خیلی متنوع‌تر و بهتره."
+        },
+        {
+                "id": 10,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "Waitress",
+                "textEn": "Can I get you anything else? More drinks, maybe?",
+                "textFa": "در این مورد مطمئن نیستم، دان! لندن رستوران‌های بین‌المللی شگفت‌انگیزی داره."
+        },
+        {
+                "id": 11,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Don",
+                "textEn": "No, thanks. We’re fine.",
+                "textFa": "ولی تنوع پیتزا و غذاهای خیابانی نیویورک رو هیجا نداره."
+        },
+        {
+                "id": 12,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "Waitress",
+                "textEn": "Fantastic.",
+                "textFa": "این درسته، پیتزای نیویورک واقعاً بی‌نظیره."
+        },
+        {
+                "id": 13,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Kerri",
+                "textEn": "See what I mean? Personally, I think people in London are a lot more easy-going. London’s just not as hectic as New York.",
+                "textFa": "پس کری، سبک زندگی کدوم شهر رو ترجیح میدی؟"
+        },
+        {
+                "id": 14,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Don",
+                "textEn": "Sure, we all like peace and quiet. But in my opinion, New York is possibly... well, no, is definitely the greatest city in the world. Don’t you agree?",
+                "textFa": "من هر دو رو دوست دارم، ولی قلبم همیشه با لندنه."
+        },
+        {
+                "id": 15,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Kerri",
+                "textEn": "To be honest, I definitely prefer London.",
+                "textFa": "کاملاً قابل درکه."
+        },
+        {
+                "id": 16,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Don",
+                "textEn": "Come on, Rob. You’ve lived in both. What do you think?",
+                "textFa": "غذاتون چطور بود؟ همه‌چیز خوب پیش رفت؟"
+        },
+        {
+                "id": 17,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Rob",
+                "textEn": "Oh, well, I have to say, London’s very special. It’s more relaxed, it’s got great parks, and you can cycle everywhere. It’s dangerous to cycle in New York!",
+                "textFa": "عالی بود، ممنون."
+        },
+        {
+                "id": 18,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Don",
+                "textEn": "Why would you cycle when you can drive a car?",
+                "textFa": "صورتحساب رو لطفاً بیارید."
+        },
+        {
+                "id": 19,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Kerri",
+                "textEn": "You can’t be serious.",
+                "textFa": "حتماً، الان براتون میارم."
+        },
+        {
+                "id": 20,
+                "seconds": 105,
+                "timeDisplay": "1:45",
+                "speaker": "Don",
+                "textEn": "OK, I agree London has its own peculiar charm. But if you ask me, nothing compares with a city like New York. The whole world is here!",
+                "textFa": "دان، ناهار واقعاً عالی بود، ممنون که ما رو دعوت کردی."
+        },
+        {
+                "id": 21,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Kerri",
+                "textEn": "But that’s the problem. It’s too big. There are too many people. Everybody’s so stressed out. And nobody has any time for you.",
+                "textFa": "خواهش می‌کنم، دیدن شما دو نفر باعث افتخار بود."
+        },
+        {
+                "id": 22,
+                "seconds": 127,
+                "timeDisplay": "2:07",
+                "speaker": "Jenny",
+                "textEn": "I don’t think that’s right, Kerri. New Yorkers are very friendly…",
+                "textFa": "راب، مصاحبه‌ات عالی از آب درمیاد، مطمئنم خواننده‌ها خیلی دوستش خواهند داشت."
+        },
+        {
+                "id": 23,
+                "seconds": 132,
+                "timeDisplay": "2:12",
+                "speaker": "Kerri",
+                "textEn": "Oh sure, they can sound friendly with all that “Have a nice day” stuff. But I always think it’s a little bit... fake.",
+                "textFa": "امیدوارم، از صحبت با کری واقعاً لذت بردم."
+        },
+        {
+                "id": 24,
+                "seconds": 142,
+                "timeDisplay": "2:22",
+                "speaker": "Don",
+                "textEn": "You’ve got to be kidding me!",
+                "textFa": "منم همین‌طور راب."
+        },
+        {
+                "id": 25,
+                "seconds": 144,
+                "timeDisplay": "2:24",
+                "speaker": "Rob",
+                "textEn": "I’m sorry. I’ll just have to take this...",
+                "textFa": "موفق باشی کری، امیدوارم توی تورت بدرخشی."
+        },
+        {
+                "id": 26,
+                "seconds": 147,
+                "timeDisplay": "2:27",
+                "speaker": "Rob",
+                "textEn": "Hello?... Yes... You’re who?... The taxi driver?... What did she leave? ... Her cellphone... right. OK. Yes, we’re still at the restaurant. See you in about five minutes.",
+                "textFa": "خیلی ممنون دان، روز فوق‌العاده‌ای داشته باشید."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۲: بیان دیدگاه‌ها و مخالفت محترمانه»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 2: Giving Opinions and Disagreeing Politely', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 55,
-        "timestampDisplay": "0:55",
-        "explanationFa": "در این صحنه، تمرکز بر اصطلاحات بیان نظر (In my opinion, If you ask me) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:24]. What key point is stated by Narrator?",
+        "timestampSeconds": 84,
+        "timestampDisplay": "1:24",
+        "explanationFa": "در ثانیه 1:24 ویدیو، Narrator به صراحت بیان می‌کند: «But I always think it’s a little bit... fake. Don You’ve got to be kidding me! Rob I’m sorry.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Master how to state your viewpoints professionally, agree constructively, or dis...",
-            "textFa": "تمرکز اصلی بر آموزش بیان دیدگاه‌ها به شکل حرفه‌ای، موافقت سازنده و مخالفت مودبانه در... است."
+            "textEn": "Narrator states: \"But I always think it’s a little bit... fake. Don You’ve got to b...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -8195,44 +13107,196 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "محیط صمیمانه کار"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 2 · Part 3: A Special Surprise for Kerri.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۲ · بخش ۳: یک غافلگیری ویژه برای کری.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 23,
-        "timeDisplay": "0:23",
-        "textEn": "Detailed conversation and communicative exchange regarding هماهنگی جشن و دورهمی.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون هماهنگی جشن و دورهمی.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 71,
-        "timeDisplay": "1:11",
-        "textEn": "Concluding remarks and key language takeaway for Episode 2 · Part 3: A Special Surprise for Kerri.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۲ · بخش ۳: یک غافلگیری ویژه برای کری.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Kerri",
+                "textEn": "Thank you for a nice lunch, Don.",
+                "textFa": "دان، ممنون بابت ناهار بسیار عالی."
+        },
+        {
+                "id": 2,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Don",
+                "textEn": "You’re welcome.",
+                "textFa": "خواهش می‌کنم کری."
+        },
+        {
+                "id": 3,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Waitress",
+                "textEn": "Thanks for coming, guys! Have a nice day.",
+                "textFa": "ممنون که اومدید بچه‌ها! روز خوبی داشته باشید!"
+        },
+        {
+                "id": 4,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Don",
+                "textEn": "See? Nice, friendly service.",
+                "textFa": "ببخشید، شما یک خواننده نیستید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Kerri",
+                "textEn": "Maybe. But I think she saw the big tip you left on the table!",
+                "textFa": "بله، همین‌طوره."
+        },
+        {
+                "id": 6,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Did you mean what you said in the restaurant, Rob?",
+                "textFa": "من واقعاً از طرفدارهای پروپاقرص شمام! می‌تونم باهاتون یک عکس سلفی بگیرم؟"
+        },
+        {
+                "id": 7,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Did I mean what?",
+                "textFa": "البته، حتماً!"
+        },
+        {
+                "id": 8,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "About missing London?",
+                "textFa": "خیلی ممنون! بی‌صبرانه منتظر آلبوم جدیدتون هستم."
+        },
+        {
+                "id": 9,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Sure, I miss it, Jenny.",
+                "textFa": "خیلی لطف دارید، ممنونم."
+        },
+        {
+                "id": 10,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "Really?",
+                "textFa": "این هم از شهرت! همه‌جا تو رو می‌شناسن."
+        },
+        {
+                "id": 11,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "But hey, not that much! It’s just that moving to a new place is always difficult.",
+                "textFa": "گاهی وقتا یکم عجیبه، ولی طرفدارها همیشه خیلی مهربونن."
+        },
+        {
+                "id": 12,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Jenny",
+                "textEn": "But you don’t regret coming here, do you?",
+                "textFa": "راستی کری، یک سورپرایز برات دارم قبل از اینکه بری."
+        },
+        {
+                "id": 13,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Rob",
+                "textEn": "No … no … not at all.",
+                "textFa": "واقعاً؟ چی هست دان؟"
+        },
+        {
+                "id": 14,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Jenny",
+                "textEn": "It’s just that you seemed so homesick in there. For the parks, cycling...",
+                "textFa": "ما تصمیم گرفتیم ترانه جدیدت رو به عنوان موزیک ویدیوی برگزیده روی صفحه اصلی مجله قرار بدیم."
+        },
+        {
+                "id": 15,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Rob",
+                "textEn": "Well, there are some things I miss, but – oh, hang on a minute. Look over there. Our taxi’s come back. Taxi driver Excuse me, ma’am.",
+                "textFa": "وای، دان! شوخی می‌کنی؟ این فوق‌العاده‌ست!"
+        },
+        {
+                "id": 16,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Kerri",
+                "textEn": "Who me? What is it? Taxi driver I believe this is your cell phone. You left it in my cab.",
+                "textFa": "کاملاً جدی میگم. کار تو بی‌نظیره و شایسته بهترین توجه‌هاست."
+        },
+        {
+                "id": 17,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Kerri",
+                "textEn": "What?... Oh, wow... thank you! Taxi driver Have a nice day!",
+                "textFa": "واقعاً نمی‌دونم چطور ازت تشکر کنم. این به دیده‌شدن آلبوم کمک بزرگی می‌کنه."
+        },
+        {
+                "id": 18,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Kerri",
+                "textEn": "That was so kind of him!",
+                "textFa": "تنها چیزی که می‌خوام اینه که وقتی فوق‌ستاره شدی، ما رو یادت نره!"
+        },
+        {
+                "id": 19,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Don",
+                "textEn": "See? New Yorkers are really friendly people. 4B Video Listening An interview with Alex Rawlings − Part 1 Alex Rawlings became “Britain’s most multilingual student\" in 2012, when he won a national competition which tested his fluency in 11 different languages. At the time, he was studying German and Russian at Oxford University. Originally from London, Alex has lived in Germany, Russia, Hungary, and Spain, and he has gone on to learn more languages since he graduated. An interview with Alex Rawlings − Part 2 I’ve learned so many languages because I’m hooked basically on learning languages. I think every new language to me is like a new world, it’s a completely new adventure and you meet totally different people, you have totally different experiences. I often say when, when you visit a country when you speak the language, you really get to know that country, you really get to explore it for yourself. But when you visit a country and you don’t speak the local language, you’re relying on other people to explain what’s happening to you. They’re kind of, they’re showing you their version of the country, but you can’t really see it for yourself. All of the languages that I speak are fun. I think that’s why I’ve stuck with them and enjoy speaking them. I think I have the, the deepest emotional connection with Greek because my grandmother was from --- PAGE 8 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 8 of 24 Greece and so we use Greek in my family as well and I’ve heard it ever since I was a child. But I also really like speaking German. There are so many languages that I would love to learn in the future. As I said, I’m hooked so… I’m, I’m very interested in Chinese at the moment. I work with someone from China who’s teaching me little bits. And I think it’s really cool when I hear her speaking to her family or friends on the phone in Chinese and think, “Wow! Wouldn’t it be really awesome to speak that.” I also, I organize an international conference for polyglots every year, which moves country, so last year it was in Iceland and this year it’s going to be in Slovenia. So I’d like to learn some Slovene as well before we go there for the weekend. I always feel a little bit guilty that I’m from the UK but I’ve never really learned any of our local languages here. So I’ve never learned Welsh, I’ve never learned Irish, I’ve never learnt Scottish Gaelic. And I went to Wales recently and loved that we had everything in two languages. You walk into the supermarket and you see all these languages everywhere. And I thought, “I think it would be really cool to learn a language which is very close to where I live that I could use.” So I’d love to learn Welsh one day too. The biggest challenge for me with learning a new language was with Russian. There were a number of things that I wasn’t expecting to be hard that were. For example, there’s a whole new alphabet, which, it’s not too different to English – you get used to it – but when you’re trying to learn a word, it’s just an extra barrier to memorizing that word. First having to read it and understand what all of the letters mean and then having to actually memorize it. So there’s that extra layer there. Technology has been an amazing resource for me, especially when I was growing up actually, with YouTube and things like that, I was able to sort of come home from school and immediately immerse myself in this world of another language. I could just watch videos in different languages all evening and it was like I was there, it was like I was living in the country. So the internet has brought all of those cultures much closer to me and made them much more accessible. And since then I think there’s now a lot of technology out there to help you learn vocabulary or to teach you grammar. An interview with Alex Rawlings − Part 3 Host As well as learning languages himself, Alex has also taught intensive language courses. He also appears in the media and regularly posts about language on Twitter and The Memrise Blog. He has also written a book, How to Speak Any Language Fluently. Alex Yeah, it’s a good question. So, put it, put it this way. I’ve never met anyone who couldn’t learn a language, you know, I mean, if they had the right motivation, the right time allocation, the right resources, and the right expectations, I’ve never met anyone who’s had all of those things in place and still failed. But many of us fail to learn languages because one of those things is not there. We don’t have enough time, we’re not doing it for the right reasons, or we expect it to be a lot easier than it actually is. Alex Well, the easiest language for me to learn was definitely Afrikaans because the grammar’s very, very simple, so there are almost no irregular verbs, there’s only three real tenses you have to worry about, and a lot of the vocabulary in Afrikaans is very similar to vocabulary in English. So for example, there’s this sentence which is “My pen is in my hand and my hand is in warm water,” which in Afrikaans is “my pen is en my hand and my hand is in warm water,” which, you know is very, very easy for English-speakers to learn. So the easiest --- PAGE 9 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 9 of 24 languages to learn are the languages which are most similar to the one you speak natively because you don’t have to learn so many new concepts and maybe you can already understand a lot of the vocabulary because it’s similar to what you already know. Alex I think British and American people think that they’re not very good at languages. I think we don’t have much confidence. Because when we go abroad to other countries, we, we expect people to speak English, people expect us to speak English, so we never get a chance to practice the little bits of other languages that we might know… Alex I think the most important thing for someone who wants to learn a new language to remember is that nothing happens overnight. Learning languages is a lifelong  activity. And you basically, you never finish, you never get to that finishing line where you think, “Right, what should I do next?” When you learn a new language you need to accept the fact that there will always be more to learn, no matter how much you learn. And so the best approach is to just start doing it in little steps, just doing say 10-15 minutes a day, whenever you can find time around your routine. And then building that up over a year or two years before you really start to feel very confident using that language. Review and Check Can you understand these people? 3&4 1 Lewis Interviewer How do you get to work? Lewis Um, I get to work by taking the bus or the subway. Interviewer How long does it take? Lewis   Usually about an hour...yeah. Interviewer What do you think is the best way to get around London? Lewis I definitely think the best way to get around New York is the subway. 2 Butterfly Interviewer Do you think women are better than men with young children, or do you think that’s just a stereotype? Butterfly I think that, um, it is definitely a stereotype that women are just better with children than men are. I believe that both sexes provide children with valuable, equally valuable, experiences, um, so I definitely trust either sex to raise children and love children, you know, with the same styles and the same quality and, you know, respect and love. 3 Coleen Interviewer Are there any stereotypes about men and women that you think are true? Coleen  I think women do think differently to men, um, and I think conversations tend to be different as well. Women are much more into, um, “what did you say and what did he say, and what did you feel” and all the rest of it, and men are far more pragmatic and, you know, just want to know the score, as it were. 4 Jenny Interviewer How many languages do you speak?",
+                "textFa": "قول میدم هرگز فراموش نکنم!"
+        },
+        {
+                "id": 20,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Jenny",
+                "textEn": "I speak English and I also speak Afrikaans. Interviewer Is there a language you’d like to be able to speak?",
+                "textFa": "خب، پس قرار ما برای مصاحبه بعدی در لندن."
+        },
+        {
+                "id": 21,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Jenny",
+                "textEn": "I would very much like to be able to speak Spanish. Interviewer Why Spanish?",
+                "textFa": "حتماً دان، به زودی می‌بینمت."
+        },
+        {
+                "id": 22,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Jenny",
+                "textEn": "Because Spanish is spoken all over --- PAGE 10 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 10 of 24 the world and I feel it’s, it would be, it’s important to be able to communicate with more people. 5 Linwood Interviewer Is there anything that people do with their phones that really annoys you? Tyler It annoys me when people...like you’re trying to have a conversation and they’re just sitting there texting somebody else or having a conversation with people that aren’t, you know, in front of them.",
+                "textFa": "به سلامت کری، مواظب خودت باش."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۲ · بخش ۳: یک غافلگیری ویژه برای کری»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 2 · Part 3: A Special Surprise for Kerri', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 31,
-        "timestampDisplay": "0:31",
-        "explanationFa": "در این صحنه، تمرکز بر هماهنگی جشن و دورهمی و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:46]. What key point is stated by Narrator?",
+        "timestampSeconds": 46,
+        "timestampDisplay": "0:46",
+        "explanationFa": "در ثانیه 0:46 ویدیو، Narrator به صراحت بیان می‌کند: «So the internet has brought all of those cultures much closer to me and made them much more accessible.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob and Jenny coordinate a surprise celebration for Kerri at the office to celeb...",
-            "textFa": "تمرکز اصلی بر راب و جنی جشنی غافلگیرکننده برای کری در دفتر مجله هماهنگ می‌کنند تا مو... است."
+            "textEn": "Narrator states: \"So the internet has brought all of those cultures much closer to ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -8391,44 +13455,252 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "کافه‌های نیویورک"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 1: Jenny Has Coffee with Monica.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۱: جنی و مونیکا در کافه منهتن.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 29,
-        "timeDisplay": "0:29",
-        "textEn": "Detailed conversation and communicative exchange regarding مشورت‌های دوستانه.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مشورت‌های دوستانه.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 87,
-        "timeDisplay": "1:27",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 1: Jenny Has Coffee with Monica.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۱: جنی و مونیکا در کافه منهتن.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Jenny",
+                "textEn": "Monica!",
+                "textFa": "مونیکا!"
+        },
+        {
+                "id": 2,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Monica",
+                "textEn": "Jenny!",
+                "textFa": "جنی!"
+        },
+        {
+                "id": 3,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Wow! How are you? You look great!",
+                "textFa": "وای! حالت چطوره؟ عالی به نظر می‌رسی!"
+        },
+        {
+                "id": 4,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Monica",
+                "textEn": "Thanks, Jenny! You look really good, too.",
+                "textFa": "ممنون جنی! تو هم واقعاً فوق‌العاده شدی. خیلی وقته ندیدمت!"
+        },
+        {
+                "id": 5,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "Hey, why don’t we get some coffee?",
+                "textFa": "می‌دونم، ماه‌ها گذشته. کار و زندگی حسابی شلوغ بوده."
+        },
+        {
+                "id": 6,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Monica",
+                "textEn": "I’d love to, but I’m on the way to meet... oh, come on. Five minutes!",
+                "textFa": "بیا بشینیم. از کار در مجله چه خبر؟ شنیدم ارتقا گرفتی!"
+        },
+        {
+                "id": 7,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Jenny",
+                "textEn": "So, how is everything?",
+                "textFa": "آره! سردبیر ارشد شدم. باورم نمیشه، مسئولیت‌های خیلی زیادی داره ولی عاشقشم."
+        },
+        {
+                "id": 8,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Monica",
+                "textEn": "Oh, great. Things couldn’t be better actually. Scott and I … we’re getting married!",
+                "textFa": "تبریک میگم جنی، واقعاً لیاقتش رو داشتی. و از راب چه خبر؟ اوضاع چطور پیش میره؟"
+        },
+        {
+                "id": 9,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Jenny",
+                "textEn": "You’re what? Congratulations!",
+                "textFa": "راب عالیه. اون الان یک آپارتمان نزدیک من گرفته و همه چیز خیلی خوبه."
+        },
+        {
+                "id": 10,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "Monica",
+                "textEn": "Thank you!",
+                "textFa": "چقدر عالی! پس هنوز با هم هستید؟"
+        },
+        {
+                "id": 11,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Jenny",
+                "textEn": "When did you get engaged?",
+                "textFa": "آره، راستش اون چند روز پیش با خونواده‌ام هم شام خورد."
+        },
+        {
+                "id": 12,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Monica",
+                "textEn": "Only a few days ago. I’m glad I saw you actually. I was going to call you. We’ve only told family so far.",
+                "textFa": "وای جدی؟! بابات چطور برخورد کرد؟ می‌دونم چقدر سخت‌گیره!"
+        },
+        {
+                "id": 13,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Jenny",
+                "textEn": "I can’t believe it. Monica the wife! And to think you used to go clubbing every night!",
+                "textFa": "خب، اولش یکم با سوالاتش درباره آینده راب و حقوقش اذیت کرد، ولی در کل همه‌چیز خوب پیش رفت."
+        },
+        {
+                "id": 14,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Monica",
+                "textEn": "Well, that was a few years ago! All I want to do now is stay in and read wedding magazines.",
+                "textFa": "خداروشکر! راب واقعاً پسر دوست‌داشتنی‌ایه."
+        },
+        {
+                "id": 15,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "And how are the plans coming along?",
+                "textFa": "آره، واقعاً همین‌طوره. فقط گاهی نگرانم که دلتنگ لندن بشه."
+        },
+        {
+                "id": 16,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Monica",
+                "textEn": "I haven’t done anything yet. My mom and Scott’s mom want to organize the whole thing themselves!",
+                "textFa": "طبیعیه، نقل مکان به یک کشور دیگه سخته. ولی تو اینجایی، این مهم‌ترین چیزه."
+        },
+        {
+                "id": 17,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "That’s what mothers are for!",
+                "textFa": "امیدوارم همین‌طور باشه. خودت چطوری مونیکا؟ کار و بار چطوره؟"
+        },
+        {
+                "id": 18,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Monica",
+                "textEn": "True. But what about you? You look fantastic.",
+                "textFa": "همه‌چیز خوبه. شرکت طراحی‌مون حسابی شلوغ شده، ولی شکایت نمی‌کنم."
+        },
+        {
+                "id": 19,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Jenny",
+                "textEn": "Well, I guess I’m kind of happy, too.",
+                "textFa": "خیلی خوشحالم برات."
+        },
+        {
+                "id": 20,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Monica",
+                "textEn": "Uh huh. What’s his name?",
+                "textFa": "راستی، قرار نیست راب هم بیاد اینجا؟"
+        },
+        {
+                "id": 21,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Jenny",
+                "textEn": "Rob.",
+                "textFa": "قرار بود بعد از ناهار بیاد و به ما ملحق بشه."
+        },
+        {
+                "id": 22,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Monica",
+                "textEn": "You’ve been keeping him very quiet! Is it serious?",
+                "textFa": "عالیه، خیلی وقته ندیدمش."
+        },
+        {
+                "id": 23,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Jenny",
+                "textEn": "It’s kind of, you know...",
+                "textFa": "فکر کنم پیام داد... آره، نوشته تا ۵ دقیقه دیگه می‌رسه."
+        },
+        {
+                "id": 24,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Monica",
+                "textEn": "So it is!",
+                "textFa": "خیلی خوبه. قهوه‌ات رو تموم کردی؟ یکی دیگه سفارش بدیم؟"
+        },
+        {
+                "id": 25,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Jenny",
+                "textEn": "It’s still early. We haven’t been together for long. He only moved here a few months ago from London.",
+                "textFa": "نه من خوبم، همین کافیه."
+        },
+        {
+                "id": 26,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Monica",
+                "textEn": "What? He’s British? And you think you can persuade him to stay in New York? That won’t be easy!",
+                "textFa": "پس منتظر می‌مونیم تا بیاد."
+        },
+        {
+                "id": 27,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Jenny",
+                "textEn": "I think he likes it here. You know how guys are, you never know what they’re thinking.",
+                "textFa": "امیدوارم راه رو گم نکرده باشه!"
+        },
+        {
+                "id": 28,
+                "seconds": 110,
+                "timeDisplay": "1:50",
+                "speaker": "Monica",
+                "textEn": "When can I meet him?",
+                "textFa": "راب و گم‌شدن در منهتن؟ هیچ بعید نیست!"
+        },
+        {
+                "id": 29,
+                "seconds": 111,
+                "timeDisplay": "1:51",
+                "speaker": "Jenny",
+                "textEn": "Uh... that’s him now.",
+                "textFa": "اوه... فکر کنم خودشه، داره میاد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۱: جنی و مونیکا در کافه منهتن»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 1: Jenny Has Coffee with Monica', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 39,
-        "timestampDisplay": "0:39",
-        "explanationFa": "در این صحنه، تمرکز بر مشورت‌های دوستانه و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:57]. What key point is stated by Jenny?",
+        "timestampSeconds": 57,
+        "timestampDisplay": "0:57",
+        "explanationFa": "در ثانیه 0:57 ویدیو، Jenny به صراحت بیان می‌کند: «so we go into a bit more depth.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Jenny meets her close friend Monica for coffee, discussing her career dilemmas a...",
-            "textFa": "تمرکز اصلی بر جنی با دوست نزدیکش مونیکا در کافه قرار می‌گذارد و درباره دغدغه‌های شغل... است."
+            "textEn": "Jenny states: \"so we go into a bit more depth....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -8587,44 +13859,180 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "تفاوت رفتارهای فرهنگی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 2: Paul Arrives from the UK.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۲: ورود پل از انگلستان به نیویورک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 22,
-        "timeDisplay": "0:22",
-        "textEn": "Detailed conversation and communicative exchange regarding میزبانی از مهمان سرزده.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون میزبانی از مهمان سرزده.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 68,
-        "timeDisplay": "1:08",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 2: Paul Arrives from the UK.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۲: ورود پل از انگلستان به نیویورک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Paul",
+                "textEn": "Hey man!",
+                "textFa": "سلام رفیق!"
+        },
+        {
+                "id": 2,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "Paul!",
+                "textFa": "پاول!"
+        },
+        {
+                "id": 3,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Paul",
+                "textEn": "It’s great to see you, mate.",
+                "textFa": "دیدنت خیلی عالیه مرد!"
+        },
+        {
+                "id": 4,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "You too, Paul. It’s been years. You haven’t changed at all.",
+                "textFa": "باورم نمیشه بالاخره اومدی نیویورک! سفرت چطور بود؟"
+        },
+        {
+                "id": 5,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Paul",
+                "textEn": "Just got better looking!",
+                "textFa": "طولانی و خسته‌کننده بود، ولی بالاخره رسیدم. این شهر دیوانه‌کننده‌ست!"
+        },
+        {
+                "id": 6,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "How come you’re so late?",
+                "textFa": "آره، دقیقاً اولین حسیه که به آدم دست میده. اون کوله‌پشتی بزرگ چیه همراهت؟"
+        },
+        {
+                "id": 7,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Paul’s flight from LA was delayed. And then the traffic coming back was just awful.",
+                "textFa": "همه وسایلمه دیگه! قراره یک ماه کل آمریکا رو بگردم."
+        },
+        {
+                "id": 8,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Paul",
+                "textEn": "But that gave us time to get to know each other.",
+                "textFa": "فوق‌العاده‌ست. اول از همه باید وسایلت رو بذاریم آپارتمان من."
+        },
+        {
+                "id": 9,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Jenny",
+                "textEn": "Yeah. Paul told me all about his travels. Every detail.",
+                "textFa": "خیلی ممنون راب، واقعاً به یک دوش آب گرم و کمی استراحت نیاز دارم."
+        },
+        {
+                "id": 10,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Paul",
+                "textEn": "And look at this. Your own New York flat. How cool is that?",
+                "textFa": "آپارتمانم زیاد بزرگ نیست، ولی برای هر دوتامون جا هست."
+        },
+        {
+                "id": 11,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Rob",
+                "textEn": "It’s good. Really good. But – do you want something to eat? I got some things on my way home.",
+                "textFa": "همین که یک سقف بالای سرم باشه کافیه رفیق."
+        },
+        {
+                "id": 12,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Paul",
+                "textEn": "Stay in? It’s my first night in the Big Apple! Let’s go out and have a pizza or something.",
+                "textFa": "امشب برنامه‌ات چیه؟ خسته‌ای یا می‌خوای بریم بیرون؟"
+        },
+        {
+                "id": 13,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "I thought you’d be tired after the flight.",
+                "textFa": "معلومه که میریم بیرون! من نیومدم نیویورک که بخوابم!"
+        },
+        {
+                "id": 14,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Paul",
+                "textEn": "No way, man! I’m ready for action.",
+                "textFa": "باید جنی رو هم ببینی، اون خیلی مشتاقه باهات آشنا بشه."
+        },
+        {
+                "id": 15,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "Great! I’ll get my jacket…",
+                "textFa": "حتماً، دختر مورد علاقه راب رو باید از نزدیک ببینم!"
+        },
+        {
+                "id": 16,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Jenny",
+                "textEn": "Rob, I think I’ll go home if you don’t mind. I, uh, I’m exhausted.",
+                "textFa": "پس اول وسایلت رو بذار، بعد میریم یک پیتزای حسابی نیویورکی می‌خوریم."
+        },
+        {
+                "id": 17,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Oh, OK then.",
+                "textFa": "پیتزا دقیقاً همون چیزیه که الان می‌خوام."
+        },
+        {
+                "id": 18,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Paul",
+                "textEn": "So it’s a boys’ night out!",
+                "textFa": "پس راه بیفت بریم سمت آپارتمان."
+        },
+        {
+                "id": 19,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Just like the old days!",
+                "textFa": "بزن بریم!"
+        },
+        {
+                "id": 20,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Paul",
+                "textEn": "And after the pizza we can go on somewhere else. Rob, we’ve got a lot to talk about! 6B Video Listening A day with a personal stylist − Part 1 Narrator Sam Alexander is an actor. He lives in London. Today he’s going to visit a personal stylist, Elin Mai, at the Westfield Shopping Mall in Shepherd’s Bush. Sam I thought my wardrobe was getting quite boring and I dress up a lot for my job as an actor. Sometimes I don’t give any thought to my own wardrobe, so I was keen to sort of refresh things a bit and get a new opinion. Sam  Hi, Elin. Elin  Hello, Sam! Welcome! Sam Thank you very much. Nice to meet you. Elin Nice to meet you too. Welcome to the Fashion Lounge. Elin I think having your unique personal style is something that’s incredibly important to each and every individual. And everyone should ideally try and find their own personal style as well. Narrator Before this session, Sam has filled out a questionnaire with everything from his sizes to his dress sense. Elin  OK, tell me how today came about… Elin With every session, we sit down at the beginning and we have a chat about their questionnaire, so we go into a bit more depth. And then we would ask them more questions about their lifestyle as well. --- PAGE 13 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 13 of 24 Elin When you’re actually working, how many days a week are you actually at work? Sam Well, the thing about being an actor is that you don’t have any routine, so sometimes I’m in a play, in which case I work six days a week and I’d have a routine. But then that stops suddenly and then I might be between jobs, in which case I’m at home a lot or I might be doing filming, which means fewer days but very long hours. Elin Now the consultation usually lasts, you know, fifteen to twenty minutes, but the consultation actually continues throughout the session as well. Elin So those little questions about their lifestyle – and I find out things about what they like and what they dislike and about the shops that they’ve gone to in the past and about their relationship with clothes. Narrator After Sam and Elin have visited a few stores, they return to the Fashion Lounge and Elin divides the clothes into four outfits. Elin  Ready, Sam? Wow! Sam  Here we are. Number one. Elin OK! This looks fantastic. How do you feel? Sam I really like it. It is quite bold – the shirt – but yeah. Elin  How do the jeans fit? Sam Great. Jeans that stretch. They feel very comfy. Elin What I wanted to show you now as well is actually how useful this outfit’s going to be, so I want you to put this smart blazer on just to show you that you can elevate this outfit and make it look smart by putting a blue blazer on top. Yeah, really, really nice. Have a look at yourself here then as well. What do you think? Sam That’s very nice. Yeah, I really like it - very smart. Narrator Sam likes the second outfit too. Elin Let’s see this next one. Wow! Oh my goodness! Give me a twirl in this one as well. Fabulous. How do you feel? Sam Yeah really good. This is not something I would dare to go for normally, but I really, I really like it. I love it. Elin OK, fantastic, so what I really like about it as well is the fact that none of the colors are actually matching, but they all work in harmony with each other really nicely. Narrator Sam then tries on outfit 3. Elin Oh wow, another completely different outfit. Sam  I really like this one. Elin  You like this one? Sam Absolutely. It’s a very good idea, putting trainers with smarter trousers. I wouldn’t think to do that. Narrator And finally he tries on outfit 4. Elin  Wow! What another entrance! Sam So this is a staple – everyone should have one of these. Elin  Everyone should have a denim shirt. Sam  See I haven’t. Brilliant. Narrator But which outfit does Sam like best? Narrator Outfit 1…Outfit 2…Outfit 3…Outfit 4 Sam I think outfit two really, because it was quite bold. I felt very smart in it --- PAGE 14 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 14 of 24 and I wouldn’t have worn those kind of things. A day with a personal stylist − Part 2 Narrator So what are Elin’s golden rules? Elin  I would say my golden rules would be to look at you own wardrobe to begin with before even going shopping, because without knowing what you’ve got, you can’t go out and buy the right things. Elin  OK, fantastic! Elin  I think a lot of the mistakes that people make are, they’re not staying true to themselves when they actually go out shopping. So perhaps they’ve seen kind of a lot of different things in magazines and online. And sometimes that can be really confusing. I truly believe that it doesn’t matter how much money you’ve got you can look good. It’s about where you shop and how you put things together. Narrator Is there one item that Elin thinks everyone should have? Elin  I do think that everyone should have a good pair of jeans in their wardrobe that fits them perfectly, that makes them feel good about themselves. Elin  Did you enjoy today? Sam  I did. It was absolutely brilliant. It exceeded my expectations. It was really great fun. Narrator Although not everyone needs Elin’s help, for Sam the day with a personal stylist has clearly changed his wardrobe and his attitude to it. Elin  No problem. Sam  Bye. Elin  Bye! Review and Check Can you understand these people? 5&6 1 Philomena Interviewer Do you prefer doing sport or watching them? Philomena Probably doing it. I find watching it really boring. Interviewer What sport do you play? Philomena Uh, I don’t do a lot. I’d say I don’t mind tennis, swimming in variation, depends on the weather. Interviewer What sports do you like watching the most? Philomena If I had to watch one, I like the rhythmic gymnastics or the diving, like for example at the Games, when they’re on TV. Interviewer Why do you like them? Philomena I think because they’re kind of like a dance, it’s like a routine, it’s very graceful. It’s not as rough a sport. 2 Rachel Interviewer Do you know anyone who has gone out with someone they met online? Rachel  I know lots of people who've gone out with people they’ve met online. Interviewer How did it work out? Rachel  A couple of people are married, for some of them they’re still with the other person, and for a lot of them it didn’t work out. 3 Gina Interviewer Have you ever cheated on an exam? Gina I have definitely cheated on an exam. Interviewer How did you cheat? Gina I had friends with me or I would write it on a piece of paper or on my hand. --- PAGE 15 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 15 of 24 Interviewer Were you caught? Gina I have never gotten caught cheating on an exam. 4 Tyler Interviewer What’s your favorite movie of all time? Tyler My favorite movie of all time is John Wick. Interviewer How many times have you seen it? Tyler  I have seen it at least ten times. Interviewer Why do you like it so much? Tyler A lot of action. A lot of blood. Just good fights. 5 Miranda Interviewer Do you have a profile photo? Miranda Yes, I have a profile photo on my Facebook, and Instagram, and Twitters. Interviewer What is it? Miranda The photo, the profile photo on my Facebook page is of me and my husband in Las Vegas on our anniversary. Interviewer Why did you choose it? Miranda Um, my makeup looked good.",
+                "textFa": "و بعد از پیتزا می‌تونیم بریم یک جای باحال برای تفریح."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۲: ورود پل از انگلستان به نیویورک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 2: Paul Arrives from the UK', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 30,
-        "timestampDisplay": "0:30",
-        "explanationFa": "در این صحنه، تمرکز بر میزبانی از مهمان سرزده و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:45]. What key point is stated by Narrator?",
+        "timestampSeconds": 45,
+        "timestampDisplay": "0:45",
+        "explanationFa": "در ثانیه 0:45 ویدیو، Narrator به صراحت بیان می‌کند: «Jenny No problem, Rob. Rob Thanks so much, Jenny. You’re a real star.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob's old university friend Paul arrives unexpectedly from London to stay with h...",
-            "textFa": "تمرکز اصلی بر پل، دوست صمیمی دوران دانشگاه راب، بدون هماهنگی از لندن می‌رسد تا پیش ر... است."
+            "textEn": "Narrator states: \"Jenny No problem, Rob. Rob Thanks so much, Jenny. You’re a real s...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -8783,44 +14191,300 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "آداب معاشرت"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 3 · Part 3: Asking for Permission and Polite Requests.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۳ · بخش ۳: اجازه گرفتن و درخواست‌های مودبانه.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 34,
-        "timeDisplay": "0:34",
-        "textEn": "Detailed conversation and communicative exchange regarding ساختار Do you mind if I... + حال ساده.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون ساختار Do you mind if I... + حال ساده.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 102,
-        "timeDisplay": "1:42",
-        "textEn": "Concluding remarks and key language takeaway for Episode 3 · Part 3: Asking for Permission and Polite Requests.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۳ · بخش ۳: اجازه گرفتن و درخواست‌های مودبانه.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Do you mind if I join you?",
+                "textFa": "اجازه هست منم بهتون ملحق بشم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Monica",
+                "textEn": "Of course not. Come on, sit down.",
+                "textFa": "البته که نه، بفرما بشین راب."
+        },
+        {
+                "id": 3,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Rob",
+                "textEn": "Thank you.",
+                "textFa": "خیلی ممنون."
+        },
+        {
+                "id": 4,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Monica",
+                "textEn": "I have to leave in a minute anyway.",
+                "textFa": "سلام راب! چطوری؟"
+        },
+        {
+                "id": 5,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Rob",
+                "textEn": "Could I have a large latte, please? Waiter  Of course.",
+                "textFa": "سلام جنی. خوبم، ممنون. روز کاری چطور بود؟"
+        },
+        {
+                "id": 6,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Jenny",
+                "textEn": "Rob, this is Monica.",
+                "textFa": "حسابی شلوغ بود. راستی، راب، این مونیکاست."
+        },
+        {
+                "id": 7,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Monica",
+                "textEn": "Nice to meet you, Rob.",
+                "textFa": "سلام مونیکا، خوشبختم."
+        },
+        {
+                "id": 8,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Rob",
+                "textEn": "You too, Monica. You know, Jenny talks about you a lot. And I’ve seen college photos  of you two together. At Jenny’s parents’ house.",
+                "textFa": "منم از دیدنت خوشبختم راب."
+        },
+        {
+                "id": 9,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Jenny",
+                "textEn": "Of course you have. My dad’s photos. --- PAGE 11 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 11 of 24",
+                "textFa": "اشکالی نداره اگه من یک قهوه سفارش بدم؟"
+        },
+        {
+                "id": 10,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Rob",
+                "textEn": "You’ve hardly changed at all.",
+                "textFa": "نه اصلاً، حتماً سفارش بده."
+        },
+        {
+                "id": 11,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Monica",
+                "textEn": "What a nice man! I can see why you like him, Jenny. The perfect English gentleman. Waiter  Your latte.",
+                "textFa": "ببخشید، ممکنه برای من یک کاپوچینو بیارید؟"
+        },
+        {
+                "id": 12,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Rob",
+                "textEn": "Oh, thanks. Can you pass the sugar?",
+                "textFa": "حتماً آقا، الان براتون میارم."
+        },
+        {
+                "id": 13,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Jenny",
+                "textEn": "Sure.",
+                "textFa": "ممنونم."
+        },
+        {
+                "id": 14,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Monica",
+                "textEn": "Sorry guys, but I have to go.",
+                "textFa": "راب، می‌تونم یک لحظه گوشیت رو قرض بگیرم؟ شارژ گوشیم تموم شده و باید یک تماس سریع بگیرم."
+        },
+        {
+                "id": 15,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "You’re sure I haven’t interrupted anything?",
+                "textFa": "آره حتماً، بفرما."
+        },
+        {
+                "id": 16,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Monica",
+                "textEn": "Not at all. It’s just that I have to meet someone. But let’s get together very soon.",
+                "textFa": "خیلی لطف کردی، فقط دو دقیقه طول می‌کشه."
+        },
+        {
+                "id": 17,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Jenny",
+                "textEn": "We will!",
+                "textFa": "راحت باش، عجله‌ای نیست."
+        },
+        {
+                "id": 18,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Monica",
+                "textEn": "Bye, Rob. Nice meeting you.",
+                "textFa": "مونیکا، ممکنه بعد از این به من نشون بدی چطور با اون نرم‌افزار جدید کار می‌کنی؟"
+        },
+        {
+                "id": 19,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Rob",
+                "textEn": "Bye.",
+                "textFa": "البته جنی، خیلی ساده‌ست، فردا توی دفتر نشونت میدم."
+        },
+        {
+                "id": 20,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Jenny",
+                "textEn": "Bye. Talk soon.",
+                "textFa": "عالیه، خیلی ممنون."
+        },
+        {
+                "id": 21,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Rob",
+                "textEn": "She seems like a happy person.",
+                "textFa": "بفرمایید آقا، کاپوچینوی شما."
+        },
+        {
+                "id": 22,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Jenny",
+                "textEn": "She is, especially right now – she’s getting married.",
+                "textFa": "خیلی ممنون، دستتون درد نکنه."
+        },
+        {
+                "id": 23,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Rob",
+                "textEn": "That’s fantastic news!",
+                "textFa": "راب، ممکنه نمکدون رو بهم بدی؟"
+        },
+        {
+                "id": 24,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "Yeah, it is. I guess we’re at that age now. When most of our friends are settling down and getting married.",
+                "textFa": "بفرما، خدمت شما."
+        },
+        {
+                "id": 25,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Rob",
+                "textEn": "Yeah... Oh, speaking of friends, I want to ask you a favor. Is it OK if we change our plans a bit this week?",
+                "textFa": "ممنون."
+        },
+        {
+                "id": 26,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Jenny",
+                "textEn": "Uh... sure. What’s up?",
+                "textFa": "راستی راب، پاول ساعت چند می‌رسه نیویورک؟"
+        },
+        {
+                "id": 27,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Rob",
+                "textEn": "I’ve just had a call from an old friend of mine, Paul. I haven’t seen him since we were at university and he’s travelling around the States at the moment. Anyway, he’s arriving in New York this evening and ... I’ve invited him to stay for the week.",
+                "textFa": "فکر کنم پروازش ساعت ۴ می‌شینه. بعد از اون میرم فرودگاه دنبالش."
+        },
+        {
+                "id": 28,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Jenny",
+                "textEn": "Cool! It’ll be fun to meet one of your old friends! What’s he like?",
+                "textFa": "می‌خوای با ماشین من بری؟"
+        },
+        {
+                "id": 29,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Rob",
+                "textEn": "Oh, Paul’s a laugh. He used to be a bit wild, but that was a long time ago. He’s probably changed completely.",
+                "textFa": "واقعاً؟ اشکالی نداره برات؟"
+        },
+        {
+                "id": 30,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Jenny",
+                "textEn": "Well, I’m looking forward to meeting him.",
+                "textFa": "نه اصلاً، این‌طوری خیلی راحت‌تر می‌تونی کوله‌هاش رو بیاری."
+        },
+        {
+                "id": 31,
+                "seconds": 112,
+                "timeDisplay": "1:52",
+                "speaker": "Rob",
+                "textEn": "Just one other thing. Could you do me a big favor? I have to work late this evening, so...would you mind meeting him at the airport?",
+                "textFa": "خیلی لطف می‌کنی جنی، واقعاً نجاتم دادی."
+        },
+        {
+                "id": 32,
+                "seconds": 120,
+                "timeDisplay": "2:00",
+                "speaker": "Jenny",
+                "textEn": "Not at all. I’d like to meet him.",
+                "textFa": "کاری نکردم، سوییچ توی کیفمه."
+        },
+        {
+                "id": 33,
+                "seconds": 122,
+                "timeDisplay": "2:02",
+                "speaker": "Rob",
+                "textEn": "And do you think you could take him to my flat? I’ll give you the keys.",
+                "textFa": "خیلی ممنون. خب بچه‌ها، من دیگه باید کم‌کم راه بیفتم."
+        },
+        {
+                "id": 34,
+                "seconds": 127,
+                "timeDisplay": "2:07",
+                "speaker": "Jenny",
+                "textEn": "No problem, Rob.",
+                "textFa": "باشه راب، مواظب خودت باش."
+        },
+        {
+                "id": 35,
+                "seconds": 128,
+                "timeDisplay": "2:08",
+                "speaker": "Rob",
+                "textEn": "Thanks so much, Jenny. You’re a real star.",
+                "textFa": "شما هم همین‌طور، از دیدنت خوشحال شدم مونیکا!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۳ · بخش ۳: اجازه گرفتن و درخواست‌های مودبانه»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 3 · Part 3: Asking for Permission and Polite Requests', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 45,
-        "timestampDisplay": "0:45",
-        "explanationFa": "در این صحنه، تمرکز بر ساختار Do you mind if I... + حال ساده و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:07]. What key point is stated by Jenny?",
+        "timestampSeconds": 67,
+        "timestampDisplay": "1:07",
+        "explanationFa": "در ثانیه 1:07 ویدیو، Jenny به صراحت بیان می‌کند: «so we go into a bit more depth.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Essential communicative structures for asking permission (Do you mind if I...?) ...",
-            "textFa": "تمرکز اصلی بر ساختارهای مهم مکالمه برای اجازه گرفتن و طرح درخواست‌های محترمانه در مح... است."
+            "textEn": "Jenny states: \"so we go into a bit more depth....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -8979,44 +14643,196 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "برنامه‌ریزی روزانه"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 1: The Morning After the Big Night Out.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۱: صبح پس از شب‌نشینی پرماجرا.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 31,
-        "timeDisplay": "0:31",
-        "textEn": "Detailed conversation and communicative exchange regarding دیر بیدار شدن و عجله (Oversleeping).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیر بیدار شدن و عجله (Oversleeping).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 93,
-        "timeDisplay": "1:33",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 1: The Morning After the Big Night Out.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۱: صبح پس از شب‌نشینی پرماجرا.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Jenny",
+                "textEn": "Rob?",
+                "textFa": "راب؟"
+        },
+        {
+                "id": 2,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "Hi, Jenny.",
+                "textFa": "سلام جنی."
+        },
+        {
+                "id": 3,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Jenny",
+                "textEn": "Are you OK? Where are you anyway?",
+                "textFa": "حالت خوبه؟ اصلاً کجایی الان؟"
+        },
+        {
+                "id": 4,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "I’m at home. I’m feeling terrible. We got back really late last night.",
+                "textFa": "من... توی رختخوابم."
+        },
+        {
+                "id": 5,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Jenny",
+                "textEn": "Why doesn’t that surprise me? You know, you’re not a student anymore.",
+                "textFa": "توی رختخواب؟! ساعت ده صبحه! جلسه هفتگی با دان تا نیم ساعت دیگه شروع میشه!"
+        },
+        {
+                "id": 6,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "I know. There was a party after the gig –",
+                "textFa": "اوه خدای من، جدی میگی؟ ساعت زنگ زد ولی خاموشش کردم."
+        },
+        {
+                "id": 7,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Kerri",
+                "textEn": "invited us – and of course Paul said yes.",
+                "textFa": "دیشب با پاول چیکار کردید؟ صدات گرفته به نظر میاد."
+        },
+        {
+                "id": 8,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "And this morning’s meeting? In...ten minutes?",
+                "textFa": "رفتیم چند تا بار توی محله گرینویچ، بعد پاول اصرار کرد بریم کلاب شبانه..."
+        },
+        {
+                "id": 9,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Rob",
+                "textEn": "That’s why I’m calling. I’m not going to make it. I’m really sorry.",
+                "textFa": "و تا چه ساعتی بیدار بودید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "Rob! It’s a very important meeting! I’ll cover for you this time, but I won’t be able to do it again.",
+                "textFa": "فکر کنم ساعت ۴ صبح رسیدیم خونه."
+        },
+        {
+                "id": 11,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "It won’t happen again, I promise. Anyway, Paul’s leaving.",
+                "textFa": "راب! می‌دونی امروز چقدر روز مهمیه. دان می‌خواد گزارش پروژه رو تحویل بگیره."
+        },
+        {
+                "id": 12,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "He’s leaving?",
+                "textFa": "می‌دونم، واقعاً متأسفم جنی. سردرد شدیدی دارم ولی سریع آماده میشم."
+        },
+        {
+                "id": 13,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Rob",
+                "textEn": "That’s right. He’s off to Boston this afternoon.",
+                "textFa": "یک تاکسی بگیر و سریع خودت رو برسون، من سعی می‌کنم زمان بخرم برات."
+        },
+        {
+                "id": 14,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Jenny",
+                "textEn": "Maybe that’s a good thing. I mean, it’s not that I don’t like Paul, but...",
+                "textFa": "خیلی ممنون جنی، تو فرشته نجاتی."
+        },
+        {
+                "id": 15,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "I know, I know...",
+                "textFa": "فقط عجله کن راب!"
+        },
+        {
+                "id": 16,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Jenny",
+                "textEn": "I have to go. Talk to you later.",
+                "textFa": "پاول کجاست الان؟"
+        },
+        {
+                "id": 17,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Don",
+                "textEn": "Jenny, have you seen Rob? I wanted to have a word with him before the meeting and he isn’t even here.",
+                "textFa": "اون هنوز خواب هفت پادشاه رو می‌بینه روی کاناپه!"
+        },
+        {
+                "id": 18,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "I know. He just called to say he can’t make it.",
+                "textFa": "باورم نمیشه. کلید آپارتمان رو بهش ندی که گم بشه."
+        },
+        {
+                "id": 19,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Don",
+                "textEn": "He what?",
+                "textFa": "نه، حواسم هست. من ۱۰ دقیقه‌ای آماده میشم و حرکت می‌کنم."
+        },
+        {
+                "id": 20,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "I was with him last night. He wasn’t feeling very well. But it’s OK. He told me everything I need to know for the meeting.",
+                "textFa": "باشه، می‌بینمت در دفتر."
+        },
+        {
+                "id": 21,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Don",
+                "textEn": "Oh. OK then.",
+                "textFa": "خداحافظ جنی."
+        },
+        {
+                "id": 22,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Jenny",
+                "textEn": "You know Rob. He’s such a professional. 8B Video Listening How to complain − Part 1 Hello, and welcome to Ten-Minute Travel for all your travel tips, news, and reviews. Many of us travel a lot, on vacation or for work, and that often means staying in a hotel. So today we're looking at hotel problems, and what we should do when things go wrong. The hotel industry is a competitive one, and hotels really do want you to enjoy your stay, especially in this digital age, where guests can leave good or bad reviews instantly. But sometimes things go wrong. Let's start by looking at the top five complaints. Air-conditioning is at the top of the list, with nearly a quarter of all the complaints. At number 2, is wi-fi, with fourteen percent of people complaining that the hotel wi-fi is too slow or that they can't connect. Eleven percent of hotel guests have had problems with noise, either from the street outside or from neighboring rooms. And a similar number have complained about their room not being clean enough. And finally, in fifth place--service. Nine percent of --- PAGE 18 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 18 of 24 guests have suffered from slow or bad service, especially with hotel breakfasts or room service. So what should you do if you have one of these problems? How to complain − Part 2 Joanne So what should you do if you have one of these problems? What's the best way to complain? Let's look at three examples of how not to do it. Here's Phil, a hotel guest who's on a work trip. Maid  Oh, sorry, sir! I'll come back later. Phil No, it's fine, go ahead. It's so hot in here, I couldn't sleep. I can't get the air-conditioning to work. Can you see if you can fix it? Maid I'm sorry, sir, I don't really know about the air-conditioning. Phil Well, I'm afraid I don't know about it either. Maid  I'll tell reception later. Joanne So, what did Phil do wrong? The first rule of complaining is to complain to the right person. The cleaning staff can't fix Phil's air-conditioning and it isn't her job to get it fixed. Phil needs to go down and complain to reception--it's always better to complain in person, rather than just calling. So, let's take a look at how Phil should have complained. Receptionist Good morning, sir. Phil Good morning. I think there's a problem with the air-conditioning in my room -- Room 42. It's very hot and I can't get it cooler. Could you ask someone to take a look at it before this evening? Receptionist Of course, sir. I'll do it right away. Waiter Here you are, sir. Eggs, toast, and an espresso. Phil I think I asked for wheat toast. And a cappuccino, not an espresso. Waiter Wheat toast and a cappuccino? I'm very sorry, sir. The order must have gotten mixed up. Phil Never mind. I'm in a hurry. I'll have the espresso. Waiter And the toast? I can bring you some wheat toast in a few minutes. Phil OK then. Oh, it doesn't matter. White toast will be OK. Waiter  Thank you, sir. Joanne Here Phil complains to the right person, but there's no point complaining if you don't want somebody to do something about it. If you want to complain successfully, you need to know what your ideal solution is and make it clear. So, let's take a look at how Phil should have complained. Waiter Here are eggs, toast, and an espresso. Phil I think I asked for wheat toast. And a cappuccino, not an espresso. Waiter Wheat toast and a cappuccino? I'm very sorry, sir. The kitchen must have made a mistake. Phil If you could change them that would be great. And as quickly as you can, please. I don't have much time. Waiter  Of course, sir. I'll be right back. Receptionist Good morning, sir. Can I help you? Phil  Yes, I'd like to check out, please. --- PAGE 19 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 19 of 24 Receptionist Of course, sir. I hope you enjoyed your stay. Phil No, I didn't enjoy it at all. My room was noisy and the wi-fi was slow. It was impossible to get any work done. I certainly won't be recommending this hotel; you can be sure of that. Receptionist I'm very sorry to hear that, sir. Joanne Why complain about your room and the wi-fi when you're checking out? You should always complain as soon as you notice a problem. If you wait till later, the hotel might not have the chance to make the problem right. Above all, and this is probably the most important tip, never be rude or aggressive. If you complain politely, you're far more likely to be successful. A smile will always make people want to help you. So, let's take a look at how Phil should have complained. Receptionist Hello again, sir. Can I help you? Phil Yes, I've been trying to do some work in my room, and there's a lot of traffic noise from the street. Would it be possible to move to a different room, maybe at the back of the hotel? Receptionist I'll see what we have. Yes, we do have a room free…overlooking the garden. Phil That sounds perfect. I also noticed the wi-fi seems to be very slow. It's like being at home. Receptionist I'll get someone to look at that right away, sir. Here's your new room key. Just let me know if you're still having problems with the wi-fi in ten minutes. Phil  Thanks very much. Joanne Finally, remember that if you're staying in a good hotel, they'll always want the chance to make things right. But they can't help you if they don't know there's a problem, so you should always complain. And now you know how! Review and Check Can you understand these people? 7&8 1 Philomena Interviewer What was your favorite subject when you were in school? Philomena History, predominantly modern history. That’s the main reason, my history teacher is the reason why I became a teacher. She was really inspiring and she made the subject come alive. Interviewer Were there any subjects you hated? Philomena Maths, again due to bad teachers, and predominantly I just don’t have a mathematical brain, so I found it very difficult. 2 Adina Interviewer What kind of things do you often buy online? Adina  I buy online clothes, food to get delivered to home, um, and also a lot of beauty products as well. Interviewer Is there anything you would never buy online? Adina  I don’t think there is anymore, I don’t think there is anything anymore that I wouldn’t buy online. 3 Daniel Interviewer Have you ever had really bad --- PAGE 20 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 20 of 24 customer service? Daniel  Yes, I have had very bad customer service before. Interviewer What happened? Daniel  Um, I’ve had a waiter be very rude to me and sort of drop the plate on the table when they served the dish Interviewer What did you do? Daniel  I did not tip that waiter. 4 Julie Interviewer If you could change one thing about your home, what would it be? Julie I would probably change my home’s location. I really love my house, but it’s very isolated. We live in the forest and there’s no sidewalks. So, I’d probably put it in a slighty more urban setting. 5 Shrenik Interviewer What’s more important to you about a job, having a good salary or doing something you really enjoy? Shrenik Doing something you...you really enjoy, um, is something that I prioritize, when looking for a job or working a job. And also having a good work to life balance. Interviewer Why do you think that’s important? Shrenik  Because a job isn’t everything. You have to have time for yourself and your life and do things that you love and you’re passionate about...or else you’ll never grow.",
+                "textFa": "می‌شناسی که راب رو، اون واقعاً آدم حرفه‌ای و کاربلدیه فقط گاهی دوستاش حواسش رو پرت می‌کنن."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۱: صبح پس از شب‌نشینی پرماجرا»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 1: The Morning After the Big Night Out', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 41,
-        "timestampDisplay": "0:41",
-        "explanationFa": "در این صحنه، تمرکز بر دیر بیدار شدن و عجله (Oversleeping) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:02]. What key point is stated by Jenny?",
+        "timestampSeconds": 62,
+        "timestampDisplay": "1:02",
+        "explanationFa": "در ثانیه 1:02 ویدیو، Jenny به صراحت بیان می‌کند: «with fourteen percent of people complaining that the hotel wi-fi is too slow or that they can't connect.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob and Paul wake up late after staying out late listening to live jazz music in...",
-            "textFa": "تمرکز اصلی بر راب و پل پس از ماندن در کلوب جاز گرینویچ ویلیج نیویورک، دیر از خواب بی... است."
+            "textEn": "Jenny states: \"with fourteen percent of people complaining that the hotel wi-fi ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -9175,44 +14991,284 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "نقش دوستان واقعی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 2: Rob and Paul Catch Up on Life.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۲: گفتگوی راب و پل درباره سبک زندگی و اهداف.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 40,
-        "timeDisplay": "0:40",
-        "textEn": "Detailed conversation and communicative exchange regarding گفتگوهای عمیق درباره آینده.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون گفتگوهای عمیق درباره آینده.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 120,
-        "timeDisplay": "2:00",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 2: Rob and Paul Catch Up on Life.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۲: گفتگوی راب و پل درباره سبک زندگی و اهداف.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Paul",
+                "textEn": "Bad luck, mate.",
+                "textFa": "بدشانسی آوردی رفیق!"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Rob",
+                "textEn": "Nice shot.",
+                "textFa": "ضربه قشنگی بود پاول."
+        },
+        {
+                "id": 3,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Paul",
+                "textEn": "I’ve had years of practice.",
+                "textFa": "سالیان سال تمرین پشتشه پسر!"
+        },
+        {
+                "id": 4,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Rob",
+                "textEn": "You used to play pool a lot at university.",
+                "textFa": "تو دوران دانشگاه هم همیشه بیلیاردت خوب بود."
+        },
+        {
+                "id": 5,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "Paul",
+                "textEn": "You did, too.",
+                "textFa": "یادش بخیر، اون روزها چقدر خوش می‌گذشت. هیچ دغدغه‌ای جز بازی و خوش‌گذرونی نداشتیم."
+        },
+        {
+                "id": 6,
+                "seconds": 18,
+                "timeDisplay": "0:18",
+                "speaker": "Rob",
+                "textEn": "Yeah. I don’t really have the time anymore.",
+                "textFa": "آره، ولی زندگی تغییر می‌کنه دیگه."
+        },
+        {
+                "id": 7,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Paul",
+                "textEn": "Or anybody to play with.",
+                "textFa": "برای تو که خیلی تغییر کرده راب! کت و شلوار می‌پوشی، توی یک دفتر شیک کار می‌کنی، یک نامزد جدی داری..."
+        },
+        {
+                "id": 8,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Paul",
+                "textEn": "So what do you do in your free time?",
+                "textFa": "جنی نامزدم نیست پاول، ما فقط با هم وقت می‌گذرونیم."
+        },
+        {
+                "id": 9,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Rob",
+                "textEn": "The magazine keeps me pretty busy. And when I’m free, I’m usually with Jenny...",
+                "textFa": "ولی کاملاً واضحه که چقدر عاشقشی. تو قبلاً هیچ‌وقت حاضر نبودی لندن رو ترک کنی."
+        },
+        {
+                "id": 10,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Paul",
+                "textEn": "Tch. Your turn. Don’t blow it.",
+                "textFa": "جنی دختر فوق‌العاده‌ایه. اون باهوشه، مهربونه، و به من انگیزه میده."
+        },
+        {
+                "id": 11,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Rob",
+                "textEn": "What is it?",
+                "textFa": "شکی درش نیست، ولی دلت برای آزادی دوران مجردی‌مون تنگ نشده؟"
+        },
+        {
+                "id": 12,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Paul",
+                "textEn": "I was just thinking about you.",
+                "textFa": "گاهی دلتنگ بیخیالی اون روزها میشم، ولی من از زندگی الانم در نیویورک راضیم."
+        },
+        {
+                "id": 13,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Rob",
+                "textEn": "What about me?",
+                "textFa": "پس قصد نداری به انگلیس برگردی؟"
+        },
+        {
+                "id": 14,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Paul",
+                "textEn": "Do you remember the great times we had at uni? You had such crazy hair – last time I saw you it was blond!",
+                "textFa": "فعلاً نه. کارم توی مجله خوب پیش میره و از بودن کنار جنی لذت می‌برم."
+        },
+        {
+                "id": 15,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Rob",
+                "textEn": "Don’t remind me.",
+                "textFa": "امیدوارم خودت رو توی این چارچوب‌های کاری گم نکنی راب."
+        },
+        {
+                "id": 16,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Paul",
+                "textEn": "Those were the days. Look at you now with your girlfriend and your nine to five job. If you don’t come back to London soon, you’ll become an all-American boy!",
+                "textFa": "نگران نباش، من همون راب همیشگی‌ام."
+        },
+        {
+                "id": 17,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Rob",
+                "textEn": "Come off it.",
+                "textFa": "امشب چطوره بریم یک کلاب جاز توی هارلم؟"
+        },
+        {
+                "id": 18,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Paul",
+                "textEn": "It’s true! I mean, just look at that shirt.",
+                "textFa": "پاول، من فردا صبح زود باید سر کار باشم!"
+        },
+        {
+                "id": 19,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Rob",
+                "textEn": "What’s wrong with my shirt?",
+                "textFa": "بیخیال راب! فقط یک بار زندگی می‌کنی!"
+        },
+        {
+                "id": 20,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Paul",
+                "textEn": "You look like a businessman! Did you buy it?",
+                "textFa": "تو هیچ‌وقت عوض نمیشی، نه؟"
+        },
+        {
+                "id": 21,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Rob",
+                "textEn": "Me? No. It was... it was a present from Jenny.",
+                "textFa": "چرا باید عوض بشم وقتی زندگی این‌قدر لذت‌بخشه؟"
+        },
+        {
+                "id": 22,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Paul",
+                "textEn": "I thought so.",
+                "textFa": "نوبت توئه، ضربه‌ات رو بزن."
+        },
+        {
+                "id": 23,
+                "seconds": 100,
+                "timeDisplay": "1:40",
+                "speaker": "Rob",
+                "textEn": "What does that mean?",
+                "textFa": "تماشا کن و یاد بگیر!"
+        },
+        {
+                "id": 24,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Paul",
+                "textEn": "It’s Jenny’s taste.",
+                "textFa": "وای، شار سفید هم رفت توی پاکت!"
+        },
+        {
+                "id": 25,
+                "seconds": 105,
+                "timeDisplay": "1:45",
+                "speaker": "Rob",
+                "textEn": "Yes, and I really like it.",
+                "textFa": "خطا! این شانس من بود که برگردم به بازی."
+        },
+        {
+                "id": 26,
+                "seconds": 108,
+                "timeDisplay": "1:48",
+                "speaker": "Paul",
+                "textEn": "Jenny seems to know what she wants – and she probably gets it.",
+                "textFa": "شانس آوردی رفیق."
+        },
+        {
+                "id": 27,
+                "seconds": 115,
+                "timeDisplay": "1:55",
+                "speaker": "Rob",
+                "textEn": "That’s one of the things I like about her.",
+                "textFa": "به این میگن تمرکز و مهارت."
+        },
+        {
+                "id": 28,
+                "seconds": 119,
+                "timeDisplay": "1:59",
+                "speaker": "Rob",
+                "textEn": "Terrible.",
+                "textFa": "خیلی خب، زیاد به خودت مغرور نشو."
+        },
+        {
+                "id": 29,
+                "seconds": 121,
+                "timeDisplay": "2:01",
+                "speaker": "Paul",
+                "textEn": "You said it.",
+                "textFa": "پاول، تو هیچ برنامه‌ای برای کار پیدا کردن نداری؟"
+        },
+        {
+                "id": 30,
+                "seconds": 122,
+                "timeDisplay": "2:02",
+                "speaker": "Rob",
+                "textEn": "Sorry, Paul. We’ve got to go.",
+                "textFa": "من مسافرم راب! تا پول دارم سفر می‌کنم، بعدش خدا بزرگه."
+        },
+        {
+                "id": 31,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "Paul",
+                "textEn": "Oh, come on, Rob. We haven’t even finished the game.",
+                "textFa": "ای کاش منم می‌تونستم این‌قدر بی‌خیال باشم."
+        },
+        {
+                "id": 32,
+                "seconds": 131,
+                "timeDisplay": "2:11",
+                "speaker": "Rob",
+                "textEn": "Another time. Jenny’s waiting for us.",
+                "textFa": "می‌تونی، فقط باید بخوای!"
+        },
+        {
+                "id": 33,
+                "seconds": 135,
+                "timeDisplay": "2:15",
+                "speaker": "Paul",
+                "textEn": "Jenny. Right.",
+                "textFa": "جنی. درسته، اون مهم‌ترین اولویت منه."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۲: گفتگوی راب و پل درباره سبک زندگی و اهداف»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 2: Rob and Paul Catch Up on Life', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 53,
-        "timestampDisplay": "0:53",
-        "explanationFa": "در این صحنه، تمرکز بر گفتگوهای عمیق درباره آینده و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:19]. What key point is stated by Narrator?",
+        "timestampSeconds": 79,
+        "timestampDisplay": "1:19",
+        "explanationFa": "در ثانیه 1:19 ویدیو، Narrator به صراحت بیان می‌کند: «Paul Those were the days. Look at you now with your girlfriend and your nine to five job.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Paul questions Rob about settling down in America and whether he is compromising...",
-            "textFa": "تمرکز اصلی بر پل با راب درباره ماندگار شدن در آمریکا صحبت می‌کند و این که آیا او برا... است."
+            "textEn": "Narrator states: \"Paul Those were the days. Look at you now with your girlfriend an...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -9371,44 +15427,308 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "رد مودبانه"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 4 · Part 3: Making Suggestions and Plans.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۴ · بخش ۳: ارائه پیشنهادات و برنامه‌ریزی تفریحی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 51,
-        "timeDisplay": "0:51",
-        "textEn": "Detailed conversation and communicative exchange regarding فرمول‌های پیشنهاد دادن (Why don't we + مصدر).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون فرمول‌های پیشنهاد دادن (Why don't we + مصدر).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 155,
-        "timeDisplay": "2:35",
-        "textEn": "Concluding remarks and key language takeaway for Episode 4 · Part 3: Making Suggestions and Plans.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۴ · بخش ۳: ارائه پیشنهادات و برنامه‌ریزی تفریحی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Paul",
+                "textEn": "Oh, yeah. That was good. … So! What shall we do now?",
+                "textFa": "اوه آره، اون عالی بود... خب! حالا چیکار کنیم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "What do you want to do?",
+                "textFa": "تو دلت می‌خواد چیکار کنی؟"
+        },
+        {
+                "id": 3,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Paul",
+                "textEn": "Well... I haven’t been on a dance floor for weeks now. I’ve got to move my body. Let’s go dancing!",
+                "textFa": "نمی‌دونم. تو این شهر زندگی می‌کنی. پیشنهاد بده!"
+        },
+        {
+                "id": 4,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Jenny",
+                "textEn": "I’m going running in the morning. Why don’t you join me?",
+                "textFa": "خب، می‌تونیم بریم سنترال پارک قدم بزنیم."
+        },
+        {
+                "id": 5,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Paul",
+                "textEn": "No, thanks. I’m not very keen on --- PAGE 16 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 16 of 24 running. But I’ve read about this place called Deep Space, where they play great music. We could go there.",
+                "textFa": "قدم زدن در پارک؟ راب، ما توی نیویورکیم، نه حومه لندن!"
+        },
+        {
+                "id": 6,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Jenny",
+                "textEn": "A club?",
+                "textFa": "سنترال پارک فوق‌العاده‌ست پاول! می‌تونیم قایق‌سواری کنیم یا بریم باغ‌وحش."
+        },
+        {
+                "id": 7,
+                "seconds": 57,
+                "timeDisplay": "0:57",
+                "speaker": "Paul",
+                "textEn": "Don’t you feel like dancing?",
+                "textFa": "چیزی هیجان‌انگیزتر سراغ نداری؟"
+        },
+        {
+                "id": 8,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Jenny",
+                "textEn": "Not on a Wednesday night. What about going to the late show at MOMA?",
+                "textFa": "می‌تونیم بریم بالای ساختمان امپایر استیت یا راکفلر سنتر."
+        },
+        {
+                "id": 9,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Paul",
+                "textEn": "MOMA? What’s that?",
+                "textFa": "صف‌هاش خیلی طولانیه، نه؟"
+        },
+        {
+                "id": 10,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "MOMA. It’s the Museum of Modern Art. There’s a Kandinsky exhibition.",
+                "textFa": "آره، معمولاً شلوغه. خب نظرت درباره دیدن یک تئاتر در برادوی چیه؟"
+        },
+        {
+                "id": 11,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Paul",
+                "textEn": "That isn’t exactly my idea of a great night out.",
+                "textFa": "تئاتر؟ شوخی می‌کنی؟ من خوابم می‌بره!"
+        },
+        {
+                "id": 12,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "What about staying in and watching a movie on TV?",
+                "textFa": "پس چطوره بریم موزه هنر مدرن (MoMA)؟"
+        },
+        {
+                "id": 13,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Paul",
+                "textEn": "I’m in New York. I can watch TV anywhere.",
+                "textFa": "راب، تو من رو بعد از این همه سال نمی‌شناسی؟ موزه آخه؟!"
+        },
+        {
+                "id": 14,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Jenny",
+                "textEn": "Who’s that?",
+                "textFa": "خیلی خب خودت بگو چی می‌خوای!"
+        },
+        {
+                "id": 15,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Rob",
+                "textEn": "It’s a text from Kerri. She’s doing a gig at the Bowery Ballroom.",
+                "textFa": "بریم بولینگ! یا یک کلاب کمدی استندآپ!"
+        },
+        {
+                "id": 16,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Paul",
+                "textEn": "Kerri who?",
+                "textFa": "هی، ایده کلاب کمدی خیلی خوبه. یک کلاب معروف توی محله دهکده گرینویچ هست."
+        },
+        {
+                "id": 17,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Rob",
+                "textEn": "Kerri Johnson. I interviewed her last week.",
+                "textFa": "دقیقاً همینه! بلیت دارن برای امشب؟"
+        },
+        {
+                "id": 18,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Paul",
+                "textEn": "Kerri Johnson? I’ve seen her play live. She’s cool. Do you like her Jenny?",
+                "textFa": "می‌تونم آنلاین چک کنم... آره، برای سانس ساعت ۹ هنوز جا هست."
+        },
+        {
+                "id": 19,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Jenny",
+                "textEn": "I have to admit I’m not crazy about her music...or her for that matter.",
+                "textFa": "عالیه، رزروش کن!"
+        },
+        {
+                "id": 20,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Paul",
+                "textEn": "I didn’t think so. So shall we go there?",
+                "textFa": "رزرو شد. قبل از اون چی؟ گرسنه‌ات نیست؟"
+        },
+        {
+                "id": 21,
+                "seconds": 120,
+                "timeDisplay": "2:00",
+                "speaker": "Rob",
+                "textEn": "Why not? Actually Kerri’s staying very near here and she doesn’t know New York very well. We could meet her outside and go together.",
+                "textFa": "اتفاقاً خیلی گرسنه‌ام. یک همبرگر واقعی آمریکایی می‌خوام."
+        },
+        {
+                "id": 22,
+                "seconds": 133,
+                "timeDisplay": "2:13",
+                "speaker": "Paul",
+                "textEn": "That’s a great idea!",
+                "textFa": "یک همبرگرفروشی کلاسیک دو کوچه پایین‌تر هست که طعمش محشره."
+        },
+        {
+                "id": 23,
+                "seconds": 135,
+                "timeDisplay": "2:15",
+                "speaker": "Rob",
+                "textEn": "I’ll send her a text.",
+                "textFa": "دهنم آب افتاد، بریم همون‌جا."
+        },
+        {
+                "id": 24,
+                "seconds": 137,
+                "timeDisplay": "2:17",
+                "speaker": "Jenny",
+                "textEn": "I think I might have an early night. You two can go on your own.",
+                "textFa": "جنی هم شاید بعد از کار بتونه بیاد."
+        },
+        {
+                "id": 25,
+                "seconds": 143,
+                "timeDisplay": "2:23",
+                "speaker": "Rob",
+                "textEn": "Are you sure you don’t mind?",
+                "textFa": "حواست باشه، قرار بود امشب رفاقتی باشه راب!"
+        },
+        {
+                "id": 26,
+                "seconds": 146,
+                "timeDisplay": "2:26",
+                "speaker": "Paul",
+                "textEn": "Of course she doesn’t mind!",
+                "textFa": "جنی هم باحاله پاول، باهاش خوش می‌گذره."
+        },
+        {
+                "id": 27,
+                "seconds": 149,
+                "timeDisplay": "2:29",
+                "speaker": "Jenny",
+                "textEn": "No, Rob, it’s fine. I have another busy day tomorrow. You do too, actually.",
+                "textFa": "باشه، بهش بگو بیاد، ولی اون همبرگر اولویت اول منه!"
+        },
+        {
+                "id": 28,
+                "seconds": 156,
+                "timeDisplay": "2:36",
+                "speaker": "Rob",
+                "textEn": "I know, we’re meeting Don. I haven’t forgotten.",
+                "textFa": "بزن بریم تا میزش پر نشده."
+        },
+        {
+                "id": 29,
+                "seconds": 161,
+                "timeDisplay": "2:41",
+                "speaker": "Rob",
+                "textEn": "It’s Kerri. She’s on her way now.",
+                "textFa": "هوا هم خیلی خوبه، پیاده میریم؟"
+        },
+        {
+                "id": 30,
+                "seconds": 164,
+                "timeDisplay": "2:44",
+                "speaker": "Paul",
+                "textEn": "What are we waiting for? Let’s go!",
+                "textFa": "آره فقط پنج دقیقه راهه."
+        },
+        {
+                "id": 31,
+                "seconds": 168,
+                "timeDisplay": "2:48",
+                "speaker": "Monica",
+                "textEn": "Hello?",
+                "textFa": "نیویورک واقعاً عجب شهریه راب."
+        },
+        {
+                "id": 32,
+                "seconds": 169,
+                "timeDisplay": "2:49",
+                "speaker": "Jenny",
+                "textEn": "Hi Monica – it’s not too late to call is it?",
+                "textFa": "بهت که گفتم!"
+        },
+        {
+                "id": 33,
+                "seconds": 173,
+                "timeDisplay": "2:53",
+                "speaker": "Monica",
+                "textEn": "Jenny! No, why? Are you OK?",
+                "textFa": "شاید منم بعد از این سفر یک کاری اینجا پیدا کردم."
+        },
+        {
+                "id": 34,
+                "seconds": 176,
+                "timeDisplay": "2:56",
+                "speaker": "Jenny",
+                "textEn": "I need to talk.",
+                "textFa": "جدی میگی؟ اون‌وقت دیگه هر روز باید تحملت کنم!"
+        },
+        {
+                "id": 35,
+                "seconds": 177,
+                "timeDisplay": "2:57",
+                "speaker": "Monica",
+                "textEn": "Can you come over? Why don’t you take a cab?",
+                "textFa": "از خداتم باشه رفیق!"
+        },
+        {
+                "id": 36,
+                "seconds": 181,
+                "timeDisplay": "3:01",
+                "speaker": "Jenny",
+                "textEn": "OK, thanks.",
+                "textFa": "بیا از این سمت بریم، راه نزدیک‌تره."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۳: ارائه پیشنهادات و برنامه‌ریزی تفریحی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 4 · Part 3: Making Suggestions and Plans', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 69,
-        "timestampDisplay": "1:09",
-        "explanationFa": "در این صحنه، تمرکز بر فرمول‌های پیشنهاد دادن (Why don't we + مصدر) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:42]. What key point is stated by Jenny?",
+        "timestampSeconds": 102,
+        "timestampDisplay": "1:42",
+        "explanationFa": "در ثانیه 1:42 ویدیو، Jenny به صراحت بیان می‌کند: «So what should you do if you have one of these problems?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Practicing constructive ways to suggest plans and activities in English using 'W...",
-            "textFa": "تمرکز اصلی بر تمرین روش‌های کاربردی برای پیشنهاد فعالیت‌ها با استفاده از عبارات متنو... است."
+            "textEn": "Jenny states: \"So what should you do if you have one of these problems?...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -9567,44 +15887,236 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "رابطه عاطفی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 1: Jenny Gets an Unexpected Surprise.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۱: غافلگیری عاشقانه و غیرمنتظره جنی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 39,
-        "timeDisplay": "0:39",
-        "textEn": "Detailed conversation and communicative exchange regarding چشم‌اندازهای منهتن (Skyline).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون چشم‌اندازهای منهتن (Skyline).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 118,
-        "timeDisplay": "1:58",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 1: Jenny Gets an Unexpected Surprise.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۱: غافلگیری عاشقانه و غیرمنتظره جنی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Paul",
+                "textEn": "Yeah?",
+                "textFa": "بله؟"
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Hi there. It’s me. Should I come up?",
+                "textFa": "سلام! منم. بیام بالا؟"
+        },
+        {
+                "id": 3,
+                "seconds": 11,
+                "timeDisplay": "0:11",
+                "speaker": "Jenny",
+                "textEn": "Paul!",
+                "textFa": "پاول!"
+        },
+        {
+                "id": 4,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Paul",
+                "textEn": "That’s right.",
+                "textFa": "درسته، خودمم."
+        },
+        {
+                "id": 5,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "Hi.",
+                "textFa": "تو اینجا چیکار می‌کنی؟ با حوله حمام؟!"
+        },
+        {
+                "id": 6,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Paul",
+                "textEn": "Hi. Are you OK?",
+                "textFa": "داشتم دوش می‌گرفتم. راب رفته بیرون قهوه و نون بخره."
+        },
+        {
+                "id": 7,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Jenny",
+                "textEn": "Yes, fine thanks. It’s just that I erm...",
+                "textFa": "اوه... نمی‌دونستم تو هنوز اینجایی."
+        },
+        {
+                "id": 8,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Paul",
+                "textEn": "What?",
+                "textFa": "آره، پروازم به بوستون عقب افتاد برای همین چند روز دیگه پیش راب می‌مونم."
+        },
+        {
+                "id": 9,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Jenny",
+                "textEn": "I wasn’t expecting to see you.",
+                "textFa": "چند روز دیگه؟ ولی راب به من گفت تو پریروز رفتی!"
+        },
+        {
+                "id": 10,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Paul",
+                "textEn": "Really? Well, as you can see, I’m still here. It seems Rob just can’t live without me.",
+                "textFa": "واقعاً؟ شاید نمی‌خواسته نگرانت کنه. بفرما داخل، دم در نمون."
+        },
+        {
+                "id": 11,
+                "seconds": 37,
+                "timeDisplay": "0:37",
+                "speaker": "Paul",
+                "textEn": "Yeah, he’s going to miss me when I’m gone. But not for long. We’ll meet up again when he goes back to London.",
+                "textFa": "نه ممنون، من همین‌جا منتظر میشم."
+        },
+        {
+                "id": 12,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Jenny",
+                "textEn": "Goes back...?",
+                "textFa": "راحت باش جنی، غریبه نیستیم که! بیا یک چای انگلیسی بهت بدم."
+        },
+        {
+                "id": 13,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Paul",
+                "textEn": "Yeah, he told me last night he was planning to leave New York pretty soon.",
+                "textFa": "پاول، راب کِی برمی‌گرده؟ من باهاش کار مهمی دارم."
+        },
+        {
+                "id": 14,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Jenny",
+                "textEn": "He what?",
+                "textFa": "همین الاناست که پیداش بشه. رفته سوپرمارکت نبش خیابون."
+        },
+        {
+                "id": 15,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Rob",
+                "textEn": "Hi, Jenny. Do you want some breakfast? I’ve got bagels.",
+                "textFa": "آپارتمان حسابی بوی دود میده، شماها اینجا سیگار کشیدید؟"
+        },
+        {
+                "id": 16,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jenny",
+                "textEn": "No thank you, Rob. Why don’t you two enjoy them?",
+                "textFa": "اوه... شاید یکمی دیشب وقتی صحبت می‌کردیم."
+        },
+        {
+                "id": 17,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Rob",
+                "textEn": "What’s wrong?",
+                "textFa": "راب که سال‌ها پیش سیگار رو ترک کرده بود!"
+        },
+        {
+                "id": 18,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Paul",
+                "textEn": "No idea. I just said you were planning to leave New York soon and she...",
+                "textFa": "آدم وقتی با دوستای قدیمیش دور هم جمع میشه خاطرات گذشته زنده میشه دیگه."
+        },
+        {
+                "id": 19,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Rob",
+                "textEn": "You what? I didn’t say that!",
+                "textFa": "پاول، فکر کنم تو تأثیر خوبی روی راب نمی‌ذاری."
+        },
+        {
+                "id": 20,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Paul",
+                "textEn": "You didn’t have to. This New York life isn’t you, Rob, and you know it.",
+                "textFa": "بیخیال جنی، راب فقط داره یکم تفریح می‌کنه. زندگی که همش کار نیست."
+        },
+        {
+                "id": 21,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Rob",
+                "textEn": "No, I don’t! I like New York and Jenny’s here.",
+                "textFa": "برای راب کارش مهمه، آیندش مهمه."
+        },
+        {
+                "id": 22,
+                "seconds": 101,
+                "timeDisplay": "1:41",
+                "speaker": "Paul",
+                "textEn": "Oh come on! What’s the big deal? It’s not like you want to marry her.",
+                "textFa": "شاید هم دلش برای زندگی قدیمیش در لندن تنگ شده، تا حالا ازش پرسیدی؟"
+        },
+        {
+                "id": 23,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Rob",
+                "textEn": "Well...",
+                "textFa": "اون عاشق نیویورکه."
+        },
+        {
+                "id": 24,
+                "seconds": 110,
+                "timeDisplay": "1:50",
+                "speaker": "Paul",
+                "textEn": "What? You do?!",
+                "textFa": "مطمئنی؟ دیشب که به من چیز دیگه‌ای می‌گفت."
+        },
+        {
+                "id": 25,
+                "seconds": 112,
+                "timeDisplay": "1:52",
+                "speaker": "Rob",
+                "textEn": "Look Paul. I’m serious about New York and I’m serious about Jenny. And I want you to leave. Today.",
+                "textFa": "چی می‌گفت؟"
+        },
+        {
+                "id": 26,
+                "seconds": 123,
+                "timeDisplay": "2:03",
+                "speaker": "Paul",
+                "textEn": "You’re joking, mate.",
+                "textFa": "می‌گفت زندگی اینجا خیلی پرفشاره و دلتنگ بچه‌های لندنه."
+        },
+        {
+                "id": 27,
+                "seconds": 126,
+                "timeDisplay": "2:06",
+                "speaker": "Rob",
+                "textEn": "No, I’m not. I’ll even buy the ticket.",
+                "textFa": "من باید با راب صحبت کنم. همین الان."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۱: غافلگیری عاشقانه و غیرمنتظره جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 1: Jenny Gets an Unexpected Surprise', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 52,
-        "timestampDisplay": "0:52",
-        "explanationFa": "در این صحنه، تمرکز بر چشم‌اندازهای منهتن (Skyline) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:18]. What key point is stated by Jenny?",
+        "timestampSeconds": 78,
+        "timestampDisplay": "1:18",
+        "explanationFa": "در ثانیه 1:18 ویدیو، Jenny به صراحت بیان می‌کند: «Goes back...? Paul Yeah, he told me last night he was planning to leave New York pretty soon.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob arranges an intimate, romantic rooftop dinner overlooking the Manhattan skyl...",
-            "textFa": "تمرکز اصلی بر راب یک شام دو نفره بر فراز پشت‌بام با چشم‌انداز آسمان‌خراش‌های منهتن ت... است."
+            "textEn": "Jenny states: \"Goes back...? Paul Yeah, he told me last night he was planning to...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -9763,44 +16275,236 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمات عمیق زناشویی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 2: Rob Gets Serious About the Future.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۲: گفتگوی جدی راب درباره آینده مشترک.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 28,
-        "timeDisplay": "0:28",
-        "textEn": "Detailed conversation and communicative exchange regarding تعهدات بلندمدت (Commitment).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون تعهدات بلندمدت (Commitment).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 85,
-        "timeDisplay": "1:25",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 2: Rob Gets Serious About the Future.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۲: گفتگوی جدی راب درباره آینده مشترک.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "But what can I do, Jenny? What can I say to convince you I’m serious?",
+                "textFa": "اما من چیکار می‌تونم بکنم جنی؟ چی می‌تونم بگم تا بهت ثابت کنم که تصمیمم جدیه؟"
+        },
+        {
+                "id": 2,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jenny",
+                "textEn": "I don’t know, Rob.",
+                "textFa": "من واقعاً نمی‌دونم راب."
+        },
+        {
+                "id": 3,
+                "seconds": 15,
+                "timeDisplay": "0:15",
+                "speaker": "Rob",
+                "textEn": "Wait! What Paul said just isn’t true.",
+                "textFa": "صبر کن! اون حرف‌هایی که پاول زد اصلاً حقیقت نداشت."
+        },
+        {
+                "id": 4,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jenny",
+                "textEn": "It isn’t just what Paul said. It’s obvious you want to go back.",
+                "textFa": "موضوع فقط حرف‌های پاول نیست. کاملاً واضحه که دلت می‌خواد برگردی."
+        },
+        {
+                "id": 5,
+                "seconds": 25,
+                "timeDisplay": "0:25",
+                "speaker": "Rob",
+                "textEn": "Of course I miss London, but I love my life here. What proof do you want of my commitment to New York, to you, to everything!",
+                "textFa": "البته که دلم برای لندن تنگ میشه، ولی من عاشق زندگیم در اینجام. چه مدرکی برای تعهدم به نیویورک، به تو، و به همه‌چیز می‌خوای؟"
+        },
+        {
+                "id": 6,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Jenny",
+                "textEn": "I don’t know.",
+                "textFa": "نمی‌دونم راب."
+        },
+        {
+                "id": 7,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Rob",
+                "textEn": "There must be something I can do.",
+                "textFa": "حتماً یک کاری هست که بتونم انجام بدم."
+        },
+        {
+                "id": 8,
+                "seconds": 43,
+                "timeDisplay": "0:43",
+                "speaker": "Jenny",
+                "textEn": "Look, we’re going to see my parents later. I don’t want us to be late.",
+                "textFa": "ببین، ما قراره یک ساعت دیگه بریم خونه والدینم. نمی‌خوام دیر برسیم."
+        },
+        {
+                "id": 9,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Rob",
+                "textEn": "We won’t be late. And I won’t forget the --- PAGE 22 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 22 of 24 chocolates this time either.",
+                "textFa": "ما دیر نمی‌رسیم. و این بار شکلات‌ها رو هم فراموش نمی‌کنم."
+        },
+        {
+                "id": 10,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Jenny",
+                "textEn": "Well, that’s a start, I guess.",
+                "textFa": "خب، این حداقل یک شروع خوبه، فکر کنم."
+        },
+        {
+                "id": 11,
+                "seconds": 74,
+                "timeDisplay": "1:14",
+                "speaker": "Rob",
+                "textEn": "But Jenny – we need to talk about this.",
+                "textFa": "اما جنی – ما باید درباره این موضوع جدی صحبت کنیم."
+        },
+        {
+                "id": 12,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Jenny",
+                "textEn": "We don’t have time to discuss it now.",
+                "textFa": "الان وقت نداریم دربارش بحث کنیم."
+        },
+        {
+                "id": 13,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Rob",
+                "textEn": "Jenny!",
+                "textFa": "جنی!"
+        },
+        {
+                "id": 14,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Jenny",
+                "textEn": "What is it?",
+                "textFa": "چیه؟"
+        },
+        {
+                "id": 15,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Rob",
+                "textEn": "What if I proposed to you?",
+                "textFa": "چی میگی اگه ازت خواستگاری کنم؟"
+        },
+        {
+                "id": 16,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Jenny",
+                "textEn": "Proposed?",
+                "textFa": "خواستگاری؟!"
+        },
+        {
+                "id": 17,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Rob",
+                "textEn": "That’s right. Proposed.",
+                "textFa": "درسته. خواستگاری رسمی."
+        },
+        {
+                "id": 18,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Jenny",
+                "textEn": "Like, “Will you marry me?”",
+                "textFa": "مثلاً بگی: «با من ازدواج می‌کنی؟»"
+        },
+        {
+                "id": 19,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "Rob",
+                "textEn": "Exactly.",
+                "textFa": "دقیقاً."
+        },
+        {
+                "id": 20,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Jenny",
+                "textEn": "On one knee?",
+                "textFa": "روی یک زانو؟"
+        },
+        {
+                "id": 21,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Rob",
+                "textEn": "I can do that.",
+                "textFa": "می‌تونم اون کارم بکنم."
+        },
+        {
+                "id": 22,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Rob",
+                "textEn": "So what would you say?",
+                "textFa": "خب پس جوابت چی می‌بود؟"
+        },
+        {
+                "id": 23,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Jenny",
+                "textEn": "Rob, stop it. It’s embarrassing.",
+                "textFa": "راب، تمومش کن. خجالت‌آوره وسط خیابون!"
+        },
+        {
+                "id": 24,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Rob",
+                "textEn": "Tell me.",
+                "textFa": "بهم بگو جنی."
+        },
+        {
+                "id": 25,
+                "seconds": 103,
+                "timeDisplay": "1:43",
+                "speaker": "Jenny",
+                "textEn": "Are you for real?",
+                "textFa": "واقعاً جدی میگی؟ شوخی نمی‌کنی؟"
+        },
+        {
+                "id": 26,
+                "seconds": 105,
+                "timeDisplay": "1:45",
+                "speaker": "Rob",
+                "textEn": "Yes, I am actually. What about you?",
+                "textFa": "بله، کاملاً جدی میگم در واقع. تو چی؟"
+        },
+        {
+                "id": 27,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Jenny",
+                "textEn": "Yes! 10B Video Listening Que",
+                "textFa": "بله! جوابم مثبته!"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۲: گفتگوی جدی راب درباره آینده مشترک»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 2: Rob Gets Serious About the Future', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 38,
-        "timestampDisplay": "0:38",
-        "explanationFa": "در این صحنه، تمرکز بر تعهدات بلندمدت (Commitment) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:56]. What key point is stated by Jenny?",
+        "timestampSeconds": 56,
+        "timestampDisplay": "0:56",
+        "explanationFa": "در ثانیه 0:56 ویدیو، Jenny به صراحت بیان می‌کند: «Forget it. Rob Jenny, what are you worrying about?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Rob talks candidly with Jenny about his long-term commitments, sharing his wish ...",
-            "textFa": "تمرکز اصلی بر راب با جنی صمیمانه درباره تعهدات بلندمدت و آرزوی ساختن زندگی پایدار مش... است."
+            "textEn": "Jenny states: \"Forget it. Rob Jenny, what are you worrying about?...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -9959,44 +16663,220 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "مکالمات اداری و رسمی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 3: Indirect Questions for Polite Inquiries.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۳: سوالات غیرمستقیم و رسمی در زبان انگلیسی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 33,
-        "timeDisplay": "0:33",
-        "textEn": "Detailed conversation and communicative exchange regarding گرامر Indirect Questions.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون گرامر Indirect Questions.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 100,
-        "timeDisplay": "1:40",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 3: Indirect Questions for Polite Inquiries.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۳: سوالات غیرمستقیم و رسمی در زبان انگلیسی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Rob",
+                "textEn": "Hi, Jenny.",
+                "textFa": "سلام جنی."
+        },
+        {
+                "id": 2,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "Rob.",
+                "textFa": "راب."
+        },
+        {
+                "id": 3,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Rob",
+                "textEn": "Paul told me what he said to you and it’s not true. I’m not planning to leave New York.",
+                "textFa": "پاول بهم گفت که بهت چی گفته و اون حرف‌ها به هیچ وجه درست نبودن. من اصلاً قصد ندارم نیویورک رو ترک کنم."
+        },
+        {
+                "id": 4,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jenny",
+                "textEn": "Oh, really? Could you tell me why Paul is still --- PAGE 21 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 21 of 24 in your apartment?",
+                "textFa": "اوه واقعاً؟ ممکنه بهم بگی چرا پاول هنوز توی آپارتمانته؟"
+        },
+        {
+                "id": 5,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Rob",
+                "textEn": "Well, he couldn’t get a ticket to Boston.",
+                "textFa": "خب، نتونست بلیت بوستون گیر بیاره."
+        },
+        {
+                "id": 6,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Jenny",
+                "textEn": "But you told me he was going a few days ago. Or was that another lie?",
+                "textFa": "اما تو چند روز پیش بهم گفتی که رفته. یا اونم یک دروغ دیگه بود؟"
+        },
+        {
+                "id": 7,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Rob",
+                "textEn": "No, of course it wasn’t! He couldn’t get a ticket. The buses to Boston were all full.",
+                "textFa": "نه معلومه که دروغ نبود! نتونست بلیت پیدا کنه. اتوبوس‌های بوستون همه پر بودن."
+        },
+        {
+                "id": 8,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jenny",
+                "textEn": "So do you know if he’s got one now?",
+                "textFa": "پس می‌دونی آیا الان بلیت داره یا نه؟"
+        },
+        {
+                "id": 9,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Rob",
+                "textEn": "I bought it! He’s leaving this evening. But that isn’t really the issue here, is it? You have to believe me – I don’t want to leave New York!",
+                "textFa": "من براش خریدم! امشب حرکت می‌کنه. ولی اصل موضوع این نیست، هست؟ تو باید حرفم رو باور کنی – من نمی‌خوام نیویورک رو ترک کنم!"
+        },
+        {
+                "id": 10,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Jenny",
+                "textEn": "How can I believe you? I know you’re missing London because you said the same thing to Kerri at the restaurant. Look Rob, I’d like to know what you really want.",
+                "textFa": "چطور می‌تونم باورت کنم؟ من می‌دونم دلتنگ لندنی، چون توی رستوران به کری هم همون حرف رو زدی. ببین راب، من واقعاً می‌خوام بدونم تو چی از زندگی می‌خوای."
+        },
+        {
+                "id": 11,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Rob",
+                "textEn": "What do you mean?",
+                "textFa": "منظورت چیه؟"
+        },
+        {
+                "id": 12,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Jenny",
+                "textEn": "When you and Paul were together, it was like you were a different person.",
+                "textFa": "وقتی تو و پاول با هم بودید، انگار یک آدم کاملاً متفاوت شده بودی."
+        },
+        {
+                "id": 13,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Rob",
+                "textEn": "You know what Paul’s like. What was I meant to do? But that isn’t the kind of life I want anymore. I’m not like that.",
+                "textFa": "تو که می‌دونی پاول چه اخلاقی داره. من چاره دیگه‌ای داشتم؟ ولی اون سبک زندگی دیگه چیزی نیست که من بخوام. من دیگه اون‌طوری نیستم."
+        },
+        {
+                "id": 14,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jenny",
+                "textEn": "I know you’re not, but I wonder if you really want to be here. I wonder if...",
+                "textFa": "می‌دونم نیستی، اما در عجبم که آیا واقعاً می‌خوای اینجا پیش من بمونی یا نه. در عجبم که..."
+        },
+        {
+                "id": 15,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Rob",
+                "textEn": "Jenny, what is it?",
+                "textFa": "جنی، چیه؟ چی شده؟"
+        },
+        {
+                "id": 16,
+                "seconds": 86,
+                "timeDisplay": "1:26",
+                "speaker": "Jenny",
+                "textEn": "Forget it.",
+                "textFa": "فراموشش کن."
+        },
+        {
+                "id": 17,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Rob",
+                "textEn": "Jenny, what are you worrying about?",
+                "textFa": "جنی، نگران چی هستی؟"
+        },
+        {
+                "id": 18,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Jenny",
+                "textEn": "I don’t know if this is going to work out.",
+                "textFa": "نمی‌دونم آیا این رابطه قراره به جایی برسه یا نه."
+        },
+        {
+                "id": 19,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Rob",
+                "textEn": "You’re not serious.",
+                "textFa": "جدی که نمیگی!"
+        },
+        {
+                "id": 20,
+                "seconds": 94,
+                "timeDisplay": "1:34",
+                "speaker": "Jenny",
+                "textEn": "I just…I’m just not sure if we want the same things anymore.",
+                "textFa": "فقط... فقط مطمئن نیستم که آیا ما هنوز خواهان چیزهای یکسانی در زندگی هستیم یا نه."
+        },
+        {
+                "id": 21,
+                "seconds": 98,
+                "timeDisplay": "1:38",
+                "speaker": "Rob",
+                "textEn": "That’s crazy!",
+                "textFa": "این دیوانگیه جنی!"
+        },
+        {
+                "id": 22,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Don",
+                "textEn": "Jenny – oh, good morning, Rob.",
+                "textFa": "جنی – اوه، صبح بخیر راب."
+        },
+        {
+                "id": 23,
+                "seconds": 101,
+                "timeDisplay": "1:41",
+                "speaker": "Rob",
+                "textEn": "Don.",
+                "textFa": "صبح بخیر دان."
+        },
+        {
+                "id": 24,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Don",
+                "textEn": "I need a word. Can you tell me what you decided at the last meeting?",
+                "textFa": "باید یک کلمه باهات صحبت کنم جنی. می‌تونی بگی توی جلسه قبلی چه تصمیمی گرفتید؟"
+        },
+        {
+                "id": 25,
+                "seconds": 107,
+                "timeDisplay": "1:47",
+                "speaker": "Jenny",
+                "textEn": "Right away, Don. Rob was just leaving.",
+                "textFa": "همین الان میام دان. راب هم داشت می‌رفت."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۳: سوالات غیرمستقیم و رسمی در زبان انگلیسی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 3: Indirect Questions for Polite Inquiries', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 44,
-        "timestampDisplay": "0:44",
-        "explanationFa": "در این صحنه، تمرکز بر گرامر Indirect Questions و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:06]. What key point is stated by Jenny?",
+        "timestampSeconds": 66,
+        "timestampDisplay": "1:06",
+        "explanationFa": "در ثانیه 1:06 ویدیو، Jenny به صراحت بیان می‌کند: «Well, that’s a start, I guess. Rob But Jenny – we need to talk about this.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Learn the mechanics of indirect questions (Could you tell me where...?, Do you h...",
-            "textFa": "تمرکز اصلی بر آموزش ساختار گرامری سوالات غیرمستقیم برای بیان پرسش‌ها به شیوه‌ای بسیا... است."
+            "textEn": "Jenny states: \"Well, that’s a start, I guess. Rob But Jenny – we need to talk ab...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -10155,44 +17035,68 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "تسلط در مکالمه دوستانه"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Episode 5 · Part 4: Everyday Social English and Idiomatic Expressions.",
-        "textFa": "بخش اول صحنه آموزشی: اپیزود ۵ · بخش ۴: اصطلاحات اجتماعی روزمره و کنایه‌های محاوره‌ای.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 17,
-        "timeDisplay": "0:17",
-        "textEn": "Detailed conversation and communicative exchange regarding اصطلاحات روزمره (It's up to you, Never mind).",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون اصطلاحات روزمره (It's up to you, Never mind).",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 51,
-        "timeDisplay": "0:51",
-        "textEn": "Concluding remarks and key language takeaway for Episode 5 · Part 4: Everyday Social English and Idiomatic Expressions.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی اپیزود ۵ · بخش ۴: اصطلاحات اجتماعی روزمره و کنایه‌های محاوره‌ای.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Jenny",
+                "textEn": "It isn’t just what Paul said. It’s obvious you want to go back.",
+                "textFa": "موضوع فقط حرف‌های پاول نیست. کاملاً واضحه که دلت می‌خواد برگردی."
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Rob",
+                "textEn": "Of course I miss London, but I love my life here.",
+                "textFa": "البته که دلم برای لندن تنگ میشه، ولی من عاشق زندگیم در اینجام."
+        },
+        {
+                "id": 3,
+                "seconds": 17,
+                "timeDisplay": "0:17",
+                "speaker": "Rob",
+                "textEn": "And I won’t forget the chocolates this time either.",
+                "textFa": "و این بار شکلات‌ها رو هم فراموش نمی‌کنم."
+        },
+        {
+                "id": 4,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "Jenny",
+                "textEn": "Well, that’s a start, I guess.",
+                "textFa": "خب، این حداقل یک شروع خوبه، فکر کنم."
+        },
+        {
+                "id": 5,
+                "seconds": 24,
+                "timeDisplay": "0:24",
+                "speaker": "Jenny",
+                "textEn": "Rob, stop it. It’s embarrassing.",
+                "textFa": "راب، تمومش کن. خجالت‌آوره وسط خیابون!"
+        },
+        {
+                "id": 6,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Jenny",
+                "textEn": "Are you for real?",
+                "textFa": "واقعاً جدی میگی؟"
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۴: اصطلاحات اجتماعی روزمره و کنایه‌های محاوره‌ای»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Episode 5 · Part 4: Everyday Social English and Idiomatic Expressions', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 22,
-        "timestampDisplay": "0:22",
-        "explanationFa": "در این صحنه، تمرکز بر اصطلاحات روزمره (It's up to you, Never mind) و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:32]. What key point is stated by Jenny?",
+        "timestampSeconds": 32,
+        "timestampDisplay": "0:32",
+        "explanationFa": "در ثانیه 0:32 ویدیو، Jenny به صراحت بیان می‌کند: «Well, that’s a start, I guess. Rob But Jenny – we need to talk about this.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Master common informal phrases and idiomatic expressions used by native speakers...",
-            "textFa": "تمرکز اصلی بر اصطلاحات عامیانه و روان انگلیسی که بومی‌زبانان در گفتگوهای روزمره و می... است."
+            "textEn": "Jenny states: \"Well, that’s a start, I guess. Rob But Jenny – we need to talk ab...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -10351,44 +17255,140 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Candida Brady (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 43,
-        "timeDisplay": "0:43",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Candida Brady.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Candida Brady.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 131,
-        "timeDisplay": "2:11",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Candida Brady (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "What were you hoping to do by making the film Trashed?",
+                "textFa": "امیدوار بودید با ساختن فیلم مستند Trashed به چه هدفی برسید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "Candida Brady",
+                "textEn": "Well, I think, um, the role of the film, um, for me was to raise awareness, um, on the topic and get it into the press so that people could start having a…a meaningful conversation about waste, which, um, is not a particularly, um, attractive subject, let's say.",
+                "textFa": "خب، به نظرم نقش فیلم برای من این بود که درباره این موضوع آگاهی‌بخشی کنم و اون رو به رسانه‌ها بکشونم تا مردم بتونن گفتگوی معناداری رو درباره زباله شروع کنند، موضوعی که خب بگیم چندان جذاب و خوشایند نیست."
+        },
+        {
+                "id": 3,
+                "seconds": 26,
+                "timeDisplay": "0:26",
+                "speaker": "Interviewer",
+                "textEn": "How many countries did you film in?",
+                "textFa": "در چند کشور فیلم‌برداری کردید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Candida Brady",
+                "textEn": "We ended up actually filming in 11 countries, um, but the stories that I've chosen are universal, and obviously I spoke to… to people in communities, um, in more countries, um, than we actually filmed in.",
+                "textFa": "ما در نهایت در ۱۱ کشور فیلم‌برداری کردیم، اما داستان‌هایی که انتخاب کردم جهان‌شمول هستند، و طبیعتاً با مردمی در جوامع مختلف در کشورهای بیشتری نسبت به جاهایی که واقعاً فیلم‌برداری کردیم صحبت کردم."
+        },
+        {
+                "id": 5,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "Candida Brady",
+                "textEn": "Um, but their stories are certainly not isolated: they were repeated around the world, sadly, wherever you kind of want to pick, actually.",
+                "textFa": "اما داستان‌های اون‌ها مسلماً موارد تک‌افتاده نبودند: متأسفانه در سراسر جهان تکرار می‌شدند، هر جا رو که به دلخواه انتخاب کنید."
+        },
+        {
+                "id": 6,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Interviewer",
+                "textEn": "How did you persuade Jeremy Irons to get involved in the film?",
+                "textFa": "چطور جرمی آیرونز رو متقاعد کردید که در این فیلم مشارکت کنه؟"
+        },
+        {
+                "id": 7,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Candida Brady",
+                "textEn": "I had worked with Jeremy some years ago on a…on a different film, and I was generally aware that he doesn't like waste, either.",
+                "textFa": "من چند سال قبل با جرمی روی فیلم دیگری همکاری کرده بودم و به‌طور کلی می‌دونستم که اون هم از اسراف و زباله بیزاره."
+        },
+        {
+                "id": 8,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Candida Brady",
+                "textEn": "Um, he will, you know, wear his jumpers until they're worn out; he'll keep his cars until they're falling apart, you know; he'll repair everything - so he's always seen, you know, the value in reusing things.",
+                "textFa": "اون پلیورهاش رو تا وقتی کاملاً کهنه و مندرس بشن می‌پوشه؛ ماشین‌هاش رو تا وقتی دارن از هم می‌پاشن نگه می‌داره؛ همه‌چیز رو تعمیر می‌کنه - بنابراین همیشه ارزش استفاده دوباره از وسایل رو درک کرده."
+        },
+        {
+                "id": 9,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Candida Brady",
+                "textEn": "It's just something natural to him as well, so he just felt like a natural, um, first approach, and…and so I sent him the treatment and amazingly he…he loved it.",
+                "textFa": "این ویژگی براش کاملاً طبیعی بود، برای همین حس کردم رویکرد اولیه طبیعیه و خلاصه فیلم‌نامه رو براش فرستادم و به‌طرز شگفت‌انگیزی عاشقش شد."
+        },
+        {
+                "id": 10,
+                "seconds": 100,
+                "timeDisplay": "1:40",
+                "speaker": "Interviewer",
+                "textEn": "How did you get Vangelis to write the soundtrack?",
+                "textFa": "چطور وانجلیس رو قانع کردید که موسیقی متن فیلم رو بنویسه؟"
+        },
+        {
+                "id": 11,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Candida Brady",
+                "textEn": "Well, Jeremy and Vangelis have been friends for years, so, um, Jeremy sent him the rough cut of the film and Vangelis absolutely loved it.",
+                "textFa": "خب، جرمی و وانجلیس سال‌هاست با هم دوست هستند، بنابراین جرمی نسخه اولیه فیلم رو براش فرستاد و وانجلیس کاملاً عاشق فیلم شد."
+        },
+        {
+                "id": 12,
+                "seconds": 115,
+                "timeDisplay": "1:55",
+                "speaker": "Candida Brady",
+                "textEn": "He…he is also a committed environmentalist, so he's always been aware.",
+                "textFa": "اون خودش هم یک فعال محیط‌زیست متعهد هست، بنابراین همیشه آگاهی داشته."
+        },
+        {
+                "id": 13,
+                "seconds": 121,
+                "timeDisplay": "2:01",
+                "speaker": "Candida Brady",
+                "textEn": "Um, he was aware because he worked with, um, Cousteau - sort of various people, you know - he was aware of issues for the seas and so on, um, but generally, again, he was very shocked, um, by the film and really wanted to get involved, so…",
+                "textFa": "اون به این خاطر آگاه بود که با افرادی مثل کوستو و افراد مختلف همکاری داشت، از مسائل مربوط به دریاها و غیره باخبر بود، اما باز هم به‌طور کلی از فیلم بسیار شوکه شد و واقعاً می‌خواست مشارکت کنه..."
+        },
+        {
+                "id": 14,
+                "seconds": 140,
+                "timeDisplay": "2:20",
+                "speaker": "Interviewer",
+                "textEn": "What research did you do before you started making the film?",
+                "textFa": "قبل از شروع ساخت فیلم چه تحقیقاتی انجام دادید؟"
+        },
+        {
+                "id": 15,
+                "seconds": 145,
+                "timeDisplay": "2:25",
+                "speaker": "Candida Brady",
+                "textEn": "I spent about a year, um, talking to communities, talking to experts, um, you know, obviously reading an awful lot, um, and, um, just ingesting it all, because obviously, again, it's such an enormous topic to take on.",
+                "textFa": "حدود یک سال وقت صرف صحبت با جوامع محلی، گفتگو با کارشناسان، و مسلماً مطالعه بسیار زیاد و هضم همه این اطلاعات کردم، چون مشخصاً پرداختن به چنین موضوع عظیمی کار بسیار بزرگیه."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Candida Brady (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 58,
-        "timestampDisplay": "0:58",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Candida Brady و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:27]. What key point is stated by Candida Brady?",
+        "timestampSeconds": 87,
+        "timestampDisplay": "1:27",
+        "explanationFa": "در ثانیه 1:27 ویدیو، Candida Brady به صراحت بیان می‌کند: «He doesn’t like waste. 4 Vangelis is Jeremy’s friend. 6 She spent a year talking to people – communities and experts.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 1 of the in-depth interview with Candida Brady exploring Environmental Docu...",
-            "textFa": "تمرکز اصلی بر بخش 1 از مصاحبه تحلیلی با کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) ... است."
+            "textEn": "Candida Brady states: \"He doesn’t like waste. 4 Vangelis is Jeremy’s friend. 6 She spent...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -10547,44 +17547,164 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Candida Brady (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 47,
-        "timeDisplay": "0:47",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Candida Brady.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Candida Brady.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 141,
-        "timeDisplay": "2:21",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Candida Brady (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Trash isn't very attractive visually.",
+                "textFa": "زباله از لحاظ بصری چندان جذاب نیست."
+        },
+        {
+                "id": 2,
+                "seconds": 4,
+                "timeDisplay": "0:04",
+                "speaker": "Interviewer",
+                "textEn": "Was that a problem for you as a filmmaker?",
+                "textFa": "آیا این موضوع برای شما به‌عنوان یک فیلم‌ساز یک چالش بود؟"
+        },
+        {
+                "id": 3,
+                "seconds": 7,
+                "timeDisplay": "0:07",
+                "speaker": "Candida Brady",
+                "textEn": "Uh…yes and no, um, strangely enough.",
+                "textFa": "اوه... بله و خیر، در کمال شگفتی."
+        },
+        {
+                "id": 4,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Candida Brady",
+                "textEn": "Obviously, I had a wonderful, um, DOP - Director of Photography - so, um, he can pretty much make anything look beautiful, I think.",
+                "textFa": "مشخصاً من یک مدیر فیلم‌برداری فوق‌العاده داشتم، بنابراین اون تقریباً می‌تونه کاری کنه که هر چیزی زیبا به نظر برسه."
+        },
+        {
+                "id": 5,
+                "seconds": 20,
+                "timeDisplay": "0:20",
+                "speaker": "Candida Brady",
+                "textEn": "But, um, I wanted to choose - as…as I've said earlier, um, you know, I did a lot of research, and so sadly, these things were repeatable and… and in every country around the world - so I wanted to choose, um, beautiful places wherever possible, um, that had been ruined, unfortunately, by, um, man-made rubbish.",
+                "textFa": "اما می‌خواستم انتخاب کنم - همون‌طور که قبلاً گفتم، من تحقیقات زیادی کردم و متأسفانه این اتفاقات تکرارپذیر بودند و در همه کشورهای دنیا وجود داشتند - بنابراین می‌خواستم تا جای ممکن مکان‌های زیبایی رو انتخاب کنم که متأسفانه توسط زباله‌های دست‌ساز بشر تخریب شده بودند."
+        },
+        {
+                "id": 6,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Candida Brady",
+                "textEn": "So, um, the ancient port of Saida in Lebanon - um, the fact that, you know, you've got this huge mountain of waste which was formerly a flat sandy beach.",
+                "textFa": "مثلاً بندر باستانی صیدا در لبنان - این واقعیت که این کوه عظیم زباله وجود داره که قبلاً یک ساحل شنی صاف و مسطح بوده."
+        },
+        {
+                "id": 7,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Interviewer",
+                "textEn": "Documentaries about how we're destroying the planet can be very depressing.",
+                "textFa": "مستندهایی درباره نحوه نابودی سیاره زمین می‌تونن بسیار افسرده‌کننده باشند."
+        },
+        {
+                "id": 8,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "Interviewer",
+                "textEn": "Was that also a challenge for you?",
+                "textFa": "آیا این هم برای شما یک چالش بود؟"
+        },
+        {
+                "id": 9,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Candida Brady",
+                "textEn": "A huge challenge, yes.",
+                "textFa": "یک چالش بسیار بزرگ، بله."
+        },
+        {
+                "id": 10,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Candida Brady",
+                "textEn": "Um, I would have preferred to make a much more cheerful, um, documentary than, um, I think Trashed is.",
+                "textFa": "من ترجیح می‌دادم مستندی بسیار شادتر و امیدوارکننده‌تر از چیزی که فکر می‌کنم Trashed هست بسازم."
+        },
+        {
+                "id": 11,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Candida Brady",
+                "textEn": "I think it has got hope, um, I think 'cause we were very much aware that we wanted to offer solutions at the end of it, but you are…um, the subject is not a cheerful subject.",
+                "textFa": "فکر می‌کنم امید داره، چون ما کاملاً آگاه بودیم که می‌خواستیم در انتهای فیلم راه‌حل‌هایی ارائه بدیم، اما خود موضوع اصلاً موضوع شادی‌بخشی نیست."
+        },
+        {
+                "id": 12,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Candida Brady",
+                "textEn": "Um, I could have gone further, I think, with it, but I didn't want to because actually, you know, you could sort of end up feeling that you just want to go and shoot yourself, which is not what I wanted.",
+                "textFa": "فکر می‌کنم می‌تونستم باهاش پیش‌تر هم برم، اما نخواستم چون واقعاً آدم ممکنه در نهایت حس کنه فقط دلش می‌خواد بره خودش رو بکشه، که چیزی نبود که من می‌خواستم."
+        },
+        {
+                "id": 13,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Candida Brady",
+                "textEn": "I wanted to feel that, you know, people feel that they can make a difference to this topic.",
+                "textFa": "می‌خواستم مردم حس کنند که می‌تونن تفاوتی در این موضوع ایجاد کنند."
+        },
+        {
+                "id": 14,
+                "seconds": 111,
+                "timeDisplay": "1:51",
+                "speaker": "Interviewer",
+                "textEn": "In the film, you focus on air pollution, land pollution, and water pollution - which do you think is the most worrying?",
+                "textFa": "در فیلم، شما روی آلودگی هوا، آلودگی زمین و آلودگی آب تمرکز می‌کنید - به نظر شما کدوم‌یک نگران‌کننده‌تره؟"
+        },
+        {
+                "id": 15,
+                "seconds": 121,
+                "timeDisplay": "2:01",
+                "speaker": "Candida Brady",
+                "textEn": "Um, if I had to pick one, um, which I would be reluctant to do… uh…it would be water, without a doubt.",
+                "textFa": "اگر قرار بود یکی رو انتخاب کنم، که البته تمایلی به این کار ندارم... بدون شک آب خواهد بود."
+        },
+        {
+                "id": 16,
+                "seconds": 129,
+                "timeDisplay": "2:09",
+                "speaker": "Candida Brady",
+                "textEn": "I think that what has happened to all of the oceans - and beaches, actually, as well - um, in the world in the last thirty years is astonishing in the scale and the speed.",
+                "textFa": "فکر می‌کنم اتفاقی که برای همه اقیانوس‌ها - و در واقع سواحل جهان - در سی سال گذشته افتاده، از نظر مقیاس و سرعت حیرت‌آوره."
+        },
+        {
+                "id": 17,
+                "seconds": 142,
+                "timeDisplay": "2:22",
+                "speaker": "Candida Brady",
+                "textEn": "Um, you know, there are certain places in the world, that, you know…that you have to dig down on a beach, um, over a foot before you'll find sand that doesn't have plastic in it.",
+                "textFa": "می‌دونید، جاهایی در دنیا هست که در ساحل باید بیش از یک پا زمین رو حفر کنید تا به شنی برسید که پلاستیک داخلش نباشه."
+        },
+        {
+                "id": 18,
+                "seconds": 156,
+                "timeDisplay": "2:36",
+                "speaker": "Candida Brady",
+                "textEn": "Unfortunately, what's happened with the way that soft plastic degrades in water is that, um, the pieces become so fragmented that they're the same size as the zooplankton, um, which obviously is in the food chain.",
+                "textFa": "متأسفانه اتفاقی که با تجزیه پلاستیک‌های نرم در آب رخ می‌ده اینه که این قطعات اون‌قدر خرد و تکه‌تکه می‌شن که هم‌اندازه زئوپلانکتون‌ها می‌شن، که مشخصاً در زنجیره غذایی قرار دارند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Candida Brady (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 62,
-        "timestampDisplay": "1:02",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Candida Brady و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:34]. What key point is stated by Interviewer?",
+        "timestampSeconds": 94,
+        "timestampDisplay": "1:34",
+        "explanationFa": "در ثانیه 1:34 ویدیو، Interviewer به صراحت بیان می‌کند: «S I think, um, businesses particularly − perhaps in the food and beverages industry − are already starting.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 2 of the in-depth interview with Candida Brady exploring Environmental Docu...",
-            "textFa": "تمرکز اصلی بر بخش 2 از مصاحبه تحلیلی با کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) ... است."
+            "textEn": "Interviewer states: \"S I think, um, businesses particularly − perhaps in the food and ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -10743,44 +17863,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Candida Brady (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 37,
-        "timeDisplay": "0:37",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Candida Brady.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Candida Brady.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 111,
-        "timeDisplay": "1:51",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Candida Brady (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Who do you think is mostly to blame for the problems we have with waste?",
+                "textFa": "به نظر شما چه کسی بیشترین تقصیر رو در مشکلات مربوط به زباله داره؟"
+        },
+        {
+                "id": 2,
+                "seconds": 6,
+                "timeDisplay": "0:06",
+                "speaker": "Candida Brady",
+                "textEn": "I tried very hard, actually, not to blame one person or things, um, in the film - actually quite deliberately, because I think in a way, um, it lets us off the hook, um, and it also, um…I think we all need to work on the…the problem together because it's too complicated to blame one person or one thing or one act, or, um, you know, I think it's…it's multi-faceted, unfortunately.",
+                "textFa": "من واقعاً سعی کردم در فیلم عمداً یک شخص یا یک چیز خاص رو مقصر ندونم، چون فکر می‌کنم به‌نوعی ما رو از زیر بار مسئولیت رها می‌کنه، و معتقدم همه ما باید با هم روی این مشکل کار کنیم چون این موضوع پیچیده‌تر از اونه که بشه یک نفر یا یک چیز رو سرزنش کرد، متأسفانه چندوجهی هست."
+        },
+        {
+                "id": 3,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Interviewer",
+                "textEn": "Your film finishes on an optimistic note with the example of San Francisco's zero-waste policy.",
+                "textFa": "فیلم شما با یک نکته خوش‌بینانه و با مثالی از سیاست بدون‌پسماند سان‌فرانسیسکو به پایان می‌رسه."
+        },
+        {
+                "id": 4,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Interviewer",
+                "textEn": "Do you think that that is achievable on a large scale?",
+                "textFa": "آیا فکر می‌کنید این کار در مقیاس بزرگ قابل دست‌یابیه؟"
+        },
+        {
+                "id": 5,
+                "seconds": 46,
+                "timeDisplay": "0:46",
+                "speaker": "Candida Brady",
+                "textEn": "I do, and I think zero-waste policies can be achieved.",
+                "textFa": "من این‌طور فکر می‌کنم، و واقعاً معتقدم سیاست‌های بدون پسماند می‌تونن به اجرا دربیان."
+        },
+        {
+                "id": 6,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Candida Brady",
+                "textEn": "When you go and stay in San Francisco in your hotel room, you'll have four different bins, and you'll have signs on the wall of what goes into each bin, so it's very, very easy to…to recycle, and I think that's a huge part of what we should be doing.",
+                "textFa": "وقتی در سان‌فرانسیسکو به اتاق هتلتون می‌رید، چهار سطل زباله مختلف می‌بینید و روی دیوار علامت‌هایی هست که نشون می‌ده چه چیزی در کدوم سطل ریخته بشه، بنابراین بازیافت بسیار بسیار آسونه، و فکر می‌کنم این بخش بزرگی از کاریه که ما باید انجام بدیم."
+        },
+        {
+                "id": 7,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Interviewer",
+                "textEn": "Has the film changed your own habits regarding waste?",
+                "textFa": "آیا این فیلم عادات شخصی شما رو در رابطه با زباله تغییر داد؟"
+        },
+        {
+                "id": 8,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Candida Brady",
+                "textEn": "I don't think the film has particularly changed my own habits dramatically, um, because I've always been thrifty, um, by nature because, um, I was lucky enough to spend a lot of time with my grandparents when I was growing up, and the post-war, sort of, philosophy of never wasting anything, it just, you know, it was instilled in me.",
+                "textFa": "فکر نمی‌کنم فیلم به شکل چشمگیری عادات من رو تغییر داده باشه، چون من ذاتاً همیشه مقتصد و صرفه‌جو بودم، چون این شانس رو داشتم که در کودکی زمان زیادی رو با پدربزرگ و مادربزرگم بگذرونم و اون فلسفه پس از جنگ درباره هرگز هدر ندادن وسایل در من نهادینه شده بود."
+        },
+        {
+                "id": 9,
+                "seconds": 99,
+                "timeDisplay": "1:39",
+                "speaker": "Candida Brady",
+                "textEn": "I ride the same bicycle that I've had since I was fifteen years old, and over the years obviously had it repaired and repaired, but",
+                "textFa": "من هنوز همون دوچرخه‌ای رو سوار می‌شم که از پانزده سالگی داشتم، و در طول سال‌ها مسلماً بارها و بارها تعمیرش کردم، اما..."
+        },
+        {
+                "id": 10,
+                "seconds": 109,
+                "timeDisplay": "1:49",
+                "speaker": "Candida Brady",
+                "textEn": "I take tremendous pride in the fact that I've always, um, ridden the same bike, and, you know, I have lovely memories of it, so - and with it - so, um, I think…I think we need a slight change of mindset to make things cool the longer you have them, in a way, than actually this perpetual thing of buying new things for the sake of it.",
+                "textFa": "به این واقعیت افتخار می‌کنم که همیشه همون دوچرخه رو سوار شدم و خاطرات قشنگی ازش دارم؛ فکر می‌کنم نیاز به تغییر طرز تفکر داریم تا هرچه بیشتر چیزی رو نگه می‌داریم باحال‌تر به نظر برسه، تا اینکه مدام وسایل جدید بخریم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Candida Brady (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 49,
-        "timestampDisplay": "0:49",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Candida Brady و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:15]. What key point is stated by Interviewer?",
+        "timestampSeconds": 75,
+        "timestampDisplay": "1:15",
+        "explanationFa": "در ثانیه 1:15 ویدیو، Interviewer به صراحت بیان می‌کند: «ride the same bicycle that I’ve had since I was fifteen years old,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 3 of the in-depth interview with Candida Brady exploring Environmental Docu...",
-            "textFa": "تمرکز اصلی بر بخش 3 از مصاحبه تحلیلی با کاندیدا بردی (کارگردان مستندهای محیط‌زیستی) ... است."
+            "textEn": "Interviewer states: \"ride the same bicycle that I’ve had since I was fifteen years old...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -10939,44 +18115,164 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · George Tannenbaum (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 44,
-        "timeDisplay": "0:44",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با George Tannenbaum.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با George Tannenbaum.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 132,
-        "timeDisplay": "2:12",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · George Tannenbaum (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "What first drew you to advertising as a career choice?",
+                "textFa": "چه چیزی اولین بار شما رو به سمت تبلیغات به‌عنوان یک انتخاب شغلی جذب کرد؟"
+        },
+        {
+                "id": 2,
+                "seconds": 4,
+                "timeDisplay": "0:04",
+                "speaker": "George Tannenbaum",
+                "textEn": "What drew me to advertising was, actually, in a weird way, I had no choice - I'm a third-generation advertising guy.",
+                "textFa": "چیزی که من رو به تبلیغات جذب کرد در واقع، به شکل عجیبی، این بود که چاره دیگه‌ای نداشتم - من نسل سوم یک خانواده اهل تبلیغات هستم."
+        },
+        {
+                "id": 3,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "George Tannenbaum",
+                "textEn": "My father's brother - my uncle - who was fifteen years older than he, was in advertising, believe it or not, in the 1940s in Philadelphia.",
+                "textFa": "برادر پدرم - یعنی عموی من - که ۱۵ سال از اون بزرگ‌تر بود، باورتون بشه یا نه در دهه ۱۹۴۰ در فیلادلفیا در کار تبلیغات بود."
+        },
+        {
+                "id": 4,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "George Tannenbaum",
+                "textEn": "My father kind of took the baton from him, was in advertising, and",
+                "textFa": "پدرم به‌نوعی مشعل رو از اون تحویل گرفت و وارد کار تبلیغات شد، و..."
+        },
+        {
+                "id": 5,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "George Tannenbaum",
+                "textEn": "I grew up with it, so I've been making a living in the business since 1984.",
+                "textFa": "من هم باهاش بزرگ شدم، بنابراین از سال ۱۹۸۴ دارم از این حرفه امرار معاش می‌کنم."
+        },
+        {
+                "id": 6,
+                "seconds": 32,
+                "timeDisplay": "0:32",
+                "speaker": "George Tannenbaum",
+                "textEn": "It's a long time. It's thirty years.",
+                "textFa": "مدت‌زمان زیادیه؛ ۳۰ سال است."
+        },
+        {
+                "id": 7,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Interviewer",
+                "textEn": "Do you still remember any commercials from your childhood?",
+                "textFa": "آیا هنوز تبلیغاتی از دوران کودکی‌تون به یاد دارید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "George Tannenbaum",
+                "textEn": "So I remember a lot of commercials. You know, growing up in an advertising household as we did, TV was more of a social event in those days - there wasn't a TV in every room, like, the family would gather to watch television.",
+                "textFa": "من تبلیغات زیادی رو یادمه؛ با بزرگ شدن در یک خانواده اهل تبلیغات، تلویزیون در اون روزها بیشتر یک رویداد اجتماعی بود و خانواده برای تماشای تلویزیون دور هم جمع می‌شدند."
+        },
+        {
+                "id": 9,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "George Tannenbaum",
+                "textEn": "And, we were told not to talk, you know, during the commercials. We could talk during the shows, so I grew up kind of watching commercials.",
+                "textFa": "به ما گفته می‌شد که موقع پخش تبلیغات حرف نزنیم ولی موقع خود برنامه‌ها می‌تونستیم حرف بزنیم، برای همین با تماشای تبلیغات بزرگ شدم."
+        },
+        {
+                "id": 10,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "George Tannenbaum",
+                "textEn": "I remember a lot of commercials. I bet you most people of my…uh… generation would remember a lot of…I feel kind of guilty saying this, because they are usually decried as not very creative, but you remember a lot of jingles.",
+                "textFa": "بیشتر هم‌نسل‌های من شعرهای ریتمیک تبلیغاتی (جینگل‌ها) زیادی رو به یاد دارند، هرچند معمولاً به نداشتن خلاقیت متهم می‌شن."
+        },
+        {
+                "id": 11,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Interviewer",
+                "textEn": "What do you think makes jingles memorable?",
+                "textFa": "به نظر شما چه چیزی باعث می‌شه جینگل‌ها در یاد بمونند؟"
+        },
+        {
+                "id": 12,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "George Tannenbaum",
+                "textEn": "Among purists in the field, jingles are, you know, laughed at - scoffed at - but God, you remember them. You know they - what do they call them, ear worms?",
+                "textFa": "اصالت‌گرایان این رشته شاید به جینگل‌ها بخندند، اما خدا می‌دونه چقدر در یاد می‌مونند، مثل کرم گوش وارد سرت می‌شن."
+        },
+        {
+                "id": 13,
+                "seconds": 93,
+                "timeDisplay": "1:33",
+                "speaker": "George Tannenbaum",
+                "textEn": "They get into your head and you can't get them out sometimes, and you add that to, you know, almost everyday exposure six times a day - it's going to get in there.",
+                "textFa": "وارد ذهنت می‌شن و وقتی روزی ۶ بار در معرضش باشی، کاملاً در ذهنت جا می‌افته."
+        },
+        {
+                "id": 14,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "George Tannenbaum",
+                "textEn": "I can do…There was a, you know, there was a… there was a…I could sing one for you; there was a kids' hot cereal, a hot cereal for children called H.O. Farina, and it was an animated cartoon.",
+                "textFa": "یکیش رو می‌تونم براتون بخونم؛ تبلیغ سرلاک و غلات صبحانه گرم برای بچه‌ها به نام H.O. Farina بود که کارتون انیمیشنی داشت."
+        },
+        {
+                "id": 15,
+                "seconds": 117,
+                "timeDisplay": "1:57",
+                "speaker": "George Tannenbaum",
+                "textEn": "It was very rudimentary. If you saw it today, you wouldn't believe it was a national-broadcast cartoon.",
+                "textFa": "بسیار ابتدایی بود و اگه امروزه می‌دیدید باورتون نمی‌شد کارتون پخش سراسری باشه."
+        },
+        {
+                "id": 16,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "George Tannenbaum",
+                "textEn": "And it was a little story of Willie and Wilhelmina, and Willie trips on a rock and he goes, \"Every day I trip over that rock, Wilhelmina. \" And she says, \"Move it, Willie. \" And he says, \"Can't, too big. \"",
+                "textFa": "داستان ویلی و ویلهلمینا بود که ویلی پاش به سنگ گیر می‌کنه و دختره می‌گه جابه‌جاش کن و اون می‌گه نمی‌تونم خیلی بزرگه."
+        },
+        {
+                "id": 17,
+                "seconds": 139,
+                "timeDisplay": "2:19",
+                "speaker": "George Tannenbaum",
+                "textEn": "And I bet you I'm getting this word for word if you could find it. And she says, \"I will. \" And he says, \"Huh, you're a girl. \" And she picks it up and then the jingle comes up and it goes \"Strong Wilhelmina eats her Farina. \"",
+                "textFa": "و دختره سنگ رو برمی‌داره و بعد شعر می‌آد که: ویلهلمینای قوی فاریناش رو می‌خوره."
+        },
+        {
+                "id": 18,
+                "seconds": 155,
+                "timeDisplay": "2:35",
+                "speaker": "George Tannenbaum",
+                "textEn": "Like I said, I probably heard that five hundred times, maybe more, when I was growing up, because it was…it was every weekend for about eight years.",
+                "textFa": "احتمالاً ۵۰۰ بار یا بیشتر در کودکی این رو شنیدم، چون حدود ۸ سال هر آخر هفته پخش می‌شد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · George Tannenbaum (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 59,
-        "timestampDisplay": "0:59",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با George Tannenbaum و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:29]. What key point is stated by George Tannenbaum?",
+        "timestampSeconds": 89,
+        "timestampDisplay": "1:29",
+        "explanationFa": "در ثانیه 1:29 ویدیو، George Tannenbaum به صراحت بیان می‌کند: «I can do…There was a, you know, there was a… there was a…I could sing one for you;».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 1 of the in-depth interview with George Tannenbaum exploring Advertising Ps...",
-            "textFa": "تمرکز اصلی بر بخش 1 از مصاحبه تحلیلی با جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) درب... است."
+            "textEn": "George Tannenbaum states: \"I can do…There was a, you know, there was a… there was a…I could ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -11135,44 +18431,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · George Tannenbaum (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 42,
-        "timeDisplay": "0:42",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با George Tannenbaum.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با George Tannenbaum.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 126,
-        "timeDisplay": "2:06",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · George Tannenbaum (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "What elements of a commercial are the most important?",
+                "textFa": "کدام عناصر یک پیام بازرگانی مهم‌ترین هستند؟"
+        },
+        {
+                "id": 2,
+                "seconds": 5,
+                "timeDisplay": "0:05",
+                "speaker": "George Tannenbaum",
+                "textEn": "To me, a commercial basically is built in three parts. If you think of it as a pyramid, the top part of the pyramid I would say is impact.",
+                "textFa": "به نظر من یک آگهی بازرگانی از سه بخش تشکیل شده و رأس هرم آن اثرگذاری و جلب توجه است."
+        },
+        {
+                "id": 3,
+                "seconds": 16,
+                "timeDisplay": "0:16",
+                "speaker": "George Tannenbaum",
+                "textEn": "I have to intrude upon your life because you are probably working on your computer while you're watching TV or you're doing something, and when I'm talking about a TV commercial, it's the same for a web ad or an app. So, you have to get impact, you have to intrude, you have to kind of knock on the door.",
+                "textFa": "تبلیغ باید وارد زندگی شما بشه و در بزنه، چون شما احتمالاً سرگرم کار دیگری هستید."
+        },
+        {
+                "id": 4,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "George Tannenbaum",
+                "textEn": "The second thing is communication - what do you want the person to know? And…and that needs to be clear and precise.",
+                "textFa": "عنصر دوم، پیام‌رسانی است: می‌خواهید مخاطب چه چیزی بداند؟ و این باید شفاف و دقیق باشد."
+        },
+        {
+                "id": 5,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "George Tannenbaum",
+                "textEn": "And the third thing is the hardest: it's persuasion, because ultimately, you're running a commercial to get people to do something, so it's that amalgamation.",
+                "textFa": "و سومی که سخت‌ترین است، ترغیب و متقاعدسازی است؛ هدف نهایی این است که مخاطب اقدامی انجام دهد."
+        },
+        {
+                "id": 6,
+                "seconds": 62,
+                "timeDisplay": "1:02",
+                "speaker": "George Tannenbaum",
+                "textEn": "Another way of talking about it - and this is old school - but there's an acronym, that probably comes from Mad Men era, that is called AIDA - you know, like the opera: Attention, Interest, Desire, Action.",
+                "textFa": "یک مدل کلاسیک هم مخفف AIDA است: توجه، علاقه، اشتیاق، و اقدام."
+        },
+        {
+                "id": 7,
+                "seconds": 78,
+                "timeDisplay": "1:18",
+                "speaker": "Interviewer",
+                "textEn": "How do you feel about using celebrities to sell things?",
+                "textFa": "نظرتان درباره استفاده از افراد مشهور در تبلیغات چیست؟"
+        },
+        {
+                "id": 8,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "George Tannenbaum",
+                "textEn": "Sometimes it's a shortcut to intrusion, because people pay attention to celebrities. Hopefully, it's a celebrity that has some bearing on the brand.",
+                "textFa": "گاهی استفاده از سلبریتی میان‌بری برای جلب توجه است و امیدوارانه سلبریتی با برند تناسب داشته باشد."
+        },
+        {
+                "id": 9,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "George Tannenbaum",
+                "textEn": "I don't think if I was working on a depilatory, I'd want to use Tommy Lee Jones, but, um, that would just be gross. But, you know, if you find the right person, they can have special meaning, and we do live in a celebrity culture.",
+                "textFa": "مثلاً برای کرم موبر از تامی لی جونز استفاده نمی‌کنید چون چندش‌آور است! ولی فرد مناسب می‌تواند معنای خاصی بیافریند."
+        },
+        {
+                "id": 10,
+                "seconds": 113,
+                "timeDisplay": "1:53",
+                "speaker": "George Tannenbaum",
+                "textEn": "So, if you go back to that pyramid I drew, it's a way of getting impact. I'm not a giant fan of it, but sometimes you do things you're not a giant fan of.",
+                "textFa": "این راهی برای رسیدن به اثرگذاری در آن هرم است؛ شخصاً طرفدارش نیستم اما گاهی لازم است."
+        },
+        {
+                "id": 11,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "Interviewer",
+                "textEn": "On your website you say I can make people laugh. How important is humor in advertising?",
+                "textFa": "در وب‌سایتتان نوشته‌اید من می‌توانم مردم را بخندانم؛ شوخ‌طبعی چقدر در تبلیغات اهمیت دارد؟"
+        },
+        {
+                "id": 12,
+                "seconds": 132,
+                "timeDisplay": "2:12",
+                "speaker": "George Tannenbaum",
+                "textEn": "I tend not to be funny in TV commercials - partly because I am a cerebral guy, and I wind up using that more than humor, but I think humor is incredibly important in the business, and a lot of the commercials that really resonate with people are funny.",
+                "textFa": "من خودم بیشتر فکری هستم تا شوخ، اما طنز در تبلیغات فوق‌العاده مؤثر است و آگهی‌هایی که در ذهن مردم ماندگار می‌شوند اغلب خنده‌دارند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · George Tannenbaum (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 56,
-        "timestampDisplay": "0:56",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با George Tannenbaum و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:24]. What key point is stated by Interviewer?",
+        "timestampSeconds": 84,
+        "timestampDisplay": "1:24",
+        "explanationFa": "در ثانیه 1:24 ویدیو، Interviewer به صراحت بیان می‌کند: «Sy …but you know them and you can recognize them, which is kind of the point of advertisements. J It is.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 2 of the in-depth interview with George Tannenbaum exploring Advertising Ps...",
-            "textFa": "تمرکز اصلی بر بخش 2 از مصاحبه تحلیلی با جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) درب... است."
+            "textEn": "Interviewer states: \"Sy …but you know them and you can recognize them, which is kind o...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -11331,44 +18699,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · George Tannenbaum (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 52,
-        "timeDisplay": "0:52",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با George Tannenbaum.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با George Tannenbaum.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 156,
-        "timeDisplay": "2:36",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · George Tannenbaum (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "With all the technology, viral advertising, etc., do you think billboards and TV commercials have had their day?",
+                "textFa": "با فناوری‌های نو و تبلیغات ویروسی، آیا دوران بیلبوردها و آگهی‌های تلویزیونی سر آمده؟"
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "George Tannenbaum",
+                "textEn": "Have billboards and TV commercials had their day? You know what, I don't think so.",
+                "textFa": "دورانشان تمام شده؟ اصلاً این‌طور فکر نمی‌کنم."
+        },
+        {
+                "id": 3,
+                "seconds": 21,
+                "timeDisplay": "0:21",
+                "speaker": "George Tannenbaum",
+                "textEn": "I mean, I can tell you empirically and rationally that 75 percent of all media dollars is spent on broadcast, and I know it's like current to say, \"I never watch TV, \" but people do. The fact is, TV viewership is at an all-time high.",
+                "textFa": "۷۵ درصد بودجه رسانه‌ای هنوز صرف پخش تلویزیونی می‌شود و تماشای تلویزیون در بالاترین سطح تاریخ خود است."
+        },
+        {
+                "id": 4,
+                "seconds": 45,
+                "timeDisplay": "0:45",
+                "speaker": "George Tannenbaum",
+                "textEn": "So I don't think TV is dead and I don't think billboards will be dead as long as the highways are crowded, because you've got a captive audience. And until we can pixelize ourselves and beam ourselves to work, I think there will be billboards.",
+                "textFa": "تا زمانی که بزرگراه‌ها شلوغند، بیلبوردها اثرگذار خواهند بود چون رانندگان مخاطب ناگزیر هستند."
+        },
+        {
+                "id": 5,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Interviewer",
+                "textEn": "As a consumer, and obviously as an advertiser, does advertising influence the decisions you make?",
+                "textFa": "به‌عنوان مصرف‌کننده و تبلیغات‌چی، آیا تبلیغات روی تصمیمات خودتان اثر می‌گذارد؟"
+        },
+        {
+                "id": 6,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "George Tannenbaum",
+                "textEn": "Yeah, you know, I'm very susceptible to advertising. I think 'cause I tend to notice it. I think I am very sensitive to stuff that isn't true. But when I see something that's well-crafted and appeals to both my head and my heart, I register those things.",
+                "textFa": "بله، من خیلی تحت تأثیر قرار می‌گیرم چون به آن توجه می‌کنم؛ به ادعاهای دروغین حساسم اما کار خوش‌ساخت در قلب و ذهنم می‌نشیند."
+        },
+        {
+                "id": 7,
+                "seconds": 106,
+                "timeDisplay": "1:46",
+                "speaker": "Interviewer",
+                "textEn": "Is there an existing advertising campaign you wish you'd come up with, and why do you think it is so effective?",
+                "textFa": "کمپینی هست که آرزو می‌کردید شما خلق کرده بودید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 117,
+                "timeDisplay": "1:57",
+                "speaker": "George Tannenbaum",
+                "textEn": "Um, I think the stuff that is being done for Nike, just in general for thirty years, has been exemplary. They tapped into a mindset, and they made everyone feel like they were athletic, and they became the gold standard.",
+                "textFa": "کارهای ۳۰ ساله نایک نمونه بارز است؛ آن‌ها احساس ورزشکار بودن را به همه القا کردند و تبدیل به معیار طلایی شدند."
+        },
+        {
+                "id": 9,
+                "seconds": 140,
+                "timeDisplay": "2:20",
+                "speaker": "George Tannenbaum",
+                "textEn": "Same thing with Apple, though people are just stressed in the industry about the latest direction Apple has been taking, which seems less sincere.",
+                "textFa": "اپل هم همین‌طور بود، هرچند رویکردهای اخیرش کمتر صمیمانه به نظر می‌رسد."
+        },
+        {
+                "id": 10,
+                "seconds": 155,
+                "timeDisplay": "2:35",
+                "speaker": "Interviewer",
+                "textEn": "Why do you think the Apple campaign is so effective?",
+                "textFa": "چرا کمپین اپل این‌قدر مؤثر است؟"
+        },
+        {
+                "id": 11,
+                "seconds": 161,
+                "timeDisplay": "2:41",
+                "speaker": "George Tannenbaum",
+                "textEn": "Apple looked at an industry and said, \"Here's what's wrong with the industry, and everything that that industry does, we're going to do differently. \" While the industry talked about megahertz and megabytes of RAM, Apple just said, \"It works. \"",
+                "textFa": "اپل گفت هر کاری این صنعت می‌کند ما متفاوتش را انجام می‌دهیم؛ وقتی بقیه از مگاهرتز و رم می‌گفتند، اپل فقط گفت: این دستگاه کار می‌کند و تو را خلاق می‌سازد."
+        },
+        {
+                "id": 12,
+                "seconds": 186,
+                "timeDisplay": "3:06",
+                "speaker": "George Tannenbaum",
+                "textEn": "And they simplified, and they were compelling, and they never lied, yeah.",
+                "textFa": "آن‌ها پیام را ساده و جذاب کردند و هیچ‌گاه دروغ نگفتند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · George Tannenbaum (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 69,
-        "timestampDisplay": "1:09",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با George Tannenbaum و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:43]. What key point is stated by George Tannenbaum?",
+        "timestampSeconds": 103,
+        "timestampDisplay": "1:43",
+        "explanationFa": "در ثانیه 1:43 ویدیو، George Tannenbaum به صراحت بیان می‌کند: «and they rarely hit a false note.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 3 of the in-depth interview with George Tannenbaum exploring Advertising Ps...",
-            "textFa": "تمرکز اصلی بر بخش 3 از مصاحبه تحلیلی با جرج تاننبام (مدیر ارشد خلاقیت و تبلیغات) درب... است."
+            "textEn": "George Tannenbaum states: \"and they rarely hit a false note....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -11527,44 +18967,108 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Jeff Neil (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 43,
-        "timeDisplay": "0:43",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Jeff Neil.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Jeff Neil.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 131,
-        "timeDisplay": "2:11",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Jeff Neil (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Jeff Neil",
+                "textEn": "My name is Jeff Neil. I'm a career coach, and I help people discover the right career for them and actually go get that job.",
+                "textFa": "نام من جف نیل است. من مربی شغلی هستم و به افراد کمک می‌کنم شغل مناسبشان را پیدا کنند و عملاً به آن برسند."
+        },
+        {
+                "id": 2,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "How important is the résumé when you're applying for a job?",
+                "textFa": "رزومه کاری هنگام درخواست یک شغل چقدر اهمیت دارد؟"
+        },
+        {
+                "id": 3,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "Jeff Neil",
+                "textEn": "The résumé is really important because it represents you. It's often the first presentation of your skills and abilities to an employer before they actually have a chance to talk with you.",
+                "textFa": "رزومه بسیار مهم است زیرا نماینده شماست و اولین معرفی مهارت‌هایتان پیش از مصاحبه حضوری است."
+        },
+        {
+                "id": 4,
+                "seconds": 38,
+                "timeDisplay": "0:38",
+                "speaker": "Interviewer",
+                "textEn": "What are some mistakes that people make with their résumés?",
+                "textFa": "اشتباهات رایج افراد در نوشتن رزومه چیست؟"
+        },
+        {
+                "id": 5,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Jeff Neil",
+                "textEn": "Some of the biggest mistakes that I've seen that people make on their résumé is they include everything. As an employer, I don't care what you did 20 or 30 years ago. My recommendation is that they only go back about 15 years.",
+                "textFa": "بزرگ‌ترین اشتباه آوردن تمام سوابق است؛ سوابق ۲۰ یا ۳۰ سال پیش اهمیتی برای کارفرما ندارد و توصیه من برگشتن به حداکثر ۱۵ سال قبل است."
+        },
+        {
+                "id": 6,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "Interviewer",
+                "textEn": "Are there any other mistakes?",
+                "textFa": "آیا اشتباهات دیگری هم وجود دارد؟"
+        },
+        {
+                "id": 7,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Jeff Neil",
+                "textEn": "Another completely unforgivable mistake is grammatical errors, bad punctuation, and spelling errors. When I see a résumé that has more than one error, it's done. Word processing has spell check, there's just no reason to have something misspelled.",
+                "textFa": "اشتباه نابخشودنی دیگر خطاهای نگارشی و املایی است؛ با وجود تصحیح خودکار در رایانه‌ها، هیچ توجیهی برای غلط املایی وجود ندارد."
+        },
+        {
+                "id": 8,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Interviewer",
+                "textEn": "How important is a candidate's social media presence?",
+                "textFa": "حضور فرد در شبکه‌های اجتماعی چقدر اهمیت دارد؟"
+        },
+        {
+                "id": 9,
+                "seconds": 100,
+                "timeDisplay": "1:40",
+                "speaker": "Jeff Neil",
+                "textEn": "In today's world, almost all hiring managers will look for you online before they interview you. So your online profile can either help you get an interview, or stop you from getting an interview. You want to be really careful about public information.",
+                "textFa": "مدیران استخدام پیش از مصاحبه شما را در اینترنت جستجو می‌کنند؛ بنابراین پروفایل عمومی‌تان می‌تواند به نفع یا علیه شما باشد."
+        },
+        {
+                "id": 10,
+                "seconds": 126,
+                "timeDisplay": "2:06",
+                "speaker": "Interviewer",
+                "textEn": "Assuming a candidate gets an interview, how do you help them to prepare for it?",
+                "textFa": "اگر داوطلب دعوت به مصاحبه شود، چگونه او را آماده می‌کنید؟"
+        },
+        {
+                "id": 11,
+                "seconds": 134,
+                "timeDisplay": "2:14",
+                "speaker": "Jeff Neil",
+                "textEn": "I have them take the job advertisement or description, and circle what skills and abilities are required. Then make three columns on paper: required skills in the first column, where they used those skills in the second, and actual stories demonstrating those skills in the third.",
+                "textFa": "از آن‌ها می‌خواهم مهارت‌های خواسته شده در آگهی را مشخص کنند، سپس در یک جدول سه ستونه مهارت‌ها، سوابق قبلی، و داستان‌های واقعی اثبات‌کننده آن مهارت‌ها را تنظیم نمایند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Jeff Neil (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 58,
-        "timestampDisplay": "0:58",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Jeff Neil و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:27]. What key point is stated by Interviewer?",
+        "timestampSeconds": 87,
+        "timestampDisplay": "1:27",
+        "explanationFa": "در ثانیه 1:27 ویدیو، Interviewer به صراحت بیان می‌کند: «The focus in this part is to encourage Sts to become more confident about following a conversation at natural speed.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 1 of the in-depth interview with Jeff Neil exploring Job Interviews & Caree...",
-            "textFa": "تمرکز اصلی بر بخش 1 از مصاحبه تحلیلی با جف نیل (کوچ بین‌المللی ارتقای شغل) درباره اس... است."
+            "textEn": "Interviewer states: \"The focus in this part is to encourage Sts to become more confide...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -11723,44 +19227,76 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Jeff Neil (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 32,
-        "timeDisplay": "0:32",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Jeff Neil.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Jeff Neil.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 96,
-        "timeDisplay": "1:36",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Jeff Neil (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "What tips can you give a candidate for the day itself? For example, how should people dress for an interview?",
+                "textFa": "چه توصیه‌هایی برای روز مصاحبه دارید؟ مثلاً چگونه باید لباس بپوشند؟"
+        },
+        {
+                "id": 2,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Jeff Neil",
+                "textEn": "It's important to dress appropriately, because if you're underdressed it shows a lack of respect. I encourage clients to actually overdress a little bit for an interview.",
+                "textFa": "پوشش نامناسب نشانه بی‌احترامی تلقی می‌شود؛ من توصیه می‌کنم افراد کمی رسمی‌تر از معمول لباس بپوشند."
+        },
+        {
+                "id": 3,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Jeff Neil",
+                "textEn": "You might get on a company's LinkedIn page and look at their photos to get a sense of that company's style. Or you can stake out the front door a couple days ahead to see how employees dress.",
+                "textFa": "با دیدن عکس‌های لینکدین یا رفت‌وآمد کارمندان دم در شرکت می‌توانید سبک پوشش شرکت را بسنجید."
+        },
+        {
+                "id": 4,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Interviewer",
+                "textEn": "Obviously you shouldn't be late, but how early should you get there?",
+                "textFa": "چقدر زودتر باید به مصاحبه رسید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Jeff Neil",
+                "textEn": "Show up about 5 minutes early. If you get there earlier, just grab a cup of coffee nearby. When you walk in, make sure your headphones are off and your cell phone is turned off.",
+                "textFa": "حدود ۵ دقیقه زودتر حاضر شوید؛ اگر زودتر رسیدید در کافه‌ای منتظر بمانید و هنگام ورود حتماً گوشی را خاموش کنید و هدفون در نیاورید."
+        },
+        {
+                "id": 6,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Interviewer",
+                "textEn": "Do you have any other tips before the interview starts?",
+                "textFa": "توصیه دیگری قبل از شروع مصاحبه دارید؟"
+        },
+        {
+                "id": 7,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Jeff Neil",
+                "textEn": "As soon as you walk into the building, you've already begun the interview. The receptionist and security are all part of the interview process. If you don't treat them properly, your chances can be eliminated.",
+                "textFa": "به محض ورود به ساختمان، مصاحبه آغاز شده است؛ برخورد شما با منشی و نگهبانی در نتیجه تأثیر مستقیم دارد و بی‌احترامی شانس استخدام را می‌سوزاند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Jeff Neil (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 43,
-        "timestampDisplay": "0:43",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Jeff Neil و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:06]. What key point is stated by Interviewer?",
+        "timestampSeconds": 66,
+        "timestampDisplay": "1:06",
+        "explanationFa": "در ثانیه 1:06 ویدیو، Interviewer به صراحت بیان می‌کند: «Obviously you shouldn’t be late, but how early should you get there?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 2 of the in-depth interview with Jeff Neil exploring Job Interviews & Caree...",
-            "textFa": "تمرکز اصلی بر بخش 2 از مصاحبه تحلیلی با جف نیل (کوچ بین‌المللی ارتقای شغل) درباره اس... است."
+            "textEn": "Interviewer states: \"Obviously you shouldn’t be late, but how early should you get the...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -11919,44 +19455,76 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Jeff Neil (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 41,
-        "timeDisplay": "0:41",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Jeff Neil.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Jeff Neil.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 123,
-        "timeDisplay": "2:03",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Jeff Neil (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Is it OK for a candidate to talk about money or salary during an interview?",
+                "textFa": "آیا صحبت درباره حقوق در طول مصاحبه درست است؟"
+        },
+        {
+                "id": 2,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Jeff Neil",
+                "textEn": "It is OK, but the answer of when to talk about it is late. Candidates often focus too much on their own needs rather than communicating the value they deliver to the employer.",
+                "textFa": "اشکالی ندارد اما زمان آن در پایان است؛ متقاضیان نباید پیش از اثبات شایستگی خود بر نیازهای شخصی تمرکز کنند."
+        },
+        {
+                "id": 3,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Jeff Neil",
+                "textEn": "Once an employer believes you're the right candidate and offers the position, that's the right time to start talking about money and benefits, letting the employer raise it first.",
+                "textFa": "وقتی کارفرما پیشنهاد کار را ارائه داد، بهترین زمان برای مذاکره حقوق و مزایاست و بهتر است کارفرما پیش‌قدم شود."
+        },
+        {
+                "id": 4,
+                "seconds": 70,
+                "timeDisplay": "1:10",
+                "speaker": "Interviewer",
+                "textEn": "Do you have any other tips for candidates during the interview?",
+                "textFa": "نکته دیگری برای جلسه مصاحبه دارید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Jeff Neil",
+                "textEn": "Body language and eye contact are really, really important. Leaning forward, maintaining eye contact, and having a confident tone of voice communicate that you are motivated and capable.",
+                "textFa": "زبان بدن و ارتباط چشمی فوق‌العاده تعیین‌کننده‌اند؛ نشستن استوار و لحن محکم، اعتمادبه‌نفس و انگیزه شما را نشان می‌دهد."
+        },
+        {
+                "id": 6,
+                "seconds": 110,
+                "timeDisplay": "1:50",
+                "speaker": "Interviewer",
+                "textEn": "And just to finish, did you ever ask extreme questions during interviews when you worked in HR?",
+                "textFa": "آیا تاکنون سوالات عجیب در مصاحبه‌ها پرسیده‌اید؟"
+        },
+        {
+                "id": 7,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "Jeff Neil",
+                "textEn": "Sometimes I would ask, if you could be any kind of tree in the world, what kind would you be? Oak represents strong and steady; apple represents fruitful; cactus shows persistence and survival.",
+                "textFa": "گاهی می‌پرسیدم اگر درخت بودید چه درختی می‌شدید؟ بلوط نشانه استواری، سیب نشانه ثمربخشی و کاکتوس نشانه سرسختی و بقاست."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · جف نیل (کوچ بین‌المللی ارتقای شغل) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Jeff Neil (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 55,
-        "timestampDisplay": "0:55",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Jeff Neil و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:23]. What key point is stated by Jeff Neil?",
+        "timestampSeconds": 83,
+        "timestampDisplay": "1:23",
+        "explanationFa": "در ثانیه 1:23 ویدیو، Jeff Neil به صراحت بیان می‌کند: «And that’s not communicating the confidence that you, that you’re confident in your skills and abilities.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 3 of the in-depth interview with Jeff Neil exploring Job Interviews & Caree...",
-            "textFa": "تمرکز اصلی بر بخش 3 از مصاحبه تحلیلی با جف نیل (کوچ بین‌المللی ارتقای شغل) درباره اس... است."
+            "textEn": "Jeff Neil states: \"And that’s not communicating the confidence that you, that you’re...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -12115,44 +19683,92 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Marion Pomeranc (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 32,
-        "timeDisplay": "0:32",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Marion Pomeranc.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Marion Pomeranc.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 97,
-        "timeDisplay": "1:37",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Marion Pomeranc (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Marion Pomeranc",
+                "textEn": "My name is Marion Pomeranc. I'm the manager of Literary Programs at Learning Leaders in New York City, and I have written three children's books.",
+                "textFa": "من ماریون پومرانس هستم، مدیر برنامه‌های ادبی در سازمان Learning Leaders نیویورک و نویسنده سه کتاب کودک."
+        },
+        {
+                "id": 2,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Interviewer",
+                "textEn": "What was your favorite book when you were a child?",
+                "textFa": "کتاب محبوب کودکی‌تان چه بود؟"
+        },
+        {
+                "id": 3,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Marion Pomeranc",
+                "textEn": "My favorite book was If I Ran the Circus by Dr. Seuss. It was the first children's book in my home, and I loved his wonderful, playful use of language.",
+                "textFa": "کتاب «اگر من سیرک را اداره می‌کردم» از دکتر سوس، اولین کتاب خانه‌مان بود و عاشق زبان شاداب و کلمات آهنگینش بودم."
+        },
+        {
+                "id": 4,
+                "seconds": 53,
+                "timeDisplay": "0:53",
+                "speaker": "Interviewer",
+                "textEn": "Who read to you when you were a child?",
+                "textFa": "چه کسی در کودکی برایتان کتاب می‌خواند؟"
+        },
+        {
+                "id": 5,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Marion Pomeranc",
+                "textEn": "My parents didn't speak English when I was growing up, so I helped them with language and introduced books to our home.",
+                "textFa": "والدینم انگلیسی صحبت نمی‌کردند و من خودم با زبان به آن‌ها کمک کردم و کتاب‌ها را به خانه آوردم."
+        },
+        {
+                "id": 6,
+                "seconds": 77,
+                "timeDisplay": "1:17",
+                "speaker": "Interviewer",
+                "textEn": "Did you read to your son?",
+                "textFa": "آیا برای پسرتان کتاب می‌خواندید؟"
+        },
+        {
+                "id": 7,
+                "seconds": 81,
+                "timeDisplay": "1:21",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Yes, we read together every night when he was young, books like Stella Luna and Corduroy.",
+                "textFa": "بله، هر شب با هم کتاب‌هایی مثل استلا لونا و کوردروی می‌خواندیم."
+        },
+        {
+                "id": 8,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Interviewer",
+                "textEn": "How has writing for children changed over time?",
+                "textFa": "نویسندگی کودکان چه تغییری کرده است؟"
+        },
+        {
+                "id": 9,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Authors now write more honest, realistic stories about real children and diverse backgrounds, which is a great thing.",
+                "textFa": "امروزه نویسندگان داستان‌های واقعی‌تر و صادقانه‌تری از زندگی واقعی کودکان می‌نویسند که بسیار عالی است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Marion Pomeranc (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 43,
-        "timestampDisplay": "0:43",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Marion Pomeranc و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:05]. What key point is stated by Marion Pomeranc?",
+        "timestampSeconds": 65,
+        "timestampDisplay": "1:05",
+        "explanationFa": "در ثانیه 1:05 ویدیو، Marion Pomeranc به صراحت بیان می‌کند: «the manager of a non-profit organization in New York City called Learning Leaders and the author of three children’s books.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 1 of the in-depth interview with Marion Pomeranc exploring Storytelling & C...",
-            "textFa": "تمرکز اصلی بر بخش 1 از مصاحبه تحلیلی با ماریون پومرنک (نویسنده برجسته ادبیات) درباره... است."
+            "textEn": "Marion Pomeranc states: \"the manager of a non-profit organization in New York City called ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -12311,44 +19927,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Marion Pomeranc (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 35,
-        "timeDisplay": "0:35",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Marion Pomeranc.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Marion Pomeranc.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 107,
-        "timeDisplay": "1:47",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Marion Pomeranc (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Do you have any thoughts about getting teenagers to read more?",
+                "textFa": "راهکاری برای ترغیب نوجوانان به مطالعه بیشتر دارید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Give them control over what they read, without telling them what they must read. Anything counts as reading, from subway ads to cereal boxes.",
+                "textFa": "حق انتخاب را به خودشان بدهید؛ هر متنی از تبلیغات مترو گرفته تا نوشته‌های روی خوراکی‌ها مطالعه به حساب می‌آید."
+        },
+        {
+                "id": 3,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Interviewer",
+                "textEn": "Do good films encourage teenagers to read?",
+                "textFa": "آیا فیلم‌های خوب نوجوانان را به کتاب‌خوانی تشویق می‌کنند؟"
+        },
+        {
+                "id": 4,
+                "seconds": 47,
+                "timeDisplay": "0:47",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Yes, far from putting them off, good movies often lead teenagers to read the original book, like what happened with The Beach.",
+                "textFa": "بله، فیلم‌های خوب نوجوانان را به خواندن رمان اصلی ترغیب می‌کنند، مثل اتفاقی که برای رمان «ساحل» افتاد."
+        },
+        {
+                "id": 5,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Interviewer",
+                "textEn": "What is the key to getting a very young person to start reading?",
+                "textFa": "کلید شروع کتاب‌خوانی در خردسالان چیست؟"
+        },
+        {
+                "id": 6,
+                "seconds": 83,
+                "timeDisplay": "1:23",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Start young, surround them with books, visit libraries and bookstores. If you are excited about books, they will be too.",
+                "textFa": "از خردسالی شروع کنید و خانه را پر از کتاب کنید؛ اشتیاق شما مستقیماً به کودک سرایت می‌کند."
+        },
+        {
+                "id": 7,
+                "seconds": 106,
+                "timeDisplay": "1:46",
+                "speaker": "Interviewer",
+                "textEn": "What kind of books do children enjoy?",
+                "textFa": "کودکان چه نوع کتاب‌هایی را می‌پسندند؟"
+        },
+        {
+                "id": 8,
+                "seconds": 113,
+                "timeDisplay": "1:53",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Books where adults are a bit goofy and kids solve the problems, giving them a sense of empowerment.",
+                "textFa": "کتاب‌هایی که بچه‌ها در آن باهوش‌تر از بزرگ‌ترها هستند و مسائل را حل می‌کنند به آن‌ها حس قدرت می‌دهد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Marion Pomeranc (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 47,
-        "timestampDisplay": "0:47",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Marion Pomeranc و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:10]. What key point is stated by Interviewer?",
+        "timestampSeconds": 70,
+        "timestampDisplay": "1:10",
+        "explanationFa": "در ثانیه 1:10 ویدیو، Interviewer به صراحت بیان می‌کند: «you know, it was a great teen novel.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 2 of the in-depth interview with Marion Pomeranc exploring Storytelling & C...",
-            "textFa": "تمرکز اصلی بر بخش 2 از مصاحبه تحلیلی با ماریون پومرنک (نویسنده برجسته ادبیات) درباره... است."
+            "textEn": "Interviewer states: \"you know, it was a great teen novel....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -12507,44 +20163,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Marion Pomeranc (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 35,
-        "timeDisplay": "0:35",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Marion Pomeranc.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Marion Pomeranc.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 105,
-        "timeDisplay": "1:45",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Marion Pomeranc (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Do you prefer paper books or e-books, and why?",
+                "textFa": "کتاب چاپی را ترجیح می‌دهید یا الکترونیکی؟"
+        },
+        {
+                "id": 2,
+                "seconds": 9,
+                "timeDisplay": "0:09",
+                "speaker": "Marion Pomeranc",
+                "textEn": "I prefer reading on my Kindle now because it is intimate, customizable, and allows me to carry hundreds of books at all times.",
+                "textFa": "کیندل را به خاطر راحتی، صمیمیت، و قابلیت حمل همزمان صدها کتاب ترجیح می‌دهم."
+        },
+        {
+                "id": 3,
+                "seconds": 31,
+                "timeDisplay": "0:31",
+                "speaker": "Interviewer",
+                "textEn": "Do you think e-readers are helpful for children?",
+                "textFa": "آیا کتاب‌خوان‌ها برای کودکان مفیدند؟"
+        },
+        {
+                "id": 4,
+                "seconds": 40,
+                "timeDisplay": "0:40",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Yes, kids love technology and instant access, so having their own digital library can encourage reading.",
+                "textFa": "بله، بچه‌ها عاشق فناوری هستند و کتابخانه دیجیتال دسترسی سریع به کتاب را ممکن می‌سازد."
+        },
+        {
+                "id": 5,
+                "seconds": 58,
+                "timeDisplay": "0:58",
+                "speaker": "Interviewer",
+                "textEn": "Has social media affected literacy?",
+                "textFa": "آیا شبکه‌های اجتماعی بر سوادآموزی اثر گذاشته‌اند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 64,
+                "timeDisplay": "1:04",
+                "speaker": "Marion Pomeranc",
+                "textEn": "It exposes children to diverse ideas and encourages writing, even if they read slightly fewer traditional books.",
+                "textFa": "بچه‌ها را با مفاهیم گوناگون آشنا می‌کند و مهارت نوشتن را تقویت می‌نماید."
+        },
+        {
+                "id": 7,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Interviewer",
+                "textEn": "Will books survive modern technology?",
+                "textFa": "آیا کتاب‌ها دوام خواهند آورد؟"
+        },
+        {
+                "id": 8,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Absolutely. People will always cherish personal moments with a good book.",
+                "textFa": "قطعاً؛ مردم همواره خلوت لذت‌بخش با کتاب خوب را گرامی می‌دارند."
+        },
+        {
+                "id": 9,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Interviewer",
+                "textEn": "Do you still read daily for pleasure?",
+                "textFa": "آیا هنوز روزانه برای لذت مطالعه می‌کنید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 110,
+                "timeDisplay": "1:50",
+                "speaker": "Marion Pomeranc",
+                "textEn": "Yes, I read daily on the subway, before bed, reading several books simultaneously.",
+                "textFa": "بله، روزانه در مترو و قبل از خواب همزمان چند کتاب را مطالعه می‌کنم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · ماریون پومرنک (نویسنده برجسته ادبیات) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Marion Pomeranc (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 46,
-        "timestampDisplay": "0:46",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Marion Pomeranc و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:08]. What key point is stated by Interviewer?",
+        "timestampSeconds": 68,
+        "timestampDisplay": "1:08",
+        "explanationFa": "در ثانیه 1:08 ویدیو، Interviewer به صراحت بیان می‌کند: «But maybe they’ll write some amazing things about their adventures online. I, I think it’s great.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 3 of the in-depth interview with Marion Pomeranc exploring Storytelling & C...",
-            "textFa": "تمرکز اصلی بر بخش 3 از مصاحبه تحلیلی با ماریون پومرنک (نویسنده برجسته ادبیات) درباره... است."
+            "textEn": "Interviewer states: \"But maybe they’ll write some amazing things about their adventure...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -12703,44 +20415,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Simon Callow (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 56,
-        "timeDisplay": "0:56",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Simon Callow.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Simon Callow.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 169,
-        "timeDisplay": "2:49",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Simon Callow (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "How did you get into acting?",
+                "textFa": "چطور وارد بازیگری شدید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 8,
+                "timeDisplay": "0:08",
+                "speaker": "Simon Callow",
+                "textEn": "I was eighteen, working in the box office of the Old Vic theater, and sneaking into rehearsals made me fascinated by theater work.",
+                "textFa": "در ۱۸ سالگی در باجه بلیط تئاتر اولد ویک کار می‌کردم و تماشای مخفیانه تمرینات مرا مجذوب دنیای تئاتر کرد."
+        },
+        {
+                "id": 3,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Interviewer",
+                "textEn": "What in particular fascinated you?",
+                "textFa": "چه چیزی مشخصاً شما را شیفته کرد؟"
+        },
+        {
+                "id": 4,
+                "seconds": 54,
+                "timeDisplay": "0:54",
+                "speaker": "Simon Callow",
+                "textEn": "Seeing actors and directors wrestle with scenes and gradually make characters come to life seemed like the most wonderful job in the world.",
+                "textFa": "تلاش بازیگران و کارگردان برای جان بخشیدن به نقش‌ها شگفت‌انگیزترین کار دنیا به نظرم آمد."
+        },
+        {
+                "id": 5,
+                "seconds": 92,
+                "timeDisplay": "1:32",
+                "speaker": "Interviewer",
+                "textEn": "What was the most challenging thing about playing Mozart in Amadeus?",
+                "textFa": "چالش اصلی بازی در نقش موتزارت چه بود؟"
+        },
+        {
+                "id": 6,
+                "seconds": 111,
+                "timeDisplay": "1:51",
+                "speaker": "Simon Callow",
+                "textEn": "Reconciling Peter Shaffer's depiction of Mozart as an eccentric, hysterical child with the sublime genius who composed The Marriage of Figaro.",
+                "textFa": "پیوند دادن شخصیت پرخاشگر نمایشنامه با نبوغ آهنگ‌سازی که شاهکار عروسی فیگارو را خلق کرده بود دشوارترین چالش بود."
+        },
+        {
+                "id": 7,
+                "seconds": 151,
+                "timeDisplay": "2:31",
+                "speaker": "Interviewer",
+                "textEn": "Was Mozart one of your most satisfying roles?",
+                "textFa": "آیا موتزارت رضایت‌بخش‌ترین نقش شما بود؟"
+        },
+        {
+                "id": 8,
+                "seconds": 163,
+                "timeDisplay": "2:43",
+                "speaker": "Simon Callow",
+                "textEn": "It was the most exciting because of the immense controversy and seeing figures like Paul Newman and Margaret Thatcher in the auditorium.",
+                "textFa": "هیجان‌انگیزترین بود به خاطر جنجال بزرگ نمایش و حضور چهره‌های نامداری چون پل نیومن و تاچر در سالن."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Simon Callow (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 75,
-        "timestampDisplay": "1:15",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Simon Callow و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:53]. What key point is stated by Simon Callow?",
+        "timestampSeconds": 113,
+        "timestampDisplay": "1:53",
+        "explanationFa": "در ثانیه 1:53 ویدیو، Simon Callow به صراحت بیان می‌کند: «It was the most exciting because its…its fame…uh…almost from the moment it was announced was overwhelmingly greater than anything I had ever done,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 1 of the in-depth interview with Simon Callow exploring Shakespeare & Theat...",
-            "textFa": "تمرکز اصلی بر بخش 1 از مصاحبه تحلیلی با سایمون کلو (بازیگر نامدار تئاتر و سینمای بری... است."
+            "textEn": "Simon Callow states: \"It was the most exciting because its…its fame…uh…almost from the ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -12899,44 +20651,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Simon Callow (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 43,
-        "timeDisplay": "0:43",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Simon Callow.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Simon Callow.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 129,
-        "timeDisplay": "2:09",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Simon Callow (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Which do you prefer, theater or film acting?",
+                "textFa": "تئاتر را ترجیح می‌دهید یا بازی در فیلم؟"
+        },
+        {
+                "id": 2,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Simon Callow",
+                "textEn": "They are completely different. Theater has the live audience where every single performance is unique.",
+                "textFa": "کاملاً متفاوتند؛ تئاتر تماشاگر زنده دارد و هر اجرای آن بی‌همتاست."
+        },
+        {
+                "id": 3,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "Interviewer",
+                "textEn": "How do you motivate yourself night after night?",
+                "textFa": "چطور هر شب انگیزه تکرار نقش را پیدا می‌کنید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Simon Callow",
+                "textEn": "You realize you never get it completely right, so you return every night striving for a better performance.",
+                "textFa": "هیچ نقشی کامل نمی‌شود، بنابراین هر شب با تلاش برای اجرای بهتر روی صحنه می‌روید."
+        },
+        {
+                "id": 5,
+                "seconds": 79,
+                "timeDisplay": "1:19",
+                "speaker": "Interviewer",
+                "textEn": "What is the main difference with film acting?",
+                "textFa": "تفاوت اصلی با سینما چیست؟"
+        },
+        {
+                "id": 6,
+                "seconds": 91,
+                "timeDisplay": "1:31",
+                "speaker": "Simon Callow",
+                "textEn": "In film, the director and editor hold immense power to shape tone, meaning the actor has much less control.",
+                "textFa": "در سینما تدوین‌گر و کارگردان قدرت بالایی در شکل دادن به بازی بازیگر دارند."
+        },
+        {
+                "id": 7,
+                "seconds": 119,
+                "timeDisplay": "1:59",
+                "speaker": "Interviewer",
+                "textEn": "Anything else that makes film hard?",
+                "textFa": "سختی دیگر بازیگری در فیلم چیست؟"
+        },
+        {
+                "id": 8,
+                "seconds": 128,
+                "timeDisplay": "2:08",
+                "speaker": "Simon Callow",
+                "textEn": "It is supposedly naturalistic, yet cameras and equipment stare right into your face during emotional scenes.",
+                "textFa": "با اینکه واقع‌گرایانه خوانده می‌شود، وجود دوربین‌ها روبروی چهره هنگام اجرای صحنه‌های احساسی کار را سخت می‌کند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Simon Callow (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 57,
-        "timestampDisplay": "0:57",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Simon Callow و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:25]. What key point is stated by Interviewer?",
+        "timestampSeconds": 85,
+        "timestampDisplay": "1:25",
+        "explanationFa": "در ثانیه 1:25 ویدیو، Interviewer به صراحت بیان می‌کند: «the audience to actually enjoy it more if it’s a live performance rather than a pre-recorded or a,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 2 of the in-depth interview with Simon Callow exploring Shakespeare & Theat...",
-            "textFa": "تمرکز اصلی بر بخش 2 از مصاحبه تحلیلی با سایمون کلو (بازیگر نامدار تئاتر و سینمای بری... است."
+            "textEn": "Interviewer states: \"the audience to actually enjoy it more if it’s a live performance...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -13095,44 +20887,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح B2"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Colloquial English · Simon Callow (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 41,
-        "timeDisplay": "0:41",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه با Simon Callow.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه با Simon Callow.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 124,
-        "timeDisplay": "2:04",
-        "textEn": "Concluding remarks and key language takeaway for Colloquial English · Simon Callow (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 1,
+                "timeDisplay": "0:01",
+                "speaker": "Interviewer",
+                "textEn": "Do you enjoy watching other actors acting?",
+                "textFa": "از تماشای بازی سایر بازیگران لذت می‌برید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Simon Callow",
+                "textEn": "I adore watching other actors when it is good, but when it is not, it is very painful.",
+                "textFa": "عاشق تماشای بازیگری خوب هستم، اما وقتی بد باشد برایم عذاب‌آور است."
+        },
+        {
+                "id": 3,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Interviewer",
+                "textEn": "Who were the legendary actors you saw in your youth?",
+                "textFa": "کدام بازیگران افسانه‌ای را در جوانی دیدید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Simon Callow",
+                "textEn": "I was fortunate to see Olivier, Gielgud, Richardson, and Edith Evans doing extraordinary, unforgettable stage work.",
+                "textFa": "شانس تماشای غول‌های بازیگری چون اولیویه، گیلگود و ریچاردسون را روی صحنه داشتم."
+        },
+        {
+                "id": 5,
+                "seconds": 66,
+                "timeDisplay": "1:06",
+                "speaker": "Interviewer",
+                "textEn": "Do modern actors compare?",
+                "textFa": "بازیگران امروزی چطور؟"
+        },
+        {
+                "id": 6,
+                "seconds": 72,
+                "timeDisplay": "1:12",
+                "speaker": "Simon Callow",
+                "textEn": "Daniel Day-Lewis approaches roles with a similar dedication and depth.",
+                "textFa": "دنیل دی-لوئیس با همان تعهد و عمق به نقش‌ها نزدیک می‌شود."
+        },
+        {
+                "id": 7,
+                "seconds": 88,
+                "timeDisplay": "1:28",
+                "speaker": "Interviewer",
+                "textEn": "Is there anything you dislike about acting?",
+                "textFa": "از چه چیزی در بازیگری بدتان می‌آید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Simon Callow",
+                "textEn": "I hate wearing heavy makeup and avoid it as much as possible.",
+                "textFa": "از گریم‌های سنگین بیزارم و تا جای ممکن از آن فرار می‌کنم."
+        },
+        {
+                "id": 9,
+                "seconds": 111,
+                "timeDisplay": "1:51",
+                "speaker": "Interviewer",
+                "textEn": "Do you still get stage fright?",
+                "textFa": "آیا هنوز دچار اضطراب صحنه می‌شوید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 118,
+                "timeDisplay": "1:58",
+                "speaker": "Simon Callow",
+                "textEn": "I get self-conscious on opening nights knowing people are judging, but like surgery, once it is over you feel better.",
+                "textFa": "در شب‌های افتتاحیه با دانستن قضاوت تماشاگران معذب می‌شوم، اما مانند یک جراحی پس از پایانش احساس سبکی می‌کنید."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «انگلیسی محاوره‌ای پیشرفته · سایمون کلو (بازیگر نامدار تئاتر و سینمای بریتانیا) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Colloquial English · Simon Callow (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 55,
-        "timestampDisplay": "0:55",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه با Simon Callow و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:24]. What key point is stated by Interviewer?",
+        "timestampSeconds": 84,
+        "timestampDisplay": "1:24",
+        "explanationFa": "در ثانیه 1:24 ویدیو، Interviewer به صراحت بیان می‌کند: «Is there anything you don’t like about acting?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Part 3 of the in-depth interview with Simon Callow exploring Shakespeare & Theat...",
-            "textFa": "تمرکز اصلی بر بخش 3 از مصاحبه تحلیلی با سایمون کلو (بازیگر نامدار تئاتر و سینمای بری... است."
+            "textEn": "Interviewer states: \"Is there anything you don’t like about acting?...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -13291,44 +21139,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · David Torchiano (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 56,
-        "timeDisplay": "0:56",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های David Torchiano.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های David Torchiano.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 168,
-        "timeDisplay": "2:48",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · David Torchiano (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Interviewer",
+                "textEn": "Where does your family originate from?",
+                "textFa": "خانواده شما اصالتاً اهل کجا هستند؟"
+        },
+        {
+                "id": 2,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "David Torchiano",
+                "textEn": "My mom's side of the family is from what is now Croatia, though when she was born it was in between Italy and Yugoslavia, and my dad's side of the family is from Southern Italy.",
+                "textFa": "خانواده مادری من اهل منطقه‌ای هستند که امروزه کرواسی است، هرچند هنگام تولد او بین ایتالیا و یوگسلاوی بود، و خانواده پدری‌ام اهل جنوب ایتالیا هستند."
+        },
+        {
+                "id": 3,
+                "seconds": 33,
+                "timeDisplay": "0:33",
+                "speaker": "Interviewer",
+                "textEn": "When did you start researching your family tree?",
+                "textFa": "چه زمانی شروع به تحقیق درباره شجره‌نامه خانوادگی‌تان کردید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 67,
+                "timeDisplay": "1:07",
+                "speaker": "David Torchiano",
+                "textEn": "The reason I started researching was because I have two older sisters and, growing up, I never met my grandparents. In talking to my mom and dad, and learning that their lives were very interesting journeys, the more that I wanted to look into it, the more interesting the stories became.",
+                "textFa": "دلیل شروع تحقیقم این بود که دو خواهر بزرگتر دارم و در دوران رشد هیچ‌کدام از پدربزرگ‌ها و مادربزرگ‌هایم را ندیده بودم. وقتی با پدر و مادرم صحبت کردم و فهمیدم زندگی‌شان سفری پرماجرا بوده، هرچه بیشتر پیگیری کردم، داستان‌ها جذاب‌تر شدند."
+        },
+        {
+                "id": 5,
+                "seconds": 80,
+                "timeDisplay": "1:20",
+                "speaker": "Interviewer",
+                "textEn": "When you start researching, what's the first step and the first thing you do?",
+                "textFa": "وقتی تحقیق را شروع می‌کنید، اولین قدم و نخستین کاری که انجام می‌دهید چیست؟"
+        },
+        {
+                "id": 6,
+                "seconds": 105,
+                "timeDisplay": "1:45",
+                "speaker": "David Torchiano",
+                "textEn": "The first thing you do when researching—what I personally did—was very organic, just talking to my parents. They started talking, or they introduced me to family that I didn't know or didn't talk to, like my cousins in Italy or my cousin in the Bronx who knows my dad's side of the family. And then it started branching out from there using different resources.",
+                "textFa": "اولین کار در تحقیق—کاری که من شخصاً کردم—بسیار طبیعی بود، فقط صحبت با والدینم. آن‌ها شروع به صحبت کردند و مرا به اقوامی که نمی‌شناختم معرفی کردند، مثل عموزاده‌هایم در ایتالیا یا یکی از بستگان در برانکس که خانواده پدری‌ام را می‌شناخت؛ و از آنجا تحقیق با منابع مختلف گسترش یافت."
+        },
+        {
+                "id": 7,
+                "seconds": 156,
+                "timeDisplay": "2:36",
+                "speaker": "Interviewer",
+                "textEn": "In practical terms, how important is the Internet in researching family history?",
+                "textFa": "از لحاظ کاربردی، اینترنت چقدر در پژوهش تاریخچه خانوادگی اهمیت دارد؟"
+        },
+        {
+                "id": 8,
+                "seconds": 179,
+                "timeDisplay": "2:59",
+                "speaker": "David Torchiano",
+                "textEn": "The Internet has made speed and reporting and finding information and being able to access resources so much easier. You can accomplish in a day what used to take weeks. And the community of people who have done similar things gives you advice on what roadblocks you might cross and how to navigate the history of the past. That's really the biggest help.",
+                "textFa": "اینترنت سرعت یافتن داده‌ها و دسترسی به منابع را بی‌نهایت آسان کرده است. کاری که قبلاً هفته‌ها طول می‌کشید را در یک روز می‌توان انجام داد، و تجربیات افرادی که این مسیر را رفته‌اند درباره موانع احتمالی راهنمایی‌تان می‌کند که بزرگترین کمک است."
+        },
+        {
+                "id": 9,
+                "seconds": 195,
+                "timeDisplay": "3:15",
+                "speaker": "Interviewer",
+                "textEn": "How far back have you been able to trace your family?",
+                "textFa": "تا چند نسل قبل توانسته‌اید نسب خانواده‌تان را ردیابی کنید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 201,
+                "timeDisplay": "3:21",
+                "speaker": "David Torchiano",
+                "textEn": "I've been able to go back about four generations with my family. I'm still searching and talking with family members and going through what information they know, trying to use records to see marriage licenses and birth certificates of my grandparents and their parents. It takes a lot of time, but I've been able to trace back about four generations.",
+                "textFa": "تا حدود چهار نسل قبل توانسته‌ام خانواده‌ام را ردیابی کنم. همچنان در حال گفتگو با اعضای خانواده و بررسی اسناد رسمی مثل گواهی‌های ازدواج و تولد پدربزرگ‌ها، مادربزرگ‌ها و والدینشان هستم. این کار زمان زیادی می‌برد اما تا چهار نسل پیش رفته‌ام."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · David Torchiano (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 74,
-        "timestampDisplay": "1:14",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های David Torchiano و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:53]. What key point is stated by Eliza Carthy?",
+        "timestampSeconds": 113,
+        "timestampDisplay": "1:53",
+        "explanationFa": "در ثانیه 1:53 ویدیو، Eliza Carthy به صراحت بیان می‌کند: «The lesson ends with a Speaking activity where Sts talk about their opinions and experiences.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with David Torchiano covering Education Leadership, ...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نی... است."
+            "textEn": "Eliza Carthy states: \"The lesson ends with a Speaking activity where Sts talk about the...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -13487,44 +21391,148 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · David Torchiano (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 99,
-        "timeDisplay": "1:39",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های David Torchiano.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های David Torchiano.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 297,
-        "timeDisplay": "4:57",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · David Torchiano (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Why did you go to Ellis Island?",
+                "textFa": "چرا به جزیره الیس رفتید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 55,
+                "timeDisplay": "0:55",
+                "speaker": "David Torchiano",
+                "textEn": "Ellis Island was a place that was such a hub of activity and there is so much information there. It kind of allows you to see where your family took those initial steps in the United States.",
+                "textFa": "جزیره الیس مرکزی پر از جنب‌وجوش و اطلاعات غنی بود که امکان می‌دهد ببینید خانواده‌تان دقیقاً در کجا اولین گام‌های ورود به ایالات متحده را برداشتند."
+        },
+        {
+                "id": 3,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Interviewer",
+                "textEn": "How did you feel when you went there?",
+                "textFa": "وقتی به آنجا رفتید چه احساسی داشتید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "David Torchiano",
+                "textEn": "It felt like I was walking through history. Knowing that my immediate family was trying to leave such poverty and realize the American dream, you feel that when you are walking around.",
+                "textFa": "حس می‌کردم در دل تاریخ قدم می‌زنم. آگاهی از اینکه خانواده‌ام برای رهایی از فقر و تحقق رؤیای آمریکایی تلاش می‌کردند، حسی است که هنگام قدم زدن در آنجا کاملاً تجربه می‌کنید."
+        },
+        {
+                "id": 5,
+                "seconds": 119,
+                "timeDisplay": "1:59",
+                "speaker": "Interviewer",
+                "textEn": "And what did you find out about your family at Ellis Island?",
+                "textFa": "و در جزیره الیس چه چیزهایی درباره خانواده‌تان پیدا کردید؟"
+        },
+        {
+                "id": 6,
+                "seconds": 150,
+                "timeDisplay": "2:30",
+                "speaker": "David Torchiano",
+                "textEn": "I was able to find the manifest of when his great uncle came over, and all of the documentation from when he arrived.",
+                "textFa": "توانستم لیست مسافران کشتی و زمان ورود عموی بزرگم و تمامی اسناد ثبت‌شده هنگام رسیدن او را پیدا کنم."
+        },
+        {
+                "id": 7,
+                "seconds": 159,
+                "timeDisplay": "2:39",
+                "speaker": "Interviewer",
+                "textEn": "And how did it feel when you found this documentation?",
+                "textFa": "و وقتی این مدارک را پیدا کردید چه حسی داشتید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 176,
+                "timeDisplay": "2:56",
+                "speaker": "David Torchiano",
+                "textEn": "It was a very emotional moment. It made that aspect of the story concrete for me, seeing something physical.",
+                "textFa": "لحظه‌ای بسیار احساسی بود. دیدن یک سند فیزیکی و واقعی، آن بخش از داستان را در ذهن من کاملاً ملموس و عینی کرد."
+        },
+        {
+                "id": 9,
+                "seconds": 205,
+                "timeDisplay": "3:25",
+                "speaker": "Interviewer",
+                "textEn": "Did your dad's great uncle help the rest of the family to come?",
+                "textFa": "آیا عموی بزرگ پدرتان به بقیه اعضای خانواده هم برای مهاجرت کمک کرد؟"
+        },
+        {
+                "id": 10,
+                "seconds": 215,
+                "timeDisplay": "3:35",
+                "speaker": "David Torchiano",
+                "textEn": "My dad's great uncle actually sponsored the majority of my dad's family to come over. He was the first person who came over when he was 15, working in construction, and was able to bring the majority of the family over.",
+                "textFa": "عموی بزرگ پدرم در واقع حامی و اسپانسر اکثر اعضای خانواده پدری‌ام برای مهاجرت شد. او اولین فردی بود که در ۱۵ سالگی آمد، در ساختمان‌سازی کار کرد و به مرور اکثر اعضای خانواده را به اینجا آورد."
+        },
+        {
+                "id": 11,
+                "seconds": 241,
+                "timeDisplay": "4:01",
+                "speaker": "Interviewer",
+                "textEn": "In doing all the research, did you find out anything which surprised you?",
+                "textFa": "در طول این همه تحقیق، آیا به موضوع شگفت‌انگیزی برخوردید؟"
+        },
+        {
+                "id": 12,
+                "seconds": 276,
+                "timeDisplay": "4:36",
+                "speaker": "David Torchiano",
+                "textEn": "There were some stories from when my mom had escaped with her sister, and basically left the country illegally. She was in a refugee camp for about a year because they wouldn't allow her a passport, so she crossed the border overnight.",
+                "textFa": "داستان‌هایی از فرار مادرم همراه با خواهرش وجود داشت که اساساً غیرقانونی از کشور خارج شدند. چون به او گذرنامه نمی‌دادند، حدود یک سال در اردوگاه پناهندگان بود و شبانه از مرز عبور کرده بود."
+        },
+        {
+                "id": 13,
+                "seconds": 290,
+                "timeDisplay": "4:50",
+                "speaker": "Interviewer",
+                "textEn": "What did you find out about how your parents met?",
+                "textFa": "درباره نحوه آشنایی پدر و مادرتان چه چیزی متوجه شدید؟"
+        },
+        {
+                "id": 14,
+                "seconds": 320,
+                "timeDisplay": "5:20",
+                "speaker": "David Torchiano",
+                "textEn": "My mom came over in 1960 and my dad came over in 1961. Even though they came from very similar cultures, they didn't speak the same language and met in English school in New York.",
+                "textFa": "مادرم در سال ۱۹۶۰ و پدرم در سال ۱۹۶۱ آمدند. با وجود اینکه فرهنگ‌های بسیار مشابهی داشتند، اما به یک زبان صحبت نمی‌کردند و در مدرسه آموزش زبان انگلیسی در نیویورک با هم آشنا شدند."
+        },
+        {
+                "id": 15,
+                "seconds": 325,
+                "timeDisplay": "5:25",
+                "speaker": "Interviewer",
+                "textEn": "What would you say to somebody who is thinking of researching their family tree?",
+                "textFa": "به کسی که قصد تحقیق درباره شجره‌نامه خانوادگی‌اش را دارد چه می‌گویید؟"
+        },
+        {
+                "id": 16,
+                "seconds": 371,
+                "timeDisplay": "6:11",
+                "speaker": "David Torchiano",
+                "textEn": "I would recommend to anyone looking to start research into their family history to start with their family. It feels like an obligation for me to understand so that I can pass it along to my kids and grandchildren.",
+                "textFa": "به هر کسی که می‌خواهد تاریخچه خانوادگی‌اش را بررسی کند توصیه می‌کنم از خانواده خودش شروع کند. برای من مثل یک تعهد اخلاقی است که این گذشته را بدانم تا بتوانم آن را به فرزندان و نوه‌هایم منتقل کنم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · David Torchiano (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 132,
-        "timestampDisplay": "2:12",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های David Torchiano و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [3:17]. What key point is stated by David Torchiano?",
+        "timestampSeconds": 197,
+        "timestampDisplay": "3:17",
+        "explanationFa": "در ثانیه 3:17 ویدیو، David Torchiano به صراحت بیان می‌کند: «her brother and her sister were in a singing group,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with David Torchiano covering Education Leadership, ...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نی... است."
+            "textEn": "David Torchiano states: \"her brother and her sister were in a singing group,...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -13683,44 +21691,76 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · David Torchiano (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 22,
-        "timeDisplay": "0:22",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های David Torchiano.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های David Torchiano.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 68,
-        "timeDisplay": "1:08",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · David Torchiano (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "David Torchiano",
+                "textEn": "The more that I wanted to look into it, the more interesting the stories became.",
+                "textFa": "هر چه بیشتر می‌خواستم به بررسی آن بپردازم، داستان‌ها جالب‌تر و جذاب‌تر می‌شدند."
+        },
+        {
+                "id": 2,
+                "seconds": 19,
+                "timeDisplay": "0:19",
+                "speaker": "David Torchiano",
+                "textEn": "And then it started branching out from there using different resources.",
+                "textFa": "و سپس از آن نقطه با استفاده از منابع مختلف، شاخه‌شاخه گسترش پیدا کرد."
+        },
+        {
+                "id": 3,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "David Torchiano",
+                "textEn": "It happens that once you get started, it really takes off.",
+                "textFa": "پیش می‌آید که وقتی شروع می‌کنید، ناگهان روند کار اوج می‌گیرد."
+        },
+        {
+                "id": 4,
+                "seconds": 49,
+                "timeDisplay": "0:49",
+                "speaker": "David Torchiano",
+                "textEn": "I was able to find the manifest of when his great uncle came over, and all of the documentation.",
+                "textFa": "توانستم لیست مسافران کشتی در زمان ورود عموی بزرگم و تمامی اسناد مربوطه را پیدا کنم."
+        },
+        {
+                "id": 5,
+                "seconds": 52,
+                "timeDisplay": "0:52",
+                "speaker": "David Torchiano",
+                "textEn": "Finding this documentation was a very emotional moment.",
+                "textFa": "پیدا کردن این مدارک لحظه‌ای بسیار احساسی و عمیق بود."
+        },
+        {
+                "id": 6,
+                "seconds": 63,
+                "timeDisplay": "1:03",
+                "speaker": "David Torchiano",
+                "textEn": "And so in showing up, he was able to bring the majority of the family over.",
+                "textFa": "و با ورود و حضورش در اینجا، موفق شد اکثریت اعضای خانواده را با خود همراه کند."
+        },
+        {
+                "id": 7,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "David Torchiano",
+                "textEn": "The whole family grew close with my grandmother, so it was a wonderful reunion.",
+                "textFa": "کل خانواده با مادربزرگم صمیمی و نزدیک شدند و تجدید دیداری بی‌نظیر شکل گرفت."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نیویورک) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · David Torchiano (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 30,
-        "timestampDisplay": "0:30",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های David Torchiano و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:44]. What key point is stated by David Torchiano?",
+        "timestampSeconds": 44,
+        "timestampDisplay": "0:44",
+        "explanationFa": "در ثانیه 0:44 ویدیو، David Torchiano به صراحت بیان می‌کند: «My dad is very eloquent on how and why it’s different and he he knows that uniquely because he joined The Watersons,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with David Torchiano covering Education Leadership, ...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با دیوید تورچیانو (مدیر و پژوهشگر ارشد آموزش نی... است."
+            "textEn": "David Torchiano states: \"My dad is very eloquent on how and why it’s different and he he k...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -13879,44 +21919,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Adrian Hodges (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 45,
-        "timeDisplay": "0:45",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Adrian Hodges.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Adrian Hodges.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 135,
-        "timeDisplay": "2:15",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Adrian Hodges (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Interviewer",
+                "textEn": "Adrian Hodges is a British writer and producer who works in film and television and the theater.",
+                "textFa": "آدرین هاجز نویسنده و تهیه‌کننده بریتانیایی است که در سینما، تلویزیون و تئاتر فعالیت می‌کند."
+        },
+        {
+                "id": 2,
+                "seconds": 27,
+                "timeDisplay": "0:27",
+                "speaker": "Interviewer",
+                "textEn": "You've written a number of screenplays for historical dramas, for example Rome. Why do you think there's so much demand for historical drama and film?",
+                "textFa": "شما چندین فیلم‌نامه برای درام‌های تاریخی مانند سریال «رُم» نوشته‌اید. به نظر شما چرا این‌قدر تقاضا برای درام‌ها و فیلم‌های تاریخی زیاد است؟"
+        },
+        {
+                "id": 3,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Adrian Hodges",
+                "textEn": "Well, film and TV is fundamentally about good stories. History is jam-packed full with good stories, many of which people know, or at least vaguely know.",
+                "textFa": "اساس سینما و تلویزیون بر داستان‌های خوب استوار است. تاریخ لبریز از داستان‌های درخشان است که بسیاری از مردم آن‌ها را می‌دانند یا دست‌کم تا حدی با آن‌ها آشنا هستند."
+        },
+        {
+                "id": 4,
+                "seconds": 89,
+                "timeDisplay": "1:29",
+                "speaker": "Adrian Hodges",
+                "textEn": "If you're going to do a film about Rome, or French history, people will already have some knowledge of the story, and they will feel, 'I quite like that story, so I want to see this version of it.'",
+                "textFa": "اگر بخواهید فیلمی درباره رم یا تاریخ فرانسه بسازید، مخاطبان از قبل پیش‌زمینه‌ای دارند و احساس می‌کنند: «من این داستان را دوست دارم، پس می‌خواهم این روایت را هم ببینم»."
+        },
+        {
+                "id": 5,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Adrian Hodges",
+                "textEn": "History is just an endlessly useful way of telling great stories, and in a perfect world you get a double hit: you tell a classic story, but also tell it in a way that resonates with the present.",
+                "textFa": "تاریخ ابزاری بی‌پایان برای روایت داستان‌های بزرگ است؛ در حالت ایده‌آل دستاوردی دوگانه دارید: هم داستانی کلاسیک می‌گویید و هم به شکلی آن را بیان می‌کنید که با مسائل روز همخوانی دارد."
+        },
+        {
+                "id": 6,
+                "seconds": 115,
+                "timeDisplay": "1:55",
+                "speaker": "Interviewer",
+                "textEn": "Are historical films necessarily any more expensive than films set in modern day?",
+                "textFa": "آیا ساخت فیلم‌های تاریخی لزوماً پرهزینه‌تر از فیلم‌های با موضوع معاصر و امروزی است؟"
+        },
+        {
+                "id": 7,
+                "seconds": 121,
+                "timeDisplay": "2:01",
+                "speaker": "Adrian Hodges",
+                "textEn": "Period is always more expensive. You have to dress the film in a way you don't have to dress a contemporary film. You have to make sure your houses, decorations, furniture, everything has to be authentic to the period.",
+                "textFa": "فیلم‌های تاریخی و دوره‌ای همیشه گران‌ترند. شما باید صحنه و لباس را به شکلی آماده کنید که در فیلم امروزی نیازی نیست؛ معماری خانه‌ها، دکوراسیون، مبلمان و همه‌چیز باید کاملاً با آن دوران تاریخی مطابقت داشته باشد."
+        },
+        {
+                "id": 8,
+                "seconds": 140,
+                "timeDisplay": "2:20",
+                "speaker": "Adrian Hodges",
+                "textEn": "And you have to make sure you have nothing in it which would betray the period, and you have to have bigger crowds in many cases; Rome was a case in point, we needed big crowds of senators and citizens all in costume.",
+                "textFa": "همچنین نباید هیچ نشانه‌ای در صحنه باشد که به دوره تاریخی خیانت کند، و اغلب به خیل عظیمی از سیاهی‌لشکر نیاز دارید؛ سریال رم نمونه بارز آن بود، جایی که به جمعیت بزرگی از سناتورها و شهروندان با لباس‌های تاریخی نیاز داشتیم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Adrian Hodges (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 60,
-        "timestampDisplay": "1:00",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Adrian Hodges و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:29]. What key point is stated by Adrian Hodges?",
+        "timestampSeconds": 89,
+        "timestampDisplay": "1:29",
+        "explanationFa": "در ثانیه 1:29 ویدیو، Adrian Hodges به صراحت بیان می‌کند: «3B Copying, modification, publication, broadcast, sale or other distribution of the book is prohibited.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Adrian Hodges covering Screenwriting & Drama, n...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی)... است."
+            "textEn": "Adrian Hodges states: \"3B Copying, modification, publication, broadcast, sale or other d...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -14075,44 +22155,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Adrian Hodges (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 75,
-        "timeDisplay": "1:15",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Adrian Hodges.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Adrian Hodges.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 225,
-        "timeDisplay": "3:45",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Adrian Hodges (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Interviewer",
+                "textEn": "How important is historical accuracy in a historical film?",
+                "textFa": "صحت و دقت تاریخی در یک فیلم تاریخی چقدر اهمیت دارد؟"
+        },
+        {
+                "id": 2,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Adrian Hodges",
+                "textEn": "The notion of accuracy in history is intertwined with drama. But accuracy isn't the only issue when it comes to drama. You have the right as a writer to create drama that works for you.",
+                "textFa": "مفهوم دقت تاریخی با درام درهم‌تنیده است، اما در درام، دقت تاریخی تنها مسئله نیست. شما به عنوان نویسنده حق دارید درامی خلق کنید که برای روایت داستانتان کارآمد باشد."
+        },
+        {
+                "id": 3,
+                "seconds": 61,
+                "timeDisplay": "1:01",
+                "speaker": "Adrian Hodges",
+                "textEn": "The truth is nobody really knows how people spoke in Ancient Rome or in the court of Charles II. It's a question of judgment: if you make history ridiculous, then things become more difficult.",
+                "textFa": "حقیقت این است که هیچ‌کس واقعاً نمی‌داند مردم در روم باستان یا در دربار چارلز دوم دقیقاً چگونه سخن می‌گفتند. این یک قضاوت حرفه‌ای است: اگر تاریخ را مسخره جلوه دهید، باورپذیری آن از دست می‌رود."
+        },
+        {
+                "id": 4,
+                "seconds": 87,
+                "timeDisplay": "1:27",
+                "speaker": "Adrian Hodges",
+                "textEn": "And the more recent history is, the more difficult it is not to stick closer to it; it's much easier to play fast and loose with the details of Ancient Rome than with details of World War II.",
+                "textFa": "و هر چه تاریخ معاصرتر باشد، رعایت دقیق جزئیات حیاتی‌تر می‌شود؛ مسامحه و تغییر دادن جزئیات رم باستان بسیار آسان‌تر از دستکاری وقایع جنگ جهانی دوم است."
+        },
+        {
+                "id": 5,
+                "seconds": 114,
+                "timeDisplay": "1:54",
+                "speaker": "Interviewer",
+                "textEn": "Do you think the writer has the responsibility to represent any kind of historical truth?",
+                "textFa": "آیا معتقدید نویسنده مسئولیت دارد نوعی از حقیقت تاریخی را بازنمایی کند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 140,
+                "timeDisplay": "2:20",
+                "speaker": "Adrian Hodges",
+                "textEn": "If your intention is to tell the true story, then of course you have an obligation not to deliberately tell lies about it. But if you're writing a drama in a fictional context, then you have the right to tell a story without any obligation except to the story you're telling.",
+                "textFa": "اگر قصد شما روایت تاریخ مستند است، مسلماً تعهد دارید که عمداً دروغ نگویید؛ اما اگر در حال خلق درام در بستری داستانی هستید، هیچ تعهدی جز خلق اثری دراماتیک و جذاب برای قصه خود ندارید."
+        },
+        {
+                "id": 7,
+                "seconds": 165,
+                "timeDisplay": "2:45",
+                "speaker": "Interviewer",
+                "textEn": "Can you think of any examples where you feel the facts have been twisted too far?",
+                "textFa": "آیا نمونه‌ای به خاطرتان می‌رسد که احساس کنید حقایق تاریخی بیش از حد دگرگون شده‌اند؟"
+        },
+        {
+                "id": 8,
+                "seconds": 204,
+                "timeDisplay": "3:24",
+                "speaker": "Adrian Hodges",
+                "textEn": "The danger with any historical film is that it becomes the received version of the truth, where people don't make distinctions between film and reality.",
+                "textFa": "خطر هر فیلم تاریخی این است که به روایتی پذیرفته‌شده و قطعی از حقیقت بدل شود، جایی که بینندگان تمایزی بین فیلم سینمایی و واقعیت قائل نمی‌شوند."
+        },
+        {
+                "id": 9,
+                "seconds": 225,
+                "timeDisplay": "3:45",
+                "speaker": "Adrian Hodges",
+                "textEn": "Think about Spartacus: Kirk Douglas standing up and saying 'I am Spartacus' stands for freedom and individual choice. But it became the version of the truth, even though we don't know if that actually happened.",
+                "textFa": "به فیلم «اسپارتاکوس» فکر کنید: کرک داگلاس که می‌ایستد و می‌گوید «من اسپارتاکوس هستم» نمادی باشکوه از آزادی و حق انتخاب فردی است، اما به روایتی رسمی بدل شد، هرچند نمی‌دانیم آیا واقعاً در واقعیت رخ داده است یا خیر."
+        },
+        {
+                "id": 10,
+                "seconds": 277,
+                "timeDisplay": "4:37",
+                "speaker": "Adrian Hodges",
+                "textEn": "Or Braveheart, presenting William Wallace, where Mel Gibson made a film that some felt was more about modern Scottish independence than the actual history.",
+                "textFa": "یا فیلم «شجاع‌دل» با بازی مل گیبسون در نقش ویلیام والاس، که برخی احساس کردند فیلم بیشتر بازتاب استقلال‌طلبی معاصر اسکاتلند بود تا وقایع دقیق تاریخی آن زمان."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Adrian Hodges (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 100,
-        "timestampDisplay": "1:40",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Adrian Hodges و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:31]. What key point is stated by Adrian Hodges?",
+        "timestampSeconds": 151,
+        "timestampDisplay": "2:31",
+        "explanationFa": "در ثانیه 2:31 ویدیو، Adrian Hodges به صراحت بیان می‌کند: «Using them correctly is also an important aspect of communication that enables the reader or listener to follow your ideas.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Adrian Hodges covering Screenwriting & Drama, n...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی)... است."
+            "textEn": "Adrian Hodges states: \"Using them correctly is also an important aspect of communication...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -14271,44 +22407,68 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Adrian Hodges (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 26,
-        "timeDisplay": "0:26",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Adrian Hodges.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Adrian Hodges.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 79,
-        "timeDisplay": "1:19",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Adrian Hodges (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Adrian Hodges",
+                "textEn": "History is jam-packed full with good stories, many of which people know, or at least vaguely know.",
+                "textFa": "تاریخ سرشار از داستان‌های ناب است که اغلب مردم آن‌ها را می‌دانند یا دست‌کم شناختی اجمالی از آن‌ها دارند."
+        },
+        {
+                "id": 2,
+                "seconds": 35,
+                "timeDisplay": "0:35",
+                "speaker": "Adrian Hodges",
+                "textEn": "You have to make sure you have nothing in it which would betray the period.",
+                "textFa": "باید مطمئن شوید هیچ عنصری در صحنه وجود ندارد که با حال‌وهوای آن عصر تاریخی ناهمخوان باشد و به آن خیانت کند."
+        },
+        {
+                "id": 3,
+                "seconds": 51,
+                "timeDisplay": "0:51",
+                "speaker": "Adrian Hodges",
+                "textEn": "Rome was a case in point; we needed big crowds of senators all in costume.",
+                "textFa": "سریال «رُم» نمونه بارز این موضوع بود؛ ما به جمعیت کثیری از سناتورها با لباس‌های تاریخی کامل نیاز داشتیم."
+        },
+        {
+                "id": 4,
+                "seconds": 59,
+                "timeDisplay": "0:59",
+                "speaker": "Adrian Hodges",
+                "textEn": "It's much easier to play fast and loose with the details of Ancient Rome than with details of World War II.",
+                "textFa": "تغییر آزادانه و بازیگوشانه با جزئیات روم باستان بسیار راحت‌تر از دست بردن در جزئیات جنگ جهانی دوم است."
+        },
+        {
+                "id": 5,
+                "seconds": 71,
+                "timeDisplay": "1:11",
+                "speaker": "Adrian Hodges",
+                "textEn": "The danger is that a film becomes the received version of the truth.",
+                "textFa": "خطر اینجاست که یک اثر سینمایی به عنوان روایت رسمی و مورد قبول همگان از حقیقت تلقی شود."
+        },
+        {
+                "id": 6,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Adrian Hodges",
+                "textEn": "The presentation of William Wallace was really a question of whether history could stand it.",
+                "textFa": "نحوه به تصویر کشیدن ویلیام والاس در واقع این پرسش را ایجاد کرد که آیا بستر تاریخی تاب این میزان تغییر را دارد یا خیر."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Adrian Hodges (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 35,
-        "timestampDisplay": "0:35",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Adrian Hodges و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:53]. What key point is stated by Adrian Hodges?",
+        "timestampSeconds": 53,
+        "timestampDisplay": "0:53",
+        "explanationFa": "در ثانیه 0:53 ویدیو، Adrian Hodges به صراحت بیان می‌کند: «Was– is Shakespearean drama accurate?.” The iro– the thing is, it’s not about historical accuracy,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Adrian Hodges covering Screenwriting & Drama, n...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با آدریان هاجز (فیلم‌نامه‌نویس نامدار بی‌بی‌سی)... است."
+            "textEn": "Adrian Hodges states: \"Was– is Shakespearean drama accurate?.” The iro– the thing is, it...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -14467,44 +22627,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Sarita Gupta (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 65,
-        "timeDisplay": "1:05",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Sarita Gupta.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Sarita Gupta.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 196,
-        "timeDisplay": "3:16",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Sarita Gupta (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Interviewer",
+                "textEn": "Sarita Gupta is a Vice President of Women's World Banking, based in New York.",
+                "textFa": "ساریتا گوپتا معاون ارشد سازمان «بانکداری جهانی زنان» مستقر در نیویورک است."
+        },
+        {
+                "id": 2,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Interviewer",
+                "textEn": "Could you tell us who founded Women's World Banking and why?",
+                "textFa": "آیا می‌توانید بفرمایید چه کسانی بانکداری جهانی زنان را بنیان نهادند و هدفشان چه بود؟"
+        },
+        {
+                "id": 3,
+                "seconds": 75,
+                "timeDisplay": "1:15",
+                "speaker": "Sarita Gupta",
+                "textEn": "The idea behind Women's World Banking came out of a meeting that was held in Mexico in 1975, the United Nations First International Year of the Woman.",
+                "textFa": "ایده شکل‌گیری بانکداری جهانی زنان از نشستی در مکزیکو در سال ۱۹۷۵ سرچشمه گرفت؛ نخستین سال بین‌المللی زنان در سازمان ملل متحد."
+        },
+        {
+                "id": 4,
+                "seconds": 104,
+                "timeDisplay": "1:44",
+                "speaker": "Sarita Gupta",
+                "textEn": "They decided that if they could focus on one issue as a catalyst, it would be economic independence for women. If a woman has financial independence, she can have greater access to education and opportunity.",
+                "textFa": "آن‌ها به این نتیجه رسیدند که اگر بخواهند روی یک عامل شتاب‌بخش متمرکز شوند، آن عامل «استقلال اقتصادی زنان» است؛ زیرا با استقلال مالی، دسترسی زن به آموزش و فرصت‌ها بسیار فراتر می‌رود."
+        },
+        {
+                "id": 5,
+                "seconds": 127,
+                "timeDisplay": "2:07",
+                "speaker": "Interviewer",
+                "textEn": "Where did the idea of microfinance come from?",
+                "textFa": "ایده «تأمین مالی خرد» (میکروفاینانس) از کجا آغاز شد؟"
+        },
+        {
+                "id": 6,
+                "seconds": 154,
+                "timeDisplay": "2:34",
+                "speaker": "Sarita Gupta",
+                "textEn": "Muhammad Yunus, an economist in Bangladesh, is credited as being the father of microfinance. He recognized that to get started, the poor need access to credit, but have no collateral to borrow from conventional banks.",
+                "textFa": "محمد یونس، اقتصاددان بنگلادشی، پدر مالیه خرد نامیده می‌شود. او دریافت که برای شروع کسب‌وکار، افراد کم‌درآمد به اعتبار نیاز دارند اما وثیقه‌ای برای دریافت وام از بانک‌های مرسوم ندارند."
+        },
+        {
+                "id": 7,
+                "seconds": 174,
+                "timeDisplay": "2:54",
+                "speaker": "Interviewer",
+                "textEn": "How did Dr. Yunus solve these problems?",
+                "textFa": "دکتر یونس چگونه این موانع را برطرف ساخت؟"
+        },
+        {
+                "id": 8,
+                "seconds": 212,
+                "timeDisplay": "3:32",
+                "speaker": "Sarita Gupta",
+                "textEn": "He came up with three innovations: First, peer collateral, where a group of peers were given loans and held each other accountable. Second, breaking up repayments into small, regular amounts. Third, an incentive system where successful repayment makes you eligible for larger loans.",
+                "textFa": "او سه نوآوری بنیادین ارائه داد: نخست «ضمانت گروهی» که همتایان متقابلاً مسئول بازپرداخت بودند؛ دوم تقسیط بدهی به مبالغ بسیار اندک و منظم؛ و سوم سازوکار انگیزشی که بازپرداخت موفق، راه را برای وام‌های بزرگتر هموار می‌کرد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Sarita Gupta (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 87,
-        "timestampDisplay": "1:27",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Sarita Gupta و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:11]. What key point is stated by Interviewer?",
+        "timestampSeconds": 131,
+        "timestampDisplay": "2:11",
+        "explanationFa": "در ثانیه 2:11 ویدیو، Interviewer به صراحت بیان می‌کند: «In this three-part interview he talks about what causes stress, the effect it can have on the mind and body,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Sarita Gupta covering Social Justice & Activism...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی... است."
+            "textEn": "Interviewer states: \"In this three-part interview he talks about what causes stress, t...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -14663,44 +22863,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Sarita Gupta (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 68,
-        "timeDisplay": "1:08",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Sarita Gupta.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Sarita Gupta.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 204,
-        "timeDisplay": "3:24",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Sarita Gupta (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Why does Women's World Banking focus specifically on women?",
+                "textFa": "چرا سازمان بانکداری جهانی زنان منحصراً بر زنان تمرکز دارد؟"
+        },
+        {
+                "id": 2,
+                "seconds": 65,
+                "timeDisplay": "1:05",
+                "speaker": "Sarita Gupta",
+                "textEn": "Women represent the vast majority of the world's poor, but studies show that when a woman earns income, she reinvests up to ninety percent into her family—children's health, education, and nutrition.",
+                "textFa": "زنان اکثریت مطلق فقرای جهان را تشکیل می‌دهند، اما پژوهش‌ها نشان می‌دهد وقتی یک زن درآمد کسب می‌کند، تا نود درصد آن را در خانواده یعنی سلامت، تحصیل و تغذیه فرزندان سرمایه‌گذاری می‌نماید."
+        },
+        {
+                "id": 3,
+                "seconds": 96,
+                "timeDisplay": "1:36",
+                "speaker": "Interviewer",
+                "textEn": "Can you give an example of a success story?",
+                "textFa": "آیا می‌توانید نمونه‌ای از داستان‌های موفقیت‌آمیز را بیان کنید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 120,
+                "timeDisplay": "2:00",
+                "speaker": "Sarita Gupta",
+                "textEn": "In Jordan, we met a woman who started by borrowing just a small amount to buy a sewing machine. Gradually, she grew her tailoring business, hired other local women, and eventually put all three of her children through university.",
+                "textFa": "در اردن با زنی آشنا شدیم که با دریافت وامی اندک برای خرید یک چرخ خیاطی آغاز کرد. او تدریجاً کارگاه خیاطی خود را توسعه داد، زنان محلی دیگر را به کار گرفت و در نهایت هر سه فرزندش را به دانشگاه فرستاد."
+        },
+        {
+                "id": 5,
+                "seconds": 163,
+                "timeDisplay": "2:43",
+                "speaker": "Interviewer",
+                "textEn": "What are the biggest challenges facing microfinance institutions today?",
+                "textFa": "بزرگترین چالش‌های پیش‌روی نهادهای مالیه خرد در حال حاضر چیست؟"
+        },
+        {
+                "id": 6,
+                "seconds": 194,
+                "timeDisplay": "3:14",
+                "speaker": "Sarita Gupta",
+                "textEn": "The challenge is scaling sustainably without losing sight of the social mission. We must ensure that clients are not over-indebted and that financial literacy accompanies access to capital.",
+                "textFa": "چالش اصلی، توسعه پایدار بدون انحراف از رسالت اجتماعی است. ما باید اطمینان حاصل کنیم متقاضیان زیر بار بدهی مضاعف نمی‌روند و دسترسی به سرمایه، با سواد مالی کافی همراه است."
+        },
+        {
+                "id": 7,
+                "seconds": 219,
+                "timeDisplay": "3:39",
+                "speaker": "Interviewer",
+                "textEn": "What role does technology play in expanding financial inclusion?",
+                "textFa": "فناوری چه نقشی در گسترش فراگیری و شمول مالی ایفا می‌کند؟"
+        },
+        {
+                "id": 8,
+                "seconds": 255,
+                "timeDisplay": "4:15",
+                "speaker": "Sarita Gupta",
+                "textEn": "Mobile banking and digital wallets have revolutionized access. Women in remote rural areas who never had a physical bank branch within miles can now manage savings and transfers securely from their phones.",
+                "textFa": "بانکداری موبایلی و کیف پول‌های دیجیتال دسترسی را دگرگون ساخته‌اند. زنانی در دورافتاده‌ترین روستاها که فرسنگ‌ها با هیچ شعبه بانکی فاصله داشتند، اکنون با امنیت خاطر پس‌انداز و واریزها را با گوشی مدیریت می‌کنند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Sarita Gupta (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 90,
-        "timestampDisplay": "1:30",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Sarita Gupta و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:14]. What key point is stated by Interviewer?",
+        "timestampSeconds": 134,
+        "timestampDisplay": "2:14",
+        "explanationFa": "در ثانیه 2:14 ویدیو، Interviewer به صراحت بیان می‌کند: «so it is far more stressful being at home than being at work.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Sarita Gupta covering Social Justice & Activism...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی... است."
+            "textEn": "Interviewer states: \"so it is far more stressful being at home than being at work....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -14859,44 +23099,60 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Sarita Gupta (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 27,
-        "timeDisplay": "0:27",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Sarita Gupta.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Sarita Gupta.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 82,
-        "timeDisplay": "1:22",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Sarita Gupta (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Sarita Gupta",
+                "textEn": "Microfinance is really about financial inclusion and empowerment.",
+                "textFa": "مالیه خرد در حقیقت درباره فراگیری مالی و توانمندسازی افراد است."
+        },
+        {
+                "id": 2,
+                "seconds": 22,
+                "timeDisplay": "0:22",
+                "speaker": "Sarita Gupta",
+                "textEn": "They had no collateral to put up for a loan.",
+                "textFa": "آن‌ها هیچ وثیقه‌ای برای تضمین بازپرداخت وام در اختیار نداشتند."
+        },
+        {
+                "id": 3,
+                "seconds": 29,
+                "timeDisplay": "0:29",
+                "speaker": "Sarita Gupta",
+                "textEn": "The peer group acts as a support system and social guarantor.",
+                "textFa": "گروه همتایان هم به عنوان حامی و هم به عنوان ضامن اجتماعی عمل می‌کند."
+        },
+        {
+                "id": 4,
+                "seconds": 60,
+                "timeDisplay": "1:00",
+                "speaker": "Sarita Gupta",
+                "textEn": "She reinvests her earnings directly into the well-being of her household.",
+                "textFa": "او عواید و درآمد خود را مستقیماً در رفاه و آسایش خانواده‌اش به کار می‌گیرد."
+        },
+        {
+                "id": 5,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Sarita Gupta",
+                "textEn": "This is a sustainable model that creates generational change.",
+                "textFa": "این یک الگوی پایدار است که دگرگونی و پویایی نسلی به وجود می‌آورد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Sarita Gupta (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 36,
-        "timestampDisplay": "0:36",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Sarita Gupta و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:54]. What key point is stated by Interviewer?",
+        "timestampSeconds": 54,
+        "timestampDisplay": "0:54",
+        "explanationFa": "در ثانیه 0:54 ویدیو، Interviewer به صراحت بیان می‌کند: «1 …having too much to do, too little time, money problems, and commuting.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Sarita Gupta covering Social Justice & Activism...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با ساریتا گوپتا (فعال حقوق مدنی و عدالت اجتماعی... است."
+            "textEn": "Interviewer states: \"1 …having too much to do, too little time, money problems, and co...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -15055,44 +23311,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Patricia Melvin (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 79,
-        "timeDisplay": "1:19",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Patricia Melvin.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Patricia Melvin.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 237,
-        "timeDisplay": "3:57",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Patricia Melvin (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Patricia Melvin is an American painter living and working in New York City.",
+                "textFa": "پاتریشیا ملوین یک نقاش آمریکایی است که در شهر نیویورک زندگی و فعالیت می‌کند."
+        },
+        {
+                "id": 2,
+                "seconds": 72,
+                "timeDisplay": "1:12",
+                "speaker": "Interviewer",
+                "textEn": "How did you first get started as an artist, and did you have formal training?",
+                "textFa": "چگونه به عنوان یک هنرمند کارتان را آغاز کردید و آیا آموزش‌های آکادمیک و رسمی هم داشتید؟"
+        },
+        {
+                "id": 3,
+                "seconds": 110,
+                "timeDisplay": "1:50",
+                "speaker": "Patricia Melvin",
+                "textEn": "I was largely self-taught initially. I always had an urge to paint what was around me, capturing light and the atmosphere of the city.",
+                "textFa": "در ابتدا تا حد زیادی خودآموخته بودم. همواره کششی درونی داشتم تا جهان پیرامونم، نور و حال‌وهوای زنده شهر را روی بوم ثبت کنم."
+        },
+        {
+                "id": 4,
+                "seconds": 119,
+                "timeDisplay": "1:59",
+                "speaker": "Patricia Melvin",
+                "textEn": "I lived in Europe for several years—in Paris and Amsterdam—where I spent hours studying the masters in museums and painting plein air on the streets.",
+                "textFa": "چندین سال در اروپا—در پاریس و آمستردام—زندگی کردم، جایی که ساعت‌ها در موزه‌ها به بررسی آثار استادان بزرگ پرداختم و در فضای باز خیابان‌ها نقاشی کشیدم."
+        },
+        {
+                "id": 5,
+                "seconds": 160,
+                "timeDisplay": "2:40",
+                "speaker": "Interviewer",
+                "textEn": "What attracts you to plein air painting, painting outdoors on site?",
+                "textFa": "چه چیزی شما را به نقاشی در هوای آزاد (پلن ار) و ثبت در محل ترغیب می‌کند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 205,
+                "timeDisplay": "3:25",
+                "speaker": "Patricia Melvin",
+                "textEn": "Painting on location gives an immediacy and energy that you simply cannot replicate inside a studio. The shifting light, the weather, and the buzz of the city all enter into the canvas.",
+                "textFa": "نقاشی در محل، حس فوریت و پویایی نابی می‌بخشد که هرگز در فضای بسته استودیو بازتولید نمی‌شود؛ تغییر مداوم نور، اقلیم و هیاهوی شهر، همه بر بوم اثر می‌گذارند."
+        },
+        {
+                "id": 7,
+                "seconds": 246,
+                "timeDisplay": "4:06",
+                "speaker": "Interviewer",
+                "textEn": "How has New York City influenced your subject matter and palette?",
+                "textFa": "شهر نیویورک چگونه بر موضوعات و پالت رنگی شما تأثیر گذاشته است؟"
+        },
+        {
+                "id": 8,
+                "seconds": 300,
+                "timeDisplay": "5:00",
+                "speaker": "Patricia Melvin",
+                "textEn": "New York has incredible architectural drama—the canyons of streets, brownstones, and bridges. Early morning light bouncing off brick and water creates stunning contrasts that inspire me every single day.",
+                "textFa": "نیویورک شکوه معماری بی‌نظیری دارد؛ دره‌های خیابانی، خانه‌های آجری و پل‌ها. تابش نور سپیده‌دم بر آجرها و سطح آب، تضادهایی چشم‌نواز می‌آفریند که هر روز الهام‌بخش من است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Patricia Melvin (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 105,
-        "timestampDisplay": "1:45",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Patricia Melvin و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:37]. What key point is stated by Interviewer?",
+        "timestampSeconds": 157,
+        "timestampDisplay": "2:37",
+        "explanationFa": "در ثانیه 2:37 ویدیو، Interviewer به صراحت بیان می‌کند: «Lesson plan In this lesson the person interviewed is the artist and illustrator Quentin Blake,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Patricia Melvin covering Urban Landscape Painti...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن... است."
+            "textEn": "Interviewer states: \"Lesson plan In this lesson the person interviewed is the artist a...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -15251,44 +23547,68 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Patricia Melvin (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 56,
-        "timeDisplay": "0:56",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Patricia Melvin.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Patricia Melvin.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 168,
-        "timeDisplay": "2:48",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Patricia Melvin (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Interviewer",
+                "textEn": "What is your creative process when starting a new piece?",
+                "textFa": "هنگام آغاز یک اثر جدید، فرآیند خلاقانه شما چگونه پیش می‌رود؟"
+        },
+        {
+                "id": 2,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Patricia Melvin",
+                "textEn": "I usually start by framing the composition with quick brushstrokes to establish the values—the darks and the lights. If the underlying structure is sound, the color harmonies fall into place naturally.",
+                "textFa": "معمولاً با قلم‌موهای سریع کادربندی ترکیب‌بندی را مشخص می‌کنم تا تیرگی‌ها و روشنی‌ها شکل بگیرند؛ اگر ساختار زیرین مستحکم باشد، هماهنگی رنگ‌ها به طرزی طبیعی جای خود را می‌یابند."
+        },
+        {
+                "id": 3,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Interviewer",
+                "textEn": "Do you prefer painting cityscapes or natural landscapes?",
+                "textFa": "نقاشی از چشم‌اندازهای شهری را ترجیح می‌دهید یا مناظر طبیعی؟"
+        },
+        {
+                "id": 4,
+                "seconds": 121,
+                "timeDisplay": "2:01",
+                "speaker": "Patricia Melvin",
+                "textEn": "I love both, but they require different sensibilities. In nature, everything is organic, whereas in the city, rigid geometry is softened by light, steam, and movement.",
+                "textFa": "هر دو را شیفته‌وار دوست دارم اما حس‌وحال متفاوتی می‌طلبند؛ در طبیعت همه‌چیز اندام‌وار و ارگانیک است، در حالی که در شهر، هندسه صلب ساختمان‌ها با نور، مه و حرکت تعدیل می‌شود."
+        },
+        {
+                "id": 5,
+                "seconds": 141,
+                "timeDisplay": "2:21",
+                "speaker": "Interviewer",
+                "textEn": "What advice would you give to aspiring painters looking to find their own style?",
+                "textFa": "چه توصیه‌ای برای نقاشان نوپایی دارید که در پی یافتن سبک فردی خود هستند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 189,
+                "timeDisplay": "3:09",
+                "speaker": "Patricia Melvin",
+                "textEn": "Don't worry about style at first. Just paint persistently, observe intently from life, and master drawing. Your authentic style will emerge on its own through regular practice.",
+                "textFa": "در ابتدا نگران سبک نباشید؛ فقط مداوم نقاشی کنید، عمیقاً از دنیای واقعی مشاهده کنید و بر طراحی مسلط شوید. سبک اصیل شما خودبه‌خود از دل تمرین پیوسته متولد خواهد شد."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Patricia Melvin (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 74,
-        "timestampDisplay": "1:14",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Patricia Melvin و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:50]. What key point is stated by Interviewer?",
+        "timestampSeconds": 110,
+        "timestampDisplay": "1:50",
+        "explanationFa": "در ثانیه 1:50 ویدیو، Interviewer به صراحت بیان می‌کند: «Um, but I think to get into the mood of the book, which is a terribly important thing,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Patricia Melvin covering Urban Landscape Painti...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن... است."
+            "textEn": "Interviewer states: \"Um, but I think to get into the mood of the book, which is a terr...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -15447,44 +23767,60 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Patricia Melvin (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 25,
-        "timeDisplay": "0:25",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Patricia Melvin.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Patricia Melvin.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 77,
-        "timeDisplay": "1:17",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Patricia Melvin (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Patricia Melvin",
+                "textEn": "Painting plein air is all about capturing the fleeting essence of light.",
+                "textFa": "نقاشی در هوای آزاد سراسر درباره شکار گوهر گذرا و فریبنده نور است."
+        },
+        {
+                "id": 2,
+                "seconds": 23,
+                "timeDisplay": "0:23",
+                "speaker": "Patricia Melvin",
+                "textEn": "The city has a unique rhythm that translates directly onto the canvas.",
+                "textFa": "شهر ریتم منحصربه‌فردی دارد که بی‌واسطه بر روی بوم نقاشی منعکس می‌شود."
+        },
+        {
+                "id": 3,
+                "seconds": 42,
+                "timeDisplay": "0:42",
+                "speaker": "Patricia Melvin",
+                "textEn": "You have to work quickly before the shadows completely shift.",
+                "textFa": "باید پیش از آنکه سایه‌ها تغییر جهت دهند، سریع و چابک دست به کار شوید."
+        },
+        {
+                "id": 4,
+                "seconds": 56,
+                "timeDisplay": "0:56",
+                "speaker": "Patricia Melvin",
+                "textEn": "A strong foundation in drawing gives you freedom with color.",
+                "textFa": "پایه‌ای استوار در طراحی، به شما در به‌کارگیری رنگ‌ها آزادی و رهایی می‌بخشد."
+        },
+        {
+                "id": 5,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Patricia Melvin",
+                "textEn": "Every painting is a record of a specific moment in time.",
+                "textFa": "هر اثر نقاشی، سندی ماندگار از یک لحظه مشخص در زمان است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Patricia Melvin (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 34,
-        "timestampDisplay": "0:34",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Patricia Melvin و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:50]. What key point is stated by Interviewer?",
+        "timestampSeconds": 50,
+        "timestampDisplay": "0:50",
+        "explanationFa": "در ثانیه 0:50 ویدیو، Interviewer به صراحت بیان می‌کند: «and that’s much more important than whether you’re interested in them or like them.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Patricia Melvin covering Urban Landscape Painti...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با پاتریشیا ملوین (نقاش برجسته مناظر شهری منهتن... است."
+            "textEn": "Interviewer states: \"and that’s much more important than whether you’re interested in ...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -15643,44 +23979,76 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Chantelle Nicholson (Part 1).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 1).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 58,
-        "timeDisplay": "0:58",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Chantelle Nicholson.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Chantelle Nicholson.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 174,
-        "timeDisplay": "2:54",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Chantelle Nicholson (Part 1).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 1).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 12,
+                "timeDisplay": "0:12",
+                "speaker": "Interviewer",
+                "textEn": "Chantelle Nicholson is an acclaimed chef and restaurateur based in London.",
+                "textFa": "شانتل نیکلسون یک سرآشپز برجسته و صاحب رستوران در لندن است."
+        },
+        {
+                "id": 2,
+                "seconds": 44,
+                "timeDisplay": "0:44",
+                "speaker": "Interviewer",
+                "textEn": "Who taught you how to cook, and how did your culinary passion begin?",
+                "textFa": "چه کسی به شما آشپزی آموخت و این اشتیاق چگونه در شما شکل گرفت؟"
+        },
+        {
+                "id": 3,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "It would probably be my parents when I was younger. It was always something that I was interested in from an early age, and I used to be in the kitchen quite a lot.",
+                "textFa": "احتمالاً در کودکی پدر و مادرم بودند. از همان خردسالی همواره به آشپزی علاقه داشتم و وقت زیادی را در آشپزخانه می‌گذراندم."
+        },
+        {
+                "id": 4,
+                "seconds": 95,
+                "timeDisplay": "1:35",
+                "speaker": "Interviewer",
+                "textEn": "You originally studied law and worked in banking. How did you end up as a chef in London?",
+                "textFa": "شما در ابتدا حقوق خواندید و در حوزه بانکداری کار کردید. چطور شد که سر از آشپزی در لندن درآوردید؟"
+        },
+        {
+                "id": 5,
+                "seconds": 126,
+                "timeDisplay": "2:06",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "One afternoon I was reading a foodie magazine in New Zealand, and it mentioned the Gordon Ramsay scholarship. We had to submit a three-course menu, and that opportunity opened the door for me to move to the UK.",
+                "textFa": "یک روز بعدازظهر در نیوزیلند مجله‌ای تخصصی درباره غذا می‌خواندم که بورسیه سرآشپزی گوردون رمزی را معرفی کرده بود؛ منویی سه‌بخشی ارسال کردم و همین فرصت، راه مهاجرت و فعالیتم در بریتانیا را هموار کرد."
+        },
+        {
+                "id": 6,
+                "seconds": 178,
+                "timeDisplay": "2:58",
+                "speaker": "Interviewer",
+                "textEn": "What was the transition like moving into professional restaurant kitchens?",
+                "textFa": "گذار و ورود به آشپزخانه‌های حرفه‌ای رستوران‌ها برای شما چگونه بود؟"
+        },
+        {
+                "id": 7,
+                "seconds": 206,
+                "timeDisplay": "3:26",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "It was intense and demanding, but incredibly rewarding. Learning under top chefs like Marcus Wareing taught me precision, discipline, and respect for every single ingredient.",
+                "textFa": "بسیار پرفشار و طاقت‌فرسا بود اما پاداشی فوق‌العاده داشت. یادگیری زیر نظر سرآشپزان نامداری چون مارکوس وارینگ، دقت، نظم آهنین و احترام به تک‌تک مواد اولیه را به من آموخت."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 1)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Chantelle Nicholson (Part 1)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 77,
-        "timestampDisplay": "1:17",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Chantelle Nicholson و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:55]. What key point is stated by Interviewer?",
+        "timestampSeconds": 115,
+        "timestampDisplay": "1:55",
+        "explanationFa": "در ثانیه 1:55 ویدیو، Interviewer به صراحت بیان می‌کند: «Give Sts time to read it. Now focus on the photos.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Chantelle Nicholson covering Sustainable Culina...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) پیرام... است."
+            "textEn": "Interviewer states: \"Give Sts time to read it. Now focus on the photos....\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -15839,44 +24207,68 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Chantelle Nicholson (Part 2).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 2).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 66,
-        "timeDisplay": "1:06",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Chantelle Nicholson.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Chantelle Nicholson.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 198,
-        "timeDisplay": "3:18",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Chantelle Nicholson (Part 2).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 2).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Interviewer",
+                "textEn": "You are known as a pioneer of plant-forward and sustainable dining. What drives that philosophy?",
+                "textFa": "شما به عنوان یکی از پیشگامان غذاهای پایدار و گیاه‌محور شناخته می‌شوید؛ فلسفه پشتیبان این رویکرد چیست؟"
+        },
+        {
+                "id": 2,
+                "seconds": 85,
+                "timeDisplay": "1:25",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Sustainability has to be at the core of hospitality. It's about respecting seasonal produce, minimizing food waste, and showcasing vegetables as the stars of the plate, not just afterthoughts.",
+                "textFa": "پایداری باید قلب تپنده صنعت مهمان‌نوازی باشد؛ یعنی احترام به محصولات فصلی، به حداقل رساندن دورریز مواد و نشان دادن سبزیجات به عنوان ستاره‌های اصلی بشقاب، نه صرفاً تزئینات حاشیه‌ای."
+        },
+        {
+                "id": 3,
+                "seconds": 154,
+                "timeDisplay": "2:34",
+                "speaker": "Interviewer",
+                "textEn": "How do you approach creating a new dish?",
+                "textFa": "برای خلق یک غذای جدید، فرآیند شما به چه شکلی است؟"
+        },
+        {
+                "id": 4,
+                "seconds": 196,
+                "timeDisplay": "3:16",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "I start with seasonality—what is at its peak right now from our local growers? Then we balance textures: something crunchy, something smooth, acidity to brighten, and depth of flavor.",
+                "textFa": "نقطه آغاز من فصلی بودن است—کدام محصول محلی هم‌اکنون در اوج کیفیت و طراوت است؟ سپس به ایجاد تعادل بافت‌ها می‌پردازیم: المانی ترد، بافتی لطیف، کمی اسیدیته برای درخشش طعم، و غنای عطر و مزه."
+        },
+        {
+                "id": 5,
+                "seconds": 209,
+                "timeDisplay": "3:29",
+                "speaker": "Interviewer",
+                "textEn": "What advice do you share with home cooks who want to elevate their meals?",
+                "textFa": "چه توصیه‌ای به آشپزهای خانگی دارید که می‌خواهند دست‌پخت خود را ارتقا دهند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 235,
+                "timeDisplay": "3:55",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Season carefully throughout cooking, taste constantly, and invest in good olive oil and fresh herbs. The simplest ingredients, treated properly, make unforgettable meals.",
+                "textFa": "در تمام طول پخت با دقت چاشنی‌ها را بیفزایید، پیوسته غذا را بچشید، و از روغن زیتون مرغوب و سبزیجات تازه استفاده کنید؛ ساده‌ترین مواد اگر اصولی طبخ شوند، غذایی فراموش‌نشدنی می‌سازند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 2)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Chantelle Nicholson (Part 2)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 88,
-        "timestampDisplay": "1:28",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Chantelle Nicholson و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:11]. What key point is stated by Interviewer?",
+        "timestampSeconds": 131,
+        "timestampDisplay": "2:11",
+        "explanationFa": "در ثانیه 2:11 ویدیو، Interviewer به صراحت بیان می‌کند: «and they Copying,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Chantelle Nicholson covering Sustainable Culina...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) پیرام... است."
+            "textEn": "Interviewer states: \"and they Copying,...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -16035,44 +24427,52 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "واژگان سطح C1"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: Mastery Interview · Chantelle Nicholson (Part 3).",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 3).",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 20,
-        "timeDisplay": "0:20",
-        "textEn": "Detailed conversation and communicative exchange regarding دیدگاه‌های Chantelle Nicholson.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون دیدگاه‌های Chantelle Nicholson.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 61,
-        "timeDisplay": "1:01",
-        "textEn": "Concluding remarks and key language takeaway for Mastery Interview · Chantelle Nicholson (Part 3).",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 3).",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 10,
+                "timeDisplay": "0:10",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Cooking is an ever-evolving craft that requires curiosity and passion.",
+                "textFa": "آشپزی هنری پیوسته پویا است که به کنجکاوی و اشتیاق پایان‌ناپذیر نیاز دارد."
+        },
+        {
+                "id": 2,
+                "seconds": 30,
+                "timeDisplay": "0:30",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Treating ingredients with care transforms the entire dining experience.",
+                "textFa": "رفتار احترام‌آمیز با مواد غذایی، تجربه ضیافت را به کلی دگرگون می‌سازد."
+        },
+        {
+                "id": 3,
+                "seconds": 50,
+                "timeDisplay": "0:50",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Sustainable practices in the kitchen help protect our food systems for the future.",
+                "textFa": "روش‌های پایدار در آشپزخانه به پاسداری از سیستم‌های غذایی برای نسل‌های آینده کمک می‌کند."
+        },
+        {
+                "id": 4,
+                "seconds": 68,
+                "timeDisplay": "1:08",
+                "speaker": "Chantelle Nicholson",
+                "textEn": "Balance and flavor harmony are the hallmarks of great cuisine.",
+                "textFa": "تعادل و هماهنگی طعم‌ها، نشانه‌های برجسته آشپزی عالی و ممتاز هستند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه پیشرفته آکسفورد · شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) (بخش 3)»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'Mastery Interview · Chantelle Nicholson (Part 3)', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 27,
-        "timestampDisplay": "0:27",
-        "explanationFa": "در این صحنه، تمرکز بر دیدگاه‌های Chantelle Nicholson و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [0:40]. What key point is stated by Interviewer?",
+        "timestampSeconds": 40,
+        "timestampDisplay": "0:40",
+        "explanationFa": "در ثانیه 0:40 ویدیو، Interviewer به صراحت بیان می‌کند: «So in the West, where it’s cold and insects are relatively small, it’s, it’s not a very sensible idea.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Advanced critical interview with Chantelle Nicholson covering Sustainable Culina...",
-            "textFa": "تمرکز اصلی بر گفتگوی انتقادی پیشرفته با شانتل نیکلسون (سرآشپز ستاره‌دار میشلن) پیرام... است."
+            "textEn": "Interviewer states: \"So in the West, where it’s cold and insects are relatively small,...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -16231,44 +24631,116 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات خیابانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: On the Street 1: Perceptions of Success and Ambition.",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه خیابانی ۱: دیدگاه مردم درباره موفقیت و جاه‌طلبی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 53,
-        "timeDisplay": "0:53",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه خیابانی Success & Ambition.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه خیابانی Success & Ambition.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 159,
-        "timeDisplay": "2:39",
-        "textEn": "Concluding remarks and key language takeaway for On the Street 1: Perceptions of Success and Ambition.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه خیابانی ۱: دیدگاه مردم درباره موفقیت و جاه‌طلبی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Is there anyone in your family that you'd like to know more about?",
+                "textFa": "آیا در خانواده شما فردی هست که مایل باشید بیشتر درباره او بدانید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Adrian",
+                "textEn": "Um, probably the wife of the man who went down with the Titanic. I think she had quite an interesting and quite difficult life. Um, she had a baby, uh, brought it up by herself, so sounds like an amazing woman.",
+                "textFa": "شاید همسر مردی که در کشتی تایتانیک غرق شد. او زندگی بسیار پرماجرا و دشواری داشته؛ فرزندی داشت که به تنهایی بزرگش کرد و به نظر زن شگفت‌انگیزی می‌آید."
+        },
+        {
+                "id": 3,
+                "seconds": 34,
+                "timeDisplay": "0:34",
+                "speaker": "Interviewer",
+                "textEn": "How much do you know about your family tree?",
+                "textFa": "چقدر درباره شجره‌نامه خانوادگی خود اطلاعات دارید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Marylin",
+                "textEn": "Um, I know quite a lot because a relative of my father's, um, did some research on our family tree, oh about 20 years ago. So, well, I know that my father's family, um, is from Luxembourg.",
+                "textFa": "اطلاعات زیادی دارم زیرا یکی از اقوام پدری‌ام حدود بیست سال پیش درباره شجره‌نامه‌مان تحقیق کرد؛ بنابراین می‌دانم خانواده پدری‌ام اهل لوکزامبورگ هستند."
+        },
+        {
+                "id": 5,
+                "seconds": 90,
+                "timeDisplay": "1:30",
+                "speaker": "Interviewer",
+                "textEn": "Is there anyone in your family that you'd like to know more about?",
+                "textFa": "آیا کسی در خانواده هست که بخواهید اطلاعات بیشتری از او داشته باشید؟"
+        },
+        {
+                "id": 6,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Marylin",
+                "textEn": "Um, well, guess what, it's precisely those relatives who are still living in Luxembourg. But what can I do, if they didn't want to meet me, oh well, I guess it's just destiny.",
+                "textFa": "دقیقاً همان اقوامی که هنوز در لوکزامبورگ زندگی می‌کنند! اما وقتی تمایلی به ملاقات نداشتند، چه می‌شود کرد؛ گمانم تقدیر این بوده است."
+        },
+        {
+                "id": 7,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Interviewer",
+                "textEn": "How much do you know about your family tree?",
+                "textFa": "شما چقدر درباره شجره‌نامه خانوادگی‌تان می‌دانید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Hannah",
+                "textEn": "You know, I know a little bit about my family tree because I was lucky enough to grow up with having great-grandparents in my life until about ninth grade, so I know a lot from them.",
+                "textFa": "تا حدی می‌دانم، زیرا این شانس را داشتم که تا کلاس نهم، پدربزرگ و مادربزرگ بزرگم در قید حیات باشند و داستان‌های زیادی از گذشته تعریف کنند."
+        },
+        {
+                "id": 9,
+                "seconds": 116,
+                "timeDisplay": "1:56",
+                "speaker": "Interviewer",
+                "textEn": "Have you ever researched it?",
+                "textFa": "آیا تاکنون خودتان درباره آن تحقیق کرده‌اید؟"
+        },
+        {
+                "id": 10,
+                "seconds": 150,
+                "timeDisplay": "2:30",
+                "speaker": "Hannah",
+                "textEn": "I've tried to research it a little bit, uh, like doing the ancestry dot com thing, but um I haven't really gotten much further than that.",
+                "textFa": "کمی تلاش کردم، مثلاً در سایت‌های شجره‌شناسی جستجو کردم، اما فراتر از آن چندان پیش نرفته‌ام."
+        },
+        {
+                "id": 11,
+                "seconds": 150,
+                "timeDisplay": "2:30",
+                "speaker": "Interviewer",
+                "textEn": "Is there anyone in your family that you'd like to know more about?",
+                "textFa": "آیا کسی در خانواده‌تان هست که بخواهید بیشتر درباره‌اش بدانید؟"
+        },
+        {
+                "id": 12,
+                "seconds": 174,
+                "timeDisplay": "2:54",
+                "speaker": "Hannah",
+                "textEn": "I'd love to know more about my great-grandmother's grandmother. So I guess that would be my great, great, great-grandmother.",
+                "textFa": "خیلی دوست دارم درباره مادربزرگِ مادربزرگ بزرگم بیشتر بدانم؛ یعنی در واقع جد بزرگم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه خیابانی ۱: دیدگاه مردم درباره موفقیت و جاه‌طلبی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'On the Street 1: Perceptions of Success and Ambition', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 70,
-        "timestampDisplay": "1:10",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه خیابانی Success & Ambition و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:46]. What key point is stated by Interviewer?",
+        "timestampSeconds": 106,
+        "timestampDisplay": "1:46",
+        "explanationFa": "در ثانیه 1:46 ویدیو، Interviewer به صراحت بیان می‌کند: «I think the—I think the world is changing anyway,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Spontaneous on-the-street interviews with native speakers in London and New York...",
-            "textFa": "تمرکز اصلی بر مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Succes... است."
+            "textEn": "Interviewer states: \"I think the—I think the world is changing anyway,...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -16427,44 +24899,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات خیابانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: On the Street 2 & 3: Technology, Privacy and Society.",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه خیابانی ۲ و ۳: فناوری، حریم خصوصی و جامعه مدرن.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 48,
-        "timeDisplay": "0:48",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه خیابانی Technology & Privacy.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه خیابانی Technology & Privacy.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 144,
-        "timeDisplay": "2:24",
-        "textEn": "Concluding remarks and key language takeaway for On the Street 2 & 3: Technology, Privacy and Society.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه خیابانی ۲ و ۳: فناوری، حریم خصوصی و جامعه مدرن.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Is there a period of history that you would like to go back to?",
+                "textFa": "آیا دوره تاریخی خاصی هست که دوست داشته باشید به آن بازگردید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 41,
+                "timeDisplay": "0:41",
+                "speaker": "Heather",
+                "textEn": "I think I would have loved to be around in California in the sixties. I think it sounds like it was a really exciting time with people exploring their freedom.",
+                "textFa": "فکر می‌کنم خیلی دوست داشتم در دهه شصت میلادی در کالیفرنیا می‌بودم؛ دورانی پرهیجان بود که مردم آزادی‌های فردی و افق‌های نو را جستجو می‌کردند."
+        },
+        {
+                "id": 3,
+                "seconds": 69,
+                "timeDisplay": "1:09",
+                "speaker": "Interviewer",
+                "textEn": "Is there a person from history that you admire or find especially fascinating?",
+                "textFa": "آیا شخصیت تاریخی خاصی هست که تحسینش کنید یا برایتان جالب باشد؟"
+        },
+        {
+                "id": 4,
+                "seconds": 73,
+                "timeDisplay": "1:13",
+                "speaker": "Heather",
+                "textEn": "I think I most admire Nelson Mandela. I'm South African, so he's the first person that comes to mind. I think he was an incredible person and an amazing leader.",
+                "textFa": "بیش از همه نلسون ماندلا را تحسین می‌کنم؛ من اهل آفریقای جنوبی هستم و او اولین کسی است که به ذهنم می‌آید. انسانی استثنایی و رهبری بی‌نظیر بود."
+        },
+        {
+                "id": 5,
+                "seconds": 102,
+                "timeDisplay": "1:42",
+                "speaker": "Interviewer",
+                "textEn": "Is there a period of history that you'd like to go back to?",
+                "textFa": "آیا دوره تاریخی هست که مایل باشید به آن برگردید؟"
+        },
+        {
+                "id": 6,
+                "seconds": 125,
+                "timeDisplay": "2:05",
+                "speaker": "Harry",
+                "textEn": "That's a weird one. History was pretty brutal, life was really quite hard. There are some aspects where time was slower, but I'm not sure I'd really like to go back to the actual way of life.",
+                "textFa": "پرسش عجیبی است! تاریخ بسیار بی‌رحم و زندگی سخت بود. با اینکه زمان کندتر می‌گذشت، مطمئن نیستم واقعاً بخواهم به آن شیوه زندگی برگردم."
+        },
+        {
+                "id": 7,
+                "seconds": 131,
+                "timeDisplay": "2:11",
+                "speaker": "Interviewer",
+                "textEn": "Is there a person from history that you admire or find especially fascinating?",
+                "textFa": "آیا شخصیتی در تاریخ هست که تحسینش کنید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 145,
+                "timeDisplay": "2:25",
+                "speaker": "Harry",
+                "textEn": "Probably Queen Elizabeth I, because she managed to be the queen in a society where women weren't expected to hold or command any power.",
+                "textFa": "شاید ملکه الیزابت اول؛ زیرا موفق شد در جامعه‌ای به پادشاهی و اقتدار برسد که از زنان انتظار داشتن قدرت یا احترام نمی‌رفت."
+        },
+        {
+                "id": 9,
+                "seconds": 162,
+                "timeDisplay": "2:42",
+                "speaker": "Interviewer",
+                "textEn": "Is there a period of history that you would like to go back to?",
+                "textFa": "دوره تاریخی مورد علاقه شما برای بازگشت چیست؟"
+        },
+        {
+                "id": 10,
+                "seconds": 179,
+                "timeDisplay": "2:59",
+                "speaker": "Adam",
+                "textEn": "Yes, absolutely! I love ancient Greece. I love ancient Athens. I think it would be so amazing to see philosophy and democracy at their inception.",
+                "textFa": "بله حتماً! عاشق یونان باستان و آتن کهن هستم؛ تماشای تولد فلسفه و دموکراسی در سرچشمه‌اش واقعاً شگفت‌انگیز است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه خیابانی ۲ و ۳: فناوری، حریم خصوصی و جامعه مدرن»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'On the Street 2 & 3: Technology, Privacy and Society', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 64,
-        "timestampDisplay": "1:04",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه خیابانی Technology & Privacy و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [1:36]. What key point is stated by Interviewer?",
+        "timestampSeconds": 96,
+        "timestampDisplay": "1:36",
+        "explanationFa": "در ثانیه 1:36 ویدیو، Interviewer به صراحت بیان می‌کند: «Andrew I Is there a period of history that you would like to go back to?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Spontaneous on-the-street interviews with native speakers in London and New York...",
-            "textFa": "تمرکز اصلی بر مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Techno... است."
+            "textEn": "Interviewer states: \"Andrew I Is there a period of history that you would like to go b...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -16623,44 +25151,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات خیابانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: On the Street 4 & 5: Environmental Accountability.",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه خیابانی ۴ و ۵: مسئولیت‌پذیری زیست‌محیطی در زندگی روزمره.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 76,
-        "timeDisplay": "1:16",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه خیابانی Environment.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه خیابانی Environment.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 230,
-        "timeDisplay": "3:50",
-        "textEn": "Concluding remarks and key language takeaway for On the Street 4 & 5: Environmental Accountability.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه خیابانی ۴ و ۵: مسئولیت‌پذیری زیست‌محیطی در زندگی روزمره.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "When things are stressful, what do you do to try to de-stress?",
+                "textFa": "وقتی شرایط پرتنش و استرس‌زاست، برای آرامش و رفع استرس چه می‌کنید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 39,
+                "timeDisplay": "0:39",
+                "speaker": "John",
+                "textEn": "I de-stress by sitting down and breathing calmly and thinking about nothing, or sometimes thinking about the cosmos and putting things in perspective.",
+                "textFa": "با نشستن، تنفس عمیق و آرام و پاک کردن ذهن از افکار، یا گاهی تأمل در گستره کیهان تا مسائل را در ابعاد واقعیشان ببینم."
+        },
+        {
+                "id": 3,
+                "seconds": 82,
+                "timeDisplay": "1:22",
+                "speaker": "Interviewer",
+                "textEn": "Do you find that exercise or physical activity helps reduce your stress levels?",
+                "textFa": "آیا ورزش یا فعالیت بدنی در کاهش سطح استرس شما مؤثر است؟"
+        },
+        {
+                "id": 4,
+                "seconds": 131,
+                "timeDisplay": "2:11",
+                "speaker": "Sarah",
+                "textEn": "Going for a long run outdoors clears my head completely. Physical exertion helps burn off that anxious energy and resets my mindset.",
+                "textFa": "دویدن طولانی در فضای باز ذهن مرا کاملاً باز می‌کند؛ تحرک بدنی انرژی‌های مضطرب را تخلیه کرده و نگاهم را تازه می‌سازد."
+        },
+        {
+                "id": 5,
+                "seconds": 181,
+                "timeDisplay": "3:01",
+                "speaker": "Interviewer",
+                "textEn": "How does listening to music affect your mood when you're overwhelmed?",
+                "textFa": "موسیقی در زمان خستگی یا تنش روحی چگونه بر احوال شما اثر می‌گذارد؟"
+        },
+        {
+                "id": 6,
+                "seconds": 199,
+                "timeDisplay": "3:19",
+                "speaker": "Michael",
+                "textEn": "Classical music or acoustic instrumentals immediately lower my heart rate and make work or deadlines feel far more manageable.",
+                "textFa": "موسیقی کلاسیک یا بی‌کلام بی‌درنگ ضربان قلبم را آرام می‌کند و ضرب‌الاجل‌های کاری را بسیار قابل‌مدیریت‌تر جلوه می‌دهد."
+        },
+        {
+                "id": 7,
+                "seconds": 245,
+                "timeDisplay": "4:05",
+                "speaker": "Interviewer",
+                "textEn": "What boundaries do you set with smartphones and digital notifications to avoid burnout?",
+                "textFa": "برای پرهیز از فرسودگی، چه مرزبندی‌هایی با گوشی هوشمند و نوتیفیکیشن‌ها تعیین می‌کنید؟"
+        },
+        {
+                "id": 8,
+                "seconds": 290,
+                "timeDisplay": "4:50",
+                "speaker": "Elena",
+                "textEn": "I turn off notifications after 8 PM and avoid looking at work emails on weekends. Being constantly plugged in is the fastest route to chronic stress.",
+                "textFa": "نوتیفیکیشن‌ها را بعد از ساعت ۸ شب خاموش می‌کنم و آخر هفته‌ها به ایمیل‌های کاری سر نمی‌زنم؛ اتصال مداوم به اینترنت سریع‌ترین مسیر رسیدن به استرس مزمن است."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه خیابانی ۴ و ۵: مسئولیت‌پذیری زیست‌محیطی در زندگی روزمره»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'On the Street 4 & 5: Environmental Accountability', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 102,
-        "timestampDisplay": "1:42",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه خیابانی Environment و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:32]. What key point is stated by Least stressed?",
+        "timestampSeconds": 152,
+        "timestampDisplay": "2:32",
+        "explanationFa": "در ثانیه 2:32 ویدیو، Least stressed به صراحت بیان می‌کند: «uh, and unstressed in work, which I think is very unlike most New Yorkers and I’m very fortunate.».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Spontaneous on-the-street interviews with native speakers in London and New York...",
-            "textFa": "تمرکز اصلی بر مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Enviro... است."
+            "textEn": "Least stressed states: \"uh, and unstressed in work, which I think is very unlike most New...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -16819,44 +25387,84 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات خیابانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: On the Street 6 & 7: Cultural Identity and Art.",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه خیابانی ۶ و ۷: هویت فرهنگی و نقش هنر در شهر.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 73,
-        "timeDisplay": "1:13",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه خیابانی Culture & Art.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه خیابانی Culture & Art.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 220,
-        "timeDisplay": "3:40",
-        "textEn": "Concluding remarks and key language takeaway for On the Street 6 & 7: Cultural Identity and Art.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه خیابانی ۶ و ۷: هویت فرهنگی و نقش هنر در شهر.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 13,
+                "timeDisplay": "0:13",
+                "speaker": "Interviewer",
+                "textEn": "Do you have a favorite painting or artwork in your house?",
+                "textFa": "آیا در منزلتان تابلو یا اثر هنری مورد علاقه‌ای دارید؟"
+        },
+        {
+                "id": 2,
+                "seconds": 97,
+                "timeDisplay": "1:37",
+                "speaker": "Louise",
+                "textEn": "I have a painting I bought in Buenos Aires with two tango dancers which I'm very fond of. It's sort of black and white and she's wearing a red dress.",
+                "textFa": "تابلویی از دو رقصنده تانگو دارم که در بوئنوس آیرس خریدم و خیلی دوستش دارم؛ فضایی سیاه و سفید دارد و زن پیراهنی سرخ بر تن دارد."
+        },
+        {
+                "id": 3,
+                "seconds": 100,
+                "timeDisplay": "1:40",
+                "speaker": "Interviewer",
+                "textEn": "Is there a book that you particularly liked because of its illustrations?",
+                "textFa": "آیا کتابی هست که به خاطر تصویرگری‌هایش به طور ویژه دوستش داشته باشید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 175,
+                "timeDisplay": "2:55",
+                "speaker": "Marcus",
+                "textEn": "Tolkien's The Hobbit and The Lord of the Rings. He did a lot of original illustrations himself and they're quite whimsical and timeless in their design.",
+                "textFa": "کتاب هابیت و ارباب حلقه‌های تالکین؛ او خودش تصویرگری‌های اصیلی خلق کرد که طراحی‌هایی خیال‌انگیز و ماندگار دارند."
+        },
+        {
+                "id": 5,
+                "seconds": 214,
+                "timeDisplay": "3:34",
+                "speaker": "Interviewer",
+                "textEn": "What kind of visual art resonates most with you?",
+                "textFa": "چه سبکی از هنرهای تجسمی بیش از همه با شما ارتباط برقرار می‌کند؟"
+        },
+        {
+                "id": 6,
+                "seconds": 245,
+                "timeDisplay": "4:05",
+                "speaker": "Ally",
+                "textEn": "I love vibrant watercolors that capture natural light. There's a delicate spontaneity to watercolors that feels fresh and unpretentious.",
+                "textFa": "آبرنگ‌های پرشور که نور طبیعی را بازتاب می‌دهند؛ لطافت و خودانگیختگی خاصی در آبرنگ هست که طراوت و بی‌پیرایگی می‌بخشد."
+        },
+        {
+                "id": 7,
+                "seconds": 250,
+                "timeDisplay": "4:10",
+                "speaker": "Interviewer",
+                "textEn": "Do you prefer visiting contemporary modern art galleries or classic museums?",
+                "textFa": "بازدید از گالری‌های هنر مدرن معاصر را ترجیح می‌دهید یا موزه‌های کلاسیک؟"
+        },
+        {
+                "id": 8,
+                "seconds": 285,
+                "timeDisplay": "4:45",
+                "speaker": "Laura",
+                "textEn": "I enjoy the balance of both. Classic museums offer mastery of technique, while contemporary exhibitions challenge perspectives on current societal questions.",
+                "textFa": "تعادل هر دو را می‌پسندم؛ موزه‌های کلاسیک اوج تکنیک را نشان می‌دهند و نمایشگاه‌های معاصر دریچه‌های تازه‌ای به مسائل روز جامعه می‌گشایند."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه خیابانی ۶ و ۷: هویت فرهنگی و نقش هنر در شهر»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'On the Street 6 & 7: Cultural Identity and Art', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 98,
-        "timestampDisplay": "1:38",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه خیابانی Culture & Art و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [2:26]. What key point is stated by Interviewer?",
+        "timestampSeconds": 146,
+        "timestampDisplay": "2:26",
+        "explanationFa": "در ثانیه 2:26 ویدیو، Interviewer به صراحت بیان می‌کند: «how the figures relate to each other,».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Spontaneous on-the-street interviews with native speakers in London and New York...",
-            "textFa": "تمرکز اصلی بر مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Cultur... است."
+            "textEn": "Interviewer states: \"how the figures relate to each other,...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -17015,44 +25623,100 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       "اصطلاحات خیابانی"
     ],
     "transcript": [
-      {
-        "id": 1,
-        "seconds": 0,
-        "timeDisplay": "0:00",
-        "textEn": "Scene introduction: On the Street 8 & 9: Visions of the Global Future.",
-        "textFa": "بخش اول صحنه آموزشی: مصاحبه خیابانی ۸ و ۹: چشم‌انداز آینده جهانی و تغییرات اجتماعی.",
-        "speaker": "Speaker 1"
-      },
-      {
-        "id": 2,
-        "seconds": 90,
-        "timeDisplay": "1:30",
-        "textEn": "Detailed conversation and communicative exchange regarding مصاحبه خیابانی Global Future.",
-        "textFa": "گفتگوی محوری صحنه و تبادل کلامی پیرامون مصاحبه خیابانی Global Future.",
-        "speaker": "Speaker 2"
-      },
-      {
-        "id": 3,
-        "seconds": 272,
-        "timeDisplay": "4:32",
-        "textEn": "Concluding remarks and key language takeaway for On the Street 8 & 9: Visions of the Global Future.",
-        "textFa": "جمع‌بندی نهایی و نکات کلیدی درسی مصاحبه خیابانی ۸ و ۹: چشم‌انداز آینده جهانی و تغییرات اجتماعی.",
-        "speaker": "Speaker 1"
-      }
-    ],
+        {
+                "id": 1,
+                "seconds": 14,
+                "timeDisplay": "0:14",
+                "speaker": "Interviewer",
+                "textEn": "What's the most interesting animal that you've ever seen in the wild?",
+                "textFa": "جالب‌ترین حیوانی که تاکنون در حیات وحش دیده‌اید چه بوده است؟"
+        },
+        {
+                "id": 2,
+                "seconds": 48,
+                "timeDisplay": "0:48",
+                "speaker": "Jenny",
+                "textEn": "I think the most interesting animal I've ever seen in the wild is an elephant in Thailand at an elephant sanctuary where they roam free.",
+                "textFa": "جالب‌ترین حیوانی که در حیات وحش دیده‌ام فیل بود، در پناهگاه فیل‌ها در تایلند که آزادانه در طبیعت پرسه می‌زدند."
+        },
+        {
+                "id": 3,
+                "seconds": 84,
+                "timeDisplay": "1:24",
+                "speaker": "Interviewer",
+                "textEn": "Is there anywhere you would particularly like to go to see animals or the natural world?",
+                "textFa": "آیا مکان خاصی هست که بخواهید برای دیدن حیات وحش یا طبیعت بکر به آنجا سفر کنید؟"
+        },
+        {
+                "id": 4,
+                "seconds": 132,
+                "timeDisplay": "2:12",
+                "speaker": "Jenny",
+                "textEn": "Yes, I would love to go to Japan to see the snow monkeys.",
+                "textFa": "بله، خیلی دوست دارم به ژاپن سفر کنم تا میمون‌های برفی را در زیستگاه طبیعی‌شان ببینم."
+        },
+        {
+                "id": 5,
+                "seconds": 168,
+                "timeDisplay": "2:48",
+                "speaker": "Interviewer",
+                "textEn": "What's the most interesting wild animal that you've ever seen?",
+                "textFa": "جالب‌ترین جانور وحشی که تا به حال دیده‌اید کدام است؟"
+        },
+        {
+                "id": 6,
+                "seconds": 243,
+                "timeDisplay": "4:03",
+                "speaker": "Alex",
+                "textEn": "An orangutan in the Malaysian part of Borneo. We went specially to see them, and when we finally saw one in the canopy, it was very exciting.",
+                "textFa": "یک اورانگوتان در بخش مالزیایی جزیره بورنئو. مخصوصاً برای دیدن آن‌ها رفته بودیم و تماشای آن در بالای درختان فوق‌العاده هیجان‌انگیز بود."
+        },
+        {
+                "id": 7,
+                "seconds": 264,
+                "timeDisplay": "4:24",
+                "speaker": "Interviewer",
+                "textEn": "Where would you like to travel next for nature exploration?",
+                "textFa": "مقصد بعدی شما برای سیاحت در طبیعت کجاست؟"
+        },
+        {
+                "id": 8,
+                "seconds": 277,
+                "timeDisplay": "4:37",
+                "speaker": "Sarah",
+                "textEn": "I'd love to go on a safari in South Africa or see giant sea turtles nesting in their native marine environments.",
+                "textFa": "دوست دارم به سافاری در آفریقای جنوبی بروم یا لاک‌پشت‌های عظیم دریایی را هنگام تخم‌گذاری در اقیانوس تماشا کنم."
+        },
+        {
+                "id": 9,
+                "seconds": 317,
+                "timeDisplay": "5:17",
+                "speaker": "Interviewer",
+                "textEn": "Is there anywhere you would particularly like to go?",
+                "textFa": "آیا نقطه خاصی مدنظرتان هست؟"
+        },
+        {
+                "id": 10,
+                "seconds": 337,
+                "timeDisplay": "5:37",
+                "speaker": "Karen",
+                "textEn": "Madagascar. I'd love to see the unique lemurs and flora there after watching all those David Attenborough nature documentaries.",
+                "textFa": "ماداگاسکار؛ خیلی مایلم لمورها و گیاهان منحصر‌به‌فرد آنجا را پس از دیدن آن همه مستندهای دیوید اتنبرو از نزدیک ببینم."
+        }
+],
     "questions": {
       "listening": {
         "skill": "listening",
         "promptFa": "با توجه به محتوای ویدیوی «مصاحبه خیابانی ۸ و ۹: چشم‌انداز آینده جهانی و تغییرات اجتماعی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Based on the video 'On the Street 8 & 9: Visions of the Global Future', which statement accurately captures the primary communicative purpose?",
-        "timestampSeconds": 121,
-        "timestampDisplay": "2:01",
-        "explanationFa": "در این صحنه، تمرکز بر مصاحبه خیابانی Global Future و برقراری ارتباط هدفمند است.",
+        "promptEn": "Listen carefully at [3:03]. What key point is stated by Interviewer?",
+        "timestampSeconds": 183,
+        "timestampDisplay": "3:03",
+        "explanationFa": "در ثانیه 3:03 ویدیو، Interviewer به صراحت بیان می‌کند: «I Is there anywhere you would particularly like to go to see animals or the natural world?».",
         "options": [
           {
             "id": 1,
-            "textEn": "The main focus is Spontaneous on-the-street interviews with native speakers in London and New York...",
-            "textFa": "تمرکز اصلی بر مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Global... است."
+            "textEn": "Interviewer states: \"I Is there anywhere you would particularly like to go to see anim...\"",
+            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
           },
           {
             "id": 2,
@@ -17186,8 +25850,7 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
       }
     }
   }
-];
-
+]
 export function getAllAEFLevels(): AEFLevelMeta[] {
   return Object.values(AEF_LEVELS_META);
 }

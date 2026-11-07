@@ -217,6 +217,7 @@ const STANDALONE_PREFIXES = [
 
 function isLearnerRouteActive(currentPath: string, targetHref: string) {
   if (targetHref === "/dashboard") {
+    if (currentPath.startsWith("/dashboard/classes")) return false;
     return (
       currentPath === "/dashboard" ||
       currentPath === "/today" ||
@@ -253,8 +254,10 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/mistakes/")
     );
   }
-  if (targetHref === "/teachers") {
+  if (targetHref === "/dashboard/classes" || targetHref === "/teachers") {
     return (
+      currentPath === "/dashboard/classes" ||
+      currentPath.startsWith("/dashboard/classes/") ||
       currentPath === "/teachers" ||
       currentPath.startsWith("/teachers/") ||
       currentPath === "/my-teachers" ||
@@ -423,7 +426,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     { href: "/learn", label: t.learn, icon: "learn" as const },
     { href: "/learn/video", label: t.videoCourses, icon: "video" as const },
     { href: "/leitner", label: t.practice, icon: "practice" as const },
-    { href: "/teachers", label: t.teachers, icon: "teachers" as const },
+    { href: "/dashboard/classes", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
   ];
 
