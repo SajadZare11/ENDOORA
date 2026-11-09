@@ -1626,12 +1626,18 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
 
 import { A2_SHERLOCK_CASE } from "./sherlock-case-a2.ts";
 import { B1_SHERLOCK_CASE } from "./sherlock-case-b1.ts";
-export { A2_SHERLOCK_CASE, B1_SHERLOCK_CASE };
+import { B2_SHERLOCK_CASE } from "./sherlock-case-b2.ts";
+import { C1_SHERLOCK_CASE } from "./sherlock-case-c1.ts";
+import { C2_SHERLOCK_CASE } from "./sherlock-case-c2.ts";
+export { A2_SHERLOCK_CASE, B1_SHERLOCK_CASE, B2_SHERLOCK_CASE, C1_SHERLOCK_CASE, C2_SHERLOCK_CASE };
 
 export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): DetectiveStage {
   let caseList = A1_SHERLOCK_CASE;
   if (cefr === "A2") caseList = A2_SHERLOCK_CASE;
   else if (cefr === "B1") caseList = B1_SHERLOCK_CASE;
+  else if (cefr === "B2") caseList = B2_SHERLOCK_CASE;
+  else if (cefr === "C1") caseList = C1_SHERLOCK_CASE;
+  else if (cefr === "C2") caseList = C2_SHERLOCK_CASE;
   const found = caseList.find((s) => s.levelNumber === levelNum);
   if (found) return found;
   return caseList[0];
@@ -1684,5 +1690,76 @@ export function calculateB1DecisionScore(decisions: Record<number, string>): num
   }
   return total;
 }
+
+export const B2_DECISION_SCORES: Record<string, number> = {
+  "choice-1a": 150,
+  "choice-1b": 50,
+  "choice-2a": 150,
+  "choice-2b": 50,
+  "choice-3a": 150,
+  "choice-3b": 100,
+  "choice-4a": 150,
+  "choice-4b": 100,
+};
+
+export const B2_WIN_THRESHOLD = 500;
+
+export function calculateB2DecisionScore(decisions: Record<number, string>): number {
+  let total = 0;
+  for (const choiceId of Object.values(decisions || {})) {
+    if (typeof B2_DECISION_SCORES[choiceId] === "number") {
+      total += B2_DECISION_SCORES[choiceId];
+    }
+  }
+  return total;
+}
+
+export const C1_DECISION_SCORES: Record<string, number> = {
+  "choice-1a": 150,
+  "choice-1b": 50,
+  "choice-2a": 150,
+  "choice-2b": 50,
+  "choice-3a": 150,
+  "choice-3b": 100,
+  "choice-4a": 150,
+  "choice-4b": 100,
+};
+
+export const C1_WIN_THRESHOLD = 500;
+
+export function calculateC1DecisionScore(decisions: Record<number, string>): number {
+  let total = 0;
+  for (const choiceId of Object.values(decisions || {})) {
+    if (typeof C1_DECISION_SCORES[choiceId] === "number") {
+      total += C1_DECISION_SCORES[choiceId];
+    }
+  }
+  return total;
+}
+
+export const C2_DECISION_SCORES: Record<string, number> = {
+  "choice-1a": 150,
+  "choice-1b": 50,
+  "choice-2a": 150,
+  "choice-2b": 50,
+  "choice-3a": 150,
+  "choice-3b": 100,
+  "choice-4a": 150,
+  "choice-4b": 100,
+};
+
+export const C2_WIN_THRESHOLD = 500;
+
+export function calculateC2DecisionScore(decisions: Record<number, string>): number {
+  let total = 0;
+  for (const choiceId of Object.values(decisions || {})) {
+    if (typeof C2_DECISION_SCORES[choiceId] === "number") {
+      total += C2_DECISION_SCORES[choiceId];
+    }
+  }
+  return total;
+}
+
+
 
 

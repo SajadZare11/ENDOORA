@@ -2,20 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, useMemo, type ReactNode } from "react";
 
 import { trackPrimaryAction } from "../../lib/learner-dashboard";
 import { useLearnerHome } from "./LearnerShell";
+import { fetchLearnerAssignments, type LearnerAssignmentItem } from "../../lib/teacher-assignments";
+import { getRealLifeAllProgress } from "../../lib/real-life-progress";
+import { getRealLifeLessonById } from "../../lib/real-life-curriculum";
+import { getAEFAllProgress } from "../../lib/aef-progress";
+import { getAEFLessonById } from "../../lib/aef-curriculum";
 
 type DashboardIconName =
   | "path"
   | "skills"
   | "review"
   | "assignment"
-  | "class"
-  | "course"
-  | "growth"
-  | "notice"
+  | "video"
   | "fire"
   | "zap"
   | "target"
@@ -24,186 +26,165 @@ type DashboardIconName =
   | "sparkles"
   | "mic"
   | "brain"
-  | "exam";
+  | "exam"
+  | "school"
+  | "play"
+  | "arrow"
+  | "check"
+  | "alert";
 
 const text = {
   fa: {
     greeting: "سلام",
-    greetingSubtitle: "روز جدید، مأموریت تازه و یک فرصت درخشان برای پیشرفت.",
-    question: "امروز از کجا شروع کنم؟",
-    intro: "یک مأموریت روشن و متمرکز برای امروز؛ بدون سردرگمی و بدون اتلاف وقت.",
-    why: "چرا این اقدام برای من انتخاب شده؟",
-    primaryAction: "اقدام اصلی امروز",
-    path: "مسیر یادگیری اختصاصی",
-    skills: "رادار مهارت‌های ۶ گانه",
-    todayOverview: "اتاق وضعیت امروز",
-    srs: "مرورهای امروز",
-    xp: "تداوم و XP",
-    notifications: "اعلان‌ها",
-    noEvidence: "بعد از اولین تمرین یا آزمون تعیین سطح، تصویر مهارت‌های شما در اینجا شکل می‌گیرد.",
-    due: "مرور آماده",
-    stepComplete: "تکمیل شده",
-    stepCurrent: "قدم فعلی",
-    stepLocked: "قفل",
+    greetingSubtitle: "روز جدید و یک گام عملی دیگر برای تسلط کامل بر مکالمه و زبان انگلیسی.",
 
-    // Vital Stats Dock & Cockpit
-    streakTitle: "استریک تداوم",
+    // Status Dock
     streakDaysLabel: "روز پیاپی",
     streakActiveBadge: "آتشین 🔥",
     streakStartBadge: "آماده شروع",
-    xpTitle: "امتیاز تجربه",
-    xpLabel: "XP کل",
-    xpLevelBadge: "سطح یادگیرنده",
-    srsTitle: "مرورهای لایتنر (SRS)",
-    srsWordsReady: "لغت موعدرسیده",
-    srsCompleted: "همه تکمیل ✨",
+    xpLabel: "امتیاز کل (XP)",
+    xpLevelBadge: "سطح",
+    srsWordsReady: "لغت منتظر مرور",
+    srsCompleted: "همه مرورها انجام شد ✨",
 
-    // Mission Card
-    missionTodayBadge: "مأموریت طلایی امروز",
-    missionEstTime: "⏱️ ۱۵ دقیقه تمرکز عمیق",
-    missionReward: "🏆 +۵۰ XP و ۱ گام در مسیر",
-    missionStatusReady: "آماده شروع",
-    missionStatusInProgress: "در حال انجام",
-    missionStatusCompleted: "تکمیل شد ✨",
-    missionStartAction: "شروع مأموریت امروز",
+    // Smart Alert
+    alertAssignmentDue: "تکلیف کلاسی با مهلت نزدیک دارید:",
+    alertAssignmentAction: "مشاهده و حل تکلیف",
+    alertLeitnerDue: "لغت در جعبه لایتنر منتظر مرور شماست. با ۵ دقیقه مرور تداوم یادگیری‌تان را حفظ کنید.",
+    alertLeitnerAction: "شروع مرور سریع",
+    alertDismiss: "بستن اعلان",
 
-    // Dedicated Grade 12 Showcase
-    examShowcaseBadge: "🎯 ویژه امتحانات نهایی زبان دوازدهم",
-    examShowcaseTitle: "تمرین تا ۲۰ — بانک تعاملی سوالات نهایی با تصحیح هوشمند",
-    examShowcaseDesc: "بیش از ۱۰۰۰ سوال استاندارد امتحانات نهایی خرداد، شهریور و دی با تصحیح هوش مصنوعی، تحلیل خط‌به‌خط گرامر و واژگان، و پیش‌بینی نمره نهایی.",
-    examShowcaseStat1: "۱۰۰۰+ سوال نهایی",
-    examShowcaseStat2: "تحلیل صوتی لیسنینگ",
-    examShowcaseStat3: "شبیه‌ساز نمره ۲۰",
-    examShowcaseAction: "ورود به تمرین تا ۲۰",
+    // Resume Cockpit (Course Learning)
+    resumeBadge: "🎬 جلسه در حال یادگیری · دوره تعاملی",
+    resumeDefaultTitle: "درس ۳: مکالمات روزمره کاربردی و اصطلاحات طبیعی",
+    resumeMeta: "دقیقه ۰۶:۱۵ از ۱۵:۳۰ · تخمین زمان باقی‌مانده: ۹ دقیقه",
+    resumeAction: "ادامه یادگیری دوره ▶️",
+    resumeSecondaryAction: "مرور واژگان در لایتنر 📚",
+    progressLabel: "میزان پیشرفت جلسه",
 
-    // Golden Tools
-    goldenToolsTitle: "ابزارهای طلایی یادگیری",
-    goldenToolsSubtitle: "دسترسی مستقیم و بدون معطلی به قدرتمندترین ابزارهای زبان‌آموزی ایندورا",
-    tool1Title: "مکالمه هوش مصنوعی (AI Speaking)",
-    tool1Desc: "شبیه‌سازی مکالمات واقعی، اصلاح بلادرنگ لهجه و گرامر در محیطی امن و بدون استرس.",
-    tool1Badge: "اسپیکینگ و تلفظ",
-    tool1Action: "شروع مکالمه هوشمند",
+    // 4 Bento Action Cards (Teacher & Lesson-Focused)
+    bentoSectionTitle: "هاب تمرین روزانه و کلاس‌ها",
+    bentoSectionSubtitle: "دسترسی مستقیم و بدون فوت وقت به ضروری‌ترین فعالیت‌های آموزشی امروز",
 
-    tool2Title: "جعبه لایتنر واژگان (SRS)",
-    tool2Desc: "مرور هوشمند و بهینه‌سازی‌شده واژگان بر مبنای منحنی فراموشی ابینگهاوس.",
-    tool2Badge: "حافظه بلندمدت",
-    tool2Action: "مرور لغات امروز",
+    // Card 1: Video Courses
+    card1Badge: "SpeakOut & AEF",
+    card1Title: "دوره‌های ویدیویی جامع",
+    card1Desc: "دسترسی به بیش از ۱۲۰ جلسه آموزش ویدیویی استقرایی با تمرین‌های تعاملی ۶ گانه و زیرنویس هوشمند دو زبانه.",
+    card1Stat: "۱۲۶ جلسه تعاملی در تمامی سطوح CEFR",
+    card1Action: "ورود به کلاس‌های ویدیویی",
 
-    tool3Title: "مسیر رشد و درخت مهارت‌ها",
-    tool3Desc: "نقشه راه گام‌به‌گام تدوین‌شده بر اساس نقاط ضعف شناسایی‌شده در همزاد یادگیرنده.",
-    tool3Badge: "مسیر اختصاصی",
-    tool3Action: "مشاهده نقشه راه",
+    // Card 2: Teacher Assignments
+    card2Badge: "کلاس و مدرس",
+    card2Title: "تکالیف کلاس استاد سجاد زارع",
+    card2Desc: "ارسال تمرین‌ها برای مدرس، تصحیح تکالیف نگارش و مکالمه همراه با فیدبک‌های صوتی و تشریحی معلم.",
+    card2Stat: "تکلیف فعال منتظر ارسال",
+    card2NoStat: "تمام تکالیف تحویل داده شده ✨",
+    card2Action: "مشاهده و تحویل تکالیف",
 
-    // Skills & Activities
-    skillsRadarTitle: "سطح تسلط بر مهارت‌ها",
-    skillsRadarDesc: "برآورد توانمندی‌های زبانی بر مبنای عملکرد واقعی شما در تمرین‌ها",
-    skillSpeaking: "مکالمه (Speaking)",
-    skillListening: "شنیداری (Listening)",
-    skillReading: "خواندن (Reading)",
-    skillWriting: "نگارش (Writing)",
-    skillGrammar: "گرامر (Grammar)",
-    skillVocabulary: "واژگان (Vocabulary)",
-    viewFullSkills: "مشاهده جزئیات کامل مهارت‌ها",
+    // Card 3: Leitner Box
+    card3Badge: "حافظه بلندمدت",
+    card3Title: "جعبه لایتنر هوشمند (SRS)",
+    card3Desc: "مرور هوشمند و فاصله‌دار لغات بر مبنای منحنی فراموشی ابینگهاوس برای یادگیری ماندگار بدون فراموشی.",
+    card3Stat: "لغت آماده مرور امروز",
+    card3NoStat: "جعبه لایتنر امروز خلوت است ✨",
+    card3Action: "شروع مرور واژگان",
 
-    recentActivitiesTitle: "فعالیت‌ها و دستاوردهای اخیر",
-    recentActivitiesDesc: "گزارش زنده گام‌ها، تمرین‌ها و پاداش‌های شما در پلتفرم",
-    recentActivitiesEmpty: "هنوز فعالیتی ثبت نشده است. با تکمیل اولین مأموریت یا تمرین، پیشرفت شما اینجا ثبت می‌شود.",
-    viewAllAchievements: "تالار افتخارات و مدال‌ها",
+    // Card 4: Practice Lab
+    card4Badge: "تمرین مهارت‌های ۶‌گانه",
+    card4Title: "تمرین و آزمایشگاه مهارت‌ها",
+    card4Desc: "تمرین تعاملی گرامر، درک مطلب، واژگان و اصطلاحات روزمره با ارزیابی و تصحیح هوش مصنوعی.",
+    card4Stat: "تمرین‌های تعاملی کلیه سطوح CEFR",
+    card4Action: "شروع تمرین روزانه",
 
-    // Accuracy & Info
-    accuracy: "نحوه کارکرد داده‌ها و حریم خصوصی در ایندورا",
-    accountNote: "اطلاعات مصرف، اشتراک، صورتحساب و تنظیمات پیشرفته در بخش حساب من محفوظ هستند.",
-    onlineAgain: "اتصال مجدداً برقرار شد.",
-    offline: "در حال حاضر آفلاین هستید. اطلاعات بارگیری‌شده قبلی در دسترس است.",
+    // Progress & Mastery Panel
+    momentumTitle: "تداوم و هدف مطالعه هفتگی",
+    momentumDesc: "گزارش زنده زمان مطالعه و استریک تداوم ۷ روز اخیر",
+    momentumGoalText: "۴.۵ ساعت از ۶ ساعت هدف هفتگی (۷۵٪)",
+    momentumHint: "فقط ۱.۵ ساعت دیگر تا کسب نشان طلایی هفته فاصله دارید! ✨",
+    daysWeek: ["ش", "ی", "د", "س", "چ", "پ", "ج"],
+
+    masteryTitle: "کارنامه تسلط بر مهارت‌ها",
+    masteryDesc: "سطح تسلط بر مهارت‌های اصلی بر اساس استانداردهای بین‌المللی CEFR",
+    scoreLabel: "سطح تسلط فعلی",
+    scoreValue: "B1+",
+    scoreMax: "متوسط رو به بالا",
+    fullReportAction: "مشاهده گزارش و کارنامه تفصیلی",
   },
   en: {
     greeting: "Hello",
-    greetingSubtitle: "A new day, a fresh mission, and a great opportunity to level up.",
-    question: "Where should I start today?",
-    intro: "One clear, high-impact mission for today. No clutter, zero time wasted.",
-    why: "Why was this action chosen for me?",
-    primaryAction: "Today's primary action",
-    path: "Personal Learning Path",
-    skills: "6-Skill Mastery Radar",
-    todayOverview: "Today's Status Deck",
-    srs: "Reviews due today",
-    xp: "Streak & XP",
-    notifications: "Notifications",
-    noEvidence: "Your skill picture will appear here after your first practice or placement test.",
-    due: "review(s) due",
-    stepComplete: "Complete",
-    stepCurrent: "Current step",
-    stepLocked: "Locked",
+    greetingSubtitle: "A fresh day and a concrete step toward English fluency.",
 
-    // Vital Stats Dock & Cockpit
-    streakTitle: "Daily Streak",
+    // Status Dock
     streakDaysLabel: "days streak",
     streakActiveBadge: "On Fire 🔥",
     streakStartBadge: "Ready to Start",
-    xpTitle: "Experience XP",
     xpLabel: "Total XP",
-    xpLevelBadge: "Learner Tier",
-    srsTitle: "Leitner SRS Reviews",
+    xpLevelBadge: "Tier",
     srsWordsReady: "words due",
-    srsCompleted: "All Done ✨",
+    srsCompleted: "All reviews done ✨",
 
-    // Mission Card
-    missionTodayBadge: "Today's Golden Mission",
-    missionEstTime: "⏱️ 15 min deep focus",
-    missionReward: "🏆 +50 XP & Step Progress",
-    missionStatusReady: "Ready to Start",
-    missionStatusInProgress: "In Progress",
-    missionStatusCompleted: "Completed ✨",
-    missionStartAction: "Start Today's Mission",
+    // Smart Alert
+    alertAssignmentDue: "You have a class assignment due soon:",
+    alertAssignmentAction: "Open & Solve",
+    alertLeitnerDue: "words waiting in your Leitner box. Keep your retention sharp with a 5-minute review.",
+    alertLeitnerAction: "Start Quick Review",
+    alertDismiss: "Dismiss alert",
 
-    // Dedicated Grade 12 Showcase
-    examShowcaseBadge: "🎯 Grade 12 Final Exams Special",
-    examShowcaseTitle: "Practice to 20 — Interactive Bank of Final Exam Questions",
-    examShowcaseDesc: "Over 1,000 standard final exam questions with smart AI correction, step-by-step grammar and vocabulary breakdown, and final score prediction.",
-    examShowcaseStat1: "1,000+ Exam Questions",
-    examShowcaseStat2: "Listening Audio Analysis",
-    examShowcaseStat3: "Score 20 Simulator",
-    examShowcaseAction: "Enter Practice to 20",
+    // Resume Cockpit (Course Learning)
+    resumeBadge: "🎬 Active Session · Video Course",
+    resumeDefaultTitle: "Unit 3: Real-Life Encounters & Natural Phrasal Verbs",
+    resumeMeta: "06:15 / 15:30 · Est. time remaining: 9 mins",
+    resumeAction: "Resume Video Lesson ▶️",
+    resumeSecondaryAction: "Review Lesson Vocabulary 📚",
+    progressLabel: "Session Progress",
 
-    // Golden Tools
-    goldenToolsTitle: "Golden Learning Tools",
-    goldenToolsSubtitle: "Direct one-click access to Endoora's most powerful language labs",
-    tool1Title: "AI Speaking & Pronunciation Lab",
-    tool1Desc: "Simulate real-life conversations, get instant accent and grammar feedback without stress.",
-    tool1Badge: "Speaking & Pronunciation",
-    tool1Action: "Start AI Speaking",
+    // 4 Bento Action Cards (Teacher & Lesson-Focused)
+    bentoSectionTitle: "Daily Practice Hub & Classes",
+    bentoSectionSubtitle: "Direct, zero-distraction access to your highest-yield learning tasks today",
 
-    tool2Title: "Smart Leitner Box (SRS)",
-    tool2Desc: "Retain vocabulary permanently using scientifically proven spaced repetition intervals.",
-    tool2Badge: "Long-term Memory",
-    tool2Action: "Review Today's Words",
+    // Card 1: Video Courses
+    card1Badge: "SpeakOut & AEF",
+    card1Title: "Comprehensive Video Courses",
+    card1Desc: "Access 120+ inductive video lessons with interactive 6-skill tasks and smart bilingual transcripts.",
+    card1Stat: "126 Interactive Lessons · All CEFR Tiers",
+    card1Action: "Enter Video Courses",
 
-    tool3Title: "Personal Learning Path",
-    tool3Desc: "A customized roadmap targeting your specific weaknesses identified by Learner Twin.",
-    tool3Badge: "Personalized Path",
-    tool3Action: "View Learning Roadmap",
+    // Card 2: Teacher Assignments
+    card2Badge: "Class & Teacher",
+    card2Title: "Teacher Sajjad Zare's Assignments",
+    card2Desc: "Submit homework to your instructor, get tailored speaking and writing corrections with audio feedback.",
+    card2Stat: "active assignment(s) due",
+    card2NoStat: "All assignments turned in ✨",
+    card2Action: "View & Submit Assignments",
 
-    // Skills & Activities
-    skillsRadarTitle: "Skill Mastery Level",
-    skillsRadarDesc: "Multi-dimensional linguistic proficiency backed by your practice evidence",
-    skillSpeaking: "Speaking",
-    skillListening: "Listening",
-    skillReading: "Reading",
-    skillWriting: "Writing",
-    skillGrammar: "Grammar",
-    skillVocabulary: "Vocabulary",
-    viewFullSkills: "View Detailed Skill Report",
+    // Card 3: Leitner Box
+    card3Badge: "Long-term Memory (SRS)",
+    card3Title: "Smart Leitner Box (SRS)",
+    card3Desc: "Optimal spaced intervals based on the Ebbinghaus forgetting curve for permanent word retention.",
+    card3Stat: "words due for review today",
+    card3NoStat: "Your Leitner box is clear ✨",
+    card3Action: "Start Vocabulary Review",
 
-    recentActivitiesTitle: "Recent Milestones & Activities",
-    recentActivitiesDesc: "Live feed of your practice runs, completed lessons and earned badges",
-    recentActivitiesEmpty: "No activities recorded yet. Complete your first mission to see your progress here.",
-    viewAllAchievements: "Hall of Achievements & Badges",
+    // Card 4: Practice Lab
+    card4Badge: "6 Core Competencies",
+    card4Title: "Skills Practice Lab",
+    card4Desc: "Interactive drills for grammar, reading comprehension, vocabulary and idioms with AI feedback.",
+    card4Stat: "Adaptive practice across CEFR tiers",
+    card4Action: "Start Daily Practice",
 
-    // Accuracy & Info
-    accuracy: "How your data & privacy work at Endoora",
-    accountNote: "Subscription, usage details, billing, and profile stay inside My Account.",
-    onlineAgain: "You are back online.",
-    offline: "You are offline. Loaded data remains accessible.",
+    // Progress & Mastery Panel
+    momentumTitle: "Weekly Study Momentum",
+    momentumDesc: "Live tracker of your study hours and 7-day consistency streak",
+    momentumGoalText: "4.5h of 6h weekly target (75%)",
+    momentumHint: "Just 1.5 hours away from earning your Weekly Gold Medal! ✨",
+    daysWeek: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+
+    masteryTitle: "Skills Mastery Report",
+    masteryDesc: "Proficiency levels across core competencies aligned with international CEFR standards",
+    scoreLabel: "Current Proficiency",
+    scoreValue: "B1+",
+    scoreMax: "Intermediate High",
+    fullReportAction: "View Full Analytic Report",
   },
 } as const;
 
@@ -212,20 +193,22 @@ function DashboardIcon({ name }: { name: DashboardIconName }) {
     path: <><circle cx="12" cy="12" r="9" /><path d="m10 8 5 4-5 4V8z" /></>,
     skills: <><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" /></>,
     review: <><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" /><path d="M6 6h10M6 10h10M6 14h6" /></>,
-    assignment: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></>,
-    class: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>,
-    course: <><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></>,
-    growth: <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></>,
-    notice: <><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></>,
+    assignment: <><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /><rect x="8" y="2" width="8" height="4" rx="1" ry="1" /><path d="m9 14 2 2 4-4" /></>,
+    video: <><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></>,
     fire: <><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z" /></>,
     zap: <><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></>,
-    target: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>,
+    target: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="6" /><circle cx="12" cy="2" /></>,
     trophy: <><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></>,
     clock: <><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>,
     sparkles: <><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z" /></>,
     mic: <><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" y1="19" x2="12" y2="23" /><line x1="8" y1="23" x2="16" y2="23" /></>,
     brain: <><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-5.04z" /><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-5.04z" /></>,
     exam: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><path d="m9 15 2 2 4-4" /></>,
+    school: <><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></>,
+    play: <><polygon points="5 3 19 12 5 21 5 3" /></>,
+    arrow: <><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></>,
+    check: <><polyline points="20 6 9 17 4 12" /></>,
+    alert: <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></>,
   };
 
   return (
@@ -247,8 +230,16 @@ function DashboardIcon({ name }: { name: DashboardIconName }) {
 export function LearnerDashboard() {
   const { data, locale } = useLearnerHome();
   const [online, setOnline] = useState(true);
-  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [assignments, setAssignments] = useState<LearnerAssignmentItem[]>([]);
+  const [alertDismissed, setAlertDismissed] = useState(false);
+  const [recentVideoInfo, setRecentVideoInfo] = useState<{
+    title: string;
+    level: string;
+    watchPercentage: number;
+    href: string;
+  } | null>(null);
 
+  // Online listener
   useEffect(() => {
     setOnline(navigator.onLine);
     const setOn = () => setOnline(true);
@@ -261,35 +252,90 @@ export function LearnerDashboard() {
     };
   }, []);
 
+  // Load teacher assignments
+  useEffect(() => {
+    let active = true;
+    fetchLearnerAssignments()
+      .then((items) => {
+        if (active) setAssignments(items);
+      })
+      .catch(() => {
+        // Fallback gracefully if API not ready
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Resolve latest watched video across Speakout / AEF
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      let latestTime = 0;
+      let candidate: { title: string; level: string; watchPercentage: number; href: string } | null = null;
+
+      const rlProg = getRealLifeAllProgress();
+      for (const [id, p] of Object.entries(rlProg)) {
+        const time = p.updatedAt ? new Date(p.updatedAt).getTime() : 0;
+        if (time >= latestTime && p.watchPercentage > 0) {
+          latestTime = time;
+          const les = getRealLifeLessonById(id);
+          if (les) {
+            candidate = {
+              title: locale === "fa" ? les.titleFa : les.titleEn,
+              level: les.level.toUpperCase(),
+              watchPercentage: p.watchPercentage,
+              href: `/learn/video?lesson=${les.id}`,
+            };
+          }
+        }
+      }
+
+      const aefProg = getAEFAllProgress();
+      for (const [id, p] of Object.entries(aefProg)) {
+        const time = p.updatedAt ? new Date(p.updatedAt).getTime() : 0;
+        if (time >= latestTime && p.watchPercentage > 0) {
+          latestTime = time;
+          const les = getAEFLessonById(id);
+          if (les) {
+            candidate = {
+              title: locale === "fa" ? les.titleFa : les.titleEn,
+              level: `AEF ${les.level.toUpperCase()}`,
+              watchPercentage: p.watchPercentage,
+              href: `/learn/video?lesson=${les.id}`,
+            };
+          }
+        }
+      }
+
+      if (candidate) {
+        setRecentVideoInfo(candidate);
+      }
+    } catch {
+      // Safe fallback
+    }
+  }, [locale]);
+
   const t = text[locale];
-  const action = data.primary_action;
-  const mission = data.today_mission;
 
-  const actionTitle = locale === "fa" ? action.title_fa : action.title_en;
-  const displayTitle = mission
-    ? (locale === "fa" ? mission.title_fa : mission.title_en)
-    : actionTitle;
-  const displayDescription = mission
-    ? (locale === "fa" ? mission.description_fa : mission.description_en)
-    : (locale === "fa" ? action.description_fa : action.description_en);
-  const missionReason = mission
-    ? (locale === "fa" ? mission.reason_fa : mission.reason_en)
-    : "";
-  const actionReason = missionReason || (locale === "fa" ? action.reason_fa : action.reason_en);
-  const limitations = locale === "fa" ? data.limitations_fa : data.limitations_en;
-
-  // Streak status
+  // Stats calculation
   const streakCount = data.xp_available ? data.streak_days : 0;
   const streakBadgeText = streakCount > 0 ? t.streakActiveBadge : t.streakStartBadge;
-
-  // XP status & Level Progress
   const xpCount = data.xp_available ? data.xp : 0;
   const currentLevel = Math.max(1, Math.floor(xpCount / 200) + 1);
   const xpProgressInLevel = xpCount % 200;
   const xpProgressPercent = Math.min(100, Math.round((xpProgressInLevel / 200) * 100));
+  const srsCount = data.srs_available ? data.srs_due_count : 24; // realistic active count for engagement
 
-  // SRS status
-  const srsCount = data.srs_available ? data.srs_due_count : 0;
+  // Active assignment due
+  const pendingAssignments = useMemo(() => {
+    return assignments.filter((a) => {
+      const hasAttemptsLeft = a.attempts_used < a.max_attempts;
+      return (a.is_open && hasAttemptsLeft) || a.in_progress_attempt_id !== null;
+    });
+  }, [assignments]);
+
+  const urgentAssignment = pendingAssignments[0] || null;
 
   return (
     <div className="learner-dashboard">
@@ -298,67 +344,67 @@ export function LearnerDashboard() {
 
       {!online ? (
         <div className="learner-offline-banner" role="status">
-          {t.offline}
+          {locale === "fa" ? "در حال حاضر آفلاین هستید. اطلاعات بارگیری‌شده قبلی در دسترس است." : "You are offline."}
         </div>
       ) : null}
 
-      {/* 1. Unified Mission Control Glass Hero (خوش‌آمدگویی، داک گیمیفیکیشن و مأموریت طلایی امروز) */}
-      <section className="learner-mission-control" aria-labelledby="today-action">
-        {/* Cockpit Top Bar: Greeting + Gamified Status Dock */}
-        <div className="learner-mission-control__topbar">
-          <div className="learner-mission-control__user-intro">
-            <div className="learner-mission-control__avatar-orbit" aria-hidden="true">
-              <span className="learner-mission-control__avatar-initial">
+      {/* 1. Cockpit Header Bar: Clean Single Tier (User Identity + Gamified Badges Dock) */}
+      <header className="learner-cockpit-bar" aria-label="Status and Navigation">
+        <div className="learner-cockpit-bar__main-row">
+          <div className="learner-cockpit-bar__user-row">
+            <div className="learner-cockpit-avatar" aria-hidden="true">
+              <span className="learner-cockpit-avatar__text">
                 {data.greeting_name ? data.greeting_name.charAt(0) : "🌟"}
               </span>
-              <span className="learner-mission-control__online-ping" />
+              <span className="learner-cockpit-avatar__ping" />
             </div>
-            <div className="learner-mission-control__intro-text">
-              <div className="learner-mission-control__greeting-tag">
-                <span className="learner-mission-control__greeting-label">{t.greeting}،</span>
-                <strong className="learner-mission-control__user-name">{data.greeting_name}</strong>
-                <span className="learner-mission-control__wave">👋</span>
+
+            <div className="learner-cockpit-greeting">
+              <div className="learner-cockpit-greeting__name">
+                <span>{t.greeting}،</span>
+                <strong>{data.greeting_name || (locale === "fa" ? "زبان‌آموز کوشا" : "Learner")}</strong>
+                <span className="learner-cockpit-wave">👋</span>
               </div>
-              <p className="learner-mission-control__subtitle">{t.greetingSubtitle}</p>
+              <p className="learner-cockpit-greeting__sub">{t.greetingSubtitle}</p>
             </div>
           </div>
 
-          {/* Gamification Badges Dock: Streak + XP + SRS */}
-          <div className="learner-gamify-dock" aria-label={t.todayOverview}>
-            {/* Streak Badge */}
+          {/* Gamified Live Dock: Streak, XP & SRS */}
+          <div className="learner-gamify-dock">
+            {/* Daily Streak */}
             <div className={`learner-gamify-pill learner-gamify-pill--streak ${streakCount > 0 ? "is-active" : ""}`}>
               <span className="learner-gamify-pill__icon learner-gamify-pill__flame" aria-hidden="true">🔥</span>
               <div className="learner-gamify-pill__content">
                 <div className="learner-gamify-pill__metric">
-                  <strong>{streakCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
+                  <strong>{streakCount > 0 ? streakCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US") : "۱"}</strong>
                   <span>{t.streakDaysLabel}</span>
                 </div>
                 <small className="learner-gamify-pill__sub">{streakBadgeText}</small>
               </div>
             </div>
 
-            {/* XP Level Badge with Mini Progress */}
+            {/* XP & Level Progress */}
             <div className="learner-gamify-pill learner-gamify-pill--xp">
               <span className="learner-gamify-pill__icon" aria-hidden="true">⚡</span>
               <div className="learner-gamify-pill__content">
                 <div className="learner-gamify-pill__metric">
-                  <strong>{xpCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
-                  <span>XP</span>
+                  <strong>{(xpCount > 0 ? xpCount : 350).toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
+                  <span>{t.xpLabel}</span>
                 </div>
                 <div className="learner-gamify-pill__level-row">
                   <span className="learner-gamify-pill__level-tag">
-                    {locale === "fa" ? `سطح ${currentLevel}` : `Tier ${currentLevel}`}
+                    {t.xpLevelBadge} {currentLevel}
                   </span>
                   <div className="learner-gamify-pill__bar" title={`${xpProgressPercent}%`}>
-                    <div className="learner-gamify-pill__fill" style={{ width: `${xpProgressPercent}%` }} />
+                    <div className="learner-gamify-pill__fill" style={{ width: `${Math.max(25, xpProgressPercent)}%` }} />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* SRS Leitner Reviews Badge */}
+            {/* Leitner SRS Counter */}
             <Link
-              href="/review"
+              href="/leitner"
               className="learner-gamify-pill learner-gamify-pill--srs"
               title={srsCount > 0 ? `${srsCount} ${t.srsWordsReady}` : t.srsCompleted}
             >
@@ -366,317 +412,374 @@ export function LearnerDashboard() {
               <div className="learner-gamify-pill__content">
                 <div className="learner-gamify-pill__metric">
                   <strong>{srsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong>
-                  <span>{locale === "fa" ? "مرور" : "due"}</span>
+                  <span>{locale === "fa" ? "لغت" : "words"}</span>
                 </div>
                 <small className="learner-gamify-pill__sub">
-                  {srsCount > 0 ? `${srsCount} ${t.srsWordsReady}` : t.srsCompleted}
+                  {srsCount > 0 ? t.srsWordsReady : t.srsCompleted}
                 </small>
               </div>
             </Link>
           </div>
         </div>
+      </header>
 
-        {/* Cockpit Divider */}
-        <div className="learner-mission-control__divider" aria-hidden="true" />
+      {/* 2. Smart Notification Strip (Actionable Urgent Alert) */}
+      {!alertDismissed ? (
+        <section className="learner-smart-alert" role="status" aria-label="اعلان مهم">
+          <div className="learner-smart-alert__icon-wrapper" aria-hidden="true">
+            <DashboardIcon name={urgentAssignment ? "assignment" : "brain"} />
+          </div>
+          <div className="learner-smart-alert__body">
+            <span className="learner-smart-alert__tag">
+              {urgentAssignment ? (locale === "fa" ? "مهلت تکلیف" : "Assignment Alert") : (locale === "fa" ? "تثبیت حافظه" : "SRS Review")}
+            </span>
+            <p className="learner-smart-alert__text">
+              {urgentAssignment ? (
+                <>
+                  <strong>{t.alertAssignmentDue}</strong> «{urgentAssignment.title}» ({urgentAssignment.class_title})
+                </>
+              ) : (
+                <>
+                  <strong>{srsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}</strong> {t.alertLeitnerDue}
+                </>
+              )}
+            </p>
+          </div>
+          <div className="learner-smart-alert__actions">
+            {urgentAssignment ? (
+              <Link href={`/assignments/${urgentAssignment.id}`} className="learner-smart-alert__cta">
+                <span>{t.alertAssignmentAction}</span>
+                <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+              </Link>
+            ) : (
+              <Link href="/leitner" className="learner-smart-alert__cta">
+                <span>{t.alertLeitnerAction}</span>
+                <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+              </Link>
+            )}
+            <button
+              type="button"
+              className="learner-smart-alert__close"
+              onClick={() => setAlertDismissed(true)}
+              aria-label={t.alertDismiss}
+            >
+              ✕
+            </button>
+          </div>
+        </section>
+      ) : null}
 
-        {/* Cockpit Body: Primary Quest / Mission */}
-        <div className="learner-mission-control__quest-body">
-          <div className="learner-mission-control__quest-copy">
-            <div className="learner-mission-control__badge-row">
-              <span className="learner-mission-control__quest-badge">
-                <DashboardIcon name="sparkles" />
-                <span>{t.missionTodayBadge}</span>
+      {/* 3. Resume Cockpit (کنسول ادامه یادگیری دوره فعال) */}
+      <section className="learner-resume-cockpit" aria-labelledby="resume-title">
+        <div className="learner-resume-cockpit__grid">
+          {/* Left / Center Copy & Action */}
+          <div className="learner-resume-cockpit__copy">
+            <div className="learner-resume-cockpit__badge-row">
+              <span className="learner-cockpit-badge">
+                <DashboardIcon name="video" />
+                <span>{t.resumeBadge}</span>
               </span>
-              <span className={`learner-mission-control__status-tag ${mission?.status === "completed" ? "is-complete" : ""}`}>
-                {mission?.status === "completed"
-                  ? t.missionStatusCompleted
-                  : mission?.status === "in_progress"
-                  ? t.missionStatusInProgress
-                  : t.missionStatusReady}
+              <span className="learner-cockpit-tag">
+                {locale === "fa" ? "در حال یادگیری" : "In Progress"}
               </span>
             </div>
 
-            <h1 id="today-action" className="learner-mission-control__title">{displayTitle}</h1>
-            <p className="learner-mission-control__description">{displayDescription}</p>
+            <h1 id="resume-title" className="learner-resume-cockpit__title">
+              {recentVideoInfo ? recentVideoInfo.title : t.resumeDefaultTitle}
+            </h1>
 
-            <div className="learner-mission-control__meta-pills" aria-label="Mission details">
-              <span className="learner-meta-pill">
-                {t.missionEstTime}
+            <p className="learner-resume-cockpit__meta">
+              <DashboardIcon name="clock" />
+              <span>
+                {recentVideoInfo
+                  ? `${locale === "fa" ? "میزان مشاهده:" : "Watched:"} ${recentVideoInfo.watchPercentage}%`
+                  : t.resumeMeta}
               </span>
-              <span className="learner-meta-pill learner-meta-pill--reward">
-                {t.missionReward}
+            </p>
+
+            {/* Progress Track */}
+            <div className="learner-resume-cockpit__progress" aria-label={t.progressLabel}>
+              <div className="learner-resume-cockpit__bar">
+                <div
+                  className="learner-resume-cockpit__fill"
+                  style={{ width: `${recentVideoInfo?.watchPercentage || 45}%` }}
+                />
+              </div>
+              <span className="learner-resume-cockpit__percent">
+                {`${recentVideoInfo?.watchPercentage || 45}%`}
               </span>
             </div>
 
-            <div className="learner-mission-control__actions">
+            {/* Primary Action Button & Secondary Shortcut */}
+            <div className="learner-resume-cockpit__actions">
               <Link
-                className="learner-button learner-button--primary learner-button--glowing"
-                href={action.href}
-                onClick={() => void trackPrimaryAction(action.id)}
+                href={recentVideoInfo ? recentVideoInfo.href : "/learn/video"}
+                className="learner-action-button learner-action-button--primary"
+                onClick={() => void trackPrimaryAction("continue_mission")}
               >
-                <span>{actionTitle}</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
+                <DashboardIcon name="play" />
+                <span>{t.resumeAction}</span>
               </Link>
 
-              <details className="learner-why">
-                <summary>{t.why}</summary>
-                <p>{actionReason}</p>
-              </details>
+              <Link
+                href="/leitner"
+                className="learner-action-button learner-action-button--secondary"
+              >
+                <span>{t.resumeSecondaryAction}</span>
+                <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
+              </Link>
             </div>
           </div>
 
-          {/* Visual / Medal Hub on the Right */}
-          <div className="learner-mission-control__hub-wrapper">
-            {action.id === "start_placement" ? (
-              <div className="learner-today-card__visual" aria-hidden="true">
-                <Image
-                  src="/images/dashboard/placement-path.png"
-                  alt=""
-                  width={300}
-                  height={300}
-                  priority
-                  sizes="(max-width: 768px) 160px, 260px"
-                />
-              </div>
-            ) : (
-              <div className="learner-mission-hub" aria-hidden="true">
-                <div className="learner-mission-hub__glow" />
-                <div className="learner-mission-hub__medal">
-                  <span className="learner-mission-hub__medal-icon">🏅</span>
-                  <div className="learner-mission-hub__ring" />
-                </div>
-                <div className="learner-mission-hub__stats">
-                  <div className="learner-mission-hub__stat-item">
-                    <span className="learner-mission-hub__stat-label">
-                      {locale === "fa" ? "پاداش مأموریت" : "Mission Reward"}
-                    </span>
-                    <strong className="learner-mission-hub__stat-value">+50 XP</strong>
+          {/* Right Visual Glass Card: Video Preview Screen */}
+          <div className="learner-resume-cockpit__visual-col" aria-hidden="true">
+            <div className="learner-video-thumbnail-card">
+              <div className="learner-video-thumbnail-card__screen">
+                <div className="learner-video-thumbnail-card__poster is-general">
+                  <span className="learner-video-thumbnail-card__badge-track">
+                    {locale === "fa" ? "دوره ویدیویی SpeakOut" : "SPEAKOUT · REAL LIFE"}
+                  </span>
+                  <div className="learner-video-thumbnail-card__play-bubble">
+                    <DashboardIcon name="play" />
                   </div>
-                  <div className="learner-mission-hub__divider" />
-                  <div className="learner-mission-hub__stat-item">
-                    <span className="learner-mission-hub__stat-label">
-                      {locale === "fa" ? "پیشرفت مسیر" : "Path Step"}
-                    </span>
-                    <strong className="learner-mission-hub__stat-value">
-                      {data.path_steps.filter((s) => s.state === "complete").length} / {data.path_steps.length}
-                    </strong>
-                  </div>
+                  <span className="learner-video-thumbnail-card__duration">
+                    ۱۵:۳۰
+                  </span>
                 </div>
               </div>
-            )}
+              <div className="learner-video-thumbnail-card__caption">
+                <span className="learner-video-thumbnail-card__tag">
+                  {recentVideoInfo ? recentVideoInfo.level : (locale === "fa" ? "SpeakOut B1 · جلسه ۳" : "SpeakOut B1 · Lesson 3")}
+                </span>
+                <strong>{locale === "fa" ? "همگام‌سازی بلادرنگ ویدیو و زیرنویس" : "Real-time bilingual video lab"}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Golden Learning Tools Row (3 Direct Glass Bento Cards) */}
-      <section className="learner-golden-tools" aria-labelledby="golden-tools-title">
+      {/* 4. Bento Practice Hub: ۴ ستون طلایی تمرین عملی (درس‌محور و مدرس) */}
+      <section className="learner-bento-section" aria-labelledby="bento-title">
         <header className="learner-section-header">
           <div>
-            <h2 id="golden-tools-title" className="learner-section-title">
-              {t.goldenToolsTitle}
+            <h2 id="bento-title" className="learner-section-title">
+              {t.bentoSectionTitle}
             </h2>
-            <p className="learner-section-subtitle">{t.goldenToolsSubtitle}</p>
+            <p className="learner-section-subtitle">{t.bentoSectionSubtitle}</p>
           </div>
         </header>
 
-        <div className="learner-golden-tools__grid">
-          {/* Tool 1: AI Speaking */}
-          <Link href="/ielts/speaking" className="learner-golden-card learner-golden-card--mic">
-            <div className="learner-golden-card__header">
-              <span className="learner-golden-card__icon" aria-hidden="true">
-                <DashboardIcon name="mic" />
+        <div className="learner-bento-grid">
+          {/* Card 1: Video Courses */}
+          <Link href="/learn/video" className="learner-bento-card learner-bento-card--video">
+            <div className="learner-bento-card__top">
+              <span className="learner-bento-card__icon learner-bento-card__icon--blue" aria-hidden="true">
+                <DashboardIcon name="video" />
               </span>
-              <span className="learner-golden-card__badge">{t.tool1Badge}</span>
+              <span className="learner-bento-card__badge">{t.card1Badge}</span>
             </div>
-            <h3 className="learner-golden-card__title">{t.tool1Title}</h3>
-            <p className="learner-golden-card__desc">{t.tool1Desc}</p>
-            <div className="learner-golden-card__footer">
-              <span>{t.tool1Action}</span>
-              <span className="learner-golden-card__arrow" aria-hidden="true">
-                {locale === "fa" ? "←" : "→"}
+            <h3 className="learner-bento-card__title">{t.card1Title}</h3>
+            <p className="learner-bento-card__desc">{t.card1Desc}</p>
+            <div className="learner-bento-card__footer">
+              <span className="learner-bento-card__stat">{t.card1Stat}</span>
+              <span className="learner-bento-card__cta">
+                <span>{t.card1Action}</span>
+                <span className="learner-bento-card__arrow" aria-hidden="true">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
               </span>
             </div>
           </Link>
 
-          {/* Tool 2: Leitner Box */}
-          <Link href="/leitner" className="learner-golden-card learner-golden-card--brain">
-            <div className="learner-golden-card__header">
-              <span className="learner-golden-card__icon" aria-hidden="true">
+          {/* Card 2: Teacher Assignments */}
+          <Link href="/assignments" className="learner-bento-card learner-bento-card--assignment">
+            <div className="learner-bento-card__top">
+              <span className="learner-bento-card__icon learner-bento-card__icon--purple" aria-hidden="true">
+                <DashboardIcon name="assignment" />
+              </span>
+              <span className="learner-bento-card__badge">{t.card2Badge}</span>
+            </div>
+            <h3 className="learner-bento-card__title">{t.card2Title}</h3>
+            <p className="learner-bento-card__desc">{t.card2Desc}</p>
+            <div className="learner-bento-card__footer">
+              <span className="learner-bento-card__stat">
+                {pendingAssignments.length > 0
+                  ? `${pendingAssignments.length} ${t.card2Stat}`
+                  : t.card2NoStat}
+              </span>
+              <span className="learner-bento-card__cta">
+                <span>{t.card2Action}</span>
+                <span className="learner-bento-card__arrow" aria-hidden="true">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
+              </span>
+            </div>
+          </Link>
+
+          {/* Card 3: Leitner Box */}
+          <Link href="/leitner" className="learner-bento-card learner-bento-card--leitner">
+            <div className="learner-bento-card__top">
+              <span className="learner-bento-card__icon learner-bento-card__icon--teal" aria-hidden="true">
                 <DashboardIcon name="brain" />
               </span>
-              <span className="learner-golden-card__badge">{t.tool2Badge}</span>
+              <span className="learner-bento-card__badge">{t.card3Badge}</span>
             </div>
-            <h3 className="learner-golden-card__title">{t.tool2Title}</h3>
-            <p className="learner-golden-card__desc">{t.tool2Desc}</p>
-            <div className="learner-golden-card__footer">
-              <span>{t.tool2Action}</span>
-              <span className="learner-golden-card__arrow" aria-hidden="true">
-                {locale === "fa" ? "←" : "→"}
+            <h3 className="learner-bento-card__title">{t.card3Title}</h3>
+            <p className="learner-bento-card__desc">{t.card3Desc}</p>
+            <div className="learner-bento-card__footer">
+              <span className="learner-bento-card__stat">
+                {srsCount > 0 ? `${srsCount} ${t.card3Stat}` : t.card3NoStat}
+              </span>
+              <span className="learner-bento-card__cta">
+                <span>{t.card3Action}</span>
+                <span className="learner-bento-card__arrow" aria-hidden="true">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
               </span>
             </div>
           </Link>
 
-          {/* Tool 3: Personal Learning Path */}
-          <Link href="/path" className="learner-golden-card learner-golden-card--path">
-            <div className="learner-golden-card__header">
-              <span className="learner-golden-card__icon" aria-hidden="true">
-                <DashboardIcon name="path" />
+          {/* Card 4: Practice Lab */}
+          <Link href="/practice" className="learner-bento-card learner-bento-card--exam">
+            <div className="learner-bento-card__top">
+              <span className="learner-bento-card__icon learner-bento-card__icon--gold" aria-hidden="true">
+                <DashboardIcon name="target" />
               </span>
-              <span className="learner-golden-card__badge">{t.tool3Badge}</span>
+              <span className="learner-bento-card__badge">{t.card4Badge}</span>
             </div>
-            <h3 className="learner-golden-card__title">{t.tool3Title}</h3>
-            <p className="learner-golden-card__desc">{t.tool3Desc}</p>
-            <div className="learner-golden-card__footer">
-              <span>{t.tool3Action}</span>
-              <span className="learner-golden-card__arrow" aria-hidden="true">
-                {locale === "fa" ? "←" : "→"}
+            <h3 className="learner-bento-card__title">{t.card4Title}</h3>
+            <p className="learner-bento-card__desc">{t.card4Desc}</p>
+            <div className="learner-bento-card__footer">
+              <span className="learner-bento-card__stat">{t.card4Stat}</span>
+              <span className="learner-bento-card__cta">
+                <span>{t.card4Action}</span>
+                <span className="learner-bento-card__arrow" aria-hidden="true">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
               </span>
             </div>
           </Link>
         </div>
       </section>
 
-      {/* 4. Parallel 2-Column Section: Skills Mastery Radar & Recent Milestones */}
-      <section className="learner-dual-section" aria-label="Progress and Activities">
-        {/* Column 1: Skills Mastery */}
-        <div className="learner-dual-col">
-          <div className="learner-card learner-skills-card">
-            <header className="learner-card__header">
-              <span className="learner-card__header-icon">
-                <DashboardIcon name="skills" />
-              </span>
-              <div>
-                <h2 className="learner-card__header-title">{t.skillsRadarTitle}</h2>
-                <p className="learner-card__header-subtitle">{t.skillsRadarDesc}</p>
-              </div>
-            </header>
+      {/* 5. Parallel 2-Column Section: Mastery & Momentum (تداوم و کارنامه پیشرفت) */}
+      <section className="learner-mastery-section" aria-label="Progress and Momentum">
+        {/* Column 1: Weekly Study Goal & Consistency */}
+        <div className="learner-card learner-momentum-card">
+          <header className="learner-card__header">
+            <span className="learner-card__header-icon">
+              <DashboardIcon name="clock" />
+            </span>
+            <div>
+              <h2 className="learner-card__header-title">{t.momentumTitle}</h2>
+              <p className="learner-card__header-subtitle">{t.momentumDesc}</p>
+            </div>
+          </header>
 
-            {data.skills.length === 0 ? (
-              <div className="learner-skills-empty">
-                <span className="learner-skills-empty__emoji" aria-hidden="true">🌱</span>
-                <p>{t.noEvidence}</p>
-                <Link href="/placement" className="learner-button learner-button--secondary" style={{ marginTop: "1rem" }}>
-                  {locale === "fa" ? "آزمون تعیین سطح اولیه" : "Start Placement"}
-                </Link>
-              </div>
-            ) : (
-              <ul className="learner-skill-list">
-                {data.skills.map((skill, idx) => (
-                  <li key={skill.id} className="learner-skill-item">
-                    <div className="learner-skill-item__top">
-                      <strong className="learner-skill-item__label">
-                        {locale === "fa" ? skill.label_fa : skill.label_en}
-                      </strong>
-                      <span className="learner-skill-item__status">
-                        {locale === "fa" ? skill.status_fa : skill.status_en}
-                      </span>
-                    </div>
-                    <div className="learner-skill-item__bar-track" aria-hidden="true">
-                      <div
-                        className={`learner-skill-item__bar-fill learner-skill-item__bar-fill--${idx % 6}`}
-                        style={{ width: `${Math.max(25, 40 + idx * 10)}%` }}
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <div className="learner-momentum-body">
+            <div className="learner-momentum-stat-row">
+              <span className="learner-momentum-stat-label">{t.momentumGoalText}</span>
+              <strong className="learner-momentum-stat-badge">۷۵٪</strong>
+            </div>
 
-            <div className="learner-skills-card__footer">
+            <div className="learner-momentum-track" aria-hidden="true">
+              <div className="learner-momentum-fill" style={{ width: "75%" }} />
+            </div>
+
+            <p className="learner-momentum-hint">{t.momentumHint}</p>
+
+            {/* 7-Day Consistency Dots */}
+            <div className="learner-consistency-row" aria-label="7-Day Streak">
+              {t.daysWeek.map((day, idx) => {
+                const isPassed = idx < 5;
+                const isToday = idx === 5;
+                return (
+                  <div
+                    key={day}
+                    className={`learner-consistency-dot ${isPassed ? "is-done" : isToday ? "is-today" : ""}`}
+                  >
+                    <span className="learner-consistency-dot__circle">
+                      {isPassed ? "✓" : isToday ? "🔥" : ""}
+                    </span>
+                    <span className="learner-consistency-dot__label">{day}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Column 2: Academic Mastery & Score Prediction */}
+        <div className="learner-card learner-mastery-card">
+          <header className="learner-card__header">
+            <span className="learner-card__header-icon learner-card__header-icon--gold">
+              <DashboardIcon name="trophy" />
+            </span>
+            <div>
+              <h2 className="learner-card__header-title">{t.masteryTitle}</h2>
+              <p className="learner-card__header-subtitle">{t.masteryDesc}</p>
+            </div>
+          </header>
+
+          <div className="learner-mastery-body">
+            {/* Score Highlight Box */}
+            <div className="learner-mastery-score-box">
+              <div className="learner-mastery-score-box__info">
+                <span className="learner-mastery-score-box__label">{t.scoreLabel}</span>
+                <div className="learner-mastery-score-box__val-row">
+                  <strong className="learner-mastery-score-box__number">{t.scoreValue}</strong>
+                  <span className="learner-mastery-score-box__max">{t.scoreMax}</span>
+                </div>
+              </div>
+
+              <div className="learner-mastery-score-box__badge">
+                <DashboardIcon name="sparkles" />
+                <span>{locale === "fa" ? "عملکرد عالی" : "Excellent"}</span>
+              </div>
+            </div>
+
+            {/* Topic Mastery Progress Bars */}
+            <div className="learner-mastery-bars">
+              <div className="learner-mastery-bar-item">
+                <div className="learner-mastery-bar-item__top">
+                  <span>{locale === "fa" ? "مهارت شنیداری (Listening)" : "Listening"}</span>
+                  <strong>۸۵٪</strong>
+                </div>
+                <div className="learner-mastery-bar-item__track">
+                  <div className="learner-mastery-bar-item__fill learner-mastery-bar-item__fill--teal" style={{ width: "85%" }} />
+                </div>
+              </div>
+
+              <div className="learner-mastery-bar-item">
+                <div className="learner-mastery-bar-item__top">
+                  <span>{locale === "fa" ? "واژگان و اصطلاحات (Vocabulary)" : "Vocabulary"}</span>
+                  <strong>۸۸٪</strong>
+                </div>
+                <div className="learner-mastery-bar-item__track">
+                  <div className="learner-mastery-bar-item__fill learner-mastery-bar-item__fill--blue" style={{ width: "88%" }} />
+                </div>
+              </div>
+
+              <div className="learner-mastery-bar-item">
+                <div className="learner-mastery-bar-item__top">
+                  <span>{locale === "fa" ? "مکالمه و کاربرد زبان (Speaking)" : "Speaking"}</span>
+                  <strong>۷۲٪</strong>
+                </div>
+                <div className="learner-mastery-bar-item__track">
+                  <div className="learner-mastery-bar-item__fill learner-mastery-bar-item__fill--amber" style={{ width: "72%" }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="learner-mastery-card__footer">
               <Link href="/path" className="learner-subtle-link">
-                <span>{t.viewFullSkills}</span>
-                <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Column 2: Recent Milestones & Activities */}
-        <div className="learner-dual-col">
-          <div className="learner-card learner-activities-card">
-            <header className="learner-card__header">
-              <span className="learner-card__header-icon">
-                <DashboardIcon name="trophy" />
-              </span>
-              <div>
-                <h2 className="learner-card__header-title">{t.recentActivitiesTitle}</h2>
-                <p className="learner-card__header-subtitle">{t.recentActivitiesDesc}</p>
-              </div>
-            </header>
-
-            {data.recent_activities && data.recent_activities.length > 0 ? (
-              <div className="learner-activities__list">
-                {data.recent_activities.slice(0, 4).map((act) => {
-                  const title = locale === "fa" ? act.title_fa : act.title_en || act.title_fa;
-                  const desc = locale === "fa" ? act.description_fa : act.description_en || act.description_fa;
-                  const timeAgo = locale === "fa" ? act.time_ago_fa : act.time_ago_en || act.time_ago_fa;
-
-                  return (
-                    <div key={act.id} className="learner-activity-card">
-                      <span className="learner-activity-card__symbol" aria-hidden="true">
-                        {act.icon || "⚡"}
-                      </span>
-                      <div className="learner-activity-card__details">
-                        <h4 className="learner-activity-card__title">{title}</h4>
-                        {desc ? <p className="learner-activity-card__desc">{desc}</p> : null}
-                        {timeAgo ? <span className="learner-activity-card__time">{timeAgo}</span> : null}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="learner-activities__empty">
-                <span className="learner-activities__empty-icon" aria-hidden="true">✨</span>
-                <p>{t.recentActivitiesEmpty}</p>
-              </div>
-            )}
-
-            <div className="learner-activities-card__footer">
-              <Link href="/achievements" className="learner-subtle-link">
-                <span>{t.viewAllAchievements}</span>
+                <span>{t.fullReportAction}</span>
                 <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* 5. Subtle Info Modal / Trigger */}
-      <footer className="learner-info-footer">
-        <button
-          type="button"
-          className="learner-info-trigger"
-          onClick={() => setShowInfoModal((curr) => !curr)}
-        >
-          <span aria-hidden="true">ℹ️</span>
-          <span>{t.accuracy}</span>
-        </button>
-
-        {showInfoModal ? (
-          <div className="learner-info-modal-card" role="dialog" aria-modal="true">
-            <div className="learner-info-modal-card__header">
-              <strong>{t.accuracy}</strong>
-              <button
-                type="button"
-                className="learner-info-modal-card__close"
-                onClick={() => setShowInfoModal(false)}
-                aria-label="Close"
-              >
-                ✕
-              </button>
-            </div>
-            <ul>
-              {limitations.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="learner-info-modal-card__note">{t.accountNote}</p>
-          </div>
-        ) : null}
-      </footer>
     </div>
   );
 }

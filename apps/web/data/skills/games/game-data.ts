@@ -18,7 +18,7 @@ import {
 import { getTierLevels } from "./levels-b2-c1-c2.ts";
 import { A1_ENHANCED_VOCAB_LEVELS } from "./vocab-curriculum.ts";
 import { SPEAKING_MISSIONS_BY_TIER } from "./speaking-missions.ts";
-import { A1_SHERLOCK_CASE, A2_SHERLOCK_CASE, B1_SHERLOCK_CASE } from "./sherlock-detective-curriculum.ts";
+import { A1_SHERLOCK_CASE, A2_SHERLOCK_CASE, B1_SHERLOCK_CASE, B2_SHERLOCK_CASE, C1_SHERLOCK_CASE, C2_SHERLOCK_CASE } from "./sherlock-detective-curriculum.ts";
 
 // ==========================================
 // VOCABULARY: VOCAB BLITZ (A1 Levels 1-10)
@@ -2527,9 +2527,9 @@ export const SPEAKING_GAME_LEVELS: Record<CefrLevel, GameLevel[]> = {
   A1: A1_SHERLOCK_CASE.map(sherlockStageToGameLevel),
   A2: A2_SHERLOCK_CASE.map(sherlockStageToGameLevel),
   B1: B1_SHERLOCK_CASE.map(sherlockStageToGameLevel),
-  B2: SPEAKING_MISSIONS_BY_TIER.B2.map(speakingMissionToGameLevel),
-  C1: SPEAKING_MISSIONS_BY_TIER.C1.map(speakingMissionToGameLevel),
-  C2: SPEAKING_MISSIONS_BY_TIER.C2.map(speakingMissionToGameLevel),
+  B2: B2_SHERLOCK_CASE.map(sherlockStageToGameLevel),
+  C1: C1_SHERLOCK_CASE.map(sherlockStageToGameLevel),
+  C2: C2_SHERLOCK_CASE.map(sherlockStageToGameLevel),
 };
 
 export const SKILLS_GAME_DATA: Record<SkillKey, Record<CefrLevel, GameLevel[]>> = {

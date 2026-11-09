@@ -12,6 +12,12 @@ import {
   A1_WIN_THRESHOLD,
   calculateB1DecisionScore,
   B1_WIN_THRESHOLD,
+  calculateB2DecisionScore,
+  B2_WIN_THRESHOLD,
+  calculateC1DecisionScore,
+  C1_WIN_THRESHOLD,
+  calculateC2DecisionScore,
+  C2_WIN_THRESHOLD,
 } from "../../../data/skills/games/sherlock-detective-curriculum";
 import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
@@ -340,6 +346,30 @@ export function SherlockSpeakingArena({
         setActiveEndingType(isWin ? "ending1" : "ending2");
         setIsFinalClimaxRevealed(true);
         soundSynth.playFanfare();
+      } else if (level.cefr === "B2") {
+        // B2 Climax Evaluation: 600-point system, threshold 500 + Decision 4
+        const b2Score = calculateB2DecisionScore(storyDecisions);
+        const d4 = storyDecisions[9]; // "choice-4a" (Axle shot) or "choice-4b" (Direct shot)
+        const isWin = b2Score >= B2_WIN_THRESHOLD && d4 === "choice-4a";
+        setActiveEndingType(isWin ? "ending1" : "ending2");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
+      } else if (level.cefr === "C1") {
+        // C1 Climax Evaluation: 600-point system, threshold 500 + Decision 4
+        const c1Score = calculateC1DecisionScore(storyDecisions);
+        const d4 = storyDecisions[9]; // "choice-4a" (Escapement gear jammed) or "choice-4b" (Balcony combat)
+        const isWin = c1Score >= C1_WIN_THRESHOLD && d4 === "choice-4a";
+        setActiveEndingType(isWin ? "ending1" : "ending2");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
+      } else if (level.cefr === "C2") {
+        // C2 Climax Evaluation: 600-point system, threshold 500 + Decision 4
+        const c2Score = calculateC2DecisionScore(storyDecisions);
+        const d4 = storyDecisions[9]; // "choice-4a" (Baritsu) or "choice-4b" (Direct grapple)
+        const isWin = c2Score >= C2_WIN_THRESHOLD && d4 === "choice-4a";
+        setActiveEndingType(isWin ? "ending1" : "ending2");
+        setIsFinalClimaxRevealed(true);
+        soundSynth.playFanfare();
       } else {
         // Climax Evaluation for A1:
         // Cumulative decision score from stages 3, 5, 6, 7, 9 must strictly exceed 610 threshold
@@ -485,6 +515,57 @@ export function SherlockSpeakingArena({
                     {calculateB1DecisionScore(storyDecisions)}{" "}
                     <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
                       (حد نصاب: {B1_WIN_THRESHOLD})
+                    </span>
+                  </div>
+                </div>
+              )}
+              {level.cefr === "B2" && (
+                <div style={{ textAlign: "center" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#64748b" }}>مجموع امتیاز تصمیمات (محرمانه):</span>
+                  <div
+                    style={{
+                      fontSize: "1.8rem",
+                      fontWeight: 900,
+                      color: calculateB2DecisionScore(storyDecisions) >= B2_WIN_THRESHOLD ? "#10b981" : "#ef4444",
+                    }}
+                  >
+                    {calculateB2DecisionScore(storyDecisions)}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                      (حد نصاب: {B2_WIN_THRESHOLD})
+                    </span>
+                  </div>
+                </div>
+              )}
+              {level.cefr === "C1" && (
+                <div style={{ textAlign: "center" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#64748b" }}>مجموع امتیاز تصمیمات (محرمانه):</span>
+                  <div
+                    style={{
+                      fontSize: "1.8rem",
+                      fontWeight: 900,
+                      color: calculateC1DecisionScore(storyDecisions) >= C1_WIN_THRESHOLD ? "#10b981" : "#ef4444",
+                    }}
+                  >
+                    {calculateC1DecisionScore(storyDecisions)}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                      (حد نصاب: {C1_WIN_THRESHOLD})
+                    </span>
+                  </div>
+                </div>
+              )}
+              {level.cefr === "C2" && (
+                <div style={{ textAlign: "center" }}>
+                  <span style={{ fontSize: "0.82rem", color: "#64748b" }}>مجموع امتیاز تصمیمات (محرمانه):</span>
+                  <div
+                    style={{
+                      fontSize: "1.8rem",
+                      fontWeight: 900,
+                      color: calculateC2DecisionScore(storyDecisions) >= C2_WIN_THRESHOLD ? "#10b981" : "#ef4444",
+                    }}
+                  >
+                    {calculateC2DecisionScore(storyDecisions)}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                      (حد نصاب: {C2_WIN_THRESHOLD})
                     </span>
                   </div>
                 </div>

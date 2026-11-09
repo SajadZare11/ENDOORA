@@ -53,7 +53,35 @@ export default function VideoLessonPlayer({
   const [videoError, setVideoError] = useState(false);
 
   const videoElementRef = useRef<HTMLVideoElement | null>(null);
+  const videoSectionRef = useRef<HTMLDivElement | null>(null);
+  const transcriptListRef = useRef<HTMLDivElement | null>(null);
   const activeLineRef = useRef<HTMLDivElement | null>(null);
+  const [videoHeight, setVideoHeight] = useState<number | undefined>(undefined);
+
+  // Synchronize transcript column height with video section height
+  useEffect(() => {
+    const el = videoSectionRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const h = el.offsetHeight;
+      if (h > 0) setVideoHeight(h);
+    };
+
+    measure();
+
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => measure());
+      ro.observe(el);
+    }
+
+    window.addEventListener("resize", measure);
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   const togglePlayPause = () => {
     if (videoElementRef.current) {
@@ -116,12 +144,18 @@ export default function VideoLessonPlayer({
     return currentTime >= line.seconds;
   });
 
-  // Auto-scroll transcript container to active line during playback
+  // Smooth scroll ONLY the internal transcript container during playback
   useEffect(() => {
-    if (activeLineRef.current && isPlaying) {
-      activeLineRef.current.scrollIntoView({
+    if (transcriptListRef.current && activeLineRef.current && isPlaying) {
+      const container = transcriptListRef.current;
+      const activeEl = activeLineRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const activeRect = activeEl.getBoundingClientRect();
+      const relativeTop = activeRect.top - containerRect.top + container.scrollTop;
+      const targetScroll = relativeTop - (container.clientHeight / 2) + (activeRect.height / 2);
+      container.scrollTo({
+        top: Math.max(0, targetScroll),
         behavior: "smooth",
-        block: "nearest",
       });
     }
   }, [activeTranscriptIndex, isPlaying]);
@@ -191,55 +225,57 @@ export default function VideoLessonPlayer({
   const isAparat = lesson.videoUrl && (lesson.videoUrl.includes("aparat.com") || lesson.embedType === "aparat");
 
   return (
-    <div className={styles.playerCard}>
-      {/* Anti-skipping Warning Toast */}
-      {skipWarning && (
-        <div
-          style={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            left: "1rem",
-            zIndex: 40,
-            background: "#fff1f2",
-            border: "1px solid #fecdd3",
-            color: "#be123c",
-            padding: "0.75rem 1rem",
-            borderRadius: "10px",
-            fontSize: "0.825rem",
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            boxShadow: "0 8px 16px -2px rgba(0,0,0,0.1)",
-          }}
-        >
-          <span>⚠️</span>
-          <span>برای یادگیری موثر، امکان جلو زدن ویدیو پیش از تماشای ۸۰٪ غیرفعال است. (عقب زدن مجاز است)</span>
-        </div>
-      )}
+    <div className={styles.playerLayout}>
+      {/* Video Column (Right side in RTL) */}
+      <div ref={videoSectionRef} className={`${styles.videoSection} ${!showTranscript ? styles.videoSectionFull : ""}`}>
+        {/* Anti-skipping Warning Toast */}
+        {skipWarning && (
+          <div
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              left: "1rem",
+              zIndex: 40,
+              background: "#fff1f2",
+              border: "1px solid #fecdd3",
+              color: "#be123c",
+              padding: "0.75rem 1rem",
+              borderRadius: "10px",
+              fontSize: "0.825rem",
+              fontWeight: 700,
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              boxShadow: "0 8px 16px -2px rgba(0,0,0,0.1)",
+            }}
+          >
+            <span>⚠️</span>
+            <span>برای یادگیری موثر، امکان جلو زدن ویدیو پیش از تماشای ۸۰٪ غیرفعال است. (عقب زدن مجاز است)</span>
+          </div>
+        )}
 
-      {/* Screen Frame */}
-      <div className={styles.playerScreenWrapper}>
+        {/* Screen Frame */}
+        <div className={styles.playerScreenWrapper}>
         {/* If Aparat embed */}
         {isAparat ? (
-          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "hidden" }}>
             <iframe
               src={lesson.videoUrl}
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
               allow="autoplay; fullscreen"
               title={lesson.titleFa}
             />
           </div>
         ) : isDirectVideo ? (
           /* Native HTML5 Video */
-          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <div style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "#000000" }}>
             <video
               ref={videoElementRef}
               src={lesson.videoUrl}
               playsInline
               preload="metadata"
-              style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000000", cursor: "pointer" }}
+              style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000000", cursor: "pointer", display: "block" }}
               onClick={togglePlayPause}
               onTimeUpdate={(e) => {
                 const sec = Math.floor(e.currentTarget.currentTime);
@@ -461,38 +497,53 @@ export default function VideoLessonPlayer({
           </div>
         </div>
       </div>
+    </div>
 
-      {/* Synchronized Transcript Drawer */}
+      {/* Synchronized Transcript Column (Left side in RTL) */}
       {showTranscript && (
-        <div className={styles.transcriptDrawer}>
-          <div className={styles.transcriptDrawerTitle}>
-            <span>متن کامل و دیالوگ‌های ویدیو (Interactive Transcript)</span>
-            <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 400 }}>
-              با کلیک روی هر خط، ویدیو به همان زمان منتقل می‌شود
-            </span>
-          </div>
+        <div
+          className={styles.transcriptSection}
+          style={
+            videoHeight
+              ? { height: `${videoHeight}px`, maxHeight: `${videoHeight}px` }
+              : undefined
+          }
+        >
+          <div className={styles.transcriptDrawer}>
+            <div className={styles.transcriptDrawerTitle}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span style={{ fontSize: "0.85rem" }}>📜</span>
+                <span style={{ fontSize: "0.8rem", fontWeight: 800, color: "#1e293b" }}>
+                  دیالوگ‌های ویدیو
+                </span>
+              </div>
+              <span style={{ fontSize: "0.7rem", color: "#64748b", fontWeight: 600 }}>
+                {lesson.transcript.length} جمله
+              </span>
+            </div>
 
-          <div className={styles.transcriptList}>
-            {lesson.transcript.map((line, idx) => {
-              const isActive = idx === activeTranscriptIndex;
-              return (
-                <div
-                  key={line.id}
-                  ref={isActive ? activeLineRef : null}
-                  className={`${styles.transcriptLineItem} ${
-                    isActive ? styles.transcriptLineItemActive : ""
-                  }`}
-                  onClick={() => jumpToLine(line.seconds)}
-                >
-                  <span className={styles.lineTimestamp}>{line.timeDisplay}</span>
-                  <div style={{ flex: 1 }}>
-                    {line.speaker ? <div className={styles.lineSpeaker}>{line.speaker}</div> : null}
-                    <div className={styles.lineTextEn}>{line.textEn}</div>
-                    {line.textFa ? <div className={styles.lineTextFa}>{line.textFa}</div> : null}
+            <div ref={transcriptListRef} className={styles.transcriptList}>
+              {lesson.transcript.map((line, idx) => {
+                const isActive = idx === activeTranscriptIndex;
+                return (
+                  <div
+                    key={line.id}
+                    ref={isActive ? activeLineRef : null}
+                    className={`${styles.transcriptLineItem} ${
+                      isActive ? styles.transcriptLineItemActive : ""
+                    }`}
+                    onClick={() => jumpToLine(line.seconds)}
+                  >
+                    <span className={styles.lineTimestamp}>{line.timeDisplay}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      {line.speaker ? <div className={styles.lineSpeaker}>{line.speaker}</div> : null}
+                      <div className={styles.lineTextEn}>{line.textEn}</div>
+                      {line.textFa ? <div className={styles.lineTextFa}>{line.textFa}</div> : null}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
