@@ -1,7 +1,5 @@
-import { FoundationAccountPage } from "../../../components/account/FoundationAccountPage";
+import { redirect } from "next/navigation";
 
 export default function LibraryPage() {
-  return (
-    <FoundationAccountPage section="library" />
-  );
+  redirect("/account?tab=library");
 }

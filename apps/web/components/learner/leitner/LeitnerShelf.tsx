@@ -1,271 +1,215 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
-  getLeitnerDeck,
-  calculateDeckStats,
-  addCustomMistakeCard,
-  LEITNER_BOX_META,
+  CEFRLevel,
   LeitnerBoxLevel,
-  LeitnerDeckStats,
-  LeitnerCard,
-} from "../../../lib/leitner-storage";
+  CEFRLevelStats,
+  LEITNER_BOX_META,
+  CEFR_LEVELS_META,
+} from "../../../data/cefr/types";
+import {
+  getActiveCefrLevel,
+  getLevelStats,
+  getNextAvailableLesson,
+} from "../../../lib/cefr-leitner-storage";
 import styles from "./leitner.module.css";
 
-interface LeitnerShelfProps {
-  onDeckChange?: (stats: LeitnerDeckStats) => void;
+export interface LeitnerShelfProps {
+  level?: CEFRLevel;
+  stats?: CEFRLevelStats;
+  nextLessonIndex?: number;
+  onStartNewLesson?: () => void;
+  onStartDueReview?: () => void;
+  onScrollToWordlist?: () => void;
 }
 
-export const LeitnerShelf: React.FC<LeitnerShelfProps> = ({ onDeckChange }) => {
-  const [deck, setDeck] = useState<LeitnerCard[]>([]);
-  const [stats, setStats] = useState<LeitnerDeckStats>({
-    totalCards: 0,
-    dueTodayCount: 0,
-    boxCounts: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-    masteredCount: 0,
-    successRatePercentage: 100,
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const BOX_LEVELS: LeitnerBoxLevel[] = [1, 2, 3, 4, 5];
 
-  // Form states
-  const [originalMistake, setOriginalMistake] = useState("");
-  const [correctedText, setCorrectedText] = useState("");
-  const [explanationFa, setExplanationFa] = useState("");
-  const [category, setCategory] = useState("grammar");
+export const LeitnerShelf: React.FC<LeitnerShelfProps> = ({
+  level: propLevel,
+  stats: propStats,
+  nextLessonIndex: propNextLessonIndex,
+  onStartNewLesson,
+  onStartDueReview,
+  onScrollToWordlist,
+}) => {
+  const router = useRouter();
+  const [internalLevel, setInternalLevel] = useState<CEFRLevel>("A1");
+  const [internalStats, setInternalStats] = useState<CEFRLevelStats | null>(null);
 
-  const refreshDeck = () => {
-    const loaded = getLeitnerDeck();
-    const calculated = calculateDeckStats(loaded);
-    setDeck(loaded);
-    setStats(calculated);
-    if (onDeckChange) {
-      onDeckChange(calculated);
+  useEffect(() => {
+    if (!propLevel) {
+      const active = getActiveCefrLevel();
+      setInternalLevel(active);
+      setInternalStats(getLevelStats(active));
+    }
+  }, [propLevel]);
+
+  const level = propLevel || internalLevel;
+  const stats =
+    propStats ||
+    internalStats ||
+    getLevelStats(level);
+
+  const nextLessonIndex =
+    propNextLessonIndex ?? getNextAvailableLesson(level).lessonIndex;
+
+  const meta = CEFR_LEVELS_META[level] || CEFR_LEVELS_META["A1"];
+
+  const handleNewLesson = () => {
+    if (onStartNewLesson) {
+      onStartNewLesson();
+    } else {
+      router.push("/leitner");
     }
   };
 
-  useEffect(() => {
-    refreshDeck();
-    const handleUpdate = () => refreshDeck();
-    window.addEventListener("endoora:leitner-updated", handleUpdate);
-    return () => window.removeEventListener("endoora:leitner-updated", handleUpdate);
-  }, []);
-
-  const handleAddMistake = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!originalMistake.trim() || !correctedText.trim()) return;
-
-    const catLabels: Record<string, string> = {
-      grammar: "دستور زبان (Grammar)",
-      vocabulary: "واژگان (Vocabulary)",
-      pronunciation: "تلفظ و استرس (Pronunciation)",
-      l1_persian: "تداخل فارسی (L1 Transfer)",
-      collocation: "همایندها (Collocations)",
-    };
-
-    addCustomMistakeCard({
-      originalMistake: originalMistake.trim(),
-      correctedText: correctedText.trim(),
-      explanationFa: explanationFa.trim(),
-      category,
-      categoryLabelFa: catLabels[category] || "خطای سفارشی",
-      sourceTitle: "دفترچه شخصی زبان‌آموز",
-    });
-
-    setOriginalMistake("");
-    setCorrectedText("");
-    setExplanationFa("");
-    setIsModalOpen(false);
-    refreshDeck();
+  const handleDueReview = () => {
+    if (onStartDueReview) {
+      onStartDueReview();
+    } else {
+      router.push("/leitner");
+    }
   };
 
-  const boxLevels: LeitnerBoxLevel[] = [1, 2, 3, 4, 5];
-
   return (
-    <div className={styles.shelfContainer} aria-label="سیستم جعبه لایتنر خطاهای یادگیری">
+    <div className={styles.shelfContainer} aria-label={`جعبه ۵ خانه‌ای لایتنر سطح ${level}`}>
       {/* Header */}
       <div className={styles.shelfHeader}>
         <div className={styles.shelfTitleGroup}>
-          <span className={styles.shelfIcon} role="img" aria-label="جعبه لایتنر">
+          <span className={styles.shelfIcon} role="img" aria-label="قفسه لایتنر">
             🗃️
           </span>
           <div>
-            <h2 className={styles.shelfTitle}>جعبه ۵ خانه‌ای لایتنر خطاهای یادگیری (Mistake SRS)</h2>
+            <h2 className={styles.shelfTitle}>
+              جعبه ۵ خانه‌ای لایتنر واژگان {meta.titleFa} ({level})
+            </h2>
             <p className={styles.shelfSubtitle}>
-              انتقال فعال خطاهای مکالمه، آزمون و کلاس از حافظه فرّار به تسلط دائمی از طریق مرور با فواصل زمانی
+              انتقال فعال کلمات با تدریس استقرایی و فواصل زمانی علمی (۱، ۳، ۷، ۱۴ و ۳۰ روز) به حافظه پایدار
             </p>
           </div>
         </div>
+
         <div className={styles.shelfActions}>
           <button
             type="button"
-            className={styles.addMistakeButton}
-            onClick={() => setIsModalOpen(true)}
+            className={styles.startLessonButton}
+            onClick={handleNewLesson}
           >
-            <span>+</span>
-            <span>ثبت خطای جدید</span>
+            🚀 شروع درس جدید (درس {nextLessonIndex})
           </button>
         </div>
       </div>
 
-      {/* Due Today Callout */}
-      <div className={styles.dueTodayBanner}>
-        <div className={styles.dueTodayContent}>
-          <div className={styles.duePulseBadge}>
-            {stats.dueTodayCount}
-          </div>
+      {/* Due Today Notification Banner */}
+      <div
+        className={`${styles.dueTodayBanner} ${
+          stats.dueTodayCount > 0 ? styles.dueBannerActive : styles.dueBannerCalm
+        }`}
+      >
+        <div className={styles.dueTodayInfo}>
+          <span className={styles.dueTodayIcon}>
+            {stats.dueTodayCount > 0 ? "⚡" : "✨"}
+          </span>
           <div>
-            <h3 className={styles.dueTextTitle}>
+            <h4 className={styles.dueTodayTitle}>
               {stats.dueTodayCount > 0
-                ? `${stats.dueTodayCount} کارت موعد مرور امروز داری!`
-                : "تمام کارت‌های امروز مرور شده‌اند 🎉"}
-            </h3>
-            <p className={styles.dueTextSub}>
+                ? `${stats.dueTodayCount} کارت آماده مرور برای امروز در سطح ${level}!`
+                : `همه کارت‌های امروز سطح ${level} مرور شده‌اند!`}
+            </h4>
+            <p className={styles.dueTodayDesc}>
               {stats.dueTodayCount > 0
-                ? "با مرور فعال ۵ دقیقه‌ای امروز، از فراموشی و بازگشت خطاهای تکراری جلوگیری کن."
-                : "هیچ کارتی در نوبت مرور نیست؛ می‌توانید به استراحت بپردازید یا کارت‌ها را آزاد تمرین کنید."}
+                ? "برای تثبیت واژه‌ها در حافظه بلندمدت و جلوگیری از فراموشی، مرور با بازیابی فعال را آغاز کنید."
+                : "عالی است! می‌توانید یک درس ۱۰ واژه‌ای جدید شروع کنید یا کلمات را در جدول زیر کاوش نمایید."}
             </p>
           </div>
         </div>
 
-        <Link
-          href="/mistakes/leitner"
-          className={styles.startStudyButton}
-        >
-          <span>🎯</span>
-          <span>
-            {stats.dueTodayCount > 0 ? "شروع مرور کارت‌های موعد امروز" : "ورود به اتاق تمرین لایتنر"}
-          </span>
-          <span aria-hidden="true">←</span>
-        </Link>
+        <div className={styles.dueTodayActions}>
+          {stats.dueTodayCount > 0 ? (
+            <button
+              type="button"
+              className={styles.dueReviewActionBtn}
+              onClick={handleDueReview}
+            >
+              شروع مرور کارت‌های امروز ({stats.dueTodayCount}) ⚡
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.dueLessonActionBtn}
+              onClick={handleNewLesson}
+            >
+              شروع درس بعدی 🚀
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* 5 Boxes Shelf Grid */}
-      <div className={styles.boxesGrid}>
-        {boxLevels.map((lvl) => {
-          const meta = LEITNER_BOX_META[lvl];
-          const count = stats.boxCounts[lvl] || 0;
-          const percentage = stats.totalCards > 0 ? (count / stats.totalCards) * 100 : 0;
+      {/* 5-Boxes Shelf Grid */}
+      <div className={styles.boxesGrid} role="list" aria-label="خانه‌های ۵گانه جعبه لایتنر">
+        {BOX_LEVELS.map((boxNum) => {
+          const bMeta = LEITNER_BOX_META[boxNum];
+          const count = stats.boxCounts[boxNum] || 0;
 
           return (
-            <div key={lvl} className={styles.boxCard}>
+            <div
+              key={boxNum}
+              className={styles.boxCard}
+              style={{
+                borderColor: count > 0 ? bMeta.color : undefined,
+              }}
+              role="listitem"
+            >
               <div
-                className={styles.boxAccentBar}
-                style={{ backgroundColor: meta.color }}
-              />
-              <div className={styles.boxCardHeader}>
-                <span
-                  className={styles.boxNumberBadge}
-                  style={{ backgroundColor: meta.color }}
-                >
-                  جعبه {lvl}
-                </span>
-                <span className={styles.boxIntervalText}>{meta.intervalDescFa}</span>
+                className={styles.boxCardHeader}
+                style={{ backgroundColor: `${bMeta.color}15`, color: bMeta.color }}
+              >
+                <span className={styles.boxNumberBadge}>{boxNum}</span>
+                <span className={styles.boxIcon}>{bMeta.icon}</span>
               </div>
 
-              <div className={styles.boxTitleFa}>{meta.labelFa.split(":")[1]?.trim() || meta.labelFa}</div>
-
-              <div className={styles.boxCardCount}>
-                <span>{count}</span>
-                <span className={styles.boxCardCountUnit}>کارت</span>
-              </div>
-
-              <div className={styles.progressBarTrack}>
-                <div
-                  className={styles.progressBarFill}
-                  style={{
-                    width: `${percentage}%`,
-                    backgroundColor: meta.color,
-                  }}
-                />
+              <div className={styles.boxCardBody}>
+                <h4 className={styles.boxTitle}>{bMeta.labelFa}</h4>
+                <div className={styles.boxCountRow}>
+                  <span
+                    className={styles.boxCountNumber}
+                    style={{ color: count > 0 ? bMeta.color : undefined }}
+                  >
+                    {count}
+                  </span>
+                  <span className={styles.boxCountUnit}>کارت</span>
+                </div>
+                <span className={styles.boxIntervalText}>{bMeta.intervalDescFa}</span>
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Modal for adding custom mistake */}
-      {isModalOpen && (
-        <div className={styles.modalOverlay} role="dialog" aria-modal="true">
-          <div className={styles.modalContent}>
-            <h3 className={styles.modalTitle}>ثبت خطای جدید در جعبه ۱ لایتنر</h3>
-            <p className={styles.shelfSubtitle}>
-              جمله‌ای که در آزمون یا مکالمه اشتباه گفتی را یادداشت کن تا سیستم به مرور زمان آن را تثبیت کند.
-            </p>
-
-            <form onSubmit={handleAddMistake} style={{ marginTop: "1.25rem" }}>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>دسته‌بندی خطا</label>
-                <select
-                  className={styles.formSelect}
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option value="grammar">دستور زبان (Grammar)</option>
-                  <option value="l1_persian">تداخل زبان مادری فارسی (L1 Transfer)</option>
-                  <option value="collocation">همایند واژگان (Collocation)</option>
-                  <option value="vocabulary">انتخاب واژه نادرست (Vocabulary)</option>
-                  <option value="pronunciation">تلفظ و تکیه هجایی (Pronunciation)</option>
-                </select>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>❌ جمله دارای خطا (انگلیسی)</label>
-                <input
-                  type="text"
-                  dir="ltr"
-                  className={styles.formInput}
-                  placeholder="e.g. I am agree with your point."
-                  value={originalMistake}
-                  onChange={(e) => setOriginalMistake(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>✅ ساختار صحیح و بومی (انگلیسی)</label>
-                <input
-                  type="text"
-                  dir="ltr"
-                  className={styles.formInput}
-                  placeholder="e.g. I agree with your point."
-                  value={correctedText}
-                  onChange={(e) => setCorrectedText(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel}>💡 توضیح یا ریشه‌یابی به فارسی (اختیاری)</label>
-                <textarea
-                  className={styles.formTextarea}
-                  rows={3}
-                  placeholder="دلیل اشتباه: در فارسی می‌گوییم موافق هستم، اما در انگلیسی agree خودش فعل است..."
-                  value={explanationFa}
-                  onChange={(e) => setExplanationFa(e.target.value)}
-                />
-              </div>
-
-              <div className={styles.modalFooter}>
-                <button
-                  type="button"
-                  className={styles.addMistakeButton}
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  انصراف
-                </button>
-                <button
-                  type="submit"
-                  className={styles.startStudyButton}
-                  style={{ background: "#2563eb", color: "#ffffff" }}
-                >
-                  افزودن به جعبه ۱
-                </button>
-              </div>
-            </form>
-          </div>
+      {/* Quick Summary Bar */}
+      <div className={styles.shelfFooterSummary}>
+        <div className={styles.summaryStatItem}>
+          <span className={styles.summaryLabel}>کل واژگان سطح {level}:</span>
+          <span className={styles.summaryValue}>{stats.totalWords} واژه</span>
         </div>
-      )}
+        <div className={styles.summaryStatItem}>
+          <span className={styles.summaryLabel}>کلمات واردشده به لایتنر:</span>
+          <span className={styles.summaryValue}>{stats.learnedCount} واژه</span>
+        </div>
+        <div className={styles.summaryStatItem}>
+          <span className={styles.summaryLabel}>کلمات فتح‌شده طلایی (خانه ۵):</span>
+          <span className={styles.summaryValue} style={{ color: "#10b981", fontWeight: 700 }}>
+            {stats.masteredCount} واژه
+          </span>
+        </div>
+        <div className={styles.summaryStatItem}>
+          <span className={styles.summaryLabel}>درصد تسلط کلی:</span>
+          <span className={styles.summaryValue}>{stats.progressPercentage}%</span>
+        </div>
+      </div>
     </div>
   );
 };

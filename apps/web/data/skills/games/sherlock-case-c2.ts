@@ -990,7 +990,7 @@ export const C2_SHERLOCK_CASE: DetectiveStage[] = [
         },
       },
     ],
-    endings: {
+    possibleEndings: {
       ending1: {
         endingType: "ending-1-case-solved",
         titleFa: "پایان جاودانه: فتح رایشنباخ، انهدام کامل سندیکا و بازگشت شکوهمند به ۲۲۱ب بیکر استریت",

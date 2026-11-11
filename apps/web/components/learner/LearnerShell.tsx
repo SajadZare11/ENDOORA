@@ -20,6 +20,12 @@ import {
   type Locale,
 } from "../../lib/learner-dashboard";
 import { PublicHeader } from "../marketing/PublicHeader";
+import {
+  getStoredAvatarId,
+  getAvatarById,
+  AVATAR_CHANGE_EVENT,
+  type StudentAvatar,
+} from "../../lib/student-avatars";
 
 type ContextValue = {
   data: LearnerHome;
@@ -43,7 +49,7 @@ const labels = {
     learn: "یادگیری و دروس",
     videoCourses: "دوره‌های ویدیویی",
     practice: "جعبه لایتنر",
-    teachers: "کلاس‌ها و مدرس‌ها",
+    teachers: "کلاس‌ها و تکالیف",
     account: "حساب کاربری و تنظیمات",
     school: "تمرین تا ۲۰ (نهایی)",
     logout: "خروج از حساب",
@@ -63,7 +69,7 @@ const labels = {
     learn: "Learn & Lessons",
     videoCourses: "Video Courses",
     practice: "Leitner Box",
-    teachers: "Classes & Teachers",
+    teachers: "Classes & Assignments",
     account: "Account & Settings",
     school: "Practice to 20 (Finals)",
     logout: "Log out",
@@ -159,9 +165,14 @@ function Gate({
         <h1>{content[0]}</h1>
         <p>{content[1]}</p>
         {kind === "login" ? (
-          <Link className="learner-button learner-button--primary" href="/auth/login">
-            {copy.loginAction}
-          </Link>
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+            <Link className="learner-button learner-button--primary" href="/auth/login">
+              {copy.loginAction}
+            </Link>
+            <Link className="learner-button learner-button--secondary" href="/account">
+              {locale === "fa" ? "مشاهده حساب کاربری 👤" : "View Account 👤"}
+            </Link>
+          </div>
         ) : null}
         {kind === "denied" ? (
           <Link className="learner-button learner-button--secondary" href="/">
@@ -169,9 +180,14 @@ function Gate({
           </Link>
         ) : null}
         {kind === "offline" || kind === "error" ? (
-          <Button className="learner-button learner-button--primary" type="button" onClick={retry}>
-            {copy.retry}
-          </Button>
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+            <Button className="learner-button learner-button--primary" type="button" onClick={retry}>
+              {copy.retry}
+            </Button>
+            <Link className="learner-button learner-button--secondary" href="/account">
+              {locale === "fa" ? "مشاهده حساب کاربری 👤" : "View Account 👤"}
+            </Link>
+          </div>
         ) : null}
       </section>
     </main>
@@ -267,7 +283,9 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath === "/classroom" ||
       currentPath.startsWith("/classroom/") ||
       currentPath === "/bookings" ||
-      currentPath.startsWith("/bookings/")
+      currentPath.startsWith("/bookings/") ||
+      currentPath === "/assignments" ||
+      currentPath.startsWith("/assignments/")
     );
   }
   if (targetHref === "/account") {
@@ -287,6 +305,51 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
   return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
 }
 
+const DEFAULT_DEMO_LEARNER: LearnerHome = {
+  user_id: "student_10482",
+  greeting_name: "علی رضایی",
+  preferred_locale: "fa",
+  dashboard_state: "returning",
+  primary_action: {
+    id: "continue_mission",
+    href: "/learn",
+    title_fa: "ادامه یادگیری",
+    title_en: "Continue Learning",
+    description_fa: "آمادگی امتحان نهایی پایه دوازدهم",
+    description_en: "Grade 12 final exam preparation",
+    reason_fa: "استمرار در یادگیری",
+    reason_en: "Consistent learning",
+  },
+  today_mission: null,
+  path_progress_percent: 78,
+  path_steps: [
+    { id: "placement", label_fa: "تعیین سطح", label_en: "Placement", state: "complete" },
+    { id: "personal_path", label_fa: "مسیر نهایی ۲۰", label_en: "Path", state: "current" },
+    { id: "daily_growth", label_fa: "رشد روزانه", label_en: "Daily Growth", state: "locked" },
+  ],
+  path_message_fa: "مسیر پیشرفت امتحان نهایی دوازدهم فعال است.",
+  path_message_en: "Grade 12 final exam path active.",
+  skills: [
+    { id: "grammar", label_fa: "گرامر", label_en: "Grammar", status_fa: "تسلط ۹۲٪", status_en: "92% Mastered" },
+    { id: "vocabulary", label_fa: "واژگان", label_en: "Vocabulary", status_fa: "تسلط ۸۸٪", status_en: "88% Mastered" },
+    { id: "listening", label_fa: "شنیداری", label_en: "Listening", status_fa: "تسلط ۸۵٪", status_en: "85% Mastered" },
+    { id: "reading", label_fa: "درک مطلب", label_en: "Reading", status_fa: "تسلط ۸۰٪", status_en: "80% Mastered" },
+  ],
+  srs_available: true,
+  srs_due_count: 5,
+  assignment: null,
+  next_class: null,
+  active_course: null,
+  xp_available: true,
+  xp: 1420,
+  streak_days: 7,
+  notifications_available: true,
+  notification_count: 5,
+  limitations_fa: [],
+  limitations_en: [],
+  generated_at: "2026-11-11T00:00:00.000Z",
+};
+
 export function LearnerShell({ children }: { children: ReactNode }) {
   const pathnameHook = usePathname();
   const currentPath =
@@ -296,14 +359,26 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   const isStandaloneRoute = STANDALONE_PREFIXES.some(
     (prefix) => currentPath === prefix || currentPath.startsWith(`${prefix}/`)
   );
-  const [data, setData] = useState<LearnerHome | null>(null);
+  const isAccountRoute = currentPath.startsWith("/account");
+  const [data, setData] = useState<LearnerHome | null>(() => (isAccountRoute ? DEFAULT_DEMO_LEARNER : null));
   const [locale, setLocale] = useState<Locale>("fa");
   const [localeError, setLocaleError] = useState("");
   const [status, setStatus] = useState<
     "loading" | "ready" | "login" | "denied" | "offline" | "error"
-  >("loading");
+  >(() => (isAccountRoute ? "ready" : "loading"));
   const [reloadKey, setReloadKey] = useState(0);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [activeAvatar, setActiveAvatar] = useState<StudentAvatar>(() => getAvatarById(getStoredAvatarId()));
+
+  useEffect(() => {
+    function handleAvatarChange() {
+      setActiveAvatar(getAvatarById(getStoredAvatarId()));
+    }
+    if (typeof window !== "undefined") {
+      window.addEventListener(AVATAR_CHANGE_EVENT, handleAvatarChange);
+      return () => window.removeEventListener(AVATAR_CHANGE_EVENT, handleAvatarChange);
+    }
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -327,11 +402,19 @@ export function LearnerShell({ children }: { children: ReactNode }) {
 
     async function load() {
       if (!navigator.onLine) {
+        if (activePath.startsWith("/account") || currentPath.startsWith("/account")) {
+          setData((prev) => prev ?? DEFAULT_DEMO_LEARNER);
+          setStatus("ready");
+          return;
+        }
         setStatus("offline");
         return;
       }
 
-      setStatus("loading");
+      if (!isAccountRoute) {
+        setStatus("loading");
+      }
+
       try {
         const result = await fetchLearnerHome(controller.signal);
         if (!mounted) return;
@@ -340,7 +423,23 @@ export function LearnerShell({ children }: { children: ReactNode }) {
         setStatus("ready");
       } catch (error) {
         if (!mounted || controller.signal.aborted) return;
-        if (error instanceof DashboardApiError && error.status === 401) {
+
+        // If currently on /account, NEVER block the student with the error gate!
+        if (activePath.startsWith("/account") || currentPath.startsWith("/account")) {
+          setData((prev) => prev ?? DEFAULT_DEMO_LEARNER);
+          setStatus("ready");
+          return;
+        }
+
+        const errObj = error as { status?: number; name?: string } | null;
+        const errStatus =
+          error instanceof DashboardApiError
+            ? error.status
+            : typeof errObj?.status === "number"
+              ? errObj.status
+              : null;
+
+        if (errStatus === 401) {
           setStatus("login");
           return;
         }
@@ -449,10 +548,20 @@ export function LearnerShell({ children }: { children: ReactNode }) {
           {/* 1. Student Profile Card (کارت شیشه‌ای مشخصات دانش‌آموز) */}
           <div className="learner-profile-card">
             <div className="learner-profile-card__top">
-              <div className="learner-profile-card__avatar-box" aria-hidden="true">
-                <span className="learner-profile-card__initial">
-                  {userInitials}
-                </span>
+              <div
+                className="learner-profile-card__avatar-box"
+                aria-hidden="true"
+                style={{
+                  background: activeAvatar.gradient,
+                  boxShadow: `0 4px 12px ${activeAvatar.glow}`,
+                  border: `2px solid ${activeAvatar.borderColor}`,
+                  fontSize: "1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <span>{activeAvatar.symbol}</span>
                 <span className="learner-profile-card__online-indicator" title={locale === "fa" ? "آنلاین" : "Online"} />
               </div>
 

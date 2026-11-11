@@ -1060,150 +1060,158 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Rob",
-              "textEn": "Um... Jennifer?",
-              "textFa": "ام... جنیفر؟"
+            "id": 1,
+            "seconds": 12,
+            "timeDisplay": "0:12",
+            "speaker": "Rob",
+            "textEn": "Um... Jennifer?",
+            "textFa": "اوم... جنیفر؟"
       },
       {
-              "id": 2,
-              "seconds": 22,
-              "timeDisplay": "0:22",
-              "speaker": "Jenny",
-              "textEn": "Rob?",
-              "textFa": "راب؟"
+            "id": 2,
+            "seconds": 15,
+            "timeDisplay": "0:15",
+            "speaker": "Jenny",
+            "textEn": "Rob?",
+            "textFa": "راب؟"
       },
       {
-              "id": 3,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Rob",
-              "textEn": "Yes, hello.",
-              "textFa": "بله، سلام."
+            "id": 3,
+            "seconds": 17,
+            "timeDisplay": "0:17",
+            "speaker": "Rob",
+            "textEn": "Yes, hello.",
+            "textFa": "بله، سلام."
       },
       {
-              "id": 4,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Rob",
-              "textEn": "Nice to meet you, Jennifer.",
-              "textFa": "از دیدنت خوشحالم، جنیفر."
+            "id": 4,
+            "seconds": 19,
+            "timeDisplay": "0:19",
+            "speaker": "Rob",
+            "textEn": "Nice to meet you, Jennifer.",
+            "textFa": "از دیدنت خوشحالم، جنیفر."
       },
       {
-              "id": 5,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Jenny",
-              "textEn": "Call me Jenny. Good to meet you, too.",
-              "textFa": "مرا جنی صدا کن. من هم از دیدنت خوشحالم."
+            "id": 5,
+            "seconds": 22,
+            "timeDisplay": "0:22",
+            "speaker": "Jenny",
+            "textEn": "Call me Jenny. Good to meet you, too.",
+            "textFa": "جنی صدام کن. من هم از دیدنت خوشحالم."
       },
       {
-              "id": 6,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Rob",
-              "textEn": "Welcome to London. Am I late?",
-              "textFa": "به لندن خوش آمدی. آیا دیر کرده‌ام؟"
+            "id": 6,
+            "seconds": 26,
+            "timeDisplay": "0:26",
+            "speaker": "Rob",
+            "textEn": "Welcome to London. Am I late?",
+            "textFa": "به لندن خوش اومدی. دیر کردم؟"
       },
       {
-              "id": 7,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Jenny",
-              "textEn": "Um... just a little.",
-              "textFa": "ام... فقط کمی."
+            "id": 7,
+            "seconds": 29,
+            "timeDisplay": "0:29",
+            "speaker": "Jenny",
+            "textEn": "Um... just a little.",
+            "textFa": "اوم... فقط یه ذره."
       },
       {
-              "id": 8,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Rob",
-              "textEn": "What time is it?",
-              "textFa": "ساعت چند است؟"
+            "id": 8,
+            "seconds": 32,
+            "timeDisplay": "0:32",
+            "speaker": "Rob",
+            "textEn": "What time is it?",
+            "textFa": "ساعت چنده؟"
       },
       {
-              "id": 9,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Jenny",
-              "textEn": "Nine fifteen.",
-              "textFa": "نه و ربع."
+            "id": 9,
+            "seconds": 34,
+            "timeDisplay": "0:34",
+            "speaker": "Jenny",
+            "textEn": "Nine fifteen.",
+            "textFa": "نه و ربع."
       },
       {
-              "id": 10,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Rob",
-              "textEn": "I'm really sorry. The traffic is terrible today.",
-              "textFa": "واقعاً متاسفم. ترافیک امروز وحشتناک است."
+            "id": 10,
+            "seconds": 36,
+            "timeDisplay": "0:36",
+            "speaker": "Rob",
+            "textEn": "I'm really sorry. The traffic is terrible today.",
+            "textFa": "واقعاً متاسفم. ترافیک امروز وحشتناکه."
       },
       {
-              "id": 11,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "Jenny",
-              "textEn": "No problem.",
-              "textFa": "مشکلی نیست."
+            "id": 11,
+            "seconds": 40,
+            "timeDisplay": "0:40",
+            "speaker": "Jenny",
+            "textEn": "No problem.",
+            "textFa": "مسئله‌ای نیست."
       },
       {
-              "id": 12,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Rob",
-              "textEn": "How are you? How's the hotel?",
-              "textFa": "حالت چطور است؟ هتل چطور است؟"
+            "id": 12,
+            "seconds": 42,
+            "timeDisplay": "0:42",
+            "speaker": "Rob",
+            "textEn": "How are you? How's the hotel?",
+            "textFa": "حالت چطوره؟ هتل چطوره؟"
       },
       {
-              "id": 13,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Jenny",
-              "textEn": "The hotel's very nice. But breakfast isn't great. I'd like a good cup of coffee. Not hotel coffee - real coffee.",
-              "textFa": "هتل خیلی خوب است، اما صبحانه‌اش چندان تعریفی ندارد. دلم یک فنجان قهوه خوب می‌خواهد؛ نه قهوه هتل، قهوه واقعی."
+            "id": 13,
+            "seconds": 45,
+            "timeDisplay": "0:45",
+            "speaker": "Jenny",
+            "textEn": "The hotel's very nice. But breakfast isn't great. I'd like a good cup of coffee. Not hotel coffee, real coffee.",
+            "textFa": "هتل خیلی خوبه. ولی صبحانه‌اش تعریفی نداره. یه فنجون قهوه خوب می‌خوام؛ نه قهوه هتل، قهوه واقعی."
       },
       {
-              "id": 14,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Rob",
-              "textEn": "OK, let's get a coffee.",
-              "textFa": "خیلی خوب، برویم یک قهوه بگیریم."
+            "id": 14,
+            "seconds": 52,
+            "timeDisplay": "0:52",
+            "speaker": "Rob",
+            "textEn": "OK, let's get a coffee.",
+            "textFa": "خیلی خب، بریم یه قهوه بگیریم."
       },
       {
-              "id": 15,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Jenny",
-              "textEn": "Do I have time? I have a meeting at nine thirty.",
-              "textFa": "آیا وقت دارم؟ من ساعت نه و نیم جلسه دارم."
+            "id": 15,
+            "seconds": 54,
+            "timeDisplay": "0:54",
+            "speaker": "Jenny",
+            "textEn": "Do I have time? I have a meeting at nine-thirty.",
+            "textFa": "وقت دارم؟ ساعت نه و نیم جلسه دارم."
       },
       {
-              "id": 16,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Rob",
-              "textEn": "With Daniel?",
-              "textFa": "با دانیل؟"
+            "id": 16,
+            "seconds": 57,
+            "timeDisplay": "0:57",
+            "speaker": "Rob",
+            "textEn": "With Daniel?",
+            "textFa": "با دنیل؟"
       },
       {
-              "id": 17,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Jenny",
-              "textEn": "Yes.",
-              "textFa": "بله."
+            "id": 17,
+            "seconds": 58,
+            "timeDisplay": "0:58",
+            "speaker": "Jenny",
+            "textEn": "Yes.",
+            "textFa": "بله."
       },
       {
-              "id": 18,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Rob",
-              "textEn": "Don't worry. We have lots of time, the office is very near. So, Jenny, where do you want to go?",
-              "textFa": "نگران نباش. کلی وقت داریم، دفتر خیلی نزدیک است. خب جنی، کجا دوست داری برویم؟"
+            "id": 18,
+            "seconds": 60,
+            "timeDisplay": "1:00",
+            "speaker": "Rob",
+            "textEn": "Don't worry. We have lots of time, the office is very near.",
+            "textFa": "نگران نباش. کلی وقت داریم، دفتر خیلی نزدیکه."
+      },
+      {
+            "id": 19,
+            "seconds": 63,
+            "timeDisplay": "1:03",
+            "speaker": "Rob",
+            "textEn": "So, Jenny, where do you live in New York?",
+            "textFa": "خب، جنی، تو کجای نیویورک زندگی می‌کنی؟"
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -1700,166 +1708,214 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 22,
-              "timeDisplay": "0:22",
-              "speaker": "Rob",
-              "textEn": "Here we are. This is the office. And this is Karen.",
-              "textFa": "رسیدیم. این دفتر کار است. و این هم کارن است."
+            "id": 1,
+            "seconds": 8,
+            "timeDisplay": "0:08",
+            "speaker": "Rob",
+            "textEn": "Here we are. This is the office. And this is Karen.",
+            "textFa": "رسیدیم. این دفتر ماست و این هم کارن است."
       },
       {
-              "id": 2,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Jenny",
-              "textEn": "Hello, Karen.",
-              "textFa": "سلام، کارن."
+            "id": 2,
+            "seconds": 13,
+            "timeDisplay": "0:13",
+            "speaker": "Jenny",
+            "textEn": "Hello, Karen.",
+            "textFa": "سلام کارن."
       },
       {
-              "id": 3,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Rob",
-              "textEn": "Karen, this is Jennifer Zielinski from the New York office.",
-              "textFa": "کارن، ایشان جنیفر زیلینسکی از دفتر نیویورک هستند."
+            "id": 3,
+            "seconds": 15,
+            "timeDisplay": "0:15",
+            "speaker": "Rob",
+            "textEn": "Karen, this is Jennifer Zielinski from the New York office.",
+            "textFa": "کارن، ایشون جنیفر زیلینسکی از دفتر نیویورک هستند."
       },
       {
-              "id": 4,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Karen",
-              "textEn": "Hello, Jennifer. Nice to meet you.",
-              "textFa": "سلام، جنیفر. از دیدنت خوشحالم."
+            "id": 4,
+            "seconds": 19,
+            "timeDisplay": "0:19",
+            "speaker": "Karen",
+            "textEn": "Hello, Jennifer.",
+            "textFa": "سلام جنیفر."
       },
       {
-              "id": 5,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Jenny",
-              "textEn": "Call me Jenny.",
-              "textFa": "مرا جنی صدا کنید."
+            "id": 5,
+            "seconds": 21,
+            "timeDisplay": "0:21",
+            "speaker": "Jenny",
+            "textEn": "Nice to meet you.",
+            "textFa": "از آشنایی با شما خوشحالم."
       },
       {
-              "id": 6,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Karen",
-              "textEn": "Welcome to London.",
-              "textFa": "به لندن خوش آمدید."
+            "id": 6,
+            "seconds": 23,
+            "timeDisplay": "0:23",
+            "speaker": "Rob",
+            "textEn": "Karen is our administrator... We all depend on her.",
+            "textFa": "کارن مدیر امور اداری ماست... همه ما به او وابسته‌ایم."
       },
       {
-              "id": 7,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Jenny",
-              "textEn": "Thank you.",
-              "textFa": "متشکرم."
+            "id": 7,
+            "seconds": 27,
+            "timeDisplay": "0:27",
+            "speaker": "Karen",
+            "textEn": "Don't listen to Rob.",
+            "textFa": "به حرف راب گوش نده."
       },
       {
-              "id": 8,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Karen",
-              "textEn": "Is this your first time in the UK?",
-              "textFa": "آیا این اولین بار است که به بریتانیا می‌آیید؟"
+            "id": 8,
+            "seconds": 29,
+            "timeDisplay": "0:29",
+            "speaker": "Rob",
+            "textEn": "But it's true!",
+            "textFa": "ولی واقعیت داره!"
       },
       {
-              "id": 9,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Jenny",
-              "textEn": "Yes, it is.",
-              "textFa": "بله، همین‌طور است."
+            "id": 9,
+            "seconds": 31,
+            "timeDisplay": "0:31",
+            "speaker": "Karen",
+            "textEn": "Is this your first time in the UK, Jennifer?",
+            "textFa": "اولین باره که به بریتانیا می‌آیی، جنیفر؟"
       },
       {
-              "id": 10,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Karen",
-              "textEn": "Would you like a cup of tea?",
-              "textFa": "یک فنجان چای میل دارید؟"
+            "id": 10,
+            "seconds": 35,
+            "timeDisplay": "0:35",
+            "speaker": "Jenny",
+            "textEn": "Yes, it is. But it isn't my first time in Europe. I have family in Poland.",
+            "textFa": "بله، همین‌طوره. اما اولین بارم در اروپا نیست؛ در لهستان فامیل دارم."
       },
       {
-              "id": 11,
-              "seconds": 90,
-              "timeDisplay": "1:30",
-              "speaker": "Jenny",
-              "textEn": "No, thanks. I'm fine. We have a coffee.",
-              "textFa": "نه متشکرم، خوبم. قهوه داریم."
+            "id": 11,
+            "seconds": 41,
+            "timeDisplay": "0:41",
+            "speaker": "Karen",
+            "textEn": "Really? And where do you live in New York?",
+            "textFa": "واقعاً؟ و در کجای نیویورک زندگی می‌کنی؟"
       },
       {
-              "id": 12,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Karen",
-              "textEn": "OK. Sit down here.",
-              "textFa": "بسیار خب، اینجا بنشینید."
+            "id": 12,
+            "seconds": 45,
+            "timeDisplay": "0:45",
+            "speaker": "Jenny",
+            "textEn": "In Manhattan. Do you know New York?",
+            "textFa": "در منهتن. نیویورک رو می‌شناسی؟"
       },
       {
-              "id": 13,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Rob",
-              "textEn": "And this is Daniel O'Connor. He's the editor of the magazine.",
-              "textFa": "و این هم دانیل اوکانر است. او سردبیر مجله است."
+            "id": 13,
+            "seconds": 48,
+            "timeDisplay": "0:48",
+            "speaker": "Karen",
+            "textEn": "Yes. My sister lives in Brooklyn.",
+            "textFa": "بله. خواهرم در بروکلین زندگی می‌کنه."
       },
       {
-              "id": 14,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Daniel",
-              "textEn": "Jennifer, hi. Nice to meet you.",
-              "textFa": "جنیفر، سلام. از آشنایی با شما خوشحالم."
+            "id": 14,
+            "seconds": 51,
+            "timeDisplay": "0:51",
+            "speaker": "Jenny",
+            "textEn": "I have family in Brooklyn, too. Where does your sister live?",
+            "textFa": "من هم در بروکلین فامیل دارم. خواهرت کجای بروکلین زندگی می‌کنه؟"
       },
       {
-              "id": 15,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Jenny",
-              "textEn": "Call me Jenny. Nice to meet you, too.",
-              "textFa": "جنی صدایم کنید. من هم از آشنایی با شما خوشحالم."
+            "id": 15,
+            "seconds": 55,
+            "timeDisplay": "0:55",
+            "speaker": "Daniel",
+            "textEn": "Jennifer!",
+            "textFa": "جنیفر!"
       },
       {
-              "id": 16,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Daniel",
-              "textEn": "Welcome to London. And welcome to London 24seven.",
-              "textFa": "به لندن خوش آمدید. و به نشریه London 24seven خوش آمدید."
+            "id": 16,
+            "seconds": 57,
+            "timeDisplay": "0:57",
+            "speaker": "Jenny",
+            "textEn": "Daniel?",
+            "textFa": "دنیل؟"
       },
       {
-              "id": 17,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Jenny",
-              "textEn": "Thank you.",
-              "textFa": "متشکرم."
+            "id": 17,
+            "seconds": 59,
+            "timeDisplay": "0:59",
+            "speaker": "Daniel",
+            "textEn": "How nice to meet you at last.",
+            "textFa": "چقدر عالی که بالاخره حضوری می‌بینمت."
       },
       {
-              "id": 18,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Daniel",
-              "textEn": "I need to talk to Rob now. Can you wait here for a few minutes?",
-              "textFa": "الان باید چند کلمه‌ای با راب صحبت کنم. ممکن است چند دقیقه اینجا منتظر بمانید؟"
+            "id": 18,
+            "seconds": 62,
+            "timeDisplay": "1:02",
+            "speaker": "Daniel",
+            "textEn": "Would you like something to drink? Tea, coffee, water?",
+            "textFa": "چیزی میل داری بنوشی؟ چای، قهوه، آب؟"
       },
       {
-              "id": 19,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Jenny",
-              "textEn": "Yes, of course.",
-              "textFa": "بله، حتماً."
+            "id": 19,
+            "seconds": 66,
+            "timeDisplay": "1:06",
+            "speaker": "Jenny",
+            "textEn": "Oh no, I'm fine, thanks.",
+            "textFa": "اوه نه، ممنون، خوبم."
       },
       {
-              "id": 20,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Daniel",
-              "textEn": "Thanks. See you in a minute.",
-              "textFa": "ممنون. تا چند دقیقه دیگر می‌بینمتان."
+            "id": 20,
+            "seconds": 68,
+            "timeDisplay": "1:08",
+            "speaker": "Daniel",
+            "textEn": "Great.",
+            "textFa": "عالیه."
+      },
+      {
+            "id": 21,
+            "seconds": 70,
+            "timeDisplay": "1:10",
+            "speaker": "Daniel",
+            "textEn": "Oh, Karen. What time is my next meeting?",
+            "textFa": "اوه، کارن. جلسه بعدی من ساعت چنده؟"
+      },
+      {
+            "id": 22,
+            "seconds": 73,
+            "timeDisplay": "1:13",
+            "speaker": "Karen",
+            "textEn": "At twelve o'clock.",
+            "textFa": "ساعت دوازده."
+      },
+      {
+            "id": 23,
+            "seconds": 75,
+            "timeDisplay": "1:15",
+            "speaker": "Daniel",
+            "textEn": "That's good, we have time. OK, come into my office, Jennifer.",
+            "textFa": "خوبه، وقت داریم. خیلی خب، بفرمایید داخل دفترم، جنیفر."
+      },
+      {
+            "id": 24,
+            "seconds": 80,
+            "timeDisplay": "1:20",
+            "speaker": "Jenny",
+            "textEn": "Thank you.",
+            "textFa": "متشکرم."
+      },
+      {
+            "id": 25,
+            "seconds": 82,
+            "timeDisplay": "1:22",
+            "speaker": "Daniel",
+            "textEn": "Talk to you later, Rob.",
+            "textFa": "بعداً باهات صحبت می‌کنم، راب."
+      },
+      {
+            "id": 26,
+            "seconds": 85,
+            "timeDisplay": "1:25",
+            "speaker": "Rob",
+            "textEn": "Yeah. Sure.",
+            "textFa": "آره، حتماً."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -5148,118 +5204,142 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Jenny",
-              "textEn": "Where is it? Where's my phone?!",
-              "textFa": "کجاست؟ گوشیم کجاست؟!"
+            "id": 1,
+            "seconds": 15,
+            "timeDisplay": "0:15",
+            "speaker": "Jenny",
+            "textEn": "Where is it? Where's my phone?!",
+            "textFa": "کجاست؟ گوشیم کجاست؟! "
       },
       {
-              "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Rob",
-              "textEn": "Are you looking for this?",
-              "textFa": "دنبال این می‌گردی؟"
+            "id": 2,
+            "seconds": 19,
+            "timeDisplay": "0:19",
+            "speaker": "Rob",
+            "textEn": "Are you looking for this?",
+            "textFa": "دنبال این می‌گردی؟"
       },
       {
-              "id": 3,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Jenny",
-              "textEn": "Rob! I can't believe it! My phone! Where was it?",
-              "textFa": "راب! باورم نمی‌شود! گوشی من! کجا بود؟"
+            "id": 3,
+            "seconds": 23,
+            "timeDisplay": "0:23",
+            "speaker": "Jenny",
+            "textEn": "Rob! I can't believe it! My phone! You're a hero, thank you so much.",
+            "textFa": "راب! باورم نمیشه! گوشیم! تو قهرمانی، واقعاً خیلی ممنونم."
       },
       {
-              "id": 4,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Rob",
-              "textEn": "You left it at the cafe.",
-              "textFa": "در کافه جا گذاشته بودی‌اش."
+            "id": 4,
+            "seconds": 30,
+            "timeDisplay": "0:30",
+            "speaker": "Rob",
+            "textEn": "No problem. It gave me a chance to see you again. And I had more time to think about your offer.",
+            "textFa": "خواهش می‌کنم. فرصتی شد تا دوباره ببینمت. بعلاوه وقت بیشتری داشتم تا درباره پیشنهادت فکر کنم."
       },
       {
-              "id": 5,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Jenny",
-              "textEn": "Oh, thank goodness! I have all my contacts on this phone.",
-              "textFa": "اوه، خدای من را شکر! تمام شماره‌ها و مخاطبانم در این گوشی بود."
+            "id": 5,
+            "seconds": 38,
+            "timeDisplay": "0:38",
+            "speaker": "Jenny",
+            "textEn": "And?",
+            "textFa": "و نتیجه؟"
       },
       {
-              "id": 6,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Rob",
-              "textEn": "I'm glad I caught you before you got on the train.",
-              "textFa": "خوشحالم قبل از اینکه سوار قطار شوی بهت رسیدم."
+            "id": 6,
+            "seconds": 41,
+            "timeDisplay": "0:41",
+            "speaker": "Rob",
+            "textEn": "I'd love to accept. I really want to come and work in New York.",
+            "textFa": "با کمال میل می‌پذیرم. واقعاً دوست دارم بیام و در نیویورک کار کنم."
       },
       {
-              "id": 7,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Jenny",
-              "textEn": "You came all the way to Paddington just to give me my phone?",
-              "textFa": "تمام این راه را تا پدینگتون آمدی فقط برای اینکه گوشیم را بهم برسانی؟"
+            "id": 7,
+            "seconds": 48,
+            "timeDisplay": "0:48",
+            "speaker": "Jenny",
+            "textEn": "That's great, Rob! I'm so happy.",
+            "textFa": "فوق‌العاده است راب! خیلی خوشحالم."
       },
       {
-              "id": 8,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Rob",
-              "textEn": "Well, I wanted to say goodbye properly, too.",
-              "textFa": "خب، می‌خواستم یک خداحافظی حسابی هم با تو داشته باشم."
+            "id": 8,
+            "seconds": 53,
+            "timeDisplay": "0:53",
+            "speaker": "Rob",
+            "textEn": "Me too. Oh, you had a call from Eddie. I didn't answer it. Is he going to meet you at the airport?",
+            "textFa": "من هم همین‌طور. راستی، یه تماس از طرف ادی داشتی؛ جواب ندادم. قراره در فرودگاه بیاد پیشوازت؟"
       },
       {
-              "id": 9,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Jenny",
-              "textEn": "That's so sweet of you, Rob.",
-              "textFa": "این واقعاً نهایت محبت توئه، راب."
+            "id": 9,
+            "seconds": 62,
+            "timeDisplay": "1:02",
+            "speaker": "Jenny",
+            "textEn": "Eddie? No. He's at college in California.",
+            "textFa": "ادی؟ نه. اون در کالجی در کالیفرنیاست."
       },
       {
-              "id": 10,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Rob",
-              "textEn": "Have a safe trip back to New York, Jenny.",
-              "textFa": "سفر سلامت و بی‌خطری در بازگشت به نیویورک داشته باشی، جنی."
+            "id": 10,
+            "seconds": 67,
+            "timeDisplay": "1:07",
+            "speaker": "Rob",
+            "textEn": "In California? Does he teach there?",
+            "textFa": "در کالیفرنیا؟ اونجا تدریس می‌کنه؟"
       },
       {
-              "id": 11,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Jenny",
-              "textEn": "Thank you. I'm going to miss London. And I'm going to miss you, Rob.",
-              "textFa": "ممنون. دلم برای لندن تنگ می‌شود. و دلم برای تو هم تنگ می‌شود، راب."
+            "id": 11,
+            "seconds": 71,
+            "timeDisplay": "1:11",
+            "speaker": "Jenny",
+            "textEn": "Teach? No, he's a student.",
+            "textFa": "تدریس؟ نه، اون دانشجوئه."
       },
       {
-              "id": 12,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Rob",
-              "textEn": "I'm going to miss you too, Jenny. Call me when you get home.",
-              "textFa": "من هم دلم برایت تنگ خواهد شد، جنی. وقتی رسیدی خانه با من تماس بگیر."
+            "id": 12,
+            "seconds": 75,
+            "timeDisplay": "1:15",
+            "speaker": "Rob",
+            "textEn": "A student?",
+            "textFa": "دانشجو؟"
       },
       {
-              "id": 13,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Jenny",
-              "textEn": "I will. Bye, Rob.",
-              "textFa": "حتماً تماس می‌گیرم. خداحافظ، راب."
+            "id": 13,
+            "seconds": 77,
+            "timeDisplay": "1:17",
+            "speaker": "Jenny",
+            "textEn": "Well, he's only 19. Eddie's my brother.",
+            "textFa": "خب اون فقط نوزده سالشه. ادی برادرمه."
       },
       {
-              "id": 14,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Rob",
-              "textEn": "Goodbye, Jenny.",
-              "textFa": "خداحافظ، جنی."
+            "id": 14,
+            "seconds": 83,
+            "timeDisplay": "1:23",
+            "speaker": "Jenny",
+            "textEn": "I need to go.",
+            "textFa": "من باید برم."
+      },
+      {
+            "id": 15,
+            "seconds": 86,
+            "timeDisplay": "1:26",
+            "speaker": "Rob",
+            "textEn": "Well, have a good journey.",
+            "textFa": "خب، سفرت بی‌خطر."
+      },
+      {
+            "id": 16,
+            "seconds": 90,
+            "timeDisplay": "1:30",
+            "speaker": "Jenny",
+            "textEn": "Thanks, Rob. Bye.",
+            "textFa": "ممنون راب. خداحافظ."
+      },
+      {
+            "id": 17,
+            "seconds": 93,
+            "timeDisplay": "1:33",
+            "speaker": "Rob",
+            "textEn": "Bye. And see you in New York!",
+            "textFa": "خداحافظ. و در نیویورک می‌بینمت!"
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -8372,166 +8452,182 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 83,
-              "timeDisplay": "1:23",
-              "speaker": "Jenny",
-              "textEn": "Are you OK?",
-              "textFa": "حالت خوبه؟"
+            "id": 1,
+            "seconds": 13,
+            "timeDisplay": "0:13",
+            "speaker": "Jenny",
+            "textEn": "Are you OK?",
+            "textFa": "حالت خوبه؟"
       },
       {
-              "id": 2,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Rob",
-              "textEn": "Me? Never better.",
-              "textFa": "من؟ از این بهتر نمی‌شم!"
+            "id": 2,
+            "seconds": 16,
+            "timeDisplay": "0:16",
+            "speaker": "Rob",
+            "textEn": "Me? Never better.",
+            "textFa": "من؟ بهتر از این نمیشم."
       },
       {
-              "id": 3,
-              "seconds": 87,
-              "timeDisplay": "1:27",
-              "speaker": "Jenny",
-              "textEn": "It's beautiful here, isn't it? I think this is my favorite place in New York.",
-              "textFa": "اینجا واقعاً زیباست، اینطور نیست؟ فکر کنم محبوب‌ترین جای من در کل نیویورکه."
+            "id": 3,
+            "seconds": 19,
+            "timeDisplay": "0:19",
+            "speaker": "Jenny",
+            "textEn": "It's beautiful here, isn't it? I think this is my favorite place in New York.",
+            "textFa": "اینجا قشنگه، نه؟ فکر کنم اینجا جای مورد علاقه من در نیویورکه."
       },
       {
-              "id": 4,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Rob",
-              "textEn": "Yeah, it's great.",
-              "textFa": "آره، فوق‌العاده‌ست."
+            "id": 4,
+            "seconds": 25,
+            "timeDisplay": "0:25",
+            "speaker": "Rob",
+            "textEn": "Yeah, it's great.",
+            "textFa": "آره، عالیه."
       },
       {
-              "id": 5,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Jenny",
-              "textEn": "So how's it all going? Are you happy you came?",
-              "textFa": "خب، اوضاع چطور پیش می‌ره؟ از اینکه آمدی خوشحالی؟"
+            "id": 5,
+            "seconds": 28,
+            "timeDisplay": "0:28",
+            "speaker": "Jenny",
+            "textEn": "So how's it all going? Are you happy you came?",
+            "textFa": "خب، اوضاع چطور پیش میره؟ خوشحالی که اومدی؟"
       },
       {
-              "id": 6,
-              "seconds": 93,
-              "timeDisplay": "1:33",
-              "speaker": "Rob",
-              "textEn": "To Central Park? At seven fifteen in the morning?",
-              "textFa": "به سنترال پارک؟ ساعت هفت و ربع صبح؟"
+            "id": 6,
+            "seconds": 32,
+            "timeDisplay": "0:32",
+            "speaker": "Rob",
+            "textEn": "To Central Park? At seven-fifteen in the morning?",
+            "textFa": "به سنترال پارک؟ ساعت هفت و ربع صبح؟"
       },
       {
-              "id": 7,
-              "seconds": 95,
-              "timeDisplay": "1:35",
-              "speaker": "Jenny",
-              "textEn": "To New York, Rob.",
-              "textFa": "منظورم به نیویورکه، راب!"
+            "id": 7,
+            "seconds": 36,
+            "timeDisplay": "0:36",
+            "speaker": "Jenny",
+            "textEn": "To New York, Rob.",
+            "textFa": "به نیویورک، راب."
       },
       {
-              "id": 8,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Rob",
-              "textEn": "Yeah. Of course, I'm happy. It's fantastic.",
-              "textFa": "آره، البته که خوشحالم. محشره."
+            "id": 8,
+            "seconds": 39,
+            "timeDisplay": "0:39",
+            "speaker": "Rob",
+            "textEn": "Yeah. Of course I'm happy. It's fantastic.",
+            "textFa": "آره. البته که خوشحالم. فوق‌العاده است."
       },
       {
-              "id": 9,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "Really? You aren't just saying that.",
-              "textFa": "واقعاً؟ فقط برای تعارف که نمی‌گی؟"
+            "id": 9,
+            "seconds": 44,
+            "timeDisplay": "0:44",
+            "speaker": "Jenny",
+            "textEn": "Really? You aren't homesick?",
+            "textFa": "واقعاً؟ دلتنگ خونه و وطنت نشدی؟"
       },
       {
-              "id": 10,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "No, I mean it.",
-              "textFa": "نه، از ته دلم می‌گم."
+            "id": 10,
+            "seconds": 47,
+            "timeDisplay": "0:47",
+            "speaker": "Rob",
+            "textEn": "Not really. But New York is very big... and it's very noisy.",
+            "textFa": "نه واقعاً. ولی نیویورک خیلی بزرگه... و خیلی هم پر سروصداست."
       },
       {
-              "id": 11,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "You need to get in shape, Rob.",
-              "textFa": "باید بدنت رو روی فرم بیاری راب."
+            "id": 11,
+            "seconds": 53,
+            "timeDisplay": "0:53",
+            "speaker": "Jenny",
+            "textEn": "And you miss London?",
+            "textFa": "و دلت برای لندن تنگ شده؟"
       },
       {
-              "id": 12,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "I know. I am a bit tired of eating out all the time. It isn't good for my figure.",
-              "textFa": "می‌دونم. از غذا خوردن مداوم توی رستوران‌ها کمی خسته شدم؛ برای هیکلم خوب نیست."
+            "id": 12,
+            "seconds": 56,
+            "timeDisplay": "0:56",
+            "speaker": "Rob",
+            "textEn": "I love London. But I'd like to stay here.",
+            "textFa": "من عاشق لندنم، اما دوست دارم اینجا بمونم."
       },
       {
-              "id": 13,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "It's the restaurants you go to! Why don't you come over to my place after work? I could make you something a little healthier.",
-              "textFa": "به خاطر رستوران‌هایی‌ایه که می‌ری! چرا بعد از کار نمی‌آیی خونه من؟ می‌توانم برات یک غذای کمی سالم‌تر درست کنم."
+            "id": 13,
+            "seconds": 60,
+            "timeDisplay": "1:00",
+            "speaker": "Jenny",
+            "textEn": "That's great!",
+            "textFa": "این عالیه!"
       },
       {
-              "id": 14,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "I'd really like that. Thanks.",
-              "textFa": "واقعاً عالی می‌شه، ممنون."
+            "id": 14,
+            "seconds": 62,
+            "timeDisplay": "1:02",
+            "speaker": "Rob",
+            "textEn": "Well, I don't want to go back to London if you're here.",
+            "textFa": "خب، اگر تو اینجا باشی من نمی‌خوام به لندن برگردم."
       },
       {
-              "id": 15,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "So, how do you feel now? Are you ready to go again?",
-              "textFa": "خب، الان چه حسی داری؟ آماده‌ای دوباره بدویم؟"
+            "id": 15,
+            "seconds": 67,
+            "timeDisplay": "1:07",
+            "speaker": "Jenny",
+            "textEn": "What?",
+            "textFa": "چی؟"
       },
       {
-              "id": 16,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "Oh yes! I'm ready for anything.",
-              "textFa": "اوه بله! برای هر چالشی آماده‌ام."
+            "id": 16,
+            "seconds": 69,
+            "timeDisplay": "1:09",
+            "speaker": "Rob",
+            "textEn": "Nothing.",
+            "textFa": "هیچی."
       },
       {
-              "id": 17,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "Are you sure you're OK?",
-              "textFa": "مطمئنی حالت روبه‌راهه؟"
+            "id": 17,
+            "seconds": 71,
+            "timeDisplay": "1:11",
+            "speaker": "Jenny",
+            "textEn": "Did you say something?",
+            "textFa": "چیزی گفتی؟"
       },
       {
-              "id": 18,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "Absolutely.",
-              "textFa": "کاملاً مطمئنم."
+            "id": 18,
+            "seconds": 74,
+            "timeDisplay": "1:14",
+            "speaker": "Rob",
+            "textEn": "No.",
+            "textFa": "نه."
       },
       {
-              "id": 19,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Jenny",
-              "textEn": "OK. We'll only go around two more times.",
-              "textFa": "باشه، فقط دو دور دیگه می‌زنیم."
+            "id": 19,
+            "seconds": 76,
+            "timeDisplay": "1:16",
+            "speaker": "Jenny",
+            "textEn": "Are you OK?",
+            "textFa": "حالت خوبه؟"
       },
       {
-              "id": 20,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Rob",
-              "textEn": "Two? Excellent!",
-              "textFa": "دو دور دیگه؟ معرکه‌ست!"
+            "id": 20,
+            "seconds": 78,
+            "timeDisplay": "1:18",
+            "speaker": "Rob",
+            "textEn": "I'm fine.",
+            "textFa": "خوبم."
+      },
+      {
+            "id": 21,
+            "seconds": 81,
+            "timeDisplay": "1:21",
+            "speaker": "Jenny",
+            "textEn": "What is it, Rob?",
+            "textFa": "موضوع چیه، راب؟"
+      },
+      {
+            "id": 22,
+            "seconds": 84,
+            "timeDisplay": "1:24",
+            "speaker": "Rob",
+            "textEn": "It's Holly.",
+            "textFa": "مربوط به هالیه."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -10672,214 +10768,214 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Rob",
-              "textEn": "Jenny!",
-              "textFa": "جنی!"
+            "id": 1,
+            "seconds": 15,
+            "timeDisplay": "0:15",
+            "speaker": "Rob",
+            "textEn": "Jenny!",
+            "textFa": "جنی!"
       },
       {
-              "id": 2,
-              "seconds": 93,
-              "timeDisplay": "1:33",
-              "speaker": "Jenny",
-              "textEn": "Rob! I have something to tell you.",
-              "textFa": "راب! باید موضوعی را بهت بگویم."
+            "id": 2,
+            "seconds": 18,
+            "timeDisplay": "0:18",
+            "speaker": "Jenny",
+            "textEn": "Rob! I have something to tell you.",
+            "textFa": "راب! یه چیزی باید بهت بگم."
       },
       {
-              "id": 3,
-              "seconds": 95,
-              "timeDisplay": "1:35",
-              "speaker": "Rob",
-              "textEn": "I have something to tell you, too. You go first.",
-              "textFa": "من هم باید چیزی بهت بگویم؛ اول تو بگو."
+            "id": 3,
+            "seconds": 22,
+            "timeDisplay": "0:22",
+            "speaker": "Rob",
+            "textEn": "I have something to tell you, too. You go first.",
+            "textFa": "من هم یه چیزی باید بهت بگم. اول تو بگو."
       },
       {
-              "id": 4,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Jenny",
-              "textEn": "Well. I thought again about moving to London...",
-              "textFa": "خب، من دوباره در مورد نقل مکان به لندن فکر کردم..."
+            "id": 4,
+            "seconds": 26,
+            "timeDisplay": "0:26",
+            "speaker": "Jenny",
+            "textEn": "Well. I thought again about moving to London...",
+            "textFa": "خب. دوباره به رفتن به لندن فکر کردم..."
       },
       {
-              "id": 5,
-              "seconds": 99,
-              "timeDisplay": "1:39",
-              "speaker": "Rob",
-              "textEn": "But you don't need to move to London.",
-              "textFa": "اما تو نیازی نداری به لندن نقل مکان کنی!"
+            "id": 5,
+            "seconds": 31,
+            "timeDisplay": "0:31",
+            "speaker": "Rob",
+            "textEn": "But you don't need to move to London.",
+            "textFa": "اما تو نیازی نداری به لندن نقل مکان کنی."
       },
       {
-              "id": 6,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Jenny",
-              "textEn": "What?",
-              "textFa": "چی؟"
+            "id": 6,
+            "seconds": 35,
+            "timeDisplay": "0:35",
+            "speaker": "Jenny",
+            "textEn": "What?",
+            "textFa": "چی؟"
       },
       {
-              "id": 7,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Rob",
-              "textEn": "Barbara called me earlier.",
-              "textFa": "باربارا چند ساعت پیش با من تماس گرفت."
+            "id": 7,
+            "seconds": 37,
+            "timeDisplay": "0:37",
+            "speaker": "Rob",
+            "textEn": "Barbara called me earlier.",
+            "textFa": "باربارا چند لحظه پیش باهام تماس گرفت."
       },
       {
-              "id": 8,
-              "seconds": 105,
-              "timeDisplay": "1:45",
-              "speaker": "Jenny",
-              "textEn": "What about?",
-              "textFa": "در چه موردی؟"
+            "id": 8,
+            "seconds": 40,
+            "timeDisplay": "0:40",
+            "speaker": "Jenny",
+            "textEn": "What about?",
+            "textFa": "در چه مورد؟"
       },
       {
-              "id": 9,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Rob",
-              "textEn": "She offered me a job. Here, in New York!",
-              "textFa": "او به من پیشنهاد کار دائمی داد؛ همین‌جا در نیویورک!"
+            "id": 9,
+            "seconds": 42,
+            "timeDisplay": "0:42",
+            "speaker": "Rob",
+            "textEn": "She offered me a job. Here, in New York!",
+            "textFa": "به من پیشنهاد کار داد. اینجا، در نیویورک!"
       },
       {
-              "id": 10,
-              "seconds": 109,
-              "timeDisplay": "1:49",
-              "speaker": "Jenny",
-              "textEn": "What? Oh, that's great news.",
-              "textFa": "چی؟ اوه، این خبر فوق‌العاده‌ایه!"
+            "id": 10,
+            "seconds": 47,
+            "timeDisplay": "0:47",
+            "speaker": "Jenny",
+            "textEn": "What?! She offered you a job?",
+            "textFa": "چی؟! به تو پیشنهاد کار داد؟"
       },
       {
-              "id": 11,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Rob",
-              "textEn": "You don't seem very pleased.",
-              "textFa": "خیلی خوشحال به نظر نمی‌رسی."
+            "id": 11,
+            "seconds": 51,
+            "timeDisplay": "0:51",
+            "speaker": "Rob",
+            "textEn": "Yes. A permanent job!",
+            "textFa": "بله. یه کار دائمی و همیشگی!"
       },
       {
-              "id": 12,
-              "seconds": 113,
-              "timeDisplay": "1:53",
-              "speaker": "Jenny",
-              "textEn": "I am, I mean, it's great! It's just that...",
-              "textFa": "هستم، یعنی عالیه! فقط موضوع اینه که..."
+            "id": 12,
+            "seconds": 54,
+            "timeDisplay": "0:54",
+            "speaker": "Jenny",
+            "textEn": "I don't believe it!",
+            "textFa": "باورم نمیشه!"
       },
       {
-              "id": 13,
-              "seconds": 115,
-              "timeDisplay": "1:55",
-              "speaker": "Rob",
-              "textEn": "What?",
-              "textFa": "چی شده؟"
+            "id": 13,
+            "seconds": 57,
+            "timeDisplay": "0:57",
+            "speaker": "Rob",
+            "textEn": "I'm going to be the writer of the New York column.",
+            "textFa": "قراره نویسنده ستون اختصاصی نیویورک باشم."
       },
       {
-              "id": 14,
-              "seconds": 117,
-              "timeDisplay": "1:57",
-              "speaker": "Jenny",
-              "textEn": "I sent Barbara an email this morning.",
-              "textFa": "من امروز صبح به باربارا یک ایمیل زدم."
+            "id": 14,
+            "seconds": 62,
+            "timeDisplay": "1:02",
+            "speaker": "Jenny",
+            "textEn": "That's great!",
+            "textFa": "این عالیه!"
       },
       {
-              "id": 15,
-              "seconds": 119,
-              "timeDisplay": "1:59",
-              "speaker": "Rob",
-              "textEn": "And?",
-              "textFa": "خب، و بعدش؟"
+            "id": 15,
+            "seconds": 65,
+            "timeDisplay": "1:05",
+            "speaker": "Rob",
+            "textEn": "And maybe a daily blog, too.",
+            "textFa": "و شاید یک بلاگ روزانه هم بنویسم."
       },
       {
-              "id": 16,
-              "seconds": 121,
-              "timeDisplay": "2:01",
-              "speaker": "Jenny",
-              "textEn": "I told her I was quitting and moving to London.",
-              "textFa": "بهش گفتم دارم استعفا می‌دم و می‌رم لندن زندگی کنم!"
+            "id": 16,
+            "seconds": 68,
+            "timeDisplay": "1:08",
+            "speaker": "Jenny",
+            "textEn": "That's fantastic!",
+            "textFa": "فوق‌العاده است!"
       },
       {
-              "id": 17,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Rob",
-              "textEn": "Don't worry. Maybe she hasn't read your email yet.",
-              "textFa": "نگران نباش؛ شاید هنوز ایمیلت رو نخونده باشه."
+            "id": 17,
+            "seconds": 71,
+            "timeDisplay": "1:11",
+            "speaker": "Rob",
+            "textEn": "So I'm staying!",
+            "textFa": "پس من موندگار شدم!"
       },
       {
-              "id": 18,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Jenny",
-              "textEn": "I'll call her.",
-              "textFa": "الان بهش زنگ می‌زنم."
+            "id": 18,
+            "seconds": 74,
+            "timeDisplay": "1:14",
+            "speaker": "Jenny",
+            "textEn": "That's great news! I'm so happy.",
+            "textFa": "این خبر فوق‌العاده‌ایه! خیلی خوشحالم."
       },
       {
-              "id": 19,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Barbara",
-              "textEn": "Hello, Barbara Keaton.",
-              "textFa": "الو، باربارا کیتون هستم."
+            "id": 19,
+            "seconds": 78,
+            "timeDisplay": "1:18",
+            "speaker": "Rob",
+            "textEn": "Me too.",
+            "textFa": "من هم همین‌طور."
       },
       {
-              "id": 20,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Jenny",
-              "textEn": "Barbara? It's Jenny.",
-              "textFa": "باربارا؟ جنی هستم."
+            "id": 20,
+            "seconds": 81,
+            "timeDisplay": "1:21",
+            "speaker": "Jenny",
+            "textEn": "Well, we have to celebrate! What do you want to do?",
+            "textFa": "خب، باید جشن بگیریم! دوست داری چیکار کنیم؟"
       },
       {
-              "id": 21,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Barbara",
-              "textEn": "Oh, hi Jenny.",
-              "textFa": "اوه سلام جنی."
+            "id": 21,
+            "seconds": 86,
+            "timeDisplay": "1:26",
+            "speaker": "Rob",
+            "textEn": "What would you like to do?",
+            "textFa": "تو دوست داری چیکار کنیم؟"
       },
       {
-              "id": 22,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Jenny",
-              "textEn": "Um, have you read your emails recently? There's one from me.",
-              "textFa": "ام، اخیراً ایمیل‌هات رو چک کردی؟ یک ایمیل از طرف من برات اومده."
+            "id": 22,
+            "seconds": 89,
+            "timeDisplay": "1:29",
+            "speaker": "Jenny",
+            "textEn": "How about a nice dinner?",
+            "textFa": "نظرت درباره یه شام عالی چیه؟"
       },
       {
-              "id": 23,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Barbara",
-              "textEn": "Oh yes. I can see it. I haven't opened it yet.",
-              "textFa": "اوه بله، دارمش می‌بینم؛ اما هنوز بازش نکردم."
+            "id": 23,
+            "seconds": 92,
+            "timeDisplay": "1:32",
+            "speaker": "Rob",
+            "textEn": "That sounds great.",
+            "textFa": "عالی به نظر می‌رسه."
       },
       {
-              "id": 24,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Jenny",
-              "textEn": "Don't open it! Delete it! Please just delete it. I'll explain later.",
-              "textFa": "بازش نکن! پاکش کن! خواهش می‌کنم فقط دلیتش کن؛ بعداً برات توضیح می‌دم!"
+            "id": 24,
+            "seconds": 95,
+            "timeDisplay": "1:35",
+            "speaker": "Jenny",
+            "textEn": "Where would you like to go?",
+            "textFa": "کجا دوست داری بریم؟"
       },
       {
-              "id": 25,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Barbara",
-              "textEn": "OK, it's gone. Is everything alright, Jenny?",
-              "textFa": "باشه، پاک شد. همه‌چیز روبه‌راهه جنی؟"
+            "id": 25,
+            "seconds": 98,
+            "timeDisplay": "1:38",
+            "speaker": "Rob",
+            "textEn": "You choose. You're the New Yorker!",
+            "textFa": "تو انتخاب کن. نیویورکی اصیل تویی!"
       },
       {
-              "id": 26,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Jenny",
-              "textEn": "Yes, thanks. Never better.",
-              "textFa": "بله ممنون، از این بهتر نمی‌شه!"
+            "id": 26,
+            "seconds": 102,
+            "timeDisplay": "1:42",
+            "speaker": "Jenny",
+            "textEn": "OK. I know just the place.",
+            "textFa": "باشه. دقیقاً می‌دونم کدوم رستوران بریم."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -13860,166 +13956,166 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 2,
-              "timeDisplay": "0:02",
-              "speaker": "Paul",
-              "textEn": "Hey man!",
-              "textFa": "سلام رفیق!"
+            "id": 1,
+            "seconds": 11,
+            "timeDisplay": "0:11",
+            "speaker": "Paul",
+            "textEn": "Hey man!",
+            "textFa": "سلام رفیق!"
       },
       {
-              "id": 2,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Rob",
-              "textEn": "Paul!",
-              "textFa": "پاول!"
+            "id": 2,
+            "seconds": 14,
+            "timeDisplay": "0:14",
+            "speaker": "Rob",
+            "textEn": "Paul!",
+            "textFa": "پاول!"
       },
       {
-              "id": 3,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Paul",
-              "textEn": "It’s great to see you, mate.",
-              "textFa": "دیدنت خیلی عالیه مرد!"
+            "id": 3,
+            "seconds": 17,
+            "timeDisplay": "0:17",
+            "speaker": "Paul",
+            "textEn": "It’s great to see you, mate.",
+            "textFa": "دیدنت عالیه رفیق."
       },
       {
-              "id": 4,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Rob",
-              "textEn": "You too, Paul. It’s been years. You haven’t changed at all.",
-              "textFa": "باورم نمیشه بالاخره اومدی نیویورک! سفرت چطور بود؟"
+            "id": 4,
+            "seconds": 20,
+            "timeDisplay": "0:20",
+            "speaker": "Rob",
+            "textEn": "You too, Paul. It’s been years. You haven’t changed at all.",
+            "textFa": "تو هم همین‌طور پاول. سال‌ها گذشته و تو اصلاً تغییری نکرده‌ای."
       },
       {
-              "id": 5,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Paul",
-              "textEn": "Just got better looking!",
-              "textFa": "طولانی و خسته‌کننده بود، ولی بالاخره رسیدم. این شهر دیوانه‌کننده‌ست!"
+            "id": 5,
+            "seconds": 25,
+            "timeDisplay": "0:25",
+            "speaker": "Paul",
+            "textEn": "Just got better looking!",
+            "textFa": "فقط خوش‌تیپ‌تر شدم!"
       },
       {
-              "id": 6,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Rob",
-              "textEn": "How come you’re so late?",
-              "textFa": "آره، دقیقاً اولین حسیه که به آدم دست میده. اون کوله‌پشتی بزرگ چیه همراهت؟"
+            "id": 6,
+            "seconds": 28,
+            "timeDisplay": "0:28",
+            "speaker": "Rob",
+            "textEn": "How come you’re so late?",
+            "textFa": "چطور شد این‌قدر دیر کردی؟"
       },
       {
-              "id": 7,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Jenny",
-              "textEn": "Paul’s flight from LA was delayed. And then the traffic coming back was just awful.",
-              "textFa": "همه وسایلمه دیگه! قراره یک ماه کل آمریکا رو بگردم."
+            "id": 7,
+            "seconds": 32,
+            "timeDisplay": "0:32",
+            "speaker": "Jenny",
+            "textEn": "Paul’s flight from LA was delayed. And then the traffic coming back was just awful.",
+            "textFa": "پرواز پاول از لس‌آنجلس تاخیر داشت، و ترافیک مسیر برگشت هم وحشتناک بود."
       },
       {
-              "id": 8,
-              "seconds": 64,
-              "timeDisplay": "1:04",
-              "speaker": "Paul",
-              "textEn": "But that gave us time to get to know each other.",
-              "textFa": "فوق‌العاده‌ست. اول از همه باید وسایلت رو بذاریم آپارتمان من."
+            "id": 8,
+            "seconds": 39,
+            "timeDisplay": "0:39",
+            "speaker": "Paul",
+            "textEn": "But that gave us time to get to know each other.",
+            "textFa": "ولی بهمون فرصت داد همدیگه رو بهتر بشناسیم."
       },
       {
-              "id": 9,
-              "seconds": 66,
-              "timeDisplay": "1:06",
-              "speaker": "Jenny",
-              "textEn": "Yeah. Paul told me all about his travels. Every detail.",
-              "textFa": "خیلی ممنون راب، واقعاً به یک دوش آب گرم و کمی استراحت نیاز دارم."
+            "id": 9,
+            "seconds": 43,
+            "timeDisplay": "0:43",
+            "speaker": "Jenny",
+            "textEn": "Yeah. Paul told me all about his travels. Every detail.",
+            "textFa": "آره. پاول همه‌چیز رو درباره سفرهایش تعریف کرد. مو به مو."
       },
       {
-              "id": 10,
-              "seconds": 68,
-              "timeDisplay": "1:08",
-              "speaker": "Paul",
-              "textEn": "And look at this. Your own New York flat. How cool is that?",
-              "textFa": "آپارتمانم زیاد بزرگ نیست، ولی برای هر دوتامون جا هست."
+            "id": 10,
+            "seconds": 49,
+            "timeDisplay": "0:49",
+            "speaker": "Paul",
+            "textEn": "And look at this. Your own New York flat. How cool is that?",
+            "textFa": "و اینجارو ببین! آپارتمان اختصاصی خودت در نیویورک! چقدر باحاله!"
       },
       {
-              "id": 11,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Rob",
-              "textEn": "It’s good. Really good. But – do you want something to eat? I got some things on my way home.",
-              "textFa": "همین که یک سقف بالای سرم باشه کافیه رفیق."
+            "id": 11,
+            "seconds": 54,
+            "timeDisplay": "0:54",
+            "speaker": "Rob",
+            "textEn": "It’s good. Really good. But – do you want something to eat? I got some things on my way home.",
+            "textFa": "خوبه، واقعاً عالیه. اما چیزی می‌خوری؟ تو راه برگشت یه چیزهایی خریدم."
       },
       {
-              "id": 12,
-              "seconds": 72,
-              "timeDisplay": "1:12",
-              "speaker": "Paul",
-              "textEn": "Stay in? It’s my first night in the Big Apple! Let’s go out and have a pizza or something.",
-              "textFa": "امشب برنامه‌ات چیه؟ خسته‌ای یا می‌خوای بریم بیرون؟"
+            "id": 12,
+            "seconds": 61,
+            "timeDisplay": "1:01",
+            "speaker": "Paul",
+            "textEn": "Stay in? It’s my first night in the Big Apple! Let’s go out and have a pizza or something.",
+            "textFa": "تو خونه بمونیم؟ این اولین شب منه در نیویورک! بیا بریم بیرون پیتزا یا یه چیزی بخوریم."
       },
       {
-              "id": 13,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Rob",
-              "textEn": "I thought you’d be tired after the flight.",
-              "textFa": "معلومه که میریم بیرون! من نیومدم نیویورک که بخوابم!"
+            "id": 13,
+            "seconds": 67,
+            "timeDisplay": "1:07",
+            "speaker": "Rob",
+            "textEn": "I thought you’d be tired after the flight.",
+            "textFa": "فکر کردم بعد از پرواز خسته باشی."
       },
       {
-              "id": 14,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Paul",
-              "textEn": "No way, man! I’m ready for action.",
-              "textFa": "باید جنی رو هم ببینی، اون خیلی مشتاقه باهات آشنا بشه."
+            "id": 14,
+            "seconds": 70,
+            "timeDisplay": "1:10",
+            "speaker": "Paul",
+            "textEn": "No way, man! I’m ready for action.",
+            "textFa": "اصلاً و ابداً رفیق! من کاملاً آماده گردش و هیجانم."
       },
       {
-              "id": 15,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Rob",
-              "textEn": "Great! I’ll get my jacket…",
-              "textFa": "حتماً، دختر مورد علاقه راب رو باید از نزدیک ببینم!"
+            "id": 15,
+            "seconds": 73,
+            "timeDisplay": "1:13",
+            "speaker": "Rob",
+            "textEn": "Great! I’ll get my jacket…",
+            "textFa": "عالیه! برم کتم رو بردارم..."
       },
       {
-              "id": 16,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Jenny",
-              "textEn": "Rob, I think I’ll go home if you don’t mind. I, uh, I’m exhausted.",
-              "textFa": "پس اول وسایلت رو بذار، بعد میریم یک پیتزای حسابی نیویورکی می‌خوریم."
+            "id": 16,
+            "seconds": 76,
+            "timeDisplay": "1:16",
+            "speaker": "Jenny",
+            "textEn": "Rob, I think I’ll go home if you don’t mind. I, uh, I’m exhausted.",
+            "textFa": "راب، اگه اشکالی نداره من برم خونه. راستش حسابی خسته‌ام."
       },
       {
-              "id": 17,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Rob",
-              "textEn": "Oh, OK then.",
-              "textFa": "پیتزا دقیقاً همون چیزیه که الان می‌خوام."
+            "id": 17,
+            "seconds": 81,
+            "timeDisplay": "1:21",
+            "speaker": "Rob",
+            "textEn": "Oh, OK then.",
+            "textFa": "اوه، باشه پس."
       },
       {
-              "id": 18,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Paul",
-              "textEn": "So it’s a boys’ night out!",
-              "textFa": "پس راه بیفت بریم سمت آپارتمان."
+            "id": 18,
+            "seconds": 83,
+            "timeDisplay": "1:23",
+            "speaker": "Paul",
+            "textEn": "So it’s a boys’ night out!",
+            "textFa": "پس امشب یک شب‌نشینی کاملاً پسرونه است!"
       },
       {
-              "id": 19,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Rob",
-              "textEn": "Just like the old days!",
-              "textFa": "بزن بریم!"
+            "id": 19,
+            "seconds": 86,
+            "timeDisplay": "1:26",
+            "speaker": "Rob",
+            "textEn": "Just like the old days!",
+            "textFa": "دقیقاً مثل دوران قدیم!"
       },
       {
-              "id": 20,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Paul",
-              "textEn": "And after the pizza we can go on somewhere else. Rob, we’ve got a lot to talk about! 6B Video Listening A day with a personal stylist − Part 1 Narrator Sam Alexander is an actor. He lives in London. Today he’s going to visit a personal stylist, Elin Mai, at the Westfield Shopping Mall in Shepherd’s Bush. Sam I thought my wardrobe was getting quite boring and I dress up a lot for my job as an actor. Sometimes I don’t give any thought to my own wardrobe, so I was keen to sort of refresh things a bit and get a new opinion. Sam  Hi, Elin. Elin  Hello, Sam! Welcome! Sam Thank you very much. Nice to meet you. Elin Nice to meet you too. Welcome to the Fashion Lounge. Elin I think having your unique personal style is something that’s incredibly important to each and every individual. And everyone should ideally try and find their own personal style as well. Narrator Before this session, Sam has filled out a questionnaire with everything from his sizes to his dress sense. Elin  OK, tell me how today came about… Elin With every session, we sit down at the beginning and we have a chat about their questionnaire, so we go into a bit more depth. And then we would ask them more questions about their lifestyle as well. --- PAGE 13 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 13 of 24 Elin When you’re actually working, how many days a week are you actually at work? Sam Well, the thing about being an actor is that you don’t have any routine, so sometimes I’m in a play, in which case I work six days a week and I’d have a routine. But then that stops suddenly and then I might be between jobs, in which case I’m at home a lot or I might be doing filming, which means fewer days but very long hours. Elin Now the consultation usually lasts, you know, fifteen to twenty minutes, but the consultation actually continues throughout the session as well. Elin So those little questions about their lifestyle – and I find out things about what they like and what they dislike and about the shops that they’ve gone to in the past and about their relationship with clothes. Narrator After Sam and Elin have visited a few stores, they return to the Fashion Lounge and Elin divides the clothes into four outfits. Elin  Ready, Sam? Wow! Sam  Here we are. Number one. Elin OK! This looks fantastic. How do you feel? Sam I really like it. It is quite bold – the shirt – but yeah. Elin  How do the jeans fit? Sam Great. Jeans that stretch. They feel very comfy. Elin What I wanted to show you now as well is actually how useful this outfit’s going to be, so I want you to put this smart blazer on just to show you that you can elevate this outfit and make it look smart by putting a blue blazer on top. Yeah, really, really nice. Have a look at yourself here then as well. What do you think? Sam That’s very nice. Yeah, I really like it - very smart. Narrator Sam likes the second outfit too. Elin Let’s see this next one. Wow! Oh my goodness! Give me a twirl in this one as well. Fabulous. How do you feel? Sam Yeah really good. This is not something I would dare to go for normally, but I really, I really like it. I love it. Elin OK, fantastic, so what I really like about it as well is the fact that none of the colors are actually matching, but they all work in harmony with each other really nicely. Narrator Sam then tries on outfit 3. Elin Oh wow, another completely different outfit. Sam  I really like this one. Elin  You like this one? Sam Absolutely. It’s a very good idea, putting trainers with smarter trousers. I wouldn’t think to do that. Narrator And finally he tries on outfit 4. Elin  Wow! What another entrance! Sam So this is a staple – everyone should have one of these. Elin  Everyone should have a denim shirt. Sam  See I haven’t. Brilliant. Narrator But which outfit does Sam like best? Narrator Outfit 1…Outfit 2…Outfit 3…Outfit 4 Sam I think outfit two really, because it was quite bold. I felt very smart in it --- PAGE 14 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 14 of 24 and I wouldn’t have worn those kind of things. A day with a personal stylist − Part 2 Narrator So what are Elin’s golden rules? Elin  I would say my golden rules would be to look at you own wardrobe to begin with before even going shopping, because without knowing what you’ve got, you can’t go out and buy the right things. Elin  OK, fantastic! Elin  I think a lot of the mistakes that people make are, they’re not staying true to themselves when they actually go out shopping. So perhaps they’ve seen kind of a lot of different things in magazines and online. And sometimes that can be really confusing. I truly believe that it doesn’t matter how much money you’ve got you can look good. It’s about where you shop and how you put things together. Narrator Is there one item that Elin thinks everyone should have? Elin  I do think that everyone should have a good pair of jeans in their wardrobe that fits them perfectly, that makes them feel good about themselves. Elin  Did you enjoy today? Sam  I did. It was absolutely brilliant. It exceeded my expectations. It was really great fun. Narrator Although not everyone needs Elin’s help, for Sam the day with a personal stylist has clearly changed his wardrobe and his attitude to it. Elin  No problem. Sam  Bye. Elin  Bye! Review and Check Can you understand these people? 5&6 1 Philomena Interviewer Do you prefer doing sport or watching them? Philomena Probably doing it. I find watching it really boring. Interviewer What sport do you play? Philomena Uh, I don’t do a lot. I’d say I don’t mind tennis, swimming in variation, depends on the weather. Interviewer What sports do you like watching the most? Philomena If I had to watch one, I like the rhythmic gymnastics or the diving, like for example at the Games, when they’re on TV. Interviewer Why do you like them? Philomena I think because they’re kind of like a dance, it’s like a routine, it’s very graceful. It’s not as rough a sport. 2 Rachel Interviewer Do you know anyone who has gone out with someone they met online? Rachel  I know lots of people who've gone out with people they’ve met online. Interviewer How did it work out? Rachel  A couple of people are married, for some of them they’re still with the other person, and for a lot of them it didn’t work out. 3 Gina Interviewer Have you ever cheated on an exam? Gina I have definitely cheated on an exam. Interviewer How did you cheat? Gina I had friends with me or I would write it on a piece of paper or on my hand. --- PAGE 15 --- Video Script American English File third edition  Photocopiable © Oxford University Press 2020   Page 15 of 24 Interviewer Were you caught? Gina I have never gotten caught cheating on an exam. 4 Tyler Interviewer What’s your favorite movie of all time? Tyler My favorite movie of all time is John Wick. Interviewer How many times have you seen it? Tyler  I have seen it at least ten times. Interviewer Why do you like it so much? Tyler A lot of action. A lot of blood. Just good fights. 5 Miranda Interviewer Do you have a profile photo? Miranda Yes, I have a profile photo on my Facebook, and Instagram, and Twitters. Interviewer What is it? Miranda The photo, the profile photo on my Facebook page is of me and my husband in Las Vegas on our anniversary. Interviewer Why did you choose it? Miranda Um, my makeup looked good.",
-              "textFa": "و بعد از پیتزا می‌تونیم بریم یک جای باحال برای تفریح."
+            "id": 20,
+            "seconds": 88,
+            "timeDisplay": "1:28",
+            "speaker": "Paul",
+            "textEn": "And after the pizza we can go on somewhere else. Rob, we’ve got a lot to talk about!",
+            "textFa": "و بعد از پیتزا می‌تونیم جای دیگه‌ای بریم. راب، کلی حرف برای گفتن داریم!"
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -22864,68 +22960,172 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Interviewer",
-              "textEn": "Why does Women's World Banking focus specifically on women?",
-              "textFa": "چرا سازمان بانکداری جهانی زنان منحصراً بر زنان تمرکز دارد؟"
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Interviewer",
+        "textEn": "Do you have any examples of individual success stories?",
+        "textFa": "آیا نمونه‌هایی از داستان‌های موفقیت فردی دارید که تعریف کنید؟"
       },
       {
-              "id": 2,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Sarita Gupta",
-              "textEn": "Women represent the vast majority of the world's poor, but studies show that when a woman earns income, she reinvests up to ninety percent into her family—children's health, education, and nutrition.",
-              "textFa": "زنان اکثریت مطلق فقرای جهان را تشکیل می‌دهند، اما پژوهش‌ها نشان می‌دهد وقتی یک زن درآمد کسب می‌کند، تا نود درصد آن را در خانواده یعنی سلامت، تحصیل و تغذیه فرزندان سرمایه‌گذاری می‌نماید."
+        "id": 2,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Sarita Gupta",
+        "textEn": "Oh, I love talking about individual success stories because this is what sort of gets us up in the morning and gets us to come to work and stay late and do this work.",
+        "textFa": "اوه، من عاشق صحبت کردن درباره داستان‌های موفقیت فردی هستم، چون همین انگیزه‌ای است که صبح‌ها ما را بیدار می‌کند، به محل کار می‌آورد و باعث می‌شود تا دیرقت تلاش کنیم."
       },
       {
-              "id": 3,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Interviewer",
-              "textEn": "Can you give an example of a success story?",
-              "textFa": "آیا می‌توانید نمونه‌ای از داستان‌های موفقیت‌آمیز را بیان کنید؟"
+        "id": 3,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Sarita Gupta",
+        "textEn": "Since I've been at Women's World Banking, I've been to the Dominican Republic, Jordan and India. So I'm happy to give you a story from each of the three countries.",
+        "textFa": "از زمانی که در سازمان بانکداری جهانی زنان فعالیت می‌کنم، به جمهوری دومینیکن، اردن و هند سفر کرده‌ام؛ بنابراین خوشحال می‌شوم از هر یک از این سه کشور داستانی برایتان تعریف کنم."
       },
       {
-              "id": 4,
-              "seconds": 135,
-              "timeDisplay": "2:15",
-              "speaker": "Sarita Gupta",
-              "textEn": "In Jordan, we met a woman who started by borrowing just a small amount to buy a sewing machine. Gradually, she grew her tailoring business, hired other local women, and eventually put all three of her children through university.",
-              "textFa": "در اردن با زنی آشنا شدیم که با دریافت وامی اندک برای خرید یک چرخ خیاطی آغاز کرد. او تدریجاً کارگاه خیاطی خود را توسعه داد، زنان محلی دیگر را به کار گرفت و در نهایت هر سه فرزندش را به دانشگاه فرستاد."
+        "id": 4,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Sarita Gupta",
+        "textEn": "The DR is a more established economy, if you will. And so the woman I met had already had successive loans that she had taken from our partner in the DR.",
+        "textFa": "جمهوری دومینیکن اقتصاد جاافتاده‌تری دارد. زنی که آنجا دیدم چندین وام متوالی از شریک مالی ما دریافت کرده بود."
       },
       {
-              "id": 5,
-              "seconds": 137,
-              "timeDisplay": "2:17",
-              "speaker": "Interviewer",
-              "textEn": "What are the biggest challenges facing microfinance institutions today?",
-              "textFa": "بزرگترین چالش‌های پیش‌روی نهادهای مالیه خرد در حال حاضر چیست؟"
+        "id": 5,
+        "seconds": 59,
+        "timeDisplay": "0:59",
+        "speaker": "Sarita Gupta",
+        "textEn": "And what she did was to start out, she was basically selling food from her kitchen, making excess food and selling it to the factory workers.",
+        "textFa": "کار او ابتدا از فروش غذا در آشپزخانه‌اش شروع شد؛ غذای اضافه درست می‌کرد و به کارگران کارخانه می‌فروخت."
       },
       {
-              "id": 6,
-              "seconds": 139,
-              "timeDisplay": "2:19",
-              "speaker": "Sarita Gupta",
-              "textEn": "The challenge is scaling sustainably without losing sight of the social mission. We must ensure that clients are not over-indebted and that financial literacy accompanies access to capital.",
-              "textFa": "چالش اصلی، توسعه پایدار بدون انحراف از رسالت اجتماعی است. ما باید اطمینان حاصل کنیم متقاضیان زیر بار بدهی مضاعف نمی‌روند و دسترسی به سرمایه، با سواد مالی کافی همراه است."
+        "id": 6,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Sarita Gupta",
+        "textEn": "She got a loan, increased that business and then set up a little cantina out of her living room so that along with food, she was selling cigarettes, beer, and a little bit more candy, etc.",
+        "textFa": "او وامی گرفت، کسب‌وکارش را گسترش داد و یک غذاخوری کوچک در اتاق نشیمن راه انداخت؛ علاوه بر غذا، تنقلات و نوشیدنی هم می‌فروخت."
       },
       {
-              "id": 7,
-              "seconds": 141,
-              "timeDisplay": "2:21",
-              "speaker": "Interviewer",
-              "textEn": "What role does technology play in expanding financial inclusion?",
-              "textFa": "فناوری چه نقشی در گسترش فراگیری و شمول مالی ایفا می‌کند؟"
+        "id": 7,
+        "seconds": 83,
+        "timeDisplay": "1:23",
+        "speaker": "Sarita Gupta",
+        "textEn": "That business did well, took out another loan and built a room on top of her house and started to rent it out.",
+        "textFa": "آن کسب‌وکار رونق گرفت، وام دیگری دریافت کرد و اتاقی بالای خانه‌اش ساخت و آن را اجاره داد."
       },
       {
-              "id": 8,
-              "seconds": 143,
-              "timeDisplay": "2:23",
-              "speaker": "Sarita Gupta",
-              "textEn": "Mobile banking and digital wallets have revolutionized access. Women in remote rural areas who never had a physical bank branch within miles can now manage savings and transfers securely from their phones.",
-              "textFa": "بانکداری موبایلی و کیف پول‌های دیجیتال دسترسی را دگرگون ساخته‌اند. زنانی در دورافتاده‌ترین روستاها که فرسنگ‌ها با هیچ شعبه بانکی فاصله داشتند، اکنون با امنیت خاطر پس‌انداز و واریزها را با گوشی مدیریت می‌کنند."
+        "id": 8,
+        "seconds": 91,
+        "timeDisplay": "1:31",
+        "speaker": "Sarita Gupta",
+        "textEn": "And so over seven years, what she's been able to do is to completely build a new home for herself and rent out the old one.",
+        "textFa": "طی هفت سال، او توانست خانه‌ای کاملاً جدید برای خودش بسازد و خانه قبلی را به طور کامل اجاره دهد."
+      },
+      {
+        "id": 9,
+        "seconds": 101,
+        "timeDisplay": "1:41",
+        "speaker": "Sarita Gupta",
+        "textEn": "And this is going to ensure income in her old age because at some point she's going to be too old to work in the kitchen and to be standing on her feet behind the cantina counter.",
+        "textFa": "این کار درآمد دوران سالمندی او را تضمین می‌کند؛ چون بالاخره روزی فرا می‌رسد که برای ایستادن مداوم پشت پیشخوان غذاخوری بیش از حد مسن خواهد بود."
+      },
+      {
+        "id": 10,
+        "seconds": 113,
+        "timeDisplay": "1:53",
+        "speaker": "Sarita Gupta",
+        "textEn": "And she's looking at the rental rooms that she has been able to put on as her old age security.",
+        "textFa": "او به اتاق‌های اجاره‌ای که ساخته به چشم امنیت و پشتوانه مالی دوران پیری خود نگاه می‌کند."
+      },
+      {
+        "id": 11,
+        "seconds": 123,
+        "timeDisplay": "2:03",
+        "speaker": "Sarita Gupta",
+        "textEn": "In Jordan, I'll tell you about a young woman that we met. The cultural norm in Jordan is that a fairly old husband can marry again and marry a fairly young woman.",
+        "textFa": "در اردن، داستانی از زن جوانی تعریف می‌کنم. هنجار سنتی در آنجا این است که مردان مسن‌تر می‌توانند دوباره با زنی جوان ازدواج کنند."
+      },
+      {
+        "id": 12,
+        "seconds": 144,
+        "timeDisplay": "2:24",
+        "speaker": "Sarita Gupta",
+        "textEn": "So the one that we met, her husband was now too old and sick so while he took care of having a roof over her head, she had absolutely no means of earning more money for herself or her kids.",
+        "textFa": "همسر او بسیار مسن و بیمار بود؛ سرپناهی برایش فراهم می‌کرد اما او هیچ درآمدی برای تأمین مخارج خود و فرزندانش نداشت."
+      },
+      {
+        "id": 13,
+        "seconds": 158,
+        "timeDisplay": "2:38",
+        "speaker": "Sarita Gupta",
+        "textEn": "And at her socioeconomic level it is not considered proper for a woman to go out and work.",
+        "textFa": "در طبقه اجتماعی او، کار کردن زن در بیرون از منزل شایسته تلقی نمی‌شد."
+      },
+      {
+        "id": 14,
+        "seconds": 164,
+        "timeDisplay": "2:44",
+        "speaker": "Sarita Gupta",
+        "textEn": "So the only thing that she was able to do was she had taken a loan to buy cosmetics and was selling them from her living room to her neighbors.",
+        "textFa": "تنها کاری که می‌توانست انجام دهد، گرفتن وامی برای خرید لوازم بهداشتی و آرایشی و فروش آن‌ها به همسایگان در منزلش بود."
+      },
+      {
+        "id": 15,
+        "seconds": 174,
+        "timeDisplay": "2:54",
+        "speaker": "Sarita Gupta",
+        "textEn": "And this was considered to be an okay business for her because primarily she was dealing with other women. It gave her that sort of extra money to use for herself.",
+        "textFa": "این کسب‌وکاری مناسب برای او به حساب می‌آمد چون عمدتاً با زنان دیگر در ارتباط بود و درآمد مازادی برای استقلال او فراهم می‌ساخت."
+      },
+      {
+        "id": 16,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Sarita Gupta",
+        "textEn": "And then in India where I was recently in the city of Hyderabad, an up-and-coming city that Indians think of as the next cyber city.",
+        "textFa": "و در هند، اخیراً در شهر حیدرآباد بودم؛ شهری رو به پیشرفت که هندی‌ها آن را شهر سایبری آینده می‌دانند."
+      },
+      {
+        "id": 17,
+        "seconds": 203,
+        "timeDisplay": "3:23",
+        "speaker": "Sarita Gupta",
+        "textEn": "But across town they have slums where even now both men and women have not gone to school, they're not educated and their only recourse is to work in the informal economy.",
+        "textFa": "اما در گوشه دیگری از شهر، محله‌های فقیرنشینی هست که ساکنانشان تحصیل نکرده‌اند و تنها چاره‌شان کار در اقتصاد غیررسمی است."
+      },
+      {
+        "id": 18,
+        "seconds": 218,
+        "timeDisplay": "3:38",
+        "speaker": "Sarita Gupta",
+        "textEn": "So the family that we met, the husband was a vegetable seller so he took his cart and went out into the more affluent neighborhoods.",
+        "textFa": "خانواده‌ای که دیدیم، پدر دستفروش سبزیجات بود و چرخ‌دستی‌اش را به محله‌های مرفه‌تر می‌برد."
+      },
+      {
+        "id": 19,
+        "seconds": 230,
+        "timeDisplay": "3:50",
+        "speaker": "Sarita Gupta",
+        "textEn": "The son had dropped out of school to join his father to push a similar cart and the mother had taken a loan to embroider saris at home in her spare time.",
+        "textFa": "پسر برای کمک به پدر ترک تحصیل کرده بود تا چرخ مشابهی بگرداند، و مادر برای سوزن‌دوزی ساری‌های سنتی در خانه وام گرفته بود."
+      },
+      {
+        "id": 20,
+        "seconds": 244,
+        "timeDisplay": "4:04",
+        "speaker": "Sarita Gupta",
+        "textEn": "And what she really wanted to do was to amass enough income so that she would cut out the middle man because she basically got half of what that sari was worth.",
+        "textFa": "هدف اصلی مادر این بود که سرمایه کافی جمع کند تا واسطه‌ها را حذف کند؛ چون واسطه نیمی از بهای زحمات او برای دوخت ساری را می‌بلعید."
+      },
+      {
+        "id": 21,
+        "seconds": 257,
+        "timeDisplay": "4:17",
+        "speaker": "Sarita Gupta",
+        "textEn": "If she could buy the materials herself, embroider herself and sell it herself to the store, you could in effect double her income without doubling her labor.",
+        "textFa": "اگر خودش پارچه را بخرد، گلدوزی کند و مستقیم به مغازه بفروشد، عملاً بدون دو برابر شدن کارش، درآمدش دو برابر می‌شود."
       }
     ],
     "questions": {
@@ -23100,44 +23300,68 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Sarita Gupta",
-              "textEn": "Microfinance is really about financial inclusion and empowerment.",
-              "textFa": "مالیه خرد در حقیقت درباره فراگیری مالی و توانمندسازی افراد است."
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Interviewer",
+        "textEn": "So, if we could only discuss one issue, sort of focus on one issue and put all our energies behind it, what would that be?",
+        "textFa": "اگر فقط بتوانیم روی یک موضوع متمرکز شویم و تمام انرژی‌مان را بگذاریم، آن موضوع چه خواهد بود؟"
       },
       {
-              "id": 2,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Sarita Gupta",
-              "textEn": "They had no collateral to put up for a loan.",
-              "textFa": "آن‌ها هیچ وثیقه‌ای برای تضمین بازپرداخت وام در اختیار نداشتند."
+        "id": 2,
+        "seconds": 22,
+        "timeDisplay": "0:22",
+        "speaker": "Sarita Gupta",
+        "textEn": "What is it that the poor lack? What is it that they need? Credit is a fundamental financial tool that creates independence.",
+        "textFa": "فقرا فاقد چه چیزی هستند؟ به چه چیزی نیاز دارند؟ دسترسی به اعتبار یک ابزار مالی بنیادین است که استقلال می‌آفریند."
       },
       {
-              "id": 3,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Sarita Gupta",
-              "textEn": "The peer group acts as a support system and social guarantor.",
-              "textFa": "گروه همتایان هم به عنوان حامی و هم به عنوان ضامن اجتماعی عمل می‌کند."
+        "id": 3,
+        "seconds": 36,
+        "timeDisplay": "0:36",
+        "speaker": "Sarita Gupta",
+        "textEn": "And the third was really an incentive system that the poor were not encouraged to borrow a large amount.",
+        "textFa": "و اصل سوم در واقع یک سیستم انگیزشی بود که فقرا تشویق نمی‌شدند مبالغ کلان قرض بگیرند."
       },
       {
-              "id": 4,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Sarita Gupta",
-              "textEn": "She reinvests her earnings directly into the well-being of her household.",
-              "textFa": "او عواید و درآمد خود را مستقیماً در رفاه و آسایش خانواده‌اش به کار می‌گیرد."
+        "id": 4,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Sarita Gupta",
+        "textEn": "They only borrowed what they could use in their business and then pay back reliably.",
+        "textFa": "آن‌ها فقط به اندازه‌ای وام می‌گرفتند که در کسب‌وکارشان به کار می‌آمد و با اطمینان بازپرداخت می‌کردند."
       },
       {
-              "id": 5,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Sarita Gupta",
-              "textEn": "This is a sustainable model that creates generational change.",
-              "textFa": "این یک الگوی پایدار است که دگرگونی و پویایی نسلی به وجود می‌آورد."
+        "id": 5,
+        "seconds": 54,
+        "timeDisplay": "0:54",
+        "speaker": "Sarita Gupta",
+        "textEn": "What she did was to start out selling food from her kitchen, making excess food and selling it to factory workers.",
+        "textFa": "شروع کار آن زن، فروش غذای خانگی از آشپزخانه‌اش به کارگران کارخانه بود."
+      },
+      {
+        "id": 6,
+        "seconds": 69,
+        "timeDisplay": "1:09",
+        "speaker": "Sarita Gupta",
+        "textEn": "And this is going to ensure income in her old age because at some point she is going to be too old to work behind the counter.",
+        "textFa": "و این تدبیر درآمد پیری‌اش را تضمین می‌کند، چون بالاخره روزی توان ایستادن پشت پیشخوان را نخواهد داشت."
+      },
+      {
+        "id": 7,
+        "seconds": 81,
+        "timeDisplay": "1:21",
+        "speaker": "Sarita Gupta",
+        "textEn": "She is looking at the rental room that she has been able to put on as her old age security.",
+        "textFa": "او به اتاق‌های اجاره‌ای به عنوان پشتوانه و بیمه بازنشستگی خود نگاه می‌کند."
+      },
+      {
+        "id": 8,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Sarita Gupta",
+        "textEn": "And what she really wanted to do was to cut out the middleman, because she basically got half of what the sari was worth by handing it over to a middleman.",
+        "textFa": "و آنچه در پی‌اش بود، حذف دلالان بود تا تمام دسترنج دوخت ساری مستقیماً به خودش برسد."
       }
     ],
     "questions": {
@@ -23768,44 +23992,60 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Patricia Melvin",
-              "textEn": "Painting plein air is all about capturing the fleeting essence of light.",
-              "textFa": "نقاشی در هوای آزاد سراسر درباره شکار گوهر گذرا و فریبنده نور است."
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Patricia Melvin",
+        "textEn": "I was born here and raised nearby and so I have memories of New York City from my early childhood and to me it was always a magical place.",
+        "textFa": "من در اینجا به دنیا آمدم و در همین نزدیکی بزرگ شدم؛ خاطرات کودکی‌ام از نیویورک همواره تصویری جادویی از این شهر در ذهنم ساخته است."
       },
       {
-              "id": 2,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Patricia Melvin",
-              "textEn": "The city has a unique rhythm that translates directly onto the canvas.",
-              "textFa": "شهر ریتم منحصربه‌فردی دارد که بی‌واسطه بر روی بوم نقاشی منعکس می‌شود."
+        "id": 2,
+        "seconds": 26,
+        "timeDisplay": "0:26",
+        "speaker": "Patricia Melvin",
+        "textEn": "Things like that happen over the course of a painting and they can be just perfect.",
+        "textFa": "چنین رخدادهایی در جریان خلق یک نقاشی روی می‌دهند و می‌توانند کاملاً بی‌نقص و باشکوه باشند."
       },
       {
-              "id": 3,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Patricia Melvin",
-              "textEn": "You have to work quickly before the shadows completely shift.",
-              "textFa": "باید پیش از آنکه سایه‌ها تغییر جهت دهند، سریع و چابک دست به کار شوید."
+        "id": 3,
+        "seconds": 39,
+        "timeDisplay": "0:39",
+        "speaker": "Patricia Melvin",
+        "textEn": "So if I started painting at one point it's hard to finish it later in a different season or later on in the same season.",
+        "textFa": "اگر تابلویی را در زمانی خاص آغاز کنم، به پایان رساندن آن در فصلی دیگر یا حتی اواخر همان فصل بسیار دشوار خواهد بود."
       },
       {
-              "id": 4,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Patricia Melvin",
-              "textEn": "A strong foundation in drawing gives you freedom with color.",
-              "textFa": "پایه‌ای استوار در طراحی، به شما در به‌کارگیری رنگ‌ها آزادی و رهایی می‌بخشد."
+        "id": 4,
+        "seconds": 50,
+        "timeDisplay": "0:50",
+        "speaker": "Patricia Melvin",
+        "textEn": "I've worked on some paintings for years and years and sometimes I'll come back to a painting the following year when the season and the light is right.",
+        "textFa": "روی برخی تابلوها سال‌ها کار کرده‌ام و گاهی سال بعد برمی‌گردم، وقتی که زاویه تابش نور و حس فصل دوباره تکرار شود."
       },
       {
-              "id": 5,
-              "seconds": 55,
-              "timeDisplay": "0:55",
-              "speaker": "Patricia Melvin",
-              "textEn": "Every painting is a record of a specific moment in time.",
-              "textFa": "هر اثر نقاشی، سندی ماندگار از یک لحظه مشخص در زمان است."
+        "id": 5,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Patricia Melvin",
+        "textEn": "I love painting portraits but it's very rare to find someone who will sit for a few hours for a couple of sessions, and I don't like to do portraits from photos.",
+        "textFa": "عاشق نقاشی پرتره هستم، اما به‌ندرت کسی پیدا می‌شود که ساعت‌ها بنشیند، و من هرگز دوست ندارم از روی عکس پرتره بکشم."
+      },
+      {
+        "id": 6,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Patricia Melvin",
+        "textEn": "And also my mother painted some, especially after we all grew up, so there were a lot of artistic influences on me.",
+        "textFa": "مادرم نیز نقاشی می‌کرد، به‌ویژه پس از آنکه همه ما بزرگ شدیم؛ از این رو تأثیرات هنری عمیقی بر من وجود داشت."
+      },
+      {
+        "id": 7,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Patricia Melvin",
+        "textEn": "It requires an enormous amount of time; it requires being free to suddenly change your plans at a moment's notice to capture the light.",
+        "textFa": "نقاشی در هوای آزاد زمان هنگفتی می‌طلبد؛ مستلزم این است که کاملاً آزاد باشید تا با تغییر آنی نور، برنامه‌تان را بی‌درنگ تغییر دهید."
       }
     ],
     "questions": {
@@ -23980,60 +24220,132 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Interviewer",
-              "textEn": "Chantelle Nicholson is an acclaimed chef and restaurateur based in London.",
-              "textFa": "شانتل نیکلسون یک سرآشپز برجسته و صاحب رستوران در لندن است."
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Interviewer",
+        "textEn": "Who taught you how to cook?",
+        "textFa": "چه کسی آشپزی را به شما آموزش داد؟"
       },
       {
-              "id": 2,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Interviewer",
-              "textEn": "Who taught you how to cook, and how did your culinary passion begin?",
-              "textFa": "چه کسی به شما آشپزی آموخت و این اشتیاق چگونه در شما شکل گرفت؟"
+        "id": 2,
+        "seconds": 27,
+        "timeDisplay": "0:27",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "It would probably be my parents when I was younger. It was always something that I was interested in from an early age and I used to be in the kitchen quite a lot.",
+        "textFa": "احتمالاً پدر و مادرم در دوران کودکی‌ام؛ از سنین پایین همواره به آشپزی علاقه داشتم و وقت زیادی را در آشپزخانه می‌گذراندم."
       },
       {
-              "id": 3,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Chantelle Nicholson",
-              "textEn": "It would probably be my parents when I was younger. It was always something that I was interested in from an early age, and I used to be in the kitchen quite a lot.",
-              "textFa": "احتمالاً در کودکی پدر و مادرم بودند. از همان خردسالی همواره به آشپزی علاقه داشتم و وقت زیادی را در آشپزخانه می‌گذراندم."
+        "id": 3,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Interviewer",
+        "textEn": "How did you end up as a chef in London?",
+        "textFa": "چطور شد که به عنوان یک سرآشپز سر از لندن درآوردید؟"
       },
       {
-              "id": 4,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Interviewer",
-              "textEn": "You originally studied law and worked in banking. How did you end up as a chef in London?",
-              "textFa": "شما در ابتدا حقوق خواندید و در حوزه بانکداری کار کردید. چطور شد که سر از آشپزی در لندن درآوردید؟"
+        "id": 4,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "One afternoon when I was reading a foodie magazine in New Zealand, that mentioned the Gordon Ramsay Scholarship.",
+        "textFa": "یک روز بعدازظهر که در نیوزیلند مجله‌ای آشپزی می‌خواندم، به فراخوان بورسیه گوردون رمزی برخوردم."
       },
       {
-              "id": 5,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Chantelle Nicholson",
-              "textEn": "One afternoon I was reading a foodie magazine in New Zealand, and it mentioned the Gordon Ramsay scholarship. We had to submit a three-course menu, and that opportunity opened the door for me to move to the UK.",
-              "textFa": "یک روز بعدازظهر در نیوزیلند مجله‌ای تخصصی درباره غذا می‌خواندم که بورسیه سرآشپزی گوردون رمزی را معرفی کرده بود؛ منویی سه‌بخشی ارسال کردم و همین فرصت، راه مهاجرت و فعالیتم در بریتانیا را هموار کرد."
+        "id": 5,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "You submitted a three-course menu and talked about the food. I thought, well, why not give that a go?",
+        "textFa": "باید یک منوی سه بخشی طراحی می‌کردید و درباره غذاها توضیح می‌دادید. با خودم گفتم: چرا شانس خودم را امتحان نکنم؟"
       },
       {
-              "id": 6,
-              "seconds": 161,
-              "timeDisplay": "2:41",
-              "speaker": "Interviewer",
-              "textEn": "What was the transition like moving into professional restaurant kitchens?",
-              "textFa": "گذار و ورود به آشپزخانه‌های حرفه‌ای رستوران‌ها برای شما چگونه بود؟"
+        "id": 6,
+        "seconds": 66,
+        "timeDisplay": "1:06",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "I submitted an entry and got a phone call six weeks later saying that I'd gotten into the semi-final of 12 people.",
+        "textFa": "طرحم را فرستادم و شش هفته بعد تماس گرفتند و گفتند به جمع ۱۲ نفر نیمه‌نهایی راه پیدا کرده‌ام."
       },
       {
-              "id": 7,
-              "seconds": 163,
-              "timeDisplay": "2:43",
-              "speaker": "Chantelle Nicholson",
-              "textEn": "It was intense and demanding, but incredibly rewarding. Learning under top chefs like Marcus Wareing taught me precision, discipline, and respect for every single ingredient.",
-              "textFa": "بسیار پرفشار و طاقت‌فرسا بود اما پاداشی فوق‌العاده داشت. یادگیری زیر نظر سرآشپزان نامداری چون مارکوس وارینگ، دقت، نظم آهنین و احترام به تک‌تک مواد اولیه را به من آموخت."
+        "id": 7,
+        "seconds": 84,
+        "timeDisplay": "1:24",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "I met the head chef at the Savoy Grill, which was run by Marcus Wareing. And at the end he said there was a job at the Savoy if I wanted one.",
+        "textFa": "در آنجا با سرآشپز رستوران مشهور ساووی گریل که توسط مارکوس ویرینگ مدیریت می‌شد آشنا شدم؛ و در پایان گفت اگر مایلی، کاری برایت در ساووی هست."
+      },
+      {
+        "id": 8,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "And it was just too good an opportunity to turn down. So it all happened relatively quickly.",
+        "textFa": "فرصتی بی‌نظیر بود که نمی‌شد رد کرد؛ بنابراین همه‌چیز خیلی سریع اتفاق افتاد."
+      },
+      {
+        "id": 9,
+        "seconds": 114,
+        "timeDisplay": "1:54",
+        "speaker": "Interviewer",
+        "textEn": "Top chefs have a reputation of being difficult. What's Marcus Wareing like to work for?",
+        "textFa": "سرآشپزهای بزرگ به سخت‌گیر بودن معروفند؛ کار کردن با مارکوس ویرینگ چگونه است؟"
+      },
+      {
+        "id": 10,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "I wouldn't want to work for any other chef of that high caliber. He has got a real eye for detail and is a perfectionist.",
+        "textFa": "ترجیح می‌دهم با هیچ سرآشپز دیگری در این سطح کار نکنم. او نگاهی فوق‌العاده دقیق به جزئیات دارد و یک کمال‌گرای واقعی است."
+      },
+      {
+        "id": 11,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "He's also got a very good business sense, which is a great thing to learn from because he oversees the whole operation.",
+        "textFa": "هوش تجاری کم‌نظیری نیز دارد که یادگیری از او را فوق‌العاده می‌کند، زیرا بر تمام ابعاد مدیریت رستوران نظارت دارد."
+      },
+      {
+        "id": 12,
+        "seconds": 157,
+        "timeDisplay": "2:37",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "If he gets upset, it's about what goes on the plate or how the guests are treated. There's no ego there at all.",
+        "textFa": "اگر عصبانی شود، فقط به خاطر کیفیت غذای داخل بشقاب یا نحوه پذیرایی از مهمانان است؛ اصلاً پای غرور شخصی در میان نیست."
+      },
+      {
+        "id": 13,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "When people come to the restaurant, he wants them to have an amazing experience, whether they buy a £30 bottle of wine or a £3,000 bottle.",
+        "textFa": "او می‌خواهد هر مهمانی که وارد رستوران می‌شود تجربه‌ای خارق‌العاده داشته باشد؛ چه بطری ۳۰ پوندی سفارش دهد چه ۳۰۰۰ پوندی."
+      },
+      {
+        "id": 14,
+        "seconds": 185,
+        "timeDisplay": "3:05",
+        "speaker": "Interviewer",
+        "textEn": "Is this restaurant into the new trends in cooking using science in the kitchen?",
+        "textFa": "آیا این رستوران هم به سراغ سبک‌های نوین آشپزی با استفاده از علم شیمی و روش‌های مدرن رفته است؟"
+      },
+      {
+        "id": 15,
+        "seconds": 197,
+        "timeDisplay": "3:17",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "We use classic, traditional techniques. Marcus is very respectful of ingredients and treats a carrot with the same care as a piece of foie gras.",
+        "textFa": "ما از تکنیک‌های کلاسیک و اصیل استفاده می‌کنیم. مارکوس احترام عمیقی برای مواد اولیه قائل است و با یک هویج ساده به همان اندازه با وسواس برخورد می‌کند که با فواگرا."
+      },
+      {
+        "id": 16,
+        "seconds": 219,
+        "timeDisplay": "3:39",
+        "speaker": "Chantelle Nicholson",
+        "textEn": "We're more about making carrots taste like carrots, as opposed to making a carrot taste like a beetroot, which some people get carried away with.",
+        "textFa": "هدف ما این است که هویج طعم واقعی خود هویج را بدهد، نه اینکه هویج را شبیه چغندر کنیم؛ کاری که این روزها برخی در آن زیاده‌روی می‌کنند."
       }
     ],
     "questions": {
@@ -25130,8 +25442,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "c1-v18",
     "level": "c1",
     "episodeNumber": 18,
-    "titleFa": "مصاحبه خیابانی ۴ و ۵: مسئولیت‌پذیری زیست‌محیطی در زندگی روزمره",
-    "titleEn": "On the Street 4 & 5: Environmental Accountability",
+    "titleFa": "مصاحبه خیابانی ۴ و ۵: مدیریت پول، عادات خرج کردن و شادی",
+    "titleEn": "On the Street 4 & 5: Money, Spending & Happiness",
     "bookLevel": "American English File 5 (3rd Edition)",
     "unit": "On the Street Vox Pops",
     "cefr": "C1",
@@ -25142,8 +25454,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #1e293b, #475569)",
     "posterIcon": "🏙️",
-    "summaryFa": "مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Environment با لهجه‌های گوناگون.",
-    "summaryEn": "Spontaneous on-the-street interviews with native speakers in London and New York discussing Environment.",
+    "summaryFa": "مصاحبه‌های وکس‌پاپ واقعی با اهالی نیویورک پیرامون مدیریت مالی، عادات خرج کردن، مقایسه رفتارهای مالی زنان و مردان، و تأثیر ثروت بر احساس خوشبختی.",
+    "summaryEn": "Authentic on-the-street vox pop interviews in New York exploring money management, personal spending habits, gender perspectives on budgeting, and the correlation between wealth and happiness.",
     "keyTopicsFa": [
       "مصاحبه خیابانی Environment",
       "لهجه‌های متنوع بومی",
@@ -25152,68 +25464,228 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Interviewer",
-              "textEn": "When things are stressful, what do you do to try to de-stress?",
-              "textFa": "وقتی شرایط پرتنش و استرس‌زاست، برای آرامش و رفع استرس چه می‌کنید؟"
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Interviewer",
+        "textEn": "Do you consider yourself good with money?",
+        "textFa": "آیا خودتان را در مدیریت پول آدم موفقی می‌دانید؟"
       },
       {
-              "id": 2,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "John",
-              "textEn": "I de-stress by sitting down and breathing calmly and thinking about nothing, or sometimes thinking about the cosmos and putting things in perspective.",
-              "textFa": "با نشستن، تنفس عمیق و آرام و پاک کردن ذهن از افکار، یا گاهی تأمل در گستره کیهان تا مسائل را در ابعاد واقعیشان ببینم."
+        "id": 2,
+        "seconds": 4,
+        "timeDisplay": "0:04",
+        "speaker": "Speaker 1",
+        "textEn": "I don't think I've been that good with money lately. I've been kind of on a binge of buying t-shirts. My closet is overrun now.",
+        "textFa": "فکر نمی‌کنم اخیراً با پول خوب عمل کرده باشم؛ افتاده‌ام در دور خریدن تی‌شرت و کمد لباسم پر شده است."
       },
       {
-              "id": 3,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "Interviewer",
-              "textEn": "Do you find that exercise or physical activity helps reduce your stress levels?",
-              "textFa": "آیا ورزش یا فعالیت بدنی در کاهش سطح استرس شما مؤثر است؟"
+        "id": 3,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Interviewer",
+        "textEn": "Do you think that women are better at managing money than men?",
+        "textFa": "آیا به نظرتان زنان در مدیریت پول از مردان بهتر عمل می‌کنند؟"
       },
       {
-              "id": 4,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Sarah",
-              "textEn": "Going for a long run outdoors clears my head completely. Physical exertion helps burn off that anxious energy and resets my mindset.",
-              "textFa": "دویدن طولانی در فضای باز ذهن مرا کاملاً باز می‌کند؛ تحرک بدنی انرژی‌های مضطرب را تخلیه کرده و نگاهم را تازه می‌سازد."
+        "id": 4,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Speaker 1",
+        "textEn": "I'm not sure if it's women better than men. We're in New York City, so it's hard to go anywhere without spending a lot of money.",
+        "textFa": "مطمئن نیستم بحث زن یا مرد بودن باشد؛ ما در نیویورک زندگی می‌کنیم و هر جا بروید پول زیادی خرج می‌شود."
       },
       {
-              "id": 5,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Interviewer",
-              "textEn": "How does listening to music affect your mood when you're overwhelmed?",
-              "textFa": "موسیقی در زمان خستگی یا تنش روحی چگونه بر احوال شما اثر می‌گذارد؟"
+        "id": 5,
+        "seconds": 66,
+        "timeDisplay": "1:06",
+        "speaker": "Interviewer",
+        "textEn": "Do you think having more money would make you happier?",
+        "textFa": "آیا فکر می‌کنید داشتن پول بیشتر شما را خوشحال‌تر می‌کند؟"
       },
       {
-              "id": 6,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Michael",
-              "textEn": "Classical music or acoustic instrumentals immediately lower my heart rate and make work or deadlines feel far more manageable.",
-              "textFa": "موسیقی کلاسیک یا بی‌کلام بی‌درنگ ضربان قلبم را آرام می‌کند و ضرب‌الاجل‌های کاری را بسیار قابل‌مدیریت‌تر جلوه می‌دهد."
+        "id": 6,
+        "seconds": 69,
+        "timeDisplay": "1:09",
+        "speaker": "Speaker 1",
+        "textEn": "I don't think having more money would make me happier. I think it would bring a lot more problems, and I wouldn't know how to manage it.",
+        "textFa": "فکر نمی‌کنم پول بیشتر مرا شادتر کند؛ بلکه دردسرهای بیشتری می‌آورد و من بلد نیستم مبالغ کلان را مدیریت کنم."
       },
       {
-              "id": 7,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Interviewer",
-              "textEn": "What boundaries do you set with smartphones and digital notifications to avoid burnout?",
-              "textFa": "برای پرهیز از فرسودگی، چه مرزبندی‌هایی با گوشی هوشمند و نوتیفیکیشن‌ها تعیین می‌کنید؟"
+        "id": 7,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Interviewer",
+        "textEn": "Do you consider yourself good with money?",
+        "textFa": "آیا خودتان را در مدیریت پول فرد موفقی می‌دانید؟"
       },
       {
-              "id": 8,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Elena",
-              "textEn": "I turn off notifications after 8 PM and avoid looking at work emails on weekends. Being constantly plugged in is the fastest route to chronic stress.",
-              "textFa": "نوتیفیکیشن‌ها را بعد از ساعت ۸ شب خاموش می‌کنم و آخر هفته‌ها به ایمیل‌های کاری سر نمی‌زنم؛ اتصال مداوم به اینترنت سریع‌ترین مسیر رسیدن به استرس مزمن است."
+        "id": 8,
+        "seconds": 87,
+        "timeDisplay": "1:27",
+        "speaker": "Speaker 2",
+        "textEn": "Oh yeah, I think generally I'm pretty good with money. I just found out recently that I have a really high credit score.",
+        "textFa": "بله، به طور کلی در امور مالی خوب هستم؛ به تازگی فهمیدم رتبه اعتباری بانکی بسیار بالایی دارم."
+      },
+      {
+        "id": 9,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Interviewer",
+        "textEn": "Do you think that women are better at managing money than men?",
+        "textFa": "آیا به نظرتان زنان بهتر از مردان پول را مدیریت می‌کنند؟"
+      },
+      {
+        "id": 10,
+        "seconds": 104,
+        "timeDisplay": "1:44",
+        "speaker": "Speaker 2",
+        "textEn": "In my experience, no. I think it depends on the person. I've met women who are great with money and some who aren't, and the same with men.",
+        "textFa": "طبق تجربه من خیر؛ بستگی به شخص دارد. زنانی را دیده‌ام که عالی عمل می‌کنند و برخی نه، در مورد مردان هم همین‌طور است."
+      },
+      {
+        "id": 11,
+        "seconds": 116,
+        "timeDisplay": "1:56",
+        "speaker": "Interviewer",
+        "textEn": "Do you think having more money would make you happier?",
+        "textFa": "آیا داشتن پول بیشتر شما را خوشحال‌تر می‌سازد؟"
+      },
+      {
+        "id": 12,
+        "seconds": 121,
+        "timeDisplay": "2:01",
+        "speaker": "Speaker 2",
+        "textEn": "A little bit more money would make me happier, but I'm pretty happy at the moment with what I have.",
+        "textFa": "کمی پول بیشتر شاید شادم کند، اما در حال حاضر هم از وضعیتم احساس رضایت و خوشحالی دارم."
+      },
+      {
+        "id": 13,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Interviewer",
+        "textEn": "Do you think that women are better at managing money than men?",
+        "textFa": "آیا زنان در مدیریت بودجه بهتر از مردان هستند؟"
+      },
+      {
+        "id": 14,
+        "seconds": 144,
+        "timeDisplay": "2:24",
+        "speaker": "Speaker 3",
+        "textEn": "Most women are better managers. Since they are homemakers and take care of children, they have a broader vision for the future.",
+        "textFa": "اکثر زنان مدیران بهتری هستند؛ چون مسئولیت اداره خانه و مراقبت از فرزندان را بر عهده دارند، دید گسترده‌تری برای آینده دارند."
+      },
+      {
+        "id": 15,
+        "seconds": 167,
+        "timeDisplay": "2:47",
+        "speaker": "Interviewer",
+        "textEn": "Do you think having more money would make you happier?",
+        "textFa": "آیا پول بیشتر شما را خوشبخت‌تر می‌کند؟"
+      },
+      {
+        "id": 16,
+        "seconds": 171,
+        "timeDisplay": "2:51",
+        "speaker": "Speaker 3",
+        "textEn": "Not really. My work actually keeps me happy rather than money, so I'm content with my work.",
+        "textFa": "نه واقعاً؛ آنچه به من حس شادمانی می‌دهد کارم است نه پول، بنابراین از حرفه‌ام راضی‌ام."
+      },
+      {
+        "id": 17,
+        "seconds": 186,
+        "timeDisplay": "3:06",
+        "speaker": "Interviewer",
+        "textEn": "Do you consider yourself good with money?",
+        "textFa": "آیا خودتان را در خرج کردن و پس‌انداز پول منضبط می‌دانید؟"
+      },
+      {
+        "id": 18,
+        "seconds": 189,
+        "timeDisplay": "3:09",
+        "speaker": "Speaker 4",
+        "textEn": "I do, actually. I never go overdrawn, I pay off my credit card, and I make sure my savings get a reasonable rate of interest. I'm an organized person.",
+        "textFa": "بله قطعاً؛ هرگز حسابم منفی نمی‌شود، بدهی کارتم را تسویه می‌کنم و پس‌اندازم سود معقولی دارد. در مسائل مالی آدم بسیار منظمی هستم."
+      },
+      {
+        "id": 19,
+        "seconds": 212,
+        "timeDisplay": "3:32",
+        "speaker": "Interviewer",
+        "textEn": "Do you think that women are better at managing money than men?",
+        "textFa": "آیا زنان مهارت بیشتری در مدیریت مالی دارند؟"
+      },
+      {
+        "id": 20,
+        "seconds": 216,
+        "timeDisplay": "3:36",
+        "speaker": "Speaker 4",
+        "textEn": "Men like spending money on their own things—like bikes or gadgets—whereas women tend to spend more on family needs, giving them a better perspective.",
+        "textFa": "مردها بیشتر برای وسایل شخصی خود مثل دوچرخه یا گجت‌ها خرج می‌کنند، در حالی که زنان برای نیازهای کل خانواده هزینه می‌کنند و دیدگاه بهتری دارند."
+      },
+      {
+        "id": 21,
+        "seconds": 252,
+        "timeDisplay": "4:12",
+        "speaker": "Interviewer",
+        "textEn": "Do you think having more money would make you happier?",
+        "textFa": "آیا داشتن پول بیشتر خوشحالتان می‌کند؟"
+      },
+      {
+        "id": 22,
+        "seconds": 255,
+        "timeDisplay": "4:15",
+        "speaker": "Speaker 4",
+        "textEn": "Having a bit more might. A sudden massive lottery win would be hard to deal with, but an extra 10,000 a year would be just about right.",
+        "textFa": "کمی بیشتر شاید؛ برد در بخت‌آزمایی بزرگ کنترلش دشوار است، اما مثلاً ۱۰ هزار پوند بیشتر در سال کاملاً عالی خواهد بود."
+      },
+      {
+        "id": 23,
+        "seconds": 275,
+        "timeDisplay": "4:35",
+        "speaker": "Interviewer",
+        "textEn": "Do you consider yourself good with money?",
+        "textFa": "آیا خودتان را در حساب‌وکتاب مالی خوب می‌دانید؟"
+      },
+      {
+        "id": 24,
+        "seconds": 278,
+        "timeDisplay": "4:38",
+        "speaker": "Speaker 5",
+        "textEn": "No, I'm not good with money. I'm still kind of irresponsible and rely on my parents a lot.",
+        "textFa": "خیر، در مدیریت پول تعریفی ندارم؛ هنوز تا حدی بی‌مسئولیتم و به حمایت والدینم وابسته‌ام."
+      },
+      {
+        "id": 25,
+        "seconds": 287,
+        "timeDisplay": "4:47",
+        "speaker": "Interviewer",
+        "textEn": "Do you think that women are better at managing money than men?",
+        "textFa": "آیا زنان در مدیریت هزینه‌ها بهترند؟"
+      },
+      {
+        "id": 26,
+        "seconds": 291,
+        "timeDisplay": "4:51",
+        "speaker": "Speaker 5",
+        "textEn": "I think women become better at managing money than men because they run the household and divide the income between family members.",
+        "textFa": "فکر می‌کنم زنان بهتر می‌شوند چون خانه را مدیریت کرده و درآمد را میان اعضای خانواده تقسیم می‌کنند."
+      },
+      {
+        "id": 27,
+        "seconds": 298,
+        "timeDisplay": "4:58",
+        "speaker": "Interviewer",
+        "textEn": "Do you think having more money would make you happier?",
+        "textFa": "آیا پول بیشتر شما را خوشحال‌تر می‌سازد؟"
+      },
+      {
+        "id": 28,
+        "seconds": 302,
+        "timeDisplay": "5:02",
+        "speaker": "Speaker 5",
+        "textEn": "I think it could make me happier, but not necessarily.",
+        "textFa": "می‌تواند مرا خوشحال‌تر کند، اما لزوماً این‌طور نیست."
       }
     ],
     "questions": {
@@ -25602,8 +26074,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "c1-v20",
     "level": "c1",
     "episodeNumber": 20,
-    "titleFa": "مصاحبه خیابانی ۸ و ۹: چشم‌انداز آینده جهانی و تغییرات اجتماعی",
-    "titleEn": "On the Street 8 & 9: Visions of the Global Future",
+    "titleFa": "مصاحبه خیابانی ۸ و ۹: آشپزی آمریکایی و طعم‌های محبوب بین‌المللی",
+    "titleEn": "On the Street 8 & 9: American Cuisine & World Flavors",
     "bookLevel": "American English File 5 (3rd Edition)",
     "unit": "On the Street Vox Pops",
     "cefr": "C1",
@@ -25614,8 +26086,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #1e293b, #475569)",
     "posterIcon": "🏙️",
-    "summaryFa": "مصاحبه‌های خیابانی خودجوش با شهروندان در نیویورک و لندن پیرامون Global Future با لهجه‌های گوناگون.",
-    "summaryEn": "Spontaneous on-the-street interviews with native speakers in London and New York discussing Global Future.",
+    "summaryFa": "مصاحبه‌های واقعی خیابانی در نیویورک درباره هویت آشپزی آمریکایی، سالم بودن غذاهای محلی در مقایسه با سایر ایالت‌ها، و جذابیت غذاهای برزیلی، تایلندی و باربیکیوی کره‌ای.",
+    "summaryEn": "Authentic vox pop interviews in New York City discussing the definition of American cuisine, regional healthiness, and favorite international dining experiences like Brazilian rodizio, Thai food, and Korean barbecue.",
     "keyTopicsFa": [
       "مصاحبه خیابانی Global Future",
       "لهجه‌های متنوع بومی",
@@ -25624,84 +26096,212 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 2,
-              "timeDisplay": "0:02",
-              "speaker": "Interviewer",
-              "textEn": "What's the most interesting animal that you've ever seen in the wild?",
-              "textFa": "جالب‌ترین حیوانی که تاکنون در حیات وحش دیده‌اید چه بوده است؟"
+        "id": 1,
+        "seconds": 0,
+        "timeDisplay": "0:00",
+        "speaker": "Interviewer",
+        "textEn": "Do you think American cuisine is good?",
+        "textFa": "آیا به نظرتان آشپزی و غذاهای آمریکایی خوشمزه هستند؟"
       },
       {
-              "id": 2,
-              "seconds": 109,
-              "timeDisplay": "1:49",
-              "speaker": "Jenny",
-              "textEn": "I think the most interesting animal I've ever seen in the wild is an elephant in Thailand at an elephant sanctuary where they roam free.",
-              "textFa": "جالب‌ترین حیوانی که در حیات وحش دیده‌ام فیل بود، در پناهگاه فیل‌ها در تایلند که آزادانه در طبیعت پرسه می‌زدند."
+        "id": 2,
+        "seconds": 17,
+        "timeDisplay": "0:17",
+        "speaker": "Speaker 1",
+        "textEn": "I have a hard time defining what American cuisine is. I guess hamburgers, hot dogs, fries. In that context, yes, I think it's excellent.",
+        "textFa": "تعریف آشپزی آمریکایی کار سختی است؛ فکر کنم همبرگر، هات‌داگ و سیب‌زمینی سرخ‌کرده باشد؛ با این تعریف بله، فوق‌العاده است!"
       },
       {
-              "id": 3,
-              "seconds": 205,
-              "timeDisplay": "3:25",
-              "speaker": "Interviewer",
-              "textEn": "Is there anywhere you would particularly like to go to see animals or the natural world?",
-              "textFa": "آیا مکان خاصی هست که بخواهید برای دیدن حیات وحش یا طبیعت بکر به آنجا سفر کنید؟"
+        "id": 3,
+        "seconds": 35,
+        "timeDisplay": "0:35",
+        "speaker": "Interviewer",
+        "textEn": "How healthy do you think the cuisine in your country is?",
+        "textFa": "غذاهای کشورتان چقدر سالم هستند؟"
       },
       {
-              "id": 4,
-              "seconds": 209,
-              "timeDisplay": "3:29",
-              "speaker": "Jenny",
-              "textEn": "Yes, I would love to go to Japan to see the snow monkeys.",
-              "textFa": "بله، خیلی دوست دارم به ژاپن سفر کنم تا میمون‌های برفی را در زیستگاه طبیعی‌شان ببینم."
+        "id": 4,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Speaker 1",
+        "textEn": "I don't think American food is inherently unhealthy, but we enjoy frying things up that don't need to be fried.",
+        "textFa": "فکر نمی‌کنم ذاتاً ناسالم باشد، اما ما علاقه عجیبی به سرخ کردن چیزهایی داریم که اصلاً نیازی به سرخ شدن ندارند."
       },
       {
-              "id": 5,
-              "seconds": 211,
-              "timeDisplay": "3:31",
-              "speaker": "Interviewer",
-              "textEn": "What's the most interesting wild animal that you've ever seen?",
-              "textFa": "جالب‌ترین جانور وحشی که تا به حال دیده‌اید کدام است؟"
+        "id": 5,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Interviewer",
+        "textEn": "Do you think Americans eat too much fried food?",
+        "textFa": "آیا آمریکایی‌ها در مصرف غذاهای سرخ‌کرده زیاده‌روی می‌کنند؟"
       },
       {
-              "id": 6,
-              "seconds": 213,
-              "timeDisplay": "3:33",
-              "speaker": "Alex",
-              "textEn": "An orangutan in the Malaysian part of Borneo. We went specially to see them, and when we finally saw one in the canopy, it was very exciting.",
-              "textFa": "یک اورانگوتان در بخش مالزیایی جزیره بورنئو. مخصوصاً برای دیدن آن‌ها رفته بودیم و تماشای آن در بالای درختان فوق‌العاده هیجان‌انگیز بود."
+        "id": 6,
+        "seconds": 59,
+        "timeDisplay": "0:59",
+        "speaker": "Speaker 1",
+        "textEn": "Being from California, I'm obliged to say yes. We eat a lot of fast food because it obviously makes it taste better.",
+        "textFa": "به عنوان اهل کالیفرنیا باید بگویم بله؛ ما فست‌فود زیادی می‌خوریم چون طعم لذیذتری دارد."
       },
       {
-              "id": 7,
-              "seconds": 215,
-              "timeDisplay": "3:35",
-              "speaker": "Interviewer",
-              "textEn": "Where would you like to travel next for nature exploration?",
-              "textFa": "مقصد بعدی شما برای سیاحت در طبیعت کجاست؟"
+        "id": 7,
+        "seconds": 72,
+        "timeDisplay": "1:12",
+        "speaker": "Interviewer",
+        "textEn": "Do you think food in California is healthy?",
+        "textFa": "آیا غذاها در کالیفرنیا سالم‌ترند؟"
       },
       {
-              "id": 8,
-              "seconds": 217,
-              "timeDisplay": "3:37",
-              "speaker": "Sarah",
-              "textEn": "I'd love to go on a safari in South Africa or see giant sea turtles nesting in their native marine environments.",
-              "textFa": "دوست دارم به سافاری در آفریقای جنوبی بروم یا لاک‌پشت‌های عظیم دریایی را هنگام تخم‌گذاری در اقیانوس تماشا کنم."
+        "id": 8,
+        "seconds": 76,
+        "timeDisplay": "1:16",
+        "speaker": "Speaker 1",
+        "textEn": "People in California like to believe they eat local, fresh, organic food. It is easier to find healthy options there than in Texas.",
+        "textFa": "مردم کالیفرنیا دوست دارند باور کنند که غذای محلی، تازه و ارگانیک می‌خورند؛ پیدا کردن غذای سالم در آنجا آسان‌تر از تگزاس است."
       },
       {
-              "id": 9,
-              "seconds": 219,
-              "timeDisplay": "3:39",
-              "speaker": "Interviewer",
-              "textEn": "Is there anywhere you would particularly like to go?",
-              "textFa": "آیا نقطه خاصی مدنظرتان هست؟"
+        "id": 9,
+        "seconds": 93,
+        "timeDisplay": "1:33",
+        "speaker": "Interviewer",
+        "textEn": "What other cuisines do you like?",
+        "textFa": "به چه سبک‌های آشپزی و غذاهای بین‌المللی علاقه دارید؟"
       },
       {
-              "id": 10,
-              "seconds": 221,
-              "timeDisplay": "3:41",
-              "speaker": "Karen",
-              "textEn": "Madagascar. I'd love to see the unique lemurs and flora there after watching all those David Attenborough nature documentaries.",
-              "textFa": "ماداگاسکار؛ خیلی مایلم لمورها و گیاهان منحصر‌به‌فرد آنجا را پس از دیدن آن همه مستندهای دیوید اتنبرو از نزدیک ببینم."
+        "id": 10,
+        "seconds": 97,
+        "timeDisplay": "1:37",
+        "speaker": "Speaker 1",
+        "textEn": "Living in a cosmopolitan area, I enjoy all kinds of international food—Indian, Thai, and Asian fusion.",
+        "textFa": "در منطقه‌ای بین‌المللی زندگی می‌کنم و از انواع غذاها مانند هندی و تایلندی لذت می‌برم."
+      },
+      {
+        "id": 11,
+        "seconds": 115,
+        "timeDisplay": "1:55",
+        "speaker": "Interviewer",
+        "textEn": "What do you like about Thai food?",
+        "textFa": "چه چیزی در غذای تایلندی برایتان جذاب است؟"
+      },
+      {
+        "id": 12,
+        "seconds": 118,
+        "timeDisplay": "1:58",
+        "speaker": "Speaker 1",
+        "textEn": "I like the stir-fry style, the fresh herbs and spices like basil, and the rich peanut-based sauces.",
+        "textFa": "روش تفت دادن سریع سبزیجات، سبزی‌های معطر مثل ریحان و سس‌های لذیذ بادام‌زمینی‌اش را دوست دارم."
+      },
+      {
+        "id": 13,
+        "seconds": 135,
+        "timeDisplay": "2:15",
+        "speaker": "Interviewer",
+        "textEn": "Do you think, in general, people from your country are good cooks?",
+        "textFa": "به نظرتان مردم کشور شما آشپزهای خوبی هستند؟"
+      },
+      {
+        "id": 14,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Speaker 2",
+        "textEn": "I do think Americans are good cooks. New York cuisine is very diverse, so all different types of foods could be considered American.",
+        "textFa": "بله، فکر می‌کنم آشپزهای خوبی هستند. نیویورک تنوع غذایی شگفت‌انگیزی دارد و همه انواع غذاها در آن بومی شده‌اند."
+      },
+      {
+        "id": 15,
+        "seconds": 155,
+        "timeDisplay": "2:35",
+        "speaker": "Interviewer",
+        "textEn": "What other cuisines do you really like?",
+        "textFa": "دیگر چه غذاهای خارجی را دوست دارید؟"
+      },
+      {
+        "id": 16,
+        "seconds": 158,
+        "timeDisplay": "2:38",
+        "speaker": "Speaker 2",
+        "textEn": "Another cuisine I really love would be Brazilian. I'm a heavy meat eater, and they keep everything super flavorful and diverse.",
+        "textFa": "عاشق غذاهای برزیلی هستم؛ من گوشتخوار قهاری هستم و برزیلی‌ها گوشت را فوق‌العاده لذیذ و متنوع طبخ می‌کنند."
+      },
+      {
+        "id": 17,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Interviewer",
+        "textEn": "How healthy do you think the cuisine in your country is?",
+        "textFa": "غذاهای کشورتان چقدر سالم هستند؟"
+      },
+      {
+        "id": 18,
+        "seconds": 177,
+        "timeDisplay": "2:57",
+        "speaker": "Speaker 2",
+        "textEn": "Brazilian food is probably healthier. American food has too much fast food, GMOs, and pesticides going on.",
+        "textFa": "غذای برزیلی سالم‌تر است؛ در آمریکا فست‌فود و دستکاری‌های ژنتیکی و آفت‌کش‌ها بیش از حد زیاد است."
+      },
+      {
+        "id": 19,
+        "seconds": 216,
+        "timeDisplay": "3:36",
+        "speaker": "Interviewer",
+        "textEn": "Do you think, in general, people from your country are good cooks?",
+        "textFa": "به نظرتان مردم آمریکا آشپزهای ماهری هستند؟"
+      },
+      {
+        "id": 20,
+        "seconds": 220,
+        "timeDisplay": "3:40",
+        "speaker": "Speaker 3",
+        "textEn": "American food is a melting pot. In New York you have Italian, Thai, and Chinese fusion; in the South or Midwest, it's more butter-oriented and hearty.",
+        "textFa": "غذای آمریکایی دیگ جوشانی از فرهنگ‌هاست؛ در نیویورک غذای تلفیقی ایتالیایی و چینی دارید و در جنوب یا غرب میانه غذاها کره‌ای و پرکالری‌ترند."
+      },
+      {
+        "id": 21,
+        "seconds": 255,
+        "timeDisplay": "4:15",
+        "speaker": "Interviewer",
+        "textEn": "How healthy do you think the cuisine in your country is?",
+        "textFa": "غذاهای کشور شما چقدر سلامت هستند؟"
+      },
+      {
+        "id": 22,
+        "seconds": 259,
+        "timeDisplay": "4:19",
+        "speaker": "Speaker 3",
+        "textEn": "It depends on the region. The caloric count in the South is very different from Brooklyn, where farm-to-table restaurants offer healthier options.",
+        "textFa": "بستگی به منطقه دارد؛ کالری غذا در جنوب با رستوران‌های ارگانیک بروکلین زمین تا آسمان فرق می‌کند."
+      },
+      {
+        "id": 23,
+        "seconds": 294,
+        "timeDisplay": "4:54",
+        "speaker": "Interviewer",
+        "textEn": "What other cuisines do you like?",
+        "textFa": "کدام غذاهای خارجی را بیشتر دوست دارید؟"
+      },
+      {
+        "id": 24,
+        "seconds": 297,
+        "timeDisplay": "4:57",
+        "speaker": "Speaker 3",
+        "textEn": "My absolute favorite is Korean barbecue. You take steak and vegetables and wrap them in fresh lettuce leaves.",
+        "textFa": "غذای محبوبم باربیکیوی کره‌ای است؛ استیک و سبزیجات را در برگ‌های کاهو می‌پیچید و روی میز کباب می‌کنید."
+      },
+      {
+        "id": 25,
+        "seconds": 323,
+        "timeDisplay": "5:23",
+        "speaker": "Interviewer",
+        "textEn": "What do you like about Korean barbecue?",
+        "textFa": "چه ویژگی باربیکیوی کره‌ای را دوست دارید؟"
+      },
+      {
+        "id": 26,
+        "seconds": 326,
+        "timeDisplay": "5:26",
+        "speaker": "Speaker 3",
+        "textEn": "They bring an entire buffet right to your table with diverse meats, vegetables, and a grilling station where you cook it yourself. It's fantastic.",
+        "textFa": "یک بوفه کامل از گوشت و سبزیجات متنوع را سر میز می‌آورند و یک منقل وسط میز هست که خودتان کباب می‌کنید؛ بی‌نهایت لذت‌بخش است."
       }
     ],
     "questions": {

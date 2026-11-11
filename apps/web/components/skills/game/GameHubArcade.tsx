@@ -408,25 +408,9 @@ export function GameHubArcade() {
             refreshProgress();
           }}
         />
-      ) : activeLevel && activeLevel.skill === "speaking" && (activeLevel.cefr === "A1" || activeLevel.cefr === "A2") ? (
+      ) : activeLevel && activeLevel.skill === "speaking" ? (
         <SherlockSpeakingArena
           key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
-          level={activeLevel}
-          onClose={() => {
-            setActiveLevel(null);
-            refreshProgress();
-          }}
-          onNextLevel={handleNextLevel}
-          onOpenLeaderboard={() => {
-            setActiveLevel(null);
-            setLeaderboardSkill("speaking");
-            setIsLeaderboardOpen(true);
-            refreshProgress();
-          }}
-        />
-      ) : activeLevel && activeLevel.skill === "speaking" ? (
-        <SpeakingEscapeRoomArena
-          key={`speaking-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);

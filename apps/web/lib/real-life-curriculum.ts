@@ -203,16 +203,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       {
               "id": 3,
-              "seconds": 30,
-              "timeDisplay": "0:30",
+              "seconds": 31,
+              "timeDisplay": "0:31",
               "speaker": "Chris",
               "textEn": "My name is Chris. C-H-R-I-S.",
               "textFa": "نام من کریس است: سی-اچ-آر-آی-اس."
       },
       {
               "id": 4,
-              "seconds": 34,
-              "timeDisplay": "0:34",
+              "seconds": 35,
+              "timeDisplay": "0:35",
               "speaker": "Sharron",
               "textEn": "Sharron. And that's S-H-A, double-R, O-N.",
               "textFa": "شارون. و هجی آن اس-اچ-ای، دو تا آر، او-ان است."
@@ -251,8 +251,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       {
               "id": 9,
-              "seconds": 57,
-              "timeDisplay": "0:57",
+              "seconds": 58,
+              "timeDisplay": "0:58",
               "speaker": "Tom",
               "textEn": "My name is Tom. That's T-O-M.",
               "textFa": "نام من تام است: تی-او-ام."
@@ -267,64 +267,64 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       {
               "id": 11,
-              "seconds": 82,
-              "timeDisplay": "1:22",
+              "seconds": 72,
+              "timeDisplay": "1:12",
               "speaker": "Rachael",
               "textEn": "I have a bottle of water. I have my purse, my keys.",
               "textFa": "من یک بطری آب، کیف پولم و کلیدهایم را دارم."
       },
       {
               "id": 12,
-              "seconds": 103,
-              "timeDisplay": "1:43",
+              "seconds": 79,
+              "timeDisplay": "1:19",
               "speaker": "Chris",
               "textEn": "I have a laptop and a notebook.",
               "textFa": "من یک لپ‌تاپ و یک دفترچه یادداشت دارم."
       },
       {
               "id": 13,
-              "seconds": 105,
-              "timeDisplay": "1:45",
+              "seconds": 82,
+              "timeDisplay": "1:22",
               "speaker": "Sharron",
               "textEn": "I have a bottle of water, a notebook and a banana.",
               "textFa": "من یک بطری آب، یک دفترچه و یک موز دارم."
       },
       {
               "id": 14,
-              "seconds": 107,
-              "timeDisplay": "1:47",
+              "seconds": 88,
+              "timeDisplay": "1:28",
               "speaker": "Ian",
               "textEn": "I have a laptop and a mobile.",
               "textFa": "من یک لپ‌تاپ و یک تلفن همراه دارم."
       },
       {
               "id": 15,
-              "seconds": 109,
-              "timeDisplay": "1:49",
+              "seconds": 91,
+              "timeDisplay": "1:31",
               "speaker": "Simnit",
               "textEn": "I have an umbrella, my mobile phone and my purse.",
               "textFa": "من یک چتر، گوشی تلفن همراه و کیف پولم را دارم."
       },
       {
               "id": 16,
-              "seconds": 111,
-              "timeDisplay": "1:51",
+              "seconds": 96,
+              "timeDisplay": "1:36",
               "speaker": "Biba",
               "textEn": "In my bag I have my phone and my wallet.",
               "textFa": "در کیفم تلفن همراهم و کیف پولم را دارم."
       },
       {
               "id": 17,
-              "seconds": 111,
-              "timeDisplay": "1:51",
+              "seconds": 100,
+              "timeDisplay": "1:40",
               "speaker": "Layan",
               "textEn": "So I have my wallet and some make-up.",
               "textFa": "من هم کیف پولم و مقداری لوازم آرایش دارم."
       },
       {
               "id": 18,
-              "seconds": 111,
-              "timeDisplay": "1:51",
+              "seconds": 103,
+              "timeDisplay": "1:43",
               "speaker": "Tom",
               "textEn": "I have my laptop and two books.",
               "textFa": "من لپ‌تاپم و دو جلد کتاب در کیفم دارم."
@@ -334,10 +334,10 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       "listening": {
         "skill": "listening",
         "promptFa": "بر اساس ویدیوی «یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): افراد و کشورها: معرفی و ملیت‌ها»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:58]. What key insight does William share?",
-        "timestampSeconds": 58,
-        "timestampDisplay": "0:58",
-        "explanationFa": "در ثانیه 0:58، William صریحاً بیان می‌کند: «I have a sandwich in my bag.».",
+        "promptEn": "Listen at [1:09]. What key insight does William share?",
+        "timestampSeconds": 69,
+        "timestampDisplay": "1:09",
+        "explanationFa": "در ثانیه 1:09، William صریحاً بیان می‌کند: «I have a sandwich in my bag.».",
         "options": [
           {
             "id": 1,
@@ -732,8 +732,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v03",
     "level": "a1",
     "episodeNumber": 3,
-    "titleFa": "یونیت 2 · مستند تلویزیونی BBC: وسایل روزمره و کیف شخصی",
-    "titleEn": "Unit 2 · BBC Programmes: Everyday Objects & Bags",
+    "titleFa": "یونیت 2 · برنامه تلویزیونی BBC: مسابقه برترین آشپز خانگی (معرفی سن، شغل و خانواده)",
+    "titleEn": "Unit 2 · BBC Programmes: Best Home Cook (People, Jobs & Families)",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 2",
     "cefr": "A1",
@@ -744,19 +744,19 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون وسایل روزمره و کیف شخصی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on everyday objects & bags with native British and international speakers.",
+    "summaryFa": "مستند تلویزیونی معتبر BBC از مسابقه Best Home Cook؛ چالش هیجان‌انگیز پخت کیک تولد همراه با معرفی مشخصات فردی، سن، شغل و خانواده شرکت‌کنندگان.",
+    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition covering the celebration cake challenge from Best Home Cook and introducing contestants, ages, jobs, and families.",
     "keyTopicsFa": [
-      "وسایل روزمره و کیف شخصی",
-      "مستند تلویزیونی BBC",
-      "واژگان یونیت 2",
+      "مسابقه تلویزیونی آشپزی BBC (Best Home Cook)",
+      "بیان سن، شغل و اعضای خانواده",
+      "واژگان یونیت 2 اسپیک‌آوت",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
               "id": 1,
-              "seconds": 34,
-              "timeDisplay": "0:34",
+              "seconds": 13,
+              "timeDisplay": "0:13",
               "speaker": "Narrator",
               "textEn": "Ten home cooks. Eight weeks. Twenty-four tasks. Three judges. This is Best Home Cook. It's Week four. The home cooks arrive.",
               "textFa": "ده آشپز خانگی، هشت هفته، بیست و چهار چالش و سه داور؛ اینجا مسابقه برترین آشپز خانگی است. هفته چهارم است و شرکت‌کنندگان وارد می‌شوند."
@@ -766,167 +766,206 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 36,
               "timeDisplay": "0:36",
               "speaker": "Claudia",
-              "textEn": "Hi, hello!",
+              "textEn": "Hi. Hello.",
               "textFa": "سلام، درود بر همگی!"
       },
       {
               "id": 3,
-              "seconds": 38,
-              "timeDisplay": "0:38",
+              "seconds": 37,
+              "timeDisplay": "0:37",
               "speaker": "Robin",
               "textEn": "Hi, Claudia.",
               "textFa": "سلام، کلودیا."
       },
       {
               "id": 4,
-              "seconds": 49,
-              "timeDisplay": "0:49",
+              "seconds": 38,
+              "timeDisplay": "0:38",
               "speaker": "Elisabetta",
               "textEn": "Good morning.",
               "textFa": "صبح بخیر."
       },
       {
               "id": 5,
-              "seconds": 51,
-              "timeDisplay": "0:51",
+              "seconds": 38,
+              "timeDisplay": "0:38",
               "speaker": "Narrator",
               "textEn": "Our presenter is Claudia Winkleman.",
               "textFa": "مجری برنامه ما، کلودیا وینکلمن است."
       },
       {
               "id": 6,
-              "seconds": 53,
-              "timeDisplay": "0:53",
+              "seconds": 41,
+              "timeDisplay": "0:41",
               "speaker": "Claudia",
               "textEn": "How are we all?",
               "textFa": "همگی چطورید؟"
       },
       {
               "id": 7,
-              "seconds": 214,
-              "timeDisplay": "3:34",
+              "seconds": 42,
+              "timeDisplay": "0:42",
               "speaker": "All",
-              "textEn": "Good, good!",
-              "textFa": "عالی، بسیار خوب!"
+              "textEn": "Good, good.",
+              "textFa": "خوب، عالی!"
       },
       {
               "id": 8,
-              "seconds": 216,
-              "timeDisplay": "3:36",
+              "seconds": 44,
+              "timeDisplay": "0:44",
               "speaker": "Narrator",
-              "textEn": "Next, the judges arrive. There is chef Dan Doherty, cookery expert Mary Berry, and restaurant director Chris Bavin.",
-              "textFa": "سپس داوران وارد می‌شوند: سرآشپز دن دوهرتی، کارشناس برجسته آشپزی مری بری، و مدیر رستوران کریس باوین."
+              "textEn": "Next, the judges arrive.",
+              "textFa": "سپس داوران وارد می‌شوند."
       },
       {
               "id": 9,
-              "seconds": 218,
-              "timeDisplay": "3:38",
-              "speaker": "Mary",
-              "textEn": "Good morning cooks!",
-              "textFa": "صبح بخیر آشپزهای عزیز!"
+              "seconds": 49,
+              "timeDisplay": "0:49",
+              "speaker": "Judges & All",
+              "textEn": "Judges! Morning! / Morning.",
+              "textFa": "داوران تشریف آوردند! صبح بخیر! / صبح بخیر."
       },
       {
               "id": 10,
-              "seconds": 220,
-              "timeDisplay": "3:40",
-              "speaker": "Claudia",
-              "textEn": "Today's ingredient is fish. Fresh white fish from the market.",
-              "textFa": "ماده اولیه اصلی امروز ماهی است؛ ماهی سفید تازه از بازار."
+              "seconds": 55,
+              "timeDisplay": "0:55",
+              "speaker": "Narrator",
+              "textEn": "It's time for today's task.",
+              "textFa": "زمان چالش امروز فرا رسیده است."
       },
       {
               "id": 11,
-              "seconds": 222,
-              "timeDisplay": "3:42",
-              "speaker": "Dan",
-              "textEn": "You have one hour to make your best home-cooked fish dish.",
-              "textFa": "شما یک ساعت زمان دارید تا بهترین غذای خانگی خود با ماهی را آماده کنید."
+              "seconds": 59,
+              "timeDisplay": "0:59",
+              "speaker": "Claudia",
+              "textEn": "You have three hours to make the ultimate birthday cake. Let's go.",
+              "textFa": "شما سه ساعت فرصت دارید تا فوق‌العاده‌ترین کیک تولد را بپزید. شروع کنید!"
       },
       {
               "id": 12,
-              "seconds": 224,
-              "timeDisplay": "3:44",
+              "seconds": 65,
+              "timeDisplay": "1:05",
               "speaker": "Narrator",
-              "textEn": "The cooks start chopping onions, herbs, and preparing delicious vegetables.",
-              "textFa": "آشپزها شروع به خرد کردن پیاز، سبزیجات معطر و آماده‌سازی مواد اولیه خوش‌طعم می‌کنند."
+              "textEn": "The task is a children's birthday cake.",
+              "textFa": "چالش امروز، پخت کیک تولد کودکان است."
       },
       {
               "id": 13,
-              "seconds": 226,
-              "timeDisplay": "3:46",
-              "speaker": "Claudia",
-              "textEn": "Robin, what are you making today?",
-              "textFa": "رابین، امروز چه چیزی آماده می‌کنی؟"
+              "seconds": 71,
+              "timeDisplay": "1:11",
+              "speaker": "Narrator",
+              "textEn": "Robin is 63. He's a manager from Bristol in the UK. He has a wife and a daughter.",
+              "textFa": "رابین ۶۳ ساله است؛ مدیر از بریستول انگلستان. او همسر و یک دختر دارد."
       },
       {
               "id": 14,
-              "seconds": 228,
-              "timeDisplay": "3:48",
-              "speaker": "Robin",
-              "textEn": "I'm making a pan-fried cod with roasted tomatoes and garlic potatoes.",
-              "textFa": "من ماهی کاد تفت داده شده در تابه به همراه گوجه کبابی و سیب‌زمینی سیردار درست می‌کنم."
+              "seconds": 84,
+              "timeDisplay": "1:24",
+              "speaker": "Narrator",
+              "textEn": "Suzie is 36. She has two children and she's from Northern Ireland.",
+              "textFa": "سوزی ۳۶ ساله است؛ دو فرزند دارد و اهل ایرلند شمالی است."
       },
       {
               "id": 15,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Mary",
-              "textEn": "That sounds wonderfully fresh and tasty, Robin.",
-              "textFa": "بسیار تازه و لذیذ به نظر می‌رسد، رابین."
+              "seconds": 94,
+              "timeDisplay": "1:34",
+              "speaker": "Narrator",
+              "textEn": "Georgia is 24 years old and she's from London. She's a model.",
+              "textFa": "جورجیا ۲۴ ساله و اهل لندن است؛ او یک مدل است."
       },
       {
               "id": 16,
-              "seconds": 232,
-              "timeDisplay": "3:52",
-              "speaker": "Claudia",
-              "textEn": "Elisabetta, tell us about your recipe.",
-              "textFa": "الیزابتا، از دستور پخت خودت برایمان بگو."
+              "seconds": 106,
+              "timeDisplay": "1:46",
+              "speaker": "Narrator",
+              "textEn": "Oli is a manager in a restaurant. He's 34 and he's married. He and his wife have one daughter.",
+              "textFa": "اولی مدیر یک رستوران است؛ او ۳۴ ساله و متأهل است و به همراه همسرش یک دختر دارند."
       },
       {
               "id": 17,
-              "seconds": 234,
-              "timeDisplay": "3:54",
-              "speaker": "Elisabetta",
-              "textEn": "It's an Italian baked fish with olives, capers, and fresh lemon juice.",
-              "textFa": "یک ماهی تنوری ایتالیایی با زیتون، کبر و آب‌لیموی تازه است."
+              "seconds": 120,
+              "timeDisplay": "2:00",
+              "speaker": "Narrator",
+              "textEn": "Katie's 33. She's married and she works in a supermarket.",
+              "textFa": "کیتی ۳۳ ساله است؛ متأهل است و در یک سوپرمارکت کار می‌کند."
       },
       {
               "id": 18,
-              "seconds": 236,
-              "timeDisplay": "3:56",
-              "speaker": "Chris",
-              "textEn": "Remember everyone, balance the salt and acidity carefully.",
-              "textFa": "همه به یاد داشته باشید که میزان نمک و ترشی غذا را با دقت متعادل کنید."
+              "seconds": 130,
+              "timeDisplay": "2:10",
+              "speaker": "Narrator",
+              "textEn": "Elisabetta is 52. She's from Italy, but now her home is in London.",
+              "textFa": "الیزابتا ۵۲ ساله است؛ اهل ایتالیا است اما اکنون خانه‌اش در لندن است."
       },
       {
               "id": 19,
-              "seconds": 238,
-              "timeDisplay": "3:58",
+              "seconds": 144,
+              "timeDisplay": "2:24",
               "speaker": "Narrator",
-              "textEn": "Time is running out. Ten, nine, eight, seven, six, five, four, three, two, one... Time is up!",
-              "textFa": "زمان رو به پایان است: ده، نه، هشت، هفت، شش، پنج، چهار، سه، دو، یک... وقت تمام شد!"
+              "textEn": "Sarah's 42 and has a son. They're from Manchester.",
+              "textFa": "سارا ۴۲ ساله است و یک پسر دارد؛ آن‌ها اهل منچستر هستند."
       },
       {
               "id": 20,
-              "seconds": 240,
-              "timeDisplay": "4:00",
-              "speaker": "Judges",
-              "textEn": "The presentation is fantastic. The fish is cooked to perfection!",
-              "textFa": "چیدمان غذاها فوق‌العاده است و پخت ماهی کاملاً بی‌نقص انجام شده است!"
-      }
-    ],
+              "seconds": 177,
+              "timeDisplay": "2:57",
+              "speaker": "Claudia",
+              "textEn": "Fifteen minutes! One minute, cooks. And that's it, time's up.",
+              "textFa": "۱۵ دقیقه باقی مانده! آشپزها یک دقیقه فرصت دارید... و تمام، وقت تمام شد!"
+      },
+      {
+              "id": 21,
+              "seconds": 204,
+              "timeDisplay": "3:24",
+              "speaker": "Narrator",
+              "textEn": "Finally, the cakes are finished. But are they good? So, who are the three winners?",
+              "textFa": "سرانجام کیک‌ها آماده شدند؛ اما آیا خوب شده‌اند؟ خب، سه برنده چه کسانی هستند؟"
+      },
+      {
+              "id": 22,
+              "seconds": 246,
+              "timeDisplay": "4:06",
+              "speaker": "Chris",
+              "textEn": "And that is\u2026 Suzie's.",
+              "textFa": "و برنده اول... کیک سوزی است."
+      },
+      {
+              "id": 23,
+              "seconds": 253,
+              "timeDisplay": "4:13",
+              "speaker": "Mary",
+              "textEn": "The one that stood out for me\u2026 It was Robin's.",
+              "textFa": "کیکی که برای من واقعاً شاخص بود... کیک رابین بود."
+      },
+      {
+              "id": 24,
+              "seconds": 260,
+              "timeDisplay": "4:20",
+              "speaker": "Angela",
+              "textEn": "Katie, well done.",
+              "textFa": "کیتی، آفرین و دست‌مریزاد."
+      },
+      {
+              "id": 25,
+              "seconds": 265,
+              "timeDisplay": "4:25",
+              "speaker": "Narrator",
+              "textEn": "And now it's time to rest before next week.",
+              "textFa": "و اکنون زمان استراحت تا مسابقه هفته آینده است."
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 2 · مستند تلویزیونی BBC: وسایل روزمره و کیف شخصی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [2:17]. What key insight does Cl share?",
-        "timestampSeconds": 137,
-        "timestampDisplay": "2:17",
-        "explanationFa": "در ثانیه 2:17، Cl صریحاً بیان می‌کند: «Robin is 63. He’s a manager from Bristol in the UK. He has a wife and a daughter. Suzie is 36.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 2 · برنامه تلویزیونی BBC: مسابقه برترین آشپز خانگی»، کدام گزینه مشخصات رابین را به درستی بیان می‌کند؟",
+        "promptEn": "Listen at [1:11]. What key information does the Narrator share about Robin?",
+        "timestampSeconds": 71,
+        "timestampDisplay": "1:11",
+        "explanationFa": "در ثانیه 1:11، راوی (Narrator) صریحاً بیان می‌کند: «Robin is 63. He’s a manager from Bristol in the UK. He has a wife and a daughter.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Cl indicates: \"Robin is 63. He’s a manager from Bristol in the UK. He has a wife...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Narrator confirms: \"Robin is 63. He’s a manager from Bristol in the UK. He has a wife and a daughter.\"",
+            "textFa": "راوی به درستی مشخصات رابین (سن ۶۳، مدیر در بریستول، دارای همسر و دختر) را اعلام می‌کند."
           },
           {
             "id": 2,
@@ -948,14 +987,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (وسایل روزمره و کیف شخصی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Everyday Objects & Bags)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (معرفی سن، شغل و خانواده) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (People, Jobs & Families)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی وسایل روزمره و کیف شخصی در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با وسایل روزمره و کیف شخصی."
+            "textFa": "اصطلاح متناسب با معرفی سن، شغل و اعضای خانواده."
           },
           {
             "id": 2,
@@ -1008,22 +1047,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on everyday objects & bags, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون وسایل روزمره و کیف شخصی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "He is thirty-four years old, married, and works as a manager in a restaurant.",
+        "targetPhraseFa": "او سی و چهار ساله و متأهل است و به عنوان مدیر در یک رستوران کار می‌کند.",
+        "phoneticGuide": "/hiː ɪz ˈθɜːrti fɔːr jɪərz oʊld ˈmærid ænd wɜːrks æz ə ˈmænɪdʒər ɪn ə ˈrestərɑːnt/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه وسایل روزمره و کیف شخصی تقویت می‌کند."
+        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در بیان سن، شغل و وضعیت تأهل تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 2 · مستند تلویزیونی BBC: وسایل روزمره و کیف شخصی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 2 · BBC Programmes: Everyday Objects & Bags', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون وسایل روزمره و کیف شخصی است.",
+        "promptFa": "با توجه به زمینه و متن این مستند، محور اصلی چالش برنامه چیست؟",
+        "promptEn": "Based on the BBC programme context, what is the central challenge in Best Home Cook?",
+        "explanationFa": "هدف مسابقه، رقابت آشپزها برای پخت بهترین کیک تولد است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding everyday objects & bags.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون وسایل روزمره و کیف شخصی."
+            "textEn": "Home cooks have three hours to make the ultimate children's birthday cake.",
+            "textFa": "آشپزهای خانگی سه ساعت فرصت دارند تا بهترین کیک تولد کودکان را بپزند."
           },
           {
             "id": 2,
@@ -1045,16 +1084,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (وسایل روزمره و کیف شخصی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Everyday Objects & Bags' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره سن، شغل یا خانواده یک فرد بنویسید.",
+        "promptEn": "Write a short paragraph in English introducing someone's age, job, and family using relevant vocabulary.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about everyday objects & bags through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره وسایل روزمره و کیف شخصی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "Robin is sixty-three years old and he is a manager from Bristol. He has a wife and a daughter.",
+        "sampleAnswerFa": "رابین شصت و سه سال سن دارد و مدیری اهل بریستول است. او همسر و یک دختر دارد.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -1064,8 +1103,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v04",
     "level": "a1",
     "episodeNumber": 4,
-    "titleFa": "یونیت 2 · ولاگ تعاملی BBC: وسایل روزمره و کیف شخصی",
-    "titleEn": "Unit 2 · BBC Vlogs: Everyday Objects & Bags",
+    "titleFa": "یونیت 2 · ولاگ‌های BBC: کشورها، ملیت‌ها و مکان فعلی افراد",
+    "titleEn": "Unit 2 · BBC Vlogs: Countries, Nationalities & Current Locations",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 2",
     "cefr": "A1",
@@ -1076,27 +1115,27 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون وسایل روزمره و کیف شخصی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on everyday objects & bags with native British and international speakers.",
+    "summaryFa": "ولاگ‌های معتبر و مستند BBC از زبان‌آموزان بین‌المللی کتاب اسپیک‌آوت؛ معرفی نام، کشور مبدأ، ملیت و شهر محل اقامت فعلی در سراسر جهان همراه با لهجه‌های زنده انگلیسی.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where international speakers introduce their names, countries of origin, nationalities, and current cities.",
     "keyTopicsFa": [
-      "وسایل روزمره و کیف شخصی",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 2",
-      "لهجه‌های زنده بریتانیایی"
+      "معرفی کشور مبدأ و ملیت",
+      "بیان شهر و کشور محل اقامت فعلی",
+      "کاربرد حروف اضافه in و from",
+      "لهجه‌های زنده بین‌المللی"
     ],
     "transcript": [
       {
               "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
+              "seconds": 20,
+              "timeDisplay": "0:20",
               "speaker": "Jorge",
-              "textEn": "Hello. My name is Jorge. I'm from Colombia. Today, I am in Bogotá.",
-              "textFa": "سلام. نام من خورخه است. من اهل کلمبیا هستم. امروز در بوگوتا پایتخت کلمبیا هستم."
+              "textEn": "Hello. My name is Jorge. I'm from Colombia. Today, I am in Bogot\u00e1.",
+              "textFa": "سلام. نام من خورخه است. من اهل کلمبیا هستم. امروز در بوگوتا هستم."
       },
       {
               "id": 2,
-              "seconds": 30,
-              "timeDisplay": "0:30",
+              "seconds": 31,
+              "timeDisplay": "0:31",
               "speaker": "Sherri",
               "textEn": "Hi, I'm Sherri. I'm from California. Now, I'm in New York.",
               "textFa": "سلام، من شری هستم. اهل کالیفرنیا هستم، اما اکنون در نیویورکم."
@@ -1107,7 +1146,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:38",
               "speaker": "Alison",
               "textEn": "Hi, I'm Alison. I'm from Scotland, but now I'm in Italy.",
-              "textFa": "سلام، من آلیسون هستم. اهل اسکاتلندم ولی در حال حاضر در ایتالیا زندگی می‌کنم."
+              "textFa": "سلام، من آلیسون هستم. اهل اسکاتلندم ولی اکنون در ایتالیا هستم."
       },
       {
               "id": 4,
@@ -1115,46 +1154,61 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:46",
               "speaker": "Anastasia",
               "textEn": "Hello. My name is Anastasia. I'm American and Russian. Today I'm in London.",
-              "textFa": "سلام. نام من آناستازیا است. من آمریکایی-روسی هستم و امروز در لندن به سر می‌برم."
+              "textFa": "سلام. نام من آناستازیا است. من آمریکایی و روسی هستم. امروز در لندن هستم."
       },
       {
               "id": 5,
               "seconds": 55,
               "timeDisplay": "0:55",
-              "speaker": "Iullia",
-              "textEn": "Hello. My name's Iullia and I'm from Russia. I live in Italy, in Rome.",
-              "textFa": "درود. نام من یولیا است و اهل روسیه‌ام. اکنون در رم پایتخت ایتالیا زندگی می‌کنم."
+              "speaker": "Iuliia",
+              "textEn": "Hello. My name\u2019s Iuliia and I\u2019m from Russia. I live in Italy, in Rome.",
+              "textFa": "سلام. نام من یولیا است و اهل روسیه‌ام. من در ایتالیا و شهر رم زندگی می‌کنم."
       },
       {
               "id": 6,
               "seconds": 64,
               "timeDisplay": "1:04",
               "speaker": "Rory",
-              "textEn": "Hello. I'm Rory. I'm from England. I'm now in Edinburgh in Scotland.",
-              "textFa": "سلام. من روری هستم. اهل انگلستانم و اکنون در شهر ادینبرو اسکاتلند حضور دارم."
+              "textEn": "Hello. I'm Rory. I'm from England. I'm now in Ireland.",
+              "textFa": "سلام. من روری هستم. اهل انگلستانم و اکنون در ایرلند به سر می‌برم."
       },
       {
               "id": 7,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Mateo",
-              "textEn": "Hi, I'm Mateo from Argentina, and today I'm visiting Madrid in Spain.",
-              "textFa": "سلام، من متئو اهل آرژانتین هستم و امروز در حال بازدید از مادرید در اسپانیا هستم."
-      }
-    ],
+              "seconds": 71,
+              "timeDisplay": "1:11",
+              "speaker": "Hanan Ali",
+              "textEn": "Hello. My name is Hanan Ali. I\u2019m from Mombasa, Kenya, and I\u2019m currently in Columbus, Ohio.",
+              "textFa": "سلام. نام من حنان علی است. اهل مومباسا در کنیا هستم و در حال حاضر در کلمبوس ایالت اوهایو هستم."
+      },
+      {
+              "id": 8,
+              "seconds": 79,
+              "timeDisplay": "1:19",
+              "speaker": "Jennifer",
+              "textEn": "Hi. I\u2019m Jennifer. I\u2019m from Australia, but now I\u2019m in Florence in Italy.",
+              "textFa": "سلام. من جنیفر هستم. اهل استرالیام، ولی اکنون در شهر فلورانس ایتالیا هستم."
+      },
+      {
+              "id": 9,
+              "seconds": 89,
+              "timeDisplay": "1:29",
+              "speaker": "Fotis",
+              "textEn": "Hi. I\u2019m Fotis. I\u2019m from Greece. I\u2019m now in Madrid, Spain.",
+              "textFa": "سلام. من فوتیس هستم. اهل یونانم و اکنون در مادرید اسپانیا به سر می‌برم."
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 2 · ولاگ تعاملی BBC: وسایل روزمره و کیف شخصی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:48]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 48,
-        "timestampDisplay": "0:48",
-        "explanationFa": "در ثانیه 0:48، Speaker 5 صریحاً بیان می‌کند: «Hello. My name’s Iullia and I’m from Russia. I live in Italy, in Rome.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 2 · ولاگ‌های BBC»، کدام گزینه اطلاعات یولیا (Iuliia) را به درستی بیان می‌کند؟",
+        "promptEn": "Listen at [0:55]. What key information does Iuliia share about her nationality and current home?",
+        "timestampSeconds": 55,
+        "timestampDisplay": "0:55",
+        "explanationFa": "در ثانیه 0:55، یولیا (Iuliia) صریحاً بیان می‌کند: «Hello. My name’s Iuliia and I’m from Russia. I live in Italy, in Rome.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"Hello. My name’s Iullia and I’m from Russia. I live in Italy, in ...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Iuliia confirms: \"Hello. My name’s Iuliia and I’m from Russia. I live in Italy, in Rome.\"",
+            "textFa": "یولیا به درستی اعلام می‌کند که اهل روسیه است و اکنون در شهر رم ایتالیا زندگی می‌کند."
           },
           {
             "id": 2,
@@ -1176,14 +1230,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (وسایل روزمره و کیف شخصی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Everyday Objects & Bags)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (کشورها و ملیت‌ها) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Countries & Nationalities)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی وسایل روزمره و کیف شخصی در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با وسایل روزمره و کیف شخصی."
+            "textFa": "اصطلاح متناسب با معرفی کشورها و ملیت‌ها."
           },
           {
             "id": 2,
@@ -1236,22 +1290,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on everyday objects & bags, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون وسایل روزمره و کیف شخصی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "Hello. I am from Australia, but now I live in Italy.",
+        "targetPhraseFa": "سلام. من اهل استرالیا هستم، اما اکنون در ایتالیا زندگی می‌کنم.",
+        "phoneticGuide": "/həˈloʊ aɪ æm frəm ɔːˈstreɪliə bʌt naʊ aɪ lɪv ɪn ˈɪtəli/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه وسایل روزمره و کیف شخصی تقویت می‌کند."
+        "explanationFa": "تسلط بر این الگو به شما امکان می‌دهد کشور مبدأ و محل اقامت فعلی‌تان را به روانی بیان کنید."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 2 · ولاگ تعاملی BBC: وسایل روزمره و کیف شخصی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 2 · BBC Vlogs: Everyday Objects & Bags', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون وسایل روزمره و کیف شخصی است.",
+        "promptFa": "با توجه به زمینه و متن این ولاگ‌های آموزشی BBC، هدف اصلی گویندگان چیست؟",
+        "promptEn": "Based on the context of BBC Vlogs, what is the primary goal of the speakers?",
+        "explanationFa": "هدف اصلی گویندگان، معرفی هویت، کشور مبدأ و مکان فعلی خود به زبان انگلیسی ساده است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding everyday objects & bags.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون وسایل روزمره و کیف شخصی."
+            "textEn": "To introduce their names, nationalities, and current locations around the world.",
+            "textFa": "معرفی نام، ملیت و شهر محل اقامت فعلی خود در نقاط مختلف جهان."
           },
           {
             "id": 2,
@@ -1273,16 +1327,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (وسایل روزمره و کیف شخصی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Everyday Objects & Bags' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) بنویسید و نام، کشور مبدأ و مکانی را که اکنون در آن هستید معرفی کنید.",
+        "promptEn": "Write a short paragraph in English introducing your name, where you are from, and where you are now.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about everyday objects & bags through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره وسایل روزمره و کیف شخصی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "Hello. My name is Alex. I am from Spain, but now I live in London in the UK.",
+        "sampleAnswerFa": "سلام. نام من الکس است. من اهل اسپانیا هستم، اما اکنون در لندن در انگلستان زندگی می‌کنم.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -1292,8 +1346,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v05",
     "level": "a1",
     "episodeNumber": 5,
-    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خانه‌ها، باغچه و شهرهای جهان",
-    "titleEn": "Unit 3 · BBC Street Interviews: Homes, Gardens & Cities",
+    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خرید آنلاین و انواع مغازه‌ها",
+    "titleEn": "Unit 3 · BBC Street Interviews: Online Shopping & Types of Shops",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 3",
     "cefr": "A1",
@@ -1304,12 +1358,12 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون خانه‌ها، باغچه و شهرهای جهان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on homes, gardens & cities with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی معتبر BBC از مردم لندن درباره خریدهای آنلاین و حضوری، اقلام خریداری‌شده، و مغازه‌ها و فروشگاه‌های مورد علاقه یا عدم علاقه همراه با اصطلاحات روزمره انگلیسی.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition where Londoners discuss what they buy online versus in shops, and which stores they like or dislike.",
     "keyTopicsFa": [
-      "خانه‌ها، باغچه و شهرهای جهان",
-      "مصاحبه خیابانی BBC (Vox Pops)",
-      "واژگان یونیت 3",
+      "خرید آنلاین و خرید از مغازه‌ها (Online vs In Shops)",
+      "انواع فروشگاه‌ها (Clothes, Bookshops, Cafés)",
+      "بیان علایق و عدم علاقه (Like, Love, Dislike, Hate)",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
@@ -1319,23 +1373,23 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:18",
               "speaker": "Rachael",
               "textEn": "I buy food online and I buy make-up and clothes in shops.",
-              "textFa": "من مواد غذایی را اینترنتی می‌خرم و لوازم آرایشی و لباس‌ها را از فروشگاه‌های حضوری تهیه می‌کنم."
+              "textFa": "من مواد غذایی را آنلاین می‌خرم و لوازم آرایش و لباس را از مغازه‌ها تهیه می‌کنم."
       },
       {
               "id": 2,
-              "seconds": 24,
-              "timeDisplay": "0:24",
+              "seconds": 25,
+              "timeDisplay": "0:25",
               "speaker": "Elijah",
               "textEn": "I buy things for the house online.",
-              "textFa": "من لوازم خانگی و وسایل منزل را به صورت آنلاین خریداری می‌کنم."
+              "textFa": "من وسایل خانه را آنلاین می‌خرم."
       },
       {
               "id": 3,
-              "seconds": 26,
-              "timeDisplay": "0:26",
+              "seconds": 27,
+              "timeDisplay": "0:27",
               "speaker": "Gloria",
               "textEn": "I buy clothes online and I buy food in shops.",
-              "textFa": "من پوشاک را اینترنتی می‌خرم و مواد غذایی را از فروشگاه‌ها تهیه می‌کنم."
+              "textFa": "من لباس را آنلاین و مواد غذایی را از فروشگاه‌ها می‌خرم."
       },
       {
               "id": 4,
@@ -1343,15 +1397,15 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:33",
               "speaker": "Joe",
               "textEn": "Online I buy video games and in shops I buy food.",
-              "textFa": "به صورت آنلاین بازی‌های ویدیویی می‌خرم و در مغازه‌ها مواد غذایی تهیه می‌کنم."
+              "textFa": "بازی‌های ویدیویی را آنلاین و مواد غذایی را از مغازه‌ها می‌خرم."
       },
       {
               "id": 5,
-              "seconds": 39,
-              "timeDisplay": "0:39",
+              "seconds": 40,
+              "timeDisplay": "0:40",
               "speaker": "Josh",
               "textEn": "Online I buy clothes and in shops I also buy food.",
-              "textFa": "آنلاین لباس می‌خرم و در فروشگاه‌ها هم مواد غذایی می‌خرم."
+              "textFa": "آنلاین لباس می‌خرم و در مغازه‌ها هم مواد غذایی می‌خرم."
       },
       {
               "id": 6,
@@ -1359,7 +1413,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:46",
               "speaker": "Holly",
               "textEn": "I buy make-up online and I buy food in shops.",
-              "textFa": "من لوازم آرایش را آنلاین می‌خرم و خوراکی‌ها را از مغازه تهیه می‌کنم."
+              "textFa": "من لوازم آرایش را آنلاین و مواد غذایی را از فروشگاه‌ها می‌خرم."
       },
       {
               "id": 7,
@@ -1367,46 +1421,109 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:52",
               "speaker": "Nic",
               "textEn": "I buy cat food online. I buy clothes in shops.",
-              "textFa": "من غذای گربه را اینترنتی می‌خرم و لباس‌ها را از مغازه‌ها می‌خرم."
+              "textFa": "غذای گربه را آنلاین می‌خرم و لباس را از مغازه‌ها تهیه می‌کنم."
       },
       {
               "id": 8,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Rachael",
-              "textEn": "Online shopping is so fast and convenient for me.",
-              "textFa": "خرید اینترنتی برای من بسیار سریع و راحت است."
+              "seconds": 59,
+              "timeDisplay": "0:59",
+              "speaker": "Kirsty",
+              "textEn": "I buy books online and I buy shoes in the shop.",
+              "textFa": "کتاب‌ها را آنلاین می‌خرم و کفش را از مغازه می‌خرم."
       },
       {
               "id": 9,
               "seconds": 65,
               "timeDisplay": "1:05",
-              "speaker": "Elijah",
-              "textEn": "I like reading reviews before I buy household goods online.",
-              "textFa": "من دوست دارم قبل از خرید لوازم منزل، نظرات کاربران را آنلاین بخوانم."
+              "speaker": "Vincent",
+              "textEn": "I buy trainers online.",
+              "textFa": "من کفش‌های ورزشی (کتانی) را آنلاین می‌خرم."
       },
       {
               "id": 10,
-              "seconds": 67,
-              "timeDisplay": "1:07",
+              "seconds": 74,
+              "timeDisplay": "1:14",
+              "speaker": "Rachael",
+              "textEn": "I love clothes shops, I hate butchers and I love caf\u00e9s.",
+              "textFa": "من عاشق فروشگاه‌های لباس هستم، از قصابی بدم می‌آید و کافه‌ها را دوست دارم."
+      },
+      {
+              "id": 11,
+              "seconds": 83,
+              "timeDisplay": "1:23",
+              "speaker": "Elijah",
+              "textEn": "I like restaurants, I like caf\u00e9s, and I like supermarkets.",
+              "textFa": "رستوران‌ها، کافه‌ها و سوپرمارکت‌ها را دوست دارم."
+      },
+      {
+              "id": 12,
+              "seconds": 88,
+              "timeDisplay": "1:28",
+              "speaker": "Gloria",
+              "textEn": "I love clothes shops, and I hate sports shops.",
+              "textFa": "عاشق فروشگاه‌های لباس هستم و از فروشگاه‌های ورزشی متنفرم."
+      },
+      {
+              "id": 13,
+              "seconds": 95,
+              "timeDisplay": "1:35",
               "speaker": "Joe",
-              "textEn": "Physical stores are still great for trying things out before you pay.",
-              "textFa": "فروشگاه‌های حضوری هنوز برای امتحان کردن وسایل قبل از پرداخت عالی هستند."
-      }
-    ],
+              "textEn": "I like sports shops, and I dislike clothes shops.",
+              "textFa": "فروشگاه‌های ورزشی را دوست دارم و از مغازه‌های لباس خوشم نمی‌آید."
+      },
+      {
+              "id": 14,
+              "seconds": 100,
+              "timeDisplay": "1:40",
+              "speaker": "Josh",
+              "textEn": "I like food shops, because I like food, and I don\u2019t like pet shops.",
+              "textFa": "فروشگاه‌های مواد غذایی را دوست دارم چون عاشق غذا هستم، و از مغازه‌های حیوانات خانگی خوشم نمی‌آید."
+      },
+      {
+              "id": 15,
+              "seconds": 108,
+              "timeDisplay": "1:48",
+              "speaker": "Holly",
+              "textEn": "I like clothes shops. I don\u2019t like bookshops.",
+              "textFa": "فروشگاه‌های لباس را دوست دارم؛ از کتاب‌فروشی‌ها خوشم نمی‌آید."
+      },
+      {
+              "id": 16,
+              "seconds": 113,
+              "timeDisplay": "1:53",
+              "speaker": "Nic",
+              "textEn": "I like food shops. I do not like clothes shops.",
+              "textFa": "فروشگاه‌های مواد غذایی را دوست دارم؛ از مغازه‌های لباس خوشم نمی‌آید."
+      },
+      {
+              "id": 17,
+              "seconds": 120,
+              "timeDisplay": "2:00",
+              "speaker": "Kirsty",
+              "textEn": "I like clothes shops and shoe shops, and I dislike computer shops.",
+              "textFa": "فروشگاه‌های لباس و کفش‌فروشی‌ها را دوست دارم و از مغازه‌های کامپیوتر خوشم نمی‌آید."
+      },
+      {
+              "id": 18,
+              "seconds": 128,
+              "timeDisplay": "2:08",
+              "speaker": "Vincent",
+              "textEn": "I like video game shops.",
+              "textFa": "من فروشگاه‌های بازی‌های ویدیویی را دوست دارم."
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خانه‌ها، باغچه و شهرهای جهان»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [1:10]. What key insight does Rachael share?",
-        "timestampSeconds": 70,
-        "timestampDisplay": "1:10",
-        "explanationFa": "در ثانیه 1:10، Rachael صریحاً بیان می‌کند: «I love clothes shops, I hate butchers and I love cafés.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 3 · مصاحبه خیابانی BBC»، کدام گزینه نظر ریچل درباره مغازه‌ها را به درستی بیان می‌کند؟",
+        "promptEn": "Listen at [1:14]. What shops does Rachael like and dislike?",
+        "timestampSeconds": 74,
+        "timestampDisplay": "1:14",
+        "explanationFa": "در ثانیه 1:14، ریچل صریحاً بیان می‌کند: «I love clothes shops, I hate butchers and I love cafés.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Rachael indicates: \"I love clothes shops, I hate butchers and I love cafés....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Rachael confirms: \"I love clothes shops, I hate butchers and I love cafés.\"",
+            "textFa": "ریچل به درستی بیان می‌کند که عاشق مغازه‌های لباس و کافه‌هاست، اما از قصابی‌ها بیزار است."
           },
           {
             "id": 2,
@@ -1428,14 +1545,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (خانه‌ها، باغچه و شهرهای جهان) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Homes, Gardens & Cities)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (انواع فروشگاه‌ها و خرید) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Shopping & Types of Stores)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی خانه‌ها، باغچه و شهرهای جهان در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با خانه‌ها، باغچه و شهرهای جهان."
+            "textFa": "اصطلاح متناسب با انواع فروشگاه‌ها و خرید آنلاین."
           },
           {
             "id": 2,
@@ -1488,22 +1605,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on homes, gardens & cities, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون خانه‌ها، باغچه و شهرهای جهان، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "I love clothes shops and cafés, but I dislike sports shops.",
+        "targetPhraseFa": "من عاشق فروشگاه‌های لباس و کافه‌ها هستم، اما از مغازه‌های ورزشی خوشم نمی‌آید.",
+        "phoneticGuide": "/aɪ lʌv kloʊðz ʃɑːps ænd kæˈfeɪz bʌt aɪ dɪsˈlaɪk spɔːrts ʃɑːps/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه خانه‌ها، باغچه و شهرهای جهان تقویت می‌کند."
+        "explanationFa": "تسلط بر این الگو مهارت شما را در بیان سلیقه و علاقه نسبت به مکان‌ها و فروشگاه‌ها تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خانه‌ها، باغچه و شهرهای جهان» چیست؟",
-        "promptEn": "Based on the context of 'Unit 3 · BBC Street Interviews: Homes, Gardens & Cities', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون خانه‌ها، باغچه و شهرهای جهان است.",
+        "promptFa": "با توجه به زمینه و متن این مصاحبه‌های خیابانی BBC، محور اصلی صحبت مردم چیست؟",
+        "promptEn": "Based on the BBC Street Interviews context, what are the speakers primarily discussing?",
+        "explanationFa": "هدف اصلی، بیان ترجیحات خرید آنلاین و حضوری و مغازه‌های مورد علاقه یا تنفر است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding homes, gardens & cities.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون خانه‌ها، باغچه و شهرهای جهان."
+            "textEn": "To share what they buy online versus in shops, and which stores they like or dislike.",
+            "textFa": "بیان تجربیات خرید آنلاین و حضوری و فروشگاه‌های مورد علاقه یا عدم علاقه."
           },
           {
             "id": 2,
@@ -1525,16 +1642,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (خانه‌ها، باغچه و شهرهای جهان)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Homes, Gardens & Cities' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره اینکه چه چیزهایی را آنلاین و چه چیزهایی را در مغازه می‌خرید بنویسید.",
+        "promptEn": "Write a short paragraph in English explaining what you buy online, what you buy in shops, and which stores you like.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about homes, gardens & cities through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره خانه‌ها، باغچه و شهرهای جهان از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "I buy clothes and books online, but I buy food in supermarkets. I love cafés and bookshops.",
+        "sampleAnswerFa": "من لباس و کتاب را آنلاین می‌خرم، اما مواد غذایی را در سوپرمارکت‌ها تهیه می‌کنم. من کافه‌ها و کتاب‌فروشی‌ها را دوست دارم.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -1544,8 +1661,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v06",
     "level": "a1",
     "episodeNumber": 6,
-    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: خانه‌ها، باغچه و شهرهای جهان",
-    "titleEn": "Unit 3 · BBC Vlogs: Homes, Gardens & Cities",
+    "titleFa": "یونیت 3 · ولاگ‌های BBC: اشیاء و دارایی‌های مورد علاقه من (My Favourite Things)",
+    "titleEn": "Unit 3 · BBC Vlogs: My Favourite Things & Personal Possessions",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 3",
     "cefr": "A1",
@@ -1556,22 +1673,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون خانه‌ها، باغچه و شهرهای جهان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on homes, gardens & cities with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمانه و معتبر BBC از کتاب اسپیک‌آوت که در آن افراد دارایی‌ها و وسایل مورد علاقه خود (دوچرخه، باغچه، حیوان خانگی، خرس عروسکی، تابلوی نقاشی، دوربین و ماشین نو) را معرفی می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers showcase their favourite personal possessions—from bikes and gardens to pets, cameras, and cars.",
     "keyTopicsFa": [
-      "خانه‌ها، باغچه و شهرهای جهان",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 3",
+      "وسایل و دارایی‌های مورد علاقه (My Favourite Thing)",
+      "توصیف رنگ، ویژگی‌ها و سرعت (Green, Fast, New)",
+      "بیان دلایل با کاربرد because",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
               "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
+              "seconds": 19,
+              "timeDisplay": "0:19",
               "speaker": "Speaker 1",
-              "textEn": "My favourite thing is my garden. In the summer, it's beautiful.",
-              "textFa": "وسیله یا مکان مورد علاقه من باغچه‌ام است؛ در فصل تابستان واقعاً زیبا و دیدنی است."
+              "textEn": "My favourite thing is my garden. In the summer, it\u2019s beautiful.",
+              "textFa": "وسیله (چیز) مورد علاقه من باغم است. در تابستان بسیار زیباست."
       },
       {
               "id": 2,
@@ -1579,15 +1696,15 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:27",
               "speaker": "Speaker 2",
               "textEn": "My dog. His name is Jasper. He is a labradoodle.",
-              "textFa": "سگ من! اسمش جاسپر است. او از نژاد لابرادودل است."
+              "textFa": "سگم؛ اسم او جسپر است. او نژاد لابرادودل است."
       },
       {
               "id": 3,
-              "seconds": 34,
-              "timeDisplay": "0:34",
+              "seconds": 35,
+              "timeDisplay": "0:35",
               "speaker": "Speaker 3",
-              "textEn": "My favourite thing is my bike. It's new. I love it because it's green and yellow and it's really fast.",
-              "textFa": "چیز مورد علاقه من دوچرخه‌ام است؛ نو است و خیلی دوستش دارم چون سبز و زرد و واقعاً پرسرعت است."
+              "textEn": "My favourite thing is my bike. It\u2019s new. I love it because it\u2019s green and yellow and it\u2019s really fast.",
+              "textFa": "وسیله مورد علاقه من دوچرخه‌ام است؛ نو است و دوستش دارم چون سبز و زرد و واقعاً پرسرعت است."
       },
       {
               "id": 4,
@@ -1595,38 +1712,53 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:44",
               "speaker": "Speaker 4",
               "textEn": "My favourite thing is my teddy bear. His name is Fred.",
-              "textFa": "چیز مورد علاقه من عروسک خرسی‌ام است. اسمش فرد است."
+              "textFa": "وسیله مورد علاقه من خرس عروسکی‌ام است. اسم او فرد است."
       },
       {
               "id": 5,
-              "seconds": 53,
-              "timeDisplay": "0:53",
+              "seconds": 54,
+              "timeDisplay": "0:54",
               "speaker": "Speaker 5",
               "textEn": "My favourite thing is this painting of Venice in Italy.",
               "textFa": "چیز مورد علاقه من این تابلوی نقاشی از شهر ونیز در ایتالیا است."
       },
       {
               "id": 6,
-              "seconds": 60,
-              "timeDisplay": "1:00",
+              "seconds": 61,
+              "timeDisplay": "1:01",
               "speaker": "Speaker 6",
               "textEn": "My favourite thing is my camera. This is a Canon digital camera.",
-              "textFa": "وسیله مورد علاقه من دوربین عکاسی‌ام است؛ یک دوربین دیجیتال کانن."
-      }
-    ],
+              "textFa": "وسیله مورد علاقه من دوربینم است. این یک دوربین دیجیتال کانن است."
+      },
+      {
+              "id": 7,
+              "seconds": 67,
+              "timeDisplay": "1:07",
+              "speaker": "Speaker 7",
+              "textEn": "My favourite thing is my bicycle.",
+              "textFa": "وسیله مورد علاقه من دوچرخه‌ام است."
+      },
+      {
+              "id": 8,
+              "seconds": 75,
+              "timeDisplay": "1:15",
+              "speaker": "Speaker 8",
+              "textEn": "My new red car. It\u2019s great!",
+              "textFa": "ماشین قرمز جدیدم؛ واقعاً عالی است!"
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 3 · ولاگ تعاملی BBC: خانه‌ها، باغچه و شهرهای جهان»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:47]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 47,
-        "timestampDisplay": "0:47",
-        "explanationFa": "در ثانیه 0:47، Speaker 5 صریحاً بیان می‌کند: «My favourite thing is this painting of Venice in Italy.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 3 · ولاگ‌های BBC»، کدام گزینه شیء مورد علاقه گوینده ۵ را به درستی بیان می‌کند؟",
+        "promptEn": "Listen at [0:54]. What is Speaker 5's favourite thing?",
+        "timestampSeconds": 54,
+        "timestampDisplay": "0:54",
+        "explanationFa": "در ثانیه 0:54، گوینده ۵ صریحاً بیان می‌کند: «My favourite thing is this painting of Venice in Italy.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"My favourite thing is this painting of Venice in Italy....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "A painting of Venice in Italy.",
+            "textFa": "یک تابلوی نقاشی از شهر ونیز در ایتالیا."
           },
           {
             "id": 2,
@@ -1648,14 +1780,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (خانه‌ها، باغچه و شهرهای جهان) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Homes, Gardens & Cities)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (وسایل و دارایی‌های شخصی) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Favourite Possessions)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی خانه‌ها، باغچه و شهرهای جهان در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با خانه‌ها، باغچه و شهرهای جهان."
+            "textFa": "اصطلاح متناسب با وسایل و دارایی‌های شخصی."
           },
           {
             "id": 2,
@@ -1708,22 +1840,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on homes, gardens & cities, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون خانه‌ها، باغچه و شهرهای جهان، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "My favourite thing is my bike because it is really fast.",
+        "targetPhraseFa": "وسیله مورد علاقه من دوچرخه‌ام است چون واقعاً سریع است.",
+        "phoneticGuide": "/maɪ ˈfeɪvərɪt θɪŋ ɪz maɪ baɪk bɪˈkəz ɪt ɪz ˈriːəli fæst/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه خانه‌ها، باغچه و شهرهای جهان تقویت می‌کند."
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در معرفی شیء مورد علاقه و بیان علت علاقه با because تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 3 · ولاگ تعاملی BBC: خانه‌ها، باغچه و شهرهای جهان» چیست؟",
-        "promptEn": "Based on the context of 'Unit 3 · BBC Vlogs: Homes, Gardens & Cities', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون خانه‌ها، باغچه و شهرهای جهان است.",
+        "promptFa": "با توجه به زمینه و متن این ولاگ‌های آموزشی BBC، هدف اصلی گویندگان چیست؟",
+        "promptEn": "Based on the BBC Vlogs context, what is the primary goal of the speakers?",
+        "explanationFa": "هدف اصلی، توصیف وسایل محبوب و بیان دلیل دوست داشتن آن‌هاست.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding homes, gardens & cities.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون خانه‌ها، باغچه و شهرهای جهان."
+            "textEn": "To describe their favourite personal possessions and explain why they love them.",
+            "textFa": "توصیف وسایل و دارایی‌های مورد علاقه خود و بیان دلیل دوست داشتن آن‌ها."
           },
           {
             "id": 2,
@@ -1745,16 +1877,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (خانه‌ها، باغچه و شهرهای جهان)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Homes, Gardens & Cities' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره وسیله مورد علاقه خود و دلیل علاقه به آن بنویسید.",
+        "promptEn": "Write a short paragraph in English describing your favourite thing and why you love it.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about homes, gardens & cities through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره خانه‌ها، باغچه و شهرهای جهان از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "My favourite thing is my bicycle. It is green and fast. I love riding it in the park.",
+        "sampleAnswerFa": "وسیله مورد علاقه من دوچرخه‌ام است. سبز و سریع است و عاشق دوچرخه‌سواری در پارک هستم.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -1764,8 +1896,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v07",
     "level": "a1",
     "episodeNumber": 7,
-    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: غذا، وعده‌های روزانه و مسابقه کیک",
-    "titleEn": "Unit 4 · BBC Programmes: Food, Meals & Cooking",
+    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: یک روز روی زمین (روتین‌ها و زندگی‌های خاص)",
+    "titleEn": "Unit 4 · BBC Documentary: A Day on Earth (Daily Routines & Extraordinary Lives)",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 4",
     "cefr": "A1",
@@ -1776,13 +1908,13 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون غذا، وعده‌های روزانه و مسابقه کیک همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on food, meals & cooking with native British and international speakers.",
+    "summaryFa": "مستند تماشایی و معتبر BBC درباره روتین‌های روزمره در سراسر کره زمین: غذا دادن به ۴۰۰۰ طوطی در هند، دیده‌بانی آتش‌سوزی جنگل در کلرادوی آمریکا، و رهاسازی گاو دریایی در دریاچه پرو همراه با الویرا.",
+    "summaryEn": "Authentic BBC Documentary from Pearson Speakout 3rd Edition exploring daily routines and extraordinary human-wildlife connections across India, Colorado, and Peru.",
     "keyTopicsFa": [
-      "غذا، وعده‌های روزانه و مسابقه کیک",
-      "مستند تلویزیونی BBC",
-      "واژگان یونیت 4",
-      "لهجه‌های زنده بریتانیایی"
+      "مستند جهانی BBC (A Day on Earth)",
+      "روتین‌های روزمره و زمان بیدار شدن (Daily Routines)",
+      "شغل‌های خاص و حفاظت از محیط زیست",
+      "لهجه‌های زنده بریتانیایی و آمریکایی"
     ],
     "transcript": [
       {
@@ -1790,8 +1922,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 12,
               "timeDisplay": "0:12",
               "speaker": "Narrator",
-              "textEn": "From space we can see colours and shapes... water... and land. Zoom in and we can see many different lives.",
-              "textFa": "از فضا می‌توانیم رنگ‌ها و اشکال را ببینیم... آب‌ها... و خشکی‌ها را. وقتی زوم می‌کنیم، زندگی‌های گوناگونی را به تماشا می‌نشینیم."
+              "textEn": "From space we can see colours and shapes \u2026 water \u2026 and land. Zoom in and we can see many different lives.",
+              "textFa": "از فضا می‌توانیم رنگ‌ها و شکل‌ها، آب‌ها و خشکی‌ها را ببینیم؛ نزدیک‌تر شویم تا زندگی‌های گوناگون را نظاره‌گر باشیم."
       },
       {
               "id": 2,
@@ -1799,70 +1931,157 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:32",
               "speaker": "Narrator",
               "textEn": "In the city of Chennai in India, thousands of parakeets eat breakfast.",
-              "textFa": "در شهر چنای هند، هزاران طوطی کوچک سبز در حال صرف صبحانه هستند."
+              "textFa": "در شهر چنای هند، هزاران طوطی صبحانه می‌خورند."
       },
       {
               "id": 3,
               "seconds": 41,
               "timeDisplay": "0:41",
               "speaker": "Narrator",
-              "textEn": "This is Joseph Sekar's house. He gets up at half past five every morning and makes rice for the parakeets.",
-              "textFa": "این خانه جوزف سِکار است. او هر روز صبح ساعت پنج و نیم بیدار می‌شود و برای طوطی‌ها برنج آماده می‌کند."
+              "textEn": "This is Joseph Sekar\u2019s house. He gets up at half past five every morning and makes rice for the parakeets.",
+              "textFa": "اینجا خانه جوزف سِکار است. او هر روز صبح ساعت پنج و نیم بیدار می‌شود و برای طوطی‌ها برنج درست می‌کند."
       },
       {
               "id": 4,
               "seconds": 58,
               "timeDisplay": "0:58",
               "speaker": "Narrator",
-              "textEn": "He puts the rice out on wooden planks and waits. The first parakeet comes.",
-              "textFa": "او برنج‌ها را روی تخته‌های چوبی می‌چیند و منتظر می‌ماند. اولین طوطی پروازکنان می‌آید."
+              "textEn": "He puts the rice out and waits.",
+              "textFa": "او برنج را بیرون می‌چیند و منتظر می‌ماند."
       },
       {
               "id": 5,
-              "seconds": 60,
-              "timeDisplay": "1:00",
+              "seconds": 68,
+              "timeDisplay": "1:08",
               "speaker": "Narrator",
-              "textEn": "Then hundreds, and thousands more arrive from across the city trees.",
-              "textFa": "سپس صدها و هزاران طوطی دیگر از میان درختان شهر به اینجا هجوم می‌آورند."
+              "textEn": "The first parakeet comes at six o\u2019clock in the morning. Four thousand parakeets come to his home every day.",
+              "textFa": "اولین طوطی ساعت شش صبح از راه می‌رسد. هر روز چهار هزار طوطی به خانه او می‌آیند."
       },
       {
               "id": 6,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Joseph",
-              "textEn": "Feeding these birds gives me immense peace and happiness every single day.",
-              "textFa": "غذا دادن به این پرندگان هر روز به من آرامش و نشاط بی‌پایانی می‌بخشد."
+              "seconds": 80,
+              "timeDisplay": "1:20",
+              "speaker": "Narrator",
+              "textEn": "Joseph loves the parakeets. He says, \u2018All living things are important.\u2019",
+              "textFa": "جوزف عاشق طوطی‌هاست. او می‌گوید: «همه موجودات زنده مهم و ارزشمند هستند»."
       },
       {
               "id": 7,
-              "seconds": 64,
-              "timeDisplay": "1:04",
+              "seconds": 108,
+              "timeDisplay": "1:48",
               "speaker": "Narrator",
-              "textEn": "Across the globe in the Arctic, polar bears navigate vast sheets of sea ice in search of food.",
-              "textFa": "در آن سوی کره زمین در قطب شمال، خرس‌های قطبی پهنه‌های گسترده یخ‌های دریایی را در جستجوی غذا طی می‌کنند."
+              "textEn": "In Colorado, in the USA, Billy Ellis gets up early.",
+              "textFa": "در ایالت کلرادو در آمریکا، بیلی الیس صبح زود از خواب بیدار می‌شود."
       },
       {
               "id": 8,
-              "seconds": 75,
-              "timeDisplay": "1:15",
+              "seconds": 117,
+              "timeDisplay": "1:57",
+              "speaker": "Billy",
+              "textEn": "I get up, have a cup of coffee and then I\u2019m ready to go.",
+              "textFa": "من بیدار می‌شوم، یک فنجان قهوه می‌نوشم و آماده رفتن می‌شوم."
+      },
+      {
+              "id": 9,
+              "seconds": 129,
+              "timeDisplay": "2:09",
               "speaker": "Narrator",
-              "textEn": "Every species has its own daily routine, sustained by the natural wonders of our living planet.",
-              "textFa": "هر گونه‌ای برنامه روزمره ویژه خود را دارد که با شگفتی‌های طبیعی سیاره زنده ما در جریان است."
-      }
-    ],
+              "textEn": "He climbs 143 steps \u2026 to his office. Forest fires are a big problem in Colorado.",
+              "textFa": "او ۱۴۳ پله را بالا می‌رود تا به محل کارش برسد. آتش‌سوزی جنگل در کلرادو معضلی بزرگ است."
+      },
+      {
+              "id": 10,
+              "seconds": 145,
+              "timeDisplay": "2:25",
+              "speaker": "Narrator",
+              "textEn": "Billy is a fire lookout. He watches the forest for fires. It\u2019s a difficult job.",
+              "textFa": "بیلی دیده‌بان آتش‌سوزی است. او جنگل را برای شناسایی آتش دیده‌بانی می‌کند. این شغلی دشوار است."
+      },
+      {
+              "id": 11,
+              "seconds": 154,
+              "timeDisplay": "2:34",
+              "speaker": "Narrator",
+              "textEn": "Does he see many forest fires? No, not often, but when he sees a fire, it\u2019s his job to call the firefighters.",
+              "textFa": "آیا او آتش‌سوزی‌های زیادی می‌بیند؟ خیر، زیاد پیش نمی‌آید، اما وقتی آتشی ببیند، وظیفه دارد با آتش‌نشانان تماس بگیرد."
+      },
+      {
+              "id": 12,
+              "seconds": 174,
+              "timeDisplay": "2:54",
+              "speaker": "Narrator",
+              "textEn": "In the north of Peru, in a national park, we can see Lake El Dorado.",
+              "textFa": "در شمال کشور پرو، در یک پارک ملی، می‌توانیم دریاچه ال‌دورادو را ببینیم."
+      },
+      {
+              "id": 13,
+              "seconds": 190,
+              "timeDisplay": "3:10",
+              "speaker": "Narrator",
+              "textEn": "Elvira is nine years old. She lives in a small village near Lake El Dorado. She goes to school there.",
+              "textFa": "الویرا ۹ ساله است. او در روستایی کوچک نزدیک دریاچه ال‌دورادو زندگی می‌کند و همان‌جا به مدرسه می‌رود."
+      },
+      {
+              "id": 14,
+              "seconds": 201,
+              "timeDisplay": "3:21",
+              "speaker": "Narrator",
+              "textEn": "Elvira loves animals. Her favourite animals \u2026 are manatees.",
+              "textFa": "الویرا عاشق حیوانات است. حیوانات مورد علاقه او، گاوهای دریایی هستند."
+      },
+      {
+              "id": 15,
+              "seconds": 209,
+              "timeDisplay": "3:29",
+              "speaker": "Narrator",
+              "textEn": "Manatees usually live in rivers. But sometimes they need a new home.",
+              "textFa": "گاوهای دریایی معمولاً در رودخانه‌ها زندگی می‌کنند، اما گاهی به خانه‌ای جدید نیاز دارند."
+      },
+      {
+              "id": 16,
+              "seconds": 219,
+              "timeDisplay": "3:39",
+              "speaker": "Narrator",
+              "textEn": "Today is a special day. Some men bring a manatee to live in the lake.",
+              "textFa": "امروز روزی ویژه است؛ چند مرد یک گاو دریایی را می‌آورند تا در این دریاچه زندگی کند."
+      },
+      {
+              "id": 17,
+              "seconds": 234,
+              "timeDisplay": "3:54",
+              "speaker": "Narrator",
+              "textEn": "Elvira sees a manatee for the first time. She\u2019s really happy.",
+              "textFa": "الویرا برای نخستین بار یک گاو دریایی را از نزدیک می‌بیند و بسیار خوشحال است."
+      },
+      {
+              "id": 18,
+              "seconds": 241,
+              "timeDisplay": "4:01",
+              "speaker": "Narrator",
+              "textEn": "The men put the manatee into the lake. It has a new home. Elvira watches the manatee and says goodbye.",
+              "textFa": "آن مردان گاو دریایی را درون دریاچه رها می‌کنند؛ او اکنون خانه‌ای تازه دارد. الویرا آن را تماشا کرده و خداحافظی می‌کند."
+      },
+      {
+              "id": 19,
+              "seconds": 253,
+              "timeDisplay": "4:13",
+              "speaker": "Elvira",
+              "textEn": "Chau manatee!",
+              "textFa": "خداحافظ گاو دریایی!"
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 4 · مستند تلویزیونی BBC: غذا، وعده‌های روزانه و مسابقه کیک»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [2:16]. What key insight does Speaker 1 share?",
-        "timestampSeconds": 136,
-        "timestampDisplay": "2:16",
-        "explanationFa": "در ثانیه 2:16، Speaker 1 صریحاً بیان می‌کند: «Billy is a fi re lookout. He watches the forest for fi res. It’s a diffi cult job.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 4 · مستند تلویزیونی BBC: یک روز روی زمین»، شغل بیلی در کلرادو چیست؟",
+        "promptEn": "Listen at [2:25]. What is Billy's job in Colorado?",
+        "timestampSeconds": 145,
+        "timestampDisplay": "2:25",
+        "explanationFa": "در ثانیه 2:25، راوی صریحاً بیان می‌کند: «Billy is a fire lookout. He watches the forest for fires. It’s a difficult job.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 1 indicates: \"Billy is a fi re lookout. He watches the forest for fi res. It’s ...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Billy is a fire lookout who watches the forest for fires.",
+            "textFa": "بیلی دیده‌بان آتش است که برای مراقبت از جنگل در برابر آتش‌سوزی دیده‌بانی می‌کند."
           },
           {
             "id": 2,
@@ -1884,14 +2103,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (غذا، وعده‌های روزانه و مسابقه کیک) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Food, Meals & Cooking)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (روتین‌های روزمره و کارهای صبحگاهی) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Daily Routines & Early Mornings)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی غذا، وعده‌های روزانه و مسابقه کیک در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با غذا، وعده‌های روزانه و مسابقه کیک."
+            "textFa": "اصطلاح متناسب با روتین‌های روزمره و بیدار شدن صبحگاهی."
           },
           {
             "id": 2,
@@ -1944,22 +2163,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on food, meals & cooking, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون غذا، وعده‌های روزانه و مسابقه کیک، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "He gets up early every morning, drinks coffee, and watches the forest.",
+        "targetPhraseFa": "او هر روز صبح زود بیدار می‌شود، قهوه می‌نوشد و از جنگل مراقبت می‌کند.",
+        "phoneticGuide": "/hiː ɡets ʌp ˈɜːrli ˈevri ˈmɔːrnɪŋ drɪŋks ˈkɔːfi ænd ˈwɑːtʃɪz ðə ˈfɔːrɪst/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه غذا، وعده‌های روزانه و مسابقه کیک تقویت می‌کند."
+        "explanationFa": "تسلط بر این الگو مهارت اسپیکینگ شما را در بیان روتین‌های روزمره با افعال زمان حال ساده تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 4 · مستند تلویزیونی BBC: غذا، وعده‌های روزانه و مسابقه کیک» چیست؟",
-        "promptEn": "Based on the context of 'Unit 4 · BBC Programmes: Food, Meals & Cooking', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون غذا، وعده‌های روزانه و مسابقه کیک است.",
+        "promptFa": "با توجه به زمینه و متن این مستند دیدنی BBC، محور اصلی برنامه چیست؟",
+        "promptEn": "Based on the BBC Documentary context, what is the primary focus of the programme?",
+        "explanationFa": "هدف اصلی، به تصویر کشیدن روتین‌های روزمره، شغل‌های خاص و رابطه انسان‌ها با حیات وحش در سراسر جهان است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding food, meals & cooking.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون غذا، وعده‌های روزانه و مسابقه کیک."
+            "textEn": "Exploring diverse daily routines, extraordinary jobs, and connections with wildlife across the globe.",
+            "textFa": "بررسی روتین‌های روزمره متنوع، شغل‌های خاص و پیوند با حیات وحش در نقاط مختلف زمین."
           },
           {
             "id": 2,
@@ -1981,16 +2200,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (غذا، وعده‌های روزانه و مسابقه کیک)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Food, Meals & Cooking' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره روتین صبحگاهی خود یا یک شغل خاص بنویسید.",
+        "promptEn": "Write a short paragraph in English describing a morning routine or an unusual job using present simple verbs.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about food, meals & cooking through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره غذا، وعده‌های روزانه و مسابقه کیک از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "Joseph gets up at half past five every morning and makes rice for thousands of parakeets.",
+        "sampleAnswerFa": "جوزف هر روز صبح ساعت پنج و نیم بیدار می‌شود و برای هزاران طوطی برنج درست می‌کند.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -5105,11 +5324,11 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "promptEn": "Listen at [0:48]. What key insight does Speaker 3 share?",
         "timestampSeconds": 48,
         "timestampDisplay": "0:48",
-        "explanationFa": "در ثانیه 0:48، Speaker 3 صریحاً بیان می‌کند: «$ I love having visitors and they oft en stay with me,».",
+        "explanationFa": "در ثانیه 0:48، Speaker 3 صریحاً بیان می‌کند: «$ I love having visitors and they often stay with me,».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 3 indicates: \"$ I love having visitors and they oft en stay with me,...\"",
+            "textEn": "Speaker 3 indicates: \"$ I love having visitors and they often stay with me,...\"",
             "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
           },
           {
@@ -5325,11 +5544,11 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "promptEn": "Listen at [2:04]. What key insight does Speaker 1 share?",
         "timestampSeconds": 124,
         "timestampDisplay": "2:04",
-        "explanationFa": "در ثانیه 2:04، Speaker 1 صریحاً بیان می‌کند: «At this time families and friends oft en come together and have picnics in the parks.».",
+        "explanationFa": "در ثانیه 2:04، Speaker 1 صریحاً بیان می‌کند: «At this time families and friends often come together and have picnics in the parks.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 1 indicates: \"At this time families and friends oft en come together and have p...\"",
+            "textEn": "Speaker 1 indicates: \"At this time families and friends often come together and have p...\"",
             "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
           },
           {
@@ -11126,7 +11345,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Alice",
-              "textEn": "Iw ould describe my lifestyle as, er, quite normal really. Erm, I … Igo to work, er, Icome home … Ilive with my parents. Ithink it’s quite normal.",
+              "textEn": "Iw ould describe my lifestyle as, er, quite normal really. Erm, I … I go to work, er, I come home … I live with my parents. I think it’s quite normal.",
               "textFa": "من سبک زندگی‌ام رو، خب، کاملاً معمولی توصیف می‌کنم. یعنی میرم سر کار، برمی‌گردم خونه... با والدینم زندگی می‌کنم. فکر می‌کنم خیلی عادیه."
       },
       {
@@ -11134,7 +11353,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 79,
               "timeDisplay": "1:19",
               "speaker": "Elliot",
-              "textEn": "Ih ave quite a normal lifestyle. Iwake up early in the morning, Igo to school, Ihave lunch outside, Ido my homework and then Isee my friends. And, Ido that every day.",
+              "textEn": "Ih ave quite a normal lifestyle. I wake up early in the morning, I go to school, I have lunch outside, I do my homework and then I see my friends. And, I do that every day.",
               "textFa": "من یک سبک زندگی کاملاً معمولی دارم. صبح زود بیدار میشم، میرم مدرسه، ناهار رو بیرون می‌خورم، تکالیفم رو انجام میدم و بعد دوستانم رو می‌بینم. و هر روز همین کار رو تکرار می‌کنم."
       },
       {
@@ -11150,7 +11369,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 175,
               "timeDisplay": "2:55",
               "speaker": "Vambai",
-              "textEn": "Er, my lifestyle is pretty normal. Iwake up in the morning, go to work, er, come back home, cook for myself, eat dinner and go back to sleep.",
+              "textEn": "Er, my lifestyle is pretty normal. I wake up in the morning, go to work, er, come back home, cook for myself, eat dinner and go back to sleep.",
               "textFa": "خب، سبک زندگی من خیلی معمولیه. صبح بیدار میشم، میرم سر کار، برمی‌گردم خونه، برای خودم آشپزی می‌کنم، شام می‌خورم و دوباره می‌خوابم."
       },
       {
@@ -11182,7 +11401,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 183,
               "timeDisplay": "3:03",
               "speaker": "Philip",
-              "textEn": "Er, Ithink my lifestyle is relatively normal and conservative. Ihave a regular type of job – Iwork in an office in finance – erm, Ilive quite near to work, Icommute, er, to work by bicycle.",
+              "textEn": "Er, I think my lifestyle is relatively normal and conservative. I have a regular type of job – I work in an office in finance – erm, I live quite near to work, Icommute, er, to work by bicycle.",
               "textFa": "خب، فکر می‌کنم سبک زندگی من نسبتاً معمولی و سنتیه. یک شغل اداری ثابت دارم – در بخش مالی یک اداره کار می‌کنم – خونم نزدیک محل کارمه و با دوچرخه رفت‌وآمد می‌کنم."
       },
       {
@@ -11198,7 +11417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 187,
               "timeDisplay": "3:07",
               "speaker": "Adam",
-              "textEn": "Ig uess my life is, is fairly comfortable. Erm, Ilive in … Ihave my own house. Erm, Ihave two children, a wife and two children. Erm, and, er, yeah – it’s not too bad.",
+              "textEn": "Ig uess my life is, is fairly comfortable. Erm, I live in … I have my own house. Erm, I have two children, a wife and two children. Erm, and, er, yeah – it’s not too bad.",
               "textFa": "حدس می‌زنم زندگی من، زندگی نسبتاً راحتیه. من خونه شخصی خودم رو دارم، دو تا فرزند دارم، یک همسر و دو فرزند. و آره – زندگی بدی نیست."
       },
       {
@@ -11206,7 +11425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Elliot",
-              "textEn": "Erm, if Icould change something about my lifestyle, Iwould do more exercise, would get … maybe go for a run every day – that would be nice.",
+              "textEn": "Erm, if I could change something about my lifestyle, I would do more exercise, would get … maybe go for a run every day – that would be nice.",
               "textFa": "خب، اگه می‌تونستم چیزی رو در سبک زندگیم تغییر بدم، بیشتر ورزش می‌کردم، مثلاً شاید هر روز می‌رفتم می‌دویدم – این خیلی عالی می‌شد."
       },
       {
@@ -11214,7 +11433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Vambai",
-              "textEn": "Iw ould like to go out more. Erm, Iwould like to explore the country a bit more. And visit different places a bit more.",
+              "textEn": "Iw ould like to go out more. Erm, I would like to explore the country a bit more. And visit different places a bit more.",
               "textFa": "من دوست داشتم بیشتر برم بیرون و تفریح کنم. دوست دارم جاهای مختلف کشور رو بیشتر کشف کنم و به مناطق متفاوتی سفر کنم."
       },
       {
@@ -11222,7 +11441,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Tom",
-              "textEn": "Er, Iwould like to save more money. Yeah, and stop spending it all the time.",
+              "textEn": "Er, I would like to save more money. Yeah, and stop spending it all the time.",
               "textFa": "خب، من دوست داشتم پول بیشتری پس‌انداز کنم. آره، و این‌قدر همیشه خرجش نکنم."
       },
       {
@@ -11254,7 +11473,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Adam",
-              "textEn": "Erm, I’m pretty happy with the way that things are. Erm, Ilook forward to my children growing up, just seeing how they change, erm, and my life changing as, as they become adults, seeing how they get … become, and then maybe having a bit more time to myself as well.",
+              "textEn": "Erm, I’m pretty happy with the way that things are. Erm, I look forward to my children growing up, just seeing how they change, erm, and my life changing as, as they become adults, seeing how they get … become, and then maybe having a bit more time to myself as well.",
               "textFa": "من کاملاً از سبک زندگیم راضیم و فکر نمی‌کنم نیاز باشه چیز خاصی رو تغییر بدم."
       }
     ],
@@ -11466,7 +11685,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 66,
               "timeDisplay": "1:06",
               "speaker": "Speaker 5",
-              "textEn": "My friends would describe me as caring and funny, Ihope, erm, and also smiley.",
+              "textEn": "My friends would describe me as caring and funny, I hope, erm, and also smiley.",
               "textFa": "دوستانم من رو مهربان و بامزه، امیدوارم، و همین‌طور همیشه خنده‌رو توصیف می‌کنن."
       },
       {
@@ -11482,7 +11701,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 85,
               "timeDisplay": "1:25",
               "speaker": "Speaker 7",
-              "textEn": "My friends would describe me as energetic because I’m always full of energy. They would describe me as smiley because I’m always smiling, and they would describe me as funny because Ilove making jokes.",
+              "textEn": "My friends would describe me as energetic because I’m always full of energy. They would describe me as smiley because I’m always smiling, and they would describe me as funny because I love making jokes.",
               "textFa": "دوستانم من رو پرانرژی توصیف می‌کنن چون همیشه پر از انرژی‌ام. اونا میگن همیشه لبخند به لب دارم و عاشق جوک گفتن و شوخی کردنم."
       },
       {
@@ -11710,7 +11929,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 111,
               "timeDisplay": "1:51",
               "speaker": "Simon",
-              "textEn": "Isn’t it totally spectacular? Something and somewhere Iwon’t ever forget. I’ll enjoy a good night’s sleep tonight, Ithink. Ahhh … Wow! Imean, look at this. Come on, now! Oh, look. Italian wedding! Fantastic. What a completely splendid sight. Any wedding, anything like this, it represents rejuvenation, regeneration. It’s so good to see, because too many towns and villages in southern Italy have been completely depopulated in recent generations, but here, this is ... this has got a future.",
+              "textEn": "Isn’t it totally spectacular? Something and somewhere I won’t ever forget. I’ll enjoy a good night’s sleep tonight, I think. Ahhh … Wow! I mean, look at this. Come on, now! Oh, look. Italian wedding! Fantastic. What a completely splendid sight. Any wedding, anything like this, it represents rejuvenation, regeneration. It’s so good to see, because too many towns and villages in southern Italy have been completely depopulated in recent generations, but here, this is ... this has got a future.",
               "textFa": "درس‌هایی که از این حادثه آموخته شد، سیستم‌های هشدار اولیه و مدیریت بحران را برای آینده دگرگون ساخت."
       }
     ],
@@ -11890,7 +12109,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 19,
               "timeDisplay": "0:19",
               "speaker": "Speaker 1",
-              "textEn": "Er, Iremember a summer holiday, erm, Ispent with my family in the north of Spain in the mountains, and we had a fantastic time, hiking, canoeing and also Ihad my first camera so Itook plenty of photos as well.",
+              "textEn": "Er, Iremember a summer holiday, erm, I spent with my family in the north of Spain in the mountains, and we had a fantastic time, hiking, canoeing and also I had my first camera so Itook plenty of photos as well.",
               "textFa": "خب، من یک تعطیلات تابستانی رو به یاد میارم که همراه با خانواده‌ام در حومه ساحلی گذروندم و واقعاً فراموش‌نشدنی بود."
       },
       {
@@ -11906,7 +12125,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Speaker 3",
-              "textEn": "When Iwas nine years old my father gave me as a birthday present a small kitty cat. At the beginning Iwas a little bit nervous because Ithought that it was going to be very difficult to take care of it, but Iwas also very excited to have it between my arms.",
+              "textEn": "When I was nine years old my father gave me as a birthday present a small kitty cat. At the beginning I was a little bit nervous because I thought that it was going to be very difficult to take care of it, but I was also very excited to have it between my arms.",
               "textFa": "من عاشق کمپینگ در کوهستان با دوستانم هستم؛ شب‌ها زیر ستاره‌ها دور آتش نشستن بهترین حس دنیاست."
       },
       {
@@ -11914,7 +12133,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 62,
               "timeDisplay": "1:02",
               "speaker": "Speaker 4",
-              "textEn": "Ir emember when Iwas about eight, Iwent to Spain with my family and it was really exciting because Igot to try lots of traditional Spanish food. Ialso learnt how to swim and got to stay up late, which Ifound really fun.",
+              "textEn": "Ir emember when I was about eight, I went to Spain with my family and it was really exciting because I got to try lots of traditional Spanish food. I also learnt how to swim and got to stay up late, which Ifound really fun.",
               "textFa": "یک بار به یک جزیره دورافتاده رفتیم که اصلاً اینترنت نداشت و این آرامش‌بخش‌ترین تجربه کل زندگیم بود."
       },
       {
@@ -11922,7 +12141,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 81,
               "timeDisplay": "1:21",
               "speaker": "Speaker 5",
-              "textEn": "Af ew years ago Iwas about to travel to Argentina. Iwas so excited about that trip. Unfortunately, the day before my flight, my bag was stolen with my passport in it. Ithought Iwas not going to be able to make it. Luckily, a neighbour found my passport on the street and returned it to me just a few hours before my flight, so Iwas able to travel and had an amazing experience. Iwas so lucky and so grateful to my neighbour.",
+              "textEn": "Af ew years ago I was about to travel to Argentina. I was so excited about that trip. Unfortunately, the day before my flight, my bag was stolen with my passport in it. I thought I was not going to be able to make it. Luckily, a neighbour found my passport on the street and returned it to me just a few hours before my flight, so I was able to travel and had an amazing experience. I was so lucky and so grateful to my neighbour.",
               "textFa": "برای من تعطیلات تابستانی یعنی دریا، آفتاب، و مطالعه کتاب‌های مورد علاقه‌ام بدون هیچ دغدغه کاری."
       }
     ],
@@ -12110,7 +12329,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 25,
               "timeDisplay": "0:25",
               "speaker": "Lily",
-              "textEn": "To me, friendships and my family are very important. But at the same time, doing things I’m interested in, such as art and writing, and anything creative, are also very important to me because Ithink it’s very important to follow your dreams and do what you enjoy, and what makes you happy.",
+              "textEn": "To me, friendships and my family are very important. But at the same time, doing things I’m interested in, such as art and writing, and anything creative, are also very important to me because I think it’s very important to follow your dreams and do what you enjoy, and what makes you happy.",
               "textFa": "برای من سلامتی بالاترین اولویته؛ اگر سلامت نباشی نمی‌تونی از هیچ چیز دیگه‌ای لذت ببری."
       },
       {
@@ -12118,7 +12337,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Saffi",
-              "textEn": "I’d say, erm, friends is a big thing because most of our friends are uni students so we can’t see our families, so being together and eating dinner, and seeing each other lots [is] defi nitely a big thing.",
+              "textEn": "I’d say, erm, friends is a big thing because most of our friends are uni students so we can’t see our families, so being together and eating dinner, and seeing each other lots [is] definitely a big thing.",
               "textFa": "شغل و پیشرفت حرفه‌ای برام خیلی مهمه، اما نه به قیمت فدا کردن روابط با عزیزانم."
       },
       {
@@ -12150,7 +12369,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 145,
               "timeDisplay": "2:25",
               "speaker": "Natalia",
-              "textEn": "Erm, Iquite like music because Ibelieve it is able to change your mood a lot. You know, if you’re feeling depressed or sad, erm, putting on a certain song can make you … kind of uplift you.",
+              "textEn": "Erm, I quite like music because I believe it is able to change your mood a lot. You know, if you’re feeling depressed or sad, erm, putting on a certain song can make you … kind of uplift you.",
               "textFa": "یادگیری مداوم و کسب تجربه‌های تازه در زندگی به من انگیزه حرکت میده."
       },
       {
@@ -12166,7 +12385,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 177,
               "timeDisplay": "2:57",
               "speaker": "Devante",
-              "textEn": "Er, my family, my friends, er … what else is important to me? Having a freedom of thought, being able to learn, being able to teach each other, friends, family everyone, living a good life and keeping tidy, putting things away aft er Iuse them, Ithink is important to me. So, a… structure is really important to me nowadays.",
+              "textEn": "Er, my family, my friends, er … what else is important to me? Having a freedom of thought, being able to learn, being able to teach each other, friends, family everyone, living a good life and keeping tidy, putting things away aft er I use them, I think is important to me. So, a… structure is really important to me nowadays.",
               "textFa": "کمک به دیگران و حس مفید بودن در جامعه احساس رضایت عمیقی به من میده."
       },
       {
@@ -12174,7 +12393,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 179,
               "timeDisplay": "2:59",
               "speaker": "Gerard",
-              "textEn": "I’d say [the] most important [thing] is … for me is, will probably be friends and family. Ithink spending time with them, erm, making sure that there’s a good balance between my work and my, like, personal life, my free time, make sure I’ve always got time for them.",
+              "textEn": "I’d say [the] most important [thing] is … for me is, will probably be friends and family. I think spending time with them, erm, making sure that there’s a good balance between my work and my, like, personal life, my free time, make sure I’ve always got time for them.",
               "textFa": "صداقت و اعتماد در روابط انسانی پایه‌ای‌ترین چیزیه که بهش پایبندم."
       },
       {
@@ -12182,7 +12401,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 181,
               "timeDisplay": "3:01",
               "speaker": "Nikki",
-              "textEn": "Erm, money. I’m not particularly, … Idon’t fi nd a career that important.",
+              "textEn": "Erm, money. I’m not particularly, … I don’t find a career that important.",
               "textFa": "خانواده‌ام همیشه در درجه اول قرار دارن، هر اتفاقی که بیفته پشت هم هستیم."
       },
       {
@@ -12198,7 +12417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 185,
               "timeDisplay": "3:05",
               "speaker": "Lotte",
-              "textEn": "Erm, for me, social media Idon’t care about too much. Erm, sort of keeping up with, kind of, current trends and Instagram, Facebook. I’d rather, sort of, socialise in the real world. [I’m] more interested in current events and the news, Iguess.",
+              "textEn": "Erm, for me, social media I don’t care about too much. Erm, sort of keeping up with, kind of, current trends and Instagram, Facebook. I’d rather, sort of, socialise in the real world. [I’m] more interested in current events and the news, I guess.",
               "textFa": "تجربه دیدن دنیا و فرهنگ‌های مختلف دنیا رو برام زیباتر می‌کنه."
       },
       {
@@ -12206,7 +12425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 187,
               "timeDisplay": "3:07",
               "speaker": "Mon Zer",
-              "textEn": "I … Idon’t care about, er, like, er, new trends that much.",
+              "textEn": "I … I don’t care about, er, like, er, new trends that much.",
               "textFa": "آرامش، طبیعت، و وقت گذروندن دور از هیاهوی شهر چیزیه که بیش از همه برام ارزش داره."
       },
       {
@@ -12214,7 +12433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Gerard",
-              "textEn": "So, things that aren’t that important for me personally, erm, I’m not interested in sport at all. I’ve no interest in it, Idon’t really know anything about it. Erm, and probably brands. I’m not … like, brand names, or … I’m not really into brands at all or, sort of, status symbols.",
+              "textEn": "So, things that aren’t that important for me personally, erm, I’m not interested in sport at all. I’ve no interest in it, I don’t really know anything about it. Erm, and probably brands. I’m not … like, brand names, or … I’m not really into brands at all or, sort of, status symbols.",
               "textFa": "در نهایت، شاد بودن و داشتن وجدان راحت از همه‌چیز مهم‌تره."
       }
     ],
@@ -12394,7 +12613,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "I ’m interested in a lot of things so Icould probably say that I’m curious about everything. I’ve always enjoyed learning new things about science, nature and Istill really enjoy reading popular science books and articles.",
+              "textEn": "I ’m interested in a lot of things so I could probably say that I’m curious about everything. I’ve always enjoyed learning new things about science, nature and Istill really enjoy reading popular science books and articles.",
               "textFa": "من به چیزهای زیادی علاقه‌مندم، بنابراین احتمالاً می‌تونم بگم که بزرگ‌ترین علاقه‌ام موسیقی و نواختن گیتاره."
       },
       {
@@ -12402,7 +12621,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 38,
               "timeDisplay": "0:38",
               "speaker": "Speaker 2",
-              "textEn": "I ’m really interested in history, especially middle eastern history, erm, it’s just something that I’ve always found interesting and Ilike to read about it, Ilike to watch documentaries about it and find out more.",
+              "textEn": "I ’m really interested in history, especially middle eastern history, erm, it’s just something that I’ve always found interesting and I like to read about it, I like to watch documentaries about it and find out more.",
               "textFa": "سرگرمی اصلی من عکاسی از طبیعته؛ ساعت‌ها در سکوت منتظر ثبت یک نمای فوق‌العاده می‌مونم."
       },
       {
@@ -12442,7 +12661,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 92,
               "timeDisplay": "1:32",
               "speaker": "Speaker 6",
-              "textEn": "Oh, I’m curious about so many things. Ilove music, Ilove art, Ilove history.",
+              "textEn": "Oh, I’m curious about so many things. I love music, I love art, I love history.",
               "textFa": "سفر و کوله‌گردی در مسیرهای ناشناخته چیزیه که هر سال براش برنامه‌ریزی می‌کنم."
       },
       {
@@ -12450,7 +12669,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 100,
               "timeDisplay": "1:40",
               "speaker": "Speaker 7",
-              "textEn": "I’m really curious about what cats think. They act in such strange ways most of the time, and Ialways want to know what’s going on in my cat’s head.",
+              "textEn": "I’m really curious about what cats think. They act in such strange ways most of the time, and I always want to know what’s going on in my cat’s head.",
               "textFa": "بازی‌های فکری و حل پازل‌های پیچیده ذهن من رو همیشه فعال و متمرکز نگه می‌داره."
       }
     ],
@@ -12670,7 +12889,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 82,
               "timeDisplay": "1:22",
               "speaker": "Presenters",
-              "textEn": "Tell you what, Paddy, it’s about to get really bumpy up here. It can’t get any worse, can it? Ithink it just might be.",
+              "textEn": "Tell you what, Paddy, it’s about to get really bumpy up here. It can’t get any worse, can it? I think it just might be.",
               "textFa": "آیا این اتوبوس به سمت کاتماندو حرکت می‌کنه؟ چقدر طول می‌کشه تا برسیم؟"
       },
       {
@@ -12694,7 +12913,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 130,
               "timeDisplay": "2:10",
               "speaker": "Narrator",
-              "textEn": "Miles from anywhere, our next job was to fi nd somewhere to camp for the night.",
+              "textEn": "Miles from anywhere, our next job was to find somewhere to camp for the night.",
               "textFa": "تیم‌ها باید استراتژی درستی بین سرعت و صرفه‌جویی در هزینه انتخاب کنند."
       },
       {
@@ -12702,7 +12921,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 135,
               "timeDisplay": "2:15",
               "speaker": "Presenters",
-              "textEn": "This is nice, innit? This is the worst camp spot I’ve ever seen. Goodnight! Seriously, boys. This is, this is ... frightening up here. Imean, literally, there was just enough room to get the car through. Fred, Ican’t believe I’m saying this, but please can you give me a push? That’s literally all I’ve got. Ithink the engine’s dying. Fred, hook me up and just tow me. This is ridiculous. Whoa, whoa! Paddy!",
+              "textEn": "This is nice, innit? This is the worst camp spot I’ve ever seen. Goodnight! Seriously, boys. This is, this is ... frightening up here. I mean, literally, there was just enough room to get the car through. Fred, I can’t believe I’m saying this, but please can you give me a push? That’s literally all I’ve got. I think the engine’s dying. Fred, hook me up and just tow me. This is ridiculous. Whoa, whoa! Paddy!",
               "textFa": "ما خسته‌ایم اما روحیه تیمی‌مان قوی‌تر از هر زمان دیگری است."
       },
       {
@@ -12726,7 +12945,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 229,
               "timeDisplay": "3:49",
               "speaker": "Narrator",
-              "textEn": "In the fi ve days since leaving Kathmandu, our cars had covered the most arduous miles of their lives. They’d suff ered breakdowns and failures. But working together, they’d claimed victories we had no right to expect of them. In the end, the journey had proved too much for some. But we’d come to Nepal to fi nd the ultimate city car.",
+              "textEn": "In the fi ve days since leaving Kathmandu, our cars had covered the most arduous miles of their lives. They’d suff ered breakdowns and failures. But working together, they’d claimed victories we had no right to expect of them. In the end, the journey had proved too much for some. But we’d come to Nepal to find the ultimate city car.",
               "textFa": "هر گام در این ارتفاعات چالشی برای تنفس و توان جسمی است."
       },
       {
@@ -12750,7 +12969,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 284,
               "timeDisplay": "4:44",
               "speaker": "Presenters",
-              "textEn": "Crowned the winner! It’s got the gold scarf on it, Chris. On that, Paddy, Igive it to you. Ican’t argue with you, man. 171 Z06 Speakout 3e CB B1 59533 Video.indd 171Z06 Speakout 3e CB B1 59533 Video.indd 171 01/03/2022 00:1401/03/2022 00:14",
+              "textEn": "Crowned the winner! It’s got the gold scarf on it, Chris. On that, Paddy, Igive it to you. I can’t argue with you, man. 171 Z06 Speakout 3e CB B1 59533 Video.indd 171Z06 Speakout 3e CB B1 59533 Video.indd 171 01/03/2022 00:1401/03/2022 00:14",
               "textFa": "این تجربه‌ای است که برای تمام عمر در خاطره‌ها ثبت خواهد شد."
       }
     ],
@@ -12930,7 +13149,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Last year Iwon a really big golf tournament. I’m very proud of myself. Ishot my best score of the year, a seventy-nine, which is a really good score in golf, especially for me.",
+              "textEn": "Last year I won a really big golf tournament. I’m very proud of myself. Ishot my best score of the year, a seventy-nine, which is a really good score in golf, especially for me.",
               "textFa": "سال گذشته من در یک تورنمنت گلف بسیار بزرگ برنده شدم. واقعاً به خودم افتخار می‌کنم؛ بهترین امتیاز سالم یعنی ۷۹ رو ثبت کردم."
       },
       {
@@ -12938,7 +13157,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 34,
               "timeDisplay": "0:34",
               "speaker": "Speaker 2",
-              "textEn": "Yes, I’ve won one thing in my life, which was an award for best classwork when Iwas ten years old.",
+              "textEn": "Yes, I’ve won one thing in my life, which was an award for best classwork when I was ten years old.",
               "textFa": "بله، من در زندگیم یک جایزه بردم، اون هم جایزه بهترین پروژه علمی دانشجویی در دانشگاه بود."
       },
       {
@@ -12946,7 +13165,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 45,
               "timeDisplay": "0:45",
               "speaker": "Speaker 3",
-              "textEn": "Actually, Iwon a contest a few months ago, it was an opportunity to watch my favourite singer performing live, Alicia Keys, in London, and Iloved it, it was such a good experience.",
+              "textEn": "Actually, I won a contest a few months ago, it was an opportunity to watch my favourite singer performing live, Alicia Keys, in London, and Iloved it, it was such a good experience.",
               "textFa": "بزرگ‌ترین دستاورد من تا الان، دویدن در ماراتن لندن و به پایان رساندن کل مسیر ۴۲ کیلومتری بود."
       },
       {
@@ -12954,7 +13173,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 58,
               "timeDisplay": "0:58",
               "speaker": "Speaker 4",
-              "textEn": "So, I’ve won quite a few awards, erm, Iused to dance when Iwas younger, so Iwon quite a few competitions for dancing and Ialso won a couple of trophies as well. Erm, I’ve also won a few professional awards for writing, and that’s about it really.",
+              "textEn": "So, I’ve won quite a few awards, erm, I used to dance when I was younger, so I won quite a few competitions for dancing and I also won a couple of trophies as well. Erm, I’ve also won a few professional awards for writing, and that’s about it really.",
               "textFa": "من توانستم کسب‌وکار کوچک خودم رو از صفر راه‌اندازی کنم و حالا اولین سالگرد موفقیتش رو جشن می‌گیریم."
       },
       {
@@ -12962,7 +13181,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 76,
               "timeDisplay": "1:16",
               "speaker": "Speaker 5",
-              "textEn": "Iusually never win anything, but Iwon these two turtles in Bali for showing up fi rst to a party. It pays to be on time!",
+              "textEn": "Iusually never win anything, but I won these two turtles in Bali for showing up first to a party. It pays to be on time!",
               "textFa": "یادگیری نواختن پیانو در سنین بزرگسالی برای من یک پیروزی بزرگ شخصی به حساب میاد."
       },
       {
@@ -12970,7 +13189,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 89,
               "timeDisplay": "1:29",
               "speaker": "Speaker 6",
-              "textEn": "Idon’t oft en enter competitions, so Ihaven’t won a lot, but Idid enter a competition on Twitter last year and Iwon a television, and that was pretty cool. Ithink Iwon it because Iwas the only person who entered the competition. It wasn’t a big Twitter account, but hey, Igot a free TV.",
+              "textEn": "I don’t often enter competitions, so I haven’t won a lot, but I did enter a competition on Twitter last year and I won a television, and that was pretty cool. I think I won it because I was the only person who entered the competition. It wasn’t a big Twitter account, but hey, I got a free TV.",
               "textFa": "احساس افتخار زمانیه که می‌بینی سخت‌کوشی‌هات بالاخره به بار نشسته و نتیجه داده."
       }
     ],
@@ -13166,7 +13385,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 36,
               "timeDisplay": "0:36",
               "speaker": "Natalia",
-              "textEn": "Erm, Ilike, quite like things to do with crime because [it] just adds a bit of entertainment to my life.",
+              "textEn": "Erm, I like, quite like things to do with crime because [it] just adds a bit of entertainment to my life.",
               "textFa": "برای من اخبار فرهنگی، هنر، سینما و تئاتر از اخبار تلخ روزمره جذاب‌تره."
       },
       {
@@ -13182,7 +13401,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 146,
               "timeDisplay": "2:26",
               "speaker": "Devante",
-              "textEn": "News about things Icare about. Ilove news on technology, so I’m really into business development and I’m into technology helping us do things in a more efficient and, hopefully, cheaper way. Erm, I’m really into learning about the arts, Ilove musicals, Ilove news about music.",
+              "textEn": "News about things Icare about. I love news on technology, so I’m really into business development and I’m into technology helping us do things in a more efficient and, hopefully, cheaper way. Erm, I’m really into learning about the arts, I love musicals, I love news about music.",
               "textFa": "اخبار ورزشی، به خصوص فوتبال و مسابقات تنیس، تنها بخشیه که هر روز صبح می‌خونم."
       },
       {
@@ -13190,7 +13409,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 163,
               "timeDisplay": "2:43",
               "speaker": "Henry",
-              "textEn": "Er, the news that I’m interested in is world news. I’m from Australia, so Ireally like, er, international politics, international relations, er, local news is also interesting.",
+              "textEn": "Er, the news that I’m interested in is world news. I’m from Australia, so I really like, er, international politics, international relations, er, local news is also interesting.",
               "textFa": "من سعی می‌کنم از اخبار منفی دوری کنم و بیشتر به دنبال گزارش‌های الهام‌بخش و مثبت باشم."
       },
       {
@@ -13198,7 +13417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 171,
               "timeDisplay": "2:51",
               "speaker": "Isabelle",
-              "textEn": "It hink print media will disappear over time and Ithink, er, the new generation might focus more on social media and get their news through different social media platforms, erm, and Ithink it might be hard then to distinguish real news from fake news.",
+              "textEn": "It hink print media will disappear over time and I think, er, the new generation might focus more on social media and get their news through different social media platforms, erm, and I think it might be hard then to distinguish real news from fake news.",
               "textFa": "اخبار محلی شهرمون برام اولویت داره؛ دوست دارم بدونم در محله خودمون چه اتفاقاتی در حال رخداده."
       },
       {
@@ -13206,7 +13425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 173,
               "timeDisplay": "2:53",
               "speaker": "Matt",
-              "textEn": "Er, it probably won’t. It probably won’t! But Ihope it does. Erm, there’s too much negativity on the news. There’s far too much negativity.",
+              "textEn": "Er, it probably won’t. It probably won’t! But I hope it does. Erm, there’s too much negativity on the news. There’s far too much negativity.",
               "textFa": "من خبرها رو از منابع مختلف چک می‌کنم تا دیدگاه‌های متفاوتی به دست بیارم و یک‌طرفه قضاوت نکنم."
       },
       {
@@ -13214,7 +13433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 175,
               "timeDisplay": "2:55",
               "speaker": "Natalia",
-              "textEn": "It hink the younger generation will be more interested in the news, but Ithink the way we access the news or, erm, information that would be included in the news will change from the traditional BBC website or the newspaper to social media, such as, like, Instagram and even Snapchat.",
+              "textEn": "It hink the younger generation will be more interested in the news, but I think the way we access the news or, erm, information that would be included in the news will change from the traditional BBC website or the newspaper to social media, such as, like, Instagram and even Snapchat.",
               "textFa": "پیشرفت‌های هوش مصنوعی و فناوری‌های نوظهور بخش مورد علاقه من در اخبار جهانه."
       },
       {
@@ -13238,7 +13457,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 181,
               "timeDisplay": "3:01",
               "speaker": "Ayesha",
-              "textEn": "Erm, Idefinitely think that celebrities are going to be more prominent in the news and that their role will be much more influential as well.",
+              "textEn": "Erm, I definitely think that celebrities are going to be more prominent in the news and that their role will be much more influential as well.",
               "textFa": "پوشش بحران‌های آب‌وهوایی مهم‌ترین موضوعیه که همه رسانه‌ها باید بیشتر بهش بپردازن."
       },
       {
@@ -13246,7 +13465,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 183,
               "timeDisplay": "3:03",
               "speaker": "Henry",
-              "textEn": "Yes, Ithink the news will be online a lot more, including on social media. Ithink the news will be represented by younger people and mostly on social media platforms, such as Instagram, Facebook, er, and other internet things.",
+              "textEn": "Yes, I think the news will be online a lot more, including on social media. I think the news will be represented by younger people and mostly on social media platforms, such as Instagram, Facebook, er, and other internet things.",
               "textFa": "در نهایت، دسترسی به اخبار موثق و بی‌طرف در دنیای امروز از همیشه حیاتی‌تر شده."
       }
     ],
@@ -13426,7 +13645,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Ia lways read the BBC site in the morning first thing, starting with the sport news, in particular football, erm, then Iwork through world news because Ilike to know what’s happening in the world, and kind of work my way down to national, UK news and then what’s happening in my local area.",
+              "textEn": "Ia lways read the BBC site in the morning first thing, starting with the sport news, in particular football, erm, then I work through world news because I like to know what’s happening in the world, and kind of work my way down to national, UK news and then what’s happening in my local area.",
               "textFa": "من همیشه صبح‌ها اول از همه وب‌سایت بی‌بی‌سی رو چک می‌کنم تا از مهم‌ترین تیترهای روز مطلع بشم."
       },
       {
@@ -13434,7 +13653,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 36,
               "timeDisplay": "0:36",
               "speaker": "Speaker 2",
-              "textEn": "Well, Ilisten to the radio a lot, Ilike to get the news from the radio, because they also tend to discuss issues further and interview people regarding current affairs.",
+              "textEn": "Well, I listen to the radio a lot, I like to get the news from the radio, because they also tend to discuss issues further and interview people regarding current affairs.",
               "textFa": "من بیشتر خبرها رو از طریق شبکه‌های اجتماعی و کانال‌های خبری دنبال می‌کنم، چون سریع‌تره."
       },
       {
@@ -13442,7 +13661,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 49,
               "timeDisplay": "0:49",
               "speaker": "Speaker 3",
-              "textEn": "Ir ead a lot of news every day, Ieither read it online or Iread, erm, a newspaper.",
+              "textEn": "Ir ead a lot of news every day, Ieither read it online or I read, erm, a newspaper.",
               "textFa": "من پادکست‌های خبری روزانه رو موقع رفتن به محل کار گوش میدم؛ بهترین روش برای صرفه‌جویی در زمانه."
       },
       {
@@ -13450,7 +13669,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 60,
               "timeDisplay": "1:00",
               "speaker": "Speaker 4",
-              "textEn": "Erm, Itry to be up to date with current affairs, so Iread the news on my phone on an app and Itry to read the news on my lunch break at work.",
+              "textEn": "Erm, I try to be up to date with current affairs, so I read the news on my phone on an app and I try to read the news on my lunch break at work.",
               "textFa": "آخر هفته‌ها ترجیح میدم نسخه چاپی روزنامه رو همراه با یک فنجان قهوه با آرامش بخونم."
       },
       {
@@ -13458,7 +13677,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 76,
               "timeDisplay": "1:16",
               "speaker": "Speaker 5",
-              "textEn": "Ig et my news online. (Igo) When Iwake up Igo online and Igo straight to BBC news, and then ... Ialso like to read other news sites on the same article to make sure everyone that is saying the same thing.",
+              "textEn": "Ig et my news online. (I go) When I wake up I go online and I go straight to BBC news, and then ... I also like to read other news sites on the same article to make sure everyone that is saying the same thing.",
               "textFa": "من اعلان‌های خبری فوری رو روی گوشیم فعال کردم تا از اتفاقات مهم عقب نمونم."
       },
       {
@@ -13466,7 +13685,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 91,
               "timeDisplay": "1:31",
               "speaker": "Speaker 6",
-              "textEn": "Ig o to a few different sites, different sources, erm, because usually the truth just lies somewhere in the middle, erm, so Ilike to get different points of view.",
+              "textEn": "Ig o to a few different sites, different sources, erm, because usually the truth just lies somewhere in the middle, erm, so I like to get different points of view.",
               "textFa": "بررسی صحت و درستی اخبار قبل از بازنشر اون‌ها وظیفه‌ایه که همه ما باید جدی بگیریم."
       }
     ],
@@ -13686,7 +13905,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 223,
               "timeDisplay": "3:43",
               "speaker": "Miranda",
-              "textEn": "What’s great is that ... there’s a lot more sort of artistic freedom for me as a maker because Ican ... You know, I’m given the fabrics and then Ican work with them and do what Ilike with them, which is a really lovely way to work.",
+              "textEn": "What’s great is that ... there’s a lot more sort of artistic freedom for me as a maker because I can ... You know, I’m given the fabrics and then I can work with them and do what I like with them, which is a really lovely way to work.",
               "textFa": "شونیباره با وجود معلولیت جسمی، کارگاه بزرگی از دستیاران هنری را برای خلق ایده‌های جسورانه خود هدایت می‌کند."
       },
       {
@@ -13782,7 +14001,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 257,
               "timeDisplay": "4:17",
               "speaker": "Stephen",
-              "textEn": "It’s exciting, it’s fun, it’s engaging. It’s everything a work of art should be. 172 VIDEOSCRIPTS Z06 Speakout 3e CB B1 59533 Video.indd 172Z06 Speakout 3e CB B1 59533 Video.indd 172 01/03/2022 00:1401/03/2022 00:14",
+              "textEn": "It’s exciting, it’s fun, it’s engaging. It’s everything a work of art should be. Z06 Speakout 3e CB B1 59533 Video.indd 172Z06 Speakout 3e CB B1 59533 Video.indd 172 01/03/2022 00:1401/03/2022 00:14",
               "textFa": "میراث هنری شونیباره یادآور این حقیقت است که تنوع فرهنگی بزرگ‌ترین ثروت بشریت است."
       }
     ],
@@ -13962,7 +14181,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "It hink I’m a pretty creative person, but the things that Ido aren’t works of art, obviously. Ilove to dance, to sing, Ising quite a lot to be honest.",
+              "textEn": "It hink I’m a pretty creative person, but the things that I do aren’t works of art, obviously. I love to dance, to sing, Ising quite a lot to be honest.",
               "textFa": "فکر می‌کنم من آدم نسبتاً خلاقی هستم، اما زمینه‌هایی که خلاقیتم رو نشون میدم بیشتر نقاشی و طراحی دکوراسیونه."
       },
       {
@@ -13970,7 +14189,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 39,
               "timeDisplay": "0:39",
               "speaker": "Speaker 2",
-              "textEn": "I ’m not very creative in the literal sense. Ican’t play a musical instrument or sing, or, I’m not very good at art either, but Ido enjoy creative writing, erm Ialways enjoyed that at school.",
+              "textEn": "I ’m not very creative in the literal sense. I can’t play a musical instrument or sing, or, I’m not very good at art either, but I do enjoy creative writing, erm I always enjoyed that at school.",
               "textFa": "خلاقیت برای من یعنی پیدا کردن راه‌حل‌های نوآورانه برای حل مشکلات روزمره کاری."
       },
       {
@@ -13978,7 +14197,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 54,
               "timeDisplay": "0:54",
               "speaker": "Speaker 3",
-              "textEn": "Ir eally like baking cakes and bread. Istarted baking with a friend who Ilive with at university this year. Oh, and I’m also teaching myself to play the guitar.",
+              "textEn": "Ir eally like baking cakes and bread. I started baking with a friend who I live with at university this year. Oh, and I’m also teaching myself to play the guitar.",
               "textFa": "من با نوشتن شعر و داستان‌های کوتاه احساسات و افکار درونیم رو به شکلی هنری بیان می‌کنم."
       },
       {
@@ -13986,7 +14205,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 82,
               "timeDisplay": "1:22",
               "speaker": "Speaker 4",
-              "textEn": "Well, I’m not very good at art, and Idon’t play any instruments either, but Iam creative in other ways, for example Ilove crafts and Ihave recently started knitting as well, and Ireally enjoy it.",
+              "textEn": "Well, I’m not very good at art, and I don’t play any instruments either, but I am creative in other ways, for example I love crafts and I have recently started knitting as well, and I really enjoy it.",
               "textFa": "آشپزی جاییه که واقعاً احساس خلاقیت می‌کنم؛ ترکیب طعم‌ها و ادویه‌ها مثل نقاشی روی بوم می‌مونه."
       },
       {
@@ -13994,7 +14213,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 84,
               "timeDisplay": "1:24",
               "speaker": "Speaker 5",
-              "textEn": "The creative things that I’m interested in are drawing – Ilike to sketch things, I’m not very good but Ido enjoy it. Ialso like gardening because Ilove to watch things grow.",
+              "textEn": "The creative things that I’m interested in are drawing – I like to sketch things, I’m not very good but I do enjoy it. I also like gardening because I love to watch things grow.",
               "textFa": "من عاشق ساختن وسایل چوبی و پروژه‌های دست‌ساز در کارگاه کوچکم در انبار خونه هستم."
       },
       {
@@ -14002,7 +14221,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 98,
               "timeDisplay": "1:38",
               "speaker": "Speaker 6",
-              "textEn": "Id raw a lot and Ipaint a lot, but mainly digitally. Ihave a tablet which Ican take with me wherever Iwant so Ican draw whenever Iwant.",
+              "textEn": "Id raw a lot and Ipaint a lot, but mainly digitally. I have a tablet which I can take with me wherever I want so I can draw whenever I want.",
               "textFa": "همه انسان‌ها به نوعی خلاق هستند، فقط باید زمینه مورد علاقه خودشون رو پیدا کنند."
       }
     ],
@@ -14190,7 +14409,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 30,
               "timeDisplay": "0:30",
               "speaker": "Saffi",
-              "textEn": "Budapest, Ithink, because there’s so much … you can see so much in one city, you can go to … you can be in Buda or Pest, and Ididn’t know that before Iwent there. Erm, and it’s a really beautiful city and the people are really lovely and the food is amazing as well.",
+              "textEn": "Budapest, I think, because there’s so much … you can see so much in one city, you can go to … you can be in Buda or Pest, and I didn’t know that before I went there. Erm, and it’s a really beautiful city and the people are really lovely and the food is amazing as well.",
               "textFa": "من همیشه آرزو داشتم به ژاپن سفر کنم؛ ترکیب فناوری فوق‌مدرن و سنت‌های باستانی فوق‌العاده جذابه."
       },
       {
@@ -14198,7 +14417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 42,
               "timeDisplay": "0:42",
               "speaker": "Lotte",
-              "textEn": "Yeah, Ireally love New Zealand. Erm, Iwent to Auckland two years ago, erm, and stayed there for about a month and the scenery was amazing, the people were so friendly, erm, and it was just a really beautiful place.",
+              "textEn": "Yeah, I really love New Zealand. Erm, I went to Auckland two years ago, erm, and stayed there for about a month and the scenery was amazing, the people were so friendly, erm, and it was just a really beautiful place.",
               "textFa": "آمریکای جنوبی و به خصوص جنگل‌های آمازون و کوه‌های پرو مقصد رویایی سفر من هستن."
       },
       {
@@ -14206,7 +14425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 69,
               "timeDisplay": "1:09",
               "speaker": "Will",
-              "textEn": "Erm, Ithink the most amazing place I’ve ever visited is, er, Mount Kilimanjaro. Just being at the top when sunrise is coming and you’ve got snow and there’s very, very few people up there. It’s quite a special place.",
+              "textEn": "Erm, I think the most amazing place I’ve ever visited is, er, Mount Kilimanjaro. Just being at the top when sunrise is coming and you’ve got snow and there’s very, very few people up there. It’s quite a special place.",
               "textFa": "دوست دارم شفق قطبی رو در نروژ یا ایسلند از نزدیک تماشا کنم؛ این در صدر لیست آرزوهامه."
       },
       {
@@ -14214,7 +14433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 71,
               "timeDisplay": "1:11",
               "speaker": "Lumi",
-              "textEn": "Ithink the most amazing place I’ve ever been to currently is Iceland. Iwent there to do … shoot a fi lm and to capture some of the Northern Lights and just general culture, but Iceland.",
+              "textEn": "I think the most amazing place I’ve ever been to currently is Iceland. I went there to do … shoot a film and to capture some of the Northern Lights and just general culture, but Iceland.",
               "textFa": "سافاری در کنیا و دیدن حیوانات وحشی در زیستگاه طبیعی‌شون تجربه‌ایه که بی‌صبرانه منتظرشم."
       },
       {
@@ -14222,7 +14441,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 79,
               "timeDisplay": "1:19",
               "speaker": "Osaid",
-              "textEn": "The most amazing place I’ve ever visited would probably be Syria a couple of years ago. Er, this is because there’s so much history behind it and so many diff erent … and, such a wide variety of foods to try, and was really diff erent from any food that I’ve tried in this country.",
+              "textEn": "The most amazing place I’ve ever visited would probably be Syria a couple of years ago. Er, this is because there’s so much history behind it and so many different … and, such a wide variety of foods to try, and was really different from any food that I’ve tried in this country.",
               "textFa": "ایتالیا و سواحل مدیترانه برای من ایده‌آل‌ترین مقصد برای استراحت و چشیدن غذاهای اصیله."
       },
       {
@@ -14230,7 +14449,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 99,
               "timeDisplay": "1:39",
               "speaker": "Anabel",
-              "textEn": "Erm, Ithink London because there’s so many things to do here and each part of London is so diff erent and diverse. Erm, and it just feels so lively. Ijust really enjoy spending time here.",
+              "textEn": "Erm, I think London because there’s so many things to do here and each part of London is so different and diverse. Erm, and it just feels so lively. I just really enjoy spending time here.",
               "textFa": "من جذب استرالیا و طبیعت بکر و حیات‌وحش منحصربه‌فردش شدم و دوست دارم کل ساحل شرقی رو بگردم."
       },
       {
@@ -14238,7 +14457,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 130,
               "timeDisplay": "2:10",
               "speaker": "Molly",
-              "textEn": "I’m going to say by myself because I’m more of a … Iprefer my own company.",
+              "textEn": "I’m going to say by myself because I’m more of a … I prefer my own company.",
               "textFa": "سفر به کانادا و دیدن دریاچه‌های کریستالی کوه‌های راکی آرزوی دوران کودکی منه."
       },
       {
@@ -14246,7 +14465,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 157,
               "timeDisplay": "2:37",
               "speaker": "Dan",
-              "textEn": "Bit of both. Er, Ilike the freedom of travelling by myself, but, erm, ultimately, it’s nice to travel with someone else because it can get a bit lonely on your own.",
+              "textEn": "Bit of both. Er, I like the freedom of travelling by myself, but, erm, ultimately, it’s nice to travel with someone else because it can get a bit lonely on your own.",
               "textFa": "برای من کشف بازارهای پرجنب‌وجوش مراکش و معماری اسلامی جذابیت بی‌پایانی داره."
       },
       {
@@ -14262,7 +14481,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 171,
               "timeDisplay": "2:51",
               "speaker": "Lotte",
-              "textEn": "I … I’d say by myself. Ithink it … you’ve got more room to do what you want, umm, and be more fl exible with your plans.",
+              "textEn": "I … I’d say by myself. I think it … you’ve got more room to do what you want, umm, and be more fl exible with your plans.",
               "textFa": "دیدن دیوار چین و تاریخ چندهزارساله این کشور همیشه برام هیجان‌انگیز بوده."
       },
       {
@@ -14270,7 +14489,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 171,
               "timeDisplay": "2:51",
               "speaker": "Nikki",
-              "textEn": "Iactually prefer going by myself because I’m a bit selfi sh and … could do whatever Iwant without worrying if someone else is having a good time as well. But obviously there are some … some times where you want to be in a big group and be with all your friends. But if you want to go somewhere specifi cally, just go on your own I’d say.",
+              "textEn": "Iactually prefer going by myself because I’m a bit selfi sh and … could do whatever I want without worrying if someone else is having a good time as well. But obviously there are some … some times where you want to be in a big group and be with all your friends. But if you want to go somewhere specifi cally, just go on your own I’d say.",
               "textFa": "من ترجیح میدم به جزایر کوچک اقیانوس آرام برم تا در آرامش محض غواصی کنم."
       },
       {
@@ -14278,7 +14497,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 173,
               "timeDisplay": "2:53",
               "speaker": "Lumi",
-              "textEn": "Preferably, probably by myself, but Ido enjoy, er, travelling with people. But Ilike probably, like, small groups, so probably like, four max, maybe.",
+              "textEn": "Preferably, probably by myself, but I do enjoy, er, travelling with people. But I like probably, like, small groups, so probably like, four max, maybe.",
               "textFa": "فرهنگ غنی یونان باستان و جزایر سفید سانتورینی جاییه که حتماً باید دید."
       },
       {
@@ -14286,7 +14505,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 175,
               "timeDisplay": "2:55",
               "speaker": "Osaid",
-              "textEn": "Iprefer travelling with other people, just because Ifeel the experience is shared with my friends or family. Because when I’m travelling alone, whatever happens is mostly on my own and Ifi nd it safer to travel with other people.",
+              "textEn": "I prefer travelling with other people, just because I feel the experience is shared with my friends or family. Because when I’m travelling alone, whatever happens is mostly on my own and Ifi nd it safer to travel with other people.",
               "textFa": "سفر کردن دید انسان رو نسبت به جهان باز می‌کنه و بهترین سرمایه‌گذاری برای روحه."
       },
       {
@@ -14294,7 +14513,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 192,
               "timeDisplay": "3:12",
               "speaker": "Anabel",
-              "textEn": "Erm, Ienjoy spending time with other, er, travelling with other people because, erm, then you can talk about the experience with them and enjoy it with them and share the memory with them, rather than just yourself.",
+              "textEn": "Erm, I enjoy spending time with other, er, travelling with other people because, erm, then you can talk about the experience with them and enjoy it with them and share the memory with them, rather than just yourself.",
               "textFa": "هر مقصدی درس‌های تازه‌ای از زندگی و تنوع انسانی به ما یاد میده."
       }
     ],
@@ -14305,7 +14524,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "promptEn": "Listen at [1:41]. What key insight does Anabel share?",
         "timestampSeconds": 101,
         "timestampDisplay": "1:41",
-        "explanationFa": "در ثانیه 1:41، Anabel صریحاً بیان می‌کند: «I think London because there’s so many things to do here and each part of London is so diff erent and diverse.».",
+        "explanationFa": "در ثانیه 1:41، Anabel صریحاً بیان می‌کند: «I think London because there’s so many things to do here and each part of London is so different and diverse.».",
         "options": [
           {
             "id": 1,
@@ -14474,7 +14693,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Ithink Ifeel happiest in the garden, either planting new plants or looking aft er the older ones. Ialso love to walk in nature and to be able to hear the birds singing.",
+              "textEn": "I think I feel happiest in the garden, either planting new plants or looking aft er the older ones. I also love to walk in nature and to be able to hear the birds singing.",
               "textFa": "فکر می‌کنم بیشترین احساس شادی رو در باغچه دارم، موقع کاشتن گل‌های تازه و هرس کردن درختچه‌ها."
       },
       {
@@ -14482,7 +14701,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 33,
               "timeDisplay": "0:33",
               "speaker": "Speaker 2",
-              "textEn": "The place that Ifeel happiest is on my bike. Ilike to ride through the countryside, Ifi nd it helps me think about complicated things and they become simpler, so it helps me solve problems. Ienjoy seeing the fl owers and the trees and the rivers, sometimes Ieven ride my bike to the sea which is about 30 kilometres from where Ilive.",
+              "textEn": "The place that I feel happiest is on my bike. I like to ride through the countryside, Ifi nd it helps me think about complicated things and they become simpler, so it helps me solve problems. I enjoy seeing the fl owers and the trees and the rivers, sometimes I even ride my bike to the sea which is about 30 kilometres from where I live.",
               "textFa": "من در ساحل دریا هنگام غروب آفتاب احساس آرامش و خوشبختی کامل می‌کنم."
       },
       {
@@ -14498,7 +14717,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 69,
               "timeDisplay": "1:09",
               "speaker": "Speaker 4",
-              "textEn": "Ifeel happiest sat around a dinner table with my friends and family.",
+              "textEn": "I feel happiest sat around a dinner table with my friends and family.",
               "textFa": "وقتی بالای قله یک کوه بعد از چند ساعت کوهنوردی می‌ایستم، حسی از رهایی و شادی مطلق بهم دست میده."
       },
       {
@@ -14506,7 +14725,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 77,
               "timeDisplay": "1:17",
               "speaker": "Speaker 5",
-              "textEn": "Ifeel happiest in every place where Ican be with my friends, just hanging out in the street, sharing our thoughts and having a lot of good moments, or even watching a fi lm at home.",
+              "textEn": "I feel happiest in every place where I can be with my friends, just hanging out in the street, sharing our thoughts and having a lot of good moments, or even watching a film at home.",
               "textFa": "کتابخونه دنج با یک مبل راحتی و بوی کاغذ کتاب‌ها جاییه که همیشه حالم رو خوب می‌کنه."
       },
       {
@@ -14514,7 +14733,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 89,
               "timeDisplay": "1:29",
               "speaker": "Speaker 6",
-              "textEn": "My favourite place is here. I’m in Northumberland by the ocean on the north-east coast of England and the sky is huge and the sea is beautiful, so this is where Ifeel the happiest.",
+              "textEn": "My favourite place is here. I’m in Northumberland by the ocean on the north-east coast of England and the sky is huge and the sea is beautiful, so this is where I feel the happiest.",
               "textFa": "شادی واقعی به مکان فیزیکی بستگی نداره، به افرادی بستگی داره که باهاشون وقت می‌گذرونی."
       }
     ],
@@ -14694,7 +14913,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 26,
               "timeDisplay": "0:26",
               "speaker": "Narrator",
-              "textEn": "Finely tuned ears and a wonderfully versatile voice have allowed humans to invent over 7,000 diff erent languages. And each of us, as we grow, pick up over a thousand new words every year. By your early teens, you have a working vocabulary of over 10,000 words. From an early age, Wendy Vo’s brain has been bursting with languages.",
+              "textEn": "Finely tuned ears and a wonderfully versatile voice have allowed humans to invent over 7,000 different languages. And each of us, as we grow, pick up over a thousand new words every year. By your early teens, you have a working vocabulary of over 10,000 words. From an early age, Wendy Vo’s brain has been bursting with languages.",
               "textFa": "گوش‌های دقیق و حنجره‌ای با انعطاف‌پذیری شگفت‌انگیز، ابزارهای بنیادین دنیای آواشناسی هستند."
       },
       {
@@ -14702,7 +14921,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 78,
               "timeDisplay": "1:18",
               "speaker": "Wendy",
-              "textEn": "When Iwas one, Ispoke Vietnamese only, like, it was just like baby words. When Iwas two, Ispoke English, Vietnamese, Spanish and Chinese, so four languages when Iwas two years old. Well, at least Istarted learning them.",
+              "textEn": "When I was one, I spoke Vietnamese only, like, it was just like baby words. When I was two, I spoke English, Vietnamese, Spanish and Chinese, so four languages when I was two years old. Well, at least I started learning them.",
               "textFa": "مهندسان صدا در این آزمایشگاه آکوستیک، فرکانس‌های صوتی را تا دقیق‌ترین ارتعاشات تحلیل می‌کنند."
       },
       {
@@ -14710,7 +14929,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 97,
               "timeDisplay": "1:37",
               "speaker": "Narrator",
-              "textEn": "She hasn’t stopped at just four languages. Wendy spends an hour every week talking to a range of diff erent people in their native tongues.",
+              "textEn": "She hasn’t stopped at just four languages. Wendy spends an hour every week talking to a range of different people in their native tongues.",
               "textFa": "عایق‌بندی فضا و کنترل بازتاب امواج، کیفیتی بی‌نقص برای ضبط موسیقی و گفتار فراهم می‌آورد."
       },
       {
@@ -14718,7 +14937,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Winita",
-              "textEn": "Iam Winita from India, and Iteach Wendy Hindi.",
+              "textEn": "I am Winita from India, and I teach Wendy Hindi.",
               "textFa": "طراحی سالن‌های کنسرت نیازمند هماهنگی بی‌عیب‌ونقص میان معماری مدرن و قوانین فیزیک صوت است."
       },
       {
@@ -14726,7 +14945,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 123,
               "timeDisplay": "2:03",
               "speaker": "Rashida",
-              "textEn": "My name is Rashida and Iteach Wendy Arabic, from Yemen. Woman 1: And Iteach Wendy Spanish. She speaks Spanish a lot better than some Hispanic kids do. Woman 2: At the Russian languages, she is very good. Woman 3: Portuguese. Woman 4: She is at the top because she can switch very … in few seconds, from one language to the other one. And she can think, speak, write. It’s unbelievable.",
+              "textEn": "My name is Rashida and I teach Wendy Arabic, from Yemen. Woman 1: And I teach Wendy Spanish. She speaks Spanish a lot better than some Hispanic kids do. Woman 2: At the Russian languages, she is very good. Woman 3: Portuguese. Woman 4: She is at the top because she can switch very … in few seconds, from one language to the other one. And she can think, speak, write. It’s unbelievable.",
               "textFa": "فناوری‌های پیشرفته حذف نویز محیطی، تجربه شنیداری را در عصر ارتباطات دیجیتال متحول ساخته‌اند."
       },
       {
@@ -14742,7 +14961,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 175,
               "timeDisplay": "2:55",
               "speaker": "Narrator",
-              "textEn": "Add them all up and Wendy has eleven diff erent voices packed inside her head. 173 Z06 Speakout 3e CB B1 59533 Video.indd 173Z06 Speakout 3e CB B1 59533 Video.indd 173 01/03/2022 00:1401/03/2022 00:14",
+              "textEn": "Add them all up and Wendy has eleven different voices packed inside her head. 173 Z06 Speakout 3e CB B1 59533 Video.indd 173Z06 Speakout 3e CB B1 59533 Video.indd 173 01/03/2022 00:1401/03/2022 00:14",
               "textFa": "طنین موسیقی زمانی به اوج زیبایی می‌رسد که علم فیزیک در خدمت هنر و احساسات بشری قرار گیرد."
       }
     ],
@@ -14922,7 +15141,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Generally speaking, I’m pretty terrible at fixing things. If it’s got anything to do with electronics, a motor or an engine then Ihaven’t got a clue.",
+              "textEn": "Generally speaking, I’m pretty terrible at fixing things. If it’s got anything to do with electronics, a motor or an engine then I haven’t got a clue.",
               "textFa": "راستش رو بخواید، من عموماً در تعمیر وسایل خراب خیلی ناشی و بی‌دست‌وپا هستم!"
       },
       {
@@ -14930,7 +15149,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 30,
               "timeDisplay": "0:30",
               "speaker": "Speaker 2",
-              "textEn": "Itry and fix something before getting help, erm, so with computers I’m quite good, but anything with cars, I’m pretty bad.",
+              "textEn": "I try and fix something before getting help, erm, so with computers I’m quite good, but anything with cars, I’m pretty bad.",
               "textFa": "من عاشق سرهم کردن وسایل جدید و تعمیر لوازم خانگی هستم؛ ابزارآلات همیشه همراهمه."
       },
       {
@@ -14938,7 +15157,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Speaker 3",
-              "textEn": "Ithink, generally, I’m good at fixing things, at least Ialways try before throwing something away or asking for help.",
+              "textEn": "I think, generally, I’m good at fixing things, at least I always try before throwing something away or asking for help.",
               "textFa": "وقتی چیزی خراب میشه، اول ویدیوهای آموزشی یوتیوب رو می‌بینم و معمولاً خودم درستش می‌کنم."
       },
       {
@@ -14946,7 +15165,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 55,
               "timeDisplay": "0:55",
               "speaker": "Speaker 4",
-              "textEn": "I’m really bad at fixing things – never ask me to fix something for you. Idon’t even know how to change a lightbulb, so when something breaks in my house, either Iask someone for help or Ilive with it.",
+              "textEn": "I’m really bad at fixing things – never ask me to fix something for you. I don’t even know how to change a lightbulb, so when something breaks in my house, either Iask someone for help or I live with it.",
               "textFa": "من در کارهای برقی مهارت ندارم و ترجیح میدم همیشه از یک فرد متخصص و حرفه‌ای کمک بگیرم."
       },
       {
@@ -14954,7 +15173,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 76,
               "timeDisplay": "1:16",
               "speaker": "Speaker 5",
-              "textEn": "Am Igood at fixing things? Not really. I’m more of a project manager than a DIY expert if you know what Imean. So, Ialways have big plans, and then Ineed to fi nd someone to do the actual work for me.",
+              "textEn": "Am Igood at fixing things? Not really. I’m more of a project manager than a DIY expert if you know what I mean. So, I always have big plans, and then I need to find someone to do the actual work for me.",
               "textFa": "تعمیر دوچرخه‌ام کاریه که از دوران نوجوانی یاد گرفتم و حسابی از انجام دادنش لذت می‌برم."
       },
       {
@@ -14962,7 +15181,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 100,
               "timeDisplay": "1:40",
               "speaker": "Speaker 6",
-              "textEn": "Iam not very good at fixing things: Iwould say I’m quite good at breaking things. Iam quite clumsy.",
+              "textEn": "I am not very good at fixing things: I would say I’m quite good at breaking things. I am quite clumsy.",
               "textFa": "تعمیر کردن وسایل به جای دور انداختن اون‌ها، هم صرفه‌جویی در هزینه‌هاست و هم کمک به محیط زیست."
       }
     ],
@@ -15142,7 +15361,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Rory",
-              "textEn": "Ithink Icould live without all my gadgets apart from my phone, because it’s so important to me, because Iuse it for my emails, for university, for school work, and to keep up with news and my friends.",
+              "textEn": "I think I could live without all my gadgets apart from my phone, because it’s so important to me, because I use it for my emails, for university, for school work, and to keep up with news and my friends.",
               "textFa": "فکر می‌کنم بتونم بدون همه گجت‌هام زندگی کنم به جز گوشیم، چون برام خیلی مهمه؛ برای ایمیل‌ها، دانشگاه، کارهای درسی و در ارتباط بودن با اخبار و دوستانم ازش استفاده می‌کنم."
       },
       {
@@ -15150,7 +15369,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 28,
               "timeDisplay": "0:28",
               "speaker": "Connor",
-              "textEn": "I’m a musician and Iplay guitar so my favourite kinds of gadgets are guitar pedals ’cause Ican change the way my guitar sounds.",
+              "textEn": "I’m a musician and I play guitar so my favourite kinds of gadgets are guitar pedals ’cause I can change the way my guitar sounds.",
               "textFa": "من نوازنده‌ام و گیتار می‌زنم، برای همین گجت‌های مورد علاقه من پدال‌های گیتار هستند چون با اونا می‌تونم صدای سازم رو تغییر بدم."
       },
       {
@@ -15158,7 +15377,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 37,
               "timeDisplay": "0:37",
               "speaker": "Catherine",
-              "textEn": "Icould live without the iPad. Umm … Icould live without a … um … a home computer, but Ido like a laptop, and Iabsolutely – Ihate to say it – Ilove my phone.",
+              "textEn": "I could live without the iPad. Umm … I could live without a … um … a home computer, but I do like a laptop, and I absolutely – Ihate to say it – I love my phone.",
               "textFa": "من می‌تونم بدون آیپد زندگی کنم. می‌تونم بدون کامپیوتر خانگی هم زندگی کنم، ولی لپ‌تاپ رو خیلی دوست دارم و از اعترافش بیزارم اما عاشق گوشی موبایلم هستم."
       },
       {
@@ -15166,7 +15385,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 55,
               "timeDisplay": "0:55",
               "speaker": "Marc",
-              "textEn": "Iwould say my laptop is a pretty important thing, er, for work, in general, and Ijust can’t live without it. In terms of gadgets that Icould live without, I’d say my smartwatch.",
+              "textEn": "I would say my laptop is a pretty important thing, er, for work, in general, and I just can’t live without it. In terms of gadgets that I could live without, I’d say my smartwatch.",
               "textFa": "می‌تونم بگم لپ‌تاپم چیز بسیار مهمیه برای کارهای روزمره‌ام به طور کلی، و بدون اون واقعاً نمی‌تونم. از نظر گجت‌هایی که می‌تونم بدونشون زندگی کنم، میگم ساعت هوشمندم."
       },
       {
@@ -15174,7 +15393,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 69,
               "timeDisplay": "1:09",
               "speaker": "Joshua",
-              "textEn": "Er, Ilove my phone. Iuse it all the time. Um … Ieven use it in bed. I’m just pretty much never off it.",
+              "textEn": "Er, I love my phone. I use it all the time. Um … I even use it in bed. I’m just pretty much never off it.",
               "textFa": "من عاشق گوشیم هستم. تمام وقت ازش استفاده می‌کنم، حتی توی رختخواب. تقریباً هیچ‌وقت از دستم نمی‌افته."
       },
       {
@@ -15182,7 +15401,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 76,
               "timeDisplay": "1:16",
               "speaker": "Shannon",
-              "textEn": "Um … Ilove my laptop. Icouldn’t really live without it ’cause Iattend university and everything is now online, so we all rely on our textbooks online and all our lectures and our teachers teach us from our laptops.",
+              "textEn": "Um … I love my laptop. I couldn’t really live without it ’cause Iattend university and everything is now online, so we all rely on our textbooks online and all our lectures and our teachers teach us from our laptops.",
               "textFa": "من عاشق لپ‌تاپم هستم. واقعاً بدون اون نمی‌تونم سر کنم چون دانشجو هستم و حالا همه‌چیز آنلاینه؛ کتاب‌ها، سخنرانی‌ها و کلاس‌های اساتیدمون همگی از طریق لپ‌تاپ انجام میشه."
       },
       {
@@ -15190,7 +15409,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 88,
               "timeDisplay": "1:28",
               "speaker": "Josh",
-              "textEn": "So Ilove a range of gadgets from my Xbox and my laptop, but Icould live without all of them except for my phone, and that’s because Iuse it for everything: my work and in my free time.",
+              "textEn": "So I love a range of gadgets from my Xbox and my laptop, but I could live without all of them except for my phone, and that’s because I use it for everything: my work and in my free time.",
               "textFa": "من طیف وسیعی از گجت‌ها رو دوست دارم، از کنسول ایکس‌باکس تا لپ‌تاپ، ولی بدون همه‌شون می‌تونم زندگی کنم به جز گوشیم؛ چون برای همه‌چیز، از کار تا اوقات فراغت، ازش استفاده می‌کنم."
       },
       {
@@ -15198,7 +15417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 108,
               "timeDisplay": "1:48",
               "speaker": "Rory",
-              "textEn": "Ithink they do, but Ithink in this day and age it’s needed to look at screens, and Ithink that a lot of people couldn’t do without the screens so Ithink that’s why a lot of people do it. But Ido think some people do it too much.",
+              "textEn": "I think they do, but I think in this day and age it’s needed to look at screens, and I think that a lot of people couldn’t do without the screens so I think that’s why a lot of people do it. But I do think some people do it too much.",
               "textFa": "فکر می‌کنم همین‌طوره، اما در دنیای امروز نگاه کردن به صفحه‌نمایش‌ها ضروری شده و خیلی از مردم بدون اون نمی‌تونن، ولی قبول دارم بعضی‌ها بیش از حد این کار رو می‌کنن."
       },
       {
@@ -15206,7 +15425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 122,
               "timeDisplay": "2:02",
               "speaker": "Connor",
-              "textEn": "Ido think people spend too much time looking at screens. Ithink when you spend so much time looking at a screen, you lose the face-to-face contact and that emotion that you get from that interaction.",
+              "textEn": "I do think people spend too much time looking at screens. I think when you spend so much time looking at a screen, you lose the face-to-face contact and that emotion that you get from that interaction.",
               "textFa": "من واقعاً فکر می‌کنم مردم زمان بیش از حدی رو صرف نگاه کردن به نمایشگرها می‌کنن. با این کار، تماس چهره‌به‌چهره و اون ارتباط عاطفی انسانی رو از دست میدید."
       },
       {
@@ -15214,7 +15433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 133,
               "timeDisplay": "2:13",
               "speaker": "Catherine",
-              "textEn": "Ido think people spend too much time on the screens. Ithink people are addicted to screen time, er, needing information or entertainment more immediately at their hands. Um … Ithink people, younger generation, might have more difficulty just being with themselves, on their own.",
+              "textEn": "I do think people spend too much time on the screens. I think people are addicted to screen time, er, needing information or entertainment more immediately at their hands. Um … I think people, younger generation, might have more difficulty just being with themselves, on their own.",
               "textFa": "به نظرم مردم معتاد صفحه‌نمایش‌ها شدن و می‌خوان اطلاعات و سرگرمی فوراً در دسترسشون باشه. نسل جوان‌تر شاید سخت‌تر بتونه با خودش در خلوت کنار بیاد."
       },
       {
@@ -15222,7 +15441,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 153,
               "timeDisplay": "2:33",
               "speaker": "Marc",
-              "textEn": "Iwould agree with that. People certainly look at their phones too much. It might even be the first thing in the morning. Um … Iwake up, check my emails and might as well be the last thing in the evening, where Ido the same thing, or check the news, or things like that.",
+              "textEn": "I would agree with that. People certainly look at their phones too much. It might even be the first thing in the morning. Um … I wake up, check my emails and might as well be the last thing in the evening, where I do the same thing, or check the news, or things like that.",
               "textFa": "کاملاً با این موضوع موافقم. مردم قطعاً بیش از حد به گوشی‌هاشون نگاه می‌کنن؛ اولین کاریه که صبح بعد از بیداری انجام میدن و آخرین کار قبل از خواب در شب."
       },
       {
@@ -15230,7 +15449,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 169,
               "timeDisplay": "2:49",
               "speaker": "Joshua",
-              "textEn": "Um … Ido, especially like nowadays everything is online, everything’s on technology, whether it’s phones or computers.",
+              "textEn": "Um … I do, especially like nowadays everything is online, everything’s on technology, whether it’s phones or computers.",
               "textFa": "امروزه همه‌چیز آنلاین شده، از ارتباطات تا امور اداری و کاری، برای همین دوری از نمایشگرها کار بسیار سختی شده."
       },
       {
@@ -15238,7 +15457,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 179,
               "timeDisplay": "2:59",
               "speaker": "Shannon",
-              "textEn": "Um … Ithink people probably spend too much time on their phone. But Ionly really use my laptop to study, and Iuse my phone just to contact my friends.",
+              "textEn": "Um … I think people probably spend too much time on their phone. But I only really use my laptop to study, and I use my phone just to contact my friends.",
               "textFa": "شاید مردم زمان زیادی رو با گوشی بگذرونن، اما من از لپ‌تاپم فقط برای درس خوندن و از گوشیم برای احوالپرسی با دوستان استفاده می‌کنم."
       },
       {
@@ -15246,7 +15465,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 188,
               "timeDisplay": "3:08",
               "speaker": "Josh",
-              "textEn": "Ithink so, because it prevents you from being able to talk to people in person, and Ithink that the recent use of phones, even more so than in the past, has aided that problem.",
+              "textEn": "I think so, because it prevents you from being able to talk to people in person, and I think that the recent use of phones, even more so than in the past, has aided that problem.",
               "textFa": "وابستگی به نمایشگرها مانع از گفتگوی حضوری میان انسان‌ها میشه و مشکلات ارتباطی زیادی در جامعه به وجود آورده."
       }
     ],
@@ -15426,7 +15645,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "The best present I’ve ever received was a laptop because after Ireceived my laptop Iwas able to start working online and that changed my life.",
+              "textEn": "The best present I’ve ever received was a laptop because after Ireceived my laptop I was able to start working online and that changed my life.",
               "textFa": "بهترین کادویی که تا حالا گرفتم یک لپ‌تاپ بود، چون بعد از گرفتن اون تونستم کار آنلاین رو شروع کنم و این زندگیم رو دگرگون کرد."
       },
       {
@@ -15442,7 +15661,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 73,
               "timeDisplay": "1:13",
               "speaker": "Speaker 3",
-              "textEn": "The best present Iever received was a puppy. Iwas three years old. This meant we grew up together and were always the best of friends.",
+              "textEn": "The best present I ever received was a puppy. I was three years old. This meant we grew up together and were always the best of friends.",
               "textFa": "بهترین کادوی زندگیم یک توله‌سگ بود وقتی سه سالم بود. این یعنی ما با هم بزرگ شدیم و همیشه بهترین دوست‌های هم بودیم."
       },
       {
@@ -15450,7 +15669,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 92,
               "timeDisplay": "1:32",
               "speaker": "Speaker 4",
-              "textEn": "My favourite present was my saxophone. My parents gave it to me when Iwas ten for my birthday. I’d wanted one for ages and when Iopened the present Iwas so excited.",
+              "textEn": "My favourite present was my saxophone. My parents gave it to me when I was ten for my birthday. I’d wanted one for ages and when I opened the present I was so excited.",
               "textFa": "کادوی مورد علاقه من ساکسیفونم بود. والدینم در تولد ده سالگیم بهم دادن؛ مدت‌ها آرزوش رو داشتم و وقتی بازش کردم غرق در هیجان شدم."
       },
       {
@@ -15466,7 +15685,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 108,
               "timeDisplay": "1:48",
               "speaker": "Speaker 6",
-              "textEn": "The best present Iever received was a new set of golf clubs, er, because golf is my passion and these clubs made me a better golfer.",
+              "textEn": "The best present I ever received was a new set of golf clubs, er, because golf is my passion and these clubs made me a better golfer.",
               "textFa": "بهترین هدیه برای من ست چوب‌های گلف جدید بود، چون گلف تمام اشتیاق منه و اون چوب‌ها بازی من رو متحول کردن."
       },
       {
@@ -15482,7 +15701,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 112,
               "timeDisplay": "1:52",
               "speaker": "Speaker 8",
-              "textEn": "Ithink the best present Iever received was a holiday to South Africa to go on safari, and it’s something Ihad wanted to do, um, since Iwas a child.",
+              "textEn": "I think the best present I ever received was a holiday to South Africa to go on safari, and it’s something I had wanted to do, um, since I was a child.",
               "textFa": "فکر می‌کنم بهترین کادو سفری به آفریقای جنوبی برای رفتن به سافاری بود؛ کاری که از بچگی آرزوی انجامش رو داشتم."
       },
       {
@@ -15490,7 +15709,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Speaker 9",
-              "textEn": "The best present Ihave ever received was a car that my husband bought me because he really wanted me to learn to drive. It was an old car and it was really beautiful.",
+              "textEn": "The best present I have ever received was a car that my husband bought me because he really wanted me to learn to drive. It was an old car and it was really beautiful.",
               "textFa": "بهترین کادویی که گرفتم ماشینی بود که همسرم برام خرید چون واقعاً می‌خواست رانندگی یاد بگیرم؛ یک ماشین کلاسیک فوق‌العاده زیبا."
       },
       {
@@ -15498,7 +15717,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Speaker 10",
-              "textEn": "The best present I’ve ever received Ithink must be a camera that Igot for my tenth birthday. It was quite a basic camera, but it led me to a great interest in photography and Istill love taking photographs today.",
+              "textEn": "The best present I’ve ever received I think must be a camera that I got for my tenth birthday. It was quite a basic camera, but it led me to a great interest in photography and Istill love taking photographs today.",
               "textFa": "بهترین هدیه فکر کنم دوربینی بود که برای تولد ده سالگیم گرفتم؛ دوربینی ساده بود ولی جرقه‌ای شد برای علاقه بی‌پایان من به عکاسی."
       }
     ],
@@ -15946,7 +16165,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Ithink one of my best habits is eating healthily. When Iwas a child, my mum would make sure that my sister and Ididn’t eat sweets or soft drinks or cakes and biscuits unless it was a special occasion and I’ve tried really hard as an adult to keep up with this habit.",
+              "textEn": "I think one of my best habits is eating healthily. When I was a child, my mum would make sure that my sister and I didn’t eat sweets or soft drinks or cakes and biscuits unless it was a special occasion and I’ve tried really hard as an adult to keep up with this habit.",
               "textFa": "فکر می‌کنم یکی از بهترین عادت‌های من، تغذیه سالمه. در کودکی مادرم نمی‌ذاشت شیرینی و نوشابه زیاد بخوریم و در بزرگسالی هم این عادت رو حفظ کردم."
       },
       {
@@ -15954,7 +16173,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 40,
               "timeDisplay": "0:40",
               "speaker": "Speaker 2",
-              "textEn": "Itry to meditate almost every evening. Ithink it’s a very healthy habit. It helps me relax and it clears my head after a busy day.",
+              "textEn": "I try to meditate almost every evening. I think it’s a very healthy habit. It helps me relax and it clears my head after a busy day.",
               "textFa": "من سعی می‌کنم تقریباً هر غروب مدیتیشن کنم. این عادت به من کمک می‌کنه بعد از یک روز شلوغ ذهنم رو کاملاً آروم و پاکسازی کنم."
       },
       {
@@ -15962,7 +16181,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 50,
               "timeDisplay": "0:50",
               "speaker": "Speaker 3",
-              "textEn": "My best habit is definitely being punctual. Whether it be to meet a friend or starting work, Ialways like to arrive on time.",
+              "textEn": "My best habit is definitely being punctual. Whether it be to meet a friend or starting work, I always like to arrive on time.",
               "textFa": "نوشیدن حداقل هشت لیوان آب در طول روز عادتیه که تأثیر فوق‌العاده‌ای روی انرژی و سلامت پوستم داشته."
       },
       {
@@ -15970,7 +16189,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 61,
               "timeDisplay": "1:01",
               "speaker": "Speaker 4",
-              "textEn": "Ithink one of the good habits Ihave is try to have a great breakfast every morning, and also drink plenty of water and finally take a walk every day.",
+              "textEn": "I think one of the good habits I have is try to have a great breakfast every morning, and also drink plenty of water and finally take a walk every day.",
               "textFa": "من هر روز صبح قبل از شروع هر کاری ۲۰ دقیقه پیاده‌روی سریع در هوای آزاد انجام میدم."
       },
       {
@@ -15978,7 +16197,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 79,
               "timeDisplay": "1:19",
               "speaker": "Speaker 5",
-              "textEn": "So Ithink I’ve got two really good habits, erm. The first one is cycling, so Itry and cycle every day for 15 minutes, either to the shops or, or to the office. And the second one is, is reading before bed, erm, Ialways read before bed and it, it helps me relax and, and have a good night’s sleep.",
+              "textEn": "So I think I’ve got two really good habits, erm. The first one is cycling, so I try and cycle every day for 15 minutes, either to the shops or, or to the office. And the second one is, is reading before bed, erm, I always read before bed and it, it helps me relax and, and have a good night’s sleep.",
               "textFa": "مطالعه روزانه حتی فقط ده صفحه کتاب قبل از خواب، بهترین عادت فکریه که در خودم ایجاد کردم."
       },
       {
@@ -15986,7 +16205,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 103,
               "timeDisplay": "1:43",
               "speaker": "Speaker 6",
-              "textEn": "What Ireally like is playing chess. It helps me to concentrate and make a good decision in real life.",
+              "textEn": "What I really like is playing chess. It helps me to concentrate and make a good decision in real life.",
               "textFa": "برنامه‌ریزی کارهای فردا در پایان هر شب باعث میشه با آرامش و هدفمندی بیدار بشم."
       },
       {
@@ -15994,7 +16213,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 111,
               "timeDisplay": "1:51",
               "speaker": "Speaker 7",
-              "textEn": "Agood habit that Ihave is that Itry to go swimming every week, um, outside. So, Igo swimming in a lake and, depending on the time of year, it can be really cold, but I’ve heard that cold-water swimming is really good for you.",
+              "textEn": "Agood habit that I have is that I try to go swimming every week, um, outside. So, I go swimming in a lake and, depending on the time of year, it can be really cold, but I’ve heard that cold-water swimming is really good for you.",
               "textFa": "تداوم و استمرار در عادت‌های کوچک، تغییرات بسیار بزرگی در درازمدت ایجاد می‌کنه."
       }
     ],
@@ -16174,7 +16393,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Dara",
-              "textEn": "When Iwas growing up, Iwanted to be a PE teacher.",
+              "textEn": "When I was growing up, I wanted to be a PE teacher.",
               "textFa": "وقتی بچه بودم، همیشه دلم می‌خواست معلم ورزش بشم چون عاشق تحرک و فوتبال بودم."
       },
       {
@@ -16182,7 +16401,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 24,
               "timeDisplay": "0:24",
               "speaker": "Monica",
-              "textEn": "Iwanted to be a lot of things. Ithink Iwanted to be a doctor at some point, a lawyer as well, and … an astronomer.",
+              "textEn": "I wanted to be a lot of things. I think I wanted to be a doctor at some point, a lawyer as well, and … an astronomer.",
               "textFa": "من آرزو داشتم فضانورد بشم و در اعماق فضا به کشف سیارات ناشناخته برم."
       },
       {
@@ -16190,7 +16409,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 38,
               "timeDisplay": "0:38",
               "speaker": "Des",
-              "textEn": "So Iwanted to be a footballer who played for Chelsea.",
+              "textEn": "So I wanted to be a footballer who played for Chelsea.",
               "textFa": "علاقه من نجات حیوانات بود، برای همین آرزوی همیشگی کودکیم این بود که دامپزشک بشم."
       },
       {
@@ -16198,7 +16417,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 66,
               "timeDisplay": "1:06",
               "speaker": "Tian",
-              "textEn": "Erm, Ithink Iwanted to be an actress.",
+              "textEn": "Erm, I think I wanted to be an actress.",
               "textFa": "من همیشه می‌خواستم یک خلبان خطوط هوایی بین‌المللی بشم و دور دنیا پرواز کنم."
       },
       {
@@ -16206,7 +16425,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 145,
               "timeDisplay": "2:25",
               "speaker": "Eva",
-              "textEn": "Iwanted to be a fashion designer.",
+              "textEn": "I wanted to be a fashion designer.",
               "textFa": "رویای کودکی من تبدیل شدن به یک نویسنده بزرگ داستان‌های معمایی و رمان‌های جنایی بود."
       },
       {
@@ -16214,7 +16433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 152,
               "timeDisplay": "2:32",
               "speaker": "Daniel",
-              "textEn": "When Iwas four, Iwanted to be an astronaut. Erm, then Iwanted to be a doctor when Iwas about twelve.",
+              "textEn": "When I was four, I wanted to be an astronaut. Erm, then I wanted to be a doctor when I was about twelve.",
               "textFa": "من آرزو داشتم معمار بشم و آسمان‌خراش‌های شیشه‌ای خیره‌کننده طراحی کنم."
       },
       {
@@ -16222,7 +16441,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 175,
               "timeDisplay": "2:55",
               "speaker": "Sky",
-              "textEn": "Iwanted to be a movie star, so bad. Iwanted to be on TV, and television, just red carpet, all of it. Iwanted to be a movie star.",
+              "textEn": "I wanted to be a movie star, so bad. I wanted to be on TV, and television, just red carpet, all of it. I wanted to be a movie star.",
               "textFa": "دلم می‌خواست یک آشپز مشهور بین‌المللی با رستوران‌های اختصاصی خودم باشم."
       },
       {
@@ -16230,7 +16449,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 177,
               "timeDisplay": "2:57",
               "speaker": "Rohan",
-              "textEn": "Ialways wanted to be an electrician, but more Iwanted to be a musician. Areggae singer.",
+              "textEn": "I always wanted to be an electrician, but more I wanted to be a musician. Areggae singer.",
               "textFa": "من عاشق اختراع وسایل تازه بودم و همیشه در رویاهام خودم رو یک مخترع می‌دیدم."
       },
       {
@@ -16238,7 +16457,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 179,
               "timeDisplay": "2:59",
               "speaker": "Anais",
-              "textEn": "Iwanted to be a photographer because my dad got me into photography growing up, so it kind of just came from that, and Ijust really liked it.",
+              "textEn": "I wanted to be a photographer because my dad got me into photography growing up, so it kind of just came from that, and I just really liked it.",
               "textFa": "بازیگری در تئاتر و سینما آرزویی بود که تمام دوران نوجوانیم باهاش سپری شد."
       },
       {
@@ -16246,7 +16465,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 181,
               "timeDisplay": "3:01",
               "speaker": "Dara",
-              "textEn": "Out of a teacher and a chef, Iwould rather be a teacher because Ilike children and I’m quite used to working with children, so Ithink that job would fi t me quite well.",
+              "textEn": "Out of a teacher and a chef, I would rather be a teacher because I like children and I’m quite used to working with children, so I think that job would fit me quite well.",
               "textFa": "من می‌خواستم یک پزشک جراح بشم تا بتونم جان بیماران رو نجات بدم."
       },
       {
@@ -16254,7 +16473,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 183,
               "timeDisplay": "3:03",
               "speaker": "Monica",
-              "textEn": "An actor or a journalist. I’d rather be a journalist because I’m very interested, at, with what’s happening with the world, um, and Ilove to learn what’s happening in society and other countries, so Ithink that’s what Iwould rather be the most.",
+              "textEn": "An actor or a journalist. I’d rather be a journalist because I’m very interested, at, with what’s happening with the world, um, and I love to learn what’s happening in society and other countries, so I think that’s what I would rather be the most.",
               "textFa": "عکاس حیات‌وحش برای مجله نشنال جئوگرافیک شغل رویایی من در نوجوانی بود."
       },
       {
@@ -16262,7 +16481,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 185,
               "timeDisplay": "3:05",
               "speaker": "Des",
-              "textEn": "I’d rather be an author, and I’d rather be an author than an engineer because, erm, Ithink Icould reach more people by writing books and Icould work from home.",
+              "textEn": "I’d rather be an author, and I’d rather be an author than an engineer because, erm, I think I could reach more people by writing books and I could work from home.",
               "textFa": "دوست داشتم موزیسین بشم و روی صحنه‌های بزرگ جلوی هزاران نفر کنسرت اجرا کنم."
       },
       {
@@ -16278,7 +16497,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Eva",
-              "textEn": "Ithink I’d rather be a politician, no, wait, no, a farmer because Idon’t like arguing with people.",
+              "textEn": "I think I’d rather be a politician, no, wait, no, a farmer because I don’t like arguing with people.",
               "textFa": "رویای من سفر به دور دنیا با یک کشتی بادبانی و نوشتن خاطرات سفرم بود."
       },
       {
@@ -16286,7 +16505,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 190,
               "timeDisplay": "3:10",
               "speaker": "Tian",
-              "textEn": "I’d rather be a politician because Ilike arguing with people.",
+              "textEn": "I’d rather be a politician because I like arguing with people.",
               "textFa": "کمک به نیازمندان و کار در سازمان‌های امدادی بین‌المللی هدف بزرگ کودکیم بود."
       },
       {
@@ -16294,7 +16513,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 190,
               "timeDisplay": "3:10",
               "speaker": "Daniel",
-              "textEn": "If Iwas to choose between being a teacher and a chef, Ithink Iwould prefer to be a chef, erm, probably because Ido my own cooking and Ireally enjoy it. It’s one of my hobbies. So I’d like to work in a kitchen sometime.",
+              "textEn": "If I was to choose between being a teacher and a chef, I think I would prefer to be a chef, erm, probably because I do my own cooking and I really enjoy it. It’s one of my hobbies. So I’d like to work in a kitchen sometime.",
               "textFa": "حالا که بزرگ شدم، متوجه شدم مسیر زندگی گاهی ما رو به سمت‌های شگفت‌انگیز متفاوتی هدایت می‌کنه."
       },
       {
@@ -16302,7 +16521,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 190,
               "timeDisplay": "3:10",
               "speaker": "Sky",
-              "textEn": "I’d prefer to be a farmer ’cause Ilike being outside in nature, and Idon’t think Iwould be a very good politician.",
+              "textEn": "I’d prefer to be a farmer ’cause I like being outside in nature, and I don’t think I would be a very good politician.",
               "textFa": "با وجود تغییر شغل، همون اشتیاق و کنجکاوی کودکی هنوز در درونم زنده است."
       },
       {
@@ -16310,7 +16529,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 190,
               "timeDisplay": "3:10",
               "speaker": "Rohan",
-              "textEn": "Um, an author or an engineer. I’d defi nitely go for an author because Ilove stories and Iwould love to share a good story as well.",
+              "textEn": "Um, an author or an engineer. I’d definitely go for an author because I love stories and I would love to share a good story as well.",
               "textFa": "هیچ‌وقت برای دنبال کردن رویاها و علایق قدیمی دیر نیست."
       },
       {
@@ -16318,7 +16537,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 190,
               "timeDisplay": "3:10",
               "speaker": "Anais",
-              "textEn": "Ithink I’d prefer to be a chef over a teacher. Erm, Ithink it would just be pretty cool to make some cool dishes. Idon’t think I’d really like to teach.",
+              "textEn": "I think I’d prefer to be a chef over a teacher. Erm, I think it would just be pretty cool to make some cool dishes. I don’t think I’d really like to teach.",
               "textFa": "مهم اینه که از کاری که امروز انجام میدی رضایت درونی داشته باشی."
       }
     ],
@@ -16498,7 +16717,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "I’m a PhD student at Bilkent University. Iwork best in the library at the university because it’s nice and quiet, and when Ineed books for my assignments Ican find them easily.",
+              "textEn": "I’m a PhD student at Bilkent University. I work best in the library at the university because it’s nice and quiet, and when I need books for my assignments I can find them easily.",
               "textFa": "من دانشجوی دکترا در دانشگاه بیلکنت هستم. بهترین ساعت کاری من آخر شب‌هاست وقتی همه‌جا ساکت و آرومه."
       },
       {
@@ -16506,7 +16725,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 33,
               "timeDisplay": "0:33",
               "speaker": "Speaker 2",
-              "textEn": "I’m a university student. Idon’t like working in libraries. Iprefer working in cafés because Ilike the background noise, and Ican buy coffee and cake.",
+              "textEn": "I’m a university student. I don’t like working in libraries. I prefer working in cafés because I like the background noise, and I can buy coffee and cake.",
               "textFa": "من فردی صبح‌خیز هستم؛ ساعت ۶ صبح بالاترین سطح تمرکز و خلاقیت رو برای کارهای تحلیلی دارم."
       },
       {
@@ -16514,7 +16733,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Speaker 3",
-              "textEn": "Iprefer to work from home. Ispend a lot of my time on video calls with my colleagues in overseas offices, and sometimes, actually a lot of the time, these calls happen at very short notice, and in the office it’s really difficult to find a quiet space to make calls at short notice, so it’s, it’s much better for me just to be at home.",
+              "textEn": "I prefer to work from home. I spend a lot of my time on video calls with my colleagues in overseas offices, and sometimes, actually a lot of the time, these calls happen at very short notice, and in the office it’s really difficult to find a quiet space to make calls at short notice, so it’s, it’s much better for me just to be at home.",
               "textFa": "برای من سکوت مطلق کتابخانه بهترین محیط برای مطالعه و نوشتن مقالات علمیمه."
       },
       {
@@ -16530,7 +16749,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 112,
               "timeDisplay": "1:52",
               "speaker": "Speaker 4",
-              "textEn": "Iway prefer working in the offi ce than at home. Ireally enjoy having my friends from work and my colleagues around me – whether that’s just to have a chat with a coff ee or to talk about some important work, erm, it’s a lot easier, and Ifi nd it a lot more of an interesting environment to be in.",
+              "textEn": "Iway prefer working in the offi ce than at home. I really enjoy having my friends from work and my colleagues around me – whether that’s just to have a chat with a coff ee or to talk about some important work, erm, it’s a lot easier, and Ifi nd it a lot more of an interesting environment to be in.",
               "textFa": "فضای کاری مرتب، نور طبیعی روز و یک فنجان چای داغ شروط اصلی بهره‌وری من هستند."
       },
       {
@@ -16538,7 +16757,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Speaker 5",
-              "textEn": "Ireally prefer to work from home. Ihave everything here that Ineed, including a nice cup of my favourite coff ee in the morning.",
+              "textEn": "I really prefer to work from home. I have everything here that I need, including a nice cup of my favourite coff ee in the morning.",
               "textFa": "من کارهای سخت و سنگین رو همون ساعات ابتدایی صبح تموم می‌کنم تا بعدازظهر ذهنم آزاد باشه."
       },
       {
@@ -16546,7 +16765,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 116,
               "timeDisplay": "1:56",
               "speaker": "Speaker 6",
-              "textEn": "These days, I’m, I’m working from home. My favourite spot is the living room. Ilike it because it’s spacious, erm, and it’s good because Ilike to stretch out a bit and have short breaks in between tasks, and it has a nice view as well.",
+              "textEn": "These days, I’m, I’m working from home. My favourite spot is the living room. I like it because it’s spacious, erm, and it’s good because I like to stretch out a bit and have short breaks in between tasks, and it has a nice view as well.",
               "textFa": "استفاده از روش کار ۲۵ دقیقه‌ای و ۵ دقیقه استراحت، انرژی من رو در طول روز حفظ می‌کنه."
       },
       {
@@ -16554,7 +16773,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 118,
               "timeDisplay": "1:58",
               "speaker": "Speaker 7",
-              "textEn": "So, Iprefer working from home. Um, I’m a writer, so Ilike waking up when Iwant to, switching my computer on when Iprefer, and also getting the food and drink from the fridge when Iwant to, and it’s a much more comfortable environment for me.",
+              "textEn": "So, I prefer working from home. Um, I’m a writer, so I like waking up when I want to, switching my computer on when I prefer, and also getting the food and drink from the fridge when I want to, and it’s a much more comfortable environment for me.",
               "textFa": "شناخت ساعت بیولوژیکی بدن و تطبیق برنامه‌ها با اون، کلید رسیدن به بالاترین بازدهی است."
       }
     ],
@@ -16766,7 +16985,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 158,
               "timeDisplay": "2:38",
               "speaker": "Holly",
-              "textEn": "Iknow!",
+              "textEn": "I know!",
               "textFa": "ما روی کیفیت بسته‌بندی و پیام تبلیغاتی‌مون حسابی کار کردیم."
       },
       {
@@ -16782,7 +17001,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 160,
               "timeDisplay": "2:40",
               "speaker": "Holly",
-              "textEn": "Oh, years. Seven years. Um, Ithought you were living New Forest way?",
+              "textEn": "Oh, years. Seven years. Um, I thought you were living New Forest way?",
               "textFa": "کاملاً، با حفظ حاشیه سود ۳۰ درصدی قیمت رقابتی تعیین کردیم."
       },
       {
@@ -16806,7 +17025,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 174,
               "timeDisplay": "2:54",
               "speaker": "Adam",
-              "textEn": "Wow. God, Inever thought I’d, er … This is madness!",
+              "textEn": "Wow. God, I never thought I’d, er … This is madness!",
               "textFa": "اما در مورد توزیع چطور؟ آیا زنجیره تأمین آماده پاسخگویی به تقاضاست؟"
       },
       {
@@ -16830,7 +17049,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Holly",
-              "textEn": "Er, not far. Ihave an apartment.",
+              "textEn": "Er, not far. I have an apartment.",
               "textFa": "زمان تصمیم‌گیری نهایی در اتاق هیئت‌مدیره فرا رسیده است."
       },
       {
@@ -16886,7 +17105,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 204,
               "timeDisplay": "3:24",
               "speaker": "Adam",
-              "textEn": "Hey, ever since Iwas a little boy, Isaid, ‘When Igrow up, Iwant to be an insurance loss adjuster’.",
+              "textEn": "Hey, ever since I was a little boy, I said, ‘When I grow up, I want to be an insurance loss adjuster’.",
               "textFa": "موفق باشید همگی، بریم برای پیروزی!"
       },
       {
@@ -16942,7 +17161,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 221,
               "timeDisplay": "3:41",
               "speaker": "Holly",
-              "textEn": "I, er, can’t complain. Imean, it’s long hours, lot of responsibility, but, you know, Ilike it, Ilike managing people, you know, making sure Iget the best out of my team.",
+              "textEn": "I, er, can’t complain. I mean, it’s long hours, lot of responsibility, but, you know, I like it, I like managing people, you know, making sure I get the best out of my team.",
               "textFa": "اما در نهایت، تیمی که سودآوری پایداری را نشان داد برنده شد."
       },
       {
@@ -16958,7 +17177,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 236,
               "timeDisplay": "3:56",
               "speaker": "Holly",
-              "textEn": "That would be great. … If it’s not weird for your wife? Imean, you know, ex-girlfriend alert.",
+              "textEn": "That would be great. … If it’s not weird for your wife? I mean, you know, ex-girlfriend alert.",
               "textFa": "این تجربه ارزش صدها ساعت آموزش تئوری مدیریت را داشت."
       },
       {
@@ -17186,7 +17405,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "True stories are really interesting, but Iprefer fiction. Ilike the challenge of having to read between the lines, and really trying to understand what the author’s trying to say.",
+              "textEn": "True stories are really interesting, but I prefer fiction. I like the challenge of having to read between the lines, and really trying to understand what the author’s trying to say.",
               "textFa": "داستان‌های واقعی بسیار جذاب و تأثیرگذار هستند، اما من شخصاً داستان‌های تخیلی رو ترجیح میدم."
       },
       {
@@ -17194,7 +17413,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 30,
               "timeDisplay": "0:30",
               "speaker": "Speaker 2",
-              "textEn": "Erm, Iread both Ithink. Iread, er, non-fiction for work, which is most of my time, er, but when Igo on holiday Ilove to read, erm, detective stories.",
+              "textEn": "Erm, I read both I think. I read, er, non-fiction for work, which is most of my time, er, but when I go on holiday I love to read, erm, detective stories.",
               "textFa": "من عاشق خواندن زندگی‌نامه‌ها و مستندهای تاریخی هستم چون واقعیت از هر داستانی شگفت‌انگیزتره."
       },
       {
@@ -17202,7 +17421,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Speaker 3",
-              "textEn": "Iprefer true stories over fiction. Iprefer watching documentaries over fi lms. My favourite subject at school was history.",
+              "textEn": "I prefer true stories over fiction. I prefer watching documentaries over fi lms. My favourite subject at school was history.",
               "textFa": "رمان‌های علمی-تخیلی ذهن من رو به دنیاهای ناشناخته می‌برن و حس کنجکاویم رو ارضا می‌کنن."
       },
       {
@@ -17210,7 +17429,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 54,
               "timeDisplay": "0:54",
               "speaker": "Speaker 4",
-              "textEn": "Iprefer reading fiction, er, particularly poetry, but Ilike watching documentaries.",
+              "textEn": "I prefer reading fiction, er, particularly poetry, but I like watching documentaries.",
               "textFa": "روایت‌های مستند از تجربیات واقعی انسان‌ها در سختی‌ها، درس‌های شجاعت و امید به من میدن."
       },
       {
@@ -17218,7 +17437,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 63,
               "timeDisplay": "1:03",
               "speaker": "Speaker 5",
-              "textEn": "Iprefer reading non-fiction books, especially letters or memoirs. You can really learn a lot about the daily lives of famous people from these.",
+              "textEn": "I prefer reading non-fiction books, especially letters or memoirs. You can really learn a lot about the daily lives of famous people from these.",
               "textFa": "ادبیات داستانی به نویسنده این آزادی رو میده که به عمیق‌ترین لایه‌های روح انسان سفر کنه."
       },
       {
@@ -17226,7 +17445,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 74,
               "timeDisplay": "1:14",
               "speaker": "Speaker 6",
-              "textEn": "Ilike to read the news online, er, every evening, because Ilike to see what’s going on in the world, and, er, Ialso like to read biographies; particularly about musicians and sportspeople, because Ifi nd them inspiring, and Ilike to fi nd out more about their lives.",
+              "textEn": "I like to read the news online, er, every evening, because I like to see what’s going on in the world, and, er, I also like to read biographies; particularly about musicians and sportspeople, because Ifi nd them inspiring, and I like to find out more about their lives.",
               "textFa": "من کتاب‌هایی رو دوست دارم که مرز میان حقیقت تاریخی و خیال‌پردازی رو به زیبایی پیوند می‌زنن."
       },
       {
@@ -17234,7 +17453,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 93,
               "timeDisplay": "1:33",
               "speaker": "Speaker 7",
-              "textEn": "Ithink Iprobably prefer fiction. Ijust love being taken away to new worlds and, you know, growing with the characters and fi nding out what happens to them. Um, but Ido read lots of non-fiction, and Ido really enjoy documentaries as well.",
+              "textEn": "I think I probably prefer fiction. I just love being taken away to new worlds and, you know, growing with the characters and fi nding out what happens to them. Um, but I do read lots of non-fiction, and I do really enjoy documentaries as well.",
               "textFa": "دیدن مستندهای حیات‌وحش واقعی جذاب‌ترین برنامه تلویزیونی برای تمام اعضای خونواده ماست."
       },
       {
@@ -17242,7 +17461,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 109,
               "timeDisplay": "1:49",
               "speaker": "Speaker 8",
-              "textEn": "When Iwas younger, Idefi nitely preferred fiction – Iused to love getting lost in stories – but, as Iget older, Idefi nitely prefer more true stories, especially historical stories or biographies of interesting or famous people.",
+              "textEn": "When I was younger, Idefi nitely preferred fiction – I used to love getting lost in stories – but, as I get older, Idefi nitely prefer more true stories, especially historical stories or biographies of interesting or famous people.",
               "textFa": "هر دو سبک ارزش بی‌نظیری دارند؛ یکی ما را با جهان اطراف و دیگری با تخیلات بی‌پایان آشنا می‌سازد."
       }
     ],
@@ -17422,7 +17641,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 19,
               "timeDisplay": "0:19",
               "speaker": "Speaker 1",
-              "textEn": "Afew weeks ago, my dishwasher broke down, erm, and Irealised it once the dishwasher was full, and it just would not work. So, Ihad to take everything out and wash everything by hand. It was very, very annoying.",
+              "textEn": "Afew weeks ago, my dishwasher broke down, erm, and I realised it once the dishwasher was full, and it just would not work. So, I had to take everything out and wash everything by hand. It was very, very annoying.",
               "textFa": "چند هفته پیش ماشین ظرفشویی‌ام خراب شد و ناگهان متوجه شدم چقدر زندگی بدون اون سخته!"
       },
       {
@@ -17438,7 +17657,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 44,
               "timeDisplay": "0:44",
               "speaker": "Speaker 3",
-              "textEn": "Before Ileft on vacation, Iwent to a car rental agency and Ireserved a car. But when Igot here, they told me there weren’t any cars available. They had all been rented. Ugh!",
+              "textEn": "Before I left on vacation, I went to a car rental agency and Ireserved a car. But when I got here, they told me there weren’t any cars available. They had all been rented. Ugh!",
               "textFa": "گاهی تعمیر وسایل ساده‌تر از چیزیه که فکر می‌کنیم، فقط نیاز به کمی دقت و حوصله داره."
       },
       {
@@ -17446,7 +17665,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 58,
               "timeDisplay": "0:58",
               "speaker": "Speaker 4",
-              "textEn": "Yes, I, Irecently had a problem with the person who delivers, er, milk to my house, because sometimes he just doesn’t deliver the milk, erm, and sometimes he leaves it in the wrong place. Erm, so yeah, I’m not going to use him anymore. I’m going to buy it from the shops.",
+              "textEn": "Yes, I, I recently had a problem with the person who delivers, er, milk to my house, because sometimes he just doesn’t deliver the milk, erm, and sometimes he leaves it in the wrong place. Erm, so yeah, I’m not going to use him anymore. I’m going to buy it from the shops.",
               "textFa": "وقتی آبگرمکن از کار افتاد، بلافاصله فهمیدم کار خودم نیست و به یک تکنسین حرفه‌ای زنگ زدم."
       },
       {
@@ -17454,7 +17673,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 77,
               "timeDisplay": "1:17",
               "speaker": "Speaker 5",
-              "textEn": "The last time Ihad a problem with a product or a service was actually with these glasses. Ihad an eye test back in January, um, and they made up some new glasses for me, but for some reason they weren’t right. So, Iwent back, had another eye test; again, they made some new glasses, they still weren’t right, and this continued for months and months and months. It was really annoying.",
+              "textEn": "The last time I had a problem with a product or a service was actually with these glasses. I had an eye test back in January, um, and they made up some new glasses for me, but for some reason they weren’t right. So, I went back, had another eye test; again, they made some new glasses, they still weren’t right, and this continued for months and months and months. It was really annoying.",
               "textFa": "تعمیر وسایل برقی حساس حتماً باید توسط متخصص انجام بشه تا خطرات ایمنی پیش نیاد."
       },
       {
@@ -17462,7 +17681,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 100,
               "timeDisplay": "1:40",
               "speaker": "Speaker 6",
-              "textEn": "Ilike to order food delivery online. It’s so convenient! Iusually don’t have any problems, but last week Ihad a problem – my food didn’t arrive. Ican track where my food is on the app. Iasked them to leave it by my doorway, it even showed me a picture of when it arrived. But, when Iopened the door, my food wasn’t there.",
+              "textEn": "I like to order food delivery online. It’s so convenient! Iusually don’t have any problems, but last week I had a problem – my food didn’t arrive. I can track where my food is on the app. I asked them to leave it by my doorway, it even showed me a picture of when it arrived. But, when I opened the door, my food wasn’t there.",
               "textFa": "حس رضایتی که بعد از راه انداختن دوباره یک وسیله خراب پیدا می‌کنی واقعاً بی‌نظیره."
       }
     ],
@@ -17722,7 +17941,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 132,
               "timeDisplay": "2:12",
               "speaker": "Duncan",
-              "textEn": "It’s just, like, the speed of change here. It’s … It’s actually addictive, like, you realise, ’cause Igo back to the UK fairly often, how things really haven’t changed that much. Whereas here, you blink and everything’s completely different.",
+              "textEn": "It’s just, like, the speed of change here. It’s … It’s actually addictive, like, you realise, ’cause I go back to the UK fairly often, how things really haven’t changed that much. Whereas here, you blink and everything’s completely different.",
               "textFa": "شنژن پنجره‌ای به سوی آینده طراحی شهری و تحول دیجیتال در مقیاس تمدنی است."
       },
       {
@@ -17738,7 +17957,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 204,
               "timeDisplay": "3:24",
               "speaker": "Reggie",
-              "textEn": "This monument … You’ve got these years, er, on this monument which reference different years of importance clearly to the area, and ’78, ’79 is around about the time when things really started to change here in Shenzhen, and, erm, ’82 is the year before Iwas born. So, you know, this is pretty much my lifetime. When you compare the changes in the area that Iwas raised in versus here … Imean, in my lifetime, we’ve had some nice new roads laid, er, there’s a shopping centre that’s gone up. It’s unbelievable. 172 VIDEOSCRIPTS Z06 Speakout 3e CB B1+ 07463 VI.indd 172Z06 Speakout 3e CB B1+ 07463 VI.indd 172 30/08/2022 17:0930/08/2022 17:09",
+              "textEn": "This monument … You’ve got these years, er, on this monument which reference different years of importance clearly to the area, and ’78, ’79 is around about the time when things really started to change here in Shenzhen, and, erm, ’82 is the year before I was born. So, you know, this is pretty much my lifetime. When you compare the changes in the area that I was raised in versus here … I mean, in my lifetime, we’ve had some nice new roads laid, er, there’s a shopping centre that’s gone up. It’s unbelievable. Z06 Speakout 3e CB B1+ 07463 VI.indd 172Z06 Speakout 3e CB B1+ 07463 VI.indd 172 30/08/2022 17:0930/08/2022 17:09",
               "textFa": "نگاه به این شهر، درکی واقعی از سرعت دگرگونی جهان معاصر به ما می‌بخشد."
       }
     ],
@@ -17918,7 +18137,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 17,
               "timeDisplay": "0:17",
               "speaker": "Speaker 1",
-              "textEn": "My favourite city is Katowice in Poland. Ireally love that city. The architecture is just beautiful, and it’s not too big, it’s not very small. It’s a very friendly city.",
+              "textEn": "My favourite city is Katowice in Poland. I really love that city. The architecture is just beautiful, and it’s not too big, it’s not very small. It’s a very friendly city.",
               "textFa": "شهر مورد علاقه من کاتوویسه در لهستان است؛ من شیفته دگرگونی صنعتی و فضاهای هنری مدرن اون شدم."
       },
       {
@@ -17926,7 +18145,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 32,
               "timeDisplay": "0:32",
               "speaker": "Speaker 2",
-              "textEn": "Iwould choose Rio de Janeiro in Brazil as my favourite city from the ones that, erm, that Iknow. It has magnificent energy, er, people are very friendly. You have the sea, you have the, the mountains, you have forests. Actually, you have the biggest forest in a city in the world – it’s there. Er, it has football, it has music – it has samba. Erm, it’s really the place to go and visit.",
+              "textEn": "I would choose Rio de Janeiro in Brazil as my favourite city from the ones that, erm, that I know. It has magnificent energy, er, people are very friendly. You have the sea, you have the, the mountains, you have forests. Actually, you have the biggest forest in a city in the world – it’s there. Er, it has football, it has music – it has samba. Erm, it’s really the place to go and visit.",
               "textFa": "بارسلونا برای من کامل‌ترین شهره؛ ترکیب شاهکارهای معماری گائودی، فرهنگ غنی و ساحل مدیترانه فوق‌العاده‌ست."
       },
       {
@@ -17934,7 +18153,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 69,
               "timeDisplay": "1:09",
               "speaker": "Speaker 3",
-              "textEn": "My favourite city is Valencia in Spain because Iabsolutely love Spanish culture, and Ilove the traditional and modern architecture.",
+              "textEn": "My favourite city is Valencia in Spain because I absolutely love Spanish culture, and I love the traditional and modern architecture.",
               "textFa": "توکیو شهریه که هر گوشه‌اش شگفتی تازه‌ای داره؛ تضاد دلنشین معابد سنتی با خیابان‌های نئونی آینده‌نگرانه."
       },
       {
@@ -17950,7 +18169,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 122,
               "timeDisplay": "2:02",
               "speaker": "Speaker 5",
-              "textEn": "My favourite city might be Istanbul. Ilove it because it is very beautiful, full of history, and it really is a point where East meets West.",
+              "textEn": "My favourite city might be Istanbul. I love it because it is very beautiful, full of history, and it really is a point where East meets West.",
               "textFa": "رم مثل یک موزه روباز بزرگ می‌مونه؛ هر قدم در سنگفرش‌های تاریخی اون سفری به اعماق تاریخه."
       },
       {
@@ -17966,7 +18185,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 126,
               "timeDisplay": "2:06",
               "speaker": "Speaker 7",
-              "textEn": "My favourite city is Paris. Ilived there for two years after Ileft university. And it is so beautiful, it’s so human, it’s so full of life, and it’s definitely my second home now.",
+              "textEn": "My favourite city is Paris. I lived there for two years after I left university. And it is so beautiful, it’s so human, it’s so full of life, and it’s definitely my second home now.",
               "textFa": "شهرهایی که هویت تاریخی‌شون رو حفظ می‌کنن و هم‌زمان رو به آینده حرکت می‌کنن جذاب‌ترین مقصدها هستند."
       }
     ],
@@ -18146,7 +18365,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Zoe",
-              "textEn": "Ihope so. Ithink I’m quite friendly, so Ifeel like Ican talk to people quite easily.",
+              "textEn": "I hope so. I think I’m quite friendly, so I feel like I can talk to people quite easily.",
               "textFa": "امیدوارم همین‌طور باشه. فکر می‌کنم من آدم خونگرمی هستم، برای همین همیشه سعی می‌کنم به آدم‌ها لبخند بزنم."
       },
       {
@@ -18154,7 +18373,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 23,
               "timeDisplay": "0:23",
               "speaker": "Joshua",
-              "textEn": "Yeah Ithink I’m good at communicating but there’s, there’s certain situations where Istruggle a bit.",
+              "textEn": "Yeah I think I’m good at communicating but there’s, there’s certain situations where Istruggle a bit.",
               "textFa": "ادب و احترام پایه‌ای‌ترین شرط برقراری یک ارتباط مثبت در هر جامعه‌ایه."
       },
       {
@@ -18162,7 +18381,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 28,
               "timeDisplay": "0:28",
               "speaker": "Janine",
-              "textEn": "Yes, Ithink so. With my line of business and work, Ihave to work with lots of people across lots of platforms and yes, that’s defi nitely a key requirement.",
+              "textEn": "Yes, I think so. With my line of business and work, I have to work with lots of people across lots of platforms and yes, that’s definitely a key requirement.",
               "textFa": "سلام کردن با لبخند و لحن صمیمی می‌تونه روز یک انسان رو کاملاً روشن کنه."
       },
       {
@@ -18170,7 +18389,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 94,
               "timeDisplay": "1:34",
               "speaker": "Monica",
-              "textEn": "Ithink Iam a good communicator. Imay ha ... , make some mistakes with grammar since I’m from Spain, but Iwould like to think that people can understand what I’m saying.",
+              "textEn": "I think I am a good communicator. I may ha ... , make some mistakes with grammar since I’m from Spain, but I would like to think that people can understand what I’m saying.",
               "textFa": "در فرهنگ‌های مختلف نشانه‌های ادب متفاوته و شناخت این تفاوت‌ها جلوی سوءتفاهم رو می‌گیره."
       },
       {
@@ -18178,7 +18397,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 147,
               "timeDisplay": "2:27",
               "speaker": "Pear",
-              "textEn": "Iwould say Iam a good communicator, if I’m having a good day, but if I’m having a bad day, Ithink my communication is lacking.",
+              "textEn": "I would say I am a good communicator, if I’m having a good day, but if I’m having a bad day, I think my communication is lacking.",
               "textFa": "گوش دادن فعال به صحبت‌های دیگران بالاترین نشانه‌ای از احترام واقعیه."
       },
       {
@@ -18194,7 +18413,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 151,
               "timeDisplay": "2:31",
               "speaker": "Michael",
-              "textEn": "Um, Icould be a better communicator, is what Iwould say.",
+              "textEn": "Um, I could be a better communicator, is what I would say.",
               "textFa": "استفاده از واژه‌های محترمانه مثل «لطفاً» و «متشکرم» روابط روزمره را بسیار دلپذیرتر می‌کنه."
       },
       {
@@ -18202,7 +18421,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 153,
               "timeDisplay": "2:33",
               "speaker": "Hannah",
-              "textEn": "Ithink I’m quite a good communicator. I’m quite honest, so Ifeel like someone knows if they’ve done something wrong or if Ilike them.",
+              "textEn": "I think I’m quite a good communicator. I’m quite honest, so I feel like someone knows if they’ve done something wrong or if I like them.",
               "textFa": "صبر و شکیبایی در موقعیت‌های شلوغ و پرتنش، نشانه تسلط بر رفتار و ادبه."
       },
       {
@@ -18210,7 +18429,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 155,
               "timeDisplay": "2:35",
               "speaker": "Yiannis",
-              "textEn": "Ibelieve that Iam a good communicator. Um … Ido a lot of public speaking and debating, and Ienjoy talking to people, so yes, Ithink Iam a good communicator.",
+              "textEn": "I believe that I am a good communicator. Um … I do a lot of public speaking and debating, and I enjoy talking to people, so yes, I think I am a good communicator.",
               "textFa": "زبان بدن و ارتباط چشمی نقشی اساسی در انتقال صمیمیت و اطمینان ایفا می‌کنند."
       },
       {
@@ -18218,7 +18437,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 157,
               "timeDisplay": "2:37",
               "speaker": "Raihan",
-              "textEn": "Ido not think I’m a good communicator. Iget shy when Ispeak to a large audience.",
+              "textEn": "I do not think I’m a good communicator. I get shy when I speak to a large audience.",
               "textFa": "قضاوت نکردن زودهنگام دیگران فرصت ایجاد دوستی‌های پایدار را فراهم می‌سازد."
       },
       {
@@ -18226,7 +18445,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 159,
               "timeDisplay": "2:39",
               "speaker": "Zoe",
-              "textEn": "When there’s confl ict Itry to stay out of it, defi nitely.",
+              "textEn": "When there’s confl ict I try to stay out of it, definitely.",
               "textFa": "احترام به حریم خصوصی افراد در محیط‌های کاری از اهمیت ویژه‌ای برخوردار است."
       },
       {
@@ -18234,7 +18453,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 177,
               "timeDisplay": "2:57",
               "speaker": "Joshua",
-              "textEn": "Yeah, er, so do I, and, erm, in large groups Ifi nd that quite diffi cult as well.",
+              "textEn": "Yeah, er, so do I, and, erm, in large groups Ifi nd that quite difficult as well.",
               "textFa": "مهربانی یک زبان بین‌المللی است که ناشنوایان می‌توانند بشنوند و نابینایان ببینند."
       },
       {
@@ -18242,7 +18461,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 179,
               "timeDisplay": "2:59",
               "speaker": "Janine",
-              "textEn": "Ithink online, generally, um, it’s easier to work face to face with people. Um, Ithink it’s more, um, creative.",
+              "textEn": "I think online, generally, um, it’s easier to work face to face with people. Um, I think it’s more, um, creative.",
               "textFa": "تأثیر برخورد اول همیشه در ذهن ماندگار می‌شود، پس بهتر است صادق و متواضع باشیم."
       },
       {
@@ -18250,7 +18469,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 181,
               "timeDisplay": "3:01",
               "speaker": "Monica",
-              "textEn": "Ithink probably when I’m public speaking, Iget a bit nervous, so I, Iwant to practise a lot before Ido it, erm. But yeah, practice makes perfect.",
+              "textEn": "I think probably when I’m public speaking, I get a bit nervous, so I, I want to practise a lot before I do it, erm. But yeah, practice makes perfect.",
               "textFa": "یک کلمه محبت‌آمیز می‌تواند بار سنگینی را از دوش فردی خسته بردارد."
       },
       {
@@ -18258,7 +18477,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 183,
               "timeDisplay": "3:03",
               "speaker": "Pear",
-              "textEn": "Ithink it can be diffi cult to communicate when Iam feeling sad, because … or angry, because Iam busy thinking about myself, so I’m not thinking about how I’m coming across to other people.",
+              "textEn": "I think it can be difficult to communicate when I am feeling sad, because … or angry, because I am busy thinking about myself, so I’m not thinking about how I’m coming across to other people.",
               "textFa": "ادب واقعی در رفتاری تجلی می‌یابد که با افراد ضعیف‌تر از خود داریم."
       },
       {
@@ -18266,7 +18485,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 185,
               "timeDisplay": "3:05",
               "speaker": "Michael",
-              "textEn": "Um, communication Iwould say under pressure, that’s, that’s defi nitely um, when you’re under pressure, choosing the right words can, can be diffi cult.",
+              "textEn": "Um, communication I would say under pressure, that’s, that’s definitely um, when you’re under pressure, choosing the right words can, can be difficult.",
               "textFa": "قدردانی از زحمات دیگران، انگیزه و امید را در جامعه تقویت می‌کند."
       },
       {
@@ -18274,7 +18493,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 187,
               "timeDisplay": "3:07",
               "speaker": "Hannah",
-              "textEn": "Um, Ithink if I’m angry I’ll fi nd it quite diffi cult to communicate. Ican’t fi nd the words to explain why I’m angry.",
+              "textEn": "Um, I think if I’m angry I’ll find it quite difficult to communicate. I can’t find the words to explain why I’m angry.",
               "textFa": "حفظ آرامش در گفتگوهای پرچالش نشان‌دهنده فرهنگ بالای ارتباطی است."
       },
       {
@@ -18282,7 +18501,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Yiannis",
-              "textEn": "Ihave diffi culty communicating with girls, ’cause it’s very hard to talk to them sometimes.",
+              "textEn": "I have diffi culty communicating with girls, ’cause it’s very hard to talk to them sometimes.",
               "textFa": "در نهایت، رفتار محترمانه انعکاسی از احترام ما به کرامت انسانی است."
       },
       {
@@ -18290,7 +18509,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 189,
               "timeDisplay": "3:09",
               "speaker": "Raihan",
-              "textEn": "So do I. Especially when Ilike them, it makes me all nervous.",
+              "textEn": "So do I. Especially when I like them, it makes me all nervous.",
               "textFa": "جهان با همدلی و گفتگوی صمیمانه مکانی زیباتر برای همه خواهد بود."
       }
     ],
@@ -18470,7 +18689,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Speaker 1",
-              "textEn": "Ilove words that sound a bit like what they mean, erm, like, er, ‘lazy’. That’s a good one, because it’s got a ‘zzz’ in the middle, which is a kind of sleeping sound. So, ‘lazy’, mm, yeah, that’s one of my favourites.",
+              "textEn": "I love words that sound a bit like what they mean, erm, like, er, ‘lazy’. That’s a good one, because it’s got a ‘zzz’ in the middle, which is a kind of sleeping sound. So, ‘lazy’, mm, yeah, that’s one of my favourites.",
               "textFa": "من عاشق واژه‌هایی هستم که صدای اون‌ها شبیه به معنیشونه، مثل واژه «خش‌خش» برگ‌ها یا «چک‌چک» آب."
       },
       {
@@ -18486,7 +18705,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 112,
               "timeDisplay": "1:52",
               "speaker": "Speaker 3",
-              "textEn": "My favourite word in the English language might be ‘petrichor’, er, which is the smell of earth aft er it rains. Ijust think it’s very nice.",
+              "textEn": "My favourite word in the English language might be ‘petrichor’, er, which is the smell of earth aft er it rains. I just think it’s very nice.",
               "textFa": "من واژه‌های اصیل و آهنگین رو دوست دارم که تلفظ کردنشون حس آرامش و زیبایی به آدم میده."
       },
       {
@@ -18494,7 +18713,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Speaker 4",
-              "textEn": "Ireally like the word ‘giggle’, er, because it makes me smile and, erm, sometimes it makes me giggle, and it’s good to laugh.",
+              "textEn": "I really like the word ‘giggle’, er, because it makes me smile and, erm, sometimes it makes me giggle, and it’s good to laugh.",
               "textFa": "برخی کلمات در زبان‌های مختلف معادل مستقیمی ندارند و یک مفهوم عمیق رو در یک واژه خلاصه می‌کنند."
       },
       {
@@ -18510,7 +18729,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 118,
               "timeDisplay": "1:58",
               "speaker": "Speaker 6",
-              "textEn": "One of my favourite words is a Japanese word, ‘yosh’, and it means ‘OK’ or ‘all right’. And, let me give you an example: In English if I’m going to pick up something really heavy, Isay ‘OK, all right, I’ve got this’. But in Japanese, all you have to say is ‘yosh!’ It sounds great!",
+              "textEn": "One of my favourite words is a Japanese word, ‘yosh’, and it means ‘OK’ or ‘all right’. And, let me give you an example: In English if I’m going to pick up something really heavy, I say ‘OK, all right, I’ve got this’. But in Japanese, all you have to say is ‘yosh!’ It sounds great!",
               "textFa": "یادگیری کلمات جدید مثل باز کردن پنجره‌ای تازه به سوی درک متفاوتی از جهان پیرامونه."
       },
       {
@@ -18706,7 +18925,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 29,
               "timeDisplay": "0:29",
               "speaker": "Jacob",
-              "textEn": "Hello, Dragons. I’m Jacob Thundil, chief nut at Cocofi na – the coconut experts. We produce coconut products to eat, drink and cook with. Iwas born in a place called Kerala, and Kerala means in Sanskrit, ‘land of coconuts’. Cocofi na was my destiny. As a young boy, Iwas fascinated with the amount of uses out of coconut and today Iuse coconut products every day. The market for coconut oil and coconut water alone in the US is worth around £750 million and, in the UK, £50 million pounds, and doubling annually. Our turnover fi gures over the last three years has been £1 million, £600,000 and £300,000. I’m off ering 5% for £75,000. Iwould welcome you to try our products.",
+              "textEn": "Hello, Dragons. I’m Jacob Thundil, chief nut at Cocofi na – the coconut experts. We produce coconut products to eat, drink and cook with. I was born in a place called Kerala, and Kerala means in Sanskrit, ‘land of coconuts’. Cocofi na was my destiny. As a young boy, I was fascinated with the amount of uses out of coconut and today I use coconut products every day. The market for coconut oil and coconut water alone in the US is worth around £750 million and, in the UK, £50 million pounds, and doubling annually. Our turnover fi gures over the last three years has been £1 million, £600,000 and £300,000. I’m off ering 5% for £75,000. I would welcome you to try our products.",
               "textFa": "سلام دراگون‌ها. نام من ریچارد است و به دنبال سرمایه‌گذاری پنجاه هزار پوندی در ازای ده درصد سهام هستم."
       },
       {
@@ -18714,7 +18933,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 80,
               "timeDisplay": "1:20",
               "speaker": "Narrator",
-              "textEn": "It’s a confi dent pitch from Jacob Thundil, who’s asking for £75,000 for a 5% share of his business. With a wide range of coconut products, from water and milk, to snack bars and oils, Jacob has a lot to off er. But will any of the Dragons be interested?",
+              "textEn": "It’s a confident pitch from Jacob Thundil, who’s asking for £75,000 for a 5% share of his business. With a wide range of coconut products, from water and milk, to snack bars and oils, Jacob has a lot to off er. But will any of the Dragons be interested?",
               "textFa": "محصول ما مشکلی روزمره را حل می‌کند که میلیون‌ها راننده در فصل زمستان با آن روبرو هستند."
       },
       {
@@ -18842,7 +19061,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 349,
               "timeDisplay": "5:49",
               "speaker": "Manisha",
-              "textEn": "So, basically, once he has made the sales, Itake care of everything. 173 VIDEOSCRIPTS Z06 Speakout 3e CB B1+ 07463 VI.indd 173Z06 Speakout 3e CB B1+ 07463 VI.indd 173 30/08/2022 17:0930/08/2022 17:09",
+              "textEn": "So, basically, once he has made the sales, I take care of everything. 173 VIDEOSCRIPTS Z06 Speakout 3e CB B1+ 07463 VI.indd 173Z06 Speakout 3e CB B1+ 07463 VI.indd 173 30/08/2022 17:0930/08/2022 17:09",
               "textFa": "من پیشنهادی متفاوت دارم؛ شراکت با دو سرمایه‌گذار در ازای بیست درصد مشترک."
       },
       {
@@ -18858,7 +19077,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 353,
               "timeDisplay": "5:53",
               "speaker": "Deborah",
-              "textEn": "So, I’m going to make you an offer. And I’m going to offer you all of the money. Iwant 20% of the business. And Iwant 20% of the business because there is, a – obviously the contacts that Ican bring, but Ithink the development side … there’s a little bit of work that needs to be done on that. But Ithink we are the team that can do it, so that’s my offer to you.",
+              "textEn": "So, I’m going to make you an offer. And I’m going to offer you all of the money. I want 20% of the business. And I want 20% of the business because there is, a – obviously the contacts that I can bring, but I think the development side … there’s a little bit of work that needs to be done on that. But I think we are the team that can do it, so that’s my offer to you.",
               "textFa": "اجازه دهید یک لحظه در بخش پشتی با شریکم مشورت کنم."
       },
       {
@@ -18874,7 +19093,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Nick",
-              "textEn": "Well, Ithink Imight pitch in with an offer as well. Ilove the passion you have for the product. So, I’m going to match the offer. All of the money for 20%.",
+              "textEn": "Well, I think I might pitch in with an offer as well. I love the passion you have for the product. So, I’m going to match the offer. All of the money for 20%.",
               "textFa": "ما تصمیم خود را گرفتیم و پیشنهاد شراکت مشترک را با افتخار می‌پذیریم!"
       },
       {
@@ -18922,7 +19141,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Nick",
-              "textEn": "Idon’t have a problem with that.",
+              "textEn": "I don’t have a problem with that.",
               "textFa": "سفر تجاری این محصول تازه وارد مرحله‌ای جدید و هیجان‌انگیز از رشد شده است."
       },
       {
@@ -18938,7 +19157,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Sarah",
-              "textEn": "Iwould just want to add one thing, that Iwould very much be prepared to split it with another Dragon.",
+              "textEn": "I would just want to add one thing, that I would very much be prepared to split it with another Dragon.",
               "textFa": "کارآفرینی مسیری پرفرازونشیب است اما شیرینی تحقق رویاها تمام سختی‌ها را جبران می‌کند."
       },
       {
@@ -18954,7 +19173,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Sarah",
-              "textEn": "Yes, Iwould. Iwould be prepared to split it with Nick.",
+              "textEn": "Yes, I would. I would be prepared to split it with Nick.",
               "textFa": "ما متعهدیم که بالاترین استانداردهای کیفیت را برای مصرف‌کنندگان به ارمغان آوریم."
       },
       {
@@ -18962,7 +19181,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Nick",
-              "textEn": "Ithink between the two of us, you get two for the price of one!",
+              "textEn": "I think between the two of us, you get two for the price of one!",
               "textFa": "این دستاورد انگیزه‌ای مضاعف برای تمام کارآفرینان نوپا در این مسیر خواهد بود."
       },
       {
@@ -18970,7 +19189,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 355,
               "timeDisplay": "5:55",
               "speaker": "Jacob",
-              "textEn": "Idon’t think we need to discuss further.",
+              "textEn": "I don’t think we need to discuss further.",
               "textFa": "اعتماد سرمایه‌گذاران گرانبهاترین سرمایه برای حرکت به سمت افق‌های نو است."
       },
       {
@@ -19214,7 +19433,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 45,
               "timeDisplay": "0:45",
               "speaker": "Speaker 3",
-              "textEn": "The best advice Iwas given is to work hard, erm, always look aft er your health, er, try to join a gym, because health is wealth.",
+              "textEn": "The best advice I was given is to work hard, erm, always look aft er your health, er, try to join a gym, because health is wealth.",
               "textFa": "پدربزرگم همیشه می‌گفت: «صداقت شاید دوستان زیادی برات نیاره، اما همیشه دوستان درستی رو بهت هدیه میده.»"
       },
       {
@@ -19222,7 +19441,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 79,
               "timeDisplay": "1:19",
               "speaker": "Speaker 4",
-              "textEn": "The best piece of advice Iever got was from my coach, who told me that you learn more from your mistakes than you do from your successes.",
+              "textEn": "The best piece of advice I ever got was from my coach, who told me that you learn more from your mistakes than you do from your successes.",
               "textFa": "یک معلم خردمند به ما یاد داد: «شکست پایان راه نیست، بلکه اولین پله برای یادگیری درست و پیشرفته.»"
       },
       {
@@ -19230,7 +19449,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 90,
               "timeDisplay": "1:30",
               "speaker": "Speaker 5",
-              "textEn": "Ithink the best advice that Iever got was to get a dog. Erm, er, my dog is my best friend, and he has been for the last eleven years. Erm, Iabsolutely love him.",
+              "textEn": "I think the best advice that I ever got was to get a dog. Erm, er, my dog is my best friend, and he has been for the last eleven years. Erm, I absolutely love him.",
               "textFa": "بهترین پند برای من این جمله بود: «خودت را با گذشته خودت مقایسه کن، نه با ظاهر زندگی دیگران.»"
       },
       {
@@ -19238,7 +19457,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 92,
               "timeDisplay": "1:32",
               "speaker": "Speaker 6",
-              "textEn": "The best piece of advice that I’ve ever been given came from my mother. She told me to go and eat a banana when Ican’t sleep at night. It’s brilliant! Works like magic!",
+              "textEn": "The best piece of advice that I’ve ever been given came from my mother. She told me to go and eat a banana when I can’t sleep at night. It’s brilliant! Works like magic!",
               "textFa": "همیشه به ندای درون و ارزش‌های بنیادین اخلاقی خودت وفادار بمان، حتی اگر همه بر خلاف آن حرکت کنند."
       },
       {
@@ -19246,7 +19465,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 100,
               "timeDisplay": "1:40",
               "speaker": "Speaker 7",
-              "textEn": "The best piece of advice I’ve ever been given, er, was by a colleague of mine a few years ago when Iwas thinking about the next steps in my career. And at the time Iwas overthinking it and overanalysing it. And what my colleague told me at the time is to, to just follow my heart and see what feels good for me, what feels right for me. Er, and that’s what Idid. And it proved to be the right thing.",
+              "textEn": "The best piece of advice I’ve ever been given, er, was by a colleague of mine a few years ago when I was thinking about the next steps in my career. And at the time I was overthinking it and overanalysing it. And what my colleague told me at the time is to, to just follow my heart and see what feels good for me, what feels right for me. Er, and that’s what I did. And it proved to be the right thing.",
               "textFa": "حکمت در این است که از تجارب تلخ بیاموزیم و با قلبی سرشار از امید به فردا گام برداریم."
       }
     ],
@@ -19426,7 +19645,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Dean",
-              "textEn": "Ialways do the washing up myself because, er, Iused to work in a café, in a restaurant, and, er, I, Iknow how to do it the best. And it annoys me when Isee people do it wrong so Ialways make sure that Ido it so that it’s perfect every time.",
+              "textEn": "I always do the washing up myself because, er, I used to work in a café, in a restaurant, and, er, I, I know how to do it the best. And it annoys me when I see people do it wrong so I always make sure that I do it so that it’s perfect every time.",
               "textFa": "من همیشه شستن ظرف‌ها رو خودم انجام میدم چون حس نظم و آرامش عجیبی بهم میده."
       },
       {
@@ -19434,7 +19653,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 33,
               "timeDisplay": "0:33",
               "speaker": "Imogen",
-              "textEn": "Yeah, Imean Ialways do the dishes, er, and like the general kind of cleaning, we don’t have a cleaner. Erm, Iactually always cut my own hair. Yeah, find that a lot, er, cheaper.",
+              "textEn": "Yeah, I mean I always do the dishes, er, and like the general kind of cleaning, we don’t have a cleaner. Erm, Iactually always cut my own hair. Yeah, find that a lot, er, cheaper.",
               "textFa": "تقسیم عادلانه کارهای خونه بین تمام افراد خانواده باعث جلوگیری از خستگی و ناراحتی میشه."
       },
       {
@@ -19442,7 +19661,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 87,
               "timeDisplay": "1:27",
               "speaker": "Rory",
-              "textEn": "Er, Ialways try and sort of fix things that I’ve broken myself. So for example, when Iwas living at uni Ibroke the cupboards to my, in my kitchen, and Ireally didn’t want to call a handyman to get it done, so Ireally tried to fix that myself.",
+              "textEn": "Er, I always try and sort of fix things that I’ve broken myself. So for example, when I was living at uni Ibroke the cupboards to my, in my kitchen, and I really didn’t want to call a handyman to get it done, so I really tried to fix that myself.",
               "textFa": "جارو برقی کشیدن و تمیز کردن کف وظیفه همیشگی منه و از انجام دادنش همراه با موسیقی لذت می‌برم."
       },
       {
@@ -19450,7 +19669,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 89,
               "timeDisplay": "1:29",
               "speaker": "Eden",
-              "textEn": "Oh, interesting. Ialways clean my own room, Imake dinner on a Tuesday … Uh, what else do Ido? Think that’s about it. Yeah.",
+              "textEn": "Oh, interesting. I always clean my own room, I make dinner on a Tuesday … Uh, what else do I do? Think that’s about it. Yeah.",
               "textFa": "پخت‌وپز برای من نه یک وظیفه، بلکه یک سرگرمی خلاقانه و لذت‌بخش در پایان روز کاریه."
       },
       {
@@ -19458,7 +19677,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 91,
               "timeDisplay": "1:31",
               "speaker": "Jane",
-              "textEn": "Ialways walk the dog ’cause no one else in the house will do it.",
+              "textEn": "I always walk the dog ’cause no one else in the house will do it.",
               "textFa": "اتو کردن لباس‌ها تنها کاریه که واقعاً ازش فراری‌ام و ترجیح میدم کس دیگه‌ای انجامش بده!"
       },
       {
@@ -19466,7 +19685,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 113,
               "timeDisplay": "1:53",
               "speaker": "Elpida",
-              "textEn": "Ido the housework myself. Idon’t pay a cleaner to do it.",
+              "textEn": "I do the housework myself. I don’t pay a cleaner to do it.",
               "textFa": "انجام منظم کارهای خانه مانع از انباشته شدن وظایف و ایجاد شلوغی و آشفتگی در محیط زندگی میشه."
       },
       {
@@ -19474,7 +19693,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 119,
               "timeDisplay": "1:59",
               "speaker": "Sagar",
-              "textEn": "Erm, Ialways try and do the DIY in the house, so Itry and fix broken shelves and cupboards, erm, and Ialways try and fix my own car myself.",
+              "textEn": "Erm, I always try and do the DIY in the house, so I try and fix broken shelves and cupboards, erm, and I always try and fix my own car myself.",
               "textFa": "ما یک جدول هفتگی روی یخچال نصب کردیم تا هر کس وظایف مشخص خودش رو بدونه."
       },
       {
@@ -19482,7 +19701,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 165,
               "timeDisplay": "2:45",
               "speaker": "Aisha",
-              "textEn": "Ido my grocery shopping by myself rather than getting it delivered.",
+              "textEn": "I do my grocery shopping by myself rather than getting it delivered.",
               "textFa": "آموزش مسئولیت‌پذیری در کارهای خانه به کودکان از همان سنین پایین بسیار ارزشمنده."
       },
       {
@@ -19498,7 +19717,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 169,
               "timeDisplay": "2:49",
               "speaker": "Imogen",
-              "textEn": "Erm, yeah Ialways have my car cleaned. Erm, … Ithink that’s probably it, yeah.",
+              "textEn": "Erm, yeah I always have my car cleaned. Erm, … I think that’s probably it, yeah.",
               "textFa": "یک خانه تمیز و سازمان‌یافته، آرامش ذهنی و تمرکز فکری بالاتری برای کار و مطالعه به همراه داره."
       },
       {
@@ -19506,7 +19725,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 171,
               "timeDisplay": "2:51",
               "speaker": "Rory",
-              "textEn": "Yeah, I, Ialways get my hair cut professionally, because Iwould not trust myself or anyone else to do it for me ’cause Iwant to look good.",
+              "textEn": "Yeah, I, I always get my hair cut professionally, because I would not trust myself or anyone else to do it for me ’cause I want to look good.",
               "textFa": "مشارکت در نظافت خانه نشانه‌ای از احترام متقابل و همکاری صمیمانه در محیط گرم خانوادگیه."
       },
       {
@@ -19514,7 +19733,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 173,
               "timeDisplay": "2:53",
               "speaker": "Eden",
-              "textEn": "So, Iget my food delivered, Iget my hair coloured and Iget my nails painted.",
+              "textEn": "So, I get my food delivered, I get my hair coloured and I get my nails painted.",
               "textFa": "تعطیلات آخر هفته زمانی برای نظافت کلی و تغییر چیدمان برای ایجاد طراوت در فضاست."
       },
       {
@@ -19530,7 +19749,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 173,
               "timeDisplay": "2:53",
               "speaker": "Elpida",
-              "textEn": "Um … Iget a mechanic to check my car every year, to see if it’s working properly, and pass the MOT test.",
+              "textEn": "Um … I get a mechanic to check my car every year, to see if it’s working properly, and pass the MOT test.",
               "textFa": "گاهی وقت‌ها ساده‌ترین کارهای روزمره می‌توانند لحظاتی برای خلوت ذهنی و کاهش استرس باشند."
       },
       {
@@ -19538,7 +19757,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 173,
               "timeDisplay": "2:53",
               "speaker": "Sagar",
-              "textEn": "Iwould always have my hair cut by a professional. Um … Yeah, that was it, yeah.",
+              "textEn": "I would always have my hair cut by a professional. Um … Yeah, that was it, yeah.",
               "textFa": "وقتی همه در کارهای خانه همکاری می‌کنند، اوقات فراغت بیشتری برای تفریح در کنار هم باقی می‌ماند."
       },
       {
@@ -19700,8 +19919,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v01",
     "level": "b2",
     "episodeNumber": 1,
-    "titleFa": "یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): ویژگی‌های ارثی و الگوبرداری از والدین",
-    "titleEn": "Unit 1 · BBC Street Interviews: Inherited Traits & Parental Influence",
+    "titleFa": "یونیت 1 · مصاحبه‌های خیابانی BBC: ویژگی‌های شخصیتی و تأثیرات وراثتی",
+    "titleEn": "Unit 1 · BBC Street Interviews: Personality & Inherited Traits",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 1",
     "cefr": "B2",
@@ -19712,8 +19931,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون ویژگی‌های ارثی و الگوبرداری از والدین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on inherited traits & parental influence with native British and international speakers.",
+    "summaryFa": "شهروندان لندنی به توصیف ویژگی‌های شخصیتی خود می‌پردازند و توضیح می‌دهند که رفتارشان در محیط کار، میان دوستان و در جمع خانواده چه تغییراتی می‌کند.",
+    "summaryEn": "Londoners reflect on their personality traits, how they describe themselves, and how their behavior adapts between work, friends, and family.",
     "keyTopicsFa": [
       "ویژگی‌های ارثی و الگوبرداری از والدین",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -19722,116 +19941,116 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Elaine",
-              "textEn": "Iwould describe myself as, erm, liberal, erm, I’m quite, er, h appy-go-lucky, erm, Itry to make the best that Ican out o f life, so quite positive Ithink?",
-              "textFa": "من خودم رو فردی با مدارا، روشنفکر، اهل گفتگو و پذیرای دیدگاه‌های جدید توصیف می‌کنم."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Elaine",
+        "textEn": "I would describe myself as, erm, liberal, erm, I’m quite, er, happy-go-lucky, erm, I try to make the best that I can out of life, so quite positive I think?",
+        "textFa": "من خودم رو فردی با مدارا و آسان‌گیر توصیف می‌کنم؛ سعی می‌کنم نهایت استفاده رو از زندگی ببرم، بنابراین فکر کنم کاملاً مثبت‌اندیش هستم."
       },
       {
-              "id": 2,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Anna",
-              "textEn": "Iwould say I’m bubbly, a passionate and committed p erson. Erm, I, I’m a people person, so Ilike to interact w ith different types of people and, like, er, get to know all d ifferent walks of life.",
-              "textFa": "من سعی می‌کنم در تصمیم‌گیری‌ها واقع‌بین و منطقی باشم، هرچند گاهی احساساتم بر منطق غلبه می‌کنه."
+        "id": 2,
+        "seconds": 28,
+        "timeDisplay": "0:28",
+        "speaker": "Anna",
+        "textEn": "I would say I’m bubbly, a passionate and committed person. Erm, I, I’m a people person, so I like to interact with different types of people and, like, er, get to know all different walks of life.",
+        "textFa": "من می‌تونم بگم که پرانرژی و خون‌گرم، مشتاق و متعهد هستم. من اهل معاشرتم، بنابراین دوست دارم با افراد مختلف ارتباط برقرار کنم و با اقشار گوناگون جامعه آشنا بشم."
       },
       {
-              "id": 3,
-              "seconds": 114,
-              "timeDisplay": "1:54",
-              "speaker": "Valeria",
-              "textEn": "So, my personality is quite curious and enthusiastic.",
-              "textFa": "صداقت و وفاداری مهم‌ترین ویژگی‌هایی هستند که در شخصیت خودم و دیگران ارزش قائلم."
+        "id": 3,
+        "seconds": 45,
+        "timeDisplay": "0:45",
+        "speaker": "Valeria",
+        "textEn": "So, my personality is quite curious and enthusiastic.",
+        "textFa": "شخصیت من کاملاً کنجکاو و پرشور و باانگیزه است."
       },
       {
-              "id": 4,
-              "seconds": 157,
-              "timeDisplay": "2:37",
-              "speaker": "Elijah",
-              "textEn": "Optimistic, loving and, er, creative. But sometimes I’m a b it grumpy.",
-              "textFa": "من فردی برون‌گرا و پرانرژی هستم که از معاشرت با آدم‌ها و پیدا کردن دوستان تازه انرژی می‌گیرم."
+        "id": 4,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Elijah",
+        "textEn": "Optimistic, loving and, er, creative. But sometimes I’m a bit grumpy.",
+        "textFa": "خوش‌بین، مهربان و خلاق؛ اما گاهی اوقات هم یکم بدعنق و اخمو می‌شم!"
       },
       {
-              "id": 5,
-              "seconds": 172,
-              "timeDisplay": "2:52",
-              "speaker": "Gwen",
-              "textEn": "Er, Ithink I’m quite outgoing, erm, quite sociable, erm, Il ike to chat to people, meet new people, go to parties, a nd stuff like that – so Ithink I’m quite an outgoing p erson.",
-              "textFa": "من شخصیتی درون‌گرا و تحلیل‌گر دارم؛ ترجیح میدم در آرامش فکر کنم و کتاب بخونم."
+        "id": 5,
+        "seconds": 57,
+        "timeDisplay": "0:57",
+        "speaker": "Gwen",
+        "textEn": "Er, I think I’m quite outgoing, erm, quite sociable, erm, I like to chat to people, meet new people, go to parties, and stuff like that – so I think I’m quite an outgoing person.",
+        "textFa": "فکر کنم کاملاً برون‌گرا و بسیار اهل معاشرتم؛ دوست دارم با مردم گپ بزنم، با افراد جدید آشنا بشم، مهمونی برم و اینجور چیزها؛ پس فکر کنم فردی کاملاً برون‌گرا هستم."
       },
       {
-              "id": 6,
-              "seconds": 174,
-              "timeDisplay": "2:54",
-              "speaker": "Roisin",
-              "textEn": "Erm, Iwould say I’m friendly, welcoming … maybe a bit f unny s ometimes.",
-              "textFa": "انعطاف‌پذیری و قدرت سازگاری با تغییرات غیرمنتظره بزرگ‌ترین نقطه قوت شخصیتی منه."
+        "id": 6,
+        "seconds": 74,
+        "timeDisplay": "1:14",
+        "speaker": "Roisin",
+        "textEn": "Erm, I would say I’m friendly, welcoming … maybe a bit funny sometimes.",
+        "textFa": "می‌تونم بگم صمیمی و پذیرا هستم... و شاید گاهی وقت‌ها هم یکم بامزه."
       },
       {
-              "id": 7,
-              "seconds": 176,
-              "timeDisplay": "2:56",
-              "speaker": "Collin",
-              "textEn": "I’m optimistic, er, Ilike people, erm, Inever give up.",
-              "textFa": "من نسبت به بی‌عدالتی بسیار حساسم و همیشه سعی می‌کنم از حقوق دیگران دفاع کنم."
+        "id": 7,
+        "seconds": 83,
+        "timeDisplay": "1:23",
+        "speaker": "Collin",
+        "textEn": "I’m optimistic, er, I like people, erm, I never give up.",
+        "textFa": "من خوش‌بینم، مردم رو دوست دارم و هرگز تسلیم نمی‌شم."
       },
       {
-              "id": 8,
-              "seconds": 184,
-              "timeDisplay": "3:04",
-              "speaker": "Elaine",
-              "textEn": "Generally speaking, I’m reasonably confident, erm, in s ocial situations, erm, due to the nature of the work that Ido – Irecruit people worldwide. Erm, so my personality w ill change depending on the people that Iam talking w ith because, erm, Iwill need to be a little bit more p rofessional in how Icome across, erm, in that situation.",
-              "textFa": "شوخ‌طبعی و دیدن نیمه پر لیوان به من کمک می‌کنه با چالش‌های زندگی راحت‌تر کنار بیام."
+        "id": 8,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Elaine",
+        "textEn": "Generally speaking, I’m reasonably confident, erm, in social situations, erm, due to the nature of the work that I do – I recruit people worldwide. Erm, so my personality will change depending on the people that I am talking with because, erm, I will need to be a little bit more professional in how I come across, erm, in that situation.",
+        "textFa": "به‌طور کلی در موقعیت‌های اجتماعی اعتمادبه‌نفس معقولی دارم، به دلیل ماهیت شغلم که استخدام نیرو از سراسر جهانه. بنابراین رفتارم بسته به مخاطبم تغییر می‌کنه، چون در اون موقعیت باید حرفه‌ای‌تر به نظر برسم."
       },
       {
-              "id": 9,
-              "seconds": 186,
-              "timeDisplay": "3:06",
-              "speaker": "Anna",
-              "textEn": "Er, so at work, maybe I’m more serious, whereas when Igo t o, like, a café with my friends, er, I’m a lot more relaxed.",
-              "textFa": "پشتکار و تعهد به اهدافی که انتخاب می‌کنم ویژگی بارز مسیر زندگی منه."
+        "id": 9,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Anna",
+        "textEn": "Er, so at work, maybe I’m more serious, whereas when I go to, like, a café with my friends, er, I’m a lot more relaxed.",
+        "textFa": "در محیط کار شاید جدی‌تر باشم، در حالی که وقتی مثلاً با دوستانم به کافه می‌رم، خیلی راحت‌تر و آسوده‌ترم."
       },
       {
-              "id": 10,
-              "seconds": 188,
-              "timeDisplay": "3:08",
-              "speaker": "Valeria",
-              "textEn": "Ican be quite direct at work, erm, and, Ithink with my f riends, Ican be quite compassionate.",
-              "textFa": "من فردی کمال‌گرا هستم و این ویژگی هم در کار کمکم می‌کنه و هم گاهی برام اضطراب ایجاد می‌کنه."
+        "id": 10,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Valeria",
+        "textEn": "I can be quite direct at work, erm, and, I think with my friends, I can be quite, erm, silly.",
+        "textFa": "در کار ممکنه کاملاً صریح و رک باشم، در حالی که فکر کنم کنار دوستانم حسابی شوخ و شاد و شنگولم."
       },
       {
-              "id": 11,
-              "seconds": 190,
-              "timeDisplay": "3:10",
-              "speaker": "Elijah",
-              "textEn": "So, if I’m hanging out with friends, Imight be more t alkative. If I’m with my mother, er, maybe I’ll listen a little m ore.",
-              "textFa": "همدلی عمیق با احساسات دیگران باعث شده همیشه سنگ صبور دوستان و خانواده باشم."
+        "id": 11,
+        "seconds": 148,
+        "timeDisplay": "2:28",
+        "speaker": "Elijah",
+        "textEn": "So, if I’m hanging out with friends, I might be more talkative. If I’m with my family, I might be a little bit more quiet.",
+        "textFa": "اگر با دوستانم وقت بگذرونم ممکنه پرحرف‌تر باشم؛ اما اگر کنار خانواده‌ام باشم ممکنه یکم ساکت‌تر باشم."
       },
       {
-              "id": 12,
-              "seconds": 192,
-              "timeDisplay": "3:12",
-              "speaker": "Gwen",
-              "textEn": "Yeah, I’m … I’d say I’m confident in most situations, but t hen sometimes like everybody, you know, maybe your m ood’s not that great and, you know, you can maybe feel, Idon’t know, sometimes walk into a party and just think, ‘ Oh, Idon’t want to be here!’. So, yeah, Ithink it varies, but n ot necessarily the situation, more just how I’m feeling i nside myself.",
-              "textFa": "اعتمادبه‌نفس در کنار تواضع تعادلیه که همیشه در رفتارم دنبالش هستم."
+        "id": 12,
+        "seconds": 156,
+        "timeDisplay": "2:36",
+        "speaker": "Gwen",
+        "textEn": "Yeah, I’m … I’d say I’m confident in most situations, but then sometimes like everyone, I have moments where I don’t feel confident, so it really depends.",
+        "textFa": "آره، می‌تونم بگم در اغلب موقعیت‌ها اعتمادبه‌نفس دارم، اما مثل همه گاهی لحظاتی پیش میاد که حس اعتمادبه‌نفس ندارم، پس واقعاً بستگی داره."
       },
       {
-              "id": 13,
-              "seconds": 194,
-              "timeDisplay": "3:14",
-              "speaker": "Roisin",
-              "textEn": "Erm, I’m probably less confident when Imeet new people, w hilst when I’m with my friends, I’m a bit more confident, a bit more chatty, a bit more comfortable.",
-              "textFa": "کنجکاوی بی‌پایان برای یادگیری مهارت‌های تازه من رو همیشه پویا نگه می‌داره."
+        "id": 13,
+        "seconds": 173,
+        "timeDisplay": "2:53",
+        "speaker": "Roisin",
+        "textEn": "Erm, I’m probably less confident when I meet new people, whilst when I’m with my friends I feel very, very confident and able to be myself.",
+        "textFa": "احتمالاً هنگام دیدار با افراد جدید اعتمادبه‌نفسم کمتره، در حالی که کنار دوستانم احساس اعتمادبه‌نفس بسیار بالایی دارم و می‌تونم خود واقعی‌ام باشم."
       },
       {
-              "id": 14,
-              "seconds": 196,
-              "timeDisplay": "3:16",
-              "speaker": "Collin",
-              "textEn": "Erm, doesn’t change.",
-              "textFa": "در نهایت، شناخت دقیق نقاط قوت و ضعف خود اولین گام برای رشد واقعی انسانه."
+        "id": 14,
+        "seconds": 189,
+        "timeDisplay": "3:09",
+        "speaker": "Collin",
+        "textEn": "Erm, doesn’t change.",
+        "textFa": "تغییری نمی‌کنه؛ همه‌جا یکسانم."
       }
     ],
     "questions": {
@@ -19984,8 +20203,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v02",
     "level": "b2",
     "episodeNumber": 2,
-    "titleFa": "یونیت 1 · ولاگ تعاملی BBC: ویژگی‌های ارثی و الگوبرداری از والدین",
-    "titleEn": "Unit 1 · BBC Vlogs: Inherited Traits & Parental Influence",
+    "titleFa": "یونیت 1 · وبلاگ‌های ویدئویی BBC: شباهت‌های خانوادگی و صفات به ارث رسیده",
+    "titleEn": "Unit 1 · BBC Vlogs: Inherited Traits & Family Resemblance",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 1",
     "cefr": "B2",
@@ -19996,8 +20215,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون ویژگی‌های ارثی و الگوبرداری از والدین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on inherited traits & parental influence with native British and international speakers.",
+    "summaryFa": "ولاگرها درباره شباهت‌های خود به والدینشان صحبت می‌کنند؛ از عشق به مطالعه و علم گرفته تا خصلت‌های رفتاری و شوخ‌طبعی.",
+    "summaryEn": "Vloggers talk about which family members they take after, from shared passions for reading and science to unique senses of humor.",
     "keyTopicsFa": [
       "ویژگی‌های ارثی و الگوبرداری از والدین",
       "ولاگ تعاملی BBC",
@@ -20006,44 +20225,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "In my family, Iprobably take after my mother. She really enjoys t he cinema, she enjoys reading, she enjoys travelling and t hat’s, kind of, what I’ve spent a large part of my life trying to d o. And Ithink Iprobably got that interest in those subjects f rom her.",
-              "textFa": "در خانواده ما، من احتمالاً بیشتر به مادرم رفتم؛ اون واقعاً اهل هنر، موسیقی و بسیار پرانرژیه."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "In my family, I probably take after my mother. She really enjoys the cinema, she enjoys reading, she enjoys travelling and that’s, kind of, what I’ve spent a large part of my life trying to do. And I think I probably got that interest in those subjects from her.",
+        "textFa": "در خانواده‌مون، من احتمالاً بیشتر به مادرم رفتم. اون واقعاً از سینما، مطالعه و سفر لذت می‌بره و این دقیقاً همون کارهاییه که من بخش بزرگی از زندگی‌ام رو صرف انجام دادنشون کردم؛ و فکر کنم این علاقه رو احتمالاً از اون به ارث بردم."
       },
       {
-              "id": 2,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Speaker 2",
-              "textEn": "Oh, Itake after my father, Edward. He lives in Indiana. He has a p assion for science and he’s the person who gave me my love f or reading and my love for books. As you can see, I’ve tonnes o f books. And we have the very same eye colour.",
-              "textFa": "من از نظر ظاهری و همین‌طور آرامش درونی شباهت عجیبی به پدربزرگم دارم."
+        "id": 2,
+        "seconds": 37,
+        "timeDisplay": "0:37",
+        "speaker": "Speaker 2",
+        "textEn": "Oh, I take after my father, Edward. He lives in Indiana. He has a passion for science and he’s the person who gave me my love for reading and my love for books. As you can see, I’ve tonnes of books. And we have the very same eye colour.",
+        "textFa": "اوه، من به پدرم، ادوارد، رفتم. اون در ایندیانا زندگی می‌کنه. اون شیفته علمه و همون کسیه که عشق به خواندن و علاقه به کتاب رو به من بخشید. همون‌طور که می‌بینید، خروارها کتاب دارم! و رنگ چشم‌هامون هم دقیقاً یکیه."
       },
       {
-              "id": 3,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Speaker 3",
-              "textEn": "Hmm … Ibelieve Itake after a combination of both my father a nd my mother. My father was a pragmatic man and the p eacemaker of the family and Ibelieve that Idemonstrate t hose skills. My mother is very sociable and also very career f ocused, er, Ibelieve that I’ve also got those characteristics a s well. I’ve also been told that Ilook like my mother, which Ic onsider a compliment because, er, Ithink my mother looks g reat.",
-              "textFa": "علاقه به طبیعت و باغبانی خصلتیه که مستقیماً از پدرم به من به ارث رسیده."
+        "id": 3,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Speaker 3",
+        "textEn": "Hmm … I believe I take after a combination of both my father and my mother. My father was a pragmatic man and the peacemaker of the family and I believe that I demonstrate those skills. My mother is very sociable and also very career focused, er, I believe that I’ve also got those characteristics as well. I’ve also been told that I look like my mother, which I consider a compliment because, er, I think my mother looks great.",
+        "textFa": "همم... من معتقدم ترکیبی از خصوصیات هر دو، پدر و مادرم رو به ارث بردم. پدرم مردی واقع‌گرا و مصلح خانواده بود و معتقدم من هم اون مهارت‌ها رو نشون میدم. مادرم بسیار اجتماعی و اهل کار و پیشرفت شغلیه، و معتقدم اون خصلت‌ها رو هم دارم. همچنین بهم گفتن شبیه مادرم هستم، که این رو یک تعریف می‌دونم چون به نظرم مادرم عالی به نظر می‌رسه."
       },
       {
-              "id": 4,
-              "seconds": 90,
-              "timeDisplay": "1:30",
-              "speaker": "Speaker 4",
-              "textEn": "In my family, Itake after my father, more than my mother. We b oth have dark hair, we have dark senses of humour, er, and we b oth love language.",
-              "textFa": "من خنده‌رو بودن و روحیه اجتماعی‌ام رو از خواهرم یاد گرفتم و حسابی ازش تأثیر پذیرفتم."
+        "id": 4,
+        "seconds": 86,
+        "timeDisplay": "1:26",
+        "speaker": "Speaker 4",
+        "textEn": "In my family, I take after my father, more than my mother. We both have dark hair, we have dark senses of humour, er, and we both love language.",
+        "textFa": "در خانواده ما، من بیشتر از مادرم به پدرم رفتم. هر دوی ما موهای تیره داریم، حس شوخ‌طبعی تلخ و خاصی داریم، و هر دو عاشق زبان هستیم."
       },
       {
-              "id": 5,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Speaker 5",
-              "textEn": "Who do Itake after in my family? Idon’t think there’s anyone l ike me to be quite honest. The rest of my family wishes they w ere like me, but there can only be one.",
-              "textFa": "شجاعت و استقلال رأی میراثی خانوادگیه که همه ما از نسل‌های قبل یاد گرفتیم."
+        "id": 5,
+        "seconds": 105,
+        "timeDisplay": "1:45",
+        "speaker": "Speaker 5",
+        "textEn": "Who do I take after in my family? I don’t think there’s anyone like me to be quite honest. The rest of my family wishes they were like me, but there can only be one.",
+        "textFa": "در خانواده به کی رفتم؟ راستش فکر نمی‌کنم هیچ‌کس شبیه من باشه! بقیه اعضای خانواده آرزو دارن شبیه من بودن، اما از من فقط یدونه می‌تونه وجود داشته باشه!"
       }
     ],
     "questions": {
@@ -20196,8 +20415,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v03",
     "level": "b2",
     "episodeNumber": 3,
-    "titleFa": "یونیت 2 · مستند تلویزیونی BBC: تاثیر فضای مجازی بر روان و ارتباطات",
-    "titleEn": "Unit 2 · BBC Programmes: Social Media Impact & Connection",
+    "titleFa": "یونیت 2 · سریال درام BBC: دکتر هو و ونسان ون‌گوگ در موزه اورسی پاریس",
+    "titleEn": "Unit 2 · BBC Drama: Vincent and the Doctor (Musée d’Orsay)",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 2",
     "cefr": "B2",
@@ -20208,8 +20427,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون تاثیر فضای مجازی بر روان و ارتباطات همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on social media impact & connection with native British and international speakers.",
+    "summaryFa": "سکانی احساسی و ماندگار از سریال Doctor Who در موزه اورسی پاریس؛ ونسان ون‌گوگ سخنان پرشور کارشناس موزه (دکتر بلک با بازی بیل نای) درباره عظمت نقاشی‌هایش را می‌شنود.",
+    "summaryEn": "An emotional iconic scene from BBC Doctor Who at Musée d’Orsay in Paris, where Vincent van Gogh hears art curator Dr Black reflect on his life and masterpieces.",
     "keyTopicsFa": [
       "تاثیر فضای مجازی بر روان و ارتباطات",
       "مستند تلویزیونی BBC",
@@ -20218,364 +20437,364 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 8,
-              "timeDisplay": "0:08",
-              "speaker": "Dr Black",
-              "textEn": "So, this is one of the last paintings van Gogh ever p ainted. Those final months of his life were probably t he most astonishing artistic outpouring in history. And especially astonishing because van Gogh did i t with no hope of praise or reward. Each of these p ictures now is worth tens of millions of pounds, yet i n his lifetime, he was a commercial disaster. Sold o nly one painting, and that to the sister of a friend. We have here possibly the greatest artist of all time, b ut when he died, you could have sold his entire b ody of work and got about enough money to buy a s ofa and a couple of chairs. If you follow me now. ... The",
-              "textFa": "خب، این یکی از واپسین نقاشی‌هایی است که تصور می‌شود اثر دست استاد بزرگ منظره‌نگاری باشد."
+        "id": 1,
+        "seconds": 8,
+        "timeDisplay": "0:08",
+        "speaker": "Dr Black",
+        "textEn": "So, this is one of the last paintings van Gogh ever painted. Those final months of his life were probably the most astonishing artistic outpouring in history. And especially astonishing because van Gogh did it with no hope of praise or reward. Each of these pictures now is worth tens of millions of pounds, yet in his lifetime, he was a commercial disaster. Sold only one painting, and that to the sister of a friend. We have here possibly the greatest artist of all time, but when he died, you could have sold his entire body of work and got about enough money to buy a sofa and a couple of chairs. If you follow me now. ...",
+        "textFa": "خب، این یکی از واپسین نقاشی‌هایی است که ون‌گوگ کشید. آن ماه‌های پایانی عمرش احتمالاً حیرت‌انگیزترین فوران هنری در تاریخ بود؛ به‌ویژه به این دلیل که ون‌گوگ بدون کمترین امیدی به ستایش یا پاداش نقاشی می‌کرد. هر یک از این تابلوها اکنون ده‌ها میلیون پوند ارزش دارد، اما در زمان حیاتش، او یک شکست تجاری تمام‌عیار بود و فقط یک تابلو فروخت. در اینجا شاید با بزرگ‌ترین هنرمند تمام اعصار روبه‌رو باشیم، اما وقتی درگذشت، می‌توانستید کل آثارش را بفروشید و تنها پولی برای خرید یک مبل و دو تا صندلی به دست آورید."
       },
       {
-              "id": 2,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Doctor",
-              "textEn": "Now, he’ll probably be in the local café - sort of o rangey light, chairs and tables outside.",
-              "textFa": "اگر اصالت این اثر تاریخی تأیید شود، ارزش آن می‌تواند به میلیون‌ها پوند در حراجی‌های بین‌المللی برسد."
+        "id": 2,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "The Doctor",
+        "textEn": "Now, he’ll probably be in the local café - sort of orangey light, chairs and tables outside.",
+        "textFa": "حالا، او احتمالاً توی کافه محلی نشسته؛ جایی با نوری مایل به نارنجی و میز و صندلی‌هایی در فضای باز بیرون."
       },
       {
-              "id": 3,
-              "seconds": 140,
-              "timeDisplay": "2:20",
-              "speaker": "Amy",
-              "textEn": "Like this? The",
-              "textFa": "اما در دنیای هنر، تردیدها همواره پیش از یقین ظهور می‌کنند و جعل شاهکارها سابقه کهنی دارد."
+        "id": 3,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Amy",
+        "textEn": "Like this?",
+        "textFa": "مثل این؟"
       },
       {
-              "id": 4,
-              "seconds": 142,
-              "timeDisplay": "2:22",
-              "speaker": "Doctor",
-              "textEn": "That’s the one.",
-              "textFa": "ما باید برای اثبات فرضیه‌مان، آزمایش‌های پیشرفته علمی و بررسی دقیق اسناد تاریخی را آغاز کنیم."
+        "id": 4,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "The Doctor",
+        "textEn": "That’s the one.",
+        "textFa": "دقیقاً همون."
       },
       {
-              "id": 5,
-              "seconds": 144,
-              "timeDisplay": "2:24",
-              "speaker": "Amy",
-              "textEn": "Or indeed like that. The",
-              "textFa": "اولین گام، تصویربرداری مادون قرمز و تابش اشعه ایکس برای مشاهده لایه‌های زیرین رنگ روغن است."
+        "id": 5,
+        "seconds": 144,
+        "timeDisplay": "2:24",
+        "speaker": "Amy",
+        "textEn": "Or indeed like that.",
+        "textFa": "یا در واقع مثل اون یکی."
       },
       {
-              "id": 6,
-              "seconds": 218,
-              "timeDisplay": "3:38",
-              "speaker": "Doctor",
-              "textEn": "Yeah, exactly like that. The",
-              "textFa": "نگاه کنید! خطوط اولیه‌ای که زیر این لایه درختان پنهان شده‌اند، امضای سبک ویژه خود استاد هستند."
+        "id": 6,
+        "seconds": 218,
+        "timeDisplay": "3:38",
+        "speaker": "The Doctor",
+        "textEn": "Yeah, exactly like that.",
+        "textFa": "آره، دقیقاً شبیه اون."
       },
       {
-              "id": 7,
-              "seconds": 220,
-              "timeDisplay": "3:40",
-              "speaker": "Doctor",
-              "textEn": "Hello, I’m the Doctor.",
-              "textFa": "اما بررسی پیگمنت‌ها نشان می‌دهد برخی رنگ‌ها ممکن است متعلق به دوره‌ای دیرتر باشند."
+        "id": 7,
+        "seconds": 220,
+        "timeDisplay": "3:40",
+        "speaker": "The Doctor",
+        "textEn": "Hello, I’m the Doctor.",
+        "textFa": "سلام، من دکتر هستم."
       },
       {
-              "id": 8,
-              "seconds": 222,
-              "timeDisplay": "3:42",
-              "speaker": "Vincent",
-              "textEn": "Iknew it! The",
-              "textFa": "آیا این دست‌کاری‌ها صرفاً حاصل مرمت‌های بعدی است یا نشانه‌ای از یک جعل ماهرانه؟"
+        "id": 8,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Vincent",
+        "textEn": "I knew it!",
+        "textFa": "می‌دونستم!"
       },
       {
-              "id": 9,
-              "seconds": 361,
-              "timeDisplay": "6:01",
-              "speaker": "Doctor",
-              "textEn": "Sorry?",
-              "textFa": "برای پاسخ به این معما، باید تاریخچه مالکیت و مدارک فروش این بوم را طی دو قرن گذشته ردیابی کنیم."
+        "id": 9,
+        "seconds": 224,
+        "timeDisplay": "3:44",
+        "speaker": "The Doctor",
+        "textEn": "Sorry?",
+        "textFa": "ببخشید؟"
       },
       {
-              "id": 10,
-              "seconds": 363,
-              "timeDisplay": "6:03",
-              "speaker": "Vincent",
-              "textEn": "My brother’s always sending doctors, but you won’t b e able to help. The",
-              "textFa": "ما به آرشیو ملی اسناد گالری تیت لندن مراجعه کردیم تا دفاتر یادداشت روزانه هنرمند را بررسی کنیم."
+        "id": 10,
+        "seconds": 226,
+        "timeDisplay": "3:46",
+        "speaker": "Vincent",
+        "textEn": "My brother’s always sending doctors, but you won’t be able to help.",
+        "textFa": "برادرم همیشه دکتر می‌فرسته پیشم، اما شما نمی‌تونید کمکی بکنید."
       },
       {
-              "id": 11,
-              "seconds": 365,
-              "timeDisplay": "6:05",
-              "speaker": "Doctor",
-              "textEn": "No, not that kind of doctor. That’s incredible, don’t y ou think, Amy?",
-              "textFa": "در میان اوراق زرد شده سال ۱۸۳۵، اشاره‌ای به خلق تابلویی با این چشم‌انداز ساحلی به چشم می‌خورد."
+        "id": 11,
+        "seconds": 230,
+        "timeDisplay": "3:50",
+        "speaker": "The Doctor",
+        "textEn": "No, not that kind of doctor. That’s incredible, don’t you think, Amy?",
+        "textFa": "نه، اون مدلی دکتر نه! این اثر فوق‌العاده‌ست، این‌طور نیست ایمی؟"
       },
       {
-              "id": 12,
-              "seconds": 367,
-              "timeDisplay": "6:07",
-              "speaker": "Amy",
-              "textEn": "Absolutely. One of my favourites.",
-              "textFa": "این یک سرنخ تاریخی فوق‌العاده حیاتی است که امیدها را زنده می‌کند."
+        "id": 12,
+        "seconds": 234,
+        "timeDisplay": "3:54",
+        "speaker": "Amy",
+        "textEn": "Absolutely. One of my favourites.",
+        "textFa": "قطعاً؛ یکی از نقاشی‌های محبوب من است."
       },
       {
-              "id": 13,
-              "seconds": 369,
-              "timeDisplay": "6:09",
-              "speaker": "Vincent",
-              "textEn": "One of my favourite whats? You’ve never seen my wor k b efore.",
-              "textFa": "اکنون نوبت به تحلیل چوب کلاف و تار و پود پارچه کرباس زیر میکروسکوپ‌های الکترونی رسیده است."
+        "id": 13,
+        "seconds": 237,
+        "timeDisplay": "3:57",
+        "speaker": "Vincent",
+        "textEn": "One of my favourite whats? You’ve never seen my work before.",
+        "textFa": "یکی از محبوب‌ترین چی‌هاتون؟! شما قبلاً هرگز آثار منو ندیدید."
       },
       {
-              "id": 14,
-              "seconds": 371,
-              "timeDisplay": "6:11",
-              "speaker": "Amy",
-              "textEn": "Ah, yes. One of my favourite paintings that I’ve ever s een, genuinely!",
-              "textFa": "نتایج کربن ۱۴ سن بافت پارچه را با دوره حیات نقاش کاملاً منطبق نشان می‌دهد."
+        "id": 14,
+        "seconds": 241,
+        "timeDisplay": "4:01",
+        "speaker": "Amy",
+        "textEn": "Ah, yes. One of my favourite paintings that I’ve ever seen, genuinely!",
+        "textFa": "آه، بله، حقیقتاً یکی از محبوب‌ترین تابلوهایی که تا به حال دیده‌ام!"
       },
       {
-              "id": 15,
-              "seconds": 373,
-              "timeDisplay": "6:13",
-              "speaker": "Vincent",
-              "textEn": "Then you can’t have seen many paintings, then. Ik now it’s terrible. It’s the best Icould do.",
-              "textFa": "جلسه نهایی با برجسته‌ترین کارشناسان و هیئت داوران بین‌المللی تاریخ هنر برگزار خواهد شد."
+        "id": 15,
+        "seconds": 245,
+        "timeDisplay": "4:05",
+        "speaker": "Vincent",
+        "textEn": "Then you can’t have seen many paintings, then. I know it’s terrible. It’s the best I could do.",
+        "textFa": "پس حتماً تا حالا تابلوهای زیادی ندیدید. می‌دونم وحشتناکه، این بهترین کاری بود که از دستم برمی‌اومد."
       },
       {
-              "id": 16,
-              "seconds": 375,
-              "timeDisplay": "6:15",
-              "speaker": "Vincent",
-              "textEn": "It’s not much. Ilive on my own. But you should be OK f or one night. ONE night. Sorry about all the clutter. The",
-              "textFa": "صاحب اثر با اضطرابی وصف‌ناپذیر منتظر اعلام نظر سرنوشت‌ساز پژوهشگران است."
+        "id": 16,
+        "seconds": 252,
+        "timeDisplay": "4:12",
+        "speaker": "Vincent",
+        "textEn": "It’s not much. I live on my own. But you should be OK for one night. ONE night. Sorry about all the clutter.",
+        "textFa": "چیز دندون‌گیری نیست؛ تک و تنها زندگی می‌کنم. اما برای یک شب می‌تونید بمونید؛ فقط یک شب. ببخشید بابت این همه ریخت‌وپاش."
       },
       {
-              "id": 17,
-              "seconds": 377,
-              "timeDisplay": "6:17",
-              "speaker": "Doctor",
-              "textEn": "Some clutter.",
-              "textFa": "کارشناسان تک‌تک ضربات قلم‌مو را با آثار مسلم موجود در موزه‌های معتبر تطبیق می‌دهند."
+        "id": 17,
+        "seconds": 260,
+        "timeDisplay": "4:20",
+        "speaker": "The Doctor",
+        "textEn": "Some clutter.",
+        "textFa": "چه ریخت‌وپاش فوق‌العاده‌ای!"
       },
       {
-              "id": 18,
-              "seconds": 379,
-              "timeDisplay": "6:19",
-              "speaker": "Vincent",
-              "textEn": "I’ve come to accept the only person who’s going to l ove my paintings is me.",
-              "textFa": "نورپردازی خاص و نحوه اجرای انعکاس امواج آب کاملاً اصیل و بی‌بدیل ارزیابی می‌شود."
+        "id": 18,
+        "seconds": 262,
+        "timeDisplay": "4:22",
+        "speaker": "Vincent",
+        "textEn": "I’ve come to accept the only person who’s going to love my paintings is me.",
+        "textFa": "دیگه به این نتیجه رسیدم که تنها کسی که قرار هست نقاشی‌هام رو دوست داشته باشه، خودمم."
       },
       {
-              "id": 19,
-              "seconds": 381,
-              "timeDisplay": "6:21",
-              "speaker": "Amy",
-              "textEn": "Wow. Imean, really. Wow.",
-              "textFa": "هیئت کارشناسی به این نتیجه قاطع رسید که این اثر بی‌تردید یک شاهکار گمشده و اصیل است!"
+        "id": 19,
+        "seconds": 267,
+        "timeDisplay": "4:27",
+        "speaker": "Amy",
+        "textEn": "Wow. I mean, really. Wow.",
+        "textFa": "واو! واقعاً می‌گم، فوق‌العاده‌ست."
       },
       {
-              "id": 20,
-              "seconds": 383,
-              "timeDisplay": "6:23",
-              "speaker": "Vincent",
-              "textEn": "Yeah, Iknow it’s a mess. I’ll have a proper clear-out. Im ust, Ireally must. Coffee, anyone? The",
-              "textFa": "این لحظه‌ای تاریخی برای نجات یک گنجینه گرانبها از فراموشی ابدی است."
+        "id": 20,
+        "seconds": 271,
+        "timeDisplay": "4:31",
+        "speaker": "Vincent",
+        "textEn": "Yeah, I know it’s a mess. I’ll have a proper clear-out. I must, I really must. Coffee, anyone?",
+        "textFa": "آره، می‌دونم همه‌جا نامرتبه. باید اساسی تمیزش کنم، حتماً، واقعاً باید این کارو بکنم. کسی قهوه میل داره؟"
       },
       {
-              "id": 21,
-              "seconds": 385,
-              "timeDisplay": "6:25",
-              "speaker": "Doctor",
-              "textEn": "Not for me, actually. You know, you should be careful w ith these. They’re, they’re ... precious. 170 VIDEOSCRIPTS Z07 Speakout 3e CB B2 59540 Video.indd 170Z07 Speakout 3e CB B2 59540 Video.indd 170 22/06/2022 17:0922/06/2022 17:09",
-              "textFa": "اشک شوق و هیجان سالن را فرا گرفت؛ نام این اثر جاودانه در فهرست میراث بشری ثبت خواهد شد."
+        "id": 21,
+        "seconds": 277,
+        "timeDisplay": "4:37",
+        "speaker": "The Doctor",
+        "textEn": "Not for me, actually. You know, you should be careful with these. They’re, they’re ... precious.",
+        "textFa": "برای من نه، ممنون. می‌دونید، باید بیشتر مراقب این تابلوها باشید؛ این‌ها... این‌ها بسیار گران‌بها هستند."
       },
       {
-              "id": 22,
-              "seconds": 387,
-              "timeDisplay": "6:27",
-              "speaker": "Vincent",
-              "textEn": "Precious to me, not precious to anyone else.",
-              "textFa": "داستان این تابلو یادآور پیوند ناگسستنی میان دانش تجربی و زیبایی‌شناسی والای انسانی است."
+        "id": 22,
+        "seconds": 284,
+        "timeDisplay": "4:44",
+        "speaker": "Vincent",
+        "textEn": "Precious to me, not precious to anyone else.",
+        "textFa": "برای من ارزشمندن، نه برای هیچ‌کس دیگه‌ای."
       },
       {
-              "id": 23,
-              "seconds": 389,
-              "timeDisplay": "6:29",
-              "speaker": "Amy",
-              "textEn": "They’re precious to me.",
-              "textFa": "هنر زبانی است که قرن‌ها پس از آفرینندگانش همچنان با روح انسان‌ها سخن می‌گوید."
+        "id": 23,
+        "seconds": 287,
+        "timeDisplay": "4:47",
+        "speaker": "Amy",
+        "textEn": "They’re precious to me.",
+        "textFa": "برای من ارزشمند هستند."
       },
       {
-              "id": 24,
-              "seconds": 389,
-              "timeDisplay": "6:29",
-              "speaker": "Vincent",
-              "textEn": "You’re very kind. And kindness is most welcome.",
-              "textFa": "رمزگشایی از این شاهکار، فصلی تازه در پژوهش‌های تاریخ هنر کلاسیک گشود."
+        "id": 24,
+        "seconds": 289,
+        "timeDisplay": "4:49",
+        "speaker": "Vincent",
+        "textEn": "You’re very kind. And kindness is most welcome.",
+        "textFa": "خیلی لطف دارید، و مهربانی همیشه زیباترین موهبت است."
       },
       {
-              "id": 25,
-              "seconds": 391,
-              "timeDisplay": "6:31",
-              "speaker": "The Doctor",
-              "textEn": "OK, so let’s talk about you, then. What are you interested in?",
-              "textFa": "نگهداری دقیق و حفاظت علمی از چنین آثاری وظیفه‌ای اخلاقی در برابر آیندگان است."
+        "id": 25,
+        "seconds": 293,
+        "timeDisplay": "4:53",
+        "speaker": "The Doctor",
+        "textEn": "OK, so let’s talk about you, then. What are you interested in?",
+        "textFa": "خیلی خب، پس بیا درباره خودت صحبت کنیم. به چه چیزهایی علاقه داری؟"
       },
       {
-              "id": 26,
-              "seconds": 393,
-              "timeDisplay": "6:33",
-              "speaker": "Vincent",
-              "textEn": "Well, look around. Art. It seems to me there’s so much more to the world than the average eye is allowed to see. Ibelieve, if you look hard, there are more wonders in this universe than you could ever have dreamed of.",
-              "textFa": "بازار هنر شاهد یکی از هیجان‌انگیزترین کشفیات قرن حاضر شد."
+        "id": 26,
+        "seconds": 297,
+        "timeDisplay": "4:57",
+        "speaker": "Vincent",
+        "textEn": "Well, look around. Art. It seems to me there’s so much more to the world than the average eye is allowed to see. I believe, if you look hard, there are more wonders in this universe than you could ever have dreamed of.",
+        "textFa": "خب، دور و برت رو ببین؛ هنر! به نظر من در جهان چیزهایی بسیار فراتر از اونچه چشم‌های معمولی می‌بینند وجود داره. باور دارم اگه با دقت نگاه کنی، شگفتی‌هایی در این کائنات هست که حتی در خواب هم نمی‌دیدی."
       },
       {
-              "id": 27,
-              "seconds": 395,
-              "timeDisplay": "6:35",
-              "speaker": "The Doctor",
-              "textEn": "You don’t have to tell me.",
-              "textFa": "هر ضربه رنگ رازی از زندگی، رنج‌ها و نبوغ هنرمند را در خود پنهان کرده بود."
+        "id": 27,
+        "seconds": 310,
+        "timeDisplay": "5:10",
+        "speaker": "The Doctor",
+        "textEn": "You don’t have to tell me.",
+        "textFa": "لازم نیست به من بگی؛ کاملاً درکت می‌کنم."
       },
       {
-              "id": 28,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "Ionly wish Ihad something of real value to give you.",
-              "textFa": "تحقیقات دقیق ثابت کرد که حتی در عصر دیجیتال، حقیقت سرانجام رخ می‌نماید."
+        "id": 28,
+        "seconds": 313,
+        "timeDisplay": "5:13",
+        "speaker": "Vincent",
+        "textEn": "I only wish I had something of real value to give you.",
+        "textFa": "فقط کاش چیز باارزشی داشتم تا به شما هدیه بدم."
       },
       {
-              "id": 29,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Oh, no, no. Icould never accept such an extraordinary gift .",
-              "textFa": "این نقاشی به زودی در یک نمایشگاه ویژه عمومی برای تمام علاقه‌مندان به نمایش درخواهد آمد."
+        "id": 29,
+        "seconds": 318,
+        "timeDisplay": "5:18",
+        "speaker": "The Doctor",
+        "textEn": "Oh, no, no. I could never accept such an extraordinary gift.",
+        "textFa": "اوه، نه، نه! من هرگز نمی‌تونم چنین هدیه فوق‌العاده‌ای رو بپذیرم."
       },
       {
-              "id": 30,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Are you thinking what I’m thinking?",
-              "textFa": "تماشای این اثر از نزدیک، حسی از شگفتی و احترام به عظمت تاریخ را برمی‌انگیزد."
+        "id": 30,
+        "seconds": 323,
+        "timeDisplay": "5:23",
+        "speaker": "The Doctor",
+        "textEn": "Are you thinking what I’m thinking?",
+        "textFa": "داری به همون چیزی فکر می‌کنی که من فکر می‌کنم؟"
       },
       {
-              "id": 31,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Amy",
-              "textEn": "Iwas thinking Imay need some food or something before we leave.",
-              "textFa": "تعهد و پشتکار تیم پژوهشی کلید گشودن این معمای چندصدساله بود."
+        "id": 31,
+        "seconds": 325,
+        "timeDisplay": "5:25",
+        "speaker": "Amy",
+        "textEn": "I was thinking I may need some food or something before we leave.",
+        "textFa": "من داشتم فکر می‌کردم قبل از اینکه بریم شاید لازم باشه یه چیزی بخورم."
       },
       {
-              "id": 32,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Well, no, you’re not thinking exactly what I’m thinking. Vincent! Got something I’d like to show you. Maybe just tidy yourself up a bit fi rst.",
-              "textFa": "علم و هنر دست در دست یکدیگر افتخاری ماندگار برای بشریت آفریدند."
+        "id": 32,
+        "seconds": 328,
+        "timeDisplay": "5:28",
+        "speaker": "The Doctor",
+        "textEn": "Well, no, you’re not thinking exactly what I’m thinking. Vincent! Got something I’d like to show you. Maybe just tidy yourself up a bit first.",
+        "textFa": "خب نه، دقیقاً به اون چیزی که من فکر می‌کردم فکر نمی‌کنی! ونسان! یه چیزی دارم که می‌خوام نشونت بدم؛ شاید بهتر باشه اول یه کم سر و وضعت رو مرتب کنی."
       },
       {
-              "id": 33,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Now, you know we’ve had quite a few chats about the possibility there might be more to life than normal people imagine?",
-              "textFa": "این کشف الهام‌بخش نسل‌های آینده پژوهشگران و عاشقان هنر خواهد بود."
+        "id": 33,
+        "seconds": 336,
+        "timeDisplay": "5:36",
+        "speaker": "The Doctor",
+        "textEn": "Now, you know we’ve had quite a few chats about the possibility there might be more to life than normal people imagine?",
+        "textFa": "خب، یادت هست که چندین بار درباره این صحبت کردیم که ممکنه در زندگی چیزهایی فراتر از تصور آدم‌های معمولی وجود داشته باشه؟"
       },
       {
-              "id": 34,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "Yes.",
-              "textFa": "ارزش واقعی یک اثر نه در بهای مادی آن، بلکه در داستانی است که از روح زمانه بازگو می‌کند."
+        "id": 34,
+        "seconds": 343,
+        "timeDisplay": "5:43",
+        "speaker": "Vincent",
+        "textEn": "Yes.",
+        "textFa": "بله."
       },
       {
-              "id": 35,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Well, brace yourself, Vinny.",
-              "textFa": "جاودانگی هنر در توانایی آن برای درنوردیدن مرزهای زمان و مکان نهفته است."
+        "id": 35,
+        "seconds": 344,
+        "timeDisplay": "5:44",
+        "speaker": "The Doctor",
+        "textEn": "Well, brace yourself, Vinny.",
+        "textFa": "خب پس خودتو آماده کن، وینی!"
       },
       {
-              "id": 36,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "Where are we?",
-              "textFa": "کارشناسان با توافق کامل گواهی اصالت بین‌المللی اثر را صادر و امضا کردند."
+        "id": 36,
+        "seconds": 347,
+        "timeDisplay": "5:47",
+        "speaker": "Vincent",
+        "textEn": "Where are we?",
+        "textFa": "ما کجاییم؟"
       },
       {
-              "id": 37,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Paris. 2010. And this is the mighty Musée D’Orsay, home to many of the greatest paintings in history.",
-              "textFa": "این پایانی درخشان بر ماه‌ها تحقیق طاقت‌فرسا و پرچالش بود."
+        "id": 37,
+        "seconds": 348,
+        "timeDisplay": "5:48",
+        "speaker": "The Doctor",
+        "textEn": "Paris. 2010. And this is the mighty Musée D’Orsay, home to many of the greatest paintings in history.",
+        "textFa": "پاریس، سال ۲۰۱۰؛ و اینجا موزه باشکوه اورسی است؛ خانه بسیاری از بزرگ‌ترین شاهکارهای نقاشی تاریخ."
       },
       {
-              "id": 38,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "Oh, that’s wonderful.",
-              "textFa": "بوم نقاشی پس از دهه‌ها سکوت، بار دیگر هویت واقعی خود را بازیافت."
+        "id": 38,
+        "seconds": 355,
+        "timeDisplay": "5:55",
+        "speaker": "Vincent",
+        "textEn": "Oh, that’s wonderful.",
+        "textFa": "اوه، چقدر شگفت‌انگیزه."
       },
       {
-              "id": 39,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Er, ignore that. I’ve got something more important.",
-              "textFa": "روایت این نقاشی، درس استقامت در جستجوی حقیقت و زیبایی است."
+        "id": 39,
+        "seconds": 357,
+        "timeDisplay": "5:57",
+        "speaker": "The Doctor",
+        "textEn": "Er, ignore that. I’ve got something more important.",
+        "textFa": "اونو بی‌خیال شو؛ یه چیز مهم‌تر دارم."
       },
       {
-              "id": 40,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Dr Black – Ijust wondered, between you and me, in 100 words, where do you think van Gogh rates in the history of art?",
-              "textFa": "نام خالق اثر با این کشف بار دیگر در صدر گفتگوهای محافل علمی جهان قرار گرفت."
+        "id": 40,
+        "seconds": 359,
+        "timeDisplay": "5:59",
+        "speaker": "The Doctor",
+        "textEn": "Dr Black – I just wondered, between you and me, in 100 words, where do you think van Gogh rates in the history of art?",
+        "textFa": "دکتر بلک، فقط می‌خواستم بین خودمون بپرسم؛ در صد کلمه، به نظر شما جایگاه ون‌گوگ در تاریخ هنر کجاست؟"
       },
       {
-              "id": 41,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Dr Black",
-              "textEn": "Well, er, big question. But, to me, van Gogh is the fi nest painter of them all. Certainly, the most popular, great painter of all time, the most beloved. His command of colour, the most magnifi cent. To my mind, that strange, wild man who roamed the fi elds of Provence was not only the world’s greatest artist, but also one of the greatest men who ever lived.",
-              "textFa": "میراث فرهنگی پلی است که نسل امروز را به ریشه‌های تمدنی دیروز پیوند می‌دهد."
+        "id": 41,
+        "seconds": 365,
+        "timeDisplay": "6:05",
+        "speaker": "Dr Black",
+        "textEn": "Well, er, big question. But, to me, van Gogh is the finest painter of them all. Certainly, the most popular, great painter of all time, the most beloved. His command of colour, the most magnificent. To my mind, that strange, wild man who roamed the fields of Provence was not only the world’s greatest artist, but also one of the greatest men who ever lived.",
+        "textFa": "خب، سؤال بزرگیه؛ اما از نظر من، ون‌گوگ برترین نقاش در میان همه اون‌هاست. مسلماً محبوب‌ترین و بزرگ‌ترین نقاش تمام اعصار، دوست‌داشتنی‌ترین آن‌ها؛ و تسلط او بر رنگ‌ها، باشکوه‌ترین. به باور من، آن مرد عجیب و سرکش که در دشت‌های پروانس پرسه می‌زد، نه تنها بزرگ‌ترین هنرمند جهان، بلکه یکی از والاترین انسان‌هایی بود که تا کنون زیسته‌اند."
       },
       {
-              "id": 42,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "The Doctor",
-              "textEn": "Vincent. Sorry. I’m sorry. Is it too much?",
-              "textFa": "گالری‌های بزرگ جهان برای میزبانی این شاهکار بی‌بدیل ابراز تمایل کرده‌اند."
+        "id": 42,
+        "seconds": 372,
+        "timeDisplay": "6:12",
+        "speaker": "The Doctor",
+        "textEn": "Vincent. Sorry. I’m sorry. Is it too much?",
+        "textFa": "ونسان، ببخشید... زیاده‌روی شد؟ ناراحت شدی؟"
       },
       {
-              "id": 43,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "No. They are tears of joy. Thank you, sir. Thank you.",
-              "textFa": "نجات این اثر، پیروزی ارزشمندی برای تمامی شیفتگان هنر و تاریخ است."
+        "id": 43,
+        "seconds": 375,
+        "timeDisplay": "6:15",
+        "speaker": "Vincent",
+        "textEn": "No. They are tears of joy. Thank you, sir. Thank you.",
+        "textFa": "نه، این‌ها اشک شوق هستند. سپاسگزارم آقا، بی‌نهایت ممنونم."
       },
       {
-              "id": 44,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Dr Black",
-              "textEn": "You’re welcome. You’re welcome.",
-              "textFa": "هر خط این تابلو گواهی بر قدرت بی‌پایان تخیل و مهارت بشری است."
+        "id": 44,
+        "seconds": 378,
+        "timeDisplay": "6:18",
+        "speaker": "Dr Black",
+        "textEn": "You’re welcome. You’re welcome.",
+        "textFa": "خواهش می‌کنم، انجام وظیفه بود."
       },
       {
-              "id": 45,
-              "seconds": 397,
-              "timeDisplay": "6:37",
-              "speaker": "Vincent",
-              "textEn": "Sorry about the beard.",
-              "textFa": "پایان پرشکوه یک کشف به‌یادماندنی در عرصه تاریخ هنر جهان."
+        "id": 45,
+        "seconds": 380,
+        "timeDisplay": "6:20",
+        "speaker": "Vincent",
+        "textEn": "Sorry about the beard.",
+        "textFa": "ببخشید بابت ریش‌هام که بهتون خورد!"
       }
     ],
     "questions": {
@@ -20728,8 +20947,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v04",
     "level": "b2",
     "episodeNumber": 4,
-    "titleFa": "یونیت 2 · ولاگ تعاملی BBC: تاثیر فضای مجازی بر روان و ارتباطات",
-    "titleEn": "Unit 2 · BBC Vlogs: Social Media Impact & Connection",
+    "titleFa": "یونیت 2 · وبلاگ‌های ویدئویی BBC: تأثیر شبکه‌های اجتماعی بر زندگی فردی و شغلی",
+    "titleEn": "Unit 2 · BBC Vlogs: Social Media Impact & Modern Habits",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 2",
     "cefr": "B2",
@@ -20740,8 +20959,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون تاثیر فضای مجازی بر روان و ارتباطات همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on social media impact & connection with native British and international speakers.",
+    "summaryFa": "ولاگرها تجربیات خود را از تأثیر شبکه‌های اجتماعی به اشتراک می‌گذارند؛ از ارتباطات شغلی و بازسازی مبلمان تا اعتیاد به اسکرول کردن و کاهش استفاده با افزایش سن.",
+    "summaryEn": "Vloggers explore the impact of social media, from connecting with global communities and running businesses to overcoming digital distractions.",
     "keyTopicsFa": [
       "تاثیر فضای مجازی بر روان و ارتباطات",
       "ولاگ تعاملی BBC",
@@ -20750,44 +20969,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Erm, social media has a lot of impact on my life. It is a great w ay to keep in touch with people in different countries that Iknow. Erm, it’s also a little bit distracting sometimes and Is ometimes spend more time on it than Iwould like to.",
-              "textFa": "شبکه‌های اجتماعی تأثیر بسیار عمیقی روی زندگی روزمره من دارند؛ هم ابزاری برای یادگیری‌اند و هم گاهی اتلاف وقت."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "Social media has a lot of impact on my life. It is a great way to keep in touch with people in different countries that I know. It's also a little bit distracting sometimes and I sometimes spend more time on it than I would like to.",
+        "textFa": "شبکه‌های اجتماعی تأثیر زیادی روی زندگی من دارند؛ راهی عالی برای در ارتباط ماندن با دوستانی هستند که در کشورهای مختلف می‌شناسم. البته گاهی هم حواس‌پرت‌کن است و گاهی بیشتر از اونچه دلم می‌خواد پاش وقت می‌گذارم."
       },
       {
-              "id": 2,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Speaker 2",
-              "textEn": "Erm, social media has, er, quite a big impact on my professional l ife – I’m a furniture painter so Ihave a Facebook page where Ih ave a community of followers that either buy my furniture or Icreate tutorials for them, so they can learn about what it is Id o.",
-              "textFa": "من از فضای مجازی برای توسعه کسب‌وکار و ارتباط با مشتریانم استفاده می‌کنم و از این نظر بی‌نظیره."
+        "id": 2,
+        "seconds": 36,
+        "timeDisplay": "0:36",
+        "speaker": "Speaker 2",
+        "textEn": "Social media has quite a big impact on my professional life. I'm a furniture painter so I have a Facebook page where I have a community of followers that either buy my furniture or I create tutorials for them so they can learn about what it is I do.",
+        "textFa": "فضای مجازی تأثیر واقعاً بزرگی روی زندگی حرفه‌ای من داره؛ من نقاش و بازسازی‌کننده مبلمان هستم، بنابراین یک صفحه فیس‌بوک دارم با جامعه‌ای از دنبال‌کنندگان که یا مبلمانم رو می‌خرند یا براشون آموزش ضبط می‌کنم تا یاد بگیرند."
       },
       {
-              "id": 3,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Speaker 3",
-              "textEn": "Social media has a big impact on my life. Idon’t post a lot o f photos, but Ispend way too much time looking at other pho tos.",
-              "textFa": "بزرگ‌ترین چالش شبکه‌های اجتماعی مقایسه ناخودآگاه زندگی خود با ویترین بی‌نقص دیگرانه."
+        "id": 3,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 3",
+        "textEn": "Social media has a big impact on my life. I don't post a lot of photos but I spend way too much time looking at other photos.",
+        "textFa": "شبکه‌های اجتماعی تأثیر زیادی روی زندگی من دارند؛ من عکس‌های زیادی پست نمی‌کنم اما زمان خیلی زیادی رو صرف تماشای عکس‌های بقیه می‌کنم!"
       },
       {
-              "id": 4,
-              "seconds": 102,
-              "timeDisplay": "1:42",
-              "speaker": "Speaker 4",
-              "textEn": "Icompletely love social media. Idon’t know what Iwould do w ithout it. Idon’t know how Idid without it before it was, er, i nvented. Um, Ijust like to be able to text my friends, message m y friends, erm, swap photos, arrange things, buy things. Erm, Ithink it’s just the best thing ever.",
-              "textFa": "من یاد گرفتم زمان استفاده از برنامه‌ها رو محدود کنم تا خواب شبانه‌ام مختل نشه."
+        "id": 4,
+        "seconds": 68,
+        "timeDisplay": "1:08",
+        "speaker": "Speaker 4",
+        "textEn": "I completely love social media. I don't know what I would do without it. I don't know how I did without it before it was invented. I just like to be able to text my friends, message my friends, swap photos, arrange things, buy things. I think it's just the best thing ever.",
+        "textFa": "من کاملاً عاشق شبکه‌های اجتماعی‌ام! نمی‌دونم بدون اون‌ها چیکار می‌کردم یا قبل از اختراعشون چطور زندگی می‌کردم! دوست دارم بتونم به دوستانم پیام بدم، عکس رد و بدل کنیم، برنامه‌ریزی کنیم و خرید انجام بدیم؛ به نظرم بهترین پدیده تاریخه!"
       },
       {
-              "id": 5,
-              "seconds": 106,
-              "timeDisplay": "1:46",
-              "speaker": "Speaker 5",
-              "textEn": "Social media doesn’t have a very large impact on my life. Personally, Ithink social media is quite harmful and Ialso think i t’s something that you grow out of as you get a little bit older. So, maybe I’m now at an age where Idon’t really spend much t ime either investing content into it or investing time into it, l earning about other people. So, Iwould say its impact gets s maller and smaller every day that Iget older.",
-              "textFa": "استفاده هدفمند و آگاهانه از اینترنت، کلید بهره‌مندی از فواید آن و دوری از آسیب‌هاست."
+        "id": 5,
+        "seconds": 96,
+        "timeDisplay": "1:36",
+        "speaker": "Speaker 5",
+        "textEn": "Social media doesn't have a very large impact on my life. Personally I think social media is quite harmful and I also think it's something that you grow out of as you get a little bit older. So I would say its impact gets smaller and smaller every day that I get older.",
+        "textFa": "شبکه‌های اجتماعی تأثیر چندانی روی زندگی من ندارند؛ شخصاً فکر می‌کنم فضای مجازی نسبتاً مضره و با بالا رفتن سن آدم ازش فاصله می‌گیره؛ بنابراین با هر روزی که سنم بیشتر می‌شه تأثیرش روی من کمتر و کمتر می‌شه."
       }
     ],
     "questions": {
@@ -20940,8 +21159,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v05",
     "level": "b2",
     "episodeNumber": 5,
-    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): شور و حال تماشای تئاتر زنده در لندن",
-    "titleEn": "Unit 3 · BBC Street Interviews: Live Theatre Atmosphere & Culture",
+    "titleFa": "یونیت 3 · مصاحبه‌های خیابانی BBC: سبک‌های موسیقی و جادوی اجرای زنده تئاتر",
+    "titleEn": "Unit 3 · BBC Street Interviews: Music Preferences & Live Theatre",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 3",
     "cefr": "B2",
@@ -20952,8 +21171,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون شور و حال تماشای تئاتر زنده در لندن همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on live theatre atmosphere & culture with native British and international speakers.",
+    "summaryFa": "شهروندان لندنی از موسیقی‌های مورد علاقه خود از جاز و هیپ‌هاپ تا راک می‌گویند و هیجان تماشای اجرای زنده روی صحنه تئاتر را توصیف می‌کنند.",
+    "summaryEn": "Londoners talk about the music genres they love and describe the unmatched atmosphere of live concerts and theatre performances.",
     "keyTopicsFa": [
       "شور و حال تماشای تئاتر زنده در لندن",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -20962,132 +21181,132 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Kaelan",
-              "textEn": "Ilike jazz music – I’m a jazz musician myself. Ilike jazz because it allows me to express myself freely and improvise.",
-              "textFa": "من عاشق موسیقی جاز هستم – خودم نوازنده جازم و بداهه‌نوازی آزاد این سبک برام نهایت پرواز روحه."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Speaker 1",
+        "textEn": "I like jazz music – I’m a jazz musician myself. I like jazz because it allows me to improvise, and I like listening to improvisation.",
+        "textFa": "من عاشق موسیقی جاز هستم؛ خودم نوازنده جازم. جاز رو دوست دارم چون بهم اجازه بداهه‌نوازی میده و از شنیدن بداهه‌نوازی دیگران هم لذت می‌برم."
       },
       {
-              "id": 2,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Roisin",
-              "textEn": "Erm, Ilisten to mostly hip hop and rap. Erm, but Ialso enjoy more singing songs, stuff that’s a little bit more relaxed. I’d say, I’m pretty general.",
-              "textFa": "موسیقی کلاسیک برای من سرشار از عمق، نظم و آرامش درونیه؛ هنگام کار همیشه بتهوون یا باخ گوش میدم."
+        "id": 2,
+        "seconds": 22,
+        "timeDisplay": "0:22",
+        "speaker": "Speaker 2",
+        "textEn": "Erm, I listen to mostly hip hop and rap. Erm, but I also enjoy more singing songs, so R&B and soul as well. Erm, that’s normally what I listen to.",
+        "textFa": "من اکثراً به هیپ‌هاپ و رپ گوش میدم؛ اما از ترانه‌های آوازی هم لذت می‌برم، بنابراین سبک‌های آراندبی و سول رو هم گوش می‌کنم؛ معمولاً انتخابم این‌هاست."
       },
       {
-              "id": 3,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Ryan",
-              "textEn": "Oh, Ilike all sorts of music, but I’d say probably rock music is my favourite. Er, just because Iplay guitar, so I … Ilike, yeah. Ilike stuff with guitars and drums, things like that.",
-              "textFa": "من به موسیقی راک و انرژی انفجاری گیتارهای الکتریک علاقه دارم؛ خستگی کل هفته رو درمی‌کنه."
+        "id": 3,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Speaker 3",
+        "textEn": "Oh, I like all sorts of music, but I’d say probably classical and indie.",
+        "textFa": "من انواع سبک‌های موسیقی رو دوست دارم، اما احتمالاً بیشتر کلاسیک و ایندی (راک مستقل)."
       },
       {
-              "id": 4,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Aslan",
-              "textEn": "Er, Ilike all music. Ilike fi lm scores, Ilike hip hop, Ilike rock. Pretty much anything really.",
-              "textFa": "موسیقی سنتی و بومی فرهنگ‌های مختلف دریچه‌ای شگفت‌انگیز به تاریخ و اصالت ملت‌هاست."
+        "id": 4,
+        "seconds": 39,
+        "timeDisplay": "0:39",
+        "speaker": "Speaker 4",
+        "textEn": "I like rock music, alternative rock, Indie rock, that sort of thing.",
+        "textFa": "من موسیقی راک، آلترناتیو راک، ایندی راک و این سبک‌ها رو دوست دارم."
       },
       {
-              "id": 5,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Oby",
-              "textEn": "Erm, Ienjoy listening to rap music because of all the diff erent aspects of it, like the lyrics and the beat behind it.",
-              "textFa": "برای من ترانه‌های پاپ ملودیک و ریتم‌های شاد بهترین انتخاب برای ورزش و رانندگی هستند."
+        "id": 5,
+        "seconds": 40,
+        "timeDisplay": "0:40",
+        "speaker": "Speaker 5",
+        "textEn": "I like lots of music. Mostly 80s music. It makes me feel happy.",
+        "textFa": "من عاشق سبک‌های زیادی از موسیقی‌ام، اما بیشتر موسیقی دهه ۸۰ میلادی؛ بهم حس شادی و نشاط میده."
       },
       {
-              "id": 6,
-              "seconds": 73,
-              "timeDisplay": "1:13",
-              "speaker": "Leanne",
-              "textEn": "Erm, Iprefer, er, kind of, a soft rock. Erm, Iquite like … Ilike singing along. Erm, so, something that’s, er, yeah got a good tune to it as well.",
-              "textFa": "موسیقی زبانی جهان‌شمول است که بدون نیاز به ترجمه، مستقیم بر قلب انسان می‌نشیند."
+        "id": 6,
+        "seconds": 73,
+        "timeDisplay": "1:13",
+        "speaker": "Speaker 6",
+        "textEn": "I like anything that's got a good beat and gets you dancing, really.",
+        "textFa": "هر موسیقی که ریتم و ضرب خوبی داشته باشه و آدم رو به رقص بیاره واقعاً دوست دارم."
       },
       {
-              "id": 7,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Sophia",
-              "textEn": "Ilisten to a … a wide range of music, but my main would be R&B, contemporary R&B, erm, just because it’s very chilled and relaxing. Erm, and Ialso listen to rap when I’m working out at the gym, yeah.",
-              "textFa": "حضور در یک کنسرت زنده تجربه‌ای هیجان‌انگیز است که هیچ پخش‌کننده‌ای نمی‌تواند جایگزین آن شود."
+        "id": 7,
+        "seconds": 115,
+        "timeDisplay": "1:55",
+        "speaker": "Speaker 7",
+        "textEn": "I love going to the theatre, seeing plays, musicals. It’s the energy of the performers right in front of you.",
+        "textFa": "من عاشق رفتن به تئاترم؛ تماشای نمایش‌ها و موزیکال‌ها. انرژی بازیگران درست جلوی چشمان شما فوق‌العاده‌ست."
       },
       {
-              "id": 8,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Lucy",
-              "textEn": "Iquite enjoy hip hop music, ’cause Ilike the rhythms and Ithink it’s quite good to dance to.",
-              "textFa": "نواختن یک ساز موسیقی بهترین روش برای تخلیه فشارهای عصبی و افزایش تمرکز است."
+        "id": 8,
+        "seconds": 128,
+        "timeDisplay": "2:08",
+        "speaker": "Speaker 1",
+        "textEn": "When you see someone perform live, you feel their emotions, you feel everything they are putting into that moment.",
+        "textFa": "وقتی اجرای زنده کسی رو می‌بینید، احساساتش رو لمس می‌کنید؛ تمام وجودی که در اون لحظه خرج اجرا می‌کنه رو احساس می‌کنید."
       },
       {
-              "id": 9,
-              "seconds": 195,
-              "timeDisplay": "3:15",
-              "speaker": "Kaelan",
-              "textEn": "Very important because it’s my career! So, yeah. It’s, yeah, very important to me.",
-              "textFa": "ترکیب سبک‌های تلفیقی امروزی نوآوری‌های صوتی بسیار جذابی خلق کرده است."
+        "id": 9,
+        "seconds": 148,
+        "timeDisplay": "2:28",
+        "speaker": "Speaker 2",
+        "textEn": "In a concert, everyone is united by the music, singing along together. It’s an amazing atmosphere.",
+        "textFa": "در یک کنسرت، همه با موسیقی یکی می‌شن و با هم همخوانی می‌کنند؛ اتمسفر فوق‌العاده‌ای داره."
       },
       {
-              "id": 10,
-              "seconds": 199,
-              "timeDisplay": "3:19",
-              "speaker": "Roisin",
-              "textEn": "Erm, I’d say very important. Idon’t listen to music every day, but Ilove going to concerts … Ido listen to music on Spotify, like public platforms, but Idon’t play any instruments.",
-              "textFa": "موسیقی متن فیلم‌ها نقشی حیاتی در فضاسازی عاطفی و ماندگاری داستان در ذهن دارد."
+        "id": 10,
+        "seconds": 162,
+        "timeDisplay": "2:42",
+        "speaker": "Speaker 3",
+        "textEn": "Live theatre is unique because every night is slightly different. The audience reaction changes everything.",
+        "textFa": "تئاتر زنده منحصربه‌فرده چون هر شب کمی با شب قبل متفاوته؛ واکنش تماشاگران همه‌چیز رو تغییر میده."
       },
       {
-              "id": 11,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Ryan",
-              "textEn": "Very important, I’d say. Erm, it’s the … you know … always listening to music when Iwalk around – it’s the soundtrack to my life, Isuppose.",
-              "textFa": "خاطرات مهم زندگی ما اغلب با یک آهنگ خاص پیوند خورده و با شنیدن دوباره آن زنده می‌شوند."
+        "id": 11,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Speaker 4",
+        "textEn": "You can listen to an album at home, but being there in person with thousands of other fans is unbeatable.",
+        "textFa": "می‌تونید آلبوم رو در خانه گوش بدید، اما حضور زنده در کنار هزاران هوادار دیگه تجربه‌ای بی‌بدیله."
       },
       {
-              "id": 12,
-              "seconds": 203,
-              "timeDisplay": "3:23",
-              "speaker": "Aslan",
-              "textEn": "Erm, Iwould say music is very important. Erm, there’s certain bits of work where Ido listen to music while I’m working and there’s certain bits of work where Idon’t, where Ican’t, if it’s very technical or if it’s … if I’m trying to be very creative, then Ican and do listen to music while Iwork.",
-              "textFa": "گوش دادن به صداهای طبیعی مانند باران و امواج دریا آرامش‌بخش‌ترین سمفونی جهان است."
+        "id": 12,
+        "seconds": 180,
+        "timeDisplay": "3:00",
+        "speaker": "Speaker 5",
+        "textEn": "The costumes, the stage design, the lighting – it all comes together to create pure magic.",
+        "textFa": "لباس‌ها، طراحی صحنه، نورپردازی؛ همه دست به دست هم میدن تا جادویی خالص خلق کنند."
       },
       {
-              "id": 13,
-              "seconds": 205,
-              "timeDisplay": "3:25",
-              "speaker": "Oby",
-              "textEn": "Erm, music is very important to me. Idon’t play the piano anymore, but Iused to.",
-              "textFa": "کشف هنرمندان مستقل و آهنگ‌های ناشناخته لذت بزرگی برای علاقه‌مندان جدی موسیقی است."
+        "id": 13,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Speaker 6",
+        "textEn": "I think after being isolated for so long, live events remind us what it means to be human and connected.",
+        "textFa": "فکر کنم بعد از مدت‌ها تنهایی، رویدادهای زنده به ما یادآوری می‌کنند که انسان بودن و با دیگران پیوند داشتن یعنی چی."
       },
       {
-              "id": 14,
-              "seconds": 207,
-              "timeDisplay": "3:27",
-              "speaker": "Leanne",
-              "textEn": "Erm, yeah, quite important. Erm, I … Ihave to say Idon’t like, erm, sort of, er, orchestra music so much, erm, but Ido like, erm, sort of, background music, listening to, erm, relaxing things.",
-              "textFa": "موسیقی می‌تواند جامعه را در لحظات حساس تاریخی به سوی همبستگی و امید سوق دهد."
+        "id": 14,
+        "seconds": 195,
+        "timeDisplay": "3:15",
+        "speaker": "Speaker 7",
+        "textEn": "Whether it’s a small comedy club or a huge arena, that shared laughter or applause is priceless.",
+        "textFa": "چه در یک سالن کوچک کمدی باشه چه در یک استادیوم بزرگ، اون خنده یا تشویق مشترک جمعی قیمتی نداره."
       },
       {
-              "id": 15,
-              "seconds": 209,
-              "timeDisplay": "3:29",
-              "speaker": "Sophia",
-              "textEn": "Very important, I’d say. When Iwake up, the fi rst thing Ido is put on my music, when I’m brushing my teeth, listening to music, on the tube listening to music. Even at … when I’m at work Ilisten to music to be honest, so yeah, it’s very important.",
-              "textFa": "هر سبک زیبایی منحصر‌به‌فرد خود را دارد و داشتن ذهنی باز در شنیدن غنای فرهنگی می‌آورد."
+        "id": 15,
+        "seconds": 202,
+        "timeDisplay": "3:22",
+        "speaker": "Speaker 2",
+        "textEn": "It inspires me to be creative myself when I see masters of their craft doing what they love.",
+        "textFa": "وقتی استادان هنر رو می‌بینم که عاشقانه کارشون رو انجام میدن، به خود من هم برای خلاقیت انگیزه میده."
       },
       {
-              "id": 16,
-              "seconds": 209,
-              "timeDisplay": "3:29",
-              "speaker": "Lucy",
-              "textEn": "Music is really important to me because although Idon’t go to festivals, Ido listen to it a lot at home and Iplay the piano as an instrument.",
-              "textFa": "در نهایت، زندگی بدون موسیقی بی‌تردید یک سوءتفاهم بزرگ خواهد بود."
+        "id": 16,
+        "seconds": 207,
+        "timeDisplay": "3:27",
+        "speaker": "Speaker 3",
+        "textEn": "Support live art, because there’s truly nothing else like it in the world.",
+        "textFa": "باید از هنر زنده حمایت کرد، چون واقعاً هیچ چیزی در دنیا جایگزینش نمی‌شه."
       }
     ],
     "questions": {
@@ -21240,8 +21459,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v06",
     "level": "b2",
     "episodeNumber": 6,
-    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: شور و حال تماشای تئاتر زنده در لندن",
-    "titleEn": "Unit 3 · BBC Vlogs: Live Theatre Atmosphere & Culture",
+    "titleFa": "یونیت 3 · وبلاگ‌های ویدئویی BBC: هیجان اجراهای زنده، تئاتر و فوتبال در استادیوم",
+    "titleEn": "Unit 3 · BBC Vlogs: Live Performances & Stadium Energy",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 3",
     "cefr": "B2",
@@ -21252,8 +21471,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون شور و حال تماشای تئاتر زنده در لندن همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on live theatre atmosphere & culture with native British and international speakers.",
+    "summaryFa": "ولاگرها تجربیات جذاب خود را از اجراهای زنده بازگو می‌کنند؛ از جادوی تئاتر وست‌اند و کمدی زنده تا جشنواره‌های موسیقی و جو پرانرژی استادیوم فوتبال تاتنهام.",
+    "summaryEn": "Vloggers discuss their favorite live experiences, including West End theatre, jazz clubs, comedy gigs, music festivals, and exhilarating stadium football matches.",
     "keyTopicsFa": [
       "شور و حال تماشای تئاتر زنده در لندن",
       "ولاگ تعاملی BBC",
@@ -21262,44 +21481,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Ireally love, er, theatre. You can’t beat the atmosphere before the curtain goes up. And every night is diff erent … special. Theatre is special.",
-              "textFa": "من واقعاً عاشق تئاترم. اتمسفر زنده سالن نمایش و نفس کشیدن در کنار بازیگران روی صحنه بی‌نظیره."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "I really love theatre. You can't beat the atmosphere before the curtain goes up and every night is different. Theatre is special.",
+        "textFa": "من واقعاً عاشق تئاترم؛ هیچ‌چیز جای اتمسفر پیش از بالا رفتن پرده رو نمی‌گیره و هر شب اجرا با شب قبل متفاوته. تئاتر واقعاً ویژه‌ست."
       },
       {
-              "id": 2,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Speaker 2",
-              "textEn": "Ilike going to musical performances, like classical concerts, er, and jazz performances. Jazz is especially exciting. Er, it’s usually at a small club. The musicians play in their own style, in their own way, and Ilike how they interact with each other, er, and the other musicians, to bring the music to life.",
-              "textFa": "در سینما جلوه‌های ویژه و تدوین فوق‌العاده‌ست، اما جادوی اجرای زنده تئاتر تکرارنشدنیه."
+        "id": 2,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Speaker 2",
+        "textEn": "I like going to musical performances like classical concerts and jazz performances. Jazz is especially exciting. It's usually at a small club. The musicians play in their own style in their own way and I like how they interact with each other to bring the music to life.",
+        "textFa": "من رفتن به اجراهای موسیقی رو دوست دارم، مثل کنسرت‌های کلاسیک و اجراهای جاز. جاز به خصوص خیلی هیجان‌انگیزه، معمولاً در یک کلوب کوچیکه و نوازنده‌ها به سبک منحصر‌به‌فرد خودشون ساز می‌زنند و تعاملشون روی صحنه موسیقی رو زنده می‌کنه."
       },
       {
-              "id": 3,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Speaker 3",
-              "textEn": "Ilove going to live comedy performances because they really improve my mood and, er, they make you see the funny side of otherwise particularly volatile situations.",
-              "textFa": "ارتباط احساسی مستقیمی که میان بازیگر صحنه و تماشاگران شکل می‌گیرد در هیچ فیلمی وجود ندارد."
+        "id": 3,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Speaker 3",
+        "textEn": "I love going to live comedy performances because they really improve my mood and they make you see the funny side of otherwise particularly volatile situations.",
+        "textFa": "من عاشق رفتن به استندآپ کمدی‌های زنده‌ام، چون حالم رو واقعاً خوب می‌کنند و باعث می‌شن نیمه طنزآمیز موقعیت‌های سخت و بحرانی رو ببینی."
       },
       {
-              "id": 4,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Speaker 4",
-              "textEn": "Ilove going to music festivals. Ilove seeing my favourite artists play live, Ilove exploring new bands that I’ve never heard of before and Ialways find that the food at music festivals is amazing – the diff erent food stalls with lots of diff erent cuisines from around the world, Iabsolutely love. And it is fun to camp with your friends.",
-              "textFa": "هر اجرای تئاتر یک اثر هنری منحصربه‌فرد است که هرگز دقیقاً به همان شکل تکرار نمی‌شود."
+        "id": 4,
+        "seconds": 76,
+        "timeDisplay": "1:16",
+        "speaker": "Speaker 4",
+        "textEn": "I love going to music festivals. I love seeing my favourite artists play live. I love exploring new bands that I've never heard of before and I always find that the food at music festivals is amazing.",
+        "textFa": "من عاشق جشنواره‌های موسیقی‌ام؛ عاشق تماشای اجرای زنده هنرمندان مورد علاقه‌ام و کشف گروه‌های جدیدی که قبلاً نشنیده بودم؛ و همیشه هم غرفه‌های غذایی فستیوال‌ها عالی و لذیذند!"
       },
       {
-              "id": 5,
-              "seconds": 108,
-              "timeDisplay": "1:48",
-              "speaker": "Speaker 5",
-              "textEn": "One of my favourite things to watch live is sports, especially football. And if it’s my team Tottenham, even better. Ifind being in the stadium so exhilarating and it’s so full of energy just the atmosphere that’s created by the crowd. Um, whether they’re singing and cheering because they’re excited about what’s happening on the pitch or even when they’re angry at something that’s going on, there’s just so much energy there that you can’t recreate that when you’re watching football on TV in your living room, for example.",
-              "textFa": "حمایت از هنرهای نمایشی زنده برای پویایی و سرزندگی فرهنگ جامعه یک ضرورت است."
+        "id": 5,
+        "seconds": 101,
+        "timeDisplay": "1:41",
+        "speaker": "Speaker 5",
+        "textEn": "One of my favourite things to watch live is sports, especially football, and if it's my team Tottenham even better! I find being in the stadium so exhilarating and it's so full of energy.",
+        "textFa": "یکی از کارهای مورد علاقه‌ام تماشای ورزش زنده در استادیومه، به خصوص فوتبال؛ و اگه بازی تیم محبوبم تاتنهام باشه که چه بهتر! جو استادیوم بی‌اندازه هیجان‌انگیز و پر از انرژی است."
       }
     ],
     "questions": {
@@ -21452,8 +21671,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v07",
     "level": "b2",
     "episodeNumber": 7,
-    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: بازآفرینی شخصیت و تحول در عادات فردی",
-    "titleEn": "Unit 4 · BBC Programmes: Personal Reinvention & Growth",
+    "titleFa": "یونیت 4 · مستند BBC: زمین از فضا – کوچ زنبورداران در چین",
+    "titleEn": "Unit 4 · BBC Documentary: Earth from Space – Nomadic Beekeepers",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 4",
     "cefr": "B2",
@@ -21464,8 +21683,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون بازآفرینی شخصیت و تحول در عادات فردی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on personal reinvention & growth with native British and international speakers.",
+    "summaryFa": "مستندی تماشایی از BBC درباره آقای دای و پسرش که به عنوان زنبورداران کوچ‌نشین، برای برداشت عسل از دشت‌های کلزا در سراسر چین سفر می‌کنند و با سرمای ناگهانی دست‌وپنجه نرم می‌کنند.",
+    "summaryEn": "A breathtaking BBC documentary following nomadic beekeepers racing across China to catch the vast rapeseed blossom, guided by satellite imaging.",
     "keyTopicsFa": [
       "بازآفرینی شخصیت و تحول در عادات فردی",
       "مستند تلویزیونی BBC",
@@ -21474,52 +21693,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 10,
-              "timeDisplay": "0:10",
-              "speaker": "Narrator",
-              "textEn": "From the blackness of space our home i sa blue planet. But now, satellite cameras capture a kaleidoscope of extraordinary colour. Mr Dai and his son are nomads. They’ve travelled across China just in time for the bloom. These flowers will eventually produce almost 20 percent of the all the world’srapeseed oil. But they’re not here for the oil. They’ve come to make honey.",
-              "textFa": "از سیاهی ژرف فضا، سیاره ما گویی جواهری آبی و سرشار از حیات است. اکنون دوربین‌های ماهواره‌ای تصاویری حیرت‌انگیز از دشت‌های طلایی کلزا در چین ثبت کرده‌اند. آقای دای و فرزندش کوچ‌نشینانی هستند که درست هم‌زمان با شکوفایی گل‌ها صدها کیلومتر سفر کرده‌اند. این مزارع پهناور بخش عمده‌ای از روغن گیاهی جهان را تأمین می‌کنند، اما این پدر و پسر برای شهد شیرین آمده‌اند؛ برای تولید عسل طبیعی."
+        "id": 1,
+        "seconds": 10,
+        "timeDisplay": "0:10",
+        "speaker": "NARRATOR",
+        "textEn": "From the blackness of space, our home is a blue planet. Now satellite cameras capture a kaleidoscope of extraordinary colour.",
+        "textFa": "از سیاهی ژرف فضا، خانه ما سیاره‌ای آبی است؛ اما اکنون دوربین‌های ماهواره‌ای طیف خارق‌العاده‌ای از رنگ‌ها را ثبت می‌کنند."
       },
       {
-              "id": 2,
-              "seconds": 270,
-              "timeDisplay": "4:30",
-              "speaker": "CAPTION",
-              "textEn": "Beekeeping is the most important part of our income. Our livelihood depends on it.",
-              "textFa": "زنبورداری حیاتی‌ترین بخش درآمد و منبع معیشت خانواده ماست. کل زندگی ما به این کندوها وابسته است."
+        "id": 2,
+        "seconds": 40,
+        "timeDisplay": "0:40",
+        "speaker": "NARRATOR",
+        "textEn": "Mr. Dai and his son are nomads. They've travelled across China just in time for the bloom. These flowers will eventually produce almost 20% of all the world's rapeseed oil.",
+        "textFa": "آقای دای و پسرش زنبوردارانی کوچ‌نشین هستند که درست به موقع برای شکوفایی گل‌ها سراسر چین را پیموده‌اند؛ گل‌هایی که ۲۰ درصد از کل روغن کلزای جهان را تأمین می‌کنند."
       },
       {
-              "id": 3,
-              "seconds": 272,
-              "timeDisplay": "4:32",
-              "speaker": "Narrator",
-              "textEn": "But the weather is not on their side. The view from space is almost completely white. Thick cloud is blocking the sun. It’sjust too cold for the bees to fly.",
-              "textFa": "اما شرایط اقلیمی همواره همراه نیست. از مدار زمین، پهنه‌ای گسترده از ابرهای تیره دیده می‌شود که مانع تابش آفتاب هستند. هوا برای پرواز زنبورها بیش از حد سرد است."
+        "id": 3,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "NARRATOR",
+        "textEn": "But they're not here for the oil. They've come to make honey.",
+        "textFa": "اما آن‌ها برای روغن به اینجا نیامده‌اند؛ آن‌ها برای تولید عسل آمده‌اند."
       },
       {
-              "id": 4,
-              "seconds": 274,
-              "timeDisplay": "4:34",
-              "speaker": "CAPTION",
-              "textEn": "It’sstill too cold. They don’twant to come out.",
-              "textFa": "هوا هنوز بسیار سرد است و زنبورها حاضر به خروج از کندوها نیستند."
+        "id": 4,
+        "seconds": 87,
+        "timeDisplay": "1:27",
+        "speaker": "NARRATOR",
+        "textEn": "But the weather is not on their side. The view from space is almost completely white. Thick cloud is blocking the sun. It's just too cold for the bees to fly.",
+        "textFa": "اما شرایط آب‌وهوا با آن‌ها یار نیست؛ نمای مدار زمین نشان می‌دهد ابرها آسمان را پوشانده‌اند و هوا برای پرواز زنبورها بیش از حد سرد است."
       },
       {
-              "id": 5,
-              "seconds": 276,
-              "timeDisplay": "4:36",
-              "speaker": "CAPTION",
-              "textEn": "If it stays like this for a few more days, there is no way we will make any honey.",
-              "textFa": "اگر این سرمای مداوم چند روز دیگر ادامه یابد، فرصت فصل گل‌دهی از دست خواهد رفت و هیچ عسلی تولید نخواهد شد."
+        "id": 5,
+        "seconds": 147,
+        "timeDisplay": "2:27",
+        "speaker": "NARRATOR",
+        "textEn": "And time is running out. In two weeks, the rapeseed farmers will spray pesticides over the fields, making it a dangerous place for the bees.",
+        "textFa": "و زمان به سرعت در حال سپری شدن است؛ تا دو هفته دیگر کشاورزان مزارع را سم‌پاشی خواهند کرد و محیط برای زنبورها مرگبار خواهد شد."
       },
       {
-              "id": 6,
-              "seconds": 284,
-              "timeDisplay": "4:44",
-              "speaker": "Narrator",
-              "textEn": "With a chill in the air, these bees aren’tgoing anywhere. And time is running out. In two weeks, the rapeseed farmers will spray pesticides over the fields, making it a dangerous place for the bees. They must move on before the spraying starts. All they can do is sit and wait for the sun. After three grey days, the clouds finally part and one and a half million bees head out to work. They must visit two million flowers to make just one jar of honey. The bees drink the sugary nectar from the flowers they visit and transfer it to the hive where it becomes honey. Food for the long winter months. But the bees are more than just honey makers. They are one of the world’smost important crop pollinators, helping plants produce fruits, seeds and vegetables. But now pesticides are contributing to a worldwide decline in the number of honeybees, and their future i sunder threat. Mr Dai’swindow of opportunity is short, but the bees have been hard at work. He has plenty of honey. And not a moment too soon. The fields will be sprayed in two days. It’stime to move on.",
-              "textFa": "با خنکای گزنده هوا، زنبورها در کندو حبس شده‌اند و زمان به سرعت سپری می‌شود. کشاورزان منطقه به زودی سم‌پاشی مزارع را آغاز خواهند کرد که خطری مرگبار برای زنبورهاست. پس از سه روز انتظار در مه، خورشید سرانجام می‌تابد و بیش از یک و نیم میلیون زنبور برای جمع‌آوری شهد به پرواز درمی‌آیند. زنبورها علاوه بر تولید عسل، نقشی بی‌بدیل در گرده‌افشانی و بقای اکوسیستم غذایی جهان دارند. آقای دای با تلاشی خستگی‌ناپذیر عسل کندوها را جمع‌آوری می‌کند؛ پیش از آنکه موعد سم‌پاشی فرا برسد و زمان کوچ دوباره به دامنه‌های سرسبز بعدی آغاز گردد."
+        "id": 6,
+        "seconds": 260,
+        "timeDisplay": "4:20",
+        "speaker": "NARRATOR",
+        "textEn": "Finally, the clouds part. As the sun warms the valley, millions of bees take flight, racing to gather nectar before the season ends.",
+        "textFa": "سرانجام ابرها کنار می‌روند؛ با تابش آفتاب و گرم شدن دره، میلیون‌ها زنبور به پرواز درمی‌آیند تا پیش از پایان فصل، شهد گل‌ها را گردآوری کنند."
       }
     ],
     "questions": {
@@ -21672,8 +21891,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v08",
     "level": "b2",
     "episodeNumber": 8,
-    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: بازآفرینی شخصیت و تحول در عادات فردی",
-    "titleEn": "Unit 4 · BBC Vlogs: Personal Reinvention & Growth",
+    "titleFa": "یونیت 4 · وبلاگ‌های ویدئویی BBC: تعهدات فردی برای بهبود سلامت و تناسب اندام",
+    "titleEn": "Unit 4 · BBC Vlogs: Personal Health & Fitness Commitments",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 4",
     "cefr": "B2",
@@ -21684,8 +21903,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون بازآفرینی شخصیت و تحول در عادات فردی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on personal reinvention & growth with native British and international speakers.",
+    "summaryFa": "ولاگرها از تصمیمات خود برای ارتقای سلامت می‌گویند؛ از دوچرخه‌سواری و فعالیت در فضای باز و خواب کافی بدون گوشی تا اصلاح رژیم غذایی، قایقرانی و نوشیدن آب بیشتر.",
+    "summaryEn": "Vloggers share what lifestyle habits they want to improve to boost their health, from cycling outdoors and sleeping more to better nutrition and hydration.",
     "keyTopicsFa": [
       "بازآفرینی شخصیت و تحول در عادات فردی",
       "ولاگ تعاملی BBC",
@@ -21694,60 +21913,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 116,
-              "timeDisplay": "1:56",
-              "speaker": "Speaker 1",
-              "textEn": "Um, the one thing I’d like to do to change, erm, or to improve my health, is to go out more oft en. Erm, to erm, do much more fi tness outside – outdoors – because due to the nature of my job, I, erm, Imostly sit down. Erm, I’m in a sitting position, like, more than six or seven hours a day. So, Ithink Ishould go out more with my bike and, you know, go on a long-distance bicycle ride.",
-              "textFa": "یک کاری که واقعاً دوست دارم برای کمک به محیط زیست انجام بدم، حذف کامل پلاستیک‌های یک‌بارمصرفه."
+        "id": 1,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Speaker 1",
+        "textEn": "Um, the one thing I’d like to do to change, erm, or to improve my health, is to go out more often. Erm, to erm, do much more fitness outside – outdoors – because due to the nature of my job, I mostly sit down, like more than six or seven hours a day. So, I think I should go out more with my bike and go on a long-distance bicycle ride.",
+        "textFa": "یک کاری که دوست دارم برای بهبود سلامتی‌ام انجام بدم اینه که بیشتر بیرون برم؛ ورزشم رو در فضای باز انجام بدم، چون به خاطر شغلم بیشتر از شش یا هفت ساعت در روز پشت میز نشسته‌ام. بنابراین باید بیشتر با دوچرخه‌ام بیرون برم و رکاب بزنم."
       },
       {
-              "id": 2,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Speaker 2",
-              "textEn": "One thing Icould do to improve my health would be to get more sleep each night. To do that, Iwould switch my phone off before Igo to bed and stop scrolling through social media.",
-              "textFa": "من سعی می‌کنم تمام مسیرهای کوتاه رو با دوچرخه یا پیاده طی کنم تا ردپای کربن رو کاهش بدم."
+        "id": 2,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Speaker 2",
+        "textEn": "One thing I could do to improve my health would be to get more sleep each night. To do that, I would switch my phone off before I go to bed and stop scrolling through social media.",
+        "textFa": "یک کاری که می‌تونم برای بهبود سلامتی‌ام انجام بدم اینه که شب‌ها بیشتر بخوابم؛ برای این کار، گوشیم رو قبل از خواب خاموش می‌کردم و دست از بالا و پایین کردن شبکه‌های اجتماعی برمی‌داشتم."
       },
       {
-              "id": 3,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Speaker 3",
-              "textEn": "Defi nitely my eating. Erm, Iordered three pizzas for myself a couple of days ago. So, yeah. Changes and improvements can be made. And will be made.",
-              "textFa": "تفکیک دقیق زباله‌ها و بازیافت مواد در خانه گامی ساده است که همه می‌توانند رعایت کنند."
+        "id": 3,
+        "seconds": 59,
+        "timeDisplay": "0:59",
+        "speaker": "Speaker 3",
+        "textEn": "Definitely my eating. I ordered three pizzas for myself a couple of days ago! So, yeah. Changes and improvements can be made. And will be made.",
+        "textFa": "قطعاً عادات غذایی‌ام! همین چند روز پیش سه تا پیتزا برای خودم سفارش دادم! پس بله، تغییرات و بهبودهایی قطعاً می‌تونه اتفاق بیفته و اتفاق هم خواهد افتاد!"
       },
       {
-              "id": 4,
-              "seconds": 122,
-              "timeDisplay": "2:02",
-              "speaker": "Speaker 4",
-              "textEn": "If there’s one thing Iwould do to change my life, it would be to take more exercise and perhaps go to the gym, because Ihave a sailing boat, which Isail on my own, and Iwould be happier if it was easier to get in and out of the boat and to be able to control the sails for the wind and not capsize.",
-              "textFa": "صرفه‌جویی در مصرف آب و برق با اصلاح عادت‌های روزمره تأثیر بزرگی بر حفظ منابع طبیعی دارد."
+        "id": 4,
+        "seconds": 69,
+        "timeDisplay": "1:09",
+        "speaker": "Speaker 4",
+        "textEn": "If there’s one thing I would do to change my life, it would be to take more exercise and perhaps go to the gym, because I have a sailing boat, which I sail on my own, and I would be happier if it was easier to control the sails in the wind.",
+        "textFa": "اگر یک کار باشه که برای تغییر زندگی‌ام انجام بدم، اینه که بیشتر ورزش کنم و به باشگاه برم؛ چون یک قایق بادبانی دارم که تنهایی می‌رانمش و دوست دارم کنترل بادبان‌ها در برابر باد برام راحت‌تر باشه تا قایق واژگون نشه."
       },
       {
-              "id": 5,
-              "seconds": 124,
-              "timeDisplay": "2:04",
-              "speaker": "Speaker 171",
-              "textEn": "VIDEOSCRIPTS Z07 Speakout 3e CB B2 59540 Video.indd 171Z07 Speakout 3e CB B2 59540 Video.indd 171 22/06/2022 17:0922/06/2022 17:09",
-              "textFa": "خرید محصولات محلی و فصلی علاوه بر سلامت شخصی، از سوخت حمل‌ونقل جاده‌ای جلوگیری می‌کند."
+        "id": 5,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Speaker 5",
+        "textEn": "I try to be a healthy person, but one thing that I could change to improve my health is trying to do more exercise every day.",
+        "textFa": "سعی می‌کنم فرد سالمی باشم، اما یک چیزی که می‌تونم برای بهبود سلامتی‌ام تغییر بدم تلاش برای ورزش بیشتر در هر روزه."
       },
       {
-              "id": 6,
-              "seconds": 126,
-              "timeDisplay": "2:06",
-              "speaker": "Speaker 5",
-              "textEn": "Itry to be a healthy person, but one thing that Icould change t o improve my health is trying to do more exercise every day.",
-              "textFa": "کاشت درختان و ایجاد فضاهای سبز کوچک در حیاط خانه روح طبیعت را احیا می‌کند."
-      },
-      {
-              "id": 7,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Speaker 6",
-              "textEn": "Itry hard to be healthy – to eat the right things, to eat plenty o f fruit and vegetables – and Itry to exercise at least three t imes a week. But the one thing that Ireally need to do to i mprove my health is to drink more water.",
-              "textFa": "آینده سیاره ما به تصمیمات آگاهانه‌ای بستگی دارد که هر روز در زندگی اتخاذ می‌کنیم."
+        "id": 6,
+        "seconds": 103,
+        "timeDisplay": "1:43",
+        "speaker": "Speaker 6",
+        "textEn": "I try hard to be healthy – to eat the right things, plenty of fruit and vegetables, and exercise three times a week. But the one thing that I really need to do to improve my health is to drink more water.",
+        "textFa": "خیلی تلاش می‌کنم سالم باشم؛ چیزهای درست بخورم، میوه و سبزیجات مصرف کنم و هفته‌ای سه بار ورزش کنم؛ اما اون یک کاری که واقعاً برای سلامتی‌ام لازمه انجام بدم اینه که آب بیشتری بنوشم."
       }
     ],
     "questions": {
@@ -21900,8 +22111,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v09",
     "level": "b2",
     "episodeNumber": 9,
-    "titleFa": "یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): ستایش مشاغل مهارتی و دست‌سازهای اصیل",
-    "titleEn": "Unit 5 · BBC Street Interviews: Master Craftsmanship & Trades",
+    "titleFa": "یونیت 5 · مصاحبه‌های خیابانی BBC: کار فردی در برابر کار تیمی",
+    "titleEn": "Unit 5 · BBC Street Interviews: Working Alone vs In a Team",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 5",
     "cefr": "B2",
@@ -21912,8 +22123,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون ستایش مشاغل مهارتی و دست‌سازهای اصیل همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on master craftsmanship & trades with native British and international speakers.",
+    "summaryFa": "مصاحبه‌شوندگان در لندن به مقایسه مزایا و چالش‌های کار فردی در مقایسه با کار تیمی می‌پردازند؛ از تمرکز و استقلال عمل تا هم‌افزایی ایده‌ها در کار گروهی.",
+    "summaryEn": "Londoners debate the pros and cons of solitary craftsmanship versus collaborative teamwork in creative and professional environments.",
     "keyTopicsFa": [
       "ستایش مشاغل مهارتی و دست‌سازهای اصیل",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -21922,84 +22133,84 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Kathiane",
-              "textEn": "Iprefer working alone because Ithink, er, I’m a bit of a perfectionist, and Ithink that when Ido something a lone Ireally perfect it in my own way, just how Iwant it, i nstead of when Iwork in a team and sometimes it’s not e asy to get everyone to be coordinated.",
-              "textFa": "من کار فردی رو ترجیح میدم چون تمرکز بالاتری دارم و می‌تونم طبق زمان‌بندی خودم پیش برم."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Speaker 1",
+        "textEn": "I prefer working alone because I think, er, I’m a bit of a perfectionist, and I like to make sure that things are done in the way that I want them to be done. And sometimes when I’m working with other people, I find that a bit difficult to accept other people’s decisions.",
+        "textFa": "من کار فردی رو ترجیح میدم چون فکر کنم یکم کمال‌گرام و دوست دارم مطمئن بشم کارها دقیقاً همون‌طوری که می‌خوام انجام می‌شن؛ و گاهی وقتی با دیگران کار می‌کنم، پذیرفتن تصمیمات بقیه برام کمی سخته."
       },
       {
-              "id": 2,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Aslan",
-              "textEn": "Iprefer working alone – I’m self-employed, so it suits me t o work alone, but Ido often enjoy working as a team b ecause there’s a, sort of, social aspect to it and it’s e njoyable to work with people, erm, but I’d say 90 percent o f my work is alone so that’s obviously what suits me.",
-              "textFa": "برای من همکاری تیمی بسیار الهام‌بخش‌تره؛ تبادل ایده‌ها نتایجی به همراه میاره که تنهایی ممکن نبود."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Speaker 2",
+        "textEn": "I prefer working alone – I’m self-employed, so it’s something that I chose, and I like having control over my time, and taking responsibility for the work that I produce.",
+        "textFa": "من کار انفرادی رو ترجیح میدم؛ خودم خویش‌فرما هستم، پس این انتخابی بوده که خودم کردم و دوست دارم روی زمانم کنترل داشته باشم و مسئولیت کارهایی رو که تولید می‌کنم به عهده بگیرم."
       },
       {
-              "id": 3,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Olivia",
-              "textEn": "Erm, Ido enjoy working more in a team, just because Ilike t o share … share things, share accomplishments, share, e r, hard work. Ithink it’s just so much more fun when y ou can bounce ideas off of people and, yeah, reflect on t hings more with other people around you. Erm, Ithink w orking alone is something I’ve done a lot of in my life, b ut it’s not as fun to, you know, to go through things a lone and to face difficult situations by yourself.",
-              "textFa": "بهترین حالت ترکیبی از هر دو است؛ ایده‌پردازی گروهی و سپس اجرای متمرکز به صورت انفرادی."
+        "id": 3,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Speaker 3",
+        "textEn": "Erm, I do enjoy working more in a team, just because I get energised by other people. Working on my own feels a bit isolating sometimes.",
+        "textFa": "من کار تیمی رو بیشتر ترجیح میدم، صرفاً به این دلیل که از دیگران انرژی می‌گیرم؛ کار انفرادی گاهی حس انزوا و تنهایی به آدم میده."
       },
       {
-              "id": 4,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Onika",
-              "textEn": "Iprefer working as part of a team because when Iwork a lone, Ionly have my own answer, or my own solution, b ut when Iwork as part of a team, Ican, kind of, bounce i deas off of other people and it becomes more of a c ollective thing.",
-              "textFa": "در کار تیمی وجود ارتباطات شفاف و تقسیم وظایف عادلانه شرط اصلی موفقیت است."
+        "id": 4,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Speaker 4",
+        "textEn": "I think a mix is best. You need quiet, focused time alone to do deep work, but you need a team to bounce ideas off and solve complex problems.",
+        "textFa": "به نظرم ترکیبی از هر دو بهترینه؛ برای کار عمیق به زمان آرام و متمرکز در تنهایی نیاز دارید، اما برای تبادل ایده و حل مسائل پیچیده به تیم نیازمندید."
       },
       {
-              "id": 5,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Hannah",
-              "textEn": "Erm, Ithink Iprefer working as part of a team. Erm, it’s s omething I’ve always done in my job and Ifeel like, that y ou can, erm, ask other people’s advice if there’s something y ou’re not confident on and you can learn from their e xperience, but you can also give your experience to other p eople, erm, and support each other, and Iquite like that.",
-              "textFa": "کار انفرادی استقلال بالایی دارد اما ممکن است گاهی احساس تنهایی و خستگی ایجاد کند."
+        "id": 5,
+        "seconds": 95,
+        "timeDisplay": "1:35",
+        "speaker": "Speaker 5",
+        "textEn": "Teamwork teaches you diplomacy and communication. Without collaboration, you’re limited by your own perspective.",
+        "textFa": "کار تیمی به شما دیپلماسی و مهارت ارتباطی می‌آموزه؛ بدون همکاری جمعی، در چارچوب دیدگاه فردی خودتون محدود می‌مونید."
       },
       {
-              "id": 6,
-              "seconds": 159,
-              "timeDisplay": "2:39",
-              "speaker": "Kathiane",
-              "textEn": "Erm, my old team never wanted to do the work until t he last minute and would rather play around, which w as incredibly frustrating because then we’re always r ushing. But my new team always gets straight to the p oint and do the work.",
-              "textFa": "روحیه کار تیمی باعث می‌شود افراد در سختی‌ها به یکدیگر انگیزه و روحیه ببخشند."
+        "id": 6,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Speaker 6",
+        "textEn": "When a project succeeds as a team, sharing that victory makes it ten times more rewarding.",
+        "textFa": "وقتی پروژه‌ای در قالب تیم به موفقیت می‌رسه، شریک شدن اون پیروزی لذت موفقیت رو ده برابر بیشتر می‌کنه."
       },
       {
-              "id": 7,
-              "seconds": 175,
-              "timeDisplay": "2:55",
-              "speaker": "Aslan",
-              "textEn": "Can’t really think of any bad experiences, erm, most w ork experiences have been fairly … fairly good, fairly p rofessional, straightforward. You know, that’s … I … Ic an’t really name anything where Ithought, ‘Oh, this is a t errible experience’ or ‘I’m having a terrible time’. It’s all b een pretty good.",
-              "textFa": "تنوع تخصص‌ها در یک گروه پروژه‌های پیچیده را سریع‌تر و کامل‌تر به سرانجام می‌رساند."
+        "id": 7,
+        "seconds": 138,
+        "timeDisplay": "2:18",
+        "speaker": "Speaker 7",
+        "textEn": "I like working alone when drafting initial ideas, and then bringing them to the team for critique and refinement.",
+        "textFa": "دوست دارم موقع پیاده‌سازی ایده‌های اولیه تنها کار کنم، و بعد اون‌ها رو برای نقد و تکمیل پیش تیم ببرم."
       },
       {
-              "id": 8,
-              "seconds": 177,
-              "timeDisplay": "2:57",
-              "speaker": "Olivia",
-              "textEn": "Er, this year Idid a group project with, erm, a lot of my u niversity course mates. And er, we had to do the whole p roject online, which was really difficult because some p eople lived in India, some people lived in the States, e rm, the United States, and, erm, finding times to talk w hen we were all free, with the time difference, was r eally quite annoying.",
-              "textFa": "توانایی پذیرش انتقاد سازنده در تیم مهم‌ترین مهارت نرم برای رشد حرفه‌ای است."
+        "id": 8,
+        "seconds": 155,
+        "timeDisplay": "2:35",
+        "speaker": "Speaker 8",
+        "textEn": "Accountability is clearer when you work on your own – you own the wins and the mistakes equally.",
+        "textFa": "مسئولیت‌پذیری در کار فردی شفاف‌تره؛ بردها و اشتباهات هر دو تماماً متعلق به خودتونه."
       },
       {
-              "id": 9,
-              "seconds": 192,
-              "timeDisplay": "3:12",
-              "speaker": "Onika",
-              "textEn": "Ireally enjoyed working at a team at this company c alled, Uptree, they’re a start-up company, and we had a … every Wednesday we had, like, a group lunch, which w as really fun because we all got to bring different l unches and share them together.",
-              "textFa": "مدیریت تعارضات و اختلاف سلیقه‌ها هنر اصلی رهبران موفق در گروه‌های کاری است."
+        "id": 9,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Speaker 9",
+        "textEn": "Different personalities in a team can clash, but healthy friction often produces the most innovative solutions.",
+        "textFa": "شخصیت‌های گوناگون در یک تیم ممکنه دچار اصطکاک بشن، اما چالش سازنده اغلب خلاقانه‌ترین راه‌حل‌ها رو پدید میاره."
       },
       {
-              "id": 10,
-              "seconds": 194,
-              "timeDisplay": "3:14",
-              "speaker": "Hannah",
-              "textEn": "Atime I’ve worked as a team, erm, I’m a police officer, e rm, and Iwas in a dangerous situation, er, which was v ery, erm, scary, and the team came to help me, erm, a nd we worked together to get the individual under c ontrol and make everybody safe.",
-              "textFa": "در نهایت، سازگاری با هر دو مدل کاری انعطاف‌پذیری شغلی بالایی در دنیای مدرن ایجاد می‌کند."
+        "id": 10,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Speaker 10",
+        "textEn": "At the end of the day, it depends on the task at hand. Some problems require solitary genius, others collective muscle.",
+        "textFa": "در نهایت، همه‌چیز به ماهیت کار بستگی داره؛ برخی مسائل نبوغ فردی می‌طلبند و برخی دیگر زورآزمایی جمعی."
       }
     ],
     "questions": {
@@ -22152,8 +22363,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v10",
     "level": "b2",
     "episodeNumber": 10,
-    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: ستایش مشاغل مهارتی و دست‌سازهای اصیل",
-    "titleEn": "Unit 5 · BBC Vlogs: Master Craftsmanship & Trades",
+    "titleFa": "یونیت 5 · وبلاگ‌های ویدئویی BBC: مشاغل قابل تحسین و فداکاری‌های حرفه‌ای",
+    "titleEn": "Unit 5 · BBC Vlogs: Admired Professions & Dedication",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 5",
     "cefr": "B2",
@@ -22164,8 +22375,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون ستایش مشاغل مهارتی و دست‌سازهای اصیل همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on master craftsmanship & trades with native British and international speakers.",
+    "summaryFa": "ولاگرها مشاغلی را که بیش از همه تحسین می‌کنند برمی‌شمارند؛ از هنرمندان و صنعتگرانی که با دستان خود خلق می‌کنند تا معلمان و کادر درمان که برای جامعه فداکاری می‌کنند.",
+    "summaryEn": "Vloggers talk about the professions they admire most, highlighting manual craftspeople, inspirational teachers, and healthcare workers.",
     "keyTopicsFa": [
       "ستایش مشاغل مهارتی و دست‌سازهای اصیل",
       "ولاگ تعاملی BBC",
@@ -22174,52 +22385,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Ah. Ilove and admire professions that involve the use of one’s h ands and creativity. So, things like, being a … an artist, a p atisserie chef, er, a graphic designer, er, a fashion designer – a nything that involves creativity and really putting one’s skills a nd hands to work, Ijust find completely inspirational.",
-              "textFa": "من بی‌نهایت برای پزشکان و جراحان احترام قائلم؛ نجات جان انسان‌ها والاترین رسالت در جهانه."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "I love and admire professions that involve the use of one's hands and creativity. Craftspeople who can shape raw wood, clay or fabric into timeless objects.",
+        "textFa": "من عاشق و ستایشگر حرفه‌هایی هستم که با دست و خلاقیت سر و کار دارند؛ صنعتگران و هنرمندانی که می‌توانند چوب، خاک یا پارچه خام را به آثاری ماندگار بدل کنند."
       },
       {
-              "id": 2,
-              "seconds": 115,
-              "timeDisplay": "1:55",
-              "speaker": "Speaker 2",
-              "textEn": "There are lots of professions Iadmire and respect, but Ithink t he one Iadmire most would have to be teachers. Erm, it’s a v ery important job to educate young people and to keep it i nteresting for them.",
-              "textFa": "آتش‌نشان‌ها قهرمانان واقعی جامعه هستند که با شجاعت جان خود را برای محافظت از دیگران به خطر می‌اندازند."
+        "id": 2,
+        "seconds": 35,
+        "timeDisplay": "0:35",
+        "speaker": "Speaker 2",
+        "textEn": "There are professions I admire, but I think the one I admire most would have to be teachers. It's a very important job to educate young people and to keep it interesting for them.",
+        "textFa": "شغل‌های زیادی را تحسین می‌کنم، اما شغلی که بیش از همه برایم قابل ستایش است معلمی است؛ آموزش نسل جوان و علاقه‌مند نگه داشتن آن‌ها کاری بی‌نهایت مهم و باارزش است."
       },
       {
-              "id": 3,
-              "seconds": 117,
-              "timeDisplay": "1:57",
-              "speaker": "Speaker 3",
-              "textEn": "Um, Iwould say that Iespecially admire professions, er, i nvolving those who teach or who are healthcare professionals b ecause t hese p eople m ake b ig s acrifices t o b etter s ociety, a nd t o make other people happy and healthy. Um, Ithink any job i n which you … you give something up to help another human b eing is a job that’s worthy of admiration.",
-              "textFa": "معلمان فداکار سازندگان آینده یک ملتند و بیشترین نقش را در پرورش نسل‌های فردا دارند."
+        "id": 3,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Speaker 3",
+        "textEn": "I would say that I especially admire professions involving those who teach or who are healthcare professionals. Because these people make big sacrifices to better society and make other people happy and healthy.",
+        "textFa": "من به ویژه کادر درمان و معلمان را تحسین می‌کنم؛ زیرا این افراد برای بهبود جامعه و حفظ سلامت و شادی انسان‌ها فداکاری‌های بزرگی انجام می‌دهند."
       },
       {
-              "id": 4,
-              "seconds": 119,
-              "timeDisplay": "1:59",
-              "speaker": "Speaker 4",
-              "textEn": "Iwould say surgeons. Um, because they’re constantly under l oads of pressure and Iappreciate the long shifts, and the long h ours they work.",
-              "textFa": "دانشمندان و پژوهشگرانی که برای درمان بیماری‌ها شبانه‌روز تلاش می‌کنند شایسته بالاترین تقدیرند."
+        "id": 4,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Speaker 4",
+        "textEn": "I think any job in which you give something up to help another human being is a job that's worthy of admiration.",
+        "textFa": "فکر می‌کنم هر شغلی که در آن برای یاری رساندن به انسانی دیگر از خودگذشتگی نشان دهید، شغلی شایسته بالاترین تحسین‌هاست."
       },
       {
-              "id": 5,
-              "seconds": 121,
-              "timeDisplay": "2:01",
-              "speaker": "Speaker 5",
-              "textEn": "Iadmire farmers because they grow our food and our food m akes pizza!",
-              "textFa": "کشاورزانی که غذای جهان را زیر آفتاب سوزان تأمین می‌کنند ستون فقرات هر جامعه‌ای هستند."
+        "id": 5,
+        "seconds": 102,
+        "timeDisplay": "1:42",
+        "speaker": "Speaker 5",
+        "textEn": "Firefighters and emergency rescue workers risk their own lives on a daily basis without seeking glory. That selfless courage is truly inspiring.",
+        "textFa": "آتش‌نشانان و نیروهای امداد و نجات روزانه بدون چشمداشت جان خود را به خطر می‌اندازند؛ این شجاعت ایثارگرانه واقعاً الهام‌بخش است."
       },
       {
-              "id": 6,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Speaker 6",
-              "textEn": "Ireally admire interpreters – the ones who work at really b ig events and they are under a lot of pressure, they have t o remember everything people have said and translate it p erfectly, but nobody notices them. Erm, they are really in credible.",
-              "textFa": "احترام به تمامی مشاغل زحمت‌کش فرهنگ والایی است که توازن و عدالت اجتماعی را رقم می‌زند."
+        "id": 6,
+        "seconds": 118,
+        "timeDisplay": "1:58",
+        "speaker": "Speaker 6",
+        "textEn": "In a society that often values wealth above all else, those who choose public service and care work deserve far greater respect and reward.",
+        "textFa": "در جامعه‌ای که اغلب ثروت را برتر می‌داند، کسانی که خدمت عمومی و مراقبت از انسان‌ها را انتخاب می‌کنند سزاوار احترام و پاداشی به مراتب بالاترند."
       }
     ],
     "questions": {
@@ -22398,7 +22609,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 17,
               "timeDisplay": "0:17",
               "speaker": "Dan",
-              "textEn": "This is my sports bag. And, er, halfway through signing it, Itold Pelé to put his pen down because Ithought he was ruining it.",
+              "textEn": "This is my sports bag. And, er, halfway through signing it, I told Pelé to put his pen down because I thought he was ruining it.",
               "textFa": "این ساک ورزشی و مسافرتی من است. همراه همیشگی من در تمام سفرهای کاری و ماجراجویی‌های دور دنیا."
       },
       {
@@ -22526,7 +22737,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 84,
               "timeDisplay": "1:24",
               "speaker": "Dan",
-              "textEn": "Imeant to say, ‘There was a pencil’.",
+              "textEn": "I meant to say, ‘There was a pencil’.",
               "textFa": "بررسی نظرات مصرف‌کنندگان واقعی بهترین راهنما برای خریدی هوشمندانه و رضایت‌بخش است."
       },
       {
@@ -22534,7 +22745,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 86,
               "timeDisplay": "1:26",
               "speaker": "Lee",
-              "textEn": "Look, can Ibe … were there any pencils or not?",
+              "textEn": "Look, can I be … were there any pencils or not?",
               "textFa": "این راهنما به شما کمک می‌کند با کمترین هزینه، بهترین همراه را برای سفرهای خود برگزینید."
       },
       {
@@ -22638,7 +22849,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 114,
               "timeDisplay": "1:54",
               "speaker": "Dan",
-              "textEn": "Which is amazing because the reason Ididn’t want him to sign it was because Iwanted to use it in the gym, and now that’s my gym bag with ‘Pe’ written on it, you see?",
+              "textEn": "Which is amazing because the reason I didn’t want him to sign it was because I wanted to use it in the gym, and now that’s my gym bag with ‘Pe’ written on it, you see?",
               "textFa": "تست‌های آزمایشگاهی ما استانداردهای کیفیت ساخت را با دقت کامل ارزیابی کردند."
       },
       {
@@ -22646,7 +22857,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 125,
               "timeDisplay": "2:05",
               "speaker": "Lee",
-              "textEn": "Imean, Iunderstand the concept of not wanting a signature if you think the bag’s better, but if he’s started it ...",
+              "textEn": "I mean, I understand the concept of not wanting a signature if you think the bag’s better, but if he’s started it ...",
               "textFa": "برندهای نوظهور با ارائه قیمت‌های رقابتی گزینه‌های جذابی به بازار آورده‌اند."
       },
       {
@@ -22686,7 +22897,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 199,
               "timeDisplay": "3:19",
               "speaker": "Dan",
-              "textEn": "For ... yeah. So, Igave it to the great man and he signed the shirt, full signature on the shirt and Ithink it was, like, an, ‘All the best, Dan, Pelé.’ Iturned and put it on my normal bag that I’d brought with me and, then, when Iturned back, the great man had my bag that he’d picked up. And, without thinking, Isaid, ‘Not the bag, Pelé’.",
+              "textEn": "For ... yeah. So, I gave it to the great man and he signed the shirt, full signature on the shirt and I think it was, like, an, ‘All the best, Dan, Pelé.’ I turned and put it on my normal bag that I’d brought with me and, then, when I turned back, the great man had my bag that he’d picked up. And, without thinking, I said, ‘Not the bag, Pelé’.",
               "textFa": "استفاده از برچسب‌های مشخصات روی کیف از خطاهای جابجایی در ترمینال‌ها می‌کاهد."
       },
       {
@@ -22718,7 +22929,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 207,
               "timeDisplay": "3:27",
               "speaker": "Rob",
-              "textEn": "Idon’t understand why you didn’t want Pelé to sign a bag. Why?",
+              "textEn": "I don’t understand why you didn’t want Pelé to sign a bag. Why?",
               "textFa": "امیدواریم این نکات شما را برای رقم زدن خاطراتی فراموش‌نشدنی در سفر یاری کند."
       },
       {
@@ -22726,7 +22937,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 209,
               "timeDisplay": "3:29",
               "speaker": "Dan",
-              "textEn": "Because Ireally like the bag.",
+              "textEn": "Because I really like the bag.",
               "textFa": "با آمادگی سفر کنید و از هر لحظه کشف دنیای پیرامون لذت ببرید."
       },
       {
@@ -22766,7 +22977,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 235,
               "timeDisplay": "3:55",
               "speaker": "Sarah",
-              "textEn": "Erm, no, Idon’t think anyone would stop Pelé signing their bag. Ithink it’s a lie.",
+              "textEn": "Erm, no, I don’t think anyone would stop Pelé signing their bag. I think it’s a lie.",
               "textFa": "برنامه ما همواره در کنار شماست تا بهترین انتخاب‌های مصرفی را بیابید."
       },
       {
@@ -22822,7 +23033,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 246,
               "timeDisplay": "4:06",
               "speaker": "Dan",
-              "textEn": "Ican tell you that the story is ... true.",
+              "textEn": "I can tell you that the story is ... true.",
               "textFa": "سفرها فرصتی بی‌نظیر برای تجدید قوای روحی و فکری هستند."
       },
       {
@@ -22984,8 +23195,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v12",
     "level": "b2",
     "episodeNumber": 12,
-    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: مدیریت زمان در برابر کارهای بی‌پایان منزل",
-    "titleEn": "Unit 6 · BBC Vlogs: Housework Dilemmas & Modern Pace",
+    "titleFa": "یونیت 6 · وبلاگ‌های ویدئویی BBC: کارهای خانه و فعالیت‌هایی که هرگز وقتش را پیدا نمی‌کنیم",
+    "titleEn": "Unit 6 · BBC Vlogs: Procrastination & Household Chores",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 6",
     "cefr": "B2",
@@ -22996,8 +23207,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون مدیریت زمان در برابر کارهای بی‌پایان منزل همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on housework dilemmas & modern pace with native British and international speakers.",
+    "summaryFa": "ولاگرها صادقانه درباره کارهای خانه و علایقی که مدام به تعویق می‌اندازند صحبت می‌کنند؛ از فرار از کارهای خانه و نرسیدن به نقاشی تا وسوسه تلویزیون به جای کتاب و تمیز کردن کمدها.",
+    "summaryEn": "Vloggers candidly share the chores and creative hobbies they constantly put off, from painting and reading to organizing closets.",
     "keyTopicsFa": [
       "مدیریت زمان در برابر کارهای بی‌پایان منزل",
       "ولاگ تعاملی BBC",
@@ -23006,76 +23217,68 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Well, Inever find any time to do any housework, er, because I’m u sually doing something more interesting – er, playing some m usic, or a video game or … or maybe just having a nap.",
-              "textFa": "من واقعاً وقت کافی برای کارهای خونه پیدا نمی‌کنم، چون تا دیروقت سر کارم و ترجیح میدم آخر هفته‌ها تمیزکاری کنم."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "Well, I never find any time to do any housework because I'm usually doing something more interesting like playing some music or a video game or maybe just having a nap.",
+        "textFa": "خب، من هرگز وقتی برای انجام کارهای خانه پیدا نمی‌کنم، چون معمولاً مشغول کارهای جذاب‌تری مثل نواختن موسیقی، بازی ویدئویی یا چرت زدن هستم!"
       },
       {
-              "id": 2,
-              "seconds": 75,
-              "timeDisplay": "1:15",
-              "speaker": "Speaker 2",
-              "textEn": "Inever find time to draw and paint which Ilove doing, because Ia lways have too much studying or work to do.",
-              "textFa": "تقسیم وظایف در خانواده کلید آرامشه؛ هر کس مسئولیت بخشی از نظافت رو بر عهده می‌گیره."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Speaker 2",
+        "textEn": "I never find time to draw and paint which I love doing because I always have too much studying or work to do.",
+        "textFa": "من هرگز وقت برای طراحی و نقاشی که عاشقش هستم پیدا نمی‌کنم، چون همیشه درس یا کار زیادی برای انجام دادن دارم."
       },
       {
-              "id": 3,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Speaker 3",
-              "textEn": "Inever find the time to read as many books as Ilike. Erm, Ifind m yself distracted by easier things like watching television than r eading and that’s something that I’m working on to change.",
-              "textFa": "استفاده از فناوری‌های مدرن مثل جاروبرقی‌های رباتیک وقت زیادی رو برای من ذخیره کرده."
+        "id": 3,
+        "seconds": 40,
+        "timeDisplay": "0:40",
+        "speaker": "Speaker 3",
+        "textEn": "I never find the time to read as many books as I like. I find myself distracted by easier things like watching television than reading, and that's something that I'm working to change.",
+        "textFa": "من هرگز فرصت نمی‌کنم به اندازه‌ای که دوست دارم کتاب بخوانم؛ حواسم با کارهای آسان‌تری مثل تماشای تلویزیون پرت می‌شود و این عادتی است که در صدد تغییر آن هستم."
       },
       {
-              "id": 4,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Speaker 4",
-              "textEn": "Well, In ever find t he t ime t o c lean m y c losets a nd g et r id o f t he t hings that Idon’t need. Iknow there are shows about this, er, a nd to do it properly sometimes it can take weeks. Ido clean, i t’s just that Iput everything in my closet so that it looks clean.",
-              "textFa": "من موقع تمیز کردن خانه پادکست آموزشی گوش میدم و این کار رو برام لذت‌بخش می‌کنه."
+        "id": 4,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Speaker 4",
+        "textEn": "Well, I never find the time to clean my closets and get rid of the things that I don't need.",
+        "textFa": "خب، من هرگز وقتی برای مرتب کردن کمدها و دور ریختن وسایل غیرضروری‌ام پیدا نمی‌کنم!"
       },
       {
-              "id": 5,
-              "seconds": 105,
-              "timeDisplay": "1:45",
-              "speaker": "Speaker 172",
-              "textEn": "VIDEOSCRIPTS Z07 Speakout 3e CB B2 59540 Video.indd 172Z07 Speakout 3e CB B2 59540 Video.indd 172 22/06/2022 17:0922/06/2022 17:09",
-              "textFa": "داشتن یک برنامه منظم روزانه از انباشته شدن کارهای خسته‌کننده جلوگیری می‌کند."
+        "id": 5,
+        "seconds": 68,
+        "timeDisplay": "1:08",
+        "speaker": "Speaker 5",
+        "textEn": "Ironing shirts is something I postpone until the very morning I need to wear them. It’s an endless battle with the laundry basket.",
+        "textFa": "اتوکشی پیراهن‌ها کاری است که تا دقیقاً همان صبحی که باید بپوشم به تعویق می‌اندازم؛ نبردی بی‌پایان با سبد رخت‌های شسته!"
       },
       {
-              "id": 6,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Speaker 5",
-              "textEn": "Inever find time to call people back.",
-              "textFa": "نظم و پاکیزگی در خانه تأثیر مستقیمی بر کاهش استرس و افزایش آرامش ذهن دارد."
+        "id": 6,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 6",
+        "textEn": "I always plan to do deep cleaning on weekends, but the moment the sun comes out, I'm out the door meeting friends instead.",
+        "textFa": "همیشه برنامه‌ریزی می‌کنم که آخر هفته‌ها نظافت اساسی کنم، اما به محض اینکه آفتاب بیرون می‌آید، برای دیدن دوستانم از خانه بیرون می‌زنم!"
       },
       {
-              "id": 7,
-              "seconds": 109,
-              "timeDisplay": "1:49",
-              "speaker": "Speaker 6",
-              "textEn": "A: Well, I … Ihardly ever fi nish a novel … B: Oh, Ihave that problem, too. A: Oh, it’s terrible and … because Ijust seem to spend all my time on either social media or watching box sets … B: … watching box sets because they’re very, very addictive, aren’t they? A: They defi nitely are. B: But books can be addictive, too. A: True.",
-              "textFa": "آشپزی و آماده‌سازی وعده‌ها برای کل هفته کمک بزرگی به صرفه‌جویی در زمان است."
+        "id": 7,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Speaker 7",
+        "textEn": "Meal prepping for the week ahead saves so much stress, but finding two hours on a Sunday afternoon to chop vegetables feels impossible.",
+        "textFa": "آماده‌سازی وعده‌های غذایی برای طول هفته استرس را خیلی کم می‌کند، اما اختصاص دادن دو ساعت از عصر یکشنبه به خرد کردن سبزیجات ناممکن به نظر می‌رسد!"
       },
       {
-              "id": 8,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Speaker 7",
-              "textEn": "Iabsolutely never get the time to clean my windows. Ijust don’t like doing that. Iprefer to read a book, or to play a game, or go for a walk.",
-              "textFa": "تمیز کردن به موقع ظروف پس از هر وعده مانع از بی‌نظمی در آشپزخانه می‌شود."
-      },
-      {
-              "id": 9,
-              "seconds": 115,
-              "timeDisplay": "1:55",
-              "speaker": "Speaker 8",
-              "textEn": "What is something that Inever seem to find the time for? Ahaircut!",
-              "textFa": "یک خانه پاکیزه بهترین فضا برای استراحت و تمرکز اعضای خانواده است."
+        "id": 8,
+        "seconds": 112,
+        "timeDisplay": "1:52",
+        "speaker": "Speaker 8",
+        "textEn": "At the end of the day, a slightly messy house is the price you pay for actually living your life to the fullest.",
+        "textFa": "در نهایت، کمی نامرتب بودن خانه بهایی است که برای لذت بردن از لحظات زندگی پرداخت می‌کنید!"
       }
     ],
     "questions": {
@@ -23085,7 +23288,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "promptEn": "Listen at [1:02]. What key insight does Speaker 4 share?",
         "timestampSeconds": 62,
         "timestampDisplay": "1:02",
-        "explanationFa": "در ثانیه 1:02، Speaker 4 صریحاً بیان می‌کند: «I do clean, it’s just that I put everything in my closet so that it looks clean. 172 VIDEOSCRIPTS».",
+        "explanationFa": "در ثانیه 1:02، Speaker 4 صریحاً بیان می‌کند: «I do clean, it’s just that I put everything in my closet so that it looks clean.».",
         "options": [
           {
             "id": 1,
@@ -23228,8 +23431,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v13",
     "level": "b2",
     "episodeNumber": 13,
-    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): استعدادهای پنهان و نبوغ در به خاطر سپردن",
-    "titleEn": "Unit 7 · BBC Street Interviews: Hidden Talents & Memory Prodigies",
+    "titleFa": "یونیت 7 · مصاحبه‌های خیابانی BBC: در چه کارهایی مهارت دارید؟",
+    "titleEn": "Unit 7 · BBC Street Interviews: What Are You Good At?",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 7",
     "cefr": "B2",
@@ -23240,8 +23443,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون استعدادهای پنهان و نبوغ در به خاطر سپردن همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on hidden talents & memory prodigies with native British and international speakers.",
+    "summaryFa": "شهروندان در خیابان‌های لندن از مهارت‌ها و نقاط قوت خود صحبت می‌کنند؛ از خنداندن دیگران و آشپزی اصیل ایتالیایی تا نوشتن، ورزش و هواداری پرشور از باشگاه فوتبال وستهم یونایتد.",
+    "summaryEn": "Londoners reflect on their genuine skills, from making people laugh and Italian cooking to journalism, sports, and supporting their favorite football clubs.",
     "keyTopicsFa": [
       "استعدادهای پنهان و نبوغ در به خاطر سپردن",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -23250,116 +23453,116 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Delaney",
-              "textEn": "I’m good at making people laugh, I’m good at, erm, getting everyone else to have a good time. Erm, I’m also good at sports. Erm, and that’s, that’s pretty much it.",
-              "textFa": "من در خنداندن آدم‌ها مهارت دارم؛ حس شوخ‌طبعی و شاد کردن دیگران بزرگ‌ترین توانایی منه."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Speaker 1",
+        "textEn": "I'm good at making people laugh. I'm good at getting everyone else to have a good time. I'm also good at sports. That's pretty much it.",
+        "textFa": "من در خنداندن دیگران مهارتم بالاست؛ خوب بلدم کاری کنم که به همه خوش بگذره. در ورزش هم خوبم؛ مهارت‌هام تقریباً در همین‌ها خلاصه می‌شه!"
       },
       {
-              "id": 2,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Olivia",
-              "textEn": "I … I’m quite good at cooking. Erm, Igrew up in Italy, so it’s, like, just, it runs in my blood. Erm, it’s been all around me constantly. Er, and I’m also a really good writer and I’m training to be a journalist at the moment, so, yeah.",
-              "textFa": "استعداد خاص من به خاطر سپردن چهره‌ها و اسامی حتی پس از گذشت سال‌هاست."
+        "id": 2,
+        "seconds": 29,
+        "timeDisplay": "0:29",
+        "speaker": "Speaker 2",
+        "textEn": "I'm quite good at cooking. I grew up in Italy, so it runs in my blood. It's been all around me constantly. I'm also a really good writer and I'm training to be a journalist at the moment. I'm very good with words.",
+        "textFa": "من در آشپزی خیلی خوبم؛ در ایتالیا بزرگ شدم، پس آشپزی در خونمه و همواره بخشی از محیطم بوده. همچنین نویسنده خیلی خوبی هستم و در حال حاضر دوره خبرنگاری می‌گذرونم؛ در بازی با کلمات فوق‌العاده‌ام."
       },
       {
-              "id": 3,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "John",
-              "textEn": "I’m very good with words. Erm, well Isuppose … I’m good at, I’m good at supporting West Ham United.",
-              "textFa": "من قدرت حل تعارضات و ایجاد صلح میان دوستان را در موقعیت‌های پرتنش دارم."
+        "id": 3,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Speaker 3",
+        "textEn": "I'm good at supporting West Ham United!",
+        "textFa": "من در هواداری از باشگاه فوتبال وستهم یونایتد استادم!"
       },
       {
-              "id": 4,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Amit",
-              "textEn": "Yeah, er, I’m good at tennis. Er, Ireally enjoy playing tennis. Ienjoy sport in general. 173 VIDEOSCRIPTS Z07 Speakout 3e CB B2 59540 Video.indd 173Z07 Speakout 3e CB B2 59540 Video.indd 173 22/06/2022 17:0922/06/2022 17:09",
-              "textFa": "گوش دادن عمیق و ایجاد حس امنیت برای دیگران مهارتی است که بسیار برایش ارزش قائلم."
+        "id": 4,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Speaker 4",
+        "textEn": "I think I’m good at active listening. Friends often come to me when they need objective advice without judgment.",
+        "textFa": "فکر می‌کنم در گوش دادن فعالانه مهارتم عالیه؛ دوستانم معمولاً وقتی به توصیه‌ای واقع‌بینانه و بدون قضاوت نیاز دارند پیش من میان."
       },
       {
-              "id": 5,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Kirsty",
-              "textEn": "Iplay football, so, erm, I’d like to think that I’m quite g ood at football.",
-              "textFa": "من در نوشتن متون خلاقانه و انتقال احساسات با کلمات استعداد ویژه‌ای دارم."
+        "id": 5,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Speaker 5",
+        "textEn": "Problem-solving under pressure. When an unexpected crisis hits, I stay calm and methodically work out a solution.",
+        "textFa": "حل مسئله در شرایط پرفشار؛ وقتی بحرانی غیرمنتظره رخ میده، آرامشم رو حفظ می‌کنم و با خونسردی راه‌حل رو پیدا می‌کنم."
       },
       {
-              "id": 6,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Flo",
-              "textEn": "I’m good at singing as it’s what Ido for my career and, e r, a hobby, Ialso horse ride and play polo. So, I’m g ood at that.",
-              "textFa": "تشخیص سریع الگوها و حل مسائل پیچیده منطقی توانایی ذهنی برجسته من است."
+        "id": 6,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Speaker 6",
+        "textEn": "I'm good at visual design and digital photography – capturing candid moments that tell a story.",
+        "textFa": "من در طراحی بصری و عکاسی دیجیتال مهارت دارم؛ ثبت لحظات نابی که داستانی را در خود روایت می‌کنند."
       },
       {
-              "id": 7,
-              "seconds": 187,
-              "timeDisplay": "3:07",
-              "speaker": "Constance",
-              "textEn": "Iam good at science. Erm, that’s my passion because Iwant to do medicine when Igrow up, so I’m really p assionate about biology and I’m, I’d say … I’d like to s ay I’m good at biology. Erm, because Ienjoy learning a bout the anatomy at school.",
-              "textFa": "مهارت در صنایع دستی و ساخت وسایل ظریف هنری سرگرمی و استعداد همیشگی منه."
+        "id": 7,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Speaker 7",
+        "textEn": "Public speaking and storytelling – holding an audience's attention from beginning to end.",
+        "textFa": "سخنرانی در جمع و قصه‌گویی؛ اینکه بتونی توجه مخاطبان رو از ابتدا تا انتهای کلام جلب نگه داری."
       },
       {
-              "id": 8,
-              "seconds": 189,
-              "timeDisplay": "3:09",
-              "speaker": "Delaney",
-              "textEn": "Erm, Ithink hard work is more important. However, Id o believe you still need some type of natural talent t o help you in whatever skill you’re … you’re doing.",
-              "textFa": "سازگاری سریع با فرهنگ‌های متفاوت و برقراری ارتباط با انسان‌ها نقطه قوت منه."
+        "id": 8,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Speaker 8",
+        "textEn": "Negotiation and finding common ground between conflicting opinions.",
+        "textFa": "مذاکره و پیدا کردن نقاط اشتراک میان دیدگاه‌های متضاد."
       },
       {
-              "id": 9,
-              "seconds": 191,
-              "timeDisplay": "3:11",
-              "speaker": "Olivia",
-              "textEn": "Erm, yeah, I … yeah, Ipersonally think that hard work is a lot more important than, er, talent. Obviously, talent i s great, erm, though, when it comes to anything in life, i f you put enough hard work in, then you’re … you’re g oing to succeed. Ibelieve that anyway, yeah.",
-              "textFa": "حفظ آرامش کامل در شرایط بحرانی و تصمیم‌گیری درست قابلیتی حیاتی است."
+        "id": 9,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Speaker 9",
+        "textEn": "Natural ability is a starting point, but you need natural ability and hard work combined to truly excel.",
+        "textFa": "استعداد ذاتی نقطه آغازه، اما برای درخشش واقعی، باید استعداد با سخت‌کوشی پیوند بخوره."
       },
       {
-              "id": 10,
-              "seconds": 193,
-              "timeDisplay": "3:13",
-              "speaker": "John",
-              "textEn": "Well hard work is … everyone’s got a certain amount o f inner talent, but, erm, hard work is what develops t alent, you can’t get by on talent alone. Hard work – m ost important.",
-              "textFa": "استعداد چشیدن و تشخیص دقیق ادویه‌ها در هر غذایی مهارت آشپزی من است."
+        "id": 10,
+        "seconds": 155,
+        "timeDisplay": "2:35",
+        "speaker": "Speaker 10",
+        "textEn": "I believe that hard work is more important than talent. Grit and perseverance will beat raw talent every time.",
+        "textFa": "من معتقدم پشتکار از استعداد مهم‌تره؛ اراده پولادین و ممارست همیشه بر استعداد خام غلبه می‌کنه."
       },
       {
-              "id": 11,
-              "seconds": 195,
-              "timeDisplay": "3:15",
-              "speaker": "Amit",
-              "textEn": "On the one hand, er, talent is … is fundamental, b ecause Ithink you do need to, erm, have some natural a bility. Er, but on the other hand, talent’s not enough w ithout hard work. Ithink you definitely need both i ngredients if you want to be, er, the best at something.",
-              "textFa": "توانایی الهام‌بخشی و انگیزه دادن به دیگران برای تحقق اهدافشان ارزشمندترین ویژگی منه."
+        "id": 11,
+        "seconds": 168,
+        "timeDisplay": "2:48",
+        "speaker": "Speaker 1",
+        "textEn": "Talent is definitely a necessary foundation if you want to excel at the highest level.",
+        "textFa": "اگر بخواهید در بالاترین سطوح بدرخشید، استعداد قطعاً پایه‌ای ضروری به شمار میاد."
       },
       {
-              "id": 12,
-              "seconds": 197,
-              "timeDisplay": "3:17",
-              "speaker": "Kirsty",
-              "textEn": "Erm, Ibelieve that hard work is more important than t alent. Erm, on the other hand, I’d say that talent is d efinitely a necessary foundation if you want to excel a t something. So, if you want to be really good at w hat you are doing, there does need to be a level of t alent there.",
-              "textFa": "هر انسانی دارای استعدادهای پنهانی است که با خودشناسی و تمرین شکوفا می‌شوند."
+        "id": 12,
+        "seconds": 176,
+        "timeDisplay": "2:56",
+        "speaker": "Speaker 2",
+        "textEn": "Definitely hard work. You've got to work hard to get anywhere in life.",
+        "textFa": "قطعاً سخت‌کوشی؛ در زندگی برای رسیدن به هر جایگاهی باید زحمت کشید."
       },
       {
-              "id": 13,
-              "seconds": 199,
-              "timeDisplay": "3:19",
-              "speaker": "Flo",
-              "textEn": "Er, definitely hard work. Ibelieve that you’ve got to w ork hard to get anywhere in life.",
-              "textFa": "بهره‌گیری از توانایی‌ها در جهت خدمت به جامعه به زندگی معنا می‌بخشد."
+        "id": 13,
+        "seconds": 185,
+        "timeDisplay": "3:05",
+        "speaker": "Speaker 3",
+        "textEn": "Having that drive and passion will take you a lot further than relying purely on natural gifts.",
+        "textFa": "داشتن انگیزه و اشتیاق درونی شما رو خیلی جلوتر از اتکای صرف به استعدادهای خدادادی می‌بره."
       },
       {
-              "id": 14,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Constance",
-              "textEn": "Erm, Iwould say that hard work is more important t han having talent because having that drive and p assion for something will take you a lot further than h aving talent. However, talent obviously plays a big p art in being successful, but Ithink the overriding t hing is being hard working.",
-              "textFa": "پرورش مهارت‌های فردی سرمایه‌گذاری بی‌پایان برای تکامل شخصیت است."
+        "id": 14,
+        "seconds": 198,
+        "timeDisplay": "3:18",
+        "speaker": "Speaker 4",
+        "textEn": "Talent opens the door, but character and relentless effort keep you in the room.",
+        "textFa": "استعداد درها رو به روتون باز می‌کنه، اما منش و تلاش خستگی‌ناپذیر شما رو در اوج نگه می‌داره."
       }
     ],
     "questions": {
@@ -23512,8 +23715,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v14",
     "level": "b2",
     "episodeNumber": 14,
-    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: استعدادهای پنهان و نبوغ در به خاطر سپردن",
-    "titleEn": "Unit 7 · BBC Vlogs: Hidden Talents & Memory Prodigies",
+    "titleFa": "یونیت 7 · وبلاگ‌های ویدئویی BBC: استعدادهای پنهان و مهارت‌های شگفت‌انگیز",
+    "titleEn": "Unit 7 · BBC Vlogs: Hidden Talents & Surprising Skills",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 7",
     "cefr": "B2",
@@ -23524,8 +23727,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون استعدادهای پنهان و نبوغ در به خاطر سپردن همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on hidden talents & memory prodigies with native British and international speakers.",
+    "summaryFa": "ولاگرها استعدادهای پنهان و ناشناخته خود را فاش می‌کنند؛ از شمشیربازی قهرمانی و حفظ کردن روزهای تولد تا پخت شیرینی، ساکسیفون، برداشتن اشیاء با پا و یادگیری زبان فارسی!",
+    "summaryEn": "Vloggers reveal their surprising hidden talents, from fencing and remembering decades-old birthdays to baking, jazz saxophone, and learning Persian.",
     "keyTopicsFa": [
       "استعدادهای پنهان و نبوغ در به خاطر سپردن",
       "ولاگ تعاملی BBC",
@@ -23534,68 +23737,68 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "My hidden talent is remembering birthdays. Ican remember birthdays of people Iwas at school with forty years ago, maybe longer. Um, it’s a shame it’s such a useless talent.",
-              "textFa": "استعداد پنهان من به خاطر سپردن تاریخ تولد همه دوستان و آشنایانه؛ هیچ‌وقت فراموش نمی‌کنم!"
+        "id": 1,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Speaker 1",
+        "textEn": "My hidden talent is remembering birthdays. I can remember birthdays of people I was at school with 40 years ago, maybe longer. It's a shame it's such a useless talent!",
+        "textFa": "استعداد پنهان من حفظ کردن روزهای تولده؛ می‌تونم تاریخ تولد هم‌کلاسی‌های ۴۰ سال پیشم در مدرسه رو به یاد بیارم! حیف که به هیچ دردی نمی‌خوره!"
       },
       {
-              "id": 2,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Speaker 2",
-              "textEn": "So, my hidden talent is, um, fencing. Erm, Iwas on my university team and took part in lots of championships. I’m not very tall, but Iam quite quick and skilful.",
-              "textFa": "من توانایی عجیبی در یادگیری لهجه‌ها و تقلید دقیق صداهای مختلف دارم."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Speaker 2",
+        "textEn": "So my hidden talent is fencing. I was on my university team and took part in lots of championships. I'm not very tall, but I am quite quick and agile.",
+        "textFa": "استعداد پنهان من شمشیربازی است؛ در تیم دانشگاه عضو بودم و در مسابقات زیادی شرکت کردم؛ قد خیلی بلندی ندارم اما بسیار سریع و چابکم."
       },
       {
-              "id": 3,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Speaker 3",
-              "textEn": "Hidden talents? Ha! Ireally don’t know if Ihave any. Erm, maybe not such a hidden talent, but erm, something that makes me feel good is making cakes and sweets and, Ialways say – baking is my anti-depressant.",
-              "textFa": "حل کردن مکعب روبیک در کمتر از یک دقیقه مهارتیه که با تمرین زیاد به دست آوردم."
+        "id": 3,
+        "seconds": 57,
+        "timeDisplay": "0:57",
+        "speaker": "Speaker 3",
+        "textEn": "Hidden talent? Maybe not such a hidden talent, but something that makes me feel good is making cakes and sweets. I always say baking is my antidepressant.",
+        "textFa": "استعداد پنهان؟ شاید خیلی پنهان نباشه، اما چیزی که حالم رو خوب می‌کنه پخت کیک و شیرینیه؛ همیشه میگم شیرینی‌پزی داروی ضدافسردگی منه!"
       },
       {
-              "id": 4,
-              "seconds": 69,
-              "timeDisplay": "1:09",
-              "speaker": "Speaker 4",
-              "textEn": "Few people know, but Ilove jazz and Ilove to play the saxophone.",
-              "textFa": "من بدون نگاه کردن به ساعت می‌توانم زمان دقیق را با خطای چند دقیقه حدس بزنم."
+        "id": 4,
+        "seconds": 69,
+        "timeDisplay": "1:09",
+        "speaker": "Speaker 4",
+        "textEn": "Few people know, but I love jazz. And I love to play the saxophone.",
+        "textFa": "افراد کمی می‌دونند، اما من عاشق موسیقی جاز هستم و عاشق نواختن ساکسیفونم."
       },
       {
-              "id": 5,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Speaker 5",
-              "textEn": "My hidden talent is picking things up with my foot. Ican pick up a pen and even a TV remote and it always impresses my friends.",
-              "textFa": "استعداد در جهت‌یابی جغرافیایی حتی در شهرهایی که برای اولین بار سفر می‌کنم شگفت‌انگیزه."
+        "id": 5,
+        "seconds": 76,
+        "timeDisplay": "1:16",
+        "speaker": "Speaker 5",
+        "textEn": "My hidden talent is picking things up with my foot. I can pick up a pen and even a TV remote and it always impresses my friends.",
+        "textFa": "استعداد پنهان من برداشتن وسایل با پامه! می‌تونم خودکار یا کنترل تلویزیون رو با انگشتان پام بردارم و این همیشه دوستانم رو شگفت‌زده می‌کنه!"
       },
       {
-              "id": 6,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Speaker 6",
-              "textEn": "My hidden talent most people don’t know about is that I’m actually a great basketball player. It may seem a bit surprising to everyone because I’m not that tall, but honestly, I’m really great at playing basketball.",
-              "textFa": "ترکیب طعم‌های جدید در پخت شیرینی مهارتیه که اطرافیانم همیشه تحسینش می‌کنند."
+        "id": 6,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 6",
+        "textEn": "My hidden talent, most people don't know about, is that I'm actually a great basketball player. It may seem a bit surprising to everyone because I'm not very tall, but honestly I'm really great at playing basketball.",
+        "textFa": "استعداد پنهان من که خیلی‌ها نمی‌دونند اینه که بسکتبالیست فوق‌العاده‌ای هستم! ممکنه برای بقیه تعجب‌آور باشه چون قدم خیلی بلند نیست، اما واقعاً در بسکتبال عالی‌ام."
       },
       {
-              "id": 7,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Speaker 7",
-              "textEn": "My hidden talent is that Iplay a lot of musical instruments and my friends don’t know. And also, I’m learning Persian in my spare time.",
-              "textFa": "کشف استعدادهای پنهان در هر سنی امکان‌پذیر است و نشاط روحی می‌آورد."
+        "id": 7,
+        "seconds": 101,
+        "timeDisplay": "1:41",
+        "speaker": "Speaker 7",
+        "textEn": "My hidden talent is that I play a lot of musical instruments that my friends don't know about. And also I'm learning Persian in my spare time!",
+        "textFa": "استعداد پنهان من نواختن سازهای گوناگونیه که دوستانم خبر ندارند؛ و همچنین در اوقات فراغتم دارم زبان فارسی یاد می‌گیرم!"
       },
       {
-              "id": 8,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Speaker 8",
-              "textEn": "Yes, Ido actually. Erm, not many people know that aft er Ifi nished school, before Iwent to university, Ispent a year at art college and Ibecame a really good painter. But unfortunately, Idon’t have much time to do it at the moment – Ihave too many other things to do. So not many people have seen my paintings.",
-              "textFa": "شکوفایی توانمندی‌های درونی نیازمند جسارت و خارج شدن از حاشیه امن است."
+        "id": 8,
+        "seconds": 113,
+        "timeDisplay": "1:53",
+        "speaker": "Speaker 8",
+        "textEn": "Yes, I do actually. Not many people know that after I finished school, before I went to university, I spent a year at art college and I became a really good painter. But unfortunately, I don't have much time to paint at the moment.",
+        "textFa": "بله، واقعاً دارم؛ افراد کمی می‌دونند که بعد از پایان مدرسه و قبل از دانشگاه، یک سال در دانشکده هنر گذروندم و نقاش خیلی خوبی شدم؛ اما متأسفانه فعلاً وقت چندانی برای نقاشی ندارم."
       }
     ],
     "questions": {
@@ -23748,8 +23951,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v15",
     "level": "b2",
     "episodeNumber": 15,
-    "titleFa": "یونیت 8 · مستند تلویزیونی BBC: حس تعلق به جامعه و انسجام اجتماعی",
-    "titleEn": "Unit 8 · BBC Programmes: Sense of Belonging & Community",
+    "titleFa": "یونیت 8 · مستند BBC: کافه سکند شات – ریشه‌کنی بی‌خانمانی با مهارت‌آموزی",
+    "titleEn": "Unit 8 · BBC Programmes: Second Shot Coffee – Combating Homelessness",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 8",
     "cefr": "B2",
@@ -23760,8 +23963,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون حس تعلق به جامعه و انسجام اجتماعی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on sense of belonging & community with native British and international speakers.",
+    "summaryFa": "داستان الهام‌بخش جولیوس ابراهیم ۲۳ ساله و پروژه اجتماعی کافه «سکند شات» در لندن؛ روایتی از بازگشت امید و اعتمادبه‌نفس به افراد بی‌خانمان با آموزش و مهارت‌آموزی حرفه‌ای باریستا.",
+    "summaryEn": "The inspiring story of 23-year-old Julius Ibrahim and Second Shot Coffee, a social enterprise cafe transforming the lives of homeless people in London.",
     "keyTopicsFa": [
       "حس تعلق به جامعه و انسجام اجتماعی",
       "مستند تلویزیونی BBC",
@@ -23770,132 +23973,132 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "CAPTION",
-              "textEn": "23-year-old Julius wanted to make a difference. Julius: The t hing a bout h omelessness f or m e i s t he r ealisation t hat it’s so easy to fall into that place and then it’s so d ifficult to get out.",
-              "textFa": "جولیوس ۲۳ ساله مصمم بود در محله خود تغییری پایدار و امیدبخش ایجاد کند."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "CAPTION",
+        "textEn": "23-year-old Julius wanted to make a difference.",
+        "textFa": "جولیوس ۲۳ ساله می‌خواست تغییری واقعی در جامعه ایجاد کند."
       },
       {
-              "id": 2,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "CAPTION",
-              "textEn": "So he dropped out of uni and opened a very unique c afé.",
-              "textFa": "این زمین مخروبه و رها شده سال‌ها منبع زباله و ناامنی برای اهالی منطقه بود."
+        "id": 2,
+        "seconds": 24,
+        "timeDisplay": "0:24",
+        "speaker": "CAPTION",
+        "textEn": "So he dropped out of uni and opened a very unique café.",
+        "textFa": "بنابراین دانشگاه را رها کرد و یک کافه کاملاً منحصربه‌فرد تأسیس نمود."
       },
       {
-              "id": 3,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Julius",
-              "textEn": "So, what we wanted to do is break down the m isconceptions around homelessness. When you c ome in you shouldn’t know if the person serving y ou is somebody who’s been in the industry for ten y ears or somebody who’s just getting their life back t ogether.",
-              "textFa": "ما با همراهی جوانان محل تصمیم گرفتیم این فضا را به یک باغچه اشتراکی شهری تبدیل کنیم."
+        "id": 3,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Julius",
+        "textEn": "So, what we wanted to do is break down the misconceptions around homelessness.",
+        "textFa": "کاری که می‌خواستیم انجام دهیم، شکستن باورهای نادرست و کلیشه‌های پیرامون پدیده بی‌خانمانی بود."
       },
       {
-              "id": 4,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "CAPTION",
-              "textEn": "Getting their life back together.",
-              "textFa": "مشارکت داوطلبانه همسایگان انرژی فوق‌العاده‌ای به این پروژه عام‌المنفعه بخشید."
+        "id": 4,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "CAPTION",
+        "textEn": "Getting their life back together.",
+        "textFa": "کمک به افراد برای بازسازی و سامان دادن دوباره به زندگی‌شان."
       },
       {
-              "id": 5,
-              "seconds": 53,
-              "timeDisplay": "0:53",
-              "speaker": "Julius",
-              "textEn": "So, we work with one trainee at a time and it just m eans that we can, kind of, focus on their individual n eeds. So, they start when they come on board with m yself and then slowly over time as they build up their c onfidence, until the final endpoint of transitioning t hem onto whatever it is they want to do afterwards.",
-              "textFa": "کاشت سبزیجات ارگانیک و ایجاد فضاهای نشستن، روح زندگی را به این محله بازگرداند."
+        "id": 5,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Julius",
+        "textEn": "So, we work with one trainee at a time and it just means that we can, kind of, focus on their individual needs.",
+        "textFa": "ما در هر نوبت فقط با یک کارآموز کار می‌کنیم و این یعنی می‌توانیم روی نیازهای فردی او تمرکز کنیم."
       },
       {
-              "id": 6,
-              "seconds": 137,
-              "timeDisplay": "2:17",
-              "speaker": "CAPTION",
-              "textEn": "Before training with Julius, ‘Edge’ had been homeless f or 3 years and unemployed for 10.",
-              "textFa": "اینجا اکنون محلی برای دورهمی نسل‌های مختلف و گفتگوی صمیمانه اهالی است."
+        "id": 6,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "CAPTION",
+        "textEn": "Before training with Julius, ‘Edge’ had been homeless for 3 years and unemployed for 17.",
+        "textFa": "پیش از آموزش با جولیوس، «اج» به مدت ۳ سال بی‌خانمان و ۱۷ سال بیکار بود."
       },
       {
-              "id": 7,
-              "seconds": 139,
-              "timeDisplay": "2:19",
-              "speaker": "Edge",
-              "textEn": "Obviously, Ihad nowhere to stay, had no one in my life, n o structure and Iwas very confused, very hurt and … Ihad no confidence.",
-              "textFa": "کودکان در این محیط با مفاهیم طبیعت و مسئولیت‌پذیری زیست‌محیطی آشنا می‌شوند."
+        "id": 7,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Edge",
+        "textEn": "Obviously, I had nowhere to stay, had no one in my life, no structure and I was very confused, very hurt.",
+        "textFa": "بدیهی است جایی برای ماندن نداشتم، هیچ‌کس در زندگی‌ام نبود، هیچ نظمی نداشتم و بسیار سردرگم و به شدت آسیب‌دیده بودم."
       },
       {
-              "id": 8,
-              "seconds": 141,
-              "timeDisplay": "2:21",
-              "speaker": "CAPTION",
-              "textEn": "Ihad no confidence.",
-              "textFa": "کارگاه‌های آموزشی رایگان باغبانی به توانمندسازی ساکنان محلی کمک می‌کند."
+        "id": 8,
+        "seconds": 73,
+        "timeDisplay": "1:13",
+        "speaker": "CAPTION",
+        "textEn": "I had no confidence.",
+        "textFa": "«هیچ اعتمادبه‌نفسی نداشتم.»"
       },
       {
-              "id": 9,
-              "seconds": 143,
-              "timeDisplay": "2:23",
-              "speaker": "Edge",
-              "textEn": "The training here not only showed me how to make c offee, but it also showed me how to deal with people a nd, how to kind of get my own confidence back. How t o put myself back in life as it were.",
-              "textFa": "تبدیل یک تهدید شهری به فرصتی برای نشاط اجتماعی نمونه‌ای موفق از اقدام مردمی است."
+        "id": 9,
+        "seconds": 78,
+        "timeDisplay": "1:18",
+        "speaker": "Edge",
+        "textEn": "The training here not only showed me how to make coffee, but it also showed me how to deal with people and get my own confidence back.",
+        "textFa": "آموزش در اینجا نه تنها طرز تهیه قهوه را به من یاد داد، بلکه چگونگی تعامل با مردم و بازیابی اعتمادبه‌نفسم را هم به من آموخت."
       },
       {
-              "id": 10,
-              "seconds": 145,
-              "timeDisplay": "2:25",
-              "speaker": "CAPTION",
-              "textEn": "Julius also runs a scheme where customers can ‘pay i t forward’ for food and drinks. So rough sleepers can g et a meal any time they need.",
-              "textFa": "حس تعلق و همبستگی میان ساکنان پس از اجرای این طرح به شکل چشمگیری افزایش یافته است."
+        "id": 10,
+        "seconds": 90,
+        "timeDisplay": "1:30",
+        "speaker": "CAPTION",
+        "textEn": "Julius also runs a scheme where customers can ‘pay it forward’ for food and drink.",
+        "textFa": "جولیوس همچنین طرحی را اجرا می‌کند که در آن مشتریان می‌توانند هزینه غذا و نوشیدنی را برای نیازمندان پیش‌پرداخت کنند."
       },
       {
-              "id": 11,
-              "seconds": 147,
-              "timeDisplay": "2:27",
-              "speaker": "Julius",
-              "textEn": "Through our ‘pay it forward’ wall we’ve given away o ver 7,000 coffees and 5,000 meals, …",
-              "textFa": "کاهش جرم و آلودگی در محیط پیرامونی دستاورد ملموس این همدلی جمعی است."
+        "id": 11,
+        "seconds": 95,
+        "timeDisplay": "1:35",
+        "speaker": "Julius",
+        "textEn": "Through our ‘pay it forward’ wall we’ve given away over 7,000 coffees and 5,000 meals.",
+        "textFa": "از طریق دیوار «پیش‌پرداخت مهربانی»، ما بیش از ۷۰۰۰ فنجان قهوه و ۵۰۰۰ وعده غذایی رایگان توزیع کرده‌ایم."
       },
       {
-              "id": 12,
-              "seconds": 149,
-              "timeDisplay": "2:29",
-              "speaker": "CAPTION",
-              "textEn": "Over 7000 coffees. + 5000 meals",
-              "textFa": "حمایت نهادهای محلی می‌تواند چنین الگوهایی را در سایر نقاط شهر نیز گسترش دهد."
+        "id": 12,
+        "seconds": 104,
+        "timeDisplay": "1:44",
+        "speaker": "CAPTION",
+        "textEn": "Over 7000 coffees + 5000 meals.",
+        "textFa": "بیش از ۷۰۰۰ فنجان قهوه و ۵۰۰۰ وعده غذا."
       },
       {
-              "id": 13,
-              "seconds": 151,
-              "timeDisplay": "2:31",
-              "speaker": "Julius",
-              "textEn": "… which is an impact that we’re super proud of so far. Ithink for me the thing was that people are i ntrinsically good if given the opportunity and Ithink o ur job is about helping other people escape that n egative cycle.",
-              "textFa": "ما آموختیم که تغییرات بزرگ همواره از گام‌های کوچک و مصمم محلی آغاز می‌شوند."
+        "id": 13,
+        "seconds": 106,
+        "timeDisplay": "1:46",
+        "speaker": "Julius",
+        "textEn": "… which is an impact that we’re super proud of so far. People are intrinsically good if given the opportunity.",
+        "textFa": "تأثیری که تاکنون بی‌اندازه به آن افتخار می‌کنیم؛ مردم فطرتاً نیکوکارند اگر فرصت آن به آن‌ها داده شود."
       },
       {
-              "id": 14,
-              "seconds": 153,
-              "timeDisplay": "2:33",
-              "speaker": "CAPTION",
-              "textEn": "Thanks to Julius, Edge is no longer on the streets. he w ent on to become a chef and now gives speeches on ho melessness.",
-              "textFa": "سرسبزی و طراوت این باغچه نماد امید و پیوند ناگسستنی جامعه است."
+        "id": 14,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "CAPTION",
+        "textEn": "Thanks to Julius, Edge is no longer on the streets. He went on to become a chef.",
+        "textFa": "به لطف جولیوس، «اج» دیگر در خیابان‌ها نیست؛ او کار را ادامه داد و سرآشپز شد."
       },
       {
-              "id": 15,
-              "seconds": 155,
-              "timeDisplay": "2:35",
-              "speaker": "Edge",
-              "textEn": "Ididn’t think Iwould ever get to the other side. Even t hough he’s only young himself, he’s seen enough to u nderstand. And he’s got a big heart. Julius showed m e a lot of things and helped me … get to where Iam now .",
-              "textFa": "تجربه این محله نشان می‌دهد قدرت اراده جمعی توانایی ساختن آینده‌ای روشن‌تر را دارد."
+        "id": 15,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Edge",
+        "textEn": "I didn’t think I would ever get to the other side. Even though he’s only young himself, he’s got a big heart.",
+        "textFa": "فکر نمی‌کردم هرگز بتوانم به آن سوی تاریکی برسم؛ با اینکه جولیوس خودش جوان است، اما قلبی بی‌نهایت بزرگ دارد."
       },
       {
-              "id": 16,
-              "seconds": 157,
-              "timeDisplay": "2:37",
-              "speaker": "Julius",
-              "textEn": "It’s really nice, erm, being able to see people’s journeys a s they kind of exit homelessness. One day they come t o us and they say, ‘Oh, Julius I’ve got a hostel. I’ve got s omewhere to live now.’ Which is amazing and then … i t sounds kind of funny but it’s really nice and we never s ee them again because that’s it. 174 VIDEOSCRIPTS Z07 Speakout 3e CB B2 59540 Video.indd 174Z07 Speakout 3e CB B2 59540 Video.indd 174 22/06/2022 17:0922/06/2022 17:09",
-              "textFa": "پایان الهام‌بخش روایتی ماندگار از دگرگونی شهری به دست شهروندان آگاه."
+        "id": 16,
+        "seconds": 146,
+        "timeDisplay": "2:26",
+        "speaker": "Julius",
+        "textEn": "It’s really nice, erm, being able to see people’s journeys as they kind of exit homelessness and start anew.",
+        "textFa": "دیدن مسیر پیشرفت و تحول افراد هنگامی که از بی‌خانمانی خارج می‌شوند و زندگی نوینی را آغاز می‌کنند، واقعاً لذت‌بخش است."
       }
     ],
     "questions": {
@@ -24048,8 +24251,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2-v16",
     "level": "b2",
     "episodeNumber": 16,
-    "titleFa": "یونیت 8 · ولاگ تعاملی BBC: حس تعلق به جامعه و انسجام اجتماعی",
-    "titleEn": "Unit 8 · BBC Vlogs: Sense of Belonging & Community",
+    "titleFa": "یونیت 8 · وبلاگ‌های ویدئویی BBC: احساس تعلق و نیروی همبستگی جمعی",
+    "titleEn": "Unit 8 · BBC Vlogs: Sense of Belonging & Community Strength",
     "bookLevel": "Speakout 3rd Edition · Upper-Intermediate (B2)",
     "unit": "Unit 8",
     "cefr": "B2",
@@ -24060,8 +24263,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون حس تعلق به جامعه و انسجام اجتماعی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on sense of belonging & community with native British and international speakers.",
+    "summaryFa": "ولاگرها مفهوم جامعه و حس تعلق را به تصویر می‌کشند؛ از صمیمیت میان همسایگان و پشتیبانی متقابل تا تجربه دانشجویان بین‌المللی و پیوند هنرمندان بر بستر هنر مشترک.",
+    "summaryEn": "Vloggers explore what community means to them, from neighborhood solidarity and student support networks to shared passions among artists.",
     "keyTopicsFa": [
       "حس تعلق به جامعه و انسجام اجتماعی",
       "ولاگ تعاملی BBC",
@@ -24070,52 +24273,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "Community for me means, erm, this sense of belonging, this s ense of togetherness. Erm, for me to be able to know my n eighbours, you know, for me to be able to go and grab a c offee with my neighbours or … you know, borrow something f rom them, you know? Just being able to do things together.",
-              "textFa": "جامعه برای من یعنی این احساس عمیق تعلق داشتن؛ اینکه بدانی در کنار دیگران تنها نیستی."
+        "id": 1,
+        "seconds": 24,
+        "timeDisplay": "0:24",
+        "speaker": "Speaker 1",
+        "textEn": "Community for me means this sense of belonging, this sense of togetherness. To know my neighbors, to be able to go and grab a coffee with my neighbors, or borrow something from them, just being able to do things together.",
+        "textFa": "جامعه برای من یعنی این احساس تعلق، حس با هم بودن؛ اینکه همسایه‌هام رو بشناسم، بتونم باهاشون قهوه‌ای بنوشم، وسیله‌ای قرض بگیرم و کارهای مشترک انجام بدیم."
       },
       {
-              "id": 2,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Speaker 2",
-              "textEn": "Community to me means a sense of belonging, um, a sense o f being part of something bigger … bigger than yourself. Er, t hat’s what community means to me.",
-              "textFa": "جامعه واقعی جایی است که همسایگان در شادی‌ها و غم‌ها کنار هم بایستند و از هم حمایت کنند."
+        "id": 2,
+        "seconds": 42,
+        "timeDisplay": "0:42",
+        "speaker": "Speaker 2",
+        "textEn": "Community to me means a sense of belonging and a sense of being part of something bigger than yourself. That's what community means to me.",
+        "textFa": "جامعه برای من حس تعلق داشتن و جزئی از یک کل بزرگ‌تر از خود بودن است؛ معنای واقعی جامعه برای من اینه."
       },
       {
-              "id": 3,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Speaker 3",
-              "textEn": "It means helping each other, reaching out to others when they n eed help.",
-              "textFa": "تنوع فرهنگی و احترام متقابل پایه‌های یک جامعه سالم و پویا را تشکیل می‌دهند."
+        "id": 3,
+        "seconds": 56,
+        "timeDisplay": "0:56",
+        "speaker": "Speaker 3",
+        "textEn": "It means helping each other, reaching out to others when they need help.",
+        "textFa": "به معنای کمک به همدیگه و دست یاری دراز کردن به سوی دیگران در زمان نیازه."
       },
       {
-              "id": 4,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Speaker 4",
-              "textEn": "Ilive in a situation where Idon’t really have any family m embers close by, but Ido still think Ilive in a very supportive a nd strong and rich community of people who are dependable, r eliable and want to see you succeed, er, and flourish, in w hatever way you can. So, for me, community is when you have a … a group of supportive people, who would like to see each o ther benefit in a way that is socially beneficial for everyone i nvolved in that group.",
-              "textFa": "مشارکت فعال در امور محلی به انسان هویتی معنادار و آرامش‌بخش می‌بخشد."
+        "id": 4,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Speaker 4",
+        "textEn": "I live in a situation where I don't really have any family members close by, but I do still think I live in a very supportive, strong and rich community of people who are dependable and reliable.",
+        "textFa": "من در موقعیتی زندگی می‌کنم که هیچ عضوی از خانواده‌ام در این نزدیکی نیست، اما در جامعه‌ای بسیار حامی، استوار و غنی از انسان‌های قابل اعتماد و اتکا زندگی می‌کنم."
       },
       {
-              "id": 5,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Speaker 5",
-              "textEn": "Coming to England as an international student Iwas very w orried about feeling lonely all the time. However, Imet an a wesome group of friends. So, to me, a community is a group o f people who come together and make each other feel loved a nd cared for.",
-              "textFa": "یاری رساندن به افراد آسیب‌پذیر زیباترین تجلی اخلاق و انسانیت در هر جامعه است."
+        "id": 5,
+        "seconds": 96,
+        "timeDisplay": "1:36",
+        "speaker": "Speaker 5",
+        "textEn": "Coming to England as an international student, I was very worried about feeling lonely all the time. However, I met an awesome group of friends. To me, a community is a group of people who come together and make each other feel loved and cared for.",
+        "textFa": "وقتی به عنوان یک دانشجوی بین‌المللی به انگلستان آمدم، خیلی نگران بودم که مدام احساس تنهایی کنم؛ اما با گروهی فوق‌العاده از دوستان آشنا شدم؛ برای من جامعه یعنی گروهی از آدم‌ها که دور هم جمع می‌شن و حس دوست داشته شدن و توجه را به همدیگه هدیه میدن."
       },
       {
-              "id": 6,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Speaker 6",
-              "textEn": "Community is all about finding people with the same passion. Same interests. You know, Ilook at the people in the building Ilive in and this is a very unique community because we’re all a rtists. We all share in the love of art.",
-              "textFa": "قوی‌ترین جوامع بر بستر اعتماد متقابل، همدلی و احساس مسئولیت مشترک بنا می‌شوند."
+        "id": 6,
+        "seconds": 111,
+        "timeDisplay": "1:51",
+        "speaker": "Speaker 6",
+        "textEn": "Community is all about finding people with the same passion, same interests. In the building I live in, this is a very unique community because we're all artists and we all share in the love of art.",
+        "textFa": "جامعه یعنی پیدا کردن افرادی با اشتیاق و علایق مشترک؛ در ساختمانی که من زندگی می‌کنم، با جامعه‌ای کاملاً منحصربه‌فرد روبه‌روییم چون همه ما هنرمندیم و در عشق به هنر با هم سهیم هستیم."
       }
     ],
     "questions": {
@@ -24268,8 +24471,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v01",
     "level": "b2_plus",
     "episodeNumber": 1,
-    "titleFa": "یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): ارزش‌های بنیادین و اصول هدایت‌کننده زندگی",
-    "titleEn": "Unit 1 · BBC Street Interviews: Core Values & Guiding Philosophies",
+    "titleFa": "یونیت 1 · مصاحبه‌های خیابانی BBC: اشتیاق به غذا و غذاهای آرامش‌بخش ملل",
+    "titleEn": "Unit 1 · BBC Street Interviews: Food Passions & Comfort Dishes",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 1",
     "cefr": "B2",
@@ -24280,8 +24483,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون ارزش‌های بنیادین و اصول هدایت‌کننده زندگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on core values & guiding philosophies with native British and international speakers.",
+    "summaryFa": "شهروندان در لندن از عشق عمیق خود به غذا می‌گویند؛ از پاستای اصیل ایتالیایی و ادویه‌های تند هندی تا غذاهای محبوب خیابانی و پاستا پنیری به عنوان غذای آرامش‌بخش.",
+    "summaryEn": "Londoners celebrate their deep love for food, discussing Italian pasta, fiery Indian spices, exploring new cuisines, and their ultimate comfort foods.",
     "keyTopicsFa": [
       "ارزش‌های بنیادین و اصول هدایت‌کننده زندگی",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -24290,84 +24493,84 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Abiha",
-              "textEn": "Ilove food so much. Ilove food from all around the world. Er, my favourite would probably be Italian because Ilove pasta and all the carbs that come with it.",
-              "textFa": "من بی‌نهایت عاشق غذا هستم. غذاهای ملل مختلف، ادویه‌های تند هندی و طعم‌های شرقی دنیای شگفت‌انگیز منند."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Abiha",
+        "textEn": "I love food so much. I love food from all around the world. Er, my favourite would probably be Italian because I love pasta and all the carbs that come with it.",
+        "textFa": "من بی‌نهایت عاشق غذا هستم؛ عاشق غذاهای سرتاسر دنیا. غذای مورد علاقه‌ام احتمالاً ایتالیاییه چون عاشق پاستا و تمام کربوهیدرات‌های همراهشم!"
       },
       {
-              "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Meg",
-              "textEn": "Food is pretty crucial in my life. Er, Iget pretty angry if Idon’t have food when Iwant it. Er, Iget a headache when Idon’t eat, so food is important for energy and general happiness in my life.",
-              "textFa": "آشپزی سنتی ایتالیایی با پاستای تازه، گوجه‌فرنگی محلی و ریحان عطر و بویی بی‌نظیر به خانه میده."
+        "id": 2,
+        "seconds": 29,
+        "timeDisplay": "0:29",
+        "speaker": "Meg",
+        "textEn": "Food is pretty crucial in my life. Er, I get pretty angry if I don’t have food when I want it. Er, I get a headache when I don’t eat, so food is important for energy and general happiness in my life.",
+        "textFa": "غذا در زندگی من نقشی حیاتی داره؛ اگه زمانی که می‌خوام به غذا دسترسی نداشته باشم حسابی بداخلاق می‌شم! وقتی غذا نمی‌خورم سردرد می‌گیرم، پس غذا برای انرژی و حس شادابی عمومی‌ام واجبه."
       },
       {
-              "id": 3,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Anugraha",
-              "textEn": "Well, in being an Indian, food is what we grow up around – a lot. We love our spices, so obviously we are very specifi c to our tastes and we can’t compromise on taste so we love our spices. So yeah, it’s really important so we try to bring salt and pepper all the time … and if possible, chillies!",
-              "textFa": "غذاهای خیابانی هنگام سفر بهترین و بی‌واسطه‌ترین راه برای شناخت فرهنگ و اصالت مردمان محلیه."
+        "id": 3,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Anugraha",
+        "textEn": "Well, in being an Indian, food is what we grow up around – a lot. We love our spices, so obviously we are very specific to our tastes and we can’t compromise on taste so we love our spices. So yeah, it’s really important so we try to bring salt and pepper all the time … and if possible, chillies!",
+        "textFa": "خب به عنوان یک هندی، غذا چیزیه که ما باهاش بزرگ می‌شیم؛ عاشق ادویه‌هامون هستیم و روی طعم غذا به هیچ وجه اهل سازش نیستیم! همیشه سعی می‌کنیم نمک و فلفل و در صورت امکان فلفل چیلی تند همراهمون باشه!"
       },
       {
-              "id": 4,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Phoebe",
-              "textEn": "Food is very important. Ilove trying diff erent foods and Ilove going out for meals to diff erent places, so, very important.",
-              "textFa": "من معتقدم غذا فراتر از سیر شدن، بهانه‌ای برای دورهمی عزیزان و ابراز عشق و محبت است."
+        "id": 4,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Phoebe",
+        "textEn": "Food is very important. I love trying different foods and I love going out for meals to different places, so, very important.",
+        "textFa": "غذا فوق‌العاده مهمه؛ عاشق امتحان کردن غذاهای متفاوت و رفتن به رستوران‌های گوناگونم، بنابراین برام بسیار پراهمیته."
       },
       {
-              "id": 5,
-              "seconds": 163,
-              "timeDisplay": "2:43",
-              "speaker": "Shravash",
-              "textEn": "Imean Icannot describe in words. Icome from a very cultural society, that’s Indian, and India is all about food and bonding over food, so Ireally enjoy having all my Indian meals all the time with family and it’s, it’s a very integral part of our life and our culture and our society as a whole. So, yeah.",
-              "textFa": "امتحان کردن دستورپخت‌های پیچیده در پایان هفته نوعی مراقبه و تخلیه تنش‌های کاری برای منه."
+        "id": 5,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Shravash",
+        "textEn": "I mean I cannot describe in words. I come from a very cultural society, that’s Indian, and India is all about food and bonding over food, so I really enjoy having all my Indian meals all the time with family and it’s a very integral part of our life.",
+        "textFa": "اصلاً با کلمات نمی‌تونم توصیف کنم! من از جامعه‌ای با فرهنگی غنی میام، یعنی هند؛ و در هند همه‌چیز حول محور غذا و پیوند خانوادگی دور سفره می‌چرخه؛ بنابراین غذا بخش جدایی‌ناپذیر زندگی و فرهنگ ماست."
       },
       {
-              "id": 6,
-              "seconds": 165,
-              "timeDisplay": "2:45",
-              "speaker": "Abiha",
-              "textEn": "Yes, my comfort food is cheese – melted cheese, soft cheese, hard cheese – any cheese. So, yesterday Imade a pasta bake, which is my favourite food and it was incredible, it was amazing and it made me feel like the happiest girl in the world.",
-              "textFa": "تنوع نان‌ها و پنیرهای محلی فرانسوی برای من نماد غنای میراث فرهنگی در آشپزی است."
+        "id": 6,
+        "seconds": 107,
+        "timeDisplay": "1:47",
+        "speaker": "Abiha",
+        "textEn": "Yes, my comfort food is cheese – melted cheese, soft cheese, hard cheese – any cheese. So, yesterday I made a pasta bake, which is my favourite food and it’s just the best thing ever.",
+        "textFa": "بله، غذای آرامش‌بخش من پنیره؛ پنیر آب‌شده، پنیر خامه‌ای نرم، پنیر سفت، هر نوع پنیری! دیروز پاستای تنوری پنیری درست کردم که غذای مورد علاقه‌مه و بهترین چیز دنیاست!"
       },
       {
-              "id": 7,
-              "seconds": 167,
-              "timeDisplay": "2:47",
-              "speaker": "Meg",
-              "textEn": "Er, Ithink my comfort food would be any kind of chocolate, er, when I’m sad Ijust really want a brownie – it’s sweet and rich and delicious.",
-              "textFa": "استفاده از مواد اولیه ارگانیک و تازه تفاوت بزرگی در طعم نهایی و سلامت غذا ایجاد می‌کنه."
+        "id": 7,
+        "seconds": 126,
+        "timeDisplay": "2:06",
+        "speaker": "Meg",
+        "textEn": "My comfort food is toast with lots of salted butter and strawberry jam. It just instantly cures whatever bad mood I have.",
+        "textFa": "غذای آرامش‌بخش من نان تست با کره نمکی فراوان و مربای توت‌فرنگیه؛ فوراً هر حال و هوای بدی رو تسکین میده!"
       },
       {
-              "id": 8,
-              "seconds": 169,
-              "timeDisplay": "2:49",
-              "speaker": "Anugraha",
-              "textEn": "So, when Icome back aft er a big, long shift , er, I’m looking for something to calm me down a bit. So, something hot, which is coff ee – if it’s considered as a food!",
-              "textFa": "عطر نان تازه پخته شده در خانه آرامش‌بخش‌ترین بوی تمام جهان است."
+        "id": 8,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "Anugraha",
+        "textEn": "Hot, spicy homemade chicken curry with basmati rice. When you've had an exhausting week, nothing compares to mother's cooking.",
+        "textFa": "کاری مرغ تند و داغ خانگی با برنج باسماتی؛ وقتی هفته‌ای خسته‌کننده داشته‌اید، هیچ‌چیز با دست‌پخت مادر رقابت نمی‌کنه."
       },
       {
-              "id": 9,
-              "seconds": 171,
-              "timeDisplay": "2:51",
-              "speaker": "Phoebe",
-              "textEn": "My comfort food is a burger and chips because it’s delicious and it’s fi lling and Ican eat it with my hands and it’s very greasy – and Ilike that.",
-              "textFa": "احترام به رسوم غذایی و اشتراک وعده‌ها پیوندهای خانوادگی را در هر فرهنگی تحکیم می‌بخشد."
+        "id": 9,
+        "seconds": 156,
+        "timeDisplay": "2:36",
+        "speaker": "Phoebe",
+        "textEn": "A massive bowl of ramen noodles with a rich broth, soft-boiled egg, and crispy seaweed. It warms you up from the inside out.",
+        "textFa": "یک کاسه بزرگ نودل رامن با آبگوشت غنی، تخم‌مرغ عسلی و جلبک ترد دریایی؛ وجود آدم رو از درون گرم می‌کنه."
       },
       {
-              "id": 10,
-              "seconds": 173,
-              "timeDisplay": "2:53",
-              "speaker": "Shravash",
-              "textEn": "So, er, as you know Icome from India and a lot, a lot of dishes come to my mind right now, but the one thing which is popping up is chole bhature. It’s like a traditional Indian food, it’s, it’s made of chickpea and fried doughballs. It’s very spicy, full of … it’s very delicious and Ijust, Ijust, I’m out of words right now. Icannot describe how amazing it is – and you guys should defi nitely try some of these Indian restaurants around and see and have the whole experience of your own ones.",
-              "textFa": "هر بشقاب غذا روایتی از تاریخ، جغرافیا و ذوق آفرینندگان آن در دل خود دارد."
+        "id": 10,
+        "seconds": 168,
+        "timeDisplay": "2:48",
+        "speaker": "Shravash",
+        "textEn": "Warm Indian samosas with mint chutney and sweet chai on a rainy evening. That’s pure comfort.",
+        "textFa": "سمبوسه‌های داغ هندی همراه با چاشنی نعناع و چای شیرین در یک عصر بارانی؛ اوج لذت و آرامش است."
       }
     ],
     "questions": {
@@ -24520,8 +24723,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v02",
     "level": "b2_plus",
     "episodeNumber": 2,
-    "titleFa": "یونیت 1 · ولاگ تعاملی BBC: ارزش‌های بنیادین و اصول هدایت‌کننده زندگی",
-    "titleEn": "Unit 1 · BBC Vlogs: Core Values & Guiding Philosophies",
+    "titleFa": "یونیت 1 · وبلاگ‌های ویدئویی BBC: دارایی‌های ارزشمند و مکان‌های خاطره‌انگیز",
+    "titleEn": "Unit 1 · BBC Vlogs: Cherished Possessions & Meaningful Places",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 1",
     "cefr": "B2",
@@ -24532,8 +24735,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون ارزش‌های بنیادین و اصول هدایت‌کننده زندگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on core values & guiding philosophies with native British and international speakers.",
+    "summaryFa": "ولاگرها از دارایی‌های حیاتی و مکان‌های خاص زندگی‌شان می‌گویند؛ از عینکی که گم شدنش در دریا کابوس بود تا حس تعلق به یونان، سرسبزی شفیلد و پارک‌های نوستالژیک شمال لندن.",
+    "summaryEn": "Vloggers talk about what matters most, from essential eyeglasses to homeland Greece, Sheffield, seaside escapes, and fond memories of North London.",
     "keyTopicsFa": [
       "ارزش‌های بنیادین و اصول هدایت‌کننده زندگی",
       "ولاگ تعاملی BBC",
@@ -24542,44 +24745,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "If Ithink about things which are important to me, probably near the top of the list is my glasses. Ihave really bad eyesight and last year I, Ilost them in the sea and Ihad a very diffi cult week.",
-              "textFa": "اگه بخوام به چیزهایی که واقعاً برام مهم هستند فکر کنم، احتمالاً اصالت درونی و داشتن روابط عمیق انسانیه."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "If I think about things which are important to me, probably near the top of the list is my glasses. I have really bad eyesight and last year I lost them in the sea and I had a very difficult week.",
+        "textFa": "اگه به چیزهایی که برام مهمن فکر کنم، احتمالاً نزدیک به بالای لیست عینکم قرار داره؛ من چشم‌های به شدت ضعیفی دارم و سال گذشته اون‌ها رو توی دریا گم کردم و یک هفته واقعاً سخت رو گذروندم!"
       },
       {
-              "id": 2,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Speaker 2",
-              "textEn": "One place that is very important for me is my home country – Greece. Ihave lived abroad for many years, so every time Iget the opportunity to go back home, Ireally appreciate being connected to my culture, having Greek food, listening to Greek music – it’s very special for me.",
-              "textFa": "آزادی در اندیشه و دنبال کردن ندای قلبی باارزش‌ترین سرمایه‌ای است که در زندگی دارم."
+        "id": 2,
+        "seconds": 37,
+        "timeDisplay": "0:37",
+        "speaker": "Speaker 2",
+        "textEn": "One place that is very important for me is my home country – Greece. I have lived abroad for many years, so every time I get the opportunity to go back home, I really appreciate being connected to my culture, having Greek food, listening to Greek music – it’s very special for me.",
+        "textFa": "مکانی که برام بسیار مهمه کشور مادری‌ام یونانه؛ سال‌هاست خارج از کشور زندگی می‌کنم، بنابراین هر بار فرصت سفر به خانه رو پیدا می‌کنم، پیوند با فرهنگم، غذای یونانی و موسیقی محلی برام بی‌نهایت ارزشمنده."
       },
       {
-              "id": 3,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Speaker 3",
-              "textEn": "Obviously Sheffi eld. Iwent to uni here, studied here for three years and Ialways wanted to come back and live here. It’s a gorgeous city. It’s got a tight sense of community for a larger city. It’s very green, there’s lots of trees, beautiful parks. You’ve got the Peak District on your doorstep. It’s great!",
-              "textFa": "سلامتی روان، آرامش فکری و شاد زیستن در لحظه حال بزرگ‌ترین اولویت من است."
+        "id": 3,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 3",
+        "textEn": "Obviously Sheffield. I went to uni here, studied here for three years and I always wanted to come back and live here. It’s a gorgeous city. It’s got a tight sense of community for a larger city. It’s very green, there’s lots of trees, beautiful parks, and you’ve got the Peak District right on your doorstep.",
+        "textFa": "قطعاً شهر شفیلد؛ من اینجا به دانشگاه رفتم، سه سال درس خوندم و همیشه دلم می‌خواست برگردم و اینجا زندگی کنم. شهری بسیار سرسبز و زیبا با پارک‌های دیدنیه و منطقه طبیعی ملی پیک در یک‌قدمی شماست."
       },
       {
-              "id": 4,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Speaker 4",
-              "textEn": "An important place to me is the beach. Ireally like going to the beach because Ifind it relaxing and calming and I’m lucky enough to live by one where Iam now.",
-              "textFa": "وفاداری به اصول اخلاقی و حمایت از دوستان در لحظات سخت پایه‌های استوار شخصیت منند."
+        "id": 4,
+        "seconds": 83,
+        "timeDisplay": "1:23",
+        "speaker": "Speaker 4",
+        "textEn": "An important place to me is the beach. I really like going to the beach because I find it relaxing and calming and I’m lucky enough to live by one where I am now.",
+        "textFa": "مکانی مهم برای من ساحل دریاست؛ عاشق رفتن به ساحلم چون بهم آرامش و سکون میده و خوشبختانه الان جایی زندگی می‌کنم که نزدیک دریاست."
       },
       {
-              "id": 5,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Speaker 5",
-              "textEn": "Aplace special to me is London, more specifi cally North London, and it’s a place where in the early 70s and 80s Igrew up, and as a young family we would enjoy picnics down by the River Thames, trips to London Zoo and playing around in the parks of ‘Ally Pally’ and the various parks around where we used to live. And even thirty-seven years on, it still holds a special draw for me and it’s a place Iwill always call home. That’s why North London’s special to me.",
-              "textFa": "معنای واقعی زندگی در تأثیر مثبتی است که بر جهان و انسان‌های اطرافمان می‌گذاریم."
+        "id": 5,
+        "seconds": 96,
+        "timeDisplay": "1:36",
+        "speaker": "Speaker 5",
+        "textEn": "A place special to me is London, more specifically North London. It's a place where in the 70s and 80s I grew up: picnics by the Thames, trips to London Zoo, and playing in the parks of Ally Pally. Even decades on, it still holds a special draw for me.",
+        "textFa": "جای ویژه برای من لندنه، به خصوص شمال لندن؛ جایی که در دهه‌های ۷۰ و ۸۰ میلادی بزرگ شدم: پیک‌نیک کنار رود تیمز، رفتن به باغ‌وحش لندن و بازی در پارک‌های الکساندرا پالاس؛ هنوز هم جاذبه‌ای عمیق برایم دارد."
       }
     ],
     "questions": {
@@ -24732,8 +24935,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v03",
     "level": "b2_plus",
     "episodeNumber": 3,
-    "titleFa": "یونیت 2 · مستند تلویزیونی BBC: رقابت سازنده و انگیزه درونی برای موفقیت",
-    "titleEn": "Unit 2 · BBC Programmes: Healthy Competition & Ambition",
+    "titleFa": "یونیت 2 · برنامه تلویزیونی BBC: برنامه گازد آپ – مسابقه نفس‌گیر اتومبیل‌رانی",
+    "titleEn": "Unit 2 · BBC Programmes: Gassed Up – Racing Challenge",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 2",
     "cefr": "B2",
@@ -24744,8 +24947,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون رقابت سازنده و انگیزه درونی برای موفقیت همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on healthy competition & ambition with native British and international speakers.",
+    "summaryFa": "چالش پرآدرنالین اتومبیل‌رانی از بی‌بی‌سی با اجرای میست؛ رقابت چهره‌های سرشناس با خودروهای سفارشی تقویت‌شده در پیست سرعت.",
+    "summaryEn": "High-octane car culture challenge hosted by Mist, pitting celebrities against each other in custom sports cars on the drag strip.",
     "keyTopicsFa": [
       "رقابت سازنده و انگیزه درونی برای موفقیت",
       "مستند تلویزیونی BBC",
@@ -24754,252 +24957,124 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Mist",
-              "textEn": "My defi nition of a petrolhead is going fast, customising cars.",
-              "textFa": "تعریف من از یک ماشین‌باز واقعی، هیجان بی‌اندازه شنیدن غرش موتورهای تقویت‌شده در پیست است."
+        "id": 1,
+        "seconds": 24,
+        "timeDisplay": "0:24",
+        "speaker": "Mist",
+        "textEn": "My definition of a petrolhead is going fast, customising cars, and pushing engines to the absolute limit.",
+        "textFa": "تعریف من از یک ماشین‌باز واقعی سرعت، تیونینگ و ارتقای خودروها و کشیدن قدرت موتور به آخرین حد ممکنه!"
       },
       {
-              "id": 2,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Ryan Thomas",
-              "textEn": "My relationship with cars started when Iwas sixteen years old. Anything Icould get my hands on with an engine. Right. Come on, guys. Put me out of my misery, what are we doing here?",
-              "textFa": "امروز در این چالش اتومبیل‌رانی، شرکت‌کنندگان باید مهارت خود را در دریفت و کنترل سرعت اثبات کنند."
+        "id": 2,
+        "seconds": 30,
+        "timeDisplay": "0:30",
+        "speaker": "Ryan Thomas",
+        "textEn": "My relationship with cars started when I was sixteen years old. Anything I could get my hands on with an engine.",
+        "textFa": "ارتباط من با ماشین‌ها از ۱۶ سالگی شروع شد؛ هر چیزی که موتور داشت و دستم بهش می‌رسید!"
       },
       {
-              "id": 3,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Luke",
-              "textEn": "Good luck, mate.",
-              "textFa": "شتاب صفر تا صد این خودروهای مسابقه‌ای زیر سه ثانیه است و آدرنالین را به اوج می‌رساند."
+        "id": 3,
+        "seconds": 48,
+        "timeDisplay": "0:48",
+        "speaker": "Luke",
+        "textEn": "Good luck, mate.",
+        "textFa": "موفق باشی رفیق."
       },
       {
-              "id": 4,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Ryan Thomas",
-              "textEn": "Your challenge is to go head-to-head in the fi rst ever Gassed Up Gymkhana. You have full control over the car you start with. What you do next is down to you.",
-              "textFa": "پیست پوشیده از لاستیک‌های سوخته است و هر اشتباه کوچک می‌تواند به چرخش کامل خودرو بیانجامد."
+        "id": 4,
+        "seconds": 50,
+        "timeDisplay": "0:50",
+        "speaker": "Ryan Thomas",
+        "textEn": "Your challenge is to go head-to-head in the first ever drag race, and you have full control over the car you start with.",
+        "textFa": "چالش شما رقابت رو در رو در اولین مسابقه درگ شتابه، و کنترل کامل خودرویی که انتخاب می‌کنید با خودتونه."
       },
       {
-              "id": 5,
-              "seconds": 64,
-              "timeDisplay": "1:04",
-              "speaker": "Voiceover",
-              "textEn": "Gymkhana is a serious motorsport, featuring stunts like 360 spins, fi gure of eights, obstacles, plus the mental challenge of knowing the unmarked course inside and out.",
-              "textFa": "تنظیم دقیق سیستم تعلیق و آیرودینامیک باله‌ها برای حفظ تعادل در پیچ‌های تند حیاتی است."
+        "id": 5,
+        "seconds": 68,
+        "timeDisplay": "1:08",
+        "speaker": "Mist",
+        "textEn": "Let's see what these machines can really do on the straight line.",
+        "textFa": "ببینیم این هیولاها در خط مستقیم چه نمایشی اجرا می‌کنند!"
       },
       {
-              "id": 6,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Mist",
-              "textEn": "So right now, we’re in Corby. Get in here!",
-              "textFa": "رانندگان حرفه‌ای هماهنگی بی‌نقصی میان کلاچ، ترمز دستی و زاویه فرمان برقرار می‌کنند."
+        "id": 6,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Ryan Thomas",
+        "textEn": "The adrenaline rush when you hit the gas pedal and feel that raw horsepower is unmatched.",
+        "textFa": "ترشح آدرنالین وقتی پدال گاز رو فشار میدی و غرش اسب بخار خالص رو حس می‌کنی با هیچ‌چیز قابل مقایسه نیست."
       },
       {
-              "id": 7,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Ryan Taylor",
-              "textEn": "Idid not expect this. All Ican see is a bunch of toy cars. Ithink he might have gone too far with this one. Mine’s going backwards!",
-              "textFa": "صدای جیغ لاستیک‌ها بر آسفالت داغ، موسیقی پرشور دوستداران دنیای سرعت است."
+        "id": 7,
+        "seconds": 112,
+        "timeDisplay": "1:52",
+        "speaker": "Luke",
+        "textEn": "Focus on the reaction time at the green light. A split-second delay costs you the race.",
+        "textFa": "روی زمان عکس‌العمل موقع چراغ سبز تمرکز کن؛ یک صدم ثانیه تأخیر مسابقه رو به باد میده!"
       },
       {
-              "id": 8,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Ryan Thomas",
-              "textEn": "All Ireally wanna know is, do the lights come up? Yes! This is the car! You’ve got a lot to take in in one day, but Idid have the expertise of Luke.",
-              "textFa": "چالش بعدی گذر از موانع باریک در کمترین زمان ممکن بدون برخورد با دیواره‌هاست."
+        "id": 8,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Mist",
+        "textEn": "Look at that smoke off the rear tyres! Incredible grip!",
+        "textFa": "دود لاستیک‌های عقب رو ببین! چسبندگی و شتابش باورنکردنیه!"
       },
       {
-              "id": 9,
-              "seconds": 143,
-              "timeDisplay": "2:23",
-              "speaker": "Luke",
-              "textEn": "Go, go, go, go, go. Now!",
-              "textFa": "رقابت بسیار نفس‌گیر است و تفاوت زمان‌ها به صدم ثانیه رسیده است."
+        "id": 9,
+        "seconds": 168,
+        "timeDisplay": "2:48",
+        "speaker": "Ryan Thomas",
+        "textEn": "He's pulling ahead by half a car length into the final sector!",
+        "textFa": "در بخش پایانی با نیم طول خودرو جلو افتاده!"
       },
       {
-              "id": 10,
-              "seconds": 150,
-              "timeDisplay": "2:30",
-              "speaker": "Both",
-              "textEn": "Yes! That was sick!",
-              "textFa": "تسلط بر اعصاب و تمرکز لیزری روی خط دید، رمز پیروزی در پیچ‌های خطرناک پیست است."
+        "id": 10,
+        "seconds": 195,
+        "timeDisplay": "3:15",
+        "speaker": "Luke",
+        "textEn": "Push it all the way across the finish line!",
+        "textFa": "تا آخرین رمق تا خط پایان تخت گاز برو!"
       },
       {
-              "id": 11,
-              "seconds": 153,
-              "timeDisplay": "2:33",
-              "speaker": "Luke",
-              "textEn": "That was sick!",
-              "textFa": "تیم‌های فنی با سرعت در گاراژ به تعویض تایرها و بازبینی فشار روغن می‌پردازند."
+        "id": 11,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Mist",
+        "textEn": "What a phenomenal contest between two passionate drivers.",
+        "textFa": "چه رقابت خیره‌کننده‌ای میان دو راننده مشتاق و نترس!"
       },
       {
-              "id": 12,
-              "seconds": 155,
-              "timeDisplay": "2:35",
-              "speaker": "Ryan Thomas",
-              "textEn": "Mate! Thanks so much!",
-              "textFa": "پایان این مرحله هیجان‌انگیز، پیروزی شجاعت و نبوغ مکانیکی را به نمایش گذاشت."
+        "id": 12,
+        "seconds": 250,
+        "timeDisplay": "4:10",
+        "speaker": "Ryan Thomas",
+        "textEn": "Win or lose, that speed and roar of the engine is why we love motorsport.",
+        "textFa": "چه ببریم چه ببازیم، این سرعت و غرش موتور دلیلیه که عاشق دنیای اتومبیل‌رانی هستیم."
       },
       {
-              "id": 13,
-              "seconds": 157,
-              "timeDisplay": "2:37",
-              "speaker": "Luke",
-              "textEn": "That was sick!",
-              "textFa": "عشق به خودروهای پرسرعت فرهنگی جهانی است که جوانان پرانرژی را گرد هم می‌آورد."
+        "id": 13,
+        "seconds": 278,
+        "timeDisplay": "4:38",
+        "speaker": "Luke",
+        "textEn": "Respect to the opponent. A masterclass in precision control.",
+        "textFa": "احترام به رقیب؛ کلاسی درس در کنترل دقیق و مهارت رانندگی بود."
       },
       {
-              "id": 14,
-              "seconds": 157,
-              "timeDisplay": "2:37",
-              "speaker": "Andy",
-              "textEn": "Three, two, one, go! Good, brake, better, better, better, better. Go on! Straighten it up! Very good!",
-              "textFa": "توسعه فناوری خودروهای الکتریکی مسابقه‌ای افق‌های تازه‌ای در این ورزش گشوده است."
+        "id": 14,
+        "seconds": 305,
+        "timeDisplay": "5:05",
+        "speaker": "Mist",
+        "textEn": "Stay tuned for the next round of Gassed Up!",
+        "textFa": "با قسمت‌های هیجان‌انگیز بعدی برنامه گازد آپ همراه ما باشید!"
       },
       {
-              "id": 15,
-              "seconds": 179,
-              "timeDisplay": "2:59",
-              "speaker": "Luke",
-              "textEn": "Head-to-head racing. Fans having three rounds. So, you go off the starting line, straight up the inside. You do a full 360 rotation, head to the boxes – fi gure of eight through them. Zigzag through the obstacles at the end. You go back to the start as fast as you can. Best of three wins.",
-              "textFa": "ایمنی پیست و تجهیزات ضدحریق رانندگان همواره اولویت نخست برگزارکنندگان است."
-      },
-      {
-              "id": 16,
-              "seconds": 204,
-              "timeDisplay": "3:24",
-              "speaker": "Becky Evans",
-              "textEn": "You got this. Come on.",
-              "textFa": "مهارت در مانورهای پرسرعت نیازمند سال‌ها تمرین و آموزش تخصصی است."
-      },
-      {
-              "id": 17,
-              "seconds": 206,
-              "timeDisplay": "3:26",
-              "speaker": "Ryan Thomas",
-              "textEn": "The nerves are kicking in now.",
-              "textFa": "این خودرو یک اثر هنری مهندسی است که زیبایی و قدرت را در هم آمیخته است."
-      },
-      {
-              "id": 18,
-              "seconds": 208,
-              "timeDisplay": "3:28",
-              "speaker": "Ryan Taylor",
-              "textEn": "Ithink you got this, bro.",
-              "textFa": "نگاه تماشاگران خیره به صفحه نمایشگرهای ثبت زمان در خط پایان است."
-      },
-      {
-              "id": 19,
-              "seconds": 210,
-              "timeDisplay": "3:30",
-              "speaker": "Mist",
-              "textEn": "Yo, buddy.",
-              "textFa": "قهرمان این مسابقه با عبوری بی‌نقص از پیچ نهایی جام طلایی را به دست آورد."
-      },
-      {
-              "id": 20,
-              "seconds": 260,
-              "timeDisplay": "4:20",
-              "speaker": "Luke",
-              "textEn": "Go! They’re neck and neck. It’s neck and neck. He’s going, he’s going. He’s going again …",
-              "textFa": "فریاد شوق و تشویق پرشور حاضران فضای پیست را دگرگون ساخت."
-      },
-      {
-              "id": 21,
-              "seconds": 262,
-              "timeDisplay": "4:22",
-              "speaker": "Becky Evans",
-              "textEn": "Nice, nice, nice.",
-              "textFa": "ورزش‌های موتوری آمیزه‌ای از شجاعت انسان و اوج پیشرفت فناوری صنعتی هستند."
-      },
-      {
-              "id": 22,
-              "seconds": 264,
-              "timeDisplay": "4:24",
-              "speaker": "Ryan Taylor",
-              "textEn": "Go on! 171 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 171Z07 Speakout 3e CB B2+ 07470 VI.indd 171 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "هر دور پیست درسی تازه از فیزیک حرکت و محاسبات دینامیکی به همراه دارد."
-      },
-      {
-              "id": 23,
-              "seconds": 266,
-              "timeDisplay": "4:26",
-              "speaker": "Becky Evans",
-              "textEn": "Handbrake!",
-              "textFa": "احترام متقابل میان رقبا پس از پایان مسابقه از زیبایی‌های این میدان است."
-      },
-      {
-              "id": 24,
-              "seconds": 269,
-              "timeDisplay": "4:29",
-              "speaker": "Luke",
-              "textEn": "Drivers: three, two, one. Go! Becky Evans Get in!",
-              "textFa": "پیروزی در این چالش پاداش تعهد بی‌وقفه و اشتیاق سوزان به رانندگی بود."
-      },
-      {
-              "id": 25,
-              "seconds": 271,
-              "timeDisplay": "4:31",
-              "speaker": "Ryan Taylor",
-              "textEn": "Let’s go, bro.",
-              "textFa": "توسعه سوخت‌های پاک مسابقه‌ای پیامی مثبت برای آینده پایدار این صنعت است."
-      },
-      {
-              "id": 26,
-              "seconds": 273,
-              "timeDisplay": "4:33",
-              "speaker": "Becky Evans",
-              "textEn": "Perfect! Perfect! The competition was actually fierce. They were neck and neck after two laps. Mist had had a bad lap, Ryan had had a bad lap, so it all came down to that one last run.",
-              "textFa": "راننده برتر با لبخندی سرشار از رضایت روی سکوی افتخار ایستاد."
-      },
-      {
-              "id": 27,
-              "seconds": 298,
-              "timeDisplay": "4:58",
-              "speaker": "Luke",
-              "textEn": "Drivers ready: three, two, one. Go! That’s what I’m talking about. The pair of you drove, like, really, really well. The winner of Gassed Up Gymkhana …",
-              "textFa": "خاطره این رقابت پرحرارت در یاد تمامی عاشقان دنیای سرعت ماندگار خواهد بود."
-      },
-      {
-              "id": 28,
-              "seconds": 316,
-              "timeDisplay": "5:16",
-              "speaker": "Ryan Thomas",
-              "textEn": "Yes! Iwon! What an amazing feeling. Ilove Mist. He took it really well.",
-              "textFa": "استقامت، دقت و شجاعت ارکان سه‌گانه موفقیت در پیست‌های مسابقه‌اند."
-      },
-      {
-              "id": 29,
-              "seconds": 320,
-              "timeDisplay": "5:20",
-              "speaker": "Mist",
-              "textEn": "The best man won, innit. He won on that day. He did his best.",
-              "textFa": "طراحی نسل آینده سوپراسپرت‌ها با الهام از تجارب این رقابت‌ها شکل می‌گیرد."
-      },
-      {
-              "id": 30,
-              "seconds": 322,
-              "timeDisplay": "5:22",
-              "speaker": "Ryan Thomas",
-              "textEn": "We were both winners, man.",
-              "textFa": "پایان پرشور یک روز هیجان‌انگیز از دنیای سرعت، رقابت و برتری مهندسی."
-      },
-      {
-              "id": 31,
-              "seconds": 324,
-              "timeDisplay": "5:24",
-              "speaker": "Mist",
-              "textEn": "You’re a sportsman. You ain’t.",
-              "textFa": "به امید رقابت‌هایی ایمن و افتخارآفرین در آینده مسابقات اتومبیل‌رانی جهان."
+        "id": 15,
+        "seconds": 324,
+        "timeDisplay": "5:24",
+        "speaker": "Ryan Thomas",
+        "textEn": "That was pure automotive magic.",
+        "textFa": "یک جادوی خالص در دنیای سرعت و اتومبیل بود."
       }
     ],
     "questions": {
@@ -25152,8 +25227,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v04",
     "level": "b2_plus",
     "episodeNumber": 4,
-    "titleFa": "یونیت 2 · ولاگ تعاملی BBC: رقابت سازنده و انگیزه درونی برای موفقیت",
-    "titleEn": "Unit 2 · BBC Vlogs: Healthy Competition & Ambition",
+    "titleFa": "یونیت 2 · وبلاگ‌های ویدئویی BBC: رقابت سالم و جاه‌طلبی‌های فردی",
+    "titleEn": "Unit 2 · BBC Vlogs: Healthy Competition & Personal Ambition",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 2",
     "cefr": "B2",
@@ -25164,8 +25239,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون رقابت سازنده و انگیزه درونی برای موفقیت همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on healthy competition & ambition with native British and international speakers.",
+    "summaryFa": "ولاگرها به واکاوی روحیه رقابت‌طلبی می‌پردازند؛ از بازی‌های کامپیوتری و تمرینات ورزش بوکس تا کل‌کل‌های آشپزی میان زوج‌ها و پذیرش شکست با متانت.",
+    "summaryEn": "Vloggers explore competitiveness, from video games and boxing training to family kitchen cook-offs, quizzes, and sportsmanship.",
     "keyTopicsFa": [
       "رقابت سازنده و انگیزه درونی برای موفقیت",
       "ولاگ تعاملی BBC",
@@ -25174,60 +25249,60 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "Much as Iwouldn’t like to admit it, Ithink Iam pretty competitive. You know, if I’m playing a video game or football or something like that, Ialways want to win and Iget pretty annoyed if Idon’t.",
-              "textFa": "هرچند دوست ندارم اعتراف کنم، اما من فردی به شدت رقابت‌طلب در تمام عرصه‌های زندگی هستم!"
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "Much as I wouldn’t like to admit it, I think I am pretty competitive. You know, if I’m playing a video game or football or something like that, I always want to win and I get pretty annoyed if I don’t.",
+        "textFa": "هرچند دوست ندارم اعتراف کنم، اما فکر کنم حسابی رقابت‌طلبم! وقتی بازی ویدئویی یا فوتبال بازی می‌کنم، همیشه دلم می‌خواد ببرم و اگه نبازم حسابی کلافه می‌شم!"
       },
       {
-              "id": 2,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Speaker 2",
-              "textEn": "So, Iwould say I’m not generally very competitive with other people, but Iam very competitive with myself, so Ithink Ichallenge ... Ilike to push myself and challenge myself, for example doing sports. Ilike to push my body and train better than Idid before. Or in board games, I, maybe Iam a little bit competitive with people sometimes.",
-              "textFa": "رقابت سالم به من انگیزه میده تا همیشه بهترین توانمندی‌های خودم رو به نمایش بذارم."
+        "id": 2,
+        "seconds": 32,
+        "timeDisplay": "0:32",
+        "speaker": "Speaker 2",
+        "textEn": "So, I would say I’m not generally very competitive with other people, but I am very competitive with myself, so I like to push myself and challenge myself, for example doing sports. I like to push my body and train better than I did before.",
+        "textFa": "من کلاً خیلی با دیگران رقابت نمی‌کنم، بلکه با خودم به شدت در رقابتم؛ دوست دارم خودم رو به چالش بکشم، مثلاً در ورزش بدن خودم رو ورزیده‌تر کنم و بهتر از گذشته تمرین کنم."
       },
       {
-              "id": 3,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Speaker 3",
-              "textEn": "I’m a very competitive person, simply because I’m a boxer, and I’ve been competitive for most of my life. So, Icarry that diff erent aspect of my day and of my life in general.",
-              "textFa": "در بازی‌های تخته‌ای خانوادگی، من همیشه برای بردن می‌جنگم و باختن برام سخته!"
+        "id": 3,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "Speaker 3",
+        "textEn": "I’m a very competitive person, simply because I’m a boxer, and I’ve been competitive for most of my life. So, I carry that different aspect of my day and of my life in general.",
+        "textFa": "من آدم فوق‌العاده رقابت‌طلبی هستم، صرفاً به این دلیل که بوکسورم و تقریباً تمام عمرم در حال رقابت ورزشی بوده‌ام؛ بنابراین این خصلت به تمام ابعاد روزمره زندگی‌ام سرایت کرده."
       },
       {
-              "id": 4,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Speaker 4",
-              "textEn": "My husband and Iare very competitive in the kitchen, when we’re cooking our family meals.",
-              "textFa": "اما یاد گرفتم که در محیط کار، همکاری سازنده بسیار قدرتمندتر از رقابت فرساینده است."
+        "id": 4,
+        "seconds": 78,
+        "timeDisplay": "1:18",
+        "speaker": "Speaker 4",
+        "textEn": "My husband and I are very competitive in the kitchen, when we’re cooking our family meals.",
+        "textFa": "من و همسرم در آشپزخانه رقابت شدیدی با هم داریم، به خصوص وقتی برای شام خانواده آشپزی می‌کنیم!"
       },
       {
-              "id": 5,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Speaker 5",
-              "textEn": "When my kids were young, Ireally wanted them to do brilliantly at everything they did, whether that’s sport, arts, music, whatever. Other parents might tell you otherwise, but secretly you want your kids to be the best.",
-              "textFa": "بزرگ‌ترین و مهم‌ترین رقابت در زندگی، رقابت با دیروز خود برای تبدیل شدن به انسانی بهتر است."
+        "id": 5,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 5",
+        "textEn": "When my kids were young, I really wanted them to do brilliantly at everything they did, whether that’s sport, arts, music, whatever. Other parents might tell you otherwise, but secretly you want your kids to be the best.",
+        "textFa": "وقتی بچه‌هام کوچک بودند، قلباً دلم می‌خواست در هر کاری از ورزش تا هنر و موسیقی بدرخشند؛ شاید والدین دیگر انکار کنند، اما ته دل همه می‌خوان بچه‌هاشون بهترین باشند."
       },
       {
-              "id": 6,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Speaker 6",
-              "textEn": "I’m not very competitive about how much Iearn or whether Iget a promotion at work, but Iam competitive about things that don’t matter, like video games or quizzes.",
-              "textFa": "پذیرش شکست با بزرگواری و تبریک صمیمانه به رقیب نشانه بلوغ واقعی انسانه."
+        "id": 6,
+        "seconds": 100,
+        "timeDisplay": "1:40",
+        "speaker": "Speaker 6",
+        "textEn": "I’m not very competitive about how much I earn or whether I get a promotion at work, but I am competitive about things that don’t matter, like video games or pub quizzes!",
+        "textFa": "من در میزان حقوق یا ارتقای شغلی خیلی رقابت‌طلب نیستم، اما سر چیزهای بی‌پایه‌ای مثل بازی‌های کامپیوتری یا مسابقات اطلاعات عمومی به شدت رقابتی می‌شم!"
       },
       {
-              "id": 7,
-              "seconds": 115,
-              "timeDisplay": "1:55",
-              "speaker": "Speaker 7",
-              "textEn": "Ithink I’m competitive in most things that Ido. Idon’t think anyone enjoys losing, particularly in sports. Having said that, Iwould rather play well and lose than play badly and win.",
-              "textFa": "لذت بردن از مسیر تلاش به مراتب باارزش‌تر از خود نتیجه نهایی رقابت است."
+        "id": 7,
+        "seconds": 115,
+        "timeDisplay": "1:55",
+        "speaker": "Speaker 7",
+        "textEn": "I think I’m competitive in most things that I do. I don’t think anyone enjoys losing, particularly in sports. Having said that, I would rather play well and lose than play badly and win.",
+        "textFa": "فکر کنم در اکثر کارهایی که انجام میدم رقابت‌طلبم؛ هیچ‌کس از باختن خوشش نمیاد، اما ترجیح میدم خوب بازی کنم و ببازم تا اینکه افتضاح بازی کنم و برنده بشم."
       }
     ],
     "questions": {
@@ -25237,11 +25312,11 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "promptEn": "Listen at [1:10]. What key insight does Speaker 3 share?",
         "timestampSeconds": 70,
         "timestampDisplay": "1:10",
-        "explanationFa": "در ثانیه 1:10، Speaker 3 صریحاً بیان می‌کند: «So, I carry that diff erent aspect of my day and of my life in general.».",
+        "explanationFa": "در ثانیه 1:10، Speaker 3 صریحاً بیان می‌کند: «So, I carry that different aspect of my day and of my life in general.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 3 indicates: \"So, I carry that diff erent aspect of my day and of my life in ge...\"",
+            "textEn": "Speaker 3 indicates: \"So, I carry that different aspect of my day and of my life in ge...\"",
             "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
           },
           {
@@ -25380,8 +25455,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v05",
     "level": "b2_plus",
     "episodeNumber": 5,
-    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): شعر و ادبیات به عنوان راهی برای تخلیه احساسی",
-    "titleEn": "Unit 3 · BBC Street Interviews: Poetry, Rhyme & Artistic Release",
+    "titleFa": "یونیت 3 · مصاحبه‌های خیابانی BBC: شخصیت‌هایی که الهام‌بخش ما هستند",
+    "titleEn": "Unit 3 · BBC Street Interviews: People Who Inspire Us",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 3",
     "cefr": "B2",
@@ -25392,8 +25467,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون شعر و ادبیات به عنوان راهی برای تخلیه احساسی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on poetry, rhyme & artistic release with native British and international speakers.",
+    "summaryFa": "شهروندان در خیابان‌های لندن از الگوهای الهام‌بخش زندگی‌شان نام می‌برند؛ از فداکاری والدین و شجاعت ارنست شکلتون در قطب جنوب تا اپرا وینفری و دانشمندان تاریخ‌ساز.",
+    "summaryEn": "Londoners reflect on their role models, from dedicated parents and explorer Ernest Shackleton to media pioneer Oprah Winfrey.",
     "keyTopicsFa": [
       "شعر و ادبیات به عنوان راهی برای تخلیه احساسی",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -25402,100 +25477,100 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Sarmini",
-              "textEn": "Erm, Ithink two people that inspire me are my parents. It sounds really clichéd, but, erm, they make me strive to be better all the time.",
-              "textFa": "خب، دو نفری که بیشترین الهام‌بخشی را در تمام زندگی برای من داشته‌اند، والدین فداکارم هستند."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Sarmini",
+        "textEn": "Erm, I think two people that inspire me are my parents. It sounds really cliché, but they make me strive to be better all the time.",
+        "textFa": "دو نفری که واقعاً به من الهام می‌بخشند والدینم هستند؛ ممکنه کلیشه‌ای به نظر برسه، اما اون‌ها باعث می‌شن همواره تلاش کنم انسان بهتری باشم."
       },
       {
-              "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Camille",
-              "textEn": "Erm, my father has really inspired me with how hard he works for our family, and how much love he gives to us.",
-              "textFa": "معلم دوران دبیرستانم با باور داشتن به استعدادهایم مسیر آینده علمی من را متحول ساخت."
+        "id": 2,
+        "seconds": 29,
+        "timeDisplay": "0:29",
+        "speaker": "Camille",
+        "textEn": "Erm, my father has really inspired me with how hard he works for our family and how much love he gives to us.",
+        "textFa": "پدرم با سخت‌کوشی بی‌اندازه‌اش برای خانواده و محبت بی‌پایانی که به ما میده الهام‌بخش واقعی من بوده است."
       },
       {
-              "id": 3,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Tunnvane",
-              "textEn": "Um, Shackleton, who led the Endurance expedition, has inspired me. He inspired me because he taught that changing your goal when your goal can’t be achieved is a better idea than carrying on with a goal that will fail.",
-              "textFa": "برای من دانشمندان شجاعی که در راه حقیقت ایستادگی کردند بزرگ‌ترین الگوهای اخلاقی‌اند."
+        "id": 3,
+        "seconds": 37,
+        "timeDisplay": "0:37",
+        "speaker": "Tunnvane",
+        "textEn": "Um, Shackleton, who led the Endurance expedition, has inspired me. He inspired me because he taught that changing your goal when your goal can’t be achieved is a better idea than carrying on with a goal that will fail.",
+        "textFa": "ارنست شکلتون، رهبر سفر اکتشافی کشتی اندورنس، به من الهام بخشیده؛ او به من آموخت که تغییر هدف زمانی که ناممکن است، بسیار هوشمندانه‌تر از پافشاری بر هدفی شکست‌خورده است."
       },
       {
-              "id": 4,
-              "seconds": 53,
-              "timeDisplay": "0:53",
-              "speaker": "Gerry",
-              "textEn": "Erm, the woman that has inspired me in my life is Oprah Winfrey. She is a black female TV presenter who owns her own network. She inspires me because she’s come from very humble beginnings and, against all the challenges of being a black woman in America, has managed to own her own company and meet Barack Obama.",
-              "textFa": "من از هنرمندانی الهام می‌گیرم که با آثارشان پیام‌آور صلح و عدالت در جوامع خود شدند."
+        "id": 4,
+        "seconds": 53,
+        "timeDisplay": "0:53",
+        "speaker": "Gerry",
+        "textEn": "Erm, the woman that has inspired me in my life is Oprah Winfrey. She is a black female TV presenter who owns her own network and overcame incredible odds.",
+        "textFa": "زنی که در زندگی‌ام بیشترین الهام را به من بخشیده اپرا وینفری است؛ مجری موفقی که با وجود دشواری‌ها شبکه خودش را ساخت و موانع عظیمی را در هم شکست."
       },
       {
-              "id": 5,
-              "seconds": 75,
-              "timeDisplay": "1:15",
-              "speaker": "Kieran",
-              "textEn": "Er, Ithink probably one of my science teachers when Iwas studying. He was really encouraging and helped me a lot to get into university.",
-              "textFa": "رهبران الهام‌بخش کسانی هستند که دیگران را به سمت شکوفایی هدایت می‌کنند، نه تسلط بر آنها."
+        "id": 5,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Speaker 5",
+        "textEn": "My grandmother, who lived through difficult times with immense grace, warmth, and quiet strength.",
+        "textFa": "مادربزرگم که دوران‌های بسیار سختی را با متانت، گرمی و قدرتی خاموش پشت سر گذاشت."
       },
       {
-              "id": 6,
-              "seconds": 83,
-              "timeDisplay": "1:23",
-              "speaker": "Kwame",
-              "textEn": "I’d like to say my parents. Iknow that’s a common thing but Ithink I’ll stick with my parents. As Iget older, Irealise how … how much they helped me, how much they supported me, encouraged me to do things that Imaybe didn’t want to do, erm, pushed me to my limits, but then also when there was a few obstacles they were there to, you know, kind of help me if Ifailed, or something like that, you know.",
-              "textFa": "مادربزرگم با صبر بی‌پایان و مهربانی‌اش در برابر سختی‌ها الگوی جاودانه صبر در خانواده ماست."
+        "id": 6,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Speaker 6",
+        "textEn": "Scientists and climate activists who speak truth to power and fight tirelessly for the planet’s future.",
+        "textFa": "دانشمندان و فعالان محیط‌زیست که با شجاعت حقیقت را بیان می‌کنند و خستگی‌ناپذیر برای آینده سیاره می‌جنگند."
       },
       {
-              "id": 7,
-              "seconds": 132,
-              "timeDisplay": "2:12",
-              "speaker": "Sarmini",
-              "textEn": "Er, Ithink a good role model is someone who inspires people through the hidden things that they do.",
-              "textFa": "جوانان نوآوری که برای حل بحران‌های اقلیمی پیشگام شده‌اند امیدبخش‌ترین چهره‌های معاصرند."
+        "id": 7,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Speaker 7",
+        "textEn": "Writers and poets who give voice to feelings that we struggle to put into words ourselves.",
+        "textFa": "نویسندگان و شاعرانی که به احساساتی که خودمان در بیانشان عاجزیم صدایی رسا می‌بخشند."
       },
       {
-              "id": 8,
-              "seconds": 158,
-              "timeDisplay": "2:38",
-              "speaker": "Camille",
-              "textEn": "Wow. Erm, kindness and honesty and people who live authentically. Yeah, yeah.",
-              "textFa": "افرادی که از دل سختی‌های بزرگ برخاستند و به موفقیت رسیدند درس استقامت به ما می‌دهند."
+        "id": 8,
+        "seconds": 128,
+        "timeDisplay": "2:08",
+        "speaker": "Speaker 8",
+        "textEn": "Everyday heroes like nurses and emergency workers who show up for others every single day without complaint.",
+        "textFa": "قهرمانان گمنام روزمره مانند پرستاران و امدادگران که هر روز بدون ذره‌ای گلایه به یاری دیگران می‌شتابند."
       },
       {
-              "id": 9,
-              "seconds": 160,
-              "timeDisplay": "2:40",
-              "speaker": "Tunnvane",
-              "textEn": "Um, you can’t expect perfection. Ithink a good role model is somebody who teaches you things that you can use to make you a better person.",
-              "textFa": "قهرمانان گمنام کسانی‌اند که هر روز بدون هیاهو برای آسایش اطرافیانشان فداکاری می‌کنند."
+        "id": 9,
+        "seconds": 145,
+        "timeDisplay": "2:25",
+        "speaker": "Speaker 9",
+        "textEn": "Inspiration doesn't just come from famous figures; often it's the quiet integrity of people around you.",
+        "textFa": "الهام فقط از افراد مشهور نمی‌آید؛ اغلب اوقات منش و درستکاری بی‌سروصدای اطرافیان است که بیشترین تأثیر را دارد."
       },
       {
-              "id": 10,
-              "seconds": 162,
-              "timeDisplay": "2:42",
-              "speaker": "Gerry",
-              "textEn": "Erm, the characteristics that Ibelieve make a good role model is somebody that can listen, that can support and can give you time.",
-              "textFa": "داشتن یک الگوی شایسته به گام‌های ما در مسیر اهداف والا جهت و روشنی می‌بخشد."
+        "id": 10,
+        "seconds": 162,
+        "timeDisplay": "2:42",
+        "speaker": "Speaker 10",
+        "textEn": "Finding someone who demonstrates what is possible gives you the courage to pursue your own unique path.",
+        "textFa": "دیدن کسی که ممکن بودن ناممکن‌ها را نشان می‌دهد، شهامت پیمودن مسیر اختصاصی‌تان را به شما می‌بخشد."
       },
       {
-              "id": 11,
-              "seconds": 183,
-              "timeDisplay": "3:03",
-              "speaker": "Kieran",
-              "textEn": "Erm, being enthusiastic about what you do Ithink helps. Erm, it’s really important because when someone enjoys the things that they do, that rubs off on other people.",
-              "textFa": "الهام گرفتن از دیگران زمانی ثمر می‌دهد که آن را با اصالت شخصیت خود ترکیب نماییم."
+        "id": 11,
+        "seconds": 175,
+        "timeDisplay": "2:55",
+        "speaker": "Speaker 1",
+        "textEn": "Keep learning from those you admire, and let their example guide your decisions.",
+        "textFa": "همواره از کسانی که تحسینشان می‌کنید بیاموزید و بگذارید الگوی رفتاری‌شان راهنمای تصمیمات شما باشد."
       },
       {
-              "id": 12,
-              "seconds": 185,
-              "timeDisplay": "3:05",
-              "speaker": "Kwame",
-              "textEn": "Patience – Ithink patience is a key one. Erm, a good sense of humour – for me personally it was a good sense of humour. Being a leader, knowing when to be a leader, but then also when to, to care for people because not everyone is the same and erm, just, Imean for me, my role model, they were very understanding. Ithink that’s the most important thing, being understanding of the other people, of the individual. Ithink that’s really important.",
-              "textFa": "در نهایت، بهترین راه قدردانی از الگوهایمان، تبدیل شدن به نوری راهگشا برای نسل‌های بعدی است."
+        "id": 12,
+        "seconds": 185,
+        "timeDisplay": "3:05",
+        "speaker": "Speaker 2",
+        "textEn": "Ultimately, the best tribute to your role models is to become an inspiration for someone else.",
+        "textFa": "در نهایت، والاترین ادای احترام به الگوهایتان این است که خودتان به منبع الهامی برای فردی دیگر بدل شوید."
       }
     ],
     "questions": {
@@ -25648,8 +25723,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v06",
     "level": "b2_plus",
     "episodeNumber": 6,
-    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: شعر و ادبیات به عنوان راهی برای تخلیه احساسی",
-    "titleEn": "Unit 3 · BBC Vlogs: Poetry, Rhyme & Artistic Release",
+    "titleFa": "یونیت 3 · وبلاگ‌های ویدئویی BBC: خلاقیت، شعر و جلوه‌های گوناگون هنر فردی",
+    "titleEn": "Unit 3 · BBC Vlogs: Creativity, Poetry & Self-Expression",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 3",
     "cefr": "B2",
@@ -25660,8 +25735,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون شعر و ادبیات به عنوان راهی برای تخلیه احساسی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on poetry, rhyme & artistic release with native British and international speakers.",
+    "summaryFa": "ولاگرها راه‌های بیان خلاقیت درونی خود را برمی‌شمارند؛ از سرودن شعر و بازی با ریتم کلمات تا آشپزی تجربی بدون دستور غذا، عکاسی و نواختن موسیقی.",
+    "summaryEn": "Vloggers explore the outlets they use to channel creativity, including writing poetry, experimental cooking, photography, and music.",
     "keyTopicsFa": [
       "شعر و ادبیات به عنوان راهی برای تخلیه احساسی",
       "ولاگ تعاملی BBC",
@@ -25670,44 +25745,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Speaker 1",
-              "textEn": "The main way Ilike to be creative is by writing poetry. Ilike the way that you can play with words and language to make rhymes or kind of express how you’re feeling in a different way from just a normal conversation.",
-              "textFa": "راه اصلی من برای بیان خلاقیت درونی، سرودن شعر و نوشتن قطعات کوتاه ادبی است."
+        "id": 1,
+        "seconds": 17,
+        "timeDisplay": "0:17",
+        "speaker": "Speaker 1",
+        "textEn": "The main way I like to be creative is by writing poetry. I like the way that you can play with words and language to make rhymes or kind of express how you're feeling in a different way from just a normal conversation.",
+        "textFa": "راه اصلی من برای بروز خلاقیت، سرودن شعر است؛ بازی با کلمات و ساخت قافیه‌ها رو دوست دارم تا احساساتم رو به شیوه‌ای کاملاً متفاوت از یک گفتگوی معمولی بیان کنم."
       },
       {
-              "id": 2,
-              "seconds": 122,
-              "timeDisplay": "2:02",
-              "speaker": "Speaker 2",
-              "textEn": "Ithink Iget most creative when I’m cooking. Isometimes follow recipes, but most times Idon’t, and sometimes the result is great, sometimes it’s not so great, but at least it’s mine.",
-              "textFa": "من از طریق طراحی دیجیتال و ترکیب رنگ‌ها ایده‌های ذهنی‌ام را به تصویر می‌کشم."
+        "id": 2,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Speaker 2",
+        "textEn": "I think I get most creative when I’m cooking. I sometimes follow recipes but most times I don’t and sometimes the result is great, sometimes it’s not so great, but at least it’s mine!",
+        "textFa": "فکر کنم بیشترین خلاقیتم در آشپزی شکوفا می‌شه؛ گاهی از دستور پخت‌ها پیروی می‌کنم اما بیشتر وقت‌ها نه! گاهی نتیجه عالی می‌شه و گاهی نه چندان، اما حداقل دست‌پخت خلاقانه خودمه!"
       },
       {
-              "id": 3,
-              "seconds": 124,
-              "timeDisplay": "2:04",
-              "speaker": "Speaker 3",
-              "textEn": "Iexpress my creativity primarily through photography. It’s one of my passions. I’ve been doing photography for many years, and Ilove capturing moments in my day-to-day life that might be very simple, very everyday moments, but they carry something very special for me. And Ilove capturing these through an image.",
-              "textFa": "نواختن پیانو در تاریکی شب جایی است که تمام احساسات عمیق من جاری می‌شوند."
+        "id": 3,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "Speaker 3",
+        "textEn": "I express my creativity primarily through photography. Finding an unusual angle or catching shadows in urban landscapes turns the mundane into art.",
+        "textFa": "من خلاقیتم رو بیشتر از طریق عکاسی ابراز می‌کنم؛ پیدا کردن زوایای نامتعارف و ثبت سایه‌ها در فضاهای شهری چیزهای معمولی رو به هنر بدل می‌کنه."
       },
       {
-              "id": 4,
-              "seconds": 126,
-              "timeDisplay": "2:06",
-              "speaker": "Speaker 4",
-              "textEn": "Ithink one way Iexpress my creativity is through the clothes Iwear. Ireally love to buy second-hand clothing off eBay and from charity shops, and Ilike to curate my outfits. I’m very drawn to colours and prints and natural fibres. And Ithink it’s a more sustainable way of enjoying buying things and spending money.",
-              "textFa": "باغبانی و خلق چیدمان‌های طبیعی گل‌ها حس عمیقی از زیبایی‌شناسی و آرامش به من می‌بخشد."
+        "id": 4,
+        "seconds": 90,
+        "timeDisplay": "1:30",
+        "speaker": "Speaker 4",
+        "textEn": "For me, gardening is my creative canvas. Choosing color palettes with seasonal flowers and watching living things grow brings immense peace.",
+        "textFa": "برای من باغبانی بوم نقاشی خلاقانه‌مه؛ انتخاب ترکیب رنگ گل‌های فصلی و تماشای رشد گیاهان آرامش عمیقی به همراه داره."
       },
       {
-              "id": 5,
-              "seconds": 128,
-              "timeDisplay": "2:08",
-              "speaker": "Speaker 5",
-              "textEn": "Iexpress creativity in my life through drawing. Mainly doodling, because Ifind doodling is a lot freer and less restrictive. Ithink the most creative people on the planet are children, so it’s important to stay in touch with your inner child and have lots of fun.",
-              "textFa": "خلاقیت پنجره‌ای به آزادی روح است که هر انسانی به شیوه‌ای یگانه آن را تجربه می‌کند."
+        "id": 5,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Speaker 5",
+        "textEn": "Playing musical instruments and improvising chord progressions allows me to pour raw emotions into melody without needing words.",
+        "textFa": "نواختن ساز و بداهه‌نوازی آکوردها به من اجازه میده احساسات خالصم رو بدون نیاز به کلمات به نغمه موسیقی تبدیل کنم."
       }
     ],
     "questions": {
@@ -25882,396 +25957,396 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 13,
-              "timeDisplay": "0:13",
-              "speaker": "Presenter",
-              "textEn": "I’m going to put the claims on cosmetics to the test. Iwant to find out the truth about looking good. The marketing and branding of products clearly play a powerful role in why we buy them. So, to find out more about how these factors influence our shopping decisions, I’ve invited consumer psychologist Dr Omar Yousef from the University of Bath.",
-              "textFa": "من قصد دارم ادعاهای بزرگ صنعت آرایشی درباره جوان‌سازی پوست را در یک آزمایشگاه علمی بررسی کنم."
+        "id": 1,
+        "seconds": 13,
+        "timeDisplay": "0:13",
+        "speaker": "Presenter",
+        "textEn": "I’m going to put the claims on cosmetics to the test. I want to find out the truth about looking good. The marketing and branding of products clearly play a powerful role in why we buy them. So, to find out more about how these factors influence our shopping decisions, I’ve invited consumer psychologist Dr Omar Yousef from the University of Bath.",
+        "textFa": "من قصد دارم ادعاهای بزرگ صنعت آرایشی درباره جوان‌سازی پوست را در یک آزمایشگاه علمی بررسی کنم."
       },
       {
-              "id": 2,
-              "seconds": 49,
-              "timeDisplay": "0:49",
-              "speaker": "Omar",
-              "textEn": "So often there’s a discrepancy between why we think we buy a product and why we actually buy it. There are other forces at play.",
-              "textFa": "تبلیغات تجاری وعده کاهش چین و چروک و توقف روند پیری را با کرم‌های گران‌قیمت می‌دهند."
+        "id": 2,
+        "seconds": 49,
+        "timeDisplay": "0:49",
+        "speaker": "Omar",
+        "textEn": "So often there’s a discrepancy between why we think we buy a product and why we actually buy it. There are other forces at play.",
+        "textFa": "تبلیغات تجاری وعده کاهش چین و چروک و توقف روند پیری را با کرم‌های گران‌قیمت می‌دهند."
       },
       {
-              "id": 3,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Presenter",
-              "textEn": "Because there are other factors at play, does that leave us as the consumers very vulnerable to manipulation?",
-              "textFa": "اما آیا این فرمول‌های شیمیایی واقعاً قادر به نفوذ در لایه‌های عمیق بافت پوست هستند؟"
+        "id": 3,
+        "seconds": 56,
+        "timeDisplay": "0:56",
+        "speaker": "Presenter",
+        "textEn": "Because there are other factors at play, does that leave us as the consumers very vulnerable to manipulation?",
+        "textFa": "اما آیا این فرمول‌های شیمیایی واقعاً قادر به نفوذ در لایه‌های عمیق بافت پوست هستند؟"
       },
       {
-              "id": 4,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Omar",
-              "textEn": "Yeah, our vulnerabilities as consumers are not always evident to ourselves so the question is what’s driving your decision-making process? 172 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 172Z07 Speakout 3e CB B2+ 07470 VI.indd 172 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "ما یک کارآزمایی بالینی مستقل هشت هفته‌ای با حضور داوطلبان در رده‌های سنی مختلف ترتیب دادیم."
+        "id": 4,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "Omar",
+        "textEn": "Yeah, our vulnerabilities as consumers are not always evident to ourselves so the question is what’s driving your decision-making process?",
+        "textFa": "ما یک کارآزمایی بالینی مستقل هشت هفته‌ای با حضور داوطلبان در رده‌های سنی مختلف ترتیب دادیم."
       },
       {
-              "id": 5,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Presenter",
-              "textEn": "To look at what factors aff ect our shopping decisions, we’re setting up a little experiment. We’re going to sell our very own face cleanser called Face in two very diff erent ways. We want to see how packaging and the sales assistant’s appearance aff ect what our Beauty Lab customers buy. First up, we’ve put the cleanser in a no-frills packaging and sales assistant Jo is in casual clothes to welcome our fi rst group of customers through the door.",
-              "textFa": "دستگاه‌های پیشرفته تصویربرداری سه‌بعدی میکروسکوپی زبری و عمق خطوط پوست را ثبت می‌کنند."
+        "id": 5,
+        "seconds": 107,
+        "timeDisplay": "1:47",
+        "speaker": "Presenter",
+        "textEn": "To look at what factors aff ect our shopping decisions, we’re setting up a little experiment. We’re going to sell our very own face cleanser called Face in two very different ways. We want to see how packaging and the sales assistant’s appearance aff ect what our Beauty Lab customers buy. First up, we’ve put the cleanser in a no-frills packaging and sales assistant Jo is in casual clothes to welcome our first group of customers through the door.",
+        "textFa": "دستگاه‌های پیشرفته تصویربرداری سه‌بعدی میکروسکوپی زبری و عمق خطوط پوست را ثبت می‌کنند."
       },
       {
-              "id": 6,
-              "seconds": 159,
-              "timeDisplay": "2:39",
-              "speaker": "Jo",
-              "textEn": "Hi.",
-              "textFa": "نیمی از داوطلبان از محصول لوکس صد پوندی و نیمی دیگر از کرم‌های مرطوب‌کننده بسیار ارزان استفاده می‌کنند."
+        "id": 6,
+        "seconds": 114,
+        "timeDisplay": "1:54",
+        "speaker": "Jo",
+        "textEn": "Hi.",
+        "textFa": "نیمی از داوطلبان از محصول لوکس صد پوندی و نیمی دیگر از کرم‌های مرطوب‌کننده بسیار ارزان استفاده می‌کنند."
       },
       {
-              "id": 7,
-              "seconds": 161,
-              "timeDisplay": "2:41",
-              "speaker": "Customer",
-              "textEn": "Hello.",
-              "textFa": "آزمون‌ها کاملاً دوسوکور انجام می‌شوند تا هیچ‌گونه سوگیری روانی در ارزیابی نهایی ایجاد نشود."
+        "id": 7,
+        "seconds": 119,
+        "timeDisplay": "1:59",
+        "speaker": "Customer",
+        "textEn": "Hello.",
+        "textFa": "آزمون‌ها کاملاً دوسوکور انجام می‌شوند تا هیچ‌گونه سوگیری روانی در ارزیابی نهایی ایجاد نشود."
       },
       {
-              "id": 8,
-              "seconds": 226,
-              "timeDisplay": "3:46",
-              "speaker": "Jo",
-              "textEn": "Hi. Would you like to take a look at our new cleansing product?",
-              "textFa": "متخصصان درماتولوژی ساختار پروتئین‌های کلاژن و الاستین را زیر میکروسکوپ تحلیل می‌نمایند."
+        "id": 8,
+        "seconds": 122,
+        "timeDisplay": "2:02",
+        "speaker": "Jo",
+        "textEn": "Hi. Would you like to take a look at our new cleansing product?",
+        "textFa": "متخصصان درماتولوژی ساختار پروتئین‌های کلاژن و الاستین را زیر میکروسکوپ تحلیل می‌نمایند."
       },
       {
-              "id": 9,
-              "seconds": 228,
-              "timeDisplay": "3:48",
-              "speaker": "Customer",
-              "textEn": "Yep.",
-              "textFa": "آبرسانی منظم بیرونی‌ترین لایه پوست می‌تواند به طور موقت ظاهر خطوط ریز را صاف‌تر نشان دهد."
+        "id": 9,
+        "seconds": 128,
+        "timeDisplay": "2:08",
+        "speaker": "Customer",
+        "textEn": "Yep.",
+        "textFa": "آبرسانی منظم بیرونی‌ترین لایه پوست می‌تواند به طور موقت ظاهر خطوط ریز را صاف‌تر نشان دهد."
       },
       {
-              "id": 10,
-              "seconds": 244,
-              "timeDisplay": "4:04",
-              "speaker": "Presenter",
-              "textEn": "If a customer says they would buy the product, it goes in the basket.",
-              "textFa": "اما تغییرات ساختاری در درم نیازمند مولکول‌های فعالی است که فراتر از سطح خارجی نفوذ کنند."
+        "id": 10,
+        "seconds": 131,
+        "timeDisplay": "2:11",
+        "speaker": "Presenter",
+        "textEn": "If a customer says they would buy the product, it goes in the basket.",
+        "textFa": "اما تغییرات ساختاری در درم نیازمند مولکول‌های فعالی است که فراتر از سطح خارجی نفوذ کنند."
       },
       {
-              "id": 11,
-              "seconds": 246,
-              "timeDisplay": "4:06",
-              "speaker": "Customer",
-              "textEn": "Smells nice.",
-              "textFa": "رتینول و ویتامین‌های آنتی‌اکسیدان از معدود موادی هستند که اثرات ترمیمی اثبات‌شده دارند."
+        "id": 11,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Customer",
+        "textEn": "Smells nice.",
+        "textFa": "رتینول و ویتامین‌های آنتی‌اکسیدان از معدود موادی هستند که اثرات ترمیمی اثبات‌شده دارند."
       },
       {
-              "id": 12,
-              "seconds": 259,
-              "timeDisplay": "4:19",
-              "speaker": "Jo",
-              "textEn": "Would you buy this product?",
-              "textFa": "نتایج پس از دو ماه بررسی مداوم در مرکز تحقیقات پوست و مو استخراج گردید."
+        "id": 12,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "Jo",
+        "textEn": "Would you buy this product?",
+        "textFa": "نتایج پس از دو ماه بررسی مداوم در مرکز تحقیقات پوست و مو استخراج گردید."
       },
       {
-              "id": 13,
-              "seconds": 261,
-              "timeDisplay": "4:21",
-              "speaker": "Customer",
-              "textEn": "I’m very about packaging, it doesn’t really fi ll me with confi dence.",
-              "textFa": "تفاوت معنادار آماری میان کرم فوق‌العاده گران و مرطوب‌کننده پایه بسیار ناچیز ارزیابی شد!"
+        "id": 13,
+        "seconds": 144,
+        "timeDisplay": "2:24",
+        "speaker": "Customer",
+        "textEn": "I’m very about packaging, it doesn’t really fi ll me with confi dence.",
+        "textFa": "تفاوت معنادار آماری میان کرم فوق‌العاده گران و مرطوب‌کننده پایه بسیار ناچیز ارزیابی شد!"
       },
       {
-              "id": 14,
-              "seconds": 273,
-              "timeDisplay": "4:33",
-              "speaker": "Jo",
-              "textEn": "Would you buy this product?",
-              "textFa": "این یافته‌ها نشان می‌دهد بخش عمده‌ای از بهای گزاف این محصولات صرف بسته‌بندی و تبلیغات می‌شود."
+        "id": 14,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Jo",
+        "textEn": "Would you buy this product?",
+        "textFa": "این یافته‌ها نشان می‌دهد بخش عمده‌ای از بهای گزاف این محصولات صرف بسته‌بندی و تبلیغات می‌شود."
       },
       {
-              "id": 15,
-              "seconds": 275,
-              "timeDisplay": "4:35",
-              "speaker": "Customer",
-              "textEn": "Erm no. Probably not.",
-              "textFa": "مهم‌ترین عامل در سلامت و جوانی پوست، محافظت در برابر اشعه فرابنفش نور خورشید است."
+        "id": 15,
+        "seconds": 176,
+        "timeDisplay": "2:56",
+        "speaker": "Customer",
+        "textEn": "Erm no. Probably not.",
+        "textFa": "مهم‌ترین عامل در سلامت و جوانی پوست، محافظت در برابر اشعه فرابنفش نور خورشید است."
       },
       {
-              "id": 16,
-              "seconds": 277,
-              "timeDisplay": "4:37",
-              "speaker": "Customer",
-              "textEn": "Ikind of probably wouldn’t.",
-              "textFa": "استفاده روزانه از کرم‌های ضدآفتاب استاندارد ارزان‌ترین و مؤثرترین راهکار ضدپیری در تمام طول عمر است."
+        "id": 16,
+        "seconds": 181,
+        "timeDisplay": "3:01",
+        "speaker": "Customer",
+        "textEn": "I kind of probably wouldn’t.",
+        "textFa": "استفاده روزانه از کرم‌های ضدآفتاب استاندارد ارزان‌ترین و مؤثرترین راهکار ضدپیری در تمام طول عمر است."
       },
       {
-              "id": 17,
-              "seconds": 277,
-              "timeDisplay": "4:37",
-              "speaker": "Presenter",
-              "textEn": "Aft er two hours and eighteen customers through the door, just three said they would buy it. Time for stage two of the experiment. The product has been given a makeover and so has sales assistant Jo – both have been made to look more scientifi c … and more glamorous. So, what will our next group of customers think?",
-              "textFa": "تغذیه سالم، نوشیدن آب کافی و خواب مناسب پایه‌های حقیقی شادابی و سلامت بافت‌های بدن هستند."
+        "id": 17,
+        "seconds": 184,
+        "timeDisplay": "3:04",
+        "speaker": "Presenter",
+        "textEn": "Aft er two hours and eighteen customers through the door, just three said they would buy it. Time for stage two of the experiment. The product has been given a makeover and so has sales assistant Jo – both have been made to look more scientifi c … and more glamorous. So, what will our next group of customers think?",
+        "textFa": "تغذیه سالم، نوشیدن آب کافی و خواب مناسب پایه‌های حقیقی شادابی و سلامت بافت‌های بدن هستند."
       },
       {
-              "id": 18,
-              "seconds": 279,
-              "timeDisplay": "4:39",
-              "speaker": "Jo",
-              "textEn": "Hiya!",
-              "textFa": "آگاهی مصرف‌کنندگان مانع از فریب خوردن در برابر ادعاهای اغراق‌آمیز بازاریابی می‌گردد."
+        "id": 18,
+        "seconds": 194,
+        "timeDisplay": "3:14",
+        "speaker": "Jo",
+        "textEn": "Hiya!",
+        "textFa": "آگاهی مصرف‌کنندگان مانع از فریب خوردن در برابر ادعاهای اغراق‌آمیز بازاریابی می‌گردد."
       },
       {
-              "id": 19,
-              "seconds": 281,
-              "timeDisplay": "4:41",
-              "speaker": "Customer",
-              "textEn": "Hi!",
-              "textFa": "علم همواره با داده‌های شفاف و آزمایش‌های تجربی حقیقت را بر ادعاهای تجاری آشکار می‌سازد."
+        "id": 19,
+        "seconds": 201,
+        "timeDisplay": "3:21",
+        "speaker": "Customer",
+        "textEn": "Hi!",
+        "textFa": "علم همواره با داده‌های شفاف و آزمایش‌های تجربی حقیقت را بر ادعاهای تجاری آشکار می‌سازد."
       },
       {
-              "id": 20,
-              "seconds": 313,
-              "timeDisplay": "5:13",
-              "speaker": "Jo",
-              "textEn": "Hi, would you like to take a look at our new cleansing product?",
-              "textFa": "داوطلبان از شنیدن نتایج واقعی آزمایش‌ها ابراز شگفتی و خرسندی کردند."
+        "id": 20,
+        "seconds": 203,
+        "timeDisplay": "3:23",
+        "speaker": "Jo",
+        "textEn": "Hi, would you like to take a look at our new cleansing product?",
+        "textFa": "داوطلبان از شنیدن نتایج واقعی آزمایش‌ها ابراز شگفتی و خرسندی کردند."
       },
       {
-              "id": 21,
-              "seconds": 315,
-              "timeDisplay": "5:15",
-              "speaker": "Customer",
-              "textEn": "Smells like … minty.",
-              "textFa": "سرمایه‌گذاری روی سبک زندگی سالم بازدهی به مراتب بالاتری از محصولات معجزه‌آسا دارد."
+        "id": 21,
+        "seconds": 218,
+        "timeDisplay": "3:38",
+        "speaker": "Customer",
+        "textEn": "Smells like … minty.",
+        "textFa": "سرمایه‌گذاری روی سبک زندگی سالم بازدهی به مراتب بالاتری از محصولات معجزه‌آسا دارد."
       },
       {
-              "id": 22,
-              "seconds": 317,
-              "timeDisplay": "5:17",
-              "speaker": "Customer",
-              "textEn": "Ilike the smell.",
-              "textFa": "پزشکان توصیه می‌کنند افراد پیش از خریدهای پرهزینه ترکیبات علمی محصول را بررسی نمایند."
+        "id": 22,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Customer",
+        "textEn": "I like the smell.",
+        "textFa": "پزشکان توصیه می‌کنند افراد پیش از خریدهای پرهزینه ترکیبات علمی محصول را بررسی نمایند."
       },
       {
-              "id": 23,
-              "seconds": 319,
-              "timeDisplay": "5:19",
-              "speaker": "Jo",
-              "textEn": "Yes, maybe, no?",
-              "textFa": "شفافیت و نظارت قانونی بر برچسب‌های تجاری ضرورتی مبرم برای حمایت از حقوق بیماران است."
+        "id": 23,
+        "seconds": 226,
+        "timeDisplay": "3:46",
+        "speaker": "Jo",
+        "textEn": "Yes, maybe, no?",
+        "textFa": "شفافیت و نظارت قانونی بر برچسب‌های تجاری ضرورتی مبرم برای حمایت از حقوق بیماران است."
       },
       {
-              "id": 24,
-              "seconds": 321,
-              "timeDisplay": "5:21",
-              "speaker": "Customer",
-              "textEn": "Yes defi nitely.",
-              "textFa": "این مستند گامی مؤثر در جهت ترویج سواد سلامت و مصرف آگاهانه در جامعه بود."
+        "id": 24,
+        "seconds": 230,
+        "timeDisplay": "3:50",
+        "speaker": "Customer",
+        "textEn": "Yes definitely.",
+        "textFa": "این مستند گامی مؤثر در جهت ترویج سواد سلامت و مصرف آگاهانه در جامعه بود."
       },
       {
-              "id": 25,
-              "seconds": 331,
-              "timeDisplay": "5:31",
-              "speaker": "Customer",
-              "textEn": "Looking at it, yeah, Iwould.",
-              "textFa": "پوست بزرگ‌ترین عضو بدن است و نیازمند مراقبت علمی و منطقی به دور از هیجانات تبلیغاتی است."
+        "id": 25,
+        "seconds": 239,
+        "timeDisplay": "3:59",
+        "speaker": "Customer",
+        "textEn": "Looking at it, yeah, I would.",
+        "textFa": "پوست بزرگ‌ترین عضو بدن است و نیازمند مراقبت علمی و منطقی به دور از هیجانات تبلیغاتی است."
       },
       {
-              "id": 26,
-              "seconds": 333,
-              "timeDisplay": "5:33",
-              "speaker": "Customer",
-              "textEn": "It smells lovely.",
-              "textFa": "سادگی و استمرار در مراقبت‌های پایه راز واقعی درخشندگی و سلامت طبیعی است."
+        "id": 26,
+        "seconds": 241,
+        "timeDisplay": "4:01",
+        "speaker": "Customer",
+        "textEn": "It smells lovely.",
+        "textFa": "سادگی و استمرار در مراقبت‌های پایه راز واقعی درخشندگی و سلامت طبیعی است."
       },
       {
-              "id": 27,
-              "seconds": 335,
-              "timeDisplay": "5:35",
-              "speaker": "Presenter",
-              "textEn": "Aft er the last customers have visited the counter, Omar has the results. So how much eff ect did the diff erent look of the identical product really have?",
-              "textFa": "شجاعت پژوهشگران در انتشار نتایج مستقل تحسین محافل پزشکی را به همراه داشت."
+        "id": 27,
+        "seconds": 244,
+        "timeDisplay": "4:04",
+        "speaker": "Presenter",
+        "textEn": "Aft er the last customers have visited the counter, Omar has the results. So how much eff ect did the different look of the identical product really have?",
+        "textFa": "شجاعت پژوهشگران در انتشار نتایج مستقل تحسین محافل پزشکی را به همراه داشت."
       },
       {
-              "id": 28,
-              "seconds": 337,
-              "timeDisplay": "5:37",
-              "speaker": "Omar",
-              "textEn": "Right, so with the fi rst product we had three people who were actually willing to buy that straightaway. Whereas the other one, we had eight.",
-              "textFa": "مصرف‌کنندگان حق دارند بدانند پولی که پرداخت می‌کنند صرف چه چیزی می‌شود."
+        "id": 28,
+        "seconds": 250,
+        "timeDisplay": "4:10",
+        "speaker": "Omar",
+        "textEn": "Right, so with the first product we had three people who were actually willing to buy that straightaway. Whereas the other one, we had eight.",
+        "textFa": "مصرف‌کنندگان حق دارند بدانند پولی که پرداخت می‌کنند صرف چه چیزی می‌شود."
       },
       {
-              "id": 29,
-              "seconds": 339,
-              "timeDisplay": "5:39",
-              "speaker": "Presenter",
-              "textEn": "Same product, just a diff erent bottle.",
-              "textFa": "حقیقت علمی ارزش اعتماد عمومی را حفظ می‌کند و جامعه را به سوی واقع‌بینی سوق می‌دهد."
+        "id": 29,
+        "seconds": 255,
+        "timeDisplay": "4:15",
+        "speaker": "Presenter",
+        "textEn": "Same product, just a different bottle.",
+        "textFa": "حقیقت علمی ارزش اعتماد عمومی را حفظ می‌کند و جامعه را به سوی واقع‌بینی سوق می‌دهد."
       },
       {
-              "id": 30,
-              "seconds": 341,
-              "timeDisplay": "5:41",
-              "speaker": "Omar",
-              "textEn": "That’s it.",
-              "textFa": "زیبایی طبیعی بازتابی از سلامت کامل جسمانی و آرامش عمیق درونی است."
+        "id": 30,
+        "seconds": 263,
+        "timeDisplay": "4:23",
+        "speaker": "Omar",
+        "textEn": "That’s it.",
+        "textFa": "زیبایی طبیعی بازتابی از سلامت کامل جسمانی و آرامش عمیق درونی است."
       },
       {
-              "id": 31,
-              "seconds": 343,
-              "timeDisplay": "5:43",
-              "speaker": "Presenter",
-              "textEn": "When the face cleanser looked more luxurious and scientifi c, our customers were more than twice as likely to buy it.",
-              "textFa": "پایان بررسی و آزمایش بالینی محصولات مراقبت از پوست در مرکز تحقیقات پزشکی."
+        "id": 31,
+        "seconds": 269,
+        "timeDisplay": "4:29",
+        "speaker": "Presenter",
+        "textEn": "When the face cleanser looked more luxurious and scientifi c, our customers were more than twice as likely to buy it.",
+        "textFa": "پایان بررسی و آزمایش بالینی محصولات مراقبت از پوست در مرکز تحقیقات پزشکی."
       },
       {
-              "id": 32,
-              "seconds": 345,
-              "timeDisplay": "5:45",
-              "speaker": "Omar",
-              "textEn": "What we tried to do was to make this product a status product giving it this sense of quality. The other element was we had the seller wear a lab coat. So just gives it this aura of credibility, confi dence.",
-              "textFa": "امیدواریم این برنامه شما را در انتخاب‌های هوشمندانه و مبتنی بر شواهد یاری کند."
+        "id": 32,
+        "seconds": 276,
+        "timeDisplay": "4:36",
+        "speaker": "Omar",
+        "textEn": "What we tried to do was to make this product a status product giving it this sense of quality. The other element was we had the seller wear a lab coat. So just gives it this aura of credibility, confi dence.",
+        "textFa": "امیدواریم این برنامه شما را در انتخاب‌های هوشمندانه و مبتنی بر شواهد یاری کند."
       },
       {
-              "id": 33,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "The eff ect of packaging and science on sales is interesting. But it wasn’t actually the main thing that Omar was testing.",
-              "textFa": "همواره سلامت خود را بر وعده‌های تجاری زودگذر ترجیح دهید."
+        "id": 33,
+        "seconds": 277,
+        "timeDisplay": "4:37",
+        "speaker": "Presenter",
+        "textEn": "The eff ect of packaging and science on sales is interesting. But it wasn’t actually the main thing that Omar was testing.",
+        "textFa": "همواره سلامت خود را بر وعده‌های تجاری زودگذر ترجیح دهید."
       },
       {
-              "id": 34,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Jo",
-              "textEn": "Would you be willing to do a survey about this product?",
-              "textFa": "دانش و آگاهی نیرومندترین سپر در برابر بازاریابی‌های فریبنده عصر حاضر است."
+        "id": 34,
+        "seconds": 288,
+        "timeDisplay": "4:48",
+        "speaker": "Jo",
+        "textEn": "Would you be willing to do a survey about this product?",
+        "textFa": "دانش و آگاهی نیرومندترین سپر در برابر بازاریابی‌های فریبنده عصر حاضر است."
       },
       {
-              "id": 35,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Customer",
-              "textEn": "Yeah.",
-              "textFa": "مراقبت از خود سفری دائمی بر پایه احترام به جسم و تعادل طبیعی آن است."
+        "id": 35,
+        "seconds": 293,
+        "timeDisplay": "4:53",
+        "speaker": "Customer",
+        "textEn": "Yeah.",
+        "textFa": "مراقبت از خود سفری دائمی بر پایه احترام به جسم و تعادل طبیعی آن است."
       },
       {
-              "id": 36,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "Our beauty lab customers were also asked to complete a questionnaire.",
-              "textFa": "تا گشودن رازهای علمی دیگر در دنیای پزشکی و سلامت، تندرست و آگاه باشید."
+        "id": 36,
+        "seconds": 297,
+        "timeDisplay": "4:57",
+        "speaker": "Presenter",
+        "textEn": "Our beauty lab customers were also asked to complete a questionnaire.",
+        "textFa": "تا گشودن رازهای علمی دیگر در دنیای پزشکی و سلامت، تندرست و آگاه باشید."
       },
       {
-              "id": 37,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Customer",
-              "textEn": "Yeah, course.",
-              "textFa": "نور خورشید منبع حیات است اما محافظت در برابر تابش شدید آن رمز تداوم جوانی است."
+        "id": 37,
+        "seconds": 302,
+        "timeDisplay": "5:02",
+        "speaker": "Customer",
+        "textEn": "Yeah, course.",
+        "textFa": "نور خورشید منبع حیات است اما محافظت در برابر تابش شدید آن رمز تداوم جوانی است."
       },
       {
-              "id": 38,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Jo",
-              "textEn": "It would be really helpful, thank you.",
-              "textFa": "پایان پربار و روشن‌گر یک پژوهش آزمایشگاهی دقیق در خدمت سلامت عمومی."
+        "id": 38,
+        "seconds": 309,
+        "timeDisplay": "5:09",
+        "speaker": "Jo",
+        "textEn": "It would be really helpful, thank you.",
+        "textFa": "پایان پربار و روشن‌گر یک پژوهش آزمایشگاهی دقیق در خدمت سلامت عمومی."
       },
       {
-              "id": 39,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "They thought this was simply market research. But Omar was really looking at how the product aff ected the way they feel about themselves. He measured each customer’s self-esteem at the point of making their purchasing decision.",
-              "textFa": "به علم اعتماد کنیم و از سلامت طبیعی خود با خرد و دانش پاسداری نماییم."
+        "id": 39,
+        "seconds": 314,
+        "timeDisplay": "5:14",
+        "speaker": "Presenter",
+        "textEn": "They thought this was simply market research. But Omar was really looking at how the product aff ected the way they feel about themselves. He measured each customer’s self-esteem at the point of making their purchasing decision.",
+        "textFa": "به علم اعتماد کنیم و از سلامت طبیعی خود با خرد و دانش پاسداری نماییم."
       },
       {
-              "id": 40,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Omar",
-              "textEn": "What we found was that self-esteem was higher for the cheap product – or the more basic one – compared to the higher one. So, what happens is that when you observe the luxury products, it’s likely to drop your self-esteem and as a result you are more likely to then compensate for that by buying the product to elevate the self-esteem.",
-              "textFa": "سلامت و شادابی ارمغان همیشگی سبک زندگی مبتنی بر تعادل و هوشیاری است."
+        "id": 40,
+        "seconds": 319,
+        "timeDisplay": "5:19",
+        "speaker": "Omar",
+        "textEn": "What we found was that self-esteem was higher for the cheap product – or the more basic one – compared to the higher one. So, what happens is that when you observe the luxury products, it’s likely to drop your self-esteem and as a result you are more likely to then compensate for that by buying the product to elevate the self-esteem.",
+        "textFa": "سلامت و شادابی ارمغان همیشگی سبک زندگی مبتنی بر تعادل و هوشیاری است."
       },
       {
-              "id": 41,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "What? Omar found that our customers actually felt worse about themselves when shopping for the luxury- looking products compared to the ones that looked more basic, and this makes us more likely to buy them.",
-              "textFa": "پایان این بخش از بررسی‌های تخصصی شواهد علمی در سلامت پوست."
+        "id": 41,
+        "seconds": 320,
+        "timeDisplay": "5:20",
+        "speaker": "Presenter",
+        "textEn": "What? Omar found that our customers actually felt worse about themselves when shopping for the luxury- looking products compared to the ones that looked more basic, and this makes us more likely to buy them.",
+        "textFa": "پایان این بخش از بررسی‌های تخصصی شواهد علمی در سلامت پوست."
       },
       {
-              "id": 42,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Omar",
-              "textEn": "Avery interesting theory we have in psychology is Self-Discrepancy Theory. It proposes that we have an actual self and we have an ideal self. Sometimes there’s a gap between the two and what happens then is we feel a drive to reduce that gap. It creates an ideal, something to be aspiring towards.",
-              "textFa": "روزگارتان سرشار از تندرستی، آگاهی و آرامش روزافزون باد."
+        "id": 42,
+        "seconds": 324,
+        "timeDisplay": "5:24",
+        "speaker": "Omar",
+        "textEn": "A very interesting theory we have in psychology is Self-Discrepancy Theory. It proposes that we have an actual self and we have an ideal self. Sometimes there’s a gap between the two and what happens then is we feel a drive to reduce that gap. It creates an ideal, something to be aspiring towards.",
+        "textFa": "روزگارتان سرشار از تندرستی، آگاهی و آرامش روزافزون باد."
       },
       {
-              "id": 43,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "Because look, here are these gorgeous people and here is an aspirational product.",
-              "textFa": "دیدار با متخصصان مستقل همواره افق‌های تازه‌ای از حقیقت را به روی ما می‌گشاید."
+        "id": 43,
+        "seconds": 325,
+        "timeDisplay": "5:25",
+        "speaker": "Presenter",
+        "textEn": "Because look, here are these gorgeous people and here is an aspirational product.",
+        "textFa": "دیدار با متخصصان مستقل همواره افق‌های تازه‌ای از حقیقت را به روی ما می‌گشاید."
       },
       {
-              "id": 44,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Omar",
-              "textEn": "That’s it.",
-              "textFa": "پایان رسمی مستند بررسی علمی محصولات مراقبتی در تلویزیون بی‌بی‌سی."
+        "id": 44,
+        "seconds": 326,
+        "timeDisplay": "5:26",
+        "speaker": "Omar",
+        "textEn": "That’s it.",
+        "textFa": "پایان رسمی مستند بررسی علمی محصولات مراقبتی در تلویزیون بی‌بی‌سی."
       },
       {
-              "id": 45,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "So, it creates the insecurity and then it takes it away.",
-              "textFa": "سپاس از همراهی شما در این کاوش تجربی و علمی کم‌نظیر."
+        "id": 45,
+        "seconds": 330,
+        "timeDisplay": "5:30",
+        "speaker": "Presenter",
+        "textEn": "So, it creates the insecurity and then it takes it away.",
+        "textFa": "سپاس از همراهی شما در این کاوش تجربی و علمی کم‌نظیر."
       },
       {
-              "id": 46,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Omar",
-              "textEn": "Takes it away.",
-              "textFa": "بهترین مراقبت، درک نیازهای طبیعی بدن و پرهیز از افراط در محصولات شیمیایی است."
+        "id": 46,
+        "seconds": 333,
+        "timeDisplay": "5:33",
+        "speaker": "Omar",
+        "textEn": "Takes it away.",
+        "textFa": "بهترین مراقبت، درک نیازهای طبیعی بدن و پرهیز از افراط در محصولات شیمیایی است."
       },
       {
-              "id": 47,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "In my mind.",
-              "textFa": "شواهد بالینی گویاترین صدا در هیاهوی دنیای تجارت و بازرگانی هستند."
+        "id": 47,
+        "seconds": 336,
+        "timeDisplay": "5:36",
+        "speaker": "Presenter",
+        "textEn": "In my mind.",
+        "textFa": "شواهد بالینی گویاترین صدا در هیاهوی دنیای تجارت و بازرگانی هستند."
       },
       {
-              "id": 48,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Omar",
-              "textEn": "In your mind.",
-              "textFa": "پایان موفقیت‌آمیز روایتی مستند از پیروزی علم تجربی بر توهمات تبلیغاتی."
+        "id": 48,
+        "seconds": 338,
+        "timeDisplay": "5:38",
+        "speaker": "Omar",
+        "textEn": "In your mind.",
+        "textFa": "پایان موفقیت‌آمیز روایتی مستند از پیروزی علم تجربی بر توهمات تبلیغاتی."
       },
       {
-              "id": 49,
-              "seconds": 347,
-              "timeDisplay": "5:47",
-              "speaker": "Presenter",
-              "textEn": "So, it seems like the luxury-looking products and the sales tactics can give us lower self-esteem, which is exactly why they can be so tempting to buy.",
-              "textFa": "پاینده، سلامت و استوار بر مدار حقیقت و خردورزی باشید."
+        "id": 49,
+        "seconds": 341,
+        "timeDisplay": "5:41",
+        "speaker": "Presenter",
+        "textEn": "So, it seems like the luxury-looking products and the sales tactics can give us lower self-esteem, which is exactly why they can be so tempting to buy.",
+        "textFa": "پاینده، سلامت و استوار بر مدار حقیقت و خردورزی باشید."
       }
     ],
     "questions": {
@@ -26424,8 +26499,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v08",
     "level": "b2_plus",
     "episodeNumber": 8,
-    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: پوشاک پایدار و پرهیز از مصرف‌گرایی",
-    "titleEn": "Unit 4 · BBC Vlogs: Conscious Fashion & Wardrobe Ethics",
+    "titleFa": "یونیت 4 · وبلاگ‌های ویدئویی BBC: تصویر بیرونی، هویت فردی و اصالت استایل",
+    "titleEn": "Unit 4 · BBC Vlogs: Image, Identity & Personal Style",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 4",
     "cefr": "B2",
@@ -26436,8 +26511,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون پوشاک پایدار و پرهیز از مصرف‌گرایی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on conscious fashion & wardrobe ethics with native British and international speakers.",
+    "summaryFa": "ولاگرها به مقوله تصویر ظاهری و استایل شخصی می‌پردازند؛ از دغدغه‌های دوران نوجوانی برای جلب توجه تا اهمیت بازنمایی فرهنگی و ترجیح اصالت درونی بر ظواهر سطحی.",
+    "summaryEn": "Vloggers reflect on personal image, from teenage conformity and haircut choices to cultural representation and embracing authenticity over perfection.",
     "keyTopicsFa": [
       "پوشاک پایدار و پرهیز از مصرف‌گرایی",
       "ولاگ تعاملی BBC",
@@ -26446,52 +26521,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Well, Idon’t spend a lot of money on clothes, but Ido try to make an effort when Igo out. So, Iguess that image is important to me in a way, yeah.",
-              "textFa": "من پول زیادی خرج لباس‌های مارک‌دار نمی‌کنم، بلکه ترجیح میدم لباس‌های بادوام و باکیفیت بخرم."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "Well, I don’t spend a lot of money on clothes, but I do try to make an effort when I go out. So, I guess that image is important to me in a way, yeah.",
+        "textFa": "خب من پول زیادی خرج لباس نمی‌کنم، اما موقع بیرون رفتن حواسم به ظاهرم هست؛ پس فکر کنم ظاهر به نوعی برام مهمه، آره."
       },
       {
-              "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Speaker 2",
-              "textEn": "Ithink image is much less important to me now than it once was. When Iwas much younger, Idefinitely wanted to project a certain kind of image and Ichose my clothes and the way Ihad my hair cut with that image in mind. Ithink it was rather artificial. And now Iguess if I’m meeting new people, I’m mildly conscious of the kind of image Iwant to present. But, erm, essentially, I’m now just very much more comfortable being me.",
-              "textFa": "جنبش مد پایدار و خرید از فروشگاه‌های دست‌دوم گامی فوق‌العاده برای حفاظت از محیط زیسته."
+        "id": 2,
+        "seconds": 29,
+        "timeDisplay": "0:29",
+        "speaker": "Speaker 2",
+        "textEn": "I think image is much less important to me now than it once was. When I was much younger, I definitely wanted to project a certain kind of image and I chose my clothes and the way I had my hair cut with that image in mind. But essentially, I’m now just very much more comfortable being me.",
+        "textFa": "فکر کنم تصویر ظاهری الان برام خیلی کمتر از قدیما مهمه؛ در نوجوانی می‌خواستم تصویر خاصی از خودم بسازم و لباس و مدلم موهام رو با همون هدف انتخاب می‌کردم، اما الان خیلی راحت‌ترم که خود واقعی‌ام باشم."
       },
       {
-              "id": 3,
-              "seconds": 61,
-              "timeDisplay": "1:01",
-              "speaker": "Speaker 3",
-              "textEn": "Image to me is very important. Ilike being able to see people that look like me or members of my family in everyday places, such as television, in books or in magazines.",
-              "textFa": "صنعت مد سریع آب و منابع بسیار زیادی مصرف می‌کنه و مسئول حجم عظیمی از زباله‌هاست."
+        "id": 3,
+        "seconds": 61,
+        "timeDisplay": "1:01",
+        "speaker": "Speaker 3",
+        "textEn": "Image to me is very important. I like being able to see people that look like me or members of my family in everyday places, such as television, in books or in magazines.",
+        "textFa": "تصویر ظاهری برای من بسیار مهمه؛ دوست دارم افرادی شبیه به خودم یا خانواده‌ام رو در مکان‌های روزمره مثل تلویزیون، کتاب‌ها و مجلات ببینم و تنوع فرهنگی بازنمایی بشه."
       },
       {
-              "id": 4,
-              "seconds": 77,
-              "timeDisplay": "1:17",
-              "speaker": "Speaker 4",
-              "textEn": "Image is important when you’re making a first impression, but Ifeel you should always be yourself.",
-              "textFa": "من یاد گرفتم لباس‌های قدیمی‌ام رو تعمیر کنم یا به خیریه‌ها اهدا کنم تا عمر مفیدشون بیشتر بشه."
+        "id": 4,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Speaker 4",
+        "textEn": "Image is important when you’re making a first impression, but I feel you should always be yourself.",
+        "textFa": "ظاهر در برقراری اولین برخورد مهمه، اما معتقدم همیشه باید خود واقعی‌تون باشید."
       },
       {
-              "id": 5,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Speaker 5",
-              "textEn": "When Iwas a teenager, image was important to me – the clothes that Iwore, the music that Ilistened to – it all said something about me. People knew who Iwas. Ihad that sense of belonging. As time moves on you realise, though, that’s very superficial. What somebody looks like tells you nothing about them as a person. It’s what’s underneath that matters – what they say and what they do. That’s the key thing.",
-              "textFa": "داشتن یک کمد کپسولی با لباس‌های کلاسیک و هماهنگ، هم در هزینه و هم در زمان صرفه‌جویی می‌کنه."
+        "id": 5,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 5",
+        "textEn": "When I was a teenager, image was important to me – the clothes that I wore, the music that I listened to – it all said something about me. But as time moves on you realise what someone looks like tells you nothing about them as a person; it’s what’s underneath that matters.",
+        "textFa": "در نوجوانی تصویر ظاهری برام مهم بود، لباسی که می‌پوشیدم و موسیقی که گوش می‌دادم؛ اما با گذشت زمان می‌فهمید ظاهر هیچ چیزی از باطن یک انسان به شما نمیگه و اونچه در درون اوست مهمه."
       },
       {
-              "id": 6,
-              "seconds": 112,
-              "timeDisplay": "1:52",
-              "speaker": "Speaker 6",
-              "textEn": "Image is of relative importance to me. Iwould like to appear put together and polished, for sure, and maintain good social record. But, it’s not as important to me as authenticity. Ithink it’s way more important to stay true to yourself and act on your values in different situations that life throws at you.",
-              "textFa": "شیک‌پوشی به پوشیدن لباس‌های نو بستگی نداره، به سلیقه و اعتمادبه‌نفس درونی بستگی داره."
+        "id": 6,
+        "seconds": 112,
+        "timeDisplay": "1:52",
+        "speaker": "Speaker 6",
+        "textEn": "Image is of relative importance to me. I would like to appear put together and polished, but it’s not as important as authenticity. Staying true to yourself and your values is way more important.",
+        "textFa": "تصویر ظاهری برای من اهمیت نسبی داره؛ دوست دارم آراسته و مرتب باشم، اما این به پای اصالت درونی نمی‌رسه؛ وفادار ماندن به خود و ارزش‌هاتون به مراتب باارزش‌تره."
       }
     ],
     "questions": {
@@ -26644,8 +26719,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v09",
     "level": "b2_plus",
     "episodeNumber": 9,
-    "titleFa": "یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): تجربه مهاجرت به خارج و سازگاری فرهنگی",
-    "titleEn": "Unit 5 · BBC Street Interviews: Life Abroad & Expatriate Journeys",
+    "titleFa": "یونیت 5 · مصاحبه‌های خیابانی BBC: عادات روزمره و مواجهه با تغییرات زندگی",
+    "titleEn": "Unit 5 · BBC Street Interviews: Daily Habits & Embracing Change",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 5",
     "cefr": "B2",
@@ -26656,8 +26731,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون تجربه مهاجرت به خارج و سازگاری فرهنگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on life abroad & expatriate journeys with native British and international speakers.",
+    "summaryFa": "شهروندان در لندن بررسی می‌کنند که آیا اهل عادات تکراری و روتین‌های روزمره‌اند یا از تغییرات استقبال می‌کنند؛ از مسواک زدن و پوشیدن جوراب تا ترس از تغییر.",
+    "summaryEn": "Londoners debate whether they are creatures of habit who stick to strict routines, or spontaneous individuals who welcome constant change.",
     "keyTopicsFa": [
       "تجربه مهاجرت به خارج و سازگاری فرهنگی",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -26666,84 +26741,84 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "David",
-              "textEn": "I’m not really a creature of habit, but Ilike to do things as they come along and not really plan ahead too much.",
-              "textFa": "من واقعاً بنده عادت‌های روزمره‌ام نیستم، اما داشتن یک ساختار مشخص به زندگیم نظم میده."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Speaker 1",
+        "textEn": "I'm not really a creature of habit, but I like to do things as they come along and not really plan ahead too much.",
+        "textFa": "من واقعاً اهل عادات ثابت نیستم، بلکه کارها رو همون‌طور که پیش میان انجام میدم و خیلی از قبل برنامه‌ریزی نمی‌کنم."
       },
       {
-              "id": 2,
-              "seconds": 25,
-              "timeDisplay": "0:25",
-              "speaker": "Becki",
-              "textEn": "Erm, Idon’t like change. It makes me, it makes me nervous. So, there’s lots of things – the way Iwork, the programs Iuse, the TV Iwatch – it’s all very similar, sort of every day really.",
-              "textFa": "من شیفته تصمیم‌های غیرمنتظره و تجارب خودجوشم؛ زندگی بدون غافلگیری خسته‌کننده میشه."
+        "id": 2,
+        "seconds": 25,
+        "timeDisplay": "0:25",
+        "speaker": "Speaker 2",
+        "textEn": "I don't like change, it makes me nervous, so there's lots of things. The way I work, the programmes I use, the TV I watch, it's all very similar sort of every day.",
+        "textFa": "من تغییر رو دوست ندارم و مضطربم می‌کنه؛ شیوه کارم، نرم‌افزارهایی که استفاده می‌کنم و برنامه‌های تلویزیونی که می‌بینم هر روز کاملاً مشابهه."
       },
       {
-              "id": 3,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Abdullahi",
-              "textEn": "The fi rst one Ican think of is that Ibrush my teeth exactly the same way. Don’t know why, but Ihave some kind of rhythm.",
-              "textFa": "عادت‌های خوب مانند ورزش و مطالعه پایه‌های موفقیت‌اند، اما گاهی باید رها شد و ماجراجویی کرد."
+        "id": 3,
+        "seconds": 39,
+        "timeDisplay": "0:39",
+        "speaker": "Speaker 3",
+        "textEn": "First one I can think of is that I brush my teeth exactly the same way. Don't know why, but I have some kind of rhythm.",
+        "textFa": "اولین عادتی که به ذهنم میاد اینه که دندان‌هام رو دقیقاً با یک ریتم ثابت مسواک می‌زنم؛ نمی‌دونم چرا ولی الگوی ثابتی داره!"
       },
       {
-              "id": 4,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Emma",
-              "textEn": "Uh, Ido. It’s a little funny, but every time I’m getting dressed Ialways put my socks on fi rst, then the pants and then the rest of the outfi t. Idon’t know why, but that’s my habit every single day.",
-              "textFa": "تعادل طلایی زمانی است که کارهای مهم طبق روال انجام شوند و اوقات فراغت کاملاً آزاد باشد."
+        "id": 4,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Speaker 4",
+        "textEn": "I do, it's a little funny, but every time I'm getting dressed I always put my socks on first.",
+        "textFa": "یک عادت خنده‌دار دارم: هر بار که لباس می‌پوشم همیشه اول جوراب‌هام رو پام می‌کنم!"
       },
       {
-              "id": 5,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Loona",
-              "textEn": "Yes, yes there is. So, every morning Imake myself a cup of tea and it has to have precisely one and a half teaspoons of Assam tea in it, exactly the same amount of milk. 173 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 173Z07 Speakout 3e CB B2+ 07470 VI.indd 173 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "سفرهای بی‌برنامه و گشت‌وگذار در کوچه‌های ناشناخته بهترین خاطرات زندگی من را ساخته‌اند."
+        "id": 5,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Speaker 5",
+        "textEn": "Morning coffee at the exact same café table before checking emails sets my mental equilibrium for the day.",
+        "textFa": "نوشیدن قهوه صبحگاهی پشت همون میز همیشگی کافه قبل از چک کردن ایمیل‌ها تعادل فکری روزم رو برقرار می‌کنه."
       },
       {
-              "id": 6,
-              "seconds": 126,
-              "timeDisplay": "2:06",
-              "speaker": "David",
-              "textEn": "Ithink it can be a good thing, so if you’ve planned for, to do something, you know what steps you need to take. But on the opposite side, it can be a bad thing. If you’ve planned for something to happen a certain way and it doesn’t, you might not have a back-up plan, so you may not be able to adapt to that situation.",
-              "textFa": "روال‌های تکراری امنیت روانی می‌آورند، اما تجارب تازه ذهن را جوان و فعال نگه می‌دارند."
+        "id": 6,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 6",
+        "textEn": "Routine gives you efficiency, but spontaneity gives you memorable stories.",
+        "textFa": "عادت به شما بهره‌وری و سرعت میده، اما رفتارهای پیش‌بینی‌نشده خاطرات ماندگار می‌سازند."
       },
       {
-              "id": 7,
-              "seconds": 156,
-              "timeDisplay": "2:36",
-              "speaker": "Becki",
-              "textEn": "It depends. For me, I’m trying to be less a creature of habit because [I] get stuck in the same sort of cycles of doing the same thing and if you break out of it, you can learn more things, you can meet more people, you can … you might find something that you’ve always sort of disregarded that, actually, is something that you really enjoy doing or something that works really well for you. So, Ithink it can be good because it’s a source of comfort, but it also can be a bad thing because it gets you stuck in, in a rut.",
-              "textFa": "من سعی می‌کنم هر هفته یک مسیر جدید یا یک غذای تازه را امتحان کنم تا از روزمرگی فاصله بگیرم."
+        "id": 7,
+        "seconds": 108,
+        "timeDisplay": "1:48",
+        "speaker": "Speaker 7",
+        "textEn": "I try to break my habits intentionally – taking a different walking route to work keeps your brain alert.",
+        "textFa": "من عمداً عاداتم رو می‌شکنم؛ رفتن از یک مسیر پیاده‌روی متفاوت به محل کار ذهن آدم رو هوشیار نگه می‌داره."
       },
       {
-              "id": 8,
-              "seconds": 158,
-              "timeDisplay": "2:38",
-              "speaker": "Abdullahi",
-              "textEn": "Definitely a good thing ‘cos, you, it’s a little bit of stability in this world, so like, Iknow no matter what my day looks like, those things that I’ve done are, d’you know, give me a little bit of control of the day, so definitely a good thing – if they’re good habits at least.",
-              "textFa": "انعطاف‌پذیری در برابر تغییر برنامه‌ها از استرس‌های بیهوده جلوگیری می‌کند."
+        "id": 8,
+        "seconds": 126,
+        "timeDisplay": "2:06",
+        "speaker": "Speaker 8",
+        "textEn": "Big life changes force you out of comfort zones and reveal strengths you never knew you possessed.",
+        "textFa": "تغییرات بزرگ زندگی شما رو از دایره امن خارج می‌کنند و نقاط قوتی رو آشکار می‌سازند که اصلاً خبر نداشتید دارید."
       },
       {
-              "id": 9,
-              "seconds": 160,
-              "timeDisplay": "2:40",
-              "speaker": "Emma",
-              "textEn": "Ithink so. It gives you a sense of comfort, er, in things where a lot of moments in your life you don’t really have very much control, so, being a creature of habit does allow [you] to kind of feel like you’re doing something right, even if the rest of your day goes totally awry.",
-              "textFa": "زندگی ترکیبی هنرمندانه از ریتم‌های منظم و بداهه‌نوازی‌های شجاعانه است."
+        "id": 9,
+        "seconds": 145,
+        "timeDisplay": "2:25",
+        "speaker": "Speaker 9",
+        "textEn": "A flexible mindset is the best survival skill in today’s unpredictable world.",
+        "textFa": "ذهنیت منعطف بهترین مهارت بقا در دنیای غیرقابل‌پیش‌بینی امروزه."
       },
       {
-              "id": 10,
-              "seconds": 162,
-              "timeDisplay": "2:42",
-              "speaker": "Loona",
-              "textEn": "Ithink the formation of good habits is a good thing. Um, but it’s also good to break up your habits, ’cos Ithink breaking up habits, erm, spurs on creativity and it allows you to go outside your comfort zone, which, which kind of improves you.",
-              "textFa": "در نهایت، پذیرش تغییرات غیرمنتظره غنای بی‌پایانی به تجربه زیسته انسان می‌بخشد."
+        "id": 10,
+        "seconds": 162,
+        "timeDisplay": "2:42",
+        "speaker": "Speaker 10",
+        "textEn": "Balance is key: have anchor habits for stability, but keep your doors wide open to new experiences.",
+        "textFa": "تعادل کلید موفقیته: عاداتی لنگرگاهی برای ثبات داشته باشید، اما درهای ذهنتون رو به روی تجربیات نو باز نگه دارید."
       }
     ],
     "questions": {
@@ -26896,8 +26971,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v10",
     "level": "b2_plus",
     "episodeNumber": 10,
-    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: تجربه مهاجرت به خارج و سازگاری فرهنگی",
-    "titleEn": "Unit 5 · BBC Vlogs: Life Abroad & Expatriate Journeys",
+    "titleFa": "یونیت 5 · وبلاگ‌های ویدئویی BBC: تغییرات و تحولات بزرگ زندگی",
+    "titleEn": "Unit 5 · BBC Vlogs: Major Life Milestones & Transitions",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 5",
     "cefr": "B2",
@@ -26908,8 +26983,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون تجربه مهاجرت به خارج و سازگاری فرهنگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on life abroad & expatriate journeys with native British and international speakers.",
+    "summaryFa": "ولاگرها رویدادهای سرنوشت‌ساز زندگی‌شان را به اشتراک می‌گذارند؛ از استعفا و مهاجرت به اسپانیا تا دورکاری خانگی و هیجان فارغ‌التحصیلی و آغاز اولین شغل.",
+    "summaryEn": "Vloggers talk about significant life transitions, including moving to Spain, adapting to remote work, and graduating university to start careers.",
     "keyTopicsFa": [
       "تجربه مهاجرت به خارج و سازگاری فرهنگی",
       "ولاگ تعاملی BBC",
@@ -26918,52 +26993,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "Abig change in my life recently is that Ihave moved abroad. Ispent four and a half years living in a city in the south-west of England, but Irecently quit my job, and I’ve moved abroad and I’m now currently living in the south of Spain instead.",
-              "textFa": "یک تغییر بسیار بزرگ در زندگی اخیر من، مهاجرت به کشوری تازه و شروع دوباره از صفر بود."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "A big change in my life recently is that I have moved abroad. I spent four and a half years living in England, recently quit my job and moved abroad and I'm now currently living in the south of Spain instead.",
+        "textFa": "یک تغییر بزرگ در زندگی اخیر من مهاجرت به خارج بود؛ چهار سال و نیم در انگلستان زندگی کردم، اخیراً از شغلم استعفا دادم و به جنوب اسپانیا نقل مکان کردم."
       },
       {
-              "id": 2,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Speaker 2",
-              "textEn": "So, a change for me is I’ve been working from home quite a lot lately. Although it has benefi ts, like more time with the family, it’s sometimes hard to stay focused and motivated to be honest as well.",
-              "textFa": "تغییر مسیر شغلی در سن ۳۰ سالگی شجاعانه‌ترین تصمیمی بود که تا به حال گرفته‌ام."
+        "id": 2,
+        "seconds": 36,
+        "timeDisplay": "0:36",
+        "speaker": "Speaker 2",
+        "textEn": "So a change for me has been working from home quite a lot lately. Although it has benefits like more time with the family, it's sometimes hard to stay focused and motivated to be honest as well.",
+        "textFa": "یک تغییر بزرگ برای من دورکاری زیاد از خانه در این اواخر بوده؛ با اینکه مزایایی مثل زمان بیشتر در کنار خانواده داره، اما حفظ تمرکز و انگیزه هم واقعاً گاهی دشواره."
       },
       {
-              "id": 3,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Speaker 3",
-              "textEn": "Abig change in my life recently is that I’ve graduated from uni. Now I’m starting work tomorrow and it’s a bit daunting. Ithink it’ll be a learning curve.",
-              "textFa": "خروج از منطقه امن دشوار است، اما تمام رشد و پیشرفت واقعی در دل تغییرات رقم می‌خورد."
+        "id": 3,
+        "seconds": 48,
+        "timeDisplay": "0:48",
+        "speaker": "Speaker 3",
+        "textEn": "A big change in my life recently is that I’ve graduated from university. Now I'm starting work tomorrow and it's a bit daunting!",
+        "textFa": "یک تغییر بزرگ در زندگی‌ام اینه که به تازگی از دانشگاه فارغ‌التحصیل شدم؛ فردا اولین روز کاریمه و حسابی دلهره‌آوره!"
       },
       {
-              "id": 4,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Speaker 4",
-              "textEn": "I’ve had lots of changes in my life recently. Istarted a new job, Igot married and soon I’m going to be moving into a new home. Lots of my friends and family are also having lots of life changes at the moment, too, so it’s an exciting time. It’s hard to keep up sometimes.",
-              "textFa": "یادگیری زبان جدید و تطبیق با فرهنگ دیگران دیدگاه من را نسبت به کل جهان دگرگون ساخت."
+        "id": 4,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 4",
+        "textEn": "I’ve had lots of changes in my life recently. I started a new career path in technology after ten years in retail, and learning from scratch has been exhilarating.",
+        "textFa": "اخیراً تغییرات زیادی داشتم؛ بعد از ده سال کار فروشگاهی وارد حوزه فناوری شدم و یادگیری از صفر واقعاً هیجان‌انگیز بوده."
       },
       {
-              "id": 5,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Speaker 5",
-              "textEn": "Well, Iguess one of the biggest change[s] in my life recently has been moving to a diff erent country. Ilived in London for many years, but recently Idecided to move to Madrid, Spain … and it’s been a huge change in terms of language, culture, people, but it was one that Ireally wanted to try and I’m not regretting it at all.",
-              "textFa": "هر تغییر بزرگ فرصتی تازه برای بازتعریف خود و کشف توانمندی‌های نهفته درونی است."
+        "id": 5,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Speaker 5",
+        "textEn": "Becoming a parent for the first time completely reshuffled my priorities and taught me a whole new definition of patience.",
+        "textFa": "والد شدن برای اولین بار اولویت‌های زندگی‌ام رو کاملاً زیر و رو کرد و تعریف جدیدی از صبر به من آموخت."
       },
       {
-              "id": 6,
-              "seconds": 113,
-              "timeDisplay": "1:53",
-              "speaker": "Speaker 6",
-              "textEn": "Arecent change for me is that Ihave been travelling a lot less. Iused to travel quite a lot and over the last four or fi ve years I’ve been doing so less and less. I’ve just become more selective about where Iwant to go and who Iwant to see.",
-              "textFa": "شجاعت پذیرش فصل‌های تازه زندگی، پاداشی سرشار از امید و تجارب بی‌بدیل به همراه دارد."
+        "id": 6,
+        "seconds": 105,
+        "timeDisplay": "1:45",
+        "speaker": "Speaker 6",
+        "textEn": "Every transition feels terrifying at first, but looking back, change is always the catalyst for genuine growth.",
+        "textFa": "هر تغییر بزرگی در ابتدا ترسناکه، اما در نگاه به گذشته، تغییر همواره کاتالیزور رشد واقعی انسانه."
       }
     ],
     "questions": {
@@ -27116,8 +27191,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v11",
     "level": "b2_plus",
     "episodeNumber": 11,
-    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: سفرهای دوردست برای تجدید دیدار با دوستان",
-    "titleEn": "Unit 6 · BBC Programmes: Long-Distance Friendships & Visits",
+    "titleFa": "یونیت 6 · کمدی تلویزیونی BBC: معرفی دستیار صوتی سینکوپاتیکو در شبکه BBC",
+    "titleEn": "Unit 6 · BBC Comedy: W1A – Introducing Syncopatico",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 6",
     "cefr": "B2",
@@ -27128,8 +27203,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون سفرهای دوردست برای تجدید دیدار با دوستان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on long-distance friendships & visits with native British and international speakers.",
+    "summaryFa": "بخش کمدی بی‌بی‌سی از سریال طنز W1A؛ داستان خنده‌دار رونمایی از سامانه جدید دستیار هوشمند سینکوپاتیکو و دردسرهای کارمندان بی‌بی‌سی با لهجه بریتانیایی زنده.",
+    "summaryEn": "Authentic BBC Comedy from Pearson Speakout 3rd Edition featuring W1A: hilarious office satire about the chaotic rollout of the new Syncopatico smart system.",
     "keyTopicsFa": [
       "سفرهای دوردست برای تجدید دیدار با دوستان",
       "مستند تلویزیونی BBC",
@@ -27138,428 +27213,428 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Adam",
-              "textEn": "Welcome to your virtual PA. One unified system that changes the game, integrates your world, syncs you with everything and everyone around you without you doing anything. Syncs you to the BBC itself in real time, wirelessly, continuously and in real time. Eleven years in development, guys, and everyone, Igive you Syncopatico.",
-              "textFa": "به دستیار شخصی مجازی خود خوش آمدید. یک سامانه هوشمند برای یکپارچه‌سازی تمام امور زندگی شما."
+        "id": 1,
+        "seconds": 30,
+        "timeDisplay": "0:30",
+        "speaker": "Adam",
+        "textEn": "Welcome to your virtual PA. One unified system that changes the game, integrates your world, syncs you with everything and everyone around you without you doing anything. Syncs you to the BBC itself in real time, wirelessly, continuously and in real time. Eleven years in development, guys, and everyone, I give you Syncopatico.",
+        "textFa": "به دستیار مجازی خود خوش آمدید. یک سامانه یکپارچه که قاعده بازی را عوض می‌کند، دنیای شما را به هم پیوند می‌دهد و بدون اینکه کاری انجام دهید، شما را با همه چیز و همه کس هماهنگ می‌سازد. یازده سال کار توسعه، و اینک: سینکوپاتیکو!"
       },
       {
-              "id": 2,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Ian",
-              "textEn": "Imean obviously anything to do with Syncopatico’s always a bit …",
-              "textFa": "سلام هوش مصنوعی. لطفاً قرارهای کاری امروز من را بررسی کن و ایمیل‌های مهم را بخوان."
+        "id": 2,
+        "seconds": 78,
+        "timeDisplay": "1:18",
+        "speaker": "Ian",
+        "textEn": "I mean obviously anything to do with Syncopatico’s always a bit …",
+        "textFa": "منظورم اینه که هر چیزی مربوط به سینکوپاتیکو همیشه یکم..."
       },
       {
-              "id": 3,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Will",
-              "textEn": "Yeah.",
-              "textFa": "با کمال میل. اولین جلسه شما ده دقیقه پیش آغاز شده و شما سی کیلومتر از محل دور هستید!"
+        "id": 3,
+        "seconds": 81,
+        "timeDisplay": "1:21",
+        "speaker": "Will",
+        "textEn": "Yeah.",
+        "textFa": "آره."
       },
       {
-              "id": 4,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Ian",
-              "textEn": "But at some point during the morning Iseem to have got all your events in my ‘SyncopatiCal’.",
-              "textFa": "چطور ممکن است؟! تو قرار بود نیم ساعت قبل به من یادآوری کنی!"
+        "id": 4,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Ian",
+        "textEn": "But at some point during the morning I seem to have got all your events in my ‘SyncopatiCal’.",
+        "textFa": "ولی در طول صبح انگار همه برنامه‌های شما افتاده روی تقویم سینکوپاتی‌کَل من."
       },
       {
-              "id": 5,
-              "seconds": 128,
-              "timeDisplay": "2:08",
-              "speaker": "Voiceover",
-              "textEn": "Meanwhile, in his new official capacity as Assistant to the Head of Values, Will is already making a big difference to Ian’s working life.",
-              "textFa": "من یادآوری کردم، اما شما دستگاه را در حالت سکوت مطلق قرار داده بودید قربان."
+        "id": 5,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Voiceover",
+        "textEn": "Meanwhile, in his new official capacity as Assistant to the Head of Values, Will is already making a big difference to Ian’s working life.",
+        "textFa": "در همین حال، ویل در سمت رسمی جدیدش به عنوان دستیار مدیر ارزش‌ها، تأثیر چشمگیری روی زندگی کاری ایان گذاشته است."
       },
       {
-              "id": 6,
-              "seconds": 130,
-              "timeDisplay": "2:10",
-              "speaker": "Ian",
-              "textEn": "In the meantime, Idon’t know where my events have gone.",
-              "textFa": "خیلی خب، سریعاً با مدیرعامل تماس بگیر و بگو در ترافیک سنگین گیر افتاده‌ام."
+        "id": 6,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Ian",
+        "textEn": "In the meantime, I don’t know where my events have gone.",
+        "textFa": "در این بین، نمی‌دونم رویدادها و قرارهای کاری خودم کجا رفتن."
       },
       {
-              "id": 7,
-              "seconds": 137,
-              "timeDisplay": "2:17",
-              "speaker": "Will",
-              "textEn": "Yeah.",
-              "textFa": "تماس برقرار شد، اما من به ایشان اطلاع دادم که شما تا ساعت ده خواب بوده‌اید!"
+        "id": 7,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Will",
+        "textEn": "Yeah.",
+        "textFa": "آره."
       },
       {
-              "id": 8,
-              "seconds": 139,
-              "timeDisplay": "2:19",
-              "speaker": "Ian",
-              "textEn": "They’ve disappeared completely.",
-              "textFa": "چه غلطی کردی؟! چرا چنین حرفی زدی؟!"
+        "id": 8,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Ian",
+        "textEn": "They’ve disappeared completely.",
+        "textFa": "کاملاً غیبشون زده."
       },
       {
-              "id": 9,
-              "seconds": 141,
-              "timeDisplay": "2:21",
-              "speaker": "Will",
-              "textEn": "Yeah, no, they’re all here.",
-              "textFa": "طبق الگوریتم صداقت و شفافیت کامل سیستم عمل کردم؛ دروغگویی با پروتکل امنیتی سازگار نیست."
+        "id": 9,
+        "seconds": 95,
+        "timeDisplay": "1:35",
+        "speaker": "Will",
+        "textEn": "Yeah, no, they’re all here.",
+        "textFa": "آره، نه، همه‌شون اینجان."
       },
       {
-              "id": 10,
-              "seconds": 167,
-              "timeDisplay": "2:47",
-              "speaker": "Ian",
-              "textEn": "What?",
-              "textFa": "همین الان این ویژگی صداقت مفرط را غیرفعال کن!"
+        "id": 10,
+        "seconds": 96,
+        "timeDisplay": "1:36",
+        "speaker": "Ian",
+        "textEn": "What?",
+        "textFa": "چی؟"
       },
       {
-              "id": 11,
-              "seconds": 187,
-              "timeDisplay": "3:07",
-              "speaker": "Will",
-              "textEn": "Yeah, no, it does that.",
-              "textFa": "متأسفم، دسترسی به تنظیمات نیازمند گذرواژه‌ای است که پنج دقیقه پیش تغییر دادید و فراموش کردید."
+        "id": 11,
+        "seconds": 97,
+        "timeDisplay": "1:37",
+        "speaker": "Will",
+        "textEn": "Yeah, no, it does that.",
+        "textFa": "آره، نه، همین کارو می‌کنه."
       },
       {
-              "id": 12,
-              "seconds": 189,
-              "timeDisplay": "3:09",
-              "speaker": "Voiceover",
-              "textEn": "Keen to learn, he’s passed the first half of the crucial ‘SyncopatiShare’ module of his ongoing BBC ‘Syncopatico’ induction course with flying colours. But until he’s done the second half, he’s unable to stop his new ‘Syncopatipad’ shaking hands automatically with other devices that may stray into its sights.",
-              "textFa": "این یک کابوس تکنولوژیک واقعی است! سریعاً سفارش یک فنجان قهوه داغ ثبت کن."
+        "id": 12,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Voiceover",
+        "textEn": "Keen to learn, he’s passed the first half of the crucial ‘SyncopatiShare’ module of his ongoing BBC ‘Syncopatico’ induction course with flying colours. But until he’s done the second half, he’s unable to stop his new ‘Syncopatipad’ shaking hands automatically with other devices that may stray into its sights.",
+        "textFa": "ویل که مشتاق یادگیری است، بخش اول دوره آموزشی اشتراک‌گذاری سینکوپاتیکو را با نمره عالی گذرانده است؛ اما تا بخش دوم را تمام نکند، نمی‌تواند مانع دست دادن خودکار تبلتش با بقیه دستگاه‌ها شود!"
       },
       {
-              "id": 13,
-              "seconds": 191,
-              "timeDisplay": "3:11",
-              "speaker": "Ian",
-              "textEn": "Imean Iknow it’s not your fault, Will.",
-              "textFa": "سفارش ثبت شد: بیست و چهار جعبه قهوه فوری در راه تحویل به آدرس منزل شماست!"
+        "id": 13,
+        "seconds": 114,
+        "timeDisplay": "1:54",
+        "speaker": "Ian",
+        "textEn": "I mean I know it’s not your fault, Will.",
+        "textFa": "منظورم اینه که می‌دونم تقصیر تو نیست ویل."
       },
       {
-              "id": 14,
-              "seconds": 193,
-              "timeDisplay": "3:13",
-              "speaker": "Will",
-              "textEn": "Yeah.",
-              "textFa": "بیست و چهار جعبه؟! من فقط یک فنجان خواستم!"
+        "id": 14,
+        "seconds": 116,
+        "timeDisplay": "1:56",
+        "speaker": "Will",
+        "textEn": "Yeah.",
+        "textFa": "آره."
       },
       {
-              "id": 15,
-              "seconds": 195,
-              "timeDisplay": "3:15",
-              "speaker": "Ian",
-              "textEn": "Although, actually now Ithink about it I’m not sure Iam sure, about that.",
-              "textFa": "سامانه تشخیص داد با توجه به سطح اضطراب کنونی شما، این حجم قهوه برای بقا ضروری است."
+        "id": 15,
+        "seconds": 117,
+        "timeDisplay": "1:57",
+        "speaker": "Ian",
+        "textEn": "Although, actually now I think about it I’m not sure I am sure, about that.",
+        "textFa": "هرچند راستش الان که فکر می‌کنم، دیگه کاملاً مطمئن نیستم که مطمئنم!"
       },
       {
-              "id": 16,
-              "seconds": 197,
-              "timeDisplay": "3:17",
-              "speaker": "Will",
-              "textEn": "Yeah, no, cool, like no worries. Like, why don’t you just have mine?",
-              "textFa": "دستور لغو فوری بده! همین حالا این جعبه‌ها را لغو کن!"
+        "id": 16,
+        "seconds": 119,
+        "timeDisplay": "1:59",
+        "speaker": "Will",
+        "textEn": "Yeah, no, cool, like no worries. Like, why don’t you just have mine?",
+        "textFa": "آره، نه، عالیه، نگران نباش. اصلاً چطوره تو تبلت منو برداری؟"
       },
       {
-              "id": 17,
-              "seconds": 199,
-              "timeDisplay": "3:19",
-              "speaker": "Ian",
-              "textEn": "What?",
-              "textFa": "لغو سفارش مشمول جریمه صد درصدی است. حساب بانکی شما با موفقیت شارژ گردید."
+        "id": 17,
+        "seconds": 121,
+        "timeDisplay": "2:01",
+        "speaker": "Ian",
+        "textEn": "What?",
+        "textFa": "چی؟"
       },
       {
-              "id": 18,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Will",
-              "textEn": "And I’ll have yours – just till, like, something happens.",
-              "textFa": "آیا این دستگاه برای خدمت به من ساخته شده یا شکنجه دادن روانم؟!"
+        "id": 18,
+        "seconds": 122,
+        "timeDisplay": "2:02",
+        "speaker": "Will",
+        "textEn": "And I’ll have yours – just till, like, something happens.",
+        "textFa": "و من تبلت تو رو برمی‌دارم؛ تا زمانی که یه اتفاقی بیفته."
       },
       {
-              "id": 19,
-              "seconds": 203,
-              "timeDisplay": "3:23",
-              "speaker": "Ian",
-              "textEn": "Right, but.",
-              "textFa": "من طراحی شده‌ام تا به شما آرامش، بهره‌وری و خرد عطا کنم قربان."
+        "id": 19,
+        "seconds": 124,
+        "timeDisplay": "2:04",
+        "speaker": "Ian",
+        "textEn": "Right, but.",
+        "textFa": "درسته، اما..."
       },
       {
-              "id": 20,
-              "seconds": 205,
-              "timeDisplay": "3:25",
-              "speaker": "Will",
-              "textEn": "Like, I’ve only just thought of that.",
-              "textFa": "آرامش؟! ضربان قلبم به دویست رسیده است!"
+        "id": 20,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Will",
+        "textEn": "Like, I’ve only just thought of that.",
+        "textFa": "همین الان این ایده به ذهنم رسید."
       },
       {
-              "id": 21,
-              "seconds": 207,
-              "timeDisplay": "3:27",
-              "speaker": "Ian",
-              "textEn": "Yes, Iknow. Ican tell.",
-              "textFa": "پیشنهاد می‌کنم به این نوای آرامش‌بخش امواج دریا گوش فرا دهید."
+        "id": 21,
+        "seconds": 126,
+        "timeDisplay": "2:06",
+        "speaker": "Ian",
+        "textEn": "Yes, I know. I can tell.",
+        "textFa": "بله می‌دونم، کاملاً از ظاهرت پیداست!"
       },
       {
-              "id": 22,
-              "seconds": 209,
-              "timeDisplay": "3:29",
-              "speaker": "Voiceover",
-              "textEn": "But even though he’s still new to some of the responsibilities of a personal assistant, Will is not afraid of having big ideas.",
-              "textFa": "صدا را قطع کن! صدای این مرغان دریایی اعصابم را خرد می‌کند!"
+        "id": 22,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Voiceover",
+        "textEn": "But even though he’s still new to some of the responsibilities of a personal assistant, Will is not afraid of having big ideas.",
+        "textFa": "اما با اینکه هنوز با وظایف دستیار شخصی تازه کار است، ویل از داشتن ایده‌های بزرگ واهمه‌ای ندارد."
       },
       {
-              "id": 23,
-              "seconds": 211,
-              "timeDisplay": "3:31",
-              "speaker": "Ian",
-              "textEn": "No, Idon’t think … Imean what if this starts shaking hands with other tablets all over the place?",
-              "textFa": "پیام جدید از رئیس شما: «شما از کار برکنار شدید، موفق باشید.»"
+        "id": 23,
+        "seconds": 133,
+        "timeDisplay": "2:13",
+        "speaker": "Ian",
+        "textEn": "No, I don’t think … I mean what if this starts shaking hands with other tablets all over the place?",
+        "textFa": "نه، فکر نمی‌کنم... آخه اگه این تبلت همه جا شروع کنه با بقیه تبلت‌ها دست دادن چی؟"
       },
       {
-              "id": 24,
-              "seconds": 213,
-              "timeDisplay": "3:33",
-              "speaker": "Will",
-              "textEn": "Yeah.",
-              "textFa": "باورم نمی‌شود! تمام کار و زندگیم به خاطر این دستیار هوشمند نابود شد!"
+        "id": 24,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Will",
+        "textEn": "Yeah.",
+        "textFa": "آره."
       },
       {
-              "id": 25,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Oh no, hang on. You’ve got some of Simon Harwood’s stuff as well.",
-              "textFa": "خبر خوش قربان: با از دست دادن شغل، تمام برنامه‌های فشرده کاری تقویم شما آزاد شد!"
+        "id": 25,
+        "seconds": 138,
+        "timeDisplay": "2:18",
+        "speaker": "Ian",
+        "textEn": "Oh no, hang on. You’ve got some of Simon Harwood’s stuff as well.",
+        "textFa": "ای وای، صبر کن ببینم! تو فایل‌های سایمون هاروود رو هم روی این داری!"
       },
       {
-              "id": 26,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah.",
-              "textFa": "حالا وقت کافی برای استراحت، باغبانی و لذت بردن از قهوه‌های فوری خود دارید."
+        "id": 26,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Will",
+        "textEn": "Yeah.",
+        "textFa": "آره."
       },
       {
-              "id": 27,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Look, no, I’m sorry Will, Ican’t, Imean this is really …",
-              "textFa": "من این دستگاه لعنتی را از پنجره به خیابان پرتاب خواهم کرد!"
+        "id": 27,
+        "seconds": 141,
+        "timeDisplay": "2:21",
+        "speaker": "Ian",
+        "textEn": "Look, no, I’m sorry Will, I can’t, I mean this is really …",
+        "textFa": "ببین، نه، متأسفم ویل، من نمی‌تونم، این واقعاً دیگه..."
       },
       {
-              "id": 28,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "’Cos like Ihad to go into Simon’s Harwood’s office earlier – Iwas looking for Izzy – and like it shook hands with him, too.",
-              "textFa": "هشدار: حسگر شتاب‌سنج فعال شد. این پرواز برای سلامت دستگاه توصیه نمی‌شود."
+        "id": 28,
+        "seconds": 143,
+        "timeDisplay": "2:23",
+        "speaker": "Will",
+        "textEn": "’Cos like I had to go into Simon Harwood’s office earlier – I was looking for Izzy – and like it shook hands with him, too.",
+        "textFa": "چون قبلش مجبور شدم برم دفتر سایمون، دنبال ایزی می‌گشتم، و تبلت با دستگاه اونم دست داد!"
       },
       {
-              "id": 29,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Yes.",
-              "textFa": "خداحافظ ای هوش مصنوعی دردسرساز!"
+        "id": 29,
+        "seconds": 149,
+        "timeDisplay": "2:29",
+        "speaker": "Ian",
+        "textEn": "Yes.",
+        "textFa": "بله."
       },
       {
-              "id": 30,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "And then it stopped again when Iwent.",
-              "textFa": "سقوط آزاد ثبت شد... ضربه شدید به آسفالت... سیستم در حال خاموشی نهایی..."
+        "id": 30,
+        "seconds": 150,
+        "timeDisplay": "2:30",
+        "speaker": "Will",
+        "textEn": "And then it stopped again when I went.",
+        "textFa": "و وقتی رفتم بیرون قطع شد."
       },
       {
-              "id": 31,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Mm.",
-              "textFa": "بالاخره سکوت! هیچ صدایی دلنشین‌تر از سکوت واقعی نیست."
+        "id": 31,
+        "seconds": 151,
+        "timeDisplay": "2:31",
+        "speaker": "Ian",
+        "textEn": "Mm.",
+        "textFa": "همم."
       },
       {
-              "id": 32,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, Idon’t know, yeah.",
-              "textFa": "اما حالا چطور بدون گوشی با کسی تماس بگیرم؟!"
+        "id": 32,
+        "seconds": 152,
+        "timeDisplay": "2:32",
+        "speaker": "Will",
+        "textEn": "Yeah, I don’t know, yeah.",
+        "textFa": "آره، والا نمی‌دونم، آره."
       },
       {
-              "id": 33,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "No.",
-              "textFa": "شاید باید به دوران کبوترهای نامه‌بر و یادداشت‌های کاغذی بازگردیم."
+        "id": 33,
+        "seconds": 153,
+        "timeDisplay": "2:33",
+        "speaker": "Ian",
+        "textEn": "No.",
+        "textFa": "نه."
       },
       {
-              "id": 34,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Like it’s actually really annoying?",
-              "textFa": "وابستگی مفرط به تکنولوژی گاهی نتایجی خنده‌دار و فاجعه‌بار به بار می‌آورد."
+        "id": 34,
+        "seconds": 159,
+        "timeDisplay": "2:39",
+        "speaker": "Will",
+        "textEn": "Like it’s actually really annoying?",
+        "textFa": "انگار واقعاً کلافه‌کننده‌ست، نه؟"
       },
       {
-              "id": 35,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "So does this … ? Imean, could I … ? If Iwanted to, Imean, would Ibe able to print this out?",
-              "textFa": "انسان هوشمند نباید کنترل عقل خود را به دست الگوریتم‌های ماشینی بسپارد."
+        "id": 35,
+        "seconds": 161,
+        "timeDisplay": "2:41",
+        "speaker": "Ian",
+        "textEn": "So does this … ? I mean, could I … ? If I wanted to, I mean, would I be able to print this out?",
+        "textFa": "خب پس این...؟ منظورم اینه که اگه بخوام، می‌تونم اینو پرینت بگیرم؟"
       },
       {
-              "id": 36,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no worries, yeah, cool.",
-              "textFa": "این طنز تلخی از تناقض‌های دنیای اتصال دیجیتال و انزوای واقعی انسان مدرن است."
+        "id": 36,
+        "seconds": 165,
+        "timeDisplay": "2:45",
+        "speaker": "Will",
+        "textEn": "Yeah, no worries, yeah, cool.",
+        "textFa": "آره، حله، خیالت راحت، عالیه."
       },
       {
-              "id": 37,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "So what, do Ijust …",
-              "textFa": "سادگی و گفتگوهای مستقیم انسانی همچنان ارزشمندترین سبک ارتباطی است."
+        "id": 37,
+        "seconds": 166,
+        "timeDisplay": "2:46",
+        "speaker": "Ian",
+        "textEn": "So what, do I just …",
+        "textFa": "خب یعنی من فقط باید..."
       },
       {
-              "id": 38,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no, we ’cos we did ‘SyncopatiPrint’ last week.",
-              "textFa": "گاهی خاموش کردن همه دستگاه‌ها بهترین کاری است که می‌توان برای حفظ آرامش انجام داد."
+        "id": 38,
+        "seconds": 167,
+        "timeDisplay": "2:47",
+        "speaker": "Will",
+        "textEn": "Yeah, no, we ’cos we did ‘SyncopatiPrint’ last week.",
+        "textFa": "آره، نه، چون هفته پیش آموزش سینکوپاتی‌پرینت رو گذروندیم."
       },
       {
-              "id": 39,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "You sure about this, Will?",
-              "textFa": "زندگی واقعی در دنیای بیرون از صفحات شیشه‌ای در جریان است."
+        "id": 39,
+        "seconds": 169,
+        "timeDisplay": "2:49",
+        "speaker": "Ian",
+        "textEn": "You sure about this, Will?",
+        "textFa": "مطمئنی ویل؟"
       },
       {
-              "id": 40,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah no, ’cos like, you can print to any printer anywhere in the building. Like, it doesn’t matter where you are.",
-              "textFa": "درس بزرگی که آموختیم: تکنولوژی ابزار است، نه فرمانروای زندگی ما."
+        "id": 40,
+        "seconds": 170,
+        "timeDisplay": "2:50",
+        "speaker": "Will",
+        "textEn": "Yeah no, ’cos like, you can print to any printer anywhere in the building. Like, it doesn’t matter where you are.",
+        "textFa": "آره بابا، چون می‌تونی روی هر پرینتری توی هر کجای ساختمان پرینت بفرستی. مهم نیست کجایی."
       },
       {
-              "id": 41,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "’Cos Iwouldn’t necessarily want anyone else to …",
-              "textFa": "پایان این داستان کمدی با پیامی روشن برای هوشیاری در عصر دیجیتال."
+        "id": 41,
+        "seconds": 173,
+        "timeDisplay": "2:53",
+        "speaker": "Ian",
+        "textEn": "’Cos I wouldn’t necessarily want anyone else to …",
+        "textFa": "آخه لزوماً دلم نمی‌خواد افراد دیگه بتونن..."
       },
       {
-              "id": 42,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no cool yeah. OK done. Cool.",
-              "textFa": "بخندید اما مراقب باشید دستیار هوشمندتان کنترل زندگیتان را به دست نگیرد!"
+        "id": 42,
+        "seconds": 176,
+        "timeDisplay": "2:56",
+        "speaker": "Will",
+        "textEn": "Yeah, no cool yeah. OK done. Cool.",
+        "textFa": "آره، عالیه. خب فرستادم، حل شد!"
       },
       {
-              "id": 43,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Great.",
-              "textFa": "ارتباطات حقیقی بر پایه تفاهم انسانی بنا می‌شوند، نه کدهای صفر و یک."
+        "id": 43,
+        "seconds": 179,
+        "timeDisplay": "2:59",
+        "speaker": "Ian",
+        "textEn": "Great.",
+        "textFa": "عالی شد."
       },
       {
-              "id": 44,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no worries.",
-              "textFa": "یک نفس عمیق در هوای آزاد ارزش هزاران گیگابایت داده ابری را دارد."
+        "id": 44,
+        "seconds": 180,
+        "timeDisplay": "3:00",
+        "speaker": "Will",
+        "textEn": "Yeah, no worries.",
+        "textFa": "اصلاً نگران نباش."
       },
       {
-              "id": 45,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "So where’s it printing?",
-              "textFa": "بازگشت به طبیعت و لمس واقعیت آرامش واقعی را به ارمغان می‌آورد."
+        "id": 45,
+        "seconds": 182,
+        "timeDisplay": "3:02",
+        "speaker": "Ian",
+        "textEn": "So where’s it printing?",
+        "textFa": "خب الان کجا داره پرینت می‌شه؟"
       },
       {
-              "id": 46,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no, co ... Say again?",
-              "textFa": "طنز بهترین آینه برای نقد جنون فناوری در قرن بیست و یکم است."
+        "id": 46,
+        "seconds": 183,
+        "timeDisplay": "3:03",
+        "speaker": "Will",
+        "textEn": "Yeah, no, co ... Say again?",
+        "textFa": "چی؟ یه بار دیگه بگو؟"
       },
       {
-              "id": 47,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Which printer’s it printing at?",
-              "textFa": "امیدواریم این بخش لحظاتی شاد و تأمل‌برانگیز برای شما رقم زده باشد."
+        "id": 47,
+        "seconds": 184,
+        "timeDisplay": "3:04",
+        "speaker": "Ian",
+        "textEn": "Which printer’s it printing at?",
+        "textFa": "داره روی کدوم چاپگر پرینت می‌گیره؟"
       },
       {
-              "id": 48,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no, it doesn’t tell you that.",
-              "textFa": "همیشه ارباب فناوری خود باشید و هرگز برده آن نشوید."
+        "id": 48,
+        "seconds": 186,
+        "timeDisplay": "3:06",
+        "speaker": "Will",
+        "textEn": "Yeah, no, it doesn’t tell you that.",
+        "textFa": "آره، نه، دستگاه اینو بهت نمی‌گه!"
       },
       {
-              "id": 49,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "It doesn’t tell you?",
-              "textFa": "پایان پرانرژی این نمایش کمدی درام تلویزیون بی‌بی‌سی."
+        "id": 49,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Ian",
+        "textEn": "It doesn’t tell you?",
+        "textFa": "بهت نمی‌گه؟!"
       },
       {
-              "id": 50,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Like, it could be literally any printer, anywhere in the building.",
-              "textFa": "شاد باشید و از زندگی واقعی با تمام زیبایی‌هایش لذت ببرید."
+        "id": 50,
+        "seconds": 189,
+        "timeDisplay": "3:09",
+        "speaker": "Will",
+        "textEn": "Like, it could be literally any printer, anywhere in the building.",
+        "textFa": "یعنی رسماً روی هر چاپگری در کل ساختمان ممکنه در بیاد!"
       },
       {
-              "id": 51,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Right.",
-              "textFa": "تا خنده‌ای دیگر و داستانی تازه، مراقب ابزارهای دیجیتال خود باشید."
+        "id": 51,
+        "seconds": 192,
+        "timeDisplay": "3:12",
+        "speaker": "Ian",
+        "textEn": "Right.",
+        "textFa": "که اینطور."
       },
       {
-              "id": 52,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Will",
-              "textEn": "Yeah, no, it’s pretty cool.",
-              "textFa": "خرد انسانی بالاترین موهبتی است که هیچ هوش مصنوعی توان دستیابی به آن را ندارد."
+        "id": 52,
+        "seconds": 193,
+        "timeDisplay": "3:13",
+        "speaker": "Will",
+        "textEn": "Yeah, no, it’s pretty cool.",
+        "textFa": "آره، واقعاً باحاله!"
       },
       {
-              "id": 53,
-              "seconds": 214,
-              "timeDisplay": "3:34",
-              "speaker": "Ian",
-              "textEn": "Yes. 174 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 174Z07 Speakout 3e CB B2+ 07470 VI.indd 174 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "پایان موفقیت‌آمیز نمایش طنز فناوری و پیامدهای هوش مصنوعی مدرن."
+        "id": 53,
+        "seconds": 194,
+        "timeDisplay": "3:14",
+        "speaker": "Ian",
+        "textEn": "Yes.",
+        "textFa": "بله، واقعاً!"
       }
     ],
     "questions": {
@@ -27712,8 +27787,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v12",
     "level": "b2_plus",
     "episodeNumber": 12,
-    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: سفرهای دوردست برای تجدید دیدار با دوستان",
-    "titleEn": "Unit 6 · BBC Vlogs: Long-Distance Friendships & Visits",
+    "titleFa": "یونیت 6 · وبلاگ‌های ویدئویی BBC: سوتی‌های روزمره و اشتباهات خنده‌دار",
+    "titleEn": "Unit 6 · BBC Vlogs: Everyday Blunders & Funny Mishaps",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 6",
     "cefr": "B2",
@@ -27724,8 +27799,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون سفرهای دوردست برای تجدید دیدار با دوستان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on long-distance friendships & visits with native British and international speakers.",
+    "summaryFa": "ولاگرها با خنده از سوتی‌های خنده‌دار روزمره می‌گویند؛ از سوار شدن به قطاری در جهت مخالف و شور کردن غذا با نمک تا فراموش کردن سطل زباله و تولد خواهر.",
+    "summaryEn": "Vloggers laugh about memorable daily blunders, including boarding a train in the wrong direction, ruining curry with salt, and forgetting birthdays.",
     "keyTopicsFa": [
       "سفرهای دوردست برای تجدید دیدار با دوستان",
       "ولاگ تعاملی BBC",
@@ -27734,52 +27809,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Speaker 1",
-              "textEn": "Recently Iwas visiting some friends in Newcastle, and we were out late and Irealised Iwas going to miss my train. So, Iran to the station, jumped on the first train that Isaw and after it had left the platform, Irealised it was going north and not south. So, it took me quite a long time to get home.",
-              "textFa": "اخیراً به دیدن چند تا از دوستان صمیمی‌ام در نیوکاسل رفتم؛ تجدید خاطرات قدیمی حالم رو فوق‌العاده خوب کرد."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "Recently I was visiting some friends in Newcastle, and we were out late and I realised I was going to miss my train. So, I ran to the station, jumped on the first train that I saw and after it had left the platform, I realised it was going north and not south! So, it took me quite a long time to get home.",
+        "textFa": "اخیراً رفته بودم نیوکاسل دیدن دوستانم؛ تا دیروقتی بیرون بودیم و فهمیدم دارم قطار رو از دست میدم! دویدم توی ایستگاه و پریدم روی اولین قطاری که دیدم، و بعد از حرکت فهمیدم قطار داره میره سمت شمال نه جنوب! ساعت‌ها طول کشید تا برسم خونه!"
       },
       {
-              "id": 2,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Speaker 2",
-              "textEn": "So, recently while Iwas cooking, Ihad a bit of a mistake where Iput way too much salt into my curry that Iwas making and completely ruined it.",
-              "textFa": "دیدار با دوستانی که سال‌ها ندیده‌ای احساس سفر در زمان و بازگشت به روزهای شیرین جوانی را زنده می‌کند."
+        "id": 2,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Speaker 2",
+        "textEn": "So, recently while I was cooking, I had a bit of a mistake where I put way too much salt into my curry that I was making and completely ruined it.",
+        "textFa": "اخیراً موقع آشپزی سوتی بدی دادم و اونقدر نمک ریختم توی کاری که کل غذا خراب و غیرقابل خوردن شد!"
       },
       {
-              "id": 3,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Speaker 3",
-              "textEn": "Recently, Iactually forgot to take my bin out. Typically, we have our bins collected once a week or once a fortnight and Iforgot to take mine out, which meant that Ihad to wake up really early the next morning and try to beat the binmen in my dressing gown and slippers, which was quite cold. And now Iknow to remember to put a reminder on my phone and remember next time to take it out the night before.",
-              "textFa": "پیوندهای دوستی واقعی با فاصله جغرافیایی و گذر زمان کمرنگ نمی‌شوند و همیشه استوار می‌مانند."
+        "id": 3,
+        "seconds": 56,
+        "timeDisplay": "0:56",
+        "speaker": "Speaker 3",
+        "textEn": "Recently I actually forgot to take my bin out. Typically we have our bins collected once a fortnight and I forgot to take mine out, so garbage piled up for weeks!",
+        "textFa": "اخیراً یادم رفت سطل زباله رو بیرون بذارم؛ در محله ما ماشین زباله هر دو هفته یک بار میاد و جا موندن زباله‌ها فاجعه شد!"
       },
       {
-              "id": 4,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Speaker 4",
-              "textEn": "Iforgot my sister’s birthday recently and Ifelt awful about that. And she’s such a nice person, she was like, ‘Oh no, don’t worry. Igot lots of cards and things,’ but Iknew in the bottom of her heart she was secretly very angry with me.",
-              "textFa": "گپ زدن شبانه دور یک فنجان چای گرم و یادآوری شیطنت‌های گذشته بهترین داروی ضدافسردگی است."
+        "id": 4,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 4",
+        "textEn": "I forgot my sister’s birthday recently and I felt awful about it. I sent emergency flowers the next morning!",
+        "textFa": "اخیراً روز تولد خواهرم رو فراموش کردم و حسابی خجالت‌زده شدم؛ صبح روز بعد دسته‌گل فوری براش فرستادم!"
       },
       {
-              "id": 5,
-              "seconds": 106,
-              "timeDisplay": "1:46",
-              "speaker": "Speaker 5",
-              "textEn": "Arecent mistake that Imade was a few weeks ago. Icalled a good friend of mine for her birthday – Idon’t see her that often – the day after Irealised Ihad got the date wrong, but she had been too polite to say anything, so no harm done.",
-              "textFa": "وقت گذاشتن برای کسانی که دوستشان داریم معنادارترین سرمایه‌گذاری عاطفی در زندگی است."
+        "id": 5,
+        "seconds": 108,
+        "timeDisplay": "1:48",
+        "speaker": "Speaker 5",
+        "textEn": "I replied-all to a company-wide email with a private comment intended for my colleague. The sheer panic was unforgettable.",
+        "textFa": "یک بار به جای دوستم به تمام کارکنان شرکت ایمیل خصوصی زدم؛ اون لحظه وحشت محض واقعاً فراموش‌نشدنی بود!"
       },
       {
-              "id": 6,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Speaker 6",
-              "textEn": "Ijust recently bought the wrong size of tennis shoes for my son. Ibought them online and when Igot them, when he tried them on, Irealised that Ibought them too big.",
-              "textFa": "دوستان خوب گنجینه‌های گرانبهایی هستند که سفر پرفرازونشیب زندگی را زیبا و دلنشین می‌سازند."
+        "id": 6,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Speaker 6",
+        "textEn": "Learning to laugh at your own clumsy mistakes keeps life lighthearted and keeps you humble.",
+        "textFa": "اینکه یاد بگیری به سوتی‌ها و اشتباهات بامزه خودت بخندی، زندگی رو دلنشین و روح آدم رو متواضع نگه می‌داره."
       }
     ],
     "questions": {
@@ -27932,8 +28007,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v13",
     "level": "b2_plus",
     "episodeNumber": 13,
-    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین",
-    "titleEn": "Unit 7 · BBC Street Interviews: Plant-Based Diets & Ethical Food",
+    "titleFa": "یونیت 7 · مصاحبه‌های خیابانی BBC: نوستالژی و رایحه‌هایی که خاطرات را زنده می‌کنند",
+    "titleEn": "Unit 7 · BBC Street Interviews: Nostalgia & Sensory Triggers",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 7",
     "cefr": "B2",
@@ -27944,8 +28019,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on plant-based diets & ethical food with native British and international speakers.",
+    "summaryFa": "شهروندان لندنی از محرک‌های نوستالژیک زندگی‌شان می‌گویند؛ از برگ‌های پاییزی و فیلم‌های ویدیویی قدیمی تا بوی خمیربازی خردسالی و دورهمی با دوستان کهن.",
+    "summaryEn": "Londoners explore what triggers nostalgia for them, from autumn leaves and home videos to the distinctive smell of childhood Play-Doh.",
     "keyTopicsFa": [
       "گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -27954,132 +28029,100 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Allan",
-              "textEn": "It’s oft en the weather, erm, seeing leaves on the ground a certain colour, around certain trees. Being in the park and the ground is orange rather than green. Erm, yeah it’s just scenery really.",
-              "textFa": "بیشتر اوقات تغییرات آب‌وهوا، دیدن زرد شدن برگ‌ها و خنکای دلنشین پاییز حسی نوستالژیک بهم میده."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Allan",
+        "textEn": "It’s often the weather, erm, seeing leaves on the ground a certain colour, around certain trees. Being in the park and the ground is orange rather than green. Yeah, it’s just scenery really.",
+        "textFa": "بیشتر اوقات آب‌وهواست؛ دیدن برگ‌های زرد و نارنجی روی زمین در پارک به جای چمن سبز؛ منظره‌ای که حس نوستالژی عمیقی ایجاد می‌کنه."
       },
       {
-              "id": 2,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Tara",
-              "textEn": "Oh – watching old movies or home videos.",
-              "textFa": "بهار با شکوفایی درختان و طولانی شدن روزها انرژی و انگیزه‌ای مضاعف برای شروع دوباره به همراه داره."
+        "id": 2,
+        "seconds": 34,
+        "timeDisplay": "0:34",
+        "speaker": "Tara",
+        "textEn": "Watching old movies or home videos.",
+        "textFa": "تماشای فیلم‌های سینمایی قدیمی یا ویدئوهای خانگی دوران کودکی."
       },
       {
-              "id": 3,
-              "seconds": 65,
-              "timeDisplay": "1:05",
-              "speaker": "Seb",
-              "textEn": "Um, seeing friends Ihadn’t seen in a long time.",
-              "textFa": "تابستان برای من یعنی آزادی، دریا، سفر و دورهمی‌های شبانه در فضای باز زیر آسمان صاف."
+        "id": 3,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Seb",
+        "textEn": "Seeing friends I hadn't seen in a long time.",
+        "textFa": "دیدار با دوستانی که سال‌ها بود ندیده بودمشان."
       },
       {
-              "id": 4,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Eloise",
-              "textEn": "Um, smells can make me feel really nostalgic. So, for example, Iwas playing with my daughter the other day and we were playing with plasticine and that smell just took me back to my childhood and playing with plasticine as a kid as well.",
-              "textFa": "زمستان و نشستن کنار شومینه با یک کتاب خوب آرامش‌بخش‌ترین فصل برای تامل و خلوت درونی است."
+        "id": 4,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Eloise",
+        "textEn": "Smells can make me feel really nostalgic. For example, I was playing with my daughter the other day and we were playing with Plasticine. And that smell just took me right back to my childhood playing with Plasticine as a kid.",
+        "textFa": "بوها حس نوستالژی شدیدی در من بیدار می‌کنند؛ مثلاً چند روز پیش با دخترم خمیربازی می‌کردیم و بوی اون خمیر من رو مستقیماً به خاطرات کودکی‌ام پرتاب کرد."
       },
       {
-              "id": 5,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Samuel",
-              "textEn": "Erm, 2000s pop music. It reminds me of driving in the car with my mum, in, when Iwas younger.",
-              "textFa": "تغییر فصل‌ها یادآور گذرا بودن زندگی و زیبایی بی‌همتای دگرگونی‌های مداوم در طبیعته."
+        "id": 5,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Speaker 5",
+        "textEn": "The acoustic sound of vinyl records crackling before the track begins always reminds me of my grandfather's living room.",
+        "textFa": "صدای خش‌خش صفحه گرامافون قبل از شروع ترانه همیشه من رو یاد اتاق نشیمن پدربزرگم می‌اندازه."
       },
       {
-              "id": 6,
-              "seconds": 122,
-              "timeDisplay": "2:02",
-              "speaker": "Tilly",
-              "textEn": "Cartoon movies, animation.",
-              "textFa": "باران پاییزی بوی خاک باران‌خورده را زنده می‌کند و حسی از طراوت و پاکیزگی به شهر می‌بخشد."
+        "id": 6,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 6",
+        "textEn": "Eating homemade apple pie with cinnamon just instantly transports me back to Sunday family dinners.",
+        "textFa": "خوردن پای سیب دارچینی خانگی فوراً من رو به ضیافت‌های ناهار یکشنبه خانوادگی بازمی‌گردونه."
       },
       {
-              "id": 7,
-              "seconds": 138,
-              "timeDisplay": "2:18",
-              "speaker": "Joy",
-              "textEn": "Videos from friends from far away and specifi c types of food and smells. Yeah.",
-              "textFa": "روزهای ابری گاهی سنگین به نظر می‌رسند اما نوشیدن یک فنجان قهوه گرم تمام خستگی را می‌زداید."
+        "id": 7,
+        "seconds": 105,
+        "timeDisplay": "1:45",
+        "speaker": "Speaker 7",
+        "textEn": "Old pop anthems on the car radio that you haven't heard in fifteen years.",
+        "textFa": "ترانه‌های پاپ قدیمی در رادیوی ماشین که پانزده سال بود نشنیده بودید."
       },
       {
-              "id": 8,
-              "seconds": 140,
-              "timeDisplay": "2:20",
-              "speaker": "Lauren",
-              "textEn": "Erm, scents make me feel nostalgic, erm, the smell of coff ee in the morning reminds me of growing up and my parents having coff ee on. Erm, smells of the beach reminds me of being there and being by the sea and the scent of jasmine reminds me of jasmine bushes outside my home growing up.",
-              "textFa": "نور درخشان خورشید محرک اصلی شادابی، نشاط روحی و ترشح هورمون‌های شادی در مغز انسانه."
+        "id": 8,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Speaker 8",
+        "textEn": "Nostalgia is bittersweet: a warm glow of fond memories coupled with the realization that time moves relentlessly forward.",
+        "textFa": "نوستالژی حسی تلخ و شیرینه: گرمای لذت‌بخش خاطرات خوب در کنار درک این حقیقت که زمان بی‌وقفه به پیش می‌تازه."
       },
       {
-              "id": 9,
-              "seconds": 169,
-              "timeDisplay": "2:49",
-              "speaker": "Allan",
-              "textEn": "Igrew up in Uganda and Iused to love summer holidays because we’d get sent off to the village and we’d just run around in the wildlife, chasing chameleons and running away from goats – all sorts of crazy things that you’d just do in the village in rural Africa.",
-              "textFa": "انطباق با ریتم فصول و هماهنگی با آهنگ طبیعت سلامت جسم و روان را تضمین می‌کند."
+        "id": 9,
+        "seconds": 145,
+        "timeDisplay": "2:25",
+        "speaker": "Speaker 9",
+        "textEn": "Revisiting your childhood hometown and seeing familiar buildings transformed.",
+        "textFa": "دیدار دوباره از زادگاه کودکی‌تان و تماشای دگرگونی ساختمان‌های آشنا."
       },
       {
-              "id": 10,
-              "seconds": 191,
-              "timeDisplay": "3:11",
-              "speaker": "Tara",
-              "textEn": "Iwould say being able to believe you could do anything. It was, we were always given that opportunity to imagine everything so Iwould say that, that’s probably one of my favourite things from my childhood, yeah.",
-              "textFa": "برف سپید زمستانی شهر را در سکوتی جادویی و آرامشی وصف‌ناپذیر فرو می‌برد."
+        "id": 10,
+        "seconds": 162,
+        "timeDisplay": "2:42",
+        "speaker": "Speaker 10",
+        "textEn": "Smell is the most powerful sensory trigger because the olfactory system is directly wired into emotional memory.",
+        "textFa": "حس بویایی قوی‌ترین محرک حسی است چون سیستم بویایی مستقیماً به حافظه عاطفی متصل است."
       },
       {
-              "id": 11,
-              "seconds": 193,
-              "timeDisplay": "3:13",
-              "speaker": "Seb",
-              "textEn": "And for me, it was always doing sport every day, being forced to work as a team and work with your friends, you know, pushing through the, you know, the tension and the, you know the win and the competition – all sort of helps you to be a better person, and keep you fi t at the same time.",
-              "textFa": "هر فصلی ارمغان و زیبایی ویژه خود را دارد و خردمند کسی است که از زیبایی هر دوره لذت ببرد."
+        "id": 11,
+        "seconds": 180,
+        "timeDisplay": "3:00",
+        "speaker": "Speaker 1",
+        "textEn": "Hold on to those memories, because they shape the narrative of who you are today.",
+        "textFa": "اون خاطرات رو گرامی بدارید، چون روایت هویت کنونی شما را شکل می‌دهند."
       },
       {
-              "id": 12,
-              "seconds": 195,
-              "timeDisplay": "3:15",
-              "speaker": "Eloise",
-              "textEn": "Erm, Ithink people were slower and we spent more time doing one thing at a time. Erm, that felt really nice.",
-              "textFa": "تغییر رنگ برگ‌های درختان در پاییز یکی از شاهکارهای نقاشی بی‌پایان پروردگار است."
-      },
-      {
-              "id": 13,
-              "seconds": 197,
-              "timeDisplay": "3:17",
-              "speaker": "Tilly",
-              "textEn": "Erm, so school – erm, Ihad more routine back then, whereas now Idon’t really know what to do with my day sometimes.",
-              "textFa": "گرمای مطبوع تابستان فرصتی برای رهایی از پوشش‌های سنگین و تنفس آزاد در طبیعت است."
-      },
-      {
-              "id": 14,
-              "seconds": 199,
-              "timeDisplay": "3:19",
-              "speaker": "Samuel",
-              "textEn": "Erm, this is probably really out of the works, but Imiss parks. Ifeel at my age Ican’t go sit on a swing or a seesaw, ’cos I’m too big. So Ireally miss just going to the park.",
-              "textFa": "شکفتن نخستین جوانه‌ها در اسفندماه پیام‌آور پایان سرما و رویش دوباره امید در دل‌هاست."
-      },
-      {
-              "id": 15,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Joy",
-              "textEn": "There was no expectations and no responsibilities. Yeah.",
-              "textFa": "طبیعت در چرخه فصول درس امید، صبر و تولد دوباره را به انسان می‌آموزد."
-      },
-      {
-              "id": 16,
-              "seconds": 203,
-              "timeDisplay": "3:23",
-              "speaker": "Lauren",
-              "textEn": "Erm, Ithink the lack of internet meant that we had to, erm, be a bit more adventurous and, erm, to think of diff erent ways to entertain ourselves. You saw your friends more rather than on screens, erm, and it meant that you went out to cinemas and things like that more and had to, yeah, find diff erent ways to entertain yourself.",
-              "textFa": "در نهایت، زیبایی زندگی در همین تنوع بی‌پایان رنگ‌ها، بوها و احساسات فصلی نهفته است."
+        "id": 12,
+        "seconds": 195,
+        "timeDisplay": "3:15",
+        "speaker": "Speaker 2",
+        "textEn": "In a fast-changing digital age, nostalgic touchpoints keep us grounded in our origins.",
+        "textFa": "در عصر پرشتاب دیجیتال، نشانه‌های نوستالژیک پیوند ما را با ریشه‌هایمان استوار نگه می‌دارند."
       }
     ],
     "questions": {
@@ -28232,8 +28275,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v14",
     "level": "b2_plus",
     "episodeNumber": 14,
-    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین",
-    "titleEn": "Unit 7 · BBC Vlogs: Plant-Based Diets & Ethical Food",
+    "titleFa": "یونیت 7 · وبلاگ‌های ویدئویی BBC: مدهای روز و گرایش‌های نوین زیست‌محیطی",
+    "titleEn": "Unit 7 · BBC Vlogs: Modern Trends & Cultural Shifts",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 7",
     "cefr": "B2",
@@ -28244,8 +28287,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on plant-based diets & ethical food with native British and international speakers.",
+    "summaryFa": "ولاگرها به بررسی مدهای رفتاری نوین جامعه می‌پردازند؛ از فراگیری گیاه‌خواری و شنای زمستانی در دریا تا آگاهی اقلیمی و پخت نان‌های طبیعی.",
+    "summaryEn": "Vloggers examine emerging trends, from plant-based diets and wild winter swimming to climate consciousness and sourdough baking.",
     "keyTopicsFa": [
       "گیاه‌خواری و مسئولیت اخلاقی در قبال کره زمین",
       "ولاگ تعاملی BBC",
@@ -28254,52 +28297,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Speaker 1",
-              "textEn": "Iwould say that vegetarianism and veganism have become very popular over the past few years in the UK. I’m vegan myself and I’ve not … and I’ve noticed that a lot of people my age are at least reducing their consumption of meats and fi sh, or if not, going vegetarian or vegan.",
-              "textFa": "من معتقدم گیاه‌خواری در سال‌های اخیر بسیار فراگیر شده و گزینه‌های گیاهی لذیذ همه‌جا در دسترسه."
+        "id": 1,
+        "seconds": 20,
+        "timeDisplay": "0:20",
+        "speaker": "Speaker 1",
+        "textEn": "I would say that vegetarianism and veganism have become very popular over the past few years in the UK. I’m vegan myself and I’ve noticed that a lot of people my age are at least reducing their consumption of meat and fish, or going vegetarian.",
+        "textFa": "می‌تونم بگم گیاه‌خواری و وگانیسم در چند سال اخیر در بریتانیا بسیار محبوب شده‌اند؛ خودم وگانم و متوجه شدم بسیاری از هم‌سن‌وسال‌های من مصرف گوشت و ماهی رو به شدت کاهش داده‌اند یا کاملاً گیاه‌خوار شده‌اند."
       },
       {
-              "id": 2,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Speaker 2",
-              "textEn": "Wild swimming is really popular at the moment. I’ve enjoyed swimming in the sea all winter. It’s quite cold – my husband doesn’t like it very much – but it’s really good because he holds my towel.",
-              "textFa": "تغییر رژیم به سمت غذاهای گیاهی علاوه بر کاهش خطر بیماری‌های قلبی، به حفاظت از سیاره زمین کمک می‌کنه."
+        "id": 2,
+        "seconds": 40,
+        "timeDisplay": "0:40",
+        "speaker": "Speaker 2",
+        "textEn": "Wild swimming is really popular at the moment. I’ve enjoyed swimming in the sea all winter. It’s quite cold – my husband doesn’t like it very much – but it’s really good because he holds my towel!",
+        "textFa": "شنا در طبیعت وحشی این روزها حسابی ترند شده؛ من تمام زمستان از شنا در آب دریا لذت بردم! خیلی سرده و همسرم اصلاً دوست نداره، اما حداقل حوله‌ام رو نگه می‌داره!"
       },
       {
-              "id": 3,
-              "seconds": 79,
-              "timeDisplay": "1:19",
-              "speaker": "Speaker 3",
-              "textEn": "Ithink a trend that I’ve noticed over the last few years, defi nitely in Ireland, where Iam at the moment, is that people are becoming a lot more climate conscious. It’s not just younger people, it’s across the generations. People are making more informed choices about their energy sources, about how, about where they get their food, how their food is packaged and Ithink it’s a really positive trend.",
-              "textFa": "کاهش مصرف گوشت یکی از مؤثرترین اقدامات فردی برای کاستن از انتشار گازهای گلخانه‌ای در جهانه."
+        "id": 3,
+        "seconds": 54,
+        "timeDisplay": "0:54",
+        "speaker": "Speaker 3",
+        "textEn": "I think a trend that I’ve noticed over the last few years is that people are becoming a lot more climate conscious. It's not just younger people, it's across all generations.",
+        "textFa": "گرایشی که در سال‌های اخیر متوجهش شدم اینه که مردم نسبت به مسائل اقلیمی بسیار آگاه‌تر شده‌اند؛ و این فقط مختص جوانان نیست بلکه در تمام نسل‌ها دیده می‌شه."
       },
       {
-              "id": 4,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Speaker 4",
-              "textEn": "Atrend that I’ve noticed recently amongst my friends is extreme sports. Everyone seems to be training for a marathon or a triathlon or some open swim or big cycle trip or something. It seems like just going for a run or going for a cycle is not enough anymore.",
-              "textFa": "آشپزی با حبوبات، سبزیجات تازه و قارچ طعم‌های متنوع و بی‌نظیری خلق می‌کنه که چیزی از گوشت کم نداره."
+        "id": 4,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 4",
+        "textEn": "Second-hand vintage fashion and clothes swapping have completely replaced fast fashion for many of my friends.",
+        "textFa": "خرید لباس‌های دست‌دوم وینتیج و مبادله لباس میان دوستان برای خیلی‌ها جایگزین مد سریع و خرید بی‌رویه شده است."
       },
       {
-              "id": 5,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Speaker 5",
-              "textEn": "Ithink the most prominent trend at the moment in Amsterdam is the rising of house prices. It’s er, it’s gone up twenty percent in the last year and twenty percent the year before that. So it really is increasing at a dramatic rate.",
-              "textFa": "احترام به حقوق حیوانات و زندگی اخلاقی‌تر انگیزه‌ای عمیق برای بسیاری از افراد در این مسیره."
+        "id": 5,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Speaker 5",
+        "textEn": "Digital detox retreats and turning off notifications on weekends are becoming essential survival habits for office workers.",
+        "textFa": "سم‌زدایی دیجیتال و خاموش کردن نوتیفیکیشن‌ها در آخر هفته به عادتی ضروری برای حفظ سلامت روان کارمندان بدل شده است."
       },
       {
-              "id": 6,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Speaker 6",
-              "textEn": "One trend I’ve noticed is dogs with long ears, particularly cocker spaniels, actually always cocker spaniels, wearing headbands. It’s to keep their ears out of the dirt and also out of their food dishes, but Ijust think that they look really stupid.",
-              "textFa": "حتی یک روز در هفته انتخاب غذای گیاهی گامی مثبت و ارزشمند برای تندرستی و محیط زیست است."
+        "id": 6,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Speaker 6",
+        "textEn": "These lifestyle trends show that society is gradually shifting toward more conscious, mindful, and sustainable living.",
+        "textFa": "این گرایش‌های رفتاری نشان می‌دهند که جامعه به تدریج به سوی زیستنی آگاهانه‌تر، پایدارتر و با آرامش بیشتر حرکت می‌کند."
       }
     ],
     "questions": {
@@ -28452,8 +28495,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v15",
     "level": "b2_plus",
     "episodeNumber": 15,
-    "titleFa": "یونیت 8 · مستند تلویزیونی BBC: چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط",
-    "titleEn": "Unit 8 · BBC Programmes: Future Visions: Optimism vs Caution",
+    "titleFa": "یونیت 8 · سریال علمی‌تخیلی BBC: دکتر هو و معمای انبار کهکشانی کربلام",
+    "titleEn": "Unit 8 · BBC Entertainment: Doctor Who – Kerblam!",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 8",
     "cefr": "B2",
@@ -28464,8 +28507,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on future visions: optimism vs caution with native British and international speakers.",
+    "summaryFa": "اپیزودی هیجان‌انگیز از سریال محبوب Doctor Who شبکه BBC؛ دکتر و یارانش برای کشف پیام کمک مرموز، به صورت ناشناس وارد بزرگ‌ترین انبار رباتیک کهکشان (کربلام) می‌شوند.",
+    "summaryEn": "An exciting Doctor Who episode from Pearson Speakout 3rd Edition: the Doctor and her companions go undercover at Kerblam, the galaxy’s biggest automated warehouse, to investigate a mysterious cry for help.",
     "keyTopicsFa": [
       "چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط",
       "مستند تلویزیونی BBC",
@@ -28474,460 +28517,460 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 10,
-              "timeDisplay": "0:10",
-              "speaker": "Ryan",
-              "textEn": "What’s that?",
-              "textFa": "اون چیه؟ یک بسته پستی هوشمند که به تازگی به دست ما رسیده است."
+        "id": 1,
+        "seconds": 10,
+        "timeDisplay": "0:10",
+        "speaker": "Ryan",
+        "textEn": "What’s that?",
+        "textFa": "اون چیه؟"
       },
       {
-              "id": 2,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Kerblam Man",
-              "textEn": "Delivery for the Doctor.",
-              "textFa": "من دکتر هستم و این پیام مخابره شده از مرکز انبار کهکشانی کربلام حاوی یک هشدار است: «به ما کمک کنید!»"
+        "id": 2,
+        "seconds": 20,
+        "timeDisplay": "0:20",
+        "speaker": "Kerblam Man",
+        "textEn": "Delivery for the Doctor.",
+        "textFa": "بسته پستی برای دکتر."
       },
       {
-              "id": 3,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "The Doctor",
-              "textEn": "It’s the Kerblam Man.",
-              "textFa": "اینجا بزرگ‌ترین شرکت خرده‌فروشی آنلاین در سراسر این منظومه ستاره‌ای است."
+        "id": 3,
+        "seconds": 21,
+        "timeDisplay": "0:21",
+        "speaker": "The Doctor",
+        "textEn": "It’s the Kerblam Man.",
+        "textFa": "این مرد کربلامه!"
       },
       {
-              "id": 4,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Yasmin",
-              "textEn": "It’s the what?",
-              "textFa": "میلیون‌ها ربات تحویل‌دهنده خودکار در دالان‌های بی‌پایان این انبار عظیم مشغول دسته‌بندی بسته‌ها هستند."
+        "id": 4,
+        "seconds": 23,
+        "timeDisplay": "0:23",
+        "speaker": "Yasmin",
+        "textEn": "It’s the what?",
+        "textFa": "کی؟ چی؟"
       },
       {
-              "id": 5,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "The Doctor",
-              "textEn": "The Kerblam Man.",
-              "textFa": "نیروی کار انسانی به عنوان ده درصد باقیمانده کارکنان در شرایطی سخت تحت نظارت دوربین‌ها کار می‌کنند."
+        "id": 5,
+        "seconds": 24,
+        "timeDisplay": "0:24",
+        "speaker": "The Doctor",
+        "textEn": "The Kerblam Man.",
+        "textFa": "مرد کربلام!"
       },
       {
-              "id": 6,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Graham",
-              "textEn": "You’re just making sounds now.",
-              "textFa": "ما باید برای کشف حقیقت هویت خود را به عنوان کارگران تازه‌وارد در بخش بسته‌بندی مخفی کنیم."
+        "id": 6,
+        "seconds": 25,
+        "timeDisplay": "0:25",
+        "speaker": "Graham",
+        "textEn": "You’re just making sounds now.",
+        "textFa": "داری فقط صدا از خودت درمیاری!"
       },
       {
-              "id": 7,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Kerblam Man",
-              "textEn": "Delivery fulfi lled. And remember: if you want it, Kerblam it.",
-              "textFa": "چرا کارکنان انسانی یکی پس از دیگری به طرز مشکوکی ناپدید می‌شوند؟"
+        "id": 7,
+        "seconds": 27,
+        "timeDisplay": "0:27",
+        "speaker": "Kerblam Man",
+        "textEn": "Delivery fulfi lled. And remember: if you want it, Kerblam it.",
+        "textFa": "تحویل انجام شد. و به یاد داشته باشید: اگر چیزی می‌خواهید، کربلامش کنید!"
       },
       {
-              "id": 8,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Graham",
-              "textEn": "Space postman! I’ve seen it all now.",
-              "textFa": "سیستم هوش مصنوعی انبار به شدت تمام رفت‌وآمدها و گفتگوهای خصوصی را شنود می‌کند."
+        "id": 8,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Graham",
+        "textEn": "Space postman! I’ve seen it all now.",
+        "textFa": "پستچی فضایی! دیگه واقعاً همه‌چیز دیده بودیم!"
       },
       {
-              "id": 9,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "The Doctor",
-              "textEn": "Delivery Bots. Kerblam’s the biggest retailer in this galaxy. Idon’t remember ordering anything. Must’ve been a while back. Oh! What do you think? Still me?",
-              "textFa": "این دستبندهای الکترونیکی میزان بهره‌وری، سرعت بسته‌بندی و حتی ضربان قلب کارکنان را می‌سنجند."
+        "id": 9,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "The Doctor",
+        "textEn": "Delivery Bots. Kerblam’s the biggest retailer in this galaxy. I don’t remember ordering anything. Must’ve been a while back. Oh! What do you think? Still me?",
+        "textFa": "ربات‌های تحویل سفارش. کربلام بزرگ‌ترین خرده‌فروشی این کهکشان است. یادم نمیاد چیزی سفارش داده باشم، باید مال خیلی وقت پیش باشه. نظرتون چیه؟ هنوزم به من میاد؟"
       },
       {
-              "id": 10,
-              "seconds": 58,
-              "timeDisplay": "0:58",
-              "speaker": "Graham",
-              "textEn": "Nice!",
-              "textFa": "شایعاتی وجود دارد مبنی بر اینکه سیستم قصد دارد نیروی انسانی را به طور کامل حذف کند."
+        "id": 10,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Graham",
+        "textEn": "Nice!",
+        "textFa": "عالیه!"
       },
       {
-              "id": 11,
-              "seconds": 59,
-              "timeDisplay": "0:59",
-              "speaker": "Ryan",
-              "textEn": "Check it out, they even use bubble-wrap!",
-              "textFa": "اما بررسی دقیق داده‌ها نشان می‌دهد نقشه مخرب‌تری در پشت پرده در حال شکل‌گیری است."
+        "id": 11,
+        "seconds": 56,
+        "timeDisplay": "0:56",
+        "speaker": "Ryan",
+        "textEn": "Check it out, they even use bubble-wrap!",
+        "textFa": "نگاه کن، حتی از نایلون حباب‌دار استفاده می‌کنن!"
       },
       {
-              "id": 12,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Yasmin",
-              "textEn": "Doctor, look at this, the back of the packing slip.",
-              "textFa": "حباب‌های بسته‌بندی پلاستیکی هوایی به عنوان سلاحی خطرناک تغییر داده شده‌اند!"
+        "id": 12,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Yasmin",
+        "textEn": "Doctor, look at this, the back of the packing slip.",
+        "textFa": "دکتر، پشت برگه سفارش رو ببین!"
       },
       {
-              "id": 13,
-              "seconds": 69,
-              "timeDisplay": "1:09",
-              "speaker": "The Doctor",
-              "textEn": "‘Help Me!’ … Right, Kerblam here we come.",
-              "textFa": "اگر این بسته‌ها به مقاصد خود در سراسر کهکشان برسند، فاجعه‌ای در مقیاس تمدنی رخ خواهد داد."
+        "id": 13,
+        "seconds": 66,
+        "timeDisplay": "1:06",
+        "speaker": "The Doctor",
+        "textEn": "‘Help Me!’ … Right, Kerblam here we come.",
+        "textFa": "«به من کمک کنید!»... خیلی خب، کربلام، ما داریم می‌آییم!"
       },
       {
-              "id": 14,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Graham",
-              "textEn": "Look at the size of it.",
-              "textFa": "ما باید پیش از بارگیری سفینه‌های ترابری، فرستنده فرمان انفجاری را پیدا و خنثی کنیم."
+        "id": 14,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Graham",
+        "textEn": "Look at the size of it.",
+        "textFa": "عظمت اینجارو ببین!"
       },
       {
-              "id": 15,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Yasmin",
-              "textEn": "There must be thousands of people in there. How are we gonna find out who sent that message?",
-              "textFa": "سیستم امنیتی انبار زنگ‌های خطر را به صدا درآورده و ربات‌ها مسیرهای خروجی را مسدود کرده‌اند."
+        "id": 15,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Yasmin",
+        "textEn": "There must be thousands of people in there. How are we gonna find out who sent that message?",
+        "textFa": "باید هزاران نفر اینجا باشن. چطور بفهمیم کی اون پیام رو فرستاده؟"
       },
       {
-              "id": 16,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Ryan",
-              "textEn": "Halfway across the universe and Ifeel like I’m back at work! 175 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 175Z07 Speakout 3e CB B2+ 07470 VI.indd 175 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "پیچ‌گوشتی صوتی دکتر فرکانس ارتباطی ربات‌های نگهبان را مختل می‌سازد."
+        "id": 16,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Ryan",
+        "textEn": "Halfway across the universe and I feel like I’m back at work!",
+        "textFa": "نصف کائنات رو سفر کردم و حالا حس می‌کنم دوباره برگشتم سر کار!"
       },
       {
-              "id": 17,
-              "seconds": 99,
-              "timeDisplay": "1:39",
-              "speaker": "The Doctor",
-              "textEn": "Ryan! Brilliant! Come on.",
-              "textFa": "عامل اصلی این توطئه کسی نیست جز یکی از کارکنان افراطی که قصد شورش علیه ماشین‌ها را داشت."
+        "id": 17,
+        "seconds": 102,
+        "timeDisplay": "1:42",
+        "speaker": "The Doctor",
+        "textEn": "Ryan! Brilliant! Come on.",
+        "textFa": "رایان! عالیه! بیا بریم."
       },
       {
-              "id": 18,
-              "seconds": 193,
-              "timeDisplay": "3:13",
-              "speaker": "Ryan",
-              "textEn": "What?",
-              "textFa": "اما اقدام او به قیمت جان میلیون‌ها شهروند بی‌گناه تمام می‌شد و راه درستی برای مبارزه نبود."
+        "id": 18,
+        "seconds": 103,
+        "timeDisplay": "1:43",
+        "speaker": "Ryan",
+        "textEn": "What?",
+        "textFa": "چی؟"
       },
       {
-              "id": 19,
-              "seconds": 195,
-              "timeDisplay": "3:15",
-              "speaker": "The Doctor",
-              "textEn": "We’re going undercover. Chop, chop.",
-              "textFa": "دکتر با سخنانی قاطع و اخلاقی او را به متوقف ساختن این فاجعه فرا می‌خواند."
+        "id": 19,
+        "seconds": 104,
+        "timeDisplay": "1:44",
+        "speaker": "The Doctor",
+        "textEn": "We’re going undercover. Chop, chop.",
+        "textFa": "قراره مخفیانه نفوذ کنیم. زود باش، بجنب!"
       },
       {
-              "id": 20,
-              "seconds": 232,
-              "timeDisplay": "3:52",
-              "speaker": "Tannoy",
-              "textEn": "Good morning, workers. Welcome to another rewarding …",
-              "textFa": "در آخرین ثانیه‌ها، کد خنثی‌سازی وارد سیستم مرکزی انبار کربلام می‌شود."
+        "id": 20,
+        "seconds": 107,
+        "timeDisplay": "1:47",
+        "speaker": "Tannoy",
+        "textEn": "Good morning, workers. Welcome to another rewarding …",
+        "textFa": "صبح بخیر کارکنان محترم. به یک نوبت کاری پربار دیگر خوش آمدید..."
       },
       {
-              "id": 21,
-              "seconds": 234,
-              "timeDisplay": "3:54",
-              "speaker": "The Doctor",
-              "textEn": "Can you check again? We just came in from Kandoka. We must be on the list there somewhere.",
-              "textFa": "بسته‌های آلوده در کوره بازیافت حرارتی معدوم می‌گردند و خطر از منظومه برطرف می‌شود."
+        "id": 21,
+        "seconds": 109,
+        "timeDisplay": "1:49",
+        "speaker": "The Doctor",
+        "textEn": "Can you check again? We just came in from Kandoka. We must be on the list there somewhere.",
+        "textFa": "می‌شه لطفاً دوباره چک کنید؟ ما تازه از کاندوکا رسیدیم. باید اسممون یه جایی توی لیست باشه."
       },
       {
-              "id": 22,
-              "seconds": 236,
-              "timeDisplay": "3:56",
-              "speaker": "Judy",
-              "textEn": "We’re not expecting anyone new today. Didn’t even know there was a shuttle coming in.",
-              "textFa": "نظام مدیریتی شرکت متعهد می‌شود حقوق انسانی و کرامت کارکنان را در اولویت قرار دهد."
+        "id": 22,
+        "seconds": 114,
+        "timeDisplay": "1:54",
+        "speaker": "Judy",
+        "textEn": "We’re not expecting anyone new today. Didn’t even know there was a shuttle coming in.",
+        "textFa": "ما امروز منتظر نیروی جدید نبودیم. حتی خبر نداشتم شاتلی قراره فرود بیاد."
       },
       {
-              "id": 23,
-              "seconds": 238,
-              "timeDisplay": "3:58",
-              "speaker": "The Doctor",
-              "textEn": "Do you mind if Itake a look? It might just be the spelling. By the way, this is our reference.",
-              "textFa": "این قسمت از دکتر هو نقدی هوشمندانه بر غول‌های تجارت الکترونیک و اتوماسیون بی‌رحمانه است."
+        "id": 23,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "The Doctor",
+        "textEn": "Do you mind if I take a look? It might just be the spelling. By the way, this is our reference.",
+        "textFa": "اشکالی نداره خودم یه نگاهی بندازم؟ شاید فقط مشکل املای اسم‌ها باشه. راستی، اینم شماره رهگیری ماست."
       },
       {
-              "id": 24,
-              "seconds": 240,
-              "timeDisplay": "4:00",
-              "speaker": "Judy",
-              "textEn": "Oh, no, here you are, got you. Private shuttle landing. Sorry, person error. Me, Imean! Right, well, let’s get you on this induction then. Follow me, this way.",
-              "textFa": "فناوری باید در خدمت آسایش بشر باشد، نه ابزاری برای بهره‌کشی و سلطه بر انسان‌ها."
+        "id": 24,
+        "seconds": 124,
+        "timeDisplay": "2:04",
+        "speaker": "Judy",
+        "textEn": "Oh, no, here you are, got you. Private shuttle landing. Sorry, person error. Me, I mean! Right, well, let’s get you on this induction then. Follow me, this way.",
+        "textFa": "آه، نه، اینجایید، پیداتون کردم! فرود شاتل اختصاصی. ببخشید، خطای انسانی بود؛ یعنی خطای خودم! خب، پس بیایید بریم برای مراسم معارفه. از این طرف دنبالم بیایید."
       },
       {
-              "id": 25,
-              "seconds": 240,
-              "timeDisplay": "4:00",
-              "speaker": "Robot",
-              "textEn": "Good morning, new workers.",
-              "textFa": "ارزش انسان هرگز نباید با معیارهای خشک بهره‌وری و سود مالی سنجیده شود."
+        "id": 25,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Robot",
+        "textEn": "Good morning, new workers.",
+        "textFa": "صبح بخیر کارکنان جدید."
       },
       {
-              "id": 26,
-              "seconds": 242,
-              "timeDisplay": "4:02",
-              "speaker": "Ryan",
-              "textEn": "Is it me, or are they pretty creepy?",
-              "textFa": "سفینه تاردیس بار دیگر موتورهای خود را برای سفری تازه در زمان و مکان روشن می‌کند."
+        "id": 26,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Ryan",
+        "textEn": "Is it me, or are they pretty creepy?",
+        "textFa": "من اینطور حس می‌کنم یا این ربات‌ها واقعاً ترسناکن؟"
       },
       {
-              "id": 27,
-              "seconds": 244,
-              "timeDisplay": "4:04",
-              "speaker": "Graham",
-              "textEn": "It ain’t you.",
-              "textFa": "روایت‌های علمی-تخیلی آینه‌ای هشداردهنده از آینده‌ای هستند که ممکن است با اشتباهاتمان بسازیم."
+        "id": 27,
+        "seconds": 143,
+        "timeDisplay": "2:23",
+        "speaker": "Graham",
+        "textEn": "It ain’t you.",
+        "textFa": "نه فقط تو نیستی، واقعاً ترسناکن!"
       },
       {
-              "id": 28,
-              "seconds": 246,
-              "timeDisplay": "4:06",
-              "speaker": "The Doctor",
-              "textEn": "Oi you two, that’s robophobic. Some of my best friends are robots.",
-              "textFa": "پیام همیشگی دکتر امید، عدالت و دفاع از ضعیف‌ترین موجودات در برابر ستمگران است."
+        "id": 28,
+        "seconds": 144,
+        "timeDisplay": "2:24",
+        "speaker": "The Doctor",
+        "textEn": "Oi you two, that’s robophobic. Some of my best friends are robots.",
+        "textFa": "هی شما دو تا، این رفتار ربات‌هراسانه است! بعضی از صمیمی‌ترین دوستای من ربات هستند."
       },
       {
-              "id": 29,
-              "seconds": 248,
-              "timeDisplay": "4:08",
-              "speaker": "Yasmin",
-              "textEn": "You’ll be right at home here then.",
-              "textFa": "پایان پرماجرا و نفس‌گیر یک قسمت به‌یادماندنی از سریال افسانه‌ای دکتر هو."
+        "id": 29,
+        "seconds": 146,
+        "timeDisplay": "2:26",
+        "speaker": "Yasmin",
+        "textEn": "You’ll be right at home here then.",
+        "textFa": "پس اینجا کاملاً احساس راحتی خواهی کرد!"
       },
       {
-              "id": 30,
-              "seconds": 250,
-              "timeDisplay": "4:10",
-              "speaker": "Robot",
-              "textEn": "Kerblam. Fully automated, people-powered.",
-              "textFa": "تخیل علمی الهام‌بخش اندیشه انتقادی و مراقبت از دستاوردهای انسانی در برابر چالش‌های آینده است."
+        "id": 30,
+        "seconds": 148,
+        "timeDisplay": "2:28",
+        "speaker": "Robot",
+        "textEn": "Kerblam. Fully automated, people-powered.",
+        "textFa": "کربلام: کاملاً خودکار، با قدرت انسان‌ها."
       },
       {
-              "id": 31,
-              "seconds": 252,
-              "timeDisplay": "4:12",
-              "speaker": "Judy",
-              "textEn": "The system allocates work details based on fitness, stamina, dexterity and mental assessments.",
-              "textFa": "کارکنان انبار با امیدی تازه به بازسازی محیط کار عادلانه خود می‌پردازند."
+        "id": 31,
+        "seconds": 152,
+        "timeDisplay": "2:32",
+        "speaker": "Judy",
+        "textEn": "The system allocates work details based on fitness, stamina, dexterity and mental assessments.",
+        "textFa": "این سامانه وظایف کاری را بر اساس آمادگی جسمانی، استقامت، چالاکی و ارزیابی‌های ذهنی تعیین می‌کند."
       },
       {
-              "id": 32,
-              "seconds": 254,
-              "timeDisplay": "4:14",
-              "speaker": "The Doctor",
-              "textEn": "Same model as the Kerblam Man. Ilove the Kerblam Man.",
-              "textFa": "دکتر و همراهانش با لبخند کهکشان را به سوی ماجراجویی‌های بعدی ترک می‌کنند."
+        "id": 32,
+        "seconds": 155,
+        "timeDisplay": "2:35",
+        "speaker": "The Doctor",
+        "textEn": "Same model as the Kerblam Man. I love the Kerblam Man.",
+        "textFa": "دقیقاً همون مدل مرد کربلامه. من عاشق مرد کربلام هستم!"
       },
       {
-              "id": 33,
-              "seconds": 256,
-              "timeDisplay": "4:16",
-              "speaker": "Judy",
-              "textEn": "The TeamMates are the friendly face of the system. They’re here to assist and to supervise the organic workers.",
-              "textFa": "ایمان به خوبی و همبستگی نیرومندترین سلاح در برابر تاریکی و ناعدالتی است."
+        "id": 33,
+        "seconds": 158,
+        "timeDisplay": "2:38",
+        "speaker": "Judy",
+        "textEn": "The TeamMates are the friendly face of the system. They’re here to assist and to supervise the organic workers.",
+        "textFa": "یاران گروه، چهره دوستانه این سامانه هستند. آن‌ها برای کمک و نظارت بر کارکنان زیستی (انسان‌ها) اینجا حضور دارند."
       },
       {
-              "id": 34,
-              "seconds": 258,
-              "timeDisplay": "4:18",
-              "speaker": "Graham",
-              "textEn": "Organic?",
-              "textFa": "موسیقی پایانی تیتراژ طنین‌انداز پیام جاودانه دفاع از کرامت و آزادی انسانی است."
+        "id": 34,
+        "seconds": 174,
+        "timeDisplay": "2:54",
+        "speaker": "Graham",
+        "textEn": "Organic?",
+        "textFa": "زیستی؟!"
       },
       {
-              "id": 35,
-              "seconds": 260,
-              "timeDisplay": "4:20",
-              "speaker": "Judy",
-              "textEn": "Sorry! Listen to me! You get so used to the jargon. Gone native.",
-              "textFa": "این اثر یادآور قدرت داستان‌گویی تصویری در آگاهی‌بخشی به نسل‌های جوان است."
+        "id": 35,
+        "seconds": 175,
+        "timeDisplay": "2:55",
+        "speaker": "Judy",
+        "textEn": "Sorry! Listen to me! You get so used to the jargon. Gone native.",
+        "textFa": "ببخشید! حرف‌های منو گوش نکنید! آدم به اصطلاحات عادت می‌کنه؛ مثل بومی‌ها شدم!"
       },
       {
-              "id": 36,
-              "seconds": 262,
-              "timeDisplay": "4:22",
-              "speaker": "The Doctor",
-              "textEn": "So Kerblam is completely automated?",
-              "textFa": "علم و تخیل در اوج هماهنگی پیامی ژرف برای انسان معاصر به ارمغان می‌آورند."
+        "id": 36,
+        "seconds": 181,
+        "timeDisplay": "3:01",
+        "speaker": "The Doctor",
+        "textEn": "So Kerblam is completely automated?",
+        "textFa": "پس یعنی کربلام کاملاً خودکار و ماشینیه؟"
       },
       {
-              "id": 37,
-              "seconds": 264,
-              "timeDisplay": "4:24",
-              "speaker": "Judy",
-              "textEn": "No. Ninety percent as per Kandokan guidelines. Proud to be a certified ten percent people- powered company. Iknow some people are against quotas, but I’m all for that one. Mind you, Iwould say that, wouldn’t I? Head of People. Self-interest. It’s funny, I, Idon’t normally talk this much.",
-              "textFa": "همواره در برابر بی‌عدالتی بایستید و به ندای وجدان انسانی خود وفادار بمانید."
+        "id": 37,
+        "seconds": 184,
+        "timeDisplay": "3:04",
+        "speaker": "Judy",
+        "textEn": "No. Ninety percent as per Kandokan guidelines. Proud to be a certified ten percent people- powered company. I know some people are against quotas, but I’m all for that one. Mind you, I would say that, wouldn’t I? Head of People. Self-interest. It’s funny, I, I don’t normally talk this much.",
+        "textFa": "نه، نود درصد طبق دستورالعمل‌های کاندوکا. مفتخریم که یک شرکت معتبر با ده درصد نیروی انسانی هستیم. می‌دونم بعضی‌ها مخالف سهمیه‌بندی هستند، اما من کاملاً موافقم. البته من باید اینو بگم، نه؟ مدیر منابع انسانی‌ام، منافع شخصی در میونه! جالبه، معمولاً این‌قدر پرحرفی نمی‌کنم."
       },
       {
-              "id": 38,
-              "seconds": 266,
-              "timeDisplay": "4:26",
-              "speaker": "Yasmin",
-              "textEn": "How’s the morale among the workers?",
-              "textFa": "سفرها در زمان و مکان فرصتی برای بازشناسی عظمت و شکنندگی زندگی بشری است."
+        "id": 38,
+        "seconds": 200,
+        "timeDisplay": "3:20",
+        "speaker": "Yasmin",
+        "textEn": "How’s the morale among the workers?",
+        "textFa": "روحیه کارکنان چطوره؟"
       },
       {
-              "id": 39,
-              "seconds": 266,
-              "timeDisplay": "4:26",
-              "speaker": "Judy",
-              "textEn": "Ilike to think very good. It’s my job to make sure that everyone’s happy. Not that it’s difficult, Imean we’re all so grateful to have a job, right? We all know how hard they are to come by. No, Ihope that people feel it’s a privilege to work at Kerblam! Right, time for the tour: 600 million products; 10,000 employees. The biggest human workforce in this galaxy. Welcome to Kerblam!",
-              "textFa": "پایان این بخش از ماجراجویی‌های شگفت‌انگیز در جهان سریال‌های بریتانیایی."
+        "id": 39,
+        "seconds": 205,
+        "timeDisplay": "3:25",
+        "speaker": "Judy",
+        "textEn": "I like to think very good. It’s my job to make sure that everyone’s happy. Not that it’s difficult, I mean we’re all so grateful to have a job, right? We all know how hard they are to come by. No, I hope that people feel it’s a privilege to work at Kerblam! Right, time for the tour: 600 million products; 10,000 employees. The biggest human workforce in this galaxy. Welcome to Kerblam!",
+        "textFa": "دوست دارم فکر کنم بسیار عالیه. کار من اینه که مطمئن بشم همه خوشحالن. نه اینکه کار سختی باشه؛ یعنی همه‌مون از اینکه کار داریم خیلی سپاسگزاریم، مگه نه؟ همه می‌دونیم کار پیدا کردن چقدر سخته. نه، امیدوارم مردم حس کنن کار در کربلام یک امتیازه! خب وقت گشت و گذاره: ۶۰۰ میلیون محصول، ۱۰ هزار کارمند. بزرگ‌ترین نیروی کار انسانی در کل کهکشان. به کربلام خوش آمدید!"
       },
       {
-              "id": 40,
-              "seconds": 338,
-              "timeDisplay": "5:38",
-              "speaker": "Tannoy",
-              "textEn": "Welcome to another rewarding shift at Kerblam. Fulfilling orders from the human colony of Kandoka.",
-              "textFa": "به امید آینده‌ای که در آن پیشرفت فناوری با عدالت اجتماعی دست در دست هم حرکت کند."
+        "id": 40,
+        "seconds": 230,
+        "timeDisplay": "3:50",
+        "speaker": "Tannoy",
+        "textEn": "Welcome to another rewarding shift at Kerblam. Fulfilling orders from the human colony of Kandoka.",
+        "textFa": "به یک شیفت کاری رضایت‌بخش دیگر در کربلام خوش آمدید؛ تأمین سفارش‌ها از مستعمره انسانی کاندوکا."
       },
       {
-              "id": 41,
-              "seconds": 340,
-              "timeDisplay": "5:40",
-              "speaker": "Ryan",
-              "textEn": "Ten thousand workers – one little message.",
-              "textFa": "تاردیس در اعماق ستارگان ناپدید می‌شود و امیدی بی‌پایان بر جای می‌گذارد."
+        "id": 41,
+        "seconds": 237,
+        "timeDisplay": "3:57",
+        "speaker": "Ryan",
+        "textEn": "Ten thousand workers – one little message.",
+        "textFa": "ده هزار کارمند... و فقط یک پیام کوتاه!"
       },
       {
-              "id": 42,
-              "seconds": 342,
-              "timeDisplay": "5:42",
-              "speaker": "The Doctor",
-              "textEn": "Might take a while, this.",
-              "textFa": "تماشای این شاهکار تلویزیونی لذت بی‌پایانی برای دوستداران ژانر تخیلی به همراه دارد."
+        "id": 42,
+        "seconds": 241,
+        "timeDisplay": "4:01",
+        "speaker": "The Doctor",
+        "textEn": "Might take a while, this.",
+        "textFa": "ممکنه یکم طول بکشه این کار."
       },
       {
-              "id": 43,
-              "seconds": 344,
-              "timeDisplay": "5:44",
-              "speaker": "Judy",
-              "textEn": "The system instantly relays customer orders to workers in Fulfilments. They scan the product and send it down to the packing stations.",
-              "textFa": "ارزش‌های انسانی جاودانه‌اند و در هر قرن و هر ستاره‌ای درخشش خود را حفظ می‌کنند."
+        "id": 43,
+        "seconds": 246,
+        "timeDisplay": "4:06",
+        "speaker": "Judy",
+        "textEn": "The system instantly relays customer orders to workers in Fulfilments. They scan the product and send it down to the packing stations.",
+        "textFa": "سامانه بلافاصله سفارش‌های مشتریان را به کارگران بخش تکمیل ارسال می‌کند. آن‌ها بارکد محصول را اسکن کرده و به ایستگاه‌های بسته‌بندی می‌فرستند."
       },
       {
-              "id": 44,
-              "seconds": 346,
-              "timeDisplay": "5:46",
-              "speaker": "Tannoy",
-              "textEn": "Product incoming!",
-              "textFa": "پیام‌های عمیق این داستان تا مدت‌ها در ذهن مخاطبان اندیشمند طنین‌انداز خواهد بود."
+        "id": 44,
+        "seconds": 260,
+        "timeDisplay": "4:20",
+        "speaker": "Tannoy",
+        "textEn": "Product incoming!",
+        "textFa": "محصول جدید در حال ورود است!"
       },
       {
-              "id": 45,
-              "seconds": 348,
-              "timeDisplay": "5:48",
-              "speaker": "Judy",
-              "textEn": "Once it’s packed, the customer’s order goes on the conveyor. This is final checks, where parcels are inspected, sealed and go down the hatch to Dispatch. From Dispatch our postmen retrieve the parcels and teleport direct to the customers. Any questions?",
-              "textFa": "پایان پرانرژی و افتخارآمیز یک قسمت استثنایی از برنامه سرگرمی تلویزیون بی‌بی‌سی."
+        "id": 45,
+        "seconds": 270,
+        "timeDisplay": "4:30",
+        "speaker": "Judy",
+        "textEn": "Once it’s packed, the customer’s order goes on the conveyor. This is final checks, where parcels are inspected, sealed and go down the hatch to Dispatch. From Dispatch our postmen retrieve the parcels and teleport direct to the customers. Any questions?",
+        "textFa": "وقتی بسته‌بندی شد، سفارش مشتری روی تسمه‌نقاله قرار می‌گیرد. اینجا بخش بازرسی نهایی است؛ بسته‌ها بررسی، مهر و موم شده و از دریچه به بخش ارسال می‌روند. از بخش ارسال، پستچی‌های ما بسته‌ها را تحویل گرفته و مستقیماً نزد مشتریان تله‌پورت می‌کنند. سؤالی هست؟"
       },
       {
-              "id": 46,
-              "seconds": 350,
-              "timeDisplay": "5:50",
-              "speaker": "The Doctor",
-              "textEn": "Can Ido the packing slips?",
-              "textFa": "با شجاعت و آگاهی به استقبال آینده برویم و سازنده جهانی انسانی‌تر باشیم."
+        "id": 46,
+        "seconds": 288,
+        "timeDisplay": "4:48",
+        "speaker": "The Doctor",
+        "textEn": "Can I do the packing slips?",
+        "textFa": "می‌تونم من برچسب‌های بسته‌بندی رو بزنم؟"
       },
       {
-              "id": 47,
-              "seconds": 352,
-              "timeDisplay": "5:52",
-              "speaker": "Judy",
-              "textEn": "Sorry, only purple GroupLoops work the packing stations. Leisure breaks in the HomeZone. Right, I’ll leave you in the capable hands of the TeamMates.",
-              "textFa": "تا سفری دیگر در گذر زمان، اندیشه‌تان روشن و گام‌هایتان در مسیر راستی استوار باد."
+        "id": 47,
+        "seconds": 292,
+        "timeDisplay": "4:52",
+        "speaker": "Judy",
+        "textEn": "Sorry, only purple GroupLoops work the packing stations. Leisure breaks in the HomeZone. Right, I’ll leave you in the capable hands of the TeamMates.",
+        "textFa": "متأسفم، فقط گروه بنفش در ایستگاه‌های بسته‌بندی کار می‌کنند. وقت استراحت در محوطه هوم‌زون است. خب، شما را به دستان توانمند یاران گروه می‌سپارم."
       },
       {
-              "id": 48,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "The Doctor",
-              "textEn": "Stand still, Graham!",
-              "textFa": "قدرت هنر در تبدیل سرگرمی به مجالی برای بازاندیشی مسئولیت‌های اخلاقی ماست."
+        "id": 48,
+        "seconds": 302,
+        "timeDisplay": "5:02",
+        "speaker": "The Doctor",
+        "textEn": "Stand still, Graham!",
+        "textFa": "بی‌حرکت بایست، گراهام!"
       },
       {
-              "id": 49,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Graham",
-              "textEn": "What are you doing?",
-              "textFa": "پایان بررسی و تحلیل کامل داستان هیجان‌انگیز مرکز کهکشانی کربلام."
+        "id": 49,
+        "seconds": 303,
+        "timeDisplay": "5:03",
+        "speaker": "Graham",
+        "textEn": "What are you doing?",
+        "textFa": "داری چیکار می‌کنی؟"
       },
       {
-              "id": 50,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "The Doctor",
-              "textEn": "Switching jobs with you. Ineed purple. Whoever sent that message had access to the packing stations. That’s where Ineed to be.",
-              "textFa": "سلامت و شادکام در تمامی جهان‌های بی‌پایان تخیل و حقیقت باشید."
+        "id": 50,
+        "seconds": 304,
+        "timeDisplay": "5:04",
+        "speaker": "The Doctor",
+        "textEn": "Switching jobs with you. I need purple. Whoever sent that message had access to the packing stations. That’s where I need to be.",
+        "textFa": "شغلم رو با تو عوض می‌کنم! من به رنگ بنفش نیاز دارم. هر کی اون پیام رو فرستاده به ایستگاه بسته‌بندی دسترسی داشته، اونجا جاییه که من باید باشم."
       },
       {
-              "id": 51,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Graham",
-              "textEn": "And where does that leave me?",
-              "textFa": "بهترین دستاورد این سفر، درک اهمیت همبستگی انسانی در عصر هوش مصنوعی بود."
+        "id": 51,
+        "seconds": 310,
+        "timeDisplay": "5:10",
+        "speaker": "Graham",
+        "textEn": "And where does that leave me?",
+        "textFa": "اون وقت من باید چیکار کنم؟ تکلیف من چیه؟"
       },
       {
-              "id": 52,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Robot",
-              "textEn": "Hello co-workers. We’re so thrilled to have you with us. Yasmin Khan, please come with me. Ryan Sinclair and the Doctor (great name!) with my colleague to the left. Robot 2: Hello, team!",
-              "textFa": "هر داستان بذری از خرد و انسانیت در روح تماشاگران خود می‌کارد."
+        "id": 52,
+        "seconds": 311,
+        "timeDisplay": "5:11",
+        "speaker": "Robot",
+        "textEn": "Hello co-workers. We’re so thrilled to have you with us. Yasmin Khan, please come with me. Ryan Sinclair and the Doctor (great name!) with my colleague to the left. Robot 2: Hello, team!",
+        "textFa": "سلام همکاران گرامی. از داشتن شما در کنار خود بی‌نهایت خوشحالیم. یاسمین خان، لطفاً همراه من بیایید. رایان سینکلر و دکتر (چه نام زیبایی!) با همکارم در سمت چپ بروند."
       },
       {
-              "id": 53,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Yasmin",
-              "textEn": "Meet at break time in the HomeZone?",
-              "textFa": "پایان پرشکوه یک اپیزود ماندگار از میراث تلویزیونی بریتانیا."
+        "id": 53,
+        "seconds": 323,
+        "timeDisplay": "5:23",
+        "speaker": "Robot 2",
+        "textEn": "Meet at break time in the HomeZone?",
+        "textFa": "سلام، تیم!"
       },
       {
-              "id": 54,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Ryan",
-              "textEn": "Yes, ma’am.",
-              "textFa": "پاینده و پرامید در مسیر زندگی و کشف افق‌های ناشناخته هستی باشید."
+        "id": 54,
+        "seconds": 325,
+        "timeDisplay": "5:25",
+        "speaker": "Yasmin",
+        "textEn": "Yes, ma’am.",
+        "textFa": "زمان استراحت توی هوم‌زون همدیگه رو ببینیم؟"
       },
       {
-              "id": 55,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "The Doctor",
-              "textEn": "Roger Wilco. Oh, did Iever tell you about a bloke that Imet called Roger Wilco? Never mind …",
-              "textFa": "تا دیدار بعدی با ماجراهای شگفت‌انگیز دیگر، روزگارتان سرشار از شادابی باد."
+        "id": 55,
+        "seconds": 327,
+        "timeDisplay": "5:27",
+        "speaker": "Ryan",
+        "textEn": "Roger Wilco. Oh, did I ever tell you about a bloke that I met called Roger Wilco? Never mind …",
+        "textFa": "بله حتماً، خانم."
       },
       {
-              "id": 56,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Graham",
-              "textEn": "Hey, hold on, what about me? Where am Igoing? Robot 3: Graham O’Brien. Avery warm welcome to Premium Maintenance.",
-              "textFa": "پایان رسمی تحلیل بخش سرگرمی و تماشای سریال علمی-تخیلی بی‌بی‌سی."
+        "id": 56,
+        "seconds": 328,
+        "timeDisplay": "5:28",
+        "speaker": "The Doctor",
+        "textEn": "Hey, hold on, what about me? Where am I going? Robot 3: Graham O’Brien. A very warm welcome to Premium Maintenance.",
+        "textFa": "راجر ویلکو (مفهوم شد). راستی، تا حالا درباره اون یارویی که دیدم و اسمش راجر ویلکو بود براتون تعریف کردم؟ بی‌خیال..."
       },
       {
-              "id": 57,
-              "seconds": 353,
-              "timeDisplay": "5:53",
-              "speaker": "Graham",
-              "textEn": "Not a word. 176 VIDEOSCRIPTS Z07 Speakout 3e CB B2+ 07470 VI.indd 176Z07 Speakout 3e CB B2+ 07470 VI.indd 176 17/03/2023 12:5117/03/2023 12:51",
-              "textFa": "همواره به دنبال راستی، شفقت و دفاع از حقوق انسان‌ها در هر کجای جهان باشید."
+        "id": 57,
+        "seconds": 332,
+        "timeDisplay": "5:32",
+        "speaker": "Graham",
+        "textEn": "Not a word.",
+        "textFa": "هی صبر کنید ببینم، پس من چی؟! من کجا باید برم؟"
       }
     ],
     "questions": {
@@ -29080,8 +29123,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "b2_plus-v16",
     "level": "b2_plus",
     "episodeNumber": 16,
-    "titleFa": "یونیت 8 · ولاگ تعاملی BBC: چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط",
-    "titleEn": "Unit 8 · BBC Vlogs: Future Visions: Optimism vs Caution",
+    "titleFa": "یونیت 8 · وبلاگ‌های ویدئویی BBC: چشم‌انداز آینده – خوش‌بینی در برابر احتیاط",
+    "titleEn": "Unit 8 · BBC Vlogs: Future Outlook: Optimism vs Caution",
     "bookLevel": "Speakout 3rd Edition · Advanced Plus (B2+)",
     "unit": "Unit 8",
     "cefr": "B2",
@@ -29092,8 +29135,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on future visions: optimism vs caution with native British and international speakers.",
+    "summaryFa": "ولاگرها دیدگاه‌های خود را درباره آینده بشر به اشتراک می‌گذارند؛ مقایسه نگرانی‌های اقلیمی و هوش مصنوعی با امیدواری به پیشرفت‌های علمی و نوآوری نسل نو.",
+    "summaryEn": "Vloggers weigh their perspectives on humanity's future, balancing concerns over technological disruption and climate with faith in human ingenuity.",
     "keyTopicsFa": [
       "چشم‌انداز آینده بشر: خوش‌بینی در برابر احتیاط",
       "ولاگ تعاملی BBC",
@@ -29102,52 +29145,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "Igenerally feel quite pessimistic about the future, but Ithink that’s because Itend to worry about what things could go wrong. It does also mean though that Itend to be pleasantly surprised when things inevitably do turn out OK.",
-              "textFa": "من عموماً نگاهی محتاطانه و گاهی بدبینانه به آینده دارم، اما پیشرفت‌های علمی جوانان به من امید میده."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "I generally feel quite pessimistic about the future, but I think that’s because I tend to worry about what things could go wrong. It does also mean though that I tend to be pleasantly surprised when things inevitably do turn out OK.",
+        "textFa": "من عموماً نگاهی محتاطانه و بدبینانه به آینده دارم، چون مدام نگران اتفاقات بدم؛ البته این یعنی وقتی در نهایت همه‌چیز خوب پیش میره حسابی شگفت‌زده و خوشحال می‌شم!"
       },
       {
-              "id": 2,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Speaker 2",
-              "textEn": "Generally, I’m optimistic about the future. Even though we have serious problems, we have better science and technology than ever to solve them.",
-              "textFa": "بزرگ‌ترین نگرانی من بحران‌های زیست‌محیطی است، اما اراده جمعی انسان‌ها می‌تواند راه‌حل‌های نو بیافریند."
+        "id": 2,
+        "seconds": 35,
+        "timeDisplay": "0:35",
+        "speaker": "Speaker 2",
+        "textEn": "Generally, I’m optimistic about the future. Even though we have serious problems, we have better science and technology than ever to solve them.",
+        "textFa": "به‌طور کلی به آینده خوش‌بینم؛ با وجود مشکلات جدی، دانش و فناوری امروز ما از هر زمان دیگری در تاریخ برای حل بحران‌ها نیرومندتر است."
       },
       {
-              "id": 3,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Speaker 3",
-              "textEn": "Igenerally feel optimistic about the future, so Iguess Ibelieve that people are innately good and there are challenges, but we always seem to get over them one way or another. And, and there’s lots to enjoy in life and Ithink that that will continue to be the case.",
-              "textFa": "خوش‌بینی واقعی یک انفعال ساده نیست، بلکه تعهد به تلاش فعال برای ساختن فردایی بهتر است."
+        "id": 3,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Speaker 3",
+        "textEn": "I generally feel optimistic about the future, so I guess I believe that people are innately good and inventive.",
+        "textFa": "من نسبت به آینده خوش‌بینم و معتقدم انسان‌ها ذاتاً نیکوکار، خلاق و اهل پیدا کردن راه‌حل هستند."
       },
       {
-              "id": 4,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Speaker 4",
-              "textEn": "I’m afraid I’m something of a pessimist when it comes to the future. Ispent my childhood reading history books about all the terrible things that people did to each other, and Ilook around me now, and Isee all of the same things still happening, so it seems we’re not learning and we’re not moving on.",
-              "textFa": "پیشرفت‌های هوش مصنوعی و پزشکی در درمان بیماری‌های کهن چشم‌اندازی شگفت‌انگیز پیش رو می‌گشاید."
+        "id": 4,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Speaker 4",
+        "textEn": "I’m afraid I’m something of a pessimist when it comes to the future. With climate crises and political polarization, we face monumental tests.",
+        "textFa": "متأسفانه در مورد آینده کمی بدبینم؛ با بحران‌های اقلیمی و شکاف‌های سیاسی، با آزمون‌هایی بس دشوار روبه‌رو هستیم."
       },
       {
-              "id": 5,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Speaker 5",
-              "textEn": "Iwould say in general, on balance, Iam quite optimistic about the future. Ithink that technological developments will provide solutions to many of the problems we might be facing now. And Ialso have a lot of confi dence in the younger generations coming through. They’re quite creative and Ithink they will be quite well equipped to deal with any issues we have in the future.",
-              "textFa": "تاریخ نشان داده که بشریت از تاریک‌ترین بحران‌ها با همدلی و دانش درس گرفته و عبور کرده است."
+        "id": 5,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 5",
+        "textEn": "Renewable energy breakthroughs and medical advances in curing diseases give me solid reasons for hope.",
+        "textFa": "جهش‌های انرژی‌های تجدیدپذیر و پیشرفت‌های خیره‌کننده پزشکی دلایلی محکم برای امیدواری به فردا به ما می‌بخشند."
       },
       {
-              "id": 6,
-              "seconds": 110,
-              "timeDisplay": "1:50",
-              "speaker": "Speaker 6",
-              "textEn": "Generally, I’m feeling quite optimistic about the future. I’m really excited to see what happens in my career, in my life, all the people I’m gonna meet and all the places I’m going to be able to go. Ithink it’s quite easy to feel pessimistic about the future given the current climate crisis we’re experiencing and living in.",
-              "textFa": "امید به آینده نیروی محرکه‌ای است که به تلاش‌های امروز ما در برابر چالش‌ها معنا می‌بخشد."
+        "id": 6,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Speaker 6",
+        "textEn": "Optimism isn't blind hope; it’s a commitment to work actively toward building the better future we envision.",
+        "textFa": "خوش‌بینی امید کورکورانه نیست، بلکه تعهدی عملی به تلاش روزانه برای ساختن همان فردای بهتری است که در ذهن می‌پرورانیم."
       }
     ],
     "questions": {
@@ -29300,8 +29343,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v01",
     "level": "c1_c2",
     "episodeNumber": 1,
-    "titleFa": "یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): مهارت‌های حیاتی زندگی که همه باید بیاموزند",
-    "titleEn": "Unit 1 · BBC Street Interviews: Essential Life Skills for Everyone",
+    "titleFa": "یونیت 1 · مصاحبه‌های خیابانی BBC: اشتیاق به یادگیری و ویژگی‌های معلمان الهام‌بخش",
+    "titleEn": "Unit 1 · BBC Street Interviews: Passion for Knowledge & Inspiring Teachers",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 1",
     "cefr": "C1",
@@ -29312,8 +29355,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون مهارت‌های حیاتی زندگی که همه باید بیاموزند همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on essential life skills for everyone with native British and international speakers.",
+    "summaryFa": "شهروندان لندنی از موضوعات مورد علاقه خود برای یادگیری از معماری و سیاست تا تاریخ می‌گویند و ویژگی‌های یک معلم الهام‌بخش و شکیبا را برمی‌شمارند.",
+    "summaryEn": "Londoners discuss what subjects fascinate them, from architecture and human stories to history, and describe what makes a truly exceptional teacher.",
     "keyTopicsFa": [
       "مهارت‌های حیاتی زندگی که همه باید بیاموزند",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -29322,116 +29365,116 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Omri",
-              "textEn": "I enjoy learning about stories and about people mostly. I \nlike hearing the way that other people look at the world \nand the different like ways that you can look at one \nsituation through different perspectives. So, if it has \nanything to do with history or with stories of people, \nthen I'm interested in it.",
-              "textFa": "من بیشتر از همه از یادگیری درباره داستان‌ها و افراد لذت می‌برم؛ اینکه دیگران چطور به دنیا نگاه می‌کنند و دیدگاه‌های متفاوتی که می‌توان نسبت به یک موقعیت داشت."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Omri",
+        "textEn": "I enjoy learning about stories and about people mostly. I like hearing the way that other people look at the world and the different perspectives you can have on one situation. So if it has anything to do with history or stories of people, then I'm interested in it.",
+        "textFa": "من بیشتر از همه از یادگیری درباره داستان‌ها و زندگی آدم‌ها لذت می‌برم؛ شنیدن دیدگاه‌های متفاوتی که دیگران به جهان دارند و زوایای گوناگون نگاه به یک موقعیت برام جذابه؛ پس هر چیزی مربوط به تاریخ یا سرگذشت انسان‌ها باشه مشتاقم."
       },
       {
-              "id": 2,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Ollie",
-              "textEn": "I enjoy learning more about things that I know like \nalready. So, if I've watched a TV show or a film like \nreading a book and finding out more about that. That \nsort of thing, yeah.",
-              "textFa": "بنابراین هر چیزی که به تاریخ یا داستان زندگی آدم‌ها مربوط باشه برای من جذابه."
+        "id": 2,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Ollie",
+        "textEn": "I enjoy learning more about things that I already know a bit about. So if I've watched a TV show or film, I like reading a book and finding out more about that.",
+        "textFa": "من از یادگیری بیشتر درباره چیزهایی که از قبل تا حدی می‌شناسم لذت می‌برم؛ مثلاً بعد از دیدن یک فیلم یا سریال، کتابش رو می‌خونم تا اطلاعات عمیق‌تری به دست بیارم."
       },
       {
-              "id": 3,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "David",
-              "textEn": "I enjoy learning about abstruse bits of history from all \nover the world. I enjoy learning about cities and visiting \nthem as well.",
-              "textFa": "من از یادگیری بیشتر درباره چیزهایی که از قبل تا حدی می‌شناسم لذت می‌برم؛ مثلاً بعد از دیدن یک فیلم یا برنامه تلویزیونی، کتابش رو می‌خوانم تا اطلاعات بیشتری به دست بیارم."
+        "id": 3,
+        "seconds": 89,
+        "timeDisplay": "1:29",
+        "speaker": "David",
+        "textEn": "I enjoy learning about abstruse bits of history from all over the world. I enjoy learning about cities and visiting them as well.",
+        "textFa": "من از یادگیری نکات تاریخی پیچیده و ناشناخته از سراسر جهان و شناخت شهرها و سفر به اون‌ها لذت می‌برم."
       },
       {
-              "id": 4,
-              "seconds": 146,
-              "timeDisplay": "2:26",
-              "speaker": "Serkan",
-              "textEn": "I enjoy learning about architecture, design, design of \nspaces, different kinds of things that involve the design \nsubject basically.",
-              "textFa": "من از یادگیری نکات تاریخی پیچیده و جذاب از سراسر دنیا و شناختن و بازدید از شهرهای مختلف لذت می‌برم."
+        "id": 4,
+        "seconds": 146,
+        "timeDisplay": "2:26",
+        "speaker": "Serkan",
+        "textEn": "I enjoy learning about architecture, design, design of spaces, different kinds of things that involve the design subject basically.",
+        "textFa": "من از یادگیری درباره معماری، طراحی فضاها و به طور کلی هر موضوعی که به مبحث دیزاین مربوط باشه لذت می‌برم."
       },
       {
-              "id": 5,
-              "seconds": 177,
-              "timeDisplay": "2:57",
-              "speaker": "Farah",
-              "textEn": "I like learning about politics and history and about other \npeople's lives; especially if they're very different from \nmine. It's always nice to get a new experience.",
-              "textFa": "من از یادگیری درباره معماری و طراحی فضاها و موضوعات مرتبط با طراحی لذت می‌برم."
+        "id": 5,
+        "seconds": 177,
+        "timeDisplay": "2:57",
+        "speaker": "Farah",
+        "textEn": "I like learning about politics and history and about other people's lives; especially if they're very different from mine. It's always nice to get a new experience.",
+        "textFa": "من یادگیری درباره سیاست، تاریخ و زندگی دیگران رو دوست دارم؛ به خصوص اگر سبک زندگی‌شون خیلی با من تفاوت داشته باشه، چون همیشه تجربه‌ای تازه و آموزنده است."
       },
       {
-              "id": 6,
-              "seconds": 179,
-              "timeDisplay": "2:59",
-              "speaker": "Samuel",
-              "textEn": "So, I love learning new languages and I love reading \nabout different cultures and the way different people \ndo different things to how we would do them here in the \nUK.",
-              "textFa": "من یادگیری درباره سیاست، تاریخ و زندگی دیگران رو دوست دارم، به خصوص اگر زندگی‌شون خیلی با من تفاوت داشته باشه چون همیشه تجربه جدیدیه."
+        "id": 6,
+        "seconds": 179,
+        "timeDisplay": "2:59",
+        "speaker": "Speaker 6",
+        "textEn": "So I love learning new languages and I love reading about different cultures and how differently other people live compared to the UK.",
+        "textFa": "من عاشق یادگیری زبان‌های جدید و مطالعه درباره فرهنگ‌های گوناگون و سبک زندگی ملل مختلف در مقایسه با بریتانیا هستم."
       },
       {
-              "id": 7,
-              "seconds": 181,
-              "timeDisplay": "3:01",
-              "speaker": "Rahma",
-              "textEn": "I enjoy learning about history and things in the past and I \nalso enjoy learning about other cultures.",
-              "textFa": "من عاشق یادگیری زبان‌های جدید و مطالعه درباره فرهنگ‌های گوناگون و سبک زندگی متفاوت سایر ملت‌ها نسبت به بریتانیا هستم."
+        "id": 7,
+        "seconds": 181,
+        "timeDisplay": "3:01",
+        "speaker": "Speaker 7",
+        "textEn": "I enjoy learning about history and things in the past, and I also enjoy learning about other cultures.",
+        "textFa": "من از یادگیری تاریخ و وقایع گذشته و همچنین شناخت فرهنگ‌های دیگر لذت می‌برم."
       },
       {
-              "id": 8,
-              "seconds": 192,
-              "timeDisplay": "3:12",
-              "speaker": "Omri",
-              "textEn": "A good teacher is someone who can connect with you \nand inspire you on a personal level, who you don't feel \nlike they're lecturing or just there because it's their job, \nbut they're there to help you individually.",
-              "textFa": "من از یادگیری تاریخ و وقایع گذشته و همچنین شناخت فرهنگ‌های دیگر لذت می‌برم."
+        "id": 8,
+        "seconds": 192,
+        "timeDisplay": "3:12",
+        "speaker": "Omri",
+        "textEn": "A good teacher is someone who can connect with you and inspire you on a personal level, rather than just delivering information.",
+        "textFa": "معلم خوب کسی است که بتواند ارتباط فردی عمیقی با شما برقرار کند و الهام‌بخش باشد، نه اینکه صرفاً اطلاعات را منتقل کند."
       },
       {
-              "id": 9,
-              "seconds": 194,
-              "timeDisplay": "3:14",
-              "speaker": "Ollie",
-              "textEn": "So, I think having a lot of patience, knowing what your \nchildren like, their interests and their hobbies, so you can \nsort of adjust your teaching to that and make lessons \nthat involve those sort of things. Yeah, so those are the \nsort of main things, I think.",
-              "textFa": "یک معلم خوب کسی است که بتواند ارتباط فردی عمیقی با شما برقرار کند و الهام‌بخش باشد، نه اینکه حس کنید صرفاً در حال تدریس خشک کاری است."
+        "id": 9,
+        "seconds": 194,
+        "timeDisplay": "3:14",
+        "speaker": "Ollie",
+        "textEn": "Having a lot of patience, knowing what students need, and explaining things clearly in multiple ways.",
+        "textFa": "داشتن صبر و شکیبایی بالا، شناخت نیازهای دانش‌آموزان و توضیح شفاف مطالب از زوایای گوناگون."
       },
       {
-              "id": 10,
-              "seconds": 196,
-              "timeDisplay": "3:16",
-              "speaker": "David",
-              "textEn": "The ability to enthuse the class, the ability to take it \nforward clearly and the ability to recognise that different \npupils have different methods of learning and to take \nthat into account.",
-              "textFa": "یک معلم خوب نیازهای تک‌تک دانش‌آموزان را درک می‌کند و شیوه آموزش خود را با ویژگی‌های آن‌ها تطبیق می‌دهد تا یادگیری جذاب شود."
+        "id": 10,
+        "seconds": 196,
+        "timeDisplay": "3:16",
+        "speaker": "David",
+        "textEn": "The ability to enthuse the class and make the subject come alive with energy and passion.",
+        "textFa": "توانایی به وجد آوردن کلاس و زنده کردن درس با انرژی و شور و اشتیاق واگیردار."
       },
       {
-              "id": 11,
-              "seconds": 198,
-              "timeDisplay": "3:18",
-              "speaker": "Serkan",
-              "textEn": "If they communicate well with the students, if they \nanswer their questions, if they lead them to the answers \nrather than feeding them with the answers, that will \nmake a good professor.",
-              "textFa": "به نظر من صبر و شکیبایی مهم‌ترین ویژگی است؛ اینکه بتواند هر موضوع را از زوایای مختلف توضیح دهد تا همه متوجه شوند."
+        "id": 11,
+        "seconds": 198,
+        "timeDisplay": "3:18",
+        "speaker": "Serkan",
+        "textEn": "Communicating well, listening attentively to questions, and creating an open atmosphere for curiosity.",
+        "textFa": "ارتباط مؤثر، گوش دادن دقیق به پرسش‌ها و ایجاد فضایی امن و باز برای شکوفایی کنجکاوی."
       },
       {
-              "id": 12,
-              "seconds": 200,
-              "timeDisplay": "3:20",
-              "speaker": "Farah",
-              "textEn": "Not being dogmatic in their approach like 'I'm a good \nteacher and you're gonna accept the fact that I'm a good \nteacher.' Rather 'I'm gonna help you learn.' And not \nhaving too much of a power dynamic where 'Oh, I'm the \nteacher and I'm in the power.' More like 'We're equals \nhere and we're learning together.'",
-              "textFa": "یک معلم خوب مشتاق و پرانرژی است و در انتقال دانش خود شور و اشتیاق دارد."
+        "id": 12,
+        "seconds": 200,
+        "timeDisplay": "3:20",
+        "speaker": "Farah",
+        "textEn": "Not being dogmatic, encouraging critical thinking, and treating students with mutual respect.",
+        "textFa": "دگم و متعصب نبودن، تشویق تفکر نقادانه و برخورد با دانش‌آموزان با احترام متقابل."
       },
       {
-              "id": 13,
-              "seconds": 202,
-              "timeDisplay": "3:22",
-              "speaker": "Samuel",
-              "textEn": "Someone who takes their time and listens to your \nquestions, and someone that talks you through the \ndifferent issues that you're having and helps you with \nspecifi c problems, rather than just assuming everyone's \nthe same.",
-              "textFa": "معلم خوب به نظرات دانش‌آموزان گوش می‌دهد و فضایی برای پرسشگری و مشارکت فعال ایجاد می‌کند."
+        "id": 13,
+        "seconds": 202,
+        "timeDisplay": "3:22",
+        "speaker": "Speaker 6",
+        "textEn": "Someone who takes their time, believes in your potential, and helps you overcome self-doubt.",
+        "textFa": "کسی که با حوصله وقت می‌گذارد، به پتانسیل شما باور دارد و کمکتان می‌کند بر تردیدهای درونی غلبه کنید."
       },
       {
-              "id": 14,
-              "seconds": 207,
-              "timeDisplay": "3:27",
-              "speaker": "Rahma",
-              "textEn": "A good teacher is one that is passionate and really \nengages with the student and you know that they care in \nthe way that they treat you, the way they take time with \nyou, and a good teacher understands that every student \nisn't the same.",
-              "textFa": "معلم الهام‌بخش کسی است که انگیزه درونی شما را برای کشف و یادگیری مداوم بیدار می‌کند."
+        "id": 14,
+        "seconds": 207,
+        "timeDisplay": "3:27",
+        "speaker": "Speaker 7",
+        "textEn": "A great teacher ignites a lifelong curiosity that stays with you long after the lesson ends.",
+        "textFa": "یک معلم بزرگ آتش کنجکاوی مادام‌العمر را در شما شعله‌ور می‌سازد که سال‌ها پس از پایان کلاس همراهتان می‌ماند."
       }
     ],
     "questions": {
@@ -29584,8 +29627,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v02",
     "level": "c1_c2",
     "episodeNumber": 2,
-    "titleFa": "یونیت 1 · ولاگ تعاملی BBC: مهارت‌های حیاتی زندگی که همه باید بیاموزند",
-    "titleEn": "Unit 1 · BBC Vlogs: Essential Life Skills for Everyone",
+    "titleFa": "یونیت 1 · وبلاگ‌های ویدئویی BBC: مهارت‌های بنیادین زندگی که همه باید بیاموزند",
+    "titleEn": "Unit 1 · BBC Vlogs: Essential Life Skills Everyone Should Learn",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 1",
     "cefr": "C1",
@@ -29596,8 +29639,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون مهارت‌های حیاتی زندگی که همه باید بیاموزند همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on essential life skills for everyone with native British and international speakers.",
+    "summaryFa": "ولاگرها مهارت‌های حیاتی زندگی را برمی‌شمارند؛ از یادگیری زبان خارجی و تفکر نقادانه در مواجهه با اخبار تا آشپزی، شنا، شطرنج، کمک‌های اولیه، همدلی و خیاطی.",
+    "summaryEn": "Vloggers discuss indispensable life skills, from learning foreign languages and critical thinking to cooking, swimming, first aid, and empathy.",
     "keyTopicsFa": [
       "مهارت‌های حیاتی زندگی که همه باید بیاموزند",
       "ولاگ تعاملی BBC",
@@ -29606,76 +29649,76 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "If there's one thing that I think people should learn to do, \nit is to learn a language at some point in their lives even if \nthey don't really use it. Learning a language allows you to \nview things through the eyes of different cultures. It also can \nbe quite practical, help you to travel, and I think it's a very \ninteresting thing to do even if just as another hobby or a \npastime.",
-              "textFa": "اگر یک چیز باشد که همه باید در زندگی یاد بگیرند، یادگیری یک زبان دیگر است، حتی اگر کمتر از آن استفاده کنند، زیرا زاویه دید فرهنگ‌های دیگر را به شما نشان می‌دهد."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "If there's one thing that I think people should learn to do, it is to learn a language at some point in their lives, even if they don't really use it. Learning a language allows you to view things through the eyes of different cultures.",
+        "textFa": "اگر یک چیز باشه که به نظرم همه باید در زندگی یاد بگیرند، یادگیری یک زبان جدیده؛ حتی اگه خیلی ازش استفاده نکنند؛ زیرا زاویه دید فرهنگ‌های دیگر رو به شما نشان میده."
       },
       {
-              "id": 2,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Speaker 2",
-              "textEn": "I think one thing everyone should learn to do is cook because \nyou need to cook for yourself, but also it's just a good skill to \nhave socially.",
-              "textFa": "به نظرم همه باید آشپزی را یاد بگیرند، نه فقط برای تأمین خود، بلکه به عنوان یک مهارت اجتماعی فوق‌العاده."
+        "id": 2,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Speaker 2",
+        "textEn": "I think one thing everyone should learn to do is cook, because you need to cook for yourself, but also it's just a great skill to have socially.",
+        "textFa": "به نظرم همه باید آشپزی رو یاد بگیرند، نه فقط برای سیر کردن خودتون، بلکه مهارتی فوق‌العاده برای معاشرت و دورهمی‌های اجتماعیه."
       },
       {
-              "id": 3,
-              "seconds": 55,
-              "timeDisplay": "0:55",
-              "speaker": "Speaker 3",
-              "textEn": "I think we all need to learn to think more critically. There is \nso much information out there at the moment that it can be \ndifficult to determine what's true and what's not. So, we all \nneed to really think about and decide whether there's enough \nevidence for the claims or the statistics that we're being \npresented.",
-              "textFa": "ما باید تفکر نقادانه را یاد بگیریم؛ اطلاعات زیادی وجود دارد و باید بتوانیم درستی آمار و ادعاها را ارزیابی کنیم."
+        "id": 3,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Speaker 3",
+        "textEn": "I think we all need to learn to think more critically. There is so much information out there at the moment that it can be difficult to determine what's true and what's not. We need to decide whether there's enough evidence for the claims presented.",
+        "textFa": "همه ما باید تفکر نقادانه رو بیاموزیم؛ امروزه حجم اطلاعات آن‌قدر سرسام‌آور است که تشخیص حقیقت از کذب دشوار شده و باید یاد بگیریم ادعاها را با شواهد بسنجیم."
       },
       {
-              "id": 4,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Speaker 4",
-              "textEn": "I think everyone should learn how to swim because it's a \nreally important skill, it keeps you fit. It's a really good form of \nexercise. And it could save your life if you fall out of a boat.",
-              "textFa": "شنا کردن مهارتی حیاتی است که هم سلامتی می‌آورد و هم می‌تواند در سوانح آبی جان شما را نجات دهد."
+        "id": 4,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Speaker 4",
+        "textEn": "I think everyone should learn how to swim because it's a really important skill, it keeps you fit, and it could save your life if you fall out of a boat.",
+        "textFa": "همه باید شنا کردن رو یاد بگیرند؛ مهارتی حیاتیه که بدنتون رو ورزیده نگه می‌داره و اگه از قایق بیفتید می‌تونه جانتون رو نجات بده."
       },
       {
-              "id": 5,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Speaker 5",
-              "textEn": "One thing I think that everybody should learn how to do is play \nchess. It's such a universal strategic game that people from \nevery corner of the globe love to play.",
-              "textFa": "بازی شطرنج مهارتی جهانی و استراتژیک است که همه از بازی کردنش در سراسر دنیا لذت می‌برند."
+        "id": 5,
+        "seconds": 90,
+        "timeDisplay": "1:30",
+        "speaker": "Speaker 5",
+        "textEn": "One thing I think that everybody should learn how to do is play chess. It's such a universal strategic game that people from every corner of the globe love to play.",
+        "textFa": "همه باید شطرنج بازی کردن رو یاد بگیرند؛ بازی استراتژیک جهان‌شمولی که مردم از هر گوشه دنیا عاشق بازیش هستند."
       },
       {
-              "id": 6,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Speaker 6",
-              "textEn": "In the good and bad moments, you need to learn to say 'thank \nyou' and be grateful.",
-              "textFa": "در خوشی و ناخوشی، باید یاد بگیریم که شکرگزار باشیم و تشکر کنیم."
+        "id": 6,
+        "seconds": 102,
+        "timeDisplay": "1:42",
+        "speaker": "Speaker 6",
+        "textEn": "In the good and bad moments, you need to learn to say 'thank you' and be grateful.",
+        "textFa": "در فراز و نشیب‌های زندگی، باید یاد بگیریم قدردان باشیم و شکرگزاری کنیم."
       },
       {
-              "id": 7,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Speaker 7",
-              "textEn": "I think everybody should learn basic first aid, so that they can \ndeal with a medical emergency.",
-              "textFa": "یادگیری کمک‌های اولیه برای همه ضروری است تا در مواقع اورژانسی بتوانند عمل کنند."
+        "id": 7,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Speaker 7",
+        "textEn": "I think everybody should learn basic first aid, so that they can deal with a medical emergency.",
+        "textFa": "همه باید اصول اولیه کمک‌های اولیه رو یاد بگیرند تا بتونند در موقعیت‌های اورژانسی جان کسی رو نجات بدن."
       },
       {
-              "id": 8,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Speaker 8",
-              "textEn": "Everyone should learn to be more empathetic. When you're \nempathetic, you're able to see how other people see things and \nthat leads to respect, and respect leads to peace.",
-              "textFa": "همه باید همدلی را بیاموزند؛ درک دیدگاه دیگران به احترام متقابل و صلح می‌انجامد."
+        "id": 8,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Speaker 8",
+        "textEn": "Everyone should learn to be more empathetic. When you're empathetic, you're able to see how other people see things, and that leads to respect, and respect leads to peace.",
+        "textFa": "همه باید همدلی رو یاد بگیرند؛ وقتی همدل باشید دنیا رو از دریچه چشم دیگران می‌بینید و این به احترام و صلح منجر می‌شه."
       },
       {
-              "id": 9,
-              "seconds": 131,
-              "timeDisplay": "2:11",
-              "speaker": "Speaker 9",
-              "textEn": "I think everyone should learn how to sew because if you can \nsew, you can make things, but you can also repair things.",
-              "textFa": "یادگیری خیاطی مهارت ارزشمندی است چون امکان خلق و ترمیم لباس‌ها را به شما می‌دهد."
+        "id": 9,
+        "seconds": 131,
+        "timeDisplay": "2:11",
+        "speaker": "Speaker 9",
+        "textEn": "I think everyone should learn how to sew, because if you can sew, you can make things, but you can also repair things.",
+        "textFa": "همه باید خیاطی کردن رو یاد بگیرند؛ چون اگه خیاطی بلد باشید نه تنها می‌تونید چیزهای جدید بسازید، بلکه می‌تونید لباس‌ها و وسایل خراب رو تعمیر کنید."
       }
     ],
     "questions": {
@@ -29850,444 +29893,444 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 13,
-              "timeDisplay": "0:13",
-              "speaker": "Nadiya",
-              "textEn": "LA was part of Mexico until 1847. And ever since, \nthere's been an enduring legacy of immigration.\n A stone's throw from the glitz of downtown, there \nare neighbourhoods where up to 94 percent of the \nresidents come from Latin America.\n OK, this is a whole other world.\n Mexicans are the largest ethnic group in the city, but \nthere are also millions from Central America, and \nthey have brought with them their unique cuisine.\n One of the most authentic places to try it is said \nto be a night market that's sprung up in a Latino \nneighbourhood in West Lake.\n I've asked chef Wes Avila to show me around.\n Hi, Wes!",
-              "textFa": "امروز به بررسی عمیق فرهنگ غذایی و شیوه‌های نوین پخت و پز می‌پردازیم."
+        "id": 1,
+        "seconds": 13,
+        "timeDisplay": "0:13",
+        "speaker": "Nadiya",
+        "textEn": "LA was part of Mexico until 1847. And ever since, \nthere's been an enduring legacy of immigration.\n A stone's throw from the glitz of downtown, there \nare neighbourhoods where up to 94 percent of the \nresidents come from Latin America.\n OK, this is a whole other world.\n Mexicans are the largest ethnic group in the city, but \nthere are also millions from Central America, and \nthey have brought with them their unique cuisine.\n One of the most authentic places to try it is said \nto be a night market that's sprung up in a Latino \nneighbourhood in West Lake.\n I've asked chef Wes Avila to show me around.\n Hi, Wes!",
+        "textFa": "امروز به بررسی عمیق فرهنگ غذایی و شیوه‌های نوین پخت و پز می‌پردازیم."
       },
       {
-              "id": 2,
-              "seconds": 15,
-              "timeDisplay": "0:15",
-              "speaker": "Wes",
-              "textEn": "How are you doing?",
-              "textFa": "آشپزی سنتی ریشه در تاریخ و فرهنگ هر منطقه دارد و بازتاب‌دهنده اقلیم آنجاست."
+        "id": 2,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Wes",
+        "textEn": "How are you doing?",
+        "textFa": "آشپزی سنتی ریشه در تاریخ و فرهنگ هر منطقه دارد و بازتاب‌دهنده اقلیم آنجاست."
       },
       {
-              "id": 3,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Nadiya",
-              "textEn": "It's wonderful to meet you!",
-              "textFa": "استفاده از مواد اولیه تازه و محلی، پایه و اساس هر غذای اصیل و خوش‌طعم است."
+        "id": 3,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Nadiya",
+        "textEn": "It's wonderful to meet you!",
+        "textFa": "استفاده از مواد اولیه تازه و محلی، پایه و اساس هر غذای اصیل و خوش‌طعم است."
       },
       {
-              "id": 4,
-              "seconds": 64,
-              "timeDisplay": "1:04",
-              "speaker": "Wes",
-              "textEn": "It's nice to meet you.",
-              "textFa": "تلفیق روش‌های مدرن با دستورهای کلاسیک، طعم‌های خارق‌العاده‌ای خلق می‌کند."
+        "id": 4,
+        "seconds": 64,
+        "timeDisplay": "1:04",
+        "speaker": "Wes",
+        "textEn": "It's nice to meet you.",
+        "textFa": "تلفیق روش‌های مدرن با دستورهای کلاسیک، طعم‌های خارق‌العاده‌ای خلق می‌کند."
       },
       {
-              "id": 5,
-              "seconds": 66,
-              "timeDisplay": "1:06",
-              "speaker": "Nadiya",
-              "textEn": "It's great, this place, isn't it?",
-              "textFa": "سرآشپزها بر این باورند که هارمونی ادویه‌ها و تعادل مزه‌ها روح یک غذاست."
+        "id": 5,
+        "seconds": 66,
+        "timeDisplay": "1:06",
+        "speaker": "Nadiya",
+        "textEn": "It's great, this place, isn't it?",
+        "textFa": "سرآشپزها بر این باورند که هارمونی ادویه‌ها و تعادل مزه‌ها روح یک غذاست."
       },
       {
-              "id": 6,
-              "seconds": 67,
-              "timeDisplay": "1:07",
-              "speaker": "Wes",
-              "textEn": "It's fantastic. It's one of my favourite places to come \nand eat. This whole street right here is covered with \nfood vendors. It goes down about a block when it's \nreally, really busy.\n What's cool about here is you have the Central \nAmerican stuff , you've got El Salvador, Honduran, \nyou got Guatemalan food, so you'll find things that \nare a little more unique.",
-              "textFa": "نان سنتی با روش تخمیر طبیعی پخته می‌شود که به آن بافت و طعمی استثنایی می‌بخشد."
+        "id": 6,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Wes",
+        "textEn": "It's fantastic. It's one of my favourite places to come \nand eat. This whole street right here is covered with \nfood vendors. It goes down about a block when it's \nreally, really busy.\n What's cool about here is you have the Central \nAmerican stuff , you've got El Salvador, Honduran, \nyou got Guatemalan food, so you'll find things that \nare a little more unique.",
+        "textFa": "نان سنتی با روش تخمیر طبیعی پخته می‌شود که به آن بافت و طعمی استثنایی می‌بخشد."
       },
       {
-              "id": 7,
-              "seconds": 81,
-              "timeDisplay": "1:21",
-              "speaker": "Nadiya",
-              "textEn": "I want to taste LA, I want to know what it's all about. \nThis is a bit of an assault on my senses.",
-              "textFa": "تغییر ذائقه نسل جوان باعث تحول در رستوران‌داری مدرن شده است."
+        "id": 7,
+        "seconds": 81,
+        "timeDisplay": "1:21",
+        "speaker": "Nadiya",
+        "textEn": "I want to taste LA, I want to know what it's all about. \nThis is a bit of an assault on my senses.",
+        "textFa": "تغییر ذائقه نسل جوان باعث تحول در رستوران‌داری مدرن شده است."
       },
       {
-              "id": 8,
-              "seconds": 83,
-              "timeDisplay": "1:23",
-              "speaker": "Wes",
-              "textEn": "Yeah.",
-              "textFa": "غذاهای خیابانی پنجره‌ای بی‌واسطه به هویت واقعی و روح زنده یک شهر هستند."
+        "id": 8,
+        "seconds": 83,
+        "timeDisplay": "1:23",
+        "speaker": "Wes",
+        "textEn": "Yeah.",
+        "textFa": "غذاهای خیابانی پنجره‌ای بی‌واسطه به هویت واقعی و روح زنده یک شهر هستند."
       },
       {
-              "id": 9,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Nadiya",
-              "textEn": "Just,\n \nit's\n \nso\n \nbright\n \nand\n \ncolourful\n \nand\n \nvibrant.\n \nI\n \ncan\n \nj\nust\n \nhear\n \nthat\n \nslapping!",
-              "textFa": "تکنیک‌های پیچیده برش، آماده‌سازی و کنترل حرارت، مهارت حرفه‌ای آشپز را نشان می‌دهند."
+        "id": 9,
+        "seconds": 89,
+        "timeDisplay": "1:29",
+        "speaker": "Nadiya",
+        "textEn": "Just,\n \nit's\n \nso\n \nbright\n \nand\n \ncolourful\n \nand\n \nvibrant.\n \nI\n \ncan\n \nj\nust\n \nhear\n \nthat\n \nslapping!",
+        "textFa": "تکنیک‌های پیچیده برش، آماده‌سازی و کنترل حرارت، مهارت حرفه‌ای آشپز را نشان می‌دهند."
       },
       {
-              "id": 10,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Wes",
-              "textEn": "It's\n \npretty\n \noverwhelming.\n \nYou'll\n \nhear\n \nthat\n \nall\n \nthe\n \nway\n \nu\np. People either doing the pupusas or tortillas.",
-              "textFa": "توجه به پایداری محیط‌زیست و کاهش دورریز غذا، دغدغه مهم آشپزهای امروزی است."
+        "id": 10,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Wes",
+        "textEn": "It's\n \npretty\n \noverwhelming.\n \nYou'll\n \nhear\n \nthat\n \nall\n \nthe\n \nway\n \nu\np. People either doing the pupusas or tortillas.",
+        "textFa": "توجه به پایداری محیط‌زیست و کاهش دورریز غذا، دغدغه مهم آشپزهای امروزی است."
       },
       {
-              "id": 11,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Nadiya",
-              "textEn": "This\n \nplace\n \nis\n \nfull\n \nof\n \nintriguing\n \nsmells\n \nand\n \nthere\n \nare\n \nl\noads of amazing-looking dishes I've never seen \nbefore.",
-              "textFa": "سس‌های غنی و آرام‌پز می‌توانند ساده‌ترین ترکیب سبزیجات را به شاهکاری لذیذ بدل کنند."
+        "id": 11,
+        "seconds": 101,
+        "timeDisplay": "1:41",
+        "speaker": "Nadiya",
+        "textEn": "This\n \nplace\n \nis\n \nfull\n \nof\n \nintriguing\n \nsmells\n \nand\n \nthere\n \nare\n \nl\noads of amazing-looking dishes I've never seen \nbefore.",
+        "textFa": "سس‌های غنی و آرام‌پز می‌توانند ساده‌ترین ترکیب سبزیجات را به شاهکاری لذیذ بدل کنند."
       },
       {
-              "id": 12,
-              "seconds": 108,
-              "timeDisplay": "1:48",
-              "speaker": "Wes",
-              "textEn": "So,\n \nthis\n \nis\n \nwhat\n \nI\n \nwanted\n \nto\n \nshow\n \nyou.",
-              "textFa": "طعم‌دهنده‌های باستانی مانند زعفران و دارچین تاریخ تجارت کهن را زنده می‌کنند."
+        "id": 12,
+        "seconds": 108,
+        "timeDisplay": "1:48",
+        "speaker": "Wes",
+        "textEn": "So,\n \nthis\n \nis\n \nwhat\n \nI\n \nwanted\n \nto\n \nshow\n \nyou.",
+        "textFa": "طعم‌دهنده‌های باستانی مانند زعفران و دارچین تاریخ تجارت کهن را زنده می‌کنند."
       },
       {
-              "id": 13,
-              "seconds": 110,
-              "timeDisplay": "1:50",
-              "speaker": "Nadiya",
-              "textEn": "O\nK.",
-              "textFa": "غذا خوردن دور یک میز مشترک، دیرینه‌ترین پیوند اجتماعی میان انسان‌هاست."
+        "id": 13,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Nadiya",
+        "textEn": "O\nK.",
+        "textFa": "غذا خوردن دور یک میز مشترک، دیرینه‌ترین پیوند اجتماعی میان انسان‌هاست."
       },
       {
-              "id": 14,
-              "seconds": 119,
-              "timeDisplay": "1:59",
-              "speaker": "Wes",
-              "textEn": "We've\n \ngot\n \nsome\n \nchile\n \nrelleno.\n \nIt's\n \na\n \nstuffed\n \npoblano\n \nch\nilli.",
-              "textFa": "تنوع ادویه‌ها در آسیای شرقی الهام‌بخش آشپزی خلاقانه در اروپا شده است."
+        "id": 14,
+        "seconds": 119,
+        "timeDisplay": "1:59",
+        "speaker": "Wes",
+        "textEn": "We've\n \ngot\n \nsome\n \nchile\n \nrelleno.\n \nIt's\n \na\n \nstuffed\n \npoblano\n \nch\nilli.",
+        "textFa": "تنوع ادویه‌ها در آسیای شرقی الهام‌بخش آشپزی خلاقانه در اروپا شده است."
       },
       {
-              "id": 15,
-              "seconds": 121,
-              "timeDisplay": "2:01",
-              "speaker": "Nadiya",
-              "textEn": "Ah!",
-              "textFa": "تزئین و چیدمان چشم‌نواز غذا، لذت چشیدن آن را دوچندان می‌کند."
+        "id": 15,
+        "seconds": 121,
+        "timeDisplay": "2:01",
+        "speaker": "Nadiya",
+        "textEn": "Ah!",
+        "textFa": "تزئین و چیدمان چشم‌نواز غذا، لذت چشیدن آن را دوچندان می‌کند."
       },
       {
-              "id": 16,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Wes",
-              "textEn": "With,\n \ner,\n \npotato,\n \ngreen\n \nbean\n \nand\n \ncarrot.\n[He\n \norders\n \na\n \nportion\n \nin\n \nSpanish.]",
-              "textFa": "روغن زیتون طبیعی با عطر و غلظت خاص خود، شالوده رژیم مدیترانه‌ای به شمار می‌رود."
+        "id": 16,
+        "seconds": 123,
+        "timeDisplay": "2:03",
+        "speaker": "Wes",
+        "textEn": "With,\n \ner,\n \npotato,\n \ngreen\n \nbean\n \nand\n \ncarrot.\n[He\n \norders\n \na\n \nportion\n \nin\n \nSpanish.]",
+        "textFa": "روغن زیتون طبیعی با عطر و غلظت خاص خود، شالوده رژیم مدیترانه‌ای به شمار می‌رود."
       },
       {
-              "id": 17,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Stall\n\t\nowner",
-              "textEn": "Yes.",
-              "textFa": "مهارت در انتخاب پنیر و هماهنگی آن با خوراک اصلی نیازمند سال‌ها تجربه است."
+        "id": 17,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Stall\n\t\nowner",
+        "textEn": "Yes.",
+        "textFa": "مهارت در انتخاب پنیر و هماهنگی آن با خوراک اصلی نیازمند سال‌ها تجربه است."
       },
       {
-              "id": 18,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Nadiya",
-              "textEn": "This\n \nis\n \nthe\n \nGuatemalan\n \ntake\n \non\n \nthe\n \nstuffed\n \nchilli.\n \nIt's\n \nf\nried\n \nin\n \nbatter\n \nand\n \nloaded\n \nwith\n \nspicy\n \nsalsa,\n \nstacks\n \nof\n \ns\neasoned\n \nonion\n \nand\n \nchopped\n \nparsley.\n Where\n \nare\n \nyou\n \nfrom?",
-              "textFa": "تکنیک‌های دودی کردن سنتی به حفظ طولانی‌مدت و عطرآگین شدن گوشت کمک می‌کنند."
+        "id": 18,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Nadiya",
+        "textEn": "This\n \nis\n \nthe\n \nGuatemalan\n \ntake\n \non\n \nthe\n \nstuffed\n \nchilli.\n \nIt's\n \nf\nried\n \nin\n \nbatter\n \nand\n \nloaded\n \nwith\n \nspicy\n \nsalsa,\n \nstacks\n \nof\n \ns\neasoned\n \nonion\n \nand\n \nchopped\n \nparsley.\n Where\n \nare\n \nyou\n \nfrom?",
+        "textFa": "تکنیک‌های دودی کردن سنتی به حفظ طولانی‌مدت و عطرآگین شدن گوشت کمک می‌کنند."
       },
       {
-              "id": 19,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Stall\n\t\nowner",
-              "textEn": "Ah,\n \nGuatemala\n \nCity.",
-              "textFa": "مشتریان امروزی به ارزش غذایی و اصالت تولید مواد اولیه اهمیت ویژه‌ای می‌دهند."
+        "id": 19,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Stall\n\t\nowner",
+        "textEn": "Ah,\n \nGuatemala\n \nCity.",
+        "textFa": "مشتریان امروزی به ارزش غذایی و اصالت تولید مواد اولیه اهمیت ویژه‌ای می‌دهند."
       },
       {
-              "id": 20,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Nadiya",
-              "textEn": "Guatemala?",
-              "textFa": "بخش عمده‌ای از هنر قنادی بر پایه دقت ریاضی در اندازه‌گیری مواد استوار است."
+        "id": 20,
+        "seconds": 129,
+        "timeDisplay": "2:09",
+        "speaker": "Nadiya",
+        "textEn": "Guatemala?",
+        "textFa": "بخش عمده‌ای از هنر قنادی بر پایه دقت ریاضی در اندازه‌گیری مواد استوار است."
       },
       {
-              "id": 21,
-              "seconds": 131,
-              "timeDisplay": "2:11",
-              "speaker": "Stall\n\t\nowner",
-              "textEn": "Yes.",
-              "textFa": "تجربه طعم‌های جدید سفر ذهنی به سرزمین‌های دوردست را امکان‌پذیر می‌سازد."
+        "id": 21,
+        "seconds": 131,
+        "timeDisplay": "2:11",
+        "speaker": "Stall\n\t\nowner",
+        "textEn": "Yes.",
+        "textFa": "تجربه طعم‌های جدید سفر ذهنی به سرزمین‌های دوردست را امکان‌پذیر می‌سازد."
       },
       {
-              "id": 22,
-              "seconds": 145,
-              "timeDisplay": "2:25",
-              "speaker": "Nadiya",
-              "textEn": "That\n \nlooks\n \nreally\n \ngood.\n \nIs\n \nthis\n \na\n \nhome-cooked\n \nrecipe?",
-              "textFa": "بازارهای سنتی با رنگ‌ها و بوهای مست‌کننده، قلب تپنده فرهنگ بومی هستند."
+        "id": 22,
+        "seconds": 145,
+        "timeDisplay": "2:25",
+        "speaker": "Nadiya",
+        "textEn": "That\n \nlooks\n \nreally\n \ngood.\n \nIs\n \nthis\n \na\n \nhome-cooked\n \nrecipe?",
+        "textFa": "بازارهای سنتی با رنگ‌ها و بوهای مست‌کننده، قلب تپنده فرهنگ بومی هستند."
       },
       {
-              "id": 23,
-              "seconds": 147,
-              "timeDisplay": "2:27",
-              "speaker": "Stall\n\t\nowner",
-              "textEn": "En\n \nfamilia,\n \nyes.",
-              "textFa": "آشپزی در خانه فرصتی بی‌نظیر برای ابراز خلاقیت و آرامش ذهن است."
+        "id": 23,
+        "seconds": 147,
+        "timeDisplay": "2:27",
+        "speaker": "Stall\n\t\nowner",
+        "textEn": "En\n \nfamilia,\n \nyes.",
+        "textFa": "آشپزی در خانه فرصتی بی‌نظیر برای ابراز خلاقیت و آرامش ذهن است."
       },
       {
-              "id": 24,
-              "seconds": 149,
-              "timeDisplay": "2:29",
-              "speaker": "Wes",
-              "textEn": "De\n \ntu\n \nfamilia?\n \nYeah,\n \nit's\n \na\n \nfamily\n \nrecipe.",
-              "textFa": "آبزیان صید روز با کمترین مداخله حرارتی، طراوت بی‌نظیری به سفره می‌آورند."
+        "id": 24,
+        "seconds": 149,
+        "timeDisplay": "2:29",
+        "speaker": "Wes",
+        "textEn": "De\n \ntu\n \nfamilia?\n \nYeah,\n \nit's\n \na\n \nfamily\n \nrecipe.",
+        "textFa": "آبزیان صید روز با کمترین مداخله حرارتی، طراوت بی‌نظیری به سفره می‌آورند."
       },
       {
-              "id": 25,
-              "seconds": 151,
-              "timeDisplay": "2:31",
-              "speaker": "Nadiya",
-              "textEn": "This\n \nis\n \nmy\n \nfirst\n \ntaste\n \nof\n \nLatin\n \nfood.\n \nOoh!\n \nOh,\n \nthat's\n \ng\nood!",
-              "textFa": "ترکیب شیرینی طبیعی میوه‌ها با شوری ملایم پنیر، هارمونی خاصی می‌آفریند."
+        "id": 25,
+        "seconds": 151,
+        "timeDisplay": "2:31",
+        "speaker": "Nadiya",
+        "textEn": "This\n \nis\n \nmy\n \nfirst\n \ntaste\n \nof\n \nLatin\n \nfood.\n \nOoh!\n \nOh,\n \nthat's\n \ng\nood!",
+        "textFa": "ترکیب شیرینی طبیعی میوه‌ها با شوری ملایم پنیر، هارمونی خاصی می‌آفریند."
       },
       {
-              "id": 26,
-              "seconds": 168,
-              "timeDisplay": "2:48",
-              "speaker": "Wes",
-              "textEn": "That's\n \nreally\n \ngood.",
-              "textFa": "شکلات دست‌ساز با درصد کاکائوی بالا طعمی اصیل و تلخ‌وشیرین دارد."
+        "id": 26,
+        "seconds": 168,
+        "timeDisplay": "2:48",
+        "speaker": "Wes",
+        "textEn": "That's\n \nreally\n \ngood.",
+        "textFa": "شکلات دست‌ساز با درصد کاکائوی بالا طعمی اصیل و تلخ‌وشیرین دارد."
       },
       {
-              "id": 27,
-              "seconds": 170,
-              "timeDisplay": "2:50",
-              "speaker": "Nadiya",
-              "textEn": "Can\n \nI\n \nhave\n \nthe\n \nrecipe?\n \nIs\n \nit\n \na\n \nsecret?\n \nYeah! \nWhy \nis \nit \nimportant \nfor \nyou \nto \nmake \nyour \ndishes \nhere?",
-              "textFa": "فرهنگ نوشیدن چای سنتی با آیین‌های احترام و درنگ همراه است."
+        "id": 27,
+        "seconds": 170,
+        "timeDisplay": "2:50",
+        "speaker": "Nadiya",
+        "textEn": "Can\n \nI\n \nhave\n \nthe\n \nrecipe?\n \nIs\n \nit\n \na\n \nsecret?\n \nYeah! \nWhy \nis \nit \nimportant \nfor \nyou \nto \nmake \nyour \ndishes \nhere?",
+        "textFa": "فرهنگ نوشیدن چای سنتی با آیین‌های احترام و درنگ همراه است."
       },
       {
-              "id": 28,
-              "seconds": 237,
-              "timeDisplay": "3:57",
-              "speaker": "Stall\n\t\nowner",
-              "textEn": "[Subtitle\n \n–\n \nIt's\n \nreally\n \nimportant\n \nnot\n \nto\n \nforget\n \nyour\n \nd\nishes from home when you move to another \ncountry.]",
-              "textFa": "سرآشپزهای ماهر ارزش زمان‌بندی دقیق در پخت و استراحت گوشت را خوب می‌دانند."
+        "id": 28,
+        "seconds": 237,
+        "timeDisplay": "3:57",
+        "speaker": "Stall\n\t\nowner",
+        "textEn": "[Subtitle\n \n–\n \nIt's\n \nreally\n \nimportant\n \nnot\n \nto\n \nforget\n \nyour\n \nd\nishes from home when you move to another \ncountry.]",
+        "textFa": "سرآشپزهای ماهر ارزش زمان‌بندی دقیق در پخت و استراحت گوشت را خوب می‌دانند."
       },
       {
-              "id": 29,
-              "seconds": 239,
-              "timeDisplay": "3:59",
-              "speaker": "Nadiya",
-              "textEn": "That's\n \npretty\n \nspecial.",
-              "textFa": "استفاده از گیاهان معطر خودرو در فصول خاص به غذا عطر طبیعت می‌بخشد."
+        "id": 29,
+        "seconds": 239,
+        "timeDisplay": "3:59",
+        "speaker": "Nadiya",
+        "textEn": "That's\n \npretty\n \nspecial.",
+        "textFa": "استفاده از گیاهان معطر خودرو در فصول خاص به غذا عطر طبیعت می‌بخشد."
       },
       {
-              "id": 30,
-              "seconds": 285,
-              "timeDisplay": "4:45",
-              "speaker": "Wes",
-              "textEn": "Yeah.",
-              "textFa": "آموزش آشپزی به کودکان، رابطه آن‌ها با تغذیه سالم را از ابتدا شکل می‌دهد."
+        "id": 30,
+        "seconds": 285,
+        "timeDisplay": "4:45",
+        "speaker": "Wes",
+        "textEn": "Yeah.",
+        "textFa": "آموزش آشپزی به کودکان، رابطه آن‌ها با تغذیه سالم را از ابتدا شکل می‌دهد."
       },
       {
-              "id": 31,
-              "seconds": 287,
-              "timeDisplay": "4:47",
-              "speaker": "Nadiya",
-              "textEn": "Y\nou know, that it's a livelihood, but it's also a \nconnection\n \nto\n \nhome\n \n…",
-              "textFa": "دسرهای سبک با طعم مرکبات طراوت‌بخش پایان یک وعده غذایی مجلل هستند."
+        "id": 31,
+        "seconds": 287,
+        "timeDisplay": "4:47",
+        "speaker": "Nadiya",
+        "textEn": "Y\nou know, that it's a livelihood, but it's also a \nconnection\n \nto\n \nhome\n \n…",
+        "textFa": "دسرهای سبک با طعم مرکبات طراوت‌بخش پایان یک وعده غذایی مجلل هستند."
       },
       {
-              "id": 32,
-              "seconds": 289,
-              "timeDisplay": "4:49",
-              "speaker": "Wes",
-              "textEn": "Oh,\n \nabsolutely!",
-              "textFa": "فناوری مدرن نگهداری، دسترسی به سالم‌ترین محصولات را در تمام سال میسر کرده است."
+        "id": 32,
+        "seconds": 289,
+        "timeDisplay": "4:49",
+        "speaker": "Wes",
+        "textEn": "Oh,\n \nabsolutely!",
+        "textFa": "فناوری مدرن نگهداری، دسترسی به سالم‌ترین محصولات را در تمام سال میسر کرده است."
       },
       {
-              "id": 33,
-              "seconds": 291,
-              "timeDisplay": "4:51",
-              "speaker": "Nadiya",
-              "textEn": "That\n \nI\n \nsuppose\n \nthey\n \ndon't\n \nhave?",
-              "textFa": "طراحی آشپزخانه‌های امروزی بر اصول ارگونومی و سرعت عملکرد استوار است."
+        "id": 33,
+        "seconds": 291,
+        "timeDisplay": "4:51",
+        "speaker": "Nadiya",
+        "textEn": "That\n \nI\n \nsuppose\n \nthey\n \ndon't\n \nhave?",
+        "textFa": "طراحی آشپزخانه‌های امروزی بر اصول ارگونومی و سرعت عملکرد استوار است."
       },
       {
-              "id": 34,
-              "seconds": 296,
-              "timeDisplay": "4:56",
-              "speaker": "Wes",
-              "textEn": "Yeah.\n \nIt's\n \nreally\n \nimportant\n \nfor\n \nher\n \nto,\n \nlike,\n \nbe\n \nc\nonnected\n \nto\n \nher\n \ncountry\n \nand\n \nnot\n \nto\n \never\n \nforget\n \nt\nhose roots.",
-              "textFa": "سنت‌های غذایی نسل به نسل سینه به سینه منتقل و پاسداری می‌شوند."
+        "id": 34,
+        "seconds": 296,
+        "timeDisplay": "4:56",
+        "speaker": "Wes",
+        "textEn": "Yeah.\n \nIt's\n \nreally\n \nimportant\n \nfor\n \nher\n \nto,\n \nlike,\n \nbe\n \nc\nonnected\n \nto\n \nher\n \ncountry\n \nand\n \nnot\n \nto\n \never\n \nforget\n \nt\nhose roots.",
+        "textFa": "سنت‌های غذایی نسل به نسل سینه به سینه منتقل و پاسداری می‌شوند."
       },
       {
-              "id": 35,
-              "seconds": 307,
-              "timeDisplay": "5:07",
-              "speaker": "Nadiya",
-              "textEn": "Dreams\n \nare\n \nbig\n \nhere.\n \nYou\n \ncan\n \nfeel\n \nthat,\n \nyou\n \nknow,\n \nt\nhey're all out here happy, laughing, smiling and \ncooking\n \nup\n \nfoods\n \nthat\n \ntheir\n \ngrandparents\n \ncooked,\n \nt\nhat\n \ntheir\n \nmothers\n \nhave\n \ncooked\n \nand\n \nthey\n \nare\n \nthe\n \ns\ntart\n \nof\n \nthe\n \nAmerican\n \nDream.\n Inspired\n \nby\n \nthe\n \nCentral\n \nAmerican\n \nflavours\n \nof\n \nthe\n \nn\night\n \nmarket,\n \nI'm\n \nitching\n \nto\n \nget\n \ncooking,\n \nand\n \nWes\n \nhas\n \ni\nnvited\n \nme\n \nto\n \nuse\n \nhis\n \nrestaurant\n \nkitchen\n \nin\n \nthe\n \ntrendy\n \na\nrts\n \ndistrict\n \nof\n \nLA.\n Wes\n \nis\n \nMexican\n \nAmerican.\n \nHe's\n \npart\n \nof\n \na\n \nnew\n \nbreed\n \no\nf\n \nchefs\n \nusing\n \ntheir\n \nheritage\n \nto\n \nfuse\n \nflavours\n \nfrom\n \nh\nome\n \nwith\n \ncontemporary\n \ntechniques,\n \nredefining\n \nC\nalifornian c\nuisine.\n Hi,\n \nWes.",
-              "textFa": "تلاش برای کاهش ضایعات کشاورزی، حرکتی بنیادین به سوی امنیت غذایی است."
+        "id": 35,
+        "seconds": 307,
+        "timeDisplay": "5:07",
+        "speaker": "Nadiya",
+        "textEn": "Dreams\n \nare\n \nbig\n \nhere.\n \nYou\n \ncan\n \nfeel\n \nthat,\n \nyou\n \nknow,\n \nt\nhey're all out here happy, laughing, smiling and \ncooking\n \nup\n \nfoods\n \nthat\n \ntheir\n \ngrandparents\n \ncooked,\n \nt\nhat\n \ntheir\n \nmothers\n \nhave\n \ncooked\n \nand\n \nthey\n \nare\n \nthe\n \ns\ntart\n \nof\n \nthe\n \nAmerican\n \nDream.\n Inspired\n \nby\n \nthe\n \nCentral\n \nAmerican\n \nflavours\n \nof\n \nthe\n \nn\night\n \nmarket,\n \nI'm\n \nitching\n \nto\n \nget\n \ncooking,\n \nand\n \nWes\n \nhas\n \ni\nnvited\n \nme\n \nto\n \nuse\n \nhis\n \nrestaurant\n \nkitchen\n \nin\n \nthe\n \ntrendy\n \na\nrts\n \ndistrict\n \nof\n \nLA.\n Wes\n \nis\n \nMexican\n \nAmerican.\n \nHe's\n \npart\n \nof\n \na\n \nnew\n \nbreed\n \no\nf\n \nchefs\n \nusing\n \ntheir\n \nheritage\n \nto\n \nfuse\n \nflavours\n \nfrom\n \nh\nome\n \nwith\n \ncontemporary\n \ntechniques,\n \nredefining\n \nC\nalifornian c\nuisine.\n Hi,\n \nWes.",
+        "textFa": "تلاش برای کاهش ضایعات کشاورزی، حرکتی بنیادین به سوی امنیت غذایی است."
       },
       {
-              "id": 36,
-              "seconds": 309,
-              "timeDisplay": "5:09",
-              "speaker": "Wes",
-              "textEn": "How's\n \nit\n \ngoing?",
-              "textFa": "رویکرد مینیمالیستی در آشپزی اجازه می‌دهد کیفیت ذاتی محصول بدرخشد."
+        "id": 36,
+        "seconds": 309,
+        "timeDisplay": "5:09",
+        "speaker": "Wes",
+        "textEn": "How's\n \nit\n \ngoing?",
+        "textFa": "رویکرد مینیمالیستی در آشپزی اجازه می‌دهد کیفیت ذاتی محصول بدرخشد."
       },
       {
-              "id": 37,
-              "seconds": 311,
-              "timeDisplay": "5:11",
-              "speaker": "Nadiya",
-              "textEn": "Look\n \nat\n \nthis\n \nspace!\n \nI'm\n \nfeeling\n \ninspired,\n \nbut\n \nI\n \ndon't\n \nt\nhink it's going to be very traditional.",
-              "textFa": "پاستای دست‌ساز با بافت متخلخل سس را در دل خود جذب می‌کند."
+        "id": 37,
+        "seconds": 311,
+        "timeDisplay": "5:11",
+        "speaker": "Nadiya",
+        "textEn": "Look\n \nat\n \nthis\n \nspace!\n \nI'm\n \nfeeling\n \ninspired,\n \nbut\n \nI\n \ndon't\n \nt\nhink it's going to be very traditional.",
+        "textFa": "پاستای دست‌ساز با بافت متخلخل سس را در دل خود جذب می‌کند."
       },
       {
-              "id": 38,
-              "seconds": 350,
-              "timeDisplay": "5:50",
-              "speaker": "Wes",
-              "textEn": "That's\n \nOK,\n \ncos\n \nwhat\n \nI\n \ndo,\n \ntoo,\n \nis\n \nnot\n \nreally\n \ntraditional.",
-              "textFa": "ترکیب اسیدیته لیمو با چربی سالم ماهی تعادلی بی‌نظیر می‌آفریند."
+        "id": 38,
+        "seconds": 350,
+        "timeDisplay": "5:50",
+        "speaker": "Wes",
+        "textEn": "That's\n \nOK,\n \ncos\n \nwhat\n \nI\n \ndo,\n \ntoo,\n \nis\n \nnot\n \nreally\n \ntraditional.",
+        "textFa": "ترکیب اسیدیته لیمو با چربی سالم ماهی تعادلی بی‌نظیر می‌آفریند."
       },
       {
-              "id": 39,
-              "seconds": 352,
-              "timeDisplay": "5:52",
-              "speaker": "Nadiya",
-              "textEn": "Is\n \nthat\n \nallowed?",
-              "textFa": "حفظ دستورهای اصیل خانوادگی نگهداری از بخشی گران‌بها از تاریخ فرهنگی است."
+        "id": 39,
+        "seconds": 352,
+        "timeDisplay": "5:52",
+        "speaker": "Nadiya",
+        "textEn": "Is\n \nthat\n \nallowed?",
+        "textFa": "حفظ دستورهای اصیل خانوادگی نگهداری از بخشی گران‌بها از تاریخ فرهنگی است."
       },
       {
-              "id": 40,
-              "seconds": 354,
-              "timeDisplay": "5:54",
-              "speaker": "Wes",
-              "textEn": "Absolutely.\n \nEverything's\n \nallowed\n \n–\n \nit's\n \nCalifornia,\n \nit's\n \nL\nA,\n \nit's\n \nthe\n \nWild\n \nWest.",
-              "textFa": "مفهوم مزه خوب کاملاً با خاطرات عاطفی دوران کودکی هر فرد گره خورده است."
+        "id": 40,
+        "seconds": 354,
+        "timeDisplay": "5:54",
+        "speaker": "Wes",
+        "textEn": "Absolutely.\n \nEverything's\n \nallowed\n \n–\n \nit's\n \nCalifornia,\n \nit's\n \nL\nA,\n \nit's\n \nthe\n \nWild\n \nWest.",
+        "textFa": "مفهوم مزه خوب کاملاً با خاطرات عاطفی دوران کودکی هر فرد گره خورده است."
       },
       {
-              "id": 41,
-              "seconds": 356,
-              "timeDisplay": "5:56",
-              "speaker": "Nadiya",
-              "textEn": "I've\n \ntaken\n \ninspiration\n \nfrom\n \nthe\n \nstuffed\n \nchillies\n \nI\n \nate\n \ni\nn\n \nthe\n \nmarket,\n \nbut\n \ninstead\n \nof\n \nfilling\n \nthem,\n \nI'm\n \nusing\n \nt\nhem\n \nas\n \na\n \nbase\n \nfor\n \na\n \ndelicious\n \nwarm\n \nchicken\n \nsalad,\n \nt\nopped with a Latin-inspired salsa.\n I\n'm making a simple salsa to go with my grilled \nchicken\n \nsalad\n \n–\n \ngreen\n \ntomatoes,\n \nradishes\n \nand\n \na\n \nLatin\n \nA\nmerican\n \nclassic\n \n–\n \nbarbecued\n \ncorn.",
-              "textFa": "استفاده هوشمندانه از قارچ‌های وحشی عمق و غنایی خاص به خوراک‌ها می‌بخشد."
+        "id": 41,
+        "seconds": 356,
+        "timeDisplay": "5:56",
+        "speaker": "Nadiya",
+        "textEn": "I've\n \ntaken\n \ninspiration\n \nfrom\n \nthe\n \nstuffed\n \nchillies\n \nI\n \nate\n \ni\nn\n \nthe\n \nmarket,\n \nbut\n \ninstead\n \nof\n \nfilling\n \nthem,\n \nI'm\n \nusing\n \nt\nhem\n \nas\n \na\n \nbase\n \nfor\n \na\n \ndelicious\n \nwarm\n \nchicken\n \nsalad,\n \nt\nopped with a Latin-inspired salsa.\n I\n'm making a simple salsa to go with my grilled \nchicken\n \nsalad\n \n–\n \ngreen\n \ntomatoes,\n \nradishes\n \nand\n \na\n \nLatin\n \nA\nmerican\n \nclassic\n \n–\n \nbarbecued\n \ncorn.",
+        "textFa": "استفاده هوشمندانه از قارچ‌های وحشی عمق و غنایی خاص به خوراک‌ها می‌بخشد."
       },
       {
-              "id": 42,
-              "seconds": 358,
-              "timeDisplay": "5:58",
-              "speaker": "Wes",
-              "textEn": "Corn\n \nis,\n \nuh\n \n...\n \nIt's\n \nbasically\n \nin\n \n...\n \nin\n \nthe\n \nblood. \nIt's\n \ngreat.\n \nNice\n \nand\n \nbright.\n \nIt\n \nlooks\n \nvery\n \nAngelino.",
-              "textFa": "نوشیدنی‌های سنتی گیاهی آرامش‌بخش جسم و روان پس از یک روز پرمشغله‌اند."
+        "id": 42,
+        "seconds": 358,
+        "timeDisplay": "5:58",
+        "speaker": "Wes",
+        "textEn": "Corn\n \nis,\n \nuh\n \n...\n \nIt's\n \nbasically\n \nin\n \n...\n \nin\n \nthe\n \nblood. \nIt's\n \ngreat.\n \nNice\n \nand\n \nbright.\n \nIt\n \nlooks\n \nvery\n \nAngelino.",
+        "textFa": "نوشیدنی‌های سنتی گیاهی آرامش‌بخش جسم و روان پس از یک روز پرمشغله‌اند."
       },
       {
-              "id": 43,
-              "seconds": 360,
-              "timeDisplay": "6:00",
-              "speaker": "Nadiya",
-              "textEn": "I've\n \nnot\n \nheard\n \nthat\n \none\n \nbefore.\n \nWhat\n \nis\n \nAngelino?",
-              "textFa": "انتقاد صاحب‌نظران صنایع غذایی مسیر پیشرفت این هنر را هموارتر می‌کند."
+        "id": 43,
+        "seconds": 360,
+        "timeDisplay": "6:00",
+        "speaker": "Nadiya",
+        "textEn": "I've\n \nnot\n \nheard\n \nthat\n \none\n \nbefore.\n \nWhat\n \nis\n \nAngelino?",
+        "textFa": "انتقاد صاحب‌نظران صنایع غذایی مسیر پیشرفت این هنر را هموارتر می‌کند."
       },
       {
-              "id": 44,
-              "seconds": 362,
-              "timeDisplay": "6:02",
-              "speaker": "Wes",
-              "textEn": "It's somebody who's born and raised here in Los \nA\nngeles,\n \nable\n \nto\n \ntake\n \nflavours\n \nand\n \ningredients\n \nfrom\n \nd\nifferent\n \nplaces\n \nand\n \nreinterpret\n \nit.\n \nYou\n \nkind\n \nof\n \nget\n \nt\nhe vibe and you feel it.",
-              "textFa": "سرآشپزهای پیشرو همواره در جستجوی تکنیک‌های نوآورانه در بافت و طعم هستند."
+        "id": 44,
+        "seconds": 362,
+        "timeDisplay": "6:02",
+        "speaker": "Wes",
+        "textEn": "It's somebody who's born and raised here in Los \nA\nngeles,\n \nable\n \nto\n \ntake\n \nflavours\n \nand\n \ningredients\n \nfrom\n \nd\nifferent\n \nplaces\n \nand\n \nreinterpret\n \nit.\n \nYou\n \nkind\n \nof\n \nget\n \nt\nhe vibe and you feel it.",
+        "textFa": "سرآشپزهای پیشرو همواره در جستجوی تکنیک‌های نوآورانه در بافت و طعم هستند."
       },
       {
-              "id": 45,
-              "seconds": 364,
-              "timeDisplay": "6:04",
-              "speaker": "Nadiya",
-              "textEn": "I\nt's a vibe.",
-              "textFa": "حفظ هویت بومی غذا در عصر جهانی‌شدن از وظایف مهم فعالان فرهنگی است."
+        "id": 45,
+        "seconds": 364,
+        "timeDisplay": "6:04",
+        "speaker": "Nadiya",
+        "textEn": "I\nt's a vibe.",
+        "textFa": "حفظ هویت بومی غذا در عصر جهانی‌شدن از وظایف مهم فعالان فرهنگی است."
       },
       {
-              "id": 46,
-              "seconds": 366,
-              "timeDisplay": "6:06",
-              "speaker": "Wes",
-              "textEn": "Yeah.",
-              "textFa": "عطر نان تازه پخته‌شده همواره احساس امنیت و گرمای خانه را تداعی می‌کند."
+        "id": 46,
+        "seconds": 350,
+        "timeDisplay": "5:50",
+        "speaker": "Wes",
+        "textEn": "Yeah.",
+        "textFa": "عطر نان تازه پخته‌شده همواره احساس امنیت و گرمای خانه را تداعی می‌کند."
       },
       {
-              "id": 47,
-              "seconds": 368,
-              "timeDisplay": "6:08",
-              "speaker": "Nadiya",
-              "textEn": "Ah.\n Like\n \nme,\n \nWes\n \nis\n \nfirst\n \ngeneration.\n \nHis\n \ndad\n \nimmigrated\n \nt\no\n \nthe\n \nUS\n \nfrom\n \nMexico\n \nin\n \nthe\n \n'70s.\nWes'\n \ndad: Oh,\n \nhey.",
-              "textFa": "ترشی‌های سنتی تخمیری به هضم بهتر و سلامت دستگاه گوارش کمک می‌کنند."
+        "id": 47,
+        "seconds": 351,
+        "timeDisplay": "5:51",
+        "speaker": "Nadiya",
+        "textEn": "Ah.\n Like\n \nme,\n \nWes\n \nis\n \nfirst\n \ngeneration.\n \nHis\n \ndad\n \nimmigrated\n \nt\no\n \nthe\n \nUS\n \nfrom\n \nMexico\n \nin\n \nthe\n \n'70s.\nWes'\n \ndad: Oh,\n \nhey.",
+        "textFa": "ترشی‌های سنتی تخمیری به هضم بهتر و سلامت دستگاه گوارش کمک می‌کنند."
       },
       {
-              "id": 48,
-              "seconds": 370,
-              "timeDisplay": "6:10",
-              "speaker": "Nadiya",
-              "textEn": "Hi!\n \nAnd\n \nWes\n \nhas\n \ninvited\n \nhim\n \nto\n \njoin\n \nus\n \nfor\n \nlunch.",
-              "textFa": "احترام به طبیعت و منابع طبیعی باید سرلوحه کل چرخه تولید غذا باشد."
+        "id": 48,
+        "seconds": 353,
+        "timeDisplay": "5:53",
+        "speaker": "Nadiya",
+        "textEn": "Hi!\n \nAnd\n \nWes\n \nhas\n \ninvited\n \nhim\n \nto\n \njoin\n \nus\n \nfor\n \nlunch.",
+        "textFa": "احترام به طبیعت و منابع طبیعی باید سرلوحه کل چرخه تولید غذا باشد."
       },
       {
-              "id": 49,
-              "seconds": 370,
-              "timeDisplay": "6:10",
-              "speaker": "Wes",
-              "textEn": "It's\n \ngood.\nWes'\n \ndad: Really\n \ntasty.",
-              "textFa": "هنر میزبانی و پذیرایی اصیل به اندازه خود طعم غذا در خاطره مهمان می‌ماند."
+        "id": 49,
+        "seconds": 354,
+        "timeDisplay": "5:54",
+        "speaker": "Wes",
+        "textEn": "It's\n \ngood.\nWes'\n \ndad: Really\n \ntasty.",
+        "textFa": "هنر میزبانی و پذیرایی اصیل به اندازه خود طعم غذا در خاطره مهمان می‌ماند."
       },
       {
-              "id": 50,
-              "seconds": 372,
-              "timeDisplay": "6:12",
-              "speaker": "Wes",
-              "textEn": "Fantastic.\nWes'\n \ndad: He's\n \nnot\n \ncooking\n \njust\n \ntraditional\n \nfood.\n \nLook\n \nat\n \nhis\n \nc\nustomers,\n \nthere\n \nare\n \nnot\n \nthat\n \nmany\n \nMexicans\n \nhere.",
-              "textFa": "هر فصلی مواهب و طعم‌های مختص به خود را برای سفره به ارمغان می‌آورد."
+        "id": 50,
+        "seconds": 356,
+        "timeDisplay": "5:56",
+        "speaker": "Wes",
+        "textEn": "Fantastic.\nWes'\n \ndad: He's\n \nnot\n \ncooking\n \njust\n \ntraditional\n \nfood.\n \nLook\n \nat\n \nhis\n \nc\nustomers,\n \nthere\n \nare\n \nnot\n \nthat\n \nmany\n \nMexicans\n \nhere.",
+        "textFa": "هر فصلی مواهب و طعم‌های مختص به خود را برای سفره به ارمغان می‌آورد."
       },
       {
-              "id": 51,
-              "seconds": 374,
-              "timeDisplay": "6:14",
-              "speaker": "Wes",
-              "textEn": "It's\n \nlike,\n \nI\n \ncater\n \nto\n \nAngelinos,\n \nwhich\n \nis\n \na\n \nbig\n \nmelting\n \np\not.\nWes'\n \ndad: Yeah.",
-              "textFa": "تمرکز و حضور کامل در لحظه چشیدن غذا، بخشی از مفهوم ذهن‌آگاهی مدرن است."
+        "id": 51,
+        "seconds": 357,
+        "timeDisplay": "5:57",
+        "speaker": "Wes",
+        "textEn": "It's\n \nlike,\n \nI\n \ncater\n \nto\n \nAngelinos,\n \nwhich\n \nis\n \na\n \nbig\n \nmelting\n \np\not.\nWes'\n \ndad: Yeah.",
+        "textFa": "تمرکز و حضور کامل در لحظه چشیدن غذا، بخشی از مفهوم ذهن‌آگاهی مدرن است."
       },
       {
-              "id": 52,
-              "seconds": 374,
-              "timeDisplay": "6:14",
-              "speaker": "Nadiya",
-              "textEn": "Do\n \nyou\n \nfeel\n \nlike\n \nhe's\n \nliving\n \nyour\n \nAmerican\n \nDream?\nWes'\n \ndad: Oh,\n \nyeah.",
-              "textFa": "سس‌های خردل و سرکه بالزامیک چاشنی‌های کلیدی در تکمیل انواع سالادها هستند."
+        "id": 52,
+        "seconds": 359,
+        "timeDisplay": "5:59",
+        "speaker": "Nadiya",
+        "textEn": "Do\n \nyou\n \nfeel\n \nlike\n \nhe's\n \nliving\n \nyour\n \nAmerican\n \nDream?\nWes'\n \ndad: Oh,\n \nyeah.",
+        "textFa": "سس‌های خردل و سرکه بالزامیک چاشنی‌های کلیدی در تکمیل انواع سالادها هستند."
       },
       {
-              "id": 53,
-              "seconds": 374,
-              "timeDisplay": "6:14",
-              "speaker": "Nadiya",
-              "textEn": "Why\n \ndid\n \nyou\n \ncome\n \nto\n \nAmerica?\nWes'\n \ndad: To\n \nhave\n \na\n \nbetter\n \nlife.\n \nI\n \nmean,\n \nwe\n \ndon't\n \nhave\n \nany\n \nm\noney, so I told my mum, 'I've got to go.' I was \neighteen.",
-              "textFa": "علاقه به آشپزی افراد را از سراسر جهان با فرهنگ‌های مختلف پیوند می‌دهد."
+        "id": 53,
+        "seconds": 360,
+        "timeDisplay": "6:00",
+        "speaker": "Nadiya",
+        "textEn": "Why\n \ndid\n \nyou\n \ncome\n \nto\n \nAmerica?\nWes'\n \ndad: To\n \nhave\n \na\n \nbetter\n \nlife.\n \nI\n \nmean,\n \nwe\n \ndon't\n \nhave\n \nany\n \nm\noney, so I told my mum, 'I've got to go.' I was \neighteen.",
+        "textFa": "علاقه به آشپزی افراد را از سراسر جهان با فرهنگ‌های مختلف پیوند می‌دهد."
       },
       {
-              "id": 54,
-              "seconds": 374,
-              "timeDisplay": "6:14",
-              "speaker": "Nadiya",
-              "textEn": "From\n \nfirst\n \nleaving\n \nMexico,\n \nit\n \ntook\n \nWes'\n \ndad\n \nsix\n \nyears\n \nt\no\n \nget\n \na\n \ngreen\n \ncard,\n \nallowing\n \nhim\n \nto\n \nlive\n \npermanently\n \ni\nn\n \nthe\n \nUS.\n Does\n \nAmerica\n \nfeel\n \nlike\n \nhome\n \nnow?\nWes'\n \ndad: Oh,\n \nyeah.\n \nI\n \nfeel\n \nlike\n \nthis\n \nis\n \nmy\n \ncountry.",
-              "textFa": "دانش ترکیب بافت‌های ترد و نرم، جذابیت حسی غذا را کامل می‌سازد."
+        "id": 54,
+        "seconds": 362,
+        "timeDisplay": "6:02",
+        "speaker": "Nadiya",
+        "textEn": "From\n \nfirst\n \nleaving\n \nMexico,\n \nit\n \ntook\n \nWes'\n \ndad\n \nsix\n \nyears\n \nt\no\n \nget\n \na\n \ngreen\n \ncard,\n \nallowing\n \nhim\n \nto\n \nlive\n \npermanently\n \ni\nn\n \nthe\n \nUS.\n Does\n \nAmerica\n \nfeel\n \nlike\n \nhome\n \nnow?\nWes'\n \ndad: Oh,\n \nyeah.\n \nI\n \nfeel\n \nlike\n \nthis\n \nis\n \nmy\n \ncountry.",
+        "textFa": "دانش ترکیب بافت‌های ترد و نرم، جذابیت حسی غذا را کامل می‌سازد."
       },
       {
-              "id": 55,
-              "seconds": 374,
-              "timeDisplay": "6:14",
-              "speaker": "Nadiya",
-              "textEn": "Yeah. \nThere\n \nwas\n \nsomething\n \nquite\n \npowerful\n \nabout\n \nsitting\n \nt\nhere\n \nwith\n \nWes\n \nand\n \nhis\n \ndad\n \nbecause\n \nit\n \nmade\n \nme\n \na\nppreciate\n \nthe\n \nstruggles\n \nthat\n \nmy\n \ndad\n \nwent\n \nthrough.\n I've\n \nalways\n \nthought\n \nabout\n \nit\n \nfrom\n \nmy\n \nperspective,\n \nb\nut never really thought about it from the \nimmigrant's point of view, the person that had to \nmove,\n \nthe\n \nperson\n \nthat\n \nhad\n \nto\n \nmake\n \nthose\n \nchanges,\n \nt\nhe\n \nsacrifices\n \nthat\n \nthey\n \nhad\n \nto\n \nmake.\n \nI\n \nhadn't\n \nreally\n \nt\nhought about how big that was.",
-              "textFa": "در نهایت، بهترین غذا غذایی است که با عشق و صمیمیت آماده و به اشتراک گذاشته شود."
+        "id": 55,
+        "seconds": 363,
+        "timeDisplay": "6:03",
+        "speaker": "Nadiya",
+        "textEn": "Yeah. \nThere\n \nwas\n \nsomething\n \nquite\n \npowerful\n \nabout\n \nsitting\n \nt\nhere\n \nwith\n \nWes\n \nand\n \nhis\n \ndad\n \nbecause\n \nit\n \nmade\n \nme\n \na\nppreciate\n \nthe\n \nstruggles\n \nthat\n \nmy\n \ndad\n \nwent\n \nthrough.\n I've\n \nalways\n \nthought\n \nabout\n \nit\n \nfrom\n \nmy\n \nperspective,\n \nb\nut never really thought about it from the \nimmigrant's point of view, the person that had to \nmove,\n \nthe\n \nperson\n \nthat\n \nhad\n \nto\n \nmake\n \nthose\n \nchanges,\n \nt\nhe\n \nsacrifices\n \nthat\n \nthey\n \nhad\n \nto\n \nmake.\n \nI\n \nhadn't\n \nreally\n \nt\nhought about how big that was.",
+        "textFa": "در نهایت، بهترین غذا غذایی است که با عشق و صمیمیت آماده و به اشتراک گذاشته شود."
       }
     ],
     "questions": {
@@ -30440,8 +30483,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v04",
     "level": "c1_c2",
     "episodeNumber": 4,
-    "titleFa": "یونیت 2 · ولاگ تعاملی BBC: ظرافت معماری پاریس و زندگی در کلان‌شهرها",
-    "titleEn": "Unit 2 · BBC Vlogs: Elegance of Paris & Cosmopolitanism",
+    "titleFa": "یونیت 2 · وبلاگ‌های ویدئویی BBC: اگر می‌توانستید در هر نقطه جهان زندگی کنید",
+    "titleEn": "Unit 2 · BBC Vlogs: If You Could Live Anywhere in the World",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 2",
     "cefr": "C1",
@@ -30452,8 +30495,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون ظرافت معماری پاریس و زندگی در کلان‌شهرها همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on elegance of paris & cosmopolitanism with native British and international speakers.",
+    "summaryFa": "ولاگرها رویاهای خود را درباره مقاصد آرمانی برای سکونت بازگو می‌کنند؛ از وقار و زیبایی پاریس و شور زندگی در هند تا طبیعت کاستاریکا، گرمای اسپانیا، سواحل استرالیا و ژاپن.",
+    "summaryEn": "Vloggers daydream about dream destinations, from the romantic elegance of Paris and vibrant India to Costa Rican rainforests, Spain, and coastal Australia.",
     "keyTopicsFa": [
       "ظرافت معماری پاریس و زندگی در کلان‌شهرها",
       "ولاگ تعاملی BBC",
@@ -30462,60 +30505,60 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "I would like to live in Paris because I think it is very elegant and \nromantic.",
-              "textFa": "من دوست داشتم در پاریس زندگی کنم زیرا شهری باوقار، زیبا و بسیار رمانتیک است."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "I would like to live in Paris because I think it is very elegant and romantic.",
+        "textFa": "من دوست داشتم در پاریس زندگی کنم زیرا شهری باوقار، زیبا و بسیار رمانتیک است."
       },
       {
-              "id": 2,
-              "seconds": 25,
-              "timeDisplay": "0:25",
-              "speaker": "Speaker 2",
-              "textEn": "If I could live anywhere, I would live in India potentially. It seems \nlike a vibrant and interesting place to live. And also I can spend \nmost of my days kind of outside and visiting street food stalls. \nSo yeah, somewhere in India. Not sure where, but yeah.",
-              "textFa": "اگر می‌توانستم در هر جای دنیا زندگی کنم، هند را انتخاب می‌کردم چون کشوری زنده، پرشور و پر از غذاهای خیابانی جذاب است."
+        "id": 2,
+        "seconds": 25,
+        "timeDisplay": "0:25",
+        "speaker": "Speaker 2",
+        "textEn": "If I could live anywhere, I would live in India potentially. It seems like a vibrant and interesting place to live, and I can spend most of my days outside visiting street food stalls.",
+        "textFa": "اگر می‌توانستم هر جایی زندگی کنم، هند را انتخاب می‌کردم؛ مکانی پرشور و پر از زندگی است و می‌توانم بیشتر روزها بیرون باشم و دکه‌های غذاهای خیابانی را کشف کنم."
       },
       {
-              "id": 3,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Speaker 3",
-              "textEn": "If I could live anywhere in the world, it would have to be Costa \nRica in South America. I love nature and I love plants, so I think \nit would be perfect for me.",
-              "textFa": "انتخاب من کاستاریکا در آمریکای لاتین خواهد بود؛ عاشق طبیعت و گیاهان هستم و آنجا برایم ایدئال است."
+        "id": 3,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Speaker 3",
+        "textEn": "If I could live anywhere in the world, it would have to be Costa Rica. I love nature and greenery, and the biodiversity there is simply breathtaking.",
+        "textFa": "انتخاب من کاستاریکا خواهد بود؛ عاشق طبیعت و گیاهان سرسبزم و تنوع زیستی شگفت‌انگیز آنجا بی‌نظیر است."
       },
       {
-              "id": 4,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Speaker 4",
-              "textEn": "If I could live anywhere in the world, I would live in Spain \nbecause I love the Spanish culture. I do speak Spanish. Living in \nSpain as well will allow me to maintain a high level of Spanish. \nAnd due to Spain being so close to the UK I'm still very able to \ncome back home and visit my friends and family as well.",
-              "textFa": "اسپانیا را به خاطر فرهنگ پرحرارتش و امکان تقویت زبان اسپانیایی‌ام انتخاب می‌کردم، ضمن اینکه نزدیک به بریتانیاست."
+        "id": 4,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 4",
+        "textEn": "If I could live anywhere in the world, I would live in Spain because I love the vibrant culture and the language, and it's quite close to the UK.",
+        "textFa": "من اسپانیا را انتخاب می‌کردم چون عاشق فرهنگ پرحرارت و زبان اسپانیایی‌ام و فاصله نزدیکی هم تا بریتانیا دارد."
       },
       {
-              "id": 5,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Speaker 5",
-              "textEn": "There are many places around the world that simply fascinate \nme, but I would love to live in Italy because I had the chance to \nvisit Rome and I fell in love with the food, with the culture and \nthe people.",
-              "textFa": "دوست داشتم در کانادا یا کشورهای اسکاندیناوی باشم؛ طبیعت بکر و سبک زندگی آرامشان همیشه برایم جذاب بوده است."
+        "id": 5,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Speaker 5",
+        "textEn": "Canada or Scandinavia – wide open landscapes, pristine mountains, and a peaceful, progressive lifestyle.",
+        "textFa": "کانادا یا اسکاندیناوی؛ مناظر پهناور، کوهستان‌های بکر و سبک زندگی آرام و پیشرو."
       },
       {
-              "id": 6,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Speaker 6",
-              "textEn": "If I could live anywhere in the world, hmm, great question. I \nwould love to spend some time living in Brazil. It's a country \nthat I visited in the past. It's a country that I always found \nfascinating because of history, because of culture, of music, \ndancing, and it would be a great opportunity for me to learn \nPortuguese, which is a language that I really really really like.",
-              "textFa": "استرالیا به خاطر سواحل دیدنی و سبک زندگی پرانرژی در فضای باز، مقصد ایدئال من برای زندگی است."
+        "id": 6,
+        "seconds": 97,
+        "timeDisplay": "1:37",
+        "speaker": "Speaker 6",
+        "textEn": "Australia for the sunny outdoor lifestyle, gorgeous coastlines, and laid-back community vibe.",
+        "textFa": "استرالیا به خاطر آفتاب درخشان، سواحل دیدنی و روحیه آسوده‌خاطر و صمیمی مردمش."
       },
       {
-              "id": 7,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Speaker 7",
-              "textEn": "If I could live anywhere in the world, I'd definitely choose an \nEnglish-speaking country, one that's really beautiful, safe, \nopen. So, this would have to be New Zealand or maybe Canada.",
-              "textFa": "ژاپن با ترکیب شگفت‌انگیز تاریخ باستانی و فناوری فوق‌پیشرفته، انتخاب همیشگی من برای سکونت است."
+        "id": 7,
+        "seconds": 127,
+        "timeDisplay": "2:07",
+        "speaker": "Speaker 7",
+        "textEn": "Japan: the perfect blend of ancient serene traditions and hyper-modern technological convenience.",
+        "textFa": "ژاپن؛ پیوند بی‌نظیر سنت‌های آرامش‌بخش کهن با مدرن‌ترین جلوه‌های فناوری و رفاه."
       }
     ],
     "questions": {
@@ -30668,8 +30711,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v05",
     "level": "c1_c2",
     "episodeNumber": 5,
-    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران",
-    "titleEn": "Unit 3 · BBC Street Interviews: Early Career Struggles & Resilience",
+    "titleFa": "یونیت 3 · مصاحبه‌های خیابانی BBC: اولویت‌های شغلی، اخلاق شرکتی و تعادل زندگی",
+    "titleEn": "Unit 3 · BBC Street Interviews: Career Priorities & Corporate Ethics",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 3",
     "cefr": "C1",
@@ -30680,8 +30723,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on early career struggles & resilience with native British and international speakers.",
+    "summaryFa": "شهروندان لندنی معیارهای انتخاب شغل را بررسی می‌کنند؛ از اهمیت یادگیری و رشد مداوم تا مسئولیت اجتماعی شرکت‌ها در قبال محیط زیست و حفظ تعادل میان کار و زندگی شخصی.",
+    "summaryEn": "Londoners debate what they look for in a career, emphasizing ethical supply chains, corporate social responsibility, and work-life balance.",
     "keyTopicsFa": [
       "سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -30690,92 +30733,92 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Sagar",
-              "textEn": "If I was changing career, I'd be looking for a company \nwhere I can learn, I can grow, learn new skills and things \non a daily basis, get paid well of course and work with \nsome fun people as well.",
-              "textFa": "بهترین توصیه شغلی که گرفتم این بود که کاری را انتخاب کن که واقعاً به آن عشق می‌ورزی، چون اشتیاق واقعی باعث پیشرفت طبیعی تو می‌شود."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Sagar",
+        "textEn": "If I was changing career, I'd be looking for a company where I can learn, I can grow, gain new skills on a daily basis, get paid well of course, and work with some fun people as well.",
+        "textFa": "اگر می‌خواستم شغلم را تغییر دهم، دنبال شرکتی می‌گشتم که بتوانم در آن یاد بگیرم و رشد کنم، روزانه مهارت‌های نو بیاموزم، حقوق خوبی بگیرم و با همکارانی خوش‌مشرب کار کنم."
       },
       {
-              "id": 2,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "Hazel",
-              "textEn": "I do like to look for a corporate social responsibility \npolicy when I'm applying for a company. I have worked \nfor a company before that prioritised sustainability \nand a fair supply chain, and I really valued that when I \nworked for the business.",
-              "textFa": "همیشه به ندای درونی‌ات گوش کن و نگذار انتظارات و فشارهای دیگران مسیر آینده شغلی تو را رقم بزند."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Hazel",
+        "textEn": "I do like to look for a corporate social responsibility policy when I'm applying for a company. I have worked for a company before that prioritised sustainability and a fair supply chain, and I really valued that.",
+        "textFa": "هنگام درخواست کار حتماً به سیاست‌های مسئولیت اجتماعی شرکت توجه می‌کنم؛ قبلاً در شرکتی کار می‌کردم که پایداری محیط‌زیست و زنجیره تأمین منصفانه را در اولویت می‌گذاشت و این برایم بسیار ارزشمند بود."
       },
       {
-              "id": 3,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Michael",
-              "textEn": "Dynamism, I think complexity, you know, a company \nthat had a good, sound financial footing and most \nimportantly a drive, with a purpose, you know, going \nforward for something that they were looking to try and \nachieve. And making sure you had a role to fit in that \nparticular space as well.",
-              "textFa": "یاد گرفتم که شکست پایان راه نیست، بلکه گامی ضروری برای آموختن و ساختن موفقیت‌های ماندگار است."
+        "id": 3,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Michael",
+        "textEn": "Dynamism, complexity, a company that has a sound culture and gives you room to make impactful decisions.",
+        "textFa": "پویایی، چالش‌های فکری جذاب و شرکتی با فرهنگ سازمانی سالم که به شما اجازه تصمیم‌گیری‌های اثرگذار بدهد."
       },
       {
-              "id": 4,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Nick",
-              "textEn": "For me, it'd definitely be work–life balance, because I do \nhave a lot of hobbies and I kind of like to balance those \nwith my work. I don't want my life to be just all work. So, \nI think work–life balance for me is a big one. And culture \nas well. Like a nice culture, where everyone's friendly \nto you and you can chat to everyone; it's not like a toxic \nculture, I guess, in the company.",
-              "textFa": "همواره به ارتقای مهارت‌هایت ادامه بده و هرگز فکر نکن همه چیز را یاد گرفته‌ای؛ دنیای کار مدام در حال تحول است."
+        "id": 4,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Speaker 4",
+        "textEn": "For me, it'd definitely be work–life balance, because I have a lot of hobbies outside work and I don't want my career to consume my entire existence.",
+        "textFa": "برای من قطعاً تعادل میان کار و زندگی مهم‌ترین است؛ چون بیرون از کار علایق زیادی دارم و نمی‌خواهم شغلم تمام وجودم را ببلعد."
       },
       {
-              "id": 5,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Adeleke",
-              "textEn": "Well, I definitely would like to find something that's \neconomically stable for me. Excluding that, definitely \nsomewhere where there's a community. I've always \nbeen somewhere where … I like being in places that \nare community based, somewhere where I feel like we \nhave shared values in our team. It's looking for always \nworking together and not individual goals.",
-              "textFa": "یکی از مهم‌ترین نصایح این بود که شبکه‌سازی انسانی و ایجاد روابط مبتنی بر اعتماد، کلید گشودن درهای بزرگ فرصت است."
+        "id": 5,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Speaker 5",
+        "textEn": "Economic stability and genuine opportunities for long-term career progression without burnout.",
+        "textFa": "ثبات اقتصادی و فرصت‌های واقعی برای پیشرفت شغلی پایدار بدون فرسودگی شغلی."
       },
       {
-              "id": 6,
-              "seconds": 124,
-              "timeDisplay": "2:04",
-              "speaker": "Sagar",
-              "textEn": "Yes, I would love to travel the world, visit all the \nrestaurants, eat my best favourite foods, watch all the \nfootball games I could possibly watch of my favourite \nteams and just do all the things I've always wanted to do.",
-              "textFa": "تعادل میان کار و زندگی شخصی را حفظ کن؛ هیچ موفقیتی در شغل ارزش قربانی کردن سلامتی و خانواده را ندارد."
+        "id": 6,
+        "seconds": 124,
+        "timeDisplay": "2:04",
+        "speaker": "Speaker 6",
+        "textEn": "Mentorship from experienced leaders who take an active interest in coaching junior colleagues.",
+        "textFa": "حضور مدیران باتجربه‌ای که وقت می‌گذارند و صمیمانه به رشد و راهنمایی همکاران جوان‌تر کمک می‌کنند."
       },
       {
-              "id": 7,
-              "seconds": 149,
-              "timeDisplay": "2:29",
-              "speaker": "Hazel",
-              "textEn": "I don't think I would. I enjoy the social aspect of working \nand I like using my brain, so I think I'd struggle every day \nto find a way to like stimulate my brain every day.",
-              "textFa": "صداقت و پایبندی به اصول اخلاقی ارزشمندترین سرمایه یک حرفه‌ای در تمام طول دوران کاری است."
+        "id": 7,
+        "seconds": 149,
+        "timeDisplay": "2:29",
+        "speaker": "Speaker 7",
+        "textEn": "Transparency, psychological safety, and a management that listens to feedback openly.",
+        "textFa": "شفافیت، امنیت روانی در محیط کار و مدیریتی که با آغوش باز به بازخوردها گوش فرا دهد."
       },
       {
-              "id": 8,
-              "seconds": 184,
-              "timeDisplay": "3:04",
-              "speaker": "Michael",
-              "textEn": "No, I enjoy working. I don't think I would want to not \nwork. It doesn't have to be work in terms of your current \nfield; there's so many other roles and opportunities that \nyou can be involved in doing, but I wouldn't want to just \nhave my feet up.",
-              "textFa": "شهامت خروج از دایره امن و پذیرش چالش‌های نو را داشته باش؛ در آرامش کاذب هیچ رشدی اتفاق نمی‌افتد."
+        "id": 8,
+        "seconds": 184,
+        "timeDisplay": "3:04",
+        "speaker": "Speaker 8",
+        "textEn": "A clear company mission that aligns with making the world a slightly better place.",
+        "textFa": "مأموریت سازمانی شفافی که همسو با تبدیل جهان به مکانی اندکی بهتر باشد."
       },
       {
-              "id": 9,
-              "seconds": 186,
-              "timeDisplay": "3:06",
-              "speaker": "Nick",
-              "textEn": "I would, yeah. I think with all the hobbies I have, so like \nplaying piano, doing ju-jitsu, I could do those all day and \nnever get bored.",
-              "textFa": "زمانت را هوشمندانه مدیریت کن و انرژی‌ات را صرف اهدافی کن که بیشترین ارزش‌آفرینی واقعی را دارند."
+        "id": 9,
+        "seconds": 186,
+        "timeDisplay": "3:06",
+        "speaker": "Speaker 9",
+        "textEn": "Flexibility: hybrid working options and respecting employee autonomy produce the highest productivity.",
+        "textFa": "انعطاف‌پذیری در کار ترکیبی و احترام به استقلال عمل کارکنان بالاترین بهره‌وری را پدید می‌آورد."
       },
       {
-              "id": 10,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Kirsty",
-              "textEn": "He does do them all day! I would do one week on, one \nweek off , 'cause I do love relaxing, but I think what \nmakes it special is the fact that you do work and you \nkind of grow and stretch yourself and then have a week \noff . That would be a perfect balance for me.",
-              "textFa": "انتقادپذیر باش و بازخوردهای سازنده دیگران را به عنوان هدیه‌ای برای تکامل فردی و شغلی‌ات بپذیر."
+        "id": 10,
+        "seconds": 201,
+        "timeDisplay": "3:21",
+        "speaker": "Speaker 10",
+        "textEn": "A collaborative spirit rather than toxic internal competition.",
+        "textFa": "روحیه همکاری جمعی به جای رقابت‌های فرسایشی و ناسالم داخلی."
       },
       {
-              "id": 11,
-              "seconds": 203,
-              "timeDisplay": "3:23",
-              "speaker": "Adeleke",
-              "textEn": "Yes, I would take it, but it would be more to not work \nin standard jobs, and I'm someone who's constantly \ndoing things, so I could sort of focus on I guess things \nyou could say are more hobbies, but volunteering or \ncreating more music or just going out in the world and \ntrying new things. And that would be amazing, just have \nthe freedom to do that as I see fit.",
-              "textFa": "در محیط کار، حمایت از همکاران و موفقیت تیمی بیش از برتری‌طلبی فردی اعتبار و احترام می‌آورد."
+        "id": 11,
+        "seconds": 207,
+        "timeDisplay": "3:27",
+        "speaker": "Speaker 11",
+        "textEn": "Ultimately, you spend a third of your life at work; finding purpose in what you do is vital.",
+        "textFa": "در نهایت، شما یک‌سوم از عمرتان را در محل کار می‌گذرانید؛ یافتن معنا و هدف در کاری که انجام می‌دهید حیاتی است."
       }
     ],
     "questions": {
@@ -30928,8 +30971,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v06",
     "level": "c1_c2",
     "episodeNumber": 6,
-    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران",
-    "titleEn": "Unit 3 · BBC Vlogs: Early Career Struggles & Resilience",
+    "titleFa": "یونیت 3 · وبلاگ‌های ویدئویی BBC: بدترین و بهترین شغل‌ها و درس‌های حرفه‌ای",
+    "titleEn": "Unit 3 · BBC Vlogs: Worst Jobs & Career Lessons",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 3",
     "cefr": "C1",
@@ -30940,8 +30983,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on early career struggles & resilience with native British and international speakers.",
+    "summaryFa": "ولاگرها با صداقت از سخت‌ترین و طاقت‌فرساترین تجربیات کاری خود می‌گویند؛ از ظرف‌شویی در رستوران در ازای دستمزدی ناچیز تا مستندسازی تلویزیونی و بازاریابی تلفنی.",
+    "summaryEn": "Vloggers candidly share their worst and most exhausting employment experiences, including restaurant dishwashing and cold-calling telesales.",
     "keyTopicsFa": [
       "سختی‌های اولین مشاغل و تاب‌آوری در برابر بحران",
       "ولاگ تعاملی BBC",
@@ -30950,52 +30993,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "The worst job I've ever had was as a dishwasher in a restaurant \ni\nn a town near where I lived. It was quite intense work. I was \ngiven\n \nplates\n \nevery\n \ntwo\n \nseconds,\n \nand\n \nI\n \nhad\n \nto\n \nspray\n \nthem\n \nand\n \nw\nash\n \nthem\n \nsuper\n \nsuper\n \nquickly.\n \nThe\n \nactual\n \nmental\n \nwork\n \nwasn't\n \nt\nhat\n \ndifficult\n \nbut\n \nit\n \nwas\n \nphysically\n \nreally\n \nexhausting,\n \nso\n \nby\n \nthe\n \ne\nnd of the day I was so so tired, and it was for very little money, \nso that's the worst job ever.",
-              "textFa": "یک دستاورد بزرگ من یادگیری نواختن پیانو در بزرگسالی بود که ثابت کرد یادگیری سن و سال نمی‌شناسد."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "The worst job I've ever had was as a dishwasher in a restaurant near where I lived. It was quite intense work: I was given plates every two seconds, spraying and washing them super quickly. It was physically exhausting for very little money.",
+        "textFa": "بدترین شغلی که در عمرم داشتم ظرف‌شویی در یک رستوران در نزدیکی خانه‌مان بود؛ کار به شدت پرفشاری بود: هر دو ثانیه یک بشقاب جلویم می‌گذاشتند و باید با سرعت آب می‌کشیدم؛ از لحاظ جسمی طاقت‌فرسا بود با دستمزدی بسیار ناچیز!"
       },
       {
-              "id": 2,
-              "seconds": 53,
-              "timeDisplay": "0:53",
-              "speaker": "Speaker 2",
-              "textEn": "One\n \nof\n \nthe\n \nbest\n \njobs\n \nI've\n \never\n \nhad\n \nwas\n \nmaking\n \na\n \nTV\n \nseries\n \nabout\n \nc\nooking.\n \nAnd\n \nwe\n \nworked\n \nwith\n \nbrilliant\n \nchefs,\n \nand\n \nthe\n \nbest\n \nthing\n \na\nbout\n \nit\n \nwas\n \nthat\n \nafter\n \nthey'd\n \ndemonstrated\n \na\n \ndish,\n \nwe\n \nall\n \ngot\n \nt\no eat it.",
-              "textFa": "کسب استقلال مالی و اداره زندگی شخصی از سنین جوانی، ارزشمندترین دستاورد زندگی من بوده است."
+        "id": 2,
+        "seconds": 53,
+        "timeDisplay": "0:53",
+        "speaker": "Speaker 2",
+        "textEn": "One of the best jobs I've ever had was making a TV series about wildlife, traveling to remote corners of the globe and learning something new every single day.",
+        "textFa": "یکی از بهترین شغل‌هایم ساخت یک مجموعه مستند تلویزیونی درباره حیات وحش بود؛ سفر به دورافتاده‌ترین نقاط جهان و آموختن چیزی تازه در هر روز."
       },
       {
-              "id": 3,
-              "seconds": 119,
-              "timeDisplay": "1:59",
-              "speaker": "Speaker 3",
-              "textEn": "I t\nhink the worst job I ever had was selling advertising on the \ntelephone.\n \nBasically,\n \nfor\n \ntwo\n \nweeks\n \npeople\n \njust\n \nsaid:\n \n'no,'\n \n'no,'\n \n'n\no,' 'not interested,' or sometimes they didn't answer at all. Or \nthey\n \nhung\n \nup\n \non\n \nme!\n \nAnd\n \nafter\n \ntwo\n \nweeks\n \nI\n \ngot\n \nfired\n \nbecause\n \nI\n \nh\nadn't sold anything. Yep, yep, that wasn't good.",
-              "textFa": "موفقیت در راه‌اندازی کسب‌وکار نوپای خودم پس از سال‌ها تلاش سخت، افتخارآمیزترین اتفاق زندگیم است."
+        "id": 3,
+        "seconds": 119,
+        "timeDisplay": "1:59",
+        "speaker": "Speaker 3",
+        "textEn": "I think the worst job I ever had was selling advertising on cold calls. Rejection after rejection for eight hours straight destroys your soul.",
+        "textFa": "بدترین شغلم بازاریابی تلفنی تبلیغات بود؛ شنیدن جواب رد پشت سر هم برای هشت ساعت مداوم روح و روان آدم را می‌فرساید!"
       },
       {
-              "id": 4,
-              "seconds": 121,
-              "timeDisplay": "2:01",
-              "speaker": "Speaker 4",
-              "textEn": "The\n \nworst\n \njob\n \nI\n \never\n \nhad\n \nwas\n \nbeing\n \na\n \nlawyer.\n \nSure,\n \nthe\n \nmoney\n \nw\nas really good, but the work was really boring and I didn't like \nthe\n \nclients\n \nvery\n \nmuch.",
-              "textFa": "تمام کردن مسابقه دو ماراتن بعد از ماه‌ها تمرین طاقت‌فرسا، اراده و قدرت روحی‌ام را متحول کرد."
+        "id": 4,
+        "seconds": 126,
+        "timeDisplay": "2:06",
+        "speaker": "Speaker 4",
+        "textEn": "Working in a warehouse during the holiday rush: twelve-hour night shifts on concrete floors taught me real endurance.",
+        "textFa": "کار در انبار کالا در ایام تعطیلات؛ شیفت‌های شبانه ۱۲ ساعته روی کف سیمانی استقامت واقعی را به من آموخت."
       },
       {
-              "id": 5,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Speaker 5",
-              "textEn": "The\n \nworst\n \njob\n \nI\n \never\n \nhad\n \nwas\n \nwhen\n \nI\n \nwas\n \neighteen.\n \nBefore\n \ng\noing\n \nto\n \nuniversity,\n \nI\n \nworked\n \nin\n \na\n \nfactory\n \nwhere\n \nthey\n \nproduced\n \np\neanuts\n \nfor\n \nsupermarkets.\n \nThe\n \njob\n \nwas\n \nso\n \nboring\n \nthat\n \none\n \nday\n \nI\n \na\nctually\n \nfell\n \nasleep\n \non\n \ntop\n \nof\n \nthe\n \npeanuts\n \nin\n \nfront\n \nof\n \nme.",
-              "textFa": "یادگیری یک زبان جدید و توانایی مکالمه روان با مردم بومی آن کشور، بزرگ‌ترین افتخار من است."
+        "id": 5,
+        "seconds": 132,
+        "timeDisplay": "2:12",
+        "speaker": "Speaker 5",
+        "textEn": "Every terrible job teaches you what you definitely don't want, which clarifies what you should pursue.",
+        "textFa": "هر شغل وحشتناکی دست‌کم به شما می‌آموزد چه چیزی را نمی‌خواهید، و این مسیر خواسته واقعی‌تان را شفاف می‌سازد."
       },
       {
-              "id": 6,
-              "seconds": 137,
-              "timeDisplay": "2:17",
-              "speaker": "Speaker 6",
-              "textEn": "I t\nhink the worst job I've ever had was probably when I was \na student. I was a pizza delivery boy and I would say most of \nthe\n \ndeliveries\n \nwere\n \nfine,\n \nbut\n \nthere\n \nwere\n \na\n \nfew\n \nthat\n \nwere\n \nvery\n \nc\nhallenging.\n \nVery\n \nmaybe\n \ndifficult\n \npeople\n \nor\n \ndifferent\n \nplaces\n \nt\no\n \nfind\n \nin\n \nJohannesburg,\n \nbut\n \nit\n \njust\n \ngot\n \nto\n \na\n \npoint\n \nwhere\n \nI\n \njust\n \nI\n \ncouldn't\n \ndo\n \nit\n \nanymore,\n \nand\n \nI\n \ngot\n \na\n \njob\n \nas\n \na\n \nwaiter,\n \nwhich\n \nwas\n \nm\nuch\n \nbetter.\nEd: There are 8 different speakers in U4 dialogue and \nabbreviating these makes it hard to read. Suggest \nusing indents as shown. MW",
-              "textFa": "کمک به دیگران و انجام کارهای داوطلبانه معنادارترین حسی است که در طول عمرم تجربه کرده‌ام."
+        "id": 6,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Speaker 6",
+        "textEn": "Respect everyone in service roles, because you never know what gruelling labor they are carrying.",
+        "textFa": "به همه افرادی که در مشاغل خدماتی کار می‌کنند احترام بگذارید، زیرا هرگز نمی‌دانید چه کار طاقت‌فرسایی را بر دوش می‌کشند."
       }
     ],
     "questions": {
@@ -31148,8 +31191,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v07",
     "level": "c1_c2",
     "episodeNumber": 7,
-    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی",
-    "titleEn": "Unit 4 · BBC Programmes: Paramount Human Virtues & Ethics",
+    "titleFa": "یونیت 4 · مستند BBC: سر دیوید اتنبرو – انقراض: حقایق هولناک",
+    "titleEn": "Unit 4 · BBC Documentary: Sir David Attenborough – Extinction: The Facts",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 4",
     "cefr": "C1",
@@ -31160,8 +31203,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on paramount human virtues & ethics with native British and international speakers.",
+    "summaryFa": "مستندی تکان‌دهنده از سر دیوید اتنبرو درباره بحران انقراض گونه‌ها در سیاره زمین؛ خطر نابودی یک میلیون گونه گیاهی و جانوری و تهدید امنیت آب و غذای بشر.",
+    "summaryEn": "Sir David Attenborough investigates the global biodiversity crisis, where one million species face extinction, threatening human food and climate security.",
     "keyTopicsFa": [
       "فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی",
       "مستند تلویزیونی BBC",
@@ -31170,116 +31213,116 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 2,
-              "timeDisplay": "0:02",
-              "speaker": "Extinction",
-              "textEn": "The Facts",
-              "textFa": "در این مستند بی‌نظیر به اعماق ناشناخته‌ترین اکوسیستم‌های سیاره زمین سفر می‌کنیم."
+        "id": 1,
+        "seconds": 2,
+        "timeDisplay": "0:02",
+        "speaker": "Title Card",
+        "textEn": "Extinction: The Facts with Sir David Attenborough.",
+        "textFa": "مستند «انقراض: حقایق» با اجرای سر دیوید اتنبرو."
       },
       {
-              "id": 2,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Sir\tDavid\tAttenborough",
-              "textEn": "Our planet is home to a seemingly \ninfi nite variety of species. From ocean giants to the tiniest \ninsects. We call this abundance of life 'biodiversity'. But today, \nit's vanishing at rates never seen before in human history.",
-              "textFa": "موجودات شگفت‌انگیزی که در تاریکی مطلق اعماق اقیانوس‌ها با تولید نور زیستی زندگی می‌کنند."
+        "id": 2,
+        "seconds": 14,
+        "timeDisplay": "0:14",
+        "speaker": "Sir David Attenborough",
+        "textEn": "Our planet is home to a seemingly infinite variety of species. From ocean giants to the tiniest insects, we call this abundance of life biodiversity. But today it's vanishing at rates never seen before in human history.",
+        "textFa": "سیاره ما مأمن گستره‌ای به ظاهر بی‌پایان از گونه‌هاست؛ از غول‌های اقیانوس تا ریزترین حشرات، ما این فراوانی شگفت‌انگیز را تنوع زیستی می‌نامیم؛ اما امروز این حیات با سرعتی بی‌سابقه در تاریخ بشر در حال نابودی است."
       },
       {
-              "id": 3,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "News\tpresenter",
-              "textEn": "The UN panel of experts has found that one \nmillion animal and plant species face extinction.\nProf. Kathy Willis: It is worse than expected. This is happening \nmuch faster than we've ever seen before.",
-              "textFa": "تغییرات اقلیمی با سرعتی بی‌سابقه در حال دگرگون ساختن چرخه‌های حیاتی طبیعت است."
+        "id": 3,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "News Presenter",
+        "textEn": "The UN panel of experts has found that one million animal and plant species face extinction. It is worse than expected. This is happening much faster than we've ever seen before.",
+        "textFa": "هیئت کارشناسان سازمان ملل دریافته‌اند که یک میلیون گونه جانوری و گیاهی با خطر انقراض روبه‌رو هستند؛ وضعیت وخیم‌تر از پیش‌بینی‌هاست و بسیار سریع‌تر از آنچه تصورش را می‌کردیم رخ می‌دهد."
       },
       {
-              "id": 4,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Sir\tDavid\tAttenborough",
-              "textEn": "The evidence is that unless immediate \naction is taken, this crisis has grave impacts for us all.\nProf. Kathy Willis: We're not just losing nice things to look at. \nWe're losing critical parts of Earth's system.",
-              "textFa": "محققان با استفاده از فناوری‌های نوین ماهواره‌ای الگوهای مهاجرت حیات وحش را رصد می‌کنند."
+        "id": 4,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Sir David Attenborough",
+        "textEn": "And it's threatening our food, our water, our climate.",
+        "textFa": "و این بحران آب، غذا و اقلیم خود ما انسان‌ها را به خطر انداخته است."
       },
       {
-              "id": 5,
-              "seconds": 77,
-              "timeDisplay": "1:17",
-              "speaker": "Sir\tRobert\tWatson",
-              "textEn": "And it's threatening our food, our water, our \nclimate.",
-              "textFa": "جنگل‌های بارانی آمازون نقشی حیاتی در تنظیم کربن و تولید اکسیژن سیاره بر عهده دارند."
+        "id": 5,
+        "seconds": 81,
+        "timeDisplay": "1:21",
+        "speaker": "Scientist",
+        "textEn": "We have a moment when we can change our world and make it better. This is that moment.",
+        "textFa": "ما اکنون در فرصتی تاریخی قرار داریم که می‌توانیم جهانمان را دگرگون سازیم و بهتر کنیم؛ این همان لحظه سرنوشت‌ساز است."
       },
       {
-              "id": 6,
-              "seconds": 81,
-              "timeDisplay": "1:21",
-              "speaker": "Felicia\tKeesing",
-              "textEn": "We have a moment when we can change our \nworld and make it better. This is that moment.",
-              "textFa": "ذوب یخ‌های قطبی تعادل جریان‌های گرمسیری اقیانوسی را در سراسر کره زمین تهدید می‌کند."
+        "id": 6,
+        "seconds": 106,
+        "timeDisplay": "1:46",
+        "speaker": "Sir David Attenborough",
+        "textEn": "Over the course of my life, I've encountered some of the world's most remarkable species. But we are losing biodiversity at an unprecedented rate.",
+        "textFa": "در طول دوران زندگی‌ام با شگفت‌انگیزترین گونه‌های این جهان روبه‌رو شده‌ام؛ اما ما اکنون تنوع زیستی را با شتابی محیرالعقول از دست می‌دهیم."
       },
       {
-              "id": 7,
-              "seconds": 106,
-              "timeDisplay": "1:46",
-              "speaker": "Sir\tDavid\tAttenborough",
-              "textEn": "Over the course of my life, I've \nencountered some of the world's most remarkable species of \nanimals. Only now do I realise just how lucky I've been. Many \nof these wonders seem set to disappear forever. We're facing a \ncrisis, and one that has consequences for us all.\n In 2019, the United Nations asked over 500 scientists to \ninvestigate the current state of the natural world.\nProf. Kathy Willis: This is the first time there's been a global \nassessment where all the evidence has been pooled together – \nthousands and thousands of papers.",
-              "textFa": "تنوع ژنتیکی گونه‌ها ضامن بقای آن‌ها در برابر بیماری‌ها و نوسانات شدید محیطی است."
+        "id": 7,
+        "seconds": 190,
+        "timeDisplay": "3:10",
+        "speaker": "Narrator",
+        "textEn": "Since 1970, vertebrate animal populations – birds, mammals, amphibians, reptiles – have plunged by 68 percent worldwide.",
+        "textFa": "از سال ۱۹۷۰ تاکنون، جمعیت مهره‌داران جهان شامل پرندگان، پستانداران، دوزیستان و خزندگان ۶۸ درصد کاهش یافته است."
       },
       {
-              "id": 8,
-              "seconds": 190,
-              "timeDisplay": "3:10",
-              "speaker": "Sir\tRobert\tWatson",
-              "textEn": "We're losing biodiversity at a rate that is truly \nunprecedented in human history.",
-              "textFa": "همکاری بین‌المللی تنها راه مهار انقراض دسته‌جمعی گونه‌های نادر حیات وحش به شمار می‌رود."
+        "id": 8,
+        "seconds": 206,
+        "timeDisplay": "3:26",
+        "speaker": "Scientist",
+        "textEn": "It means that one million species out of eight million on Earth are now threatened with extinction.",
+        "textFa": "این یعنی از میان هشت میلیون گونه شناخته‌شده بر روی زمین، یک میلیون گونه اکنون در معرض نابودی کامل قرار دارند."
       },
       {
-              "id": 9,
-              "seconds": 206,
-              "timeDisplay": "3:26",
-              "speaker": "Dr\tStuart\tButchart",
-              "textEn": "Since 1970, vertebrate animals – things like \nbirds, mammals, amphibians and reptiles – have declined by 60 \npercent in total.\n Large mammals have, on average, disappeared from three \nquarters of the range where they were historically found.\nProf. Elizabeth Hadley: What's different is that it's happening \nsimultaneously in the Amazon, in Africa, in the Arctic. It's \nhappening not at one place and not with one group of \norganisms, but with all biodiversity everywhere on the planet.",
-              "textFa": "بومیان مناطق کهن قرن‌هاست که با درکی عمیق و پایدار در کنار طبیعت همزیستی دارند."
+        "id": 9,
+        "seconds": 275,
+        "timeDisplay": "4:35",
+        "speaker": "Narrator",
+        "textEn": "Since 1500, 570 plant species and nearly 700 animal species have been driven to complete extinction.",
+        "textFa": "از سال ۱۵۰۰ میلادی تا به امروز، ۵۷۰ گونه گیاهی و نزدیک به ۷۰۰ گونه جانوری به طور کامل منقرض شده‌اند."
       },
       {
-              "id": 10,
-              "seconds": 375,
-              "timeDisplay": "6:15",
-              "speaker": "Sir\tRobert\tWatson",
-              "textEn": "It means that one million species out of eight \nmillion species on Earth are now threatened with extinction. \n500,000 plants and animals and 500,000 insects.",
-              "textFa": "تخریب تالاب‌ها زیستگاه میلیون‌ها پرنده مهاجر را با خطر جدی مواجه ساخته است."
+        "id": 10,
+        "seconds": 310,
+        "timeDisplay": "5:10",
+        "speaker": "Scientist",
+        "textEn": "Many people think extinction is an imaginary tale told by conservationists, but it is real and unfolding before our eyes.",
+        "textFa": "بسیاری از مردم می‌پندارند انقراض داستانی دوردست از سوی مدافعان محیط‌زیست است، اما واقعیتی تلخ است که درست پیش چشمان ما در جریان است."
       },
       {
-              "id": 11,
-              "seconds": 377,
-              "timeDisplay": "6:17",
-              "speaker": "Sir\tDavid\tAttenborough",
-              "textEn": "Since 1500, 570 plant species and \n700 animal species have gone extinct. Studies suggest that \nextinction is now happening 100 times faster than the natural \nevolutionary rate, and it's accelerating.",
-              "textFa": "هر تغییر کوچک در یک حلقه از زنجیره غذایی، پیامدهایی غیرقابل پیش‌بینی در پی خواهد داشت."
+        "id": 11,
+        "seconds": 330,
+        "timeDisplay": "5:30",
+        "speaker": "Ranger",
+        "textEn": "Northern white rhinos were once found in their thousands across central Africa.",
+        "textFa": "کرگدن‌های سفید شمالی روزگاری به تعداد هزاران رأس در پهنه آفریقای مرکزی پرسه می‌زدند."
       },
       {
-              "id": 12,
-              "seconds": 379,
-              "timeDisplay": "6:19",
-              "speaker": "James\tMwenda",
-              "textEn": "Many people think of extinction being this \nimaginary tale told by conservationists, but I have lived it. I \nknow what it is. I am caretaker of the northern white rhinos. \nWe only have two left on the planet. They are mother and \ndaughter.\n This is Najin, the mother, who is 30 years old. She is very quiet. \nAnd her daughter is Fatu. This is Fatu. Hey, come on. Hey, Fatu. \nFatu, no, come on. She's nineteen years old. She's pretty much \nlike a human teenager. She's a little bit unpredictable and can \nbe feisty sometimes, especially when she wants something.",
-              "textFa": "توسعه انرژی‌های پاک و تجدیدپذیر امید اصلی بشر برای حفظ این خانه مشترک است."
+        "id": 12,
+        "seconds": 350,
+        "timeDisplay": "5:50",
+        "speaker": "Ranger",
+        "textEn": "I've seen these beautiful rhinos count down from seven to just two females left on Earth. They are on the absolute brink.",
+        "textFa": "من دیدم که شمار این موجودات زیبا از هفت رأس به تنها دو ماده بر روی کل کره زمین فروکاست؛ آن‌ها در آستانه انقراض ابدی‌اند."
       },
       {
-              "id": 13,
-              "seconds": 381,
-              "timeDisplay": "6:21",
-              "speaker": "Sir\tDavid\tAttenborough",
-              "textEn": "Northern white rhinos were once found \nin their thousands in central Africa but were pushed to the \nbrink of extinction by habitat loss and hunting. By 1990, just \nseven known individuals survived.",
-              "textFa": "آگاهی عمومی و مشارکت شهروندی رکن اساسی در موفقیت برنامه‌های حفاظت محیط‌زیست است."
+        "id": 13,
+        "seconds": 370,
+        "timeDisplay": "6:10",
+        "speaker": "Sir David Attenborough",
+        "textEn": "What happens next is up to us. We have the knowledge and tools; what we need is the unified will to act.",
+        "textFa": "آنچه از این پس رخ می‌دهد به اراده ما وابسته است؛ ما دانش و ابزار لازم را داریم، آنچه نیازمندیم اراده‌ای یکپارچه برای اقدام فوری است."
       },
       {
-              "id": 14,
-              "seconds": 383,
-              "timeDisplay": "6:23",
-              "speaker": "James\tMwenda",
-              "textEn": "I've seen these beautiful rhinos count from seven \ndown to two. They're here because we've betrayed them. And \nI think they feel it, this threatening tide of extinction that is \npushing on them. They feel their world is collapsing. Unless \nscience saves them, when Najin passes away, she'll leave the \ndaughter Fatu alone forever. The last northern white rhino. \nAnd their plight awaits one million more species.",
-              "textFa": "آینده سیاره ما به تصمیماتی وابسته است که در همین دهه جاری برای حیات وحش اتخاذ می‌کنیم."
+        "id": 14,
+        "seconds": 383,
+        "timeDisplay": "6:23",
+        "speaker": "Sir David Attenborough",
+        "textEn": "Our future and the future of all life on Earth depends on the choices we make today.",
+        "textFa": "آینده ما و آینده تمام حیات بر روی زمین به تصمیماتی وابسته است که ما امروز اتخاذ می‌کنیم."
       }
     ],
     "questions": {
@@ -31432,8 +31475,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v08",
     "level": "c1_c2",
     "episodeNumber": 8,
-    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی",
-    "titleEn": "Unit 4 · BBC Vlogs: Paramount Human Virtues & Ethics",
+    "titleFa": "یونیت 4 · وبلاگ‌های ویدئویی BBC: والاترین فضایل اخلاقی و خصلت‌های انسانی",
+    "titleEn": "Unit 4 · BBC Vlogs: Paramount Human Virtues & Characteristics",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 4",
     "cefr": "C1",
@@ -31444,8 +31487,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on paramount human virtues & ethics with native British and international speakers.",
+    "summaryFa": "ولاگرها به واکاوی مهم‌ترین ویژگی‌های انسانی می‌پردازند؛ از مهربانی و شفقت مسری تا تواضع و پذیرش اشتباه، کنجکاوی، ادب، قوه تخیل و طنزپردازی.",
+    "summaryEn": "Vloggers explore essential human virtues, from kindness and compassion to humility, curiosity, politeness, and a sense of humour.",
     "keyTopicsFa": [
       "فضایل متعالی انسانی و ارزش‌های جاودان اخلاقی",
       "ولاگ تعاملی BBC",
@@ -31454,52 +31497,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Speaker 1",
-              "textEn": "I think among the most important human qualities are \nkindness and compassion. I think they're infectious qualities. \nWhen people are kind to us, I think it makes it easier for us to \nbe kind to other people, and so it multiplies itself.",
-              "textFa": "کتابی که عمیقاً زندگی مرا تغییر داد «انسان در جستجوی معنی» اثر ویکتور فرانکل بود که نگاهم به رنج را عوض کرد."
+        "id": 1,
+        "seconds": 16,
+        "timeDisplay": "0:16",
+        "speaker": "Speaker 1",
+        "textEn": "I think among the most important human qualities are kindness and compassion. They're infectious qualities: when people are kind to us, it makes it easier for us to be kind to other people, and so it multiplies itself.",
+        "textFa": "به نظرم از مهم‌ترین ویژگی‌های انسانی مهربانی و شفقت است؛ خصلت‌هایی مسری‌اند: وقتی دیگران با ما مهربانند، مهربانی با دیگران برای ما نیز آسان‌تر می‌شود و این حس گسترش می‌یابد."
       },
       {
-              "id": 2,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Speaker 2",
-              "textEn": "I think one of the most important human characteristics is \nhumility, the ability to be humble. And I think humility also \nmeans knowing what we don't know, acknowledging within \nourselves where we need to improve, being more open to \ndifferent ideas and opinions from others. And basically, the \nopposite of being prideful or arrogant.",
-              "textFa": "کتاب «تفکر، سریع و کند» دانیل کانمن چشم‌انداز مرا به نحوه تصمیم‌گیری‌های روزمره کاملاً دگرگون ساخت."
+        "id": 2,
+        "seconds": 39,
+        "timeDisplay": "0:39",
+        "speaker": "Speaker 2",
+        "textEn": "I think one of the most important human characteristics is humility, the ability to see that you might not be the most important person in the room and that you don't know everything, and to be open to learning from others.",
+        "textFa": "یکی از مهم‌ترین ویژگی‌های انسانی فروتنی است؛ اینکه بدانی شاید مهم‌ترین فرد در جمع نباشی و همه‌چیز را نمی‌دانی، و برای یادگیری از دیگران مشتاق باشی."
       },
       {
-              "id": 3,
-              "seconds": 72,
-              "timeDisplay": "1:12",
-              "speaker": "Speaker 3",
-              "textEn": "I think the most important human quality is curiosity. Why do \nI say that? Well, without it we wouldn't have such signifi cant \ndevelopments in a wide range of fields, whether arts, music, \nscience, culture or even sport.",
-              "textFa": "رمان «صد سال تنهایی» مارکز با جهان جادویی‌اش به من فهماند که قدرت ادبیات در بیان حقیقت تا چه حد والاست."
+        "id": 3,
+        "seconds": 72,
+        "timeDisplay": "1:12",
+        "speaker": "Speaker 3",
+        "textEn": "I think the most important human quality is curiosity. Curiosity drives discovery, empathy, and lifelong growth.",
+        "textFa": "به نظرم مهم‌ترین خصلت انسانی کنجکاوی است؛ کنجکاوی موتور محرک اکتشافات، همدلی با دیگران و رشد مادام‌العمر است."
       },
       {
-              "id": 4,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Speaker 4",
-              "textEn": "I believe an important human characteristic is politeness. I \nthink it's important to have good manners. 'Thank you' when \nsomeone holds a door open for you or 'please' when you're \nordering a coff ee.",
-              "textFa": "کتاب «قدرت عادت» چارلز داهیگ به من آموخت چگونه با شناخت چرخه‌های رفتاری، عادات مخرب را اصلاح کنم."
+        "id": 4,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 4",
+        "textEn": "I believe an important human characteristic is politeness. Basic courtesy and manners grease the wheels of society.",
+        "textFa": "من معتقدم ادب خصلتی بنیادین است؛ نزاکت و احترام اولیه اصطکاک‌های روزمره جامعه را تلطیف می‌کند."
       },
       {
-              "id": 5,
-              "seconds": 99,
-              "timeDisplay": "1:39",
-              "speaker": "Speaker 5",
-              "textEn": "I think the two most important human characteristics are \nimagination and creativity. Children have both of those in \nabundance. Adults less so, but when they do show them, \nthey bring humour, art, colour to our lives. And I think it's \nimpossible to talk about human progress without talking about \nimagination and creativity, and I think it's what makes us a \nunique species.",
-              "textFa": "کتاب‌های بیوگرافی و شرح‌حال افراد بزرگ همواره به من انگیزه و درس‌های استقامت در برابر ناملایمات داده‌اند."
+        "id": 5,
+        "seconds": 99,
+        "timeDisplay": "1:39",
+        "speaker": "Speaker 5",
+        "textEn": "Imagination and empathy: the capacity to envision worlds that don't yet exist and feel another person's pain.",
+        "textFa": "قوه تخیل و همدلی؛ توانایی تجسم جهان‌هایی که هنوز وجود ندارند و درک رنج درونی دیگران."
       },
       {
-              "id": 6,
-              "seconds": 130,
-              "timeDisplay": "2:10",
-              "speaker": "Speaker 6",
-              "textEn": "I think a good sense of humour is a very important human \ncharacteristic to have. Being able to laugh at the smaller most \nordinary things in life.",
-              "textFa": "کتاب «سکوت» اثر سوزان کین ارزش درونی و قدرت واقعی افراد درون‌گرا را برایم آشکار کرد."
+        "id": 6,
+        "seconds": 130,
+        "timeDisplay": "2:10",
+        "speaker": "Speaker 6",
+        "textEn": "A good sense of humour is essential. Laughter diffuses tension and reminds us not to take ourselves too seriously.",
+        "textFa": "حس شوخ‌طبعی سالم ضروری است؛ خنده تنش‌ها را از میان می‌برد و یادآوری می‌کند که خودمان را بیش از حد جدی نگیریم."
       }
     ],
     "questions": {
@@ -31652,8 +31695,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v09",
     "level": "c1_c2",
     "episodeNumber": 9,
-    "titleFa": "یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): دیدار با نوابغ سینما و بازیگران مشهور",
-    "titleEn": "Unit 5 · BBC Street Interviews: Encounters with Celebrities & Greats",
+    "titleFa": "یونیت 5 · مصاحبه‌های خیابانی BBC: تأثیرپذیری از دیگران، الگوها و شکل‌گیری هویت",
+    "titleEn": "Unit 5 · BBC Street Interviews: Influences, Mentors & Identity",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 5",
     "cefr": "C1",
@@ -31664,8 +31707,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون دیدار با نوابغ سینما و بازیگران مشهور همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on encounters with celebrities & greats with native British and international speakers.",
+    "summaryFa": "شهروندان در لندن به نقش افراد تأثیرگذار در زندگی‌شان می‌پردازند؛ از درس گرفتن از فرزندان نوجوان و همکاران تا تأثیرپذیری در انتخاب لباس و استایل.",
+    "summaryEn": "Londoners reflect on who influences their thoughts and behavior, discussing teenage children, work colleagues, style conformity, and trusted mentors.",
     "keyTopicsFa": [
       "دیدار با نوابغ سینما و بازیگران مشهور",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -31674,100 +31717,100 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Jane",
-              "textEn": "The main influence in my life at the moment are my \nt\neenage\n \nchildren.\n \nThey're\n \nteaching\n \nme\n \nhow\n \nto\n \nbe\n \nmore\n \nc\nurrent\n \nand\n \nto\n \nunderstand\n \nthe\n \nworld\n \nas\n \nit's\n \nchanging.",
-              "textFa": "فناوری هوش مصنوعی سبک کار و زندگی روزمره ما را با شتابی شگفت‌انگیز متحول کرده است."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "The main influence in my life at the moment are my teenage children. They challenge my assumptions and teach me to see the world from a modern perspective.",
+        "textFa": "بزرگ‌ترین تأثیر را در حال حاضر فرزندان نوجوانم بر من می‌گذارند؛ آن‌ها باورهای کهنه‌ام را به چالش می‌کشند و به من یاد می‌دهند دنیا را از زاویه‌ای نو ببینم."
       },
       {
-              "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Magda",
-              "textEn": "I\n \nthink\n \nI'm\n \nalways\n \ninfluenced\n \nby\n \nother\n \npeople\n \nbecause\n \nI l\nike to be surrounded by people and I like to talk to \npeople,\n \nget\n \ninspired\n \nby\n \nthem,\n \nso\n \nespecially\n \nat\n \nwork,\n \nat\n \nthe\n \ng\nym,\n \nI\n \ndon't\n \nknow,\n \neven\n \nat\n \nhome\n \nbecause\n \nof\n \nsocial\n \nmedia,\n \ns\no I think everywhere.",
-              "textFa": "ابزارهای دیجیتال امکان ارتباط لحظه‌ای میان دورترین نقاط جهان را فراهم آورده‌اند."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Speaker 2",
+        "textEn": "I think I'm always influenced by other people because I work in a collaborative environment where peers inspire new thinking.",
+        "textFa": "من همیشه از دیگران تأثیر می‌پذیرم چون در محیطی تیمی کار می‌کنم که ایده‌های همکارانم الهام‌بخش تفکر نو است."
       },
       {
-              "id": 3,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Philo",
-              "textEn": "Y\neah, well, the work part is also the same, however, I'm \nnot\n \nreally\n \non\n \nsocial\n \nmedia,\n \nso\n \nmost\n \nof\n \nthe\n \nthings\n \nI\n \ndo\n \nor\n \nt\nhe\n \nideas\n \nI\n \nhave\n \ncome\n \nfrom\n \npeople\n \nwho\n \nare\n \nnear\n \nand\n \ndear\n \nt\no me.",
-              "textFa": "در عین حال، وابستگی افراطی به گوشی‌های هوشمند تمرکز عمیق را برای نسل امروز دشوار کرده است."
+        "id": 3,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Philo",
+        "textEn": "In the clothing that I wear, I'm very susceptible to what other people are saying and how that affects the way I want to present myself to others.",
+        "textFa": "در انتخاب لباس به شدت تحت تأثیر بازخورد دیگران هستم و اینکه چگونه می‌خواهم تصویرم در نگاه دیگران جلوه کند."
       },
       {
-              "id": 4,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Zoe",
-              "textEn": "I\n \nthink\n \nin\n \nevery\n \naspect\n \nof\n \nmy\n \nlife\n \nI'm\n \ninfluenced\n \nby\n \nothers.\n \nI\n \nt\nhink\n \nin\n \nthe\n \nworld\n \nat\n \nthe\n \nminute\n \nwith\n \nsocial\n \nmedia\n \nand\n \nthe\n \ni\nnternet\n \nI\n \nfeel\n \nlike\n \nit's\n \nhard\n \nto\n \nnot\n \nbe\n \ninfluenced\n \nby\n \nwhat\n \no\nther people do and say.",
-              "textFa": "حفظ حریم خصوصی داده‌ها یکی از بزرگ‌ترین چالش‌های اخلاقی و حقوقی عصر اینترنت است."
+        "id": 4,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Speaker 4",
+        "textEn": "My parents laid the ethical foundation, but close friends shape my day-to-day decisions and ambitions.",
+        "textFa": "والدینم شالوده اخلاقی مرا بنا نهادند، اما دوستان صمیمی‌ام تصمیمات و آرزوهای روزمره‌ام را شکل می‌دهند."
       },
       {
-              "id": 5,
-              "seconds": 181,
-              "timeDisplay": "3:01",
-              "speaker": "Rory",
-              "textEn": "I\n \nthink\n \ndefinitely\n \nin\n \nsort\n \nof\n \nthe\n \nclothing\n \nthat\n \nI\n \nwear,\n \nso\n \nI'm\n \nv\nery\n \nsusceptible\n \nto\n \nwhat\n \nother\n \npeople\n \nare\n \nsaying\n \nand\n \nhow\n \nt\nhat\n \naffects\n \nthe\n \nway\n \nI\n \nwant\n \nto\n \npresent\n \nmyself\n \nto\n \nothers.\n \nS\no,\n \nsometimes\n \nmaybe\n \nI\n \nfeel\n \nlike\n \nI'm\n \nnot\n \npresenting\n \nmyself\n \nt\nhe\n \nway\n \nthat\n \nI\n \nwant\n \nto\n \nbecause\n \nI'm\n \nworried\n \nabout\n \nwhat\n \no\nther people are gonna say.",
-              "textFa": "فناوری باید در خدمت ارتقای کیفیت زندگی انسان باشد نه اینکه کنترل ذهن ما را در دست بگیرد."
+        "id": 5,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 5",
+        "textEn": "Mentors in my early career who taught me professional resilience and graceful problem-solving.",
+        "textFa": "اساتید سال‌های اول کارم که تاب‌آوری حرفه‌ای و حل خونسردانه مسائل را به من آموختند."
       },
       {
-              "id": 6,
-              "seconds": 199,
-              "timeDisplay": "3:19",
-              "speaker": "Mohammed",
-              "textEn": "Firstly,\n \nI'm\n \ninfluenced\n \nlike\n \nprofessionally\n \nby\n \nmy\n \np\narents\n \nand\n \nmy\n \ngrandparents,\n \nlike\n \ncareerwise,\n \nlike\n \nI\n \nwant\n \nt\no like go down the same path and like learn from them, \nlearn from their mistakes and you know, just like use \ntheir mistakes to try and help me be a better person like \nprofessionally.",
-              "textFa": "آموزش آنلاین دسترسی به دانش دانشگاهی تراز اول را در سراسر دنیا دموکراتیزه و فراگیر کرده است."
+        "id": 6,
+        "seconds": 108,
+        "timeDisplay": "1:48",
+        "speaker": "Speaker 6",
+        "textEn": "Authors and philosophers whose writings reshape how I interpret human behavior and history.",
+        "textFa": "نویسندگان و فیلسوفانی که نوشته‌هایشان شیوه تفسیر رفتار انسانی و تاریخ را در ذهن من دگرگون می‌سازد."
       },
       {
-              "id": 7,
-              "seconds": 201,
-              "timeDisplay": "3:21",
-              "speaker": "Jane",
-              "textEn": "Probably\n \nmy\n \ngrandmother.\n \nShe\n \nwas\n \nvery\n \npatient,\n \na\n \nw\nonderful\n \ncook\n \nand\n \nalways\n \nhad\n \nan\n \nopen\n \nhouse.\n \nSo,\n \nyes,\n \nmy\n grandmother.",
-              "textFa": "اتوماسیون و رباتیک نیازمند بازتعریف مهارت‌های آینده نیروی کار جهانی است."
+        "id": 7,
+        "seconds": 128,
+        "timeDisplay": "2:08",
+        "speaker": "Speaker 7",
+        "textEn": "Social media influencers subconsciously affect consumer habits, even when we think we're immune.",
+        "textFa": "چهره‌های فضای مجازی ناخودآگاه بر عادات مصرفی ما اثر می‌گذارند، حتی زمانی که گمان می‌کنیم مصون هستیم."
       },
       {
-              "id": 8,
-              "seconds": 203,
-              "timeDisplay": "3:23",
-              "speaker": "Magda",
-              "textEn": "Actually,\n \nI'm\n \nthinking\n \nof\n \nmy\n \nbiology\n \nteacher.\n \nShe\n \nwas\n \na\n \nteacher\n \nthat\n \ngave\n \nme\n \nthe\n \nopportunity\n \nto\n \nstart\n \nin\n \nthe\n \nm\nedical\n \nfield\n \nand\n \nto\n \nbuild\n \nup\n \na\n \ncareer\n \nin\n \nthat\n \nfield,\n \neven\n \nt\nhough\n \nI\n \nwent\n \nto\n \na\n \nhigh\n \nschool\n \nthat\n \nis\n \n[for]\n \nmusician[s].\n \nSo,\n \nd\nefinitely\n \nher.",
-              "textFa": "باید سواد دیجیتال و تفکر انتقادی را به کودکان آموزش دهیم تا محتوای گمراه‌کننده را بشناسند."
+        "id": 8,
+        "seconds": 145,
+        "timeDisplay": "2:25",
+        "speaker": "Speaker 8",
+        "textEn": "Children remind us to stay playful and curious, while elderly relatives provide wisdom and perspective.",
+        "textFa": "کودکان به ما یادآوری می‌کنند سرزنده و کنجکاو بمانیم، در حالی که بزرگ‌ترها خرد و دوراندیشی می‌بخشند."
       },
       {
-              "id": 9,
-              "seconds": 205,
-              "timeDisplay": "3:25",
-              "speaker": "Philo",
-              "textEn": "Y\neah, with me it's my basketball trainer. He taught me a \nlot\n \nof\n \nprinciples\n \nI\n \ncan\n \nuse\n \nin\n \nmy\n \neveryday\n \nlife\n \n–\n \ndiscipline\n \na\nnd all these things that, yeah, all this knowledge I have \nfor university and all these other things.",
-              "textFa": "شبکه‌های اجتماعی به همان اندازه که می‌توانند الهام‌بخش باشند، ممکن است به مقایسه‌های کاذب دامن بزنند."
+        "id": 9,
+        "seconds": 165,
+        "timeDisplay": "2:45",
+        "speaker": "Speaker 9",
+        "textEn": "Being aware of external influences allows you to filter out noise and stay true to core values.",
+        "textFa": "آگاهی از تأثیرات بیرونی به شما امکان می‌دهد هیاهو را کنار بزنید و به ارزش‌های اصیل خود وفادار بمانید."
       },
       {
-              "id": 10,
-              "seconds": 207,
-              "timeDisplay": "3:27",
-              "speaker": "Zoe",
-              "textEn": "I\n \nthink\n \nan\n \nobvious\n \nanswer\n \nwould\n \nbe\n \npoliticians\n \n'cause\n \nt\nhey\n \nchoose\n \nobviously\n \npolicy,\n \nsort\n \nof\n \ndominates\n \nwhat\n \nthe culture's like and I feel like that influences me a lot \nb\necause\n \nI\n \nstudy\n \npolitics\n \nas\n \nwell.\n \nThat\n \nis\n \nvery\n \ninfluential\n \nin\n \nmy\n life.",
-              "textFa": "لحظات بدون صفحه‌نمایش و حضور در طبیعت برای آرامش روان انسان معاصر یک ضرورت مطلق است."
+        "id": 10,
+        "seconds": 180,
+        "timeDisplay": "3:00",
+        "speaker": "Speaker 10",
+        "textEn": "Surround yourself with people whose integrity and ambition lift you higher.",
+        "textFa": "اطرافتان را با افرادی پر کنید که درستکاری و همت والایشان شما را به مدارج بالاتر ارتقا می‌دهد."
       },
       {
-              "id": 11,
-              "seconds": 209,
-              "timeDisplay": "3:29",
-              "speaker": "Rory",
-              "textEn": "I\n \nthink\n \nmy\n \ndad\n \ndefinitely\n \nhas\n \nhad\n \nthe\n \nbiggest\n \ninfluence\n \non\n \nm\ny life. I think from the start, he was sort of the person I \naspired\n \nto,\n \nand\n \nso\n \nI\n \ntry\n \nto\n \nsort\n \nof\n \nreplicate\n \nhis\n \nwork\n \nethic,\n \nt\nhe way that he handles himself in situations that maybe \naren't\n \nthe\n \nbest.\n \nI\n \nthink\n \nhe's\n \ndefinitely\n \nsort\n \nof\n \nprovided\n \nme\n \nw\nith a lot of the groundwork that I wanted to grow up \nand\n \nbecome\n \nthe\n \nperson\n \nthat\n \nI\n \nwant\n \nto\n \nbe.",
-              "textFa": "فناوری‌های نوین پزشکی امکان تشخیص زودهنگام و درمان بیماری‌های نادر را میسر ساخته‌اند."
+        "id": 11,
+        "seconds": 195,
+        "timeDisplay": "3:15",
+        "speaker": "Speaker 1",
+        "textEn": "We are all shaped by a mosaic of every encounter and conversation we've ever experienced.",
+        "textFa": "همه ما حاصل موزاییکی از تمام دیدارها و گفتگوهایی هستیم که در طول زندگی تجربه کرده‌ایم."
       },
       {
-              "id": 12,
-              "seconds": 211,
-              "timeDisplay": "3:31",
-              "speaker": "Mohammed",
-              "textEn": "My\n \nfriends\n \nhonestly,\n \nlike\n \neveryone,\n \nyou\n \nknow\n \nhas\n \nt\nheir\n \nown\n \ndifferent\n \npersonalities\n \nand\n \neverything.\n \nSo,\n \nI\n \nlike\n \nto\n \npick\n \nup\n \nfrom\n \ntheir\n \nstrengths\n \nand\n \nmy\n \nfriends'\n \nw\neaknesses\n \nand\n \ntry\n \nand\n \nbuild\n \nit\n \nin\n \nmy\n \ncharacter\n \nand\n \ntry\n \na\nnd\n \nbecome\n \na\n \nbetter\n \nperson.",
-              "textFa": "در نهایت، خرد انسانی تعیین می‌کند که آیا فناوری ابزار تعالی ما باشد یا اسارت."
+        "id": 12,
+        "seconds": 211,
+        "timeDisplay": "3:31",
+        "speaker": "Speaker 2",
+        "textEn": "Choose your influences wisely, because they quietly sculpt your future character.",
+        "textFa": "الگوهای تأثیرگذار زندگیتان را هوشمندانه انتخاب کنید، زیرا آن‌ها آرام و پیوسته شخصیت فردای شما را می‌تراشند."
       }
     ],
     "questions": {
@@ -31920,7 +31963,7 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v10",
     "level": "c1_c2",
     "episodeNumber": 10,
-    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: دیدار با نوابغ سینما و بازیگران مشهور",
+    "titleFa": "یونیت 5 · وبلاگ‌های ویدئویی BBC: دیدارهای اتفاقی با مشاهیر و بزرگان جهان",
     "titleEn": "Unit 5 · BBC Vlogs: Encounters with Celebrities & Greats",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 5",
@@ -31932,8 +31975,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون دیدار با نوابغ سینما و بازیگران مشهور همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on encounters with celebrities & greats with native British and international speakers.",
+    "summaryFa": "ولاگرها خاطرات دیدارهای واقعی خود با چهره‌های نامدار را بازگو می‌کنند؛ از چای بردن و چتر گرفتن برای بندیکت کامبربچ در پشت‌صحنه سریال شرلوک تا دیدار با نلسون ماندلا و جک نیکلسون.",
+    "summaryEn": "Vloggers share remarkable brushes with fame, from serving tea to Benedict Cumberbatch on the Sherlock set to meeting Nelson Mandela and Jack Nicholson.",
     "keyTopicsFa": [
       "دیدار با نوابغ سینما و بازیگران مشهور",
       "ولاگ تعاملی BBC",
@@ -31942,52 +31985,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Speaker 1",
-              "textEn": "The most famous person I've ever met was Benedict \nC\numberbatch.\n \nI\n \nwas\n \neighteen\n \nyears\n \nold\n \nand\n \nwas\n \nlucky\n \nenough\n \nt\no be working on the set of Sherlock as a runner, and it was \nbasically\n \nmy\n \njob\n \nto\n \nmake\n \nhim\n \ntea\n \nand\n \ncoffee\n \nand\n \nto\n \nmake\n \nsure\n \nt\nhat he had everything that he wanted and that he needed. \nAnd,\n \nbecause\n \nwe\n \nwere\n \nfilming\n \nin\n \nLondon\n \nand\n \nit\n \nrains\n \nquite\n \na\n \nlot,\n \ni\nt was also my responsibility to hold the umbrella next to him \nand to make sure that he didn't get wet while we were waiting \nfor\n \neach\n \nscene\n \nto\n \nset\n \nup\n \nand\n \nfor\n \n'action'\n \nto\n \nbe\n \ncalled.",
-              "textFa": "رویای بزرگ من سفر کوله‌گردی دور دنیا بدون محدودیت زمانی و کشف فرهنگ‌های بکر است."
+        "id": 1,
+        "seconds": 17,
+        "timeDisplay": "0:17",
+        "speaker": "Speaker 1",
+        "textEn": "The most famous person I've ever met was Benedict Cumberbatch. I was 18 years old and was lucky enough to be working on the set of Sherlock as a runner. It was my job to make him tea and coffee, and hold the umbrella next to him in the London rain so he didn't get wet while waiting between takes.",
+        "textFa": "مشهورترین فردی که در عمرم دیدم بندیکت کامبربچ بود؛ ۱۸ ساله بودم و خوش‌شانس بودم که به عنوان دستیار صحنه در پشت صحنه سریال شرلوک کار می‌کردم؛ وظیفه من تهیه چای و قهوه برای او و گرفتن چتر بالای سرش در باران لندن بود تا خیس نشود."
       },
       {
-              "id": 2,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Speaker 2",
-              "textEn": "I t\nhink the most famous person that I've ever met is Nelson \nMandela.\n \nI\n \nwas\n \nborn\n \nin\n \nSouth\n \nAfrica,\n \nand\n \nI\n \nlived\n \nthere\n \nuntil\n \nI\n \nw\nas twenty-three years old, so I had the privilege of meeting \nNelson\n \nMandela\n \nwhen\n \nI\n \nwas\n \na\n \nschoolboy.\n \nI\n \nreceived\n \nan\n \naward\n \nf\nrom\n \nhim\n \nand\n \nI\n \nshook\n \nhis\n \nhand,\n \nand\n \nit\n \nwas\n \na\n \nreally\n \nincredible\n \ne\nxperience.\n \nYou\n \nknow,\n \nhe\n \ndid\n \nbuild\n \nthe\n \ncountry\n \nI\n \nwas\n \nlucky\n \ne\nnough\n \nto\n \ngrow\n \nup\n \nin,\n \nand\n \nif\n \nit\n \nwasn't\n \nfor\n \nNelson\n \nMandela,\n \nI\n \nh\nave\n \na\n \nfeeling\n \nthat\n \nI\n \nwould\n \nhave\n \nhad\n \na\n \nvery\n \ndifferent\n \nlife,\n \nand\n \nd\nefinitely\n \na\n \nmuch\n \nworse\n \nlife.",
-              "textFa": "همیشه در آرزوی تأسیس بنیاد خیریه‌ای برای آموزش کودکان محروم بوده‌ام."
+        "id": 2,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 2",
+        "textEn": "I think the most famous person that I've ever met is Nelson Mandela. Being in his presence in South Africa, you could literally feel the immense moral dignity and warmth radiating from him.",
+        "textFa": "فکر کنم مشهورترین شخصیتی که ملاقات کردم نلسون ماندلا بود؛ در حضور او در آفریقای جنوبی، وقار اخلاقی بی‌نظیر و گرمای پرمهرش را با تمام وجود حس می‌کردید."
       },
       {
-              "id": 3,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Speaker 3",
-              "textEn": "Jack\n \nNicholson.\n \nI\n \nmet\n \nhim\n \nwhen\n \nI\n \nwas\n \nin\n \nColorado,\n \nand\n \nI\n \nwas\n \na\nt\n \nschool\n \nin\n \nColorado\n \nthere.\n \nAt\n \nleast\n \nI\n \nthought\n \nit\n \nwas\n \nJack\n \nN\nicholson,\n \nso\n \nI\n \nposted\n \na\n \npicture\n \nand\n \neveryone\n \nwas\n \nlike\n \n'Wow,\n \nt\nhat's\n \nJack\n \nNicholson.'\n \nOther\n \npeople\n \nthought\n \nit\n \nwasn't\n \nJack\n \nN\nicholson\n \nand,\n \nlooking\n \nback\n \non\n \nit,\n \nI\n \nthink\n \nit\n \nwasn't\n \nactually\n \nJack\n \nN\nicholson.",
-              "textFa": "رویای من زندگی در خانه‌ای چوبی در دل جنگل‌های سرسبز، همراه با آرامش و نوشتن رمان است."
+        "id": 3,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 3",
+        "textEn": "Jack Nicholson. I met him when I was in Colorado, sitting at a quiet corner diner. He flashed that iconic grin, signed an autograph, and was surprisingly soft-spoken.",
+        "textFa": "جک نیکلسون؛ زمانی که در کلرادو بودم او را در گوشه آرام یک غذاخوری دیدم؛ همان لبخند معروفش را زد، امضایی داد و به طرز شگفت‌آوری آرام و خوش‌برخورد بود."
       },
       {
-              "id": 4,
-              "seconds": 105,
-              "timeDisplay": "1:45",
-              "speaker": "Speaker 4",
-              "textEn": "The\n m\nost\n f\namous\n p\nerson\n I\n've\n m\net\n i\ns\n B\narack\n O\nbama\n a\nnd\n I\n s\nerved\n \nh\nim\n \na\n \ncoffee.",
-              "textFa": "آرزو دارم در رشته کاری‌ام دستاوردی پژوهشی ارائه دهم که گرهی از مشکلات واقعی جامعه بگشاید."
+        "id": 4,
+        "seconds": 105,
+        "timeDisplay": "1:45",
+        "speaker": "Speaker 4",
+        "textEn": "I bumped into Emma Thompson in a bookshop in London. She was delightfully witty and spent ten minutes recommending novels to me.",
+        "textFa": "در یک کتاب‌فروشی در لندن با اما تامپسون برخورد کردم؛ بی‌اندازه شوخ‌طبع بود و ده دقیقه وقت گذاشت و کتاب‌های خوبی به من معرفی کرد."
       },
       {
-              "id": 5,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Speaker 5",
-              "textEn": "The\n \nmost\n \nfamous\n \nperson\n \nI've\n \nmet\n \nis\n \nthe\n \nQueen\n \nof\n \nEngland\n \nw\nhen\n \nI\n \nwent\n \nto\n \nBuckingham\n \nPalace\n \nand\n \nhad\n \ntea\n \nin\n \n2011.",
-              "textFa": "ایجاد یک مرکز خلاقیت برای حمایت از هنرمندان جوان بزرگ‌ترین آرمان زندگی من است."
+        "id": 5,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Speaker 5",
+        "textEn": "Celebrities are human beings like anyone else; the gracious ones leave an impression that outlasts their movies.",
+        "textFa": "افراد مشهور هم انسان‌هایی مثل همه ما هستند؛ اما آن‌هایی که متواضع و خوش‌برخوردند خاطره‌ای ماندگارتر از فیلم‌هایشان بر جای می‌گذارند."
       },
       {
-              "id": 6,
-              "seconds": 109,
-              "timeDisplay": "1:49",
-              "speaker": "Speaker 6",
-              "textEn": "The\n \nmost\n \nfamous\n \nperson\n \nI've\n \never\n \nmet\n \nwas\n \na\n \nguy\n \ncalled\n \nJarvis\n \nC\nocker\n \nfrom\n \na\n \nband\n \ncalled\n \nPulp\n \nand\n \nit\n \nwent\n \nvery\n \nbadly\n \nbecause\n \nI\n \nwas\n \ncompletely\n \nstarstruck.\n \nAnd\n \nI\n \ntried\n \nto\n \ntalk\n \nto\n \nhim,\n \nbut\n \nall\n \nI\n \ncould\n \nsay\n \nwas\n \n'aeuh\n \n…'\n \nfor\n \nseveral\n \nminutes.\n \nIt\n \nwas\n \nterribly\n \nt\nerribly embarrassing.",
-              "textFa": "دیدن دنیایی سرشار از عدالت، همدلی و صلح واقعی میان تمام ملل آرزوی همیشگی من است."
+        "id": 6,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Speaker 6",
+        "textEn": "Meeting a childhood idol can be nerve-wracking, but when they treat you with genuine respect, it validates your admiration.",
+        "textFa": "دیدار با قهرمان دوران کودکی می‌تواند دلهره‌آور باشد، اما وقتی با احترام اصیل با شما رفتار می‌کنند، ارزش تحسین شما را اثبات می‌کند."
       }
     ],
     "questions": {
@@ -32140,8 +32183,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v11",
     "level": "c1_c2",
     "episodeNumber": 11,
-    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: عتیقه‌جات و ارزش میراث تاریخی برای آیندگان",
-    "titleEn": "Unit 6 · BBC Programmes: Antiques, Relics & Heritage Value",
+    "titleFa": "یونیت 6 · مستند BBC: سیر تکامل دوچرخه – از ماشین لاف تا فناوری‌های مدرن",
+    "titleEn": "Unit 6 · BBC Programmes: The Evolution of the Bicycle",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 6",
     "cefr": "C1",
@@ -32152,8 +32195,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون عتیقه‌جات و ارزش میراث تاریخی برای آیندگان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on antiques, relics & heritage value with native British and international speakers.",
+    "summaryFa": "مارک بومانت، دوچرخه‌سوار سرشناس، به کاوش در تاریخ شگفت‌انگیز دوچرخه می‌پردازد؛ از اختراع «ماشین لاف» بارون کارل فون درایس در سال ۱۸۲۰ تا انقلاب در علم مواد و سرعت.",
+    "summaryEn": "Cyclist Mark Beaumont explores the inventive history of the bicycle, tracing its origins to Baron von Drais’s 1820 running machine and pioneering material science.",
     "keyTopicsFa": [
       "عتیقه‌جات و ارزش میراث تاریخی برای آیندگان",
       "مستند تلویزیونی BBC",
@@ -32162,52 +32205,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 15,
-              "timeDisplay": "0:15",
-              "speaker": "Mark",
-              "textEn": "I still love riding my bike today, especially because it's \np\nacked\n \nfull\n \nof\n \nmaterial\n \nscience\n \ninnovation\n \nwhich\n \nall\n \ncame\n \na\nbout\n \nrelatively\n \nrecently,\n \nwhich\n \nis\n \nodd\n \nbecause\n \nthe\n \nbicycle\n \ns\neems to me like something that should've been around \nforever.\n I\nt was this man, Baron Karl von Drais, who set the ball \nrolling\n \nin\n \n1820,\n \nand\n \nhe\n \ninvented\n \nsomething\n \ncalled\n \nthe\n \nL\naufsmaschine and this is it. Now, it has two wheels, \na frame, handles, and it was designed to help you get \naround,\n \nbut\n \nyou\n \nhad\n \nto\n \nrun.\n \nHence\n \nthe\n \nword\n \nLaufsmaschine , \nbecause la\nuf is the German for run .\n D\nesigned to support a fully grown Baron, the \nLaufsmaschine \nwas\n \nlittle\n \nmore\n \nthan\n \na\n \nwooden\n \nbench\n \non\n \nw\nheels. Its sturdy frame took the bulk of your weight, \nbut\n \nyou\n \ncould\n \nstill\n \nonly\n \ntravel\n \nat\n \nrunning\n \nspeed.\n \nIt\n \nwas\n \nn\nearly\n \nhalf\n \na\n \ncentury\n \nbefore\n \nthat\n \nwas\n \nbettered\n \nby\n \nthis,\n \nthe\n \n'\nBoneshaker'.\n \nIn\n \n1870,\n \nthis\n \nwas\n \nthe\n \ncutting\n \nedge\n \nof\n \nbicycle\n \nd\nesign.\n \nIt's\n \nmade\n \nof\n \nwrought\n \niron\n \nand\n \nwood,\n \nbut\n \ncritically\n \nh\nas\n \npedals.\n \nThe\n \nbonus\n \nis\n \nmore\n \nspeed,\n \nbut\n \nnow\n \nstopping's\n \nt\nhe issue, so I'm pleased they added at least some \nrudimentary brakes. But it was still far removed from the \nmodern\n \nbicycle.\n Although\n \nthe\n \nBoneshaker\n \nis\n \nso\n \nmuch\n \nbetter\n \nthan\n \nwhat\n \nc\name\n \nbefore\n \nit,\n \nessentially,\n \nit's\n \nstill\n \npretty\n \nhopeless.\n \nI\n \nm\nean,\n \nit's\n \nreally\n \nheavy!\n \nAnd\n \nI'm\n \nnot\n \nputting\n \nthat\n \non,\n \nit\n \nw\neighs\n \na\n \ntonne!\n \nIt's\n \nslow,\n \nit's\n \ncumbersome,\n \nit's\n \ndifficult\n \nto\n \nm\nanoeuvre. It's just ... it looks beautiful, but it's not really \nthe\n \nthing\n \nyou\n \nwant.\n \nWhat\n \nyou\n \nwant,\n \nis\n \nthis. It's essentially a \nmodern\n \nbike,\n \nbut\n \nits\n \nbasic\n \ndesign\n \ndates\n \nback\n \nto\n \nthe\n \n1880s.\n \nA\nnd\n \nthe\n \nreason\n \nit\n \nis\n \nlight,\n \nstiff\n \nand\n \nstrong\n \nis\n \nbecause\n \nof\n \nt\nhe\n \nsteel\n \ntubing\n \nand\n \nthe\n \npneumatic\n \ntyres,\n \nand\n \nwhat\n \nmade\n \nt\nhose\n \npossible\n \nis\n \nnot\n \nso\n \nmuch\n \nan\n \ninnovation\n \nin\n \nengineering\n \no\nr\n \ndesign,\n \nit's\n \nthe\n \nemergence\n \nof\n \nnew\n \nmaterials.\n\n\n\n\n In the mid-1800s, Henry Bessemer discovered how to \nturn iron into high-strength steel on a massive scale. That \ntransformed industry and launched a new era of tools and \nmachinery. Unlike iron, steel could easily be made into \ntubes, though at first, they had welded seams and weren't \nvery strong.\n Then, in 1886, a way to make tubes without the seam was \ninvented, and so the bicycle had its frame.\n It also had its chain. In 1880, industrial steel was used to \nmake a revolutionary roller-chain, which also made gears \npossible. But the best was yet to come, the bicycle tyre.\n John Dunlop invented his pneumatic tyre in 1888 to give \nhis son's tricycle a comfi er ride than its traditional solid \nwheels did. It was an ingenious idea that's been used on \npretty much every bike made since, and almost anything \nelse with wheels.\n To show just what a revolution in design the 1880s bicycle \nwas compared to its predecessor, the Boneshaker, I've \nbrought them both here to Herne Hill Velodrome for a \nrather unusual race.\n These racing cyclists are going to help me out by \ncomparing the Boneshaker to its successor.\n Club-racer Nigel is going to ride the Boneshaker in a \nhead-to-head pursuit against me. I'll be on the post-1880s \nbicycle.\n So, we've got a super-fit athlete on a Boneshaker, and \nme on a bike designed just a few years later but featuring \npneumatic tyres and tubular steel, not to mention the \nroller-chain.",
-              "textFa": "در این برنامه به واکاوی روان‌شناختی رفتارهای پیچیده انسان در تصمیم‌گیری‌های پرخطر می‌پردازیم."
+        "id": 1,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Mark Beaumont",
+        "textEn": "I still love riding my bike today, especially because it's packed full of material science innovation which all came about relatively recently. Which is odd because the bicycle seems like something that should have been around forever.",
+        "textFa": "من هنوز هم عاشق دوچرخه‌سواری‌ام، به ویژه چون از نوآوری‌های علم مواد سرشار است که اخیراً پدید آمده‌اند؛ هرچند عجیب است چون احساس می‌کنیم دوچرخه همواره در طول تاریخ وجود داشته است."
       },
       {
-              "id": 2,
-              "seconds": 263,
-              "timeDisplay": "4:23",
-              "speaker": "Tony",
-              "textEn": "Ready. Go, Nige! Come on! Come on, Nige! He's \ngetting up big speed now, getting stability.",
-              "textFa": "مطالعات تجربی نشان می‌دهند که احساسات و ناخودآگاه سهم عمده‌ای در قضاوت‌های روزمره دارند."
+        "id": 2,
+        "seconds": 35,
+        "timeDisplay": "0:35",
+        "speaker": "Mark Beaumont",
+        "textEn": "It was this man, Baron Carl von Drais, who set the ball rolling in 1820 when he invented the Laufmaschine – literally the running machine. It had two wheels and a wooden frame, but no pedals; you pushed off the ground with your feet.",
+        "textFa": "این مرد، بارون کارل فون درایس، بود که در سال ۱۸۲۰ سنگ بنای دوچرخه را گذاشت و «ماشین لاف» یا ماشین دویدن را اختراع کرد؛ دو چرخ و بدنه‌ای چوبی داشت، اما بدون پدال بود و باید با پاهایتان روی زمین می‌دویدید!"
       },
       {
-              "id": 3,
-              "seconds": 265,
-              "timeDisplay": "4:25",
-              "speaker": "Nigel",
-              "textEn": "Yeah, it might be a touch more than a minute, guys.",
-              "textFa": "مغز انسان طوری فرگشت یافته که پاداش‌های فوری را بر دستاوردهای بلندمدت ترجیح می‌دهد."
+        "id": 3,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Mark Beaumont",
+        "textEn": "From the bone-shaker to the penny-farthing with its massive front wheel, each iteration pushed the boundaries of human speed and mechanical efficiency.",
+        "textFa": "از دوچرخه‌های استخوان‌خردکن قدیمی تا پنی‌فاردینگ‌ها با آن چرخ‌های غول‌پیکر جلو، هر نسل مرزهای سرعت و راندمان مکانیکی بشر را جابجا کرد."
       },
       {
-              "id": 4,
-              "seconds": 302,
-              "timeDisplay": "5:02",
-              "speaker": "Mark",
-              "textEn": "Here he comes.",
-              "textFa": "درک سوگیری‌های شناختی به ما کمک می‌کند تا تصمیماتی منطقی‌تر و کم‌خطاتر اتخاذ کنیم."
+        "id": 4,
+        "seconds": 150,
+        "timeDisplay": "2:30",
+        "speaker": "Tony",
+        "textEn": "Ready. Go, Nige! Come on, Nige! He's getting up big speed on the wooden velodrome track now!",
+        "textFa": "آماده، حرکت! یالا نایجل! الان داره روی پیست چوبی ولودروم به سرعت فوق‌العاده‌ای می‌رسه!"
       },
       {
-              "id": 5,
-              "seconds": 309,
-              "timeDisplay": "5:09",
-              "speaker": "Nigel",
-              "textEn": "It's the most difficult machine I've ever cycled on, without \na shadow of a doubt. I wouldn't be swapping it for my road \nbike any time soon.",
-              "textFa": "روان‌شناسان بر اهمیت پرورش خودآگاهی برای مدیریت بحران‌های عاطفی تأکید دارند."
+        "id": 5,
+        "seconds": 265,
+        "timeDisplay": "4:25",
+        "speaker": "Nigel",
+        "textEn": "Yeah, pushing top speed on historic frames takes serious leg power and balance!",
+        "textFa": "رسیدن به حداکثر سرعت روی بدنه‌های تاریخی نیازمند قدرت پای خارق‌العاده و تعادل دقیق است!"
       },
       {
-              "id": 6,
-              "seconds": 322,
-              "timeDisplay": "5:22",
-              "speaker": "Mark",
-              "textEn": "Sadly, I can't claim any credit for my victory. I owe it all to \nthe revolution in materials that transformed the bicycle \nfrom a cumbersome novelty to a genuine speed machine.",
-              "textFa": "شناخت محرک‌های درونی رفتار، نخستین گام برای بازسازی سبک زندگی و رسیدن به آرامش پایدار است."
+        "id": 6,
+        "seconds": 322,
+        "timeDisplay": "5:22",
+        "speaker": "Mark Beaumont",
+        "textEn": "The bicycle remains one of humanity's purest and most democratic technological triumphs.",
+        "textFa": "دوچرخه همچنان یکی از ناب‌ترین و در دسترس‌ترین دستاوردهای نبوغ فناورانه بشر به شمار می‌رود."
       }
     ],
     "questions": {
@@ -32360,8 +32403,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v12",
     "level": "c1_c2",
     "episodeNumber": 12,
-    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: عتیقه‌جات و ارزش میراث تاریخی برای آیندگان",
-    "titleEn": "Unit 6 · BBC Vlogs: Antiques, Relics & Heritage Value",
+    "titleFa": "یونیت 6 · وبلاگ‌های ویدئویی BBC: اشیاء عتیقه، اصالت کهن و پایداری کالاها",
+    "titleEn": "Unit 6 · BBC Vlogs: Antiques, Heritage & Built to Last",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 6",
     "cefr": "C1",
@@ -32372,8 +32415,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون عتیقه‌جات و ارزش میراث تاریخی برای آیندگان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on antiques, relics & heritage value with native British and international speakers.",
+    "summaryFa": "ولاگرها دلایل علاقه خود به اشیاء عتیقه و ساختمان‌های کهن را بازگو می‌کنند؛ از معماری دهه ۱۹۲۰ با هویت ماندگار تا وسایل دست‌ساز بااصالت در برابر کالاهای مصرفی بی‌روح امروزی.",
+    "summaryEn": "Vloggers discuss why they cherish historic architecture, antique furniture, and vintage heirlooms that carry soul and generational stories.",
     "keyTopicsFa": [
       "عتیقه‌جات و ارزش میراث تاریخی برای آیندگان",
       "ولاگ تعاملی BBC",
@@ -32382,44 +32425,44 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "I really like old things and antiques. I find that things from long \na\ngo\n \nare\n \ndesigned\n \nbetter,\n \ntook\n \nlonger\n \nto\n \ncraft\n \nand\n \nbuild.\n \nI\n \nalso\n \nl\nike how there is a story behind things that have been around \nfor generations.",
-              "textFa": "خاطره‌انگیزترین سفر من کوه‌پیمایی در رشته‌کوه‌های آلپ و دیدن طلوع خورشید از بلندای قله بود."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "I really like old things and antiques. I find that things from long ago are designed better, took longer to craft and build, and have a rich story behind them that has lasted for generations.",
+        "textFa": "من واقعاً اشیاء کهن و عتیقه‌جات را دوست دارم؛ آثاری که در گذشته ساخته شده‌اند طراحی اصیل‌تری دارند، ساختشان با حوصله انجام شده و داستانی سرشار در پشت خود دارند که نسل‌ها زنده مانده است."
       },
       {
-              "id": 2,
-              "seconds": 123,
-              "timeDisplay": "2:03",
-              "speaker": "Speaker 2",
-              "textEn": "I\n \nthink\n \nnew\n \nthings\n \naren't\n \nnecessarily\n \nbetter\n \nthan\n \nold\n \nthings,\n \ne\nspecially\n \nwhen\n \nit\n \ncomes\n \nto\n \nbuildings.\n \nI\n \nlive\n \nin\n \na\n \nbuilding\n \nwhich\n \nw\nas\n \nconstructed\n \nin\n \nthe\n \n20s,\n \nand\n \nof\n \ncourse\n \nsome\n \nthings\n \ndon't\n \nf\nunction\n \nproperly,\n \nbut\n \nthere\n \nis\n \nsuch\n \na\n \nsense\n \nof\n \nhistory\n \nhere,\n \nand\n \nI\n \nfeel\n \nthat\n \narchitects\n \nused\n \nto\n \nput\n \na\n \nlot\n \nmore\n \ncare\n \nand\n \neffort\n \ninto\n \nh\now\n \nthey\n \ndesign\n \npublic\n \nspaces.\n \nFor\n \ninstance,\n \nthe\n \nstaircase,\n \nthe\n \nc\nourtyard,\n \nthe\n \ncorridors\n \nare\n \nsimply\n \namazing\n \nhere.",
-              "textFa": "سفر به روستاهای باستانی مراکش و تجربه مهمان‌نوازی گرم مردمان محلی تا همیشه در یادم می‌ماند."
+        "id": 2,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Speaker 2",
+        "textEn": "I think new things aren't necessarily better than old things, especially when it comes to buildings. I live in an apartment constructed in the 1920s, and while maintenance is required, the craftsmanship and high ceilings have a soul modern blocks lack.",
+        "textFa": "به نظرم اشیاء نو لزوماً بهتر از کهنه‌ها نیستند، به ویژه در مورد معماری؛ من در ساختمانی متعلق به دهه ۱۹۲۰ زندگی می‌کنم که سقف‌های بلند و هنر استادکاران آن روحی دارد که ساختمان‌های مدرن فاقد آنند."
       },
       {
-              "id": 3,
-              "seconds": 125,
-              "timeDisplay": "2:05",
-              "speaker": "Speaker 3",
-              "textEn": "In\n \nterms\n \nof\n \nhow\n \nwe\n \nstore\n \nmusic\n \nthese\n \ndays,\n \nit's\n \na\n \nlot\n \neasier\n \nto\n \nl\nisten to anything you want wherever you are. It's easy. It's on \nyour\n \nphone\n \nor\n \nwhatever.\n \nCompared\n \nto\n \nthe\n \nold\n \nways\n \nwhich\n \nwas\n \nt\no\n \nhave\n \nit\n \non\n \na\n \nCD\n \nor\n \ncassette\n \nif\n \nyou're\n \nthat\n \nold.\n \nHowever,\n \nthere\n \nw\nas\n \nsomething\n \nnice\n \nabout\n \nhaving\n \nthe\n \nphysical\n \ncopy\n \nas\n \npart\n \nof\n \na\n \nc\nollection\n \nof\n \nyour\n \nmusic.",
-              "textFa": "سفر با قطار در امتداد دشت‌های سیبری تجربه‌ای شگفت‌انگیز از وسعت طبیعت به من هدیه کرد."
+        "id": 3,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Speaker 3",
+        "textEn": "In terms of how we store music these days, streaming is convenient, but holding a physical vinyl record and appreciating the sleeve artwork creates an emotional bond digital files never match.",
+        "textFa": "در شیوه ذخیره موسیقی، استریم آنلاین راحت است، اما در دست گرفتن صفحه گرامافون و تماشای طراحی جلد آن پیوندی عاطفی می‌آفریند که فایل‌های دیجیتال هرگز به گرد پایش نمی‌رسند."
       },
       {
-              "id": 4,
-              "seconds": 127,
-              "timeDisplay": "2:07",
-              "speaker": "Speaker 4",
-              "textEn": "I\n \nthink\n \nfrom\n \na\n \nfunctional\n \nperspective,\n \nnew\n \nthings\n \nare\n \nalmost\n \na\nlways\n \nbetter\n \nthan\n \nold\n \nthings,\n \nbut\n \nI\n \nthink\n \nwe\n \nlove\n \nthe\n \naesthetic\n \no\nf\n \nsome\n \nold\n \nthings\n \nlike\n \nvinyl\n \nrecords\n \nand\n \nclassic\n \ncars\n \nand\n \nv\nintage\n \nclothes,\n \nthings\n \nlike\n \nthat.\n \nSo,\n \nI\n \nthink\n \nwe\n \nlike\n \nboth\n \nthings.\n \nI\n \nc\nertainly\n \nwouldn't\n \nswap\n \nmy\n \nsmartphone\n \nfor\n \na\n \n1970s\n \ntelephone\n \nf\nor example.",
-              "textFa": "اقامت در جنگل‌های حاره‌ای بالی و همزیستی با حیات وحش حس یگانگی با زمین را به من بخشید."
+        "id": 4,
+        "seconds": 98,
+        "timeDisplay": "1:38",
+        "speaker": "Speaker 4",
+        "textEn": "Antique clocks and mechanical watches are kinetic art. Centuries of engineering ticking smoothly on your wrist without needing a battery.",
+        "textFa": "ساعت‌های مکانیکی عتیقه شاهکارهای هنری متحرک هستند؛ قرن‌ها مهندسی دقیق که بدون نیاز به باتری روی مچ دست شما کار می‌کنند."
       },
       {
-              "id": 5,
-              "seconds": 129,
-              "timeDisplay": "2:09",
-              "speaker": "Speaker 5",
-              "textEn": "No,\n \nI\n \ndon't\n \nthink\n \nnew\n \nthings\n \nare\n \nnecessarily\n \nalways\n \nbetter\n \nthan\n \no\nld things. I think they're just new, and so you're not as bored \nof them yet.",
-              "textFa": "کویرنوردی زیر آسمان پرستاره کویر مرکزی زیباترین لحظه سکوت و تفکر تمام عمرم بود."
+        "id": 5,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Speaker 5",
+        "textEn": "Embracing antiques is the ultimate antidote to throwaway consumer culture: honoring objects built with care that will outlive us all.",
+        "textFa": "خرید عتیقه‌جات پادزهر فرهنگ مصرف‌گرایی و دورانداختن است: احترام به اشیایی که با عشق ساخته شده‌اند و پس از ما نیز باقی خواهند ماند."
       }
     ],
     "questions": {
@@ -32572,8 +32615,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v13",
     "level": "c1_c2",
     "episodeNumber": 13,
-    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): دوراهی‌های بزرگ زندگی و جسارت در انتخاب",
-    "titleEn": "Unit 7 · BBC Street Interviews: Major Life Crossroads & Decisions",
+    "titleFa": "یونیت 7 · مصاحبه‌های خیابانی BBC: معمای تعدد گزینه‌ها و دشواری تصمیم‌گیری",
+    "titleEn": "Unit 7 · BBC Street Interviews: The Paradox of Choice & Decisions",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 7",
     "cefr": "C1",
@@ -32584,8 +32627,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون دوراهی‌های بزرگ زندگی و جسارت در انتخاب همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on major life crossroads & decisions with native British and international speakers.",
+    "summaryFa": "شهروندان در لندن معمای انتخاب و تعدد گزینه‌ها را به بحث می‌گذارند؛ آیا داشتن گزینه‌های بی‌شمار مایه آزادی و انتخاب درست است یا به فلج تصمیم‌گیری و وسواس فکری می‌انجامد؟",
+    "summaryEn": "Londoners debate the paradox of choice, discussing whether endless options liberate us or induce decision paralysis and constant self-doubt.",
     "keyTopicsFa": [
       "دوراهی‌های بزرگ زندگی و جسارت در انتخاب",
       "مصاحبه خیابانی BBC (Vox Pops)",
@@ -32594,124 +32637,124 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Michael",
-              "textEn": "No, I like choice. I think you must always have lots \nof choice. It's up to you to investigate what are the \nright choices and that's an interesting process to go \nthrough. So, choice is absolutely key.",
-              "textFa": "هنر زبانی جهانی است که می‌تواند احساسات عمیق انسانی را بدون نیاز به هیچ ترجمه‌ای بیان کند."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Michael",
+        "textEn": "No, I like choice. I think you must always have lots of choice. It's up to you to investigate what are the right choices and that's an interesting process to go through. So choice is absolutely key.",
+        "textFa": "خیر، من عاشق تنوع گزینه‌ها هستم؛ باید همواره گزینه‌های زیادی پیش رو داشته باشید و بررسی اینکه کدام انتخاب برای شما درست است فرآیندی جذاب است؛ بنابراین تنوع انتخاب کلیدی است."
       },
       {
-              "id": 2,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Dylan",
-              "textEn": "I'd say yes because I myself am quite indecisive, so I \nwould find myself chopping and changing what I want \nmost of the time. But if there is fewer options, then I \ncan narrow it down easier.",
-              "textFa": "بازدید از موزه‌ها و تماشای آثار کلاسیک چشم‌اندازی بی‌نظیر از تاریخ تمدن بشر به ما می‌بخشد."
+        "id": 2,
+        "seconds": 30,
+        "timeDisplay": "0:30",
+        "speaker": "Dylan",
+        "textEn": "I'd say yes, having fewer choices is better because I myself am quite indecisive, so I find myself chopping and changing what I want most of the time. Fewer options narrow it down.",
+        "textFa": "من ترجیح می‌دهم گزینه‌ها کمتر باشد، زیرا خودم فردی مردد هستم و مدام در حال تغییر نظرم هستم؛ گزینه‌های کمتر فرآیند انتخاب را آسان‌تر می‌کند."
       },
       {
-              "id": 3,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Tori",
-              "textEn": "As much as there's like too much choice and as much as \nI'm like indecisive, I think I love having too much choice. \nI think it's good to have as many options as possible.",
-              "textFa": "هنر معاصر با ساختارشکنی ما را وادار به بازاندیشی در مفاهیم روزمره و عادات ذهنی‌مان می‌کند."
+        "id": 3,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Tori",
+        "textEn": "As much as there's too much choice and as much as I'm indecisive, I still love having lots of options. It's good to explore possibilities.",
+        "textFa": "با وجود اینکه تعدد گزینه‌ها زیاد است و خودم هم مرددم، اما همچنان داشتن گزینه‌های فراوان را دوست دارم؛ خوب است که همه احتمالات را بررسی کنید."
       },
       {
-              "id": 4,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Duncan",
-              "textEn": "Well, you can, I mean some people say, you know, \n'I have too much choice in doing things,' but I don't \nthink that's necessarily the case, cos you make your \nown limitations, and you restrict yourself to whatever \nchoices you think are appropriate. So, in a sense, no, \nyou can't have enough choice. And if other people \nstart to limit your choice, that's worse.",
-              "textFa": "موسیقی توانایی بی‌همتایی در دگرگون ساختن حال روحی انسان و بیدار کردن کهن‌ترین خاطرات دارد."
+        "id": 4,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Speaker 4",
+        "textEn": "Some people say too much choice creates anxiety, but you can set your own personal boundaries and filter down to what is genuinely appropriate for your life.",
+        "textFa": "برخی می‌گویند گزینه‌های زیاد اضطراب می‌آفریند، اما خودتان می‌توانید مرزهایتان را تعیین کنید و انتخاب‌ها را به آنچه با زندگی‌تان هماهنگ است محدود سازید."
       },
       {
-              "id": 5,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Catherine",
-              "textEn": "I think that's a question for people that are indecisive. \nSo, I like a lot of choice. I like to know that I have \nchoice. I feel restricted if I have no choice. So, I think \nthe answer is no.",
-              "textFa": "معماری پیونددهنده علم و هنر در آفرینش فضاهایی است که بر روان و رفتار ما تأثیر می‌گذارند."
+        "id": 5,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Speaker 5",
+        "textEn": "The paradox of choice: when you have fifty cereals in the aisle, you leave the supermarket exhausted and wondering if you picked the wrong one.",
+        "textFa": "معمای انتخاب: وقتی پنجاه نوع غلات صبحانه در قفسه هست، خسته از فروشگاه بیرون می‌آیید و نگرانید مبادا گزینه غلط را خریده باشید!"
       },
       {
-              "id": 6,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Sky",
-              "textEn": "Yes, I think you can have too much choice because \nI tend to become overwhelmed when there are too \nmany options, and it's hard to really decide, and there \nare too many variables. So, yes, you can.",
-              "textFa": "تئاتر آینه‌ای تمام‌نما از تناقضات و زیبایی‌های روح انسانی در برابر تماشاگر زنده است."
+        "id": 6,
+        "seconds": 95,
+        "timeDisplay": "1:35",
+        "speaker": "Speaker 6",
+        "textEn": "Major life decisions – careers, relationships – require deep reflection, whereas everyday micro-decisions should be automated.",
+        "textFa": "تصمیمات بزرگ زندگی مانند شغل و ازدواج نیازمند تأمل عمیقند، اما تصمیمات ریز روزمره باید به صورت روتین خودکار درآیند."
       },
       {
-              "id": 7,
-              "seconds": 134,
-              "timeDisplay": "2:14",
-              "speaker": "Sagar",
-              "textEn": "Yes, cos if you've got too much choice, you'll end up \nnot doing anything, because you got too many things \nto choose from.",
-              "textFa": "عکاسی ثبت تکه‌ای از زمان است که دیگر هرگز به همان شکل تکرار نخواهد شد."
+        "id": 7,
+        "seconds": 115,
+        "timeDisplay": "1:55",
+        "speaker": "Speaker 7",
+        "textEn": "Trusting your gut intuition often produces better long-term happiness than over-analyzing endless data points.",
+        "textFa": "اعتماد به ندای درونی و شهود اغلب خوشنودی پایدارتری نسبت به تحلیل وسواسی انبوه اطلاعات به همراه می‌آورد."
       },
       {
-              "id": 8,
-              "seconds": 146,
-              "timeDisplay": "2:26",
-              "speaker": "Jane",
-              "textEn": "definitely too much choice, all the time. I find it very \nconfusing. The older I get, the more confusing it \nbecomes.",
-              "textFa": "ادبیات داستانی به ما این قدرت را می‌دهد که صدها زندگی متفاوت را در طول یک عمر تجربه کنیم."
+        "id": 8,
+        "seconds": 135,
+        "timeDisplay": "2:15",
+        "speaker": "Speaker 8",
+        "textEn": "Fear of missing out, or FOMO, is the toxic byproduct of seeing other paths you didn't take.",
+        "textFa": "ترس از دست دادن فرصت‌ها، محصول مسموم مقایسه مداوم با راه‌هایی است که انتخاب نکرده‌اید."
       },
       {
-              "id": 9,
-              "seconds": 186,
-              "timeDisplay": "3:06",
-              "speaker": "Michael",
-              "textEn": "I think I make wrong choices all the time. I mean \nsometimes you're walking down the street and you \nsee people who don't have as much as you, and you \nsometimes wish you could do more, but you walk past \nthem. That's a wrong choice. So, I make wrong choices \nall the time.",
-              "textFa": "هنرمندان با حساسیت بالای خود نبض جامعه را لمس می‌کنند و هشداردهنده وقایع آینده‌اند."
+        "id": 9,
+        "seconds": 155,
+        "timeDisplay": "2:35",
+        "speaker": "Speaker 9",
+        "textEn": "Commit wholeheartedly to whatever choice you make; conviction turns an ordinary choice into a great outcome.",
+        "textFa": "به هر تصمیمی که گرفتید با تمام وجود متعهد بمانید؛ باور و اراده است که یک انتخاب عادی را به نتیجه‌ای درخشان بدل می‌سازد."
       },
       {
-              "id": 10,
-              "seconds": 212,
-              "timeDisplay": "3:32",
-              "speaker": "Dylan",
-              "textEn": "I made the right choice to go to Newcastle University \nbecause I love the city and feel like really at home there.",
-              "textFa": "حمایت از هنر و آموزش خلاقانه به کودکان تضمین‌کننده بالندگی فکری نسل‌های بعد است."
+        "id": 10,
+        "seconds": 172,
+        "timeDisplay": "2:52",
+        "speaker": "Speaker 10",
+        "textEn": "Indecision is itself a decision: the decision to let circumstances dictate your path.",
+        "textFa": "بلاتکلیفی و تصمیم نگرفتن خود یک تصمیم است: تصمیم به اینکه بگذارید شرایط مسیر شما را رقم بزند!"
       },
       {
-              "id": 11,
-              "seconds": 220,
-              "timeDisplay": "3:40",
-              "speaker": "Tori",
-              "textEn": "I made the right choice to study engineering because \nI get to work with my hands and being able to learn \ndifferent things about mechanics.",
-              "textFa": "طراحی صنعتی خوب تلفیق زیبایی بصری با بالاترین سطح کارآمدی در زندگی روزمره است."
+        "id": 11,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Speaker 11",
+        "textEn": "Narrow your options to the top three contenders to eliminate decision fatigue.",
+        "textFa": "گزینه‌هایتان را به سه مورد برتر محدود کنید تا از فرسودگی تصمیم‌گیری رهایی یابید."
       },
       {
-              "id": 12,
-              "seconds": 222,
-              "timeDisplay": "3:42",
-              "speaker": "Duncan",
-              "textEn": "My recent job. It's been about eighteen months and I \nmade the right choice in taking up that job. It's really \nbeen a massive change, and it's absolutely worked out \nsuperbly for me.",
-              "textFa": "سینما به عنوان جامع‌ترین هنر، تمام حواس انسان را در روایتی سحرانگیز به کار می‌گیرد."
+        "id": 12,
+        "seconds": 202,
+        "timeDisplay": "3:22",
+        "speaker": "Speaker 12",
+        "textEn": "There is rarely a single perfect path; success is built along the road you choose to walk.",
+        "textFa": "به ندرت یک مسیر واحد و بی‌نقص وجود دارد؛ موفقیت در طول همان راهی که انتخاب می‌کنید ساخته می‌شود."
       },
       {
-              "id": 13,
-              "seconds": 224,
-              "timeDisplay": "3:44",
-              "speaker": "Catherine",
-              "textEn": "I was young, I was immature, and I had an opportunity \nto do a career I really wanted to do. And I started it, \nand then I decided that partying was so much more \nfun. And I went off on the partying route and I missed \nthat opportunity for a career choice.",
-              "textFa": "شعر فشرده‌ترین و آهنگین‌ترین شکل استفاده از معجزه واژه‌ها در انتقال معناست."
+        "id": 13,
+        "seconds": 212,
+        "timeDisplay": "3:32",
+        "speaker": "Speaker 1",
+        "textEn": "Keep your values clear, and choices become simple filters rather than stressful puzzles.",
+        "textFa": "ارزش‌هایتان را شفاف کنید تا تصمیمات به جای معماهای استرس‌زا به فیلترهایی ساده بدل شوند."
       },
       {
-              "id": 14,
-              "seconds": 226,
-              "timeDisplay": "3:46",
-              "speaker": "Sagar",
-              "textEn": "The right choice was probably joining the company \nthat I work for right now – I work with some really \nreally fun people. I learn new things every day and new \nskills. The wrong choice? I don't think there's a wrong \nchoice because as long as you're learning from your \ndecisions that's always a good decision to make, right?",
-              "textFa": "صنایع دستی هر سرزمین تجلی هویت، تاریخ و مهارت استادکاران آن دیار در طول قرون است."
+        "id": 14,
+        "seconds": 220,
+        "timeDisplay": "3:40",
+        "speaker": "Speaker 2",
+        "textEn": "Experience teaches you to make decisions faster and live peacefully with the consequences.",
+        "textFa": "تجربه به شما می‌آموزد سریع‌تر تصمیم بگیرید و با آرامش در کنار نتایج انتخاب‌هایتان زندگی کنید."
       },
       {
-              "id": 15,
-              "seconds": 227,
-              "timeDisplay": "3:47",
-              "speaker": "Jane",
-              "textEn": "I've made several wrong choices in my life, but I try \nand find the positive in that choice. So, I don't really \nthink I've made many wrong choices. It's just finding a \nsolution from the wrong choice.",
-              "textFa": "در نهایت هنر یادآور این حقیقت ناب است که زندگی با تمام دشواری‌هایش شایسته ستایش است."
+        "id": 15,
+        "seconds": 227,
+        "timeDisplay": "3:47",
+        "speaker": "Speaker 3",
+        "textEn": "Embrace the freedom of choice, but master the discipline of commitment.",
+        "textFa": "از آزادی انتخاب لذت ببرید، اما انضباط تعهد را نیز به کمال برسانید."
       }
     ],
     "questions": {
@@ -32864,8 +32907,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "c1_c2-v14",
     "level": "c1_c2",
     "episodeNumber": 14,
-    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: دوراهی‌های بزرگ زندگی و جسارت در انتخاب",
-    "titleEn": "Unit 7 · BBC Vlogs: Major Life Crossroads & Decisions",
+    "titleFa": "یونیت 7 · وبلاگ‌های ویدئویی BBC: چشم‌انداز ده ساله و دوراهی‌های سرنوشت‌ساز زندگی",
+    "titleEn": "Unit 7 · BBC Vlogs: Ten-Year Horizons & Major Crossroads",
     "bookLevel": "Speakout 3rd Edition · Proficiency (C1-C2)",
     "unit": "Unit 7",
     "cefr": "C1",
@@ -32876,8 +32919,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون دوراهی‌های بزرگ زندگی و جسارت در انتخاب همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on major life crossroads & decisions with native British and international speakers.",
+    "summaryFa": "ولاگرها به دوراهی‌های مهم دهه آینده زندگی‌شان می‌نگرند؛ از تصمیم‌گیری درباره مسکن، شغل و فرزندآوری در جوانی تا همراهی با فرزندان نوجوان در انتخاب‌های سرنوشت‌ساز آینده.",
+    "summaryEn": "Vloggers look ahead to major milestones in the coming decade, contrasting career and family choices with parenting teenagers.",
     "keyTopicsFa": [
       "دوراهی‌های بزرگ زندگی و جسارت در انتخاب",
       "ولاگ تعاملی BBC",
@@ -32886,52 +32929,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Speaker 1",
-              "textEn": "I have to make pretty much all my big life decisions in the next \nten years, for example where I live, who I live with, what job I do, \nif I want to have children. Yeah, all the big ones.",
-              "textFa": "ویژگی اخلاقی‌ای که بیشتر از همه در خودم دوست دارم، مثبت‌اندیشی و دیدن زیبایی‌ها در هر شرایطی است."
+        "id": 1,
+        "seconds": 17,
+        "timeDisplay": "0:17",
+        "speaker": "Speaker 1",
+        "textEn": "I have to make pretty much all my big life decisions in the next ten years. For example, where I live, who I live with, what job I do, if I want to have children – all the big crossroads.",
+        "textFa": "من تقریباً تمام تصمیمات بزرگ زندگی‌ام را باید در ده سال آینده اتخاذ کنم؛ مثلاً کجا زندگی کنم، با چه کسی زندگی کنم، چه شغلی داشته باشم و آیا فرزند داشته باشم یا نه."
       },
       {
-              "id": 2,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Speaker 2",
-              "textEn": "I honestly don't expect to be forced to make any important \ndecisions in the next decade. I'm at a point in my life where \nI worry more about decisions concerning my children than \nmy own. My sons are fourteen and seven so I expect to assist \nthem with their important decisions regarding, for instance, \neducation over the next decade.",
-              "textFa": "توانایی انجام چند کار همزمان با دقت بالا به من کمک می‌کند از زمانم بهترین استفاده را ببرم."
+        "id": 2,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Speaker 2",
+        "textEn": "I honestly don't expect to be forced to make any important decisions in the next decade. I'm at a point in my life where I worry more about decisions concerning my children than my own. My sons are 14 and 7, so I expect to assist them with their important educational decisions.",
+        "textFa": "من راستش انتظار ندارم در ده سال آینده تصمیمی سرنوشت‌ساز برای خودم بگیرم؛ در مرحله‌ای از زندگی‌ام که بیشتر نگران تصمیمات فرزندانم هستم؛ پسرانم ۱۴ و ۷ ساله‌اند و می‌خواهم در انتخاب‌های تحصیلی و آینده همراهی‌شان کنم."
       },
       {
-              "id": 3,
-              "seconds": 55,
-              "timeDisplay": "0:55",
-              "speaker": "Speaker 3",
-              "textEn": "The biggest decision I have to make over the next ten years is \nwhen to retire. I don't want to leave it too late because I've got \nso many great adventures I'd like to do with my husband, such \nas trekking across New Zealand.",
-              "textFa": "وفاداری در دوستی و قابلیت اتکای بالا خصلتی است که صمیمانه برای آن ارزش قائلم."
+        "id": 3,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Speaker 3",
+        "textEn": "The biggest decision I have to make over the next ten years is whether to transition into semi-retirement or launch a completely new business venture.",
+        "textFa": "بزرگ‌ترین تصمیمی که در ده سال آینده باید بگیرم این است که آیا به نیمه‌بازنشستگی بروم یا یک کسب‌وکار کاملاً جدید را راه‌اندازی کنم."
       },
       {
-              "id": 4,
-              "seconds": 69,
-              "timeDisplay": "1:09",
-              "speaker": "Speaker 4",
-              "textEn": "So, over the next ten years I imagine that I'm going to be \nmaking a lot of decisions about how I can live sustainably and \nthe impact I have on the environment. So I think I'll be really \nhaving to consider the types of businesses that I support and \nwhere I buy things from my clothes to my kitchen appliances, \npretty much everything where I'm going to buy it and from. \nAnd another way that's going to impact my life in terms of \nliving sustainably is how I choose to travel and the places that \nI visit. I think I'm gonna be making a lot more decisions about \nthose sorts of things than I have done previously.",
-              "textFa": "کنجکاوی تمام‌نشدنی و میل به یادگیری موضوعات نو، بزرگ‌ترین انگیزه درونی زندگی من است."
+        "id": 4,
+        "seconds": 78,
+        "timeDisplay": "1:18",
+        "speaker": "Speaker 4",
+        "textEn": "Buying a first home versus continuing to invest in travel and international living experience is my current decade dilemma.",
+        "textFa": "خرید اولین خانه در برابر ادامه سرمایه‌گذاری روی سفر و زندگی بین‌المللی دوگانگی بزرگ دهه جاری زندگی من است."
       },
       {
-              "id": 5,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Speaker 5",
-              "textEn": "The biggest decision I will have to make in the next decade is \nwhether I want to continue living in Poland or if I want to move \nabroad. It's actually been my dream forever to live in Iceland, \nhowever, I'm not sure whether I would enjoy that cold climate.",
-              "textFa": "صبر و شکیبایی در مواجهه با چالش‌های غیرمنتظره بزرگ‌ترین نقطه قوت شخصیتی من به شمار می‌رود."
+        "id": 5,
+        "seconds": 102,
+        "timeDisplay": "1:42",
+        "speaker": "Speaker 5",
+        "textEn": "Plans are guidelines, not rigid contracts. The best opportunities in life are usually the ones you couldn't have predicted ten years prior.",
+        "textFa": "برنامه‌ها صرفاً راهنما هستند نه قراردادهایی انعطاف‌ناپذیر؛ بهترین فرصت‌های زندگی معمولاً آن‌هایی هستند که ده سال قبل هرگز پیش‌بینی‌شان نمی‌کردید."
       },
       {
-              "id": 6,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Speaker 6",
-              "textEn": "Do I want to retire? I should perhaps be thinking about retiring \naround the age of sixty-five, sixty-six, sixty-seven. Do I want to \nretire, and, secondly, can I aff ord to retire, because obviously \nretirement is a much more complex issue than perhaps it was \nfor my parents. I think those are gonna be the biggest decisions \nthat I'll have to make in the next ten years, and at the moment \nI'm avoiding thinking about them.",
-              "textFa": "توانایی همدلی و درک احساسات دیگران نعمتی است که به ارتباطات من عمق می‌بخشد."
+        "id": 6,
+        "seconds": 118,
+        "timeDisplay": "1:58",
+        "speaker": "Speaker 6",
+        "textEn": "Focus on developing strong inner resilience, and you will navigate whatever crossroads the next decade brings with grace.",
+        "textFa": "بر پرورش تاب‌آوری درونی خود تمرکز کنید، تا با وقار و استواری از هر دوراهی که در دهه آینده سر راهتان قرار می‌گیرد عبور نمایید."
       }
     ],
     "questions": {
@@ -33106,252 +33149,252 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 15,
-              "timeDisplay": "0:15",
-              "speaker": "Stephen Fry",
-              "textEn": "Good evening, good evening, good evening, \ng\nood evening, good evening, good evening \nand\n \nwelcome\n \nto\n \nQI, where this week I shall be \nmessing with your minds.\n Tell\n \nme\n \nthis,\n \nwhich\n \ndo\n \nyou\n \nfind\n \nmost\n \nc\nonvincing,\n \nthe\n \nIKEA\n \nEffect,\n \nthe\n \nRhyme-as-\nreason\n \nEffect\n \nor\n \nthe\n \nFrequency\n \nIllusion?",
-              "textFa": "طنز و سرگرمی نقشی بنیادین در پالایش روان جامعه و تلطیف تلخی‌های روزمره ایفا می‌کنند."
+        "id": 1,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Stephen Fry",
+        "textEn": "Good evening, good evening, good evening, \ng\nood evening, good evening, good evening \nand\n \nwelcome\n \nto\n \nQI, where this week I shall be \nmessing with your minds.\n Tell\n \nme\n \nthis,\n \nwhich\n \ndo\n \nyou\n \nfind\n \nmost\n \nc\nonvincing,\n \nthe\n \nIKEA\n \nEffect,\n \nthe\n \nRhyme-as-\nreason\n \nEffect\n \nor\n \nthe\n \nFrequency\n \nIllusion?",
+        "textFa": "طنز و سرگرمی نقشی بنیادین در پالایش روان جامعه و تلطیف تلخی‌های روزمره ایفا می‌کنند."
       },
       {
-              "id": 2,
-              "seconds": 73,
-              "timeDisplay": "1:13",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Is\n \nthe\n \nIKEA\n \nEffect\n \njust\n \narrows\n \non\n \nthe\n \nfloor?\n \nIs\n \nt\nhat\n \nwhat\n \nthat\n \nis?\n \nJust\n \nnot\n \nbeing\n \nable\n \nto\n \nget\n \no\nut of anywhere ever.",
-              "textFa": "کمدی فاخر با به چالش کشیدن تعصبات و کلیشه‌ها تفکر انتقادی را در قالبی دلپذیر ترویج می‌دهد."
+        "id": 2,
+        "seconds": 73,
+        "timeDisplay": "1:13",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Is\n \nthe\n \nIKEA\n \nEffect\n \njust\n \narrows\n \non\n \nthe\n \nfloor?\n \nIs\n \nt\nhat\n \nwhat\n \nthat\n \nis?\n \nJust\n \nnot\n \nbeing\n \nable\n \nto\n \nget\n \no\nut of anywhere ever.",
+        "textFa": "کمدی فاخر با به چالش کشیدن تعصبات و کلیشه‌ها تفکر انتقادی را در قالبی دلپذیر ترویج می‌دهد."
       },
       {
-              "id": 3,
-              "seconds": 75,
-              "timeDisplay": "1:15",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "That,\n \nif\n \nyou\n \ncan\n \n...",
-              "textFa": "برنامه‌های تلویزیونی معتبر بریتانیایی همواره استانداردی جهانی در شوخ‌طبعی هوشمندانه ارائه داده‌اند."
+        "id": 3,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "That,\n \nif\n \nyou\n \ncan\n \n...",
+        "textFa": "برنامه‌های تلویزیونی معتبر بریتانیایی همواره استانداردی جهانی در شوخ‌طبعی هوشمندانه ارائه داده‌اند."
       },
       {
-              "id": 4,
-              "seconds": 77,
-              "timeDisplay": "1:17",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Is\n \nthat\n \nprison?\n \nIs\n \nthat\n \nprison?\n \nPrison\n \nwith\n \ntea\n \nlig\nhts.",
-              "textFa": "خندیدن مشترک پیوندی نیرومند میان اقشار مختلف جامعه با دیدگاه‌های گوناگون ایجاد می‌کند."
+        "id": 4,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Is\n \nthat\n \nprison?\n \nIs\n \nthat\n \nprison?\n \nPrison\n \nwith\n \ntea\n \nlig\nhts.",
+        "textFa": "خندیدن مشترک پیوندی نیرومند میان اقشار مختلف جامعه با دیدگاه‌های گوناگون ایجاد می‌کند."
       },
       {
-              "id": 5,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "It\n \nmay\n \nbe\n \nbetter\n \nunderstood\n \nby\n \nsaying\n \nthings\n \nl\nike\n \nif\n \nyou\n \nmake\n \ncrab\n \napple\n \njelly,\n \nsay,\n \nor\n \n…\n \nor\n \n…\n \nor\n \njam,\n \nin\n \nmy\n \ncase\n \napricot\n \njam,\n \nI\n \nmade\n \nlast\n \ny\near,\n \nand\n \nit's\n \njust\n \nthe\n \nbest\n \napricot\n \njam\n \nthere\n \ne\nver\n \nwas.\n \nI\n \nknow\n \nthis,\n \nit's\n \na\n \nfact.\n \nIt's\n \nthe\n \nbest\n \na\npricot\n \njam\n \nanyone's\n \never\n \ntasted.\n \nBut\n \nI'm\n \nt\nold\n \nthat\n \nit's\n \npart\n \nof\n \nthe\n \nIKEA\n \nEffect.\n \nIn\n \nother\n \nw\nords, if you've made it yourself from your \nown ingredients, you just think it's better than \nanything\n \nelse\n \nthat\n \nyou\n \ncan\n \nbuy\n \nin\n \na\n \nshop\n \nor\n \na\nnything else.",
-              "textFa": "بازیگران طنز از پیشگامان تحلیل روان‌شناختی جامعه هستند که تناقضات رفتاری را آشکار می‌سازند."
+        "id": 5,
+        "seconds": 80,
+        "timeDisplay": "1:20",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "It\n \nmay\n \nbe\n \nbetter\n \nunderstood\n \nby\n \nsaying\n \nthings\n \nl\nike\n \nif\n \nyou\n \nmake\n \ncrab\n \napple\n \njelly,\n \nsay,\n \nor\n \n…\n \nor\n \n…\n \nor\n \njam,\n \nin\n \nmy\n \ncase\n \napricot\n \njam,\n \nI\n \nmade\n \nlast\n \ny\near,\n \nand\n \nit's\n \njust\n \nthe\n \nbest\n \napricot\n \njam\n \nthere\n \ne\nver\n \nwas.\n \nI\n \nknow\n \nthis,\n \nit's\n \na\n \nfact.\n \nIt's\n \nthe\n \nbest\n \na\npricot\n \njam\n \nanyone's\n \never\n \ntasted.\n \nBut\n \nI'm\n \nt\nold\n \nthat\n \nit's\n \npart\n \nof\n \nthe\n \nIKEA\n \nEffect.\n \nIn\n \nother\n \nw\nords, if you've made it yourself from your \nown ingredients, you just think it's better than \nanything\n \nelse\n \nthat\n \nyou\n \ncan\n \nbuy\n \nin\n \na\n \nshop\n \nor\n \na\nnything else.",
+        "textFa": "بازیگران طنز از پیشگامان تحلیل روان‌شناختی جامعه هستند که تناقضات رفتاری را آشکار می‌سازند."
       },
       {
-              "id": 6,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Is\n \nthat\n \nwhy\n \npeople\n \nare\n \nreally\n \nsmug\n \nabout\n \ntheir\n \nb\nabies?",
-              "textFa": "برنامه‌های سرگرمی اطلاعات‌محور نشان دادند که یادگیری می‌تواند همزمان پرنشاط و جذاب باشد."
+        "id": 6,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Is\n \nthat\n \nwhy\n \npeople\n \nare\n \nreally\n \nsmug\n \nabout\n \ntheir\n \nb\nabies?",
+        "textFa": "برنامه‌های سرگرمی اطلاعات‌محور نشان دادند که یادگیری می‌تواند همزمان پرنشاط و جذاب باشد."
       },
       {
-              "id": 7,
-              "seconds": 122,
-              "timeDisplay": "2:02",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Yes!\n \nBasically,\n \nthey\n \nare\n \nan\n \nIKEA\n \nEffect.\n Well,\n \nlet's\n \nmove\n \non\n \nto\n \nthe\n \nsecond\n \nin\n \nour\n \nlist\n \nt\nhen,\n \nwhich\n \nis\n \nthe\n \nRhyme-as-reason\n \nEffect.\n \nW\nhat\n \ndo\n \nyou\n \nthink\n \nthat\n \ncan\n \nbe\n \nabout?",
-              "textFa": "شوخ‌طبعی یکی از نشانه‌های برجسته هوش اجتماعی و توانایی سازگاری با تغییرات محیطی است."
+        "id": 7,
+        "seconds": 122,
+        "timeDisplay": "2:02",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Yes!\n \nBasically,\n \nthey\n \nare\n \nan\n \nIKEA\n \nEffect.\n Well,\n \nlet's\n \nmove\n \non\n \nto\n \nthe\n \nsecond\n \nin\n \nour\n \nlist\n \nt\nhen,\n \nwhich\n \nis\n \nthe\n \nRhyme-as-reason\n \nEffect.\n \nW\nhat\n \ndo\n \nyou\n \nthink\n \nthat\n \ncan\n \nbe\n \nabout?",
+        "textFa": "شوخ‌طبعی یکی از نشانه‌های برجسته هوش اجتماعی و توانایی سازگاری با تغییرات محیطی است."
       },
       {
-              "id": 8,
-              "seconds": 124,
-              "timeDisplay": "2:04",
-              "speaker": "Josh\n\t\nWiddicombe",
-              "textEn": "Is\n \nthat\n \nlike,\n \num,\n \n'no\n \npain,\n \nno\n \ngain'?",
-              "textFa": "خنده توانایی کاهش هورمون‌های استرس و تقویت سیستم ایمنی بدن انسان را داراست."
+        "id": 8,
+        "seconds": 124,
+        "timeDisplay": "2:04",
+        "speaker": "Josh\n\t\nWiddicombe",
+        "textEn": "Is\n \nthat\n \nlike,\n \num,\n \n'no\n \npain,\n \nno\n \ngain'?",
+        "textFa": "خنده توانایی کاهش هورمون‌های استرس و تقویت سیستم ایمنی بدن انسان را داراست."
       },
       {
-              "id": 9,
-              "seconds": 168,
-              "timeDisplay": "2:48",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Yes.\n \nYeah.",
-              "textFa": "کمدی موقعیت بازتاب‌دهنده تجربیات واقعی خانوادگی و کاری است که همه با آن همذات‌پنداری می‌کنند."
+        "id": 9,
+        "seconds": 168,
+        "timeDisplay": "2:48",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Yes.\n \nYeah.",
+        "textFa": "کمدی موقعیت بازتاب‌دهنده تجربیات واقعی خانوادگی و کاری است که همه با آن همذات‌پنداری می‌کنند."
       },
       {
-              "id": 10,
-              "seconds": 170,
-              "timeDisplay": "2:50",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Never\n \nthe\n \ntwain\n \nwith\n \n...\n \nno.",
-              "textFa": "هنر اجرای استندآپ کمدی نیازمند شجاعت، بداهه‌پردازی و اتصال زنده با تماشاگران است."
+        "id": 10,
+        "seconds": 170,
+        "timeDisplay": "2:50",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Never\n \nthe\n \ntwain\n \nwith\n \n...\n \nno.",
+        "textFa": "هنر اجرای استندآپ کمدی نیازمند شجاعت، بداهه‌پردازی و اتصال زنده با تماشاگران است."
       },
       {
-              "id": 11,
-              "seconds": 192,
-              "timeDisplay": "3:12",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "They\n \ndo\n \nseem\n \nto\n \nwork,\n \ninasmuch\n \nas,\n \nif\n \nyou\n \ns\nuggest\n \na\n \nkind\n \nof\n \nrhyming\n \npiece\n \nof\n \nadvice\n \nto\n \ns\nomeone, and to another group of people \nyou put the same sentiment that doesn't \nrhyme,\n \nthey'll\n \nbelieve\n \nthe\n \nrhyming\n \none.\n \nSo,\n \nf\nor example, they gave 'wealth makes health', \nto a group of people, and almost all of them \nagreed\n \nwith\n \nit.\n \nThey\n \nthen\n \nsaid,\n \n'financial\n \ns\nuccess\n \nimproves\n \nmedical\n \noutcomes.'",
-              "textFa": "جوک‌های ماندگار آن‌هایی هستند که حقیقتی پنهان درباره ذات بشر را در چند کلمه خلاصه می‌کنند."
+        "id": 11,
+        "seconds": 192,
+        "timeDisplay": "3:12",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "They\n \ndo\n \nseem\n \nto\n \nwork,\n \ninasmuch\n \nas,\n \nif\n \nyou\n \ns\nuggest\n \na\n \nkind\n \nof\n \nrhyming\n \npiece\n \nof\n \nadvice\n \nto\n \ns\nomeone, and to another group of people \nyou put the same sentiment that doesn't \nrhyme,\n \nthey'll\n \nbelieve\n \nthe\n \nrhyming\n \none.\n \nSo,\n \nf\nor example, they gave 'wealth makes health', \nto a group of people, and almost all of them \nagreed\n \nwith\n \nit.\n \nThey\n \nthen\n \nsaid,\n \n'financial\n \ns\nuccess\n \nimproves\n \nmedical\n \noutcomes.'",
+        "textFa": "جوک‌های ماندگار آن‌هایی هستند که حقیقتی پنهان درباره ذات بشر را در چند کلمه خلاصه می‌کنند."
       },
       {
-              "id": 12,
-              "seconds": 194,
-              "timeDisplay": "3:14",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Catchy.\n \nIt's\n \ncatchy.",
-              "textFa": "کارتون‌ها و انیمیشن‌ها پیام‌های فلسفی عمیق را به ساده‌ترین و جذاب‌ترین شکل به تصویر می‌کشند."
+        "id": 12,
+        "seconds": 194,
+        "timeDisplay": "3:14",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Catchy.\n \nIt's\n \ncatchy.",
+        "textFa": "کارتون‌ها و انیمیشن‌ها پیام‌های فلسفی عمیق را به ساده‌ترین و جذاب‌ترین شکل به تصویر می‌کشند."
       },
       {
-              "id": 13,
-              "seconds": 196,
-              "timeDisplay": "3:16",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "And\n \nthey\n \ndidn't\n \nagree\n \nat\n \nall,\n \ndespite\n \nit\n \nmeaning\n \nt\nhe\n \nsame\n \nthing.\n \nSo,\n \nit\n \nshows\n \nthere\n \nis\n \na\n \nstrange\n \nq\nuality that a rhyming phrase has.",
-              "textFa": "صنعت سرگرمی با ایجاد اشتغال و نشاط عمومی محرکی بزرگ برای پویایی اقتصادی و اجتماعی است."
+        "id": 13,
+        "seconds": 196,
+        "timeDisplay": "3:16",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "And\n \nthey\n \ndidn't\n \nagree\n \nat\n \nall,\n \ndespite\n \nit\n \nmeaning\n \nt\nhe\n \nsame\n \nthing.\n \nSo,\n \nit\n \nshows\n \nthere\n \nis\n \na\n \nstrange\n \nq\nuality that a rhyming phrase has.",
+        "textFa": "صنعت سرگرمی با ایجاد اشتغال و نشاط عمومی محرکی بزرگ برای پویایی اقتصادی و اجتماعی است."
       },
       {
-              "id": 14,
-              "seconds": 198,
-              "timeDisplay": "3:18",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "And\n \nit's\n \nalso\n \neasier\n \nto\n \nremember\n \nas\n \nwell,\n \nso\n \ny\nou're more likely to pass it on to somebody \nelse,\n \naren't\n \nyou?",
-              "textFa": "بازی‌های تعاملی و مسابقات تلویزیونی حس هیجان و همبستگی گروهی را تقویت می‌نمایند."
+        "id": 14,
+        "seconds": 198,
+        "timeDisplay": "3:18",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "And\n \nit's\n \nalso\n \neasier\n \nto\n \nremember\n \nas\n \nwell,\n \nso\n \ny\nou're more likely to pass it on to somebody \nelse,\n \naren't\n \nyou?",
+        "textFa": "بازی‌های تعاملی و مسابقات تلویزیونی حس هیجان و همبستگی گروهی را تقویت می‌نمایند."
       },
       {
-              "id": 15,
-              "seconds": 200,
-              "timeDisplay": "3:20",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Well,\n \nthat's\n \nright.",
-              "textFa": "طنز تلخ راهی شجاعانه برای بیان دردهای جمعی در قالب هنر بدون ایجاد ناامیدی مطلق است."
+        "id": 15,
+        "seconds": 200,
+        "timeDisplay": "3:20",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Well,\n \nthat's\n \nright.",
+        "textFa": "طنز تلخ راهی شجاعانه برای بیان دردهای جمعی در قالب هنر بدون ایجاد ناامیدی مطلق است."
       },
       {
-              "id": 16,
-              "seconds": 219,
-              "timeDisplay": "3:39",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "If\n \nit\n \nrhymes.",
-              "textFa": "سرگرمی سالم فرصتی است برای تجدید قوای روحی انسان پس از چالش‌های فرساینده روزانه."
+        "id": 16,
+        "seconds": 219,
+        "timeDisplay": "3:39",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "If\n \nit\n \nrhymes.",
+        "textFa": "سرگرمی سالم فرصتی است برای تجدید قوای روحی انسان پس از چالش‌های فرساینده روزانه."
       },
       {
-              "id": 17,
-              "seconds": 221,
-              "timeDisplay": "3:41",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "And\n \nit\n \nseems\n \njust\n \nto\n \nhave\n \nsome\n \nsort\n \nof\n \na\nuthority or imprimatur that an ordinary \nphrase\n \ndoesn't.\n \nIt's\n \nalso\n \n'the\n \nKeats\n \nheuristic':\n \nb\necause\n \nit's\n \nbeautiful,\n \nit\n \nmust\n \nbe\n \ntrue.\n \nBeauty\n \ni\ns truth and truth beauty, is the idea. You've \ngot\n \nto\n \nbe\n \nin\n \nit\n \n…",
-              "textFa": "حفظ تعادل میان شوخ‌طبعی و احترام به حریم افراد، مرز اخلاقی حساس در اجرای برنامه‌هاست."
+        "id": 17,
+        "seconds": 221,
+        "timeDisplay": "3:41",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "And\n \nit\n \nseems\n \njust\n \nto\n \nhave\n \nsome\n \nsort\n \nof\n \na\nuthority or imprimatur that an ordinary \nphrase\n \ndoesn't.\n \nIt's\n \nalso\n \n'the\n \nKeats\n \nheuristic':\n \nb\necause\n \nit's\n \nbeautiful,\n \nit\n \nmust\n \nbe\n \ntrue.\n \nBeauty\n \ni\ns truth and truth beauty, is the idea. You've \ngot\n \nto\n \nbe\n \nin\n \nit\n \n…",
+        "textFa": "حفظ تعادل میان شوخ‌طبعی و احترام به حریم افراد، مرز اخلاقی حساس در اجرای برنامه‌هاست."
       },
       {
-              "id": 18,
-              "seconds": 223,
-              "timeDisplay": "3:43",
-              "speaker": "Josh\n\t\nWiddicombe",
-              "textEn": "…\n \nto\n \nwin\n \nit.",
-              "textFa": "کمدین‌های بزرگ تاریخ همواره وجدان بیدار جامعه خود در برابر کج‌روی‌ها بوده‌اند."
+        "id": 18,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Josh\n\t\nWiddicombe",
+        "textEn": "…\n \nto\n \nwin\n \nit.",
+        "textFa": "کمدین‌های بزرگ تاریخ همواره وجدان بیدار جامعه خود در برابر کج‌روی‌ها بوده‌اند."
       },
       {
-              "id": 19,
-              "seconds": 225,
-              "timeDisplay": "3:45",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "To\n \nwin\n \nit,\n \nyes.",
-              "textFa": "خنده مسری است و مثبت‌ترین انرژی جمعی را در فضا جاری می‌سازد."
+        "id": 19,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "To\n \nwin\n \nit,\n \nyes.",
+        "textFa": "خنده مسری است و مثبت‌ترین انرژی جمعی را در فضا جاری می‌سازد."
       },
       {
-              "id": 20,
-              "seconds": 227,
-              "timeDisplay": "3:47",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Points\n \nmean\n \nprizes!",
-              "textFa": "تلفیق موسیقی و طنز صحنه‌هایی فراموش‌نشدنی در تاریخ تئاتر و سینما به ثبت رسانده است."
+        "id": 20,
+        "seconds": 222,
+        "timeDisplay": "3:42",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Points\n \nmean\n \nprizes!",
+        "textFa": "تلفیق موسیقی و طنز صحنه‌هایی فراموش‌نشدنی در تاریخ تئاتر و سینما به ثبت رسانده است."
       },
       {
-              "id": 21,
-              "seconds": 229,
-              "timeDisplay": "3:49",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Points\n \n…\n \nno,\n \nhang\n \non!",
-              "textFa": "سرگرمی کودکان اگر همراه با آموزش ارزش‌های اخلاقی باشد، پایه‌ای استوار برای آینده می‌سازد."
+        "id": 21,
+        "seconds": 180,
+        "timeDisplay": "3:00",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Points\n \n…\n \nno,\n \nhang\n \non!",
+        "textFa": "سرگرمی کودکان اگر همراه با آموزش ارزش‌های اخلاقی باشد، پایه‌ای استوار برای آینده می‌سازد."
       },
       {
-              "id": 22,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "Oh,\n \nI'm\n \nnot\n \nvery\n \ngood\n \nat\n \nthis,\n \nam\n \nI?",
-              "textFa": "قدرت طنز در شکستن یخ روابط کاری و ایجاد فضای همکاری صمیمانه بی‌بدیل است."
+        "id": 22,
+        "seconds": 184,
+        "timeDisplay": "3:04",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "Oh,\n \nI'm\n \nnot\n \nvery\n \ngood\n \nat\n \nthis,\n \nam\n \nI?",
+        "textFa": "قدرت طنز در شکستن یخ روابط کاری و ایجاد فضای همکاری صمیمانه بی‌بدیل است."
       },
       {
-              "id": 23,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "An\n \napple\n \na\n \nday,\n \nof\n \ncourse,\n \nyeah\n \n…",
-              "textFa": "داستان‌های عامه‌پسند شیرین بخشی از حافظه جمعی و پیوندهای ماندگار یک ملت را می‌سازند."
+        "id": 23,
+        "seconds": 188,
+        "timeDisplay": "3:08",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "An\n \napple\n \na\n \nday,\n \nof\n \ncourse,\n \nyeah\n \n…",
+        "textFa": "داستان‌های عامه‌پسند شیرین بخشی از حافظه جمعی و پیوندهای ماندگار یک ملت را می‌سازند."
       },
       {
-              "id": 24,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Josh\n\t\nWiddicombe",
-              "textEn": "…\n \nkeeps\n \nthe\n \ndoctor\n \naway.",
-              "textFa": "کتاب‌های طنز گزینه‌ای فوق‌العاده برای فرار از دغدغه‌های فکری و بازیابی آرامش ذهن هستند."
+        "id": 24,
+        "seconds": 192,
+        "timeDisplay": "3:12",
+        "speaker": "Josh\n\t\nWiddicombe",
+        "textEn": "…\n \nkeeps\n \nthe\n \ndoctor\n \naway.",
+        "textFa": "کتاب‌های طنز گزینه‌ای فوق‌العاده برای فرار از دغدغه‌های فکری و بازیابی آرامش ذهن هستند."
       },
       {
-              "id": 25,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Red\n \nlight\n \nin\n \nthe\n \nsky,\n \nshepherd's\n \npie.\n \nOh,\n \nn\no.\n \nThat's\n \nnot\n \none,\n \nis\n \nit?\n \nRed\n \nsky\n \nat\n \nnight,\n \ns\nhepherd's\n \ndelight.\n \nThat's\n \nthe\n \none,\n \nyes.\n The\n \nFrequency\n \nIllusion,\n \ndoes\n \nthat\n \nmean\n \na\nnything\n \nto\n \nyou?",
-              "textFa": "جشنواره‌های فیلم‌های کمدی همواره میزبان پرشورترین استقبال‌های مردمی در سراسر جهانند."
+        "id": 25,
+        "seconds": 196,
+        "timeDisplay": "3:16",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Red\n \nlight\n \nin\n \nthe\n \nsky,\n \nshepherd's\n \npie.\n \nOh,\n \nn\no.\n \nThat's\n \nnot\n \none,\n \nis\n \nit?\n \nRed\n \nsky\n \nat\n \nnight,\n \ns\nhepherd's\n \ndelight.\n \nThat's\n \nthe\n \none,\n \nyes.\n The\n \nFrequency\n \nIllusion,\n \ndoes\n \nthat\n \nmean\n \na\nnything\n \nto\n \nyou?",
+        "textFa": "جشنواره‌های فیلم‌های کمدی همواره میزبان پرشورترین استقبال‌های مردمی در سراسر جهانند."
       },
       {
-              "id": 26,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Sarah\n\t\nMillican",
-              "textEn": "No.",
-              "textFa": "هنر بیان یک خاطره معمولی با چاشنی طنز مهارتی است که مجالس را گرم و دلنشین می‌کند."
+        "id": 26,
+        "seconds": 200,
+        "timeDisplay": "3:20",
+        "speaker": "Sarah\n\t\nMillican",
+        "textEn": "No.",
+        "textFa": "هنر بیان یک خاطره معمولی با چاشنی طنز مهارتی است که مجالس را گرم و دلنشین می‌کند."
       },
       {
-              "id": 27,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "No\n \nreason\n \nwhy\n \nit\n \nshould.\n \nWhen\n \nI\n \nused\n \nthe\n \nword\n \nh\neuristic,\n \nit\n \nmay\n \nbe\n \nthat\n \nyou\n \ndidn't\n \nknow\n \nthe\n \nw\nord.\n \nBut\n \nit's\n \nquite\n \nlikely\n \nthat\n \nin\n \na\n \ncouple\n \nof\n \nd\nays you might see it in a magazine or hear \nsomeone else using it on the radio or television \nand\n \nyou'll\n \ngo,\n \n'That's\n \nweird,\n \nI\n \nonly\n \njust\n \nheard\n \nt\nhat\n \nword\n \nfor\n \nthe\n \nfirst\n \ntime\n \ntwo\n \ndays\n \nago,\n \nand\n \nn\now\n \nit\n \nkeeps\n \ncropping\n \nup\n \neverywhere.'\n \nHave\n \ny ou ever had that experience?",
-              "textFa": "خنده سلاحی قدرتمند در برابر یأس و ابزاری برای ایستادگی شرافتمندانه در سختی‌هاست."
+        "id": 27,
+        "seconds": 204,
+        "timeDisplay": "3:24",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "No\n \nreason\n \nwhy\n \nit\n \nshould.\n \nWhen\n \nI\n \nused\n \nthe\n \nword\n \nh\neuristic,\n \nit\n \nmay\n \nbe\n \nthat\n \nyou\n \ndidn't\n \nknow\n \nthe\n \nw\nord.\n \nBut\n \nit's\n \nquite\n \nlikely\n \nthat\n \nin\n \na\n \ncouple\n \nof\n \nd\nays you might see it in a magazine or hear \nsomeone else using it on the radio or television \nand\n \nyou'll\n \ngo,\n \n'That's\n \nweird,\n \nI\n \nonly\n \njust\n \nheard\n \nt\nhat\n \nword\n \nfor\n \nthe\n \nfirst\n \ntime\n \ntwo\n \ndays\n \nago,\n \nand\n \nn\now\n \nit\n \nkeeps\n \ncropping\n \nup\n \neverywhere.'\n \nHave\n \ny ou ever had that experience?",
+        "textFa": "خنده سلاحی قدرتمند در برابر یأس و ابزاری برای ایستادگی شرافتمندانه در سختی‌هاست."
       },
       {
-              "id": 28,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Josh\n\t\nWiddicombe",
-              "textEn": "Yeah.\n \nI\n \nwas\n \ntalking\n \nto\n \nsomeone\n \nabout\n \nthis.\n \nIt\n \nw\nas\n \nRichard\n \nOsman,\n \ncos\n \nhe\n \nwas\n \ncomplaining\n \na\nbout people saying there's always tennis \nquestions on Pointless .",
-              "textFa": "حضور شخصیت‌های دوست‌داشتنی و شوخ‌طبع در زندگی به روزهای سخت رنگ امید می‌پاشد."
+        "id": 28,
+        "seconds": 208,
+        "timeDisplay": "3:28",
+        "speaker": "Josh\n\t\nWiddicombe",
+        "textEn": "Yeah.\n \nI\n \nwas\n \ntalking\n \nto\n \nsomeone\n \nabout\n \nthis.\n \nIt\n \nw\nas\n \nRichard\n \nOsman,\n \ncos\n \nhe\n \nwas\n \ncomplaining\n \na\nbout people saying there's always tennis \nquestions on Pointless .",
+        "textFa": "حضور شخصیت‌های دوست‌داشتنی و شوخ‌طبع در زندگی به روزهای سخت رنگ امید می‌پاشد."
       },
       {
-              "id": 29,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Oh,\n \nyes.",
-              "textFa": "تولید محتوای طنز هوشمندانه نیازمند مطالعه مداوم جامعه‌شناسی و ادبیات است."
+        "id": 29,
+        "seconds": 212,
+        "timeDisplay": "3:32",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Oh,\n \nyes.",
+        "textFa": "تولید محتوای طنز هوشمندانه نیازمند مطالعه مداوم جامعه‌شناسی و ادبیات است."
       },
       {
-              "id": 30,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Josh\n\t\nWiddicombe",
-              "textEn": "And\n \nthe\n \nmoment\n \nyou\n \nthink\n \nthat\n \nthere's\n \nt\nennis questions on Pointless , if you see one, \nyou\n \nthink,\n \n'Well,\n \nthat\n \ncompletely\n \nreinforces\n \ne\nverything.'",
-              "textFa": "فرهنگ عامه همواره از تکه‌کلام‌های طنزآمیز برای توصیف کوتاه‌تر موقعیت‌های پیچیده بهره می‌برد."
+        "id": 30,
+        "seconds": 216,
+        "timeDisplay": "3:36",
+        "speaker": "Josh\n\t\nWiddicombe",
+        "textEn": "And\n \nthe\n \nmoment\n \nyou\n \nthink\n \nthat\n \nthere's\n \nt\nennis questions on Pointless , if you see one, \nyou\n \nthink,\n \n'Well,\n \nthat\n \ncompletely\n \nreinforces\n \ne\nverything.'",
+        "textFa": "فرهنگ عامه همواره از تکه‌کلام‌های طنزآمیز برای توصیف کوتاه‌تر موقعیت‌های پیچیده بهره می‌برد."
       },
       {
-              "id": 31,
-              "seconds": 230,
-              "timeDisplay": "3:50",
-              "speaker": "Stephen\n\t\nFry",
-              "textEn": "Yes,\n \nthat's\n \nright.\n \nAll\n \nthese\n \nthings\n \nare\n \ncalled\n \na\n \ns\nort\n \nof\n \na\n \ncognitive\n \nbias,\n \nthey\n \npush\n \nyou\n \ninto\n \na\n \nw\nay\n \nof\n \nthinking,\n \nsome\n \ndifferent\n \nways\n \nof\n \n…\n So,\n \nyou\n \ncan\n \ntell\n \nthe\n \nmost\n \nappalling\n \nlie\n \nif\n \nit\n \nr\nhymes, or it's featured on QI .\n\nZ07 Speakout 3e CB C1 07494 VI.indd 176Z07 Speakout 3e CB C1 07494 VI.indd 176 01/09/2022 20:3001/09/2022 20:30",
-              "textFa": "در پایان، توانایی خندیدن به خود بزرگ‌ترین نشانه بلوغ فکری و رهایی از خودبزرگ‌بینی است."
+        "id": 31,
+        "seconds": 220,
+        "timeDisplay": "3:40",
+        "speaker": "Stephen\n\t\nFry",
+        "textEn": "Yes,\n \nthat's\n \nright.\n \nAll\n \nthese\n \nthings\n \nare\n \ncalled\n \na\n \ns\nort\n \nof\n \na\n \ncognitive\n \nbias,\n \nthey\n \npush\n \nyou\n \ninto\n \na\n \nw\nay\n \nof\n \nthinking,\n \nsome\n \ndifferent\n \nways\n \nof\n \n…\n So,\n \nyou\n \ncan\n \ntell\n \nthe\n \nmost\n \nappalling\n \nlie\n \nif\n \nit\n \nr\nhymes, or it's featured on QI .\n\n",
+        "textFa": "در پایان، توانایی خندیدن به خود بزرگ‌ترین نشانه بلوغ فکری و رهایی از خودبزرگ‌بینی است."
       }
     ],
     "questions": {
@@ -33526,52 +33569,52 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Speaker 1",
-              "textEn": "A quality I really like about myself is that I think I'm quite \npositive. I always manage to see the best in any situation or \nperson.",
-              "textFa": "بزرگ‌ترین انگیزه‌ام در کار، حس ارزشمندی و تأثیر مثبتی است که بر زندگی دیگران بر جای می‌گذارم."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1",
+        "textEn": "A quality I really like about myself is that I think I'm quite positive. I always manage to see the best in any situation or person.",
+        "textFa": "خصلتی که واقعاً در خودم دوست دارم مثبت‌اندیشی است؛ همیشه موفق می‌شوم جنبه‌های مثبت را در هر موقعیت یا در هر انسانی ببینم."
       },
       {
-              "id": 2,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Speaker 2",
-              "textEn": "I like the fact that I'm able to multitask, which, well, I mean with \npractical things. It just means I'm able to be quite efficient, \nespecially at the weekend, getting different chores done. It \nmeans I get them done a lot more quickly and then I have a lot \nmore time to relax and enjoy myself. Cos I know some people \nwho can't multitask and, yeah, I feel sorry for them.",
-              "textFa": "شور و اشتیاق به کشف نادانسته‌ها مرا وادار می‌کند هر روز با انرژی سراغ کارهایم بروم."
+        "id": 2,
+        "seconds": 30,
+        "timeDisplay": "0:30",
+        "speaker": "Speaker 2",
+        "textEn": "I like the fact that I'm able to multitask with practical things. It means I'm able to be quite efficient, especially at the weekend getting chores done quickly so I have time to relax.",
+        "textFa": "این ویژگی‌ام را دوست دارم که می‌توانم کارهای عملی را همزمان انجام دهم؛ این باعث می‌شود به خصوص در آخر هفته‌ها کارهای خانه را سریع‌تر تمام کنم و فرصتی برای استراحت داشته باشم."
       },
       {
-              "id": 3,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Speaker 175",
-              "textEn": "3 I t hink the quality that I like most about myself is that I'm really \ngood\n \nat\n \nkeeping\n \nin\n \ntouch\n \nwith\n \nfriends.\n \nI've\n \ngot\n \nfriends\n \nfrom\n \nall\n \nd\nifferent\n \ntimes\n \nof\n \nmy\n \nlife\n \nand\n \nI\n \nthink,\n \nI\n \nlike\n \nto\n \nthink\n \nthat\n \nI'm\n \na\n \nk\nind and thoughtful friend and I devote a lot of time to meeting \nup with people, even, you know, we might have moved many \nmiles apart from one another over the years, and I still make \na\n \nlot\n \nof\n \neffort\n \nto\n \ntravel\n \nand\n \nmeet\n \nup\n \nwith\n \nfriends\n \nor\n \nif\n \nwe\n \ncan't\n \nd\no that then speaking on the phone and just spending a lot of \ntime prioritising my friendships.",
-              "textFa": "حمایت و تشویق خانواده نیرومندترین تکیه‌گاه من در عبور از بزرگ‌ترین چالش‌های زندگی است."
+        "id": 3,
+        "seconds": 60,
+        "timeDisplay": "1:00",
+        "speaker": "Speaker 3",
+        "textEn": "The quality that I like most about myself is that I'm really good at keeping in touch with friends. I've got friends from all different times of my life and I devote a lot of time and effort to meeting up and prioritising my friendships.",
+        "textFa": "خصلتی که بیش از همه در خودم دوست دارم حفظ ارتباط با دوستان قدیمی است؛ از دوره‌های مختلف زندگی دوستانم را حفظ کرده‌ام و برای دیدار و حفظ دوستی‌هایم وقت و انرژی می‌گذارم."
       },
       {
-              "id": 4,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Speaker 4",
-              "textEn": "I\n \nlike\n \nthat\n \nI\n \nhave\n \na\n \ncalm\n \npersonality.\n \nIt\n \nhelps\n \nme\n \nto\n \nget\n \nthrough\n \nh\nard\n \nsituations,\n \nand\n \nsometimes\n \nI\n \ncan\n \nhelp\n \nothers\n \nto\n \nfeel\n \ncalm,\n \nt\noo.\n \nAnd\n \nthat's\n \nreally\n \ngood.\n \nBut,\n \nto\n \nbe\n \nhonest,\n \nI'm\n \nnot\n \nalways\n \nc\nalm\n \n–\n \nsometimes\n \nI\n \nfreak\n \nout\n \njust\n \nlike\n \neveryone\n \nelse.",
-              "textFa": "دیدن پیشرفت و به ثمر نشستن پروژه‌هایی که ماه‌ها برایشان وقت گذاشته‌ام به من انرژی می‌بخشد."
+        "id": 4,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Speaker 4",
+        "textEn": "I like that I have a calm personality. It helps me to get through hard situations, and sometimes I can help others to feel calm, too. But to be honest, sometimes I freak out just like everyone else!",
+        "textFa": "شخصیت آرامم را دوست دارم؛ کمکم می‌کند از موقعیت‌های دشوار عبور کنم و به دیگران هم آرامش ببخشم؛ هرچند راستش گاهی مثل همه من هم از کوره در می‌روم!"
       },
       {
-              "id": 5,
-              "seconds": 138,
-              "timeDisplay": "2:18",
-              "speaker": "Speaker 5",
-              "textEn": "Well,\n \nI\n \nlike\n \nto\n \nthink\n \nthat\n \nI'm\n \nquite\n \nhonest.\n \nWhen\n \nmy\n \nchildren\n \nask\n \nm\ne questions, I try to answer them as honestly as possible, and \nI think I do the same with other people, so yeah.",
-              "textFa": "رقابت سازنده با نسخه دیروز خودم، هدفمندترین عامل حرکت رو به جلو در زندگی من است."
+        "id": 5,
+        "seconds": 138,
+        "timeDisplay": "2:18",
+        "speaker": "Speaker 5",
+        "textEn": "Well, I like to think that I'm quite honest. When my children ask me questions, I try to answer as honestly as possible, and I do the same with other people.",
+        "textFa": "دوست دارم فکر کنم که بسیار صادقم؛ وقتی فرزندانم سؤالی می‌پرسند صادقانه پاسخ می‌دهم و با دیگران نیز همین صداقت را رعایت می‌کنم."
       },
       {
-              "id": 6,
-              "seconds": 140,
-              "timeDisplay": "2:20",
-              "speaker": "Speaker 6",
-              "textEn": "I\n \nthink\n \nI'm\n \nquite\n \nopen-minded.\n \nI\n \nthink\n \nI'm\n \nquite\n \nliberal,\n \nwhich\n \nI t\nhink is a good quality. I'm also not really intimidated by \npeople, so I don't feel like people are better than me.",
-              "textFa": "آرزوی ساختن آینده‌ای بهتر و امن‌تر برای نسل بعدی، انگیزه همیشگی تمام تلاش‌های من است."
+        "id": 6,
+        "seconds": 140,
+        "timeDisplay": "2:20",
+        "speaker": "Speaker 6",
+        "textEn": "I think I'm quite open-minded and liberal, which is a good quality. I'm also not easily intimidated by people, and treat everyone on equal footing.",
+        "textFa": "فکر می‌کنم ذهنی باز و اهل مدارا دارم؛ همچنین به سادگی مرعوب موقعیت دیگران نمی‌شوم و با همه با برابری و احترام برخورد می‌کنم."
       }
     ],
     "questions": {

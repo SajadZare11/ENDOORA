@@ -1,7 +1,31 @@
 import type { CefrLevel } from "./types";
 
+export type DetectiveSpeakerId =
+  | "white"
+  | "sherlock"
+  | "aunt"
+  | "flower_seller"
+  | "driver"
+  | "clerk"
+  | "guard"
+  | "henchman"
+  | "lily"
+  | "watson"
+  | "moriarty"
+  | "judge"
+  | "lestrade"
+  | "sterling"
+  | "governor"
+  | "vance"
+  | "pemberton"
+  | "raven"
+  | "howard"
+  | "darlington"
+  | "moran"
+  | string;
+
 export interface CutsceneDialogue {
-  speakerId: "white" | "sherlock" | "aunt" | "flower_seller" | "driver" | "clerk" | "guard" | "henchman" | "lily" | "watson" | "moriarty" | "judge" | "lestrade";
+  speakerId: DetectiveSpeakerId;
   speakerNameFa: string;
   speakerRoleFa: string;
   speakerAvatar: string;
@@ -100,11 +124,15 @@ export interface DetectiveStage {
   locationFa: string;
   locationEn: string;
   storyIntroFa: string;
-  cutscene: CutsceneScene;
+  cutscene?: CutsceneScene;
   decisionPoint?: DetectiveDecisionPoint;
   tasks: DetectiveSpeakingTask[];
   branchVariants?: DetectiveStageBranchVariant[]; // Branching paths depending on previous decisions!
   possibleEndings?: {
+    ending1: DetectiveStageEnding;
+    ending2: DetectiveStageEnding;
+  };
+  endings?: {
     ending1: DetectiveStageEnding;
     ending2: DetectiveStageEnding;
   };
@@ -1563,11 +1591,11 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a1-10-comfort-girl",
         titleFa: "دلجویی از دخترک و اعلام نجات و امنیت",
-        speakerPromptEn: "A frightened child in a red coat looks up into your eyes with tears...",
-        speakerPromptFa: "کودکی وحشت‌زده با پالتوی قرمز در میان اشک‌ها به چشمانت نگاه می‌کند...",
-        speakerRoleFa: "لیلی (دخترک ربوده‌شده)",
-        speakerAvatar: "👧",
-        taskInstructionFa: "با لحنی مهربان و آرامش‌بخش به دخترک بگو: «نترس لیلی! تو الان در امانی، من شرلوک هلمز هستم.»",
+        speakerPromptEn: "Sherlock yells as he enters the room...",
+        speakerPromptFa: "شرلوک در حالی که وارد اتاق می‌شود فریاد می‌زند...",
+        speakerRoleFa: "شرلوک هلمز",
+        speakerAvatar: "🔍",
+        taskInstructionFa: "در بدو ورود به اتاق با صدایی رسا بگو: «نترس لیلی! تو الان در امانی، من شرلوک هلمز هستم.»",
         targetKeywords: [
           { phrase: "Do not be afraid", hintFa: "(نترس)", synonyms: ["do not be afraid", "don't be afraid", "do not worry", "don't worry"], weight: 40 },
           { phrase: "safe now", hintFa: "(الان در امان هستی)", synonyms: ["safe now", "safe", "you are safe"], weight: 35 },
@@ -1614,10 +1642,10 @@ export const A1_SHERLOCK_CASE: DetectiveStage[] = [
         titleEn: "Ending: The Iron Trap & The Villain Revealed",
         badgeTitleFa: "⛓️ اسارت موقت در تله پروفسور موریارتی",
         imageSrc: "/images/skills/speaking/a1_scene_vault_trap.jpg",
-        climaxStoryFa: "دخمه خالی است! دخترک از این محل منتقل شده و تنها یک یادداشت روی میز قرار دارد: «خیلی دیر رسیدی هلمز». ناگهان در آهنی سنگین پشت سرت با صدای هولناکی کوبیده و قفل می‌شود!",
-        climaxStoryEn: "The vault is empty! The girl was moved, leaving only a mocking letter on the cold table: 'Too late, Holmes.' Suddenly, the heavy iron gate slams shut behind you and locks from the outside!",
-        revealDialogueEn: "WHITE: *Smiles mockingly through the iron bars, holding the key and a signed letter* 'Did you really believe I was Detective White, Holmes? I am Professor James Moriarty! You followed every clue I laid out for you. You are trapped... but our grand duel is only beginning. See you in Level A2!'",
-        revealDialogueFa: "وایت: *با لبخندی شیطانی و سرد از پشت میله‌های آهنی نگاه می‌کند و کلید و نامه امضا شده را نشان می‌دهد* «واقعاً باور کردی من کارآگاه وایت بودم هلمز؟ من پروفسور جیمز موریارتی هستم! تو تمام این مدت طبق سرنخ‌هایی که خودم برات چیده بودم جلو اومدی. حالا در تله منی... اما دوئل بزرگ ما تازه شروع شده. در سطح A2 می‌بینمت!»",
+        climaxStoryFa: "دخمه خالی است! دخترک از این محل منتقل شده و تنها یک ربان قرمز روی میز قرار دارد.",
+        climaxStoryEn: "The vault is empty! The girl was moved, leaving only a red ribbon on the table.",
+        revealDialogueEn: "WHITE with a cold smile in the foggy mist: 'Did you really believe I was Detective White, Holmes? I am James Moriarty! You followed every clue I laid out for you all this time. Our grand duel is only beginning. See you soon!'",
+        revealDialogueFa: "وایت با لبخندی سرد در فضای مه آلود: «واقعاً باور کردی من کارآگاه وایت بودم هلمز؟ من جیمز موریارتی هستم! تو تمام این مدت طبق سرنخهایی که خودم برات چیده بودم جلو اومدی. دوئل بزرگ ما تازه شروع شده. بزودی میبینمت!»",
         nextTierHintFa: "موریارتی نقاب از چهره برداشت و شما را موقتاً محبوس ساخت. در آغاز سطح A2، ورود دکتر جان واتسون شما را از این دخمه نجات می‌دهد تا به سراغ موریارتی بروید!",
       },
     },

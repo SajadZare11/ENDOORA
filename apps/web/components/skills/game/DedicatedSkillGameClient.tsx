@@ -662,24 +662,9 @@ export function DedicatedSkillGameClient({ skill }: Props) {
             refreshProgress();
           }}
         />
-      ) : activeLevel && skill === "speaking" && (activeLevel.cefr === "A1" || activeLevel.cefr === "A2") ? (
+      ) : activeLevel && skill === "speaking" ? (
         <SherlockSpeakingArena
           key={`sherlock-${activeLevel.cefr}-${activeLevel.levelNumber}`}
-          level={activeLevel}
-          onClose={() => {
-            setActiveLevel(null);
-            refreshProgress();
-          }}
-          onNextLevel={handleNextLevel}
-          onOpenLeaderboard={() => {
-            setActiveLevel(null);
-            setIsLeaderboardOpen(true);
-            refreshProgress();
-          }}
-        />
-      ) : activeLevel && skill === "speaking" ? (
-        <SpeakingEscapeRoomArena
-          key={`speaking-${activeLevel.cefr}-${activeLevel.levelNumber}`}
           level={activeLevel}
           onClose={() => {
             setActiveLevel(null);

@@ -13,21 +13,24 @@ import {
   getNodeStatus,
   completePathNode,
   passBossGate,
-  resetLearnerPathProgress,
-  unlockAllPathNodes,
 } from "../../../lib/learning-path-storage";
-import { PathHeroBanner } from "./PathHeroBanner";
 import { BossGateModal } from "./BossGateModal";
 import { LessonPreviewModal } from "./LessonPreviewModal";
 import { InteractiveLessonModal } from "./InteractiveLessonModal";
 import styles from "./learning-path.module.css";
 
-const TIERS: { id: CEFRTier; labelFa: string; descFa: string }[] = [
-  { id: "A1", labelFa: "سطح A1 مقدماتی", descFa: "مکالمه پایه و نیازهای اولیه" },
-  { id: "A2", labelFa: "سطح A2 پیش‌متوسطه", descFa: "توصیف گذشته، سفر و سلامت" },
-  { id: "B1", labelFa: "سطح B1 متوسطه", descFa: "استقلال در مکالمه و آینده" },
-  { id: "B2", labelFa: "سطح B2 فوق‌متوسط", descFa: "استدلال، مباحثه و زبان رسمی" },
-  { id: "C1", labelFa: "سطح C1 پیشرفته و آیلتس", descFa: "تسلط آکادمیک و نمره ۷.۵+" },
+const TIERS: {
+  id: CEFRTier;
+  code: string;
+  labelFa: string;
+  subFa: string;
+  descFa: string;
+}[] = [
+  { id: "A1", code: "A1", labelFa: "سطح A1", subFa: "مقدماتی", descFa: "مکالمه پایه و نیازهای اولیه" },
+  { id: "A2", code: "A2", labelFa: "سطح A2", subFa: "پیش‌متوسط", descFa: "توصیف گذشته، سفر و سلامت" },
+  { id: "B1", code: "B1", labelFa: "سطح B1", subFa: "متوسط", descFa: "استقلال در مکالمه و آینده" },
+  { id: "B2", code: "B2", labelFa: "سطح B2", subFa: "فوق‌متوسط", descFa: "استدلال، مباحثه و زبان رسمی" },
+  { id: "C1", code: "C1", labelFa: "سطح C1", subFa: "پیشرفته", descFa: "تسلط آکادمیک و نمره ۷.۵+" },
 ];
 
 export const VisualSkillTree: React.FC = () => {
@@ -140,14 +143,6 @@ export const VisualSkillTree: React.FC = () => {
     refreshProgress();
   };
 
-  const handleStartNodeDirectly = (node: PathNode, unit: PathUnit) => {
-    if (node.type === "boss") {
-      setActiveBossModalUnit({ unit, isTestOut: false });
-    } else {
-      setInteractiveModal({ node, unit });
-    }
-  };
-
   const handleTestOutClick = (unit: PathUnit) => {
     setActiveBossModalUnit({ unit, isTestOut: true });
   };
@@ -160,6 +155,39 @@ export const VisualSkillTree: React.FC = () => {
 
   const filteredUnits = CURRICULUM_UNITS.filter((u) => u.tier === activeTier);
 
+  // Identify the currently in-progress active unit in the active tier
+  const activeUnitInTier = useMemo(() => {
+    const inProgress = filteredUnits.find(
+      (u) =>
+        progress.unlockedUnitIds.includes(u.id) &&
+        !u.nodes.every((n) => progress.completedNodeIds.includes(n.id))
+    );
+    if (inProgress) return inProgress.id;
+    return filteredUnits[0]?.id;
+  }, [filteredUnits, progress]);
+
+  // Collapsible state for units: active unit in progress is open by default
+  const [expandedUnits, setExpandedUnits] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (activeUnitInTier) {
+      setExpandedUnits((prev) => {
+        if (prev[activeUnitInTier] === undefined) {
+          return { ...prev, [activeUnitInTier]: true };
+        }
+        return prev;
+      });
+    }
+  }, [activeTier, activeUnitInTier]);
+
+  const toggleUnitCollapse = (unitId: string) => {
+    setExpandedUnits((prev) => {
+      const isCurrentlyExpanded =
+        prev[unitId] !== undefined ? prev[unitId] : unitId === activeUnitInTier;
+      return { ...prev, [unitId]: !isCurrentlyExpanded };
+    });
+  };
+
   // Serpentine offset pattern for 5 nodes: Center -> Right -> Center -> Left -> Center
   const offsetClasses = [
     styles.nodePosCenter,
@@ -171,22 +199,8 @@ export const VisualSkillTree: React.FC = () => {
 
   return (
     <div className={styles.pathContainer}>
-      {/* Master Command Center Hero Banner with Working Controls */}
-      <PathHeroBanner
-        progress={progress}
-        onStartNode={handleStartNodeDirectly}
-        onResetProgress={() => {
-          resetLearnerPathProgress();
-          refreshProgress();
-        }}
-        onUnlockAll={() => {
-          unlockAllPathNodes();
-          refreshProgress();
-        }}
-      />
-
-      {/* Tier Switcher Navigation with Live Progress */}
-      <div className={styles.tierNavTrack} role="tablist" aria-label="انتخاب سطح آموزشی">
+      {/* Modern 5-Tier Level Navigation (No horizontal scrolling) */}
+      <div className={styles.tierNavGrid} role="tablist" aria-label="انتخاب سطح آموزشی">
         {TIERS.map((tier) => {
           const isActive = activeTier === tier.id;
           const stat = tierStats[tier.id];
@@ -197,20 +211,36 @@ export const VisualSkillTree: React.FC = () => {
               type="button"
               role="tab"
               aria-selected={isActive}
-              className={`${styles.tierTabBtn} ${isActive ? styles.tierTabActive : ""}`}
+              className={`${styles.tierCardBtn} ${isActive ? styles.tierCardActive : ""}`}
               onClick={() => setActiveTier(tier.id)}
             >
-              <span>{stat.isUnlocked ? "🔓" : "🔒"}</span>
-              <span>{tier.labelFa}</span>
-              <span className={styles.tierTabProgressBadge}>
-                {stat.percent === 100 ? "✅ ۱۰۰٪" : `${stat.percent}٪`}
-              </span>
+              <div className={styles.tierCardTop}>
+                <span className={styles.tierCodeBadge}>{tier.code}</span>
+                <span className={styles.tierLockIcon} title={stat.isUnlocked ? "سطح باز است" : "سطح قفل است"}>
+                  {stat.isUnlocked ? "🔓" : "🔒"}
+                </span>
+              </div>
+              <div className={styles.tierCardMeta}>
+                <span className={styles.tierLabelMain}>{tier.labelFa}</span>
+                <span className={styles.tierDescSub}>{tier.subFa}</span>
+              </div>
+              <div className={styles.tierCardFooter}>
+                <span className={styles.tierPercentBadge}>
+                  {stat.percent === 100 ? "✅ ۱۰۰٪" : `${stat.percent}٪`}
+                </span>
+              </div>
+              <div className={styles.tierMiniProgressTrack}>
+                <div
+                  className={styles.tierMiniProgressFill}
+                  style={{ width: `${stat.percent}%` }}
+                />
+              </div>
             </button>
           );
         })}
       </div>
 
-      {/* Active Tier Units */}
+      {/* Active Tier Units - Collapsible Accordion Style */}
       {filteredUnits.map((unit) => {
         const isUnitUnlocked = progress.unlockedUnitIds.includes(unit.id);
         const unitCompletedNodes = unit.nodes.filter((n) =>
@@ -218,6 +248,8 @@ export const VisualSkillTree: React.FC = () => {
         ).length;
         const allNodesDone = unit.nodes.every((n) => progress.completedNodeIds.includes(n.id));
         const unitPercent = Math.round((unitCompletedNodes / unit.nodes.length) * 100);
+        const isExpanded =
+          expandedUnits[unit.id] !== undefined ? expandedUnits[unit.id] : unit.id === activeUnitInTier;
 
         // Calculate connecting road statuses between 5 nodes
         // Segment 0: Node 0 -> 1
@@ -245,9 +277,24 @@ export const VisualSkillTree: React.FC = () => {
         const s3Active = progress.completedNodeIds.includes(unit.nodes[3]?.id) && !s3Done;
 
         return (
-          <section key={unit.id} className={styles.unitSection}>
-            {/* Unit Header Card */}
-            <div className={styles.unitCardHeader}>
+          <section
+            key={unit.id}
+            className={`${styles.unitSection} ${!isExpanded ? styles.unitSectionCollapsed : ""}`}
+          >
+            {/* Unit Header Card - Clickable to expand/collapse */}
+            <div
+              className={`${styles.unitCardHeader} ${styles.unitCardHeaderClickable}`}
+              onClick={() => toggleUnitCollapse(unit.id)}
+              role="button"
+              tabIndex={0}
+              aria-expanded={isExpanded}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleUnitCollapse(unit.id);
+                }
+              }}
+            >
               <div className={styles.unitTitleGroup} style={{ flex: 1, minWidth: "260px" }}>
                 <span className={styles.unitBadgeIcon}>{unit.badgeIcon}</span>
                 <div style={{ flex: 1 }}>
@@ -303,164 +350,192 @@ export const VisualSkillTree: React.FC = () => {
                 </div>
               </div>
 
-              {isUnitUnlocked && !allNodesDone && (
-                <button
-                  type="button"
-                  className={styles.testOutBtn}
-                  onClick={() => handleTestOutClick(unit)}
-                  title="اگر به مباحث این یونیت مسلط هستید، با یک آزمون سریع از آن عبور کنید."
-                >
-                  <span>⚡</span>
-                  <span>جهش به جلو (آزمون میانبر)</span>
-                </button>
-              )}
-            </div>
-
-            {/* Serpentine Nodes Track with Connected SVG Road */}
-            <div className={styles.serpentineTrack}>
-              {/* SVG Curved Road Connecting the 5 nodes */}
-              <svg
-                className={styles.svgRoadLayer}
-                viewBox="0 0 320 580"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                {/* Segment 0: 0 -> 1 */}
-                <path
-                  d="M 160 48 C 160 110, 75 110, 75 170"
-                  className={
-                    s0Done
-                      ? styles.svgRoadPathCompleted
-                      : s0Active
-                      ? styles.svgRoadPathActive
-                      : styles.svgRoadPathLocked
-                  }
-                />
-                {/* Segment 1: 1 -> 2 */}
-                <path
-                  d="M 75 170 C 75 230, 160 230, 160 292"
-                  className={
-                    s1Done
-                      ? styles.svgRoadPathCompleted
-                      : s1Active
-                      ? styles.svgRoadPathActive
-                      : styles.svgRoadPathLocked
-                  }
-                />
-                {/* Segment 2: 2 -> 3 */}
-                <path
-                  d="M 160 292 C 160 350, 245 350, 245 414"
-                  className={
-                    s2Done
-                      ? styles.svgRoadPathCompleted
-                      : s2Active
-                      ? styles.svgRoadPathActive
-                      : styles.svgRoadPathLocked
-                  }
-                />
-                {/* Segment 3: 3 -> 4 */}
-                <path
-                  d="M 245 414 C 245 475, 160 475, 160 536"
-                  className={
-                    s3Done
-                      ? styles.svgRoadPathCompleted
-                      : s3Active
-                      ? styles.svgRoadPathActive
-                      : styles.svgRoadPathLocked
-                  }
-                />
-              </svg>
-
-              {/* Node Bubbles */}
-              {unit.nodes.map((node, nodeIdx) => {
-                const status = getNodeStatus(node.id, unit.id, progress);
-                const isBoss = node.type === "boss";
-                const offsetClass = offsetClasses[nodeIdx % offsetClasses.length];
-                const starsCount = progress.nodeStars[node.id] || 0;
-
-                return (
-                  <div
-                    key={node.id}
-                    className={`${styles.nodeWrapper} ${offsetClass}`}
-                    onClick={() => handleNodeClick(node, unit)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${node.titleFa} (${node.typeLabelFa})`}
+              {/* Action buttons & Collapse trigger */}
+              <div className={styles.unitHeaderActions}>
+                {isUnitUnlocked && !allNodesDone && (
+                  <button
+                    type="button"
+                    className={styles.testOutBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTestOutClick(unit);
+                    }}
+                    title="اگر به مباحث این یونیت مسلط هستید، با یک آزمون سریع از آن عبور کنید."
                   >
-                    <div
-                      className={`
-                        ${styles.nodeBubble}
-                        ${isBoss ? styles.bossGateBubble : ""}
-                        ${
-                          status === "completed"
-                            ? styles.nodeCompleted
-                            : status === "available"
-                            ? styles.nodeAvailable
-                            : styles.nodeLocked
-                        }
-                      `}
-                    >
-                      <span>{status === "locked" ? "🔒" : node.icon}</span>
-                    </div>
+                    <span>⚡</span>
+                    <span>جهش به جلو (آزمون میانبر)</span>
+                  </button>
+                )}
 
-                    {/* Stars Earned */}
-                    {status === "completed" && (
-                      <div className={styles.nodeStarsRow}>
-                        {Array.from({ length: starsCount || 3 }).map((_, i) => (
-                          <span key={i} role="img" aria-label="ستاره">
-                            ⭐
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Active Pulsing Indicator Badge */}
-                    {status === "available" && (
-                      <div
-                        style={{
-                          marginBlockStart: "0.4rem",
-                          background: "linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%)",
-                          color: "#ffffff",
-                          fontSize: "0.72rem",
-                          fontWeight: 850,
-                          padding: "0.2rem 0.65rem",
-                          borderRadius: "9999px",
-                          boxShadow: "0 4px 12px rgba(37, 99, 235, 0.45)",
-                          whiteSpace: "nowrap",
-                          border: "1px solid rgba(255, 255, 255, 0.3)",
-                        }}
-                      >
-                        ⚡ نوبت شماست
-                      </div>
-                    )}
-
-                    {/* Tooltip Title */}
-                    <div className={styles.nodeLabelTooltip}>
-                      <span>{node.titleFa}</span>
-                    </div>
-                  </div>
-                );
-              })}
+                <div
+                  className={`${styles.unitTogglePill} ${isExpanded ? styles.unitTogglePillActive : ""}`}
+                >
+                  <span>{isExpanded ? "بستن درس‌ها" : "مشاهده درس‌ها"}</span>
+                  <svg
+                    className={`${styles.unitChevronIcon} ${isExpanded ? styles.unitChevronRotated : ""}`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
-            {/* Optional Side Quest Branch */}
-            {unit.sideQuest && isUnitUnlocked && (
-              <div className={styles.sideQuestCard}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-                  <span style={{ fontSize: "1.75rem" }}>{unit.sideQuest.icon}</span>
-                  <div>
-                    <h4 className={styles.sideQuestTitle}>
-                      ماموریت جانبی: {unit.sideQuest.titleFa}
-                    </h4>
-                    <p style={{ margin: "0.2rem 0 0 0", fontSize: "0.82rem", color: "#64748b" }}>
-                      {unit.sideQuest.descriptionFa}
-                    </p>
-                  </div>
+            {/* Collapsible Content: Serpentine Nodes & Side Quest */}
+            {isExpanded && (
+              <div className={styles.unitCollapsibleBody}>
+                {/* Serpentine Nodes Track with Connected SVG Road */}
+                <div className={styles.serpentineTrack}>
+                  {/* SVG Curved Road Connecting the 5 nodes */}
+                  <svg
+                    className={styles.svgRoadLayer}
+                    viewBox="0 0 320 580"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    {/* Segment 0: 0 -> 1 */}
+                    <path
+                      d="M 160 48 C 160 110, 75 110, 75 170"
+                      className={
+                        s0Done
+                          ? styles.svgRoadPathCompleted
+                          : s0Active
+                          ? styles.svgRoadPathActive
+                          : styles.svgRoadPathLocked
+                      }
+                    />
+                    {/* Segment 1: 1 -> 2 */}
+                    <path
+                      d="M 75 170 C 75 230, 160 230, 160 292"
+                      className={
+                        s1Done
+                          ? styles.svgRoadPathCompleted
+                          : s1Active
+                          ? styles.svgRoadPathActive
+                          : styles.svgRoadPathLocked
+                      }
+                    />
+                    {/* Segment 2: 2 -> 3 */}
+                    <path
+                      d="M 160 292 C 160 350, 245 350, 245 414"
+                      className={
+                        s2Done
+                          ? styles.svgRoadPathCompleted
+                          : s2Active
+                          ? styles.svgRoadPathActive
+                          : styles.svgRoadPathLocked
+                      }
+                    />
+                    {/* Segment 3: 3 -> 4 */}
+                    <path
+                      d="M 245 414 C 245 475, 160 475, 160 536"
+                      className={
+                        s3Done
+                          ? styles.svgRoadPathCompleted
+                          : s3Active
+                          ? styles.svgRoadPathActive
+                          : styles.svgRoadPathLocked
+                      }
+                    />
+                  </svg>
+
+                  {/* Node Bubbles */}
+                  {unit.nodes.map((node, nodeIdx) => {
+                    const status = getNodeStatus(node.id, unit.id, progress);
+                    const isBoss = node.type === "boss";
+                    const offsetClass = offsetClasses[nodeIdx % offsetClasses.length];
+                    const starsCount = progress.nodeStars[node.id] || 0;
+
+                    return (
+                      <div
+                        key={node.id}
+                        className={`${styles.nodeWrapper} ${offsetClass}`}
+                        onClick={() => handleNodeClick(node, unit)}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`${node.titleFa} (${node.typeLabelFa})`}
+                      >
+                        <div
+                          className={`
+                            ${styles.nodeBubble}
+                            ${isBoss ? styles.bossGateBubble : ""}
+                            ${
+                              status === "completed"
+                                ? styles.nodeCompleted
+                                : status === "available"
+                                ? styles.nodeAvailable
+                                : styles.nodeLocked
+                            }
+                          `}
+                        >
+                          <span>{status === "locked" ? "🔒" : node.icon}</span>
+                        </div>
+
+                        {/* Stars Earned */}
+                        {status === "completed" && (
+                          <div className={styles.nodeStarsRow}>
+                            {Array.from({ length: starsCount || 3 }).map((_, i) => (
+                              <span key={i} role="img" aria-label="ستاره">
+                                ⭐
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Active Pulsing Indicator Badge */}
+                        {status === "available" && (
+                          <div
+                            style={{
+                              marginBlockStart: "0.4rem",
+                              background: "linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%)",
+                              color: "#ffffff",
+                              fontSize: "0.72rem",
+                              fontWeight: 850,
+                              padding: "0.2rem 0.65rem",
+                              borderRadius: "9999px",
+                              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.45)",
+                              whiteSpace: "nowrap",
+                              border: "1px solid rgba(255, 255, 255, 0.3)",
+                            }}
+                          >
+                            ⚡ نوبت شماست
+                          </div>
+                        )}
+
+                        {/* Tooltip Title */}
+                        <div className={styles.nodeLabelTooltip}>
+                          <span>{node.titleFa}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <Link href={unit.sideQuest.deepLinkHref} className={styles.sideQuestBtn}>
-                  <span>شروع ماجراجویی</span>
-                  <span aria-hidden="true">←</span>
-                </Link>
+
+                {/* Optional Side Quest Branch */}
+                {unit.sideQuest && isUnitUnlocked && (
+                  <div className={styles.sideQuestCard}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+                      <span style={{ fontSize: "1.75rem" }}>{unit.sideQuest.icon}</span>
+                      <div>
+                        <h4 className={styles.sideQuestTitle}>
+                          ماموریت جانبی: {unit.sideQuest.titleFa}
+                        </h4>
+                        <p style={{ margin: "0.2rem 0 0 0", fontSize: "0.82rem", color: "#64748b" }}>
+                          {unit.sideQuest.descriptionFa}
+                        </p>
+                      </div>
+                    </div>
+                    <Link href={unit.sideQuest.deepLinkHref} className={styles.sideQuestBtn}>
+                      <span>شروع ماجراجویی</span>
+                      <span aria-hidden="true">←</span>
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
           </section>

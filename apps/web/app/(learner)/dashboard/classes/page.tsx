@@ -10,6 +10,7 @@ import {
   acceptLearnerConsent,
   type LinkedTeacher,
 } from "../../../../lib/teacher-classes";
+import { fetchLearnerAssignments } from "../../../../lib/teacher-assignments";
 import { useLearnerHome } from "../../../../components/learner/LearnerShell";
 import { checkClassroomAccess } from "../../../../lib/classroom-schedule";
 import { JoinClassroomModal } from "../../../../components/classroom/JoinClassroomModal";
@@ -27,6 +28,8 @@ export default function DashboardClassesPage() {
   const [codeFeedback, setCodeFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [copiedLinkId, setCopiedLinkId] = useState<string | null>(null);
   const [selectedClassForModal, setSelectedClassForModal] = useState<LinkedTeacher | null>(null);
+  const [pendingAssignmentsCount, setPendingAssignmentsCount] = useState<number | null>(null);
+  const [loadingAssignments, setLoadingAssignments] = useState(true);
 
   const inviteInputId = useId();
 
@@ -52,6 +55,23 @@ export default function DashboardClassesPage() {
       })
       .catch(() => {
         if (!cancelled) setLoading(false);
+      });
+
+    fetchLearnerAssignments()
+      .then((items) => {
+        if (!cancelled) {
+          const pending = items.filter((a) => {
+            const hasAttemptsLeft = a.attempts_used < a.max_attempts;
+            return (a.is_open && hasAttemptsLeft) || a.in_progress_attempt_id !== null;
+          });
+          setPendingAssignmentsCount(pending.length);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setPendingAssignmentsCount(null);
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingAssignments(false);
       });
 
     return () => {
@@ -156,7 +176,7 @@ export default function DashboardClassesPage() {
         <div className={styles.titleRow}>
           <div>
             <h1 className={styles.title}>
-              {isFa ? "کلاس‌ها و مدرس‌های من" : "My Classes & Instructors"}
+              {isFa ? "کلاس‌ها و تکالیف من" : "My Classes & Assignments"}
             </h1>
             <p className={styles.description}>
               {isFa
@@ -208,6 +228,57 @@ export default function DashboardClassesPage() {
               {codeFeedback.message}
             </div>
           ) : null}
+        </div>
+      </section>
+
+      {/* Assignments Callout Card */}
+      <section className={styles.assignmentsCard} aria-label={isFa ? "بخش تکالیف کلاسی" : "Class assignments section"}>
+        <div className={styles.assignmentsInfo}>
+          <div className={styles.assignmentsHeaderRow}>
+            <span className={styles.assignmentsIcon} aria-hidden="true">
+              📝
+            </span>
+            <div className={styles.assignmentsTitleCol}>
+              <div className={styles.assignmentsTitleWithBadge}>
+                <h2 className={styles.assignmentsTitle}>
+                  {isFa ? "تکالیف و تمرین‌های کلاسی من" : "My Class Assignments & Tasks"}
+                </h2>
+                {!loadingAssignments && pendingAssignmentsCount !== null && (
+                  <span
+                    className={
+                      pendingAssignmentsCount > 0
+                        ? styles.assignmentsBadgeAlert
+                        : styles.assignmentsBadgeSuccess
+                    }
+                  >
+                    {pendingAssignmentsCount > 0
+                      ? isFa
+                        ? `${pendingAssignmentsCount} تکلیف در انتظار انجام`
+                        : `${pendingAssignmentsCount} Pending Assignment${pendingAssignmentsCount > 1 ? "s" : ""}`
+                      : isFa
+                      ? "همه تکالیف انجام شده ✨"
+                      : "All caught up ✨"}
+                  </span>
+                )}
+              </div>
+              <p className={styles.assignmentsDesc}>
+                {isFa
+                  ? "مشاهده، انجام و پیگیری تکالیف محول‌شده توسط مدرسان، مهلت ارسال پاسخ‌ها و ارزیابی‌های خودکار."
+                  : "Track, complete, and submit assignments assigned by your instructors and review automated feedback."}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.assignmentsActions}>
+          <Link href="/assignments" className={styles.assignmentsPrimaryBtn}>
+            <span>📝</span>
+            <span>{isFa ? "مشاهده و انجام تکالیف" : "View Assignments"}</span>
+          </Link>
+          <Link href="/grades" className={styles.assignmentsSecondaryBtn}>
+            <span>📊</span>
+            <span>{isFa ? "کارنامه و نمرات" : "Grades & Reports"}</span>
+          </Link>
         </div>
       </section>
 

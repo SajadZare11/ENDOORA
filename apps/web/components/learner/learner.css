@@ -4145,7 +4145,7 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
 
 .learner-bento-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 

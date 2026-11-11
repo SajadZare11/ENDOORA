@@ -42,7 +42,7 @@ export function SherlockSpeakingArena({
   const storageKey = `endoora_sherlock_${(level.cefr || "a1").toLowerCase()}_decisions`;
 
   // Flow State
-  const [isCutsceneOpen, setIsCutsceneOpen] = useState<boolean>(true);
+  const [isCutsceneOpen, setIsCutsceneOpen] = useState<boolean>(Boolean(stage.cutscene));
   const [currentTaskIndex, setCurrentTaskIndex] = useState<number>(0);
   const [selectedDecision, setSelectedDecision] = useState<DetectiveDecisionChoice | null>(null);
   const [storyDecisions, setStoryDecisions] = useState<Record<number, string>>(() => {
@@ -743,7 +743,7 @@ export function SherlockSpeakingArena({
         {/* ================================================================= */}
         {/* CINEMATIC CUTSCENE VIEW (ابرهای دیالوگ + تصویر صحنه)               */}
         {/* ================================================================= */}
-        {isCutsceneOpen ? (
+        {isCutsceneOpen && activeStage.cutscene ? (
           <div style={{ padding: "1.5rem" }}>
             {/* Cinematic Hero Image */}
             <div className={styles.cutsceneHeroBox}>

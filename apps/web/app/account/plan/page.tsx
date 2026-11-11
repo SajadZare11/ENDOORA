@@ -1,7 +1,5 @@
-import { FoundationAccountPage } from "../../../components/account/FoundationAccountPage";
+import { redirect } from "next/navigation";
 
 export default function PlanPage() {
-  return (
-    <FoundationAccountPage section="plan" />
-  );
+  redirect("/account?tab=plan");
 }

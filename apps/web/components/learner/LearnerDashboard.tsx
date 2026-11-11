@@ -62,8 +62,8 @@ const text = {
     resumeSecondaryAction: "مرور واژگان در لایتنر 📚",
     progressLabel: "میزان پیشرفت جلسه",
 
-    // 4 Bento Action Cards (Teacher & Lesson-Focused)
-    bentoSectionTitle: "هاب تمرین روزانه و کلاس‌ها",
+    // 3 Bento Action Cards (Teacher & Lesson-Focused)
+    bentoSectionTitle: "هاب آموزش و کلاس‌ها",
     bentoSectionSubtitle: "دسترسی مستقیم و بدون فوت وقت به ضروری‌ترین فعالیت‌های آموزشی امروز",
 
     // Card 1: Video Courses
@@ -88,13 +88,6 @@ const text = {
     card3Stat: "لغت آماده مرور امروز",
     card3NoStat: "جعبه لایتنر امروز خلوت است ✨",
     card3Action: "شروع مرور واژگان",
-
-    // Card 4: Practice Lab
-    card4Badge: "تمرین مهارت‌های ۶‌گانه",
-    card4Title: "تمرین و آزمایشگاه مهارت‌ها",
-    card4Desc: "تمرین تعاملی گرامر، درک مطلب، واژگان و اصطلاحات روزمره با ارزیابی و تصحیح هوش مصنوعی.",
-    card4Stat: "تمرین‌های تعاملی کلیه سطوح CEFR",
-    card4Action: "شروع تمرین روزانه",
 
     // Progress & Mastery Panel
     momentumTitle: "تداوم و هدف مطالعه هفتگی",
@@ -138,8 +131,8 @@ const text = {
     resumeSecondaryAction: "Review Lesson Vocabulary 📚",
     progressLabel: "Session Progress",
 
-    // 4 Bento Action Cards (Teacher & Lesson-Focused)
-    bentoSectionTitle: "Daily Practice Hub & Classes",
+    // 3 Bento Action Cards (Teacher & Lesson-Focused)
+    bentoSectionTitle: "Learning Hub & Classes",
     bentoSectionSubtitle: "Direct, zero-distraction access to your highest-yield learning tasks today",
 
     // Card 1: Video Courses
@@ -164,13 +157,6 @@ const text = {
     card3Stat: "words due for review today",
     card3NoStat: "Your Leitner box is clear ✨",
     card3Action: "Start Vocabulary Review",
-
-    // Card 4: Practice Lab
-    card4Badge: "6 Core Competencies",
-    card4Title: "Skills Practice Lab",
-    card4Desc: "Interactive drills for grammar, reading comprehension, vocabulary and idioms with AI feedback.",
-    card4Stat: "Adaptive practice across CEFR tiers",
-    card4Action: "Start Daily Practice",
 
     // Progress & Mastery Panel
     momentumTitle: "Weekly Study Momentum",
@@ -632,27 +618,6 @@ export function LearnerDashboard() {
               </span>
               <span className="learner-bento-card__cta">
                 <span>{t.card3Action}</span>
-                <span className="learner-bento-card__arrow" aria-hidden="true">
-                  {locale === "fa" ? "←" : "→"}
-                </span>
-              </span>
-            </div>
-          </Link>
-
-          {/* Card 4: Practice Lab */}
-          <Link href="/practice" className="learner-bento-card learner-bento-card--exam">
-            <div className="learner-bento-card__top">
-              <span className="learner-bento-card__icon learner-bento-card__icon--gold" aria-hidden="true">
-                <DashboardIcon name="target" />
-              </span>
-              <span className="learner-bento-card__badge">{t.card4Badge}</span>
-            </div>
-            <h3 className="learner-bento-card__title">{t.card4Title}</h3>
-            <p className="learner-bento-card__desc">{t.card4Desc}</p>
-            <div className="learner-bento-card__footer">
-              <span className="learner-bento-card__stat">{t.card4Stat}</span>
-              <span className="learner-bento-card__cta">
-                <span>{t.card4Action}</span>
                 <span className="learner-bento-card__arrow" aria-hidden="true">
                   {locale === "fa" ? "←" : "→"}
                 </span>
