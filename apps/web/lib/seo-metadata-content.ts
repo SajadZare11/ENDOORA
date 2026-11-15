@@ -1,0 +1,258 @@
+export type RobotsDirective = "index_follow" | "noindex_follow" | "noindex_nofollow";
+export type RedirectType = "301_permanent" | "302_temporary";
+export type SchemaType = "Course" | "FAQPage" | "Organization" | "BreadcrumbList";
+
+export interface PageSeoMetadata {
+  pagePath: string;
+  pageLabel: string;
+  metaTitle: string;
+  metaDescription: string;
+  canonicalUrl: string;
+  robotsDirective: RobotsDirective;
+  ogTitle: string;
+  ogDescription: string;
+  ogImageUrl: string;
+  updatedAt: string;
+  updatedBy: string;
+}
+
+export interface UrlRedirectRule {
+  id: string;
+  sourcePath: string;
+  destinationPath: string;
+  redirectType: RedirectType;
+  isActive: boolean;
+  hitCount: number;
+  notes?: string;
+  createdAt: string;
+}
+
+export interface SchemaJsonLdItem {
+  id: string;
+  pagePath: string;
+  schemaType: SchemaType;
+  title: string;
+  jsonLdPayload: Record<string, any>;
+  updatedAt: string;
+}
+
+export interface SeoStudioStats {
+  totalPagesConfigured: number;
+  totalActiveRedirects: number;
+  totalRedirectHits: number;
+  totalSchemasGenerated: number;
+  avgTitleLength: number;
+  avgDescLength: number;
+}
+
+export const ROBOTS_LABELS: Record<RobotsDirective, { fa: string; color: string }> = {
+  index_follow: { fa: "نمایه‌سازی و دنبال کردن پیوندها (Index, Follow)", color: "#10b981" },
+  noindex_follow: { fa: "عدم نمایه‌سازی ولی دنبال کردن پیوندها (NoIndex, Follow)", color: "#f59e0b" },
+  noindex_nofollow: { fa: "مسدودسازی کامل برای موتورهای جستجو (NoIndex, NoFollow)", color: "#ef4444" },
+};
+
+export const REDIRECT_TYPE_LABELS: Record<RedirectType, { fa: string; badge: string; color: string }> = {
+  "301_permanent": { fa: "ریدایرکت دائمی (301 Permanent Moved)", badge: "301", color: "#3b82f6" },
+  "302_temporary": { fa: "ریدایرکت موقت (302 Temporary Found)", badge: "302", color: "#f59e0b" },
+};
+
+export const INITIAL_PAGE_METAS: PageSeoMetadata[] = [
+  {
+    pagePath: "/",
+    pageLabel: "صفحه اصلی پلتفرم ایندورا",
+    metaTitle: "ایندورا | سامانه هوشمند یادگیری زبان انگلیسی، آیلتس و کنکور",
+    metaDescription:
+      "یادگیری زبان انگلیسی با فناوری دوقلوی هوش مصنوعی، مسترکلاس‌های آیلتس، تمرین تا ۲۰ نهایی دوازدهم و شبیه‌ساز مکالمه بومی در آکادمی ایندورا.",
+    canonicalUrl: "https://endoora.com",
+    robotsDirective: "index_follow",
+    ogTitle: "ایندورا | پلتفرم پیشرفته آموزش زبان انگلیسی با هوش مصنوعی",
+    ogDescription:
+      "تکنولوژی دوقلوی زبان‌آموز، بازخورد بلادرنگ تلفظ و دوره‌های تخصصی رایتینگ و اسپیکینگ آیلتس در ایندورا.",
+    ogImageUrl: "https://endoora.com/og/main-banner.png",
+    updatedAt: "2026-11-15T12:00:00Z",
+    updatedBy: "مدیر ارشد سئو",
+  },
+  {
+    pagePath: "/courses",
+    pageLabel: "کاتالوگ جامع دوره‌ها و پکیج‌های آموزشی",
+    metaTitle: "دوره‌های آموزش زبان انگلیسی | پکیج‌های آیلتس، کنکور و مکالمه ایندورا",
+    metaDescription:
+      "فهرست کامل دوره‌های ویدئویی، کارگاه‌های رایتینگ، اسپیکینگ و گرامر با تدریس برترین اساتید بین‌المللی و تضمین ارتقای نمره در پلتفرم ایندورا.",
+    canonicalUrl: "https://endoora.com/courses",
+    robotsDirective: "index_follow",
+    ogTitle: "کاتالوگ دوره‌های جامع زبان انگلیسی ایندورا",
+    ogDescription: "ثبت‌نام آنلاین در مسترکلاس‌های آیلتس و پکیج‌های تخصصی زبان انگلیسی با تخفیف ویژه.",
+    ogImageUrl: "https://endoora.com/og/courses-catalog.png",
+    updatedAt: "2026-11-15T11:30:00Z",
+    updatedBy: "مدیر ارشد سئو",
+  },
+  {
+    pagePath: "/high-school/grade-12/tamrin20",
+    pageLabel: "تمرین تا ۲۰ امتحان نهایی پایه دوازدهم (ویژن ۳)",
+    metaTitle: "نمونه سوالات نهایی زبان دوازدهم با جواب تشریحی | تمرین تا ۲۰ ایندورا",
+    metaDescription:
+      "بانک سوالات استاندارد امتحان نهایی زبان پایه دوازدهم به تفکیک لیسنینگ، ریدینگ، لغت و گرامر با تصحیح هوش مصنوعی و کلید رسمی آموزش و پرورش.",
+    canonicalUrl: "https://endoora.com/high-school/grade-12/tamrin20",
+    robotsDirective: "index_follow",
+    ogTitle: "شبیه‌ساز امتحان نهایی زبان دوازدهم - تمرین تا ۲۰",
+    ogDescription: "قبولی با نمره ۲۰ در امتحانات نهایی زبان انگلیسی دوازدهم با پلتفرم تعاملی ایندورا.",
+    ogImageUrl: "https://endoora.com/og/tamrin20.png",
+    updatedAt: "2026-11-14T16:00:00Z",
+    updatedBy: "سرپرست محتوای دبیرستان",
+  },
+  {
+    pagePath: "/placement",
+    pageLabel: "تعیین سطح رایگان زبان انگلیسی (CEFR)",
+    metaTitle: "آزمون آنلاین تعیین سطح زبان انگلیسی رایگان | استاندارد بین‌المللی CEFR",
+    metaDescription:
+      "تعیین سطح هوشمند گرامر، لغت، ریدینگ و تلفظ از سطح A1 تا C2 در کمتر از ۱۵ دقیقه با گزارش کارنامه تحلیلی دقیق و رایگان در ایندورا.",
+    canonicalUrl: "https://endoora.com/placement",
+    robotsDirective: "index_follow",
+    ogTitle: "تعیین سطح زبان انگلیسی آنلاین و رایگان در ایندورا",
+    ogDescription: "سطح واقعی زبان خود را طبق استاندارد اروپایی بسنجید و برنامه یادگیری شخصی دریافت کنید.",
+    ogImageUrl: "https://endoora.com/og/placement-test.png",
+    updatedAt: "2026-11-12T09:00:00Z",
+    updatedBy: "تیم سنجش آموزشی",
+  },
+  {
+    pagePath: "/skills/grammar-hex/adaptive-lab",
+    pageLabel: "آزمایشگاه تطبیقی گرامر ۶ گوشه (Grammar Hex)",
+    metaTitle: "آزمایشگاه تعاملی گرامر انگلیسی | یادگیری تطبیقی ساختارهای زبانی ایندورا",
+    metaDescription:
+      "تقویت تسلط بر گرامر انگلیسی با متد تعاملی ۶ گوشه و هوش مصنوعی تطبیقی متناسب با نقاط ضعف گرامری زبان‌آموز در پلتفرم ایندورا.",
+    canonicalUrl: "https://endoora.com/skills/grammar-hex/adaptive-lab",
+    robotsDirective: "index_follow",
+    ogTitle: "آزمایشگاه گرامر انگلیسی Grammar Hex",
+    ogDescription: "تسلط کامل بر زمان‌های افعال و ساختارهای جمله‌سازی پیچیده انگلیسی.",
+    ogImageUrl: "https://endoora.com/og/grammar-hex.png",
+    updatedAt: "2026-11-10T14:30:00Z",
+    updatedBy: "مدیر ارشد سئو",
+  },
+];
+
+export const INITIAL_REDIRECT_RULES: UrlRedirectRule[] = [
+  {
+    id: "redir-001",
+    sourcePath: "/ielts-prep",
+    destinationPath: "/courses/ielts-academic-speaking-and-writing-mastery",
+    redirectType: "301_permanent",
+    isActive: true,
+    hitCount: 1420,
+    notes: "هدایت لینک‌های کمپین قدیمی گوگل ادز آیلتس به آدرس دوره جامع",
+    createdAt: "2026-10-15T08:00:00Z",
+  },
+  {
+    id: "redir-002",
+    sourcePath: "/konkur",
+    destinationPath: "/courses/konkur-english-vision-mastery",
+    redirectType: "301_permanent",
+    isActive: true,
+    hitCount: 2890,
+    notes: "تغییر مسیر مستقیم لینک کوتاه کنکور به پکیج ویژن ۳",
+    createdAt: "2026-10-20T10:30:00Z",
+  },
+  {
+    id: "redir-003",
+    sourcePath: "/speaking-clinic",
+    destinationPath: "/skills/speaking",
+    redirectType: "302_temporary",
+    isActive: true,
+    hitCount: 650,
+    notes: "تغییر مسیر موقت کلینیک اسپیکینگ تا زمان پایان ارتقای سامانه",
+    createdAt: "2026-11-01T12:00:00Z",
+  },
+  {
+    id: "redir-004",
+    sourcePath: "/old-exam-12",
+    destinationPath: "/high-school/grade-12/tamrin20",
+    redirectType: "301_permanent",
+    isActive: true,
+    hitCount: 840,
+    notes: "جلوگیری از خطای ۴۰۴ برای بوک‌مارک‌های قدیمی امتحانات دوازدهم",
+    createdAt: "2026-11-05T09:15:00Z",
+  },
+];
+
+export const INITIAL_SCHEMAS: SchemaJsonLdItem[] = [
+  {
+    id: "sch-org-001",
+    pagePath: "/",
+    schemaType: "Organization",
+    title: "اسکیمای هویت سازمانی ایندورا (Organization Schema)",
+    jsonLdPayload: {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      name: "آکادمی آموزش زبان انگلیسی ایندورا",
+      url: "https://endoora.com",
+      logo: "https://endoora.com/logo.png",
+      sameAs: [
+        "https://instagram.com/endoora_english",
+        "https://t.me/endoora_english",
+        "https://linkedin.com/company/endoora",
+      ],
+      description: "سامانه هوشمند آموزش زبان انگلیسی مبتنی بر دوقلوی هوش مصنوعی و استاندارد CEFR",
+    },
+    updatedAt: "2026-11-15T08:00:00Z",
+  },
+  {
+    id: "sch-course-001",
+    pagePath: "/courses",
+    schemaType: "Course",
+    title: "اسکیمای دوره مسترکلاس آیلتس (Course Schema)",
+    jsonLdPayload: {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: "مسترکلاس اسپیکینگ و رایتینگ آکادمیک آیلتس",
+      description: "دوره جامع ارتقای نمره رایتینگ و اسپیکینگ آیلتس به باند ۷.۵ و بالاتر با تصحیح هوش مصنوعی",
+      provider: {
+        "@type": "Organization",
+        name: "ایندوُرا (Endoora)",
+        sameAs: "https://endoora.com",
+      },
+      offers: {
+        "@type": "Offer",
+        price: "2400000",
+        priceCurrency: "IRR",
+        availability: "https://schema.org/InStock",
+      },
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: "online",
+        instructor: {
+          "@type": "Person",
+          name: "دکتر مسعود رضایی",
+        },
+      },
+    },
+    updatedAt: "2026-11-15T09:00:00Z",
+  },
+  {
+    id: "sch-faq-001",
+    pagePath: "/placement",
+    schemaType: "FAQPage",
+    title: "اسکیمای سوالات متداول تعیین سطح (FAQPage Schema)",
+    jsonLdPayload: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "آیا آزمون تعیین سطح ایندورا رایگان است؟",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "بله، تعیین سطح ۴ مهارته ایندورا کاملاً رایگان است و بلافاصله کارنامه تحلیلی CEFR صادر می‌شود.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "آزمون تعیین سطح چقدر زمان می‌برد؟",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "آزمون تطبیقی ایندورا معمولاً بین ۱۰ تا ۱۵ دقیقه زمان نیاز دارد.",
+          },
+        },
+      ],
+    },
+    updatedAt: "2026-11-15T10:00:00Z",
+  },
+];

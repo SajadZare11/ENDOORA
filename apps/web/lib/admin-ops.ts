@@ -236,6 +236,16 @@ export const MOCK_AUDIT_LOGS: AuditEventRecord[] = [
   },
 ];
 
+export function recordAuditLog(event: Omit<AuditEventRecord, "id" | "occurred_at">): AuditEventRecord {
+  const newRecord: AuditEventRecord = {
+    ...event,
+    id: `aud-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    occurred_at: new Date().toISOString(),
+  };
+  MOCK_AUDIT_LOGS.unshift(newRecord);
+  return newRecord;
+}
+
 export async function fetchAdminStats(signal?: AbortSignal): Promise<AdminDashboardStats> {
   try {
     const res = await fetch("/api/admin-ops/stats/", {

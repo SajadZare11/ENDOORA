@@ -1,0 +1,280 @@
+export type CommentModerationStatus = "pending" | "approved" | "quarantined" | "rejected";
+export type SanctionType = "warning" | "shadowban" | "mute_7_days" | "permanent_ban";
+
+export interface CommunityCommentItem {
+  id: string;
+  authorId: string;
+  authorName: string;
+  authorRole: "student" | "teacher" | "verified_learner";
+  courseId: string;
+  courseTitle: string;
+  lessonId?: string;
+  lessonTitle?: string;
+  content: string;
+  ratingStars?: number; // 1-5 optional
+  status: CommentModerationStatus;
+  aiToxicityScore: number; // 0 to 100
+  aiFlagReasons: string[];
+  upvotesCount: number;
+  isPinned: boolean;
+  isLocked: boolean;
+  officialReply?: {
+    staffName: string;
+    staffRole: string;
+    content: string;
+    repliedAt: string;
+  };
+  rejectionReason?: string;
+  createdAt: string;
+  moderatedAt?: string;
+  moderatedBy?: string;
+}
+
+export interface BannedKeywordRule {
+  id: string;
+  pattern: string;
+  matchType: "exact" | "contains" | "regex";
+  severity: "high" | "medium" | "low";
+  action: "quarantine" | "mask" | "reject";
+  isActive: boolean;
+  hitCount: number;
+  addedAt: string;
+}
+
+export interface SanctionedUserRecord {
+  id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
+  sanctionType: SanctionType;
+  reason: string;
+  appliedBy: string;
+  appliedAt: string;
+  expiresAt?: string;
+  isActive: boolean;
+}
+
+export interface CommunityModerationStats {
+  totalCommentsToday: number;
+  pendingReviewsCount: number;
+  quarantinedCount: number;
+  autoApprovedPercent: number;
+  activeShadowbansCount: number;
+  avgResponseTimeMin: number;
+}
+
+export const INITIAL_BANNED_KEYWORD_RULES: BannedKeywordRule[] = [
+  {
+    id: "rule-kw-001",
+    pattern: "(t\\.me/|telegram\\.me/|chat\\.whatsapp\\.com/)",
+    matchType: "regex",
+    severity: "high",
+    action: "quarantine",
+    isActive: true,
+    hitCount: 84,
+    addedAt: "2026-10-01T10:00:00Z",
+  },
+  {
+    id: "rule-kw-002",
+    pattern: "شرط‌بندی",
+    matchType: "contains",
+    severity: "high",
+    action: "reject",
+    isActive: true,
+    hitCount: 39,
+    addedAt: "2026-10-05T12:30:00Z",
+  },
+  {
+    id: "rule-kw-003",
+    pattern: "شماره کارت بفرستید",
+    matchType: "contains",
+    severity: "high",
+    action: "quarantine",
+    isActive: true,
+    hitCount: 22,
+    addedAt: "2026-10-12T14:15:00Z",
+  },
+  {
+    id: "rule-kw-004",
+    pattern: "خرید فالوور",
+    matchType: "contains",
+    severity: "medium",
+    action: "reject",
+    isActive: true,
+    hitCount: 51,
+    addedAt: "2026-10-18T09:00:00Z",
+  },
+  {
+    id: "rule-kw-005",
+    pattern: "(09[0-9]{9})",
+    matchType: "regex",
+    severity: "medium",
+    action: "mask",
+    isActive: true,
+    hitCount: 114,
+    addedAt: "2026-10-25T16:40:00Z",
+  },
+];
+
+export const INITIAL_SANCTIONED_USERS: SanctionedUserRecord[] = [
+  {
+    id: "sanc-001",
+    userId: "usr-stu-spam-99",
+    userName: "کامبیز دلال‌زاده",
+    userEmail: "kambiz.dealer@gmail.com",
+    sanctionType: "shadowban",
+    reason: "ارسال مکرر لینک‌های تبلیغاتی کانال‌های تلگرام در بخش پرسش و پاسخ دوره‌ها",
+    appliedBy: "مدیر ارشد نظارت",
+    appliedAt: "2026-11-10T14:20:00Z",
+    isActive: true,
+  },
+  {
+    id: "sanc-002",
+    userId: "usr-stu-toxic-44",
+    userName: "آرش خشمگین",
+    userEmail: "arash.angry@yahoo.com",
+    sanctionType: "mute_7_days",
+    reason: "استفاده از ادبیات پرخاشگرانه و توهین به همکلاسی‌ها در تالار اسپیکینگ آیلتس",
+    appliedBy: "ناظر کامیونیتی",
+    appliedAt: "2026-11-12T11:00:00Z",
+    expiresAt: "2026-11-19T11:00:00Z",
+    isActive: true,
+  },
+  {
+    id: "sanc-003",
+    userId: "usr-stu-bot-12",
+    userName: "ربات فروش آزمون",
+    userEmail: "bot.exam@test.xyz",
+    sanctionType: "permanent_ban",
+    reason: "تلاش برای انتشار سوالات فیک و ادعای افشای سوالات امتحان نهایی دوازدهم",
+    appliedBy: "مدیر ارشد امنیت",
+    appliedAt: "2026-11-05T08:30:00Z",
+    isActive: true,
+  },
+];
+
+export const INITIAL_COMMUNITY_COMMENTS: CommunityCommentItem[] = [
+  {
+    id: "cmt-001",
+    authorId: "usr-stu-sara-m",
+    authorName: "سارا معتمدی",
+    authorRole: "student",
+    courseId: "ielts-masterclass",
+    courseTitle: "مسترکلاس رایتینگ و اسپیکینگ آیلتس",
+    lessonId: "lesson-ielts-task2-intro",
+    lessonTitle: "جلسه ۳: ساختار مقدمه استاندارد Task 2",
+    content: "استاد رضایی عزیز، آیا در بخش Thesis Statement حتماً باید تمام جنبه‌های سوال مطرح بشه یا میشه دیدگاه کلی رو بیان کرد و در پاراگراف‌های بدنه جزئیات رو توضیح داد؟",
+    ratingStars: 5,
+    status: "approved",
+    aiToxicityScore: 4,
+    aiFlagReasons: [],
+    upvotesCount: 18,
+    isPinned: true,
+    isLocked: false,
+    officialReply: {
+      staffName: "دکتر مسعود رضایی",
+      staffRole: "مدرس ارشد آیلتس و ناظر علمی ایندورا",
+      content: "درود سارا جان. رویکرد کمبریج بیان شفاف موضع (Clear Position) در تز استیتمنت است. لزومی به فهرست کردن تمام دلایل نیست؛ کافیست جهت‌گیری شما برای مصحح کاملاً شفاف باشد.",
+      repliedAt: "2026-11-14T10:15:00Z",
+    },
+    createdAt: "2026-11-14T08:30:00Z",
+    moderatedAt: "2026-11-14T09:00:00Z",
+    moderatedBy: "سیستم خودکار هوش مصنوعی",
+  },
+  {
+    id: "cmt-002",
+    authorId: "usr-stu-spam-99",
+    authorName: "کامبیز دلال‌زاده",
+    authorRole: "student",
+    courseId: "konkur-vision-3",
+    courseTitle: "پکیج جامع زبان کنکور و امتحانات نهایی",
+    lessonId: "lesson-konkur-grammar-passives",
+    lessonTitle: "جلسه ۲: مجهول‌های پیچیده کنکور سراسری",
+    content: "بچه‌ها برای دانلود رایگان تمام تست‌های سال قبل همراه با کلید سنجش عضو کانال تگرام ما بشید: t.me/konkur_free_tests بدو تا پاک نشده!",
+    status: "quarantined",
+    aiToxicityScore: 88,
+    aiFlagReasons: ["لینک غیرمجاز شبکه اجتماعی خارجی (t.me)", "الگوی هرزنامه جذب کاربر"],
+    upvotesCount: 0,
+    isPinned: false,
+    isLocked: true,
+    rejectionReason: "نقض بند ۴ قوانین کامیونیتی ایندورا: انتشار لینک‌های خارجی تبلیغاتی",
+    createdAt: "2026-11-15T09:20:00Z",
+  },
+  {
+    id: "cmt-003",
+    authorId: "usr-stu-ehsan-k",
+    authorName: "احسان کریمی",
+    authorRole: "verified_learner",
+    courseId: "foundations-fluency",
+    courseTitle: "اصول روان‌خوانی و کنترل مکث در مکالمه",
+    lessonId: "lesson-fluency-hesitation",
+    lessonTitle: "جلسه ۱: غلبه بر مکث‌های طولانی با تکنیک Fillers",
+    content: "این جلسه واقعاً عالی بود. من همیشه وسط صحبت کردن هنگ می‌کردم اما استفاده از عبارت‌هایی مثل 'You see' یا 'To be honest' زمان خریدن برای فکر کردن رو خیلی راحت‌تر کرد.",
+    ratingStars: 5,
+    status: "approved",
+    aiToxicityScore: 2,
+    aiFlagReasons: [],
+    upvotesCount: 24,
+    isPinned: false,
+    isLocked: false,
+    createdAt: "2026-11-15T11:45:00Z",
+    moderatedAt: "2026-11-15T11:46:00Z",
+    moderatedBy: "سیستم خودکار هوش مصنوعی",
+  },
+  {
+    id: "cmt-004",
+    authorId: "usr-stu-maryam-d",
+    authorName: "مریم درخشانی",
+    authorRole: "student",
+    courseId: "ielts-masterclass",
+    courseTitle: "مسترکلاس رایتینگ و اسپیکینگ آیلتس",
+    lessonId: "lesson-ielts-task2-body",
+    lessonTitle: "جلسه ۵: انسجام منطقی و نشانگرهای گفتمان",
+    content: "سلام وقت بخیر، اگر در رایتینگ از کلماتی مثل Furthermore و Moreover پشت سر هم استفاده کنیم نمره کم میشه یا مشکلی نداره؟ احساس می‌کنم متنم تکراری میشه.",
+    status: "pending",
+    aiToxicityScore: 6,
+    aiFlagReasons: [],
+    upvotesCount: 5,
+    isPinned: false,
+    isLocked: false,
+    createdAt: "2026-11-15T13:10:00Z",
+  },
+  {
+    id: "cmt-005",
+    authorId: "usr-stu-reza-b",
+    authorName: "رضا برهانی",
+    authorRole: "student",
+    courseId: "grammar-hex-lab",
+    courseTitle: "آزمایشگاه تطبیقی گرامر ۶ گوشه",
+    lessonId: "lesson-hex-conditionals",
+    lessonTitle: "تحلیل جملات شرطی نوع دوم و سوم",
+    content: "توضیحات استاد خیلی سریع بود و تمرین سوم رو اصلاً متوجه نشدم چرا جوابش would have been میشه نه would be. لطفاً ویدیوهای تکمیلی اضافه کنید.",
+    ratingStars: 3,
+    status: "pending",
+    aiToxicityScore: 22,
+    aiFlagReasons: ["نقد تند شیوه تدریس مدرس - نیازمند بررسی ادمین"],
+    upvotesCount: 7,
+    isPinned: false,
+    isLocked: false,
+    createdAt: "2026-11-15T14:30:00Z",
+  },
+  {
+    id: "cmt-006",
+    authorId: "usr-stu-troll-01",
+    authorName: "کاربر ناشناس",
+    authorRole: "student",
+    courseId: "konkur-vision-3",
+    courseTitle: "پکیج جامع زبان کنکور و امتحانات نهایی",
+    content: "این پکیج به درد هیچی نمی‌خوره پولتونو هدر ندید مدرسش هیچی بلد نیست کلاهبردارها!",
+    status: "rejected",
+    aiToxicityScore: 94,
+    aiFlagReasons: ["استفاده از الفاظ افتراآمیز و توهین مستقیم", "فاقد هرگونه نقد مستند آموزشی"],
+    upvotesCount: 0,
+    isPinned: false,
+    isLocked: true,
+    rejectionReason: "توهین مستقیم و افترا بدون ذکر دلیل فنی یا آموزشی",
+    createdAt: "2026-11-15T15:00:00Z",
+    moderatedAt: "2026-11-15T15:05:00Z",
+    moderatedBy: "مدیر ارشد نظارت",
+  },
+];

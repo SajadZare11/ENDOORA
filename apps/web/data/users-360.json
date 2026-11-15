@@ -1,0 +1,318 @@
+[
+  {
+    "id": "usr-004",
+    "name": "علی رضایی",
+    "email": "ali.rezaei@yahoo.com",
+    "phone": "09129876543",
+    "role": "learner",
+    "isActive": true,
+    "isTeacherVerified": false,
+    "marketplaceEligible": false,
+    "createdAt": "2026-03-05T09:15:00Z",
+    "lastLogin": "2026-11-14T18:30:00Z",
+    "learningLevel": "B1",
+    "subscriptionTier": "plus",
+    "city": "تهران",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0012457896",
+    "walletBalanceToman": 450000,
+    "enrolledCourses": [
+      {
+        "id": "crs-tamrin20",
+        "courseTitle": "پکیج جامع تمرین تا ۲۰ (زبان انگلیسی دوازدهم نهایی)",
+        "category": "امتحانات نهایی و کنکور",
+        "progressPercent": 75,
+        "completedLessons": 18,
+        "totalLessons": 24,
+        "enrolledAt": "2026-03-10T11:00:00Z",
+        "lastAccessedAt": "2026-11-14T17:45:00Z",
+        "quizScoreAverage": 19.2,
+        "certificateEarned": false
+      },
+      {
+        "id": "crs-grammar-in-use",
+        "courseTitle": "دوره‌ فشرده گرامر کاربردی مکالمه (سطح B1 به B2)",
+        "category": "گرامر و مکالمه روان",
+        "progressPercent": 40,
+        "completedLessons": 12,
+        "totalLessons": 30,
+        "enrolledAt": "2026-04-01T15:20:00Z",
+        "lastAccessedAt": "2026-11-12T10:15:00Z",
+        "quizScoreAverage": 17.5,
+        "certificateEarned": false
+      }
+    ],
+    "sessionHistory": [
+      {
+        "id": "ses-001",
+        "teacherId": "t-rezaei",
+        "teacherName": "استاد کاوه رضایی",
+        "topic": "تحلیل خط‌به‌خط ساختار ریدینگ آزمون نهایی",
+        "date": "2026-11-10T16:00:00Z",
+        "durationMinutes": 45,
+        "status": "attended",
+        "teacherRating": 5,
+        "teacherFeedback": "زبان‌آموز کوشا و مسلط بر کلمات کلیدی درس ۱ و ۲، نیاز به تمرین بیشتر در حروف ربط."
+      },
+      {
+        "id": "ses-002",
+        "teacherId": "t-tehrani",
+        "teacherName": "دکتر لیلا تهرانی",
+        "topic": "کوچینگ تکنیک‌های اسپیکینگ و اعتماد به نفس",
+        "date": "2026-10-25T14:30:00Z",
+        "durationMinutes": 45,
+        "status": "attended",
+        "teacherRating": 4.8,
+        "teacherFeedback": "تلفظ و لهجه روان‌تر شده، مکث‌های بین جملات کاهش پیدا کرده است."
+      }
+    ],
+    "walletTransactions": [
+      {
+        "id": "tx-001",
+        "amountToman": 500000,
+        "type": "credit_manual",
+        "reasonCategory": "loyalty_gift",
+        "adminNote": "شارژ هدیه به زبان‌آموز برتر آزمون شبیه‌ساز نهایی آبان‌ماه",
+        "adminActor": "مدیر ارشد ایندورا",
+        "balanceAfterToman": 500000,
+        "createdAt": "2026-11-01T12:00:00Z"
+      },
+      {
+        "id": "tx-002",
+        "amountToman": -50000,
+        "type": "class_payment",
+        "reasonCategory": "class_booking",
+        "adminNote": "کسر هزینه مابه‌التفاوت جلسه خصوصی",
+        "adminActor": "سیستم خودکار رزرواسیون",
+        "balanceAfterToman": 450000,
+        "createdAt": "2026-11-10T15:30:00Z"
+      }
+    ],
+    "warningStrikes": [],
+    "accountRestrictions": {
+      "isPermanentlyBanned": false
+    }
+  },
+  {
+    "id": "usr-005",
+    "name": "مریم احمدی",
+    "email": "maryam.ahmadi@gmail.com",
+    "phone": "09367891234",
+    "role": "learner",
+    "isActive": true,
+    "isTeacherVerified": false,
+    "marketplaceEligible": false,
+    "createdAt": "2026-03-08T11:00:00Z",
+    "lastLogin": "2026-11-13T20:15:00Z",
+    "learningLevel": "A2",
+    "subscriptionTier": "pro_vip",
+    "city": "شیراز",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0489632581",
+    "walletBalanceToman": 1560000,
+    "enrolledCourses": [
+      {
+        "id": "crs-tamrin20",
+        "courseTitle": "پکیج جامع تمرین تا ۲۰ (زبان انگلیسی دوازدهم نهایی)",
+        "category": "امتحانات نهایی و کنکور",
+        "progressPercent": 100,
+        "completedLessons": 24,
+        "totalLessons": 24,
+        "enrolledAt": "2026-03-12T09:00:00Z",
+        "lastAccessedAt": "2026-11-10T14:20:00Z",
+        "quizScoreAverage": 20,
+        "certificateEarned": true
+      }
+    ],
+    "sessionHistory": [
+      {
+        "id": "ses-003",
+        "teacherId": "t-moradi",
+        "teacherName": "استاد سامان مرادی",
+        "topic": "تمرین لهجه و استرس کلمات A2",
+        "date": "2026-11-05T18:00:00Z",
+        "durationMinutes": 30,
+        "status": "attended",
+        "teacherRating": 5,
+        "teacherFeedback": "تسلط کامل بر تمام سوالات امتحانی، نمره ۲۰ کتبی قطعی است."
+      }
+    ],
+    "walletTransactions": [
+      {
+        "id": "tx-1794767835633",
+        "amountToman": 240000,
+        "type": "credit_manual",
+        "reasonCategory": "refund",
+        "adminNote": "استرداد ۱۰۰٪ وجه کلاس بر اساس رأی داوری: استاد در جلسه حاضر نشد، ۱۰۰٪ مبلغ به کیف پول زبان‌آموز عودت داده شد.",
+        "adminActor": "داوری پلتفرم ایندورا",
+        "balanceAfterToman": 1560000,
+        "createdAt": "2026-11-15T18:37:15.633Z"
+      },
+      {
+        "id": "tx-1794767835632",
+        "amountToman": 120000,
+        "type": "credit_manual",
+        "reasonCategory": "compensation",
+        "adminNote": "تسویه توافقی داوری (50٪ استرداد به دانشجو): به دلیل قطعی موقت در نیمی از زمان جلسه، ۵۰٪ مسترد و ۵۰٪ به استاد پرداخت شد.",
+        "adminActor": "داوری پلتفرم ایندورا",
+        "balanceAfterToman": 1320000,
+        "createdAt": "2026-11-15T18:37:15.632Z"
+      },
+      {
+        "id": "tx-003",
+        "amountToman": 1200000,
+        "type": "credit_manual",
+        "reasonCategory": "compensation",
+        "adminNote": "شارژ مستقیم پکیج VIP زبان‌آموزان ممتاز",
+        "adminActor": "مدیر ارشد ایندورا",
+        "balanceAfterToman": 1200000,
+        "createdAt": "2026-03-08T11:10:00Z"
+      }
+    ],
+    "warningStrikes": [],
+    "accountRestrictions": {
+      "isPermanentlyBanned": false
+    }
+  },
+  {
+    "id": "usr-007",
+    "name": "کاربر تستی دارای اخطار",
+    "email": "spammer@spam.org",
+    "phone": "09110009988",
+    "role": "learner",
+    "isActive": false,
+    "isTeacherVerified": false,
+    "marketplaceEligible": false,
+    "createdAt": "2026-03-10T19:00:00Z",
+    "lastLogin": "2026-03-11T10:00:00Z",
+    "learningLevel": "A1",
+    "subscriptionTier": "free",
+    "city": "رشت",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0098741235",
+    "walletBalanceToman": 0,
+    "enrolledCourses": [],
+    "sessionHistory": [
+      {
+        "id": "ses-004",
+        "teacherId": "t-rezaei",
+        "teacherName": "استاد کاوه رضایی",
+        "topic": "کلاس تعیین سطح مقدماتی",
+        "date": "2026-03-11T10:00:00Z",
+        "durationMinutes": 30,
+        "status": "no_show",
+        "teacherRating": 1,
+        "teacherFeedback": "زبان‌آموز بدون اطلاع در جلسه حاضر نشد و به پیام‌ها پاسخ نداد."
+      }
+    ],
+    "walletTransactions": [],
+    "warningStrikes": [
+      {
+        "id": "strk-001",
+        "strikeNumber": 1,
+        "reasonPreset": "غیبت مکرر و بدون هماهنگی در کلاس‌های خصوصی ۱-به-۱",
+        "detailMessage": "غیبت غیرموجه در کلاس آنلاین و اتلاف زمان استاد کاوه رضایی.",
+        "issuedAt": "2026-03-11T11:00:00Z",
+        "issuedBy": "پشتیبانی ایندورا",
+        "isActive": true
+      },
+      {
+        "id": "strk-002",
+        "strikeNumber": 2,
+        "reasonPreset": "نقض منشور اخلاقی و رفتار نامناسب در کلاس یا انجمن",
+        "detailMessage": "ارسال پیام‌های نامتعارف در چت پشتیبانی.",
+        "issuedAt": "2026-03-11T14:30:00Z",
+        "issuedBy": "مدیر ارشد ایندورا",
+        "isActive": true
+      },
+      {
+        "id": "strk-003",
+        "strikeNumber": 3,
+        "reasonPreset": "تلاش برای پرداخت خارج از پلتفرم و دور زدن سامانه اسکرو",
+        "detailMessage": "تلاش مکرر برای تبادل شماره تماس خارج از سایت. مسدودسازی خودکار اعمال شد.",
+        "issuedAt": "2026-03-11T15:00:00Z",
+        "issuedBy": "سیستم خودکار امنیتی ایندورا",
+        "isActive": true
+      }
+    ],
+    "accountRestrictions": {
+      "isPermanentlyBanned": true,
+      "banReason": "دریافت ۳ اخطار فعال انضباطی به دلیل نقض قوانین پلتفرم و عدم رعایت تعهدات اخلاقی."
+    }
+  },
+  {
+    "id": "usr-002",
+    "name": "دکتر سارا شریفی",
+    "email": "sara.sharifi@endoora.ir",
+    "phone": "09123456789",
+    "role": "teacher",
+    "isActive": true,
+    "isTeacherVerified": true,
+    "marketplaceEligible": true,
+    "createdAt": "2026-02-15T10:30:00Z",
+    "lastLogin": "2026-11-14T11:45:00Z",
+    "learningLevel": "C2",
+    "subscriptionTier": "pro_vip",
+    "city": "تهران",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0059874123",
+    "walletBalanceToman": 3500000,
+    "enrolledCourses": [],
+    "sessionHistory": [],
+    "walletTransactions": [],
+    "warningStrikes": [],
+    "accountRestrictions": {
+      "isPermanentlyBanned": false
+    }
+  },
+  {
+    "id": "usr-001",
+    "name": "مدیر ارشد ایندورا",
+    "email": "founder@endoora.ir",
+    "phone": "09121112233",
+    "role": "administrator",
+    "isActive": true,
+    "isTeacherVerified": true,
+    "marketplaceEligible": true,
+    "createdAt": "2026-01-10T08:00:00Z",
+    "lastLogin": "2026-11-14T20:10:00Z",
+    "learningLevel": "C2",
+    "subscriptionTier": "pro_vip",
+    "city": "تهران",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0011122334",
+    "walletBalanceToman": 15000000,
+    "enrolledCourses": [],
+    "sessionHistory": [],
+    "walletTransactions": [],
+    "warningStrikes": [],
+    "accountRestrictions": {
+      "isPermanentlyBanned": false
+    }
+  },
+  {
+    "id": "usr-006",
+    "name": "نیما کاظمی",
+    "email": "nima.kazemi@outlook.com",
+    "phone": "09195554433",
+    "role": "editor",
+    "isActive": true,
+    "isTeacherVerified": false,
+    "marketplaceEligible": false,
+    "createdAt": "2026-02-20T16:00:00Z",
+    "lastLogin": "2026-11-13T07:45:00Z",
+    "learningLevel": "B2",
+    "subscriptionTier": "plus",
+    "city": "کرج",
+    "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
+    "nationalId": "0321456987",
+    "walletBalanceToman": 200000,
+    "enrolledCourses": [],
+    "sessionHistory": [],
+    "walletTransactions": [],
+    "warningStrikes": [],
+    "accountRestrictions": {
+      "isPermanentlyBanned": false
+    }
+  }
+]

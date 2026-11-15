@@ -1,26 +1,23 @@
 import { Suspense } from "react";
-import { AdminOperationsDashboard } from "../../components/admin/AdminOperationsDashboard";
-import { PublicShell } from "@/components/marketing/PublicShell";
+import { AdminPageClient } from "@/components/admin/AdminPageClient";
 
 export const metadata = {
-  title: "میز مدیریت کل عملیات (Admin Operations Console) | Endoora",
-  description: "مرکز فرماندهی و پایش بلادرنگ عملیات، صف‌های بازبینی، خزانه‌داری، احراز هویت اساتید و کلیدهای اضطراری",
+  title: "دروازه امن مدیریت ارشد (Admin Gate) | Endoora",
+  description: "مرکز فرماندهی، ویرایشگر دیداری بخش‌های سایت، مدیریت کاربران و اساتید، دوره‌ها و خزانه‌داری",
 };
 
 export default function AdminPage() {
   return (
-    <PublicShell locale="fa" currentPath="/admin">
-      <main style={{ minBlockSize: "100vh", backgroundColor: "var(--color-canvas)" }}>
-        <Suspense
-          fallback={
-            <div style={{ padding: "3rem", textAlign: "center", color: "var(--color-muted)" }}>
-              در حال بارگذاری مرکز فرماندهی عملیات...
-            </div>
-          }
-        >
-          <AdminOperationsDashboard />
-        </Suspense>
-      </main>
-    </PublicShell>
+    <main style={{ minHeight: "100vh", backgroundColor: "#0f172a" }}>
+      <Suspense
+        fallback={
+          <div style={{ padding: "4rem", textAlign: "center", color: "#94a3b8", fontSize: "1.1rem" }}>
+            در حال بارگذاری دروازه مدیریت ارشد ایندورا...
+          </div>
+        }
+      >
+        <AdminPageClient />
+      </Suspense>
+    </main>
   );
 }
