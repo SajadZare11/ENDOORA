@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./analytics.module.css";
 import { useTeacherHome } from "../../../../components/teacher/TeacherShell";
+import { TeacherCognitiveAiPanel } from "../../../../components/teacher/TeacherCognitiveAiPanel";
 import {
   fetchTeacherAnalyticsOverview,
   acknowledgeAtRiskAlert,
@@ -159,6 +160,9 @@ export default function TeacherAnalyticsOverviewPage() {
               </span>
             </div>
           </div>
+
+          {/* Hexa-Engine Cognitive AI Diagnostics Hub */}
+          <TeacherCognitiveAiPanel isFa={isFa} />
 
           {/* Main 2-column Grid */}
           <div className={styles.sectionGrid}>

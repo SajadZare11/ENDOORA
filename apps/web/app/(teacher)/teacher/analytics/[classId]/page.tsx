@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "../analytics.module.css";
 import { useTeacherHome } from "../../../../../components/teacher/TeacherShell";
+import { TeacherCognitiveAiPanel } from "../../../../../components/teacher/TeacherCognitiveAiPanel";
 import {
   fetchClassAnalyticsReport,
   getClassAnalyticsCsvExportUrl,
@@ -151,6 +152,9 @@ export default function ClassAnalyticsReportPage() {
               </span>
             </div>
           </div>
+
+          {/* Hexa-Engine Cognitive AI Diagnostics Hub */}
+          <TeacherCognitiveAiPanel isFa={isFa} />
 
           {/* Section: Score Distribution & CEFR Skill Mastery */}
           <div className={styles.sectionGrid}>
