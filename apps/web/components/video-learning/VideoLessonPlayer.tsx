@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TranscriptLine } from "@/lib/video-learning";
 import styles from "./video-learning.module.css";
+import { SpectrogramPronunciationLab } from "@/components/phonetics/SpectrogramPronunciationLab";
 
 export interface VideoLessonLike {
   id: string;
@@ -51,6 +52,7 @@ export default function VideoLessonPlayer({
   const [showTranscript, setShowTranscript] = useState(true);
   const [skipWarning, setSkipWarning] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shadowingLine, setShadowingLine] = useState<TranscriptLine | null>(null);
 
   const videoElementRef = useRef<HTMLVideoElement | null>(null);
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
@@ -137,11 +139,9 @@ export default function VideoLessonPlayer({
 
   // Find active transcript line
   const activeTranscriptIndex = lesson.transcript.findIndex((line, idx) => {
-    const nextLine = lesson.transcript[idx + 1];
-    if (nextLine) {
-      return currentTime >= line.seconds && currentTime < nextLine.seconds;
-    }
-    return currentTime >= line.seconds;
+    const start = line.seconds;
+    const end = line.endSeconds ?? (lesson.transcript[idx + 1]?.seconds ?? lesson.durationSec);
+    return currentTime >= start && currentTime < end;
   });
 
   // Smooth scroll ONLY the internal transcript container during playback
@@ -206,10 +206,18 @@ export default function VideoLessonPlayer({
     }
   };
 
-  const jumpToLine = (seconds: number) => {
-    onTimeChange(seconds);
+  const jumpToLine = (seconds: number, prevEnd?: number) => {
+    // 0.3s safe audio pre-roll buffer to prevent cutting off the initial syllable,
+    // but never bleed into previous speaker's speech.
+    const preRoll = 0.3;
+    let safeTarget = Number((seconds - preRoll).toFixed(2));
+    if (typeof prevEnd === "number" && prevEnd > 0) {
+      safeTarget = Math.max(safeTarget, Number(prevEnd.toFixed(2)));
+    }
+    safeTarget = Math.max(0, safeTarget);
+    onTimeChange(safeTarget);
     if (videoElementRef.current) {
-      videoElementRef.current.currentTime = seconds;
+      videoElementRef.current.currentTime = safeTarget;
       videoElementRef.current.play().catch((err) => {
         console.warn("Video play interrupted:", err);
       });
@@ -532,7 +540,7 @@ export default function VideoLessonPlayer({
                     className={`${styles.transcriptLineItem} ${
                       isActive ? styles.transcriptLineItemActive : ""
                     }`}
-                    onClick={() => jumpToLine(line.seconds)}
+                    onClick={() => jumpToLine(line.seconds, idx > 0 ? lesson.transcript[idx - 1].endSeconds : 0)}
                   >
                     <span className={styles.lineTimestamp}>{line.timeDisplay}</span>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -540,10 +548,89 @@ export default function VideoLessonPlayer({
                       <div className={styles.lineTextEn}>{line.textEn}</div>
                       {line.textFa ? <div className={styles.lineTextFa}>{line.textFa}</div> : null}
                     </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShadowingLine(line);
+                      }}
+                      title="تمرین شادویینگ و سنجش تلفظ با هوش مصنوعی (Neural GOP)"
+                      style={{
+                        padding: "0.25rem 0.5rem",
+                        fontSize: "0.75rem",
+                        borderRadius: "6px",
+                        background: "rgba(99, 102, 241, 0.15)",
+                        color: "#4f46e5",
+                        border: "1px solid rgba(99, 102, 241, 0.3)",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.25rem",
+                        fontWeight: 700,
+                        whiteSpace: "nowrap"
+                      }}
+                    >
+                      🎙️ شادویینگ
+                    </button>
                   </div>
                 );
               })}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Spectrogram Neural GOP Shadowing Modal */}
+      {shadowingLine && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: "rgba(3, 7, 18, 0.88)",
+            backdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.25rem"
+          }}
+          onClick={() => setShadowingLine(null)}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "880px",
+              maxHeight: "92vh",
+              overflowY: "auto",
+              position: "relative"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
+              <button
+                type="button"
+                onClick={() => setShadowingLine(null)}
+                style={{
+                  background: "#1e293b",
+                  color: "#f1f5f9",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  borderRadius: "9999px",
+                  padding: "0.35rem 0.85rem",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                ✕ بستن آزمایشگاه
+              </button>
+            </div>
+            <SpectrogramPronunciationLab
+              sentenceText={shadowingLine.textEn}
+              cefrLevel={(lesson.cefr as any) || "B1"}
+              moduleSource={lesson.seriesTitleFa?.includes("Speakout") ? "Speakout_BBC" : "AEF_Practical_English"}
+            />
           </div>
         </div>
       )}

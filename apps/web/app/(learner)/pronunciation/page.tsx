@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import styles from "./pronunciation.module.css";
+import { SpectrogramPronunciationLab } from "@/components/phonetics/SpectrogramPronunciationLab";
 
 export interface PronunciationItem {
   id: string;
@@ -239,6 +240,7 @@ export default function PronunciationLabPage() {
   const [activeAudioWord, setActiveAudioWord] = useState<string | null>(null);
   const [accent, setAccent] = useState<"en-US" | "en-GB">("en-US");
   const [playbackRate, setPlaybackRate] = useState<number>(0.85);
+  const [workbenchMode, setWorkbenchMode] = useState<"neural_gop" | "standard">("neural_gop");
 
   // Recording & Acoustic Analyzer state
   const [isRecording, setIsRecording] = useState<boolean>(false);
@@ -713,6 +715,37 @@ export default function PronunciationLabPage() {
               </div>
             </div>
 
+            {/* Mode Switcher */}
+            <div style={{ display: "flex", gap: "var(--space-2)", marginBlockEnd: "var(--space-4)", justifyContent: "center" }}>
+              <Button
+                type="button"
+                size="sm"
+                variant={workbenchMode === "neural_gop" ? "primary" : "secondary"}
+                onClick={() => setWorkbenchMode("neural_gop")}
+              >
+                ⚡ {isFa ? "طیف‌نگاره صوتی و GOP عصبی (Edge AI)" : "Spectrogram Neural GOP (Edge AI)"}
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant={workbenchMode === "standard" ? "primary" : "secondary"}
+                onClick={() => setWorkbenchMode("standard")}
+              >
+                📊 {isFa ? "تحلیل کلاسیک استرس و WPM" : "Classic Stress & WPM"}
+              </Button>
+            </div>
+
+            {workbenchMode === "neural_gop" ? (
+              <div style={{ marginBlockStart: "var(--space-3)" }}>
+                <SpectrogramPronunciationLab
+                  sentenceId={activeItem.id || activeItem.item_id}
+                  sentenceText={activeItem.context_sentence || activeItem.target_text}
+                  cefrLevel={(activeItem.difficulty_level as any) || "B1"}
+                  moduleSource="Phonetics_Lab"
+                />
+              </div>
+            ) : (
+              <>
             {/* Audio Settings: Accent & Speed */}
             <div style={{ display: "flex", gap: "var(--space-2)", marginBlockEnd: "var(--space-4)", justifyContent: "center" }}>
               <Button
@@ -866,6 +899,8 @@ export default function PronunciationLabPage() {
                   </Link>
                 </div>
               </div>
+            )}
+            </>
             )}
           </div>
         </section>

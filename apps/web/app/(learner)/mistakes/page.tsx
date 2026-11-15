@@ -146,6 +146,41 @@ export default function MistakesPage() {
       }
     }
     void loadGenome();
+
+    // Load Phoneme L1 Diagnostics from Neural GOP Lab
+    try {
+      const phonemeProfile = localStorage.getItem("endoora_phoneme_diagnostic_profile");
+      if (phonemeProfile) {
+        const parsed = JSON.parse(phonemeProfile);
+        const weakList = parsed.weakPhonemes || [];
+        if (Array.isArray(weakList) && weakList.length > 0) {
+          const phoneticPatterns: MistakePatternItem[] = weakList.map((sym: string, idx: number) => ({
+            id: `phoneme_l1_${sym}_${idx}`,
+            tag: `pronunciation.l1_interference_${sym}`,
+            category: "pronunciation",
+            title_fa: `تداخل آواشناختی زبان فارسی در تلفظ واج /${sym}/`,
+            title_en: `L1 Persian Phonological Interference on /${sym}/`,
+            l1_interference_note_fa: `این واج در آزمایشگاه طیف‌نگاره (Neural GOP) ثبت شده و به دلیل تفاوت سازندهای صوتی نیازمند تمرین مداوم عضلات فک و زبان است.`,
+            l1_interference_note_en: `Client-side 2D-CNN forced alignment detected articulatory divergence for /${sym}/.`,
+            status: "recurring",
+            severity: "moderate",
+            evidence_count: 3,
+            example_wrong: `Inaccurate acoustic formant positioning for /${sym}/`,
+            example_correct: `Native-like spectral resonance for /${sym}/`,
+            quick_options: [`/${sym}/ (Standard Target)`, `Persian Substituted Sound`, `Glottalized Alternative`],
+            quick_correct_idx: 0,
+          }));
+
+          setPatterns((prev) => {
+            const existingTags = new Set(prev.map((p) => p.tag));
+            const newToAdd = phoneticPatterns.filter((p) => !existingTags.has(p.tag));
+            return [...newToAdd, ...prev];
+          });
+        }
+      }
+    } catch {
+      // ignore local reading
+    }
   }, []);
 
   // Filter patterns
@@ -463,14 +498,21 @@ export default function MistakesPage() {
 
                 {/* Action Strip */}
                 <div className={styles.actionStrip}>
-                  {item.status !== "disputed" && (
+                  {item.category === "pronunciation" ? (
+                    <Link
+                      className={styles.buttonPrimary}
+                      href="/pronunciation"
+                    >
+                      🎙️ {isFa ? "تمرین در آزمایشگاه طیف‌نگاره (Spectrogram Lab)" : "Practice in Spectrogram Lab"}
+                    </Link>
+                  ) : item.status !== "disputed" ? (
                     <Link
                       className={styles.buttonPrimary}
                       href={`/practice?focus=${encodeURIComponent(item.title_en)}`}
                     >
                       {isFa ? "تمرین هدفمند بر این الگو" : "Practice This Pattern"}
                     </Link>
-                  )}
+                  ) : null}
 
                   {item.status !== "mastered" && item.status !== "disputed" && (
                     <Button size="sm" variant="secondary" type="button" onClick={() => handleResolve(item.id)}>{isFa ? "تثبیت شد / آموختم" : "Mark Mastered"}

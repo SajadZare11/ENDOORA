@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import { Button } from "@endoora/ui";
 import styles from "../learner-subpages.module.css";
@@ -104,6 +104,21 @@ export default function LearnerTwinPage() {
 
   const [activeTab, setActiveTab] = useState<"skills" | "history" | "controls">("skills");
   const [resetNotice, setResetNotice] = useState<string | null>(null);
+  const [weakPhonemes, setWeakPhonemes] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("endoora_phoneme_diagnostic_profile");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed.weakPhonemes)) {
+          setWeakPhonemes(parsed.weakPhonemes);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   const placementCompleted =
     data.path_steps?.find((step) => step.id === "placement")?.state === "complete";
@@ -235,6 +250,59 @@ export default function LearnerTwinPage() {
                   </div>
                 </article>
               ))}
+            </div>
+
+            {/* Neural GOP Edge AI Phonetics Radar Section */}
+            <div style={{ marginBlockStart: "var(--space-6)", padding: "var(--space-4)", background: "rgba(9, 13, 22, 0.75)", border: "1px solid rgba(99, 102, 241, 0.3)", borderRadius: "var(--radius-card)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-2)" }}>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: "var(--font-size-card-title)", color: "#a5b4fc", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>🎙️</span>
+                    {isFa ? "رادار تشخیصی آواشناسی و واج‌های تداخلی L1 (Neural GOP)" : "Spectrogram Neural GOP Phonetic Diagnostic Radar"}
+                  </h3>
+                  <p style={{ margin: "var(--space-1) 0 0", fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
+                    {isFa
+                      ? "شواهد استخراج‌شده بلادرنگ از طیف‌نگاره صوتی با شبکه عصبی 2D-CNN و الگوریتم CTC"
+                      : "Real-time acoustic evidence extracted via 2D-CNN + CTC on 80-bin Log-Mel Spectrograms"}
+                  </p>
+                </div>
+                <Link
+                  href="/pronunciation"
+                  className={styles.buttonPrimary}
+                  style={{ textDecoration: "none", fontSize: "var(--font-size-meta)" }}
+                >
+                  ⚡ {isFa ? "ورود به آزمایشگاه آواشناسی" : "Open Phonetics Lab"}
+                </Link>
+              </div>
+
+              <div style={{ marginBlockStart: "var(--space-4)", display: "flex", flexWrap: "wrap", gap: "var(--space-3)", alignItems: "center" }}>
+                <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-text)" }}>
+                  {isFa ? "واج‌های تحت تمرین و پایش مدل:" : "Tracked Phonetic Targets:"}
+                </span>
+                {weakPhonemes.length > 0 ? (
+                  weakPhonemes.map((sym, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        padding: "0.25rem 0.65rem",
+                        borderRadius: "var(--radius-pill)",
+                        background: "rgba(244, 63, 94, 0.15)",
+                        color: "#fda4af",
+                        border: "1px solid rgba(244, 63, 94, 0.3)",
+                        fontFamily: "ui-monospace, monospace",
+                        fontSize: "0.85rem",
+                        fontWeight: 700
+                      }}
+                    >
+                      /{sym}/
+                    </span>
+                  ))
+                ) : (
+                  <span style={{ fontSize: "var(--font-size-meta)", color: "#34d399" }}>
+                    ✓ {isFa ? "کلیه واج‌های پایه‌ای زبان انگلیسی در بازه استاندارد گوینده معیار قرار دارند." : "All calibrated phonemes are within target acoustic boundaries."}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         )}

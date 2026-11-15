@@ -15,6 +15,7 @@ import {
   MANDATORY_IELTS_DISCLAIMER_TEXT,
 } from "../../../../lib/ielts-speaking";
 import { PublicShell } from "../../../../components/marketing/PublicShell";
+import { SpectrogramPronunciationLab } from "@/components/phonetics/SpectrogramPronunciationLab";
 
 const NUM_METER_BARS = 24;
 
@@ -34,6 +35,7 @@ function IELTSSpeakingRoomContent() {
   const [consentGranted, setConsentGranted] = useState(false);
   const [showConsentModal, setShowConsentModal] = useState(true);
   const [useTextFallback, setUseTextFallback] = useState(false);
+  const [phoneticsLabSentence, setPhoneticsLabSentence] = useState<string | null>(null);
 
   // Draft telemetry & content
   const [submissionId, setSubmissionId] = useState<string | null>(draftIdParam);
@@ -561,9 +563,26 @@ function IELTSSpeakingRoomContent() {
                 </div>
                 <div className={styles.questionsList}>
                   {currentPrompt.part1.questions.map((q, idx) => (
-                    <div key={idx} className={styles.questionItem}>
+                    <div key={idx} className={styles.questionItem} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
                       <span className={styles.questionBadge}>سوال {idx + 1}:</span>
-                      <span className={styles.questionText} dir="ltr">{q}</span>
+                      <span className={styles.questionText} dir="ltr" style={{ flex: 1 }}>{q}</span>
+                      <button
+                        type="button"
+                        onClick={() => setPhoneticsLabSentence(q)}
+                        title="سنجش تلفظ با طیف‌نگاره صوتی (Neural GOP)"
+                        style={{
+                          padding: "0.2rem 0.6rem",
+                          fontSize: "0.75rem",
+                          borderRadius: "6px",
+                          background: "rgba(99, 102, 241, 0.12)",
+                          color: "#4f46e5",
+                          border: "1px solid rgba(99, 102, 241, 0.3)",
+                          cursor: "pointer",
+                          fontWeight: 700
+                        }}
+                      >
+                        ⚡ سنجش تلفظ با طیف‌نگاره
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -588,6 +607,25 @@ function IELTSSpeakingRoomContent() {
                       <li key={idx}>{pt}</li>
                     ))}
                   </ul>
+                  <div style={{ marginTop: "0.75rem" }}>
+                    <button
+                      type="button"
+                      onClick={() => setPhoneticsLabSentence(currentPrompt.part2.cue_card_prompt)}
+                      title="سنجش تلفظ با طیف‌نگاره صوتی (Neural GOP)"
+                      style={{
+                        padding: "0.3rem 0.75rem",
+                        fontSize: "0.8rem",
+                        borderRadius: "6px",
+                        background: "rgba(99, 102, 241, 0.12)",
+                        color: "#4f46e5",
+                        border: "1px solid rgba(99, 102, 241, 0.3)",
+                        cursor: "pointer",
+                        fontWeight: 700
+                      }}
+                    >
+                      ⚡ تمرین و سنجش تلفظ تاپیک Cue Card
+                    </button>
+                  </div>
                 </div>
 
                 {/* 1-Minute Prep Countdown Widget */}
@@ -643,9 +681,26 @@ function IELTSSpeakingRoomContent() {
                 </div>
                 <div className={styles.questionsList}>
                   {currentPrompt.part3.questions.map((q, idx) => (
-                    <div key={idx} className={styles.questionItem}>
+                    <div key={idx} className={styles.questionItem} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
                       <span className={styles.questionBadge}>سوال تحلیلی {idx + 1}:</span>
-                      <span className={styles.questionText} dir="ltr">{q}</span>
+                      <span className={styles.questionText} dir="ltr" style={{ flex: 1 }}>{q}</span>
+                      <button
+                        type="button"
+                        onClick={() => setPhoneticsLabSentence(q)}
+                        title="سنجش تلفظ با طیف‌نگاره صوتی (Neural GOP)"
+                        style={{
+                          padding: "0.2rem 0.6rem",
+                          fontSize: "0.75rem",
+                          borderRadius: "6px",
+                          background: "rgba(99, 102, 241, 0.12)",
+                          color: "#4f46e5",
+                          border: "1px solid rgba(99, 102, 241, 0.3)",
+                          cursor: "pointer",
+                          fontWeight: 700
+                        }}
+                      >
+                        ⚡ سنجش تلفظ با طیف‌نگاره
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -851,6 +906,61 @@ function IELTSSpeakingRoomContent() {
                 تأیید و دریافت کارنامه تشخیصی ➔
               </Button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Spectrogram Neural GOP Diagnostic Modal */}
+      {phoneticsLabSentence && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: "rgba(3, 7, 18, 0.88)",
+            backdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.25rem"
+          }}
+          onClick={() => setPhoneticsLabSentence(null)}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "880px",
+              maxHeight: "92vh",
+              overflowY: "auto",
+              position: "relative"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
+              <button
+                type="button"
+                onClick={() => setPhoneticsLabSentence(null)}
+                style={{
+                  background: "#1e293b",
+                  color: "#f1f5f9",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  borderRadius: "9999px",
+                  padding: "0.35rem 0.85rem",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                ✕ بستن آزمایشگاه
+              </button>
+            </div>
+            <SpectrogramPronunciationLab
+              sentenceText={phoneticsLabSentence}
+              cefrLevel="B2"
+              moduleSource="IELTS_Speaking"
+            />
           </div>
         </div>
       )}

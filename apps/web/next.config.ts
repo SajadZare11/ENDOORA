@@ -5,6 +5,7 @@ const apiInternalUrl = (
 ).replace(/\/+$/, "");
 
 const nextConfig: NextConfig = {
+  turbopack: {},
   output: "standalone",
   transpilePackages: ["@endoora/ui"],
   poweredByHeader: false,
@@ -32,6 +33,16 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      {
+        source: "/downloads",
+        destination: "/books",
+        permanent: true,
+      },
+      {
+        source: "/downloads/:path*",
+        destination: "/books/:path*",
+        permanent: true,
+      },
       {
         source: "/learner/today",
         destination: "/today",
@@ -67,11 +78,20 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' http://127.0.0.1:* http://localhost:*; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' http://127.0.0.1:* http://localhost:* https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net; frame-ancestors 'none';",
           },
         ],
       },
     ];
+  },
+
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      sharp$: false,
+      "onnxruntime-node$": false,
+    };
+    return config;
   },
 };
 
