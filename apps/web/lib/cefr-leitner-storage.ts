@@ -13,6 +13,7 @@ import {
   CEFR_LEVELS_META,
 } from "../data/cefr/types.ts";
 import { getVocabForLevel, getWordById } from "../data/cefr/index.ts";
+export { getWordById };
 
 const STORAGE_KEY_PREFIX = "endoora_cefr_deck_v2_";
 const ACTIVE_LEVEL_KEY = "endoora_cefr_active_level_v2";

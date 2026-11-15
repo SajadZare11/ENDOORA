@@ -3,6 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import styles from "./account.module.css";
+import CartoonAvatar from "../../components/avatar/CartoonAvatar";
+import AvatarStudioWizard from "../../components/avatar/AvatarStudioWizard";
+import {
+  type CartoonAvatarConfig,
+  getDefaultAvatarConfig,
+  getStoredCartoonAvatar,
+  setStoredCartoonAvatar,
+  CARTOON_AVATAR_CHANGE_EVENT,
+} from "../../lib/cartoon-avatar";
 import {
   STUDENT_AVATARS,
   getStoredAvatarId,
@@ -13,6 +22,7 @@ import {
 import { endooraApi, type EndooraLocale } from "../../lib/endoora-api";
 
 export type AccountTab =
+  | "avatar"
   | "profile"
   | "library"
   | "plan"
@@ -61,8 +71,9 @@ const DEFAULT_PROFILE: StudentProfileData = {
 };
 
 export default function AccountPage() {
-  const [activeTab, setActiveTab] = useState<AccountTab>("profile");
+  const [activeTab, setActiveTab] = useState<AccountTab>("avatar");
   const [profile, setProfile] = useState<StudentProfileData>(DEFAULT_PROFILE);
+  const [cartoonAvatar, setCartoonAvatar] = useState<CartoonAvatarConfig>(getDefaultAvatarConfig());
   const [selectedAvatar, setSelectedAvatar] = useState<StudentAvatar>(STUDENT_AVATARS[0]);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -102,11 +113,15 @@ export default function AccountPage() {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const tabParam = params.get("tab") as AccountTab;
+      if (tabParam === "library" || (tabParam as string) === "downloads") {
+        window.location.href = "/downloads";
+        return;
+      }
       if (
         tabParam &&
         [
+          "avatar",
           "profile",
-          "library",
           "plan",
           "usage",
           "wallet",
@@ -118,9 +133,21 @@ export default function AccountPage() {
         setActiveTab(tabParam);
       }
 
-      // Initialize avatar from storage
+      // Initialize avatars from storage
       const storedId = getStoredAvatarId();
       setSelectedAvatar(getAvatarById(storedId));
+      setCartoonAvatar(getStoredCartoonAvatar());
+
+      // Listen for cartoon avatar changes across windows/components
+      const handleCartoonChange = (e: Event) => {
+        const customEv = e as CustomEvent<{ config: CartoonAvatarConfig }>;
+        if (customEv.detail?.config) {
+          setCartoonAvatar(customEv.detail.config);
+        } else {
+          setCartoonAvatar(getStoredCartoonAvatar());
+        }
+      };
+      window.addEventListener(CARTOON_AVATAR_CHANGE_EVENT, handleCartoonChange);
 
       // Attempt to load profile from localStorage if present
       try {
@@ -132,6 +159,10 @@ export default function AccountPage() {
       } catch {
         // use default profile
       }
+
+      return () => {
+        window.removeEventListener(CARTOON_AVATAR_CHANGE_EVENT, handleCartoonChange);
+      };
     }
   }, []);
 
@@ -289,23 +320,25 @@ export default function AccountPage() {
             <div
               className={styles.avatarCircle}
               style={{
-                background: selectedAvatar.gradient,
-                boxShadow: `0 8px 24px ${selectedAvatar.glow}, 0 0 0 3px ${selectedAvatar.borderColor}`,
+                background: "transparent",
+                boxShadow: "none",
+                cursor: "pointer",
+                padding: 0,
               }}
-              onClick={() => setShowAvatarModal(true)}
-              title="کلیک برای انتخاب از میان ۱۰ نماد پروفایل"
+              onClick={() => handleTabChange("avatar")}
+              title="کلیک برای ویرایش آواتار"
             >
-              <span>{selectedAvatar.symbol}</span>
+              <CartoonAvatar config={cartoonAvatar} size={88} rounded={true} bordered={true} />
               <span className={styles.avatarBadgeOverlay}>
-                <span>★</span> {selectedAvatar.name_fa}
+                <span>★</span> آواتار
               </span>
             </div>
             <button
               type="button"
               className={styles.changeAvatarBtn}
-              onClick={() => setShowAvatarModal(true)}
+              onClick={() => handleTabChange("avatar")}
             >
-              🔄 تغییر نماد (۱۰ نماد)
+              🎨 ویرایش آواتار
             </button>
           </div>
 
@@ -374,22 +407,22 @@ export default function AccountPage() {
       <nav className={styles.tabsBar} aria-label="منوهای پنل دانش‌آموزی">
         <button
           type="button"
-          className={`${styles.tabBtn} ${activeTab === "profile" ? styles.tabBtnActive : ""}`}
-          onClick={() => handleTabChange("profile")}
+          className={`${styles.tabBtn} ${activeTab === "avatar" ? styles.tabBtnActive : ""}`}
+          onClick={() => handleTabChange("avatar")}
         >
-          <span>👤</span>
-          <span>مشخصات و نماد</span>
+          <span>🎨</span>
+          <span>ساخت آواتار</span>
         </button>
 
         <button
           type="button"
-          className={`${styles.tabBtn} ${activeTab === "library" ? styles.tabBtnActive : ""}`}
-          onClick={() => handleTabChange("library")}
+          className={`${styles.tabBtn} ${activeTab === "profile" ? styles.tabBtnActive : ""}`}
+          onClick={() => handleTabChange("profile")}
         >
-          <span>📚</span>
-          <span>کتابخانه و جزوات</span>
-          <span className={styles.tabBadge}>نهایی</span>
+          <span>👤</span>
+          <span>مشخصات فردی</span>
         </button>
+
 
         <button
           type="button"
@@ -449,7 +482,22 @@ export default function AccountPage() {
       </nav>
 
       {/* --------------------------------------------------------------------------
-          Tab 1: مشخصات و پروفایل (Profile & 10 Avatars)
+          Tab 0: ساخت آواتار
+          -------------------------------------------------------------------------- */}
+      {activeTab === "avatar" && (
+        <div className={styles.tabContent}>
+          <AvatarStudioWizard
+            studentName={profile.fullName}
+            onSaveSuccess={(newConfig) => {
+              setCartoonAvatar(newConfig);
+              showToast("آواتار ذخیره شد ✓");
+            }}
+          />
+        </div>
+      )}
+
+      {/* --------------------------------------------------------------------------
+          Tab 1: مشخصات فردی
           -------------------------------------------------------------------------- */}
       {activeTab === "profile" && (
         <div className={styles.tabContent}>
@@ -457,62 +505,20 @@ export default function AccountPage() {
             <div className={styles.sectionHeader}>
               <div>
                 <h2 className={styles.sectionTitle}>
-                  <span>{selectedAvatar.symbol}</span>
-                  <span>انتخاب نماد و تصویر پروفایل دانش‌آموز</span>
+                  <span>📝</span>
+                  <span>مشخصات فردی و تحصیلی</span>
                 </h2>
                 <p className={styles.sectionSubtitle}>
-                  یک نماد از میان ۱۰ نماد اختصاصی یادگیری انتخاب کنید تا در کنار نام شما در پنل، کارنامه و هدر بدرخشد.
+                  ویرایش اطلاعات کاربری و مقطع تحصیلی.
                 </p>
               </div>
               <button
                 type="button"
                 className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
-                onClick={() => setShowAvatarModal(true)}
+                onClick={() => handleTabChange("avatar")}
               >
-                مشاهده همه ۱۰ نماد در اندازه بزرگ 🔍
+                🎨 ویرایش آواتار
               </button>
-            </div>
-
-            {/* Quick 10 Avatar Inline Strip */}
-            <div className={styles.avatarGrid}>
-              {STUDENT_AVATARS.map((avatar) => {
-                const isSelected = selectedAvatar.id === avatar.id;
-                return (
-                  <div
-                    key={avatar.id}
-                    className={`${styles.avatarOptionCard} ${isSelected ? styles.avatarOptionActive : ""}`}
-                    onClick={() => handleSelectAvatar(avatar)}
-                  >
-                    {isSelected && <span className={styles.activeCheckmark}>✓</span>}
-                    <div
-                      className={styles.avatarOptionSymbol}
-                      style={{
-                        background: avatar.gradient,
-                        boxShadow: `0 6px 16px ${avatar.glow}`,
-                      }}
-                    >
-                      {avatar.symbol}
-                    </div>
-                    <div className={styles.avatarOptionName}>{avatar.name_fa}</div>
-                    <div className={styles.avatarOptionTitle}>{avatar.title_fa}</div>
-                    <div className={styles.avatarOptionMeaning}>{avatar.meaning_fa}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={styles.cardSection}>
-            <div className={styles.sectionHeader}>
-              <div>
-                <h2 className={styles.sectionTitle}>
-                  <span>📝</span>
-                  <span>اطلاعات فردی و تنظیمات تحصیلی</span>
-                </h2>
-                <p className={styles.sectionSubtitle}>
-                  مشخصات دانش‌آموزی، پایه تحصیلی و اهداف آموزشی خود را مدیریت کنید.
-                </p>
-              </div>
             </div>
 
             <form onSubmit={handleSaveProfile}>
@@ -651,6 +657,47 @@ export default function AccountPage() {
       {activeTab === "library" && (
         <div className={styles.tabContent}>
           <div className={styles.cardSection}>
+            <div style={{
+              background: "linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(147, 51, 234, 0.12))",
+              border: "1px solid rgba(59, 130, 246, 0.3)",
+              borderRadius: "16px",
+              padding: "20px 24px",
+              marginBottom: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "16px"
+            }}>
+              <div>
+                <h3 style={{ margin: "0 0 6px 0", fontSize: "1.1rem", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span>🚀</span>
+                  <span>پرتال جامع «دانلود ها» افتتاح شد!</span>
+                </h3>
+                <p style={{ margin: 0, color: "var(--text-secondary, #94a3b8)", fontSize: "0.9rem" }}>
+                  تمامی کتب آموزشی بین‌المللی، رمان‌ها، فایل‌های صوتی، آرشیو امتحانات نهایی و ویدیوها به صفحه اختصاصی منتقل شدند.
+                </p>
+              </div>
+              <Link
+                href="/downloads"
+                style={{
+                  background: "var(--primary-color, #2563eb)",
+                  color: "#fff",
+                  padding: "10px 20px",
+                  borderRadius: "10px",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  boxShadow: "0 4px 12px rgba(37, 99, 235, 0.25)"
+                }}
+              >
+                <span>ورود به پرتال اختصاصی دانلود ها</span>
+                <span>📥</span>
+              </Link>
+            </div>
             <div className={styles.sectionHeader}>
               <div>
                 <h2 className={styles.sectionTitle}>
@@ -1727,13 +1774,24 @@ export default function AccountPage() {
               })}
             </div>
 
-            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <button
+                type="button"
+                className={`${styles.actionBtn} ${styles.actionBtnSecondary}`}
+                onClick={() => {
+                  setShowAvatarModal(false);
+                  handleTabChange("avatar");
+                }}
+              >
+                🎨 ساخت آواتار
+              </button>
+
               <button
                 type="button"
                 className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}
                 onClick={() => setShowAvatarModal(false)}
               >
-                تأیید و بستن پنجره ✓
+                بستن
               </button>
             </div>
           </div>

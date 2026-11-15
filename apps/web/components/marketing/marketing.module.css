@@ -80,7 +80,47 @@
 }
 
 .heroLine:not(:last-child) {
-  margin-block-end: 0.1em;
+  margin-block-end: 0.15em;
+}
+
+/* Sub-heading line containing "انگلیسی راحت و هوشمند" side-by-side */
+.heroSubHeading {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 0.28em;
+  row-gap: 0.1em;
+  font-size: clamp(1.42rem, 2.5vw, 2.3rem);
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+/* Staggered entrance animation with fade-up and blur */
+@keyframes heroLineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.heroLine1 {
+  animation: heroLineReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.heroLine2 {
+  display: inline-block;
+  animation: heroLineReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.heroLine3 {
+  display: inline-block;
+  animation: heroLineReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
 }
 
 .heroCopy > p,
@@ -96,12 +136,13 @@
 [dir="ltr"] .heroCopy > p,
 [dir="ltr"] .pageHero > p { line-height: 1.7; }
 
+/* Line 3: و هوشمند */
 .heroAccent {
   display: inline-block;
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 45%, #4f46e5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(2, 132, 199, 0.2));
+  filter: drop-shadow(0 2px 14px rgba(2, 132, 199, 0.25));
   letter-spacing: -0.02em;
 }
 
@@ -109,9 +150,10 @@
   background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 14px rgba(56, 189, 248, 0.3));
+  filter: drop-shadow(0 2px 14px rgba(56, 189, 248, 0.35));
 }
 
+/* Line 1: ایندورا + Spark with Infinite Header Color Cycling */
 .heroBrandWrap {
   position: relative;
   display: inline-flex;
@@ -120,6 +162,8 @@
   padding-inline: 0.12em 0.3em;
   border-radius: 0.45em;
   vertical-align: baseline;
+  animation: heroBrandColorCycle 26s ease-in-out 3.5s infinite;
+  will-change: filter;
 }
 
 .heroBrandWrap::before {
@@ -145,25 +189,135 @@
   position: relative;
   z-index: 1;
   transform: translateY(-0.08em);
-  filter: drop-shadow(0 0 7px rgba(6, 182, 212, 0.65));
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.7));
+  animation: heroSparkPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes heroSparkPulse {
+  0%, 100% {
+    transform: translateY(-0.08em) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-0.08em) scale(1.14) rotate(8deg);
+  }
 }
 
 .heroBrandText {
   position: relative;
   z-index: 1;
-  background: linear-gradient(135deg, var(--color-text, #0f172a) 15%, #0369a1 65%, #0891b2 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 :global([data-theme="dark"]) .heroBrandText {
-  background: linear-gradient(135deg, #ffffff 20%, #38bdf8 65%, #2dd4bf 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #2dd4bf 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+:global([data-theme="dark"]) .heroBrandWrap {
+  animation: heroBrandColorCycleDark 26s ease-in-out 3.5s infinite;
+}
+
+/* Line 2: انگلیسی راحت */
 .heroSubText {
-  color: var(--color-text);
+  display: inline-block;
+  color: #0f172a;
+  font-weight: 850;
+  letter-spacing: -0.015em;
+  transition: color 0.3s ease;
+}
+
+:global([data-theme="dark"]) .heroSubText {
+  color: #f8fafc;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.08);
+}
+
+/* Light Theme Header Color Cycle:
+   1. Classes/Base (0deg Blue)
+   2. School (45deg Purple)
+   3. IELTS (135deg Crimson)
+   4. Teachers (185deg Orange)
+   5. Pricing (200deg Gold)
+   6. Skills (280deg Emerald)
+   7. Books (314deg Mint)
+   8. Learn (345deg Teal)
+*/
+@keyframes heroBrandColorCycle {
+  0%, 8% {
+    filter: hue-rotate(0deg) saturate(125%) brightness(1.02) drop-shadow(0 2px 14px rgba(37, 99, 235, 0.35));
+  }
+  12.5%, 20.5% {
+    filter: hue-rotate(45deg) saturate(155%) brightness(1.05) drop-shadow(0 2px 14px rgba(109, 40, 217, 0.4));
+  }
+  25%, 33% {
+    filter: hue-rotate(135deg) saturate(165%) brightness(1.05) drop-shadow(0 2px 14px rgba(159, 18, 57, 0.42));
+  }
+  37.5%, 45.5% {
+    filter: hue-rotate(185deg) saturate(175%) brightness(1.08) drop-shadow(0 2px 14px rgba(234, 88, 12, 0.42));
+  }
+  50%, 58% {
+    filter: hue-rotate(200deg) saturate(160%) brightness(1.1) drop-shadow(0 2px 14px rgba(245, 158, 11, 0.45));
+  }
+  62.5%, 70.5% {
+    filter: hue-rotate(280deg) saturate(140%) brightness(1.05) drop-shadow(0 2px 14px rgba(4, 120, 87, 0.4));
+  }
+  75%, 83% {
+    filter: hue-rotate(314deg) saturate(145%) brightness(1) drop-shadow(0 2px 14px rgba(15, 118, 110, 0.4));
+  }
+  87.5%, 95.5% {
+    filter: hue-rotate(345deg) saturate(135%) brightness(1.05) drop-shadow(0 2px 14px rgba(20, 184, 166, 0.4));
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(125%) brightness(1.02) drop-shadow(0 2px 14px rgba(37, 99, 235, 0.35));
+  }
+}
+
+/* Dark Theme Header Color Cycle: vibrant neon glow */
+@keyframes heroBrandColorCycleDark {
+  0%, 8% {
+    filter: hue-rotate(0deg) saturate(140%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.45));
+  }
+  12.5%, 20.5% {
+    filter: hue-rotate(45deg) saturate(165%) brightness(1.15) drop-shadow(0 2px 16px rgba(168, 85, 247, 0.5));
+  }
+  25%, 33% {
+    filter: hue-rotate(135deg) saturate(175%) brightness(1.15) drop-shadow(0 2px 16px rgba(244, 63, 94, 0.5));
+  }
+  37.5%, 45.5% {
+    filter: hue-rotate(185deg) saturate(185%) brightness(1.18) drop-shadow(0 2px 16px rgba(251, 146, 60, 0.5));
+  }
+  50%, 58% {
+    filter: hue-rotate(200deg) saturate(170%) brightness(1.2) drop-shadow(0 2px 16px rgba(251, 191, 36, 0.5));
+  }
+  62.5%, 70.5% {
+    filter: hue-rotate(280deg) saturate(150%) brightness(1.15) drop-shadow(0 2px 16px rgba(52, 211, 153, 0.5));
+  }
+  75%, 83% {
+    filter: hue-rotate(314deg) saturate(155%) brightness(1.1) drop-shadow(0 2px 16px rgba(45, 212, 191, 0.5));
+  }
+  87.5%, 95.5% {
+    filter: hue-rotate(345deg) saturate(145%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.5));
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(140%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.45));
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .heroLine1,
+  .heroLine2,
+  .heroLine3,
+  .heroBrandWrap,
+  .heroSpark {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 .heroActions {

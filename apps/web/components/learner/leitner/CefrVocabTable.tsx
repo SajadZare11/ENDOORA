@@ -82,7 +82,7 @@ export const CefrVocabTable: React.FC<CefrVocabTableProps> = ({ level, onStudyWo
             📖 بانک و کاوشگر واژگان سطح {level} ({filteredWords.length} واژه)
           </h3>
           <p className={styles.tableSubtitle}>
-            جستجو، فیلتر بر اساس خانه‌های لایتنر، پخش صوت نیتیو و ورود به تدریس استقرایی هر واژه
+            جستجو، فیلتر بر اساس خانه‌های لایتنر، پخش صوت نیتیو و ورود به یادگیری کلمه
           </p>
         </div>
 
@@ -220,7 +220,7 @@ export const CefrVocabTable: React.FC<CefrVocabTableProps> = ({ level, onStudyWo
                     className={styles.teachWordButton}
                     onClick={() => onStudyWord(word)}
                   >
-                    تدریس استقرایی 💡
+                    یادگیری کلمه 📖
                   </button>
                 </div>
               </div>

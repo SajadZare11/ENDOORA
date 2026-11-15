@@ -77,6 +77,7 @@ export const SKILLS_META: Record<SkillType, SkillMeta> = {
 export interface TranscriptLine {
   id: number;
   seconds: number;
+  endSeconds?: number;
   timeDisplay: string;
   speaker: string;
   textEn: string;

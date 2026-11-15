@@ -109,7 +109,7 @@ export const InductiveLessonArena: React.FC<InductiveLessonArenaProps> = ({
           <div className={styles.finishedIcon}>🎉</div>
           <h2 className={styles.finishedTitle}>درس با موفقیت به پایان رسید!</h2>
           <p className={styles.finishedSubtitle}>
-            شما <strong>{learnedWords.length}</strong> واژه جدید از درس {lessonIndex} سطح {level} را به روش استقرایی یاد گرفتید و وارد «خانه ۱: تازه‌واردها» در جعبه لایتنر کردید.
+            شما <strong>{learnedWords.length}</strong> واژه جدید از درس {lessonIndex} سطح {level} را یاد گرفتید و وارد «خانه ۱: تازه‌واردها» در جعبه لایتنر کردید.
           </p>
 
           <div className={styles.finishedSummaryList}>
@@ -161,7 +161,7 @@ export const InductiveLessonArena: React.FC<InductiveLessonArenaProps> = ({
   }
 
   return (
-    <div className={styles.arenaContainer} aria-label="اتاق تدریس استقرایی واژگان">
+    <div className={styles.arenaContainer} aria-label="اتاق یادگیری کلمه">
       {/* Top Header / Progress */}
       <div className={styles.arenaHeader}>
         <button
@@ -216,7 +216,7 @@ export const InductiveLessonArena: React.FC<InductiveLessonArenaProps> = ({
             {currentWord.partOfSpeechLabelFa}
           </div>
           <span className={styles.stepBadge}>
-            {!isRevealed ? "گام ۱: کشف استقرایی مفهوم واژه" : "گام ۲ و ۳: کلمه، تلفظ و مثال کاربردی"}
+            {!isRevealed ? "گام ۱: یادگیری کلمه و حدس مفهوم" : "گام ۲ و ۳: کلمه، تلفظ و مثال کاربردی"}
           </span>
         </div>
 

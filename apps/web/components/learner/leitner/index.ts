@@ -5,3 +5,4 @@ export { LeitnerActiveRecallArena } from "./LeitnerActiveRecallArena";
 export { CefrVocabTable } from "./CefrVocabTable";
 export { LeitnerCardsTable } from "./LeitnerCardsTable";
 export { LeitnerStudyArena } from "./LeitnerStudyArena";
+export { NeuroPulseLeitnerRadar } from "./NeuroPulseLeitnerRadar";

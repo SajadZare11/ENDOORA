@@ -10,6 +10,7 @@ import {
 } from "../../../data/cefr/types";
 import { promoteCard, demoteCard } from "../../../lib/cefr-leitner-storage";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
+import { recordLeitnerActiveRecallResult } from "../../../lib/dkt-engine/cefr-vocab-retention.ts";
 import styles from "./leitner.module.css";
 
 interface LeitnerActiveRecallArenaProps {
@@ -32,6 +33,13 @@ export const LeitnerActiveRecallArena: React.FC<LeitnerActiveRecallArenaProps> =
   const [demotedCount, setDemotedCount] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [accent, setAccent] = useState<"en-US" | "en-GB">("en-US");
+  const [lastLatencyMs, setLastLatencyMs] = useState<number | null>(null);
+  const cardMountTimeRef = React.useRef<number>(Date.now());
+
+  useEffect(() => {
+    cardMountTimeRef.current = performance.now();
+    setLastLatencyMs(null);
+  }, [currentIndex]);
 
   const currentItem = cards[currentIndex];
   const meta = CEFR_LEVELS_META[level];
@@ -51,6 +59,8 @@ export const LeitnerActiveRecallArena: React.FC<LeitnerActiveRecallArenaProps> =
   );
 
   const handleFlip = useCallback(() => {
+    const latency = Math.max(200, Math.round(performance.now() - cardMountTimeRef.current));
+    setLastLatencyMs(latency);
     setIsFlipped(true);
     if (currentItem?.word?.word) {
       setTimeout(() => {
@@ -61,17 +71,21 @@ export const LeitnerActiveRecallArena: React.FC<LeitnerActiveRecallArenaProps> =
 
   const handleSuccess = useCallback(() => {
     if (!currentItem) return;
+    const latency = lastLatencyMs ?? Math.max(200, Math.round(performance.now() - cardMountTimeRef.current));
     promoteCard(level, currentItem.word.id);
+    recordLeitnerActiveRecallResult(currentItem.word.id, level, latency, true);
     setPromotedCount((c) => c + 1);
     advanceCard();
-  }, [currentItem, level]);
+  }, [currentItem, level, lastLatencyMs]);
 
   const handleFailure = useCallback(() => {
     if (!currentItem) return;
+    const latency = lastLatencyMs ?? Math.max(200, Math.round(performance.now() - cardMountTimeRef.current));
     demoteCard(level, currentItem.word.id);
+    recordLeitnerActiveRecallResult(currentItem.word.id, level, latency, false);
     setDemotedCount((c) => c + 1);
     advanceCard();
-  }, [currentItem, level]);
+  }, [currentItem, level, lastLatencyMs]);
 
   const advanceCard = () => {
     setIsFlipped(false);
@@ -252,6 +266,51 @@ export const LeitnerActiveRecallArena: React.FC<LeitnerActiveRecallArenaProps> =
                 <div className={styles.revealedWordRow}>
                   <h1 className={styles.targetWordTitle}>{word.word}</h1>
                   <span className={styles.targetWordPhonetic}>{word.phonetic}</span>
+                  {lastLatencyMs !== null && (
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
+                        fontSize: "0.75rem",
+                        fontWeight: "bold",
+                        padding: "3px 10px",
+                        borderRadius: "999px",
+                        background:
+                          lastLatencyMs < 1500
+                            ? "rgba(16, 185, 129, 0.15)"
+                            : lastLatencyMs < 4000
+                            ? "rgba(14, 165, 233, 0.15)"
+                            : "rgba(245, 158, 11, 0.15)",
+                        color:
+                          lastLatencyMs < 1500 ? "#34d399" : lastLatencyMs < 4000 ? "#38bdf8" : "#fbbf24",
+                        border: `1px solid ${
+                          lastLatencyMs < 1500
+                            ? "rgba(52, 211, 153, 0.3)"
+                            : lastLatencyMs < 4000
+                            ? "rgba(56, 189, 248, 0.3)"
+                            : "rgba(251, 191, 36, 0.3)"
+                        }`,
+                      }}
+                    >
+                      {lastLatencyMs < 1500 ? (
+                        <>
+                          <span>⚡</span>
+                          <span>تثبیت برق‌آسا ({(lastLatencyMs / 1000).toFixed(1)} ثانیه)</span>
+                        </>
+                      ) : lastLatencyMs < 4000 ? (
+                        <>
+                          <span>✓</span>
+                          <span>یادآوری مطلوب ({(lastLatencyMs / 1000).toFixed(1)} ثانیه)</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>⏱</span>
+                          <span>یادآوری با تردید شناختی ({(lastLatencyMs / 1000).toFixed(1)} ثانیه)</span>
+                        </>
+                      )}
+                    </span>
+                  )}
                 </div>
 
                 <div className={styles.pronunciationControls}>

@@ -33,7 +33,7 @@ type ContextValue = {
   setLocale: (locale: Locale) => void;
 };
 
-type IconName = "home" | "learn" | "video" | "practice" | "teachers" | "account" | "bell" | "logout" | "fire" | "zap" | "school";
+type IconName = "home" | "learn" | "video" | "practice" | "teachers" | "account" | "download" | "bell" | "logout" | "fire" | "zap" | "school";
 
 const LearnerContext = createContext<ContextValue | null>(null);
 
@@ -51,6 +51,7 @@ const labels = {
     practice: "جعبه لایتنر",
     teachers: "کلاس‌ها و تکالیف",
     account: "حساب کاربری و تنظیمات",
+    downloads: "کتاب‌ها",
     school: "تمرین تا ۲۰ (نهایی)",
     logout: "خروج از حساب",
     loggingOut: "در حال خروج…",
@@ -71,6 +72,7 @@ const labels = {
     practice: "Leitner Box",
     teachers: "Classes & Assignments",
     account: "Account & Settings",
+    downloads: "Books",
     school: "Practice to 20 (Finals)",
     logout: "Log out",
     loggingOut: "Logging out…",
@@ -119,6 +121,7 @@ function Icon({ name }: { name: IconName }) {
     practice: <><rect x="3" y="4" width="18" height="16" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="10" y1="15" x2="14" y2="15" /></>,
     teachers: <><path d="M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" /><path d="M2.5 21a7 7 0 0 1 14 0M17 8.5a3.2 3.2 0 0 1 0 6.2M18 16.5a5.3 5.3 0 0 1 3.5 4.5" /></>,
     account: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
+    download: <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></>,
     bell: <><path d="M18 9a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" /><path d="M10 21h4" /></>,
     logout: <><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></>,
     fire: <><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z" /></>,
@@ -302,6 +305,14 @@ function isLearnerRouteActive(currentPath: string, targetHref: string) {
       currentPath.startsWith("/progress/")
     );
   }
+  if (targetHref === "/books" || targetHref === "/downloads") {
+    return (
+      currentPath === "/books" ||
+      currentPath.startsWith("/books/") ||
+      currentPath === "/downloads" ||
+      currentPath.startsWith("/downloads/")
+    );
+  }
   return currentPath === targetHref || currentPath.startsWith(`${targetHref}/`);
 }
 
@@ -368,9 +379,10 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   >(() => (isAccountRoute ? "ready" : "loading"));
   const [reloadKey, setReloadKey] = useState(0);
   const [loggingOut, setLoggingOut] = useState(false);
-  const [activeAvatar, setActiveAvatar] = useState<StudentAvatar>(() => getAvatarById(getStoredAvatarId()));
+  const [activeAvatar, setActiveAvatar] = useState<StudentAvatar>(() => getAvatarById("owl"));
 
   useEffect(() => {
+    setActiveAvatar(getAvatarById(getStoredAvatarId()));
     function handleAvatarChange() {
       setActiveAvatar(getAvatarById(getStoredAvatarId()));
     }
@@ -424,8 +436,15 @@ export function LearnerShell({ children }: { children: ReactNode }) {
       } catch (error) {
         if (!mounted || controller.signal.aborted) return;
 
-        // If currently on /account, NEVER block the student with the error gate!
-        if (activePath.startsWith("/account") || currentPath.startsWith("/account")) {
+        // If currently on /account, /books, or /downloads, NEVER block the student with the error gate!
+        if (
+          activePath.startsWith("/account") ||
+          currentPath.startsWith("/account") ||
+          activePath.startsWith("/books") ||
+          currentPath.startsWith("/books") ||
+          activePath.startsWith("/downloads") ||
+          currentPath.startsWith("/downloads")
+        ) {
           setData((prev) => prev ?? DEFAULT_DEMO_LEARNER);
           setStatus("ready");
           return;
@@ -527,6 +546,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     { href: "/leitner", label: t.practice, icon: "practice" as const },
     { href: "/dashboard/classes", label: t.teachers, icon: "teachers" as const },
     { href: "/account", label: t.account, icon: "account" as const },
+    { href: "/books", label: t.downloads, icon: "download" as const },
   ];
 
   return (

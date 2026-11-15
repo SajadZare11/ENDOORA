@@ -17,6 +17,7 @@ export const PUBLIC_NAV = [
   { path: "/skills", fa: "مهارت‌ها", en: "Skills" },
   { path: "/learn", fa: "یادگیری", en: "Learn" },
   { path: "/ielts", fa: "IELTS", en: "IELTS" },
+  { path: "/books", fa: "کتاب‌ها", en: "Books" },
   { path: "/pricing", fa: "اشتراک", en: "Membership" },
 ] as const;
 
@@ -28,6 +29,7 @@ export type HeaderSectionTheme =
   | "learn"
   | "ielts"
   | "pricing"
+  | "books"
   | "home";
 
 export function getHeaderSectionTheme(currentPath: string): HeaderSectionTheme {
@@ -51,6 +53,9 @@ export function getHeaderSectionTheme(currentPath: string): HeaderSectionTheme {
   }
   if (currentPath === "/pricing" || currentPath.startsWith("/pricing/")) {
     return "pricing";
+  }
+  if (currentPath === "/books" || currentPath.startsWith("/books/")) {
+    return "books";
   }
   return "home";
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DEFAULT_SITE_CONTENT, type SiteContentData } from "../../lib/site-cms-content";
 
 import {
   accountPath,
@@ -577,6 +578,22 @@ function ShowcaseInteractiveDetail({ stepKey, isFa }: { stepKey: string; isFa: b
 export function HomePage({ locale }: { locale: PublicLocale }) {
   const isFa = locale === "fa";
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
+  const [cmsContent, setCmsContent] = useState<SiteContentData>(DEFAULT_SITE_CONTENT);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch("/api/admin/site-content")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (!ignore && json?.live) {
+          setCmsContent(json.live);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      ignore = true;
+    };
+  }, []);
   const activeStep = loop7Steps[selectedStepIndex] ?? loop7Steps[0];
   const structuredData = {
     "@context": "https://schema.org",
@@ -600,7 +617,7 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
           <h1>
             {isFa ? (
               <>
-                <span className={styles.heroLine}>
+                <span className={`${styles.heroLine} ${styles.heroLine1}`}>
                   <span className={styles.heroBrandWrap}>
                     <svg className={styles.heroSpark} viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
@@ -618,24 +635,22 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
                     <span className={styles.heroBrandText}>ایندورا،</span>
                   </span>
                 </span>
-                <span className={styles.heroLine}>
-                  <span className={styles.heroSubText}>انگلیسی راحت</span>
-                </span>
-                <span className={styles.heroLine}>
-                  <span className={styles.heroAccent}>و&nbsp;هوشمند</span>
+                <span className={`${styles.heroLine} ${styles.heroSubHeading}`}>
+                  <span className={`${styles.heroSubText} ${styles.heroLine2}`}>انگلیسی راحت</span>
+                  <span className={`${styles.heroAccent} ${styles.heroLine3}`}>و&nbsp;هوشمند</span>
                 </span>
               </>
             ) : (
               <>Turn English learning into a personal path toward <span className={styles.heroAccent}>real opportunities.</span></>
             )}
           </h1>
-          <p>{isFa ? "توی چند دقیقه رایگان تعیین سطح شو، بهترین کتاب آموزشی متناسب با خودت رو بگیر و با کلاس‌های آنلاین و تمرین‌های روزانه ۱۰ دقیقه‌ای، راحت انگلیسی صحبت کن." : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
+          <p>{isFa ? (cmsContent.hero.subtitleFa || "توی چند دقیقه رایگان تعیین سطح شو، بهترین کتاب آموزشی متناسب با خودت رو بگیر و با کلاس‌های آنلاین و تمرین‌های روزانه ۱۰ دقیقه‌ای، راحت انگلیسی صحبت کن.") : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
                     <div className={styles.heroActions}>
-            <Link className={styles.primaryButton} href={localizedPath(locale, "/placement")}>
-              <span>{isFa ? "شروع تعیین سطح رایگان" : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
+            <Link className={styles.primaryButton} href={localizedPath(locale, cmsContent.hero.primaryCtaHref || "/placement")}>
+              <span>{isFa ? (cmsContent.hero.primaryCtaLabelFa || "شروع تعیین سطح رایگان") : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
-            <Link className={styles.secondaryButton} href="#how">
-              <span>{isFa ? "مراحل یادگیری و کلاس‌ها" : "Explore learning loop"}</span><span aria-hidden="true">↓</span>
+            <Link className={styles.secondaryButton} href={cmsContent.hero.secondaryCtaHref || "#how"}>
+              <span>{isFa ? (cmsContent.hero.secondaryCtaLabelFa || "مراحل یادگیری و کلاس‌ها") : "Explore learning loop"}</span><span aria-hidden="true">↓</span>
             </Link>
           </div>
         </div>

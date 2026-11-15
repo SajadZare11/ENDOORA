@@ -24,7 +24,9 @@ import {
   InductiveLessonArena,
   LeitnerActiveRecallArena,
   CefrVocabTable,
+  NeuroPulseLeitnerRadar,
 } from "@/components/learner/leitner";
+import { getCriticalDecayCardsForLevel } from "../../../lib/dkt-engine/cefr-vocab-retention";
 import styles from "../learner-subpages.module.css";
 
 export default function LeitnerPage() {
@@ -107,6 +109,15 @@ export default function LeitnerPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Launch DKT-Forget critical decay cards review
+  const handleStartCriticalReview = (levelToReview: CEFRLevel) => {
+    const critical = getCriticalDecayCardsForLevel(levelToReview);
+    if (critical.length === 0) return;
+    setDueItems(critical);
+    setMode("review");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Launch inductive lesson for a specific word clicked in table
   const handleStudySpecificWord = (word: CEFRWord) => {
     setSessionWords([word]);
@@ -133,7 +144,7 @@ export default function LeitnerPage() {
 
       {/* Active Mode View */}
       {mode === "lesson" && (
-        <section aria-label="اتاق تدریس استقرایی واژگان">
+        <section aria-label="اتاق یادگیری کلمه">
           <InductiveLessonArena
             level={activeLevel}
             lessonIndex={currentLessonIndex}
@@ -163,6 +174,15 @@ export default function LeitnerPage() {
               activeLevel={activeLevel}
               onSelectLevel={handleSelectLevel}
               levelsStats={allStats}
+            />
+          </section>
+
+          {/* DKT-Forget Neural Pulse & Retention Radar */}
+          <section aria-label="شبیه‌ساز شبکه عصبی ذهن و نبض پایداری لایتنر">
+            <NeuroPulseLeitnerRadar
+              activeLevel={activeLevel}
+              onSelectLevel={handleSelectLevel}
+              onStartCriticalReview={handleStartCriticalReview}
             />
           </section>
 

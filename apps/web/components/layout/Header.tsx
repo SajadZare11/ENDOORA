@@ -35,6 +35,7 @@ export default function Header() {
         <Link href="/community">{isFa ? "جامعه" : "Community"}</Link>
         <Link href="/ielts"><BdiEn>IELTS</BdiEn></Link>
         <Link href="/skills/school">{isFa ? "زبان دبیرستان" : "High School English"}</Link>
+        <Link href="/books">{isFa ? "کتاب‌ها" : "Books"}</Link>
         <Link href="/pricing">{t("nav.pricing")}</Link>
         <Link href="/search">{isFa ? "جستجو" : "Search"}</Link>
         <Link href="/support">{isFa ? "پشتیبانی" : "Support"}</Link>

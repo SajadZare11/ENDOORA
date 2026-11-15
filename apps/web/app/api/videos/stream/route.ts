@@ -45,10 +45,12 @@ function getGitHubReleaseUrl(isAef: boolean, rawLevel: string, fileName: string)
 }
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const rawSeries = (searchParams.get("series") || "").toLowerCase().trim();
-  const rawLevel = (searchParams.get("level") || "").toLowerCase().trim();
-  const rawFile = (searchParams.get("file") || "").trim();
+  try {
+    const { searchParams } = new URL(request.url);
+    const rawSeries = (searchParams.get("series") || "").toLowerCase().trim();
+    const rawLevel = (searchParams.get("level") || "").toLowerCase().trim();
+    const rawFile = (searchParams.get("file") || "").trim();
+    console.log("[VIDEO_STREAM_API] Request:", { rawSeries, rawLevel, rawFile });
 
   if (!rawLevel || !rawFile) {
     return new NextResponse("Missing level or file parameter", { status: 400 });
@@ -166,4 +168,8 @@ export async function GET(request: NextRequest) {
   // Fallback to Failsafe Cloud / GitHub CDN Release
   const fallbackUrl = getGitHubReleaseUrl(isAef, rawLevel, sanitizedFileName);
   return NextResponse.redirect(fallbackUrl, 307);
+  } catch (globalErr: any) {
+    console.error("[VIDEO_STREAM_API] Global unhandled error:", globalErr);
+    return new NextResponse(`Streaming error: ${globalErr?.message || globalErr}`, { status: 500 });
+  }
 }

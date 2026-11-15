@@ -87,7 +87,7 @@ export const LeitnerShelf: React.FC<LeitnerShelfProps> = ({
               جعبه ۵ خانه‌ای لایتنر واژگان {meta.titleFa} ({level})
             </h2>
             <p className={styles.shelfSubtitle}>
-              انتقال فعال کلمات با تدریس استقرایی و فواصل زمانی علمی (۱، ۳، ۷، ۱۴ و ۳۰ روز) به حافظه پایدار
+              انتقال فعال کلمات با یادگیری کلمه و فواصل زمانی علمی (۱، ۳، ۷، ۱۴ و ۳۰ روز) به حافظه پایدار
             </p>
           </div>
         </div>

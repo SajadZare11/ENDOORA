@@ -16,6 +16,7 @@ type SessionState =
   | { account: SessionAccount; kind: "authenticated" };
 
 function panelPath(role: string): string {
+  if (role === "administrator") return "/admin";
   if (role === "learner") return "/dashboard";
   if (role === "teacher") return "/teacher";
   return "/account";

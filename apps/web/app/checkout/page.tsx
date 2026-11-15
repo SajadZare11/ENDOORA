@@ -17,6 +17,57 @@ import {
 } from "../../lib/marketplace";
 import { endooraApi } from "../../lib/endoora-api";
 
+const FALLBACK_GOLDEN_PLANS: Record<string, PlatformPricingPlan> = {
+  golden_1m: {
+    id: "golden_1m",
+    code: "golden_1m",
+    name_fa: "اشتراک طلایی ۱ ماهه",
+    name_en: "1-Month Golden Plan",
+    duration_days: 30,
+    price_toman: 299000,
+    price_toman_number: 299000,
+    is_active: true,
+    is_featured: false,
+    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم"],
+    note_fa: "دسترسی نامحدود ۳۰ روزه به تمام بخش‌های سایت",
+    note_en: "30-day full access to all platform features",
+    created_at: "2026-11-12T00:00:00Z",
+    updated_at: "2026-11-12T00:00:00Z",
+  },
+  golden_3m: {
+    id: "golden_3m",
+    code: "golden_3m",
+    name_fa: "اشتراک طلایی ۳ ماهه (پیشنهاد ویژه)",
+    name_en: "3-Month Golden Plan",
+    duration_days: 90,
+    price_toman: 799000,
+    price_toman_number: 799000,
+    is_active: true,
+    is_featured: true,
+    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم", "۱۱٪ صرفه‌جویی اقتصادی"],
+    note_fa: "محبوب‌ترین پلن با ۱۱٪ تخفیف",
+    note_en: "Most popular 90-day plan with 11% savings",
+    created_at: "2026-11-12T00:00:00Z",
+    updated_at: "2026-11-12T00:00:00Z",
+  },
+  golden_6m: {
+    id: "golden_6m",
+    code: "golden_6m",
+    name_fa: "اشتراک طلایی ۶ ماهه (بیشترین صرفه)",
+    name_en: "6-Month Golden Plan",
+    duration_days: 180,
+    price_toman: 1699000,
+    price_toman_number: 1699000,
+    is_active: true,
+    is_featured: false,
+    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم", "بیشترین صرفه اقتصادی"],
+    note_fa: "بیشترین صرفه اقتصادی با ۱۵٪ تخفیف کل دوره",
+    note_en: "Best value 180-day plan with 15% savings",
+    created_at: "2026-11-12T00:00:00Z",
+    updated_at: "2026-11-12T00:00:00Z",
+  },
+};
+
 function CheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -39,6 +90,16 @@ function CheckoutContent() {
   const [topupAmount, setTopupAmount] = useState<number>(initialAmount || 100000);
 
   const [selectedGateway, setSelectedGateway] = useState<"wallet" | "zarinpal" | "sandbox">("sandbox");
+
+  // Coupon & Promo state
+  const [couponCodeInput, setCouponCodeInput] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [appliedCoupon, setAppliedCoupon] = useState<{
+    code: string;
+    discountAmountToman: number;
+    description?: string;
+  } | null>(null);
+  const [couponMessage, setCouponMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -67,11 +128,17 @@ function CheckoutContent() {
             const found = plansRes.plans.find((p) => p.id === planId || p.code === planId);
             if (found) {
               setPlan(found);
+            } else if (FALLBACK_GOLDEN_PLANS[planId]) {
+              setPlan(FALLBACK_GOLDEN_PLANS[planId]);
             } else if (plansRes.plans.length > 0) {
               setPlan(plansRes.plans[0]);
             }
           } catch {
-            setError("اطلاعات پلن اشتراک دریافت نشد.");
+            if (FALLBACK_GOLDEN_PLANS[planId]) {
+              setPlan(FALLBACK_GOLDEN_PLANS[planId]);
+            } else {
+              setError("اطلاعات پلن اشتراک دریافت نشد.");
+            }
           }
         }
       } catch (err: unknown) {
@@ -83,13 +150,13 @@ function CheckoutContent() {
     loadData();
   }, [orderType, orderId, planId]);
 
-  // Compute final payable amount
-  let payableAmountToman = 0;
+  // Compute base and final payable amount
+  let baseAmountToman = 0;
   let itemName = "سفارش ایندورا";
   let itemDescription = "";
 
   if (orderType === "booking_session") {
-    payableAmountToman = booking ? parseInt(String(booking.rate_toman), 10) : 0;
+    baseAmountToman = booking ? parseInt(String(booking.rate_toman), 10) : 0;
     itemName = booking
       ? `رزرو جلسه ${booking.duration_minutes} دقیقه‌ای ${booking.target_skill}`
       : "رزرو جلسه آموزشی";
@@ -97,18 +164,71 @@ function CheckoutContent() {
       ? `زمان: ${formatTehranDateOnly(booking.scheduled_start)} ساعت ${formatTehranTimeOnly(booking.scheduled_start)}`
       : "";
   } else if (orderType === "subscription_plan") {
-    payableAmountToman = plan ? plan.price_toman_number : 420000;
+    baseAmountToman = plan ? plan.price_toman_number : 420000;
     itemName = plan ? plan.name_fa : "اشتراک پرمیوم پلتفرم";
     itemDescription = plan ? `${plan.duration_days} روز دسترسی نامحدود به تمامی امکانات هوشمند` : "";
   } else if (orderType === "wallet_topup") {
-    payableAmountToman = topupAmount;
+    baseAmountToman = topupAmount;
     itemName = "شارژ کیف پول کاربری ایندورا";
     itemDescription = "مبلغ بلافاصله پس از پرداخت به موجودی حساب شما افزوده می‌شود.";
   }
 
+  const discountAmountToman = appliedCoupon ? appliedCoupon.discountAmountToman : 0;
+  const payableAmountToman = Math.max(0, baseAmountToman - discountAmountToman);
   const payableAmountRial = payableAmountToman * 10;
   const walletBalance = wallet ? wallet.available_balance_toman : 0;
   const hasSufficientWallet = walletBalance >= payableAmountToman && payableAmountToman > 0;
+
+  const handleApplyCoupon = async () => {
+    if (!couponCodeInput.trim()) return;
+    setCouponLoading(true);
+    setCouponMessage(null);
+    try {
+      const scope =
+        orderType === "subscription_plan"
+          ? "subscription"
+          : orderType === "booking_session"
+          ? "session_1on1"
+          : "all";
+      const res = await fetch("/api/marketing/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: couponCodeInput.trim(),
+          basketAmountToman: baseAmountToman,
+          scope,
+          userPhone: (wallet as { phone?: string })?.phone || undefined,
+        }),
+      });
+      const json = await res.json();
+      if (json.valid) {
+        setAppliedCoupon({
+          code: json.couponCode,
+          discountAmountToman: json.discountAmountToman,
+          description: json.description,
+        });
+        setCouponMessage({
+          type: "success",
+          text: `کد تخفیف ${json.couponCode} با موفقیت اعمال شد (${json.discountAmountToman.toLocaleString(
+            "fa-IR"
+          )} تومان تخفیف)`,
+        });
+      } else {
+        setAppliedCoupon(null);
+        setCouponMessage({ type: "error", text: json.error || "کد تخفیف وارد شده نامعتبر است." });
+      }
+    } catch {
+      setCouponMessage({ type: "error", text: "خطا در برقراری ارتباط با سامانه اعتبارسنجی تخفیف." });
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCodeInput("");
+    setCouponMessage(null);
+  };
 
   const handlePay = async () => {
     if (payableAmountToman <= 0) {
@@ -223,11 +343,83 @@ function CheckoutContent() {
             </div>
           )}
 
+          {/* Coupon Code Section */}
+          {orderType !== "wallet_topup" && (
+            <div style={{ marginTop: "1rem", marginBottom: "1rem", padding: "1rem", background: "var(--color-bg-subtle, #f8fafc)", borderRadius: "10px", border: "1px dashed var(--color-border, #cbd5e1)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text, #0f172a)", display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                  <span>🎟️</span> کد تخفیف یا معرف دارید؟
+                </span>
+                {appliedCoupon && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveCoupon}
+                    style={{ background: "transparent", border: "none", color: "#b91c1c", fontSize: "0.75rem", cursor: "pointer", fontWeight: 700 }}
+                  >
+                    ✕ حذف کوپن
+                  </button>
+                )}
+              </div>
+
+              {!appliedCoupon ? (
+                <div style={{ display: "flex", gap: "0.5rem" }}>
+                  <input
+                    type="text"
+                    value={couponCodeInput}
+                    onChange={(e) => setCouponCodeInput(e.target.value)}
+                    placeholder="مثال: GOLDEN30 یا ALI-FRIEND"
+                    dir="ltr"
+                    style={{
+                      flex: 1,
+                      padding: "0.5rem 0.75rem",
+                      borderRadius: "8px",
+                      border: "1px solid #cbd5e1",
+                      fontSize: "0.85rem",
+                      fontFamily: "inherit",
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    variant="primary"
+                    size="sm"
+                    disabled={couponLoading || !couponCodeInput.trim()}
+                    onClick={handleApplyCoupon}
+                  >
+                    {couponLoading ? "بررسی..." : "اعمال کد"}
+                  </Button>
+                </div>
+              ) : (
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#ecfdf5", border: "1px solid #a7f3d0", padding: "0.5rem 0.75rem", borderRadius: "8px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                    <span style={{ color: "#047857", fontWeight: 800 }}>✓ کد {appliedCoupon.code}</span>
+                    <span style={{ fontSize: "0.75rem", color: "#065f46" }}>({appliedCoupon.discountAmountToman.toLocaleString("fa-IR")} تومان کسر شد)</span>
+                  </div>
+                </div>
+              )}
+
+              {couponMessage && (
+                <p style={{ margin: "0.4rem 0 0 0", fontSize: "0.75rem", color: couponMessage.type === "success" ? "#047857" : "#b91c1c", fontWeight: 600 }}>
+                  {couponMessage.text}
+                </p>
+              )}
+            </div>
+          )}
+
           <div className={styles.priceBreakdown}>
             <div className={styles.priceRow}>
-              <span>مبلغ کل سفارش:</span>
-              <span className={styles.priceValue}>{payableAmountToman.toLocaleString("fa-IR")} تومان</span>
+              <span>مبلغ پایه سفارش:</span>
+              <span className={styles.priceValue}>{baseAmountToman.toLocaleString("fa-IR")} تومان</span>
             </div>
+
+            {appliedCoupon && (
+              <div className={styles.priceRow} style={{ color: "#047857" }}>
+                <span>تخفیف اعمال‌شده ({appliedCoupon.code}):</span>
+                <span className={styles.priceValue} style={{ color: "#047857", fontWeight: 700 }}>
+                  -{appliedCoupon.discountAmountToman.toLocaleString("fa-IR")} تومان
+                </span>
+              </div>
+            )}
+
             <div className={styles.priceRow}>
               <span>معادل ریالی درگاه شاپرک:</span>
               <span className={styles.priceValue}>{payableAmountRial.toLocaleString("fa-IR")} ریال</span>
