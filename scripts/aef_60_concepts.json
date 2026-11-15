@@ -1,0 +1,799 @@
+[
+  {
+    "id": "a1-01",
+    "cefr": "A1",
+    "stageNumber": 1,
+    "titleEn": "Subject Pronouns & Verb To Be",
+    "titleFa": "تطابق فاعل و فعل To Be",
+    "domain": "tenses",
+    "prerequisites": [],
+    "decayRateLambda": 0.05,
+    "difficulty": 0.15
+  },
+  {
+    "id": "a1-02",
+    "cefr": "A1",
+    "stageNumber": 2,
+    "titleEn": "Do & Does Question Matrix",
+    "titleFa": "افعال کمکی do و does در سوالات",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.2
+  },
+  {
+    "id": "a1-03",
+    "cefr": "A1",
+    "stageNumber": 3,
+    "titleEn": "Adverbs of Frequency Placement",
+    "titleFa": "جایگاه قیدهای تکرار در جمله",
+    "domain": "discourse",
+    "prerequisites": [
+      "a1-02"
+    ],
+    "decayRateLambda": 0.05,
+    "difficulty": 0.22
+  },
+  {
+    "id": "a1-04",
+    "cefr": "A1",
+    "stageNumber": 4,
+    "titleEn": "Can & Can't for Ability and Permission",
+    "titleFa": "افعال کمکی Can و Can't برای توانایی",
+    "domain": "modals",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.05,
+    "difficulty": 0.22
+  },
+  {
+    "id": "a1-05",
+    "cefr": "A1",
+    "stageNumber": 5,
+    "titleEn": "Present Continuous for Current Actions",
+    "titleFa": "زمان حال استمراری و فعالیت‌های جاری",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.25
+  },
+  {
+    "id": "a1-06",
+    "cefr": "A1",
+    "stageNumber": 6,
+    "titleEn": "Simple Present vs Present Continuous",
+    "titleFa": "تمایز حال ساده و حال استمراری",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-02",
+      "a1-05"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.3
+  },
+  {
+    "id": "a1-07",
+    "cefr": "A1",
+    "stageNumber": 7,
+    "titleEn": "Past Simple of Verb To Be (Was / Were)",
+    "titleFa": "گذشته ساده فعل To Be (was/were)",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.28
+  },
+  {
+    "id": "a1-08",
+    "cefr": "A1",
+    "stageNumber": 8,
+    "titleEn": "Past Simple Regular & Irregular Verbs",
+    "titleFa": "افعال باقاعده و بی‌قاعده در گذشته ساده",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-07"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.35
+  },
+  {
+    "id": "a1-09",
+    "cefr": "A1",
+    "stageNumber": 9,
+    "titleEn": "There is / There are & Quantifiers",
+    "titleFa": "وجود اشیاء و کمیت‌سنج‌ها (some/any)",
+    "domain": "discourse",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.05,
+    "difficulty": 0.26
+  },
+  {
+    "id": "a1-10",
+    "cefr": "A1",
+    "stageNumber": 10,
+    "titleEn": "Comparative & Superlative Adjectives",
+    "titleFa": "صفات تفضیلی و عالی",
+    "domain": "discourse",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.32
+  },
+  {
+    "id": "a2-01",
+    "cefr": "A2",
+    "stageNumber": 1,
+    "titleEn": "Past Continuous vs Past Simple",
+    "titleFa": "گذشته استمراری در برابر گذشته ساده",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-08"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.4
+  },
+  {
+    "id": "a2-02",
+    "cefr": "A2",
+    "stageNumber": 2,
+    "titleEn": "Defining Relative Clauses (who, which, where)",
+    "titleFa": "بندهای موصولی تعریف‌کننده",
+    "domain": "clauses",
+    "prerequisites": [
+      "a1-01"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.42
+  },
+  {
+    "id": "a2-03",
+    "cefr": "A2",
+    "stageNumber": 3,
+    "titleEn": "Future with Going To vs Will",
+    "titleFa": "آینده با Going to در برابر Will",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-05"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.38
+  },
+  {
+    "id": "a2-04",
+    "cefr": "A2",
+    "stageNumber": 4,
+    "titleEn": "Present Perfect with Ever & Never",
+    "titleFa": "حال کامل برای بیان تجربیات",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-08"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.45
+  },
+  {
+    "id": "a2-05",
+    "cefr": "A2",
+    "stageNumber": 5,
+    "titleEn": "Present Perfect vs Past Simple",
+    "titleFa": "تمایز حال کامل و گذشته ساده",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-08",
+      "a2-04"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.5
+  },
+  {
+    "id": "a2-06",
+    "cefr": "A2",
+    "stageNumber": 6,
+    "titleEn": "Have to, Don't have to, Must, Mustn't",
+    "titleFa": "افعال وجهی الزام و ممنوعیت",
+    "domain": "modals",
+    "prerequisites": [
+      "a1-04"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.42
+  },
+  {
+    "id": "a2-07",
+    "cefr": "A2",
+    "stageNumber": 7,
+    "titleEn": "First Conditional (Real Possibility)",
+    "titleFa": "جملات شرطی نوع اول (احتمال واقعی)",
+    "domain": "conditionals",
+    "prerequisites": [
+      "a1-02",
+      "a2-03"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.48
+  },
+  {
+    "id": "a2-08",
+    "cefr": "A2",
+    "stageNumber": 8,
+    "titleEn": "Gerunds & Infinitives",
+    "titleFa": "افعال با اسم مصدر (ing) و مصدر با to",
+    "domain": "discourse",
+    "prerequisites": [
+      "a1-02"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.45
+  },
+  {
+    "id": "a2-09",
+    "cefr": "A2",
+    "stageNumber": 9,
+    "titleEn": "Present and Past Passive Basics",
+    "titleFa": "مجهول در زمان حال و گذشته ساده",
+    "domain": "passive",
+    "prerequisites": [
+      "a1-01",
+      "a1-08"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.48
+  },
+  {
+    "id": "a2-10",
+    "cefr": "A2",
+    "stageNumber": 10,
+    "titleEn": "Used to for Past Habits",
+    "titleFa": "عادات گذشته با Used to",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-08"
+    ],
+    "decayRateLambda": 0.06,
+    "difficulty": 0.42
+  },
+  {
+    "id": "b1-01",
+    "cefr": "B1",
+    "stageNumber": 1,
+    "titleEn": "Second Conditional (Hypothetical Situations)",
+    "titleFa": "جملات شرطی نوع دوم (موقعیت فرضی)",
+    "domain": "conditionals",
+    "prerequisites": [
+      "a2-07"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.55
+  },
+  {
+    "id": "b1-02",
+    "cefr": "B1",
+    "stageNumber": 2,
+    "titleEn": "Present Perfect Continuous vs Simple",
+    "titleFa": "حال کامل استمراری در برابر حال کامل ساده",
+    "domain": "tenses",
+    "prerequisites": [
+      "a2-05"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.6
+  },
+  {
+    "id": "b1-03",
+    "cefr": "B1",
+    "stageNumber": 3,
+    "titleEn": "Modals of Deduction: Must, Might, Can't",
+    "titleFa": "افعال وجهی استنتاج در زمان حال",
+    "domain": "modals",
+    "prerequisites": [
+      "a2-06"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.55
+  },
+  {
+    "id": "b1-04",
+    "cefr": "B1",
+    "stageNumber": 4,
+    "titleEn": "Past Perfect Simple (The Earlier Past)",
+    "titleFa": "گذشته کامل (گذشته دورتر)",
+    "domain": "tenses",
+    "prerequisites": [
+      "a1-08",
+      "a2-01"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.58
+  },
+  {
+    "id": "b1-05",
+    "cefr": "B1",
+    "stageNumber": 5,
+    "titleEn": "Reported Speech & Question Shifts",
+    "titleFa": "نقل قول غیرمستقیم و تغییرات زمانی",
+    "domain": "clauses",
+    "prerequisites": [
+      "a1-08",
+      "b1-04"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.62
+  },
+  {
+    "id": "b1-06",
+    "cefr": "B1",
+    "stageNumber": 6,
+    "titleEn": "Passive Voice Across All Major Tenses",
+    "titleFa": "مجهول در تمام زمان‌های اصلی",
+    "domain": "passive",
+    "prerequisites": [
+      "a2-09"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.6
+  },
+  {
+    "id": "b1-07",
+    "cefr": "B1",
+    "stageNumber": 7,
+    "titleEn": "Non-defining Relative Clauses",
+    "titleFa": "بندهای موصولی غیرتعریف‌کننده (توضیحی)",
+    "domain": "clauses",
+    "prerequisites": [
+      "a2-02"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.56
+  },
+  {
+    "id": "b1-08",
+    "cefr": "B1",
+    "stageNumber": 8,
+    "titleEn": "Question Tags & Echo Questions",
+    "titleFa": "تگ‌های سوالی تأییدی",
+    "domain": "discourse",
+    "prerequisites": [
+      "a1-02",
+      "a1-08"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.52
+  },
+  {
+    "id": "b1-09",
+    "cefr": "B1",
+    "stageNumber": 9,
+    "titleEn": "Clauses of Contrast and Purpose",
+    "titleFa": "بندهای تضاد و هدف (Although, In spite of, In order to)",
+    "domain": "discourse",
+    "prerequisites": [
+      "a2-02"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.58
+  },
+  {
+    "id": "b1-10",
+    "cefr": "B1",
+    "stageNumber": 10,
+    "titleEn": "Narrative Tenses (Simple, Continuous, Perfect)",
+    "titleFa": "زمان‌های روایت داستان در گذشته",
+    "domain": "tenses",
+    "prerequisites": [
+      "a2-01",
+      "b1-04"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.62
+  },
+  {
+    "id": "b2-01",
+    "cefr": "B2",
+    "stageNumber": 1,
+    "titleEn": "Third Conditional (Past Regrets & Imagined Pasts)",
+    "titleFa": "جملات شرطی نوع سوم (حسرت گذشته)",
+    "domain": "conditionals",
+    "prerequisites": [
+      "b1-01",
+      "b1-04"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.72
+  },
+  {
+    "id": "b2-02",
+    "cefr": "B2",
+    "stageNumber": 2,
+    "titleEn": "Wish & If Only Structures",
+    "titleFa": "ساختارهای Wish و If only برای آرزو و تأسف",
+    "domain": "conditionals",
+    "prerequisites": [
+      "b2-01"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.7
+  },
+  {
+    "id": "b2-03",
+    "cefr": "B2",
+    "stageNumber": 3,
+    "titleEn": "Past Modals of Deduction (must have, can't have)",
+    "titleFa": "افعال وجهی استنتاج در گذشته",
+    "domain": "modals",
+    "prerequisites": [
+      "b1-03",
+      "b1-04"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.74
+  },
+  {
+    "id": "b2-04",
+    "cefr": "B2",
+    "stageNumber": 4,
+    "titleEn": "Causative Forms (have / get something done)",
+    "titleFa": "ساختارهای سببی (دادن کاری برای انجام)",
+    "domain": "passive",
+    "prerequisites": [
+      "b1-06"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.68
+  },
+  {
+    "id": "b2-05",
+    "cefr": "B2",
+    "stageNumber": 5,
+    "titleEn": "Future Continuous & Future Perfect",
+    "titleFa": "آینده استمراری و آینده کامل",
+    "domain": "tenses",
+    "prerequisites": [
+      "a2-03",
+      "b1-02"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.7
+  },
+  {
+    "id": "b2-06",
+    "cefr": "B2",
+    "stageNumber": 6,
+    "titleEn": "Mixed Conditionals (Present Result of Past Action)",
+    "titleFa": "شرطی‌های ترکیبی (نتیجه حال از شرط گذشته)",
+    "domain": "conditionals",
+    "prerequisites": [
+      "b1-01",
+      "b2-01"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.78
+  },
+  {
+    "id": "b2-07",
+    "cefr": "B2",
+    "stageNumber": 7,
+    "titleEn": "Relative Clauses with Prepositions",
+    "titleFa": "بندهای موصولی همراه با حرف اضافه (to whom, in which)",
+    "domain": "clauses",
+    "prerequisites": [
+      "b1-07"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.72
+  },
+  {
+    "id": "b2-08",
+    "cefr": "B2",
+    "stageNumber": 8,
+    "titleEn": "Reporting Passives (It is said that / He is thought to)",
+    "titleFa": "مجهول‌های نقلی و رسمی",
+    "domain": "passive",
+    "prerequisites": [
+      "b1-05",
+      "b1-06"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.75
+  },
+  {
+    "id": "b2-09",
+    "cefr": "B2",
+    "stageNumber": 9,
+    "titleEn": "Gerunds vs Infinitives with Meaning Change",
+    "titleFa": "افعال با دو معنا در حالت ing یا to (remember, stop)",
+    "domain": "discourse",
+    "prerequisites": [
+      "a2-08"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.7
+  },
+  {
+    "id": "b2-10",
+    "cefr": "B2",
+    "stageNumber": 10,
+    "titleEn": "Discourse Markers and Linkers",
+    "titleFa": "حروف ربط پیشرفته و انسجام متن",
+    "domain": "discourse",
+    "prerequisites": [
+      "b1-09"
+    ],
+    "decayRateLambda": 0.07,
+    "difficulty": 0.68
+  },
+  {
+    "id": "c1-01",
+    "cefr": "C1",
+    "stageNumber": 1,
+    "titleEn": "Inversion after Negative Adverbials",
+    "titleFa": "وارونگی نحوی پس از قیدهای منفی (Never have I...)",
+    "domain": "clauses",
+    "prerequisites": [
+      "b1-04",
+      "b2-01"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.85
+  },
+  {
+    "id": "c1-02",
+    "cefr": "C1",
+    "stageNumber": 2,
+    "titleEn": "Cleft Sentences for Emphasis",
+    "titleFa": "جملات انشعابی تأکیدی (What I need is... / It was...)",
+    "domain": "clauses",
+    "prerequisites": [
+      "b2-07"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.82
+  },
+  {
+    "id": "c1-03",
+    "cefr": "C1",
+    "stageNumber": 3,
+    "titleEn": "Participle Clauses (Active and Passive)",
+    "titleFa": "بندهای وجه وصفی (Having arrived... / Built in...)",
+    "domain": "clauses",
+    "prerequisites": [
+      "b1-07",
+      "b1-06"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.86
+  },
+  {
+    "id": "c1-04",
+    "cefr": "C1",
+    "stageNumber": 4,
+    "titleEn": "Advanced Unreal Past & Inverted Conditionals",
+    "titleFa": "شرطی‌های معکوس رسمی (Had we known / Should you need)",
+    "domain": "conditionals",
+    "prerequisites": [
+      "b2-01",
+      "c1-01"
+    ],
+    "decayRateLambda": 0.11,
+    "difficulty": 0.88
+  },
+  {
+    "id": "c1-05",
+    "cefr": "C1",
+    "stageNumber": 5,
+    "titleEn": "Distancing Expressions and Hedging",
+    "titleFa": "بیان غیرمستقیم، آکادمیک و محتاطانه (Hedging)",
+    "domain": "modals",
+    "prerequisites": [
+      "b2-08"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.8
+  },
+  {
+    "id": "c1-06",
+    "cefr": "C1",
+    "stageNumber": 6,
+    "titleEn": "Nominalisation in Formal Syntax",
+    "titleFa": "اسم‌سازی در متون آکادمیک و رسمی",
+    "domain": "clauses",
+    "prerequisites": [
+      "b2-10"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.84
+  },
+  {
+    "id": "c1-07",
+    "cefr": "C1",
+    "stageNumber": 7,
+    "titleEn": "Ellipsis and Substitution",
+    "titleFa": "حذف به قرینه و جانشین‌سازی در گفتمان",
+    "domain": "discourse",
+    "prerequisites": [
+      "b1-08"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.82
+  },
+  {
+    "id": "c1-08",
+    "cefr": "C1",
+    "stageNumber": 8,
+    "titleEn": "Complex Prepositional Phrases",
+    "titleFa": "عبارات حرف اضافه‌ای ترکیبی و کالوکیشن‌های پیشرفته",
+    "domain": "discourse",
+    "prerequisites": [
+      "b2-10"
+    ],
+    "decayRateLambda": 0.08,
+    "difficulty": 0.8
+  },
+  {
+    "id": "c1-09",
+    "cefr": "C1",
+    "stageNumber": 9,
+    "titleEn": "Subjunctive Mood in Formal Contexts",
+    "titleFa": "وجه التزامی در مکاتبات رسمی و حقوقی",
+    "domain": "clauses",
+    "prerequisites": [
+      "b2-02"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.85
+  },
+  {
+    "id": "c1-10",
+    "cefr": "C1",
+    "stageNumber": 10,
+    "titleEn": "Stylistic Inversion & Fronting",
+    "titleFa": "وارونگی سبکی و انتقال به ابتدای جمله",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-01"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.88
+  },
+  {
+    "id": "c2-01",
+    "cefr": "C2",
+    "stageNumber": 1,
+    "titleEn": "The Mandative Subjunctive in Legal/Diplomatic Registers",
+    "titleFa": "وجه التزامی امری در متون دیپلماتیک",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-09"
+    ],
+    "decayRateLambda": 0.11,
+    "difficulty": 0.94
+  },
+  {
+    "id": "c2-02",
+    "cefr": "C2",
+    "stageNumber": 2,
+    "titleEn": "Temporal Limiting Inversions (Scarcely... when, No sooner... than)",
+    "titleFa": "وارونگی زمانی محدودساز (No sooner / Scarcely)",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-01"
+    ],
+    "decayRateLambda": 0.11,
+    "difficulty": 0.92
+  },
+  {
+    "id": "c2-03",
+    "cefr": "C2",
+    "stageNumber": 3,
+    "titleEn": "Absolute Participial Constructions",
+    "titleFa": "سازه وجه وصفی مستقل (The meeting having concluded...)",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-03"
+    ],
+    "decayRateLambda": 0.11,
+    "difficulty": 0.95
+  },
+  {
+    "id": "c2-04",
+    "cefr": "C2",
+    "stageNumber": 4,
+    "titleEn": "Pseudo-Clefts with Modal Inferences",
+    "titleFa": "جملات شبه‌انشعابی همراه با استنتاج وجهی",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-02",
+      "b2-03"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.92
+  },
+  {
+    "id": "c2-05",
+    "cefr": "C2",
+    "stageNumber": 5,
+    "titleEn": "Nuanced Modals of Contingency",
+    "titleFa": "افعال وجهی محتمل‌الوقوع و پیشامد",
+    "domain": "modals",
+    "prerequisites": [
+      "c1-05"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 0.9
+  },
+  {
+    "id": "c2-06",
+    "cefr": "C2",
+    "stageNumber": 6,
+    "titleEn": "Chiasmus & Rhetorical Inversion",
+    "titleFa": "وارونگی بلاغی و ساختارهای تقاطعی",
+    "domain": "clauses",
+    "prerequisites": [
+      "c1-10"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.93
+  },
+  {
+    "id": "c2-07",
+    "cefr": "C2",
+    "stageNumber": 7,
+    "titleEn": "Adverbial Participle Chains",
+    "titleFa": "زنجیره‌های وجه وصفی قیدی در نثر ادبی",
+    "domain": "clauses",
+    "prerequisites": [
+      "c2-03"
+    ],
+    "decayRateLambda": 0.11,
+    "difficulty": 0.96
+  },
+  {
+    "id": "c2-08",
+    "cefr": "C2",
+    "stageNumber": 8,
+    "titleEn": "Asymmetrical Coordination & Gapping",
+    "titleFa": "هم‌پایگی نامتقارن و گسست ساختاری مجاز",
+    "domain": "discourse",
+    "prerequisites": [
+      "c1-07"
+    ],
+    "decayRateLambda": 0.1,
+    "difficulty": 0.92
+  },
+  {
+    "id": "c2-09",
+    "cefr": "C2",
+    "stageNumber": 9,
+    "titleEn": "Mixed Modals in Counterfactual Matrix",
+    "titleFa": "ماتریس وجهی شرطی خلاف واقع در سطوح عالی",
+    "domain": "conditionals",
+    "prerequisites": [
+      "b2-06",
+      "c1-04"
+    ],
+    "decayRateLambda": 0.12,
+    "difficulty": 0.98
+  },
+  {
+    "id": "c2-10",
+    "cefr": "C2",
+    "stageNumber": 10,
+    "titleEn": "Register Synthesis & Stylistic Mastery",
+    "titleFa": "تلفیق لحن و استادی در نحو تطبیقی",
+    "domain": "discourse",
+    "prerequisites": [
+      "c2-06",
+      "c2-08"
+    ],
+    "decayRateLambda": 0.09,
+    "difficulty": 1
+  }
+]

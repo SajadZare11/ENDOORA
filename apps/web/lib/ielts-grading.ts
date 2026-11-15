@@ -6,6 +6,8 @@ import type {
   QuestionGradingResult,
   SkillScoreSummary,
 } from "@endoora/contracts";
+import { NeuralCdmEngine } from "./ai/neural-cdm-engine.ts";
+import type { CdmExamDiagnosticSummary } from "./ai/neural-cdm-types.ts";
 
 /**
  * Normalizes candidate input string for IELTS auto-grading:
@@ -265,6 +267,7 @@ export function gradeExamModule(
     { total: number; correct: number; accuracy: number }
   >;
   recommendations: string[];
+  cdmDiagnosis?: CdmExamDiagnosticSummary;
 } {
   const allQuestions: IeltsQuestion[] = [];
   module.sections.forEach((sec) => {
@@ -363,6 +366,22 @@ export function gradeExamModule(
     );
   }
 
+  // Engine 4: GAT + NeuralCDM Causal Prerequisite Diagnosis on Module Errors
+  let cdmDiagnosis: CdmExamDiagnosticSummary | undefined = undefined;
+  try {
+    const cdm = NeuralCdmEngine.getInstance();
+    cdmDiagnosis = cdm.diagnoseIeltsExamResults({
+      examId: module.exam_id,
+      skill: module.skill,
+      gradingResults,
+    });
+    if (cdmDiagnosis?.remediationSummaryFa) {
+      recommendations.unshift(cdmDiagnosis.remediationSummaryFa);
+    }
+  } catch {
+    // Safe fallback
+  }
+
   return {
     summary: {
       raw_score: rawScore,
@@ -375,5 +394,6 @@ export function gradeExamModule(
     gradingResults,
     questionTypeStats,
     recommendations,
+    cdmDiagnosis,
   };
 }

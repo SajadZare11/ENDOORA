@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getIeltsExamById } from "@/data/ielts/index.ts";
 import { gradeExamModule, mapBandToCEFR } from "@/lib/ielts-grading.ts";
+import { useGazeCognitive } from "@/lib/ai/useGazeCognitive.ts";
 import { saveAttemptToStorage, loadAttemptFromStorage } from "@/lib/ielts-state.ts";
 import type {
   IeltsExam,
@@ -34,6 +35,15 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   const [activeQuestionNum, setActiveQuestionNum] = useState(1);
 
   // User input states
+  // Engine 5: Real-time Edge Proctoring & Cognitive Tracking (10 FPS, Zero Video Upload)
+  const {
+    telemetry: gazeTelemetry,
+    proctoring: gazeProctoring,
+  } = useGazeCognitive({
+    autoStart: true,
+    useMouseFallback: true,
+  });
+
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({});
   const [flagged, setFlagged] = useState<number[]>([]);
 
@@ -294,6 +304,20 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
           cefr_description_en: cefr.descriptor_en,
           cefr_description_fa: cefr.descriptor_fa,
           recommendations: graded.recommendations,
+          cdmCausalDiagnosis: graded.cdmDiagnosis,
+          proctoringTelemetry: {
+            integrityScore: Math.round((1 - gazeProctoring.suspiciousScore) * 100),
+            cheatSuspicionLevel:
+              gazeProctoring.suspiciousScore > 0.6
+                ? "high"
+                : gazeProctoring.suspiciousScore > 0.25
+                ? "medium"
+                : "low",
+            gazeAwayCount: gazeProctoring.anomaliesRecorded.filter((a) => a === "looking_away").length,
+            longAbsenceCount: gazeProctoring.anomaliesRecorded.filter((a) => a === "face_absent").length,
+            multipleFacesDetected: gazeProctoring.multipleFaces,
+            flags: gazeProctoring.anomaliesRecorded,
+          },
         },
       };
 

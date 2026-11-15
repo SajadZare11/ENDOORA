@@ -120,6 +120,31 @@ export interface ExamAttempt {
     cefr_description_en: string;
     cefr_description_fa: string;
     recommendations: string[];
+    cdmCausalDiagnosis?: {
+      slipCount: number;
+      deficitCount: number;
+      slipRatio: number;
+      deficitRatio: number;
+      topRootDeficits: Array<{
+        conceptId: string;
+        titleEn: string;
+        titleFa: string;
+        cefr: string;
+        frequency: number;
+        avgMastery?: number;
+      }>;
+      levelDeficitBreakdown?: Record<string, number>;
+      remediationSummaryFa: string;
+      timestamp?: number;
+    };
+    proctoringTelemetry?: {
+      integrityScore: number;
+      cheatSuspicionLevel: "low" | "medium" | "high";
+      gazeAwayCount: number;
+      longAbsenceCount: number;
+      multipleFacesDetected: boolean;
+      flags: string[];
+    };
   };
 }
 

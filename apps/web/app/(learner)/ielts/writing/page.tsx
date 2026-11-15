@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from "@endoora/ui";
+import Link from "next/link";
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";

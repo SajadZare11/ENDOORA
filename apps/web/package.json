@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@endoora/ui": "0.4.0",
+    "@huggingface/transformers": "^4.3.2",
     "next": "16.3.1",
+    "onnxruntime-web": "^1.31.0-dev.20260914-8d85527a0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

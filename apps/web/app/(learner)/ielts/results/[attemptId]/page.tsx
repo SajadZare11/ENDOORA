@@ -176,6 +176,98 @@ export default function IELTSResultsPage({ params }: PageProps) {
                   ))}
                 </ul>
               )}
+
+            {/* Engine 5: Gaze & Cognitive Proctoring Integrity Card */}
+            {attempt.diagnostic?.proctoringTelemetry && (
+              <div style={{
+                background: "rgba(15, 23, 42, 0.65)",
+                border: "1px solid rgba(16, 185, 129, 0.35)",
+                borderRadius: "12px",
+                padding: "16px 20px",
+                marginTop: "16px",
+                direction: "rtl"
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "8px" }}>
+                  <div style={{ fontWeight: "bold", fontSize: "0.95rem", color: "#34d399" }}>
+                    👁️ پایش هوشمند سلامت آزمون و بار شناختی (MobileNetV3 + BiLSTM Proctoring)
+                  </div>
+                  <div style={{ display: "flex", gap: "8px", fontSize: "0.78rem" }}>
+                    <span style={{
+                      background: attempt.diagnostic.proctoringTelemetry.cheatSuspicionLevel === "low"
+                        ? "rgba(16, 185, 129, 0.2)"
+                        : attempt.diagnostic.proctoringTelemetry.cheatSuspicionLevel === "medium"
+                        ? "rgba(245, 158, 11, 0.2)"
+                        : "rgba(239, 68, 68, 0.2)",
+                      color: attempt.diagnostic.proctoringTelemetry.cheatSuspicionLevel === "low"
+                        ? "#34d399"
+                        : attempt.diagnostic.proctoringTelemetry.cheatSuspicionLevel === "medium"
+                        ? "#fbbf24"
+                        : "#f87171",
+                      padding: "3px 8px",
+                      borderRadius: "6px",
+                      border: "1px solid currentColor"
+                    }}>
+                      شاخص سلامت آزمون: {attempt.diagnostic.proctoringTelemetry.integrityScore}% ({attempt.diagnostic.proctoringTelemetry.cheatSuspicionLevel === "low" ? "معتبر و استاندارد" : "نیازمند بازبینی"})
+                    </span>
+                  </div>
+                </div>
+                <div style={{ fontSize: "0.82rem", color: "#94a3b8" }}>
+                  خروج نگاه از صفحه: {attempt.diagnostic.proctoringTelemetry.gazeAwayCount} مرتبه | غیبت طولانی: {attempt.diagnostic.proctoringTelemetry.longAbsenceCount} مرتبه | پردازش کاملاً امن و محلی در مرورگر (Client-Side Edge AI) بدون ذخیره یا ارسال ویدیو
+                </div>
+              </div>
+            )}
+
+            {/* Engine 4: NeuralCDM Causal Diagnostics Card */}
+            {attempt.diagnostic.cdmCausalDiagnosis && (
+              <div style={{
+                background: "rgba(15, 23, 42, 0.65)",
+                border: "1px solid rgba(59, 130, 246, 0.35)",
+                borderRadius: "12px",
+                padding: "16px 20px",
+                marginTop: "16px",
+                direction: "rtl"
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "8px" }}>
+                  <div style={{ fontWeight: "bold", fontSize: "0.95rem", color: "#60a5fa" }}>
+                    🎯 ریشه‌یابی علّی خطاهای آزمون (NeuralCDM + GAT)
+                  </div>
+                  <div style={{ display: "flex", gap: "8px", fontSize: "0.78rem" }}>
+                    <span style={{ background: "rgba(16, 185, 129, 0.2)", color: "#34d399", padding: "3px 8px", borderRadius: "6px", border: "1px solid rgba(16, 185, 129, 0.4)" }}>
+                      لغزش تصادفی: {attempt.diagnostic.cdmCausalDiagnosis.slipCount} مورد
+                    </span>
+                    <span style={{ background: "rgba(239, 68, 68, 0.2)", color: "#f87171", padding: "3px 8px", borderRadius: "6px", border: "1px solid rgba(239, 68, 68, 0.4)" }}>
+                      نقص پیش‌نیاز پایه: {attempt.diagnostic.cdmCausalDiagnosis.deficitCount} مورد
+                    </span>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: "0.85rem", color: "#e2e8f0", margin: "0 0 10px 0", lineHeight: 1.6 }}>
+                  {attempt.diagnostic.cdmCausalDiagnosis.remediationSummaryFa}
+                </p>
+
+                {attempt.diagnostic.cdmCausalDiagnosis.topRootDeficits && attempt.diagnostic.cdmCausalDiagnosis.topRootDeficits.length > 0 && (
+                  <div>
+                    <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginBottom: "6px" }}>
+                      پیش‌نیازهای ریشه‌ای نیازمند بازبینی بر اساس گراف وابستگی دروس (DAG):
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                      {attempt.diagnostic.cdmCausalDiagnosis.topRootDeficits.map((d, dIdx) => (
+                        <div key={dIdx} style={{
+                          background: "rgba(30, 41, 59, 0.8)",
+                          border: "1px solid rgba(251, 191, 36, 0.4)",
+                          borderRadius: "8px",
+                          padding: "6px 10px",
+                          fontSize: "0.78rem",
+                          color: "#fef08a"
+                        }}>
+                          <strong>[{d.cefr}] {d.titleFa}</strong> ({d.titleEn}) — {d.frequency} خطا
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
         )}
 

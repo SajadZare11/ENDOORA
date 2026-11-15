@@ -39,6 +39,8 @@ backups/
 *.backup
 *.backup.*
 *.bak
+*.bak*
+scripts/whisper-tiny.en/
 voice_recordings/
 apps/api/voice_recordings/
 *.dump

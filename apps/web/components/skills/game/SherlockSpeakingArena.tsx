@@ -22,6 +22,7 @@ import {
 import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
+import { useGazeCognitive } from "../../../lib/ai/useGazeCognitive.ts";
 
 interface Props {
   level: GameLevel;
@@ -38,6 +39,16 @@ export function SherlockSpeakingArena({
 }: Props) {
   // Load official Sherlock Detective Stage (1 to 10) for active CEFR level (A1 or A2)
   const stage: DetectiveStage = getSherlockStage(level.levelNumber, level.cefr);
+
+  // Cognitive Gaze & Saccade Tracking for proactive Dr. Watson assistance
+  const {
+    saccadicRegressionRate,
+    isWatsonHintActive,
+    dismissWatsonHint,
+  } = useGazeCognitive({
+    autoStart: true,
+    useMouseFallback: true,
+  });
 
   const storageKey = `endoora_sherlock_${(level.cefr || "a1").toLowerCase()}_decisions`;
 
@@ -1039,6 +1050,52 @@ export function SherlockSpeakingArena({
               ) : (
                 /* ACTIVE CHALLENGE: MICROPHONE FIRST (NO OPTIONS / NO KEYWORDS INITIALLY) */
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  {/* PROACTIVE COGNITIVE ASSISTANCE: DR. WATSON READING SACCADE HINT */}
+                  {(isWatsonHintActive || saccadicRegressionRate > 0.65) && !taskHasMistake && !isTaskSuccess && (
+                    <div
+                      className={styles.whiteHintCard}
+                      style={{
+                        borderColor: "#0284c7",
+                        background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)",
+                        boxShadow: "0 4px 14px rgba(2, 132, 199, 0.15)",
+                      }}
+                    >
+                      <div style={{ fontSize: "2.2rem" }}>🩺</div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem", flex: 1 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span className={styles.whiteHintName} style={{ color: "#0369a1" }}>
+                            دکتر واتسون (راهنمای هوشمند شناختی):
+                          </span>
+                          <button
+                            type="button"
+                            onClick={dismissWatsonHint}
+                            style={{
+                              background: "none",
+                              border: "none",
+                              color: "#64748b",
+                              cursor: "pointer",
+                              fontSize: "1.1rem",
+                              padding: "0.2rem 0.5rem",
+                            }}
+                            title="بستن راهنما"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                        <span className={styles.whiteHintSpeech} style={{ color: "#0c4a6e" }}>
+                          {currentTask.whiteHintFa || "به نظر می‌رسه تحلیل این سرنخ چالش‌برانگیز شده! روی کلمات کلیدی جمله تمرکز کن و فرضیه‌ات رو بگو."}
+                        </span>
+                        <div className={styles.keywordsBadgeCluster} style={{ marginTop: "0.25rem" }}>
+                          {currentTask.targetKeywords.slice(0, 2).map((kw, i) => (
+                            <span key={i} className={styles.keywordGoldenPill}>
+                              <span>{kw.phrase}</span>
+                              <small style={{ opacity: 0.85 }}>{kw.hintFa}</small>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <div className={styles.micConsoleZone}>
                     <button
                       type="button"

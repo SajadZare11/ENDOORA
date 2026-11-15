@@ -7,12 +7,22 @@ import { getGrammarStageData } from "../../../data/skills/games/grammar-aef-curr
 import { recordGrammarHexCompletion, formatStopwatchTime } from "../../../lib/skills/game-storage";
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { SkillStageBriefingModal, BriefingTriggerButton } from "./SkillStageBriefingModal";
+import { useDktAdaptive } from "../../../lib/dkt-engine/useDktAdaptive";
+import { DiagnosticMemoryRadar } from "./DiagnosticMemoryRadar";
+import { useAdaptiveQuestion, renderAdaptiveHexQuestion } from "../../../lib/ai/useAdaptiveQuestion";
+import { EnDooraLinUCBBandit } from "../../../lib/ai/linucb-bandit-engine";
+import type { AdaptiveQuestionPayload, RawAdaptiveQuestionPayload } from "../../../lib/ai/types";
+import { NeuralCdmEngine } from "../../../lib/ai/neural-cdm-engine.ts";
+import type { CdmDiagnosticResult } from "../../../lib/ai/neural-cdm-types.ts";
+import { useGazeCognitive } from "../../../lib/ai/useGazeCognitive.ts";
 
 interface Props {
   level: GameLevel;
   onClose: () => void;
   onNextLevel: () => void;
   onOpenLeaderboard?: () => void;
+  adaptivePayload?: AdaptiveQuestionPayload | RawAdaptiveQuestionPayload | string;
+  useAdaptiveEngine?: boolean;
 }
 
 interface HexEdgeGeom {
@@ -99,7 +109,14 @@ function getMiniHexEdge(cx: number, cy: number, edgeIndex: number, r = MINI_HEX_
   };
 }
 
-export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard }: Props) {
+export function GrammarHexArena({
+  level,
+  onClose,
+  onNextLevel,
+  onOpenLeaderboard,
+  adaptivePayload,
+  useAdaptiveEngine,
+}: Props) {
   const stageData = getGrammarStageData(level.cefr, level.levelNumber);
 
   // Stage Time Limit (50s for A1/A2, 60s for B1/B2, 85s for C1/C2)
@@ -109,15 +126,32 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
   const [roundIndex, setRoundIndex] = useState(0);
   const [restartKey, setRestartKey] = useState(0);
   const [sessionOffset] = useState(() => Math.floor(Math.random() * 20));
+  const { recordInteraction, pickCircuit } = useDktAdaptive();
+  // Edge Cognitive Load & Saccade Tracking (MobileNetV3 + BiLSTM)
+  const { cognitiveLoadIndex, isHighCognitiveLoad } = useGazeCognitive({
+    autoStart: true,
+    useMouseFallback: true,
+  });
+  const [showRadarModal, setShowRadarModal] = useState(false);
+  const nodeEntryTimeRef = React.useRef<number>(Date.now());
 
   const activeCircuit: GrammarCircuitRound | null = useMemo(() => {
     if (!stageData?.circuits?.length) return null;
     const pool = stageData.circuits;
-    const idx = (roundIndex + restartKey + sessionOffset) % pool.length;
-    return pool[idx] || pool[0];
-  }, [stageData, roundIndex, restartKey, sessionOffset]);
+    const fallbackIdx = (roundIndex + restartKey + sessionOffset) % pool.length;
+    try {
+      const adaptive = pickCircuit(pool, level.cefr, level.levelNumber, fallbackIdx);
+      return adaptive.selectedCircuit || pool[fallbackIdx] || pool[0];
+    } catch {
+      return pool[fallbackIdx] || pool[0];
+    }
+  }, [stageData, roundIndex, restartKey, sessionOffset, level.cefr, level.levelNumber, pickCircuit]);
 
   const [currentNodeId, setCurrentNodeId] = useState<string>("n0");
+
+  useEffect(() => {
+    nodeEntryTimeRef.current = performance.now();
+  }, [currentNodeId, roundIndex]);
   const [accumulatedWords, setAccumulatedWords] = useState<string[]>([]);
   const [completedSteps, setCompletedSteps] = useState<CompletedMiniStep[]>([]);
 
@@ -150,14 +184,24 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
   const [isGameOver, setIsGameOver] = useState(false);
   const [stagePassed, setStagePassed] = useState(false);
   const [honoraryTitle, setHonoraryTitle] = useState("معمار سازه نحو");
+  const [lastCdmDiagnosis, setLastCdmDiagnosis] = useState<CdmDiagnosticResult | null>(null);
 
   const activeNode: HexCircuitNode | undefined = activeCircuit?.nodes.find((n) => n.id === currentNodeId);
 
+  // Engine 6 LinUCB Adaptive Question Hook
+  const adaptiveHook = useAdaptiveQuestion({
+    question: adaptivePayload,
+    conceptId: `${level.cefr.toLowerCase()}-${String(level.levelNumber).padStart(2, "0")}`,
+  });
+
   // Randomize edge assignment order on each node entry to prevent position memorization
   const randomizedOptions = useMemo<HexEdgeOption[]>(() => {
+    if (adaptivePayload && adaptiveHook.assembledQuestion) {
+      return adaptiveHook.renderHexOptions({ nextNodeId: "n_goal" });
+    }
     if (!activeNode?.options) return [];
     return shuffleArray(activeNode.options);
-  }, [activeNode?.id, roundIndex, restartKey]);
+  }, [adaptivePayload, adaptiveHook.assembledQuestion, adaptiveHook.renderHexOptions, activeNode?.options, roundIndex, restartKey]);
 
   // --------------------------------------------------------------------------
   // Main Active Hexagon Geometry:
@@ -259,6 +303,7 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
     setTimeLeft(stageTimeLimit);
     setIsFrozen(false);
     setFreezeSeconds(0);
+    setLastCdmDiagnosis(null);
   }, [level.cefr, level.levelNumber, stageTimeLimit]);
 
   // Main Countdown Timer & Elapsed Stopwatch
@@ -299,11 +344,56 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
     setIsGameOver(true);
     setStagePassed(false);
     soundSynth.playWrong();
+    try {
+      const cId = `${level.cefr.toLowerCase()}-${String(level.levelNumber).padStart(2, "0")}`;
+      const cdm = NeuralCdmEngine.getInstance();
+      const diag = cdm.diagnoseFailure({
+        itemId: `hex_primary_${cId.replace(/-/g, "_")}`,
+        conceptId: cId,
+        latencyMs: stageTimeLimit * 1000,
+      });
+      setLastCdmDiagnosis(diag);
+    } catch {
+      // Safe fallback
+    }
   };
 
   // Handle Edge Click: Animate laser line directly along the edge
   const handleEdgeClick = (edgeGeom: HexEdgeGeom, option: HexEdgeOption) => {
     if (isFrozen || isGameOver || energizedEdge || isWarping || isAtGoalTerminal) return;
+
+    // Record interaction in DKT-Forget Neural Engine & LinUCB Bandit
+    const latencyMs = Math.max(120, Math.round(performance.now() - nodeEntryTimeRef.current));
+    const conceptId = `${level.cefr.toLowerCase()}-${String(level.levelNumber).padStart(2, "0")}`;
+
+    if (adaptivePayload && adaptiveHook.assembledQuestion) {
+      const optIdx = randomizedOptions.findIndex((o) => o.id === option.id);
+      if (optIdx !== -1) {
+        adaptiveHook.selectOption(optIdx, latencyMs);
+      }
+    } else {
+      recordInteraction({
+        conceptId,
+        isCorrect: option.isCorrect,
+        isTrap: !!option.isTrap,
+        latencyMs,
+      });
+
+      // Defensively record telemetry to LinUCBBandit for static circuit traps
+      try {
+        const bandit = EnDooraLinUCBBandit.getInstance();
+        if (option.isTrap) {
+          bandit.recordInteractionFeedback({
+            category: "l1_persian",
+            features: [0.35, 0.35, 0.35, 0.79],
+            trapTriggered: true,
+            latencyMs,
+          });
+        }
+      } catch {
+        // Safe fallback
+      }
+    }
 
     if (option.isCorrect) {
       soundSynth.playCorrect();
@@ -384,6 +474,17 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
       setComboMultiplier(1.0);
       setIsFrozen(true);
       setFreezeSeconds(2.0);
+      try {
+        const cdm = NeuralCdmEngine.getInstance();
+        const diag = cdm.diagnoseFailure({
+          itemId: `hex_primary_${conceptId.replace(/-/g, "_")}`,
+          conceptId,
+          latencyMs,
+        });
+        setLastCdmDiagnosis(diag);
+      } catch {
+        // Safe fallback
+      }
 
       setTimeout(() => {
         setEnergizedEdge(null);
@@ -487,6 +588,65 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
         titleEn={stageData?.titleEn || level.titleEn}
       />
 
+      {showRadarModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.85)",
+            backdropFilter: "blur(10px)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+          onClick={() => {
+            setShowRadarModal(false);
+            if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+              setIsTimerRunning(true);
+            }
+          }}
+        >
+          <div
+            style={{ maxWidth: "860px", width: "100%", maxHeight: "90vh", overflowY: "auto" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "8px" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowRadarModal(false);
+                  if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+                    setIsTimerRunning(true);
+                  }
+                }}
+                style={{
+                  background: "#1e293b",
+                  border: "1px solid #475569",
+                  color: "#f1f5f9",
+                  borderRadius: "8px",
+                  padding: "6px 14px",
+                  fontSize: "0.85rem",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                ✕ بستن رادار
+              </button>
+            </div>
+            <DiagnosticMemoryRadar
+              onStartAdaptiveGame={() => {
+                setShowRadarModal(false);
+                if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+                  setIsTimerRunning(true);
+                }
+              }}
+            />
+          </div>
+        </div>
+      )}
+
       <div className={styles.arenaCard}>
         {/* HUD Top Bar */}
         <div className={styles.hudBar}>
@@ -522,6 +682,23 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
             <div className={`${styles.metricBadge} ${styles.scoreGlow}`}>
               ⚡ {score.toLocaleString("fa-IR")} pts
             </div>
+            <button
+              type="button"
+              className={styles.metricBadge}
+              style={{
+                background: "rgba(14, 165, 233, 0.15)",
+                border: "1px solid rgba(56, 189, 248, 0.4)",
+                color: "#38bdf8",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setIsTimerRunning(false);
+                setShowRadarModal(true);
+              }}
+              title="مشاهده وضعیت زوال حافظه و تسلط شناختی DKT"
+            >
+              🧠 رادار DKT
+            </button>
             <button className={styles.closeBtn} onClick={onClose} title="بستن بازی" type="button">
               ✕
             </button>
@@ -722,7 +899,9 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
                 {!isAtGoalTerminal && (
                   <g>
                     <text x={hexConfig.cx} y={hexConfig.cy} className={styles.coreCurrentPrompt}>
-                      {accumulatedWords[accumulatedWords.length - 1] || activeCircuit?.startingPrompt}
+                      {adaptivePayload && adaptiveHook.assembledQuestion
+                        ? (adaptiveHook.assembledQuestion.promptFa || adaptiveHook.assembledQuestion.prompt)
+                        : accumulatedWords[accumulatedWords.length - 1] || activeCircuit?.startingPrompt}
                     </text>
                   </g>
                 )}
@@ -822,7 +1001,20 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
           {/* Frozen Short-Circuit Notice */}
           {isFrozen && (
             <div className={styles.freezeBanner}>
-              ❄️ اتصال کوتاه قرمز! مدار برای {freezeSeconds} ثانیه قفل است...
+              <div>❄️ اتصال کوتاه قرمز! مدار برای {freezeSeconds} ثانیه قفل است...</div>
+              {lastCdmDiagnosis && (
+                <div style={{ fontSize: "0.82rem", marginTop: "4px", opacity: 0.95, borderTop: "1px solid rgba(255,255,255,0.2)", paddingTop: "4px" }}>
+                  {lastCdmDiagnosis.diagnosis === "PREREQUISITE_DEFICIT" ? (
+                    <span>
+                      🎯 <strong>تحلیل علّی NeuralCDM:</strong> {lastCdmDiagnosis.remediationFa}
+                    </span>
+                  ) : (
+                    <span>
+                      ⚡ <strong>لغزش تصادفی:</strong> {lastCdmDiagnosis.remediationFa}
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -850,6 +1042,22 @@ export function GrammarHexArena({ level, onClose, onNextLevel, onOpenLeaderboard
                   ? `تبریک! توانستی تمامی گره‌های گرامری سطح ${level.cefr} را با تسلط بالا سیم‌کشی کنی.`
                   : "برای عبور از این مرحله دوباره تلاش کن و مسیر درست رو با دقت سیم‌کشی کن!"}
               </p>
+
+              {!stagePassed && lastCdmDiagnosis && (
+                <div style={{ background: "rgba(239, 68, 68, 0.12)", border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: "8px", padding: "10px 14px", margin: "12px 0", textAlign: "right" }}>
+                  <div style={{ fontWeight: "bold", fontSize: "0.9rem", color: "#f87171", marginBottom: "4px" }}>
+                    {lastCdmDiagnosis.diagnosis === "PREREQUISITE_DEFICIT" ? "🎯 ریشه‌یابی علّی شکست (NeuralCDM)" : "⚡ لغزش تصادفی شناسایی شد"}
+                  </div>
+                  <p style={{ fontSize: "0.82rem", margin: 0, color: "#e2e8f0", lineHeight: 1.6 }}>
+                    {lastCdmDiagnosis.remediationFa}
+                  </p>
+                  {lastCdmDiagnosis.rootDeficit && (
+                    <div style={{ fontSize: "0.78rem", color: "#fbbf24", marginTop: "6px" }}>
+                      پیش‌نیاز ریشه‌ای: {lastCdmDiagnosis.rootDeficit.titleFa} ({lastCdmDiagnosis.rootDeficit.titleEn} - سطح {lastCdmDiagnosis.rootDeficit.cefr})
+                    </div>
+                  )}
+                </div>
+              )}
 
               {stagePassed && (
                 <div className={styles.victoryHonorBadge}>

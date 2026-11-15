@@ -39,7 +39,11 @@
     "test:leitner": "node --experimental-strip-types scripts/test-leitner-engine.mjs",
     "test:path": "node --experimental-strip-types scripts/test-learning-path-engine.mjs",
     "test:classes": "node --experimental-strip-types scripts/test-classes-engine.mjs",
-    "test:teachers": "node --experimental-strip-types scripts/test-teachers-engine.mjs"
+    "test:teachers": "node --experimental-strip-types scripts/test-teachers-engine.mjs",
+    "test:dkt": "node --experimental-strip-types scripts/test-dkt-engine.ts",
+    "test:bandit": "node --experimental-strip-types scripts/test-linucb-bandit.ts",
+    "test:cdm": "node --experimental-strip-types scripts/test-neural-cdm.ts",
+    "test:gaze": "node --experimental-strip-types scripts/test-gaze-cognitive.ts"
   },
   "engines": {
     "node": ">=24 <25",
