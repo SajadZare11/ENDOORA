@@ -1,0 +1,474 @@
+[
+  {
+    "start": 15.7,
+    "end": 22.8,
+    "text": "hello reception hello this is room 613 how can I help you there's a problem with",
+    "words": [
+      {
+        "word": " hello",
+        "start": 15.7,
+        "end": 16.32
+      },
+      {
+        "word": " reception",
+        "start": 16.32,
+        "end": 16.94
+      },
+      {
+        "word": " hello",
+        "start": 16.94,
+        "end": 17.82
+      },
+      {
+        "word": " this",
+        "start": 17.82,
+        "end": 18.12
+      },
+      {
+        "word": " is",
+        "start": 18.12,
+        "end": 18.34
+      },
+      {
+        "word": " room",
+        "start": 18.34,
+        "end": 18.56
+      },
+      {
+        "word": " 613",
+        "start": 18.56,
+        "end": 19.54
+      },
+      {
+        "word": " how",
+        "start": 19.54,
+        "end": 20.36
+      },
+      {
+        "word": " can",
+        "start": 20.36,
+        "end": 20.5
+      },
+      {
+        "word": " I",
+        "start": 20.5,
+        "end": 20.66
+      },
+      {
+        "word": " help",
+        "start": 20.66,
+        "end": 20.82
+      },
+      {
+        "word": " you",
+        "start": 20.82,
+        "end": 21.52
+      },
+      {
+        "word": " there's",
+        "start": 21.52,
+        "end": 22.26
+      },
+      {
+        "word": " a",
+        "start": 22.26,
+        "end": 22.36
+      },
+      {
+        "word": " problem",
+        "start": 22.36,
+        "end": 22.56
+      },
+      {
+        "word": " with",
+        "start": 22.56,
+        "end": 22.8
+      }
+    ]
+  },
+  {
+    "start": 22.8,
+    "end": 27.84,
+    "text": "the air conditioning it isn't working and it's very hot in my room I'm sorry sir",
+    "words": [
+      {
+        "word": " the",
+        "start": 22.8,
+        "end": 22.94
+      },
+      {
+        "word": " air",
+        "start": 22.94,
+        "end": 23.1
+      },
+      {
+        "word": " conditioning",
+        "start": 23.1,
+        "end": 23.46
+      },
+      {
+        "word": " it",
+        "start": 23.46,
+        "end": 23.98
+      },
+      {
+        "word": " isn't",
+        "start": 23.98,
+        "end": 24.2
+      },
+      {
+        "word": " working",
+        "start": 24.2,
+        "end": 24.6
+      },
+      {
+        "word": " and",
+        "start": 24.6,
+        "end": 24.96
+      },
+      {
+        "word": " it's",
+        "start": 24.96,
+        "end": 25.38
+      },
+      {
+        "word": " very",
+        "start": 25.38,
+        "end": 25.7
+      },
+      {
+        "word": " hot",
+        "start": 25.7,
+        "end": 25.94
+      },
+      {
+        "word": " in",
+        "start": 25.94,
+        "end": 26.08
+      },
+      {
+        "word": " my",
+        "start": 26.08,
+        "end": 26.22
+      },
+      {
+        "word": " room",
+        "start": 26.22,
+        "end": 26.6
+      },
+      {
+        "word": " I'm",
+        "start": 26.6,
+        "end": 27.0
+      },
+      {
+        "word": " sorry",
+        "start": 27.0,
+        "end": 27.28
+      },
+      {
+        "word": " sir",
+        "start": 27.28,
+        "end": 27.84
+      }
+    ]
+  },
+  {
+    "start": 27.84,
+    "end": 32.48,
+    "text": "I'll send somebody up to look at it right now thank you",
+    "words": [
+      {
+        "word": " I'll",
+        "start": 27.84,
+        "end": 28.18
+      },
+      {
+        "word": " send",
+        "start": 28.18,
+        "end": 28.48
+      },
+      {
+        "word": " somebody",
+        "start": 28.48,
+        "end": 28.8
+      },
+      {
+        "word": " up",
+        "start": 28.8,
+        "end": 29.02
+      },
+      {
+        "word": " to",
+        "start": 29.02,
+        "end": 29.14
+      },
+      {
+        "word": " look",
+        "start": 29.14,
+        "end": 29.32
+      },
+      {
+        "word": " at",
+        "start": 29.32,
+        "end": 29.44
+      },
+      {
+        "word": " it",
+        "start": 29.44,
+        "end": 29.66
+      },
+      {
+        "word": " right",
+        "start": 29.66,
+        "end": 29.9
+      },
+      {
+        "word": " now",
+        "start": 29.9,
+        "end": 30.16
+      },
+      {
+        "word": " thank",
+        "start": 30.16,
+        "end": 30.48
+      },
+      {
+        "word": " you",
+        "start": 30.48,
+        "end": 32.48
+      }
+    ]
+  },
+  {
+    "start": 39.02,
+    "end": 45.94,
+    "text": "good evening reception hello I'm sorry to bother you again this is room 613 how",
+    "words": [
+      {
+        "word": " good",
+        "start": 39.02,
+        "end": 39.56
+      },
+      {
+        "word": " evening",
+        "start": 39.56,
+        "end": 40.1
+      },
+      {
+        "word": " reception",
+        "start": 40.1,
+        "end": 40.58
+      },
+      {
+        "word": " hello",
+        "start": 40.58,
+        "end": 41.68
+      },
+      {
+        "word": " I'm",
+        "start": 41.68,
+        "end": 42.22
+      },
+      {
+        "word": " sorry",
+        "start": 42.22,
+        "end": 42.5
+      },
+      {
+        "word": " to",
+        "start": 42.5,
+        "end": 42.64
+      },
+      {
+        "word": " bother",
+        "start": 42.64,
+        "end": 42.82
+      },
+      {
+        "word": " you",
+        "start": 42.82,
+        "end": 43.0
+      },
+      {
+        "word": " again",
+        "start": 43.0,
+        "end": 43.34
+      },
+      {
+        "word": " this",
+        "start": 43.34,
+        "end": 43.74
+      },
+      {
+        "word": " is",
+        "start": 43.74,
+        "end": 43.94
+      },
+      {
+        "word": " room",
+        "start": 43.94,
+        "end": 44.16
+      },
+      {
+        "word": " 613",
+        "start": 44.16,
+        "end": 45.3
+      },
+      {
+        "word": " how",
+        "start": 45.3,
+        "end": 45.94
+      }
+    ]
+  },
+  {
+    "start": 45.94,
+    "end": 50.84,
+    "text": "can I help you I have a problem with the Wi-Fi I can't get a signal I'm",
+    "words": [
+      {
+        "word": " can",
+        "start": 45.94,
+        "end": 46.08
+      },
+      {
+        "word": " I",
+        "start": 46.08,
+        "end": 46.24
+      },
+      {
+        "word": " help",
+        "start": 46.24,
+        "end": 46.38
+      },
+      {
+        "word": " you",
+        "start": 46.38,
+        "end": 46.7
+      },
+      {
+        "word": " I",
+        "start": 46.7,
+        "end": 47.08
+      },
+      {
+        "word": " have",
+        "start": 47.08,
+        "end": 47.46
+      },
+      {
+        "word": " a",
+        "start": 47.46,
+        "end": 47.62
+      },
+      {
+        "word": " problem",
+        "start": 47.62,
+        "end": 47.84
+      },
+      {
+        "word": " with",
+        "start": 47.84,
+        "end": 48.08
+      },
+      {
+        "word": " the",
+        "start": 48.08,
+        "end": 48.22
+      },
+      {
+        "word": " Wi",
+        "start": 48.22,
+        "end": 48.5
+      },
+      {
+        "word": "-Fi",
+        "start": 48.5,
+        "end": 48.74
+      },
+      {
+        "word": " I",
+        "start": 48.74,
+        "end": 49.06
+      },
+      {
+        "word": " can't",
+        "start": 49.06,
+        "end": 49.26
+      },
+      {
+        "word": " get",
+        "start": 49.26,
+        "end": 49.42
+      },
+      {
+        "word": " a",
+        "start": 49.42,
+        "end": 49.58
+      },
+      {
+        "word": " signal",
+        "start": 49.58,
+        "end": 50.16
+      },
+      {
+        "word": " I'm",
+        "start": 50.16,
+        "end": 50.84
+      }
+    ]
+  },
+  {
+    "start": 50.84,
+    "end": 53.88,
+    "text": "sorry sir I'll put you through to IT thanks",
+    "words": [
+      {
+        "word": " sorry",
+        "start": 50.84,
+        "end": 51.2
+      },
+      {
+        "word": " sir",
+        "start": 51.2,
+        "end": 51.94
+      },
+      {
+        "word": " I'll",
+        "start": 51.94,
+        "end": 52.24
+      },
+      {
+        "word": " put",
+        "start": 52.24,
+        "end": 52.36
+      },
+      {
+        "word": " you",
+        "start": 52.36,
+        "end": 52.52
+      },
+      {
+        "word": " through",
+        "start": 52.52,
+        "end": 52.72
+      },
+      {
+        "word": " to",
+        "start": 52.72,
+        "end": 52.9
+      },
+      {
+        "word": " IT",
+        "start": 52.9,
+        "end": 53.42
+      },
+      {
+        "word": " thanks",
+        "start": 53.42,
+        "end": 53.88
+      }
+    ]
+  }
+]

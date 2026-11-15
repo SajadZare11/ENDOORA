@@ -1703,28 +1703,71 @@ def moderate_review(
 
 def get_active_pricing_plans():
     from marketplace.models import PlatformPricingPlan
-    plans = list(PlatformPricingPlan.objects.filter(is_active=True).order_by("price_toman"))
-    if not plans:
-        # Seed initial launch plan from Day 06 baseline
-        plan = PlatformPricingPlan.objects.create(
-            code="launch_premium_90d",
-            name_fa="اشتراک ۹۰ روزه پرمیوم (دوره راه‌اندازی)",
-            name_en="90-Day Premium Launch Plan",
-            duration_days=90,
-            price_toman=Decimal("420000"),
-            is_active=True,
-            is_featured=True,
-            features_fa=[
-                "دسترسی نامحدود به دستیار نگارش هوشمند ایندورا",
-                "تمرین‌های روزانه تصحیح خودکار تلفظ و مکالمه هوش مصنوعی",
-                "گزارش جامع ژنوم اشتباهات و تحلیل یادگیری",
-                "تخفیف ویژه جلسات تدریس خصوصی در بازارگاه اساتید",
+
+    golden_defaults = [
+        {
+            "code": "golden_1m",
+            "name_fa": "اشتراک طلایی ۱ ماهه",
+            "name_en": "1-Month Golden Plan",
+            "duration_days": 30,
+            "price_toman": Decimal("299000"),
+            "is_active": True,
+            "is_featured": False,
+            "features_fa": [
+                "دسترسی آزاد به تمام دروس زبان دبیرستان (دهم، یازدهم، دوازدهم)",
+                "دسترسی کامل به تمامی تمرین‌های تمرین تا ۲۰",
+                "دسترسی کامل به تمامی سطوح مهارت‌ها (A1 تا C2)",
+                "دسترسی به مدرس‌ها و امکان رزرو کلاس‌ها",
+                "دسترسی به سیستم جامع یادگیری و لایتنر هوشمند",
+                "دسترسی به دوره‌های ویدیویی (Speakout, American English File)",
+                "دسترسی کامل به بخش و شبیه‌ساز آزمون آیلتس (IELTS)",
             ],
-            note_fa="قیمت اولیه برای دوره راه‌اندازی است و از بخش مدیریت سیستم قابل تنظیم است.",
-            note_en="This is the launch-plan display price, centrally managed through administrator configuration.",
+            "note_fa": "پلن طلایی ۳۰ روزه با دسترسی نامحدود به تمامی بخش‌ها",
+            "note_en": "30-day golden plan with full platform access",
+        },
+        {
+            "code": "golden_3m",
+            "name_fa": "اشتراک طلایی ۳ ماهه (پیشنهاد ویژه)",
+            "name_en": "3-Month Golden Plan",
+            "duration_days": 90,
+            "price_toman": Decimal("799000"),
+            "is_active": True,
+            "is_featured": True,
+            "features_fa": [
+                "دسترسی آزاد و نامحدود به تمامی امکانات پلتفرم ایندورا",
+                "۱۱٪ صرفه‌جویی اقتصادی نسبت به تهیه اشتراک ماهانه",
+                "دسترسی کامل به تمام پایه‌های زبان دبیرستان و تمرین تا ۲۰",
+                "دسترسی به کلاس‌ها و مدرسین اختصاصی",
+                "دسترسی به تمامی سطوح مهارت‌ها، یادگیری، ویدیوها و آیلتس",
+            ],
+            "note_fa": "محبوب‌ترین پلن با ۱۱٪ تخفیف اقتصادی",
+            "note_en": "Most popular 90-day plan with 11% savings",
+        },
+        {
+            "code": "golden_6m",
+            "name_fa": "اشتراک طلایی ۶ ماهه (بیشترین صرفه)",
+            "name_en": "6-Month Golden Plan",
+            "duration_days": 180,
+            "price_toman": Decimal("1699000"),
+            "is_active": True,
+            "is_featured": False,
+            "features_fa": [
+                "دسترسی آزاد و نامحدود به تمامی بخش‌های پلتفرم",
+                "بیشترین صرفه اقتصادی (۱۵٪ تخفیف کل دوره)",
+                "دسترسی بدون وقفه به دوره‌های ویدیویی، آیلتس و امتحانات نهایی",
+            ],
+            "note_fa": "بیشترین صرفه‌جویی اقتصادی برای یادگیری مستمر",
+            "note_en": "Best value 180-day plan for continuous learning",
+        },
+    ]
+
+    for plan_data in golden_defaults:
+        PlatformPricingPlan.objects.get_or_create(
+            code=plan_data["code"],
+            defaults=plan_data,
         )
-        plans = [plan]
-    return plans
+
+    return list(PlatformPricingPlan.objects.filter(is_active=True).order_by("price_toman"))
 
 
 def update_pricing_plan(

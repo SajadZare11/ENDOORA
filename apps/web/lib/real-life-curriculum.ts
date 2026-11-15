@@ -49,6 +49,7 @@ export interface RealLifeVideoLesson {
     speaking: SpeakingQuestion;
     reading: ChoiceQuestion;
     writing: WritingQuestion;
+    dictation?: any;
   };
 }
 
@@ -2219,8 +2220,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v08",
     "level": "a1",
     "episodeNumber": 8,
-    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: غذا، وعده‌های روزانه و مسابقه کیک",
-    "titleEn": "Unit 4 · BBC Vlogs: Food, Meals & Cooking",
+    "titleFa": "یونیت 4 · ولاگ‌های BBC: وعده‌های غذایی و خوراکی‌های مورد علاقه (My Favourite Meal)",
+    "titleEn": "Unit 4 · BBC Vlogs: Favourite Meals & Everyday Foods",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 4",
     "cefr": "A1",
@@ -2231,77 +2232,92 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون غذا، وعده‌های روزانه و مسابقه کیک همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on food, meals & cooking with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمانه و معتبر BBC از کتاب اسپیک‌آوت که در آن افراد مختلف وعده‌های غذایی محبوب خود (صبحانه، ناهار و شام) و غذاها و نوشیدنی‌های دلخواه‌شان را معرفی می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers share their favourite meals of the day—breakfast, lunch, or dinner—and the foods they love.",
     "keyTopicsFa": [
-      "غذا، وعده‌های روزانه و مسابقه کیک",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 4",
+      "وعده‌های غذایی (Breakfast, Lunch, Dinner)",
+      "غذاها و نوشیدنی‌ها (Pasta, Omelette, Coffee, Tea)",
+      "قیدهای تکرار و عادات غذایی (Always, Eat, Have)",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
               "id": 1,
-              "seconds": 23,
-              "timeDisplay": "0:23",
+              "seconds": 24,
+              "timeDisplay": "0:24",
               "speaker": "Speaker 1",
               "textEn": "My favourite meal is lunch. I always have tuna salad.",
-              "textFa": "وعده غذایی مورد علاقه من ناهار است. همیشه سالاد تن ماهی می‌خورم."
+              "textFa": "وعده غذایی مورد علاقه من ناهار است؛ همیشه سالاد تن ماهی می‌خورم."
       },
       {
               "id": 2,
-              "seconds": 29,
-              "timeDisplay": "0:29",
+              "seconds": 30,
+              "timeDisplay": "0:30",
               "speaker": "Speaker 2",
               "textEn": "My favourite meal is dinner. I love fish.",
-              "textFa": "وعده مورد علاقه من شام است؛ من عاشق ماهی هستم."
+              "textFa": "وعده غذایی مورد علاقه من شام است؛ عاشق ماهی هستم."
       },
       {
               "id": 3,
-              "seconds": 36,
-              "timeDisplay": "0:36",
+              "seconds": 37,
+              "timeDisplay": "0:37",
               "speaker": "Speaker 3",
               "textEn": "Breakfast is my favourite meal. I always have coffee and fruit.",
-              "textFa": "صبحانه وعده مورد علاقه من است. من همیشه قهوه و میوه میل می‌کنم."
+              "textFa": "صبحانه وعده غذایی مورد علاقه من است؛ همیشه قهوه و میوه می‌خورم."
       },
       {
               "id": 4,
-              "seconds": 44,
-              "timeDisplay": "0:44",
+              "seconds": 45,
+              "timeDisplay": "0:45",
               "speaker": "Speaker 4",
               "textEn": "My favourite meal is dinner. I eat a lot of pasta with cheese.",
-              "textFa": "وعده محبوب من شام است. پاستای زیادی با پنیر می‌خورم."
+              "textFa": "وعده غذایی مورد علاقه من شام است؛ من مقدار زیادی پاستا با پنیر می‌خورم."
       },
       {
               "id": 5,
-              "seconds": 52,
-              "timeDisplay": "0:52",
+              "seconds": 53,
+              "timeDisplay": "0:53",
               "speaker": "Speaker 5",
               "textEn": "My favourite meal of the day is breakfast. I have an omelette with a cup of tea.",
-              "textFa": "محبوب‌ترین وعده روز برای من صبحانه است؛ یک املت به همراه یک فنجان چای."
+              "textFa": "وعده غذایی مورد علاقه من در طول روز صبحانه است؛ املت همراه با یک فنجان چای می‌خورم."
       },
       {
               "id": 6,
-              "seconds": 61,
-              "timeDisplay": "1:01",
+              "seconds": 62,
+              "timeDisplay": "1:02",
               "speaker": "Speaker 6",
-              "textEn": "My favourite meal is breakfast. I have cereal with cold milk.",
-              "textFa": "وعده مورد علاقه من صبحانه است. غلات صبحانه با شیر سرد می‌خورم."
-      }
-    ],
+              "textEn": "My favourite meal is breakfast. I have cereal with milk, and orange juice.",
+              "textFa": "وعده غذایی مورد علاقه من صبحانه است؛ غلات صبحانه با شیر و آب پرتقال می‌خورم."
+      },
+      {
+              "id": 7,
+              "seconds": 70,
+              "timeDisplay": "1:10",
+              "speaker": "Speaker 7",
+              "textEn": "Lunch. My favourite, er, food is pasta. I love Italian food.",
+              "textFa": "ناهار؛ غذای مورد علاقه من پاستا است. من عاشق غذای ایتالیایی هستم."
+      },
+      {
+              "id": 8,
+              "seconds": 78,
+              "timeDisplay": "1:18",
+              "speaker": "Speaker 8",
+              "textEn": "My favourite meal is breakfast. I have breakfast at my desk. I have eggs and two cups of coffee.",
+              "textFa": "وعده غذایی مورد علاقه من صبحانه است؛ صبحانه‌ام را پشت میزم می‌خورم: تخم‌مرغ و دو فنجان قهوه."
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 4 · ولاگ تعاملی BBC: غذا، وعده‌های روزانه و مسابقه کیک»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:51]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 51,
-        "timestampDisplay": "0:51",
-        "explanationFa": "در ثانیه 0:51، Speaker 5 صریحاً بیان می‌کند: «My favourite meal of the day is breakfast. I have an omelette with a cup of tea.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 4 · ولاگ‌های BBC: وعده‌های غذایی مورد علاقه»، گوینده ۵ چه چیزی برای صبحانه می‌خورد؟",
+        "promptEn": "Listen at [0:53]. What does Speaker 5 have for breakfast?",
+        "timestampSeconds": 53,
+        "timestampDisplay": "0:53",
+        "explanationFa": "در ثانیه 0:53، گوینده ۵ صریحاً بیان می‌کند: «My favourite meal of the day is breakfast. I have an omelette with a cup of tea.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"My favourite meal of the day is breakfast. I have an omelette wit...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "An omelette with a cup of tea.",
+            "textFa": "املت همراه با یک فنجان چای."
           },
           {
             "id": 2,
@@ -2323,14 +2339,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (غذا، وعده‌های روزانه و مسابقه کیک) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Food, Meals & Cooking)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (وعده‌های غذایی و خوراکی‌ها) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Meals & Everyday Foods)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی غذا، وعده‌های روزانه و مسابقه کیک در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با غذا، وعده‌های روزانه و مسابقه کیک."
+            "textFa": "اصطلاح متناسب با وعده‌های غذایی و خوراکی‌ها."
           },
           {
             "id": 2,
@@ -2383,22 +2399,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on food, meals & cooking, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون غذا، وعده‌های روزانه و مسابقه کیک، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "My favourite meal is breakfast. I have an omelette and coffee.",
+        "targetPhraseFa": "وعده غذایی مورد علاقه من صبحانه است؛ من املت و قهوه می‌خورم.",
+        "phoneticGuide": "/maɪ ˈfeɪvərɪt miːl ɪz ˈbrekfəst aɪ hæv ən ˈɑːmlət ænd ˈkɔːfi/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه غذا، وعده‌های روزانه و مسابقه کیک تقویت می‌کند."
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در بیان وعده غذایی مورد علاقه و خوراکی‌های روزمره تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 4 · ولاگ تعاملی BBC: غذا، وعده‌های روزانه و مسابقه کیک» چیست؟",
-        "promptEn": "Based on the context of 'Unit 4 · BBC Vlogs: Food, Meals & Cooking', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون غذا، وعده‌های روزانه و مسابقه کیک است.",
+        "promptFa": "با توجه به زمینه و متن این ولاگ‌های آموزشی BBC، محور اصلی صحبت گویندگان چیست؟",
+        "promptEn": "Based on the BBC Vlogs context, what are the speakers primarily discussing?",
+        "explanationFa": "هدف اصلی گویندگان، بیان وعده غذایی مورد علاقه در روز و خوراکی‌هایی است که معمولاً میل می‌کنند.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding food, meals & cooking.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون غذا، وعده‌های روزانه و مسابقه کیک."
+            "textEn": "Sharing their favourite meals of the day and what foods and drinks they usually have.",
+            "textFa": "به اشتراک گذاشتن وعده‌های غذایی محبوب خود در طول روز و غذاها و نوشیدنی‌هایی که معمولاً میل می‌کنند."
           },
           {
             "id": 2,
@@ -2420,16 +2436,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (غذا، وعده‌های روزانه و مسابقه کیک)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Food, Meals & Cooking' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره وعده غذایی مورد علاقه خود و چیزهایی که میل می‌کنید بنویسید.",
+        "promptEn": "Write a short paragraph in English describing your favourite meal of the day and what you like to eat.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about food, meals & cooking through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره غذا، وعده‌های روزانه و مسابقه کیک از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "My favourite meal is breakfast. I always have eggs, bread, and a cup of black coffee.",
+        "sampleAnswerFa": "وعده غذایی مورد علاقه من صبحانه است؛ من همیشه تخم‌مرغ، نان و یک فنجان قهوه تلخ می‌خورم.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -2439,8 +2455,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a1-v09",
     "level": "a1",
     "episodeNumber": 9,
-    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: برنامه روزمره، مشاغل و بیمارستان",
-    "titleEn": "Unit 5 · BBC Vlogs: Daily Routines & Work",
+    "titleFa": "یونیت 5 · ولاگ‌های BBC: مشاغل و محل کار افراد (What's your job?)",
+    "titleEn": "Unit 5 · BBC Vlogs: Jobs, Workplaces & Occupations",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 5",
     "cefr": "A1",
@@ -2451,12 +2467,12 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون برنامه روزمره، مشاغل و بیمارستان همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on daily routines & work with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمانه و معتبر BBC از کتاب اسپیک‌آوت که در آن افراد مختلف شغل، محل کار (بیمارستان، مدرسه، خانه، دانشگاه) و ساعات کاری روزانه خود را معرفی می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers introduce their professions, daily working hours, and workplaces—from hospitals and schools to home and newsrooms.",
     "keyTopicsFa": [
-      "برنامه روزمره، مشاغل و بیمارستان",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 5",
+      "معرفی مشاغل (Doctor, Teacher, Reporter, IT)",
+      "محل کار (Hospital, School, Home, University)",
+      "ساعات کاری روزانه (from 8 a.m. to 5 p.m.)",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
@@ -2465,8 +2481,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "seconds": 18,
               "timeDisplay": "0:18",
               "speaker": "Jude",
-              "textEn": "Hello. My name's Jude. I'm a student doctor. I work in a hospital in Manchester and I study at university.",
-              "textFa": "سلام. نام من جود است. دانشجوی پزشکی هستم؛ در بیمارستانی در منچستر کار می‌کنم و در دانشگاه درس می‌خوانم."
+              "textEn": "Hello. My name\u2019s Jude. I\u2019m a student doctor. I work in a hospital in Manchester and I study at university.",
+              "textFa": "سلام. نام من جود است؛ دانشجوی پزشکی‌ام. در بیمارستانی در منچستر کار می‌کنم و در دانشگاه درس می‌خوانم."
       },
       {
               "id": 2,
@@ -2474,54 +2490,69 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
               "timeDisplay": "0:29",
               "speaker": "Speaker 2",
               "textEn": "I work in IT and I work from home.",
-              "textFa": "من در حوزه فناوری اطلاعات (IT) فعالیت می‌کنم و دورکار هستم."
+              "textFa": "من در حوزه فناوری اطلاعات (IT) کار می‌کنم و دورکار (از خانه) هستم."
       },
       {
               "id": 3,
-              "seconds": 80,
-              "timeDisplay": "1:20",
+              "seconds": 35,
+              "timeDisplay": "0:35",
               "speaker": "Speaker 3",
-              "textEn": "I'm a teacher. I work at a school in Ankara. I work from 8 a.m. to 5 p.m. every day. I am very lucky. I have great students and I like my job.",
-              "textFa": "من معلم هستم؛ در مدرسه‌ای در آنکارا کار می‌کنم. هر روز از ۸ صبح تا ۵ بعدازظهر کار می‌کنم. خیلی خوش‌شانسم، دانش‌آموزان فوق‌العاده‌ای دارم و عاشق کارم هستم."
+              "textEn": "I\u2019m a teacher. I work at a school in Ankara. I work from 8 a.m. to 5 p.m. every day. I am very lucky. I have great students and I like my job.",
+              "textFa": "من معلم هستم؛ در مدرسه‌ای در آنکارا کار می‌کنم. هر روز از ۸ صبح تا ۵ بعدازظهر کار می‌کنم. خیلی خوش‌شانسم؛ دانش‌آموزان عالی دارم و شغلم را دوست دارم."
       },
       {
               "id": 4,
-              "seconds": 82,
-              "timeDisplay": "1:22",
+              "seconds": 49,
+              "timeDisplay": "0:49",
               "speaker": "Speaker 4",
-              "textEn": "My job? I'm a news reporter at BBC. Hi.",
-              "textFa": "شغل من؟ من گزارشگر خبر در بی‌بی‌سی هستم. سلام!"
+              "textEn": "My job? I\u2019m a news reporter at BBC. Hi.",
+              "textFa": "شغل من؟ خبرنگار خبر در بی‌بی‌سی هستم. سلام."
       },
       {
               "id": 5,
-              "seconds": 84,
-              "timeDisplay": "1:24",
+              "seconds": 62,
+              "timeDisplay": "1:02",
               "speaker": "Speaker 5",
-              "textEn": "My job? I'm a stay-at-home mum.",
-              "textFa": "شغل من؟ من یک مادر خانه‌دار هستم و از فرزندانم نگهداری می‌کنم."
+              "textEn": "My job? I\u2019m a stay-at-home mum.",
+              "textFa": "شغل من؟ من مادری هستم که در خانه از بچه‌ها مراقبت می‌کنم (مادر خانه‌دار)."
       },
       {
               "id": 6,
-              "seconds": 86,
-              "timeDisplay": "1:26",
+              "seconds": 68,
+              "timeDisplay": "1:08",
               "speaker": "Speaker 6",
-              "textEn": "I don't have a job. I'm a student. I'm at university in France.",
-              "textFa": "من شغلی ندارم؛ دانشجو هستم و در دانشگاهی در فرانسه تحصیل می‌کنم."
-      }
-    ],
+              "textEn": "I don\u2019t have a job. I\u2019m a student. I\u2019m at university in France. And the people here are really friendly. I love the food here, especially the pastries.",
+              "textFa": "من شغلی ندارم؛ دانشجو هستم. در دانشگاهی در فرانسه درس می‌خوانم و مردم اینجا واقعاً خون‌گرم هستند. عاشق غذاهای اینجا هستم، مخصوصاً شیرینی‌ها."
+      },
+      {
+              "id": 7,
+              "seconds": 81,
+              "timeDisplay": "1:21",
+              "speaker": "Speaker 7",
+              "textEn": "I\u2019m a teacher and I\u2019m also a university student.",
+              "textFa": "من معلم هستم و در عین حال دانشجوی دانشگاه نیز می‌باشم."
+      },
+      {
+              "id": 8,
+              "seconds": 89,
+              "timeDisplay": "1:29",
+              "speaker": "Speaker 8",
+              "textEn": "My job? I work as a journalist for the BBC.",
+              "textFa": "شغل من؟ به عنوان روزنامه‌نگار برای بی‌بی‌سی کار می‌کنم."
+      }],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 5 · ولاگ تعاملی BBC: برنامه روزمره، مشاغل و بیمارستان»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:54]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 54,
-        "timestampDisplay": "0:54",
-        "explanationFa": "در ثانیه 0:54، Speaker 5 صریحاً بیان می‌کند: «My job? I’m a stay-at-home mum.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 5 · ولاگ‌های BBC: مشاغل و محل کار افراد»، شغل گوینده ۵ چیست؟",
+        "promptEn": "Listen at [1:02]. What is Speaker 5's job?",
+        "timestampSeconds": 62,
+        "timestampDisplay": "1:02",
+        "explanationFa": "در ثانیه 1:02، گوینده ۵ صریحاً بیان می‌کند: «My job? I’m a stay-at-home mum.».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"My job? I’m a stay-at-home mum....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "She is a stay-at-home mum.",
+            "textFa": "او یک مادر خانه‌دار است که در منزل از فرزندان نگهداری می‌کند."
           },
           {
             "id": 2,
@@ -2543,14 +2574,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (برنامه روزمره، مشاغل و بیمارستان) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Daily Routines & Work)?",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (مشاغل و محل کار) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Jobs & Workplaces)?",
         "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی برنامه روزمره، مشاغل و بیمارستان در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با برنامه روزمره، مشاغل و بیمارستان."
+            "textFa": "اصطلاح متناسب با مشاغل و محیط‌های کاری."
           },
           {
             "id": 2,
@@ -2603,22 +2634,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on daily routines & work, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون برنامه روزمره، مشاغل و بیمارستان، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "I am a teacher. I work at a school and I like my job.",
+        "targetPhraseFa": "من معلم هستم؛ در یک مدرسه کار می‌کنم و شغلم را دوست دارم.",
+        "phoneticGuide": "/aɪ æm ə ˈtiːtʃər aɪ wɜːrk æt ə skuːl ænd aɪ laɪk maɪ dʒɑːb/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه برنامه روزمره، مشاغل و بیمارستان تقویت می‌کند."
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در معرفی شغل، محل کار و ابراز رضایت از شغل تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 5 · ولاگ تعاملی BBC: برنامه روزمره، مشاغل و بیمارستان» چیست؟",
-        "promptEn": "Based on the context of 'Unit 5 · BBC Vlogs: Daily Routines & Work', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون برنامه روزمره، مشاغل و بیمارستان است.",
+        "promptFa": "با توجه به زمینه و متن این ولاگ‌های آموزشی BBC، محور اصلی صحبت گویندگان چیست؟",
+        "promptEn": "Based on the BBC Vlogs context, what are the speakers primarily discussing?",
+        "explanationFa": "هدف اصلی، معرفی مشاغل مختلف، ساعت کاری، محل کار یا وضعیت تحصیلی افراد است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding daily routines & work.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون برنامه روزمره، مشاغل و بیمارستان."
+            "textEn": "Introducing their occupations, daily working hours, and whether they work or study.",
+            "textFa": "معرفی مشاغل، ساعات کاری روزمره، و وضعیت شغلی یا تحصیلی خود."
           },
           {
             "id": 2,
@@ -2640,27 +2671,27 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (برنامه روزمره، مشاغل و بیمارستان)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Daily Routines & Work' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره شغل فعلی یا شغل مورد علاقه خود و محل کارتان بنویسید.",
+        "promptEn": "Write a short paragraph in English introducing your job or ideal profession and where you work.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about daily routines & work through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره برنامه روزمره، مشاغل و بیمارستان از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "I work in IT and I work from home. I like my job because I have flexible hours.",
+        "sampleAnswerFa": "من در حوزه فناوری اطلاعات کار می‌کنم و دورکار هستم؛ شغلم را به خاطر ساعات منعطف کاری دوست دارم.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
     }
   },
-  {
+    {
     "id": "a1-v10",
     "level": "a1",
     "episodeNumber": 10,
-    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: مکان‌های شهر و مناظر دیدنی",
-    "titleEn": "Unit 6 · BBC Programmes: Places in Town & Scenery",
+    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: رم در ۶ ساعت (Ade in Rome)",
+    "titleEn": "Unit 6 · BBC Programmes: Rome in Six Hours",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 6",
     "cefr": "A1",
@@ -2670,225 +2701,257 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=so&level=a1&file=SO3 A1 U6 BBC Programmes.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
-    "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون مکان‌های شهر و مناظر دیدنی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on places in town & scenery with native British and international speakers.",
+    "posterIcon": "🏛️",
+    "summaryFa": "مستند دیدنی BBC با اجرای اَدی آدِپیتان در رم؛ در این سفر شش ساعته با اتوبوس همراه با راهنمای محلی (استر مارینی)، از برجسته‌ترین مکان‌های دیدنی پایتخت ایتالیا مانند سیرکوس ماکسیموس، تپه پالاتین، دهان حقیقت، فواره تروی و کولوسئوم بازدید می‌شود.",
+    "summaryEn": "Ade Adepitan spends a six-hour flight layover exploring Rome's most iconic landmarks by bus with local guide Esther Maurini—visiting the Circus Maximus, Palatine Hill, Mouth of Truth, Trevi Fountain, and the Colosseum.",
     "keyTopicsFa": [
-      "مکان‌های شهر و مناظر دیدنی",
-      "مستند تلویزیونی BBC",
-      "واژگان یونیت 6",
-      "لهجه‌های زنده بریتانیایی"
+      "مکان‌های تاریخی شهر رم (Circus Maximus, Palatine Hill, Colosseum)",
+      "جاذبه‌های گردشگری و باورها (Mouth of Truth, Trevi Fountain)",
+      "سفر درون‌شهری با اتوبوس و زمان‌بندی (In six hours by bus)",
+      "کاربرد اصطلاحات جهت‌یابی و توصیف مکان در سطح A1"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Narrator",
-              "textEn": "BBC presenter, Ade Adepitan, is at Rome Airport. But he has a problem - his plane is late. Six hours late. So, he has six hours to see Rome. Where can he go?",
-              "textFa": "مجری بی‌بی‌سی، اَدی آدِپیتان، در فرودگاه رم است. اما مشکلی پیش آمده: پروازش تأخیر دارد، شش ساعت تأخیر! بنابراین شش ساعت وقت دارد تا رم را ببیند. کجا می‌تواند برود؟"
+        "id": 1,
+        "seconds": 12,
+        "timeDisplay": "0:12",
+        "speaker": "Narrator",
+        "textEn": "BBC presenter, Ade Adepitan, is at Rome Airport. But he has a problem – his plane is late. Six hours late. So, he has six hours to see Rome. Where can he go?",
+        "textFa": "مجری بی‌بی‌سی، اَدی آدِپیتان، در فرودگاه رم است. اما مشکلی دارد؛ پروازش تأخیر دارد، شش ساعت تأخیر! بنابراین شش ساعت وقت دارد تا رم را ببیند. کجا می‌تواند برود؟"
       },
       {
-              "id": 2,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Narrator",
-              "textEn": "Ade gets the help of a local tour guide, Esther Maurini. He has big plans for his visit!",
-              "textFa": "اَدی از یک راهنمای تور محلی به نام استر مارینی کمک می‌گیرد. او برنامه‌های بزرگی برای این بازدید دارد!"
+        "id": 2,
+        "seconds": 27,
+        "timeDisplay": "0:27",
+        "speaker": "Ade & Esther",
+        "textEn": "Hello, how are you? – How are you? Nice to meet you.",
+        "textFa": "سلام، حالتون چطوره؟ – حال شما چطوره؟ از دیدنتون خوشوقتم."
       },
       {
-              "id": 3,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Narrator",
-              "textEn": "Ade wants to see the Colosseum, the Circus Maximus, the Palatine Hill, the Mouth of Truth, and the Trevi Fountain.",
-              "textFa": "اَدی می‌خواهد کولوسئوم، سیرکوس ماکسیموس، تپه پالاتین، دهان حقیقت و فواره تِرِوی را ببیند."
+        "id": 3,
+        "seconds": 33,
+        "timeDisplay": "0:33",
+        "speaker": "Narrator",
+        "textEn": "Ade gets the help of a local tour guide, Esther Maurini. He has big plans for his visit!",
+        "textFa": "اَدی از یک راهنمای تور محلی به نام استر مارینی کمک می‌گیرد. او برنامه‌های بزرگی برای این بازدید دارد!"
       },
       {
-              "id": 4,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Ade",
-              "textEn": "Rome is incredible! The history here is everywhere you look.",
-              "textFa": "رم باورنکردنی است! به هر جا که نگاه می‌کنی تاریخ جریان دارد."
+        "id": 4,
+        "seconds": 42,
+        "timeDisplay": "0:42",
+        "speaker": "Narrator",
+        "textEn": "Ade wants to see the Colosseum, the Circus Maximus, the Palatine Hill, the Mouth of Truth, and the Trevi Fountain.",
+        "textFa": "اَدی می‌خواهد کولوسئوم، سیرکوس ماکسیموس، تپه پالاتین، دهان حقیقت و فواره تروی را ببیند."
       },
       {
-              "id": 5,
-              "seconds": 166,
-              "timeDisplay": "2:46",
-              "speaker": "Esther",
-              "textEn": "This is the Colosseum, nearly two thousand years old, where gladiators fought.",
-              "textFa": "این کولوسئوم است، با قدمتی نزدیک به دو هزار سال، جایی که گلادیاتورها مبارزه می‌کردند."
+        "id": 5,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Narrator",
+        "textEn": "Everything in six hours and everything by bus! It isn't easy.",
+        "textFa": "همه چیز در شش ساعت و همه با اتوبوس! کار آسانی نیست."
       },
       {
-              "id": 6,
-              "seconds": 168,
-              "timeDisplay": "2:48",
-              "speaker": "Ade",
-              "textEn": "And what about Italian gelato? We have to try the best gelato in town!",
-              "textFa": "و بستنی ژلاتوی ایتالیایی چطور؟ حتماً باید بهترین ژلاتوی شهر را امتحان کنیم!"
+        "id": 6,
+        "seconds": 72,
+        "timeDisplay": "1:12",
+        "speaker": "Narrator",
+        "textEn": "His first stop is the Circus Maximus. It's an ancient sports stadium, a place for over 250,000 people to watch chariot races.",
+        "textFa": "اولین توقف او سیرکوس ماکسیموس است؛ یک استادیوم ورزشی باستانی، مکانی برای تماشای مسابقات ارابه‌رانی توسط بیش از ۲۵۰ هزار نفر."
       },
       {
-              "id": 7,
-              "seconds": 176,
-              "timeDisplay": "2:56",
-              "speaker": "Narrator",
-              "textEn": "After throwing a coin into the Trevi Fountain, Ade heads back to the airport just in time for his boarding call.",
-              "textFa": "پس از انداختن سکه‌ای در آب‌نمای تروی، اَدی درست سر وقت برای اعلام پروازش به فرودگاه بازمی‌گردد."
+        "id": 7,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Narrator",
+        "textEn": "It's now a park. There aren't any chariot races today, but sometimes they have music concerts here.",
+        "textFa": "اکنون اینجا یک پارک است. امروز هیچ مسابقه ارابه‌رانی در آن برگزار نمی‌شود، اما گاهی اوقات در اینجا کنسرت‌های موسیقی برگزار می‌کنند."
+      },
+      {
+        "id": 8,
+        "seconds": 104,
+        "timeDisplay": "1:44",
+        "speaker": "Narrator",
+        "textEn": "Near the Circus Maximus is the Palatine Hill. Here you can see parts of ancient palaces and gardens. Some are nearly 3,000 years old, from the start of the city of Rome.",
+        "textFa": "نزدیک سیرکوس ماکسیموس، تپه پالاتین قرار دارد. در اینجا می‌توانید بخش‌هایی از کاخ‌ها و باغ‌های باستانی را ببینید. قدمت برخی از آن‌ها نزدیک به ۳۰۰۰ سال است، از زمان آغاز پیدایش شهر رم."
+      },
+      {
+        "id": 9,
+        "seconds": 120,
+        "timeDisplay": "2:00",
+        "speaker": "Narrator",
+        "textEn": "Ade's next stop is the Mouth of Truth. So what is the Mouth of Truth? Nobody knows. People say that the mouth eats the hand of a person that doesn't speak the truth.",
+        "textFa": "توقف بعدی اَدی دهان حقیقت (Mouth of Truth) است. دهان حقیقت چیست؟ هیچ‌کس نمی‌داند! مردم می‌گویند این دهان، دست کسی را که حقیقت را نگوید می‌خورد."
+      },
+      {
+        "id": 10,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "Narrator",
+        "textEn": "Next, Ade visits the Trevi Fountain. The Trevi Fountain is many tourists' favourite place. It's very beautiful. And people throw money in the fountain … about 3,000 euros every day. That's over one million euros a year!",
+        "textFa": "سپس، اَدی از فواره تروی بازدید می‌کند. فواره تروی مکان محبوب بسیاری از گردشگران است. بسیار زیباست و مردم در این فواره پول می‌اندازند... روزانه حدود ۳۰۰۰ یورو. این یعنی بیش از یک میلیون یورو در سال!"
+      },
+      {
+        "id": 11,
+        "seconds": 165,
+        "timeDisplay": "2:45",
+        "speaker": "Narrator",
+        "textEn": "And finally, Ade's last stop … the Colosseum. There's just time for a photo. Then it's back to the airport. And Ade has time to get there and catch his plane!",
+        "textFa": "و در نهایت، آخرین توقف اَدی... کولوسئوم. فقط وقت برای یک عکس است. سپس بازگشت به فرودگاه؛ و اَدی وقت کافی دارد تا به آنجا برسد و به پروازش برسد!"
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 6 · مستند تلویزیونی BBC: مکان‌های شهر و مناظر دیدنی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [1:33]. What key insight does Speaker 1 share?",
-        "timestampSeconds": 93,
-        "timestampDisplay": "1:33",
-        "explanationFa": "در ثانیه 1:33، Speaker 1 صریحاً بیان می‌کند: «Here you can see parts of ancient palaces and gardens.».",
+        "promptFa": "با توجه به توضیحات گوینده در ثانیه 1:44 درباره تپه پالاتین (Palatine Hill)، کدام ویژگی این مکان بیان می‌شود؟",
+        "promptEn": "Listen at [1:44]. What does the narrator say about the Palatine Hill?",
+        "timestampSeconds": 104,
+        "timestampDisplay": "1:44",
+        "explanationFa": "در ثانیه 1:44 نریتر بیان می‌کند: «Here you can see parts of ancient palaces and gardens. Some are nearly 3,000 years old».",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 1 indicates: \"Here you can see parts of ancient palaces and gardens....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Visitors can see parts of ancient palaces and gardens nearly 3,000 years old.",
+            "textFa": "بازدیدکنندگان می‌توانند بخش‌هایی از کاخ‌ها و باغ‌های باستانی با قدمت نزدیک به ۳۰۰۰ سال را ببینند."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "It is an airport modern terminal built for international flights.",
+            "textFa": "یک ترمینال فرودگاهی مدرن است که برای پروازهای بین‌المللی ساخته شده است."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "It has 250,000 seats where people watch chariot races today.",
+            "textFa": "۲۵۰ هزار صندلی دارد که مردم امروز در آن مسابقات ارابه‌رانی تماشا می‌کنند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "It is completely closed to all tourists and visitors.",
+            "textFa": "به‌طور کامل به روی همه گردشگران و بازدیدکنندگان بسته است."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (مکان‌های شهر و مناظر دیدنی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Places in Town & Scenery)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی مکان‌های شهر و مناظر دیدنی در ارتباط است.",
+        "promptFa": "واژه «ancient» در عبارت «ancient sports stadium» و «ancient palaces» به چه معناست؟",
+        "promptEn": "What does the word 'ancient' mean in 'ancient sports stadium' and 'ancient palaces'?",
+        "explanationFa": "واژه «ancient» به معنای بسیار کهن و باستانی است (مانند سازه‌های تاریخی چندهزار ساله رم).",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با مکان‌های شهر و مناظر دیدنی."
+            "textEn": "Very old, having existed for many hundreds or thousands of years.",
+            "textFa": "بسیار کهن و باستانی، با قدمت چند صد یا چندهزار ساله."
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "Brand new, recently constructed.",
+            "textFa": "کاملاً نوساز و تازه ساخته‌شده."
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "Extremely fast or rapid in movement.",
+            "textFa": "بسیار سریع در حرکت."
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "Very cheap or free of charge.",
+            "textFa": "بسیار ارزان یا رایگان."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه از نظر ساختار گرامری There is / There are در توصیف شهر کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly uses 'There is / There are' to describe places in town?",
+        "explanationFa": "برای اسم جمع (chariot races) و حالت منفی، ساختار صحیح «There aren't any...» است (همان‌طور که نریتر در ویدیو می‌گوید: There aren't any chariot races today).",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on places in town & scenery, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون مکان‌های شهر و مناظر دیدنی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "There aren't any chariot races today, but there is a big park.",
+            "textFa": "امروز هیچ مسابقه ارابه‌رانی وجود ندارد، اما یک پارک بزرگ وجود دارد (ساختار جمع منفی و مفرد مثبت صحیح)."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "There isn't any chariot races today in Rome.",
+            "textFa": "کاربرد نادرست isn't برای اسم جمع chariot races."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "There are a big park near the Circus Maximus.",
+            "textFa": "کاربرد نادرست are برای اسم مفرد a big park."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "There be many tourists at the Trevi Fountain.",
+            "textFa": "کاربرد نادرست شکل مصدری be به جای are."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و ریتم مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on places in town & scenery, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون مکان‌های شهر و مناظر دیدنی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه مکان‌های شهر و مناظر دیدنی تقویت می‌کند."
+        "targetPhraseEn": "Near the Circus Maximus is the Palatine Hill, where you can see ancient palaces and gardens.",
+        "targetPhraseFa": "نزدیک سیرکوس ماکسیموس، تپه پالاتین قرار دارد، جایی که می‌توانید کاخ‌ها و باغ‌های باستانی را ببینید.",
+        "phoneticGuide": "/nɪər ðə ˈsɜːrkəs ˈmæksɪməs ɪz ðə ˈpælətaɪn hɪl weər juː kæn siː ˈeɪnʃənt ˈpæləsɪz ænd ˈɡɑːrdənz/",
+        "speakingTipsFa": "به تلفظ صحیح Palatine (/ˈpælətaɪn/) و ancient (/ˈeɪnʃənt/) و لحن توصیفی دقت کنید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در توصیف مکان‌ها و جاذبه‌های تاریخی تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 6 · مستند تلویزیونی BBC: مکان‌های شهر و مناظر دیدنی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 6 · BBC Programmes: Places in Town & Scenery', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون مکان‌های شهر و مناظر دیدنی است.",
+        "promptFa": "بر اساس متن مستند، مردم درباره «دهان حقیقت» (Mouth of Truth) چه باوری دارند؟",
+        "promptEn": "According to the documentary, what do people believe about the 'Mouth of Truth'?",
+        "explanationFa": "در مستند آمده است: «People say that the mouth eats the hand of a person that doesn't speak the truth».",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding places in town & scenery.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون مکان‌های شهر و مناظر دیدنی."
+            "textEn": "They say the mouth eats the hand of a person who does not speak the truth.",
+            "textFa": "می‌گویند این دهان دست کسی را که حقیقت را نگوید می‌خورد."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "They say it grants three wishes to anyone who touches it.",
+            "textFa": "می‌گویند هر کس آن را لمس کند سه آرزویش برآورده می‌شود."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "They say it was built as a drinking fountain for horses.",
+            "textFa": "می‌گویند به عنوان آبشخور اسب‌ها ساخته شده بود."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "They believe gladiators used it to store their weapons.",
+            "textFa": "باور دارند گلادیاتورها سلاح‌هایشان را در آن نگهداری می‌کردند."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (مکان‌های شهر و مناظر دیدنی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Places in Town & Scenery' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره یکی از مکان‌های تاریخی شهر رم (مانند Trevi Fountain یا Circus Maximus) با استفاده از کلمات کلیدی بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing a famous historical place in Rome using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "visit",
+          "beautiful",
+          "history"
         ],
-        "sampleAnswerEn": "Learning about places in town & scenery through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره مکان‌های شهر و مناظر دیدنی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "The Trevi Fountain is a beautiful place to visit in Rome where tourists can see rich history and throw coins into the water.",
+        "sampleAnswerFa": "فواره تروی مکانی بسیار زیبا برای بازدید در رم است که گردشگران می‌توانند تاریخ غنی را ببینند و سکه‌ها را در آب بیندازند.",
+        "evaluationTipsFa": "رعایت املای صحیح واژگان، کاربرد صفت‌های توصیفی و ساختار درست جمله لحاظ می‌شود.",
+        "explanationFa": "نوشته شما بر مبنای تناسب با جاذبه‌های رم و درستی گرامری ارزیابی می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a1-v11",
     "level": "a1",
     "episodeNumber": 11,
-    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: مکان‌های شهر و مناظر دیدنی",
-    "titleEn": "Unit 6 · BBC Vlogs: Places in Town & Scenery",
+    "titleFa": "یونیت 6 · ولاگ‌های BBC: اشیا و محیط‌های اطراف (What can you see?)",
+    "titleEn": "Unit 6 · BBC Vlogs: Things Around Us & What You Can See",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 6",
     "cefr": "A1",
@@ -2899,216 +2962,216 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون مکان‌های شهر و مناظر دیدنی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on places in town & scenery with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمی و معتبر BBC از کتاب اسپیک‌آوت که در آن گویندگان در مکان‌های گوناگون (بیرون از خانه، دفتر کار، باغچه، اتاق نشیمن و آشپزخانه) قرار دارند و با ساختار کاربردی «I can see...» اشیا و مناظر پیرامون خود را توصیف می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers in various settings—outdoors, at an office, in the garden, living room, and kitchen—describe the objects and scenery around them using 'I can see...'.",
     "keyTopicsFa": [
-      "مکان‌های شهر و مناظر دیدنی",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 6",
-      "لهجه‌های زنده بریتانیایی"
+      "محیط‌های مختلف (outside, office, garden, living room, kitchen)",
+      "اشیای روزمره و کاری (laptop, tablet, car keys, scissors, books)",
+      "حیوانات و طبیعت (trees, sky, flowers, rabbits, cat)",
+      "ساختار گرامری I can see... با اسامی مفرد و جمع"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "I'm outside. I can see trees and the sky, and my house.",
-              "textFa": "من بیرون از خانه‌ام؛ درختان، آسمان و خانه‌ام را می‌بینم."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "I’m outside. I can see trees and the sky, and my house.",
+        "textFa": "من بیرون (از خانه) هستم؛ می‌توانم درخت‌ها، آسمان و خانه‌ام را ببینم."
       },
       {
-              "id": 2,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Speaker 2",
-              "textEn": "I am at my office and I can see a lot of books.",
-              "textFa": "من در دفتر کارم هستم و کتاب‌های زیادی را می‌بینم."
+        "id": 2,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Speaker 2",
+        "textEn": "I am at my office and I can see a lot of books.",
+        "textFa": "من در دفتر کارم هستم و می‌توانم کتاب‌های زیادی را ببینم."
       },
       {
-              "id": 3,
-              "seconds": 79,
-              "timeDisplay": "1:19",
-              "speaker": "Speaker 3",
-              "textEn": "I'm in the garden and I can see my house, some flowers and some rabbits.",
-              "textFa": "من در باغچه هستم و خانه‌ام، تعدادی گل و چند خرگوش را می‌بینم."
+        "id": 3,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Speaker 3",
+        "textEn": "I’m in the garden and I can see my house, some flowers and some rabbits.",
+        "textFa": "من در باغچه/حیاط هستم و می‌توانم خانه‌ام، تعدادی گل و چند خرگوش را ببینم."
       },
       {
-              "id": 4,
-              "seconds": 81,
-              "timeDisplay": "1:21",
-              "speaker": "Speaker 4",
-              "textEn": "Now I am in my living room and I can see a bottle of water, my cat and a sofa.",
-              "textFa": "اکنون در اتاق نشیمن هستم و یک بطری آب، گربه‌ام و یک کاناپه را می‌بینم."
+        "id": 4,
+        "seconds": 45,
+        "timeDisplay": "0:45",
+        "speaker": "Speaker 4",
+        "textEn": "Now I am in my living room and I can see a bottle of water, my cat and a sofa.",
+        "textFa": "اکنون در اتاق نشیمن هستم و می‌توانم یک بطری آب، گربه‌ام و یک کاناپه را ببینم."
       },
       {
-              "id": 5,
-              "seconds": 83,
-              "timeDisplay": "1:23",
-              "speaker": "Speaker 5",
-              "textEn": "I'm in my kitchen, at my desk, and I can see my laptop, a tablet, my car keys, scissors, two books, a pencil and a cup of tea.",
-              "textFa": "در آشپزخانه پشت میزم هستم و لپ‌تاپ، تبلت، سوئیچ ماشین، قیچی، دو جلد کتاب، یک مداد و یک فنجان چای را می‌بینم."
+        "id": 5,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Speaker 5",
+        "textEn": "I’m in my kitchen, at my desk, and I can see my laptop, a tablet, my car keys, scissors, two books, a pencil and a cup of tea.",
+        "textFa": "من در آشپزخانه، پشت میزم هستم و می‌توانم لپ‌تاپم، یک تبلت، سوئیچ ماشینم، قیچی، دو جلد کتاب، یک مداد و یک فنجان چای را ببینم."
       },
       {
-              "id": 6,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Speaker 6",
-              "textEn": "I'm in the garden now. I can see some trees, plants and a table.",
-              "textFa": "اکنون در حیاطم؛ تعدادی درخت، گیاه و یک میز را می‌بینم."
+        "id": 6,
+        "seconds": 79,
+        "timeDisplay": "1:19",
+        "speaker": "Speaker 6",
+        "textEn": "I’m in the garden now. I can see some trees, plants and a table and chair.",
+        "textFa": "من الان در باغچه/حیاطم؛ می‌توانم تعدادی درخت، گیاهان و یک میز و صندلی را ببینم."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 6 · ولاگ تعاملی BBC: مکان‌های شهر و مناظر دیدنی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:46]. What key insight does Speaker 4 share?",
-        "timestampSeconds": 46,
-        "timestampDisplay": "0:46",
-        "explanationFa": "در ثانیه 0:46، Speaker 4 صریحاً بیان می‌کند: «Now I am in my living room and I can see a bottle of water, my cat and a sofa.».",
+        "promptFa": "با توجه به ویدیوی ولاگ در ثانیه 0:45، گوینده شماره ۴ در اتاق نشیمن خود چه چیزهایی را می‌بیند؟",
+        "promptEn": "Listen at [0:45]. What does Speaker 4 see in the living room?",
+        "timestampSeconds": 45,
+        "timestampDisplay": "0:45",
+        "explanationFa": "در ثانیه 0:45، گوینده ۴ صریحاً بیان می‌کند: «Now I am in my living room and I can see a bottle of water, my cat and a sofa.» (یک بطری آب، گربه و کاناپه).",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 4 indicates: \"Now I am in my living room and I can see a bottle of water, my ca...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "A bottle of water, a cat, and a sofa.",
+            "textFa": "یک بطری آب، یک گربه و یک کاناپه."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "A laptop, car keys, and scissors.",
+            "textFa": "یک لپ‌تاپ، کلیدهای ماشین و قیچی."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "Some trees, rabbits, and a large swimming pool.",
+            "textFa": "تعدادی درخت، خرگوش‌ها و یک استخر شنای بزرگ."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "A lot of office books and a chalkboard.",
+            "textFa": "تعداد زیادی کتاب اداری و یک تخته‌سیاه."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (مکان‌های شهر و مناظر دیدنی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Places in Town & Scenery)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی مکان‌های شهر و مناظر دیدنی در ارتباط است.",
+        "promptFa": "کدام کلمه برای شیئی به کار می‌رود که گوینده شماره ۵ در آشپزخانه از آن برای بریدن کاغذ استفاده می‌کند؟",
+        "promptEn": "Which word refers to the tool that Speaker 5 mentions on the desk used for cutting?",
+        "explanationFa": "واژه «scissors» به معنای قیچی است که گوینده ۵ آن را در میان وسایل روی میزش نام می‌برد.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با مکان‌های شهر و مناظر دیدنی."
+            "textEn": "scissors",
+            "textFa": "قیچی (ابزار برش)"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "pencil",
+            "textFa": "مداد"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "tablet",
+            "textFa": "تبلت"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "cup of tea",
+            "textFa": "فنجان چای"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه کاربرد صحیح فعل کمکی «can» و ساختار اسم‌های مفرد/جمع را نشان می‌دهد؟",
+        "promptEn": "Which sentence correctly uses 'can see' with singular and plural nouns?",
+        "explanationFa": "پس از «can see»، اسامی مفرد قابل شمارش با «a/an» و اسامی جمع بدون حرف تعریف مفرد یا با «some» می‌آیند (مانند a bottle of water and some flowers).",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on places in town & scenery, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون مکان‌های شهر و مناظر دیدنی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "I can see a bottle of water, my cat and some flowers.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست can see و اسامی مفرد و جمع."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "I can seeing a lot of books in my office.",
+            "textFa": "کاربرد نادرست شکل ing دار پس از can."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "I can to see my house and trees.",
+            "textFa": "کاربرد نادرست to پس از فعل کمکی can."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "I cans see a table and chair in the garden.",
+            "textFa": "افزودن غلط s به فعل کمکی can."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و ریتم مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on places in town & scenery, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون مکان‌های شهر و مناظر دیدنی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه مکان‌های شهر و مناظر دیدنی تقویت می‌کند."
+        "targetPhraseEn": "Now I am in my living room and I can see a bottle of water, my cat and a sofa.",
+        "targetPhraseFa": "اکنون در اتاق نشیمن هستم و می‌توانم یک بطری آب، گربه‌ام و یک کاناپه را ببینم.",
+        "phoneticGuide": "/naʊ aɪ æm ɪn maɪ ˈlɪvɪŋ ruːm ænd aɪ kæn siː ə ˈbɒtl əv ˈwɔːtər maɪ kæt ænd ə ˈsoʊfə/",
+        "speakingTipsFa": "به پیوستگی کلمات در «bottle of water» و لحن شمرده در برشمردن اشیا (فهرست‌کردن با لحن بالا و سپس افت صدا در انتهای جمله) دقت کنید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در توصیف فوری محیط اطراف به زبان انگلیسی تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 6 · ولاگ تعاملی BBC: مکان‌های شهر و مناظر دیدنی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 6 · BBC Vlogs: Places in Town & Scenery', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون مکان‌های شهر و مناظر دیدنی است.",
+        "promptFa": "با توجه به صحبت‌های گویندگان، گوینده شماره ۳ در باغچه چه چیزهایی را مشاهده می‌کند؟",
+        "promptEn": "According to the video, what does Speaker 3 see in the garden?",
+        "explanationFa": "گوینده ۳ می‌گوید: «I’m in the garden and I can see my house, some flowers and some rabbits.».",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding places in town & scenery.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون مکان‌های شهر و مناظر دیدنی."
+            "textEn": "His house, some flowers, and some rabbits.",
+            "textFa": "خانه‌اش، مقداری گل و چند خرگوش."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "A desk with a laptop and a cup of tea.",
+            "textFa": "یک میز با لپ‌تاپ و یک فنجان چای."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "An ancient sports stadium with chariot races.",
+            "textFa": "یک استادیوم ورزشی باستانی با مسابقات ارابه‌رانی."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "A big sofa and a black cat.",
+            "textFa": "یک کاناپه بزرگ و یک گربه سیاه."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (مکان‌های شهر و مناظر دیدنی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Places in Town & Scenery' using relevant descriptive vocabulary.",
+        "promptFa": "با استفاده از ساختار «I can see...» و حداقل ۱۴ کلمه، اشیا و مناظری را که در اتاق یا حیاط خود می‌بینید بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing what you can see in your room or garden using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "see",
+          "room",
+          "desk"
         ],
-        "sampleAnswerEn": "Learning about places in town & scenery through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره مکان‌های شهر و مناظر دیدنی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I am in my room now and I can see my desk, a laptop, and some books.",
+        "sampleAnswerFa": "من الان در اتاقم هستم و می‌توانم میزم، یک لپ‌تاپ و تعدادی کتاب را ببینم.",
+        "evaluationTipsFa": "رعایت املای صحیح واژگان، کاربرد حروف تعریف a/an برای اسامی مفرد و درستی گرامری مد نظر است.",
+        "explanationFa": "نوشته شما بر مبنای تناسب با ساختار بیان اشیای پیرامون و صحت جمله‌بندی ارزیابی می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a1-v12",
     "level": "a1",
     "episodeNumber": 12,
-    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): تغذیه سالم، فست‌فود و ورزش",
-    "titleEn": "Unit 7 · BBC Street Interviews: Healthy Living & Food Choices",
+    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC: ورزش‌ها و توصیه‌های تندرستی (Sports & Fitness Tips)",
+    "titleEn": "Unit 7 · BBC Street Interviews: Sports & Fitness Tips",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 7",
     "cefr": "A1",
@@ -3119,240 +3182,312 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون تغذیه سالم، فست‌فود و ورزش همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on healthy living & food choices with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی معتبر BBC از کتاب اسپیک‌آوت در دو بخش: در بخش اول شهروندان لندن ورزش‌ها و فعالیت‌های هفتگی خود (یوگا، باشگاه، فوتبال، تنیس، دویدن) را معرفی می‌کنند و در بخش دوم توصیه‌های عملی خود را برای ورزش، دویدن و تمرین در باشگاه (گرم کردن، کفش مناسب، نوشیدن آب و داشتن انگیزه) به اشتراک می‌گذارند.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition in two parts: first, speakers share their sports and workout habits (yoga, gym, football, tennis, running), followed by practical tips for staying healthy, running, and hitting the gym.",
     "keyTopicsFa": [
-      "تغذیه سالم، فست‌فود و ورزش",
-      "مصاحبه خیابانی BBC (Vox Pops)",
-      "واژگان یونیت 7",
-      "لهجه‌های زنده بریتانیایی"
+      "ورزش‌ها و فعالیت‌های بدنی (yoga, gym, football, cricket, tennis, running)",
+      "توصیه‌ها برای ورزش و باشگاه (warm up, good shoes, drink water, take a friend)",
+      "ساختار افعال play / go / do با فعالیت‌ها (play football, go to the gym, do yoga)",
+      "قیدهای زمان و تکرار (twice a week, every day, at the weekends, most days)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Gaia",
-              "textEn": "I do yoga and I go to the gym.",
-              "textFa": "من یوگا انجام می‌دهم و به باشگاه ورزشی می‌روم."
+        "id": 1,
+        "seconds": 15,
+        "timeDisplay": "0:15",
+        "speaker": "Gaia",
+        "textEn": "I do yoga and I go to the gym.",
+        "textFa": "من یوگا انجام می‌دهم و به باشگاه می‌روم."
       },
       {
-              "id": 2,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Chris",
-              "textEn": "I play basketball.",
-              "textFa": "من بسکتبال بازی می‌کنم."
+        "id": 2,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Chris",
+        "textEn": "I play basketball.",
+        "textFa": "من بسکتبال بازی می‌کنم."
       },
       {
-              "id": 3,
-              "seconds": 21,
-              "timeDisplay": "0:21",
-              "speaker": "Lucy",
-              "textEn": "I play football.",
-              "textFa": "من فوتبال بازی می‌کنم."
+        "id": 3,
+        "seconds": 21,
+        "timeDisplay": "0:21",
+        "speaker": "Lucy",
+        "textEn": "I play football.",
+        "textFa": "من فوتبال بازی می‌کنم."
       },
       {
-              "id": 4,
-              "seconds": 23,
-              "timeDisplay": "0:23",
-              "speaker": "Sautebh",
-              "textEn": "I play football and cricket, but I also like to run.",
-              "textFa": "من فوتبال و کریکت بازی می‌کنم، ولی دویدن را هم دوست دارم."
+        "id": 4,
+        "seconds": 23,
+        "timeDisplay": "0:23",
+        "speaker": "Sautebh",
+        "textEn": "I play football and cricket, but I also like to run.",
+        "textFa": "من فوتبال و کریکت بازی می‌کنم، ولی دویدن را هم دوست دارم."
       },
       {
-              "id": 5,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Eleanor",
-              "textEn": "I play tennis and sometimes go for a run.",
-              "textFa": "من تنیس بازی می‌کنم و گاهی اوقات برای دویدن می‌روم."
+        "id": 5,
+        "seconds": 28,
+        "timeDisplay": "0:28",
+        "speaker": "Eleanor",
+        "textEn": "I play tennis and sometimes go for a run.",
+        "textFa": "من تنیس بازی می‌کنم و گاهی اوقات برای دویدن می‌روم."
       },
       {
-              "id": 6,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Ryan",
-              "textEn": "I go to the gym most days and I enjoy walks.",
-              "textFa": "من بیشتر روزها به باشگاه می‌روم و از پیاده‌روی لذت می‌برم."
+        "id": 6,
+        "seconds": 34,
+        "timeDisplay": "0:34",
+        "speaker": "Ryan",
+        "textEn": "I go to the gym most days and I enjoy walks.",
+        "textFa": "من بیشتر روزها به باشگاه می‌روم و از پیاده‌روی لذت می‌برم."
       },
       {
-              "id": 7,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Tracey",
-              "textEn": "I run twice a week.",
-              "textFa": "من دو بار در هفته می‌دوم."
+        "id": 7,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Tracey",
+        "textEn": "I run twice a week.",
+        "textFa": "من دو بار در هفته می‌دوم."
       },
       {
-              "id": 8,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Vincent",
-              "textEn": "I play football at the weekends.",
-              "textFa": "من در تعطیلات آخر هفته فوتبال بازی می‌کنم."
+        "id": 8,
+        "seconds": 43,
+        "timeDisplay": "0:43",
+        "speaker": "Vincent",
+        "textEn": "I play football at the weekends.",
+        "textFa": "من آخر هفته‌ها فوتبال بازی می‌کنم."
       },
       {
-              "id": 9,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Rachael",
-              "textEn": "I run twice a week, and I walk every day.",
-              "textFa": "من هفته‌ای دو بار می‌دوم و هر روز پیاده‌روی می‌کنم."
+        "id": 9,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Rachael",
+        "textEn": "I run twice a week, and I walk every day.",
+        "textFa": "من دو بار در هفته می‌دوم و هر روز پیاده‌روی می‌کنم."
+      },
+      {
+        "id": 10,
+        "seconds": 57,
+        "timeDisplay": "0:57",
+        "speaker": "Gaia",
+        "textEn": "Drink lots of water and wear good trousers.",
+        "textFa": "آب زیادی بنوشید و شلوار ورزشی مناسب بپوشید."
+      },
+      {
+        "id": 11,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Chris",
+        "textEn": "Practise and drink lots of water.",
+        "textFa": "تمرین کنید و آب فراوان بنوشید."
+      },
+      {
+        "id": 12,
+        "seconds": 65,
+        "timeDisplay": "1:05",
+        "speaker": "Lucy",
+        "textEn": "Practise a lot and play with friends.",
+        "textFa": "زیاد تمرین کنید و با دوستانتان بازی کنید."
+      },
+      {
+        "id": 13,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Sautebh",
+        "textEn": "Do a sport that you love and practise, practise, practise.",
+        "textFa": "ورزشی را انجام دهید که عاشقش هستید و تمرین، تمرین و باز هم تمرین کنید."
+      },
+      {
+        "id": 14,
+        "seconds": 71,
+        "timeDisplay": "1:11",
+        "speaker": "Eleanor",
+        "textEn": "Buy good clothes and don’t forget the tennis balls!",
+        "textFa": "لباس‌های ورزشی باکیفیت بخرید و توپ‌های تنیس را فراموش نکنید!"
+      },
+      {
+        "id": 15,
+        "seconds": 76,
+        "timeDisplay": "1:16",
+        "speaker": "Ryan",
+        "textEn": "Tips for the gym – always warm up, take a friend if you can and always eat a good healthy meal afterwards.",
+        "textFa": "توصیه‌هایی برای باشگاه: همیشه بدنتان را گرم کنید، اگر مقدور است با یک دوست بروید و همیشه بعد از تمرین یک وعده غذایی سالم بخورید."
+      },
+      {
+        "id": 16,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "Tracey",
+        "textEn": "Good running shoes and good music.",
+        "textFa": "کفش مناسب دویدن و موسیقی خوب."
+      },
+      {
+        "id": 17,
+        "seconds": 92,
+        "timeDisplay": "1:32",
+        "speaker": "Vincent",
+        "textEn": "Wear good shoes.",
+        "textFa": "کفش‌های مناسب بپوشید."
+      },
+      {
+        "id": 18,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Rachael",
+        "textEn": "Drink lots of water, wear good shoes, wear comfortable clothing and be positive.",
+        "textFa": "آب فراوان بنوشید، کفش خوب بپوشید، لباس راحت به تن کنید و مثبت‌اندیش باشید."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): تغذیه سالم، فست‌فود و ورزش»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:57]. What key insight does Gaia share?",
+        "promptFa": "با توجه به ویدیوی مصاحبه در ثانیه 0:57، گایا (Gaia) چه توصیه‌ای برای ورزش ارائه می‌دهد؟",
+        "promptEn": "Listen at [0:57]. What fitness tip does Gaia share?",
         "timestampSeconds": 57,
         "timestampDisplay": "0:57",
-        "explanationFa": "در ثانیه 0:57، Gaia صریحاً بیان می‌کند: «Drink lots of water and wear good trousers.».",
+        "explanationFa": "در ثانیه 0:57، گایا می‌گوید: «Drink lots of water and wear good trousers.» (آب فراوان بنوشید و شلوار ورزشی مناسب بپوشید).",
         "options": [
           {
             "id": 1,
-            "textEn": "Gaia indicates: \"Drink lots of water and wear good trousers....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Drink lots of water and wear good trousers.",
+            "textFa": "آب فراوان بنوشید و شلوار ورزشی مناسب بپوشید."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "Never eat healthy meals after going to the gym.",
+            "textFa": "هرگز بعد از رفتن به باشگاه غذای سالم نخورید."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "Buy a new car and drive to the sports stadium.",
+            "textFa": "یک ماشین جدید بخرید و تا استادیوم رانندگی کنید."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "Only play tennis without any tennis balls.",
+            "textFa": "فقط بدون توپ، تنیس بازی کنید."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (تغذیه سالم، فست‌فود و ورزش) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Healthy Living & Food Choices)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی تغذیه سالم، فست‌فود و ورزش در ارتباط است.",
+        "promptFa": "کدام فعل برای ورزش‌هایی مانند «yoga» و کدام فعل برای ورزش‌های توپی مانند «football / tennis» به کار می‌رود؟",
+        "promptEn": "Which verbs correctly collocate with 'yoga' and 'football / tennis'?",
+        "explanationFa": "در زبان انگلیسی از فعل do برای yoga (مانند do yoga) و از فعل play برای بازی‌ها و ورزش‌های توپی (مانند play football, play tennis) استفاده می‌شود.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با تغذیه سالم، فست‌فود و ورزش."
+            "textEn": "do yoga / play football / play tennis",
+            "textFa": "ترکیب صحیح افعال ورزشی (do برای یوگا و play برای ورزش‌های رقابتی/توپی)."
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "play yoga / make football / go tennis",
+            "textFa": "کاربرد نادرست play برای یوگا و make برای فوتبال."
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "watch yoga / make tennis / run football",
+            "textFa": "ترکیب غلط افعال."
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "listen yoga / eat football / drink tennis",
+            "textFa": "افعال بی‌ارتباط با ورزش."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه از نظر بیان تکرار و زمان در زمان حال ساده کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly expresses frequency and habits in the present simple?",
+        "explanationFa": "عبارت «twice a week» (هفته‌ای دو بار) همراه با حال ساده (I run) بیانگر عادت و برنامه منظم است.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on healthy living & food choices, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون تغذیه سالم، فست‌فود و ورزش، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "I run twice a week, and I walk every day.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست قیدهای تکرار twice a week و every day."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "I running twice a week and walk every day.",
+            "textFa": "کاربرد نادرست شکل ing دار بدون فعل کمکی."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "He play football at the weekends.",
+            "textFa": "حذف پسوند s سوم شخص برای ضمیر He."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "They goes to the gym most days.",
+            "textFa": "افزودن نادرست es به فعل برای فاعل جمع They."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on healthy living & food choices, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون تغذیه سالم، فست‌فود و ورزش، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه تغذیه سالم، فست‌فود و ورزش تقویت می‌کند."
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و ریتم مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptEn": "Read this core fitness tip aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "Tips for the gym – always warm up, take a friend if you can and always eat a good healthy meal afterwards.",
+        "targetPhraseFa": "توصیه‌هایی برای باشگاه: همیشه بدنتان را گرم کنید، اگر می‌توانید با یک دوست بروید و همیشه بعد از آن یک وعده غذایی سالم بخورید.",
+        "phoneticGuide": "/tɪps fɔːr ðə dʒɪm ˈɔːlweɪz wɔːrm ʌp teɪk ə frend ɪf juː kæn ænd ˈɔːlweɪz iːt ə ɡʊd ˈhelθi miːl ˈɑːftərwərdz/",
+        "speakingTipsFa": "به وصل‌شدن حروف در «warm up» (/ˈwɔːrmʌp/) و تلفظ صحیح th در «healthy» دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در ارائه توصیه‌ها و بیان روتین‌های سلامتی تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): تغذیه سالم، فست‌فود و ورزش» چیست؟",
-        "promptEn": "Based on the context of 'Unit 7 · BBC Street Interviews: Healthy Living & Food Choices', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون تغذیه سالم، فست‌فود و ورزش است.",
+        "promptFa": "بر اساس مصاحبه، رایان (Ryan) چه توصیه‌هایی برای افراد در باشگاه مطرح می‌کند؟",
+        "promptEn": "According to the interview, what are Ryan's tips for the gym?",
+        "explanationFa": "رایان در ثانیه 1:16 می‌گوید: همیشه بدنتان را گرم کنید (warm up)، اگر می‌توانید با یک دوست بروید و بعد از ورزش غذای سالم بخورید.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding healthy living & food choices.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون تغذیه سالم، فست‌فود و ورزش."
+            "textEn": "Always warm up, take a friend if you can, and eat a healthy meal afterwards.",
+            "textFa": "همیشه گرم کنید، در صورت امکان با یک دوست بروید و بعد از آن یک غذای سالم بخورید."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "Only run at night and never drink any water.",
+            "textFa": "فقط شب‌ها بدوید و اصلاً آب ننوشید."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Play cricket alone every morning before breakfast.",
+            "textFa": "هر روز صبح قبل از صبحانه به تنهایی کریکت بازی کنید."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "Avoid wearing running shoes when working out.",
+            "textFa": "هنگام ورزش از پوشیدن کفش دویدن خودداری کنید."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (تغذیه سالم، فست‌فود و ورزش)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Healthy Living & Food Choices' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره برنامه ورزشی هفتگی خود و یک توصیه برای سالم ماندن بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) about your weekly sports routine and a tip for staying healthy.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "gym",
+          "exercise",
+          "healthy"
         ],
-        "sampleAnswerEn": "Learning about healthy living & food choices through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره تغذیه سالم، فست‌فود و ورزش از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I go to the gym twice a week for exercise and I always eat healthy food to stay fit.",
+        "sampleAnswerFa": "من هفته‌ای دو بار برای ورزش به باشگاه می‌روم و برای حفظ تناسب اندام همیشه غذای سالم می‌خورم.",
+        "evaluationTipsFa": "کاربرد درست افعال حرکتی (go/play/do)، قیدهای تکرار و املای صحیح کلمات امتیاز خواهد داشت.",
+        "explanationFa": "پاسخ شما بر اساس بیان دقیق روتین ورزشی و نکات تندرستی بررسی می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a1-v13",
     "level": "a1",
     "episodeNumber": 13,
-    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: تغذیه سالم، فست‌فود و ورزش",
-    "titleEn": "Unit 7 · BBC Vlogs: Healthy Living & Food Choices",
+    "titleFa": "یونیت 7 · ولاگ‌های BBC: عادت‌های غذایی و خوراکی‌های سالم (Healthy Eating Habits)",
+    "titleEn": "Unit 7 · BBC Vlogs: Healthy Eating Habits & Food Choices",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 7",
     "cefr": "A1",
@@ -3363,216 +3498,232 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون تغذیه سالم، فست‌فود و ورزش همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on healthy living & food choices with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمی و معتبر BBC از کتاب اسپیک‌آوت که در آن ۸ شهروند درباره عادات غذایی روزمره خود، تلاش برای خوردن غذاهای سالم (میوه، سبزیجات، ماهی و سالاد) و در عین حال علاقه به فست‌فود و تنقلات (پیتزا، برگر و شکلات) صحبت می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where 8 speakers discuss their daily eating habits, trying to eat healthy (fruit, vegetables, fish, salad) while balancing their love for pizza, burgers, coffee, and chocolate.",
     "keyTopicsFa": [
-      "تغذیه سالم، فست‌فود و ورزش",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 7",
-      "لهجه‌های زنده بریتانیایی"
+      "خوراکی‌ها و وعده‌های غذایی (breakfast, lunch, dinner)",
+      "غذاهای سالم و میوه‌ها (fruit, vegetables, bananas, oranges, apples, fish, salad)",
+      "فست‌فود و تنقلات (burgers, pizzas, coffee, chocolate)",
+      "ساختارهای بیان عادات غذایی (try to eat healthy, eat a lot of, my favourite)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "I sometimes eat healthy food, but I also love burgers and pizzas, and I drink a lot of coffee.",
-              "textFa": "گاهی اوقات غذای سالم می‌خورم، ولی همزمان عاشق برگر و پیتزا هستم و قهوه زیادی می‌نوشم."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "I sometimes eat healthy food, but I also love burgers and pizzas, and I drink a lot of coffee.",
+        "textFa": "من گاهی اوقات غذای سالم می‌خورم، ولی همزمان عاشق برگر و پیتزا هستم و قهوه زیادی می‌نوشم."
       },
       {
-              "id": 2,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Speaker 2",
-              "textEn": "I try to eat healthy food, but I really like pizza and burgers.",
-              "textFa": "سعی می‌کنم غذای سالم بخورم، اما واقعاً پیتزا و برگر را دوست دارم."
+        "id": 2,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Speaker 2",
+        "textEn": "I try to eat healthy food, but I really like pizza and burgers.",
+        "textFa": "من سعی می‌کنم غذای سالم بخورم، اما واقعاً پیتزا و برگر را دوست دارم."
       },
       {
-              "id": 3,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Speaker 3",
-              "textEn": "I try to eat healthy. I eat fish and salad.",
-              "textFa": "سعی می‌کنم تغذیه سالمی داشته باشم؛ ماهی و سالاد می‌خورم."
+        "id": 3,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Speaker 3",
+        "textEn": "I try to eat healthy. I eat fish and salad.",
+        "textFa": "من سعی می‌کنم سالم غذا بخورم؛ ماهی و سالاد می‌خورم."
       },
       {
-              "id": 4,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Speaker 4",
-              "textEn": "I try to eat healthy food - I eat lots of fruit and vegetables, but I also like chocolate.",
-              "textFa": "سعی می‌کنم غذای سالم بخورم: مقدار زیادی میوه و سبزیجات مصرف می‌کنم، ولی شکلات را هم دوست دارم."
+        "id": 4,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Speaker 4",
+        "textEn": "I try to eat healthy food – I eat lots of fruit and vegetables, but I also like chocolate.",
+        "textFa": "من سعی می‌کنم غذای سالم بخورم؛ میوه و سبزیجات زیادی می‌خورم، اما شکلات را هم دوست دارم."
       },
       {
-              "id": 5,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Speaker 5",
-              "textEn": "I eat healthy food for breakfast, lunch and dinner.",
-              "textFa": "من برای صبحانه، ناهار و شام غذای سالم و مقوی می‌خورم."
+        "id": 5,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Speaker 5",
+        "textEn": "I eat healthy food for breakfast, lunch and dinner.",
+        "textFa": "من برای صبحانه، ناهار و شام غذای سالم می‌خورم."
       },
       {
-              "id": 6,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Speaker 6",
-              "textEn": "I try to eat healthy food. I have a lot of fruit and vegetables, but I also like pizza.",
-              "textFa": "تلاش می‌کنم غذای سالم مصرف کنم؛ میوه و سبزیجات زیادی می‌خورم، اما از پیتزا هم نمی‌توانم بگذرم."
+        "id": 6,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Speaker 6",
+        "textEn": "I try to eat healthy food. I have a lot of fruit and vegetables, but I also like pizza.",
+        "textFa": "من سعی می‌کنم غذای سالم بخورم؛ میوه و سبزیجات زیادی مصرف می‌کنم، ولی پیتزا را هم دوست دارم."
+      },
+      {
+        "id": 7,
+        "seconds": 74,
+        "timeDisplay": "1:14",
+        "speaker": "Speaker 7",
+        "textEn": "Yes, I eat a lot of fruit. Bananas and oranges are my favourite.",
+        "textFa": "بله، من میوه زیادی می‌خورم؛ موز و پرتقال میوه‌های مورد علاقه من هستند."
+      },
+      {
+        "id": 8,
+        "seconds": 80,
+        "timeDisplay": "1:20",
+        "speaker": "Speaker 8",
+        "textEn": "I try to eat healthy food, like an apple, but I love chocolates.",
+        "textFa": "من سعی می‌کنم غذای سالم مثل سیب بخورم، ولی عاشق شکلات هستم."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 7 · ولاگ تعاملی BBC: تغذیه سالم، فست‌فود و ورزش»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:55]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 55,
-        "timestampDisplay": "0:55",
-        "explanationFa": "در ثانیه 0:55، Speaker 5 صریحاً بیان می‌کند: «I eat healthy food for breakfast, lunch and dinner.».",
+        "promptFa": "با توجه به ولاگ در ثانیه 0:58، گوینده شماره ۵ درباره وعده‌های غذایی روزانه‌اش چه می‌گوید؟",
+        "promptEn": "Listen at [0:58]. What does Speaker 5 say about daily meals?",
+        "timestampSeconds": 58,
+        "timestampDisplay": "0:58",
+        "explanationFa": "در ثانیه 0:58، گوینده ۵ صریحاً بیان می‌کند: «I eat healthy food for breakfast, lunch and dinner.» (برای هر سه وعده صبحانه، ناهار و شام غذای سالم می‌خورم).",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"I eat healthy food for breakfast, lunch and dinner....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Eats healthy food for breakfast, lunch, and dinner.",
+            "textFa": "برای هر سه وعده صبحانه، ناهار و شام غذای سالم می‌خورد."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "Only drinks coffee and never eats dinner.",
+            "textFa": "فقط قهوه می‌نوشد و هرگز شام نمی‌خورد."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "Eats pizza and burgers at every meal.",
+            "textFa": "در هر وعده پیتزا و برگر می‌خورد."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "Hates all fruits and vegetables.",
+            "textFa": "از تمام میوه‌ها و سبزیجات بیزار است."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (تغذیه سالم، فست‌فود و ورزش) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Healthy Living & Food Choices)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی تغذیه سالم، فست‌فود و ورزش در ارتباط است.",
+        "promptFa": "گوینده شماره ۷ کدام میوه‌ها را به عنوان میوه‌های مورد علاقه (favourite) خود نام می‌برد؟",
+        "promptEn": "Which fruits does Speaker 7 mention as personal favourites?",
+        "explanationFa": "گوینده شماره ۷ بیان می‌کند: «Bananas and oranges are my favourite.» (موز و پرتقال).",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با تغذیه سالم، فست‌فود و ورزش."
+            "textEn": "Bananas and oranges",
+            "textFa": "موز و پرتقال"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "Apples and grapes",
+            "textFa": "سیب و انگور"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "Strawberries and cherries",
+            "textFa": "توت‌فرنگی و گیلاس"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "Pineapples and lemons",
+            "textFa": "آناناس و لیمو"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه کاربرد صحیح حرف ربط «but» و ساختار زمان حال ساده را در تضاد دو عادت غذایی نشان می‌دهد؟",
+        "promptEn": "Which sentence correctly uses 'but' to show contrast between two dietary habits?",
+        "explanationFa": "حرف ربط «but» برای بیان تضاد بین دو بخش جمله به کار می‌رود (مانند: I try to eat healthy food, but I also like chocolate).",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on healthy living & food choices, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون تغذیه سالم، فست‌فود و ورزش، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "I try to eat healthy food, but I also like chocolate.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست but و حال ساده."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "I trying to eat healthy food, but I liking pizza.",
+            "textFa": "کاربرد نادرست شکل ing دار بدون فعل کمکی."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "I eats healthy food, but he eat pizza.",
+            "textFa": "افزودن غلط s به فعل برای فاعل I و عدم افزودن s برای he."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "I try to eating healthy, but also like burgers.",
+            "textFa": "کاربرد نادرست eating به جای شکل ساده فعل بعد از to."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و ریتم مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on healthy living & food choices, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون تغذیه سالم، فست‌فود و ورزش، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه تغذیه سالم، فست‌فود و ورزش تقویت می‌کند."
+        "targetPhraseEn": "I try to eat healthy food – I eat lots of fruit and vegetables, but I also like chocolate.",
+        "targetPhraseFa": "من سعی می‌کنم غذای سالم بخورم؛ میوه و سبزیجات زیادی مصرف می‌کنم، اما شکلات را هم دوست دارم.",
+        "phoneticGuide": "/aɪ traɪ tuː iːt ˈhelθi fuːd aɪ iːt lɒts əv fruːt ænd ˈvedʒtəblz bʌt aɪ ˈɔːlsoʊ laɪk ˈtʃɒklət/",
+        "speakingTipsFa": "به تلفظ صحیح vegetables (/ˈvedʒtəblz/ - سه سیلابی) و chocolate (/ˈtʃɒklət/) دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در توصیف علایق و عادات غذایی شخصی به زبان انگلیسی ارتقا می‌دهد."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 7 · ولاگ تعاملی BBC: تغذیه سالم، فست‌فود و ورزش» چیست؟",
-        "promptEn": "Based on the context of 'Unit 7 · BBC Vlogs: Healthy Living & Food Choices', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون تغذیه سالم، فست‌فود و ورزش است.",
+        "promptFa": "بر اساس ولاگ، گوینده شماره ۳ چه غذاهایی برای داشتن تغذیه سالم می‌خورد؟",
+        "promptEn": "According to the video, what does Speaker 3 eat to stay healthy?",
+        "explanationFa": "گوینده ۳ می‌گوید: «I try to eat healthy. I eat fish and salad.».",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding healthy living & food choices.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون تغذیه سالم، فست‌فود و ورزش."
+            "textEn": "Fish and salad.",
+            "textFa": "ماهی و سالاد."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "Pizzas and burgers.",
+            "textFa": "پیتزا و برگر."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Lots of sweet chocolate and coffee.",
+            "textFa": "شکلات شیرین زیاد و قهوه."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "Only fast food.",
+            "textFa": "فقط فست‌فود."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (تغذیه سالم، فست‌فود و ورزش)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Healthy Living & Food Choices' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره عادت غذایی خود و میوه‌ها یا خوراکی‌های مورد علاقه‌تان بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing your food habits and favourite fruits using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "eat",
+          "healthy",
+          "fruit"
         ],
-        "sampleAnswerEn": "Learning about healthy living & food choices through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره تغذیه سالم، فست‌فود و ورزش از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I try to eat healthy food every day and I eat lots of fresh fruit like apples and oranges.",
+        "sampleAnswerFa": "من هر روز سعی می‌کنم غذای سالم بخورم و میوه‌های تازه زیادی مانند سیب و پرتقال مصرف می‌کنم.",
+        "evaluationTipsFa": "کاربرد درست افعال حال ساده، اسامی خوراکی‌ها و املای صحیح واژگان لحاظ می‌شود.",
+        "explanationFa": "نوشته شما بر اساس تناسب با عادات غذایی و صحت دستوری سنجیده می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a1-v14",
     "level": "a1",
     "episodeNumber": 14,
-    "titleFa": "یونیت 8 · مستند تلویزیونی BBC: تعطیلات، سفر یونان و آب‌وهوا",
-    "titleEn": "Unit 8 · BBC Programmes: Holidays & Travel Memories",
+    "titleFa": "یونیت 8 · مستند BBC: طبل‌نوازی کدو در جزیره سادو ژاپن (Kodo Drummers)",
+    "titleEn": "Unit 8 · BBC Entertainment: Kodo Drummers on Sado Island",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 8",
     "cefr": "A1",
@@ -3582,225 +3733,345 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=so&level=a1&file=SO3 A1 U8 BBC Programmes.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
-    "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون تعطیلات، سفر یونان و آب‌وهوا همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on holidays & travel memories with native British and international speakers.",
+    "posterIcon": "🥁",
+    "summaryFa": "مستند تماشایی بی‌بی‌سی با حضور مجریان مشهور، نیش کومار و جوئل دومت؛ آن‌ها به جزیره سادو در ژاپن سفر می‌کنند تا هنر سنتی و دشوار طبل‌نوازی تایکو را از اساتید مدرسه جهانی کدو بیاموزند. این مستند روتین سخت‌گیرانه نوازندگان (بیدارباش ساعت ۵:۳۰ صبح، ورزش، تمیز کردن سالن، دویدن ۱۰ کیلومتری دور جزیره و ساخت چوب طبل اختصاصی) و اجرای نهایی مجریان در لباس سنتی ژاپنی را به تصویر می‌کشد.",
+    "summaryEn": "BBC presenters Nish Kumar and Joel Dommett travel to Sado Island, Japan, to learn traditional Taiko drumming at the world-famous Kodo drummers' school—experiencing early-morning 5:30 a.m. routines, 10 km runs, making their own drumsticks, and preparing for a final performance with the master teachers.",
     "keyTopicsFa": [
-      "تعطیلات، سفر یونان و آب‌وهوا",
-      "مستند تلویزیونی BBC",
-      "واژگان یونیت 8",
-      "لهجه‌های زنده بریتانیایی"
+      "فرهنگ و هنر سنتی ژاپن (Taiko drumming, Kodo school, Sado Island)",
+      "روتین روزمره و ساعت‌های بیدارباش (get up at half past five, start the day with exercise)",
+      "کلمات ترتیبی در روایت روتین (First, Then, After that, Finally)",
+      "اصطلاحات ابراز احترام و قدردانی (Arigato gozaimasu, You're the best)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Narrator",
-              "textEn": "Sado Island, Japan. The home of the world-famous Kodo drummers.",
-              "textFa": "جزیره سادو در ژاپن؛ زادگاه نوازندگان طبل کدوی (Kodo) مشهور جهان."
+        "id": 1,
+        "seconds": 14,
+        "timeDisplay": "0:14",
+        "speaker": "Narrator",
+        "textEn": "Sado Island, Japan. The home of the world-famous Kodo drummers.",
+        "textFa": "جزیره سادو در ژاپن؛ خاستگاه طبل‌نوازان نامدار جهانی «کُدو» (Kodo)."
       },
       {
-              "id": 2,
-              "seconds": 22,
-              "timeDisplay": "0:22",
-              "speaker": "Narrator",
-              "textEn": "This is the school for the Kodo drummers. BBC presenters Nish Kumar and Joel Dommett arrive at the school.",
-              "textFa": "اینجا مدرسه طبل‌نوازان کدو است. مجریان بی‌بی‌سی، نیش کومار و جوئل دومت وارد این مدرسه می‌شوند."
+        "id": 2,
+        "seconds": 22,
+        "timeDisplay": "0:22",
+        "speaker": "Narrator",
+        "textEn": "This is the school for the Kodo drummers.",
+        "textFa": "اینجا مدرسه اختصاصی طبل‌نوازان کدو است."
       },
       {
-              "id": 3,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Narrator",
-              "textEn": "They'd like to learn taiko drumming from the Kodo teachers. They watch some drummers.",
-              "textFa": "آن‌ها مایلند طبل‌نوازی تایکو را از استادان کدو بیاموزند. ابتدا به تماشای چند تن از نوازندگان می‌نشینند."
+        "id": 3,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Narrator",
+        "textEn": "BBC presenters Nish Kumar and Joel Dommett arrive at the school. They’d like to learn taiko drumming from the Kodo teachers.",
+        "textFa": "مجریان بی‌بی‌سی، نیش کومار و جوئل دومت وارد مدرسه می‌شوند؛ آن‌ها مشتاقند نواختن طبل تایکو را از استادان کدو بیاموزند."
       },
       {
-              "id": 4,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Joel",
-              "textEn": "Am I allowed to clap? Are we allowed to clap?",
-              "textFa": "آیا اجازه دارم دست بزنم؟ آیا اجازه دست زدن داریم؟"
+        "id": 4,
+        "seconds": 44,
+        "timeDisplay": "0:44",
+        "speaker": "Narrator",
+        "textEn": "They watch some drummers.",
+        "textFa": "آن‌ها ابتدا به تماشای نوازندگان می‌نشینند."
       },
       {
-              "id": 5,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Teacher",
-              "textEn": "First, we focus on the posture and the power from your core.",
-              "textFa": "ابتدا بر روی نحوه ایستادن و انتقال نیرو از مرکز بدن تمرکز می‌کنیم."
+        "id": 5,
+        "seconds": 48,
+        "timeDisplay": "0:48",
+        "speaker": "Joel",
+        "textEn": "Am I allowed to clap? Are we allowed to clap?",
+        "textFa": "آیا اجازه دارم دست بزنم؟ اصلاً اجازه دست زدن داریم؟"
       },
       {
-              "id": 6,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Nish",
-              "textEn": "It requires incredible stamina and synchronization to play in rhythm.",
-              "textFa": "نواختن با ریتم هماهنگ به استقامت و تمرکز عضلانی شگفت‌انگیزی نیاز دارد."
+        "id": 6,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Narrator",
+        "textEn": "Then they try the drums.",
+        "textFa": "سپس خودشان طبل‌ها را امتحان می‌کنند."
       },
       {
-              "id": 7,
-              "seconds": 77,
-              "timeDisplay": "1:17",
-              "speaker": "Narrator",
-              "textEn": "After hours of rigorous training in the Japanese countryside, Nish and Joel perform alongside the ensemble.",
-              "textFa": "پس از ساعت‌ها تمرین فشرده در طبیعت ژاپن، نیش و جوئل در کنار گروه به اجرای موسیقی می‌پردازند."
+        "id": 7,
+        "seconds": 66,
+        "timeDisplay": "1:06",
+        "speaker": "Narrator",
+        "textEn": "For Nish, it’s very difficult.",
+        "textFa": "برای نیش، این کار بسیار دشوار است."
+      },
+      {
+        "id": 8,
+        "seconds": 72,
+        "timeDisplay": "1:12",
+        "speaker": "Narrator",
+        "textEn": "But they don’t stop. Their teacher gives them more practice.",
+        "textFa": "اما متوقف نمی‌شوند؛ استادشان تمرین‌های بیشتری به آن‌ها می‌دهد."
+      },
+      {
+        "id": 9,
+        "seconds": 87,
+        "timeDisplay": "1:27",
+        "speaker": "Narrator",
+        "textEn": "Training starts early. They get up at half past five in the morning.",
+        "textFa": "تمرینات خیلی زود شروع می‌شود؛ آن‌ها ساعت پنج و نیم صبح بیدار می‌شوند."
+      },
+      {
+        "id": 10,
+        "seconds": 97,
+        "timeDisplay": "1:37",
+        "speaker": "Narrator",
+        "textEn": "They start the day with exercise.",
+        "textFa": "روزشان را با ورزش و نرمش صبحگاهی آغاز می‌کنند."
+      },
+      {
+        "id": 11,
+        "seconds": 102,
+        "timeDisplay": "1:42",
+        "speaker": "Narrator",
+        "textEn": "Then they clean the floor.",
+        "textFa": "سپس سالن را تمیز کرده و زمین را تی می‌کشند."
+      },
+      {
+        "id": 12,
+        "seconds": 110,
+        "timeDisplay": "1:50",
+        "speaker": "Narrator",
+        "textEn": "After that, they run 10 kilometres around the island.",
+        "textFa": "پس از آن، ۱۰ کیلومتر دور جزیره می‌دوند."
+      },
+      {
+        "id": 13,
+        "seconds": 118,
+        "timeDisplay": "1:58",
+        "speaker": "Narrator",
+        "textEn": "The drummers at the school do this every morning.",
+        "textFa": "طبل‌نوازان این مدرسه هر روز صبح همین برنامه را تکرار می‌کنند."
+      },
+      {
+        "id": 14,
+        "seconds": 125,
+        "timeDisplay": "2:05",
+        "speaker": "Narrator",
+        "textEn": "Finally, they go to the workshop and make their own drumsticks.",
+        "textFa": "در پایان، به کارگاه می‌روند و چوب‌های طبل خودشان را می‌سازند."
+      },
+      {
+        "id": 15,
+        "seconds": 133,
+        "timeDisplay": "2:13",
+        "speaker": "Narrator",
+        "textEn": "Then, it’s time for drum practice. The teacher works with Joel and Nish.",
+        "textFa": "سپس، نوبت تمرین طبل است؛ استاد با جوئل و نیش به تمرین می‌پردازد."
+      },
+      {
+        "id": 16,
+        "seconds": 142,
+        "timeDisplay": "2:22",
+        "speaker": "Narrator",
+        "textEn": "They want to play the drums with all of the group, but they’re not ready.",
+        "textFa": "آن‌ها می‌خواهند همراه با کل گروه طبل بزنند، اما هنوز آماده نیستند."
+      },
+      {
+        "id": 17,
+        "seconds": 149,
+        "timeDisplay": "2:29",
+        "speaker": "Narrator",
+        "textEn": "They have two days to prepare.",
+        "textFa": "آن‌ها دو روز وقت دارند تا خود را آماده کنند."
+      },
+      {
+        "id": 18,
+        "seconds": 158,
+        "timeDisplay": "2:38",
+        "speaker": "Narrator",
+        "textEn": "Finally, they are ready. Their teacher gives them special clothes.",
+        "textFa": "سرانجام آماده می‌شوند؛ استادشان به آن‌ها لباس‌های سنتی مخصوص می‌دهد."
+      },
+      {
+        "id": 19,
+        "seconds": 167,
+        "timeDisplay": "2:47",
+        "speaker": "Narrator",
+        "textEn": "Now it’s the big day. They can finally play with the group. Seven top Kodo teachers watch.",
+        "textFa": "حالا روز بزرگ فرا رسیده است؛ سرانجام می‌توانند با گروه بنوازند در حالی که هفت استاد برجسته کدو نظاره‌گر آن‌ها هستند."
+      },
+      {
+        "id": 20,
+        "seconds": 236,
+        "timeDisplay": "3:56",
+        "speaker": "Narrator",
+        "textEn": "At the end, the teachers are happy.",
+        "textFa": "در پایان، اساتید راضی و خشنود هستند."
+      },
+      {
+        "id": 21,
+        "seconds": 245,
+        "timeDisplay": "4:05",
+        "speaker": "Narrator",
+        "textEn": "And it’s time for Joel and Nish to say goodbye.",
+        "textFa": "و زمان آن رسیده که جوئل و نیش خداحافظی کنند."
+      },
+      {
+        "id": 22,
+        "seconds": 249,
+        "timeDisplay": "4:09",
+        "speaker": "Joel & Nish",
+        "textEn": "Thank you, guys. We’ve got to say goodbye. Thank you so much. You’re the best. You’re amazing! Thank you very much.",
+        "textFa": "بچه‌ها خیلی ممنون. ما باید خداحافظی کنیم. بی‌نهایت متشکریم، شما بهترینید. کارتون فوق‌العاده است! خیلی از شما سپاسگزاریم."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 8 · مستند تلویزیونی BBC: تعطیلات، سفر یونان و آب‌وهوا»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [2:17]. What key insight does Na share?",
+        "promptFa": "با توجه به مستند در ثانیه 2:17 (بخش تمرین طبل)، چرا نیش و جوئل در ابتدا نمی‌توانند همراه با تمام گروه اجرا کنند؟",
+        "promptEn": "Listen at [2:17]. Why can't Joel and Nish play with the group yet?",
         "timestampSeconds": 137,
         "timestampDisplay": "2:17",
-        "explanationFa": "در ثانیه 2:17، Na صریحاً بیان می‌کند: «Finally, they go to the workshop and make their own drumsticks. Then, it’s time for drum practice.».",
+        "explanationFa": "در ثانیه 2:17 نریتر بیان می‌کند: «They want to play the drums with all of the group, but they’re not ready. They have two days to prepare.» (آن‌ها هنوز آماده نیستند و دو روز برای آماده‌سازی فرصت دارند).",
         "options": [
           {
             "id": 1,
-            "textEn": "Na indicates: \"Finally, they go to the workshop and make their own drumsticks. T...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "They are not ready yet and have two days to prepare.",
+            "textFa": "آن‌ها هنوز آماده نیستند و دو روز فرصت دارند تا آماده شوند."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "They forgot to wake up at half past five in the morning.",
+            "textFa": "آن‌ها فراموش کردند ساعت ۵:۳۰ صبح بیدار شوند."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "The drumsticks were completely broken in the workshop.",
+            "textFa": "چوب‌های طبل در کارگاه کاملاً شکسته بودند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "The teachers told them to leave the island immediately.",
+            "textFa": "استادان به آن‌ها گفتند فوراً جزیره را ترک کنند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (تعطیلات، سفر یونان و آب‌وهوا) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Holidays & Travel Memories)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی تعطیلات، سفر یونان و آب‌وهوا در ارتباط است.",
+        "promptFa": "در عبارت «make their own drumsticks»، کلمه «drumsticks» به چه معناست؟",
+        "promptEn": "What does the word 'drumsticks' mean in the documentary?",
+        "explanationFa": "کلمه «drumsticks» به معنای چوب‌های مخصوص نواختن طبل است که هنرجویان در کارگاه خودشان آن‌ها را می‌سازند.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با تعطیلات، سفر یونان و آب‌وهوا."
+            "textEn": "Wooden sticks used for playing drums.",
+            "textFa": "چوب‌های چوبی مخصوص نواختن طبل."
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "Special shoes worn for running 10 kilometres.",
+            "textFa": "کفش‌های مخصوص دویدن ۱۰ کیلومتر."
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "Traditional Japanese robes.",
+            "textFa": "لباس‌های سنتی ژاپنی."
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "Clocks used to wake up at 5:30.",
+            "textFa": "ساعت‌های زنگ‌دار برای بیداری در ساعت ۵:۳۰."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه از کلمات ترتیبی (Sequencers: First, Then, After that, Finally) برای توصیف مراحل روتین روزمره به درستی استفاده کرده است؟",
+        "promptEn": "Which sentence correctly uses sequencing words to describe a daily routine?",
+        "explanationFa": "کلمات ترتیبی مانند Then، After that و Finally برای نشان دادن توالی زمانی اقدامات در روتین روزانه به کار می‌روند.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on holidays & travel memories, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون تعطیلات، سفر یونان و آب‌وهوا، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "They start with exercise. Then they clean the floor, and after that they run.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست کلمات ترتیبی Then و after that."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "Finally they start the day, and first they go to bed.",
+            "textFa": "ترتیب معکوس و نادرست عبارات ترتیبی."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "They get up at half past five and than cleans the floor.",
+            "textFa": "املای اشتباه than و خطای گرامری فعل cleans برای فاعل جمع."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "After they running 10 kilometers around the island.",
+            "textFa": "ساختار ناقص بدون فعل اصلی."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لحن روایی روان و رعایت استرس کلمات بخوانید و صدای خود را بسنجید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on holidays & travel memories, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون تعطیلات، سفر یونان و آب‌وهوا، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه تعطیلات، سفر یونان و آب‌وهوا تقویت می‌کند."
+        "targetPhraseEn": "Training starts early. They get up at half past five in the morning and start the day with exercise.",
+        "targetPhraseFa": "تمرینات خیلی زود شروع می‌شود؛ آن‌ها ساعت پنج و نیم صبح بیدار می‌شوند و روز را با ورزش آغاز می‌کنند.",
+        "phoneticGuide": "/ˈtreɪnɪŋ stɑːrts ˈɜːrli ðeɪ ɡet ʌp æt hɑːf pɑːst faɪv ɪn ðə ˈmɔːrnɪŋ ænd stɑːrt ðə deɪ wɪð ˈeksərsaɪz/",
+        "speakingTipsFa": "به تلفظ صحیح half (/hɑːf/ بدون بیان حرف l) و وصل شدن «get up» (/ˈɡetʌp/) دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در توصیف زمان‌ها، ساعت‌ها و برنامه‌های فشرده روزانه تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 8 · مستند تلویزیونی BBC: تعطیلات، سفر یونان و آب‌وهوا» چیست؟",
-        "promptEn": "Based on the context of 'Unit 8 · BBC Programmes: Holidays & Travel Memories', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون تعطیلات، سفر یونان و آب‌وهوا است.",
+        "promptFa": "بر اساس مستند، نوازندگان مدرسه کدو هر روز صبح پیش از تمرین موسیقی چه فعالیت‌هایی انجام می‌دهند؟",
+        "promptEn": "According to the documentary, what activities do the Kodo drummers do every morning before drum practice?",
+        "explanationFa": "در مستند نریتر می‌گوید: بیداری در ساعت ۵:۳۰، ورزش صبحگاهی، تمیز کردن سالن، دویدن ۱۰ کیلومتر دور جزیره و ساخت چوب طبل در کارگاه.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding holidays & travel memories.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون تعطیلات، سفر یونان و آب‌وهوا."
+            "textEn": "Exercise, clean the floor, run 10 kilometres, and make drumsticks in the workshop.",
+            "textFa": "ورزش، تمیز کردن کف سالن، ۱۰ کیلومتر دویدن و ساخت چوب‌های طبل در کارگاه."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "Sleep until noon and eat pizza at a restaurant.",
+            "textFa": "خوابیدن تا ظهر و پیتزا خوردن در رستوران."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Drive cars around Tokyo and buy souvenirs.",
+            "textFa": "رانندگی در توکیو و خرید سوغاتی."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "Watch television shows until late afternoon.",
+            "textFa": "تماشای برنامه‌های تلویزیونی تا اواخر بعدازظهر."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (تعطیلات، سفر یونان و آب‌وهوا)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Holidays & Travel Memories' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره یک برنامه تمرینی سخت برای یادگیری یک مهارت جدید یا روتین صبحگاهی خود بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing a practice routine or morning schedule using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "early",
+          "practice",
+          "exercise"
         ],
-        "sampleAnswerEn": "Learning about holidays & travel memories through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره تعطیلات، سفر یونان و آب‌وهوا از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I get up early every morning to do exercise and practice my skills for two hours.",
+        "sampleAnswerFa": "من هر روز صبح زود بیدار می‌شوم تا ورزش کنم و مهارت‌هایم را به مدت دو ساعت تمرین نمایم.",
+        "evaluationTipsFa": "استفاده درست از افعال حال ساده، قیدهای زمان (early) و املای صحیح واژگان ارزیابی می‌شود.",
+        "explanationFa": "پاسخ شما بر مبنای توصیف ساختاریافته روتین و صحت گرامری بررسی می‌گردد."
       }
     }
   },
-  {
+    {
     "id": "a1-v15",
     "level": "a1",
     "episodeNumber": 15,
-    "titleFa": "یونیت 8 · ولاگ تعاملی BBC: تعطیلات، سفر یونان و آب‌وهوا",
-    "titleEn": "Unit 8 · BBC Vlogs: Holidays & Travel Memories",
+    "titleFa": "یونیت 8 · ولاگ‌های BBC: خاطرات سفر و تعطیلات گذشته (My Last Holiday)",
+    "titleEn": "Unit 8 · BBC Vlogs: Past Holidays & Travel Memories",
     "bookLevel": "Speakout 3rd Edition · Starter (A1)",
     "unit": "Unit 8",
     "cefr": "A1",
@@ -3811,216 +4082,232 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون تعطیلات، سفر یونان و آب‌وهوا همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on holidays & travel memories with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمی و معتبر بی‌بی‌سی از کتاب اسپیک‌آوت؛ در این ویدیو ۸ گوینده خاطرات آخرین تعطیلات و سفرهای گذشته خود را به مقاصد مختلف (یونان، پرتغال، استرالیا، هلند، اسپانیا، سوئد و مکزیک) همراه با توصیف آب‌وهوا و تجربیات سفر با ساختار گذشته ساده (was/were/went) روایت می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where 8 speakers share memories of their past holidays—visiting Greece, Portugal, Australia, Amsterdam, Spain, Sweden, and Mexico—describing the weather, places, and experiences using past simple 'was', 'were', and 'went'.",
     "keyTopicsFa": [
-      "تعطیلات، سفر یونان و آب‌وهوا",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 8",
-      "لهجه‌های زنده بریتانیایی"
+      "خاطرات سفر و تعطیلات گذشته (My last holiday was great/fantastic/wonderful)",
+      "کشورها و شهرها (Greece, Portugal, Australia, Amsterdam, Spain, Sweden, Mexico)",
+      "توصیف آب‌وهوا در گذشته (The weather was sunny, It was really hot)",
+      "ساختار گرامری زمان گذشته فعل to be (I was, We were) و فعل باقاعده/بی‌قاعده went"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "My last holiday was great. We were in Greece. The weather was very sunny.",
-              "textFa": "آخرین تعطیلاتم عالی بود؛ در یونان بودیم و هوا بسیار آفتابی و دلپذیر بود."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Speaker 1",
+        "textEn": "My last holiday was great. We were in Greece. The weather was very sunny.",
+        "textFa": "آخرین تعطیلات من عالی بود؛ ما در یونان بودیم و هوا بسیار آفتابی بود."
       },
       {
-              "id": 2,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Speaker 2",
-              "textEn": "My last holiday was great. We were in Portugal. It was really hot.",
-              "textFa": "آخرین تعطیلاتم معرکه بود؛ در پرتغال بودیم و هوا واقعاً گرم بود."
+        "id": 2,
+        "seconds": 28,
+        "timeDisplay": "0:28",
+        "speaker": "Speaker 2",
+        "textEn": "My last holiday was great. We were in Portugal. It was really hot.",
+        "textFa": "آخرین تعطیلاتم عالی بود؛ ما در پرتغال بودیم و هوا واقعاً گرم بود."
       },
       {
-              "id": 3,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Speaker 3",
-              "textEn": "My last holiday was great. I was in Australia with my husband's family.",
-              "textFa": "آخرین تعطیلاتم فوق‌العاده بود؛ همراه خانواده همسرم در استرالیا بودم."
+        "id": 3,
+        "seconds": 35,
+        "timeDisplay": "0:35",
+        "speaker": "Speaker 3",
+        "textEn": "My last holiday was great. I was in Australia with my husband’s family.",
+        "textFa": "آخرین تعطیلات من عالی بود؛ همراه با خانواده همسرم در استرالیا بودم."
       },
       {
-              "id": 4,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Speaker 4",
-              "textEn": "My last holiday was fantastic. I was in Amsterdam, Holland.",
-              "textFa": "آخرین تعطیلاتم فوق‌العاده بود؛ در آمستردام هلند بودم."
+        "id": 4,
+        "seconds": 43,
+        "timeDisplay": "0:43",
+        "speaker": "Speaker 4",
+        "textEn": "My last holiday was fantastic. I was in Amsterdam, Holland.",
+        "textFa": "آخرین تعطیلاتم فوق‌العاده بود؛ در آمستردامِ هلند بودم."
       },
       {
-              "id": 5,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Speaker 5",
-              "textEn": "My last holiday was wonderful. I was in Greece with my family.",
-              "textFa": "آخرین تعطیلاتم شگفت‌انگیز بود؛ همراه خانواده‌ام در یونان بودم."
+        "id": 5,
+        "seconds": 51,
+        "timeDisplay": "0:51",
+        "speaker": "Speaker 5",
+        "textEn": "My last holiday was wonderful. I was in Greece with my family.",
+        "textFa": "آخرین تعطیلاتم شگفت‌انگیز بود؛ همراه با خانواده‌ام در یونان بودم."
       },
       {
-              "id": 6,
-              "seconds": 59,
-              "timeDisplay": "0:59",
-              "speaker": "Speaker 6",
-              "textEn": "My last holiday was really good. I was in Spain on the coast.",
-              "textFa": "آخرین تعطیلاتم واقعاً خوب بود؛ در سواحل اسپانیا به سر می‌بردم."
+        "id": 6,
+        "seconds": 59,
+        "timeDisplay": "0:59",
+        "speaker": "Speaker 6",
+        "textEn": "My last holiday was really good. I was in Spain with my family. The weather was great.",
+        "textFa": "آخرین تعطیلاتم واقعاً خوب بود؛ همراه با خانواده‌ام در اسپانیا بودم و هوا عالی بود."
+      },
+      {
+        "id": 7,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Speaker 7",
+        "textEn": "My last holiday was in Sweden. I went to Gothenburg. And the people were really friendly, the museums were really interesting, and the food was absolutely delicious.",
+        "textFa": "آخرین تعطیلاتم در سوئد بود؛ به یوتبری (گوتنبرگ) رفتم و مردم واقعاً خونگرم و مهربان بودند، موزه‌ها واقعاً جذاب بودند و غذاها کاملاً خوشمزه بود."
+      },
+      {
+        "id": 8,
+        "seconds": 77,
+        "timeDisplay": "1:17",
+        "speaker": "Speaker 8",
+        "textEn": "My last holiday was great. I went to Mexico. It was really hot and sunny.",
+        "textFa": "آخرین تعطیلات من عالی بود؛ به مکزیک رفتم و هوا واقعاً گرم و آفتابی بود."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 8 · ولاگ تعاملی BBC: تعطیلات، سفر یونان و آب‌وهوا»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:43]. What key insight does Speaker 5 share?",
-        "timestampSeconds": 43,
-        "timestampDisplay": "0:43",
-        "explanationFa": "در ثانیه 0:43، Speaker 5 صریحاً بیان می‌کند: «My last holiday was wonderful. I was in Greece with my family.».",
+        "promptFa": "با توجه به ولاگ در ثانیه 0:51، گوینده شماره ۵ آخرین تعطیلات خود را همراه چه کسانی و در کجا سپری کرد؟",
+        "promptEn": "Listen at [0:51]. Where was Speaker 5 on the last holiday and with whom?",
+        "timestampSeconds": 51,
+        "timestampDisplay": "0:51",
+        "explanationFa": "در ثانیه 0:51، گوینده ۵ صریحاً بیان می‌کند: «My last holiday was wonderful. I was in Greece with my family.» (در یونان همراه با خانواده‌ام بودم).",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 5 indicates: \"My last holiday was wonderful. I was in Greece with my family....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "In Greece with her family.",
+            "textFa": "در یونان همراه با خانواده‌اش."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "In Amsterdam alone on a business trip.",
+            "textFa": "در آمستردام به تنهایی در یک سفر کاری."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "In Portugal with office colleagues.",
+            "textFa": "در پرتغال با همکاران اداری."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "In Sweden visiting modern art museums.",
+            "textFa": "در سوئد در حال بازدید از موزه‌های هنر مدرن."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (تعطیلات، سفر یونان و آب‌وهوا) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Holidays & Travel Memories)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی تعطیلات، سفر یونان و آب‌وهوا در ارتباط است.",
+        "promptFa": "گوینده شماره ۷ برای توصیف غذاهای شهر گوتنبرگ سوئد از کدام صفت مثبت استفاده می‌کند؟",
+        "promptEn": "Which positive adjective does Speaker 7 use to describe the food in Gothenburg?",
+        "explanationFa": "گوینده شماره ۷ بیان می‌کند: «the food was absolutely delicious» (غذاها کاملاً خوشمزه و لذیذ بودند).",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با تعطیلات، سفر یونان و آب‌وهوا."
+            "textEn": "delicious",
+            "textFa": "خوشمزه و لذیذ"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "terrible",
+            "textFa": "افتضاح و بسیار بد"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "boring",
+            "textFa": "کسل‌کننده"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "difficult",
+            "textFa": "دشوار و سخت"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه از نظر کاربرد افعال گذشته «was / were» در زبان انگلیسی کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly uses past simple 'was / were' with subjects?",
+        "explanationFa": "برای ضمایر I/he/she/it از «was» و برای ضمایر we/you/they از «were» استفاده می‌شود (مانند: We were in Greece / The weather was sunny).",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on holidays & travel memories, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون تعطیلات، سفر یونان و آب‌وهوا، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "We were in Greece and the weather was very sunny.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست were برای We و was برای weather."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "We was in Portugal and it were really hot.",
+            "textFa": "کاربرد نادرست was برای We و were برای it."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "The people was really friendly in Sweden.",
+            "textFa": "کاربرد نادرست was برای اسم جمع people."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "My last holiday were wonderful with my family.",
+            "textFa": "کاربرد نادرست were برای اسم مفرد holiday."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لحن بیانی روان و رعایت آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on holidays & travel memories, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون تعطیلات، سفر یونان و آب‌وهوا، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه تعطیلات، سفر یونان و آب‌وهوا تقویت می‌کند."
+        "targetPhraseEn": "My last holiday was in Sweden. The people were friendly and the food was delicious.",
+        "targetPhraseFa": "آخرین تعطیلاتم در سوئد بود؛ مردم مهربان بودند و غذاها خوشمزه بود.",
+        "phoneticGuide": "/maɪ lɑːst ˈhɒlədeɪ wəz ɪn ˈswiːdn ðə ˈpiːpl wər ˈfrendli ænd ðə fuːd wəz dɪˈlɪʃəs/",
+        "speakingTipsFa": "به تلفظ ملایم was (/wəz/) و تلفظ صحیح delicious (/dɪˈlɪʃəs/) دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در توصیف خاطرات سفرها و تعطیلات گذشته به زبان انگلیسی تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 8 · ولاگ تعاملی BBC: تعطیلات، سفر یونان و آب‌وهوا» چیست؟",
-        "promptEn": "Based on the context of 'Unit 8 · BBC Vlogs: Holidays & Travel Memories', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون تعطیلات، سفر یونان و آب‌وهوا است.",
+        "promptFa": "با توجه به ویدیو، گوینده شماره ۳ در استرالیا همراه چه کسانی بود؟",
+        "promptEn": "According to the video, who was Speaker 3 with in Australia?",
+        "explanationFa": "گوینده ۳ صریحاً می‌گوید: «I was in Australia with my husband’s family.» (همراه با خانواده همسرم بودم).",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding holidays & travel memories.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون تعطیلات، سفر یونان و آب‌وهوا."
+            "textEn": "With her husband's family.",
+            "textFa": "همراه با خانواده همسرش."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "With university classmates.",
+            "textFa": "همراه همکلاسی‌های دانشگاه."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Alone on a mountain hiking tour.",
+            "textFa": "به تنهایی در تور کوهنوردی."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "With hotel tour guides.",
+            "textFa": "همراه راهنمایان تور هتل."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (تعطیلات، سفر یونان و آب‌وهوا)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Holidays & Travel Memories' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره آخرین تعطیلات یا سفر گذشته خود با استفاده از زمان گذشته (was/were) و کلمات کلیدی بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing your last holiday using past simple 'was / were' and the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "holiday",
+          "weather",
+          "great"
         ],
-        "sampleAnswerEn": "Learning about holidays & travel memories through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره تعطیلات، سفر یونان و آب‌وهوا از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "My last holiday was great because I was with my family and the weather was very sunny.",
+        "sampleAnswerFa": "آخرین تعطیلاتم عالی بود چون با خانواده‌ام بودم و هوا بسیار آفتابی بود.",
+        "evaluationTipsFa": "کاربرد صحیح فعل‌های زمان گذشته (was/were)، صفت‌های توصیفی و املای درست واژگان ارزیابی می‌شود.",
+        "explanationFa": "پاسخ شما بر اساس بیان درست تجربیات گذشته و ساختار گرامری سنجیده می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a2-v01",
     "level": "a2",
     "episodeNumber": 1,
-    "titleFa": "یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): زندگی در محله‌های لندن و فضاهای شهری",
-    "titleEn": "Unit 1 · BBC Street Interviews: City Living & Neighborhoods",
+    "titleFa": "یونیت 1 · مصاحبه خیابانی BBC: معرفی، زادگاه و اعضای خانواده",
+    "titleEn": "Unit 1 · BBC Street Interviews: Introductions, Hometowns & Family",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 1",
     "cefr": "A2",
@@ -4031,280 +4318,280 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون زندگی در محله‌های لندن و فضاهای شهری همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on city living & neighborhoods with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی صمیمانه و واقعی BBC از کتاب اسپیک‌آوت المنتری (A2) در خیابان‌های لندن؛ در بخش اول شهروندان نام، زادگاه (کانادا، ملبورن، پاریس، لندن، آمریکا) و شغل یا رشته تحصیلی خود را بیان می‌کنند و در بخش دوم درباره ساختار خانواده، برادران، خواهران و والدین خود توضیح می‌دهند.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition (Elementary A2) filmed in London: in part one, speakers introduce their names, nationalities, hometowns, and occupations; in part two, they talk about their family members, siblings, and parents.",
     "keyTopicsFa": [
-      "زندگی در محله‌های لندن و فضاهای شهری",
-      "مصاحبه خیابانی BBC (Vox Pops)",
-      "واژگان یونیت 1",
-      "لهجه‌های زنده بریتانیایی"
+      "معرفی و ملیت (I'm from Canada/Melbourne/Paris/the United States)",
+      "شغل و تحصیل (work for an engineering company, journalist, study film)",
+      "روابط و اعضای خانواده (sister, brothers, parents' names, married with two kids)",
+      "حالت ملکی Saxon Genitive ('s) در زبان انگلیسی (sister's name, parents' names)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Mon Zer",
-              "textEn": "Er, my name is Mon Zer. I'm from Canada and I work for an engineering company.",
-              "textFa": "نام من مان زِر است. اهل کانادا هستم و در یک شرکت مهندسی کار می‌کنم."
+        "id": 1,
+        "seconds": 17,
+        "timeDisplay": "0:17",
+        "speaker": "Mon Zer",
+        "textEn": "Er, my name is Mon Zer. I'm from Canada and I work for an engineering company.",
+        "textFa": "نام من مان زِر است. اهل کانادا هستم و در یک شرکت مهندسی کار می‌کنم."
       },
       {
-              "id": 2,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Stephanie",
-              "textEn": "Er, I'm from Melbourne, Australia.",
-              "textFa": "من اهل ملبورن استرالیا هستم."
+        "id": 2,
+        "seconds": 23,
+        "timeDisplay": "0:23",
+        "speaker": "Stephanie",
+        "textEn": "Er, I'm from Melbourne, Australia.",
+        "textFa": "من اهل ملبورن استرالیا هستم."
       },
       {
-              "id": 3,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Serge",
-              "textEn": "I'm from Paris in France.",
-              "textFa": "من اهل پاریس فرانسه هستم."
+        "id": 3,
+        "seconds": 26,
+        "timeDisplay": "0:26",
+        "speaker": "Serge",
+        "textEn": "I'm from Paris in France.",
+        "textFa": "من اهل پاریس در فرانسه هستم."
       },
       {
-              "id": 4,
-              "seconds": 49,
-              "timeDisplay": "0:49",
-              "speaker": "Rob",
-              "textEn": "Hi I'm Rob. I'm a journalist and I'm from Wimbledon.",
-              "textFa": "سلام من راب هستم. روزنامه‌نگارم و اهل ویمبلدون هستم."
+        "id": 4,
+        "seconds": 27,
+        "timeDisplay": "0:27",
+        "speaker": "Rob",
+        "textEn": "Hi I'm Rob. I'm a journalist and I'm from Wimbledon.",
+        "textFa": "سلام، من راب هستم؛ روزنامه‌نگارم و اهل ویمبلدون هستم."
       },
       {
-              "id": 5,
-              "seconds": 51,
-              "timeDisplay": "0:51",
-              "speaker": "Rose",
-              "textEn": "My name is Rose. I live in Birmingham and I'm originally from London.",
-              "textFa": "نام من رز است. در بیرمنگام زندگی می‌کنم و اصالتاً اهل لندنم."
+        "id": 5,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Rose",
+        "textEn": "My name is Rose. I live in Birmingham and I'm originally from London.",
+        "textFa": "نام من رز است. در بیرمنگام زندگی می‌کنم و اصالتاً اهل لندنم."
       },
       {
-              "id": 6,
-              "seconds": 66,
-              "timeDisplay": "1:06",
-              "speaker": "Jackson",
-              "textEn": "My name is Jackson. I live in London and I study film at university.",
-              "textFa": "نام من جکسون است. در لندن زندگی می‌کنم و در دانشگاه رشته سینما می‌خوانم."
+        "id": 6,
+        "seconds": 37,
+        "timeDisplay": "0:37",
+        "speaker": "Jackson",
+        "textEn": "My name is Jackson. I live in London and I study film at university.",
+        "textFa": "نام من جکسون است. در لندن زندگی می‌کنم و در دانشگاه سینما می‌خوانم."
       },
       {
-              "id": 7,
-              "seconds": 81,
-              "timeDisplay": "1:21",
-              "speaker": "Marcello",
-              "textEn": "So, my name is Marcello. I'm from the United States and currently I'm a student.",
-              "textFa": "نام من مارچلو است. اهل ایالات متحده هستم و در حال حاضر دانشجو می‌باشم."
+        "id": 7,
+        "seconds": 43,
+        "timeDisplay": "0:43",
+        "speaker": "Marcello",
+        "textEn": "So, my name is Marcello. I'm from the United States and currently I'm a student.",
+        "textFa": "نام من مارچلو است. اهل ایالات متحده هستم و در حال حاضر دانشجو می‌باشم."
       },
       {
-              "id": 8,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Katy",
-              "textEn": "I have quite a small family. Er, I have a sister. My sister's name is Sarah and she lives in Hamburg in Germany.",
-              "textFa": "خانواده نسبتاً کوچکی دارم؛ یک خواهر دارم به نام سارا که در هامبورگ آلمان زندگی می‌کند."
+        "id": 8,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Katy",
+        "textEn": "I have quite a small family. Er, I have a sister. My sister's name is Sarah and she lives in Hamburg in Germany.",
+        "textFa": "خانواده نسبتاً کوچکی دارم؛ یک خواهر دارم به نام سارا که در هامبورگ آلمان زندگی می‌کند."
       },
       {
-              "id": 9,
-              "seconds": 102,
-              "timeDisplay": "1:42",
-              "speaker": "Mon Zer",
-              "textEn": "Yeah, I have two brothers and one sister. My brothers are currently in university, and my sister is married with two kids.",
-              "textFa": "من دو برادر و یک خواهر دارم؛ برادرانم در حال حاضر دانشجو هستند و خواهرم ازدواج کرده و دو فرزند دارد."
+        "id": 9,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Mon Zer",
+        "textEn": "Yeah, I er, I have two brothers and one sister. Er, my brothers are currently in university, and my sister is married with two kids.",
+        "textFa": "من دو برادر و یک خواهر دارم؛ برادرانم در حال حاضر در دانشگاه درس می‌خوانند و خواهرم متأهل است و دو فرزند دارد."
       },
       {
-              "id": 10,
-              "seconds": 104,
-              "timeDisplay": "1:44",
-              "speaker": "Serge",
-              "textEn": "So, I have two sisters. One is Celine. One is Aurélie. My mum's name is Martine and my dad's name is Daniel.",
-              "textFa": "من دو خواهر دارم: یکی سلین و دیگری اورلی. نام مادرم مارتین و نام پدرم دنیل است."
+        "id": 10,
+        "seconds": 76,
+        "timeDisplay": "1:16",
+        "speaker": "Serge",
+        "textEn": "So, I have two sisters. One is Celine. One is Aurélie. My mum's name is Martine and my dad's name is Daniel.",
+        "textFa": "من دو خواهر دارم: یکی سلین و دیگری اورلی. نام مادرم مارتین و نام پدرم دنیل است."
       },
       {
-              "id": 11,
-              "seconds": 106,
-              "timeDisplay": "1:46",
-              "speaker": "Rob",
-              "textEn": "I'm married and my wife's name is Rachel.",
-              "textFa": "من متأهلم و نام همسرم ریچل است."
+        "id": 11,
+        "seconds": 87,
+        "timeDisplay": "1:27",
+        "speaker": "Rob",
+        "textEn": "I'm married and my wife's name is Rachel.",
+        "textFa": "من متأهلم و نام همسرم ریچل است."
       },
       {
-              "id": 12,
-              "seconds": 108,
-              "timeDisplay": "1:48",
-              "speaker": "Rose",
-              "textEn": "I'm married. I have two children. I also have nine brothers and sisters.",
-              "textFa": "من متأهلم و دو فرزند دارم؛ همچنین نه برادر و خواهر دارم."
+        "id": 12,
+        "seconds": 90,
+        "timeDisplay": "1:30",
+        "speaker": "Rose",
+        "textEn": "I'm married. I have two children. I also have nine brothers and sisters.",
+        "textFa": "من متأهلم، دو فرزند دارم و همچنین نه برادر و خواهر دارم."
       },
       {
-              "id": 13,
-              "seconds": 110,
-              "timeDisplay": "1:50",
-              "speaker": "Jackson",
-              "textEn": "I have a brother called Zane and a sister called Leila, and my parents' names are Cory and Nadia.",
-              "textFa": "یک برادر به نام زین و یک خواهر به نام لیلا دارم و نام پدر و مادرم کوری و نادیا است."
+        "id": 13,
+        "seconds": 96,
+        "timeDisplay": "1:36",
+        "speaker": "Jackson",
+        "textEn": "I have a brother called Zane and a sister called Leila, and my parents' names are Cory and Nadia.",
+        "textFa": "یک برادر به نام زین و یک خواهر به نام لیلا دارم و نام پدر و مادرم کوری و نادیا است."
       },
       {
-              "id": 14,
-              "seconds": 112,
-              "timeDisplay": "1:52",
-              "speaker": "Marcello",
-              "textEn": "So, I have one sister and her name is Ilaria, and my parents' names are Daniel and Monica.",
-              "textFa": "من یک خواهر دارم به نام ایلاریا، و نام پدر و مادرم دنیل و مونیکا است."
+        "id": 14,
+        "seconds": 104,
+        "timeDisplay": "1:44",
+        "speaker": "Marcello",
+        "textEn": "So, I have one sister who… and her name is Ilaria, and my parents' names are Daniel and Monica.",
+        "textFa": "من یک خواهر دارم به نام ایلاریا، و نام پدر و مادرم دنیل و مونیکا است."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): زندگی در محله‌های لندن و فضاهای شهری»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [1:02]. What key insight does Katy share?",
-        "timestampSeconds": 62,
-        "timestampDisplay": "1:02",
-        "explanationFa": "در ثانیه 1:02، Katy صریحاً بیان می‌کند: «My sister’s name is Sarah and she lives in Hamburg in Germany.».",
+        "promptFa": "با توجه به مصاحبه در ثانیه 0:58، کتی (Katy) درباره خواهرش چه اطلاعاتی می‌دهد؟",
+        "promptEn": "Listen at [0:58]. What does Katy say about her sister?",
+        "timestampSeconds": 58,
+        "timestampDisplay": "0:58",
+        "explanationFa": "در ثانیه 0:58، کتی می‌گوید: «My sister's name is Sarah and she lives in Hamburg in Germany.» (نام خواهرم سارا است و در هامبورگ آلمان زندگی می‌کند).",
         "options": [
           {
             "id": 1,
-            "textEn": "Katy indicates: \"My sister’s name is Sarah and she lives in Hamburg in Germany....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Her sister's name is Sarah and she lives in Hamburg in Germany.",
+            "textFa": "نام خواهرش سارا است و در هامبورگ آلمان زندگی می‌کند."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "Her sister is a student doctor working in Manchester.",
+            "textFa": "خواهرش دانشجوی پزشکی است و در منچستر کار می‌کند."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "She has nine brothers and sisters living in Paris.",
+            "textFa": "نه خواهر و برادر دارد که در پاریس زندگی می‌کنند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "She lives alone with two dogs in Melbourne.",
+            "textFa": "به تنهایی با دو سگ در ملبورن زندگی می‌کند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (زندگی در محله‌های لندن و فضاهای شهری) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (City Living & Neighborhoods)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی زندگی در محله‌های لندن و فضاهای شهری در ارتباط است.",
+        "promptFa": "کدام واژه به «خواهران و برادران» در زبان انگلیسی اشاره دارد و برای برادر یا خواهر به کار می‌رود؟",
+        "promptEn": "Which word refers to brothers and sisters as family members?",
+        "explanationFa": "واژه «siblings» به معنای خواهران و برادران است و در این درس گویندگان متعددی تعداد برادران و خواهران (brothers and sisters) خود را برمی‌شمارند.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با زندگی در محله‌های لندن و فضاهای شهری."
+            "textEn": "siblings (brothers and sisters)",
+            "textFa": "خواهران و برادران"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "colleagues",
+            "textFa": "همکاران کاری"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "neighbours",
+            "textFa": "همسایگان"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "passengers",
+            "textFa": "مسافران"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه کاربرد صحیح حالت ملکی ('s) و اسامی جمع والدین (parents' names) را نشان می‌دهد؟",
+        "promptEn": "Which sentence correctly uses possessive 's and plural possessive s' for family relationships?",
+        "explanationFa": "برای اسم مفرد از «'s» (مانند my sister's name) و برای اسم جمع باقاعده با s از «s'» (مانند my parents' names) استفاده می‌شود.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on city living & neighborhoods, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون زندگی در محله‌های لندن و فضاهای شهری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "My sister's name is Sarah, and my parents' names are Cory and Nadia.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست حالت‌های ملکی مفرد و جمع."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "My sisters name is Sarah, and my parent names is Cory.",
+            "textFa": "حذف نادرست آپوستروف مالکیت."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "My sister's are Sarah, and my parents is Cory and Nadia.",
+            "textFa": "خطای استفاده از فعل are برای یک خواهر و is برای والدین جمع."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "My wife name's are Rachel and we is happy.",
+            "textFa": "ترکیب غلط ساختار ملکی و فعل."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on city living & neighborhoods, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون زندگی در محله‌های لندن و فضاهای شهری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه زندگی در محله‌های لندن و فضاهای شهری تقویت می‌کند."
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لحن صمیمی و رعایت ریتم مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptEn": "Read this core introductory phrase aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "My name is Rose. I live in Birmingham and I'm originally from London.",
+        "targetPhraseFa": "نام من رز است. در بیرمنگام زندگی می‌کنم و اصالتاً اهل لندنم.",
+        "phoneticGuide": "/maɪ neɪm ɪz roʊz aɪ lɪv ɪn ˈbɜːrmɪŋəm ænd aɪm əˈrɪdʒənəli frəm ˈlʌndən/",
+        "speakingTipsFa": "به تلفظ صحیح Birmingham (/ˈbɜːrmɪŋəm/ با h ناخوانا) و originally (/əˈrɪdʒənəli/) دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در معرفی خود، محل سکونت و زادگاه به زبان انگلیسی ارتقا می‌دهد."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 1 · مصاحبه خیابانی BBC (Vox Pops): زندگی در محله‌های لندن و فضاهای شهری» چیست؟",
-        "promptEn": "Based on the context of 'Unit 1 · BBC Street Interviews: City Living & Neighborhoods', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون زندگی در محله‌های لندن و فضاهای شهری است.",
+        "promptFa": "بر اساس مصاحبه، مان زِر (Mon Zer) اهل کجاست و در چه شرکتی کار می‌کند؟",
+        "promptEn": "According to the interview, where is Mon Zer from and what company does he work for?",
+        "explanationFa": "مان زر در ثانیه 0:17 می‌گوید: «I'm from Canada and I work for an engineering company.» (اهل کانادا هستم و در یک شرکت مهندسی کار می‌کنم).",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding city living & neighborhoods.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون زندگی در محله‌های لندن و فضاهای شهری."
+            "textEn": "He is from Canada and works for an engineering company.",
+            "textFa": "او اهل کانادا است و در یک شرکت مهندسی کار می‌کند."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "He is a film student studying at London university.",
+            "textFa": "او دانشجوی سینما است که در دانشگاه لندن درس می‌خواند."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "He is a sports journalist from Wimbledon.",
+            "textFa": "او خبرنگار ورزشی اهل ویمبلدون است."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "He lives in Melbourne, Australia and works as a doctor.",
+            "textFa": "در ملبورن استرالیا زندگی می‌کند و پزشک است."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (زندگی در محله‌های لندن و فضاهای شهری)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'City Living & Neighborhoods' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) بنویسید که در آن نام، زادگاه یا شهر محل زندگی و اطلاعاتی درباره خانواده‌تان را بیان کنید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) introducing yourself, your hometown, and your family members using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "live",
+          "family",
+          "name"
         ],
-        "sampleAnswerEn": "Learning about city living & neighborhoods through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره زندگی در محله‌های لندن و فضاهای شهری از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "My name is Ali and I live in Tehran. I have a small family with one brother.",
+        "sampleAnswerFa": "نام من علی است و در تهران زندگی می‌کنم. خانواده کوچکی دارم با یک برادر.",
+        "evaluationTipsFa": "کاربرد درست افعال حال ساده (live, have)، ساختار مالکیت و املای واژگان در امتیاز شما لحاظ می‌شود.",
+        "explanationFa": "نوشته شما بر مبنای تناسب با الگوی معرفی خود و اعضای خانواده سنجیده می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a2-v02",
     "level": "a2",
     "episodeNumber": 2,
-    "titleFa": "یونیت 1 · ولاگ تعاملی BBC: زندگی در محله‌های لندن و فضاهای شهری",
-    "titleEn": "Unit 1 · BBC Vlogs: City Living & Neighborhoods",
+    "titleFa": "یونیت 1 · ولاگ‌های BBC: معرفی، رنگ‌ها و روزهای محبوب (Favourites & Introductions)",
+    "titleEn": "Unit 1 · BBC Vlogs: Introductions, Favourite Colours & Days",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 1",
     "cefr": "A2",
@@ -4315,256 +4602,256 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون زندگی در محله‌های لندن و فضاهای شهری همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on city living & neighborhoods with native British and international speakers.",
+    "summaryFa": "ولاگ‌های صمیمی و بین‌المللی BBC از کتاب اسپیک‌آوت سطح المنتری (A2)؛ در این ویدیو گویندگان از کشورهای مختلف (بریتانیا، چین، آمریکا و پرتغال) شغل، رشته تحصیلی (حقوق، فرانسه و تاریخ، عکاسی)، رنگ‌های مورد علاقه و روزهای محبوب هفته خود را به زبان انگلیسی روان معرفی می‌کنند.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition (Elementary A2) where speakers from the UK, China, the US, and Portugal introduce themselves, their studies or jobs (law, history, photography), and their favourite colours and days of the week.",
     "keyTopicsFa": [
-      "زندگی در محله‌های لندن و فضاهای شهری",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 1",
-      "لهجه‌های زنده بریتانیایی"
+      "معرفی و ملیت‌ها (British, Portuguese, from the United States)",
+      "شغل‌ها و رشته‌های دانشگاهی (researcher, uni students, study Law/French/History, photographer)",
+      "رنگ‌های مورد علاقه (purple, red, blue)",
+      "روزهای هفته و زمان (Friday, Saturday, Sunday, today)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Jo",
-              "textEn": "Hi, I'm Jo, I'm British and I live in London. Um, I'm a researcher, by day, and my favourite colour is purple, and my favourite day of the week is Saturday.",
-              "textFa": "سلام، من جو هستم؛ بریتانیایی‌ام و در لندن زندگی می‌کنم. روزها پژوهشگرم، رنگ مورد علاقه‌ام بنفش و روز محبوبم در هفته شنبه است."
+        "id": 1,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Jo",
+        "textEn": "Hi, I'm Jo, I'm British and I live in London. Um, I'm a researcher, by day, and my favourite colour is purple, and my favourite day of the week is Saturday.",
+        "textFa": "سلام، من جو هستم؛ بریتانیایی‌ام و در لندن زندگی می‌کنم. روزها پژوهشگرم، رنگ مورد علاقه‌ام بنفش و روز محبوبم در هفته شنبه است."
       },
       {
-              "id": 2,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Vicky",
-              "textEn": "Hi my name is Vicky and I live in Beijing. I work for the BBC studios.",
-              "textFa": "سلام، نام من ویکی است و در پکن زندگی می‌کنم؛ برای استودیوهای بی‌بی‌سی کار می‌کنم."
+        "id": 2,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Vicky",
+        "textEn": "Hi my name is Vicky and I live in Beijing. I work for the BBC studios.",
+        "textFa": "سلام، نام من ویکی است و در پکن زندگی می‌کنم؛ برای استودیوهای بی‌بی‌سی کار می‌کنم."
       },
       {
-              "id": 3,
-              "seconds": 90,
-              "timeDisplay": "1:30",
-              "speaker": "Martha",
-              "textEn": "Hi, I'm Martha.",
-              "textFa": "سلام، من مارتا هستم."
+        "id": 3,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Martha",
+        "textEn": "Hi, I'm Martha.",
+        "textFa": "سلام، من مارتا هستم."
       },
       {
-              "id": 4,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Joe",
-              "textEn": "Hi, I'm Joe, and we're brother and sister.",
-              "textFa": "سلام، من جو هستم و ما خواهر و برادریم."
+        "id": 4,
+        "seconds": 48,
+        "timeDisplay": "0:48",
+        "speaker": "Joe",
+        "textEn": "Hi, I'm Joe, and we're brother and sister.",
+        "textFa": "سلام، من جو هستم و ما خواهر و برادریم."
       },
       {
-              "id": 5,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Martha",
-              "textEn": "We're both uni students. I study Law.",
-              "textFa": "هر دو دانشجو هستیم؛ من حقوق می‌خوانم."
+        "id": 5,
+        "seconds": 51,
+        "timeDisplay": "0:51",
+        "speaker": "Martha",
+        "textEn": "We're both uni students. I study Law.",
+        "textFa": "ما هر دو دانشجوی دانشگاهیم؛ من حقوق می‌خوانم."
       },
       {
-              "id": 6,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Joe",
-              "textEn": "I study French and History.",
-              "textFa": "و من زبان فرانسوی و تاریخ می‌خوانم."
+        "id": 6,
+        "seconds": 54,
+        "timeDisplay": "0:54",
+        "speaker": "Joe",
+        "textEn": "I study French and History.",
+        "textFa": "من زبان فرانسوی و تاریخ می‌خوانم."
       },
       {
-              "id": 7,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Martha",
-              "textEn": "My favourite day of the week is Friday.",
-              "textFa": "روز محبوب من در هفته جمعه است."
+        "id": 7,
+        "seconds": 57,
+        "timeDisplay": "0:57",
+        "speaker": "Martha",
+        "textEn": "My favourite day of the week is Friday.",
+        "textFa": "روز محبوب من در هفته جمعه است."
       },
       {
-              "id": 8,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Joe",
-              "textEn": "And my favourite day of the week is Sunday.",
-              "textFa": "و روز مورد علاقه من یکشنبه است."
+        "id": 8,
+        "seconds": 59,
+        "timeDisplay": "0:59",
+        "speaker": "Joe",
+        "textEn": "And my favourite day of the week is Sunday.",
+        "textFa": "و روز مورد علاقه من در هفته یکشنبه است."
       },
       {
-              "id": 9,
-              "seconds": 102,
-              "timeDisplay": "1:42",
-              "speaker": "Chad",
-              "textEn": "Hello, I'm Chad Anderson. I'm a photographer and photo-journalist from Bridgeport, Connecticut in the United States of America.",
-              "textFa": "درود، من چاد اندرسون هستم؛ عکاس و فتوژورنالیست از بریج‌پورت، ایالت کنتیکت در ایالات متحده آمریکا."
+        "id": 9,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Chad",
+        "textEn": "Hello, I'm Chad Anderson. I'm a photographer and photo-journalist from Bridgeport, Connecticut in the United States of America.",
+        "textFa": "درود، من چاد اندرسون هستم؛ عکاس و فتوژورنالیست از بریج‌پورت، ایالت کنتیکت در ایالات متحده آمریکا."
       },
       {
-              "id": 10,
-              "seconds": 104,
-              "timeDisplay": "1:44",
-              "speaker": "Sarah",
-              "textEn": "Hi, I'm Sarah, I come from London, but now I live near Cambridge. My favourite day of the week is Friday, and my favourite colour is red.",
-              "textFa": "سلام، من سارا هستم؛ اهل لندنم اما اکنون نزدیک کمبریج زندگی می‌کنم. روز محبوبم جمعه و رنگ مورد علاقه‌ام قرمز است."
+        "id": 10,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Sarah",
+        "textEn": "Hi, I'm Sarah, I come from London, but now I live near Cambridge. My favourite day of the week is Friday, and my favourite colour is red.",
+        "textFa": "سلام، من سارا هستم؛ اهل لندنم ولی اکنون نزدیک کمبریج زندگی می‌کنم. روز محبوبم در هفته جمعه و رنگ مورد علاقه‌ام قرمز است."
       },
       {
-              "id": 11,
-              "seconds": 104,
-              "timeDisplay": "1:44",
-              "speaker": "João",
-              "textEn": "Hello, my name is João. I'm Portuguese, and I live in Cascais, Portugal. Er, my favourite colour is blue, and my favourite day of the week, it's Friday, and it's today!",
-              "textFa": "سلام، نام من ژوآئو است؛ پرتغالی هستم و در کاسکایس پرتغال زندگی می‌کنم. رنگ مورد علاقه‌ام آبی و روز محبوبم جمعه است، که اتفاقاً امروز جمعه است!"
+        "id": 11,
+        "seconds": 88,
+        "timeDisplay": "1:28",
+        "speaker": "João",
+        "textEn": "Hello, my name is João. I'm Portuguese, and I live in Cascais, Portugal. Er, my favourite colour is blue, and my favourite day of the week, it’s Friday, and it’s today!",
+        "textFa": "سلام، نام من ژائو است؛ پرتغالی‌ام و در کشکایشِ پرتغال زندگی می‌کنم. رنگ مورد علاقه‌ام آبی و روز محبوبم در هفته جمعه است، یعنی همین امروز!"
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 1 · ولاگ تعاملی BBC: زندگی در محله‌های لندن و فضاهای شهری»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:52]. What key insight does Speaker 3 share?",
-        "timestampSeconds": 52,
-        "timestampDisplay": "0:52",
-        "explanationFa": "در ثانیه 0:52، Speaker 3 صریحاً بیان می‌کند: «B: And my favourite day of the week is Sunday.».",
+        "promptFa": "با توجه به ولاگ در ثانیه 0:46، مارتا و جو چه رشته‌هایی در دانشگاه می‌خوانند و روزهای محبوب آن‌ها کدام است؟",
+        "promptEn": "Listen at [0:46]. What do Martha and Joe study, and which days of the week are their favourites?",
+        "timestampSeconds": 46,
+        "timestampDisplay": "0:46",
+        "explanationFa": "در ثانیه 0:46 به بعد، مارتا می‌گوید «I study Law» و روز محبوبش جمعه است؛ جو می‌گوید «I study French and History» و روز محبوبش یکشنبه است.",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 3 indicates: \"B: And my favourite day of the week is Sunday....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Martha studies Law (favourite day Friday); Joe studies French and History (favourite day Sunday).",
+            "textFa": "مارتا حقوق می‌خواند (روز محبوب جمعه)؛ جو فرانسه و تاریخ می‌خواند (روز محبوب یکشنبه)."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "Both study engineering in Canada and like Mondays.",
+            "textFa": "هر دو در کانادا مهندسی می‌خوانند و دوشنبه‌ها را دوست دارند."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "Martha is a photographer and Joe works in BBC studios.",
+            "textFa": "مارتا عکاس است و جو در استودیوهای بی‌بی‌سی کار می‌کند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "They are teachers living in Beijing, China.",
+            "textFa": "آن‌ها معلمانی هستند که در پکن چین زندگی می‌کنند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (زندگی در محله‌های لندن و فضاهای شهری) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (City Living & Neighborhoods)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی زندگی در محله‌های لندن و فضاهای شهری در ارتباط است.",
+        "promptFa": "کدام رنگ در میان رنگ‌های مورد علاقه گویندگان (Jo, Sarah, João) به ترتیب نام برده می‌شود؟",
+        "promptEn": "Which colours are mentioned by Jo, Sarah, and João as their favourites?",
+        "explanationFa": "جو رنگ بنفش (purple)، سارا رنگ قرمز (red) و ژائو رنگ آبی (blue) را به عنوان رنگ محبوب خود نام می‌برند.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با زندگی در محله‌های لندن و فضاهای شهری."
+            "textEn": "purple, red, blue",
+            "textFa": "بنفش، قرمز، آبی"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "green, yellow, black",
+            "textFa": "سبز، زرد، سیاه"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "white, orange, brown",
+            "textFa": "سفید، نارنجی، قهوه‌ای"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "pink, grey, silver",
+            "textFa": "صورتی، خاکستری، نقره‌ای"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه از نظر ساختار گرامری حال ساده و صفت ملکی (my favourite...) کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly uses the present simple with 'my favourite... is'?",
+        "explanationFa": "ساختار استاندارد برای بیان علاقه: «My favourite colour is [colour]» یا «My favourite day of the week is [day]» به صورت مفرد با فعل is است.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on city living & neighborhoods, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون زندگی در محله‌های لندن و فضاهای شهری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "My favourite colour is blue, and my favourite day of the week is Friday.",
+            "textFa": "جمله کاملاً صحیح با کاربرد درست ساختار صفت ملکی و فعل is."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "My favourite colour are blue, and my favourite day are Friday.",
+            "textFa": "کاربرد نادرست فعل جمع are برای اسم مفرد colour و day."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "I favourite colour is blue and I live in Beijing.",
+            "textFa": "کاربرد نادرست ضمیر فاعلی I به جای صفت ملکی My."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "We is both uni students and study law.",
+            "textFa": "خطای استفاده از فعل is برای ضمیر فاعلی جمع We."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لحن شاداب و بیان روان بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on city living & neighborhoods, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون زندگی در محله‌های لندن و فضاهای شهری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه زندگی در محله‌های لندن و فضاهای شهری تقویت می‌کند."
+        "targetPhraseEn": "My favourite colour is purple, and my favourite day of the week is Saturday.",
+        "targetPhraseFa": "رنگ مورد علاقه من بنفش است، و روز محبوبم در هفته شنبه است.",
+        "phoneticGuide": "/maɪ ˈfeɪvərɪt ˈkʌlər ɪz ˈpɜːrpl ænd maɪ ˈfeɪvərɪt deɪ əv ðə wiːk ɪz ˈsætərdeɪ/",
+        "speakingTipsFa": "به تلفظ صحیح favourite (/ˈfeɪvərɪt/) و purple (/ˈpɜːrpl/) و وصل شدن روان کلمات دقت فرمایید.",
+        "explanationFa": "تسلط بر این ساختار مهارت شما را در بیان سلیقه‌ها، علایق و روزهای هفته به زبان انگلیسی ارتقا می‌دهد."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 1 · ولاگ تعاملی BBC: زندگی در محله‌های لندن و فضاهای شهری» چیست؟",
-        "promptEn": "Based on the context of 'Unit 1 · BBC Vlogs: City Living & Neighborhoods', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون زندگی در محله‌های لندن و فضاهای شهری است.",
+        "promptFa": "بر اساس ولاگ، شغل چاد اندرسون (Chad Anderson) اهل کنتیکت آمریکا چیست؟",
+        "promptEn": "According to the video, what is Chad Anderson's profession?",
+        "explanationFa": "چاد اندرسون در ثانیه 1:03 می‌گوید: «I'm a photographer and photo-journalist from Bridgeport, Connecticut» (من عکاس و فتوژورنالیست هستم).",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding city living & neighborhoods.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون زندگی در محله‌های لندن و فضاهای شهری."
+            "textEn": "A photographer and photo-journalist.",
+            "textFa": "عکاس و فتوژورنالیست."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "A law student at university.",
+            "textFa": "دانشجوی رشته حقوق در دانشگاه."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "A researcher for London engineering firm.",
+            "textFa": "پژوهشگر در شرکت مهندسی لندن."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "A tour guide in Portugal.",
+            "textFa": "راهنمای تور در پرتغال."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (زندگی در محله‌های لندن و فضاهای شهری)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'City Living & Neighborhoods' using relevant descriptive vocabulary.",
+        "promptFa": "متنی کوتاه (حداقل ۱۴ کلمه) درباره خودتان بنویسید و در آن شغل/رشته، رنگ مورد علاقه و روز محبوب هفته‌تان را بیان کنید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing your job or studies, favourite colour, and favourite day of the week using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "favourite",
+          "colour",
+          "day"
         ],
-        "sampleAnswerEn": "Learning about city living & neighborhoods through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره زندگی در محله‌های لندن و فضاهای شهری از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I am a student in Tehran. My favourite colour is blue, and my favourite day of the week is Friday.",
+        "sampleAnswerFa": "من در تهران دانشجو هستم. رنگ مورد علاقه‌ام آبی است و روز محبوبم در هفته جمعه است.",
+        "evaluationTipsFa": "املای صحیح واژگان، کاربرد درست صفات ملکی و روزهای هفته مد نظر است.",
+        "explanationFa": "پاسخ شما بر اساس بیان روان علایق شخصی و صحت گرامری ارزیابی می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a2-v03",
     "level": "a2",
     "episodeNumber": 3,
-    "titleFa": "یونیت 2 · مستند تلویزیونی BBC: رزرو هتل، پذیرش و خدمات گردشگری",
-    "titleEn": "Unit 2 · BBC Programmes: Hotels, Booking & Hospitality",
+    "titleFa": "یونیت 2 · مستند تلویزیونی BBC: مسابقه امدادی سرخپوستان (The Indian Relay)",
+    "titleEn": "Unit 2 · BBC Documentary: The Indian Relay",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 2",
     "cefr": "A2",
@@ -4575,232 +4862,288 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون رزرو هتل، پذیرش و خدمات گردشگری همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on hotels, booking & hospitality with native British and international speakers.",
+    "summaryFa": "مستند معتبر و جذاب شبکه BBC از کتاب اسپیک‌آوت درباره مسابقه سنتی و هیجان‌انگیز اسب‌سواری بومیان آمریکا (Indian Relay)، آماده‌سازی خانوادگی اولیور پاکوتاس و ارتباط عمیق انسان و اسب.",
+    "summaryEn": "Authentic BBC Documentary from Pearson Speakout 3rd Edition about the traditional Indian Relay horse race, Oliver Pakootas and his family team, and their way of life.",
     "keyTopicsFa": [
-      "رزرو هتل، پذیرش و خدمات گردشگری",
-      "مستند تلویزیونی BBC",
-      "واژگان یونیت 2",
-      "لهجه‌های زنده بریتانیایی"
+      "مسابقه سنتی Indian Relay",
+      "سنت‌ها و مهارت‌های سوارکاری",
+      "همکاری و پیوند خانوادگی",
+      "واژگان و اصطلاحات مستند BBC"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Narrator",
-              "textEn": "It's the end of summer at the Okanogan County Fair in the United States. People are relaxing. But not this man. Oliver Pakootas has a big race. It's the Indian Relay.",
-              "textFa": "اواخر تابستان در نمایشگاه شهر اوکانوگان در ایالات متحده است؛ مردم در حال استراحتند اما نه این مرد: اولیور پاکوتاس مسابقه بزرگی در پیش دارد؛ مسابقه امدادی سرخپوستان."
+        "id": 1,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Narrator",
+        "textEn": "It's the end of summer at the Okanogan County Fair in the United States.",
+        "textFa": "اواخر تابستان در نمایشگاه اوکانوگان در ایالات متحده است."
       },
       {
-              "id": 2,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Narrator",
-              "textEn": "In the Indian Relay, the riders race around the track three times. And each time they change horses. This race is a tradition for American Indians. And only one rider can win.",
-              "textFa": "در رله سرخپوستی، سوارکاران سه دور دور پیست می‌تازند و در هر دور اسب خود را عوض می‌کنند. این مسابقه یک سنت دیرینه برای بومیان آمریکاست و تنها یک سوارکار می‌تواند برنده شود."
+        "id": 2,
+        "seconds": 27,
+        "timeDisplay": "0:27",
+        "speaker": "Narrator",
+        "textEn": "People are relaxing. But not this man.",
+        "textFa": "مردم در حال استراحتند؛ اما نه این مرد."
       },
       {
-              "id": 3,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Winfred",
-              "textEn": "Keep him going, keep him going. Push him on and make him work. Make him work. That's pretty good, huh?",
-              "textFa": "بدوونش، ادامه بده! وادارش کن تلاش کنه. خیلی خوب پیش رفت، نه؟"
+        "id": 3,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Narrator",
+        "textEn": "Oliver Pakootas has a big race. It's the Indian Relay.",
+        "textFa": "اولیور پاکوتاس مسابقه بزرگی در پیش دارد: مسابقه امدادی سرخپوستان (Indian Relay)."
       },
       {
-              "id": 4,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Narrator",
-              "textEn": "Oliver spends months preparing for the race. He has a team to help him. They're all family. There's Oliver's brother Winfred, his father, John, and his wife's father, Kerry. Oliver's the rider.",
-              "textFa": "اولیور ماه‌ها صرف آماده‌سازی برای مسابقه می‌کند. تیمی دارد که همه اعضای خانواده‌اش هستند: برادرش وینفرد، پدرش جان، و پدر همسرش کِری. اولیور سوارکار اصلی است."
+        "id": 4,
+        "seconds": 46,
+        "timeDisplay": "0:46",
+        "speaker": "Narrator",
+        "textEn": "In the Indian Relay, the riders race around the track three times. And each time they change horses.",
+        "textFa": "در مسابقه رله سرخپوستی، سوارکاران سه بار دور پیست مسابقه می‌دهند و هر بار اسب خود را عوض می‌کنند."
       },
       {
-              "id": 5,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Narrator",
-              "textEn": "The horses are also part of the family. Oliver and his team enjoy being together, and they love working with their horses and their horses love them.",
-              "textFa": "اسب‌ها هم عضوی از این خانواده‌اند. اولیور و تیمش از کنار هم بودن لذت می‌برند، کار با اسب‌ها را عاشقانه دوست دارند و اسب‌ها نیز عاشق آن‌ها هستند."
+        "id": 5,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "Narrator",
+        "textEn": "This race is a tradition for American Indians. And only one rider can win.",
+        "textFa": "این مسابقه سنتی دیرینه برای بومیان آمریکاست و تنها یک سوارکار می‌تواند برنده شود."
       },
       {
-              "id": 6,
-              "seconds": 138,
-              "timeDisplay": "2:18",
-              "speaker": "Narrator",
-              "textEn": "Oliver likes riding his horses in the mountains. It's just Oliver, the horse and the mountains. For Oliver and his family, the Indian Relay isn't only a race, it's a way of life.",
-              "textFa": "اولیور عاشق تاختن با اسب‌هایش در کوهستان است؛ تنها اولیور، اسب و کوه‌ها. برای او و خانواده‌اش، این مسابقه فقط یک رقابت نیست، بلکه شیوه زندگی آن‌هاست."
+        "id": 6,
+        "seconds": 74,
+        "timeDisplay": "1:14",
+        "speaker": "Winfred",
+        "textEn": "Keep him going, keep him going. Push him on and make him work. Make him work. That's pretty good, huh?",
+        "textFa": "بدوونش، ادامه بده! وادارش کن تلاش کنه. تلاشش رو بیشتر کن. خیلی خوب بود، مگه نه؟"
       },
       {
-              "id": 7,
-              "seconds": 158,
-              "timeDisplay": "2:38",
-              "speaker": "Narrator",
-              "textEn": "Now it's the day of the big race. Oliver rides horse number one to the starting line. John and Kerry follow Oliver. They have horse number two and horse number three. The race is starting and Oliver's ready.",
-              "textFa": "اکنون روز مسابقه بزرگ فرارسیده است؛ اولیور با اسب شماره یک به خط شروع می‌رود. جان و کری با اسب‌های دوم و سوم او را همراهی می‌کنند. مسابقه آغاز می‌شود و اولیور آماده است."
+        "id": 7,
+        "seconds": 85,
+        "timeDisplay": "1:25",
+        "speaker": "Narrator",
+        "textEn": "Oliver spends months preparing for the race. He has a team to help him. They're all family.",
+        "textFa": "اولیور ماه‌ها صرف آماده‌سازی برای مسابقه می‌کند. او تیمی دارد که به او کمک می‌کنند؛ همگی اعضای خانواده هستند."
       },
       {
-              "id": 8,
-              "seconds": 190,
-              "timeDisplay": "3:10",
-              "speaker": "Narrator",
-              "textEn": "For three minutes, all Oliver thinks of is the race and the horses. Oliver wins the race. Maybe now he can relax and enjoy the end of summer.",
-              "textFa": "برای سه دقیقه، تمام فکر اولیور معطوف به مسابقه و اسب‌هاست. اولیور مسابقه را فتح می‌کند؛ شاید حالا بتواند استراحت کند و از روزهای پایانی تابستان لذت ببرد."
+        "id": 8,
+        "seconds": 94,
+        "timeDisplay": "1:34",
+        "speaker": "Narrator",
+        "textEn": "There's Oliver's brother Winfred, his father, John, and his wife's father, Kerry. Oliver's the rider.",
+        "textFa": "برادر اولیور وینفرد، پدرش جان و پدر همسرش کری در تیم هستند. اولیور سوارکار اصلی است."
+      },
+      {
+        "id": 9,
+        "seconds": 117,
+        "timeDisplay": "1:57",
+        "speaker": "Narrator",
+        "textEn": "The horses are also part of the family. Oliver and his team enjoy being together, and they love working with their horses and their horses love them.",
+        "textFa": "اسب‌ها نیز عضوی از این خانواده‌اند. اولیور و تیمش از کنار هم بودن لذت می‌برند؛ آن‌ها عاشق کار با اسب‌هایشان هستند و اسب‌ها نیز آن‌ها را دوست دارند."
+      },
+      {
+        "id": 10,
+        "seconds": 137,
+        "timeDisplay": "2:17",
+        "speaker": "Narrator",
+        "textEn": "Oliver likes riding his horses in the mountains. It's just Oliver, the horse and the mountains.",
+        "textFa": "اولیور عاشق تاختن با اسب‌هایش در کوهستان است؛ فقط اولیور، اسب و کوه‌ها."
+      },
+      {
+        "id": 11,
+        "seconds": 148,
+        "timeDisplay": "2:28",
+        "speaker": "Narrator",
+        "textEn": "For Oliver and his family, the Indian Relay isn't only a race, it's a way of life.",
+        "textFa": "برای اولیور و خانواده‌اش، مسابقه امدادی سرخپوستان تنها یک مسابقه نیست، بلکه یک شیوه زندگی است."
+      },
+      {
+        "id": 12,
+        "seconds": 157,
+        "timeDisplay": "2:37",
+        "speaker": "Narrator",
+        "textEn": "Now it's the day of the big race. Oliver rides horse number one to the starting line.",
+        "textFa": "اکنون روز مسابقه بزرگ فرارسیده است. اولیور با اسب شماره یک به خط شروع می‌رود."
+      },
+      {
+        "id": 13,
+        "seconds": 166,
+        "timeDisplay": "2:46",
+        "speaker": "Narrator",
+        "textEn": "John and Kerry follow Oliver. They have horse number two and horse number three. The race is starting and Oliver's ready.",
+        "textFa": "جان و کری پشت سر اولیور می‌آیند. آن‌ها اسب شماره دو و اسب شماره سه را در اختیار دارند. مسابقه در حال آغاز است و اولیور آماده است."
+      },
+      {
+        "id": 14,
+        "seconds": 189,
+        "timeDisplay": "3:09",
+        "speaker": "Narrator",
+        "textEn": "For three minutes, all Oliver thinks of is the race and the horses.",
+        "textFa": "به مدت سه دقیقه، تمام آنچه اولیور به آن فکر می‌کند مسابقه و اسب‌هاست."
+      },
+      {
+        "id": 15,
+        "seconds": 229,
+        "timeDisplay": "3:49",
+        "speaker": "Narrator",
+        "textEn": "Oliver wins the race. Maybe now he can relax and enjoy the end of summer.",
+        "textFa": "اولیور مسابقه را می‌برد. شاید حالا بتواند استراحت کند و از پایان تابستان لذت ببرد."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 2 · مستند تلویزیونی BBC: رزرو هتل، پذیرش و خدمات گردشگری»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [2:03]. What key insight does Speaker 1 share?",
-        "timestampSeconds": 123,
-        "timestampDisplay": "2:03",
-        "explanationFa": "در ثانیه 2:03، Speaker 1 صریحاً بیان می‌کند: «The horses are also part of the family.».",
+        "promptFa": "بر اساس مستند در ثانیه 0:46، در مسابقه Indian Relay سوارکاران چند دور مسابقه می‌دهند و در هر دور چه کاری انجام می‌دهند؟",
+        "promptEn": "Listen at [0:46]. What happens in the Indian Relay race during the competition?",
+        "timestampSeconds": 46,
+        "timestampDisplay": "0:46",
+        "explanationFa": "در ثانیه 0:46 گوینده بیان می‌کند: «the riders race around the track three times. And each time they change horses.» یعنی ۳ دور مسابقه می‌دهند و در هر دور اسب خود را عوض می‌کنند.",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 1 indicates: \"The horses are also part of the family....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "The riders race around the track three times and change horses each time.",
+            "textFa": "سوارکاران سه بار دور پیست می‌تازند و در هر دور اسب خود را عوض می‌کنند."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "The riders run on foot without any horses.",
+            "textFa": "سوارکاران پیاده و بدون هیچ اسبی می‌دوند."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "They ride only one horse for twenty laps.",
+            "textFa": "آن‌ها فقط با یک اسب بیست دور مسابقه می‌دهند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "They change cars every five minutes on a highway.",
+            "textFa": "آن‌ها هر پنج دقیقه یک بار ماشین خود را در اتوبان عوض می‌کنند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (رزرو هتل، پذیرش و خدمات گردشگری) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Hotels, Booking & Hospitality)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی رزرو هتل، پذیرش و خدمات گردشگری در ارتباط است.",
+        "promptFa": "کدام واژه در این مستند به معنای «مسابقه امدادی و نوبتی» به کار رفته است؟",
+        "promptEn": "Which word in the documentary refers to a team race where participants take turns or change horses/runners?",
+        "explanationFa": "واژه «Relay» به معنای مسابقه امدادی است و Indian Relay نام این رقابت سنتی بومیان است.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با رزرو هتل، پذیرش و خدمات گردشگری."
+            "textEn": "Relay (a race where participants take turns or switch horses)",
+            "textFa": "مسابقه امدادی (مسابقه‌ای با تعویض نوبتی اسب یا دونده)"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "Subway (an underground railway system)",
+            "textFa": "مترو و قطار زیرزمینی"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "Elevator (a platform or compartment for moving people between floors)",
+            "textFa": "آسانسور"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "Passport (an official document for international travel)",
+            "textFa": "گذرنامه بین‌المللی"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "با توجه به قواعد زمان حال ساده (Present Simple) برای فاعل سوم شخص مفرد، کدام گزینه از نظر گرامری کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly demonstrates the Present Simple tense for a third-person singular subject?",
+        "explanationFa": "برای فاعل سوم شخص مفرد (Oliver)، افعال با s سوم شخص همراه می‌شوند (spends months, rides horse number one).",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on hotels, booking & hospitality, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون رزرو هتل، پذیرش و خدمات گردشگری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "Oliver spends months preparing for the race and rides horse number one.",
+            "textFa": "کاربرد کاملاً درست افعال spends و rides برای سوم شخص مفرد"
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "Oliver spend months preparing for the race and ride horse number one.",
+            "textFa": "حذف نادرست s سوم شخص برای Oliver"
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "Oliver are spending months and ride horse number one.",
+            "textFa": "کاربرد غلط are برای فاعل مفرد"
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "Oliver do not spends months preparing for the race.",
+            "textFa": "ترکیب غلط do not با spends به جای doesn't spend"
+          }
+        ],
+        "correctOptionId": 1
+      },
+      "reading": {
+        "skill": "reading",
+        "promptFa": "بر اساس متن مستند، چه چیزی مسابقه Indian Relay را برای اولیور و خانواده‌اش فراتر از یک رقابت ورزشی معمولی می‌سازد؟",
+        "promptEn": "Based on the documentary, why is the Indian Relay more than just a sports competition for Oliver and his family?",
+        "explanationFa": "در مستند آمده است: «For Oliver and his family, the Indian Relay isn't only a race, it's a way of life.» و اسب‌ها نیز بخشی از خانواده محسوب می‌شوند.",
+        "options": [
+          {
+            "id": 1,
+            "textEn": "It is a way of life, a deep cultural tradition, and the horses are treated as family members.",
+            "textFa": "این مسابقه یک شیوه زندگی و سنت عمیق فرهنگی است و اسب‌ها نیز عضوی از خانواده تلقی می‌شوند."
+          },
+          {
+            "id": 2,
+            "textEn": "They only enter the race because they want to sell the horses for money.",
+            "textFa": "آن‌ها صرفاً برای فروش گران‌تر اسب‌ها در مسابقه شرکت می‌کنند."
+          },
+          {
+            "id": 3,
+            "textEn": "It is an office competition between software engineers.",
+            "textFa": "این یک مسابقه اداری میان مهندسان نرم‌افزار است."
+          },
+          {
+            "id": 4,
+            "textEn": "Oliver never trains with his family and only hires strangers.",
+            "textFa": "اولیور هرگز با خانواده‌اش تمرین نمی‌کند و افراد غریبه استخدام می‌کند."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on hotels, booking & hospitality, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون رزرو هتل، پذیرش و خدمات گردشگری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه رزرو هتل، پذیرش و خدمات گردشگری تقویت می‌کند."
-      },
-      "reading": {
-        "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 2 · مستند تلویزیونی BBC: رزرو هتل، پذیرش و خدمات گردشگری» چیست؟",
-        "promptEn": "Based on the context of 'Unit 2 · BBC Programmes: Hotels, Booking & Hospitality', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون رزرو هتل، پذیرش و خدمات گردشگری است.",
-        "options": [
-          {
-            "id": 1,
-            "textEn": "To communicate authentic perspectives regarding hotels, booking & hospitality.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون رزرو هتل، پذیرش و خدمات گردشگری."
-          },
-          {
-            "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
-          },
-          {
-            "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
-          },
-          {
-            "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
-          }
-        ],
-        "correctOptionId": 1
+        "promptFa": "جمله کلیدی و پرمفهوم زیر را با تلفظ دقیق و لحن طبیعی بخوانید و ضبط کنید:",
+        "promptEn": "Read this core sentence aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "For Oliver and his family, the Indian Relay isn't only a race, it's a way of life.",
+        "targetPhraseFa": "برای اولیور و خانواده‌اش، مسابقه امدادی سرخپوستان فقط یک مسابقه نیست، بلکه شیوه زندگی آن‌هاست.",
+        "phoneticGuide": "/fɔːr ˈɒlɪvər ænd hɪz ˈfæməli, ði ˈɪndiən ˈriːleɪ ˈɪznt ˈoʊnli ə reɪs, ɪts ə weɪ əv laɪf/",
+        "speakingTipsFa": "بر روی کلمات کلیدی race و way of life تکیه صوتی (stress) بگذارید و مکث کوتاهی پس از family داشته باشید.",
+        "explanationFa": "بیان این جمله به تقویت پیوستگی کلام (connected speech) و لحن بیانی شما کمک شایانی می‌کند."
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (رزرو هتل، پذیرش و خدمات گردشگری)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Hotels, Booking & Hospitality' using relevant descriptive vocabulary.",
+        "promptFa": "درباره اهمیت پیوند خانوادگی و همکاری در یک مسابقه ورزشی با الهام از تیم اولیور، متنی کوتاه به انگلیسی بنویسید.",
+        "promptEn": "Write a short paragraph in English reflecting on teamwork and family tradition in sports like the Indian Relay.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "family",
+          "tradition",
+          "horses"
         ],
-        "sampleAnswerEn": "Learning about hotels, booking & hospitality through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره رزرو هتل، پذیرش و خدمات گردشگری از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "In the Indian Relay, Oliver has a strong team made of his family. Caring for their horses is an ancient tradition that unites them together.",
+        "sampleAnswerFa": "در مسابقه رله سرخپوستی، اولیور تیمی قدرتمند متشکل از خانواده‌اش دارد. مراقبت از اسب‌هایشان سنتی باستانی است که آن‌ها را گرد هم متحد می‌کند.",
+        "evaluationTipsFa": "کاربرد درست افعال حال ساده و به‌کارگیری هر سه واژه کلیدی الزامی است.",
+        "explanationFa": "نوشته شما بر مبنای تناسب با پیام مستند، غنای واژگانی و ساختار نگارشی تصحیح می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a2-v04",
     "level": "a2",
     "episodeNumber": 4,
-    "titleFa": "یونیت 2 · ولاگ تعاملی BBC: رزرو هتل، پذیرش و خدمات گردشگری",
-    "titleEn": "Unit 2 · BBC Vlogs: Hotels, Booking & Hospitality",
+    "titleFa": "یونیت 2 · ولاگ‌های BBC: غذاها، خوراکی‌های محبوب و بیزاری‌ها (Food & Drink: Likes & Dislikes)",
+    "titleEn": "Unit 2 · BBC Vlogs: Food & Drink (Likes & Dislikes)",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 2",
     "cefr": "A2",
@@ -4811,207 +5154,223 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون رزرو هتل، پذیرش و خدمات گردشگری همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on hotels, booking & hospitality with native British and international speakers.",
+    "summaryFa": "ولاگ‌های تعاملی و جذاب شبکه BBC از کتاب اسپیک‌آوت با پاسخ به سوال «چه غذاهایی دوست دارید یا ندارید؟» با همراهی افراد از شهرهای مختلف (لندن، بیشاپز استورتفورد، پوزنان لهستان، وارویک، دامفریز اسکاتلند و بریج‌پورت آمریکا).",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition exploring food preferences (likes, dislikes and hates) with speakers from London, Bishop's Stortford, Poznań, Warwick, Dumfries, and Bridgeport.",
     "keyTopicsFa": [
-      "رزرو هتل، پذیرش و خدمات گردشگری",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 2",
-      "لهجه‌های زنده بریتانیایی"
+      "غذاها و خوراکی‌ها (Food & Drink)",
+      "بیان علایق و بیزاری‌ها (Likes & Dislikes)",
+      "افعال like, love, don't like, hate",
+      "لهجه‌ها و شهرهای مختلف انگلیسی‌زبان"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Well, I like most foods, but my favourite foods are cheese, pasta and chocolate. Definitely chocolate.",
-              "textFa": "خب، من اکثر غذاها را دوست دارم اما غذاهای محبوبم پنیر، پاستا و شکلات هستند؛ قطعاً شکلات در صدر است."
+        "id": 1,
+        "seconds": 13,
+        "timeDisplay": "0:13",
+        "speaker": "Question Prompt",
+        "textEn": "What food do you like and dislike?",
+        "textFa": "چه غذاهایی را دوست دارید و از چه غذاهایی خوشتان نمی‌آید؟"
       },
       {
-              "id": 2,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Speaker 2",
-              "textEn": "I really like butter on my toast. Um, I don't like blue cheese, and I hate chillies.",
-              "textFa": "من کره روی نان تست را خیلی دوست دارم؛ از پنیر کپک‌زده خوشم نمی‌آید و از فلفل تند متنفرم."
+        "id": 2,
+        "seconds": 19,
+        "timeDisplay": "0:19",
+        "speaker": "Jo (London, UK)",
+        "textEn": "Well, I like most foods, but my favourite foods are cheese, pasta and chocolate. Definitely chocolate.",
+        "textFa": "خب، من بیشتر غذاها را دوست دارم، اما غذاهای مورد علاقه‌ام پنیر، پاستا و شکلات هستند؛ مسلماً شکلات در صدر است."
       },
       {
-              "id": 3,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Speaker 3",
-              "textEn": "So, I like strawberries. I also like cheese. I like watermelon. I don't like olives, and I hate meat.",
-              "textFa": "من توت‌فرنگی، پنیر و هندوانه را دوست دارم؛ از زیتون خوشم نمی‌آید و از گوشت بیزارم."
+        "id": 3,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Speaker 2 (Bishop's Stortford, UK)",
+        "textEn": "I really like butter on my toast. Um, I don't like blue cheese, and I hate chillies.",
+        "textFa": "من کره روی نان تست را واقعاً دوست دارم؛ از پنیر رگه‌آبی خوشم نمی‌آید و از فلفل‌های تند بیزارم."
       },
       {
-              "id": 4,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Speaker 4",
-              "textEn": "I like to eat chocolate, tomatoes and rice. I don't like fish, and I hate mushrooms.",
-              "textFa": "خوردن شکلات، گوجه‌فرنگی و برنج را دوست دارم؛ ماهی دوست ندارم و از قارچ بدم می‌آید."
+        "id": 4,
+        "seconds": 39,
+        "timeDisplay": "0:39",
+        "speaker": "Speaker 3 (Poznań, Poland)",
+        "textEn": "So, I like strawberries. I also like cheese. I like watermelon. I don't like olives, and I hate meat.",
+        "textFa": "من توت‌فرنگی را دوست دارم؛ همچنین پنیر و هندوانه را هم دوست دارم. زیتون دوست ندارم و از گوشت متنفرم."
       },
       {
-              "id": 5,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Speaker 5",
-              "textEn": "I love bananas, chocolate and ice cream, but I do not like eggs and celery.",
-              "textFa": "عاشق موز، شکلات و بستنی‌ام، اما تخم‌مرغ و کرفس را اصلاً دوست ندارم."
+        "id": 5,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Speaker 4 (Warwick, UK)",
+        "textEn": "I like to eat chocolate, tomatoes and rice. I don't like fish, and I hate mushrooms.",
+        "textFa": "من خوردن شکلات، گوجه‌فرنگی و برنج را دوست دارم. ماهی دوست ندارم و از قارچ بدم می‌آید."
       },
       {
-              "id": 6,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Speaker 6",
-              "textEn": "Do you know what I love? Avocados. They're so delicious. Specially on toast. You know what I also love? Is a good cup of coffee.",
-              "textFa": "می‌دانید من عاشق چه هستم؟ آووکادو؛ فوق‌العاده لذیذ است، به خصوص روی نان تست. و چیز دیگری که عاشقشم یک فنجان قهوه عالی است."
+        "id": 6,
+        "seconds": 63,
+        "timeDisplay": "1:03",
+        "speaker": "Speaker 5 (Dumfries, UK)",
+        "textEn": "I love bananas, chocolate and ice cream, but I do not like eggs and celery.",
+        "textFa": "من عاشق موز، شکلات و بستنی هستم، اما از تخم‌مرغ و کرفس خوشم نمی‌آید."
+      },
+      {
+        "id": 7,
+        "seconds": 74,
+        "timeDisplay": "1:14",
+        "speaker": "Chad (Bridgeport, USA)",
+        "textEn": "Do you know what I love? Avocados. They’re so delicious. Specially on toast. You know what I also love? Is a good cup of coffee.",
+        "textFa": "می‌دانید من عاشق چه هستم؟ آووکادو! فوق‌العاده لذیذ است، مخصوصاً روی نان تست. و می‌دانید دیگر عاشق چه هستم؟ یک فنجان قهوه عالی."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 2 · ولاگ تعاملی BBC: رزرو هتل، پذیرش و خدمات گردشگری»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:48]. What key insight does Speaker 3 share?",
-        "timestampSeconds": 48,
-        "timestampDisplay": "0:48",
-        "explanationFa": "در ثانیه 0:48، Speaker 3 صریحاً بیان می‌کند: «$ I like to eat chocolate, tomatoes and rice. I don’t like ﬁ sh, and I hate mushrooms.».",
+        "promptFa": "با گوش دادن به صحبت‌های گوینده در ثانیه 0:52 (وارویک)، او به کدام خوراکی‌ها علاقه دارد و از کدام موارد بیزار است؟",
+        "promptEn": "Listen at [0:52]. What food preferences does the speaker from Warwick express?",
+        "timestampSeconds": 52,
+        "timestampDisplay": "0:52",
+        "explanationFa": "در ثانیه 0:52 گوینده وارویک صریحاً بیان می‌کند: «I like to eat chocolate, tomatoes and rice. I don't like fish, and I hate mushrooms.» یعنی شکلات، گوجه و برنج را دوست دارد، اما از ماهی و قارچ بیزار است.",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 3 indicates: \"$ I like to eat chocolate, tomatoes and rice. I don’t like ﬁ sh, ...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "She likes chocolate, tomatoes and rice, but doesn't like fish and hates mushrooms.",
+            "textFa": "او شکلات، گوجه و برنج را دوست دارد، اما ماهی دوست ندارد و از قارچ بیزار است."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "She only eats fast food and drinks soda every day.",
+            "textFa": "او فقط فست‌فود می‌خورد و هر روز نوشابه می‌نوشد."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "She hates chocolate and only eats raw fish.",
+            "textFa": "او از شکلات بیزار است و فقط ماهی خام می‌خورد."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "She is a professional chef preparing beef dishes.",
+            "textFa": "او سرآشپز حرفه‌ای است که غذاهای گوشتی آماده می‌کند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (رزرو هتل، پذیرش و خدمات گردشگری) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Hotels, Booking & Hospitality)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی رزرو هتل، پذیرش و خدمات گردشگری در ارتباط است.",
+        "promptFa": "کدام گزینه بیانگر دو مورد از خوراکی‌ها و سبزیجاتی است که گویندگان در این ولاگ به عنوان موارد مورد بیزاری (dislike / hate) نام می‌برند؟",
+        "promptEn": "Which option lists two food items that speakers in this vlog mention disliking or hating?",
+        "explanationFa": "گوینده ۵ می‌گوید «do not like celery» (کرفس) و گوینده ۴ می‌گوید «hate mushrooms» (قارچ).",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با رزرو هتل، پذیرش و خدمات گردشگری."
+            "textEn": "mushrooms & celery (قارچ و کرفس)",
+            "textFa": "قارچ و کرفس (هر دو به عنوان مورد بیزاری ذکر شدند)"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "chocolate & strawberries (شکلات و توت‌فرنگی)",
+            "textFa": "شکلات و توت‌فرنگی (موارد مورد علاقه)"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "pasta & cheese (پاستا و پنیر)",
+            "textFa": "پاستا و پنیر (مورد علاقه جو)"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "watermelon & bananas (هندوانه و موز)",
+            "textFa": "هندوانه و موز (موارد مورد علاقه)"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "در زبان انگلیسی برای بیان درجات مختلف علاقه و بیزاری از شدیدترین علاقه به شدیدترین بیزاری، کدام ترتیب صحیح است؟",
+        "promptEn": "Which sequence correctly arranges verbs of preference from strongest love to strongest dislike?",
+        "explanationFa": "ترتیب استاندارد بیان شدت علاقه در زبان انگلیسی: love (عاشق بودن) > like (دوست داشتن) > don't like (دوست نداشتن) > hate (متنفر بودن) است.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on hotels, booking & hospitality, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون رزرو هتل، پذیرش و خدمات گردشگری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "love → like → don't like → hate",
+            "textFa": "عاشق بودن → دوست داشتن → دوست نداشتن → متنفر بودن"
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "hate → love → like → don't like",
+            "textFa": "ترتیب نادرست درجات احساسی"
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "don't like → hate → love → like",
+            "textFa": "ترتیب نامرتب احساسات"
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "like → love → hate → don't like",
+            "textFa": "love از like قوی‌تر است"
           }
         ],
         "correctOptionId": 1
-      },
-      "speaking": {
-        "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on hotels, booking & hospitality, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون رزرو هتل، پذیرش و خدمات گردشگری، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه رزرو هتل، پذیرش و خدمات گردشگری تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 2 · ولاگ تعاملی BBC: رزرو هتل، پذیرش و خدمات گردشگری» چیست؟",
-        "promptEn": "Based on the context of 'Unit 2 · BBC Vlogs: Hotels, Booking & Hospitality', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون رزرو هتل، پذیرش و خدمات گردشگری است.",
+        "promptFa": "بر اساس صحبت‌های گوینده ششم (چد از آمریکا)، او آووکادو را چگونه توصیف می‌کند و چه خوراکی دیگری را دوست دارد؟",
+        "promptEn": "According to the final speaker (Chad from Bridgeport), how does he describe avocados and what else does he love?",
+        "explanationFa": "او صریحاً می‌گوید: «Avocados. They’re so delicious. Specially on toast. You know what I also love? Is a good cup of coffee.»",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding hotels, booking & hospitality.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون رزرو هتل، پذیرش و خدمات گردشگری."
+            "textEn": "He says avocados are delicious especially on toast, and he also loves a good cup of coffee.",
+            "textFa": "او می‌گوید آووکادو مخصوصاً روی نان تست لذیذ است و همچنین عاشق یک فنجان قهوه عالی است."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "He thinks avocados taste bitter and prefers drinking cold sodas.",
+            "textFa": "او فکر می‌کند آووکادو تلخ است و نوشابه سرد را ترجیح می‌دهد."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "He never eats bread or drinks warm beverages.",
+            "textFa": "او هرگز نان نمی‌خورد و نوشیدنی‌های گرم نمی‌نوشد."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "He hates all fruits and vegetables from South America.",
+            "textFa": "او از همه میوه‌ها و سبزیجات آمریکای جنوبی بیزار است."
           }
         ],
         "correctOptionId": 1
       },
+      "dictation": {
+        "skill": "dictation",
+        "promptFa": "کلمات جاافتاده را از صحبت‌های جو (لندن) کامل کنید: «Well, I like most foods, but my favourite foods are cheese, _________ and _________.»",
+        "promptEn": "Fill in the missing words from Jo's vlog: 'Well, I like most foods, but my favourite foods are cheese, _________ and _________.'",
+        "targetText": "pasta, chocolate",
+        "hintFa": "پاستا (pasta) و شکلات (chocolate)",
+        "explanationFa": "جمله دقیق جو: «Well, I like most foods, but my favourite foods are cheese, pasta and chocolate. Definitely chocolate.» است."
+      },
+      "speaking": {
+        "skill": "speaking",
+        "promptFa": "جمله پرکاربرد و پرشور زیر را با تلفظ طبیعی، لحن صعودی در بخش اول و تأکید روی صفت بخوانید و ضبط کنید:",
+        "promptEn": "Read this enthusiastic sentence aloud with natural intonation and rhythm:",
+        "targetPhraseEn": "Do you know what I love? Avocados! They're so delicious, especially on toast.",
+        "targetPhraseFa": "می‌دانید من عاشق چه هستم؟ آووکادو! فوق‌العاده خوشمزه است، به ویژه روی نان تست.",
+        "phoneticGuide": "/duː juː noʊ wɒt aɪ lʌv? ˌævəˈkɑːdoʊz! ðeər soʊ dɪˈlɪʃəs, ɪˈspeʃəli ɒn toʊst/",
+        "speakingTipsFa": "لحن پرسشی جمله اول را با شادابی و ریتم طبیعی ادا کنید و روی delicious تأکید آوایی بگذارید.",
+        "explanationFa": "تمرین این ساختار توانایی شما را در ابراز هیجان و سلیقه شخصی در مکالمات روزمره ارتقا می‌دهد."
+      },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (رزرو هتل، پذیرش و خدمات گردشگری)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Hotels, Booking & Hospitality' using relevant descriptive vocabulary.",
+        "promptFa": "با استفاده از کلمات کلیدی (favourite, like, hate)، متنی کوتاه (حداقل ۱۴ کلمه) به زبان انگلیسی درباره علایق و بیزاری‌های غذایی خود بنویسید.",
+        "promptEn": "Write a short paragraph in English about your food preferences (what you like and hate) using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "favourite",
+          "like",
+          "hate"
         ],
-        "sampleAnswerEn": "Learning about hotels, booking & hospitality through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره رزرو هتل، پذیرش و خدمات گردشگری از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "My favourite food is Italian pasta. I really like fresh fruit and vegetables, but I hate spicy chillies.",
+        "sampleAnswerFa": "غذای مورد علاقه من پاستای ایتالیایی است. میوه و سبزیجات تازه را واقعاً دوست دارم، اما از فلفل‌های تند بیزارم.",
+        "evaluationTipsFa": "استفاده از سه واژه کلیدی، به کارگیری ساختارهای بیان علاقه و املای صحیح کلمات ضروری است.",
+        "explanationFa": "نوشته شما بر مبنای توانایی بیان سلیقه غذایی با ساختارهای درس بررسی می‌شود."
       }
     }
   },
@@ -5019,8 +5378,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v05",
     "level": "a2",
     "episodeNumber": 5,
-    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خرید لباس، استایل و قیمت‌ها",
-    "titleEn": "Unit 3 · BBC Street Interviews: Shopping, Clothes & Styles",
+    "titleFa": "یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خانه‌ها و محله زندگی",
+    "titleEn": "Unit 3 · BBC Street Interviews: Homes, Flats & Neighbourhoods",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 3",
     "cefr": "A2",
@@ -5031,224 +5390,294 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون خرید لباس، استایل و قیمت‌ها همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on shopping, clothes & styles with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی معتبر BBC پیرامون توصیف انواع خانه (اتاق‌ها، آشپزخانه، حیاط و آپارتمان) و ویژگی‌های محله زندگی (فضای سبز، پارک‌ها، مغازه‌ها و همسایگان) با لهجه‌های طبیعی بریتانیایی.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition where native speakers describe their homes, flats, and what they love about their neighbourhoods.",
     "keyTopicsFa": [
-      "خرید لباس، استایل و قیمت‌ها",
+      "توصیف خانه و آپارتمان",
+      "ویژگی‌های محله و امکانات شهری",
       "مصاحبه خیابانی BBC (Vox Pops)",
-      "واژگان یونیت 3",
-      "لهجه‌های زنده بریتانیایی"
+      "کاربرد there is و there are"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Mark",
-              "textEn": "I live in a four-bedroom house. It has a lounge, a big kitchen, four bedrooms and three bathrooms.",
-              "textFa": "من در یک خانه چهار خوابه زندگی می‌کنم که دارای اتاق نشیمن، آشپزخانه بزرگ، چهار اتاق خواب و سه سرویس بهداشتی است."
+        "id": 1,
+        "seconds": 18,
+        "endSeconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Question Prompt",
+        "textEn": "Q1: Tell us about your home.",
+        "textFa": "سوال ۱: درباره خانه‌تان به ما بگویید."
       },
       {
-              "id": 2,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Isabelle",
-              "textEn": "Erm, I live in a four-bedroom house, so for all my family members. Er, we've got a kitchen on the ground floor, a living room, erm, and two bathrooms.",
-              "textFa": "من در یک خانه چهار خوابه همراه خانواده‌ام زندگی می‌کنم؛ آشپزخانه و پذیرایی در طبقه همکف و دو سرویس بهداشتی داریم."
+        "id": 2,
+        "seconds": 18,
+        "endSeconds": 26,
+        "timeDisplay": "0:18",
+        "speaker": "Mark",
+        "textEn": "I live in a four-bedroom house. It has a lounge, a big kitchen, four bedrooms and three bathrooms.",
+        "textFa": "من در یک خانه چهار خوابه زندگی می‌کنم. یک اتاق نشیمن، یک آشپزخانه بزرگ، چهار اتاق خواب و سه سرویس بهداشتی دارد."
       },
       {
-              "id": 3,
-              "seconds": 105,
-              "timeDisplay": "1:45",
-              "speaker": "Helen",
-              "textEn": "I live in a house and it has four bedrooms, and one bathroom, and a kitchen and one living and dining area, with a garden at the front and the back.",
-              "textFa": "من در خانه‌ای با چهار اتاق خواب، یک حمام، آشپزخانه، فضای نشیمن و غذاخوری با دو باغچه در جلو و پشت خانه زندگی می‌کنم."
+        "id": 3,
+        "seconds": 27,
+        "endSeconds": 38,
+        "timeDisplay": "0:27",
+        "speaker": "Isabelle",
+        "textEn": "Erm, I live in a four-bedroom house, so for all my family members. Er, we've got a kitchen on the ground floor, a living room, erm, and two bathrooms.",
+        "textFa": "من در یک خانه چهار خوابه همراه با اعضای خانواده‌ام زندگی می‌کنم. در طبقه همکف یک آشپزخانه، یک پذیرایی و دو سرویس بهداشتی داریم."
       },
       {
-              "id": 4,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Elliot",
-              "textEn": "So my home has a big living room, we have three bedrooms - one for my sister, one for me and one for my parents - and we also have two bathrooms.",
-              "textFa": "خانه ما یک نشیمن بزرگ، سه اتاق خواب (برای خواهرم، من و والدینم) و دو حمام دارد."
+        "id": 4,
+        "seconds": 39,
+        "endSeconds": 53,
+        "timeDisplay": "0:39",
+        "speaker": "Helen",
+        "textEn": "I live in a house and it has four bedrooms, and one bathroom, and a kitchen and one living and dining area, with a garden at the front and the back.",
+        "textFa": "من در خانه‌ای با چهار اتاق خواب، یک حمام، آشپزخانه، فضای نشیمن و غذاخوری با باغچه در جلو و پشت خانه زندگی می‌کنم."
       },
       {
-              "id": 5,
-              "seconds": 109,
-              "timeDisplay": "1:49",
-              "speaker": "Stuart",
-              "textEn": "Er, I live in a flat. It's a one-bedroom flat, with a bathroom, a kitchen and a small living room.",
-              "textFa": "من در یک آپارتمان تک‌خوابه زندگی می‌کنم که دارای حمام، آشپزخانه و یک نشیمن کوچک است."
+        "id": 5,
+        "seconds": 55,
+        "endSeconds": 63,
+        "timeDisplay": "0:55",
+        "speaker": "Elliot",
+        "textEn": "So my home has a big living room. We have three bedrooms – one for my sister, one for me and one for my parents – and we also have two bathrooms.",
+        "textFa": "خانه ما یک نشیمن بزرگ دارد. سه اتاق خواب داریم (برای خواهرم، من و والدینم) و همچنین دو حمام داریم."
       },
       {
-              "id": 6,
-              "seconds": 111,
-              "timeDisplay": "1:51",
-              "speaker": "Lily",
-              "textEn": "I live in an apartment in South West London. It has two bedrooms, two bathrooms, one living room and a kitchen.",
-              "textFa": "در آپارتمانی در جنوب غربی لندن زندگی می‌کنم که دو خواب، دو حمام، یک نشیمن و یک آشپزخانه دارد."
+        "id": 6,
+        "seconds": 64,
+        "endSeconds": 71,
+        "timeDisplay": "1:04",
+        "speaker": "Stuart",
+        "textEn": "Er, I live in a flat. It's a one-bedroom flat with a bathroom, a kitchen and a small living room.",
+        "textFa": "من در یک آپارتمان تک‌خوابه زندگی می‌کنم که دارای حمام، آشپزخانه و یک نشیمن کوچک است."
       },
       {
-              "id": 7,
-              "seconds": 113,
-              "timeDisplay": "1:53",
-              "speaker": "Gusy",
-              "textEn": "So, I live in a three-bedroom flat. It has a nice living room, big kitchen and a spacious garden.",
-              "textFa": "من در یک آپارتمان سه خوابه با یک نشیمن زیبا، آشپزخانه بزرگ و حیاطی دلباز زندگی می‌کنم."
+        "id": 7,
+        "seconds": 71,
+        "endSeconds": 78,
+        "timeDisplay": "1:11",
+        "speaker": "Lily",
+        "textEn": "I live in an apartment in South West London. It has two bedrooms, two bathrooms, one living room and a kitchen.",
+        "textFa": "در آپارتمانی در جنوب غربی لندن زندگی می‌کنم که دو خواب، دو حمام، یک نشیمن و یک آشپزخانه دارد."
+      },
+      {
+        "id": 8,
+        "seconds": 79,
+        "endSeconds": 89,
+        "timeDisplay": "1:19",
+        "speaker": "Gusy",
+        "textEn": "So, I live in a three-bedroom flat. It has a nice living room, big kitchen and a spacious garden.",
+        "textFa": "من در یک آپارتمان سه خوابه با یک نشیمن زیبا، آشپزخانه بزرگ و حیاطی دلباز زندگی می‌کنم."
+      },
+      {
+        "id": 9,
+        "seconds": 92,
+        "endSeconds": 97,
+        "timeDisplay": "1:32",
+        "speaker": "Question Prompt",
+        "textEn": "Q2: What do you like about where you live?",
+        "textFa": "سوال ۲: چه چیزی را درباره محل زندگی‌تان دوست دارید؟"
+      },
+      {
+        "id": 10,
+        "seconds": 98,
+        "endSeconds": 103,
+        "timeDisplay": "1:38",
+        "speaker": "Mark",
+        "textEn": "There are lots of open spaces. There's a forest nearby and there's a park also.",
+        "textFa": "فضاهای باز زیادی وجود دارد. یک جنگل در نزدیکی آنجا و همچنین یک پارک هم هست."
+      },
+      {
+        "id": 11,
+        "seconds": 104,
+        "endSeconds": 114,
+        "timeDisplay": "1:44",
+        "speaker": "Isabelle",
+        "textEn": "Okay, the area where I live is very nice. There's a park close by and a lot of nice social areas, so restaurants and cafes and stores.",
+        "textFa": "منطقه‌ای که در آن زندگی می‌کنم بسیار دلپذیر است؛ یک پارک در همین نزدیکی و فضاهای اجتماعی خوبی مثل رستوران‌ها، کافه‌ها و فروشگاه‌ها دارد."
+      },
+      {
+        "id": 12,
+        "seconds": 115,
+        "endSeconds": 122,
+        "timeDisplay": "1:55",
+        "speaker": "Helen",
+        "textEn": "It's a very quiet road. There isn't very much traffic and our neighbours are very friendly.",
+        "textFa": "خیابان بسیار آرامی است، ترافیک زیادی ندارد و همسایه‌های ما بسیار خوش‌برخورد و مهربان هستند."
+      },
+      {
+        "id": 13,
+        "seconds": 123,
+        "endSeconds": 130,
+        "timeDisplay": "2:03",
+        "speaker": "Lily",
+        "textEn": "I like it because it's a very calm area. There are a lot of parks, areas that you can walk in and everyone is very friendly.",
+        "textFa": "آنجا را دوست دارم چون منطقه‌ای بسیار آرام است؛ پارک‌های فراوان و فضاهایی برای پیاده‌روی دارد و همه خیلی صمیمی هستند."
+      },
+      {
+        "id": 14,
+        "seconds": 131,
+        "endSeconds": 137,
+        "timeDisplay": "2:11",
+        "speaker": "Gusy",
+        "textEn": "It is very quiet and there are lots of shops around my area.",
+        "textFa": "بسیار آرام و کم سر و صداست و مغازه‌های متعددی اطراف محله من وجود دارد."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خرید لباس، استایل و قیمت‌ها»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [1:15]. What key insight does Gusy share?",
-        "timestampSeconds": 75,
-        "timestampDisplay": "1:15",
-        "explanationFa": "در ثانیه 1:15، Gusy صریحاً بیان می‌کند: «So, I live in a three-bedroom ﬂ at. It has a nice living room, big kitchen and a spacious garden.».",
+        "promptFa": "بر اساس پارت دوم ویدیو در ثانیه ۱:۳۸، مارک (Mark) چه ویژگی مثبتی را درباره محل سکونت خود بیان می‌کند؟",
+        "promptEn": "Listen at [1:38]. What does Mark say about the area where he lives?",
+        "timestampSeconds": 98,
+        "timestampDisplay": "1:38",
+        "explanationFa": "مارک در ثانیه ۱:۳۸ صریحاً می‌گوید: «There are lots of open spaces. There's a forest nearby and there's a park also.» که به فضاهای باز، جنگل نزدیک و پارک اشاره دارد.",
         "options": [
           {
             "id": 1,
-            "textEn": "Gusy indicates: \"So, I live in a three-bedroom ﬂ at. It has a nice living room, bi...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "There are lots of open spaces, a nearby forest, and a park.",
+            "textFa": "فضاهای باز فراوان، یک جنگل در نزدیکی و یک پارک."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "It is extremely noisy with heavy highway traffic.",
+            "textFa": "بسیار پرسروصدا با ترافیک سنگین بزرگراه."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "There are no parks or trees anywhere in his district.",
+            "textFa": "هیچ پارک یا درختی در محله او وجود ندارد."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "He lives directly above an underground subway station.",
+            "textFa": "او دقیقاً بالای یک ایستگاه متروی زیرزمینی زندگی می‌کند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (خرید لباس، استایل و قیمت‌ها) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Shopping, Clothes & Styles)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی خرید لباس، استایل و قیمت‌ها در ارتباط است.",
+        "promptFa": "کدام کلمه به معنای «حیاط یا فضای باز و دلباز» است که گاسی (Gusy) در ثانیه ۱:۱۹ برای توصیف باغچه‌اش به کار برد؟",
+        "promptEn": "Which word means 'having a lot of space/room' as used by Gusy at [1:19] to describe her garden?",
+        "explanationFa": "واژه «spacious» به معنای جادار، دلباز و وسیع است («a spacious garden»).",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با خرید لباس، استایل و قیمت‌ها."
+            "textEn": "spacious (having ample space or room)",
+            "textFa": "جادار و دلباز با فضای فراوان"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "crowded (packed full of people)",
+            "textFa": "شلوغ و پر ازدحام"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "narrow (limited in width)",
+            "textFa": "باریک و تنگ"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "noisy (making a lot of noise)",
+            "textFa": "پرسروصدا و ناآرام"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام گزینه بر اساس قوانین ساختاری there is / there are برای بیان امکانات محله از نظر دستوری کاملاً صحیح است؟",
+        "promptEn": "Which sentence correctly uses 'there is / there are' to describe features in a neighbourhood?",
+        "explanationFa": "گزینه اول کاملاً صحیح است؛ برای اسامی جمع (lots of shops) از there are و برای اسم مفرد (a park close by) از there is استفاده می‌شود.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on shopping, clothes & styles, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون خرید لباس، استایل و قیمت‌ها، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "There is a park close by, and there are lots of shops around my area.",
+            "textFa": "یک پارک در نزدیکی وجود دارد، و مغازه‌های زیادی اطراف منطقه من هست."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "There are a park close by and there is lots of shops.",
+            "textFa": "کاربرد نادرست are برای مفرد و is برای جمع."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "There isn't many traffic on our street.",
+            "textFa": "کاربرد غلط many برای اسم غیرقابل‌شمارش traffic."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "There aren't some restaurants in this neighbourhood.",
+            "textFa": "کاربرد نادرست some به جای any در جمله منفی."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on shopping, clothes & styles, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون خرید لباس، استایل و قیمت‌ها، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه خرید لباس، استایل و قیمت‌ها تقویت می‌کند."
+        "promptFa": "جمله کلیدی زیر را که هلن در ثانیه ۱:۵۵ درباره محله‌اش بیان می‌کند، با تلفظ روان و آهنگ طبیعی بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptEn": "Read Helen's sentence from [1:55] aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "It's a very quiet road. There isn't very much traffic and our neighbours are very friendly.",
+        "targetPhraseFa": "خیابان بسیار آرامی است، ترافیک زیادی ندارد و همسایه‌های ما بسیار خوش‌برخورد و مهربان هستند.",
+        "phoneticGuide": "/ɪts ə ˈveri ˈkwaɪət roʊd. ðer ˈɪznt ˈveri mʌtʃ ˈtræfɪk ænd ˈaʊər ˈneɪbərz ɑːr ˈveri ˈfrendli/",
+        "speakingTipsFa": "به تلفظ ملایم quiet /ˈkwaɪət/، ادغام روان isn't very much traffic و استرس واژه neighbours دقت فرمایید.",
+        "explanationFa": "این جمله الگویی استاندارد و کاربردی برای توصیف محیط و همسایگان محله در مکالمات سطح A2 است."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 3 · مصاحبه خیابانی BBC (Vox Pops): خرید لباس، استایل و قیمت‌ها» چیست؟",
-        "promptEn": "Based on the context of 'Unit 3 · BBC Street Interviews: Shopping, Clothes & Styles', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون خرید لباس، استایل و قیمت‌ها است.",
+        "promptFa": "با توجه به مصاحبه‌های ویدیوی ۳D، هلن (Helen) در پارت اول خانه خود را چگونه توصیف می‌کند؟",
+        "promptEn": "According to the first part of the video, how does Helen describe her home?",
+        "explanationFa": "هلن در ثانیه ۰:۳۹ بیان می‌کند: «I live in a house and it has four bedrooms, and one bathroom, and a kitchen and one living and dining area, with a garden at the front and the back.» که دارای چهار اتاق خواب و باغچه در جلو و عقب خانه است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding shopping, clothes & styles.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون خرید لباس، استایل و قیمت‌ها."
+            "textEn": "A four-bedroom house with a garden at the front and the back.",
+            "textFa": "یک خانه چهار خوابه با باغچه در جلو و پشت خانه."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "A one-bedroom studio flat in central London with no garden.",
+            "textFa": "یک سوئیت یک‌خوابه در مرکز لندن بدون حیاط."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "A shared student dormitory with five other roommates.",
+            "textFa": "خوابگاه مشترک دانشجویی با پنج هم‌اتاقی."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "A two-bedroom apartment on the top floor of a high-rise.",
+            "textFa": "یک آپارتمان دوخوابه در بالاترین طبقه یک برج."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (خرید لباس، استایل و قیمت‌ها)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Shopping, Clothes & Styles' using relevant descriptive vocabulary.",
+        "promptFa": "با استفاده از کلمات کلیدی (house / flat, bedrooms, park / shops)، متنی کوتاه (حداقل ۱۴ کلمه) درباره محل سکونت و محله خود به زبان انگلیسی بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) describing your home and neighbourhood using the provided keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "house",
+          "bedrooms",
+          "park"
         ],
-        "sampleAnswerEn": "Learning about shopping, clothes & styles through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره خرید لباس، استایل و قیمت‌ها از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "I live in a comfortable house with three bedrooms. In my neighbourhood, there is a big park close by where I walk every day.",
+        "sampleAnswerFa": "من در خانه‌ای راحت با سه اتاق خواب زندگی می‌کنم. در محله من یک پارک بزرگ در همین نزدیکی وجود دارد که هر روز در آن قدم می‌زنم.",
+        "evaluationTipsFa": "استفاده از سه واژه کلیدی، به کار بردن ساختارهای توصیف خانه (there is / has got) و رعایت صحت املایی الزامی است.",
+        "explanationFa": "نوشته شما بر مبنای تناسب محتوا با موضوع توصیف خانه و محله و دقت دستوری بررسی می‌شود."
       }
     }
   },
-  {
+    {
     "id": "a2-v06",
     "level": "a2",
     "episodeNumber": 6,
-    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: خرید لباس، استایل و قیمت‌ها",
-    "titleEn": "Unit 3 · BBC Vlogs: Shopping, Clothes & Styles",
+    "titleFa": "یونیت 3 · ولاگ تعاملی BBC: میزبانی و اقامت مهمان در خانه",
+    "titleEn": "Unit 3 · BBC Vlogs: Visitors Staying in Your Home",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 3",
     "cefr": "A2",
@@ -5259,207 +5688,231 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون خرید لباس، استایل و قیمت‌ها همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on shopping, clothes & styles with native British and international speakers.",
+    "summaryFa": "ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون تجربه اقامت مهمانان و دوستان در خانه، داشتن اتاق مهمان یا خوابیدن روی کاناپه، و چالش‌های فضای خانه با لهجه‌های مختلف بین‌المللی.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers from Rome, Madrid, Bologna, Cascais, and Durham discuss whether they have visitors staying over and how much space they have.",
     "keyTopicsFa": [
-      "خرید لباس، استایل و قیمت‌ها",
+      "میزبانی از دوستان و خانواده",
+      "توصیف فضای خانه و اتاق مهمان",
       "ولاگ تعاملی BBC",
-      "واژگان یونیت 3",
-      "لهجه‌های زنده بریتانیایی"
+      "واژگان خانه و وسایل خواب"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Speaker 1",
-              "textEn": "Yes, sometimes my parents or my friends come to visit me. And we don't have a guest room in our house. We have a sofa, so when they come they can sleep here.",
-              "textFa": "بله، گاهی والدین یا دوستانم به دیدنم می‌آیند؛ اتاق مهمان نداریم اما یک کاناپه داریم که وقتی می‌آیند می‌توانند روی آن بخوابند."
+        "id": 1,
+        "seconds": 11,
+        "endSeconds": 18,
+        "timeDisplay": "0:11",
+        "speaker": "Question Prompt",
+        "textEn": "Do you ever have visitors staying in your home?",
+        "textFa": "آیا تا به حال پیش آمده که مهمان در خانه‌تان بماند؟"
       },
       {
-              "id": 2,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Speaker 2",
-              "textEn": "I love having friends around. We do have a lot of space in our place, and it's great to share it with others.",
-              "textFa": "من عاشق دورهمی با دوستانم؛ در خانه‌مان فضای زیادی داریم و شریک شدن آن با دیگران عالی است."
+        "id": 2,
+        "seconds": 18,
+        "endSeconds": 32,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1 (Rome, Italy)",
+        "textEn": "Yes, sometimes my parents or my friends come to visit me. And we don't have a guest room in our house. We have a sofa, so when they come they can sleep here.",
+        "textFa": "بله، گاهی والدین یا دوستانم به دیدنم می‌آیند. ما در خانه‌مان اتاق مهمان نداریم؛ یک کاناپه داریم و وقتی می‌آیند می‌توانند اینجا بخوابند."
       },
       {
-              "id": 3,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Speaker 3",
-              "textEn": "Yes, we often have friends come and stay with us. We have a large house with a garden and lots of spare beds. We love having friends over.",
-              "textFa": "بله، دوستانمان زیاد پیش ما می‌مانند؛ خانه بزرگی با حیاط و تخت‌های اضافه داریم و عاشق میزبانی از دوستانیم."
+        "id": 3,
+        "seconds": 34,
+        "endSeconds": 40,
+        "timeDisplay": "0:34",
+        "speaker": "Speaker 2 (Madrid, Spain)",
+        "textEn": "I love having friends around. We do have a lot of space in our place, and it's great to share it with others.",
+        "textFa": "من دورهمی با دوستانم را دوست دارم. ما در خانه‌مان فضای بسیار زیادی داریم و شریک شدن این فضا با دیگران عالی است."
       },
       {
-              "id": 4,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Speaker 4",
-              "textEn": "I love having visitors and they often stay with me, but at this moment I don't have much space because I live in a small apartment.",
-              "textFa": "من عاشق مهمانم و زیاد پیشم می‌مانند، اما در حال حاضر چون در آپارتمان کوچکی زندگی می‌کنم فضای زیادی ندارم."
+        "id": 4,
+        "seconds": 43,
+        "endSeconds": 52,
+        "timeDisplay": "0:43",
+        "speaker": "Speaker 3 (Bologna, Italy)",
+        "textEn": "Yes, we often have friends come and stay with us. We have a large house with a garden and lots of spare beds. We love having friends over.",
+        "textFa": "بله، ما اغلب اوقات دوستانی داریم که می‌آیند و پیش ما می‌مانند. خانه بزرگی با حیاط و تخت‌های اضافه زیادی داریم و عاشق دعوت دوستانیم."
       },
       {
-              "id": 5,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Speaker 5",
-              "textEn": "Yes, we do have visitors quite frequently. We don't have an extra room, but they sleep on the sofa.",
-              "textFa": "بله، ما مکرراً مهمان داریم؛ اتاق اضافی نداریم اما روی کاناپه می‌خوابند."
+        "id": 5,
+        "seconds": 53,
+        "endSeconds": 62,
+        "timeDisplay": "0:53",
+        "speaker": "Speaker 4 (Madrid, Spain)",
+        "textEn": "I love having visitors and they often stay with me, but at this moment I don't have much space because I live in a small apartment.",
+        "textFa": "من عاشق مهمان داشتن هستم و آن‌ها زیاد پیشم می‌مانند، اما در حال حاضر فضای زیادی ندارم چون در یک آپارتمان کوچک زندگی می‌کنم."
       },
       {
-              "id": 6,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Speaker 6",
-              "textEn": "I never have people to stay over. I'm a university student, and I live with five other students, so the bathroom and the kitchen are always messy. And anyway, my room's really small, as you can see.",
-              "textFa": "من هرگز مهمان شب‌مانده ندارم؛ دانشجو هستم و با پنج دانشجوی دیگر زندگی می‌کنم، بنابراین حمام و آشپزخانه همیشه به هم ریخته است و اتاقم هم بسیار کوچک است."
+        "id": 6,
+        "seconds": 63,
+        "endSeconds": 73,
+        "timeDisplay": "1:03",
+        "speaker": "Speaker 5 (Cascais, Portugal)",
+        "textEn": "Yes, we do have visitors quite frequently. We don't have an extra room, but they sleep on the sofa.",
+        "textFa": "بله، ما خیلی وقت‌ها مهمان داریم. اتاق اضافه نداریم، اما آن‌ها روی کاناپه می‌خوابند."
+      },
+      {
+        "id": 7,
+        "seconds": 74,
+        "endSeconds": 82,
+        "timeDisplay": "1:14",
+        "speaker": "Speaker 6 (Durham, UK)",
+        "textEn": "I never have people to stay over. I'm a student, a university student and I live with five other students.",
+        "textFa": "من هرگز کسی را برای ماندن در خانه‌ام ندارم. من دانشجو هستم، دانشجوی دانشگاه، و با پنج دانشجوی دیگر زندگی می‌کنم."
+      },
+      {
+        "id": 8,
+        "seconds": 83,
+        "endSeconds": 92,
+        "timeDisplay": "1:23",
+        "speaker": "Speaker 6 (Durham, UK)",
+        "textEn": "So the bathroom and the kitchen are always messy and anyway my room is really small as you can see.",
+        "textFa": "بنابراین حمام و آشپزخانه همیشه نامرتب است و همان‌طور که می‌بینید اتاقم واقعاً کوچک است."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 3 · ولاگ تعاملی BBC: خرید لباس، استایل و قیمت‌ها»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:48]. What key insight does Speaker 3 share?",
-        "timestampSeconds": 48,
-        "timestampDisplay": "0:48",
-        "explanationFa": "در ثانیه 0:48، Speaker 3 صریحاً بیان می‌کند: «$ I love having visitors and they often stay with me,».",
+        "promptFa": "بر اساس انتهای ویدیو در ثانیه ۱:۲۳، گوینده ششم (از دورهام انگلستان) به چه دلیلی هرگز مهمان شب‌مانده قبول نمی‌کند؟",
+        "promptEn": "Listen at [1:23]. Why does Speaker 6 (from Durham, UK) never have people stay over?",
+        "timestampSeconds": 83,
+        "timestampDisplay": "1:23",
+        "explanationFa": "گوینده ششم در ثانیه ۱:۲۳ صریحاً بیان می‌کند که با ۵ دانشجو زندگی می‌کند، آشپزخانه و حمام مشترک همیشه نامرتب است و اتاق خوابش بسیار کوچک است («my room is really small as you can see»).",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 3 indicates: \"$ I love having visitors and they often stay with me,...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "He lives with five other students in a shared flat, the common areas are messy, and his room is very small.",
+            "textFa": "او با پنج دانشجو در خانه مشترک زندگی می‌کند، فضاهای مشترک نامرتب است و اتاقش بسیار کوچک است."
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "His landlord strictly prohibits anyone from entering the building.",
+            "textFa": "صاحبخانه‌اش ورود هرگونه مهمان به ساختمان را اکیداً ممنوع کرده است."
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "He owns a massive 6-bedroom villa and prefers living alone in complete silence.",
+            "textFa": "او صاحب یک ویلای ۶ خوابه بزرگ است و ترجیح می‌دهد در سکوت مطلق تنها زندگی کند."
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "He works the night shift at a hotel and is never at home.",
+            "textFa": "او شیفت شب در هتل کار می‌کند و هرگز خانه نیست."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (خرید لباس، استایل و قیمت‌ها) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Shopping, Clothes & Styles)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی خرید لباس، استایل و قیمت‌ها در ارتباط است.",
+        "promptFa": "اصطلاح «spare beds» که گوینده سوم در ثانیه ۰:۴۳ به کار می‌برد به چه معناست؟",
+        "promptEn": "What does the phrase 'spare beds' mean, as used by Speaker 3 at [0:43]?",
+        "explanationFa": "واژه «spare» به معنای اضافه و یدکی است؛ «spare beds» یعنی تخت‌های اضافی که برای مهمانان در نظر گرفته شده است.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با خرید لباس، استایل و قیمت‌ها."
+            "textEn": "Extra beds available for guests when they visit.",
+            "textFa": "تخت‌های اضافی در دسترس برای میزبانی از مهمانان."
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "Broken beds that need immediate repair.",
+            "textFa": "تخت‌های شکسته‌ای که نیاز به تعمیر دارند."
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "Very expensive luxury designer furniture.",
+            "textFa": "مبلمان گران‌قیمت و لوکس سفارشی."
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "Outdoor camping sleeping bags.",
+            "textFa": "کیسه‌خواب‌های مخصوص اردو زدن در طبیعت."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام جمله درباره بیان عادات و دفعات میزبانی با قیدهای تکرار و زمان حال ساده از نظر دستوری صحیح است؟",
+        "promptEn": "Which sentence about having guests correctly uses frequency expressions and present simple?",
+        "explanationFa": "گزینه اول کاملاً صحیح است؛ قید تکرار often قبل از فعل اصلی have قرار گرفته و ساختار جمله‌ای کاملاً طبیعی است.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on shopping, clothes & styles, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون خرید لباس، استایل و قیمت‌ها، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "We often have friends come and stay with us at the weekend.",
+            "textFa": "ما اغلب اوقات در آخر هفته دوستانی داریم که می‌آیند و پیش ما می‌مانند."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "We does have visitors quite frequently in our house.",
+            "textFa": "کاربرد نادرست does برای ضمیر فاعلی We."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "I never having people to stay over because my room is small.",
+            "textFa": "کاربرد غلط داشتن فعل ing-دار بدون فعل کمکی be."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "They hasn't got any extra room for guests.",
+            "textFa": "کاربرد نادرست hasn't برای ضمیر جمع They."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on shopping, clothes & styles, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون خرید لباس، استایل و قیمت‌ها، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه خرید لباس، استایل و قیمت‌ها تقویت می‌کند."
+        "promptFa": "جمله کلیدی زیر را که گوینده دوم در ثانیه ۰:۳۴ بیان می‌کند، با تلفظ روان و آهنگ طبیعی بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptEn": "Read Speaker 2's sentence from [0:34] aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "I love having friends around. We do have a lot of space in our place, and it's great to share it with others.",
+        "targetPhraseFa": "من دورهمی با دوستانم را دوست دارم. ما در خانه‌مان فضای زیادی داریم و شریک شدن آن با دیگران عالی است.",
+        "phoneticGuide": "/aɪ lʌv ˈhævɪŋ frendz əˈraʊnd. wiː duː hæv ə lɒt əv speɪs ɪn ˈaʊər pleɪs, ænd ɪts ɡreɪt tuː ʃeər ɪt wɪð ˈʌðərz/",
+        "speakingTipsFa": "به استرس روی love و great، و ادغام صوتی عبارت a lot of space دقت فرمایید.",
+        "explanationFa": "این ساختار یکی از کاربردی‌ترین جملات برای بیان خونگرمی و میزبانی در سطح A2 است."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 3 · ولاگ تعاملی BBC: خرید لباس، استایل و قیمت‌ها» چیست؟",
-        "promptEn": "Based on the context of 'Unit 3 · BBC Vlogs: Shopping, Clothes & Styles', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون خرید لباس، استایل و قیمت‌ها است.",
+        "promptFa": "بر اساس ویدیوی این درس و تمرین صفحه ۲۹ کتاب، چند نفر از گویندگان صریحاً اشاره می‌کنند که عاشق مهمان داشتن و دورهمی با دوستان هستند (love having visitors / friends)?",
+        "promptEn": "According to the video and textbook exercise (p. 29), how many speakers say that they LOVE having friends/visitors over?",
+        "explanationFa": "سه گوینده (Speaker 2 در مادرید: I love having friends around، Speaker 3 در بولونیا: We love having friends over، و Speaker 4 در مادرید: I love having visitors) صریحاً از فعل love استفاده می‌کنند.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding shopping, clothes & styles.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون خرید لباس، استایل و قیمت‌ها."
+            "textEn": "Three speakers (Speakers 2, 3, and 4)",
+            "textFa": "سه گوینده (گویندگان ۲، ۳ و ۴)"
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "All six speakers love having visitors.",
+            "textFa": "همه شش گوینده عاشق مهمان داشتن هستند."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Only one speaker likes visitors.",
+            "textFa": "فقط یک گوینده مهمان داشتن را دوست دارد."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "Nobody enjoys having friends over.",
+            "textFa": "هیچ‌کدام از افراد از آمدن مهمان استقبال نمی‌کنند."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (خرید لباس، استایل و قیمت‌ها)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Shopping, Clothes & Styles' using relevant descriptive vocabulary.",
+        "promptFa": "با استفاده از کلمات کلیدی (visitors, sofa / room, space)، متنی کوتاه (حداقل ۱۴ کلمه) به زبان انگلیسی درباره اینکه وقتی مهمان به خانه‌تان می‌آید کجا می‌ماند بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) about whether you have visitors staying in your home and where they sleep, using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "visitors",
+          "sofa",
+          "space"
         ],
-        "sampleAnswerEn": "Learning about shopping, clothes & styles through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره خرید لباس، استایل و قیمت‌ها از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "When visitors come to my home, they can stay on the living room sofa because we don't have enough space for an extra room.",
+        "sampleAnswerFa": "وقتی مهمانان به خانه من می‌آیند، می‌توانند روی کاناپه اتاق نشیمن بمانند چون فضای کافی برای یک اتاق اضافی نداریم.",
+        "evaluationTipsFa": "استفاده از سه واژه کلیدی، بیان روشن نحوه اسکان مهمان و رعایت املای صحیح الزامی است.",
+        "explanationFa": "نوشته شما بر مبنای توانایی پاسخ به سوال ولاگ (Do you ever have visitors staying?) با واژگان درس ارزیابی می‌شود."
       }
     }
   },
@@ -5467,8 +5920,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v07",
     "level": "a2",
     "episodeNumber": 7,
-    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: ورزش و تندرستی در پارک مرکزی",
-    "titleEn": "Unit 4 · BBC Programmes: Fitness, Health & Central Park",
+    "titleFa": "یونیت 4 · مستند تلویزیونی BBC: جشن شکوفه‌های گیلاس در ژاپن (Sakura Time)",
+    "titleEn": "Unit 4 · BBC Programmes: Sakura Time in Japan",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 4",
     "cefr": "A2",
@@ -5478,217 +5931,331 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=so&level=a2&file=SO3 A2 U4 BBC Programmes.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
-    "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون ورزش و تندرستی در پارک مرکزی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on fitness, health & central park with native British and international speakers.",
+    "posterIcon": "🌸",
+    "summaryFa": "مستند دیدنی بی‌بی‌سی پیرامون فصل شکوفه‌های گیلاس (ساکورا) در ژاپن، پیش‌بینی‌های هواشناسی، جشن‌ها و پیک‌نیک‌های زیر درختان، سوغاتی‌های سنتی و توصیه‌های سفر با ساختار should و shouldn't.",
+    "summaryEn": "Authentic BBC documentary from Pearson Speakout 3rd Edition exploring Sakura season in Japan, weather forecasts, park picnics, traditional sweets, and travel recommendations using should and shouldn't.",
     "keyTopicsFa": [
-      "ورزش و تندرستی در پارک مرکزی",
+      "فصل شکوفه‌های گیلاس (Sakura Time)",
+      "آب‌وهوا، فصل‌ها و پیش‌بینی هوا",
       "مستند تلویزیونی BBC",
-      "واژگان یونیت 4",
-      "لهجه‌های زنده بریتانیایی"
+      "توصیه دادن با should و shouldn't"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 13,
-              "timeDisplay": "0:13",
-              "speaker": "Narrator",
-              "textEn": "It's spring in Japan, sakura time. There are one million cherry trees in Japan. One morning, the sun comes up and their blossoms begin to open.",
-              "textFa": "بهار در ژاپن و زمان شکوفه‌های گیلاس (ساکورا) است. یک میلیون درخت گیلاس در ژاپن وجود دارد و با طلوع خورشید، شکوفه‌ها باز می‌شوند."
+        "id": 1,
+        "seconds": 13,
+        "endSeconds": 19,
+        "timeDisplay": "0:13",
+        "speaker": "Narrator",
+        "textEn": "It's spring in Japan, sakura time.",
+        "textFa": "بهار در ژاپن، زمان شکوفه‌های گیلاس (ساکورا) است."
       },
       {
-              "id": 2,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Narrator",
-              "textEn": "Sakura season starts in January in the south. In the north it's still winter. From January to May, a pink wave of colour travels from south to north, over 3,000 kilometres.",
-              "textFa": "فصل ساکورا از ماه ژانویه در جنوب آغاز می‌شود؛ در حالی که در شمال هنوز زمستان است. از ژانویه تا مه، موجی صورتی‌رنگ به طول بیش از ۳۰۰۰ کیلومتر از جنوب به شمال حرکت می‌کند."
+        "id": 2,
+        "seconds": 26,
+        "endSeconds": 36,
+        "timeDisplay": "0:26",
+        "speaker": "Narrator",
+        "textEn": "There are one million cherry trees in Japan. One morning the sun comes up and their blossoms begin to open.",
+        "textFa": "یک میلیون درخت گیلاس در ژاپن وجود دارد. یک روز صبح خورشید طلوع می‌کند و شکوفه‌های آن‌ها شروع به باز شدن می‌کنند."
       },
       {
-              "id": 3,
-              "seconds": 73,
-              "timeDisplay": "1:13",
-              "speaker": "Narrator",
-              "textEn": "For Japanese people, sakura season is a very special time of year. It's a good time to visit Japan, and to enjoy being under the trees.",
-              "textFa": "برای مردم ژاپن، فصل ساکورا زمان بسیار ویژه‌ای در سال است؛ فصلی عالی برای سفر به ژاپن و لذت بردن در زیر سایه درختان شکوفا."
+        "id": 3,
+        "seconds": 46,
+        "endSeconds": 57,
+        "timeDisplay": "0:46",
+        "speaker": "Narrator",
+        "textEn": "Sakura season starts in January in the south. In the north it's still winter.",
+        "textFa": "فصل ساکورا در ماه ژانویه در جنوب آغاز می‌شود. در شمال هنوز زمستان است."
       },
       {
-              "id": 4,
-              "seconds": 87,
-              "timeDisplay": "1:27",
-              "speaker": "Narrator",
-              "textEn": "So, when is the best time to visit? In Japan there are two important forecasts. One is the weather forecast and the other is the cherry blossom forecast. But a forecast can't be perfect. So, when you visit Japan in the spring, you should stay for a week... or two.",
-              "textFa": "بهترین زمان سفر چه زمانی است؟ در ژاپن دو پیش‌بینی مهم وجود دارد: پیش‌بینی هوا و پیش‌بینی باز شدن شکوفه‌ها. البته پیش‌بینی‌ها بی‌نقص نیستند، پس بهتر است یک یا دو هفته اقامت داشته باشید."
+        "id": 4,
+        "seconds": 60,
+        "endSeconds": 70,
+        "timeDisplay": "1:00",
+        "speaker": "Narrator",
+        "textEn": "From January to May, a pink wave of color travels from south to north, over 3,000 kilometers.",
+        "textFa": "از ژانویه تا مه، موجی صورتی‌رنگ به طول بیش از ۳۰۰۰ کیلومتر از جنوب به شمال حرکت می‌کند."
       },
       {
-              "id": 5,
-              "seconds": 121,
-              "timeDisplay": "2:01",
-              "speaker": "Narrator",
-              "textEn": "At this time families and friends often come together and have picnics in the parks. Groups of businesspeople meet... and some women wear traditional clothes.",
-              "textFa": "در این ایام، خانواده‌ها و دوستان دور هم جمع شده و در پارک‌ها پیک‌نیک برگزار می‌کنند؛ گروه‌های کاری جلسه می‌گذارند و برخی بانوان لباس سنتی کیمونو بر تن می‌کنند."
+        "id": 5,
+        "seconds": 73,
+        "endSeconds": 85,
+        "timeDisplay": "1:13",
+        "speaker": "Narrator",
+        "textEn": "For Japanese people, sakura season is a very special time of year. It's a good time to visit Japan and to enjoy being under the trees.",
+        "textFa": "برای مردم ژاپن، فصل ساکورا زمان بسیار ویژه‌ای از سال است؛ زمانی عالی برای بازدید از ژاپن و لذت بردن در زیر درختان."
       },
       {
-              "id": 6,
-              "seconds": 143,
-              "timeDisplay": "2:23",
-              "speaker": "Narrator",
-              "textEn": "Sakura season is big business. Everywhere there are sakura souvenirs, and sakura food and drink. People buy cherry blossom tea, cherry blossom cakes and cherry blossom sweets.",
-              "textFa": "فصل ساکورا تجارتی بزرگ است؛ در همه‌جا سوغاتی‌ها، غذاها و نوشیدنی‌های ساکورا عرضه می‌شود؛ چای، کیک و شیرینی‌های سنتی با طعم شکوفه گیلاس."
+        "id": 6,
+        "seconds": 87,
+        "endSeconds": 103,
+        "timeDisplay": "1:27",
+        "speaker": "Narrator",
+        "textEn": "So when is the best time to visit? In Japan there are two important forecasts: one is the weather forecast and the other is the cherry blossom forecast.",
+        "textFa": "پس بهترین زمان برای بازدید چه موقع است؟ در ژاپن دو پیش‌بینی مهم وجود دارد: یکی پیش‌بینی هوا و دیگری پیش‌بینی شکوفه‌های گیلاس."
+      },
+      {
+        "id": 7,
+        "seconds": 104,
+        "endSeconds": 113,
+        "timeDisplay": "1:44",
+        "speaker": "Narrator",
+        "textEn": "But a forecast can't be perfect. So when you visit Japan in the spring, you should stay for a week or two.",
+        "textFa": "اما پیش‌بینی نمی‌تواند بی‌نقص باشد؛ بنابراین وقتی در بهار به ژاپن سفر می‌کنید، باید یک یا دو هفته اقامت داشته باشید."
+      },
+      {
+        "id": 8,
+        "seconds": 122,
+        "endSeconds": 128,
+        "timeDisplay": "2:02",
+        "speaker": "Narrator",
+        "textEn": "At this time, families and friends often come together and have picnics in the parks.",
+        "textFa": "در این هنگام، خانواده‌ها و دوستان اغلب دور هم جمع می‌شوند و در پارک‌ها پیک‌نیک برگزار می‌کنند."
+      },
+      {
+        "id": 9,
+        "seconds": 133,
+        "endSeconds": 139,
+        "timeDisplay": "2:13",
+        "speaker": "Narrator",
+        "textEn": "Groups of businesspeople meet, and some women wear traditional clothes.",
+        "textFa": "گروه‌های کاری ملاقات می‌کنند و برخی بانوان لباس‌های سنتی بر تن می‌کنند."
+      },
+      {
+        "id": 10,
+        "seconds": 143,
+        "endSeconds": 154,
+        "timeDisplay": "2:23",
+        "speaker": "Narrator",
+        "textEn": "Sakura season is big business. Everywhere there are sakura souvenirs and sakura food and drink.",
+        "textFa": "فصل ساکورا تجارتی بزرگ است. همه‌جا سوغاتی‌های ساکورا و غذاها و نوشیدنی‌های ساکورا وجود دارد."
+      },
+      {
+        "id": 11,
+        "seconds": 156,
+        "endSeconds": 162,
+        "timeDisplay": "2:36",
+        "speaker": "Narrator",
+        "textEn": "People buy cherry blossom tea, cherry blossom cakes and cherry blossom sweets.",
+        "textFa": "مردم چای شکوفه گیلاس، کیک‌های شکوفه گیلاس و شیرینی‌های شکوفه گیلاس می‌خرند."
+      },
+      {
+        "id": 12,
+        "seconds": 163,
+        "endSeconds": 177,
+        "timeDisplay": "2:43",
+        "speaker": "Narrator",
+        "textEn": "Inside this one there's sweet sticky rice. It comes in a beautiful box. And everything is pink.",
+        "textFa": "داخل این یکی برنج چسبناک شیرین است؛ در جعبه‌ای زیبا عرضه می‌شود و همه‌چیز صورتی‌رنگ است."
+      },
+      {
+        "id": 13,
+        "seconds": 180,
+        "endSeconds": 188,
+        "timeDisplay": "3:00",
+        "speaker": "Narrator",
+        "textEn": "The parks are often very crowded. You shouldn't start the day too late.",
+        "textFa": "پارک‌ها اغلب بسیار شلوغ هستند؛ نباید روز را خیلی دیر شروع کنید."
+      },
+      {
+        "id": 14,
+        "seconds": 189,
+        "endSeconds": 196,
+        "timeDisplay": "3:09",
+        "speaker": "Narrator",
+        "textEn": "Go out early and find a good place to sit and enjoy the blossoms.",
+        "textFa": "صبح زود بیرون بروید و جایی مناسب برای نشستن و لذت بردن از شکوفه‌ها پیدا کنید."
+      },
+      {
+        "id": 15,
+        "seconds": 197,
+        "endSeconds": 205,
+        "timeDisplay": "3:17",
+        "speaker": "Narrator",
+        "textEn": "In the evenings, the celebrations continue, but when the sun goes down, it's often cool.",
+        "textFa": "غروب‌ها جشن‌ها ادامه می‌یابد، اما وقتی خورشید غروب می‌کند، هوا اغلب خنک است."
+      },
+      {
+        "id": 16,
+        "seconds": 205,
+        "endSeconds": 208,
+        "timeDisplay": "3:25",
+        "speaker": "Narrator",
+        "textEn": "So you should bring some warm clothes.",
+        "textFa": "بنابراین باید مقداری لباس گرم به همراه بیاورید."
+      },
+      {
+        "id": 17,
+        "seconds": 213,
+        "endSeconds": 221,
+        "timeDisplay": "3:33",
+        "speaker": "Narrator",
+        "textEn": "The sakura season is short. The blossoms open and then about a week later they begin to fall.",
+        "textFa": "فصل ساکورا کوتاه است؛ شکوفه‌ها باز می‌شوند و سپس حدود یک هفته بعد شروع به ریختن می‌کنند."
+      },
+      {
+        "id": 18,
+        "seconds": 224,
+        "endSeconds": 229,
+        "timeDisplay": "3:44",
+        "speaker": "Narrator",
+        "textEn": "Sakura time is over... until next year.",
+        "textFa": "فصل ساکورا به پایان رسید... تا سال آینده."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 4 · مستند تلویزیونی BBC: ورزش و تندرستی در پارک مرکزی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [2:04]. What key insight does Speaker 1 share?",
-        "timestampSeconds": 124,
-        "timestampDisplay": "2:04",
-        "explanationFa": "در ثانیه 2:04، Speaker 1 صریحاً بیان می‌کند: «At this time families and friends often come together and have picnics in the parks.».",
+        "promptFa": "بر اساس انتهای ویدیو در ثانیه ۳:۳۳، شکوفه‌های گیلاس (sakura blossoms) معمولاً تا چه مدتی پس از باز شدن روی درختان باقی می‌مانند؟",
+        "promptEn": "Listen at [3:33]. How long do the blossoms typically last on the trees before they begin to fall?",
+        "timestampSeconds": 213,
+        "timestampDisplay": "3:33",
+        "explanationFa": "راوی در ثانیه ۳:۳۳ بیان می‌کند: «The sakura season is short. The blossoms open and then about a week later they begin to fall.» بنابراین حدود یک هفته باقی می‌مانند.",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 1 indicates: \"At this time families and friends often come together and have p...\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "About a week (around seven days)",
+            "textFa": "حدود یک هفته (حدود هفت روز)"
           },
           {
             "id": 2,
-            "textEn": "They are analyzing technical financial stock reports.",
-            "textFa": "آن‌ها در حال بررسی صورت‌های مالی تخصصی بورس هستند."
+            "textEn": "About six months throughout summer and autumn",
+            "textFa": "حدود شش ماه در طول تابستان و پاییز"
           },
           {
             "id": 3,
-            "textEn": "The interview is about repairing subway electrical lines.",
-            "textFa": "مصاحبه منحصراً درباره تعمیر خطوط مترو است."
+            "textEn": "Only a few hours on a single morning",
+            "textFa": "صرفاً چند ساعت در یک صبح"
           },
           {
             "id": 4,
-            "textEn": "They are taking an official medical surgery examination.",
-            "textFa": "آن‌ها در حال آزمون جراحی پزشکی هستند."
+            "textEn": "Throughout the whole winter season",
+            "textFa": "در تمام طول فصل زمستان"
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (ورزش و تندرستی در پارک مرکزی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Fitness, Health & Central Park)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی ورزش و تندرستی در پارک مرکزی در ارتباط است.",
+        "promptFa": "کدام واژه به معنای «پیش‌بینی وضعیت آب‌وهوا یا رویدادهای طبیعی» است که در ثانیه ۱:۲۷ مستند به آن اشاره شد؟",
+        "promptEn": "Which word means a statement about what is likely to happen, as in the weather report mentioned at [1:27]?",
+        "explanationFa": "واژه «forecast» به معنای پیش‌بینی (به ویژه پیش‌بینی آب‌وهوا: weather forecast) است.",
         "options": [
           {
             "id": 1,
-            "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با ورزش و تندرستی در پارک مرکزی."
+            "textEn": "forecast (prediction of future weather or events)",
+            "textFa": "پیش‌بینی (پیش‌بینی آینده آب‌وهوا یا رویدادها)"
           },
           {
             "id": 2,
-            "textEn": "Crystallography: the experimental science of determining arrangements of atoms.",
-            "textFa": "بلورشناسی در شیمی."
+            "textEn": "souvenir (an object kept as a reminder)",
+            "textFa": "سوغاتی یا یادگاری سفر"
           },
           {
             "id": 3,
-            "textEn": "Trigonometry: a branch of mathematics dealing with relations of sides of triangles.",
-            "textFa": "مثلثات در ریاضیات."
+            "textEn": "crowd (a large number of people gathered together)",
+            "textFa": "جمعیت و شلوغی"
           },
           {
             "id": 4,
-            "textEn": "Stratigraphy: branch of geology concerned with rock layers.",
-            "textFa": "لایه‌شناسی در زمین‌شناسی."
+            "textEn": "celebration (a social gathering for a festival)",
+            "textFa": "جشن و پایکوبی"
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام جمله از نظر ساختار دستوری، ترتیب واژگان و تطابق زمانی کاملاً استاندارد و صحیح است؟",
-        "promptEn": "Which sentence follows standard English grammar and natural sentence structure?",
-        "explanationFa": "گزینه اول کاملاً صحیح و بدون خطای دستوری است.",
+        "promptFa": "کدام جمله بر اساس قوانین گرامری should و shouldn't برای دادن توصیه به مسافران بهار ژاپن صحیح است؟",
+        "promptEn": "Which sentence correctly uses 'should / shouldn't' to give travel advice for Japan in spring?",
+        "explanationFa": "گزینه اول کاملاً صحیح است؛ بعد از فعل مدال should یا shouldn't شکل ساده فعل بدون to می‌آید.",
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on fitness, health & central park, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون ورزش و تندرستی در پارک مرکزی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "You should bring some warm clothes because in the evening it's often cool.",
+            "textFa": "شما باید مقداری لباس گرم به همراه بیاورید چون در غروب هوا اغلب خنک است."
           },
           {
             "id": 2,
-            "textEn": "She do not has enough information about the schedule.",
-            "textFa": "کاربرد نادرست do not برای فاعل سوم شخص مفرد She"
+            "textEn": "You shouldn't to start the day too late.",
+            "textFa": "کاربرد نادرست to بعد از فعل کمکی shouldn't."
           },
           {
             "id": 3,
-            "textEn": "They was talking to the reporter on the London street.",
-            "textFa": "کاربرد نادرست was برای فاعل جمع They"
+            "textEn": "You should staying for a week or two.",
+            "textFa": "کاربرد غلط فعل ing-دار بعد از should."
           },
           {
             "id": 4,
-            "textEn": "We is discussing the topic of this unit today.",
-            "textFa": "کاربرد غلط فعل is برای ضمیر We"
+            "textEn": "You shouldn't brings heavy coats in summer.",
+            "textFa": "کاربرد نادرست s سوم شخص برای فعل بعد از shouldn't."
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
-        "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on fitness, health & central park, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون ورزش و تندرستی در پارک مرکزی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
-        "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه ورزش و تندرستی در پارک مرکزی تقویت می‌کند."
+        "promptFa": "جمله توصیه کلیدی زیر را از ثانیه ۳:۲۵ مستند، با تلفظ روان و آهنگ طبیعی بخوانید و صدای خود را ارزیابی فرمایید:",
+        "promptEn": "Read the key advice sentence from [3:25] aloud with clear natural pronunciation and rhythm:",
+        "targetPhraseEn": "In the evenings, the celebrations continue, so you should bring some warm clothes.",
+        "targetPhraseFa": "غروب‌ها جشن‌ها ادامه دارند، بنابراین باید مقداری لباس گرم به همراه بیاورید.",
+        "phoneticGuide": "/ɪn ði ˈiːvnɪŋz, ðə ˌselɪˈbreɪʃnz kənˈtɪnjuː, soʊ juː ʃʊd brɪŋ sʌm wɔːrm kloʊðz/",
+        "speakingTipsFa": "به پیوستگی صوتی so you should bring و تلفظ واژه clothes /kloʊðz/ دقت فرمایید.",
+        "explanationFa": "این ساختار الگویی استاندارد برای توصیه دادن در مکالمات سفر و آب‌وهوا در سطح A2 است."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 4 · مستند تلویزیونی BBC: ورزش و تندرستی در پارک مرکزی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 4 · BBC Programmes: Fitness, Health & Central Park', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون ورزش و تندرستی در پارک مرکزی است.",
+        "promptFa": "با توجه به متن مستند، «موج صورتی‌رنگ شکوفه‌ها» چگونه در کشور ژاپن حرکت می‌کند؟",
+        "promptEn": "According to the documentary, how does the 'pink wave of colour' travel across Japan?",
+        "explanationFa": "در ثانیه ۱:۰۰ مستند آمده است: «From January to May, a pink wave of colour travels from south to north, over 3,000 kilometres.» یعنی از جنوب به شمال و بیش از ۳۰۰۰ کیلومتر.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding fitness, health & central park.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون ورزش و تندرستی در پارک مرکزی."
+            "textEn": "From south to north, covering over 3,000 kilometres from January to May.",
+            "textFa": "از جنوب به سمت شمال و در مسافتی بیش از ۳۰۰۰ کیلومتر از ژانویه تا مه."
           },
           {
             "id": 2,
-            "textEn": "To assemble industrial machinery blueprints.",
-            "textFa": "مونتاژ نقشه‌های فنی صنعتی."
+            "textEn": "From north to south within just two days in July.",
+            "textFa": "از شمال به جنوب ظرف دو روز در ماه ژوئیه."
           },
           {
             "id": 3,
-            "textEn": "To navigate a submarine through ocean currents.",
-            "textFa": "هدایت زیردریایی در اقیانوس."
+            "textEn": "Only inside a single greenhouse in Tokyo.",
+            "textFa": "صرفاً درون یک گلخانه در شهر توکیو."
           },
           {
             "id": 4,
-            "textEn": "To measure seismic vibrations on fault lines.",
-            "textFa": "اندازه‌گیری لرزش‌های زمین‌شناسی."
+            "textEn": "From east to west across the sea to South Korea.",
+            "textFa": "از شرق به غرب در امتداد دریا به سمت کره جنوبی."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (ورزش و تندرستی در پارک مرکزی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Fitness, Health & Central Park' using relevant descriptive vocabulary.",
+        "promptFa": "با استفاده از کلمات کلیدی (visit, should, spring / clothes)، متنی کوتاه (حداقل ۱۴ کلمه) درباره توصیه به یک گردشگر برای بازدید از یک شهر یا کشور بنویسید.",
+        "promptEn": "Write a short paragraph in English (at least 14 words) recommending a good time to visit a place using the keywords.",
         "minWords": 14,
         "keywordsToUse": [
-          "experience",
-          "important",
-          "learn"
+          "visit",
+          "should",
+          "spring"
         ],
-        "sampleAnswerEn": "Learning about fitness, health & central park through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره ورزش و تندرستی در پارک مرکزی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
-        "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
-        "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
+        "sampleAnswerEn": "You should visit Japan in the spring to see the beautiful sakura blossoms, but remember to bring warm clothes.",
+        "sampleAnswerFa": "شما باید در فصل بهار از ژاپن بازدید کنید تا شکوفه‌های زیبای ساکورا را ببینید، اما به یاد داشته باشید که لباس گرم همراه داشته باشید.",
+        "evaluationTipsFa": "استفاده از سه واژه کلیدی، به کار بردن ساختار should برای توصیه و رعایت املای صحیح الزامی است.",
+        "explanationFa": "نوشته شما بر مبنای توانایی ارائه توصیه سفر با ساختار دستوری should بررسی می‌شود."
       }
     }
   },
-  {
+{
     "id": "a2-v08",
     "level": "a2",
     "episodeNumber": 8,
-    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: ورزش و تندرستی در پارک مرکزی",
-    "titleEn": "Unit 4 · BBC Vlogs: Fitness, Health & Central Park",
+    "titleFa": "یونیت 4 · ولاگ تعاملی BBC: مسابقات اطلاعات عمومی و کوئیزها",
+    "titleEn": "Unit 4 · BBC Vlogs: Quizzes, Facts & Trivia",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 4",
     "cefr": "A2",
@@ -5699,77 +6266,119 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون ورزش و تندرستی در پارک مرکزی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on fitness, health & central park with native British and international speakers.",
+    "summaryFa": "ویدیوی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون علاقه افراد به کوئیز و مسابقات اطلاعات عمومی، به یاد سپردن فکت‌ها و توانایی‌ها (good/bad at) همراه با گویندگان بریتانیایی و بین‌المللی.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers discuss whether they enjoy quizzes, learning facts, and what categories they are good or bad at.",
     "keyTopicsFa": [
-      "ورزش و تندرستی در پارک مرکزی",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 4",
-      "لهجه‌های زنده بریتانیایی"
+      "علاقه به مسابقات و کوئیز (enjoy quizzes)",
+      "نقاط قوت و ضعف (good at / bad at / terrible at)",
+      "به خاطر سپردن حقایق و تاریخ‌ها (remembering facts or dates)",
+      "انواع دسته‌بندی‌ها (celebrities, music, flags, places, Sudokus)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Speaker 1",
-              "textEn": "Spring is definitely my favourite season because the weather starts getting warmer and the flowers start to come out.",
-              "textFa": "بهار قطعاً فصل محبوب من است، چون هوا رو به گرمی می‌رود و گل‌ها شروع به شکفتن می‌کنند."
+        "id": 1,
+        "seconds": 10,
+        "endSeconds": 17,
+        "timeDisplay": "0:10",
+        "speaker": "Question Prompt",
+        "textEn": "Do you enjoy quizzes?",
+        "textFa": "آیا از کوئیز و مسابقات اطلاعات عمومی لذت می‌برید؟"
       },
       {
-              "id": 2,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Speaker 2",
-              "textEn": "I love the autumn. I love the colours of the leaves and I like the cooler weather.",
-              "textFa": "من عاشق پاییزم؛ رنگ‌های گوناگون برگ‌ها و هوای خنک و دلپذیرش را دوست دارم."
+        "id": 2,
+        "seconds": 18,
+        "endSeconds": 25,
+        "timeDisplay": "0:18",
+        "speaker": "Speaker 1 (Saffron Walden, UK)",
+        "textEn": "Um, I really enjoy quizzes. I don’t like doing them on my own, but I enjoy being part of a team.",
+        "textFa": "ام، من واقعاً از کوئیز و مسابقات اطلاعات عمومی لذت می‌برم. دوست ندارم تنهایی انجامشان دهم، اما از عضویت در یک تیم لذت می‌برم."
       },
       {
-              "id": 3,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Speaker 3",
-              "textEn": "Summer is my favourite time of year. Going to the beach, swimming in the sea and eating ice cream.",
-              "textFa": "تابستان زمان محبوب من در سال است: رفتن به ساحل، شنا در دریا و خوردن بستنی."
+        "id": 3,
+        "seconds": 26,
+        "endSeconds": 34,
+        "timeDisplay": "0:26",
+        "speaker": "Speaker 2 (London, UK)",
+        "textEn": "No, I’m really bad at quizzes, I don’t enjoy them. I’m not good at remembering facts or dates.",
+        "textFa": "نه، من در کوئیزها واقعاً ضعیف و بدم و از آنها لذت نمی‌برم. در به خاطر سپردن اطلاعات و تاریخ‌ها خوب نیستم."
       },
       {
-              "id": 4,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Speaker 4",
-              "textEn": "My favourite season is winter because I love snow and I love skiing.",
-              "textFa": "فصل محبوب من زمستان است چون عاشق برف و اسکی روی برفی‌ام."
+        "id": 4,
+        "seconds": 35,
+        "endSeconds": 44,
+        "timeDisplay": "0:35",
+        "speaker": "Speaker 3 (Poznań, Poland)",
+        "textEn": "I absolutely love quizzes. I’m interested in a lot of things, so I really enjoy learning new facts.",
+        "textFa": "من واقعاً عاشق کوئیزم. به چیزهای زیادی علاقه‌مندم، بنابراین از یادگیری اطلاعات و نکات جدید بسیار لذت می‌برم."
       },
       {
-              "id": 5,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Speaker 5",
-              "textEn": "I really enjoy summer because the days are longer and you can spend more time outside with friends.",
-              "textFa": "من واقعاً از تابستان لذت می‌برم چون روزها طولانی‌ترند و می‌توان زمان بیشتری را بیرون از خانه با دوستان گذراند."
+        "id": 5,
+        "seconds": 45,
+        "endSeconds": 57,
+        "timeDisplay": "0:45",
+        "speaker": "Speaker 4 (London, UK)",
+        "textEn": "Um, I like doing quizzes with friends on things like 80s pop music and films, but I’m, I’m not very good at them, I never win.",
+        "textFa": "ام، من دوست دارم با دوستانم درباره چیزهایی مثل موسیقی پاپ دهه ۸۰ و فیلم‌ها کوئیز حل کنم، اما چندان در آنها خوب نیستم، هیچ‌وقت برنده نمی‌شوم."
       },
       {
-              "id": 6,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Speaker 6",
-              "textEn": "Autumn is wonderful. The crisp air in the morning and wearing cosy sweaters.",
-              "textFa": "پاییز فوق‌العاده است: هوای تازه و خنک صبحگاهی و پوشیدن پلیورهای گرم و راحت."
+        "id": 6,
+        "seconds": 58,
+        "endSeconds": 63,
+        "timeDisplay": "0:58",
+        "speaker": "Speaker 5 (London, UK)",
+        "textEn": "I do not like quizzes. I am terrible at them.",
+        "textFa": "من کوئیز دوست ندارم. من در آنها وحشتناک و بسیار ضعیفم."
+      },
+      {
+        "id": 7,
+        "seconds": 64,
+        "endSeconds": 75,
+        "timeDisplay": "1:04",
+        "speaker": "Speaker 6",
+        "textEn": "Erm, I’m not very good at doing quizzes, particularly questions about celebrities or music, but I’m very good at Sudokus.",
+        "textFa": "ام، من در کوئیز زدن زیاد خوب نیستم، به ویژه سوالات مربوط به افراد مشهور یا موسیقی؛ اما در سودوکو بسیار ماهر و خوبم."
+      },
+      {
+        "id": 8,
+        "seconds": 76,
+        "endSeconds": 83,
+        "timeDisplay": "1:16",
+        "speaker": "Speaker 7",
+        "textEn": "Yes, I really like doing quizzes. My favourite questions are sport and music.",
+        "textFa": "بله، من واقعاً کوئیز حل کردن را دوست دارم. سوالات مورد علاقه من ورزش و موسیقی هستند."
+      },
+      {
+        "id": 9,
+        "seconds": 85,
+        "endSeconds": 88,
+        "timeDisplay": "1:25",
+        "speaker": "Speaker 8",
+        "textEn": "I often do quizzes with family and friends.",
+        "textFa": "من اغلب با خانواده و دوستانم کوئیز و بازی‌های اطلاعات عمومی انجام می‌دهم."
+      },
+      {
+        "id": 10,
+        "seconds": 88,
+        "endSeconds": 95,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 8",
+        "textEn": "I can answer questions about celebrities and music, but I can’t answer questions about flags and places. I hate them!",
+        "textFa": "می‌توانم به سوالات مربوط به افراد مشهور و موسیقی پاسخ دهم، اما نمی‌توانم به سوالات درباره پرچم‌ها و مکان‌ها جواب بدهم. از آنها متنفرم!"
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 4 · ولاگ تعاملی BBC: ورزش و تندرستی در پارک مرکزی»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:49]. What key insight does Speaker 4 share?",
-        "timestampSeconds": 49,
-        "timestampDisplay": "0:49",
-        "explanationFa": "در ثانیه 0:49، Speaker 4 صریحاً بیان می‌کند: «I never win.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 4 · ولاگ تعاملی BBC: مسابقات اطلاعات عمومی و کوئیزها»، گوینده ۴ درباره تجربه خود از کوئیز چه می‌گوید؟",
+        "promptEn": "Listen at [0:45]. What key insight does Speaker 4 share?",
+        "timestampSeconds": 45,
+        "timestampDisplay": "0:45",
+        "explanationFa": "در ثانیه 0:45، گوینده ۴ صریحاً بیان می‌کند: «...but I'm not very good at them. I never win.» یعنی هرگز در کوئیزها برنده نمی‌شود.",
         "options": [
           {
             "id": 1,
-            "textEn": "Speaker 4 indicates: \"I never win....\"",
-            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند."
+            "textEn": "Speaker 4 indicates: \"I never win.\"",
+            "textFa": "گوینده در این بخش به درستی به این موضوع اشاره می‌کند که هیچ‌وقت برنده نمی‌شود."
           },
           {
             "id": 2,
@@ -5791,14 +6400,14 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (ورزش و تندرستی در پارک مرکزی) دارد؟",
-        "promptEn": "Which term is most relevant to the communicative context of this lesson (Fitness, Health & Central Park)?",
-        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی ورزش و تندرستی در پارک مرکزی در ارتباط است.",
+        "promptFa": "کدام یک از عبارات زیر کاربرد رایج‌تری در موضوع این درس (مسابقات اطلاعات عمومی و کوئیزها) دارد؟",
+        "promptEn": "Which term is most relevant to the communicative context of this lesson (Quizzes & General Knowledge)?",
+        "explanationFa": "این واژه به طور مستقیم با محتوای آموزشی مسابقات اطلاعات عمومی و کوئیزها در ارتباط است.",
         "options": [
           {
             "id": 1,
             "textEn": "Authentic expression: essential everyday terminology used naturally in this unit.",
-            "textFa": "اصطلاح متناسب با ورزش و تندرستی در پارک مرکزی."
+            "textFa": "اصطلاح متناسب با مسابقات اطلاعات عمومی و کوئیزها."
           },
           {
             "id": 2,
@@ -5826,8 +6435,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "options": [
           {
             "id": 1,
-            "textEn": "In this video lesson on fitness, health & central park, we learn how native speakers express their opinions naturally.",
-            "textFa": "در این درس پیرامون ورزش و تندرستی در پارک مرکزی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
+            "textEn": "In this video lesson on quizzes and trivia, we learn how native speakers express their opinions naturally.",
+            "textFa": "در این درس پیرامون کوئیزها و اطلاعات عمومی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم."
           },
           {
             "id": 2,
@@ -5851,22 +6460,22 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
         "skill": "speaking",
         "promptFa": "جمله کلیدی زیر را با تلفظ طبیعی، لهجه روان و آهنگ صدای مناسب بخوانید و صدای خود را ارزیابی فرمایید:",
         "promptEn": "Read this core phrase aloud with clear natural pronunciation and rhythm:",
-        "targetPhraseEn": "In this video lesson on fitness, health & central park, we learn how native speakers express their opinions naturally.",
-        "targetPhraseFa": "در این درس پیرامون ورزش و تندرستی در پارک مرکزی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
-        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
+        "targetPhraseEn": "In this video lesson on quizzes and trivia, we learn how native speakers express their opinions naturally.",
+        "targetPhraseFa": "در این درس پیرامون مسابقات و اطلاعات عمومی، با نحوه بیان طبیعی دیدگاه‌ها توسط گویش‌وران بومی آشنا می‌شویم.",
+        "phoneticGuide": "/ɪn ðɪs ˈvɪdioʊ ˈlesn ɒn ˈkwɪzɪz ænd ˈtrɪviə wiː lɜːrn haʊ ˈneɪtɪv ˈspiːkərz ɪkˈspres ðer əˈpɪnjənz ˈnætʃrəli/",
         "speakingTipsFa": "به پیوستگی صوتی بین کلمات و لحن طبیعی در بیان نظرات دقت کنید.",
-        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه ورزش و تندرستی در پارک مرکزی تقویت می‌کند."
+        "explanationFa": "تسلط بر این ساختار مهارت اسپیکینگ شما را در حوزه بیان توانمندی‌ها و علایق تقویت می‌کند."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 4 · ولاگ تعاملی BBC: ورزش و تندرستی در پارک مرکزی» چیست؟",
-        "promptEn": "Based on the context of 'Unit 4 · BBC Vlogs: Fitness, Health & Central Park', what is the primary goal of the speakers?",
-        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون ورزش و تندرستی در پارک مرکزی است.",
+        "promptFa": "با توجه به زمینه و متن این بخش آموزشی، هدف اصلی گویندگان در «یونیت 4 · ولاگ تعاملی BBC: مسابقات اطلاعات عمومی و کوئیزها» چیست؟",
+        "promptEn": "Based on the context of 'Unit 4 · BBC Vlogs: Quizzes, Facts & Trivia', what is the primary goal of the speakers?",
+        "explanationFa": "هدف اصلی، انتقال دیدگاه‌ها و تجربیات پیرامون علاقه به کوئیز و مسابقات اطلاعات عمومی است.",
         "options": [
           {
             "id": 1,
-            "textEn": "To communicate authentic perspectives regarding fitness, health & central park.",
-            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون ورزش و تندرستی در پارک مرکزی."
+            "textEn": "To communicate authentic perspectives regarding quizzes, facts & trivia.",
+            "textFa": "برقراری ارتباط موثر و بیان نظرات پیرامون کوئیزها و اطلاعات عمومی."
           },
           {
             "id": 2,
@@ -5888,16 +6497,16 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (ورزش و تندرستی در پارک مرکزی)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
-        "promptEn": "Write a short paragraph in English reflecting on 'Fitness, Health & Central Park' using relevant descriptive vocabulary.",
+        "promptFa": "بر اساس موضوع این درس (مسابقات اطلاعات عمومی و کوئیزها)، متنی کوتاه بنویسید که دیدگاه شما را به زبان انگلیسی بیان کند.",
+        "promptEn": "Write a short paragraph in English reflecting on 'Quizzes, Facts & Trivia' using relevant descriptive vocabulary.",
         "minWords": 14,
         "keywordsToUse": [
           "experience",
           "important",
           "learn"
         ],
-        "sampleAnswerEn": "Learning about fitness, health & central park through authentic video materials is an important experience that improves our communication skills.",
-        "sampleAnswerFa": "یادگیری درباره ورزش و تندرستی در پارک مرکزی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
+        "sampleAnswerEn": "Learning about quizzes and general knowledge through authentic video materials is an important experience that improves our communication skills.",
+        "sampleAnswerFa": "یادگیری درباره کوئیزها و اطلاعات عمومی از طریق ویدیوهای معتبر، تجربه‌ای ارزشمند است که مهارت‌های ارتباطی ما را ارتقا می‌دهد.",
         "evaluationTipsFa": "رعایت املای صحیح واژگان، علائم نگارشی و ساختار درست گرامری در امتیاز نهایی شما لحاظ می‌شود.",
         "explanationFa": "نوشته شما بر مبنای تناسب با موضوع و صحت نگارشی مورد ارزیابی قرار می‌گیرد."
       }
@@ -5907,8 +6516,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v09",
     "level": "a2",
     "episodeNumber": 9,
-    "titleFa": "یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها",
-    "titleEn": "Unit 5 · BBC Street Interviews: Transport, Travel & Directions",
+    "titleFa": "یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): فعالیت‌های آخر هفته و اوقات فراغت",
+    "titleEn": "Unit 5 · BBC Street Interviews: Weekend Activities & Free Time",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 5",
     "cefr": "A2",
@@ -5919,152 +6528,195 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on transport, travel & directions with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی معتبر BBC (Vox Pops) از کتاب اسپیک‌آوت در لندن پیرامون فعالیت‌های آخر هفته (How was your weekend? / What did you do?)، کاربرد زمان گذشته ساده و بیان تجربیات شنبه و یکشنبه.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition filmed in London: speakers describe how their weekend was and what activities they did using past simple verbs.",
     "keyTopicsFa": [
-      "حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها",
-      "مصاحبه خیابانی BBC (Vox Pops)",
-      "واژگان یونیت 5",
-      "لهجه‌های زنده بریتانیایی"
+      "توصیف کیفیت آخر هفته (good, great, boring, fun)",
+      "بیان فعالیت‌های گذشته (went for a run, spent time, watched a movie)",
+      "کاربرد گذشته ساده افعال بی‌قاعده و باقاعده (Past Simple)",
+      "برنامه‌های شنبه و یکشنبه (On Saturday / On Sunday)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Marcello",
-              "textEn": "Saturday was good. Sunday was also good.",
-              "textFa": "شنبه خوب بود و یکشنبه هم روز خوبی بود."
+        "id": 1,
+        "seconds": 13,
+        "endSeconds": 18,
+        "timeDisplay": "0:13",
+        "speaker": "Question Prompt 1",
+        "textEn": "Q1: How was your weekend?",
+        "textFa": "سوال اول: آخر هفته‌تان چطور بود؟"
       },
       {
-              "id": 2,
-              "seconds": 23,
-              "timeDisplay": "0:23",
-              "speaker": "Mark",
-              "textEn": "My weekend was great.",
-              "textFa": "آخر هفته من عالی سپری شد."
+        "id": 2,
+        "seconds": 18.1,
+        "endSeconds": 23,
+        "timeDisplay": "0:18",
+        "speaker": "Marcello",
+        "textEn": "Saturday was good. Sunday was also good.",
+        "textFa": "شنبه خوب بود. یکشنبه هم روز خوبی بود."
       },
       {
-              "id": 3,
-              "seconds": 25,
-              "timeDisplay": "0:25",
-              "speaker": "Gusy",
-              "textEn": "My weekend was very nice.",
-              "textFa": "آخر هفته بسیار دلپذیری داشتم."
+        "id": 3,
+        "seconds": 23.4,
+        "endSeconds": 25,
+        "timeDisplay": "0:23",
+        "speaker": "Mark",
+        "textEn": "My weekend was great.",
+        "textFa": "آخر هفته من عالی سپری شد."
       },
       {
-              "id": 4,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Katy",
-              "textEn": "It was quite good.",
-              "textFa": "نسبتاً خوب بود."
+        "id": 4,
+        "seconds": 25.3,
+        "endSeconds": 27.2,
+        "timeDisplay": "0:25",
+        "speaker": "Gusy",
+        "textEn": "My weekend was very nice.",
+        "textFa": "آخر هفته بسیار دلپذیری داشتم."
       },
       {
-              "id": 5,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Natalia",
-              "textEn": "Um, my Saturday was quite good, I enjoyed it. And my Sunday was quite boring.",
-              "textFa": "شنبه من خوب بود و لذت بردم، اما یکشنبه نسبتاً کسل‌کننده گذشت."
+        "id": 5,
+        "seconds": 27.5,
+        "endSeconds": 29.5,
+        "timeDisplay": "0:27",
+        "speaker": "Katy",
+        "textEn": "It was quite good.",
+        "textFa": "نسبتاً خوب بود."
       },
       {
-              "id": 6,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Gregor",
-              "textEn": "Er, my weekend was very good, thank you.",
-              "textFa": "آخر هفته بسیار خوبی داشتم، متشکرم."
+        "id": 6,
+        "seconds": 30,
+        "endSeconds": 34.5,
+        "timeDisplay": "0:30",
+        "speaker": "Natalia",
+        "textEn": "Um, my Saturday was quite good, I enjoyed it. And my Sunday was quite boring.",
+        "textFa": "ام، شنبه من خوب بود و لذت بردم، اما یکشنبه نسبتاً کسل‌کننده گذشت."
       },
       {
-              "id": 7,
-              "seconds": 71,
-              "timeDisplay": "1:11",
-              "speaker": "Mon Zer",
-              "textEn": "My weekend was boring.",
-              "textFa": "آخر هفته من کسل‌کننده بود."
+        "id": 7,
+        "seconds": 34.8,
+        "endSeconds": 37.2,
+        "timeDisplay": "0:35",
+        "speaker": "Gregor",
+        "textEn": "Er, my weekend was very good, thank you.",
+        "textFa": "آخر هفته بسیار خوبی داشتم، متشکرم."
       },
       {
-              "id": 8,
-              "seconds": 77,
-              "timeDisplay": "1:17",
-              "speaker": "Abi",
-              "textEn": "My weekend was good. Saturday was fun. Sunday was a bit boring.",
-              "textFa": "آخر هفته‌ام خوب بود؛ شنبه پر از سرگرمی بود ولی یکشنبه کمی کسل‌کننده شد."
+        "id": 8,
+        "seconds": 37.3,
+        "endSeconds": 39.3,
+        "timeDisplay": "0:37",
+        "speaker": "Mon Zer",
+        "textEn": "My weekend was boring.",
+        "textFa": "آخر هفته من کسل‌کننده بود."
       },
       {
-              "id": 9,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Marcello",
-              "textEn": "So, on Saturday I went for a run in the park. And on Sunday I watched a movie.",
-              "textFa": "روز شنبه در پارک دویدم و روز یکشنبه فیلم تماشا کردم."
+        "id": 9,
+        "seconds": 39.6,
+        "endSeconds": 44.6,
+        "timeDisplay": "0:39",
+        "speaker": "Abi",
+        "textEn": "My weekend was good. Saturday was fun. Sunday was a bit boring.",
+        "textFa": "آخر هفته‌ام خوب بود؛ شنبه پر از سرگرمی بود ولی یکشنبه کمی کسل‌کننده شد."
       },
       {
-              "id": 10,
-              "seconds": 94,
-              "timeDisplay": "1:34",
-              "speaker": "Mark",
-              "textEn": "I spent time with my family and my two children.",
-              "textFa": "وقتم را با خانواده و دو فرزندم گذراندم."
+        "id": 10,
+        "seconds": 46,
+        "endSeconds": 52,
+        "timeDisplay": "0:46",
+        "speaker": "Question Prompt 2",
+        "textEn": "Q2: What did you do?",
+        "textFa": "سوال دوم: چه کارهایی انجام دادید؟"
       },
       {
-              "id": 11,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Gusy",
-              "textEn": "I went for a walk around the Clapham area. It was very nice, a bit crowded but good.",
-              "textFa": "در منطقه کلپام پیاده‌روی کردم؛ بسیار خوب بود، کمی شلوغ اما لذت‌بخش."
+        "id": 11,
+        "seconds": 52.4,
+        "endSeconds": 59.8,
+        "timeDisplay": "0:52",
+        "speaker": "Marcello",
+        "textEn": "So, on Saturday I went for a run in the park. And on Sunday I watched a movie.",
+        "textFa": "روز شنبه در پارک دویدم و روز یکشنبه فیلم تماشا کردم."
       },
       {
-              "id": 12,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Stephanie",
-              "textEn": "My weekend was good. I played with my dog. I took my dog for a walk and went to the shop.",
-              "textFa": "آخر هفته خوبی بود؛ با سگم بازی کردم، او را برای پیاده‌روی بردم و به خرید رفتم."
+        "id": 12,
+        "seconds": 60.2,
+        "endSeconds": 63.2,
+        "timeDisplay": "1:00",
+        "speaker": "Mark",
+        "textEn": "I spent time with my family and my two children.",
+        "textFa": "وقتم را با خانواده و دو فرزندم گذراندم."
       },
       {
-              "id": 13,
-              "seconds": 100,
-              "timeDisplay": "1:40",
-              "speaker": "Natalia",
-              "textEn": "On Saturday I went to a museum and on Sunday I met up with a friend.",
-              "textFa": "شنبه به موزه رفتم و یکشنبه با یکی از دوستانم قرار گذاشتم."
+        "id": 13,
+        "seconds": 63.8,
+        "endSeconds": 70.4,
+        "timeDisplay": "1:04",
+        "speaker": "Gusy",
+        "textEn": "I went for a walk around the Clapham area. It was very nice, a bit crowded but good.",
+        "textFa": "در منطقه کلپام پیاده‌روی کردم؛ بسیار خوب بود، کمی شلوغ اما لذت‌بخش."
       },
       {
-              "id": 14,
-              "seconds": 102,
-              "timeDisplay": "1:42",
-              "speaker": "Gregor",
-              "textEn": "I stayed at my friend's home and I watched movies.",
-              "textFa": "در خانه دوستم ماندم و فیلم تماشا کردم."
+        "id": 14,
+        "seconds": 70.8,
+        "endSeconds": 78.8,
+        "timeDisplay": "1:11",
+        "speaker": "Stephanie",
+        "textEn": "My weekend was good. I played with my dog. I took my dog for a walk and went to the shop.",
+        "textFa": "آخر هفته خوبی بود؛ با سگم بازی کردم، او را برای پیاده‌روی بردم و به خرید رفتم."
       },
       {
-              "id": 15,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Mon Zer",
-              "textEn": "I worked and, er, watched TV shows.",
-              "textFa": "کار کردم و برنامه‌های تلویزیونی دیدم."
+        "id": 15,
+        "seconds": 79.1,
+        "endSeconds": 82.8,
+        "timeDisplay": "1:19",
+        "speaker": "Natalia",
+        "textEn": "On Saturday I went to a museum and on Sunday I met up with a friend.",
+        "textFa": "شنبه به موزه رفتم و یکشنبه با یکی از دوستانم قرار گذاشتم."
       },
       {
-              "id": 16,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Abi",
-              "textEn": "On Saturday I went dancing. On Sunday I had work.",
-              "textFa": "شنبه به کلاس رقص رفتم و یکشنبه کار داشتم."
+        "id": 16,
+        "seconds": 83.2,
+        "endSeconds": 89.2,
+        "timeDisplay": "1:23",
+        "speaker": "Gregor",
+        "textEn": "I stayed at my friend's home and I watched movies.",
+        "textFa": "در خانه دوستم ماندم و فیلم تماشا کردم."
+      },
+      {
+        "id": 17,
+        "seconds": 89.5,
+        "endSeconds": 93.2,
+        "timeDisplay": "1:29",
+        "speaker": "Mon Zer",
+        "textEn": "I worked and, er, watched TV shows.",
+        "textFa": "کار کردم و برنامه‌های تلویزیونی دیدم."
+      },
+      {
+        "id": 18,
+        "seconds": 93.4,
+        "endSeconds": 95.6,
+        "timeDisplay": "1:33",
+        "speaker": "Abi",
+        "textEn": "On Saturday I went dancing.",
+        "textFa": "شنبه به کلاس رقص رفتم."
+      },
+      {
+        "id": 19,
+        "seconds": 95.8,
+        "endSeconds": 97.5,
+        "timeDisplay": "1:36",
+        "speaker": "Abi",
+        "textEn": "On Sunday I had work.",
+        "textFa": "یکشنبه کار داشتم."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
-        "promptEn": "Listen at [0:54]. What key insight does Marcello share?",
-        "timestampSeconds": 54,
-        "timestampDisplay": "0:54",
-        "explanationFa": "در ثانیه 0:54، Marcello صریحاً بیان می‌کند: «So, on Saturday I went for a run in the park. And on Sunday I watched a movie.».",
+        "promptFa": "بر اساس ویدیوی «یونیت 5 · مصاحبه خیابانی BBC (Vox Pops): فعالیت‌های آخر هفته و اوقات فراغت»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
+        "promptEn": "Listen at [0:52]. What key insight does Marcello share?",
+        "timestampSeconds": 52,
+        "timestampDisplay": "0:52",
+        "explanationFa": "در ثانیه 0:52، Marcello صریحاً بیان می‌کند: «So, on Saturday I went for a run in the park. And on Sunday I watched a movie.».",
         "options": [
           {
             "id": 1,
@@ -6207,8 +6859,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v10",
     "level": "a2",
     "episodeNumber": 10,
-    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها",
-    "titleEn": "Unit 5 · BBC Vlogs: Transport, Travel & Directions",
+    "titleFa": "یونیت 5 · ولاگ تعاملی BBC: خاطرات کودکی و علایق گذشته",
+    "titleEn": "Unit 5 · BBC Vlogs: Childhood Memories & Favourite Things",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 5",
     "cefr": "A2",
@@ -6219,68 +6871,128 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on transport, travel & directions with native British and international speakers.",
+    "summaryFa": "ویدیوی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون خاطرات دوران کودکی، اسباب‌بازی‌ها، غذاها، مکان‌ها و موسیقی‌های مورد علاقه در گذشته با ساختار When I was a child/young.",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition where speakers recall their favourite foods, music, places, toys, and childhood memories using past forms.",
     "keyTopicsFa": [
-      "حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها",
-      "ولاگ تعاملی BBC",
-      "واژگان یونیت 5",
-      "لهجه‌های زنده بریتانیایی"
+      "خاطرات و علایق کودکی (favourite thing, food, place, music)",
+      "ساختار جملات زمانی گذشته (When I was young / a child / about ten)",
+      "بیان گذشته ساده افعال (was/were, loved, wanted, ate, gave)",
+      "توصیف تجربیات گذشته (at university now)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Speaker 1",
-              "textEn": "I live in a very small town. There are a few cafés, a few bookshops, a few restaurants. I like spending my time walking around the bookshops.",
-              "textFa": "من در شهر بسیار کوچکی زندگی می‌کنم؛ چند کافه، چند کتابفروشی و رستوران دارد و گشت‌وگذار در کتابفروشی‌ها را دوست دارم."
+        "id": 1,
+        "seconds": 10,
+        "endSeconds": 17,
+        "timeDisplay": "0:10",
+        "speaker": "Question Prompt",
+        "textEn": "When you were a child, what was your favourite thing/place/food/music?",
+        "textFa": "وقتی کودک بودید، شیء/مکان/غذا/موسیقی مورد علاقه‌تان چه بود؟"
       },
       {
-              "id": 2,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Speaker 2",
-              "textEn": "In my town there is a really nice library, some great bakeries, and a huge park where people go on weekends.",
-              "textFa": "در شهر من یک کتابخانه بسیار زیبا، چند نانوایی و شیرینی‌پزی عالی و یک پارک بزرگ برای تعطیلات آخر هفته وجود دارد."
+        "id": 2,
+        "seconds": 17.5,
+        "endSeconds": 25.5,
+        "timeDisplay": "0:17",
+        "speaker": "Speaker 1",
+        "textEn": "When I was about ten my favourite food was white chocolate.",
+        "textFa": "وقتی حدوداً ده ساله بودم، خوراکی مورد علاقه‌ام شکلات سفید بود."
       },
       {
-              "id": 3,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Speaker 3",
-              "textEn": "My city has amazing public transport. You can take the tram, the bus or the metro anywhere in twenty minutes.",
-              "textFa": "شهر من حمل‌ونقل عمومی فوق‌العاده‌ای دارد؛ با تراموا، اتوبوس یا مترو ظرف بیست دقیقه به هر جا می‌رسید."
+        "id": 3,
+        "seconds": 26.8,
+        "endSeconds": 34.8,
+        "timeDisplay": "0:27",
+        "speaker": "Speaker 2",
+        "textEn": "When I was a child my favourite music was any from Elvis Presley. Actually, it still is.",
+        "textFa": "وقتی بچه بودم، موسیقی مورد علاقه‌ام هر آهنگی از الویس پریسلی بود. در واقع، هنوز هم هست."
       },
       {
-              "id": 4,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Speaker 4",
-              "textEn": "We have an open-air market every Thursday. Farmers bring fresh vegetables, fruits and homemade cheese.",
-              "textFa": "ما هر پنج‌شنبه یک بازار روباز محلی داریم که کشاورزان میوه، سبزیجات تازه و پنیرهای خانگی می‌آورند."
+        "id": 4,
+        "seconds": 35.5,
+        "endSeconds": 42.4,
+        "timeDisplay": "0:35",
+        "speaker": "Speaker 3",
+        "textEn": "When I was young my favourite place was the park. We didn't have a big garden at home so it meant I could run around with my friends.",
+        "textFa": "وقتی کودک بودم جای مورد علاقه‌ام پارک بود؛ در خانه حیاط بزرگی نداشتیم بنابراین پارک جایی بود که می‌توانستم با دوستانم بدوم و بازی کنم."
       },
       {
-              "id": 5,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Speaker 5",
-              "textEn": "There are lots of sports facilities in my area: swimming pools, tennis courts and cycling paths.",
-              "textFa": "امکانات ورزشی متعددی در منطقه ما وجود دارد: استخرهای شنا، زمین‌های تنیس و مسیرهای دوچرخه‌سواری."
+        "id": 5,
+        "seconds": 42.7,
+        "endSeconds": 51.8,
+        "timeDisplay": "0:42",
+        "speaker": "Speaker 4",
+        "textEn": "When I was young my favourite thing was my bike or my roller skates. I loved cycling and I loved skating.",
+        "textFa": "وقتی بچه بودم وسیله مورد علاقه‌ام دوچرخه‌ام یا اسکیت‌هایم بود؛ عاشق دوچرخه‌سواری و اسکیت‌سواری بودم."
       },
       {
-              "id": 6,
-              "seconds": 91,
-              "timeDisplay": "1:31",
-              "speaker": "Speaker 6",
-              "textEn": "It's a historic town with a medieval castle, cobblestone streets, and charming old houses.",
-              "textFa": "شهری تاریخی با قلعه‌ای متعلق به قرون وسطی، خیابان‌های سنگفرش و خانه‌های قدیمی و دلرباست."
+        "id": 6,
+        "seconds": 52.4,
+        "endSeconds": 66.8,
+        "timeDisplay": "0:52",
+        "speaker": "Speaker 5",
+        "textEn": "My favourite food when I was a child was chocolate ice cream. I wanted to eat chocolate ice cream every day. It wasn't possible, but I loved to eat it when I could.",
+        "textFa": "خوراکی مورد علاقه‌ام در کودکی بستنی شکلاتی بود؛ دلم می‌خواست هر روز بستنی شکلاتی بخورم. البته امکان‌پذیر نبود، ولی هر موقع که می‌توانستم با اشتیاق می‌خوردم."
+      },
+      {
+        "id": 7,
+        "seconds": 67.2,
+        "endSeconds": 76.5,
+        "timeDisplay": "1:07",
+        "speaker": "Speaker 6",
+        "textEn": "When I was about five, I ate chocolate for the first time. It was so good that I ate it for breakfast, lunch and dinner.",
+        "textFa": "وقتی حدوداً پنج ساله بودم، برای اولین بار شکلات خوردم؛ آن‌قدر خوشمزه بود که برای صبحانه، ناهار و شام شکلات می‌خوردم."
+      },
+      {
+        "id": 8,
+        "seconds": 77.4,
+        "endSeconds": 86.8,
+        "timeDisplay": "1:17",
+        "speaker": "Speaker 7",
+        "textEn": "When I was six my favourite thing was a puzzle with all the flags of the world on it. I loved that puzzle.",
+        "textFa": "وقتی شش ساله بودم، شیء مورد علاقه‌ام یک پازل با پرچم همه کشورهای جهان بود؛ واقعاً عاشق آن پازل بودم."
+      },
+      {
+        "id": 9,
+        "seconds": 88.0,
+        "endSeconds": 94.6,
+        "timeDisplay": "1:28",
+        "speaker": "Speaker 8",
+        "textEn": "When I was younger, my favourite place was the local swimming pool.",
+        "textFa": "وقتی سنم کمتر بود، مکان مورد علاقه‌ام استخر محله‌مان بود."
+      },
+      {
+        "id": 10,
+        "seconds": 95.2,
+        "endSeconds": 99.0,
+        "timeDisplay": "1:35",
+        "speaker": "Speaker 9 (Cambridge, UK)",
+        "textEn": "My favourite thing was my teddy Marmite.",
+        "textFa": "شیء مورد علاقه‌ام خرس عروسکی‌ام به نام مارمایت بود."
+      },
+      {
+        "id": 11,
+        "seconds": 99.2,
+        "endSeconds": 101.8,
+        "timeDisplay": "1:39",
+        "speaker": "Speaker 9 (Cambridge, UK)",
+        "textEn": "My parents gave him to me on my eighth birthday.",
+        "textFa": "پدر و مادرم در تولد هشت‌سالگی‌ام آن را به من هدیه دادند."
+      },
+      {
+        "id": 12,
+        "seconds": 101.9,
+        "endSeconds": 106.5,
+        "timeDisplay": "1:42",
+        "speaker": "Speaker 9 (Cambridge, UK)",
+        "textEn": "I'm at university now, and so is Marmite.",
+        "textFa": "من حالا در دانشگاه هستم و مارمایت هم هنوز همراه من است."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "بر اساس ویدیوی «یونیت 5 · ولاگ تعاملی BBC: حمل‌ونقل، آدرس‌یابی و ایستگاه‌ها»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
+        "promptFa": "بر اساس ویدیوی «یونیت 5 · ولاگ تعاملی BBC: خاطرات کودکی و علایق گذشته»، کدام گزینه پیام یا موضوع اصلی گویندگان را به درستی منعکس می‌کند؟",
         "promptEn": "Listen at [0:59]. What key insight does Speaker 5 share?",
         "timestampSeconds": 59,
         "timestampDisplay": "0:59",
@@ -6427,8 +7139,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v11",
     "level": "a2",
     "episodeNumber": 11,
-    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: گجت‌های هوشمند و فناوری‌های نوین",
-    "titleEn": "Unit 6 · BBC Programmes: Technology, Gadgets & Future",
+    "titleFa": "یونیت 6 · مستند تلویزیونی BBC: حیات وحش در شهرها (پنگوئن‌های کیپ‌تاون)",
+    "titleEn": "Unit 6 · BBC Documentary: Cities (African Penguins in Cape Town)",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 6",
     "cefr": "A2",
@@ -6439,64 +7151,232 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎬",
-    "summaryFa": "ویدیوی آموزشی معتبر مستند تلویزیونی BBC از کتاب اسپیک‌آوت پیرامون گجت‌های هوشمند و فناوری‌های نوین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Programmes from Pearson Speakout 3rd Edition focusing on technology, gadgets & future with native British and international speakers.",
+    "summaryFa": "مستند معتبر بی‌بی‌سی پیرامون ورود حیوانات به شهرها و داستان سفر شگفت‌انگیز پنگوئن آفریقایی در خیابان‌های شلوغ کیپ‌تاون برای رسیدن به جفتش.",
+    "summaryEn": "Authentic BBC Documentary exploring how wild animals adapt to urban life, following an African penguin's journey through the busy streets of Cape Town to reunite with its partner.",
     "keyTopicsFa": [
-      "گجت‌های هوشمند و فناوری‌های نوین",
+      "حیات وحش در شهرها (Cities & Wildlife)",
       "مستند تلویزیونی BBC",
       "واژگان یونیت 6",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 9,
-              "timeDisplay": "0:09",
-              "speaker": "Narrator",
-              "textEn": "Cities. All over the world, cities are growing bigger and bigger, as more and more people move in. But it's not only people. Animals, too, are moving out of nature and into the cities. Cities are now nature's new wild.",
-              "textFa": "شهرها؛ در سراسر جهان شهرها با هجوم جمعیت هر روز بزرگ‌تر می‌شوند. اما نه فقط انسان‌ها؛ حیوانات نیز در حال ترک طبیعت و ورود به شهرها هستند و شهرها حیات وحش جدید طبیعت شده‌اند."
+            "id": 1,
+            "seconds": 8,
+            "timeDisplay": "0:08",
+            "speaker": "Narrator",
+            "textEn": "Cities.",
+            "textFa": "شهرها."
       },
       {
-              "id": 2,
-              "seconds": 49,
-              "timeDisplay": "0:49",
-              "speaker": "Narrator",
-              "textEn": "This female African penguin lives in a garden near the city of Cape Town, South Africa. Her partner is away. This morning he went fishing. She's waiting for him to come back.",
-              "textFa": "این پنگوئن ماده آفریقایی در باغی نزدیک کیپ‌تاون در آفریقای جنوبی زندگی می‌کند؛ جفت او صبح امروز برای ماهیگیری رفته و او چشم‌به‌راه بازگشتش است."
+            "id": 2,
+            "seconds": 10,
+            "timeDisplay": "0:10",
+            "speaker": "Narrator",
+            "textEn": "All over the world, cities are growing bigger and bigger, as more and more people move in.",
+            "textFa": "در سراسر جهان، هم‌زمان با هجوم بیشتر و بیشتر مردم، شهرها بزرگ و بزرگ‌تر می‌شوند."
       },
       {
-              "id": 3,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Narrator",
-              "textEn": "He's starting his journey from the ocean, back to his partner in the garden. It's a long journey. Tourists love the penguins. The penguins have a long way to go. And it's safer to travel together.",
-              "textFa": "او سفرش را از اقیانوس به سمت جفتش آغاز می‌کند؛ مسیری طولانی است. گردشگران عاشق پنگوئن‌ها هستند و حرکت گروهی برای آن‌ها امن‌تر است."
+            "id": 3,
+            "seconds": 18,
+            "timeDisplay": "0:18",
+            "speaker": "Narrator",
+            "textEn": "But it's not only people.",
+            "textFa": "اما این فقط انسان‌ها نیستند."
       },
       {
-              "id": 4,
-              "seconds": 117,
-              "timeDisplay": "1:57",
-              "speaker": "Narrator",
-              "textEn": "Here in the streets, there's something very dangerous - cars! The penguins travel on the roads, but there's a problem: too many cars! Some penguins are staying on the road. Others are going under a lorry. This penguin's going into a house... He's lost.",
-              "textFa": "در خیابان‌ها خطری بزرگ وجود دارد: اتومبیل‌ها! پنگوئن‌ها از خیابان‌ها عبور می‌کنند اما ترافیک سنگین است؛ برخی زیر کامیون‌ها پناه می‌برند و این یکی وارد خانه‌ای شده و گم شده است."
+            "id": 4,
+            "seconds": 28,
+            "timeDisplay": "0:28",
+            "speaker": "Narrator",
+            "textEn": "Animals, too, are moving out of nature and into the cities.",
+            "textFa": "حیوانات نیز در حال ترک طبیعت و ورود به شهرها هستند."
       },
       {
-              "id": 5,
-              "seconds": 165,
-              "timeDisplay": "2:45",
-              "speaker": "Narrator",
-              "textEn": "And here's the female penguin, still waiting for her partner. He's taking a long time! African penguins choose one partner for life. And these penguins want to get back to theirs. But they need to wait.",
-              "textFa": "و پنگوئن ماده هنوز چشم‌به‌راه جفت خویش است؛ پنگوئن‌های آفریقایی تا پایان عمر تنها یک جفت برمی‌گزینند و مشتاق پیوستن به جفتشان هستند اما باید شکیبا باشند."
+            "id": 5,
+            "seconds": 37,
+            "timeDisplay": "0:37",
+            "speaker": "Narrator",
+            "textEn": "Cities are now nature's new wild.",
+            "textFa": "شهرها اکنون به حیات وحشِ جدیدِ طبیعت تبدیل شده‌اند."
       },
       {
-              "id": 6,
-              "seconds": 190,
-              "timeDisplay": "3:10",
-              "speaker": "Narrator",
-              "textEn": "Night comes. The penguins are continuing their journey back home. Penguins can see very well at night. The partner finally returns to the garden.",
-              "textFa": "شب فرامی‌رسد؛ پنگوئن‌ها دید در شب فوق‌العاده‌ای دارند و به مسیر بازگشت به خانه ادامه می‌دهند تا سرانجام به آشیانه و جفت خود می‌رسند."
+            "id": 6,
+            "seconds": 49,
+            "timeDisplay": "0:49",
+            "speaker": "Narrator",
+            "textEn": "This female African penguin lives in a garden near the city of Cape Town, South Africa.",
+            "textFa": "این پنگوئن ماده آفریقایی در باغی نزدیک شهر کیپ‌تاون در آفریقای جنوبی زندگی می‌کند."
+      },
+      {
+            "id": 7,
+            "seconds": 58,
+            "timeDisplay": "0:58",
+            "speaker": "Narrator",
+            "textEn": "Her partner is away. This morning he went fishing.",
+            "textFa": "جفت او دور از خانه است؛ او صبح امروز برای ماهیگیری رفت."
+      },
+      {
+            "id": 8,
+            "seconds": 69,
+            "timeDisplay": "1:09",
+            "speaker": "Narrator",
+            "textEn": "She's waiting for him to come back.",
+            "textFa": "او چشم‌به‌راه بازگشت جفتش است."
+      },
+      {
+            "id": 9,
+            "seconds": 74,
+            "timeDisplay": "1:14",
+            "speaker": "Narrator",
+            "textEn": "He's starting his journey from the ocean, back to his partner in the garden.",
+            "textFa": "او سفرش را از اقیانوس، برای بازگشت نزد جفتش در باغ آغاز می‌کند."
+      },
+      {
+            "id": 10,
+            "seconds": 80,
+            "timeDisplay": "1:20",
+            "speaker": "Narrator",
+            "textEn": "It's a long journey.",
+            "textFa": "این سفری طولانی است."
+      },
+      {
+            "id": 11,
+            "seconds": 87,
+            "timeDisplay": "1:27",
+            "speaker": "Narrator",
+            "textEn": "Tourists love the penguins.",
+            "textFa": "گردشگران عاشق پنگوئن‌ها هستند."
+      },
+      {
+            "id": 12,
+            "seconds": 97,
+            "timeDisplay": "1:37",
+            "speaker": "Narrator",
+            "textEn": "The penguins have a long way to go.",
+            "textFa": "پنگوئن‌ها راه درازی در پیش دارند."
+      },
+      {
+            "id": 13,
+            "seconds": 109,
+            "timeDisplay": "1:49",
+            "speaker": "Narrator",
+            "textEn": "And it's safer to travel together.",
+            "textFa": "و سفر کردن همراه با یکدیگر ایمن‌تر است."
+      },
+      {
+            "id": 14,
+            "seconds": 117,
+            "timeDisplay": "1:57",
+            "speaker": "Narrator",
+            "textEn": "Here in the streets, there's something very dangerous – cars!",
+            "textFa": "اینجا در خیابان‌ها چیزی بسیار خطرناک وجود دارد: اتومبیل‌ها!"
+      },
+      {
+            "id": 15,
+            "seconds": 130,
+            "timeDisplay": "2:10",
+            "speaker": "Narrator",
+            "textEn": "The penguins travel on the roads, but there's a problem: too many cars!",
+            "textFa": "پنگوئن‌ها در جاده‌ها حرکت می‌کنند، اما مشکلی وجود دارد: ماشین‌های بسیار زیاد!"
+      },
+      {
+            "id": 16,
+            "seconds": 144,
+            "timeDisplay": "2:24",
+            "speaker": "Narrator",
+            "textEn": "Some penguins are staying on the road.",
+            "textFa": "برخی از پنگوئن‌ها روی جاده می‌مانند."
+      },
+      {
+            "id": 17,
+            "seconds": 149,
+            "timeDisplay": "2:29",
+            "speaker": "Narrator",
+            "textEn": "Others are going under a lorry.",
+            "textFa": "دیگران به زیر یک کامیون می‌روند."
+      },
+      {
+            "id": 18,
+            "seconds": 154,
+            "timeDisplay": "2:34",
+            "speaker": "Narrator",
+            "textEn": "This penguin's going into a house ... He's lost.",
+            "textFa": "این پنگوئن دارد وارد یک خانه می‌شود... او گم شده است."
+      },
+      {
+            "id": 19,
+            "seconds": 165,
+            "timeDisplay": "2:45",
+            "speaker": "Narrator",
+            "textEn": "And here's the female penguin, still waiting for her partner. He's taking a long time!",
+            "textFa": "و اینجا پنگوئن ماده است که هنوز منتظر جفت خویش است. بازگشت او خیلی طول کشیده است!"
+      },
+      {
+            "id": 20,
+            "seconds": 176,
+            "timeDisplay": "2:56",
+            "speaker": "Narrator",
+            "textEn": "African penguins choose one partner for life. And these penguins want to get back to theirs.",
+            "textFa": "پنگوئن‌های آفریقایی برای تمام عمر تنها یک جفت برمی‌گزینند؛ و این پنگوئن‌ها مشتاق بازگشت نزد جفت خود هستند."
+      },
+      {
+            "id": 21,
+            "seconds": 184,
+            "timeDisplay": "3:04",
+            "speaker": "Narrator",
+            "textEn": "But they need to wait.",
+            "textFa": "اما آن‌ها باید منتظر بمانند."
+      },
+      {
+            "id": 22,
+            "seconds": 190,
+            "timeDisplay": "3:10",
+            "speaker": "Narrator",
+            "textEn": "Night comes. The penguins are continuing their journey back home.",
+            "textFa": "شب فرامی‌رسد. پنگوئن‌ها به مسیر بازگشت به سوی خانه ادامه می‌دهند."
+      },
+      {
+            "id": 23,
+            "seconds": 202,
+            "timeDisplay": "3:22",
+            "speaker": "Narrator",
+            "textEn": "Penguins can see very well at night.",
+            "textFa": "پنگوئن‌ها در شب بسیار خوب می‌توانند ببینند."
+      },
+      {
+            "id": 24,
+            "seconds": 207,
+            "timeDisplay": "3:27",
+            "speaker": "Narrator",
+            "textEn": "The problem is, drivers can't always see them.",
+            "textFa": "مشکل اینجاست که رانندگان همیشه نمی‌توانند آن‌ها را ببینند."
+      },
+      {
+            "id": 25,
+            "seconds": 212,
+            "timeDisplay": "3:32",
+            "speaker": "Narrator",
+            "textEn": "Up to thirty penguins die each year on the roads here.",
+            "textFa": "هر ساله تا ۳۰ پنگوئن در جاده‌های اینجا بر اثر تصادف جان خود را از دست می‌دهند."
+      },
+      {
+            "id": 26,
+            "seconds": 222,
+            "timeDisplay": "3:42",
+            "speaker": "Narrator",
+            "textEn": "Finally, past a garden gate, into the garden...",
+            "textFa": "سرانجام، با گذر از درگاه یک باغ، وارد باغ می‌شود..."
+      },
+      {
+            "id": 27,
+            "seconds": 230,
+            "timeDisplay": "3:50",
+            "speaker": "Narrator",
+            "textEn": "...and he's home … at last!",
+            "textFa": "...و او در نهایت به خانه رسیده است... بالاخره!"
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -6647,8 +7527,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v12",
     "level": "a2",
     "episodeNumber": 12,
-    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: گجت‌های هوشمند و فناوری‌های نوین",
-    "titleEn": "Unit 6 · BBC Vlogs: Technology, Gadgets & Future",
+    "titleFa": "یونیت 6 · ولاگ تعاملی BBC: مکان‌های محبوب در شهر (گذران وقت در شهر)",
+    "titleEn": "Unit 6 · BBC Vlogs: Where Do You Spend Time in Town?",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 6",
     "cefr": "A2",
@@ -6659,64 +7539,136 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون گجت‌های هوشمند و فناوری‌های نوین همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on technology, gadgets & future with native British and international speakers.",
+    "summaryFa": "ولاگ‌های ویدیویی معتبر BBC از کتاب اسپیک‌آوت با لهجه‌های زنده پیرامون مکان‌های محبوب و گذران وقت در شهر (کافه، پارک، کتابفروشی، سینما و سوپرمارکت).",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition discussing favourite places in town (cafés, bookshops, cinema, parks, and supermarkets) with native British and international speakers.",
     "keyTopicsFa": [
-      "گجت‌های هوشمند و فناوری‌های نوین",
+      "مکان‌های محبوب در شهر (Places in Town)",
       "ولاگ تعاملی BBC",
       "واژگان یونیت 6",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 2,
-              "timeDisplay": "0:02",
-              "speaker": "Speaker 1",
-              "textEn": "I use my smartphone for almost everything: checking emails, navigation, reading news, and video calls with family.",
-              "textFa": "من تقریباً برای همه‌چیز از گوشی همراهم استفاده می‌کنم: چک کردن ایمیل‌ها، مسیریابی، اخبار و تماس تصویری با خانواده."
+            "id": 1,
+            "seconds": 10,
+            "timeDisplay": "0:10",
+            "speaker": "Question Card",
+            "textEn": "Where do you spend time when you are in town?",
+            "textFa": "وقتی در شهر هستید، وقت خود را در چه جاهایی می‌گذرانید؟"
       },
       {
-              "id": 2,
-              "seconds": 72,
-              "timeDisplay": "1:12",
-              "speaker": "Speaker 2",
-              "textEn": "My laptop is my most essential gadget because I work remotely as a graphic designer.",
-              "textFa": "لپ‌تاپم ضروری‌ترین وسیله کاری من است چون به عنوان طراح گرافیک به صورت دورکاری فعالیت می‌کنم."
+            "id": 2,
+            "seconds": 17,
+            "timeDisplay": "0:17",
+            "speaker": "Speaker 1 (Bishop's Stortford, UK)",
+            "textEn": "I live in a very small town. There are a few cafés, a few bookshops, a few restaurants.",
+            "textFa": "من در شهر بسیار کوچکی زندگی می‌کنم. چند تا کافه، چند کتابفروشی و چند تا رستوران وجود دارد."
       },
       {
-              "id": 3,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Speaker 3",
-              "textEn": "I recently bought wireless noise-cancelling headphones and they are amazing for studying in noisy places.",
-              "textFa": "به تازگی هدفون بی‌سیم مجهز به حذف نویز خریدم که برای مطالعه در مکان‌های شلوغ معرکه است."
+            "id": 3,
+            "seconds": 26,
+            "timeDisplay": "0:26",
+            "speaker": "Speaker 1 (Bishop's Stortford, UK)",
+            "textEn": "I like spending my time walking around the bookshops, and going to the restaurants and to the cinema.",
+            "textFa": "دوست دارم وقتم را با قدم زدن در کتابفروشی‌ها و رفتن به رستوران‌ها و سینما بگذرانم."
       },
       {
-              "id": 4,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Speaker 4",
-              "textEn": "I love my smartwatch. It tracks my daily steps, heart rate and reminds me to stand up and walk.",
-              "textFa": "ساعت هوشمندم را خیلی دوست دارم؛ گام‌های روزانه و ضربان قلبم را می‌شمارد و یادآوری می‌کند تحرک داشته باشم."
+            "id": 4,
+            "seconds": 35,
+            "timeDisplay": "0:35",
+            "speaker": "Speaker 2 (Saffron Walden, UK)",
+            "textEn": "I go to a café and find a table out on the pavement and have a coffee...",
+            "textFa": "من به یک کافه می‌روم، میزی در پیاده‌رو پیدا می‌کنم و یک قهوه می‌نوشم..."
       },
       {
-              "id": 5,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Speaker 5",
-              "textEn": "An e-reader is the best device I own. I can carry hundreds of books in my backpack without any weight.",
-              "textFa": "کتابخوان الکترونیکی بهترین وسیله‌ای است که دارم؛ صدها جلد کتاب را بدون هیچ وزنی در کوله‌پشتی‌ام حمل می‌کنم."
+            "id": 5,
+            "seconds": 41,
+            "timeDisplay": "0:41",
+            "speaker": "Speaker 2 (Saffron Walden, UK)",
+            "textEn": "...and watch people walk by doing their shopping, meeting with friends or working.",
+            "textFa": "...و مردمی را تماشا می‌کنم که در حال خرید کردن، دیدار با دوستان یا رفتن سر کار از جلوی من رد می‌شوند."
       },
       {
-              "id": 6,
-              "seconds": 93,
-              "timeDisplay": "1:33",
-              "speaker": "Speaker 6",
-              "textEn": "A tablet with a stylus pen has completely replaced paper notebooks for my university lectures.",
-              "textFa": "یک تبلت به همراه قلم نوری کاملاً جایگزین جزوه‌ها و دفاتر کاغذی در کلاس‌های دانشگاه من شده است."
+            "id": 6,
+            "seconds": 48,
+            "timeDisplay": "0:48",
+            "speaker": "Speaker 2 (Saffron Walden, UK)",
+            "textEn": "I just enjoy watching the world go by.",
+            "textFa": "من فقط از تماشا کردن گذر زندگی و رفت‌وآمد دنیا لذت می‌برم."
+      },
+      {
+            "id": 7,
+            "seconds": 53,
+            "timeDisplay": "0:53",
+            "speaker": "Speaker 3 (Tokyo, Japan)",
+            "textEn": "There's a park near my home in Shinjuku.",
+            "textFa": "پارکی در نزدیکی خانه من در منطقه شینجوکو وجود دارد."
+      },
+      {
+            "id": 8,
+            "seconds": 56,
+            "timeDisplay": "0:56",
+            "speaker": "Speaker 3 (Tokyo, Japan)",
+            "textEn": "It has beautiful grass and flowers and plants you can see year-round.",
+            "textFa": "این پارک چمن‌های زیبا، گل‌ها و گیاهانی دارد که در تمام طول سال می‌توانید آن‌ها را ببینید."
+      },
+      {
+            "id": 9,
+            "seconds": 63,
+            "timeDisplay": "1:03",
+            "speaker": "Speaker 4 (Warwick, UK)",
+            "textEn": "When I'm in town, I like to go to the cinema.",
+            "textFa": "وقتی در شهر هستم، دوست دارم به سینما بروم."
+      },
+      {
+            "id": 10,
+            "seconds": 66,
+            "timeDisplay": "1:06",
+            "speaker": "Speaker 4 (Warwick, UK)",
+            "textEn": "I love watching films, and I also work at a cinema.",
+            "textFa": "من عاشق فیلم دیدن هستم و خودمم در یک سینما کار می‌کنم."
+      },
+      {
+            "id": 11,
+            "seconds": 70,
+            "timeDisplay": "1:10",
+            "speaker": "Speaker 5 (Bamburgh, UK)",
+            "textEn": "In town, I spend a lot of time in supermarkets because I absolutely love buying food.",
+            "textFa": "در شهر، وقت زیادی را در سوپرمارکت‌ها می‌گذرانم چون واقعاً عاشق خرید مواد غذایی هستم."
+      },
+      {
+            "id": 12,
+            "seconds": 78,
+            "timeDisplay": "1:18",
+            "speaker": "Speaker 5 (Bamburgh, UK)",
+            "textEn": "On Fridays, I spend a lot of time sitting at the bus stop because I catch a bus to work on a Friday.",
+            "textFa": "جمعه‌ها، زمان زیادی را به نشستن در ایستگاه اتوبوس می‌گذرانم چون روزهای جمعه با اتوبوس به سر کار می‌روم."
+      },
+      {
+            "id": 13,
+            "seconds": 85,
+            "timeDisplay": "1:25",
+            "speaker": "Speaker 6 (Sintra, Portugal)",
+            "textEn": "When I'm in town, I like going to the park...",
+            "textFa": "وقتی در شهر هستم، دوست دارم به پارک بروم..."
+      },
+      {
+            "id": 14,
+            "seconds": 90,
+            "timeDisplay": "1:30",
+            "speaker": "Speaker 6 (Sintra, Portugal)",
+            "textEn": "...and sometimes I go to have a tea with a friend.",
+            "textFa": "...و گاهی اوقات هم می‌روم تا با یک دوست چای بنوشم."
+      },
+      {
+            "id": 15,
+            "seconds": 94,
+            "timeDisplay": "1:34",
+            "speaker": "Speaker 6 (Sintra, Portugal)",
+            "textEn": "And sometimes in the evening, we go to the cinema.",
+            "textFa": "و گاهی اوقات در هنگام عصر، با هم به سینما می‌رویم."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -6867,8 +7819,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v13",
     "level": "a2",
     "episodeNumber": 13,
-    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): سینما، تئاتر و فعالیت‌های فرهنگی",
-    "titleEn": "Unit 7 · BBC Street Interviews: Entertainment, Cinema & Arts",
+    "titleFa": "یونیت 7 · مصاحبه خیابانی BBC (Vox Pops): شغل، تحصیلات و یادگیری مهارت‌های جدید",
+    "titleEn": "Unit 7 · BBC Street Interviews: Work, Studies & Learning New Skills",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 7",
     "cefr": "A2",
@@ -6879,112 +7831,128 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🎙️",
-    "summaryFa": "ویدیوی آموزشی معتبر مصاحبه خیابانی BBC (Vox Pops) از کتاب اسپیک‌آوت پیرامون سینما، تئاتر و فعالیت‌های فرهنگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on entertainment, cinema & arts with native British and international speakers.",
+    "summaryFa": "مصاحبه خیابانی معتبر BBC از کتاب اسپیک‌آوت پیرامون شغل، رشته تحصیلی و مهارت‌های جدیدی که افراد مشتاق یادگیری آن هستند همراه با لهجه‌های زنده بریتانیایی.",
+    "summaryEn": "Authentic BBC Street Interviews from Pearson Speakout 3rd Edition focusing on current jobs, fields of study, and new skills people would like to learn in the future.",
     "keyTopicsFa": [
-      "سینما، تئاتر و فعالیت‌های فرهنگی",
+      "شغل، تحصیلات و یادگیری مهارت‌ها (Work & Skills)",
       "مصاحبه خیابانی BBC (Vox Pops)",
       "واژگان یونیت 7",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Shannon",
-              "textEn": "So, I'm a student and I'm studying English.",
-              "textFa": "من دانشجو هستم و ادبیات انگلیسی می‌خوانم."
+            "id": 1,
+            "seconds": 10,
+            "timeDisplay": "0:10",
+            "speaker": "Question 1",
+            "textEn": "Q1: What do you do?",
+            "textFa": "سوال ۱: شغل یا زمینه فعالیت شما چیست؟"
       },
       {
-              "id": 2,
-              "seconds": 21,
-              "timeDisplay": "0:21",
-              "speaker": "Rob",
-              "textEn": "I work for a magazine as a designer. Erm, I enjoy it because it's, er, creative.",
-              "textFa": "من در یک مجله به عنوان طراح کار می‌کنم؛ از کارم لذت می‌برم چون بسیار خلاقانه است."
+            "id": 2,
+            "seconds": 17,
+            "timeDisplay": "0:17",
+            "speaker": "Shannon",
+            "textEn": "So, I'm a student and I'm studying English.",
+            "textFa": "خب، من دانشجو هستم و ادبیات انگلیسی می‌خوانم."
       },
       {
-              "id": 3,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Rose",
-              "textEn": "I own a company that makes shampoo and conditioners.",
-              "textFa": "من مالک شرکتی هستم که شامپو و محصولات نرم‌کننده مو تولید می‌کند."
+            "id": 3,
+            "seconds": 21,
+            "timeDisplay": "0:21",
+            "speaker": "Rob",
+            "textEn": "I work for a magazine as a designer. Erm, I enjoy it because it's, er, creative.",
+            "textFa": "من در یک مجله به عنوان طراح کار می‌کنم؛ از کارم لذت می‌برم چون بسیار خلاقانه است."
       },
       {
-              "id": 4,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Hashil",
-              "textEn": "Um, I'm studying finance and accounting. Erm, I love working with numbers.",
-              "textFa": "من رشته مالی و حسابداری می‌خوانم؛ عاشق کار کردن با اعداد و ارقامم."
+            "id": 4,
+            "seconds": 27,
+            "timeDisplay": "0:27",
+            "speaker": "Rose",
+            "textEn": "I own a company that makes shampoo and conditioners.",
+            "textFa": "من مالک شرکتی هستم که شامپو و محصولات نرم‌کننده مو تولید می‌کند."
       },
       {
-              "id": 5,
-              "seconds": 42,
-              "timeDisplay": "0:42",
-              "speaker": "Gregor",
-              "textEn": "I study literature and I really enjoy it because I can read many books.",
-              "textFa": "من ادبیات می‌خوانم و واقعاً لذت می‌برم چون می‌توانم کتاب‌های متعددی بخوانم."
+            "id": 5,
+            "seconds": 33,
+            "timeDisplay": "0:33",
+            "speaker": "Hashil",
+            "textEn": "Um, I'm studying finance and accounting. Erm, I love working with numbers.",
+            "textFa": "من رشته مالی و حسابداری می‌خوانم؛ عاشق کار کردن با اعداد و ارقامم."
       },
       {
-              "id": 6,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Abi",
-              "textEn": "I'm a student. I study Geography and I like learning about the world.",
-              "textFa": "من دانشجو هستم؛ جغرافیا می‌خوانم و شناخت جهان را دوست دارم."
+            "id": 6,
+            "seconds": 39,
+            "timeDisplay": "0:39",
+            "speaker": "Gregor",
+            "textEn": "I study literature and I really enjoy it because I can read many books.",
+            "textFa": "من ادبیات می‌خوانم و واقعاً لذت می‌برم چون می‌توانم کتاب‌های زیادی بخوانم."
       },
       {
-              "id": 7,
-              "seconds": 87,
-              "timeDisplay": "1:27",
-              "speaker": "Shannon",
-              "textEn": "Er... I would like to learn a language like Spanish and, er, maybe Arabic because I think it's really important for the future.",
-              "textFa": "دوست دارم زبان‌هایی مثل اسپانیایی و شاید عربی یاد بگیرم، چون فکر می‌کنم برای آینده بسیار مفیدند."
+            "id": 7,
+            "seconds": 45,
+            "timeDisplay": "0:45",
+            "speaker": "Abi",
+            "textEn": "I'm a student. I study Geography and I like learning about the world.",
+            "textFa": "من دانشجو هستم؛ جغرافیا می‌خوانم و شناخت جهان را دوست دارم."
       },
       {
-              "id": 8,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Rob",
-              "textEn": "I am currently trying to learn the guitar as a hobby. And I've also started painting, recently.",
-              "textFa": "در حال حاضر به عنوان سرگرمی مشغول یادگیری گیتارم و اخیراً نقاشی را هم شروع کرده‌ام."
+            "id": 8,
+            "seconds": 52,
+            "timeDisplay": "0:52",
+            "speaker": "Question 2",
+            "textEn": "Q2: What other skills would you like to learn and why?",
+            "textFa": "سوال ۲: دوست دارید چه مهارت‌های دیگری را بیاموزید و چرا؟"
       },
       {
-              "id": 9,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Rose",
-              "textEn": "Ooh. That's a good question. I'd like to learn a foreign language, um, maybe Spanish or French.",
-              "textFa": "سوال خوبی است؛ دوست دارم یک زبان خارجی بیاموزم، شاید اسپانیایی یا فرانسوی."
+            "id": 9,
+            "seconds": 58,
+            "timeDisplay": "0:58",
+            "speaker": "Shannon",
+            "textEn": "Er ... I would like to learn a language like Spanish and, er, maybe Arabic because I think it's really important for the future.",
+            "textFa": "دوست دارم زبانی مثل اسپانیایی و شاید عربی یاد بگیرم، چون فکر می‌کنم برای آینده بسیار مفید و مهم است."
       },
       {
-              "id": 10,
-              "seconds": 99,
-              "timeDisplay": "1:39",
-              "speaker": "Hashil",
-              "textEn": "Erm, I would like to learn more about photography because I love exploring the nature.",
-              "textFa": "دوست دارم درباره عکاسی بیشتر یاد بگیرم چون عاشق کاوش در طبیعت هستم."
+            "id": 10,
+            "seconds": 67,
+            "timeDisplay": "1:07",
+            "speaker": "Rob",
+            "textEn": "I am currently trying to learn the guitar, erm, as a hobby. And I've also started painting, recently.",
+            "textFa": "در حال حاضر به عنوان سرگرمی در تلاشم گیتار یاد بگیرم و اخیراً نقاشی را هم شروع کرده‌ام."
       },
       {
-              "id": 11,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Gregor",
-              "textEn": "Yeah, er, I would love to learn Italian because I think it's a magnificent language.",
-              "textFa": "بسیار مشتاقم ایتالیایی یاد بگیرم چون زبان باشکوه و خوش‌آهنگی است."
+            "id": 11,
+            "seconds": 77,
+            "timeDisplay": "1:17",
+            "speaker": "Rose",
+            "textEn": "Ooh. That's a good question. I'd like to learn a foreign language, um, maybe Spanish or French.",
+            "textFa": "اوه، سوال خوبی است. دوست دارم یک زبان خارجی یاد بگیرم، شاید اسپانیایی یا فرانسوی."
       },
       {
-              "id": 12,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Abi",
-              "textEn": "Erm, I plan to do a course in music production because I'm interested in sharing music.",
-              "textFa": "قصد دارم دوره‌ای در زمینه تهیه‌کنندگی موسیقی بگذرانم چون به اشتراک‌گذاری موسیقی علاقه‌مندم."
+            "id": 12,
+            "seconds": 88,
+            "timeDisplay": "1:28",
+            "speaker": "Hashil",
+            "textEn": "Erm, I would like to learn more about photography because I love exploring the nature.",
+            "textFa": "دوست دارم درباره عکاسی بیشتر یاد بگیرم چون عاشق کاوش در طبیعت هستم."
+      },
+      {
+            "id": 13,
+            "seconds": 94,
+            "timeDisplay": "1:34",
+            "speaker": "Gregor",
+            "textEn": "Yeah, er, I would love to learn Italian because I think it's a magnificent language.",
+            "textFa": "بله، بسیار مشتاقم زبان ایتالیایی را یاد بگیرم چون به نظرم زبان باشکوه و فوق‌العاده‌ای است."
+      },
+      {
+            "id": 14,
+            "seconds": 100,
+            "timeDisplay": "1:40",
+            "speaker": "Abi",
+            "textEn": "Erm, I plan to do a course in music production because I'm interested in sharing music.",
+            "textFa": "قصد دارم دوره‌ای در زمینه تهیه‌کنندگی و تولید موسیقی بگذرانم چون به اشتراک‌گذاری موسیقی علاقه‌مندم."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -7135,8 +8103,8 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "id": "a2-v14",
     "level": "a2",
     "episodeNumber": 14,
-    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: سینما، تئاتر و فعالیت‌های فرهنگی",
-    "titleEn": "Unit 7 · BBC Vlogs: Entertainment, Cinema & Arts",
+    "titleFa": "یونیت 7 · ولاگ تعاملی BBC: شغل دلخواه و رویایی (What job would you like to do)",
+    "titleEn": "Unit 7 · BBC Vlogs: What Job Would You Most Like to Do?",
     "bookLevel": "Speakout 3rd Edition · Elementary (A2)",
     "unit": "Unit 7",
     "cefr": "A2",
@@ -7147,72 +8115,104 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "📹",
-    "summaryFa": "ویدیوی آموزشی معتبر ولاگ تعاملی BBC از کتاب اسپیک‌آوت پیرامون سینما، تئاتر و فعالیت‌های فرهنگی همراه با لهجه‌های زنده و اصطلاحات کاربردی.",
-    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition focusing on entertainment, cinema & arts with native British and international speakers.",
+    "summaryFa": "ولاگ‌های ویدیویی معتبر BBC از کتاب اسپیک‌آوت پیرامون شغل دلخواه و ایده‌آل گویندگان مختلف از سراسر جهان (رستوران‌دار، معلم، عکاس، طراح تبلیغات، مترجم، نجار).",
+    "summaryEn": "Authentic BBC Vlogs from Pearson Speakout 3rd Edition discussing dream jobs and career aspirations with speakers from the UK, Spain, and Greece.",
     "keyTopicsFa": [
-      "سینما، تئاتر و فعالیت‌های فرهنگی",
+      "شغل‌های رویایی و ایده‌آل (Dream Jobs)",
       "ولاگ تعاملی BBC",
       "واژگان یونیت 7",
       "لهجه‌های زنده بریتانیایی"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Speaker 1",
-              "textEn": "Well, I really like the job I have but in the future I would like to be a restaurant owner, a restaurant on a lovely beach somewhere, not in London.",
-              "textFa": "شغلی که دارم را دوست دارم، اما در آینده می‌خواهم صاحب رستورانی در کنار ساحلی زیبا باشم، نه در لندن."
+            "id": 1,
+            "seconds": 10,
+            "timeDisplay": "0:10",
+            "speaker": "Question Card",
+            "textEn": "What job would you most like to do?",
+            "textFa": "شغلی که بیشتر از همه دوست دارید انجام دهید چیست؟"
       },
       {
-              "id": 2,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Speaker 2",
-              "textEn": "When I was younger, I really wanted to be a spy, but now I think I probably want to be a teacher or a university lecturer.",
-              "textFa": "وقتی جوان‌تر بودم می‌خواستم جاسوس شوم! اما حالا فکر می‌کنم معلم یا استاد دانشگاه بودن را ترجیح می‌دهم."
+            "id": 2,
+            "seconds": 19,
+            "timeDisplay": "0:19",
+            "speaker": "Speaker 1 (London, UK)",
+            "textEn": "Well, I really like the job I have, but in the future I would like to be a restaurant owner...",
+            "textFa": "خب، من شغلی را که دارم واقعاً دوست دارم، اما در آینده دوست دارم صاحب یک رستوران باشم..."
       },
       {
-              "id": 3,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Speaker 3",
-              "textEn": "I'd love to be a photographer. I really love art and I really love taking pictures. It would be perfect.",
-              "textFa": "عاشق عکاس شدنم؛ هنر و ثبت تصاویر را بسیار دوست دارم و برایم ایده‌آل خواهد بود."
+            "id": 3,
+            "seconds": 26,
+            "timeDisplay": "0:26",
+            "speaker": "Speaker 1 (London, UK)",
+            "textEn": "...a restaurant on a lovely beach somewhere, not in London.",
+            "textFa": "...یک رستوران در کنار ساحلی زیبا در جایی دیگر، نه در لندن."
       },
       {
-              "id": 4,
-              "seconds": 59,
-              "timeDisplay": "0:59",
-              "speaker": "Speaker 4",
-              "textEn": "The job I would really like to do is in advertising, because I really like writing and design.",
-              "textFa": "شغلی که خیلی دوست دارم در حوزه تبلیغات است، چون نویسندگی و طراحی را دوست دارم."
+            "id": 4,
+            "seconds": 35,
+            "timeDisplay": "0:35",
+            "speaker": "Speaker 2 (Durham, UK)",
+            "textEn": "When I was younger, I really wanted to be a spy...",
+            "textFa": "وقتی جوان‌تر بودم، خیلی دلم می‌خواست یک جاسوس باشم..."
       },
       {
-              "id": 5,
-              "seconds": 97,
-              "timeDisplay": "1:37",
-              "speaker": "Speaker 5",
-              "textEn": "I'd like to be a Chinese translator. I love learning Chinese language. I enjoy speaking Chinese with other people.",
-              "textFa": "دوست دارم مترجم زبان چینی شوم؛ عاشق یادگیری و گفتگو به زبان چینی با دیگران هستم."
+            "id": 5,
+            "seconds": 43,
+            "timeDisplay": "0:43",
+            "speaker": "Speaker 2 (Durham, UK)",
+            "textEn": "...but now I think I probably want to be a teacher or a university lecturer.",
+            "textFa": "...اما حالا فکر می‌کنم احتمالاً ترجیح می‌دهم معلم یا استاد دانشگاه شوم."
       },
       {
-              "id": 6,
-              "seconds": 99,
-              "timeDisplay": "1:39",
-              "speaker": "Speaker 6",
-              "textEn": "I would like to be a carpenter, maybe a carpenter who makes very nice furniture. I like to make things with my hands and I like to be creative.",
-              "textFa": "دوست دارم نجار شوم و مبلمان شیک بسازم؛ عاشق ساختن وسایل با دستانم و خلق اثرم."
+            "id": 6,
+            "seconds": 48,
+            "timeDisplay": "0:48",
+            "speaker": "Speaker 3 (Madrid, Spain)",
+            "textEn": "I'd love to be a photographer. I really love art and I really love taking pictures. It would be perfect.",
+            "textFa": "خیلی دوست دارم یک عکاس باشم. من واقعاً عاشق هنرم و از عکس گرفتن بی‌نهایت لذت می‌برم؛ این برایم ایده‌آل خواهد بود."
       },
       {
-              "id": 7,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Speaker 7",
-              "textEn": "I'd like to be a teacher, maybe an art teacher. I like art and I like children. Perfect.",
-              "textFa": "می‌خواهم معلم شوم، شاید معلم هنر؛ هم به هنر علاقه دارم و هم بچه‌ها را دوست دارم."
+            "id": 7,
+            "seconds": 59,
+            "timeDisplay": "0:59",
+            "speaker": "Speaker 4 (Cambridge, UK)",
+            "textEn": "The job I would really like to do is in advertising, because I really like writing and design.",
+            "textFa": "شغلی که واقعاً دوست دارم انجام دهم در زمینه تبلیغات است، چون نویسندگی و طراحی را بسیار دوست دارم."
+      },
+      {
+            "id": 8,
+            "seconds": 68,
+            "timeDisplay": "1:08",
+            "speaker": "Speaker 5 (London, UK)",
+            "textEn": "I'd like to be a Chinese translator. I love learning Chinese language. I enjoy speaking Chinese with other people.",
+            "textFa": "دوست دارم مترجم زبان چینی باشم؛ عاشق یادگیری زبان چینی‌ام و از صحبت کردن به چینی با افراد دیگر لذت می‌برم."
+      },
+      {
+            "id": 9,
+            "seconds": 83,
+            "timeDisplay": "1:23",
+            "speaker": "Speaker 6 (Amorgos, Greece)",
+            "textEn": "I would like to be a carpenter, maybe a carpenter who makes very nice furniture.",
+            "textFa": "من دوست دارم نجار باشم، شاید نجاری که مبلمان بسیار شیک و زیبایی می‌سازد."
+      },
+      {
+            "id": 10,
+            "seconds": 89,
+            "timeDisplay": "1:29",
+            "speaker": "Speaker 6 (Amorgos, Greece)",
+            "textEn": "I like to make things with my hands and I like to be creative, so it would be perfect.",
+            "textFa": "دوست دارم چیزها را با دستان خودم بسازم و خلاقیت به خرج دهم، بنابراین برایم عالی خواهد بود."
+      },
+      {
+            "id": 11,
+            "seconds": 97,
+            "timeDisplay": "1:37",
+            "speaker": "Speaker 7 (Madrid, Spain)",
+            "textEn": "I'd like to be a teacher, maybe an art teacher. I like art and I like children. Perfect.",
+            "textFa": "دوست دارم معلم باشم، شاید معلم هنر. من هم هنر را دوست دارم و هم بچه‌ها را. فوق‌العاده است."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",
@@ -33783,7 +34783,11 @@ export function getRealLifeLessonsByLevel(tier: string): RealLifeVideoLesson[] {
 
 export function getRealLifeLessonById(id: string): RealLifeVideoLesson | undefined {
   const targetId = id.toLowerCase();
-  return REAL_LIFE_LESSONS.find((les) => les.id.toLowerCase() === targetId);
+  const normalizedId = targetId.replace(/-v0+(\d{2,})/, '-v$1');
+  return REAL_LIFE_LESSONS.find((les) => {
+    const lId = les.id.toLowerCase();
+    return lId === targetId || lId === normalizedId;
+  });
 }
 
 export function getNextRealLifeLesson(currentLessonId: string): RealLifeVideoLesson | null {

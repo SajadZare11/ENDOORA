@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, use } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import {
   getRealLifeLessonById,
   getRealLifeLevelMeta,
@@ -30,6 +30,13 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
   const rawVideoId = resolvedParams.videoId.toLowerCase();
 
   const lesson = getRealLifeLessonById(rawVideoId);
+
+  // If the lesson exists under a different level route (e.g. /learn/video/a1/speakout/a2-v01),
+  // redirect smoothly to the correct level route:
+  if (lesson && lesson.level.toLowerCase() !== rawLevel) {
+    redirect(`/learn/video/${lesson.level.toLowerCase()}/speakout/${lesson.id}`);
+  }
+
   const levelMeta = getRealLifeLevelMeta(rawLevel);
 
   if (!lesson || !levelMeta || lesson.level.toLowerCase() !== rawLevel) {

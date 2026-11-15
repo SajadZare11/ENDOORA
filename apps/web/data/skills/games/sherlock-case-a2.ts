@@ -2,10 +2,11 @@ import type { DetectiveStage } from "./sherlock-detective-curriculum";
 
 // ============================================================================
 // CEFR A2 CASE: "CASE FILE #02: THE GAME OF BLACK AND WHITE"
-// Official CEFR A2 Vocabulary & Grammar:
-// Past Simple regular/irregular, Past Continuous, Present Perfect intro,
-// Modals (must, have to, cannot, will), Connectors (because, although, before, after),
-// Emergency Imperatives, Hospital & Chemical Investigation Lexicon.
+// Official CEFR A2 Standards (American English File 2 / Oxford 2000):
+// - Simple sentence structures (6 to 10 words per utterance).
+// - Everyday vocabulary: hotel, train, hospital, doctor, wire, smoke, sugar, bag.
+// - Core grammar: Past Simple, Present Continuous, Modals (must, can, will), Imperatives.
+// - High-quality Persian synchronisation for instructions, hints, and dialogues.
 // ============================================================================
 
 export const A2_SHERLOCK_CASE: DetectiveStage[] = [
@@ -17,9 +18,9 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     cefr: "A2",
     titleFa: "راز پنهان در روبان صورتی: گشایش پرونده دوم",
     titleEn: "The Secret Inside the Pink Ribbon: Case Inception",
-    locationFa: "دفتر کارآگاهی شرلوک هلمز، خیابان بیکر ۲۲۱ب، لندن ۱۸۹۳",
+    locationFa: "دفتر کارآگاهی شرلوک هلمز، خیابان بیکر ۲۲۱ب، لندن",
     locationEn: "Sherlock Holmes's Study, 221B Baker Street, London",
-    storyIntroFa: "نیمه‌شب در دفتر خیابان بیکر است. دیروز لیلی کوچک را از چنگ موریارتی نجات دادید. روی میز کارتان، روبان صورتی لیلی قرار دارد. روبان غیرعادی و ضخیم است. با یک چاقوی کوچک، درز پارچه را باز می‌کنید و یک کلید برنجی، کارتی با عنوان «بیمارستان سنت جود - اتاق ۴۰۴» و تاریخی دوخته‌شده با نخ سیاه می‌بینید: «۱۴ نوامبر - ۵ سال پیش». ناگهان تلفن زنگ می‌زند...",
+    storyIntroFa: "نیمه‌شب در دفتر خیابان بیکر است. دیروز لیلی کوچک را نجات دادید. روی میز کارتان، روبان صورتی لیلی قرار دارد. روبان غیرعادی و ضخیم است. با یک چاقوی جیبی کوچک درز روبان را باز می‌کنید و یک کلید برنجی همراه با کارتی با عنوان «بیمارستان سنت جود - اتاق ۴۰۴» پیدا می‌کنید. ناگهان تلفن زنگ می‌زند...",
     cutscene: {
       titleFa: "کشف سرنخ داخل روبان صورتی و تماس اضطراری لسترید",
       titleEn: "Clue Inside the Ribbon & Lestrade's Midnight Call",
@@ -30,8 +31,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "شرلوک هلمز",
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
-          textEn: "This pink ribbon is very thick. Let me open it with my pocket knife.",
-          textFa: "این روبان صورتی خیلی ضخیم است. بگذارید با چاقوی جیبی‌ام آن را باز کنم.",
+          textEn: "This pink ribbon is very thick. Let me cut it open.",
+          textFa: "این روبان صورتی خیلی ضخیم است. بگذارید با چاقو آن را باز کنم.",
           bubblePosition: "left",
         },
         {
@@ -39,8 +40,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "شرلوک هلمز",
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
-          textEn: "Look! A small brass key and an old card: 'Room 404, St. Jude Hospital'.",
-          textFa: "نگاه کنید! یک کلید برنجی کوچک و یک کارت قدیمی: «اتاق ۴۰۴، بیمارستان سنت جود».",
+          textEn: "Look! A small brass key and a hospital card: 'Room 404'.",
+          textFa: "نگاه کنید! یک کلید برنجی کوچک و یک کارت بیمارستان: «اتاق ۴۰۴».",
           bubblePosition: "left",
         },
         {
@@ -48,8 +49,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "بازرس لسترید",
           speakerRoleFa: "بازرس اسکاتلندیارد",
           speakerAvatar: "👮‍♂️",
-          textEn: "Sherlock! A thief broke into the hospital lab and stole a dangerous gas!",
-          textFa: "شرلوک! دزدی وارد آزمایشگاه بیمارستان شد و یک گاز خطرناک را دزدید!",
+          textEn: "Sherlock! A thief broke into the hospital lab and stole dangerous gas!",
+          textFa: "شرلوک! دزدی وارد آزمایشگاه بیمارستان شد و گاز خطرناکی را دزدید!",
           bubblePosition: "right",
         },
         {
@@ -58,7 +59,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
           textEn: "Don't panic, Lestrade! I have a clue for Room 404. I am coming now!",
-          textFa: "وحشت نکنید لسترید! من سرنخی از اتاق ۴۰۴ دارم. الان می‌آیم!",
+          textFa: "وحشت نکنید لسترید! من سرنخی برای اتاق ۴۰۴ دارم. الان می‌آیم!",
           bubblePosition: "left",
         },
       ],
@@ -67,23 +68,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a2-1-call-lestrade",
         titleFa: "پاسخ به بازرس لسترید و اعلام حرکت فوری به بیمارستان",
-        speakerPromptEn: "Inspector Lestrade's breathless voice crackles over the telephone receiver...",
-        speakerPromptFa: "صدای نفس‌نفس‌زنان بازرس لسترید از پشت گوشی تلفن به گوش می‌رسد...",
+        speakerPromptEn: "Inspector Lestrade sounds nervous over the telephone.",
+        speakerPromptFa: "بازرس لسترید از پشت تلفن مضطرب به نظر می‌رسد.",
         speakerRoleFa: "بازرس لسترید (اسکاتلندیارد)",
         speakerAvatar: "👮‍♂️",
-        taskInstructionFa: "به بازرس لسترید بگو: «من یک کلید پیدا کردم و الان به بیمارستان می‌آیم.»",
+        taskInstructionFa: "به بازرس لسترید بگو: «من کلید را پیدا کردم و الان می‌آیم.»",
         targetKeywords: [
-          { phrase: "found a key", hintFa: "(یک کلید پیدا کردم)", synonyms: ["found a key", "found the key", "have a key"], weight: 45 },
-          { phrase: "coming to the hospital", hintFa: "(دارم به بیمارستان می‌آیم)", synonyms: ["coming to the hospital", "going to the hospital", "coming now", "coming to st. jude hospital"], weight: 55 },
+          { phrase: "found the key", hintFa: "(کلید را پیدا کردم)", synonyms: ["found the key", "found a key", "have the key", "found this key"], weight: 50 },
+          { phrase: "coming now", hintFa: "(الان می‌آیم)", synonyms: ["coming now", "am coming now", "coming right now", "am coming"], weight: 50 },
         ],
-        idealVoiceResponseEn: "I found a key, and I am coming to the hospital right now.",
+        idealVoiceResponseEn: "I found the key, and I am coming now.",
         alternativeResponsesEn: [
-          { phraseEn: "I found a secret key, so I am going to the hospital.", translationFa: "من یک کلید مخفی پیدا کردم، پس دارم به بیمارستان می‌روم." },
-          { phraseEn: "I have a clue, and I am coming to the hospital now.", translationFa: "من سرنخی دارم و الان دارم به بیمارستان می‌آیم." },
+          { phraseEn: "I found a key, so I am coming to the hospital.", translationFa: "من یک کلید پیدا کردم، پس دارم به بیمارستان می‌آیم." },
+          { phraseEn: "I have the key, and I am coming right now.", translationFa: "من کلید را دارم و همین الان می‌آیم." },
         ],
-        whiteHintFa: "برای تسلط به زمان حال استمراری و گذشته ساده، از افعال found و am coming استفاده کن. با قدرت شروع کن هلمز!",
+        whiteHintFa: "از فعل گذشته ساده (found) و حال استمراری (am coming) استفاده کن!",
         fallbackChoices: [
-          "I found a key, and I am coming to the hospital right now.",
+          "I found the key, and I am coming now.",
           "I am drinking tea at home with no hurry.",
           "Where did I put my walking stick yesterday morning?",
         ],
@@ -100,7 +101,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 2: DECISION 1 — Room 404 (تصمیم اول: دوراهی سرعت یا مدرک)
+  // STAGE 2: DECISION 1 — Room 404 (تصمیم اول: مدارک یا مظنون؟)
   // --------------------------------------------------------------------------
   {
     levelNumber: 2,
@@ -109,7 +110,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     titleEn: "DECISION 1: The Dilemma of Room 404",
     locationFa: "طبقه چهارم بیمارستان سنت جود، راهروی تاریک و پر دود",
     locationEn: "4th Floor Corridor, St. Jude Hospital",
-    storyIntroFa: "با شتاب از پله‌ها به طبقه چهارم می‌دوید. راهرو تاریک است و بوی دود و سوختگی به مشام می‌رسد. در اتاق ۴۰۴، یک نقشه و دفترچه مخفی در سطل زباله در حال سوختن است و تا ۳۰ ثانیه دیگر خاکستر می‌شود! این صحنه یادآور پرونده‌ای عجیب از ۵ سال پیش است. همزمان در راهرو، فردی با دیلم فلزی مشغول شکستن قفل قفسه داروهاست!",
+    storyIntroFa: "با شتاب از پله‌ها به طبقه چهارم می‌دوید. راهرو تاریک است و بوی دود به مشام می‌رسد. در اتاق ۴۰۴، یک نقشه و دفترچه در سطل زباله در حال سوختن است. همزمان در راهرو، فردی لنگان با دیلم فلزی مشغول شکستن قفل قفسه داروهاست!",
     cutscene: {
       titleFa: "آتش در اتاق ۴۰۴ و مرد لنگان در راهرو",
       titleEn: "The Fire in Room 404 and the Limping Intruder",
@@ -129,8 +130,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "شرلوک هلمز",
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
-          textEn: "This scene is similar to that case five years ago... Someone is in the hallway breaking the medicine cabinet!",
-          textFa: "این صحنه شبیه به همان پرونده پنج سال پیش است... فردی در راهرو دارد قفسه داروها را می‌شکند!",
+          textEn: "Look! A man in the hallway is breaking the medicine cabinet!",
+          textFa: "نگاه کن! مردی در راهرو دارد قفسه داروها را می‌شکند!",
           bubblePosition: "left",
         },
         {
@@ -138,8 +139,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "شرلوک هلمز",
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
-          textEn: "If I stop the fire, the suspect escapes. If I stop the suspect, the papers burn!",
-          textFa: "اگر آتش را خاموش کنم، مظنون فرار می‌کند. اگر مظنون را بگیرم، کاغذها می‌سوزند!",
+          textEn: "If I put out the fire, he escapes. If I catch him, the papers burn!",
+          textFa: "اگر آتش را خاموش کنم او فرار می‌کند. اگر او را بگیرم کاغذها می‌سوزند!",
           bubblePosition: "left",
         },
       ],
@@ -169,23 +170,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a2-2-spot-dilemma",
         titleFa: "گزارش وضعیت صحنه جرم و توصیف دوراهی",
-        speakerPromptEn: "You pause at the smoky threshold of Room 404, sizing up the dual crisis...",
-        speakerPromptFa: "در آستانه پر از دود اتاق ۴۰۴ درنگ می‌کنی و هر دو وضعیت بحرانی را می‌سنجی...",
+        speakerPromptEn: "You look at the smoke in the room and the man in the hallway.",
+        speakerPromptFa: "به دود داخل اتاق و مرد داخل راهرو نگاه می‌کنی.",
         speakerRoleFa: "شرلوک هلمز (مشاهدات صحنه)",
         speakerAvatar: "🔍",
-        taskInstructionFa: "وضعیت را توصیف کن و بگو: «من آتش را در اتاق می‌بینم و مردی قفل را می‌شکند.»",
+        taskInstructionFa: "وضعیت را توصیف کن و بگو: «من آتش را می‌بینم و مردی قفل را می‌شکند.»",
         targetKeywords: [
-          { phrase: "fire in the room", hintFa: "(آتش در اتاق)", synonyms: ["fire in the room", "burning papers", "fire inside", "see burning papers"], weight: 45 },
-          { phrase: "breaking the lock", hintFa: "(در حال شکستن قفل)", synonyms: ["breaking the lock", "breaking a lock", "is breaking the lock", "breaks the lock"], weight: 55 },
+          { phrase: "see fire", hintFa: "(آتش را می‌بینم)", synonyms: ["see fire", "see the fire", "see a fire"], weight: 45 },
+          { phrase: "breaking the lock", hintFa: "(در حال شکستن قفل)", synonyms: ["breaking the lock", "is breaking the lock", "breaks the lock", "breaking a lock"], weight: 55 },
         ],
-        idealVoiceResponseEn: "I see fire in the room, and a man is breaking the lock.",
+        idealVoiceResponseEn: "I see fire, and a man is breaking the lock.",
         alternativeResponsesEn: [
-          { phraseEn: "Papers are burning inside, and a man is breaking the cabinet.", translationFa: "کاغذها داخل در حال سوختن هستند و مردی قفسه را می‌شکند." },
-          { phraseEn: "There is fire in Room 404, and someone is breaking the door.", translationFa: "آتش در اتاق ۴۰۴ وجود دارد و کسی در را می‌شکند." },
+          { phraseEn: "There is fire, and a man is breaking the cabinet.", translationFa: "آتش وجود دارد و مردی در حال شکستن قفسه است." },
+          { phraseEn: "I see smoke, and someone is breaking the lock.", translationFa: "من دود می‌بینم و کسی در حال شکستن قفل است." },
         ],
-        whiteHintFa: "از ترکیب زمان حال استمراری (is breaking) و حال ساده استفاده کن تا فوریت حادثه را به تصویر بکشی!",
+        whiteHintFa: "از زمان حال استمراری (is breaking) برای توصیف اتفاق در حال وقوع استفاده کن!",
         fallbackChoices: [
-          "I see fire in the room, and a man is breaking the lock.",
+          "I see fire, and a man is breaking the lock.",
           "The hospital lights are very bright tonight.",
           "I need a glass of cold water right now.",
         ],
@@ -202,7 +203,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 3: Consequence of Decision 1 & Meeting Dr. Watson (پیامد تصمیم اول و ورود واتسون)
+  // STAGE 3: Consequence of Decision 1 & Meeting Dr. Watson (پیامد تصمیم اول)
   // --------------------------------------------------------------------------
   {
     levelNumber: 3,
@@ -211,7 +212,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     titleEn: "Consequence of Decision 1: Meeting Dr. John Watson",
     locationFa: "راهروی طبقه چهارم بیمارستان سنت جود",
     locationEn: "4th Floor Corridor, St. Jude Hospital",
-    storyIntroFa: "پیامد انتخابتان رخ می‌دهد: یا مدارک نیم‌سوخته و کد ۷۷ را نجات داده‌اید یا کیت پادزهر را از مرد تصاحب کرده‌اید. نور فانوس را روی صورت مرد می‌اندازید: حدود سی‌ساله با چهره‌ای خسته اما چشمانی صادق. او آرام می‌گوید: «شلیک نکن! من دکتر جان واتسون، پزشک سابق ارتش هستم. امروز صبح دوستم با گاز خواب سفید مسموم شد و من برای نجات جانش به دنبال پادزهر آمدم!» دیروز مامور وایت هم ادعای دوستی می‌کرد و موریارتی از آب درآمد! شما به واتسون ذره‌ای اعتماد ندارید...",
+    storyIntroFa: "پیامد انتخابتان رخ می‌دهد: نور فانوس را روی صورت مرد می‌اندازید. او می‌گوید: «شلیک نکن! من دکتر جان واتسون هستم، پزشک ارتش. امروز صبح دوستم با گاز مسموم شد و من برای نجات جانش به دنبال پادزهر آمدم!» با این حال، هنوز به او اعتماد کامل ندارید...",
     cutscene: {
       titleFa: "رویارویی با مظنون: ورود دکتر جان واتسون",
       titleEn: "Confronting the Intruder: Dr. Watson Appears",
@@ -231,8 +232,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "دکتر جان واتسون",
           speakerRoleFa: "پزشک سابق ارتش",
           speakerAvatar: "🩺",
-          textEn: "Someone poisoned my friend with this gas! I came to find the antidote to save his life.",
-          textFa: "کسی دوستم را با این گاز مسموم کرد! آمدم تا پادزهر را برای نجات جانش پیدا کنم.",
+          textEn: "Someone poisoned my friend with this gas! I came to find the antidote.",
+          textFa: "کسی دوستم را با این گاز مسموم کرد! آمدم تا پادزهر را پیدا کنم.",
           bubblePosition: "right",
         },
         {
@@ -240,8 +241,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "شرلوک هلمز",
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
-          textEn: "Yesterday a fake friend tried to kill me. I do not trust you, Watson!",
-          textFa: "دیروز یک دوست قلابی قصد جانم را کرد. من به شما اعتماد ندارم، واتسون!",
+          textEn: "Yesterday a fake friend tried to hurt me. I do not trust you, Watson!",
+          textFa: "دیروز دوستی قلابی قصد آسیب زدن به من را داشت. من به تو اعتماد ندارم واتسون!",
           bubblePosition: "left",
         },
       ],
@@ -249,21 +250,21 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     branchVariants: [
       {
         conditionChoiceId: "choice-1a",
-        titleFa: "پیامد ۱الف: نجات نقشه بلک‌فرایرز و کشف کد ۷۷",
+        titleFa: "پیامد ۱الف: نجات نقشه و کد ۷۷",
         titleEn: "Consequence 1A: Rescuing the Map & Code 77",
-        storyIntroFa: "آب را روی آتش می‌ریزید و نیمی از نقشه را نجات می‌دهید! نقشه نشان‌دهنده نگارخانه و ایستگاه آب بلک‌فرایرز است و عدد محرمانه «کد ۷۷» روی آن دیده می‌شود. مرد لنگان اسلحه ارتشی‌اش را می‌کشد اما با دیدن شما دستپاچه شده و یک شیشه داروی پادزهر از جیبش روی زمین می‌افتد!",
+        storyIntroFa: "شما داخل اتاق ۴۰۴ می‌پرید و کاغذها را از آتش بیرون می‌کشید. کلمات «گالری بلک‌فرایرز» و عدد «۷۷» خوانده می‌شود.",
         cutscene: {
-          titleFa: "مدارک نجات‌یافته و کد ۷۷",
-          titleEn: "Rescued Documents & Code 77",
-          imageSrc: "/images/skills/speaking/a2_scene_rescued_map.jpg",
+          titleFa: "نجات نقشه نیم‌سوخته و روبرو شدن با واتسون",
+          titleEn: "Half-Burned Map Saved & Watson Confronted",
+          imageSrc: "/images/skills/speaking/a2_scene_burned_map.jpg",
           dialogues: [
             {
               speakerId: "sherlock",
               speakerNameFa: "شرلوک هلمز",
               speakerRoleFa: "کارآگاه مشاور",
               speakerAvatar: "🔍",
-              textEn: "The paper is burned, but I can read: 'Blackfriars Gallery' and 'Code 77'!",
-              textFa: "کاغذ سوخته، اما می‌توانم بخوانم: «نگارخانه بلک‌فرایرز» و «کد ۷۷»!",
+              textEn: "The paper is burned, but I see 'Blackfriars' and 'Code 77'.",
+              textFa: "کاغذ سوخته، اما کلمات «بلک‌فرایرز» و «کد ۷۷» را می‌بینم.",
               bubblePosition: "left",
             },
             {
@@ -271,8 +272,8 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
               speakerNameFa: "دکتر جان واتسون",
               speakerRoleFa: "پزشک سابق ارتش",
               speakerAvatar: "🩺",
-              textEn: "Please don't shoot! I dropped the medicine bottle. I only want to save my friend!",
-              textFa: "لطفاً شلیک نکنید! شیشه دارو افتاد. من فقط می‌خواهم دوستم را نجات دهم!",
+              textEn: "Please don't shoot! I only want to save my friend!",
+              textFa: "لطفاً شلیک نکنید! من فقط می‌خواهم جان دوستم را نجات دهم!",
               bubblePosition: "right",
             },
           ],
@@ -280,45 +281,45 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         tasks: [
           {
             id: "task-a2-3-confront-watson-1a",
-            titleFa: "خلع سلاح دکتر واتسون و دستور حرکت به بلک‌فرایرز",
-            speakerPromptEn: "Dr. Watson points his army revolver with shaking hands in the corridor...",
-            speakerPromptFa: "دکتر واتسون با دستانی لرزان رولور ارتشی‌اش را در راهرو نشانه رفته است...",
-            speakerRoleFa: "دکتر جان واتسون",
+            titleFa: "خلع سلاح دکتر واتسون و صدور فرمان همراهی",
+            speakerPromptEn: "Watson holds out his revolver with a calm look.",
+            speakerPromptFa: "واتسون با نگاهی آرام تپانچه خود را به سمت شما می‌گیرد.",
+            speakerRoleFa: "دکتر جان واتسون (تسلیم سلاح)",
             speakerAvatar: "🩺",
-            taskInstructionFa: "اسلحه را از واتسون بخواه و بگو: «اسلحه‌ات را به من بده، باید با من بیایی.»",
+            taskInstructionFa: "به واتسون بگو: «تپانچه‌ات را به من بده، باید همراهم بیایی!»",
             targetKeywords: [
-              { phrase: "Give me your gun", hintFa: "(اسلحه‌ات را بده)", synonyms: ["give me your gun", "hand over your gun", "give me the gun"], weight: 45 },
-              { phrase: "come with me", hintFa: "(با من بیا)", synonyms: ["come with me", "must come with me", "follow me"], weight: 55 },
+              { phrase: "Give me your gun", hintFa: "(تپانچه‌ات را به من بده)", synonyms: ["give me your gun", "give me the gun", "hand over your gun"], weight: 50 },
+              { phrase: "must come with me", hintFa: "(باید همراهم بیایی)", synonyms: ["must come with me", "come with me", "have to come with me"], weight: 50 },
             ],
             idealVoiceResponseEn: "Give me your gun, you must come with me!",
             alternativeResponsesEn: [
-              { phraseEn: "Give me the weapon, you have to follow me.", translationFa: "سلاح را به من بده، باید همراه من بیایی." },
-              { phraseEn: "Drop your gun, Watson, and come with me right now.", translationFa: "اسلحه‌ات را بینداز واتسون، و همین الان با من بیا." },
+              { phraseEn: "Give me the gun, and follow me right now!", translationFa: "تپانچه را به من بده و همین الان دنبالم بیا!" },
+              { phraseEn: "Hand over your gun, you have to come with me!", translationFa: "تپانچه‌ات را تحویل بده، باید همراه من بیایی!" },
             ],
-            whiteHintFa: "از فعل وجهی must یا have to برای ابراز دستور قاطعانه پلیسی استفاده کن. عالیه هلمز!",
+            whiteHintFa: "از فعل کمکی must برای بیان الزام قاطع استفاده کن!",
             fallbackChoices: [
               "Give me your gun, you must come with me!",
-              "Let us go home and sleep because we are tired.",
-              "Where can I buy a ticket for the steam train?",
+              "I think your brown army boots look very old.",
+              "Would you like to sit down and drink warm tea?",
             ],
-            aefReference: "AEF 2 Unit 3A (Must / Have to for obligation + Imperatives)",
+            aefReference: "AEF 2 Unit 3B (Must vs Have to + Direct Object Pronouns)",
             npcResponse: {
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "پزشک نظامی سابق",
+              speakerRoleFa: "پزشک سابق ارتش",
               speakerAvatar: "🩺",
               textEn: "Take my gun, Holmes. I will help you catch this criminal!",
-              textFa: "اسلحه‌ام را بگیر هلمز. من کمکت می‌کنم این تبهکار را بگیری!",
+              textFa: "اسلحه‌ام را بگیر هلمز. من به تو کمک می‌کنم این مجرم را دستگیر کنی!",
             },
           },
         ],
       },
       {
         conditionChoiceId: "choice-1b",
-        titleFa: "پیامد ۱ب: تصاحب کیت پادزهر و خاکستر شدن نقشه‌ها",
+        titleFa: "پیامد ۱ب: به چنگ آوردن کیت پادزهر",
         titleEn: "Consequence 1B: The Antidote Kit Secured",
-        storyIntroFa: "دست مرد لنگان را می‌گیرید و او را به دیوار می‌چسبانید. جعبه نقره‌ای کیت پادزهر گاز خواب سفید را از او می‌گیرید! اما کاغذهای داخل اتاق ۴۰۴ کاملاً خاکستر شده‌اند و فقط عبارت «نگارخانه بلک‌فرایرز» روی دیوار باقی مانده است.",
+        storyIntroFa: "شما به سمت مرد شیرجه می‌روید و جعبه پادزهر را از دستش خارج می‌کنید. کاغذهای اتاق ۴۰۴ می‌سوزند، اما پادزهر را در دست دارید.",
         cutscene: {
-          titleFa: "کیت پادزهر در دست شرلوک",
+          titleFa: "پادزهر در دستان هلمز و سوختن اتاق ۴۰۴",
           titleEn: "The Antidote Kit in Holmes's Hands",
           imageSrc: "/images/skills/speaking/a2_scene_antidote_captured.jpg",
           dialogues: [
@@ -328,7 +329,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
               speakerRoleFa: "کارآگاه مشاور",
               speakerAvatar: "🔍",
               textEn: "Don't move! I have the antidote box now!",
-              textFa: "تکان نخورید! حالا جعبه پادزهر دست من است!",
+              textFa: "حرکت نکن! من جعبه پادزهر را در دست دارم!",
               bubblePosition: "left",
             },
             {
@@ -337,7 +338,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
               speakerRoleFa: "پزشک سابق ارتش",
               speakerAvatar: "🩺",
               textEn: "I am not a thief! I am Dr. Watson, and I must save my friend!",
-              textFa: "من دزد نیستم! من دکتر واتسون هستم و باید دوستم را نجات دهم!",
+              textFa: "من دزد نیستم! من دکتر واتسون هستم و باید دوستم را نجات بدهم!",
               bubblePosition: "right",
             },
           ],
@@ -345,34 +346,34 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         tasks: [
           {
             id: "task-a2-3-confront-watson-1b",
-            titleFa: "بازجویی قاطع از دکتر واتسون و خلع سلاح او",
-            speakerPromptEn: "Dr. Watson stands pinned against the wall, breathing heavily under your lantern...",
-            speakerPromptFa: "دکتر واتسون در حالی که به دیوار چسبیده، زیر نور فانوس نفس‌نفس می‌زند...",
-            speakerRoleFa: "دکتر جان واتسون",
+            titleFa: "خلع سلاح دکتر واتسون و صدور فرمان همراهی",
+            speakerPromptEn: "Watson holds out his revolver with a calm look.",
+            speakerPromptFa: "واتسون با نگاهی آرام تپانچه خود را به سمت شما می‌گیرد.",
+            speakerRoleFa: "دکتر جان واتسون (تسلیم سلاح)",
             speakerAvatar: "🩺",
-            taskInstructionFa: "اسلحه را از واتسون بخواه و بگو: «اسلحه‌ات را به من بده، باید با من بیایی.»",
+            taskInstructionFa: "به واتسون بگو: «تپانچه‌ات را به من بده، باید همراهم بیایی!»",
             targetKeywords: [
-              { phrase: "Give me your gun", hintFa: "(اسلحه‌ات را بده)", synonyms: ["give me your gun", "hand over your gun", "give me the gun"], weight: 45 },
-              { phrase: "come with me", hintFa: "(با من بیا)", synonyms: ["come with me", "must come with me", "follow me"], weight: 55 },
+              { phrase: "Give me your gun", hintFa: "(تپانچه‌ات را به من بده)", synonyms: ["give me your gun", "give me the gun", "hand over your gun"], weight: 50 },
+              { phrase: "must come with me", hintFa: "(باید همراهم بیایی)", synonyms: ["must come with me", "come with me", "have to come with me"], weight: 50 },
             ],
             idealVoiceResponseEn: "Give me your gun, you must come with me!",
             alternativeResponsesEn: [
-              { phraseEn: "Give me the weapon, you have to follow me.", translationFa: "سلاح را به من بده، باید همراه من بیایی." },
-              { phraseEn: "Drop your gun, Watson, and come with me right now.", translationFa: "اسلحه‌ات را بینداز واتسون، و همین الان با من بیا." },
+              { phraseEn: "Give me the gun, and follow me right now!", translationFa: "تپانچه را به من بده و همین الان دنبالم بیا!" },
+              { phraseEn: "Hand over your gun, you have to come with me!", translationFa: "تپانچه‌ات را تحویل بده، باید همراه من بیایی!" },
             ],
-            whiteHintFa: "از فعل وجهی must یا have to برای ابراز دستور قاطعانه پلیسی استفاده کن. عالیه هلمز!",
+            whiteHintFa: "از فعل کمکی must برای بیان الزام قاطع استفاده کن!",
             fallbackChoices: [
               "Give me your gun, you must come with me!",
-              "Let us go home and sleep because we are tired.",
-              "Where can I buy a ticket for the steam train?",
+              "I think your brown army boots look very old.",
+              "Would you like to sit down and drink warm tea?",
             ],
-            aefReference: "AEF 2 Unit 3A (Must / Have to for obligation + Imperatives)",
+            aefReference: "AEF 2 Unit 3B (Must vs Have to + Direct Object Pronouns)",
             npcResponse: {
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "پزشک نظامی سابق",
+              speakerRoleFa: "پزشک سابق ارتش",
               speakerAvatar: "🩺",
-              textEn: "Take my weapon, Holmes. I have nothing to hide. Let us stop this monster together.",
-              textFa: "سلاحم را بگیر هلمز. من چیزی برای پنهان کردن ندارم. بیا با هم جلوی این هیولا را بگیریم.",
+              textEn: "Take my weapon, Holmes. I have nothing to hide. Let us stop this monster!",
+              textFa: "اسلحه‌ام را بگیر هلمز. من چیزی برای پنهان کردن ندارم. بیا این هیولا را متوقف کنیم!",
             },
           },
         ],
@@ -381,53 +382,53 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     tasks: [
       {
         id: "task-a2-3-confront-watson-default",
-        titleFa: "بازجویی قاطع از دکتر واتسون و خلع سلاح او",
-        speakerPromptEn: "Dr. Watson stands before you, breathing heavily under the harsh beam of your lantern...",
-        speakerPromptFa: "دکتر واتسون زیر نور تند فانوس شما در حالی که نفس‌نفس می‌زند ایستاده است...",
-        speakerRoleFa: "دکتر جان واتسون (پزشک سابق ارتش)",
+        titleFa: "خلع سلاح دکتر واتسون و صدور فرمان همراهی",
+        speakerPromptEn: "Watson holds out his revolver with a calm look.",
+        speakerPromptFa: "واتسون با نگاهی آرام تپانچه خود را به سمت شما می‌گیرد.",
+        speakerRoleFa: "دکتر جان واتسون (تسلیم سلاح)",
         speakerAvatar: "🩺",
-        taskInstructionFa: "اسلحه را از واتسون بخواه و بگو: «اسلحه‌ات را به من بده، باید با من بیایی.»",
+        taskInstructionFa: "به واتسون بگو: «تپانچه‌ات را به من بده، باید همراهم بیایی!»",
         targetKeywords: [
-          { phrase: "Give me your gun", hintFa: "(اسلحه‌ات را بده)", synonyms: ["give me your gun", "hand over your gun", "give me the gun"], weight: 45 },
-          { phrase: "come with me", hintFa: "(با من بیا)", synonyms: ["come with me", "must come with me", "follow me"], weight: 55 },
+          { phrase: "Give me your gun", hintFa: "(تپانچه‌ات را به من بده)", synonyms: ["give me your gun", "give me the gun", "hand over your gun"], weight: 50 },
+          { phrase: "must come with me", hintFa: "(باید همراهم بیایی)", synonyms: ["must come with me", "come with me", "have to come with me"], weight: 50 },
         ],
         idealVoiceResponseEn: "Give me your gun, you must come with me!",
         alternativeResponsesEn: [
-          { phraseEn: "Give me the weapon, you have to follow me.", translationFa: "سلاح را به من بده، باید همراه من بیایی." },
-          { phraseEn: "Drop your gun, Watson, and come with me right now.", translationFa: "اسلحه‌ات را بینداز واتسون، و همین الان با من بیا." },
+          { phraseEn: "Give me the gun, and follow me right now!", translationFa: "تپانچه را به من بده و همین الان دنبالم بیا!" },
+          { phraseEn: "Hand over your gun, you have to come with me!", translationFa: "تپانچه‌ات را تحویل بده، باید همراه من بیایی!" },
         ],
-        whiteHintFa: "از فعل وجهی must یا have to برای ابراز دستور قاطعانه پلیسی استفاده کن. عالیه هلمز!",
+        whiteHintFa: "از فعل کمکی must برای بیان الزام قاطع استفاده کن!",
         fallbackChoices: [
           "Give me your gun, you must come with me!",
-          "Let us go home and sleep because we are tired.",
-          "Where can I buy a ticket for the steam train?",
+          "I think your brown army boots look very old.",
+          "Would you like to sit down and drink warm tea?",
         ],
-        aefReference: "AEF 2 Unit 3A (Must / Have to for obligation + Imperatives)",
+        aefReference: "AEF 2 Unit 3B (Must vs Have to + Direct Object Pronouns)",
         npcResponse: {
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "پزشک نظامی سابق",
+          speakerRoleFa: "پزشک سابق ارتش",
           speakerAvatar: "🩺",
-          textEn: "Take my weapon, Holmes. I have nothing to hide. Let us stop this monster together.",
-          textFa: "سلاحم را بگیر هلمز. من چیزی برای پنهان کردن ندارم. بیا با هم جلوی این هیولا را بگیریم.",
+          textEn: "Take my weapon, Holmes. I have nothing to hide. Let us stop this monster!",
+          textFa: "اسلحه‌ام را بگیر هلمز. من چیزی برای پنهان کردن ندارم. بیا این هیولا را متوقف کنیم!",
         },
       },
     ],
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 4: Face-to-Face with Moriarty (رویارویی مستقیم با موریارتی و فلسفه سیاه و سفید)
+  // STAGE 4: Face-to-Face with Moriarty (رویارویی با موریارتی در گالری بلک‌فرایرز)
   // --------------------------------------------------------------------------
   {
     levelNumber: 4,
     cefr: "A2",
-    titleFa: "رویارویی در نگارخانه بلک‌فرایرز: فلسفه بازی سیاه و سفید",
+    titleFa: "پرده چهارم: بازی سیاه و سفید و رویارویی مستقیم با موریارتی",
     titleEn: "Face-to-Face with Moriarty: The Game of Black and White",
-    locationFa: "سالن مرکزی نگارخانه بلک‌فرایرز، مرکز لندن",
-    locationEn: "Main Hall, Blackfriars Art Gallery, London",
-    storyIntroFa: "شما و دکتر واتسون وارد نگارخانه بلک‌فرایرز می‌شوید. زیر این ساختمان، ایستگاه اصلی تصفیه آب و هوای مرکز لندن قرار دارد. دیوارهای سالن با نقاشی‌های سیاه و سفید پوشانده شده است. در مرکز سالن، مردی با کت‌وشلوار سیاه تنها ایستاده است: بدون نقاب، بدون نام جعلی. او پروفسور جیمز موریارتی است! اسلحه‌تان را به سمت سینه‌اش نشانه می‌روید...",
+    locationFa: "گالری نقاشی بلک‌فرایرز، رودخانه تیمز لندن",
+    locationEn: "Blackfriars Art Gallery, River Thames, London",
+    storyIntroFa: "شما و واتسون به گالری بلک‌فرایرز می‌رسید. سالن اصلی تاریک است و فقط دو چراغ بزرگ روی زمین شطرنجی نور می‌اندازند. ناگهان موریارتی در بالکن طبقه بالا ظاهر می‌شود. او تایمری در دست دارد...",
     cutscene: {
-      titleFa: "رویارویی رو در رو با پروفسور جیمز موریارتی",
-      titleEn: "Face to Face with Professor James Moriarty",
+      titleFa: "رویارویی بزرگ در سالن شطرنجی گالری بلک‌فرایرز",
+      titleEn: "The Grand Confrontation at Blackfriars Gallery",
       imageSrc: "/images/skills/speaking/a2_scene_moriarty_gallery.jpg",
       dialogues: [
         {
@@ -436,25 +437,25 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
           textEn: "Don't move, Moriarty! You are under arrest!",
-          textFa: "تکان نخور موریارتی! تو بازداشت هستی!",
+          textFa: "حرکت نکن موریارتی! تو بازداشتی!",
           bubblePosition: "left",
         },
         {
           speakerId: "moriarty",
           speakerNameFa: "پروفسور جیمز موریارتی",
-          speakerRoleFa: "استاد جنایت",
+          speakerRoleFa: "نابغه‌ی جنایت",
           speakerAvatar: "♟️",
-          textEn: "Look around you, Sherlock! Black and White. Darkness and Light. That is you and me!",
-          textFa: "به اطرافت نگاه کن شرلوک! سیاه و سفید. تاریکی و روشنایی. این من و تو هستیم!",
+          textEn: "Look around you, Sherlock! Black and White. Darkness and Light!",
+          textFa: "به اطرافت نگاه کن شرلوک! سیاه و سفید. تاریکی و روشنایی!",
           bubblePosition: "right",
         },
         {
           speakerId: "moriarty",
           speakerNameFa: "پروفسور جیمز موریارتی",
-          speakerRoleFa: "استاد جنایت",
+          speakerRoleFa: "نابغه‌ی جنایت",
           speakerAvatar: "♟️",
-          textEn: "I have a red button! In three minutes, two gas bombs will open: one in the basement, and one upstairs!",
-          textFa: "یک دکمه قرمز دست من است! در سه دقیقه، دو بمب گاز باز می‌شوند: یکی در زیرزمین، و یکی در طبقه بالا!",
+          textEn: "In three minutes, two gas bombs will open: one in the basement, one on the train!",
+          textFa: "تا سه دقیقه دیگر، دو بمب گازی فعال می‌شود: یکی در زیرزمین، یکی در قطار!",
           bubblePosition: "right",
         },
       ],
@@ -462,147 +463,147 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     tasks: [
       {
         id: "task-a2-4-challenge-moriarty",
-        titleFa: "پاسخ دندان‌شکن به موریارتی و اولویت نجات جان انسان‌ها",
-        speakerPromptEn: "Moriarty smirks through the iron bars as the countdown timer echoes loudly...",
-        speakerPromptFa: "موریارتی در حالی که صدای ثانیه‌شمار معکوس در سالن می‌پیچد، از پشت میله‌ها پوزخند می‌زند...",
-        speakerRoleFa: "پروفسور جیمز موریارتی",
+        titleFa: "پاسخ دندان‌شکن به رجزخوانی موریارتی و اعلام مبارزه",
+        speakerPromptEn: "Moriarty grins coldly from the gallery balcony.",
+        speakerPromptFa: "موریارتی با پوزخندی سرد از بالکن نگارخانه به شما خیره شده است.",
+        speakerRoleFa: "پروفسور موریارتی (از بالای بالکن)",
         speakerAvatar: "♟️",
-        taskInstructionFa: "به موریارتی بگو: «تو یک هیولا هستی، من جلویت را می‌گیرم!»",
+        taskInstructionFa: "به موریارتی بگو: «تو یک هیولایی، اما من متوقفت می‌کنم!»",
         targetKeywords: [
-          { phrase: "you are a monster", hintFa: "(تو یک هیولا هستی)", synonyms: ["you are a monster", "a monster", "monster moriarty"], weight: 50 },
-          { phrase: "stop you", hintFa: "(جلویت را می‌گیرم)", synonyms: ["stop you", "will stop you", "i will stop you"], weight: 50 },
+          { phrase: "a monster", hintFa: "(یک هیولا)", synonyms: ["a monster", "monster", "evil monster"], weight: 45 },
+          { phrase: "will stop you", hintFa: "(متوقفت خواهم کرد)", synonyms: ["will stop you", "going to stop you", "shall stop you", "stop you"], weight: 55 },
         ],
         idealVoiceResponseEn: "You are a monster, but I will stop you!",
         alternativeResponsesEn: [
-          { phraseEn: "I will stop you, Moriarty!", translationFa: "جلوی تو را می‌گیرم موریارتی!" },
-          { phraseEn: "You are a monster and I will end this now.", translationFa: "تو یک هیولا هستی و من همین الان به این ماجرا پایان می‌دهم." },
+          { phraseEn: "You are evil, but we will catch you today!", translationFa: "تو خبیثی، اما ما امروز تو را دستگیر خواهیم کرد!" },
+          { phraseEn: "Your game ends here, because I will stop you!", translationFa: "بازی تو اینجا به پایان می‌رسد، چون من متوقفت خواهم کرد!" },
         ],
-        whiteHintFa: "با استفاده از will اراده قطعی خودت رو برای متوقف کردن موریارتی بیان کن!",
+        whiteHintFa: "از حرف ربط but و زمان آینده با will برای بیان اراده و تصمیم قطعی استفاده کن!",
         fallbackChoices: [
           "You are a monster, but I will stop you!",
-          "I want to look at the paintings.",
-          "When does the gallery open tomorrow?",
+          "This art gallery has very expensive paintings.",
+          "It is raining outside, so I will take an umbrella.",
         ],
-        aefReference: "AEF 2 Unit 3B (Will / Won't for promises and firm intentions)",
+        aefReference: "AEF 2 Unit 4A (Future with will for promises and decisions + Conjunction but)",
         npcResponse: {
           speakerNameFa: "پروفسور جیمز موریارتی",
-          speakerRoleFa: "نابغه جنایت",
+          speakerRoleFa: "نابغه‌ی جنایت",
           speakerAvatar: "♟️",
           textEn: "Big words, Sherlock! The clock is ticking... Let the game begin!",
-          textFa: "حرف‌های بزرگی است شرلوک! ساعت دارد می‌گذرد... بگذار بازی شروع شود!",
+          textFa: "حرف‌های بزرگی زدی شرلوک! زمان در حال گذر است... بگذار بازی شروع شود!",
         },
       },
     ],
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 5: DECISION 2 — Can You Trust Dr. Watson? (تصمیم دوم: چالش اعتماد پس از خیانت پرونده اول)
+  // STAGE 5: DECISION 2 — Can You Trust Dr. Watson? (تصمیم دوم)
   // --------------------------------------------------------------------------
   {
     levelNumber: 5,
     cefr: "A2",
     titleFa: "تصمیم دوم: آیا می‌توان به دکتر واتسون اعتماد کرد؟",
     titleEn: "DECISION 2: Can You Trust Dr. Watson?",
-    locationFa: "پای پلکان دوراهی در نگارخانه بلک‌فرایرز",
-    locationEn: "Dual Staircase, Blackfriars Gallery",
-    storyIntroFa: "ساعت دیجیتال قرمز با سرعت ثانیه‌ها را می‌سوزاند: ۰۳:۰۰ دقیقه باقی مانده است! پله‌های سمت چپ به سمت اتاق پمپ زیرزمین می‌رود. پله‌های سمت راست به اتاق کنترل شرق بالا می‌رود. مشخص نیست در هر کدام از این مکان‌ها چه افرادی در خطر هستند، به تنهایی نمی‌توانید در ۳ دقیقه به هر دو نقطه برسید! دکتر واتسون جلو می‌آید و در چشمانتان می‌نگرد: «هلمز! می‌دانم به من اعتماد نداری. اما من یک سرباز و یک پزشکم! من به زیرزمین بروم و تو به اتاق کنترل برو!»",
+    locationFa: "زیرزمین تاریک گالری بلک‌فرایرز، کنار لوله‌های گاز",
+    locationEn: "Basement Corridor, Blackfriars Gallery",
+    storyIntroFa: "شما و واتسون از پله‌ها به سمت زیرزمین گالری می‌دوید. بوی گاز به مشام می‌رسد. واتسون می‌گوید: «هلمز، من می‌دانم هنوز به من شک داری. کلید را به من بده تا به سمت شیر گاز بدوم و آن را قفل کنم، در حالی که تو افراد موریارتی را مهار می‌کنی!»",
     cutscene: {
-      titleFa: "شمارش معکوس سه دقیقه و التماس دکتر واتسون",
-      titleEn: "Three Minutes Left & Dr. Watson's Appeal",
-      imageSrc: "/images/skills/speaking/a2_scene_dual_stairs.jpg",
+      titleFa: "آزمون اعتماد: دادن کلید به واتسون یا حفظ آن؟",
+      titleEn: "The Test of Trust: Handing the Key to Watson?",
+      imageSrc: "/images/skills/speaking/a2_scene_trust_watson.jpg",
       dialogues: [
         {
           speakerId: "watson",
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "پزشک نظامی سابق",
+          speakerRoleFa: "پزشک همراه",
           speakerAvatar: "🩺",
-          textEn: "Holmes, I can see your doubt.",
-          textFa: "هلمز، می‌دانم به من اعتماد نداری.",
+          textEn: "Holmes, I know you do not trust me yet.",
+          textFa: "هلمز، می‌دانم هنوز به من اعتماد نداری.",
           bubblePosition: "right",
         },
         {
           speakerId: "watson",
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "پزشک نظامی سابق",
+          speakerRoleFa: "پزشک همراه",
           speakerAvatar: "🩺",
-          textEn: "I see you have a key, that must be for the basement! I will check the basement, and you run upstairs. Trust me!",
-          textFa: "می‌بینم کلید داری، باید مال زیرزمین باشد! من زیرزمین را چک می‌کنم، تو به طبقه بالا برو. به من اعتماد کن!",
+          textEn: "Give me the key! I will check the basement and stop the gas!",
+          textFa: "کلید را به من بده! من زیرزمین را بررسی می‌کنم و جلوی گاز را می‌گیرم!",
           bubblePosition: "right",
         },
       ],
     },
     decisionPoint: {
       id: "decision-a2-2",
-      promptFa: "یک دوراهی تکان‌دهنده: آیا به واتسون اعتماد کرده و کلید را می‌سپارید، یا او را دستبند می‌زنید؟",
-      promptEn: "Critical Choice: Trust Dr. Watson with the key, or handcuff him to the radiator?",
+      promptFa: "تصمیم مهم: آیا به واتسون اعتماد می‌کنید و کلید برنجی را به او می‌سپارید؟",
+      promptEn: "Decision 2: Trust Watson with the brass key or investigate the basement together?",
       choices: [
         {
           id: "choice-2a",
-          labelEn: "Choice 2A: Trust Dr. Watson and split up",
-          labelFa: "گزینه ۲الف: اعتماد به دکتر واتسون و تقسیم وظایف",
-          descriptionFa: "کلید برنجی روبان لیلی را به واتسون می‌دهید تا به زیرزمین برود و خودتان به اتاق کنترل شرق می‌دوید.",
+          labelEn: "Choice 2A: Trust Watson and give him the brass key",
+          labelFa: "گزینه ۲الف: اعتماد به واتسون و سپردن کلید برنجی به او",
+          descriptionFa: "کلید را به واتسون می‌دهید تا شیر گاز را قفل کند؛ این کار اعتماد متقابل عمیقی ایجاد می‌کند.",
           pointsDelta: 150,
         },
         {
           id: "choice-2b",
-          labelEn: "Choice 2B: Do NOT trust Watson and handcuff him",
-          labelFa: "گزینه ۲ب: عدم اعتماد به واتسون و دستبند زدن به او",
-          descriptionFa: "دست واتسون را با دستبند به لوله رادیاتور قفل می‌کنید و تلاش می‌کنید به تنهایی به هر دو اتاق برسید.",
-          pointsDelta: 150,
+          labelEn: "Choice 2B: Keep the key and go together",
+          labelFa: "گزینه ۲ب: نگه داشتن کلید و رفتن با همدیگر",
+          descriptionFa: "احتیاط می‌کنید و با هم به سمت شیر گاز حرکت می‌کنید.",
+          pointsDelta: 100,
         },
       ],
     },
     tasks: [
       {
         id: "task-a2-5-coordinate-plan",
-        titleFa: "فرمان هماهنگی و ابلاغ تصمیم به دکتر واتسون",
-        speakerPromptEn: "Dr. Watson watches you intently, awaiting your decisive command as the red timer counts down...",
-        speakerPromptFa: "دکتر واتسون در حالی که زمان‌سنج قرمز ثانیه‌ها را می‌شمارد، مشتاقانه منتظر فرمان قطعی شماست...",
-        speakerRoleFa: "دکتر جان واتسون",
+        titleFa: "هماهنگی اضطراری با واتسون برای مهار شیر گاز",
+        speakerPromptEn: "Watson stands ready. The timer is ticking down.",
+        speakerPromptFa: "واتسون آماده ایستاده است. ثانیه‌شمار رو به پایان می‌رود.",
+        speakerRoleFa: "دکتر جان واتسون (منتظر فرمان)",
         speakerAvatar: "🩺",
-        taskInstructionFa: "به واتسون بگو: «ما فقط سه دقیقه وقت داریم و باید سریع عمل کنیم.»",
+        taskInstructionFa: "به واتسون بگو: «ما فقط سه دقیقه وقت داریم، باید سریع عمل کنیم!»",
         targetKeywords: [
-          { phrase: "three minutes", hintFa: "(سه دقیقه)", synonyms: ["three minutes", "only three minutes", "just three minutes"], weight: 45 },
-          { phrase: "act quickly", hintFa: "(سریع عمل کنیم)", synonyms: ["act quickly", "hurry up", "move fast", "act fast"], weight: 55 },
+          { phrase: "three minutes", hintFa: "(سه دقیقه)", synonyms: ["three minutes", "3 minutes", "only three minutes"], weight: 45 },
+          { phrase: "act quickly", hintFa: "(سریع عمل کنیم)", synonyms: ["act quickly", "move quickly", "hurry up", "act fast"], weight: 55 },
         ],
-        idealVoiceResponseEn: "We only have three minutes, and we must act quickly!",
+        idealVoiceResponseEn: "We only have three minutes, we must act quickly!",
         alternativeResponsesEn: [
-          { phraseEn: "There are only three minutes left, so we have to hurry.", translationFa: "فقط سه دقیقه باقی مانده، پس باید عجله کنیم." },
-          { phraseEn: "Time is short, we must run right now.", translationFa: "وقت تنگ است، باید همین الان بدویم." },
+          { phraseEn: "We have three minutes, so we must hurry up!", translationFa: "ما سه دقیقه وقت داریم، پس باید عجله کنیم!" },
+          { phraseEn: "Time is short, we must run quickly right now!", translationFa: "زمان اندک است، ما باید همین الان سریع بدویم!" },
         ],
-        whiteHintFa: "از عبارات زمان A2 مانند only three minutes و فعل کمکی must استفاده کن!",
+        whiteHintFa: "از قید حالت quickly همراه با فعل act استفاده کن تا سرعت عمل را نشان دهی!",
         fallbackChoices: [
-          "We only have three minutes, and we must act quickly!",
-          "I want to sit down and rest my tired feet.",
-          "Is there a good restaurant near this gallery?",
+          "We only have three minutes, we must act quickly!",
+          "I bought three tickets for the theater yesterday.",
+          "There are many old books on the wooden shelves.",
         ],
-        aefReference: "AEF 2 Unit 4A (Must / Have to + Time expressions)",
+        aefReference: "AEF 2 Unit 4B (Adverbs of manner - quickly, carefully + Modals of obligation)",
         npcResponse: {
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "همراه نظامی",
+          speakerRoleFa: "پزشک همراه",
           speakerAvatar: "🩺",
           textEn: "I am ready, Holmes! Give the word and I will run!",
-          textFa: "من آماده‌ام هلمز! فقط بگو تا بدوم!",
+          textFa: "من آماده‌ام هلمز! فقط دستور بده تا بدوم!",
         },
       },
     ],
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 6: Consequence of Decision 2 & Becoming Partners (پیامد تصمیم دوم و شکل‌گیری رفاقت)
+  // STAGE 6: Consequence of Decision 2 (پیامد تصمیم دوم و تولد رفاقت تاریخی)
   // --------------------------------------------------------------------------
   {
     levelNumber: 6,
     cefr: "A2",
-    titleFa: "پیامد تصمیم دوم: آزمون خون و تولد یک شراکت تاریخی",
+    titleFa: "پیامد تصمیم دوم: تولد یک مشارکت و پیوند تاریخی",
     titleEn: "Consequence of Decision 2: The Birth of a Legendary Partnership",
-    locationFa: "اتاق پمپ زیرزمین بلک‌فرایرز",
-    locationEn: "Basement Water Pump Room, Blackfriars",
-    storyIntroFa: "پیامد تصمیمی که گرفتید آشکار می‌شود: یا با اعتماد به واتسون هر دو اتاق را نجات داده و بی‌سیم مخفی را به دست آورده‌اید، یا با تردید به او، قاضی مسموم شده و واتسون با شکستن لوله رادیاتور جان شما را نجات داده است!",
+    locationFa: "زیرزمین گالری بلک‌فرایرز، کنار مخزن اصلی گاز",
+    locationEn: "Basement Vault, Blackfriars Gallery",
+    storyIntroFa: "پیامد انتخابتان رقم می‌خورد: واتسون به شیر گاز می‌رسد و آن را محکم قفل می‌کند. گاز در زیرزمین متوقف می‌شود و جان قاضی میلر که در اتاق جانبی حبس شده بود نجات می‌یابد. هلمز نگاهی به واتسون می‌اندازد...",
     cutscene: {
-      titleFa: "پیامد تصمیم دوم: فداکاری و پیوند ناگسستنی",
-      titleEn: "Consequence of Decision 2: The Test of Brotherhood",
-      imageSrc: "/images/skills/speaking/a2_scene_watson_saves_holmes.jpg",
+      titleFa: "شیر گاز مهار شد و پیوند برادری بسته شد",
+      titleEn: "Gas Valve Locked & Brotherhood Forged",
+      imageSrc: "/images/skills/speaking/a2_scene_valve_locked.jpg",
       dialogues: [
         {
           speakerId: "sherlock",
@@ -610,16 +611,16 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerRoleFa: "کارآگاه مشاور",
           speakerAvatar: "🔍",
           textEn: "The gas valve is locked! Watson, you saved the Judge!",
-          textFa: "شیر گاز قفل شد! واتسون، تو قاضی را نجات دادی!",
+          textFa: "شیر گاز قفل شد! واتسون، تو جان قاضی را نجات دادی!",
           bubblePosition: "left",
         },
         {
           speakerId: "watson",
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "پزشک نظامی سابق",
+          speakerRoleFa: "پزشک همراه",
           speakerAvatar: "🩺",
           textEn: "We make a good team, Holmes. A doctor and a detective.",
-          textFa: "ما تیم خوبی تشکیل دادیم، هلمز. یک پزشک و یک کارآگاه.",
+          textFa: "ما تیم خوبی می‌سازیم هلمز. یک پزشک و یک کارآگاه.",
           bubblePosition: "right",
         },
       ],
@@ -627,11 +628,11 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     branchVariants: [
       {
         conditionChoiceId: "choice-2a",
-        titleFa: "پیامد ۲الف: اعتماد متقابل، نجات دوگانه و کشف بی‌سیم مخفی",
+        titleFa: "پیامد ۲الف: اعتماد کامل و کشف بی‌سیم نگهبان",
         titleEn: "Consequence 2A: Mutual Trust & The Secret Radio",
-        storyIntroFa: "پله‌های سمت چپ را طی می‌کنید و متوجه می‌شوید که گاز سمی مستقیماً به مدرسه وصل است، گاز تونل مدرسه را قطع می‌کنید! سپس با شتاب به زیرزمین می‌روید. در باز است! دکتر واتسون یکی از نگهبانان موریارتی را مهار کرده و با کلید برنجی شما شیر گاز را بسته و جان قاضی ارشد را نجات داده است! ساعد واتسون زخم عمیقی برداشته است. با دستمال گردنتان دست او را پانسمان می‌کنید. واتسون لبخند می‌زند، کلید برنجی و یک بی‌سیم مخفی را به شما می‌دهد: «ما تیم خوبی تشکیل دادیم، هلمز.»",
+        storyIntroFa: "شما به واتسون اعتماد کردید. او با کلید برنجی در زیرزمین را باز کرد، شیر گاز را قفل کرد و یک بی‌سیم نظامی از نگهبان موریارتی غنیمت گرفت.",
         cutscene: {
-          titleFa: "نجات قاضی و کشف بی‌سیم نگهبان",
+          titleFa: "مهار گاز و صدای بی‌سیم موریارتی",
           titleEn: "Saving the Judge & The Guard's Radio",
           imageSrc: "/images/skills/speaking/a2_scene_radio_found.jpg",
           dialogues: [
@@ -641,16 +642,16 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
               speakerRoleFa: "کارآگاه مشاور",
               speakerAvatar: "🔍",
               textEn: "The gas is off! Watson, you stopped the guard and saved the Judge!",
-              textFa: "گاز قطع شد! واتسون، تو نگهبان را مهار کردی و قاضی را نجات دادی!",
+              textFa: "گاز قطع شد! واتسون، تو جلوی نگهبان را گرفتی و قاضی را نجات دادی!",
               bubblePosition: "left",
             },
             {
               speakerId: "watson",
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "پزشک نظامی سابق",
+              speakerRoleFa: "پزشک همراه",
               speakerAvatar: "🩺",
               textEn: "Your key worked! And look, I found the guard's radio on the floor.",
-              textFa: "کلیدت جواب داد! و نگاه کن، بی‌سیم نگهبان را روی زمین پیدا کردم.",
+              textFa: "کلیدت کار کرد! و نگاه کن، بی‌سیم نگهبان را روی زمین پیدا کردم.",
               bubblePosition: "right",
             },
           ],
@@ -658,47 +659,47 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         tasks: [
           {
             id: "task-a2-6-partner-bond-2a",
-            titleFa: "قدردانی از شجاعت دکتر واتسون و اعلام شراکت رسمی",
-            speakerPromptEn: "You look into Dr. Watson's steadfast eyes, feeling a profound shift in your heart...",
-            speakerPromptFa: "به چشمان مصمم دکتر واتسون نگاه می‌کنی و دگرگونی عمیقی در احساست پدیدار می‌شود...",
-            speakerRoleFa: "شرلوک هلمز (خطاب به واتسون)",
-            speakerAvatar: "🔍",
-            taskInstructionFa: "به واتسون بگو: «تو خوب کار کردی!»",
+            titleFa: "تقدیر از شجاعت دکتر واتسون و تحکیم رفاقت",
+            speakerPromptEn: "Watson catches his breath after locking the heavy valve.",
+            speakerPromptFa: "واتسون پس از قفل کردن شیر سنگین گاز نفس تازه می‌کند.",
+            speakerRoleFa: "دکتر جان واتسون (با بی‌سیم در دست)",
+            speakerAvatar: "🩺",
+            taskInstructionFa: "به واتسون بگو: «آفرین واتسون! ما یک تیم عالی هستیم!»",
             targetKeywords: [
-              { phrase: "Good job", hintFa: "(خوب کار کردی / کارت خوب بود)", synonyms: ["good job", "great job", "well done", "you did well"], weight: 60 },
-              { phrase: "Watson", hintFa: "(واتسون)", synonyms: ["watson", "dr watson", "doctor watson"], weight: 40 },
+              { phrase: "Good job", hintFa: "(آفرین / کار عالی بود)", synonyms: ["good job", "well done", "great job", "bravo"], weight: 40 },
+              { phrase: "a great team", hintFa: "(یک تیم عالی)", synonyms: ["a great team", "great team", "good team", "a good team"], weight: 60 },
             ],
-            idealVoiceResponseEn: "Good job, Watson!",
+            idealVoiceResponseEn: "Good job, Watson! We are a great team!",
             alternativeResponsesEn: [
-              { phraseEn: "You did a good job, Watson!", translationFa: "کارت خوب بود، واتسون!" },
-              { phraseEn: "Well done, my friend!", translationFa: "آفرین، دوست من!" },
+              { phraseEn: "Well done, Watson! We make a wonderful team!", translationFa: "آفرین، واتسون! ما یک تیم فوق‌العاده می‌سازیم!" },
+              { phraseEn: "Great work, John! You saved us today!", translationFa: "کارت عالی بود جان! تو امروز ما را نجات دادی!" },
             ],
-            whiteHintFa: "از عبارت کوتاه و تشویقی Good job و نام Watson استفاده کن!",
+            whiteHintFa: "از عبارت تحسین‌آمیز Good job و ترکیب اسمی a great team استفاده کن!",
             fallbackChoices: [
-              "Good job, Watson!",
-              "This basement is very dusty and cold.",
-              "I should buy a new pair of boots tomorrow.",
+              "Good job, Watson! We are a great team!",
+              "I think this old radio is very heavy to carry.",
+              "The floor in this basement is wet and cold.",
             ],
-            aefReference: "AEF 2 Unit 4B (Past simple regular/irregular verbs + Expressing gratitude)",
+            aefReference: "AEF 2 Unit 4C (Adjectives + Nouns + Expressions of praise)",
             npcResponse: {
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "یار وفادار و همکار",
+              speakerRoleFa: "همکار تازه",
               speakerAvatar: "🩺",
               textEn: "Listen, Holmes! Moriarty's voice is coming from the speaker!",
-              textFa: "گوش کن هلمز! صدای موریارتی از بلندگو می‌آید!",
+              textFa: "گوش کن هلمز! صدای موریارتی از بلندگو به گوش می‌رسد!",
             },
           },
         ],
       },
       {
         conditionChoiceId: "choice-2b",
-        titleFa: "پیامد ۲ب: تاخیر مرگبار، مسمومیت قاضی و فداکاری واتسون",
-        titleEn: "Consequence 2B: Lost Seconds & Watson's Heroic Sacrifice",
-        storyIntroFa: "واتسون را دستبند می‌زنید و به تنهایی به اتاق کنترل شرق می‌دوید و گاز مدرسه را قطع می‌کنید. اما وقتی به زیرزمین می‌رسید، خیلی دیر شده است! کپسول باز شده و قاضی ارشد مقداری از گاز سفید را تنفس کرده است. ناگهان نگهبان موریارتی از تاریکی با خنجر به شما حمله می‌کند! ناگهان بنگ! دکتر واتسون با دست خونی وارد می‌شود—او لوله رادیاتور را شکسته تا خودش را رها کند و به کمک شما بیاید! واتسون نگهبان را به زمین می‌کوبد و جان شما را نجات می‌دهد!",
+        titleFa: "پیامد ۲ب: درگیری تن به تن و فداکاری واتسون",
+        titleEn: "Consequence 2B: Close Combat & Watson's Heroic Move",
+        storyIntroFa: "شما با هم رفتید. نگهبان با چاقو به سمت شما پرید، اما واتسون با شجاعت او را به زمین کوبید و جان شما را نجات داد.",
         cutscene: {
-          titleFa: "دست خونی واتسون و نجات شرلوک از چاقوی نگهبان",
-          titleEn: "Watson's Bloody Hands Save Holmes",
-          imageSrc: "/images/skills/speaking/a2_scene_broken_pipe.jpg",
+          titleFa: "درگیری تن‌به‌تن در تاریکی زیرزمین",
+          titleEn: "Close Combat in the Dark Basement",
+          imageSrc: "/images/skills/speaking/a2_scene_watson_fight.jpg",
           dialogues: [
             {
               speakerId: "sherlock",
@@ -706,34 +707,16 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
               speakerRoleFa: "کارآگاه مشاور",
               speakerAvatar: "🔍",
               textEn: "Look out! The guard has a knife!",
-              textFa: "مراقب باش! نگهبان چاقو دارد!",
+              textFa: "مواظب باش! نگهبان چاقو دارد!",
               bubblePosition: "left",
             },
             {
               speakerId: "watson",
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "پزشک نظامی سابق",
-              speakerAvatar: "🩺",
-              textEn: "Get off him! *Knocks the guard down*",
-              textFa: "از او دور شو! *نگهبان را نقش بر زمین می‌کند*",
-              bubblePosition: "right",
-            },
-            {
-              speakerId: "sherlock",
-              speakerNameFa: "شرلوک هلمز",
-              speakerRoleFa: "کارآگاه مشاور",
-              speakerAvatar: "🔍",
-              textEn: "Watson! You broke the radiator to save my life?!",
-              textFa: "واتسون! تو رادیاتور را شکستی تا جانم را نجات دهی؟! ",
-              bubblePosition: "left",
-            },
-            {
-              speakerId: "watson",
-              speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "پزشک نظامی سابق",
+              speakerRoleFa: "پزشک سابق ارتش",
               speakerAvatar: "🩺",
               textEn: "I am a soldier, Holmes. We work together now!",
-              textFa: "من یک سربازم هلمز. ما حالا با هم کار می‌کنیم!",
+              textFa: "من یک سربازم هلمز. ما اکنون با هم کار می‌کنیم!",
               bubblePosition: "right",
             },
           ],
@@ -741,34 +724,34 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         tasks: [
           {
             id: "task-a2-6-partner-bond-2b",
-            titleFa: "قدردانی از شجاعت دکتر واتسون و اعلام شراکت رسمی",
-            speakerPromptEn: "You look into Dr. Watson's steadfast eyes, feeling a profound shift in your heart...",
-            speakerPromptFa: "به چشمان مصمم دکتر واتسون نگاه می‌کنی و دگرگونی عمیقی در احساست پدیدار می‌شود...",
-            speakerRoleFa: "شرلوک هلمز (خطاب به واتسون)",
-            speakerAvatar: "🔍",
-            taskInstructionFa: "به واتسون بگو: «تو خوب کار کردی!»",
+            titleFa: "تقدیر از شجاعت دکتر واتسون و تحکیم رفاقت",
+            speakerPromptEn: "Watson catches his breath after locking the heavy valve.",
+            speakerPromptFa: "واتسون پس از قفل کردن شیر سنگین گاز نفس تازه می‌کند.",
+            speakerRoleFa: "دکتر جان واتسون (با بی‌سیم در دست)",
+            speakerAvatar: "🩺",
+            taskInstructionFa: "به واتسون بگو: «آفرین واتسون! ما یک تیم عالی هستیم!»",
             targetKeywords: [
-              { phrase: "Good job", hintFa: "(خوب کار کردی / کارت خوب بود)", synonyms: ["good job", "great job", "well done", "you did well"], weight: 60 },
-              { phrase: "Watson", hintFa: "(واتسون)", synonyms: ["watson", "dr watson", "doctor watson"], weight: 40 },
+              { phrase: "Good job", hintFa: "(آفرین / کار عالی بود)", synonyms: ["good job", "well done", "great job", "bravo"], weight: 40 },
+              { phrase: "a great team", hintFa: "(یک تیم عالی)", synonyms: ["a great team", "great team", "good team", "a good team"], weight: 60 },
             ],
-            idealVoiceResponseEn: "Good job, Watson!",
+            idealVoiceResponseEn: "Good job, Watson! We are a great team!",
             alternativeResponsesEn: [
-              { phraseEn: "You did a good job, Watson!", translationFa: "کارت خوب بود، واتسون!" },
-              { phraseEn: "Well done, my friend!", translationFa: "آفرین، دوست من!" },
+              { phraseEn: "Well done, Watson! We make a wonderful team!", translationFa: "آفرین، واتسون! ما یک تیم فوق‌العاده می‌سازیم!" },
+              { phraseEn: "Great work, John! You saved us today!", translationFa: "کارت عالی بود جان! تو امروز ما را نجات دادی!" },
             ],
-            whiteHintFa: "از عبارت کوتاه و تشویقی Good job و نام Watson استفاده کن!",
+            whiteHintFa: "از عبارت تحسین‌آمیز Good job و ترکیب اسمی a great team استفاده کن!",
             fallbackChoices: [
-              "Good job, Watson!",
-              "This basement is very dusty and cold.",
-              "I should buy a new pair of boots tomorrow.",
+              "Good job, Watson! We are a great team!",
+              "I think this old radio is very heavy to carry.",
+              "The floor in this basement is wet and cold.",
             ],
-            aefReference: "AEF 2 Unit 4B (Past simple regular/irregular verbs + Expressing gratitude)",
+            aefReference: "AEF 2 Unit 4C (Adjectives + Nouns + Expressions of praise)",
             npcResponse: {
               speakerNameFa: "دکتر جان واتسون",
-              speakerRoleFa: "یار وفادار و همکار",
+              speakerRoleFa: "همکار تازه",
               speakerAvatar: "🩺",
               textEn: "Listen, Holmes! Moriarty's voice is coming from the speaker!",
-              textFa: "گوش کن هلمز! صدای موریارتی از بلندگو می‌آید!",
+              textFa: "گوش کن هلمز! صدای موریارتی از بلندگو به گوش می‌رسد!",
             },
           },
         ],
@@ -777,71 +760,71 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     tasks: [
       {
         id: "task-a2-6-partner-bond-default",
-        titleFa: "قدردانی از شجاعت دکتر واتسون و اعلام شراکت رسمی",
-        speakerPromptEn: "You look into Dr. Watson's steadfast eyes, feeling a profound shift in your heart...",
-        speakerPromptFa: "به چشمان مصمم دکتر واتسون نگاه می‌کنی و دگرگونی عمیقی در احساست پدیدار می‌شود...",
-        speakerRoleFa: "شرلوک هلمز (خطاب به واتسون)",
-        speakerAvatar: "🔍",
-        taskInstructionFa: "به واتسون بگو: «تو خوب کار کردی!»",
+        titleFa: "تقدیر از شجاعت دکتر واتسون و تحکیم رفاقت",
+        speakerPromptEn: "Watson catches his breath after locking the heavy valve.",
+        speakerPromptFa: "واتسون پس از قفل کردن شیر سنگین گاز نفس تازه می‌کند.",
+        speakerRoleFa: "دکتر جان واتسون (با بی‌سیم در دست)",
+        speakerAvatar: "🩺",
+        taskInstructionFa: "به واتسون بگو: «آفرین واتسون! ما یک تیم عالی هستیم!»",
         targetKeywords: [
-          { phrase: "Good job", hintFa: "(خوب کار کردی / کارت خوب بود)", synonyms: ["good job", "great job", "well done", "you did well"], weight: 60 },
-          { phrase: "Watson", hintFa: "(واتسون)", synonyms: ["watson", "dr watson", "doctor watson"], weight: 40 },
+          { phrase: "Good job", hintFa: "(آفرین / کار عالی بود)", synonyms: ["good job", "well done", "great job", "bravo"], weight: 40 },
+          { phrase: "a great team", hintFa: "(یک تیم عالی)", synonyms: ["a great team", "great team", "good team", "a good team"], weight: 60 },
         ],
-        idealVoiceResponseEn: "Good job, Watson!",
+        idealVoiceResponseEn: "Good job, Watson! We are a great team!",
         alternativeResponsesEn: [
-          { phraseEn: "You did a good job, Watson!", translationFa: "کارت خوب بود، واتسون!" },
-          { phraseEn: "Well done, my friend!", translationFa: "آفرین، دوست من!" },
+          { phraseEn: "Well done, Watson! We make a wonderful team!", translationFa: "آفرین، واتسون! ما یک تیم فوق‌العاده می‌سازیم!" },
+          { phraseEn: "Great work, John! You saved us today!", translationFa: "کارت عالی بود جان! تو امروز ما را نجات دادی!" },
         ],
-        whiteHintFa: "از عبارت کوتاه و تشویقی Good job و نام Watson استفاده کن!",
+        whiteHintFa: "از عبارت تحسین‌آمیز Good job و ترکیب اسمی a great team استفاده کن!",
         fallbackChoices: [
-          "Good job, Watson!",
-          "This basement is very dusty and cold.",
-          "I should buy a new pair of boots tomorrow.",
+          "Good job, Watson! We are a great team!",
+          "I think this old radio is very heavy to carry.",
+          "The floor in this basement is wet and cold.",
         ],
-        aefReference: "AEF 2 Unit 4B (Past simple regular/irregular verbs + Expressing gratitude)",
+        aefReference: "AEF 2 Unit 4C (Adjectives + Nouns + Expressions of praise)",
         npcResponse: {
           speakerNameFa: "دکتر جان واتسون",
-          speakerRoleFa: "یار وفادار و همکار",
+          speakerRoleFa: "همکار تازه",
           speakerAvatar: "🩺",
           textEn: "Listen, Holmes! Moriarty's voice is coming from the speaker!",
-          textFa: "گوش کن هلمز! صدای موریارتی از بلندگو می‌آید!",
+          textFa: "گوش کن هلمز! صدای موریارتی از بلندگو به گوش می‌رسد!",
         },
       },
     ],
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 7: DECISION 3 — The Dying Judge vs. Paddington Station (تصمیم سوم: دوراهی اخلاقی و اطلاعاتی)
+  // STAGE 7: DECISION 3 — The Dying Judge vs. Paddington Station (تصمیم سوم)
   // --------------------------------------------------------------------------
   {
     levelNumber: 7,
     cefr: "A2",
-    titleFa: "تصمیم سوم: نجات قاضی در حال مرگ یا شتاب به سوی پدینگتون؟",
+    titleFa: "تصمیم سوم: قاضی رو به مرگ یا بمب قطار سلطنتی پدینگتون؟",
     titleEn: "DECISION 3: The Dying Judge vs. Paddington Station",
-    locationFa: "زیرزمین تاریک نگارخانه بلک‌فرایرز",
-    locationEn: "Basement Floor, Blackfriars Gallery",
-    storyIntroFa: "ناگهان صدای موریارتی از بلندگوی دیواری طنین‌انداز می‌شود: «آفرین! اما بمب اصلی داخل قطار سلطنتی در ایستگاه پدینگتون کار گذاشته شده است و راس ساعت ۱۱:۰۰ شب (۲۰ دقیقه دیگر) منفجر خواهد شد!». درست در همین لحظه، قاضی ارشد روی زمین تشنج می‌کند! او از قبل مسموم شده، او پالتوی شما را می‌گیرد و نجوا می‌کند: «هلمز... شنیدم موریارتی درباره سیم‌های بمب حرف می‌زد... سیم سیاه... سیم سفید... کمکم کن نفس بکشم...» واتسون به ساعتش نگاه می‌کند: «هلمز! رانندگی تا پدینگتون ۱۰ دقیقه طول می‌کشد! اگر ۵ دقیقه بمانیم تا قاضی را احیا کنیم، راز سیم‌ها را می‌فهمیم اما در ثانیه آخر به قطار می‌رسیم؛ اما اگر همین الان بدویم، وقت زیادی در ایستگاه داریم ولی قاضی به کما می‌رود و راز سیم‌ها را نمی‌فهمیم!»",
+    locationFa: "زیرزمین گالری بلک‌فرایرز، در کنار قاضی نیمه‌هوش",
+    locationEn: "Basement Vault, Beside Semi-Conscious Judge",
+    storyIntroFa: "صدای موریارتی از بلندگوی بی‌سیم پخش می‌شود: «بمب اصلی در قطار سلطنتی ایستگاه پدینگتون است و دقیقاً بیست دقیقه دیگر منفجر می‌شود!» قاضی نیمه‌جان زمزمه می‌کند: «هلمز... سیم‌ها... موریارتی سیم‌ها را تغییر داده... به من کمک کن...»",
     cutscene: {
-      titleFa: "پیام بمب پدینگتون و تشنج قاضی ارشد",
+      titleFa: "هشدار بمب قطار پدینگتون و وضعیت بحرانی قاضی",
       titleEn: "Paddington Train Bomb Warning & The Collapsing Judge",
       imageSrc: "/images/skills/speaking/a2_scene_judge_collapsing.jpg",
       dialogues: [
         {
           speakerId: "moriarty",
           speakerNameFa: "پروفسور جیمز موریارتی",
-          speakerRoleFa: "صدای پخش‌شده از بلندگو",
+          speakerRoleFa: "صدای پشت بی‌سیم",
           speakerAvatar: "♟️",
-          textEn: "The main bomb is on the Royal Train at Paddington Station! It explodes in twenty minutes!",
-          textFa: "بمب اصلی در قطار سلطنتی در ایستگاه پدینگتون است! بیست دقیقه دیگر منفجر می‌شود!",
+          textEn: "The main bomb is on the Royal Train! It explodes in twenty minutes!",
+          textFa: "بمب اصلی در قطار سلطنتی است! بیست دقیقه دیگر منفجر می‌شود!",
           bubblePosition: "right",
         },
         {
           speakerId: "judge",
-          speakerNameFa: "قاضی ارشد",
-          speakerRoleFa: "قربانی موریارتی",
+          speakerNameFa: "قاضی ارشد میلر",
+          speakerRoleFa: "قربانی گاز موریارتی",
           speakerAvatar: "⚖️",
-          textEn: "Holmes... I know the secret of the bomb wires... Black or white... help me breathe...",
-          textFa: "هلمز... من راز سیم‌های بمب را می‌دانم... سیاه یا سفید... کمکم کن نفس بکشم...",
+          textEn: "Holmes... I know the secret of the bomb wires... help me...",
+          textFa: "هلمز... من راز سیم‌های بمب را می‌دانم... کمکم کن...",
           bubblePosition: "left",
         },
         {
@@ -849,57 +832,56 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           speakerNameFa: "دکتر جان واتسون",
           speakerRoleFa: "پزشک همراه",
           speakerAvatar: "🩺",
-          textEn: "Holmes! If we stay to help the Judge, we arrive late! If we run now, we don't know the wire secret!",
-          textFa: "هلمز! اگر برای کمک به قاضی بمانیم، دیر می‌رسیم! اگر الان بدویم، راز سیم‌ها را نمی‌دانیم!",
+          textEn: "Holmes! If we stay, we arrive late! If we run now, we don't know the wire clue!",
+          textFa: "هلمز! اگر بمانیم دیر می‌رسیم! اگر الان بدویم راز سیم‌ها را نخواهیم دانست!",
           bubblePosition: "right",
         },
       ],
     },
     decisionPoint: {
       id: "decision-a2-3",
-      promptFa: "یک دوراهی اخلاقی و اطلاعاتی: نجات قاضی و کشف راز سیم‌ها یا رفتن مستقیم به ایستگاه قطار؟",
-      promptEn: "Critical Choice: Stay 5 minutes to treat the Judge or rush directly to Paddington Station?",
+      promptFa: "تصمیم سوم: آیا برای نجات قاضی و شنیدن راز سیم‌ها می‌مانید، یا مستقیماً به ایستگاه پدینگتون می‌دوید؟",
+      promptEn: "Decision 3: Stay to revive the Judge or rush immediately to Paddington Station?",
       choices: [
         {
           id: "choice-3a",
-          labelEn: "Choice 3A: Stay 5 minutes to treat the Judge and learn the wire secret",
-          labelFa: "گزینه ۳الف: ماندن به مدت ۵ دقیقه برای درمان قاضی و فهمیدن راز سیم‌ها",
-          descriptionFa: "جان قاضی را نجات می‌دهید و راز سیم سیاه را می‌شنوید، اما با حداقل زمان ممکن به قطار می‌رسید.",
+          labelEn: "Choice 3A: Stay to revive Judge Miller and learn the wire secret",
+          labelFa: "گزینه ۳الف: ماندن برای احیای قاضی و کشف راز سیم‌های بمب",
+          descriptionFa: "قاضی را نجات می‌دهید و راز سیم سیاه را از او می‌شنوید، اما زمان به شدت کم می‌شود.",
           pointsDelta: 150,
         },
         {
           id: "choice-3b",
-          labelEn: "Choice 3B: Leave the Judge for the ambulance and rush to Paddington",
-          labelFa: "گزینه ۳ب: سپردن قاضی به آمبولانس و رفتن فوری به پدینگتون",
-          descriptionFa: "زمان زیادی برای تخلیه سکو خواهید داشت، اما راز تله سیم‌های موریارتی را نخواهید دانست.",
-          pointsDelta: 150,
+          labelEn: "Choice 3B: Call an ambulance for the Judge and rush straight to Paddington",
+          labelFa: "گزینه ۳ب: تماس با آمبولانس برای قاضی و حرکت فوری به پدینگتون",
+          descriptionFa: "وقت بیشتری برای رسیدن به ایستگاه ذخیره می‌کنید، اما نمی‌دانید کدام سیم تله است.",
+          pointsDelta: 100,
         },
       ],
     },
     tasks: [
       {
         id: "task-a2-7-time-dilemma",
-        titleFa: "محاسبه زمان و بیان دوراهی مرگ و زندگی",
-        speakerPromptEn: "The Chief Judge struggles for breath on the damp floor as the clock ticks away...",
-        speakerPromptFa: "قاضی ارشد در حالی که عقربه‌های ساعت پیش می‌روند، روی زمین مرطوب برای نفس کشیدن تقلا می‌کند...",
-        speakerRoleFa: "قاضی ارشد (قربانی تله)",
-        speakerAvatar: "⚖️",
-        taskInstructionFa: "بگو: «بمب قطار بیست دقیقه دیگر منفجر می‌شود و باید تصمیم بگیریم.»",
+        titleFa: "اعلام وضعیت بحرانی زمان و لزوم تصمیم‌گیری فوری",
+        speakerPromptEn: "Watson looks at his pocket watch. The clock is ticking fast.",
+        speakerPromptFa: "واتسون به ساعت جیبی‌اش نگاه می‌کند. زمان به سرعت می‌گذرد.",
+        speakerRoleFa: "دکتر جان واتسون (نگران و مضطرب)",
+        speakerAvatar: "🩺",
+        taskInstructionFa: "به واتسون بگو: «بمب در بیست دقیقه منفجر می‌شود، باید الان تصمیم بگیریم!»",
         targetKeywords: [
-          { phrase: "bomb explodes", hintFa: "(بمب منفجر می‌شود)", synonyms: ["bomb explodes", "bomb will explode", "train bomb will explode", "train bomb"], weight: 45 },
-          { phrase: "twenty minutes", hintFa: "(بیست دقیقه)", synonyms: ["twenty minutes", "in twenty minutes", "20 minutes"], weight: 30 },
-          { phrase: "decide now", hintFa: "(الان تصمیم بگیریم)", synonyms: ["decide now", "must decide", "make a decision", "make the right decision"], weight: 25 },
+          { phrase: "in twenty minutes", hintFa: "(در بیست دقیقه)", synonyms: ["in twenty minutes", "in 20 minutes", "twenty minutes"], weight: 50 },
+          { phrase: "decide now", hintFa: "(الان تصمیم بگیر)", synonyms: ["decide now", "must decide now", "we must decide", "decide quickly"], weight: 50 },
         ],
-        idealVoiceResponseEn: "The bomb explodes in twenty minutes, and we must decide now.",
+        idealVoiceResponseEn: "The bomb explodes in twenty minutes, decide now!",
         alternativeResponsesEn: [
-          { phraseEn: "We only have twenty minutes, so we have to choose quickly.", translationFa: "ما فقط بیست دقیقه وقت داریم، پس باید سریع انتخاب کنیم." },
-          { phraseEn: "The train bomb will explode soon, what should we do?", translationFa: "بمب قطار به زودی منفجر می‌شود، چه کار باید بکنیم؟" },
+          { phraseEn: "The bomb will explode in twenty minutes, hurry up!", translationFa: "بمب در بیست دقیقه منفجر خواهد شد، عجله کن!" },
+          { phraseEn: "We have twenty minutes left, we must choose now!", translationFa: "بیست دقیقه برایمان مانده است، باید الان انتخاب کنیم!" },
         ],
-        whiteHintFa: "از زمان آینده یا حال ساده و عبارت زمانی twenty minutes استفاده کن!",
+        whiteHintFa: "از حرف اضافه زمان in (مثل in twenty minutes) برای بیان زمان آینده استفاده کن!",
         fallbackChoices: [
-          "The bomb explodes in twenty minutes, and we must decide now.",
-          "Trains are very comfortable.",
-          "Look at the clock on the wall.",
+          "The bomb explodes in twenty minutes, decide now!",
+          "Trains are very comfortable and fast.",
+          "Look at the clock on the station wall.",
         ],
         aefReference: "AEF 2 Unit 5A (Future with will + Preposition of time in)",
         npcResponse: {
@@ -914,7 +896,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 8: Consequence of Decision 3 & Track 9 (پیامد تصمیم سوم و رسیدن به ایستگاه)
+  // STAGE 8: Consequence of Decision 3 & Track 9 (پیامد تصمیم سوم و سکوی ۹)
   // --------------------------------------------------------------------------
   {
     levelNumber: 8,
@@ -923,7 +905,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     titleEn: "Consequence of Decision 3: The Race to Track 9 at Paddington",
     locationFa: "سکوی شماره ۹، ایستگاه راه‌آهن پدینگتون لندن",
     locationEn: "Platform Track 9, Paddington Railway Station, London",
-    storyIntroFa: "پیامد انتخاب مرحله هفتم رقم می‌خورد: یا قاضی را احیا کرده‌اید و راز سیم سیاه را از زبان او شنیده‌اید اما تنها ۶۰ ثانیه به انفجار مانده است، یا با سرعت خودتان را به ایستگاه رسانده‌اید و ۶ دقیقه زمان دارید اما بدون هیچ سرنخی از تله موریارتی!",
+    storyIntroFa: "پیامد انتخاب مرحله هفتم رقم می‌خورد: یا قاضی را احیا کرده‌اید و راز سیم سیاه را شنیده‌اید اما تنها ۶۰ ثانیه به انفجار مانده است، یا سریع خودتان را رسانده‌اید و ۶ دقیقه وقت دارید اما بدون هیچ سرنخی از سیم‌ها!",
     cutscene: {
       titleFa: "رسیدن به پدینگتون در زیر باران سیل‌آسا",
       titleEn: "Arrival at Paddington Station in Pouring Rain",
@@ -954,7 +936,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         conditionChoiceId: "choice-3a",
         titleFa: "پیامد ۳الف: راز فاش‌شده قاضی و ۶۰ ثانیه نفس‌گیر",
         titleEn: "Consequence 3A: The Judge's Secret & 60 Seconds Left",
-        storyIntroFa: "شما و واتسون قاضی را احیا می‌کنید (با پادزهر در صورت انتخاب ۱ب، یا احیای تنفسی در صورت انتخاب ۱الف). قاضی چشمانش را باز می‌کند و به سختی نجوا می‌کند: «خوب گوش کنید... در تمام بمب‌های ارتش، بریدن سیم سفید برق را قطع می‌کند. اما موریارتی آن‌ها را جابجا کرده است! هرگز سیم سفید را نبرید! سیم سیاه را ببرید و کد ۷۷ را وارد کنید!» با آمبولانس تماس می‌گیرید و در باران سیل‌آسا رانندگی می‌کنید. در حالی به پدینگتون می‌رسید که فقط ۶۰ ثانیه روی تایمر مانده است!",
+        storyIntroFa: "قاضی احیا شد و نجوا کرد: «موریارتی سیم‌ها را تغییر داده است! هرگز سیم سفید را نبرید! سیم سیاه را ببرید!» با سرعت به پدینگتون می‌رسید در حالی که فقط ۶۰ ثانیه مانده است!",
         cutscene: {
           titleFa: "راز سیم سیاه و ۶۰ ثانیه مانده به انفجار",
           titleEn: "The Wire Secret & 60 Seconds Left",
@@ -984,23 +966,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           {
             id: "task-a2-8-evacuate-train-3a",
             titleFa: "فرمان تخلیه اضطراری و نفوذ به واگن قطار سلطنتی",
-            speakerPromptEn: "Steam billows from the Royal Train engine as rain pounds against the glass roof of Paddington...",
-            speakerPromptFa: "بخار غلیظی از لوکوموتیو قطار سلطنتی زبانه می‌کشد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد...",
+            speakerPromptEn: "Steam rises from the engine as rain pounds against the glass roof.",
+            speakerPromptFa: "بخار از لوکوموتیو برمی‌خیزد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد.",
             speakerRoleFa: "سرنگهبان ایستگاه پدینگتون",
             speakerAvatar: "🚂",
-            taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک داخل قطار است!»",
+            taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک اینجاست!»",
             targetKeywords: [
-              { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate all passengers"], weight: 45 },
-              { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "bomb inside the train", "bomb on the train", "a bomb"], weight: 55 },
+              { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate"], weight: 50 },
+              { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "a bomb", "bomb on the train", "bomb here", "a dangerous bomb"], weight: 50 },
             ],
-            idealVoiceResponseEn: "Clear the platform now! There is a dangerous bomb on the train!",
+            idealVoiceResponseEn: "Clear the platform, there is a dangerous bomb here!",
             alternativeResponsesEn: [
-              { phraseEn: "Move everyone away immediately, a bomb is inside the train!", translationFa: "همه را فوراً دور کنید، بمبی داخل قطار است!" },
-              { phraseEn: "Please leave the station quickly, there is a gas bomb on Track 9!", translationFa: "لطفاً سریع ایستگاه را ترک کنید، بمب گازی در خط ۹ قرار دارد!" },
+              { phraseEn: "Move away quickly, there is a dangerous bomb on Track 9!", translationFa: "سریع دور شوید، یک بمب خطرناک در خط ۹ قرار دارد!" },
+              { phraseEn: "Please leave the platform now, a bomb is inside the train!", translationFa: "لطفاً الان سکو را ترک کنید، بمبی داخل قطار است!" },
             ],
-            whiteHintFa: "از جملات امری محکم (Imperatives) برای اعلام وضعیت اضطراری استفاده کن!",
+            whiteHintFa: "از جملات امری مستقیم (Clear the platform) برای اعلام وضعیت اضطراری استفاده کن!",
             fallbackChoices: [
-              "Clear the platform now! There is a dangerous bomb on the train!",
+              "Clear the platform, there is a dangerous bomb here!",
               "I would like to purchase a first-class train ticket.",
               "Please tell me the departure schedule for Oxford.",
             ],
@@ -1019,7 +1001,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         conditionChoiceId: "choice-3b",
         titleFa: "پیامد ۳ب: تخلیه سکو با ۶ دقیقه وقت و تاریکی سرنخ‌ها",
         titleEn: "Consequence 3B: Evacuating the Platform with No Wire Clue",
-        storyIntroFa: "برای قاضی آمبولانس صدا می‌زنید و مستقیم به سمت تاکسی می‌دوید. با ۶ دقیقه فرصت به پدینگتون می‌رسید! به پلیس ایستگاه کمک می‌کنید تا تمام مسافران را از سکوی ۹ تخلیه کنند. اما وقتی در واگن قطار سلطنتی را باز می‌کنید، هیچ ایده‌ای ندارید که آیا سیم سیاه تله است یا سیم سفید!",
+        storyIntroFa: "شما مستقیم به پدینگتون دویدید و با ۶ دقیقه فرصت رسیدید! سکو تخلیه شد، اما نمی‌دانید سیم سیاه تله است یا سیم سفید!",
         cutscene: {
           titleFa: "سکو تخلیه شد اما معما بدون سرنخ باقی ماند",
           titleEn: "Platform Cleared with Zero Wire Clues",
@@ -1049,23 +1031,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           {
             id: "task-a2-8-evacuate-train-3b",
             titleFa: "فرمان تخلیه اضطراری و نفوذ به واگن قطار سلطنتی",
-            speakerPromptEn: "Steam billows from the Royal Train engine as rain pounds against the glass roof of Paddington...",
-            speakerPromptFa: "بخار غلیظی از لوکوموتیو قطار سلطنتی زبانه می‌کشد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد...",
+            speakerPromptEn: "Steam rises from the engine as rain pounds against the glass roof.",
+            speakerPromptFa: "بخار از لوکوموتیو برمی‌خیزد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد.",
             speakerRoleFa: "سرنگهبان ایستگاه پدینگتون",
             speakerAvatar: "🚂",
-            taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک داخل قطار است!»",
+            taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک اینجاست!»",
             targetKeywords: [
-              { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate all passengers"], weight: 45 },
-              { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "bomb inside the train", "bomb on the train", "a bomb"], weight: 55 },
+              { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate"], weight: 50 },
+              { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "a bomb", "bomb on the train", "bomb here", "a dangerous bomb"], weight: 50 },
             ],
-            idealVoiceResponseEn: "Clear the platform now! There is a dangerous bomb on the train!",
+            idealVoiceResponseEn: "Clear the platform, there is a dangerous bomb here!",
             alternativeResponsesEn: [
-              { phraseEn: "Move everyone away immediately, a bomb is inside the train!", translationFa: "همه را فوراً دور کنید، بمبی داخل قطار است!" },
-              { phraseEn: "Please leave the station quickly, there is a gas bomb on Track 9!", translationFa: "لطفاً سریع ایستگاه را ترک کنید، بمب گازی در خط ۹ قرار دارد!" },
+              { phraseEn: "Move away quickly, there is a dangerous bomb on Track 9!", translationFa: "سریع دور شوید، یک بمب خطرناک در خط ۹ قرار دارد!" },
+              { phraseEn: "Please leave the platform now, a bomb is inside the train!", translationFa: "لطفاً الان سکو را ترک کنید، بمبی داخل قطار است!" },
             ],
-            whiteHintFa: "از جملات امری محکم (Imperatives) برای اعلام وضعیت اضطراری استفاده کن!",
+            whiteHintFa: "از جملات امری مستقیم (Clear the platform) برای اعلام وضعیت اضطراری استفاده کن!",
             fallbackChoices: [
-              "Clear the platform now! There is a dangerous bomb on the train!",
+              "Clear the platform, there is a dangerous bomb here!",
               "I would like to purchase a first-class train ticket.",
               "Please tell me the departure schedule for Oxford.",
             ],
@@ -1085,23 +1067,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a2-8-evacuate-train-default",
         titleFa: "فرمان تخلیه اضطراری و نفوذ به واگن قطار سلطنتی",
-        speakerPromptEn: "Steam billows from the Royal Train engine as rain pounds against the glass roof of Paddington...",
-        speakerPromptFa: "بخار غلیظی از لوکوموتیو قطار سلطنتی زبانه می‌کشد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد...",
+        speakerPromptEn: "Steam rises from the engine as rain pounds against the glass roof.",
+        speakerPromptFa: "بخار از لوکوموتیو برمی‌خیزد و باران بر سقف شیشه‌ای پدینگتون می‌کوبد.",
         speakerRoleFa: "سرنگهبان ایستگاه پدینگتون",
         speakerAvatar: "🚂",
-        taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک داخل قطار است!»",
+        taskInstructionFa: "به نگهبانان بگو: «سکو را خالی کنید، یک بمب خطرناک اینجاست!»",
         targetKeywords: [
-          { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate all passengers"], weight: 45 },
-          { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "bomb inside the train", "bomb on the train", "a bomb"], weight: 55 },
+          { phrase: "Clear the platform", hintFa: "(سکو را خالی کنید)", synonyms: ["clear the platform", "clear the station", "evacuate everyone", "clear passengers", "evacuate"], weight: 50 },
+          { phrase: "dangerous bomb", hintFa: "(بمب خطرناک)", synonyms: ["dangerous bomb", "a bomb", "bomb on the train", "bomb here", "a dangerous bomb"], weight: 50 },
         ],
-        idealVoiceResponseEn: "Clear the platform now! There is a dangerous bomb on the train!",
+        idealVoiceResponseEn: "Clear the platform, there is a dangerous bomb here!",
         alternativeResponsesEn: [
-          { phraseEn: "Move everyone away immediately, a bomb is inside the train!", translationFa: "همه را فوراً دور کنید، بمبی داخل قطار است!" },
-          { phraseEn: "Please leave the station quickly, there is a gas bomb on Track 9!", translationFa: "لطفاً سریع ایستگاه را ترک کنید، بمب گازی در خط ۹ قرار دارد!" },
+          { phraseEn: "Move away quickly, there is a dangerous bomb on Track 9!", translationFa: "سریع دور شوید، یک بمب خطرناک در خط ۹ قرار دارد!" },
+          { phraseEn: "Please leave the platform now, a bomb is inside the train!", translationFa: "لطفاً الان سکو را ترک کنید، بمبی داخل قطار است!" },
         ],
-        whiteHintFa: "از جملات امری محکم (Imperatives) برای اعلام وضعیت اضطراری استفاده کن!",
+        whiteHintFa: "از جملات امری مستقیم (Clear the platform) برای اعلام وضعیت اضطراری استفاده کن!",
         fallbackChoices: [
-          "Clear the platform now! There is a dangerous bomb on the train!",
+          "Clear the platform, there is a dangerous bomb here!",
           "I would like to purchase a first-class train ticket.",
           "Please tell me the departure schedule for Oxford.",
         ],
@@ -1118,7 +1100,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 9: DECISION 4 — Black or White? (تصمیم چهارم: آخرین آزمایش موریارتی)
+  // STAGE 9: DECISION 4 — Black or White? (تصمیم چهارم: آزمون نهایی موریارتی)
   // --------------------------------------------------------------------------
   {
     levelNumber: 9,
@@ -1127,7 +1109,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     titleEn: "DECISION 4: Black or White Wire? Moriarty's Final Trial",
     locationFa: "داخل واگن قطار سلطنتی، خط ۹ پدینگتون",
     locationEn: "Inside Royal Carriage, Track 9, Paddington",
-    storyIntroFa: "شما و دکتر واتسون به داخل واگن قطار می‌پرید. در میان واگن، یک دستگاه شیشه‌ای بزرگ پر از گاز سفید قرار دارد. صفحه دیجیتال کوچک روی بمب عدد ۰۰:۴۵ ثانیه را نشان می‌دهد! داخل جعبه باز، دو سیم ضخیم قرار دارد: یک سیم سفید و یک سیم سیاه، همراه با یک صفحه کلید کوچک ارقام. دوربین کوچکی بالای بمب به سمت شما می‌چرخد و صدای خنده موریارتی از بلندگو پخش می‌شود: «چهل ثانیه شرلوک! سیاه و سفید. تو کیستی کارآگاه؟ قهرمان کلاه سفید، یا کسی که تاریکی سیاه را درک می‌کند؟ یک سیم را ببر و کد را وارد کن—من دارم تماشا می‌کنم!» دکتر واتسون انبر سیم‌چین آهنی را در دست دارد و دستانش کمی می‌لرزد: «هلمز! در ارتش بریتانیا، بریدن سیم سفید همیشه برق را قطع می‌کند و بریدن سیم سیاه باعث انفجار می‌شود! کدام را ببرم؟!»",
+    storyIntroFa: "شما و دکتر واتسون به داخل واگن قطار می‌پرید. دستگاه شیشه‌ای حاوی گاز سفید روی زمین قرار دارد. نمایشگر دیجیتال روی عدد ۰۰:۴۰ ثانیه می‌درخشد! داخل جعبه دو سیم ضخیم قرار دارد: یکی سیاه و دیگری سفید. صدای خنده موریارتی از بلندگو پخش می‌شود: «سیاه یا سفید شرلوک؟ یک سیم را ببر—من تماشا می‌کنم!» دکتر واتسون انبر سیم‌چین را در دست دارد: «هلمز! در ارتش ما همیشه سیم سفید را می‌بریدیم! کدام را ببرم؟!»",
     cutscene: {
       titleFa: "بمب گاز خواب سفید در واگن سلطنتی و دوراهی سیم‌ها",
       titleEn: "The White Sleep Device & The Two Wires",
@@ -1162,7 +1144,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
           id: "choice-4a",
           labelEn: "Choice 4A: Cut the BLACK wire (Moriarty reversed standard rules)",
           labelFa: "گزینه الف: بریدن سیم سیاه",
-          descriptionFa: "به واتسون می‌گویید موریارتی قوانین ارتش را معکوس کرده است؛ سیم سیاه را می‌برید و شیر گاز را قفل می‌کنید.",
+          descriptionFa: "به واتسون می‌گویید موریارتی قوانین ارتش را معکوس کرده است؛ سیم سیاه را می‌برید.",
           pointsDelta: 200,
         },
         {
@@ -1178,23 +1160,23 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a2-9-cut-wire",
         titleFa: "صدور دستور قطعی به دکتر واتسون برای بریدن سیم",
-        speakerPromptEn: "Watson holds the steel wire cutters steady over the bomb mechanism, his eyes fixed on you...",
-        speakerPromptFa: "واتسون انبر سیم‌چین فولادی را روی مکانیزم بمب ثابت نگه داشته و چشمانش به دهان شما دوخته شده است...",
+        speakerPromptEn: "Watson holds the steel wire cutters over the bomb, waiting for your command.",
+        speakerPromptFa: "واتسون انبر سیم‌چین را روی مکانیزم بمب نگه داشته و منتظر دستور شماست.",
         speakerRoleFa: "دکتر جان واتسون (مسلح به سیم‌چین)",
         speakerAvatar: "🩺",
-        taskInstructionFa: "به واتسون بگو: «سیم سیاه را ببر!»",
+        taskInstructionFa: "به واتسون بگو: «واتسون، همین الان سیم سیاه را ببر!»",
         targetKeywords: [
-          { phrase: "Cut", hintFa: "(ببر)", synonyms: ["cut"], weight: 30 },
+          { phrase: "cut", hintFa: "(ببر)", synonyms: ["cut", "snip"], weight: 30 },
           { phrase: "the black wire", hintFa: "(سیم سیاه)", synonyms: ["the black wire", "black wire", "the black one"], weight: 70 },
         ],
-        idealVoiceResponseEn: "Cut the black wire!",
+        idealVoiceResponseEn: "Watson, cut the black wire right now!",
         alternativeResponsesEn: [
-          { phraseEn: "Watson, cut the black wire!", translationFa: "واتسون، سیم سیاه را ببر!" },
-          { phraseEn: "Cut the black wire now!", translationFa: "الان سیم سیاه را ببر!" },
+          { phraseEn: "Cut the black wire now, Watson!", translationFa: "الان سیم سیاه را ببر، واتسون!" },
+          { phraseEn: "Trust me John, cut the black wire!", translationFa: "به من اعتماد کن جان، سیم سیاه را ببر!" },
         ],
-        whiteHintFa: "از فعل امری Cut و کلمات the black wire استفاده کن!",
+        whiteHintFa: "از فعل امری Cut و ترکیب the black wire استفاده کن!",
         fallbackChoices: [
-          "Cut the black wire!",
+          "Watson, cut the black wire right now!",
           "I cannot choose, let us jump out of the window.",
           "What colour is the train engine outside?",
         ],
@@ -1211,7 +1193,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
   },
 
   // --------------------------------------------------------------------------
-  // STAGE 10: The Two Endings & The Shocking Plot Twist (دو پایان نهایی و پلات‌توییست بزرگ)
+  // STAGE 10: The Grand Climax & The Big Plot Twist (پرده دهم و پایان شگفت‌انگیز)
   // --------------------------------------------------------------------------
   {
     levelNumber: 10,
@@ -1220,7 +1202,7 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
     titleEn: "Stage 10: The Grand Climax & The Big Plot Twist",
     locationFa: "خط ۹ ایستگاه پدینگتون و دخمه مخفی آرشیو MI6",
     locationEn: "Track 9 Carriage & The Breached MI6 Archive Vault",
-    storyIntroFa: "سیم بریده می‌شود و نفس‌ها در سینه حبس می‌گردد. در بیرون، غرش باران بر بدنه قطار سلطنتی می‌کوبد. آیا تصمیم‌های شما در طول این ۱۰ مرحله، فاجعه را مهار کرده یا گاز سفید را آزاد ساخته است؟",
+    storyIntroFa: "سیم بریده می‌شود و نفس‌ها در سینه حبس می‌گردد. آیا تصمیم‌های شما در طول این ۱۰ مرحله، فاجعه را مهار کرده یا گاز سفید را آزاد ساخته است؟",
     cutscene: {
       titleFa: "لحظه انفجار یا مهار بمب در خط ۹ پدینگتون",
       titleEn: "The Moment of Detonation or Disarmament on Track 9",
@@ -1250,24 +1232,24 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
       {
         id: "task-a2-10-taste-powder",
         titleFa: "معاینه علمی گرد سفید و کشف ماهیت واقعی بمب",
-        speakerPromptEn: "You bend down, touch the white residue on the train floor, and taste it with your fingertips...",
-        speakerPromptFa: "خم می‌شوی، با نوک انگشتان ماده سفید روی کف قطار را لمس می‌کنی و آن را می‌چشی...",
+        speakerPromptEn: "You bend down, touch the white residue on the floor, and taste it.",
+        speakerPromptFa: "خم می‌شوی، پودر سفید روی زمین را لمس می‌کنی و آن را می‌چشی.",
         speakerRoleFa: "شرلوک هلمز (استنتاج علمی)",
         speakerAvatar: "🔍",
-        taskInstructionFa: "به واتسون بگو: «این پودر سفید سم نیست، فقط شکر و دود بی‌خطر است!»",
+        taskInstructionFa: "به واتسون بگو: «این پودر سفید سم نیست، فقط شکر است!»",
         targetKeywords: [
-          { phrase: "white powder", hintFa: "(پودر سفید)", synonyms: ["white powder", "this white powder", "the white powder", "this powder"], weight: 35 },
-          { phrase: "not poison", hintFa: "(سم نیست)", synonyms: ["not poison", "is not poison", "not dangerous", "isn't poison"], weight: 35 },
-          { phrase: "sugar and smoke", hintFa: "(شکر و دود)", synonyms: ["sugar and smoke", "sugar and harmless smoke", "only sugar and smoke", "harmless smoke"], weight: 30 },
+          { phrase: "white powder", hintFa: "(پودر سفید)", synonyms: ["white powder", "this white powder", "the powder"], weight: 35 },
+          { phrase: "not poison", hintFa: "(سم نیست)", synonyms: ["not poison", "is not poison", "isn't poison"], weight: 35 },
+          { phrase: "only sugar", hintFa: "(فقط شکر)", synonyms: ["only sugar", "sugar", "just sugar", "sugar and smoke"], weight: 30 },
         ],
-        idealVoiceResponseEn: "This white powder is not poison, it is only sugar and smoke!",
+        idealVoiceResponseEn: "This white powder is not poison, it is only sugar!",
         alternativeResponsesEn: [
-          { phraseEn: "Look John, this is not poison, it is just harmless smoke!", translationFa: "نگاه کن جان، این سم نیست، فقط دود بی‌خطر است!" },
-          { phraseEn: "The bomb is fake Watson, it is only sugar and theatre smoke!", translationFa: "بمب جعلی است واتسون، فقط شکر و دود تئاتر است!" },
+          { phraseEn: "Look John, this is not poison, it is just sugar!", translationFa: "نگاه کن جان، این سم نیست، فقط شکر است!" },
+          { phraseEn: "The bomb is fake Watson, it is only harmless sugar!", translationFa: "بمب جعلی است واتسون، فقط شکر بی‌خطر است!" },
         ],
-        whiteHintFa: "از زمان حال ساده با فعل to be و کلمات poison و sugar استفاده کن!",
+        whiteHintFa: "از فعل ربطی is not و کلمات poison و sugar استفاده کن!",
         fallbackChoices: [
-          "This white powder is not poison, it is only sugar and smoke!",
+          "This white powder is not poison, it is only sugar!",
           "We should run away because London is destroyed.",
           "I wonder where I left my warm wool gloves.",
         ],
@@ -1288,25 +1270,24 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         titleEn: "ENDING 1: CASE SOLVED — The Partnership Triumphs!",
         badgeTitleFa: "🎖️ پرونده با موفقیت حل شد: شاهکار مشترک هلمز و واتسون",
         imageSrc: "/images/skills/speaking/a2_scene_case_solved.jpg",
-        climaxStoryFa: "«سیم سیاه را ببر جان!» واتسون سیم سیاه را قطع می‌کند، شیر اضطراری را قفل می‌کنید. نمایشگر قرمز روی ثانیه ۰۰:۰۲ متوقف می‌شود! در بیرون، صدای فریاد شادی پلیس و مسافران به آسمان بلند می‌شود. شما جان صدها انسان را نجات دادید.",
-        climaxStoryEn: "'Cut the Black wire, John!' Watson trusts you completely and cuts the Black wire. You lock the valve—the timer freezes at 00:02! Outside, the crowds cheer. You saved hundreds of lives!",
-        revealDialogueFa: `ذره‌ای از پودر سفید روی زمین را می‌چشید... این سمی نیست! فقط شکر و دود بی‌خطر تئاتر است!
-ناگهان صدای فلزی ضعیفی از پشت دیوار آجری خط ۹ به گوش می‌رسد. پشت قطار می‌دوید: یک سوراخ بزرگ در دیوار حفر شده است!
-پشت خط ۹، گاوصندوق سری اسناد فوق‌محرمانه MI6 (سرویس اطلاعات مخفی بریتانیا) قرار داشت! در حالی که شما و تمام پلیس‌های لندن به بمب جعلی قطار چشم دوخته بودید، افراد موریارتی گاوصندوق را غارت کرده و با قایق موتوری از کانال زیرزمینی گریخته‌اند!
-از کل گاوصندوق تنها چهار پوشه به سرقت رفته است. روی میز فولادی، موریارتی روبان صورتی لیلی و نامه‌ای با جوهر سیاه به جا گذاشته است:
+        climaxStoryFa: "«سیم سیاه را ببر جان!» واتسون سیم سیاه را قطع می‌کند و شیر اضطراری را قفل می‌کنید. تایمر روی ثانیه ۰۰:۰۲ متوقف می‌شود! جمعیت در بیرون هورا می‌کشند. شما جان صدها انسان را نجات دادید.",
+        climaxStoryEn: "'Cut the Black wire, John!' Watson cuts the Black wire. The timer freezes at 00:02! Outside, the crowd cheers. You saved hundreds of lives!",
+        revealDialogueFa: `ذره‌ای از پودر سفید روی زمین را می‌چشید... این سم نیست! فقط شکر و دود بی‌خطر تئاتر است!
+ناگهان صدایی از پشت دیوار خط ۹ به گوش می‌رسد: یک سوراخ بزرگ در دیوار حفر شده است!
+پشت خط ۹، گاوصندوق اسناد محرمانه MI6 قرار داشت. در حالی که همه سرگرم بمب جعلی قطار بودند، افراد موریارتی چهار پوشه محرمانه را ربوده‌اند. روی میز، موریارتی نامه‌ای به جا گذاشته است:
 
 «شرلوک عزیزم،
-از بازی سیاه و سفید امشب ما لذت بردی؟ بمب گاز فقط یک تردستی جادویی بود تا تو را دو ساعت سرگرم نگه دارد! امشب من به دو پیروزی بزرگ رسیدم:
-۱. چهار پرونده فوق‌محرمانه بریتانیا را دزدیدم 
-۲. مهم‌تر از آن... من دکتر جان واتسون را به تو هدیه دادم.
-واقعاً فکر کردی تصادفی بود که واتسون امشب به اتاق ۴۰۴ آمد؟ من صبح امروز دوست نظامی او را مسموم کردم تا واتسون به بیمارستان سنت جود بدود و با تو ملاقات کند! چرا؟
-تا بازی بعدی ما — موریارتی»
+بمب گاز فقط تردستی بود تا تو را سرگرم نگه دارد! امشب من به دو پیروزی رسیدم:
+۱. چهار پرونده فوق‌محرمانه را بردم.
+۲. دکتر جان واتسون را به تو هدیه دادم.
+من عمداً دوست واتسون را مسموم کردم تا او به بیمارستان سنت جود بیاید و با تو آشنا شود! یک انسان بی‌احساس شکسته نمی‌شود، اما داشتن یک دوست نقطه ضعف تو خواهد بود!
+تا بازی بعدی — موریارتی»
 
-واتسون کنارتان می‌ایستد: «هلمز... نامه چه می‌گوید؟»
-به دوست جدیدتان نگاه می‌کنید، نیمه پایینی نامه را مخفیانه پاره می‌کنید، در جیب پالتویتان می‌گذارید و آرام می‌گویید:
-«هیچ چیز مهمی نیست جان... کار واقعی ما تازه شروع شده است.»`,
-        revealDialogueEn: "THE BIG PLOT TWIST: The bomb was harmless theatre smoke and sugar! Behind Track 9, Moriarty breached the MI6 Vault and stole the Four Secret Folders. He left a letter: 'I gave you Dr. John Watson... on our final day together, he will be the price you pay.' Sherlock conceals the torn bottom half of the letter in his pocket.",
-        nextTierHintFa: "پرونده سطح A2 با پیروزی شما و پیوند تاریخی با دکتر واتسون بسته شد! اما موریارتی ۴ پرونده محرمانه MI6 را ربوده است. در سطح B1 (پرونده The Glass Jury)، موریارتی شما را به دادگاه شیشه‌ای می‌کشاند، جایی که گواهی فوت جعلی ۵ سال پیش با امضای دکتر واتسون پیدا می‌شود!",
+واتسون می‌پرسد: «هلمز، نامه چه می‌گوید؟»
+به دوست جدیدتان نگاه می‌کنید، نیمه پایینی نامه را در جیب پنهان می‌کنید و آرام می‌گویید:
+«هیچ چیز جان... کار واقعی ما تازه شروع شده است.»`,
+        revealDialogueEn: "THE BIG PLOT TWIST: The bomb was harmless sugar and smoke! Moriarty breached the MI6 Vault and stole four secret files. He wrote: 'I gave you Dr. Watson... he will be your weakness.' Sherlock conceals the letter and smiles at his new friend.",
+        nextTierHintFa: "پرونده سطح A2 با موفقیت بسته شد! اما موریارتی ۴ پرونده محرمانه MI6 را ربوده است. در سطح B1 (پرونده The Glass Jury)، موریارتی شما را به دادگاه شیشه‌ای می‌کشاند!",
       },
       ending2: {
         endingType: "ending-2-case-failed",
@@ -1314,22 +1295,13 @@ export const A2_SHERLOCK_CASE: DetectiveStage[] = [
         titleEn: "ENDING 2: CASE FAILED — White Smoke Over London!",
         badgeTitleFa: "⚠️ پرونده ناکام: فعال شدن تله موریارتی در قطار سلطنتی",
         imageSrc: "/images/skills/speaking/a2_scene_case_failed.jpg",
-        climaxStoryFa: "کلیک! به محض بریدن سیم سفید (یا اتمام ثانیه‌ها)، نور قرمز چشمک می‌زند و صدای هیس ممتدی بلند می‌شود! لوله شیشه‌ای خرد شده و دود غلیظ سفیدی واگن و سکوی خط ۹ را پر می‌کند. شما و واتسون با پالتو صورت‌هایتان را می‌پوشانید و از پنجره واگن روی سکوی خیس سقوط می‌کنید. هرج‌ومرج ایستگاه را فرا می‌گیرد در حالی که صدای خنده سرد موریارتی در بلندگوها طنین‌انداز است!",
-        climaxStoryEn: "CLICK! As the White wire is cut, a red light flashes! The glass tube shatters and thick white gas erupts across Track 9! You and Watson leap out of the window into the chaos as Moriarty's laughter echoes through the station!",
-        revealDialogueFa: `با پراکنده شدن دود، متوجه می‌شوید که به خواب نرفته‌اید! ماده روی زمین را می‌چشید... این گاز سمی نیست! فقط شکر سوخته و دود تئاتر است!
-ناگهان صدای مته از پشت دیوار آجری به گوش می‌رسد. به پشت قطار می‌دوید: سوراخی در دیوار گاوصندوق فوق‌محرمانه MI6 کنده شده است! موریارتی همه شما را با یک بمب فیک سر کار گذاشت تا چهار پرونده سری بریتانیا را بدزدد!
-روی میز آرشیو، نامه‌ای با جوهر سیاه در کنار روبان صورتی لیلی خودنمایی می‌کند:
-
-«شرلوک عزیزم،
-بمب قطار فقط یک شعبده‌بازی برای تلف کردن وقت تو بود! امشب من به دو پیروزی بزرگ رسیدم:
-۱. سرقت ۴ پرونده فوق‌محرمانه MI6
-۲. هدیه دادن دکتر جان واتسون به تو!
-من عمداً دوست واتسون را مسموم کردم تا او را در اتاق ۴۰۴ جلوی پای تو بگذارم. یک انسان بی‌احساس شکسته نمی‌شود؛ من به تو یک برادر دادم تا در فینال بازی، با گرفتن جان او روحت را تکه‌تکه کنم!
-— ج. موریارتی»
-
-شما دستتان می‌لرزد. نیمه پایین نامه را پاره کرده و در جیب پالتویتان پنهان می‌کنید. به واتسون می‌گویید: «هیچ چیز جان... فقط بازی ما با موریارتی تازه آغاز شده است.»`,
-        revealDialogueEn: "THE BIG PLOT TWIST: The bomb was harmless theatre smoke! Behind Track 9, Moriarty breached the MI6 Vault and stole the Four Secret Folders. He left a letter: 'I gave you Dr. John Watson... on our final day together, he will be the price you pay.' Sherlock conceals the torn bottom half of the letter in his pocket.",
-        nextTierHintFa: "اگرچه بمب قطار عمل کرد، اما هویت فیک بمب و سرقت ۴ پرونده محرمانه MI6 نشان داد موریارتی کل شب شما را بازی داده است! در سطح B1 (The Glass Jury)، شرلوک و واتسون برای بازپس‌گیری اسناد وارد دادگاه مرگبار شیشه‌ای خواهند شد!",
+        climaxStoryFa: "با بریدن سیم سفید، صدای هیس ممتدی بلند شده و دود غلیظ سفیدی واگن و سکو را پر می‌کند. شما و واتسون از پنجره به روی سکو می‌پرید.",
+        climaxStoryEn: "As the White wire is cut, thick white smoke fills the train! You and Watson leap onto the platform as Moriarty's laughter echoes!",
+        revealDialogueFa: `با پراکنده شدن دود، متوجه می‌شوید که سالم هستید! ماده روی زمین را می‌چشید... این گاز سمی نیست! فقط شکر و دود تئاتر است!
+در پشت خط ۹، سوراخی در دیوار گاوصندوق MI6 کنده شده است. موریارتی با یک بمب فیک همه را سر کار گذاشت تا چهار پرونده سری را بدزدد! روی میز نامه‌ای به جا مانده است که نشان می‌دهد موریارتی عمداً دوست واتسون را مسموم کرده بود تا او و شرلوک با هم آشنا شوند.
+نامه را در جیب می‌گذارید و می‌گویید: «هیچ چیز جان... بازی تازه آغاز شده است.»`,
+        revealDialogueEn: "THE BIG PLOT TWIST: The bomb was harmless sugar! Moriarty stole the MI6 files while everyone was distracted. He reveals he orchestrated Watson and Sherlock's meeting.",
+        nextTierHintFa: "اگرچه بمب فیک بود، اما ۴ پرونده سرقت شد! در سطح B1 (The Glass Jury)، شرلوک و واتسون برای بازپس‌گیری اسناد وارد دادگاه مرگبار شیشه‌ای خواهند شد!",
       },
     },
   },

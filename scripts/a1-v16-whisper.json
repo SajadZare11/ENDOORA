@@ -1,0 +1,1122 @@
+[
+  {
+    "start": 0.0,
+    "end": 0.12,
+    "text": "MUSIC",
+    "words": [
+      {
+        "word": " MUSIC",
+        "start": 0.0,
+        "end": 0.12
+      }
+    ]
+  },
+  {
+    "start": 12.9,
+    "end": 13.46,
+    "text": "Rob.",
+    "words": [
+      {
+        "word": " Rob.",
+        "start": 12.9,
+        "end": 13.46
+      }
+    ]
+  },
+  {
+    "start": 14.02,
+    "end": 14.26,
+    "text": "Jenny.",
+    "words": [
+      {
+        "word": " Jenny.",
+        "start": 14.02,
+        "end": 14.26
+      }
+    ]
+  },
+  {
+    "start": 15.04,
+    "end": 15.6,
+    "text": "Hi.",
+    "words": [
+      {
+        "word": " Hi.",
+        "start": 15.04,
+        "end": 15.6
+      }
+    ]
+  },
+  {
+    "start": 15.72,
+    "end": 16.64,
+    "text": "Sorry I'm a bit late.",
+    "words": [
+      {
+        "word": " Sorry",
+        "start": 15.72,
+        "end": 15.86
+      },
+      {
+        "word": " I'm",
+        "start": 15.86,
+        "end": 16.0
+      },
+      {
+        "word": " a",
+        "start": 16.0,
+        "end": 16.12
+      },
+      {
+        "word": " bit",
+        "start": 16.12,
+        "end": 16.3
+      },
+      {
+        "word": " late.",
+        "start": 16.3,
+        "end": 16.64
+      }
+    ]
+  },
+  {
+    "start": 16.74,
+    "end": 17.28,
+    "text": "No problem.",
+    "words": [
+      {
+        "word": " No",
+        "start": 16.74,
+        "end": 17.0
+      },
+      {
+        "word": " problem.",
+        "start": 17.0,
+        "end": 17.28
+      }
+    ]
+  },
+  {
+    "start": 17.74,
+    "end": 18.16,
+    "text": "Really.",
+    "words": [
+      {
+        "word": " Really.",
+        "start": 17.74,
+        "end": 18.16
+      }
+    ]
+  },
+  {
+    "start": 23.22,
+    "end": 24.7,
+    "text": "I got your message.",
+    "words": [
+      {
+        "word": " I",
+        "start": 23.22,
+        "end": 23.78
+      },
+      {
+        "word": " got",
+        "start": 23.78,
+        "end": 24.08
+      },
+      {
+        "word": " your",
+        "start": 24.08,
+        "end": 24.36
+      },
+      {
+        "word": " message.",
+        "start": 24.36,
+        "end": 24.7
+      }
+    ]
+  },
+  {
+    "start": 25.72,
+    "end": 27.12,
+    "text": "Would you like a coffee or something?",
+    "words": [
+      {
+        "word": " Would",
+        "start": 25.72,
+        "end": 25.72
+      },
+      {
+        "word": " you",
+        "start": 25.72,
+        "end": 25.94
+      },
+      {
+        "word": " like",
+        "start": 25.94,
+        "end": 26.22
+      },
+      {
+        "word": " a",
+        "start": 26.22,
+        "end": 26.4
+      },
+      {
+        "word": " coffee",
+        "start": 26.4,
+        "end": 26.58
+      },
+      {
+        "word": " or",
+        "start": 26.58,
+        "end": 26.78
+      },
+      {
+        "word": " something?",
+        "start": 26.78,
+        "end": 27.12
+      }
+    ]
+  },
+  {
+    "start": 28.1,
+    "end": 28.98,
+    "text": "No, I'm fine.",
+    "words": [
+      {
+        "word": " No,",
+        "start": 28.1,
+        "end": 28.36
+      },
+      {
+        "word": " I'm",
+        "start": 28.44,
+        "end": 28.7
+      },
+      {
+        "word": " fine.",
+        "start": 28.7,
+        "end": 28.98
+      }
+    ]
+  },
+  {
+    "start": 28.98,
+    "end": 29.32,
+    "text": "Thanks.",
+    "words": [
+      {
+        "word": " Thanks.",
+        "start": 28.98,
+        "end": 29.32
+      }
+    ]
+  },
+  {
+    "start": 30.26,
+    "end": 31.92,
+    "text": "So, what did you want to talk about?",
+    "words": [
+      {
+        "word": " So,",
+        "start": 30.26,
+        "end": 30.56
+      },
+      {
+        "word": " what",
+        "start": 30.82,
+        "end": 30.88
+      },
+      {
+        "word": " did",
+        "start": 30.88,
+        "end": 30.98
+      },
+      {
+        "word": " you",
+        "start": 30.98,
+        "end": 31.1
+      },
+      {
+        "word": " want",
+        "start": 31.1,
+        "end": 31.22
+      },
+      {
+        "word": " to",
+        "start": 31.22,
+        "end": 31.32
+      },
+      {
+        "word": " talk",
+        "start": 31.32,
+        "end": 31.48
+      },
+      {
+        "word": " about?",
+        "start": 31.48,
+        "end": 31.92
+      }
+    ]
+  },
+  {
+    "start": 32.8,
+    "end": 36.58,
+    "text": "You think London is the best city in the world and you don't want to go home.",
+    "words": [
+      {
+        "word": " You",
+        "start": 32.8,
+        "end": 33.04
+      },
+      {
+        "word": " think",
+        "start": 33.04,
+        "end": 33.3
+      },
+      {
+        "word": " London",
+        "start": 33.3,
+        "end": 33.62
+      },
+      {
+        "word": " is",
+        "start": 33.62,
+        "end": 33.98
+      },
+      {
+        "word": " the",
+        "start": 33.98,
+        "end": 34.16
+      },
+      {
+        "word": " best",
+        "start": 34.16,
+        "end": 34.4
+      },
+      {
+        "word": " city",
+        "start": 34.4,
+        "end": 34.58
+      },
+      {
+        "word": " in",
+        "start": 34.58,
+        "end": 34.66
+      },
+      {
+        "word": " the",
+        "start": 34.66,
+        "end": 34.82
+      },
+      {
+        "word": " world",
+        "start": 34.82,
+        "end": 35.22
+      },
+      {
+        "word": " and",
+        "start": 35.22,
+        "end": 35.48
+      },
+      {
+        "word": " you",
+        "start": 35.48,
+        "end": 35.62
+      },
+      {
+        "word": " don't",
+        "start": 35.62,
+        "end": 35.82
+      },
+      {
+        "word": " want",
+        "start": 35.82,
+        "end": 35.98
+      },
+      {
+        "word": " to",
+        "start": 35.98,
+        "end": 36.1
+      },
+      {
+        "word": " go",
+        "start": 36.1,
+        "end": 36.26
+      },
+      {
+        "word": " home.",
+        "start": 36.26,
+        "end": 36.58
+      }
+    ]
+  },
+  {
+    "start": 36.78,
+    "end": 37.82,
+    "text": "Not exactly.",
+    "words": [
+      {
+        "word": " Not",
+        "start": 36.78,
+        "end": 37.26
+      },
+      {
+        "word": " exactly.",
+        "start": 37.26,
+        "end": 37.82
+      }
+    ]
+  },
+  {
+    "start": 38.82,
+    "end": 41.0,
+    "text": "We'd like you to come to New York.",
+    "words": [
+      {
+        "word": " We'd",
+        "start": 38.82,
+        "end": 39.22
+      },
+      {
+        "word": " like",
+        "start": 39.22,
+        "end": 39.46
+      },
+      {
+        "word": " you",
+        "start": 39.46,
+        "end": 39.84
+      },
+      {
+        "word": " to",
+        "start": 39.84,
+        "end": 40.02
+      },
+      {
+        "word": " come",
+        "start": 40.02,
+        "end": 40.22
+      },
+      {
+        "word": " to",
+        "start": 40.22,
+        "end": 40.4
+      },
+      {
+        "word": " New",
+        "start": 40.4,
+        "end": 40.56
+      },
+      {
+        "word": " York.",
+        "start": 40.56,
+        "end": 41.0
+      }
+    ]
+  },
+  {
+    "start": 41.68,
+    "end": 42.0,
+    "text": "Me.",
+    "words": [
+      {
+        "word": " Me.",
+        "start": 41.68,
+        "end": 42.0
+      }
+    ]
+  },
+  {
+    "start": 42.6,
+    "end": 43.48,
+    "text": "To New York.",
+    "words": [
+      {
+        "word": " To",
+        "start": 42.6,
+        "end": 42.82
+      },
+      {
+        "word": " New",
+        "start": 42.82,
+        "end": 43.02
+      },
+      {
+        "word": " York.",
+        "start": 43.02,
+        "end": 43.48
+      }
+    ]
+  },
+  {
+    "start": 44.42,
+    "end": 46.18,
+    "text": "I talked to Barbara about you.",
+    "words": [
+      {
+        "word": " I",
+        "start": 44.42,
+        "end": 44.54
+      },
+      {
+        "word": " talked",
+        "start": 44.54,
+        "end": 44.76
+      },
+      {
+        "word": " to",
+        "start": 44.76,
+        "end": 44.94
+      },
+      {
+        "word": " Barbara",
+        "start": 44.94,
+        "end": 45.14
+      },
+      {
+        "word": " about",
+        "start": 45.14,
+        "end": 45.56
+      },
+      {
+        "word": " you.",
+        "start": 45.56,
+        "end": 46.18
+      }
+    ]
+  },
+  {
+    "start": 46.44,
+    "end": 48.02,
+    "text": "You know, Barbara, my boss.",
+    "words": [
+      {
+        "word": " You",
+        "start": 46.44,
+        "end": 46.54
+      },
+      {
+        "word": " know,",
+        "start": 46.54,
+        "end": 46.72
+      },
+      {
+        "word": " Barbara,",
+        "start": 46.76,
+        "end": 47.0
+      },
+      {
+        "word": " my",
+        "start": 47.4,
+        "end": 47.52
+      },
+      {
+        "word": " boss.",
+        "start": 47.52,
+        "end": 48.02
+      }
+    ]
+  },
+  {
+    "start": 48.9,
+    "end": 50.8,
+    "text": "She loves your articles too.",
+    "words": [
+      {
+        "word": " She",
+        "start": 48.9,
+        "end": 49.08
+      },
+      {
+        "word": " loves",
+        "start": 49.08,
+        "end": 49.44
+      },
+      {
+        "word": " your",
+        "start": 49.44,
+        "end": 49.74
+      },
+      {
+        "word": " articles",
+        "start": 49.74,
+        "end": 50.04
+      },
+      {
+        "word": " too.",
+        "start": 50.04,
+        "end": 50.8
+      }
+    ]
+  },
+  {
+    "start": 51.32,
+    "end": 55.08,
+    "text": "So, would you like to come over to New York and work for us?",
+    "words": [
+      {
+        "word": " So,",
+        "start": 51.32,
+        "end": 51.8
+      },
+      {
+        "word": " would",
+        "start": 52.32,
+        "end": 52.56
+      },
+      {
+        "word": " you",
+        "start": 52.56,
+        "end": 52.7
+      },
+      {
+        "word": " like",
+        "start": 52.7,
+        "end": 52.9
+      },
+      {
+        "word": " to",
+        "start": 52.9,
+        "end": 53.02
+      },
+      {
+        "word": " come",
+        "start": 53.02,
+        "end": 53.2
+      },
+      {
+        "word": " over",
+        "start": 53.2,
+        "end": 53.4
+      },
+      {
+        "word": " to",
+        "start": 53.4,
+        "end": 53.58
+      },
+      {
+        "word": " New",
+        "start": 53.58,
+        "end": 53.72
+      },
+      {
+        "word": " York",
+        "start": 53.72,
+        "end": 53.94
+      },
+      {
+        "word": " and",
+        "start": 53.94,
+        "end": 54.14
+      },
+      {
+        "word": " work",
+        "start": 54.14,
+        "end": 54.38
+      },
+      {
+        "word": " for",
+        "start": 54.38,
+        "end": 54.56
+      },
+      {
+        "word": " us?",
+        "start": 54.56,
+        "end": 55.08
+      }
+    ]
+  },
+  {
+    "start": 56.12,
+    "end": 60.3,
+    "text": "Just for a month and write a column for New York 24-7.",
+    "words": [
+      {
+        "word": " Just",
+        "start": 56.12,
+        "end": 56.74
+      },
+      {
+        "word": " for",
+        "start": 56.74,
+        "end": 57.06
+      },
+      {
+        "word": " a",
+        "start": 57.06,
+        "end": 57.18
+      },
+      {
+        "word": " month",
+        "start": 57.18,
+        "end": 57.62
+      },
+      {
+        "word": " and",
+        "start": 57.62,
+        "end": 58.12
+      },
+      {
+        "word": " write",
+        "start": 58.12,
+        "end": 58.28
+      },
+      {
+        "word": " a",
+        "start": 58.28,
+        "end": 58.48
+      },
+      {
+        "word": " column",
+        "start": 58.48,
+        "end": 58.66
+      },
+      {
+        "word": " for",
+        "start": 58.66,
+        "end": 58.88
+      },
+      {
+        "word": " New",
+        "start": 58.88,
+        "end": 59.06
+      },
+      {
+        "word": " York",
+        "start": 59.06,
+        "end": 59.26
+      },
+      {
+        "word": " 24",
+        "start": 59.26,
+        "end": 59.82
+      },
+      {
+        "word": "-7.",
+        "start": 59.82,
+        "end": 60.3
+      }
+    ]
+  },
+  {
+    "start": 60.88,
+    "end": 62.5,
+    "text": "And maybe a daily blog?",
+    "words": [
+      {
+        "word": " And",
+        "start": 60.88,
+        "end": 60.98
+      },
+      {
+        "word": " maybe",
+        "start": 60.98,
+        "end": 61.36
+      },
+      {
+        "word": " a",
+        "start": 61.36,
+        "end": 61.74
+      },
+      {
+        "word": " daily",
+        "start": 61.74,
+        "end": 61.88
+      },
+      {
+        "word": " blog?",
+        "start": 61.88,
+        "end": 62.5
+      }
+    ]
+  },
+  {
+    "start": 63.48,
+    "end": 64.1,
+    "text": "Wow.",
+    "words": [
+      {
+        "word": " Wow.",
+        "start": 63.48,
+        "end": 64.1
+      }
+    ]
+  },
+  {
+    "start": 64.78,
+    "end": 65.88,
+    "text": "Sounds great.",
+    "words": [
+      {
+        "word": " Sounds",
+        "start": 64.78,
+        "end": 65.18
+      },
+      {
+        "word": " great.",
+        "start": 65.18,
+        "end": 65.88
+      }
+    ]
+  },
+  {
+    "start": 66.88,
+    "end": 68.26,
+    "text": "What could I call it?",
+    "words": [
+      {
+        "word": " What",
+        "start": 66.88,
+        "end": 66.98
+      },
+      {
+        "word": " could",
+        "start": 66.98,
+        "end": 67.12
+      },
+      {
+        "word": " I",
+        "start": 67.12,
+        "end": 67.36
+      },
+      {
+        "word": " call",
+        "start": 67.36,
+        "end": 67.62
+      },
+      {
+        "word": " it?",
+        "start": 67.62,
+        "end": 68.26
+      }
+    ]
+  },
+  {
+    "start": 68.7,
+    "end": 70.16,
+    "text": "An Englishman in New York.",
+    "words": [
+      {
+        "word": " An",
+        "start": 68.7,
+        "end": 68.86
+      },
+      {
+        "word": " Englishman",
+        "start": 68.86,
+        "end": 69.44
+      },
+      {
+        "word": " in",
+        "start": 69.44,
+        "end": 69.54
+      },
+      {
+        "word": " New",
+        "start": 69.54,
+        "end": 69.78
+      },
+      {
+        "word": " York.",
+        "start": 69.78,
+        "end": 70.16
+      }
+    ]
+  },
+  {
+    "start": 70.32,
+    "end": 71.42,
+    "text": "Why not?",
+    "words": [
+      {
+        "word": " Why",
+        "start": 70.32,
+        "end": 70.94
+      },
+      {
+        "word": " not?",
+        "start": 70.94,
+        "end": 71.42
+      }
+    ]
+  },
+  {
+    "start": 72.32,
+    "end": 72.84,
+    "text": "Are you interested?",
+    "words": [
+      {
+        "word": " Are",
+        "start": 72.32,
+        "end": 72.38
+      },
+      {
+        "word": " you",
+        "start": 72.38,
+        "end": 72.56
+      },
+      {
+        "word": " interested?",
+        "start": 72.56,
+        "end": 72.84
+      }
+    ]
+  },
+  {
+    "start": 73.4,
+    "end": 73.9,
+    "text": "Yes.",
+    "words": [
+      {
+        "word": " Yes.",
+        "start": 73.4,
+        "end": 73.9
+      }
+    ]
+  },
+  {
+    "start": 74.42,
+    "end": 74.74,
+    "text": "Very.",
+    "words": [
+      {
+        "word": " Very.",
+        "start": 74.42,
+        "end": 74.74
+      }
+    ]
+  },
+  {
+    "start": 75.32,
+    "end": 76.24,
+    "text": "It's amazing.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 75.32,
+        "end": 75.84
+      },
+      {
+        "word": " amazing.",
+        "start": 75.84,
+        "end": 76.24
+      }
+    ]
+  },
+  {
+    "start": 77.04,
+    "end": 78.7,
+    "text": "But I need to think about it.",
+    "words": [
+      {
+        "word": " But",
+        "start": 77.04,
+        "end": 77.58
+      },
+      {
+        "word": " I",
+        "start": 77.58,
+        "end": 77.64
+      },
+      {
+        "word": " need",
+        "start": 77.64,
+        "end": 77.84
+      },
+      {
+        "word": " to",
+        "start": 77.84,
+        "end": 77.98
+      },
+      {
+        "word": " think",
+        "start": 77.98,
+        "end": 78.18
+      },
+      {
+        "word": " about",
+        "start": 78.18,
+        "end": 78.4
+      },
+      {
+        "word": " it.",
+        "start": 78.4,
+        "end": 78.7
+      }
+    ]
+  },
+  {
+    "start": 79.3,
+    "end": 79.9,
+    "text": "Of course.",
+    "words": [
+      {
+        "word": " Of",
+        "start": 79.3,
+        "end": 79.48
+      },
+      {
+        "word": " course.",
+        "start": 79.48,
+        "end": 79.9
+      }
+    ]
+  },
+  {
+    "start": 80.5,
+    "end": 81.88,
+    "text": "When do I need to decide?",
+    "words": [
+      {
+        "word": " When",
+        "start": 80.5,
+        "end": 80.74
+      },
+      {
+        "word": " do",
+        "start": 80.74,
+        "end": 80.86
+      },
+      {
+        "word": " I",
+        "start": 80.86,
+        "end": 81.04
+      },
+      {
+        "word": " need",
+        "start": 81.04,
+        "end": 81.24
+      },
+      {
+        "word": " to",
+        "start": 81.24,
+        "end": 81.36
+      },
+      {
+        "word": " decide?",
+        "start": 81.36,
+        "end": 81.88
+      }
+    ]
+  },
+  {
+    "start": 82.66,
+    "end": 83.58,
+    "text": "For the end of the week.",
+    "words": [
+      {
+        "word": " For",
+        "start": 82.66,
+        "end": 82.82
+      },
+      {
+        "word": " the",
+        "start": 82.82,
+        "end": 82.96
+      },
+      {
+        "word": " end",
+        "start": 82.96,
+        "end": 83.08
+      },
+      {
+        "word": " of",
+        "start": 83.08,
+        "end": 83.26
+      },
+      {
+        "word": " the",
+        "start": 83.26,
+        "end": 83.36
+      },
+      {
+        "word": " week.",
+        "start": 83.36,
+        "end": 83.58
+      }
+    ]
+  },
+  {
+    "start": 84.58,
+    "end": 84.8,
+    "text": "Okay.",
+    "words": [
+      {
+        "word": " Okay.",
+        "start": 84.38,
+        "end": 84.8
+      }
+    ]
+  },
+  {
+    "start": 85.34,
+    "end": 86.18,
+    "text": "Great.",
+    "words": [
+      {
+        "word": " Great.",
+        "start": 85.34,
+        "end": 86.18
+      }
+    ]
+  },
+  {
+    "start": 86.86,
+    "end": 88.12,
+    "text": "Thank you.",
+    "words": [
+      {
+        "word": " Thank",
+        "start": 86.86,
+        "end": 87.66
+      },
+      {
+        "word": " you.",
+        "start": 87.66,
+        "end": 88.12
+      }
+    ]
+  },
+  {
+    "start": 88.82,
+    "end": 90.66,
+    "text": "And now I really have to go.",
+    "words": [
+      {
+        "word": " And",
+        "start": 88.82,
+        "end": 89.0
+      },
+      {
+        "word": " now",
+        "start": 89.0,
+        "end": 89.22
+      },
+      {
+        "word": " I",
+        "start": 89.22,
+        "end": 89.62
+      },
+      {
+        "word": " really",
+        "start": 89.62,
+        "end": 89.92
+      },
+      {
+        "word": " have",
+        "start": 89.92,
+        "end": 90.12
+      },
+      {
+        "word": " to",
+        "start": 90.12,
+        "end": 90.3
+      },
+      {
+        "word": " go.",
+        "start": 90.3,
+        "end": 90.66
+      }
+    ]
+  }
+]

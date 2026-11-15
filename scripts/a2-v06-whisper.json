@@ -1,0 +1,1321 @@
+{
+  "duration": 111.6183125,
+  "segments": [
+    {
+      "id": 1,
+      "start": 12.34,
+      "end": 17.58,
+      "text": "So, tell me, Rob, what are you going to write about?",
+      "words": [
+        {
+          "word": " So,",
+          "start": 12.34,
+          "end": 13.16,
+          "probability": 0.75
+        },
+        {
+          "word": " tell",
+          "start": 13.66,
+          "end": 14.04,
+          "probability": 0.99
+        },
+        {
+          "word": " me,",
+          "start": 14.04,
+          "end": 14.44,
+          "probability": 1.0
+        },
+        {
+          "word": " Rob,",
+          "start": 14.46,
+          "end": 14.78,
+          "probability": 0.96
+        },
+        {
+          "word": " what",
+          "start": 15.5,
+          "end": 15.8,
+          "probability": 0.98
+        },
+        {
+          "word": " are",
+          "start": 15.8,
+          "end": 16.08,
+          "probability": 0.99
+        },
+        {
+          "word": " you",
+          "start": 16.08,
+          "end": 16.28,
+          "probability": 1.0
+        },
+        {
+          "word": " going",
+          "start": 16.28,
+          "end": 16.58,
+          "probability": 1.0
+        },
+        {
+          "word": " to",
+          "start": 16.58,
+          "end": 16.78,
+          "probability": 1.0
+        },
+        {
+          "word": " write",
+          "start": 16.78,
+          "end": 16.92,
+          "probability": 0.99
+        },
+        {
+          "word": " about?",
+          "start": 16.92,
+          "end": 17.58,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "start": 18.48,
+      "end": 21.78,
+      "text": "Well, to start with, my first impressions of New York.",
+      "words": [
+        {
+          "word": " Well,",
+          "start": 18.48,
+          "end": 18.72,
+          "probability": 0.9
+        },
+        {
+          "word": " to",
+          "start": 18.88,
+          "end": 19.16,
+          "probability": 0.87
+        },
+        {
+          "word": " start",
+          "start": 19.16,
+          "end": 19.4,
+          "probability": 1.0
+        },
+        {
+          "word": " with,",
+          "start": 19.4,
+          "end": 19.96,
+          "probability": 1.0
+        },
+        {
+          "word": " my",
+          "start": 20.04,
+          "end": 20.32,
+          "probability": 0.99
+        },
+        {
+          "word": " first",
+          "start": 20.32,
+          "end": 20.64,
+          "probability": 1.0
+        },
+        {
+          "word": " impressions",
+          "start": 20.64,
+          "end": 21.0,
+          "probability": 1.0
+        },
+        {
+          "word": " of",
+          "start": 21.0,
+          "end": 21.24,
+          "probability": 0.99
+        },
+        {
+          "word": " New",
+          "start": 21.24,
+          "end": 21.38,
+          "probability": 0.98
+        },
+        {
+          "word": " York.",
+          "start": 21.38,
+          "end": 21.78,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "start": 22.0,
+      "end": 25.5,
+      "text": "You know that nightlife, music, things like that.",
+      "words": [
+        {
+          "word": " You",
+          "start": 22.0,
+          "end": 22.12,
+          "probability": 0.97
+        },
+        {
+          "word": " know",
+          "start": 22.12,
+          "end": 22.32,
+          "probability": 1.0
+        },
+        {
+          "word": " that",
+          "start": 22.32,
+          "end": 22.8,
+          "probability": 0.67
+        },
+        {
+          "word": " nightlife,",
+          "start": 22.8,
+          "end": 23.52,
+          "probability": 0.54
+        },
+        {
+          "word": " music,",
+          "start": 23.66,
+          "end": 24.06,
+          "probability": 0.99
+        },
+        {
+          "word": " things",
+          "start": 24.6,
+          "end": 24.74,
+          "probability": 0.99
+        },
+        {
+          "word": " like",
+          "start": 24.74,
+          "end": 24.98,
+          "probability": 1.0
+        },
+        {
+          "word": " that.",
+          "start": 24.98,
+          "end": 25.5,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "start": 25.96,
+      "end": 28.14,
+      "text": "Are you planning to do any interviews?",
+      "words": [
+        {
+          "word": " Are",
+          "start": 25.96,
+          "end": 25.98,
+          "probability": 0.95
+        },
+        {
+          "word": " you",
+          "start": 25.98,
+          "end": 26.26,
+          "probability": 1.0
+        },
+        {
+          "word": " planning",
+          "start": 26.26,
+          "end": 26.56,
+          "probability": 1.0
+        },
+        {
+          "word": " to",
+          "start": 26.56,
+          "end": 26.84,
+          "probability": 1.0
+        },
+        {
+          "word": " do",
+          "start": 26.84,
+          "end": 27.26,
+          "probability": 1.0
+        },
+        {
+          "word": " any",
+          "start": 27.26,
+          "end": 27.74,
+          "probability": 1.0
+        },
+        {
+          "word": " interviews?",
+          "start": 27.74,
+          "end": 28.14,
+          "probability": 0.35
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "start": 28.66,
+      "end": 30.38,
+      "text": "I'd like to.",
+      "words": [
+        {
+          "word": " I'd",
+          "start": 28.66,
+          "end": 29.12,
+          "probability": 0.8
+        },
+        {
+          "word": " like",
+          "start": 29.12,
+          "end": 29.62,
+          "probability": 1.0
+        },
+        {
+          "word": " to.",
+          "start": 29.62,
+          "end": 30.38,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "start": 31.42,
+      "end": 32.8,
+      "text": "Do you have any suggestions?",
+      "words": [
+        {
+          "word": " Do",
+          "start": 31.42,
+          "end": 31.42,
+          "probability": 0.98
+        },
+        {
+          "word": " you",
+          "start": 31.42,
+          "end": 31.88,
+          "probability": 1.0
+        },
+        {
+          "word": " have",
+          "start": 31.88,
+          "end": 32.14,
+          "probability": 0.97
+        },
+        {
+          "word": " any",
+          "start": 32.14,
+          "end": 32.38,
+          "probability": 1.0
+        },
+        {
+          "word": " suggestions?",
+          "start": 32.38,
+          "end": 32.8,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "start": 33.28,
+      "end": 36.28,
+      "text": "Well, I know some great musicians.",
+      "words": [
+        {
+          "word": " Well,",
+          "start": 33.28,
+          "end": 33.94,
+          "probability": 0.99
+        },
+        {
+          "word": " I",
+          "start": 33.94,
+          "end": 34.32,
+          "probability": 1.0
+        },
+        {
+          "word": " know",
+          "start": 34.32,
+          "end": 34.62,
+          "probability": 1.0
+        },
+        {
+          "word": " some",
+          "start": 34.62,
+          "end": 35.1,
+          "probability": 1.0
+        },
+        {
+          "word": " great",
+          "start": 35.1,
+          "end": 35.46,
+          "probability": 0.99
+        },
+        {
+          "word": " musicians.",
+          "start": 35.46,
+          "end": 36.28,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "start": 36.7,
+      "end": 37.14,
+      "text": "Musicians.",
+      "words": [
+        {
+          "word": " Musicians.",
+          "start": 36.7,
+          "end": 37.14,
+          "probability": 0.88
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "start": 38.06,
+      "end": 39.8,
+      "text": "You know, guys and bands.",
+      "words": [
+        {
+          "word": " You",
+          "start": 38.06,
+          "end": 38.06,
+          "probability": 0.81
+        },
+        {
+          "word": " know,",
+          "start": 38.06,
+          "end": 38.54,
+          "probability": 1.0
+        },
+        {
+          "word": " guys",
+          "start": 38.54,
+          "end": 38.92,
+          "probability": 0.99
+        },
+        {
+          "word": " and",
+          "start": 38.92,
+          "end": 39.22,
+          "probability": 0.65
+        },
+        {
+          "word": " bands.",
+          "start": 39.22,
+          "end": 39.8,
+          "probability": 0.9
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "start": 39.8,
+      "end": 43.92,
+      "text": "And I also have some contacts in the theater and dance.",
+      "words": [
+        {
+          "word": " And",
+          "start": 39.8,
+          "end": 40.32,
+          "probability": 0.73
+        },
+        {
+          "word": " I",
+          "start": 40.32,
+          "end": 40.54,
+          "probability": 0.98
+        },
+        {
+          "word": " also",
+          "start": 40.54,
+          "end": 40.9,
+          "probability": 1.0
+        },
+        {
+          "word": " have",
+          "start": 40.9,
+          "end": 41.1,
+          "probability": 0.95
+        },
+        {
+          "word": " some",
+          "start": 41.1,
+          "end": 41.36,
+          "probability": 1.0
+        },
+        {
+          "word": " contacts",
+          "start": 41.36,
+          "end": 41.84,
+          "probability": 0.73
+        },
+        {
+          "word": " in",
+          "start": 41.84,
+          "end": 42.12,
+          "probability": 1.0
+        },
+        {
+          "word": " the",
+          "start": 42.12,
+          "end": 42.38,
+          "probability": 0.94
+        },
+        {
+          "word": " theater",
+          "start": 42.38,
+          "end": 42.82,
+          "probability": 0.75
+        },
+        {
+          "word": " and",
+          "start": 42.82,
+          "end": 43.38,
+          "probability": 0.91
+        },
+        {
+          "word": " dance.",
+          "start": 43.38,
+          "end": 43.92,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "start": 44.14,
+      "end": 45.3,
+      "text": "That would be great.",
+      "words": [
+        {
+          "word": " That",
+          "start": 44.14,
+          "end": 44.36,
+          "probability": 0.68
+        },
+        {
+          "word": " would",
+          "start": 44.36,
+          "end": 44.6,
+          "probability": 0.99
+        },
+        {
+          "word": " be",
+          "start": 44.6,
+          "end": 44.86,
+          "probability": 1.0
+        },
+        {
+          "word": " great.",
+          "start": 44.86,
+          "end": 45.3,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "start": 45.7,
+      "end": 49.8,
+      "text": "Maybe we could go to a show and after you could talk to the actors.",
+      "words": [
+        {
+          "word": " Maybe",
+          "start": 45.7,
+          "end": 45.96,
+          "probability": 0.97
+        },
+        {
+          "word": " we",
+          "start": 45.96,
+          "end": 46.22,
+          "probability": 0.99
+        },
+        {
+          "word": " could",
+          "start": 46.22,
+          "end": 46.36,
+          "probability": 0.99
+        },
+        {
+          "word": " go",
+          "start": 46.36,
+          "end": 46.58,
+          "probability": 1.0
+        },
+        {
+          "word": " to",
+          "start": 46.58,
+          "end": 46.78,
+          "probability": 1.0
+        },
+        {
+          "word": " a",
+          "start": 46.78,
+          "end": 46.86,
+          "probability": 0.99
+        },
+        {
+          "word": " show",
+          "start": 46.86,
+          "end": 47.2,
+          "probability": 1.0
+        },
+        {
+          "word": " and",
+          "start": 47.2,
+          "end": 47.82,
+          "probability": 0.63
+        },
+        {
+          "word": " after",
+          "start": 47.82,
+          "end": 48.16,
+          "probability": 0.85
+        },
+        {
+          "word": " you",
+          "start": 48.16,
+          "end": 48.46,
+          "probability": 0.97
+        },
+        {
+          "word": " could",
+          "start": 48.46,
+          "end": 48.72,
+          "probability": 1.0
+        },
+        {
+          "word": " talk",
+          "start": 48.72,
+          "end": 48.96,
+          "probability": 1.0
+        },
+        {
+          "word": " to",
+          "start": 48.96,
+          "end": 49.12,
+          "probability": 1.0
+        },
+        {
+          "word": " the",
+          "start": 49.12,
+          "end": 49.36,
+          "probability": 1.0
+        },
+        {
+          "word": " actors.",
+          "start": 49.36,
+          "end": 49.8,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "start": 51.05,
+      "end": 52.63,
+      "text": "I really like that idea.",
+      "words": [
+        {
+          "word": " I",
+          "start": 51.05,
+          "end": 51.41,
+          "probability": 0.98
+        },
+        {
+          "word": " really",
+          "start": 51.41,
+          "end": 51.73,
+          "probability": 1.0
+        },
+        {
+          "word": " like",
+          "start": 51.73,
+          "end": 51.97,
+          "probability": 0.78
+        },
+        {
+          "word": " that",
+          "start": 51.97,
+          "end": 52.27,
+          "probability": 1.0
+        },
+        {
+          "word": " idea.",
+          "start": 52.27,
+          "end": 52.63,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "start": 54.5,
+      "end": 56.0,
+      "text": "Can I bring you anything else?",
+      "words": [
+        {
+          "word": " Can",
+          "start": 54.5,
+          "end": 54.7,
+          "probability": 0.89
+        },
+        {
+          "word": " I",
+          "start": 54.7,
+          "end": 54.82,
+          "probability": 0.99
+        },
+        {
+          "word": " bring",
+          "start": 54.82,
+          "end": 54.98,
+          "probability": 1.0
+        },
+        {
+          "word": " you",
+          "start": 54.98,
+          "end": 55.14,
+          "probability": 1.0
+        },
+        {
+          "word": " anything",
+          "start": 55.14,
+          "end": 55.4,
+          "probability": 0.99
+        },
+        {
+          "word": " else?",
+          "start": 55.4,
+          "end": 56.0,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "start": 56.12,
+      "end": 57.24,
+      "text": "Did we have the check, please?",
+      "words": [
+        {
+          "word": " Did",
+          "start": 56.12,
+          "end": 56.26,
+          "probability": 0.18
+        },
+        {
+          "word": " we",
+          "start": 56.26,
+          "end": 56.32,
+          "probability": 1.0
+        },
+        {
+          "word": " have",
+          "start": 56.32,
+          "end": 56.48,
+          "probability": 1.0
+        },
+        {
+          "word": " the",
+          "start": 56.48,
+          "end": 56.7,
+          "probability": 0.98
+        },
+        {
+          "word": " check,",
+          "start": 56.7,
+          "end": 56.98,
+          "probability": 0.93
+        },
+        {
+          "word": " please?",
+          "start": 56.98,
+          "end": 57.24,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "start": 57.64,
+      "end": 58.62,
+      "text": "Yes, ma'am.",
+      "words": [
+        {
+          "word": " Yes,",
+          "start": 57.64,
+          "end": 57.92,
+          "probability": 0.98
+        },
+        {
+          "word": " ma",
+          "start": 57.96,
+          "end": 58.28,
+          "probability": 0.76
+        },
+        {
+          "word": "'am.",
+          "start": 58.28,
+          "end": 58.62,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "start": 70.22,
+      "end": 70.84,
+      "text": "Is your check?",
+      "words": [
+        {
+          "word": " Is",
+          "start": 70.22,
+          "end": 70.32,
+          "probability": 0.85
+        },
+        {
+          "word": " your",
+          "start": 70.32,
+          "end": 70.54,
+          "probability": 0.97
+        },
+        {
+          "word": " check?",
+          "start": 70.54,
+          "end": 70.84,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "start": 71.14,
+      "end": 71.54,
+      "text": "Thanks.",
+      "words": [
+        {
+          "word": " Thanks.",
+          "start": 71.14,
+          "end": 71.54,
+          "probability": 0.95
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "start": 76.08,
+      "end": 76.64,
+      "text": "Excuse me.",
+      "words": [
+        {
+          "word": " Excuse",
+          "start": 76.08,
+          "end": 76.44,
+          "probability": 0.77
+        },
+        {
+          "word": " me.",
+          "start": 76.44,
+          "end": 76.64,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "start": 76.72,
+      "end": 77.76,
+      "text": "I think there's a mistake.",
+      "words": [
+        {
+          "word": " I",
+          "start": 76.72,
+          "end": 76.78,
+          "probability": 1.0
+        },
+        {
+          "word": " think",
+          "start": 76.78,
+          "end": 76.94,
+          "probability": 1.0
+        },
+        {
+          "word": " there's",
+          "start": 76.94,
+          "end": 77.18,
+          "probability": 0.99
+        },
+        {
+          "word": " a",
+          "start": 77.18,
+          "end": 77.3,
+          "probability": 0.99
+        },
+        {
+          "word": " mistake.",
+          "start": 77.3,
+          "end": 77.76,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "start": 78.5,
+      "end": 81.48,
+      "text": "We had two bottles of water, not three.",
+      "words": [
+        {
+          "word": " We",
+          "start": 78.5,
+          "end": 78.54,
+          "probability": 1.0
+        },
+        {
+          "word": " had",
+          "start": 78.54,
+          "end": 79.1,
+          "probability": 1.0
+        },
+        {
+          "word": " two",
+          "start": 79.1,
+          "end": 79.8,
+          "probability": 0.96
+        },
+        {
+          "word": " bottles",
+          "start": 79.8,
+          "end": 80.08,
+          "probability": 1.0
+        },
+        {
+          "word": " of",
+          "start": 80.08,
+          "end": 80.34,
+          "probability": 1.0
+        },
+        {
+          "word": " water,",
+          "start": 80.34,
+          "end": 80.82,
+          "probability": 1.0
+        },
+        {
+          "word": " not",
+          "start": 80.94,
+          "end": 81.16,
+          "probability": 0.91
+        },
+        {
+          "word": " three.",
+          "start": 81.16,
+          "end": 81.48,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "start": 81.76,
+      "end": 82.48,
+      "text": "You're right.",
+      "words": [
+        {
+          "word": " You're",
+          "start": 81.76,
+          "end": 82.14,
+          "probability": 0.98
+        },
+        {
+          "word": " right.",
+          "start": 82.14,
+          "end": 82.48,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "start": 82.86,
+      "end": 83.96,
+      "text": "I'm really sorry.",
+      "words": [
+        {
+          "word": " I'm",
+          "start": 82.86,
+          "end": 83.14,
+          "probability": 1.0
+        },
+        {
+          "word": " really",
+          "start": 83.14,
+          "end": 83.5,
+          "probability": 1.0
+        },
+        {
+          "word": " sorry.",
+          "start": 83.5,
+          "end": 83.96,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "start": 83.96,
+      "end": 86.02,
+      "text": "It's not my day today.",
+      "words": [
+        {
+          "word": " It's",
+          "start": 83.96,
+          "end": 84.92,
+          "probability": 0.81
+        },
+        {
+          "word": " not",
+          "start": 84.92,
+          "end": 85.1,
+          "probability": 1.0
+        },
+        {
+          "word": " my",
+          "start": 85.1,
+          "end": 85.32,
+          "probability": 0.94
+        },
+        {
+          "word": " day",
+          "start": 85.32,
+          "end": 85.5,
+          "probability": 0.99
+        },
+        {
+          "word": " today.",
+          "start": 85.5,
+          "end": 86.02,
+          "probability": 0.95
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "start": 86.6,
+      "end": 87.5,
+      "text": "I'll get you on your check.",
+      "words": [
+        {
+          "word": " I'll",
+          "start": 86.6,
+          "end": 86.68,
+          "probability": 0.99
+        },
+        {
+          "word": " get",
+          "start": 86.68,
+          "end": 86.82,
+          "probability": 1.0
+        },
+        {
+          "word": " you",
+          "start": 86.82,
+          "end": 86.94,
+          "probability": 1.0
+        },
+        {
+          "word": " on",
+          "start": 86.94,
+          "end": 87.02,
+          "probability": 0.22
+        },
+        {
+          "word": " your",
+          "start": 87.02,
+          "end": 87.22,
+          "probability": 0.87
+        },
+        {
+          "word": " check.",
+          "start": 87.22,
+          "end": 87.5,
+          "probability": 0.95
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "start": 87.86,
+      "end": 88.6,
+      "text": "Thank you.",
+      "words": [
+        {
+          "word": " Thank",
+          "start": 87.86,
+          "end": 87.86,
+          "probability": 0.86
+        },
+        {
+          "word": " you.",
+          "start": 87.86,
+          "end": 88.6,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "start": 89.34,
+      "end": 91.78,
+      "text": "We're going to have a fun month, Rob.",
+      "words": [
+        {
+          "word": " We're",
+          "start": 89.34,
+          "end": 89.54,
+          "probability": 0.87
+        },
+        {
+          "word": " going",
+          "start": 89.54,
+          "end": 89.8,
+          "probability": 1.0
+        },
+        {
+          "word": " to",
+          "start": 89.8,
+          "end": 90.12,
+          "probability": 1.0
+        },
+        {
+          "word": " have",
+          "start": 90.12,
+          "end": 90.36,
+          "probability": 1.0
+        },
+        {
+          "word": " a",
+          "start": 90.36,
+          "end": 90.68,
+          "probability": 0.99
+        },
+        {
+          "word": " fun",
+          "start": 90.68,
+          "end": 90.9,
+          "probability": 0.98
+        },
+        {
+          "word": " month,",
+          "start": 90.9,
+          "end": 91.36,
+          "probability": 0.91
+        },
+        {
+          "word": " Rob.",
+          "start": 91.38,
+          "end": 91.78,
+          "probability": 0.97
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "start": 92.38,
+      "end": 92.78,
+      "text": "Yeah.",
+      "words": [
+        {
+          "word": " Yeah.",
+          "start": 92.38,
+          "end": 92.78,
+          "probability": 0.96
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "start": 93.24,
+      "end": 94.68,
+      "text": "I think it's going to be fantastic.",
+      "words": [
+        {
+          "word": " I",
+          "start": 93.24,
+          "end": 93.46,
+          "probability": 0.99
+        },
+        {
+          "word": " think",
+          "start": 93.46,
+          "end": 93.64,
+          "probability": 0.97
+        },
+        {
+          "word": " it's",
+          "start": 93.64,
+          "end": 93.86,
+          "probability": 0.99
+        },
+        {
+          "word": " going",
+          "start": 93.86,
+          "end": 93.98,
+          "probability": 0.99
+        },
+        {
+          "word": " to",
+          "start": 93.98,
+          "end": 94.14,
+          "probability": 1.0
+        },
+        {
+          "word": " be",
+          "start": 94.14,
+          "end": 94.32,
+          "probability": 1.0
+        },
+        {
+          "word": " fantastic.",
+          "start": 94.32,
+          "end": 94.68,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "start": 96.02,
+      "end": 96.48,
+      "text": "Okay.",
+      "words": [
+        {
+          "word": " Okay.",
+          "start": 96.02,
+          "end": 96.48,
+          "probability": 0.69
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "start": 96.62,
+      "end": 97.46,
+      "text": "Time to go.",
+      "words": [
+        {
+          "word": " Time",
+          "start": 96.62,
+          "end": 96.84,
+          "probability": 0.97
+        },
+        {
+          "word": " to",
+          "start": 96.84,
+          "end": 97.04,
+          "probability": 1.0
+        },
+        {
+          "word": " go.",
+          "start": 97.04,
+          "end": 97.46,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "start": 98.16,
+      "end": 100.95,
+      "text": "You have your meeting with Barbara at three?",
+      "words": [
+        {
+          "word": " You",
+          "start": 98.16,
+          "end": 98.24,
+          "probability": 0.98
+        },
+        {
+          "word": " have",
+          "start": 98.24,
+          "end": 98.38,
+          "probability": 1.0
+        },
+        {
+          "word": " your",
+          "start": 98.38,
+          "end": 98.54,
+          "probability": 1.0
+        },
+        {
+          "word": " meeting",
+          "start": 98.54,
+          "end": 99.0,
+          "probability": 0.99
+        },
+        {
+          "word": " with",
+          "start": 99.13,
+          "end": 100.09,
+          "probability": 0.84
+        },
+        {
+          "word": " Barbara",
+          "start": 100.09,
+          "end": 100.31,
+          "probability": 0.94
+        },
+        {
+          "word": " at",
+          "start": 100.31,
+          "end": 100.55,
+          "probability": 0.96
+        },
+        {
+          "word": " three?",
+          "start": 100.55,
+          "end": 100.95,
+          "probability": 0.56
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "start": 101.25,
+      "end": 102.13,
+      "text": "Oh, yeah.",
+      "words": [
+        {
+          "word": " Oh,",
+          "start": 101.25,
+          "end": 101.57,
+          "probability": 0.95
+        },
+        {
+          "word": " yeah.",
+          "start": 101.81,
+          "end": 102.13,
+          "probability": 0.99
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "start": 102.35,
+      "end": 102.59,
+      "text": "Right.",
+      "words": [
+        {
+          "word": " Right.",
+          "start": 102.35,
+          "end": 102.59,
+          "probability": 1.0
+        }
+      ]
+    }
+  ]
+}

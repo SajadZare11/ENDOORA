@@ -1,0 +1,533 @@
+[
+  {
+    "start": 8.04,
+    "end": 9.94,
+    "text": "Could you call me a taxi, please?",
+    "words": [
+      {
+        "word": " Could",
+        "start": 8.04,
+        "end": 8.52
+      },
+      {
+        "word": " you",
+        "start": 8.52,
+        "end": 8.72
+      },
+      {
+        "word": " call",
+        "start": 8.72,
+        "end": 8.88
+      },
+      {
+        "word": " me",
+        "start": 8.88,
+        "end": 9.02
+      },
+      {
+        "word": " a",
+        "start": 9.02,
+        "end": 9.16
+      },
+      {
+        "word": " taxi,",
+        "start": 9.16,
+        "end": 9.42
+      },
+      {
+        "word": " please?",
+        "start": 9.88,
+        "end": 9.94
+      }
+    ]
+  },
+  {
+    "start": 10.08,
+    "end": 11.92,
+    "text": "Yes, of course. Where to?",
+    "words": [
+      {
+        "word": " Yes,",
+        "start": 10.08,
+        "end": 10.44
+      },
+      {
+        "word": " of",
+        "start": 10.58,
+        "end": 10.66
+      },
+      {
+        "word": " course.",
+        "start": 10.66,
+        "end": 11.16
+      },
+      {
+        "word": " Where",
+        "start": 11.42,
+        "end": 11.42
+      },
+      {
+        "word": " to?",
+        "start": 11.42,
+        "end": 11.92
+      }
+    ]
+  },
+  {
+    "start": 12.36,
+    "end": 13.42,
+    "text": "To Paddington Station.",
+    "words": [
+      {
+        "word": " To",
+        "start": 12.36,
+        "end": 12.44
+      },
+      {
+        "word": " Paddington",
+        "start": 12.44,
+        "end": 12.88
+      },
+      {
+        "word": " Station.",
+        "start": 12.88,
+        "end": 13.42
+      }
+    ]
+  },
+  {
+    "start": 13.82,
+    "end": 15.06,
+    "text": "And when would you like it for?",
+    "words": [
+      {
+        "word": " And",
+        "start": 13.82,
+        "end": 14.06
+      },
+      {
+        "word": " when",
+        "start": 14.06,
+        "end": 14.2
+      },
+      {
+        "word": " would",
+        "start": 14.2,
+        "end": 14.32
+      },
+      {
+        "word": " you",
+        "start": 14.32,
+        "end": 14.42
+      },
+      {
+        "word": " like",
+        "start": 14.42,
+        "end": 14.6
+      },
+      {
+        "word": " it",
+        "start": 14.6,
+        "end": 14.82
+      },
+      {
+        "word": " for?",
+        "start": 14.82,
+        "end": 15.06
+      }
+    ]
+  },
+  {
+    "start": 15.44,
+    "end": 16.4,
+    "text": "Now, please.",
+    "words": [
+      {
+        "word": " Now,",
+        "start": 15.44,
+        "end": 15.78
+      },
+      {
+        "word": " please.",
+        "start": 15.78,
+        "end": 16.4
+      }
+    ]
+  },
+  {
+    "start": 36.06,
+    "end": 37.46,
+    "text": "How much is that?",
+    "words": [
+      {
+        "word": " How",
+        "start": 36.06,
+        "end": 36.62
+      },
+      {
+        "word": " much",
+        "start": 36.62,
+        "end": 36.84
+      },
+      {
+        "word": " is",
+        "start": 36.84,
+        "end": 37.08
+      },
+      {
+        "word": " that?",
+        "start": 37.08,
+        "end": 37.46
+      }
+    ]
+  },
+  {
+    "start": 37.94,
+    "end": 42.06,
+    "text": "That's 13-60, please.",
+    "words": [
+      {
+        "word": " That's",
+        "start": 37.94,
+        "end": 38.5
+      },
+      {
+        "word": " 13",
+        "start": 38.5,
+        "end": 39.02
+      },
+      {
+        "word": "-60,",
+        "start": 39.02,
+        "end": 39.34
+      },
+      {
+        "word": " please.",
+        "start": 42.06,
+        "end": 42.06
+      }
+    ]
+  },
+  {
+    "start": 46.06,
+    "end": 47.9,
+    "text": "Make it 15 pounds.",
+    "words": [
+      {
+        "word": " Make",
+        "start": 46.06,
+        "end": 46.62
+      },
+      {
+        "word": " it",
+        "start": 46.62,
+        "end": 46.82
+      },
+      {
+        "word": " 15",
+        "start": 46.82,
+        "end": 47.26
+      },
+      {
+        "word": " pounds.",
+        "start": 47.26,
+        "end": 47.9
+      }
+    ]
+  },
+  {
+    "start": 48.88,
+    "end": 49.68,
+    "text": "And could I have a receipt?",
+    "words": [
+      {
+        "word": " And",
+        "start": 48.88,
+        "end": 48.88
+      },
+      {
+        "word": " could",
+        "start": 48.88,
+        "end": 49.02
+      },
+      {
+        "word": " I",
+        "start": 49.02,
+        "end": 49.18
+      },
+      {
+        "word": " have",
+        "start": 49.18,
+        "end": 49.26
+      },
+      {
+        "word": " a",
+        "start": 49.26,
+        "end": 49.36
+      },
+      {
+        "word": " receipt?",
+        "start": 49.36,
+        "end": 49.68
+      }
+    ]
+  },
+  {
+    "start": 50.46,
+    "end": 51.32,
+    "text": "Thank you very much, Madam.",
+    "words": [
+      {
+        "word": " Thank",
+        "start": 50.46,
+        "end": 50.58
+      },
+      {
+        "word": " you",
+        "start": 50.58,
+        "end": 50.68
+      },
+      {
+        "word": " very",
+        "start": 50.68,
+        "end": 50.86
+      },
+      {
+        "word": " much,",
+        "start": 50.86,
+        "end": 51.02
+      },
+      {
+        "word": " Madam.",
+        "start": 51.1,
+        "end": 51.32
+      }
+    ]
+  },
+  {
+    "start": 61.86,
+    "end": 64.86,
+    "text": "Could I have a ticket to Heathrow Airport, please?",
+    "words": [
+      {
+        "word": " Could",
+        "start": 61.86,
+        "end": 62.42
+      },
+      {
+        "word": " I",
+        "start": 62.42,
+        "end": 62.52
+      },
+      {
+        "word": " have",
+        "start": 62.52,
+        "end": 62.66
+      },
+      {
+        "word": " a",
+        "start": 62.66,
+        "end": 62.78
+      },
+      {
+        "word": " ticket",
+        "start": 62.78,
+        "end": 63.0
+      },
+      {
+        "word": " to",
+        "start": 63.0,
+        "end": 63.26
+      },
+      {
+        "word": " Heathrow",
+        "start": 63.26,
+        "end": 63.72
+      },
+      {
+        "word": " Airport,",
+        "start": 63.72,
+        "end": 64.14
+      },
+      {
+        "word": " please?",
+        "start": 64.36,
+        "end": 64.86
+      }
+    ]
+  },
+  {
+    "start": 65.2,
+    "end": 66.28,
+    "text": "A single or return?",
+    "words": [
+      {
+        "word": " A",
+        "start": 65.2,
+        "end": 65.2
+      },
+      {
+        "word": " single",
+        "start": 65.2,
+        "end": 65.36
+      },
+      {
+        "word": " or",
+        "start": 65.36,
+        "end": 65.62
+      },
+      {
+        "word": " return?",
+        "start": 65.62,
+        "end": 66.28
+      }
+    ]
+  },
+  {
+    "start": 67.02,
+    "end": 67.7,
+    "text": "Single, please.",
+    "words": [
+      {
+        "word": " Single,",
+        "start": 67.02,
+        "end": 67.1
+      },
+      {
+        "word": " please.",
+        "start": 67.3,
+        "end": 67.7
+      }
+    ]
+  },
+  {
+    "start": 68.34,
+    "end": 69.8,
+    "text": "Standard or first class?",
+    "words": [
+      {
+        "word": " Standard",
+        "start": 68.34,
+        "end": 68.5
+      },
+      {
+        "word": " or",
+        "start": 68.5,
+        "end": 69.06
+      },
+      {
+        "word": " first",
+        "start": 69.06,
+        "end": 69.36
+      },
+      {
+        "word": " class?",
+        "start": 69.36,
+        "end": 69.8
+      }
+    ]
+  },
+  {
+    "start": 70.48,
+    "end": 71.14,
+    "text": "Standard, please.",
+    "words": [
+      {
+        "word": " Standard,",
+        "start": 70.48,
+        "end": 70.48
+      },
+      {
+        "word": " please.",
+        "start": 70.64,
+        "end": 71.14
+      }
+    ]
+  },
+  {
+    "start": 72.66,
+    "end": 74.0,
+    "text": "That's 18 pounds.",
+    "words": [
+      {
+        "word": " That's",
+        "start": 72.66,
+        "end": 73.04
+      },
+      {
+        "word": " 18",
+        "start": 73.04,
+        "end": 73.52
+      },
+      {
+        "word": " pounds.",
+        "start": 73.52,
+        "end": 74.0
+      }
+    ]
+  },
+  {
+    "start": 74.78,
+    "end": 75.92,
+    "text": "Can I pay it by credit card?",
+    "words": [
+      {
+        "word": " Can",
+        "start": 74.78,
+        "end": 74.86
+      },
+      {
+        "word": " I",
+        "start": 74.86,
+        "end": 74.98
+      },
+      {
+        "word": " pay",
+        "start": 74.98,
+        "end": 75.12
+      },
+      {
+        "word": " it",
+        "start": 75.12,
+        "end": 75.2
+      },
+      {
+        "word": " by",
+        "start": 75.2,
+        "end": 75.36
+      },
+      {
+        "word": " credit",
+        "start": 75.36,
+        "end": 75.6
+      },
+      {
+        "word": " card?",
+        "start": 75.6,
+        "end": 75.92
+      }
+    ]
+  },
+  {
+    "start": 76.1,
+    "end": 76.84,
+    "text": "Yes, of course.",
+    "words": [
+      {
+        "word": " Yes,",
+        "start": 76.1,
+        "end": 76.4
+      },
+      {
+        "word": " of",
+        "start": 76.48,
+        "end": 76.58
+      },
+      {
+        "word": " course.",
+        "start": 76.58,
+        "end": 76.84
+      }
+    ]
+  }
+]

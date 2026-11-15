@@ -1,0 +1,1214 @@
+[
+  {
+    "start": 12.74,
+    "end": 16.34,
+    "text": "So, here you are, in New York at last.",
+    "words": [
+      {
+        "word": " So,",
+        "start": 12.74,
+        "end": 13.22
+      },
+      {
+        "word": " here",
+        "start": 14.16,
+        "end": 14.38
+      },
+      {
+        "word": " you",
+        "start": 14.38,
+        "end": 14.6
+      },
+      {
+        "word": " are,",
+        "start": 14.6,
+        "end": 14.98
+      },
+      {
+        "word": " in",
+        "start": 15.16,
+        "end": 15.22
+      },
+      {
+        "word": " New",
+        "start": 15.22,
+        "end": 15.36
+      },
+      {
+        "word": " York",
+        "start": 15.36,
+        "end": 15.5
+      },
+      {
+        "word": " at",
+        "start": 15.5,
+        "end": 15.72
+      },
+      {
+        "word": " last.",
+        "start": 15.72,
+        "end": 16.34
+      }
+    ]
+  },
+  {
+    "start": 16.56,
+    "end": 16.76,
+    "text": "Yeah.",
+    "words": [
+      {
+        "word": " Yeah.",
+        "start": 16.56,
+        "end": 16.76
+      }
+    ]
+  },
+  {
+    "start": 17.56,
+    "end": 18.46,
+    "text": "It's great to be here.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 17.56,
+        "end": 17.56
+      },
+      {
+        "word": " great",
+        "start": 17.56,
+        "end": 17.72
+      },
+      {
+        "word": " to",
+        "start": 17.72,
+        "end": 18.02
+      },
+      {
+        "word": " be",
+        "start": 18.02,
+        "end": 18.16
+      },
+      {
+        "word": " here.",
+        "start": 18.16,
+        "end": 18.46
+      }
+    ]
+  },
+  {
+    "start": 18.72,
+    "end": 19.74,
+    "text": "It's really exciting.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 18.72,
+        "end": 18.8
+      },
+      {
+        "word": " really",
+        "start": 18.8,
+        "end": 19.0
+      },
+      {
+        "word": " exciting.",
+        "start": 19.0,
+        "end": 19.74
+      }
+    ]
+  },
+  {
+    "start": 20.0,
+    "end": 20.98,
+    "text": "And how's your hotel?",
+    "words": [
+      {
+        "word": " And",
+        "start": 20.0,
+        "end": 20.24
+      },
+      {
+        "word": " how's",
+        "start": 20.24,
+        "end": 20.46
+      },
+      {
+        "word": " your",
+        "start": 20.46,
+        "end": 20.62
+      },
+      {
+        "word": " hotel?",
+        "start": 20.62,
+        "end": 20.98
+      }
+    ]
+  },
+  {
+    "start": 21.62,
+    "end": 22.28,
+    "text": "It's fine.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 21.62,
+        "end": 21.92
+      },
+      {
+        "word": " fine.",
+        "start": 21.92,
+        "end": 22.28
+      }
+    ]
+  },
+  {
+    "start": 23.0,
+    "end": 24.66,
+    "text": "My room is really nice.",
+    "words": [
+      {
+        "word": " My",
+        "start": 23.0,
+        "end": 23.08
+      },
+      {
+        "word": " room",
+        "start": 23.08,
+        "end": 23.24
+      },
+      {
+        "word": " is",
+        "start": 23.24,
+        "end": 23.48
+      },
+      {
+        "word": " really",
+        "start": 23.48,
+        "end": 23.88
+      },
+      {
+        "word": " nice.",
+        "start": 23.88,
+        "end": 24.66
+      }
+    ]
+  },
+  {
+    "start": 25.12,
+    "end": 27.06,
+    "text": "Do you have a good view from your room?",
+    "words": [
+      {
+        "word": " Do",
+        "start": 25.12,
+        "end": 25.6
+      },
+      {
+        "word": " you",
+        "start": 25.6,
+        "end": 25.7
+      },
+      {
+        "word": " have",
+        "start": 25.7,
+        "end": 25.8
+      },
+      {
+        "word": " a",
+        "start": 25.8,
+        "end": 25.9
+      },
+      {
+        "word": " good",
+        "start": 25.9,
+        "end": 26.14
+      },
+      {
+        "word": " view",
+        "start": 26.14,
+        "end": 26.36
+      },
+      {
+        "word": " from",
+        "start": 26.36,
+        "end": 26.56
+      },
+      {
+        "word": " your",
+        "start": 26.56,
+        "end": 26.74
+      },
+      {
+        "word": " room?",
+        "start": 26.74,
+        "end": 27.06
+      }
+    ]
+  },
+  {
+    "start": 27.7,
+    "end": 29.5,
+    "text": "I can see lots of other buildings.",
+    "words": [
+      {
+        "word": " I",
+        "start": 27.64,
+        "end": 27.9
+      },
+      {
+        "word": " can",
+        "start": 27.9,
+        "end": 28.12
+      },
+      {
+        "word": " see",
+        "start": 28.12,
+        "end": 28.26
+      },
+      {
+        "word": " lots",
+        "start": 28.26,
+        "end": 28.58
+      },
+      {
+        "word": " of",
+        "start": 28.58,
+        "end": 28.76
+      },
+      {
+        "word": " other",
+        "start": 28.76,
+        "end": 28.94
+      },
+      {
+        "word": " buildings.",
+        "start": 28.94,
+        "end": 29.5
+      }
+    ]
+  },
+  {
+    "start": 31.4,
+    "end": 33.64,
+    "text": "Tomorrow, I'm going to show you around the office",
+    "words": [
+      {
+        "word": " Tomorrow,",
+        "start": 31.4,
+        "end": 31.92
+      },
+      {
+        "word": " I'm",
+        "start": 32.06,
+        "end": 32.2
+      },
+      {
+        "word": " going",
+        "start": 32.2,
+        "end": 32.38
+      },
+      {
+        "word": " to",
+        "start": 32.38,
+        "end": 32.52
+      },
+      {
+        "word": " show",
+        "start": 32.52,
+        "end": 32.72
+      },
+      {
+        "word": " you",
+        "start": 32.72,
+        "end": 32.88
+      },
+      {
+        "word": " around",
+        "start": 32.88,
+        "end": 33.06
+      },
+      {
+        "word": " the",
+        "start": 33.06,
+        "end": 33.34
+      },
+      {
+        "word": " office",
+        "start": 33.34,
+        "end": 33.64
+      }
+    ]
+  },
+  {
+    "start": 33.64,
+    "end": 35.54,
+    "text": "and introduce you to the team.",
+    "words": [
+      {
+        "word": " and",
+        "start": 33.64,
+        "end": 33.82
+      },
+      {
+        "word": " introduce",
+        "start": 33.82,
+        "end": 34.14
+      },
+      {
+        "word": " you",
+        "start": 34.14,
+        "end": 34.36
+      },
+      {
+        "word": " to",
+        "start": 34.36,
+        "end": 34.46
+      },
+      {
+        "word": " the",
+        "start": 34.46,
+        "end": 35.54
+      },
+      {
+        "word": " team.",
+        "start": 35.54,
+        "end": 35.54
+      }
+    ]
+  },
+  {
+    "start": 36.06,
+    "end": 38.22,
+    "text": "Barbara's looking forward to meeting you.",
+    "words": [
+      {
+        "word": " Barbara's",
+        "start": 36.06,
+        "end": 36.32
+      },
+      {
+        "word": " looking",
+        "start": 36.32,
+        "end": 36.5
+      },
+      {
+        "word": " forward",
+        "start": 36.5,
+        "end": 36.86
+      },
+      {
+        "word": " to",
+        "start": 36.86,
+        "end": 37.02
+      },
+      {
+        "word": " meeting",
+        "start": 37.02,
+        "end": 37.26
+      },
+      {
+        "word": " you.",
+        "start": 37.26,
+        "end": 38.22
+      }
+    ]
+  },
+  {
+    "start": 39.24,
+    "end": 40.02,
+    "text": "You remember?",
+    "words": [
+      {
+        "word": " You",
+        "start": 39.24,
+        "end": 39.56
+      },
+      {
+        "word": " remember?",
+        "start": 39.56,
+        "end": 40.02
+      }
+    ]
+  },
+  {
+    "start": 41.1,
+    "end": 41.42,
+    "text": "Barbara.",
+    "words": [
+      {
+        "word": " Barbara.",
+        "start": 41.1,
+        "end": 41.42
+      }
+    ]
+  },
+  {
+    "start": 42.72,
+    "end": 43.5,
+    "text": "My boss?",
+    "words": [
+      {
+        "word": " My",
+        "start": 42.72,
+        "end": 42.96
+      },
+      {
+        "word": " boss?",
+        "start": 42.96,
+        "end": 43.5
+      }
+    ]
+  },
+  {
+    "start": 43.7,
+    "end": 44.62,
+    "text": "Oh, yeah.",
+    "words": [
+      {
+        "word": " Oh,",
+        "start": 43.7,
+        "end": 44.18
+      },
+      {
+        "word": " yeah.",
+        "start": 44.22,
+        "end": 44.62
+      }
+    ]
+  },
+  {
+    "start": 44.9,
+    "end": 45.22,
+    "text": "Sorry.",
+    "words": [
+      {
+        "word": " Sorry.",
+        "start": 44.9,
+        "end": 45.22
+      }
+    ]
+  },
+  {
+    "start": 46.2,
+    "end": 49.18,
+    "text": "And then you can start thinking about your blog and the column.",
+    "words": [
+      {
+        "word": " And",
+        "start": 46.2,
+        "end": 46.32
+      },
+      {
+        "word": " then",
+        "start": 46.32,
+        "end": 46.44
+      },
+      {
+        "word": " you",
+        "start": 46.44,
+        "end": 46.5
+      },
+      {
+        "word": " can",
+        "start": 46.5,
+        "end": 46.66
+      },
+      {
+        "word": " start",
+        "start": 46.66,
+        "end": 46.8
+      },
+      {
+        "word": " thinking",
+        "start": 46.8,
+        "end": 47.06
+      },
+      {
+        "word": " about",
+        "start": 47.06,
+        "end": 47.4
+      },
+      {
+        "word": " your",
+        "start": 47.4,
+        "end": 47.62
+      },
+      {
+        "word": " blog",
+        "start": 47.62,
+        "end": 48.12
+      },
+      {
+        "word": " and",
+        "start": 48.12,
+        "end": 48.54
+      },
+      {
+        "word": " the",
+        "start": 48.54,
+        "end": 48.76
+      },
+      {
+        "word": " column.",
+        "start": 48.76,
+        "end": 49.18
+      }
+    ]
+  },
+  {
+    "start": 50.12,
+    "end": 51.58,
+    "text": "You got any ideas yet, Rob?",
+    "words": [
+      {
+        "word": " You",
+        "start": 50.12,
+        "end": 50.14
+      },
+      {
+        "word": " got",
+        "start": 50.14,
+        "end": 50.32
+      },
+      {
+        "word": " any",
+        "start": 50.32,
+        "end": 50.5
+      },
+      {
+        "word": " ideas",
+        "start": 50.5,
+        "end": 50.86
+      },
+      {
+        "word": " yet,",
+        "start": 50.86,
+        "end": 51.14
+      },
+      {
+        "word": " Rob?",
+        "start": 51.58,
+        "end": 51.58
+      }
+    ]
+  },
+  {
+    "start": 53.1,
+    "end": 53.66,
+    "text": "What?",
+    "words": [
+      {
+        "word": " What?",
+        "start": 53.1,
+        "end": 53.66
+      }
+    ]
+  },
+  {
+    "start": 55.38,
+    "end": 56.46,
+    "text": "Sorry, Jenny.",
+    "words": [
+      {
+        "word": " Sorry,",
+        "start": 55.38,
+        "end": 55.94
+      },
+      {
+        "word": " Jenny.",
+        "start": 56.2,
+        "end": 56.46
+      }
+    ]
+  },
+  {
+    "start": 57.06,
+    "end": 58.6,
+    "text": "It must be really tired.",
+    "words": [
+      {
+        "word": " It",
+        "start": 57.06,
+        "end": 57.26
+      },
+      {
+        "word": " must",
+        "start": 57.26,
+        "end": 57.42
+      },
+      {
+        "word": " be",
+        "start": 57.42,
+        "end": 57.74
+      },
+      {
+        "word": " really",
+        "start": 57.74,
+        "end": 58.1
+      },
+      {
+        "word": " tired.",
+        "start": 58.1,
+        "end": 58.6
+      }
+    ]
+  },
+  {
+    "start": 58.94,
+    "end": 60.6,
+    "text": "Yes, I am a bit.",
+    "words": [
+      {
+        "word": " Yes,",
+        "start": 58.94,
+        "end": 59.42
+      },
+      {
+        "word": " I",
+        "start": 59.56,
+        "end": 59.86
+      },
+      {
+        "word": " am",
+        "start": 59.86,
+        "end": 60.04
+      },
+      {
+        "word": " a",
+        "start": 60.04,
+        "end": 60.14
+      },
+      {
+        "word": " bit.",
+        "start": 60.14,
+        "end": 60.6
+      }
+    ]
+  },
+  {
+    "start": 61.14,
+    "end": 62.58,
+    "text": "What time is it now?",
+    "words": [
+      {
+        "word": " What",
+        "start": 61.14,
+        "end": 61.46
+      },
+      {
+        "word": " time",
+        "start": 61.46,
+        "end": 61.82
+      },
+      {
+        "word": " is",
+        "start": 61.82,
+        "end": 61.96
+      },
+      {
+        "word": " it",
+        "start": 61.96,
+        "end": 62.14
+      },
+      {
+        "word": " now?",
+        "start": 62.14,
+        "end": 62.58
+      }
+    ]
+  },
+  {
+    "start": 64.32,
+    "end": 65.96,
+    "text": "It's nine o'clock.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 64.32,
+        "end": 64.88
+      },
+      {
+        "word": " nine",
+        "start": 64.88,
+        "end": 65.34
+      },
+      {
+        "word": " o",
+        "start": 65.34,
+        "end": 65.56
+      },
+      {
+        "word": "'clock.",
+        "start": 65.56,
+        "end": 65.96
+      }
+    ]
+  },
+  {
+    "start": 66.48,
+    "end": 67.16,
+    "text": "Nine o'clock.",
+    "words": [
+      {
+        "word": " Nine",
+        "start": 66.48,
+        "end": 66.62
+      },
+      {
+        "word": " o",
+        "start": 66.62,
+        "end": 66.88
+      },
+      {
+        "word": "'clock.",
+        "start": 66.88,
+        "end": 67.16
+      }
+    ]
+  },
+  {
+    "start": 67.6,
+    "end": 69.54,
+    "text": "That's two o'clock in the morning for me.",
+    "words": [
+      {
+        "word": " That's",
+        "start": 67.6,
+        "end": 67.9
+      },
+      {
+        "word": " two",
+        "start": 67.9,
+        "end": 68.16
+      },
+      {
+        "word": " o",
+        "start": 68.16,
+        "end": 68.36
+      },
+      {
+        "word": "'clock",
+        "start": 68.36,
+        "end": 68.46
+      },
+      {
+        "word": " in",
+        "start": 68.46,
+        "end": 68.66
+      },
+      {
+        "word": " the",
+        "start": 68.66,
+        "end": 68.66
+      },
+      {
+        "word": " morning",
+        "start": 68.66,
+        "end": 68.92
+      },
+      {
+        "word": " for",
+        "start": 68.92,
+        "end": 69.26
+      },
+      {
+        "word": " me.",
+        "start": 69.26,
+        "end": 69.54
+      }
+    ]
+  },
+  {
+    "start": 69.9,
+    "end": 71.24,
+    "text": "Let's finish our drinks.",
+    "words": [
+      {
+        "word": " Let's",
+        "start": 69.9,
+        "end": 70.22
+      },
+      {
+        "word": " finish",
+        "start": 70.22,
+        "end": 70.4
+      },
+      {
+        "word": " our",
+        "start": 70.4,
+        "end": 70.66
+      },
+      {
+        "word": " drinks.",
+        "start": 70.66,
+        "end": 71.24
+      }
+    ]
+  },
+  {
+    "start": 71.24,
+    "end": 72.22,
+    "text": "You need to go to bed.",
+    "words": [
+      {
+        "word": " You",
+        "start": 71.24,
+        "end": 71.46
+      },
+      {
+        "word": " need",
+        "start": 71.46,
+        "end": 71.64
+      },
+      {
+        "word": " to",
+        "start": 71.64,
+        "end": 71.74
+      },
+      {
+        "word": " go",
+        "start": 71.74,
+        "end": 71.82
+      },
+      {
+        "word": " to",
+        "start": 71.82,
+        "end": 72.0
+      },
+      {
+        "word": " bed.",
+        "start": 72.0,
+        "end": 72.22
+      }
+    ]
+  },
+  {
+    "start": 72.32,
+    "end": 73.32,
+    "text": "I guess you're right.",
+    "words": [
+      {
+        "word": " I",
+        "start": 72.32,
+        "end": 72.54
+      },
+      {
+        "word": " guess",
+        "start": 72.54,
+        "end": 72.76
+      },
+      {
+        "word": " you're",
+        "start": 72.76,
+        "end": 73.04
+      },
+      {
+        "word": " right.",
+        "start": 73.04,
+        "end": 73.32
+      }
+    ]
+  },
+  {
+    "start": 74.66,
+    "end": 77.6,
+    "text": "So, I'll see you in the office at 11 in the morning.",
+    "words": [
+      {
+        "word": " So,",
+        "start": 74.66,
+        "end": 75.06
+      },
+      {
+        "word": " I'll",
+        "start": 75.46,
+        "end": 75.58
+      },
+      {
+        "word": " see",
+        "start": 75.58,
+        "end": 75.7
+      },
+      {
+        "word": " you",
+        "start": 75.7,
+        "end": 75.8
+      },
+      {
+        "word": " in",
+        "start": 75.8,
+        "end": 75.86
+      },
+      {
+        "word": " the",
+        "start": 75.86,
+        "end": 76.14
+      },
+      {
+        "word": " office",
+        "start": 76.14,
+        "end": 76.46
+      },
+      {
+        "word": " at",
+        "start": 76.46,
+        "end": 76.74
+      },
+      {
+        "word": " 11",
+        "start": 76.74,
+        "end": 77.04
+      },
+      {
+        "word": " in",
+        "start": 77.04,
+        "end": 77.24
+      },
+      {
+        "word": " the",
+        "start": 77.24,
+        "end": 77.34
+      },
+      {
+        "word": " morning.",
+        "start": 77.34,
+        "end": 77.6
+      }
+    ]
+  },
+  {
+    "start": 77.94,
+    "end": 78.5,
+    "text": "At 11.",
+    "words": [
+      {
+        "word": " At",
+        "start": 77.94,
+        "end": 78.02
+      },
+      {
+        "word": " 11.",
+        "start": 78.02,
+        "end": 78.5
+      }
+    ]
+  },
+  {
+    "start": 79.32,
+    "end": 79.72,
+    "text": "Is that OK?",
+    "words": [
+      {
+        "word": " Is",
+        "start": 79.32,
+        "end": 79.36
+      },
+      {
+        "word": " that",
+        "start": 79.36,
+        "end": 79.48
+      },
+      {
+        "word": " OK?",
+        "start": 79.48,
+        "end": 79.72
+      }
+    ]
+  },
+  {
+    "start": 80.5,
+    "end": 81.46,
+    "text": "It's perfect.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 80.5,
+        "end": 80.98
+      },
+      {
+        "word": " perfect.",
+        "start": 80.98,
+        "end": 81.46
+      }
+    ]
+  },
+  {
+    "start": 82.2,
+    "end": 82.44,
+    "text": "Thanks, Jenny.",
+    "words": [
+      {
+        "word": " Thanks,",
+        "start": 82.2,
+        "end": 82.24
+      },
+      {
+        "word": " Jenny.",
+        "start": 82.34,
+        "end": 82.44
+      }
+    ]
+  },
+  {
+    "start": 83.26,
+    "end": 84.2,
+    "text": "There's just one thing.",
+    "words": [
+      {
+        "word": " There's",
+        "start": 83.26,
+        "end": 83.38
+      },
+      {
+        "word": " just",
+        "start": 83.38,
+        "end": 83.56
+      },
+      {
+        "word": " one",
+        "start": 83.56,
+        "end": 83.82
+      },
+      {
+        "word": " thing.",
+        "start": 83.82,
+        "end": 84.2
+      }
+    ]
+  },
+  {
+    "start": 84.42,
+    "end": 85.46,
+    "text": "What's that?",
+    "words": [
+      {
+        "word": " What's",
+        "start": 84.42,
+        "end": 84.76
+      },
+      {
+        "word": " that?",
+        "start": 84.76,
+        "end": 85.46
+      }
+    ]
+  },
+  {
+    "start": 85.86,
+    "end": 86.76,
+    "text": "Don't be late.",
+    "words": [
+      {
+        "word": " Don't",
+        "start": 85.86,
+        "end": 86.06
+      },
+      {
+        "word": " be",
+        "start": 86.06,
+        "end": 86.24
+      },
+      {
+        "word": " late.",
+        "start": 86.24,
+        "end": 86.76
+      }
+    ]
+  },
+  {
+    "start": 88.72,
+    "end": 90.76,
+    "text": "Either way, it's great to see you again.",
+    "words": [
+      {
+        "word": " Either",
+        "start": 88.72,
+        "end": 88.96
+      },
+      {
+        "word": " way,",
+        "start": 88.96,
+        "end": 89.24
+      },
+      {
+        "word": " it's",
+        "start": 89.64,
+        "end": 89.84
+      },
+      {
+        "word": " great",
+        "start": 89.84,
+        "end": 90.06
+      },
+      {
+        "word": " to",
+        "start": 90.06,
+        "end": 90.3
+      },
+      {
+        "word": " see",
+        "start": 90.3,
+        "end": 90.44
+      },
+      {
+        "word": " you",
+        "start": 90.44,
+        "end": 90.54
+      },
+      {
+        "word": " again.",
+        "start": 90.54,
+        "end": 90.76
+      }
+    ]
+  },
+  {
+    "start": 91.5,
+    "end": 91.94,
+    "text": "Yes.",
+    "words": [
+      {
+        "word": " Yes.",
+        "start": 91.5,
+        "end": 91.94
+      }
+    ]
+  },
+  {
+    "start": 92.76,
+    "end": 93.94,
+    "text": "It's great to see you, too.",
+    "words": [
+      {
+        "word": " It's",
+        "start": 92.76,
+        "end": 93.0
+      },
+      {
+        "word": " great",
+        "start": 93.0,
+        "end": 93.14
+      },
+      {
+        "word": " to",
+        "start": 93.14,
+        "end": 93.38
+      },
+      {
+        "word": " see",
+        "start": 93.38,
+        "end": 93.46
+      },
+      {
+        "word": " you,",
+        "start": 93.46,
+        "end": 93.64
+      },
+      {
+        "word": " too.",
+        "start": 93.94,
+        "end": 93.94
+      }
+    ]
+  }
+]

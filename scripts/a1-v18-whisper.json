@@ -1,0 +1,865 @@
+[
+  {
+    "start": 0.0,
+    "end": 23.88,
+    "text": "What the hell is that?",
+    "words": [
+      {
+        "word": " What",
+        "start": 0.0,
+        "end": 0.0
+      },
+      {
+        "word": " the",
+        "start": 0.0,
+        "end": 0.0
+      },
+      {
+        "word": " hell",
+        "start": 0.0,
+        "end": 23.38
+      },
+      {
+        "word": " is",
+        "start": 23.38,
+        "end": 23.4
+      },
+      {
+        "word": " that?",
+        "start": 23.4,
+        "end": 23.88
+      }
+    ]
+  },
+  {
+    "start": 27.12,
+    "end": 29.98,
+    "text": "Where is it?",
+    "words": [
+      {
+        "word": " Where",
+        "start": 27.12,
+        "end": 28.52
+      },
+      {
+        "word": " is",
+        "start": 28.52,
+        "end": 29.92
+      },
+      {
+        "word": " it?",
+        "start": 29.92,
+        "end": 29.98
+      }
+    ]
+  },
+  {
+    "start": 29.98,
+    "end": 38.84,
+    "text": "Rob, I can't believe it, my phone, you're a hero, thank you so much.",
+    "words": [
+      {
+        "word": " Rob,",
+        "start": 29.98,
+        "end": 30.64
+      },
+      {
+        "word": " I",
+        "start": 30.82,
+        "end": 32.62
+      },
+      {
+        "word": " can't",
+        "start": 32.62,
+        "end": 32.94
+      },
+      {
+        "word": " believe",
+        "start": 32.94,
+        "end": 33.44
+      },
+      {
+        "word": " it,",
+        "start": 33.44,
+        "end": 34.0
+      },
+      {
+        "word": " my",
+        "start": 34.2,
+        "end": 34.54
+      },
+      {
+        "word": " phone,",
+        "start": 34.54,
+        "end": 34.9
+      },
+      {
+        "word": " you're",
+        "start": 36.04,
+        "end": 36.2
+      },
+      {
+        "word": " a",
+        "start": 36.2,
+        "end": 36.42
+      },
+      {
+        "word": " hero,",
+        "start": 36.42,
+        "end": 36.98
+      },
+      {
+        "word": " thank",
+        "start": 37.76,
+        "end": 37.82
+      },
+      {
+        "word": " you",
+        "start": 37.82,
+        "end": 38.1
+      },
+      {
+        "word": " so",
+        "start": 38.1,
+        "end": 38.34
+      },
+      {
+        "word": " much.",
+        "start": 38.34,
+        "end": 38.84
+      }
+    ]
+  },
+  {
+    "start": 39.04,
+    "end": 41.42,
+    "text": "No problem, gave me a chance to see you again.",
+    "words": [
+      {
+        "word": " No",
+        "start": 39.04,
+        "end": 39.2
+      },
+      {
+        "word": " problem,",
+        "start": 39.2,
+        "end": 39.56
+      },
+      {
+        "word": " gave",
+        "start": 40.32,
+        "end": 40.32
+      },
+      {
+        "word": " me",
+        "start": 40.32,
+        "end": 40.48
+      },
+      {
+        "word": " a",
+        "start": 40.48,
+        "end": 40.58
+      },
+      {
+        "word": " chance",
+        "start": 40.58,
+        "end": 40.78
+      },
+      {
+        "word": " to",
+        "start": 40.78,
+        "end": 40.96
+      },
+      {
+        "word": " see",
+        "start": 40.96,
+        "end": 41.08
+      },
+      {
+        "word": " you",
+        "start": 41.08,
+        "end": 41.22
+      },
+      {
+        "word": " again.",
+        "start": 41.22,
+        "end": 41.46
+      }
+    ]
+  },
+  {
+    "start": 43.44,
+    "end": 45.88,
+    "text": "And I had more time to think about your offer.",
+    "words": [
+      {
+        "word": " And",
+        "start": 43.44,
+        "end": 43.92
+      },
+      {
+        "word": " I",
+        "start": 43.92,
+        "end": 44.18
+      },
+      {
+        "word": " had",
+        "start": 44.18,
+        "end": 44.38
+      },
+      {
+        "word": " more",
+        "start": 44.38,
+        "end": 44.58
+      },
+      {
+        "word": " time",
+        "start": 44.58,
+        "end": 44.78
+      },
+      {
+        "word": " to",
+        "start": 44.78,
+        "end": 44.9
+      },
+      {
+        "word": " think",
+        "start": 44.9,
+        "end": 45.04
+      },
+      {
+        "word": " about",
+        "start": 45.04,
+        "end": 45.26
+      },
+      {
+        "word": " your",
+        "start": 45.26,
+        "end": 45.42
+      },
+      {
+        "word": " offer.",
+        "start": 45.42,
+        "end": 45.88
+      }
+    ]
+  },
+  {
+    "start": 46.78,
+    "end": 51.38,
+    "text": "And? I'd love to accept. I really want to come and work in New York.",
+    "words": [
+      {
+        "word": " And?",
+        "start": 46.78,
+        "end": 47.26
+      },
+      {
+        "word": " I'd",
+        "start": 47.84,
+        "end": 48.28
+      },
+      {
+        "word": " love",
+        "start": 48.28,
+        "end": 48.48
+      },
+      {
+        "word": " to",
+        "start": 48.48,
+        "end": 48.72
+      },
+      {
+        "word": " accept.",
+        "start": 48.72,
+        "end": 49.08
+      },
+      {
+        "word": " I",
+        "start": 49.7,
+        "end": 49.92
+      },
+      {
+        "word": " really",
+        "start": 49.92,
+        "end": 50.18
+      },
+      {
+        "word": " want",
+        "start": 50.18,
+        "end": 50.34
+      },
+      {
+        "word": " to",
+        "start": 50.34,
+        "end": 50.48
+      },
+      {
+        "word": " come",
+        "start": 50.48,
+        "end": 50.6
+      },
+      {
+        "word": " and",
+        "start": 50.6,
+        "end": 50.72
+      },
+      {
+        "word": " work",
+        "start": 50.72,
+        "end": 50.92
+      },
+      {
+        "word": " in",
+        "start": 50.92,
+        "end": 51.04
+      },
+      {
+        "word": " New",
+        "start": 51.04,
+        "end": 51.14
+      },
+      {
+        "word": " York.",
+        "start": 51.14,
+        "end": 51.38
+      }
+    ]
+  },
+  {
+    "start": 51.54,
+    "end": 54.68,
+    "text": "Oh, that's great, Rob. I'm so happy.",
+    "words": [
+      {
+        "word": " Oh,",
+        "start": 51.54,
+        "end": 52.02
+      },
+      {
+        "word": " that's",
+        "start": 52.02,
+        "end": 52.5
+      },
+      {
+        "word": " great,",
+        "start": 52.5,
+        "end": 53.0
+      },
+      {
+        "word": " Rob.",
+        "start": 53.04,
+        "end": 53.5
+      },
+      {
+        "word": " I'm",
+        "start": 53.68,
+        "end": 54.04
+      },
+      {
+        "word": " so",
+        "start": 54.04,
+        "end": 54.34
+      },
+      {
+        "word": " happy.",
+        "start": 54.34,
+        "end": 54.68
+      }
+    ]
+  },
+  {
+    "start": 55.14,
+    "end": 59.62,
+    "text": "Me too. Oh, you had a call from Eddie. I didn't answer it.",
+    "words": [
+      {
+        "word": " Me",
+        "start": 55.14,
+        "end": 55.38
+      },
+      {
+        "word": " too.",
+        "start": 55.38,
+        "end": 55.66
+      },
+      {
+        "word": " Oh,",
+        "start": 56.32,
+        "end": 56.74
+      },
+      {
+        "word": " you",
+        "start": 57.16,
+        "end": 57.4
+      },
+      {
+        "word": " had",
+        "start": 57.4,
+        "end": 57.56
+      },
+      {
+        "word": " a",
+        "start": 57.56,
+        "end": 57.7
+      },
+      {
+        "word": " call",
+        "start": 57.7,
+        "end": 57.86
+      },
+      {
+        "word": " from",
+        "start": 57.86,
+        "end": 58.08
+      },
+      {
+        "word": " Eddie.",
+        "start": 58.08,
+        "end": 58.38
+      },
+      {
+        "word": " I",
+        "start": 58.48,
+        "end": 58.76
+      },
+      {
+        "word": " didn't",
+        "start": 58.76,
+        "end": 58.98
+      },
+      {
+        "word": " answer",
+        "start": 58.98,
+        "end": 59.2
+      },
+      {
+        "word": " it.",
+        "start": 59.2,
+        "end": 59.62
+      }
+    ]
+  },
+  {
+    "start": 59.62,
+    "end": 62.02,
+    "text": "Is he going to meet you with the airport?",
+    "words": [
+      {
+        "word": " Is",
+        "start": 59.62,
+        "end": 60.36
+      },
+      {
+        "word": " he",
+        "start": 60.36,
+        "end": 60.82
+      },
+      {
+        "word": " going",
+        "start": 60.82,
+        "end": 61.06
+      },
+      {
+        "word": " to",
+        "start": 61.06,
+        "end": 61.24
+      },
+      {
+        "word": " meet",
+        "start": 61.24,
+        "end": 61.34
+      },
+      {
+        "word": " you",
+        "start": 61.34,
+        "end": 61.52
+      },
+      {
+        "word": " with",
+        "start": 61.52,
+        "end": 61.6
+      },
+      {
+        "word": " the",
+        "start": 61.6,
+        "end": 61.86
+      },
+      {
+        "word": " airport?",
+        "start": 61.86,
+        "end": 62.14
+      }
+    ]
+  },
+  {
+    "start": 63.04,
+    "end": 65.54,
+    "text": "Eddie? No. He's at college in California.",
+    "words": [
+      {
+        "word": " Eddie?",
+        "start": 63.04,
+        "end": 63.28
+      },
+      {
+        "word": " No.",
+        "start": 63.72,
+        "end": 63.96
+      },
+      {
+        "word": " He's",
+        "start": 64.16,
+        "end": 64.32
+      },
+      {
+        "word": " at",
+        "start": 64.32,
+        "end": 64.54
+      },
+      {
+        "word": " college",
+        "start": 64.54,
+        "end": 64.82
+      },
+      {
+        "word": " in",
+        "start": 64.82,
+        "end": 65.2
+      },
+      {
+        "word": " California.",
+        "start": 65.2,
+        "end": 65.54
+      }
+    ]
+  },
+  {
+    "start": 66.3,
+    "end": 68.42,
+    "text": "In California? Does he teach there?",
+    "words": [
+      {
+        "word": " In",
+        "start": 66.3,
+        "end": 66.36
+      },
+      {
+        "word": " California?",
+        "start": 66.36,
+        "end": 66.84
+      },
+      {
+        "word": " Does",
+        "start": 67.46,
+        "end": 67.54
+      },
+      {
+        "word": " he",
+        "start": 67.54,
+        "end": 67.92
+      },
+      {
+        "word": " teach",
+        "start": 67.92,
+        "end": 68.32
+      },
+      {
+        "word": " there?",
+        "start": 68.32,
+        "end": 68.6
+      }
+    ]
+  },
+  {
+    "start": 69.34,
+    "end": 72.76,
+    "text": "Teach? No. He's a student. A student?",
+    "words": [
+      {
+        "word": " Teach?",
+        "start": 69.34,
+        "end": 69.72
+      },
+      {
+        "word": " No.",
+        "start": 70.16,
+        "end": 70.46
+      },
+      {
+        "word": " He's",
+        "start": 70.94,
+        "end": 71.08
+      },
+      {
+        "word": " a",
+        "start": 71.08,
+        "end": 71.3
+      },
+      {
+        "word": " student.",
+        "start": 71.3,
+        "end": 71.58
+      },
+      {
+        "word": " A",
+        "start": 72.2,
+        "end": 72.24
+      },
+      {
+        "word": " student?",
+        "start": 72.24,
+        "end": 72.76
+      }
+    ]
+  },
+  {
+    "start": 73.62,
+    "end": 74.96,
+    "text": "Well, he's only 19.",
+    "words": [
+      {
+        "word": " Well,",
+        "start": 73.62,
+        "end": 73.84
+      },
+      {
+        "word": " he's",
+        "start": 73.84,
+        "end": 74.02
+      },
+      {
+        "word": " only",
+        "start": 74.02,
+        "end": 74.18
+      },
+      {
+        "word": " 19.",
+        "start": 74.18,
+        "end": 74.96
+      }
+    ]
+  },
+  {
+    "start": 78.36,
+    "end": 79.2,
+    "text": "Eddie is my brother.",
+    "words": [
+      {
+        "word": " Eddie",
+        "start": 78.36,
+        "end": 78.52
+      },
+      {
+        "word": " is",
+        "start": 78.52,
+        "end": 78.66
+      },
+      {
+        "word": " my",
+        "start": 78.66,
+        "end": 78.9
+      },
+      {
+        "word": " brother.",
+        "start": 78.9,
+        "end": 79.2
+      }
+    ]
+  },
+  {
+    "start": 82.74,
+    "end": 85.86,
+    "text": "No, he's not. He's not. He's like two, three, two, three.",
+    "words": [
+      {
+        "word": " No,",
+        "start": 82.74,
+        "end": 83.32
+      },
+      {
+        "word": " he's",
+        "start": 83.5,
+        "end": 83.66
+      },
+      {
+        "word": " not.",
+        "start": 83.66,
+        "end": 83.66
+      },
+      {
+        "word": " He's",
+        "start": 83.66,
+        "end": 84.14
+      },
+      {
+        "word": " not.",
+        "start": 84.14,
+        "end": 84.14
+      },
+      {
+        "word": " He's",
+        "start": 84.7,
+        "end": 84.7
+      },
+      {
+        "word": " like",
+        "start": 84.7,
+        "end": 84.7
+      },
+      {
+        "word": " two,",
+        "start": 84.7,
+        "end": 84.96
+      },
+      {
+        "word": " three,",
+        "start": 85.24,
+        "end": 85.28
+      },
+      {
+        "word": " two,",
+        "start": 85.54,
+        "end": 85.76
+      },
+      {
+        "word": " three.",
+        "start": 85.86,
+        "end": 85.86
+      }
+    ]
+  },
+  {
+    "start": 86.14,
+    "end": 91.0,
+    "text": "No, he's not. I need to go.",
+    "words": [
+      {
+        "word": " No,",
+        "start": 86.14,
+        "end": 86.14
+      },
+      {
+        "word": " he's",
+        "start": 86.34,
+        "end": 86.64
+      },
+      {
+        "word": " not.",
+        "start": 86.64,
+        "end": 86.84
+      },
+      {
+        "word": " I",
+        "start": 88.96,
+        "end": 89.54
+      },
+      {
+        "word": " need",
+        "start": 89.54,
+        "end": 90.32
+      },
+      {
+        "word": " to",
+        "start": 90.32,
+        "end": 90.56
+      },
+      {
+        "word": " go.",
+        "start": 90.56,
+        "end": 91.0
+      }
+    ]
+  },
+  {
+    "start": 92.2,
+    "end": 96.02,
+    "text": "Well, have a good journey. Thanks, Rob.",
+    "words": [
+      {
+        "word": " Well,",
+        "start": 92.2,
+        "end": 92.78
+      },
+      {
+        "word": " have",
+        "start": 93.02,
+        "end": 93.58
+      },
+      {
+        "word": " a",
+        "start": 93.58,
+        "end": 93.74
+      },
+      {
+        "word": " good",
+        "start": 93.74,
+        "end": 93.94
+      },
+      {
+        "word": " journey.",
+        "start": 93.94,
+        "end": 94.54
+      },
+      {
+        "word": " Thanks,",
+        "start": 95.16,
+        "end": 95.5
+      },
+      {
+        "word": " Rob.",
+        "start": 95.6,
+        "end": 96.02
+      }
+    ]
+  },
+  {
+    "start": 97.32,
+    "end": 97.9,
+    "text": "Bye.",
+    "words": [
+      {
+        "word": " Bye.",
+        "start": 97.32,
+        "end": 97.9
+      }
+    ]
+  },
+  {
+    "start": 105.08,
+    "end": 106.34,
+    "text": "You see you in New York.",
+    "words": [
+      {
+        "word": " You",
+        "start": 105.08,
+        "end": 105.28
+      },
+      {
+        "word": " see",
+        "start": 105.28,
+        "end": 105.48
+      },
+      {
+        "word": " you",
+        "start": 105.48,
+        "end": 105.66
+      },
+      {
+        "word": " in",
+        "start": 105.66,
+        "end": 105.74
+      },
+      {
+        "word": " New",
+        "start": 105.74,
+        "end": 105.92
+      },
+      {
+        "word": " York.",
+        "start": 105.92,
+        "end": 106.34
+      }
+    ]
+  }
+]

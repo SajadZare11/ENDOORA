@@ -3502,7 +3502,7 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v12",
     "level": "a1",
     "episodeNumber": 12,
-    "titleFa": "اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی",
+    "titleFa": "اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی لندن با راب و جنی",
     "titleEn": "Episode 4 · Part 3: Jenny and Rob Go Sightseeing",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 4",
@@ -3514,271 +3514,502 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #10b981, #34d399)",
     "posterIcon": "🌉",
-    "summaryFa": "جنی به راب می‌پیوندد تا او را از کنار مناظر معروفی چون پل بروکلین عبور داده و داستان‌هایی از فرهنگ محلی نیویورک را بازگو کند.",
-    "summaryEn": "Jenny joins Rob to guide him past famous sights like the Brooklyn Bridge and shares stories about local New York culture.",
+    "summaryFa": "جنی و راب روی پل هزاره (Millennium Bridge) در لندن با هم ملاقات می‌کنند و منظره رود تیمز و تیت مدرن را تماشا می‌کنند. در حین صحبت درباره سالن تئاتر شکسپیر، دانیل به جنی زنگ می‌زند و او را به ناهار دعوت می‌کند، اما جنی محترمانه رد می‌کند. در پایان، راب و جنی برای صرف ناهار به رستوران طبقه بالای تیت مدرن می‌روند و راب درباره پیشینه تاریخی این بنا (که تا سال ۱۹۸۱ نیروگاه برق بوده) توضیح می‌دهد.",
+    "summaryEn": "Jenny and Rob meet on the Millennium Bridge in London overlooking the Thames and the Tate Modern. While discussing visiting Shakespeare's Globe Theatre, Daniel calls Jenny to invite her for lunch, but she politely declines. They decide to go to the restaurant on the top floor of the Tate Modern, where Rob shares historical trivia about how the building was once a power station.",
     "keyTopicsFa": [
-      "توصیف پل‌ها و آسمان‌خراش‌ها",
-      "تاریخچه محلی نیویورک",
-      "صفت‌های تحسین منظر (Spectacular, iconic)",
-      "روایت خاطرات شهری"
-    ],
+      "توصیف مناظر و پل‌ها (Millennium Bridge, River Thames)",
+      "پیشنهاد بازدید مکان‌ها (What would you like to visit? / We could see...)",
+      "دعوت به ناهار و رد مؤدبانه آن (Would you like to meet for lunch? / I'm sorry, I can't)",
+      "اطلاعات تاریخی و معماری (It was a power station until 1981)"
+],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Rob",
-              "textEn": "Sorry about the weather.",
-              "textFa": "شرمنده بابت آب و هوا."
+            "id": 1,
+            "seconds": 12.2,
+            "endSeconds": 13.4,
+            "timeDisplay": "0:12",
+            "speaker": "Rob",
+            "textEn": "Sorry about the weather.",
+            "textFa": "شرمنده بابت آب و هوا."
       },
       {
-              "id": 2,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Jenny",
-              "textEn": "Yeah... but what a view! It's a great bridge, too.",
-              "textFa": "آره... ولی چه منظره‌ای! پل بسیار قشنگی هم هست."
+            "id": 2,
+            "seconds": 14.2,
+            "endSeconds": 16.7,
+            "timeDisplay": "0:14",
+            "speaker": "Jenny",
+            "textEn": "Yeah – but what a view!",
+            "textFa": "آره – ولی چه منظره‌ای!"
       },
       {
-              "id": 3,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Rob",
-              "textEn": "It's the Millennium Bridge. It's for people only, no cars.",
-              "textFa": "این پل هزاره (Millennium Bridge) است. فقط برای عابران پیاده است، نه خودروها."
+            "id": 3,
+            "seconds": 17.8,
+            "endSeconds": 19.4,
+            "timeDisplay": "0:17",
+            "speaker": "Jenny",
+            "textEn": "It's a great bridge, too.",
+            "textFa": "پل فوق‌العاده‌ای هم هست."
       },
       {
-              "id": 4,
-              "seconds": 22,
-              "timeDisplay": "0:22",
-              "speaker": "Jenny",
-              "textEn": "What's that building over there?",
-              "textFa": "آن ساختمان آن طرف چیست؟"
+            "id": 4,
+            "seconds": 20.3,
+            "endSeconds": 21.6,
+            "timeDisplay": "0:20",
+            "speaker": "Rob",
+            "textEn": "It's the Millennium Bridge.",
+            "textFa": "این پل هزاره (Millennium Bridge) است."
       },
       {
-              "id": 5,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Rob",
-              "textEn": "That's St. Paul's Cathedral. It's very old and very famous.",
-              "textFa": "آن کلیسای جامع سنت پل است. بسیار قدیمی و بسیار معروف است."
+            "id": 5,
+            "seconds": 22.4,
+            "endSeconds": 24.5,
+            "timeDisplay": "0:22",
+            "speaker": "Rob",
+            "textEn": "It's not for cars, only for people.",
+            "textFa": "برای خودروها نیست، فقط مخصوص عابران پیاده است."
       },
       {
-              "id": 6,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Jenny",
-              "textEn": "It's beautiful. I love the dome.",
-              "textFa": "زیباست. گنبدش را خیلی دوست دارم."
+            "id": 6,
+            "seconds": 25.3,
+            "endSeconds": 28.2,
+            "timeDisplay": "0:25",
+            "speaker": "Rob",
+            "textEn": "It was the first new bridge over the Thames in 100 years.",
+            "textFa": "این نخستین پل جدید روی رودخانه تیمز در ۱۰۰ سال اخیر بود."
       },
       {
-              "id": 7,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Rob",
-              "textEn": "And look at that tower over there - that's the Shard. It's the tallest building in the UK.",
-              "textFa": "و به آن برج در آن سمت نگاه کن؛ آن شارد (The Shard) است، بلندترین ساختمان بریتانیا."
+            "id": 7,
+            "seconds": 28.9,
+            "endSeconds": 30.3,
+            "timeDisplay": "0:28",
+            "speaker": "Jenny",
+            "textEn": "You sound like a tour guide!",
+            "textFa": "مثل لیدرهای تور گردشگری حرف می‌زنی!"
       },
       {
-              "id": 8,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Jenny",
-              "textEn": "Wow, it's huge! How tall is it?",
-              "textFa": "واو، واقعاً غول‌پیکره! چقدر بلنده؟"
+            "id": 8,
+            "seconds": 31.0,
+            "endSeconds": 33.7,
+            "timeDisplay": "0:31",
+            "speaker": "Rob",
+            "textEn": "Sorry... I interviewed the architect last year.",
+            "textFa": "ببخشید... پارسال با معمارش مصاحبه کردم."
       },
       {
-              "id": 9,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Rob",
-              "textEn": "Over three hundred meters.",
-              "textFa": "بیش از سیصد متر."
+            "id": 9,
+            "seconds": 34.6,
+            "endSeconds": 36.6,
+            "timeDisplay": "0:34",
+            "speaker": "Rob",
+            "textEn": "So, what would you like to visit?",
+            "textFa": "خب، دوست داری از کجا دیدن کنی؟"
       },
       {
-              "id": 10,
-              "seconds": 64,
-              "timeDisplay": "1:04",
-              "speaker": "Jenny",
-              "textEn": "That's amazing. London really has everything: old buildings, modern skyscrapers, great views...",
-              "textFa": "شگفت‌انگیزه. لندن واقعاً همه چیز دارد: بناهای کهن، آسمان‌خراش‌های مدرن، مناظر فوق‌العاده..."
+            "id": 10,
+            "seconds": 37.6,
+            "endSeconds": 38.7,
+            "timeDisplay": "0:37",
+            "speaker": "Jenny",
+            "textEn": "What is there to see?",
+            "textFa": "چه جاهایی برای دیدن هست؟"
       },
       {
-              "id": 11,
-              "seconds": 66,
-              "timeDisplay": "1:06",
-              "speaker": "Rob",
-              "textEn": "Are you hungry?",
-              "textFa": "گرسنه‌ات است؟"
+            "id": 11,
+            "seconds": 39.5,
+            "endSeconds": 43.2,
+            "timeDisplay": "0:39",
+            "speaker": "Rob",
+            "textEn": "Well, we could see the Tate Modern first as we're here,",
+            "textFa": "خب، حالا که اینجاییم می‌توانیم اول موزه تیت مدرن را ببینیم،"
       },
       {
-              "id": 12,
-              "seconds": 68,
-              "timeDisplay": "1:08",
-              "speaker": "Jenny",
-              "textEn": "Yes, starving! Where are we going for lunch?",
-              "textFa": "آره، دارم از گرسنگی می‌میرم! برای ناهار کجا می‌رویم؟"
+            "id": 12,
+            "seconds": 43.2,
+            "endSeconds": 46.0,
+            "timeDisplay": "0:43",
+            "speaker": "Rob",
+            "textEn": "and then we could go to the Globe Theatre.",
+            "textFa": "و بعد می‌توانیم به سالن تئاتر گلوب (Globe Theatre) برویم."
       },
       {
-              "id": 13,
-              "seconds": 103,
-              "timeDisplay": "1:43",
-              "speaker": "Rob",
-              "textEn": "There's a great pub near Borough Market.",
-              "textFa": "نزدیک بازار بورو (Borough Market) یک میخانه/رستوران سنتی عالی هست."
+            "id": 13,
+            "seconds": 46.7,
+            "endSeconds": 47.7,
+            "timeDisplay": "0:46",
+            "speaker": "Rob",
+            "textEn": "Do you like Shakespeare?",
+            "textFa": "شکسپیر را دوست داری؟"
       },
       {
-              "id": 14,
-              "seconds": 105,
-              "timeDisplay": "1:45",
-              "speaker": "Jenny",
-              "textEn": "A pub? Perfect. I'd love some fish and chips!",
-              "textFa": "یک پاب سنتی؟ عالیه. دلم یک فیش اند چیپس دبش می‌خواهد!"
+            "id": 14,
+            "seconds": 48.8,
+            "endSeconds": 49.6,
+            "timeDisplay": "0:48",
+            "speaker": "Jenny",
+            "textEn": "Not really.",
+            "textFa": "نه چندان (نه واقعاً)."
+      },
+      {
+            "id": 15,
+            "seconds": 49.6,
+            "endSeconds": 51.9,
+            "timeDisplay": "0:49",
+            "speaker": "Jenny",
+            "textEn": "I studied too much Shakespeare in college.",
+            "textFa": "توی کالج بیش از حد شکسپیر خواندم."
+      },
+      {
+            "id": 16,
+            "seconds": 55.8,
+            "endSeconds": 56.5,
+            "timeDisplay": "0:55",
+            "speaker": "Jenny",
+            "textEn": "It's Daniel.",
+            "textFa": "دانیله."
+      },
+      {
+            "id": 17,
+            "seconds": 57.2,
+            "endSeconds": 57.7,
+            "timeDisplay": "0:57",
+            "speaker": "Jenny",
+            "textEn": "Sorry.",
+            "textFa": "ببخشید."
+      },
+      {
+            "id": 18,
+            "seconds": 59.1,
+            "endSeconds": 59.9,
+            "timeDisplay": "0:59",
+            "speaker": "Jenny",
+            "textEn": "Hi, Daniel.",
+            "textFa": "سلام، دانیل."
+      },
+      {
+            "id": 19,
+            "seconds": 60.4,
+            "endSeconds": 63.2,
+            "timeDisplay": "1:00",
+            "speaker": "Daniel",
+            "textEn": "Hi, Jennifer. How's your free day?",
+            "textFa": "سلام جنیفر. روز آزادت چطوره؟"
+      },
+      {
+            "id": 20,
+            "seconds": 64.1,
+            "endSeconds": 65.1,
+            "timeDisplay": "1:04",
+            "speaker": "Daniel",
+            "textEn": "Are you enjoying London?",
+            "textFa": "داری از لندن لذت می‌بری؟"
+      },
+      {
+            "id": 21,
+            "seconds": 65.6,
+            "endSeconds": 67.1,
+            "timeDisplay": "1:05",
+            "speaker": "Jenny",
+            "textEn": "Absolutely. It's fantastic.",
+            "textFa": "قطعاً. فوق‌العاده است."
+      },
+      {
+            "id": 22,
+            "seconds": 68.2,
+            "endSeconds": 70.1,
+            "timeDisplay": "1:08",
+            "speaker": "Daniel",
+            "textEn": "Listen, I have some free time today.",
+            "textFa": "ببین، من امروز کمی وقت آزاد دارم."
+      },
+      {
+            "id": 23,
+            "seconds": 70.6,
+            "endSeconds": 71.6,
+            "timeDisplay": "1:10",
+            "speaker": "Daniel",
+            "textEn": "Would you like to meet for lunch?",
+            "textFa": "دوست داری برای ناهار همدیگر را ببینیم؟"
+      },
+      {
+            "id": 24,
+            "seconds": 72.5,
+            "endSeconds": 76.2,
+            "timeDisplay": "1:12",
+            "speaker": "Jenny",
+            "textEn": "Oh, that's really nice of you, Daniel, but I'm sorry, I can't.",
+            "textFa": "اوه، واقعاً لطف داری دانیل، اما متاسفم، نمی‌تونم."
+      },
+      {
+            "id": 25,
+            "seconds": 76.7,
+            "endSeconds": 79.5,
+            "timeDisplay": "1:16",
+            "speaker": "Jenny",
+            "textEn": "I'm really far away from the office right now.",
+            "textFa": "الان واقعاً از دفتر کار دور هستم."
+      },
+      {
+            "id": 26,
+            "seconds": 80.3,
+            "endSeconds": 82.7,
+            "timeDisplay": "1:20",
+            "speaker": "Daniel",
+            "textEn": "That's OK. No problem.",
+            "textFa": "اشکالی نداره. مشکلی نیست."
+      },
+      {
+            "id": 27,
+            "seconds": 83.3,
+            "endSeconds": 84.3,
+            "timeDisplay": "1:23",
+            "speaker": "Daniel",
+            "textEn": "Maybe another time?",
+            "textFa": "شاید یک وقت دیگر؟"
+      },
+      {
+            "id": 28,
+            "seconds": 84.7,
+            "endSeconds": 86.4,
+            "timeDisplay": "1:24",
+            "speaker": "Jenny",
+            "textEn": "Definitely. Bye.",
+            "textFa": "حتماً. خدانگهدار."
+      },
+      {
+            "id": 29,
+            "seconds": 94.1,
+            "endSeconds": 96.7,
+            "timeDisplay": "1:34",
+            "speaker": "Rob",
+            "textEn": "What did he want? Anything important?",
+            "textFa": "چی می‌خواست؟ چیز مهمی بود؟"
+      },
+      {
+            "id": 30,
+            "seconds": 97.5,
+            "endSeconds": 98.2,
+            "timeDisplay": "1:37",
+            "speaker": "Jenny",
+            "textEn": "Not at all.",
+            "textFa": "اصلاً و ابداً."
+      },
+      {
+            "id": 31,
+            "seconds": 99.2,
+            "endSeconds": 101.3,
+            "timeDisplay": "1:39",
+            "speaker": "Jenny",
+            "textEn": "Hey, let's go inside the Tate Modern now.",
+            "textFa": "هی، بیا الان بریم داخل تیت مدرن."
+      },
+      {
+            "id": 32,
+            "seconds": 101.9,
+            "endSeconds": 102.6,
+            "timeDisplay": "1:41",
+            "speaker": "Rob",
+            "textEn": "Yeah, of course.",
+            "textFa": "آره، حتماً."
+      },
+      {
+            "id": 33,
+            "seconds": 103.3,
+            "endSeconds": 107.1,
+            "timeDisplay": "1:43",
+            "speaker": "Rob",
+            "textEn": "There's a great restaurant on the top floor. The view is fantastic.",
+            "textFa": "یک رستوران عالی در طبقه بالا هست. منظره‌اش فوق‌العاده است."
+      },
+      {
+            "id": 34,
+            "seconds": 108.8,
+            "endSeconds": 113.2,
+            "timeDisplay": "1:48",
+            "speaker": "Rob",
+            "textEn": "The Tate Modern was a power station until 1981. Did you know that?",
+            "textFa": "تیت مدرن تا سال ۱۹۸۱ یک نیروگاه برق بود. این رو می‌دونستی؟"
+      },
+      {
+            "id": 35,
+            "seconds": 113.7,
+            "endSeconds": 114.6,
+            "timeDisplay": "1:53",
+            "speaker": "Jenny",
+            "textEn": "I didn't.",
+            "textFa": "نمی‌دونستم."
+      },
+      {
+            "id": 36,
+            "seconds": 115.2,
+            "endSeconds": 117.5,
+            "timeDisplay": "1:55",
+            "speaker": "Jenny",
+            "textEn": "Do you know anything else about the Tate Modern?",
+            "textFa": "چیز دیگری هم درباره تیت مدرن می‌دونی؟"
+      },
+      {
+            "id": 37,
+            "seconds": 118.8,
+            "endSeconds": 119.9,
+            "timeDisplay": "1:58",
+            "speaker": "Rob",
+            "textEn": "Thank you for asking.",
+            "textFa": "ممنون که پرسیدی."
+      },
+      {
+            "id": 38,
+            "seconds": 120.3,
+            "endSeconds": 122.0,
+            "timeDisplay": "2:00",
+            "speaker": "Rob",
+            "textEn": "I know a lot about it, actually.",
+            "textFa": "اتفاقاً خیلی چیزها در موردش می‌دونم."
       }
-    ],
+],
     "questions": {
       "listening": {
-        "skill": "listening",
-        "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Listen carefully at [1:02]. What key point is stated by Narrator?",
-        "timestampSeconds": 62,
-        "timestampDisplay": "1:02",
-        "explanationFa": "در ثانیه 1:02 ویدیو، Narrator به صراحت بیان می‌کند: «During this time, a small monastery was built. There’s a church here now in place of the monastery.».",
-        "options": [
-          {
-            "id": 1,
-            "textEn": "Narrator states: \"During this time, a small monastery was built. There’s a church h...\"",
-            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
-          },
-          {
-            "id": 2,
-            "textEn": "They are filing an official tax dispute with authorities.",
-            "textFa": "آن‌ها در حال بررسی اختلافات مالیاتی هستند."
-          },
-          {
-            "id": 3,
-            "textEn": "The discussion is strictly about airline ticket cancellations.",
-            "textFa": "گفتگو منحصراً درباره استرداد بلیط هواپیماست."
-          },
-          {
-            "id": 4,
-            "textEn": "They are reporting a missing vehicle to local police.",
-            "textFa": "آن‌ها در حال گزارش سرقت خودرو به پلیس هستند."
-          }
-        ],
-        "correctOptionId": 1
+            "skill": "listening",
+            "promptFa": "با دقت به تماس تلفنی ثانیه [1:08] (01:08) گوش دهید. دانیل چه دعوتی از جنی می‌کند و پاسخ جنی چیست؟",
+            "promptEn": "Listen carefully to the phone call at [1:08]. What does Daniel invite Jenny to do, and how does she respond?",
+            "timestampSeconds": 68,
+            "timestampDisplay": "1:08",
+            "explanationFa": "دانیل می‌گوید: «Would you like to meet for lunch?» و جنی مؤدبانه پاسخ می‌دهد: «That's really nice of you, Daniel, but I'm sorry, I can't. I'm really far away from the office right now.»",
+            "options": [
+                  {
+                        "id": 1,
+                        "textEn": "Daniel invites Jenny to meet for lunch, but she politely declines because she is far from the office.",
+                        "textFa": "دانیل جنی را به ناهار دعوت می‌کند، اما او مؤدبانه رد می‌کند چون از دفتر خیلی دور است."
+                  },
+                  {
+                        "id": 2,
+                        "textEn": "Daniel asks Jenny to return immediately to New York on the next flight.",
+                        "textFa": "دانیل از جنی می‌خواهد فوراً با پرواز بعدی به نیویورک برگردد."
+                  },
+                  {
+                        "id": 3,
+                        "textEn": "Daniel invites Jenny and Rob to a Shakespeare theatrical performance.",
+                        "textFa": "دانیل جنی و راب را به تماشای نمایش شکسپیر دعوت می‌کند."
+                  },
+                  {
+                        "id": 4,
+                        "textEn": "Daniel tells Jenny that her afternoon interview has been cancelled.",
+                        "textFa": "دانیل به جنی می‌گوید مصاحبه بعدازظهرش لغو شده است."
+                  }
+            ],
+            "correctOptionId": 1
       },
       "vocabulary": {
-        "skill": "vocabulary",
-        "promptFa": "کدام یک از واژگان زیر بیشترین ارتباط معنایی را با اصطلاحات این درس (توصیف پل‌ها و آسمان‌خراش‌ها) دارد؟",
-        "promptEn": "Which vocabulary word is most centrally linked to this lesson (Episode 4 · Part 3: Jenny and Rob Go Sightseeing)?",
-        "explanationFa": "واژه view کلیدواژه بنیادین این درس است.",
-        "options": [
-          {
-            "id": 1,
-            "textEn": "View: an essential communicative term used throughout this scenario.",
-            "textFa": "View: واژه کلیدی این درس."
-          },
-          {
-            "id": 2,
-            "textEn": "Subterranean: situated or occurring under the earth's surface.",
-            "textFa": "زیرزمینی و اعماق زمین."
-          },
-          {
-            "id": 3,
-            "textEn": "Photosynthesis: synthesis of compounds in plants.",
-            "textFa": "فوتوسنتز گیاهی."
-          },
-          {
-            "id": 4,
-            "textEn": "Barometer: an instrument measuring atmospheric pressure.",
-            "textFa": "فشارسنج هوا."
-          }
-        ],
-        "correctOptionId": 1
+            "skill": "vocabulary",
+            "promptFa": "معنای دقیق واژه «architect» در جمله «I interviewed the architect last year.» چیست؟",
+            "promptEn": "What is the exact definition of 'architect' as used in Rob's sentence?",
+            "explanationFa": "واژه architect به معنای مهندس معمار است؛ شخصی که ساختمان‌ها و سازه‌ها را طراحی می‌کند.",
+            "options": [
+                  {
+                        "id": 1,
+                        "textEn": "A qualified professional who designs buildings and bridges.",
+                        "textFa": "شخص متخصصی که ساختمان‌ها و پل‌ها را طراحی و نقشه‌کشی می‌کند (مهندس معمار)."
+                  },
+                  {
+                        "id": 2,
+                        "textEn": "A captain who navigates tourist boats along the River Thames.",
+                        "textFa": "ناخدایی که قایق‌های توریستی را در رودخانه تیمز هدایت می‌کند."
+                  },
+                  {
+                        "id": 3,
+                        "textEn": "An actor performing in classical Shakespearean plays.",
+                        "textFa": "بازیگری که در تئاترهای کلاسیک شکسپیر بازی می‌کند."
+                  },
+                  {
+                        "id": 4,
+                        "textEn": "A chef specializing in traditional English cuisine.",
+                        "textFa": "سرآشپزی که در پخت غذاهای سنتی انگلیسی تخصص دارد."
+                  }
+            ],
+            "correctOptionId": 1
       },
       "grammar": {
-        "skill": "grammar",
-        "promptFa": "کدام ساختار گرامری از نظر صحت دستوری و ساختاری کاملاً صحیح است؟",
-        "promptEn": "Which sentence follows correct English grammatical rules?",
-        "explanationFa": "گزینه اول کاملاً با قواعد زمان، تطابق فاعل و فعل و ساختار استاندارد مطابقت دارد.",
-        "options": [
-          {
-            "id": 1,
-            "textEn": "The view of the skyline from the Brooklyn Bridge is breathtaking.",
-            "textFa": "منظره خط افق شهر از روی پل بروکلین نفس‌گیر و بی‌نظیر است."
-          },
-          {
-            "id": 2,
-            "textEn": "She do not understands the instructions given yesterday.",
-            "textFa": "استفاده غلط از do not برای فاعل سوم شخص مفرد She"
-          },
-          {
-            "id": 3,
-            "textEn": "They was walking down the avenue when it started raining.",
-            "textFa": "استفاده اشتباه از was برای فاعل جمع They"
-          },
-          {
-            "id": 4,
-            "textEn": "We is discussing the project deadline today.",
-            "textFa": "کاربرد غلط فعل is برای فاعل We"
-          }
-        ],
-        "correctOptionId": 1
+            "skill": "grammar",
+            "promptFa": "کدام ساختار گرامری برای دعوت کردن یا پیشنهاد دادن با «would like» کاملاً صحیح است؟",
+            "promptEn": "Which sentence correctly uses 'would like' to make a polite invitation or suggestion?",
+            "explanationFa": "برای دعوت یا پیشنهاد مؤدبانه از فرمول «Would you like + to + verb» استفاده می‌شود: Would you like to meet for lunch?",
+            "options": [
+                  {
+                        "id": 1,
+                        "textEn": "Would you like to meet for lunch today?",
+                        "textFa": "دوست داری امروز برای ناهار همدیگر را ببینیم؟"
+                  },
+                  {
+                        "id": 2,
+                        "textEn": "Would you like meeting for lunch today?",
+                        "textFa": "کاربرد غلط فعل ing دار به جای مصدر با to"
+                  },
+                  {
+                        "id": 3,
+                        "textEn": "Do you would like to meet for lunch today?",
+                        "textFa": "کاربرد اشتباه Do همراه با فعل مدال would"
+                  },
+                  {
+                        "id": 4,
+                        "textEn": "Would you liking to meet for lunch today?",
+                        "textFa": "کاربرد نادرست liking پس از would"
+                  }
+            ],
+            "correctOptionId": 1
       },
       "speaking": {
-        "skill": "speaking",
-        "promptFa": "عبارت کلیدی زیر را با لحن روان، استرس مناسب و تلفظ استاندارد آمریکایی بخوانید و صدای خود را ضبط کنید:",
-        "promptEn": "Read this essential communicative phrase aloud with clear American pronunciation and natural rhythm:",
-        "targetPhraseEn": "The view of the skyline from the Brooklyn Bridge is breathtaking.",
-        "targetPhraseFa": "منظره خط افق شهر از روی پل بروکلین نفس‌گیر و بی‌نظیر است.",
-        "phoneticGuide": "/ðə vjuː əv ðə ˈskaɪlaɪn frəm ðə ˈbrʊklɪn brɪdʒ ɪz ˈbreθteɪkɪŋ/",
-        "speakingTipsFa": "کلمه breathtaking به معنای بسیار زیبا و حیرت‌انگیز است.",
-        "explanationFa": "تسلط بر این عبارت باعث ارتقای مهارت اسپیکینگ شما در زمینه توصیف پل‌ها و آسمان‌خراش‌ها می‌شود."
+            "skill": "speaking",
+            "promptFa": "عبارت کلیدی زیر را که اصولی‌ترین روش رد مؤدبانه یک دعوت در زبان انگلیسی است با لحن محترمانه بخوانید و صدای خود را ضبط کنید:",
+            "promptEn": "Read this essential communicative phrase for politely declining an invitation aloud with natural rhythm:",
+            "targetPhraseEn": "That's really nice of you, Daniel, but I'm sorry, I can't.",
+            "targetPhraseFa": "واقعاً لطف داری دانیل، اما متاسفم، نمی‌توانم.",
+            "phoneticGuide": "/ðæts ˈrɪəli naɪs əv juː ˈdænjəl bʌt aɪm ˈsɑːri aɪ kænt/",
+            "speakingTipsFa": "روی کلمات nice، sorry و can't استرس صدایی نرم و مؤدبانه داشته باشید.",
+            "explanationFa": "تسلط بر رد مؤدبانه دعوت‌ها (declining politely) بدون ایجاد کدورت از مهارت‌های ارتباطی کلیدی است."
       },
       "reading": {
-        "skill": "reading",
-        "promptFa": "بر اساس خلاصه و مفهوم درس «اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی»، پیام محوری کدام گزینه است؟",
-        "promptEn": "Based on the contextual reading for 'Episode 4 · Part 3: Jenny and Rob Go Sightseeing', what is the primary takeaway?",
-        "explanationFa": "پیام اصلی درک ارتباطات موثر درباره توصیف پل‌ها و آسمان‌خراش‌ها است.",
-        "options": [
-          {
-            "id": 1,
-            "textEn": "To master communicative fluency regarding توصیف پل‌ها و آسمان‌خراش‌ها.",
-            "textFa": "تسلط بر مهارت‌های ارتباطی درباره توصیف پل‌ها و آسمان‌خراش‌ها."
-          },
-          {
-            "id": 2,
-            "textEn": "To memorize chemical formulas for an examination.",
-            "textFa": "حفظ فرمول‌های شیمیایی."
-          },
-          {
-            "id": 3,
-            "textEn": "To assemble hardware components in a factory.",
-            "textFa": "مونتاژ قطعات سخت‌افزاری در کارخانه."
-          },
-          {
-            "id": 4,
-            "textEn": "To predict weather patterns using satellite imagery.",
-            "textFa": "پیش‌بینی الگوهای هواشناسی با ماهواره."
-          }
-        ],
-        "correctOptionId": 1
+            "skill": "reading",
+            "promptFa": "بر اساس توضیحات راب در انتهای ویدیو، ساختمان موزه تیت مدرن پیش از سال ۱۹۸۱ چه کاربردی داشته است؟",
+            "promptEn": "According to Rob's historical explanation at the end of the video, what was the Tate Modern building originally used for until 1981?",
+            "explanationFa": "راب توضیح می‌دهد: «The Tate Modern was a power station until 1981.» یعنی پیش از موزه شدن، یک نیروگاه برق بوده است.",
+            "options": [
+                  {
+                        "id": 1,
+                        "textEn": "It was an industrial power station producing electricity.",
+                        "textFa": "یک نیروگاه برق صنعتی بوده است."
+                  },
+                  {
+                        "id": 2,
+                        "textEn": "It was a royal palace belonging to the British monarchy.",
+                        "textFa": "یک کاخ سلطنتی متعلق به پادشاهی بریتانیا بوده است."
+                  },
+                  {
+                        "id": 3,
+                        "textEn": "It was the main central railway station of London.",
+                        "textFa": "ایستگاه اصلی راه‌آهن مرکزی لندن بوده است."
+                  },
+                  {
+                        "id": 4,
+                        "textEn": "It was an ancient cathedral built in the Middle Ages.",
+                        "textFa": "یک کلیسای جامع باستانی ساخته‌شده در قرون وسطی بوده است."
+                  }
+            ],
+            "correctOptionId": 1
       },
       "writing": {
-        "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (اپیزود ۴ · بخش ۳: گردش در جاهای دیدنی نیویورک با راب و جنی)، متنی کوتاه بنویسید که حداقل شامل کلمات کلیدی مشخص شده باشد.",
-        "promptEn": "Write a concise paragraph related to this lesson (Episode 4 · Part 3: Jenny and Rob Go Sightseeing) using the required keywords.",
-        "minWords": 12,
-        "keywordsToUse": [
-          "view",
-          "bridge",
-          "beautiful"
-        ],
-        "sampleAnswerEn": "Walking across the famous bridge provided us with a magnificent view of the Manhattan skyline.",
-        "sampleAnswerFa": "قدم زدن روی پل معروف، منظره‌ای باشکوه از آسمان‌خراش‌های منهتن به ما ارائه داد.",
-        "evaluationTipsFa": "رعایت املای واژگان، علائم نگارشی و ساختار صحیح دستوری در نمره نهایی تاثیرگذار است.",
-        "explanationFa": "متن شما بر اساس کاربرد درست واژگان کلیدی و ساختار دستوری ارزیابی خواهد شد."
+            "skill": "writing",
+            "promptFa": "با استفاده از کلمات کلیدی مشخص شده، یک پیام کوتاه (حداقل ۱۰ کلمه) بنویسید که در آن از کسی برای ناهار دعوت کرده یا به دعوت او پاسخ دهید:",
+            "promptEn": "Write a short note (at least 10 words) inviting someone for lunch or responding to an invitation using the required keywords.",
+            "minWords": 10,
+            "keywordsToUse": [
+                  "lunch",
+                  "meet",
+                  "view",
+                  "time"
+            ],
+            "sampleAnswerEn": "Would you like to meet for lunch next time? The restaurant has a fantastic view.",
+            "sampleAnswerFa": "دوست داری دفعه بعد برای ناهار همدیگر را ببینیم؟ رستوران منظره فوق‌العاده‌ای دارد.",
+            "evaluationTipsFa": "رعایت کاربرد صحیح کلمات کلیدی و رعایت اصول نگارش مؤدبانه دعوت.",
+            "explanationFa": "متن شما بر اساس کاربرد درست واژگان و ساختار گرامری دعوت ارزیابی می‌شود."
       }
     }
   },
@@ -3786,307 +4017,396 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v13",
     "level": "a1",
     "episodeNumber": 13,
-    "titleFa": "اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار",
+    "titleFa": "اپیزود ۵ · بخش ۱: دعوت به شام کاری و غافلگیری تولد جنی",
     "titleEn": "Episode 5 · Part 1: An Invitation to Dinner",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 5",
     "cefr": "A1",
-    "duration": "1:32",
-    "durationSec": 92,
+    "duration": "1:31",
+    "durationSec": 91,
     "fileName": "AEF3e_SB1_PE_Ep5_An_invitation_to_dinner.mp4",
     "videoUrl": "/api/videos/stream?series=aef&level=a1&file=AEF3e_SB1_PE_Ep5_An_invitation_to_dinner.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #ea580c, #f97316)",
     "posterIcon": "🍽️",
-    "summaryFa": "جنی و دانیل از راب دعوت می‌کنند تا برای یک شام کاری و جشن موفقیت در یک رستوران سنتی ایتالیایی در منهتن به آن‌ها بپیوندد.",
-    "summaryEn": "Jenny and Daniel invite Rob to join them for a celebratory business dinner at a traditional Italian restaurant in Manhattan.",
+    "summaryFa": "راب و جنی در دفتر کار لندن درباره روز گذشته و مقاله راب صحبت می‌کنند. ناگهان تلفن جنی زنگ می‌زند و برادرش اِدی به مناسبت تولدش برای او آواز می‌خواند. راب با شنیدن خبر تولد جنی، سعی می‌کند او را به شام دعوت کند، اما دانیل وارد می‌شود و جنی را برای یک شام کاری قبل از بازگشت به نیویورک دعوت می‌کند؛ جنی دعوت دانیل را می‌پذیرد و با شرمندگی از راب عذرخواهی می‌کند.",
+    "summaryEn": "Rob and Jenny chat at the London office about yesterday's sightseeing and Rob's article. Jenny's phone rings and her brother Eddie sings Happy Birthday to her. Hearing that it's her birthday, Rob tries to invite Jenny out for dinner, but Daniel interrupts and invites her to a working dinner before she returns to New York. Jenny accepts Daniel's invitation and apologetically turns to Rob with a 'Sorry, Rob.'",
     "keyTopicsFa": [
-      "دعوت کردن رسمی (Would you like to join us?)",
-      "پذیرش مودبانه دعوت (I'd love to)",
-      "هماهنگی روز و ساعت",
-      "انتخاب نوع رستوران"
+      "تشکر و گپ‌وگفت درباره کارهای روز قبل (Thanks for showing me around / What did you do last night?)",
+      "تبریک تولد و تعاملات دوستانه (Happy Birthday / It's my birthday today)",
+      "دعوت‌های غیررسمی با could (Maybe we could have dinner tonight?)",
+      "دعوت رسمی کاری با would like (I'd like to take you out for dinner / for a working dinner)",
+      "عذرخواهی در موقعیت‌های معذب‌کننده کاری (Sorry, Rob)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 9,
-              "timeDisplay": "0:09",
-              "speaker": "Jenny",
-              "textEn": "Thanks for showing me around London yesterday. I had a great time.",
-              "textFa": "ممنون که دیروز لندن را به من نشان دادی. خیلی بهم خوش گذشت."
+        "id": 1,
+        "seconds": 10,
+        "timeDisplay": "0:10",
+        "speaker": "Jenny",
+        "textEn": "Thanks for showing me around London yesterday. I had a great time.",
+        "textFa": "ممنون که دیروز لندن را به من نشان دادی. خیلی بهم خوش گذشت."
       },
       {
-              "id": 2,
-              "seconds": 13,
-              "timeDisplay": "0:13",
-              "speaker": "Rob",
-              "textEn": "Me too. So, what did you do last night?",
-              "textFa": "من هم همین‌طور. خب، دیشب چه کار کردی؟"
+        "id": 2,
+        "seconds": 13,
+        "timeDisplay": "0:13",
+        "speaker": "Rob",
+        "textEn": "Me too. So, what did you do last night?",
+        "textFa": "من هم همین‌طور. خب، دیشب چه کار کردی؟"
       },
       {
-              "id": 3,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Jenny",
-              "textEn": "Nothing really. I had a lot of work to do. Emails, phone calls... What did you do?",
-              "textFa": "کار خاصی نکردم. کارهای اداری زیادی داشتم: ایمیل‌ها، تماس‌های تلفنی... تو چه کردی؟"
+        "id": 3,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Jenny",
+        "textEn": "Nothing really. I had a lot of work to do. Emails, phone calls...",
+        "textFa": "کار خاصی نکردم. کارهای اداری زیادی داشتم: ایمیل‌ها، تماس‌های تلفنی..."
       },
       {
-              "id": 4,
-              "seconds": 25,
-              "timeDisplay": "0:25",
-              "speaker": "Rob",
-              "textEn": "I wrote my article... about the Tate Modern.",
-              "textFa": "مقاله‌ام را نوشتم... درباره موزه تیت مدرن."
+        "id": 4,
+        "seconds": 23,
+        "timeDisplay": "0:23",
+        "speaker": "Jenny",
+        "textEn": "What did you do?",
+        "textFa": "تو چه کار کردی؟"
       },
       {
-              "id": 5,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Jenny",
-              "textEn": "Great. Can I read it?",
-              "textFa": "عالیه. می‌توانم بخوانمش؟"
+        "id": 5,
+        "seconds": 25,
+        "timeDisplay": "0:25",
+        "speaker": "Rob",
+        "textEn": "I wrote my article... about the artist that I interviewed yesterday morning.",
+        "textFa": "مقاله‌ام را نوشتم... درباره هنرمندی که دیروز صبح با او مصاحبه کردم."
       },
       {
-              "id": 6,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Rob",
-              "textEn": "Sure. It's on my laptop.",
-              "textFa": "حتماً. روی لپ‌تاپم است."
+        "id": 6,
+        "seconds": 30,
+        "timeDisplay": "0:30",
+        "speaker": "Jenny",
+        "textEn": "Can I see it?",
+        "textFa": "می‌توانم ببینمش؟"
       },
       {
-              "id": 7,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "Jenny",
-              "textEn": "Thanks. Hey, Rob...",
-              "textFa": "ممنون. راستی، راب..."
+        "id": 7,
+        "seconds": 31,
+        "timeDisplay": "0:31",
+        "speaker": "Rob",
+        "textEn": "Sure, it's on my laptop.",
+        "textFa": "حتماً، روی لپ‌تاپم است."
       },
       {
-              "id": 8,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Rob",
-              "textEn": "Yes?",
-              "textFa": "بله؟"
+        "id": 8,
+        "seconds": 34,
+        "timeDisplay": "0:34",
+        "speaker": "Rob",
+        "textEn": "Hang on a second. There.",
+        "textFa": "یک لحظه صبر کن... بفرما."
       },
       {
-              "id": 9,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Jenny",
-              "textEn": "Are you free tonight?",
-              "textFa": "امشب وقتت آزاده؟"
+        "id": 9,
+        "seconds": 38,
+        "timeDisplay": "0:38",
+        "speaker": "Jenny",
+        "textEn": "Sorry.",
+        "textFa": "ببخشید (زنگ خوردن ناگهانی تلفن همراه)."
       },
       {
-              "id": 10,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Rob",
-              "textEn": "Tonight? Yes, I am. Why?",
-              "textFa": "امشب؟ آره، آزادم. چطور؟"
+        "id": 10,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Jenny",
+        "textEn": "Hi, Eddie.",
+        "textFa": "سلام، اِدی."
       },
       {
-              "id": 11,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Jenny",
-              "textEn": "Would you like to come to dinner?",
-              "textFa": "دوست داری برای شام بیایی؟"
+        "id": 11,
+        "seconds": 42,
+        "timeDisplay": "0:42",
+        "speaker": "Eddie",
+        "textEn": "Happy Birthday to you, Happy Birthday to you...",
+        "textFa": "تولدت مبارک، تولدت مبارک..."
       },
       {
-              "id": 12,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Rob",
-              "textEn": "I'd love to! Where are we going?",
-              "textFa": "با کمال میل! کجا می‌رویم؟"
+        "id": 12,
+        "seconds": 49,
+        "timeDisplay": "0:49",
+        "speaker": "Jenny",
+        "textEn": "Thanks! But listen, I can't talk right now. I'm in the office...",
+        "textFa": "ممنون! ولی گوش کن، الان نمی‌توانم صحبت کنم. در دفتر کار هستم..."
       },
       {
-              "id": 13,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Jenny",
-              "textEn": "An Italian restaurant near my hotel. Daniel says it's very good.",
-              "textFa": "یک رستوران ایتالیایی نزدیک هتلم. دانیل می‌گوید خیلی خوب است."
+        "id": 13,
+        "seconds": 53,
+        "timeDisplay": "0:53",
+        "speaker": "Eddie",
+        "textEn": "OK.",
+        "textFa": "باشه."
       },
       {
-              "id": 14,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Rob",
-              "textEn": "Sounds great. What time?",
-              "textFa": "عالی به نظر می‌رسد. چه ساعتی؟"
+        "id": 14,
+        "seconds": 54,
+        "timeDisplay": "0:54",
+        "speaker": "Jenny",
+        "textEn": "Yeah, later.",
+        "textFa": "آره، بعداً."
       },
       {
-              "id": 15,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Jenny",
-              "textEn": "Eight o'clock?",
-              "textFa": "ساعت هشت؟"
+        "id": 15,
+        "seconds": 55,
+        "timeDisplay": "0:55",
+        "speaker": "Eddie",
+        "textEn": "Have fun.",
+        "textFa": "خوش بگذره."
       },
       {
-              "id": 16,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Rob",
-              "textEn": "Eight o'clock is perfect.",
-              "textFa": "ساعت هشت عالیه."
+        "id": 16,
+        "seconds": 56,
+        "timeDisplay": "0:56",
+        "speaker": "Jenny",
+        "textEn": "OK. Bye.",
+        "textFa": "باشه، خداحافظ."
       },
       {
-              "id": 17,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Jenny",
-              "textEn": "Great. See you tonight.",
-              "textFa": "عالیه. امشب می‌بینمت."
+        "id": 17,
+        "seconds": 58,
+        "timeDisplay": "0:58",
+        "speaker": "Jenny",
+        "textEn": "Sorry. But it's my birthday today.",
+        "textFa": "ببخشید (رو به راب). ولی امروز روز تولدمه."
+      },
+      {
+        "id": 18,
+        "seconds": 62,
+        "timeDisplay": "1:02",
+        "speaker": "Rob",
+        "textEn": "Really? Happy birthday!",
+        "textFa": "واقعاً؟ تولدت مبارک!"
+      },
+      {
+        "id": 19,
+        "seconds": 64,
+        "timeDisplay": "1:04",
+        "speaker": "Rob",
+        "textEn": "Maybe we could have dinner tonight?",
+        "textFa": "شاید بتونیم امشب با هم شام بخوریم؟"
+      },
+      {
+        "id": 20,
+        "seconds": 67,
+        "timeDisplay": "1:07",
+        "speaker": "Daniel",
+        "textEn": "Jennifer.",
+        "textFa": "جنیفر (ورود ناگهانی دانیل)."
+      },
+      {
+        "id": 21,
+        "seconds": 69,
+        "timeDisplay": "1:09",
+        "speaker": "Jenny",
+        "textEn": "Oh, hi Daniel.",
+        "textFa": "اوه، سلام دانیل."
+      },
+      {
+        "id": 22,
+        "seconds": 70,
+        "timeDisplay": "1:10",
+        "speaker": "Daniel",
+        "textEn": "I'd like to take you out for dinner this evening.",
+        "textFa": "می‌خواهم امشب تو را برای شام بیرون دعوت کنم."
+      },
+      {
+        "id": 23,
+        "seconds": 73,
+        "timeDisplay": "1:13",
+        "speaker": "Jenny",
+        "textEn": "This evening?",
+        "textFa": "امشب؟ (با تعجب و غافلگیری)"
+      },
+      {
+        "id": 24,
+        "seconds": 75,
+        "timeDisplay": "1:15",
+        "speaker": "Daniel",
+        "textEn": "Yes, for a working dinner. We have a lot to talk about before you go back to New York. I know a very good restaurant.",
+        "textFa": "بله، برای یک شام کاری. ما قبل از این‌که به نیویورک برگردی حرف‌های زیادی برای گفتن داریم. یک رستوران خیلی خوب هم می‌شناسم."
+      },
+      {
+        "id": 25,
+        "seconds": 82,
+        "timeDisplay": "1:22",
+        "speaker": "Jenny",
+        "textEn": "Yes, of course.",
+        "textFa": "بله، حتماً (پذیرش دعوت کاری مدیر)."
+      },
+      {
+        "id": 26,
+        "seconds": 83,
+        "timeDisplay": "1:23",
+        "speaker": "Daniel",
+        "textEn": "Great. See you later.",
+        "textFa": "عالیه. بعداً می‌بینمت."
+      },
+      {
+        "id": 27,
+        "seconds": 86,
+        "timeDisplay": "1:26",
+        "speaker": "Jenny",
+        "textEn": "Yes, sure.",
+        "textFa": "بله، حتماً (پاسخ پایانی به دانیل در حال ترک اتاق)."
+      },
+      {
+        "id": 28,
+        "seconds": 87,
+        "timeDisplay": "1:27",
+        "speaker": "Jenny",
+        "textEn": "Sorry, Rob.",
+        "textFa": "ببخشید، راب... (با چهره عذرخواهانه و شرمنده رو به راب که جا مانده است!)."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Listen carefully at [0:49]. What key point is stated by Narrator?",
-        "timestampSeconds": 49,
-        "timestampDisplay": "0:49",
-        "explanationFa": "در ثانیه 0:49 ویدیو، Narrator به صراحت بیان می‌کند: «Eddie OK. Jenny Yeah, later. Eddie Have fun. Jenny OK. Sorry. But it’s my birthday today. Rob Really? Happy birthday!».",
+        "promptFa": "با توجه به بخش میانی ویدیو در ثانیه [1:04]، راب پس از فهمیدن چه موضوعی به جنی چه پیشنهادی می‌دهد؟",
+        "promptEn": "Listen carefully at [1:04]. What does Rob suggest after finding out about Jenny's special day?",
+        "timestampSeconds": 64,
+        "timestampDisplay": "1:04",
+        "explanationFa": "راب وقتی متوجه می‌شود امروز روز تولد جنی است، پس از تبریک گفتن پیشنهاد می‌دهد: «Maybe we could have dinner tonight?» (شاید بتوانیم امشب با هم شام بخوریم؟).",
         "options": [
           {
             "id": 1,
-            "textEn": "Narrator states: \"Eddie OK. Jenny Yeah, later. Eddie Have fun. Jenny OK. Sorry. But...\"",
-            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
+            "textEn": "He finds out it is Jenny's birthday and suggests having dinner together tonight.",
+            "textFa": "او متوجه می‌شود تولد جنی است و پیشنهاد می‌دهد امشب با هم شام بخورند."
           },
           {
             "id": 2,
-            "textEn": "They are filing an official tax dispute with authorities.",
-            "textFa": "آن‌ها در حال بررسی اختلافات مالیاتی هستند."
+            "textEn": "He offers to help her write emails and make phone calls.",
+            "textFa": "او پیشنهاد می‌دهد در پاسخ به ایمیل‌ها و تماس‌ها به او کمک کند."
           },
           {
             "id": 3,
-            "textEn": "The discussion is strictly about airline ticket cancellations.",
-            "textFa": "گفتگو منحصراً درباره استرداد بلیط هواپیماست."
+            "textEn": "He asks Jenny to introduce him to her brother Eddie.",
+            "textFa": "از جنی می‌خواهد او را به برادرش ادی معرفی کند."
           },
           {
             "id": 4,
-            "textEn": "They are reporting a missing vehicle to local police.",
-            "textFa": "آن‌ها در حال گزارش سرقت خودرو به پلیس هستند."
+            "textEn": "He invites Jenny to visit the Tate Modern gallery again.",
+            "textFa": "جنی را دعوت می‌کند که دوباره از گالری تیت مدرن دیدن کنند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از واژگان زیر بیشترین ارتباط معنایی را با اصطلاحات این درس (دعوت کردن رسمی (Would you like to join us?)) دارد؟",
-        "promptEn": "Which vocabulary word is most centrally linked to this lesson (Episode 5 · Part 1: An Invitation to Dinner)?",
-        "explanationFa": "واژه dinner کلیدواژه بنیادین این درس است.",
+        "promptFa": "اصطلاح کاربردی «take someone out for dinner» که دانیل در ثانیه [1:10] به کار می‌برد به چه معناست؟",
+        "promptEn": "What does the phrase \"take (someone) out for dinner\" mean in Daniel's invitation?",
+        "explanationFa": "اصطلاح take someone out for dinner یعنی کسی را برای شام به رستوران بردن و هزینه آن را متقبل شدن (شام مهمان کردن).",
         "options": [
           {
             "id": 1,
-            "textEn": "Dinner: an essential communicative term used throughout this scenario.",
-            "textFa": "Dinner: واژه کلیدی این درس."
+            "textEn": "To invite someone to a restaurant as your guest and pay for their meal.",
+            "textFa": "دعوت کردن کسی به رستوران به عنوان مهمان و تقبل هزینه غذا."
           },
           {
             "id": 2,
-            "textEn": "Subterranean: situated or occurring under the earth's surface.",
-            "textFa": "زیرزمینی و اعماق زمین."
+            "textEn": "To ask a coworker to cook dinner at their apartment.",
+            "textFa": "درخواست از همکار برای پختن شام در آپارتمانش."
           },
           {
             "id": 3,
-            "textEn": "Photosynthesis: synthesis of compounds in plants.",
-            "textFa": "فوتوسنتز گیاهی."
+            "textEn": "To order food delivery to eat inside the office.",
+            "textFa": "سفارش غذای دلیوری برای خوردن در داخل دفتر کار."
           },
           {
             "id": 4,
-            "textEn": "Barometer: an instrument measuring atmospheric pressure.",
-            "textFa": "فشارسنج هوا."
+            "textEn": "To cancel a dinner reservation at short notice.",
+            "textFa": "لغو کردن رزرو رستوران در آخرین لحظه."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام ساختار گرامری از نظر صحت دستوری و ساختاری کاملاً صحیح است؟",
-        "promptEn": "Which sentence follows correct English grammatical rules?",
-        "explanationFa": "گزینه اول کاملاً با قواعد زمان، تطابق فاعل و فعل و ساختار استاندارد مطابقت دارد.",
+        "promptFa": "برای بیان یک پیشنهاد دوستانه و غیررسمی، کدام ساختار گرامری با توجه به صحبت راب کاملاً صحیح است؟",
+        "promptEn": "Which modal structure is grammatically correct for a polite, friendly suggestion (as used by Rob)?",
+        "explanationFa": "راب از ساختار مودبانه و پیشنهادی «Maybe we could + فعل ساده» استفاده کرد: «Maybe we could have dinner tonight?» (بعد از فعل معین could شکل پایه فعل have می‌آید).",
         "options": [
           {
             "id": 1,
-            "textEn": "Would you like to join us for dinner tonight at seven?",
-            "textFa": "آیا مایل هستید امشب ساعت هفت برای شام به ما ملحق شوید؟"
+            "textEn": "Maybe we could have dinner tonight?",
+            "textFa": "شاید بتونیم امشب با هم شام بخوریم؟ (کاربرد صحیح could به همراه فعل ساده)"
           },
           {
             "id": 2,
-            "textEn": "She do not understands the instructions given yesterday.",
-            "textFa": "استفاده غلط از do not برای فاعل سوم شخص مفرد She"
+            "textEn": "Maybe we could having dinner tonight?",
+            "textFa": "استفاده غلط از شکل ing دار having بعد از could"
           },
           {
             "id": 3,
-            "textEn": "They was walking down the avenue when it started raining.",
-            "textFa": "استفاده اشتباه از was برای فاعل جمع They"
+            "textEn": "Maybe we could had dinner tonight?",
+            "textFa": "استفاده اشتباه از شکل گذشته had بعد از could"
           },
           {
             "id": 4,
-            "textEn": "We is discussing the project deadline today.",
-            "textFa": "کاربرد غلط فعل is برای فاعل We"
+            "textEn": "Maybe we could to have dinner tonight?",
+            "textFa": "استفاده غیرمجاز از to بعد از فعل کمکی وجهی could"
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "عبارت کلیدی زیر را با لحن روان، استرس مناسب و تلفظ استاندارد آمریکایی بخوانید و صدای خود را ضبط کنید:",
-        "promptEn": "Read this essential communicative phrase aloud with clear American pronunciation and natural rhythm:",
-        "targetPhraseEn": "Would you like to join us for dinner tonight at seven?",
-        "targetPhraseFa": "آیا مایل هستید امشب ساعت هفت برای شام به ما ملحق شوید؟",
-        "phoneticGuide": "/wʊd juː laɪk tuː dʒɔɪn ʌs fɔːr ˈdɪnər təˈnaɪt ət ˈsevn/",
-        "speakingTipsFa": "ساختار 'Would you like to...' رسمی‌ترین شیوه تعارف و دعوت است.",
-        "explanationFa": "تسلط بر این عبارت باعث ارتقای مهارت اسپیکینگ شما در زمینه دعوت کردن رسمی (Would you like to join us?) می‌شود."
+        "promptFa": "جمله رسمی زیر را که دانیل برای دعوت کاری استفاده می‌کند، با رعایت استرس روی کلمات کلیدی، با صدای رسا بخوانید و ضبط کنید:",
+        "promptEn": "Read Daniel's formal business invitation aloud with clear pronunciation and natural stress:",
+        "targetPhraseEn": "I'd like to take you out for dinner this evening for a working dinner.",
+        "targetPhraseFa": "می‌خواهم امشب تو را برای یک شام کاری بیرون دعوت کنم.",
+        "phoneticGuide": "/aɪd laɪk tuː teɪk juː aʊt fɔːr ˈdɪnər ðɪs ˈiːvnɪŋ fɔːr ə ˈwɜːrkɪŋ ˈdɪnər/",
+        "speakingTipsFa": "روی عبارت 'I'd like to' لحن مودبانه داشته باشید و ترکیب 'working dinner' را برجسته ادا کنید.",
+        "explanationFa": "این ساختار استانداردترین الگوی دعوت رسمی همکاران یا شرکای تجاری در زبان انگلیسی است."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "بر اساس خلاصه و مفهوم درس «اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار»، پیام محوری کدام گزینه است؟",
-        "promptEn": "Based on the contextual reading for 'Episode 5 · Part 1: An Invitation to Dinner', what is the primary takeaway?",
-        "explanationFa": "پیام اصلی درک ارتباطات موثر درباره دعوت کردن رسمی (Would you like to join us?) است.",
+        "promptFa": "با توجه به پایان ویدیو، علت عذرخواهی جنی از راب با گفتن «Sorry, Rob» در ثانیه [1:27] چیست؟",
+        "promptEn": "Based on the ending of the video, why does Jenny apologetically say \"Sorry, Rob\" at [1:27]?",
+        "explanationFa": "راب درست چند ثانیه قبل از ورود دانیل جنی را به شام تولد دعوت کرده بود، اما ورود سرزده رئیس (دانیل) و دعوت کاری او مانع شد که جنی بتواند دعوت راب را بپذیرد، بنابراین جنی با شرمندگی از او عذرخواهی می‌کند.",
         "options": [
           {
             "id": 1,
-            "textEn": "To master communicative fluency regarding دعوت کردن رسمی (Would you like to join us?).",
-            "textFa": "تسلط بر مهارت‌های ارتباطی درباره دعوت کردن رسمی (Would you like to join us?)."
+            "textEn": "Because Daniel unexpectedly invited her to a working dinner right after Rob suggested having dinner, forcing her to accept Daniel's work invitation instead.",
+            "textFa": "چون دانیل درست پس از پیشنهاد راب ناگهان او را به یک شام کاری دعوت کرد و جنی مجبور شد دعوت کاری را بر دعوت دوستانه راب ترجیح دهد."
           },
           {
             "id": 2,
-            "textEn": "To memorize chemical formulas for an examination.",
-            "textFa": "حفظ فرمول‌های شیمیایی."
+            "textEn": "Because she accidentally erased Rob's article from his laptop screen.",
+            "textFa": "چون مقاله راب را تصادفاً از روی صفحه لپ‌تاپش پاک کرد."
           },
           {
             "id": 3,
-            "textEn": "To assemble hardware components in a factory.",
-            "textFa": "مونتاژ قطعات سخت‌افزاری در کارخانه."
+            "textEn": "Because she forgot to answer Rob's emails and calls from last night.",
+            "textFa": "چون پاسخ دادن به ایمیل‌ها و تماس‌های دیشب راب را فراموش کرده بود."
           },
           {
             "id": 4,
-            "textEn": "To predict weather patterns using satellite imagery.",
-            "textFa": "پیش‌بینی الگوهای هواشناسی با ماهواره."
+            "textEn": "Because she told Daniel that Rob's article was poorly written.",
+            "textFa": "چون به دانیل گفت که مقاله راب خوب نوشته نشده است."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (اپیزود ۵ · بخش ۱: دعوت به ضیافت شام و هماهنگی قرار)، متنی کوتاه بنویسید که حداقل شامل کلمات کلیدی مشخص شده باشد.",
-        "promptEn": "Write a concise paragraph related to this lesson (Episode 5 · Part 1: An Invitation to Dinner) using the required keywords.",
+        "promptFa": "یک ایمیل کوتاه (حداقل ۱۲ کلمه) بنویسید و در آن یک همکار یا شریک تجاری را پیش از سفر بازگشتش به یک «شام کاری» در یک رستوران خوب دعوت کنید؛ حتماً کلمات کلیدی مشخص‌شده را به کار ببرید.",
+        "promptEn": "Write a short note (at least 12 words) inviting a colleague out for a working dinner before their return trip, using the required keywords.",
         "minWords": 12,
         "keywordsToUse": [
           "dinner",
-          "join",
-          "tonight"
+          "working",
+          "restaurant"
         ],
-        "sampleAnswerEn": "Thank you for the kind invitation; I would love to join you all for dinner tonight.",
-        "sampleAnswerFa": "از دعوت محبت‌آمیزتان سپاسگزارم؛ من خیلی مشتاقم امشب برای شام به جمع شما بپیوندم.",
-        "evaluationTipsFa": "رعایت املای واژگان، علائم نگارشی و ساختار صحیح دستوری در نمره نهایی تاثیرگذار است.",
-        "explanationFa": "متن شما بر اساس کاربرد درست واژگان کلیدی و ساختار دستوری ارزیابی خواهد شد."
+        "sampleAnswerEn": "I would like to take you out for a working dinner tonight. I know a very good restaurant nearby.",
+        "sampleAnswerFa": "مایلم امشب شما را برای یک شام کاری بیرون دعوت کنم. من یک رستوران بسیار خوب در همین نزدیکی می‌شناسم.",
+        "evaluationTipsFa": "کاربرد ساختار رسمی would like to take you out و کلمات کلیدی dinner، working و restaurant در ارزیابی لحاظ می‌شود.",
+        "explanationFa": "متن شما بر اساس کاربرد درست واژگان کلیدی، لحن مودبانه و رعایت دستور زبان انگلیسی ارزیابی خواهد شد."
       }
     }
   },
@@ -4094,7 +4414,7 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v14",
     "level": "a1",
     "episodeNumber": 14,
-    "titleFa": "اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران",
+    "titleFa": "اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی در رستوران",
     "titleEn": "Episode 5 · Part 2: Ordering a Meal in a Restaurant",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 5",
@@ -4106,239 +4426,272 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #dc2626, #ef4444)",
     "posterIcon": "🍝",
-    "summaryFa": "پیشخدمت سفارش پیش‌غذا، غذای اصلی نظیر ماهی سالمون گریل‌شده و پاستا، نوشیدنی‌ها و ترجیحات غذایی را یادداشت می‌کند.",
-    "summaryEn": "The waiter takes their order: appetizers, main courses like grilled salmon and pasta, drinks, and dietary preferences.",
+    "summaryFa": "دانیل و جنی به رستوران می‌رسند. دانیل میز رزروشده دو نفره را تحویل می‌گیرد. سپس گارسون برای گرفتن سفارش می‌آید؛ جنی سوپ و راویولی قارچ سفارش می‌دهد و دانیل سالاد موزارلا و مرغ انتخاب می‌کند. در پایان نیز پس از پرسش گارسون درباره آب معدنی معمولی یا گازدار (Still or sparkling)، دانیل با تایید جنی یک بطری آب گازدار سفارش می‌دهد.",
+    "summaryEn": "Daniel and Jenny arrive at the restaurant. Daniel confirms their reservation for a table for two. The waiter takes their order: Jenny asks for soup and mushroom ravioli, while Daniel chooses mozzarella salad followed by chicken. Finally, the waiter asks if they prefer still or sparkling water, and Daniel orders a bottle of sparkling mineral water.",
     "keyTopicsFa": [
-      "سفارش غذا (I'll have the grilled salmon, please)",
-      "پیش‌غذا و غذای اصلی (Appetizer / Main course)",
-      "پرسیدن درباره مخلفات (Does it come with salad?)",
-      "مکالمات رستوران"
+      "اعلام رزرو میز (Do you have a reservation? / A table for two)",
+      "هدایت مهمانان توسط پیشخدمت (Come this way, please)",
+      "پرسیدن آمادگی برای سفارش (Are you ready to order?)",
+      "سفارش پیش‌غذا و غذای اصلی (The soup and the mushroom ravioli / The mozzarella salad and then the chicken)",
+      "سفارش نوشیدنی و انتخاب بین آب گازدار و معمولی (Still or sparkling? / Mineral water)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 9,
-              "timeDisplay": "0:09",
-              "speaker": "Waiter",
-              "textEn": "Good evening. Do you have a reservation?",
-              "textFa": "عصر بخیر. آیا رزرو قبلی دارید؟"
+        "id": 1,
+        "seconds": 10,
+        "timeDisplay": "0:10",
+        "speaker": "Waiter",
+        "textEn": "Good evening. Do you have a reservation?",
+        "textFa": "عصر بخیر. آیا رزرو قبلی دارید؟"
       },
       {
-              "id": 2,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Daniel",
-              "textEn": "Yes, a table for two. My name's Daniel O'Connor.",
-              "textFa": "بله، میزی برای دو نفر. نام من دانیل اوکانر است."
+        "id": 2,
+        "seconds": 13,
+        "timeDisplay": "0:13",
+        "speaker": "Daniel",
+        "textEn": "Yes, a table for two. My name's Daniel O'Connor.",
+        "textFa": "بله، میزی برای دو نفر. نام من دانیل اوکانر است."
       },
       {
-              "id": 3,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Waiter",
-              "textEn": "Come this way, please.",
-              "textFa": "از این طرف تشریف بیاورید، لطفاً."
+        "id": 3,
+        "seconds": 18,
+        "timeDisplay": "0:18",
+        "speaker": "Waiter",
+        "textEn": "Come this way, please.",
+        "textFa": "از این طرف تشریف بیاورید، لطفاً."
       },
       {
-              "id": 4,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Waiter",
-              "textEn": "Are you ready to order?",
-              "textFa": "برای سفارش آماده‌اید؟"
+        "id": 4,
+        "seconds": 28,
+        "timeDisplay": "0:28",
+        "speaker": "Waiter",
+        "textEn": "Are you ready to order?",
+        "textFa": "برای سفارش دادن آماده‌اید؟"
       },
       {
-              "id": 5,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Jenny",
-              "textEn": "Yes. The soup to start, and then the roast chicken, please.",
-              "textFa": "بله. برای پیش‌غذا سوپ، و سپس مرغ بریان، لطفاً."
+        "id": 5,
+        "seconds": 29,
+        "timeDisplay": "0:29",
+        "speaker": "Jenny",
+        "textEn": "Yes. The soup and the mushroom ravioli, please.",
+        "textFa": "بله. سوپ و راویولی قارچ، لطفاً."
       },
       {
-              "id": 6,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Waiter",
-              "textEn": "And for you, sir?",
-              "textFa": "و برای شما جناب؟"
+        "id": 6,
+        "seconds": 37,
+        "timeDisplay": "0:37",
+        "speaker": "Daniel",
+        "textEn": "I'd like the mozzarella salad and then the chicken, please.",
+        "textFa": "من سالاد موزارلا و سپس مرغ میل دارم، لطفاً."
       },
       {
-              "id": 7,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Daniel",
-              "textEn": "I'll have the mozzarella salad, and then the salmon.",
-              "textFa": "من سالاد موزارلا و بعد از آن سالمون می‌خورم."
+        "id": 7,
+        "seconds": 41,
+        "timeDisplay": "0:41",
+        "speaker": "Waiter",
+        "textEn": "What would you like to drink?",
+        "textFa": "برای نوشیدنی چه میل دارید؟"
       },
       {
-              "id": 8,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Waiter",
-              "textEn": "And to drink?",
-              "textFa": "و برای نوشیدنی؟"
+        "id": 8,
+        "seconds": 43,
+        "timeDisplay": "0:43",
+        "speaker": "Jenny",
+        "textEn": "Just water for me.",
+        "textFa": "برای من فقط آب."
       },
       {
-              "id": 9,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Daniel",
-              "textEn": "A bottle of sparkling water, please.",
-              "textFa": "یک بطری آب گازدار، لطفاً."
+        "id": 9,
+        "seconds": 45,
+        "timeDisplay": "0:45",
+        "speaker": "Daniel",
+        "textEn": "A bottle of mineral water, please.",
+        "textFa": "یک بطری آب معدنی، لطفاً."
       },
       {
-              "id": 10,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Waiter",
-              "textEn": "Certainly. Thank you.",
-              "textFa": "حتماً. متشکرم."
+        "id": 10,
+        "seconds": 47,
+        "timeDisplay": "0:47",
+        "speaker": "Waiter",
+        "textEn": "Still or sparkling?",
+        "textFa": "معمولی (بدون گاز) یا گازدار؟"
+      },
+      {
+        "id": 11,
+        "seconds": 49,
+        "timeDisplay": "0:49",
+        "speaker": "Daniel",
+        "textEn": "Is sparkling OK?",
+        "textFa": "گازدار خوبه؟ (رو به جنی)"
+      },
+      {
+        "id": 12,
+        "seconds": 50,
+        "timeDisplay": "0:50",
+        "speaker": "Jenny",
+        "textEn": "Yes, sparkling.",
+        "textFa": "بله، گازدار."
+      },
+      {
+        "id": 13,
+        "seconds": 52,
+        "timeDisplay": "0:52",
+        "speaker": "Waiter",
+        "textEn": "Thank you, sir.",
+        "textFa": "متشکرم، قربان."
+      },
+      {
+        "id": 14,
+        "seconds": 53,
+        "timeDisplay": "0:53",
+        "speaker": "Daniel",
+        "textEn": "Thank you.",
+        "textFa": "متشکرم."
       }
     ],
     "questions": {
       "listening": {
         "skill": "listening",
-        "promptFa": "با توجه به محتوای ویدیوی «اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران»، کدام گزینه موضوع اصلی مورد بحث را به درستی بیان می‌کند؟",
-        "promptEn": "Listen carefully at [0:31]. What key point is stated by Narrator?",
-        "timestampSeconds": 31,
-        "timestampDisplay": "0:31",
-        "explanationFa": "در ثانیه 0:31 ویدیو، Narrator به صراحت بیان می‌کند: «Do you have a reservation? Daniel Yes, a table for two. My name’s Daniel O’Connor. Waiter Come this way, please.».",
+        "promptFa": "در ثانیه [0:47] ویدیو، پیشخدمت درباره آب معدنی چه سوال مهمی از دانیل می‌پرسد؟",
+        "promptEn": "Listen carefully at [0:47]. What question does the waiter ask regarding the water?",
+        "timestampSeconds": 47,
+        "timestampDisplay": "0:47",
+        "explanationFa": "پیشخدمت می‌پرسد: «Still or sparkling?» تا مشخص کند آب معدنی بدون گاز (still) می‌خواهند یا گازدار (sparkling).",
         "options": [
           {
             "id": 1,
-            "textEn": "Narrator states: \"Do you have a reservation? Daniel Yes, a table for two. My name’s...\"",
-            "textFa": "گوینده در این ثانیه به این عبارت و مفهوم اشاره دارد."
+            "textEn": "He asks whether they prefer still or sparkling water.",
+            "textFa": "او می‌پرسد که آب معمولی (بدون گاز) ترجیح می‌دهند یا آب گازدار."
           },
           {
             "id": 2,
-            "textEn": "They are filing an official tax dispute with authorities.",
-            "textFa": "آن‌ها در حال بررسی اختلافات مالیاتی هستند."
+            "textEn": "He asks if they would like ice and lemon with their water.",
+            "textFa": "او می‌پرسد آیا همراه آب یخ و لیمو می‌خواهند یا خیر."
           },
           {
             "id": 3,
-            "textEn": "The discussion is strictly about airline ticket cancellations.",
-            "textFa": "گفتگو منحصراً درباره استرداد بلیط هواپیماست."
+            "textEn": "He asks if they want a large bottle or two small glasses.",
+            "textFa": "او می‌پرسد یک بطری بزرگ می‌خواهند یا دو لیوان کوچک."
           },
           {
             "id": 4,
-            "textEn": "They are reporting a missing vehicle to local police.",
-            "textFa": "آن‌ها در حال گزارش سرقت خودرو به پلیس هستند."
+            "textEn": "He asks if they want warm tap water instead.",
+            "textFa": "او می‌پرسد آیا آب لوله‌کشی گرم می‌خواهند."
           }
         ],
         "correctOptionId": 1
       },
       "vocabulary": {
         "skill": "vocabulary",
-        "promptFa": "کدام یک از واژگان زیر بیشترین ارتباط معنایی را با اصطلاحات این درس (سفارش غذا (I'll have the grilled salmon, please)) دارد؟",
-        "promptEn": "Which vocabulary word is most centrally linked to this lesson (Episode 5 · Part 2: Ordering a Meal in a Restaurant)?",
-        "explanationFa": "واژه order کلیدواژه بنیادین این درس است.",
+        "promptFa": "در مکالمات رستورانی، اصطلاح «Still or sparkling» دقیقا به چه معناست؟",
+        "promptEn": "In restaurant terminology, what does the option \"Still or sparkling\" refer to?",
+        "explanationFa": "کلمه still به معنی آب بدون گاز و ساده است و sparkling به معنی آب گازدار (کربناته) می‌باشد.",
         "options": [
           {
             "id": 1,
-            "textEn": "Order: an essential communicative term used throughout this scenario.",
-            "textFa": "Order: واژه کلیدی این درس."
+            "textEn": "Non-carbonated (still) water versus carbonated (fizzy/sparkling) water.",
+            "textFa": "آب بدون گاز (still) در مقایسه با آب گازدار (sparkling)."
           },
           {
             "id": 2,
-            "textEn": "Subterranean: situated or occurring under the earth's surface.",
-            "textFa": "زیرزمینی و اعماق زمین."
+            "textEn": "Hot tap water versus iced tea.",
+            "textFa": "آب گرم در برابر چای سرد."
           },
           {
             "id": 3,
-            "textEn": "Photosynthesis: synthesis of compounds in plants.",
-            "textFa": "فوتوسنتز گیاهی."
+            "textEn": "Sweet dessert wine versus dry red wine.",
+            "textFa": "شراب دسر شیرین در برابر شراب قرمز خشک."
           },
           {
             "id": 4,
-            "textEn": "Barometer: an instrument measuring atmospheric pressure.",
-            "textFa": "فشارسنج هوا."
+            "textEn": "Freshly squeezed juice versus bottled soda.",
+            "textFa": "آبمیوه تازه در برابر نوشابه شیشه‌ای."
           }
         ],
         "correctOptionId": 1
       },
       "grammar": {
         "skill": "grammar",
-        "promptFa": "کدام ساختار گرامری از نظر صحت دستوری و ساختاری کاملاً صحیح است؟",
-        "promptEn": "Which sentence follows correct English grammatical rules?",
-        "explanationFa": "گزینه اول کاملاً با قواعد زمان، تطابق فاعل و فعل و ساختار استاندارد مطابقت دارد.",
+        "promptFa": "برای سفارش مودبانه غذا در رستوران، کدام ساختار گرامری با توجه به صحبت دانیل و جنی استاندارد و صحیح است؟",
+        "promptEn": "Which grammatical structure is correct and polite when ordering food in a restaurant?",
+        "explanationFa": "ساختار مودبانه «I'd like + اسم غذا + please» (مخفف I would like) یکی از استانداردهای سفارش در رستوران است.",
         "options": [
           {
             "id": 1,
-            "textEn": "For my main course, I'll have the grilled salmon with salad.",
-            "textFa": "برای غذای اصلی، من سالمون گریل‌شده به همراه سالاد خواهم خورد."
+            "textEn": "I'd like the mozzarella salad and then the chicken, please.",
+            "textFa": "من سالاد موزارلا و سپس مرغ میل دارم، لطفاً. (کاربرد صحیح I'd like و please)"
           },
           {
             "id": 2,
-            "textEn": "She do not understands the instructions given yesterday.",
-            "textFa": "استفاده غلط از do not برای فاعل سوم شخص مفرد She"
+            "textEn": "I wanting the mozzarella salad and chicken now.",
+            "textFa": "استفاده نادرست از زمان حال استمراری برای فعل حالتی want"
           },
           {
             "id": 3,
-            "textEn": "They was walking down the avenue when it started raining.",
-            "textFa": "استفاده اشتباه از was برای فاعل جمع They"
+            "textEn": "I am like the salad mozzarella please.",
+            "textFa": "استفاده غلط از am like به جای I'd like و ترتیب صفت و موصوف اشتباه"
           },
           {
             "id": 4,
-            "textEn": "We is discussing the project deadline today.",
-            "textFa": "کاربرد غلط فعل is برای فاعل We"
+            "textEn": "I would liking the chicken and salad.",
+            "textFa": "استفاده غلط از فعل ing دار liking بعد از would"
           }
         ],
         "correctOptionId": 1
       },
       "speaking": {
         "skill": "speaking",
-        "promptFa": "عبارت کلیدی زیر را با لحن روان، استرس مناسب و تلفظ استاندارد آمریکایی بخوانید و صدای خود را ضبط کنید:",
-        "promptEn": "Read this essential communicative phrase aloud with clear American pronunciation and natural rhythm:",
-        "targetPhraseEn": "For my main course, I'll have the grilled salmon with salad.",
-        "targetPhraseFa": "برای غذای اصلی، من سالمون گریل‌شده به همراه سالاد خواهم خورد.",
-        "phoneticGuide": "/fɔːr maɪ meɪn kɔːrs aɪl hæv ðə ɡrɪld ˈsæmən wɪð ˈsæləd/",
-        "speakingTipsFa": "در کلمه salmon حرف l کاملاً بی‌صداست: /ˈsæmən/.",
-        "explanationFa": "تسلط بر این عبارت باعث ارتقای مهارت اسپیکینگ شما در زمینه سفارش غذا (I'll have the grilled salmon, please) می‌شود."
+        "promptFa": "عبارت پرکاربرد زیر را که جنی برای سفارش پیش‌غذا و غذای اصلی به کار می‌برد با تلفظ روان و طبیعی بخوانید و صدای خود را ضبط کنید:",
+        "promptEn": "Read Jenny's restaurant order aloud with clear intonation and natural stress:",
+        "targetPhraseEn": "Yes. The soup and the mushroom ravioli, please.",
+        "targetPhraseFa": "بله. سوپ و راویولی قارچ، لطفاً.",
+        "phoneticGuide": "/jɛs ðə suːp ənd ðə ˈmʌʃruːm ˌræviˈoʊli pliːz/",
+        "speakingTipsFa": "روی واژه 'mushroom' و تلفظ روان 'ravioli' دقت کنید و در انتها کلمه 'please' را با لحن مودبانه ادا کنید.",
+        "explanationFa": "تسلط بر شیوه بیان سفارش غذا با ترکیب 'and' و 'please' مهارت مکالمه شما در رستوران را ارتقا می‌دهد."
       },
       "reading": {
         "skill": "reading",
-        "promptFa": "بر اساس خلاصه و مفهوم درس «اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران»، پیام محوری کدام گزینه است؟",
-        "promptEn": "Based on the contextual reading for 'Episode 5 · Part 2: Ordering a Meal in a Restaurant', what is the primary takeaway?",
-        "explanationFa": "پیام اصلی درک ارتباطات موثر درباره سفارش غذا (I'll have the grilled salmon, please) است.",
+        "promptFa": "با توجه به گفتگوی انتهای ویدیو، جنی و دانیل در نهایت چه نوشیدنی‌ای را برای همراهی غذا انتخاب می‌کنند؟",
+        "promptEn": "According to the dialogue at the end of the video, what drink do Daniel and Jenny finally choose?",
+        "explanationFa": "ابتدا جنی می‌گوید فقط آب می‌خواهد، سپس دانیل یک بطری آب معدنی سفارش می‌دهد و وقتی پیشخدمت می‌پرسد «Still or sparkling»، دانیل نظر جنی را می‌پرسد و هر دو با آب معدنی گازدار (sparkling water) موافقت می‌کنند.",
         "options": [
           {
             "id": 1,
-            "textEn": "To master communicative fluency regarding سفارش غذا (I'll have the grilled salmon, please).",
-            "textFa": "تسلط بر مهارت‌های ارتباطی درباره سفارش غذا (I'll have the grilled salmon, please)."
+            "textEn": "A bottle of sparkling mineral water.",
+            "textFa": "یک بطری آب معدنی گازدار."
           },
           {
             "id": 2,
-            "textEn": "To memorize chemical formulas for an examination.",
-            "textFa": "حفظ فرمول‌های شیمیایی."
+            "textEn": "Two cups of decaffeinated coffee.",
+            "textFa": "دو فنجان قهوه بدون کافئین."
           },
           {
             "id": 3,
-            "textEn": "To assemble hardware components in a factory.",
-            "textFa": "مونتاژ قطعات سخت‌افزاری در کارخانه."
+            "textEn": "A bottle of Italian red wine.",
+            "textFa": "یک بطری شراب قرمز ایتالیایی."
           },
           {
             "id": 4,
-            "textEn": "To predict weather patterns using satellite imagery.",
-            "textFa": "پیش‌بینی الگوهای هواشناسی با ماهواره."
+            "textEn": "Two glasses of fresh orange juice.",
+            "textFa": "دو لیوان آب پرتقال طبیعی."
           }
         ],
         "correctOptionId": 1
       },
       "writing": {
         "skill": "writing",
-        "promptFa": "بر اساس موضوع این درس (اپیزود ۵ · بخش ۲: سفارش غذا و نوشیدنی از منوی رستوران)، متنی کوتاه بنویسید که حداقل شامل کلمات کلیدی مشخص شده باشد.",
-        "promptEn": "Write a concise paragraph related to this lesson (Episode 5 · Part 2: Ordering a Meal in a Restaurant) using the required keywords.",
+        "promptFa": "یک مکالمه یا متن کوتاه (حداقل ۱۲ کلمه) بنویسید که در آن نحوه سفارش یک پیش‌غذا، یک غذای اصلی و آب گازدار در رستوران را نشان دهید؛ حتماً از کلمات کلیدی مشخص‌شده استفاده کنید.",
+        "promptEn": "Write a short restaurant ordering dialogue or note (at least 12 words) ordering a dish and sparkling water, using the required keywords.",
         "minWords": 12,
         "keywordsToUse": [
           "order",
-          "salad",
-          "please"
+          "please",
+          "sparkling"
         ],
-        "sampleAnswerEn": "To start with I would like vegetable soup, and for my main course grilled chicken.",
-        "sampleAnswerFa": "برای شروع سوپ سبزیجات و برای غذای اصلی مرغ گریل‌شده میل دارم.",
-        "evaluationTipsFa": "رعایت املای واژگان، علائم نگارشی و ساختار صحیح دستوری در نمره نهایی تاثیرگذار است.",
-        "explanationFa": "متن شما بر اساس کاربرد درست واژگان کلیدی و ساختار دستوری ارزیابی خواهد شد."
+        "sampleAnswerEn": "We are ready to order. I would like the chicken, and a bottle of sparkling water, please.",
+        "sampleAnswerFa": "ما برای سفارش آماده‌ایم. من مرغ و یک بطری آب گازدار میل دارم، لطفاً.",
+        "evaluationTipsFa": "استفاده از افعال مودبانه نظیر would like، رعایت املای کلمات کلیدی order و sparkling و please مورد ارزیابی قرار می‌گیرد.",
+        "explanationFa": "متن شما بر اساس کاربرد صحیح اصطلاحات رستورانی، املا و رعایت قواعد گرامری سنجیده می‌شود."
       }
     }
   },
@@ -4346,7 +4699,7 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v15",
     "level": "a1",
     "episodeNumber": 15,
-    "titleFa": "اپیزود ۵ · بخش ۳: پایان غذا، درخواست صورتحساب و انعام",
+    "titleFa": "اپیزود ۵ · بخش ۳: پایان غذا و درخواست صورت‌حساب",
     "titleEn": "Episode 5 · Part 3: The End of the Meal and the Bill",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 5",
@@ -4358,136 +4711,315 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #b45309, #f59e0b)",
     "posterIcon": "💳",
-    "summaryFa": "ضیافت شام با دسر به پایان می‌رسد، راب صورتحساب را درخواست می‌کند و دانیل درباره فرهنگ انعام دادن در رستوران‌های آمریکا توضیح می‌دهد.",
-    "summaryEn": "The dinner concludes with desserts, Rob asking for the check/bill, and Daniel discussing the culture of tipping in American restaurants.",
+    "summaryFa": "شام دانیل و جنی در رستوران رو به پایان است. دانیل تولد جنی را تبریک می‌گوید. پس از رد کردن دسر توسط جنی، آن‌ها دو فنجان اسپرسوی بدون کافئین سفارش می‌دهند. دانیل از چشم‌های جنی تعریف می‌کند اما جنی گفتگو را به سمت مجله هدایت می‌کند. در همین حین باربارا با جنی تماس گرفته و تایید همکاری با راب واکر را می‌دهد. در نهایت به دلیل خستگی جنی، دانیل صورت‌حساب را از گارسون درخواست می‌کند.",
+    "summaryEn": "Daniel and Jenny finish dinner at the restaurant. Daniel wishes Jenny a happy birthday. Declining dessert, they order two decaf espressos. Daniel compliments Jenny, but she steers the conversation back to the magazine. Meanwhile, Barbara calls to approve hiring Rob Walker. Since Jenny is feeling tired, Daniel asks the waiter for the bill.",
     "keyTopicsFa": [
-      "درخواست صورتحساب (Could we have the check, please?)",
-      "فرهنگ انعام (Tipping culture in the US)",
-      "تشکر از پرسنل رستوران",
-      "پرداخت دنگی یا مهمان کردن"
+      "تبریک تولد و نحوه جشن گرفتن (Happy Birthday! How do you normally celebrate?)",
+      "رد کردن مودبانه دسر و سفارش قهوه (Would you like a dessert? / Not for me, thanks / A decaf espresso)",
+      "پاسخ به تماس کاری ضروری (I have to take this. Sorry. / Jenny, just a quick call)",
+      "پیشنهاد رفتن به جایی دیگر و پاسخ مودبانه (Would you like to go somewhere else? / I'm sorry, I'm a little tired)",
+      "درخواست صورت‌حساب در رستوران (Waiter, could I have the bill, please?)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 8,
-              "timeDisplay": "0:08",
-              "speaker": "Daniel",
-              "textEn": "So, Jenny, I hear it's your birthday today.",
-              "textFa": "خب جنی، شنیده‌ام امروز روز تولدت است."
+        "id": 1,
+        "seconds": 8.2,
+        "endSeconds": 11.7,
+        "timeDisplay": "0:08",
+        "speaker": "Daniel",
+        "textEn": "So, Jenny, I hear it's your birthday today.",
+        "textFa": "خب جنی، شنیده‌ام امروز روز تولدت است."
       },
       {
-              "id": 2,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Jenny",
-              "textEn": "Yes, that's right.",
-              "textFa": "بله، درست است."
+        "id": 2,
+        "seconds": 12.3,
+        "endSeconds": 13.4,
+        "timeDisplay": "0:12",
+        "speaker": "Jenny",
+        "textEn": "Yes, that's right.",
+        "textFa": "بله، درست است."
       },
       {
-              "id": 3,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Daniel",
-              "textEn": "Well, Happy Birthday! How does it feel to be twenty-eight?",
-              "textFa": "خب، تولدت مبارک! بیست و هشت ساله شدن چه حسی دارد؟"
+        "id": 3,
+        "seconds": 14.1,
+        "endSeconds": 17.6,
+        "timeDisplay": "0:14",
+        "speaker": "Daniel",
+        "textEn": "Well, Happy Birthday! How do you normally celebrate?",
+        "textFa": "خب، تولدت مبارک! معمولاً چطور جشن می‌گیری؟"
       },
       {
-              "id": 4,
-              "seconds": 112,
-              "timeDisplay": "1:52",
-              "speaker": "Jenny",
-              "textEn": "Oh, Daniel! Don't remind me!",
-              "textFa": "اوه دانیل! یادم نینداز!"
+        "id": 4,
+        "seconds": 18.5,
+        "endSeconds": 23.5,
+        "timeDisplay": "0:18",
+        "speaker": "Jenny",
+        "textEn": "Oh, nothing special. Maybe I go out for dinner with friends or see a movie.",
+        "textFa": "اوه، کار خاصی نمی‌کنم. شاید با دوستان برای شام بیرون بروم یا فیلمی ببینم."
       },
       {
-              "id": 5,
-              "seconds": 114,
-              "timeDisplay": "1:54",
-              "speaker": "Daniel",
-              "textEn": "You have a great job here in London, and a great future.",
-              "textFa": "تو یک شغل عالی اینجا داری و آینده‌ای درخشان."
+        "id": 5,
+        "seconds": 24.2,
+        "endSeconds": 27.0,
+        "timeDisplay": "0:24",
+        "speaker": "Daniel",
+        "textEn": "Well, we could go out somewhere after dinner.",
+        "textFa": "خب، می‌توانیم بعد از شام جایی بیرون برویم."
       },
       {
-              "id": 6,
-              "seconds": 116,
-              "timeDisplay": "1:56",
-              "speaker": "Jenny",
-              "textEn": "Thanks, Daniel. I really appreciate everything.",
-              "textFa": "ممنون دانیل. واقعاً از همه زحماتت سپاسگزارم."
+        "id": 6,
+        "seconds": 28.4,
+        "endSeconds": 30.1,
+        "timeDisplay": "0:28",
+        "speaker": "Waiter",
+        "textEn": "Would you like a dessert?",
+        "textFa": "دسر میل دارید؟"
       },
       {
-              "id": 7,
-              "seconds": 118,
-              "timeDisplay": "1:58",
-              "speaker": "Waiter",
-              "textEn": "Would you like any dessert?",
-              "textFa": "دسر میل دارید؟"
+        "id": 7,
+        "seconds": 30.8,
+        "endSeconds": 31.8,
+        "timeDisplay": "0:30",
+        "speaker": "Jenny",
+        "textEn": "Not for me, thanks.",
+        "textFa": "برای من نه، ممنون."
       },
       {
-              "id": 8,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Jenny",
-              "textEn": "No, thank you. Just coffee for me.",
-              "textFa": "نه متشکرم. برای من فقط قهوه."
+        "id": 8,
+        "seconds": 32.6,
+        "endSeconds": 33.2,
+        "timeDisplay": "0:32",
+        "speaker": "Daniel",
+        "textEn": "OK, no.",
+        "textFa": "خیلی خب، خیر."
       },
       {
-              "id": 9,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Daniel",
-              "textEn": "An espresso for me, please.",
-              "textFa": "یک اسپرسو برای من، لطفاً."
+        "id": 9,
+        "seconds": 33.7,
+        "endSeconds": 34.1,
+        "timeDisplay": "0:33",
+        "speaker": "Waiter",
+        "textEn": "Coffee?",
+        "textFa": "قهوه چطور؟"
       },
       {
-              "id": 10,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Daniel",
-              "textEn": "And could we have the check, please?",
-              "textFa": "و ممکن است صورت‌حساب را بیاورید، لطفاً؟"
+        "id": 10,
+        "seconds": 34.9,
+        "endSeconds": 35.8,
+        "timeDisplay": "0:34",
+        "speaker": "Jenny",
+        "textEn": "A decaf espresso.",
+        "textFa": "یک اسپرسوی بدون کافئین."
       },
       {
-              "id": 11,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Waiter",
-              "textEn": "Certainly, sir.",
-              "textFa": "حتماً، جناب."
+        "id": 11,
+        "seconds": 36.4,
+        "endSeconds": 37.3,
+        "timeDisplay": "0:36",
+        "speaker": "Daniel",
+        "textEn": "Same for me, please.",
+        "textFa": "برای من هم همینطور، لطفاً."
       },
       {
-              "id": 12,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Daniel",
-              "textEn": "This is on me, Jenny. A birthday treat.",
-              "textFa": "این مهمان من هستی، جنی. به عنوان کادوی تولد."
+        "id": 12,
+        "seconds": 37.6,
+        "endSeconds": 40.1,
+        "timeDisplay": "0:37",
+        "speaker": "Waiter",
+        "textEn": "Two decaffeinated espressos. Certainly, sir.",
+        "textFa": "دو اسپرسوی بدون کافئین. حتماً، جناب."
       },
       {
-              "id": 13,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Jenny",
-              "textEn": "Oh, Daniel, you don't have to!",
-              "textFa": "اوه دانیل، اصلاً لازم نبود زحمت بکشی!"
+        "id": 13,
+        "seconds": 42.4,
+        "endSeconds": 47.1,
+        "timeDisplay": "0:42",
+        "speaker": "Daniel",
+        "textEn": "You know, Jenny, you've got beautiful eyes.",
+        "textFa": "می‌دانی جنی، تو چشم‌های واقعاً زیبایی داری."
       },
       {
-              "id": 14,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Daniel",
-              "textEn": "I insist. It's the least I can do.",
-              "textFa": "خواهش می‌کنم، اصرار دارم. این کمترین کاری است که می‌توانم بکنم."
+        "id": 14,
+        "seconds": 47.9,
+        "endSeconds": 49.2,
+        "timeDisplay": "0:47",
+        "speaker": "Jenny",
+        "textEn": "I get them from my mother.",
+        "textFa": "به مادرم رفته‌ام."
       },
       {
-              "id": 15,
-              "seconds": 120,
-              "timeDisplay": "2:00",
-              "speaker": "Jenny",
-              "textEn": "Thank you so much. That's very kind of you.",
-              "textFa": "خیلی ممنونم. این واقعاً لطف شماست."
+        "id": 15,
+        "seconds": 50.3,
+        "endSeconds": 53.9,
+        "timeDisplay": "0:50",
+        "speaker": "Jenny",
+        "textEn": "Anyway, what are your plans for the July edition of the magazine?",
+        "textFa": "به هر حال، برنامه‌ات برای نسخه ماه ژوئیه مجله چیست؟"
+      },
+      {
+        "id": 16,
+        "seconds": 55.5,
+        "endSeconds": 59.8,
+        "timeDisplay": "0:55",
+        "speaker": "Daniel",
+        "textEn": "The, uh, July edition? I, um...",
+        "textFa": "نسخه، اِ، ماه ژوئیه؟ من، خب..."
+      },
+      {
+        "id": 17,
+        "seconds": 62.3,
+        "endSeconds": 64.6,
+        "timeDisplay": "1:02",
+        "speaker": "Jenny",
+        "textEn": "I have to take this. Sorry.",
+        "textFa": "باید جواب این تلفن را بدهم. ببخشید."
+      },
+      {
+        "id": 18,
+        "seconds": 64.9,
+        "endSeconds": 65.4,
+        "timeDisplay": "1:04",
+        "speaker": "Daniel",
+        "textEn": "No problem.",
+        "textFa": "خواهش می‌کنم، مشکلی نیست."
+      },
+      {
+        "id": 19,
+        "seconds": 71.2,
+        "endSeconds": 72.1,
+        "timeDisplay": "1:11",
+        "speaker": "Jenny",
+        "textEn": "Hi, Barbara.",
+        "textFa": "سلام باربارا."
+      },
+      {
+        "id": 20,
+        "seconds": 75.9,
+        "endSeconds": 77.8,
+        "timeDisplay": "1:15",
+        "speaker": "Barbara",
+        "textEn": "Jenny, just a quick call.",
+        "textFa": "جنی، فقط یک تماس تلفنی کوتاه است."
+      },
+      {
+        "id": 21,
+        "seconds": 78.3,
+        "endSeconds": 82.0,
+        "timeDisplay": "1:18",
+        "speaker": "Barbara",
+        "textEn": "We really like your idea about Rob Walker. He's a great writer.",
+        "textFa": "ما واقعاً از ایده‌ات درباره راب واکر خوشمان آمد. او نویسنده فوق‌العاده‌ای است."
+      },
+      {
+        "id": 22,
+        "seconds": 82.0,
+        "endSeconds": 83.3,
+        "timeDisplay": "1:22",
+        "speaker": "Jenny",
+        "textEn": "So can I ask him?",
+        "textFa": "پس می‌توانم از او بپرسم (پیشنهاد همکاری دهم)؟"
+      },
+      {
+        "id": 23,
+        "seconds": 83.9,
+        "endSeconds": 85.3,
+        "timeDisplay": "1:23",
+        "speaker": "Barbara",
+        "textEn": "Yes. Go ahead.",
+        "textFa": "بله، حتماً جلو برو (پیشنهاد بده)."
+      },
+      {
+        "id": 24,
+        "seconds": 85.7,
+        "endSeconds": 86.4,
+        "timeDisplay": "1:25",
+        "speaker": "Jenny",
+        "textEn": "That's great.",
+        "textFa": "عالی است."
+      },
+      {
+        "id": 25,
+        "seconds": 87.1,
+        "endSeconds": 89.5,
+        "timeDisplay": "1:27",
+        "speaker": "Barbara",
+        "textEn": "Good luck. I hope he says yes.",
+        "textFa": "موفق باشی. امیدوارم قبول کند."
+      },
+      {
+        "id": 26,
+        "seconds": 90.1,
+        "endSeconds": 90.5,
+        "timeDisplay": "1:30",
+        "speaker": "Jenny",
+        "textEn": "Me too.",
+        "textFa": "من هم همینطور."
+      },
+      {
+        "id": 27,
+        "seconds": 98.6,
+        "endSeconds": 99.4,
+        "timeDisplay": "1:38",
+        "speaker": "Daniel",
+        "textEn": "Good news?",
+        "textFa": "خبرهای خوبی بود؟"
+      },
+      {
+        "id": 28,
+        "seconds": 100.1,
+        "endSeconds": 104.1,
+        "timeDisplay": "1:40",
+        "speaker": "Jenny",
+        "textEn": "Yeah. That was Barbara, my boss from the New York office.",
+        "textFa": "آره. باربارا بود، رئیسم از دفتر نیویورک."
+      },
+      {
+        "id": 29,
+        "seconds": 104.6,
+        "endSeconds": 107.0,
+        "timeDisplay": "1:44",
+        "speaker": "Jenny",
+        "textEn": "She just gave me a little birthday present.",
+        "textFa": "فقط یک هدیه تولد کوچک به من داد."
+      },
+      {
+        "id": 30,
+        "seconds": 107.8,
+        "endSeconds": 111.0,
+        "timeDisplay": "1:47",
+        "speaker": "Daniel",
+        "textEn": "So, would you like to go somewhere else?",
+        "textFa": "خب، مایل هستی جای دیگری برویم؟"
+      },
+      {
+        "id": 31,
+        "seconds": 112.2,
+        "endSeconds": 114.6,
+        "timeDisplay": "1:52",
+        "speaker": "Jenny",
+        "textEn": "I'm sorry, Daniel. I'm a little tired.",
+        "textFa": "متاسفم دانیل. کمی خسته‌ام."
+      },
+      {
+        "id": 32,
+        "seconds": 115.4,
+        "endSeconds": 116.3,
+        "timeDisplay": "1:55",
+        "speaker": "Daniel",
+        "textEn": "Yes, of course.",
+        "textFa": "بله، حتماً (کاملاً درک می‌کنم)."
+      },
+      {
+        "id": 33,
+        "seconds": 116.9,
+        "endSeconds": 119.0,
+        "timeDisplay": "1:56",
+        "speaker": "Daniel",
+        "textEn": "Waiter, could I have the bill, please?",
+        "textFa": "گارسون، ممکن است صورت‌حساب را بیاورید، لطفاً؟"
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -4638,8 +5170,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v16",
     "level": "a1",
     "episodeNumber": 16,
-    "titleFa": "اپیزود ۶ · بخش ۱: آخرین صبح اقامت و بستن چمدان",
-    "titleEn": "Episode 6 · Part 1: Jenny's Last Morning",
+    "titleFa": "اپیزود ۶ · بخش ۱: آخرین صبح اقامت و پیشنهاد سفر به نیویورک",
+    "titleEn": "Episode 6 · Part 1: Jenny's Last Morning – A Job in New York",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 6",
     "cefr": "A1",
@@ -4649,113 +5181,371 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=aef&level=a1&file=AEF3e_SB1_PE_Ep6_Jenny's_last_morning.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #6366f1, #818cf8)",
-    "posterIcon": "🧳",
-    "summaryFa": "راب برای پرواز بازگشت به لندن آماده می‌شود، چمدان‌هایش را در هتل می‌بندد و با پذیرش برای درخواست تاکسی به فرودگاه JFK تماس می‌گیرد.",
-    "summaryEn": "Rob prepares for his return flight to London, packing his bags in the hotel room and calling reception to request a taxi to JFK airport.",
+    "posterIcon": "🗽",
+    "summaryFa": "جنی در آخرین صبح حضورش در لندن با راب در کافه ملاقات می‌کند. او خبر هیجان‌انگیزی دارد: پس از صحبت با رئیسش باربارا، به راب پیشنهاد می‌کند برای یک ماه به نیویورک بیاید و ستونی به نام «یک مرد انگلیسی در نیویورک» برای مجله بنویسد. راب بسیار مشتاق و شگفت‌زده می‌شود و قرار می‌شود تا پایان هفته تصمیم نهایی‌اش را بگیرد.",
+    "summaryEn": "On Jenny's last morning in London, she meets Rob at a cafe with an exciting offer. Having talked to her boss Barbara, she invites Rob to come to New York for a month to write a column called 'An Englishman in New York' and write a daily blog. Rob is thrilled but asks for time to think, with a deadline by the end of the week.",
     "keyTopicsFa": [
-      "تسویه‌حساب هتل (Check out)",
-      "درخواست تاکسی فرودگاه (Could you call a cab?)",
-      "بررسی گذرنامه و بلیط",
-      "احساسات پایان سفر"
+      "عذرخواهی به خاطر تاخیر (Sorry I'm a bit late / No problem)",
+      "تعارف نوشیدنی (Would you like a coffee or something? / No, I'm fine, thanks)",
+      "ارائه پیشنهاد کاری در شهر دیگر (We'd like you to come to New York / Work for us)",
+      "نام‌گذاری ستون مجله (What could I call it? An Englishman in New York)",
+      "ابراز تمایل و فرصت فکر کردن (Are you interested? / Very, but I need to think about it)",
+      "تعیین مهلت تصمیم‌گیری (When do I need to decide? / Before the end of the week)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Jenny",
-              "textEn": "Rob!",
-              "textFa": "راب!"
+        "id": 1,
+        "seconds": 12.8,
+        "endSeconds": 13.5,
+        "timeDisplay": "0:12",
+        "speaker": "Jenny",
+        "textEn": "Rob!",
+        "textFa": "راب!"
       },
       {
-              "id": 2,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Rob",
-              "textEn": "Jenny, hi. Sorry I'm a bit late.",
-              "textFa": "جنی، سلام. ببخشید کمی دیر کردم."
+        "id": 2,
+        "seconds": 13.9,
+        "endSeconds": 14.5,
+        "timeDisplay": "0:13",
+        "speaker": "Rob",
+        "textEn": "Jenny.",
+        "textFa": "جنی."
       },
       {
-              "id": 3,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Jenny",
-              "textEn": "No problem.",
-              "textFa": "مشکلی نیست."
+        "id": 3,
+        "seconds": 15.0,
+        "endSeconds": 15.6,
+        "timeDisplay": "0:15",
+        "speaker": "Rob",
+        "textEn": "Hi.",
+        "textFa": "سلام."
       },
       {
-              "id": 4,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Rob",
-              "textEn": "Really?",
-              "textFa": "واقعاً؟"
+        "id": 4,
+        "seconds": 15.7,
+        "endSeconds": 16.7,
+        "timeDisplay": "0:15",
+        "speaker": "Rob",
+        "textEn": "Sorry I'm a bit late.",
+        "textFa": "ببخشید کمی دیر کردم."
       },
       {
-              "id": 5,
-              "seconds": 23,
-              "timeDisplay": "0:23",
-              "speaker": "Jenny",
-              "textEn": "Really! I got your message.",
-              "textFa": "واقعاً! پیامت را دریافت کردم."
+        "id": 5,
+        "seconds": 16.7,
+        "endSeconds": 17.3,
+        "timeDisplay": "0:16",
+        "speaker": "Jenny",
+        "textEn": "No problem.",
+        "textFa": "مشکلی نیست."
       },
       {
-              "id": 6,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Jenny",
-              "textEn": "Would you like a coffee or something?",
-              "textFa": "قهوه‌ای چیزی میل داری؟"
+        "id": 6,
+        "seconds": 17.6,
+        "endSeconds": 18.2,
+        "timeDisplay": "0:17",
+        "speaker": "Rob",
+        "textEn": "Really?",
+        "textFa": "واقعاً؟"
       },
       {
-              "id": 7,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Rob",
-              "textEn": "No, I'm fine thanks. So what time is your flight?",
-              "textFa": "نه، ممنون، خوبم. خب، پروازت چه ساعتی است؟"
+        "id": 7,
+        "seconds": 18.0,
+        "endSeconds": 19.3,
+        "timeDisplay": "0:18",
+        "speaker": "Jenny",
+        "textEn": "Really!",
+        "textFa": "واقعاً!"
       },
       {
-              "id": 8,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Jenny",
-              "textEn": "At three thirty. But I have to check in at one thirty.",
-              "textFa": "ساعت سه و نیم. ولی باید ساعت یک و نیم پذیرش (چک‌این) کنم."
+        "id": 8,
+        "seconds": 23.2,
+        "endSeconds": 24.8,
+        "timeDisplay": "0:23",
+        "speaker": "Jenny",
+        "textEn": "I got your message.",
+        "textFa": "پیامت را دریافت کردم."
       },
       {
-              "id": 9,
-              "seconds": 58,
-              "timeDisplay": "0:58",
-              "speaker": "Rob",
-              "textEn": "Right. That means you have about two hours.",
-              "textFa": "درسته. یعنی حدود دو ساعت وقت داری."
+        "id": 9,
+        "seconds": 25.6,
+        "endSeconds": 27.2,
+        "timeDisplay": "0:25",
+        "speaker": "Jenny",
+        "textEn": "Would you like a coffee or something?",
+        "textFa": "قهوه‌ای چیزی میل داری؟"
       },
       {
-              "id": 10,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Jenny",
-              "textEn": "Yes. I need to buy some souvenirs for my family.",
-              "textFa": "بله. باید مقداری سوغاتی برای خانواده‌ام بخرم."
+        "id": 10,
+        "seconds": 28.0,
+        "endSeconds": 29.4,
+        "timeDisplay": "0:28",
+        "speaker": "Rob",
+        "textEn": "No, I'm fine, thanks.",
+        "textFa": "نه، خوبم، ممنون."
       },
       {
-              "id": 11,
-              "seconds": 82,
-              "timeDisplay": "1:22",
-              "speaker": "Rob",
-              "textEn": "I know just the place. Let's walk through Covent Garden.",
-              "textFa": "دقیقاً جای مناسبش را بلدم. بیا در محله کاونت گاردن (Covent Garden) قدم بزنیم."
+        "id": 11,
+        "seconds": 30.2,
+        "endSeconds": 32.0,
+        "timeDisplay": "0:30",
+        "speaker": "Rob",
+        "textEn": "So, what did you want to talk about?",
+        "textFa": "خب، می‌خواستی درباره چه چیزی صحبت کنیم؟"
       },
       {
-              "id": 12,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Jenny",
-              "textEn": "That sounds lovely.",
-              "textFa": "عالیه، بسیار دلنشینه."
+        "id": 12,
+        "seconds": 32.7,
+        "endSeconds": 36.6,
+        "timeDisplay": "0:32",
+        "speaker": "Rob",
+        "textEn": "You think London is the best city in the world and you don't want to go home.",
+        "textFa": "فکر می‌کنی لندن بهترین شهر دنیاست و نمی‌خواهی به خانه برگردی."
+      },
+      {
+        "id": 13,
+        "seconds": 36.7,
+        "endSeconds": 37.9,
+        "timeDisplay": "0:36",
+        "speaker": "Jenny",
+        "textEn": "Not exactly.",
+        "textFa": "نه دقیقاً."
+      },
+      {
+        "id": 14,
+        "seconds": 38.7,
+        "endSeconds": 41.1,
+        "timeDisplay": "0:38",
+        "speaker": "Jenny",
+        "textEn": "We'd like you to come to New York.",
+        "textFa": "ما دوست داریم تو به نیویورک بیایی."
+      },
+      {
+        "id": 15,
+        "seconds": 41.6,
+        "endSeconds": 42.1,
+        "timeDisplay": "0:41",
+        "speaker": "Rob",
+        "textEn": "Me?",
+        "textFa": "من؟"
+      },
+      {
+        "id": 16,
+        "seconds": 42.5,
+        "endSeconds": 43.5,
+        "timeDisplay": "0:42",
+        "speaker": "Rob",
+        "textEn": "To New York?",
+        "textFa": "به نیویورک؟"
+      },
+      {
+        "id": 17,
+        "seconds": 44.3,
+        "endSeconds": 46.2,
+        "timeDisplay": "0:44",
+        "speaker": "Jenny",
+        "textEn": "I talked to Barbara about you.",
+        "textFa": "من درباره تو با باربارا صحبت کردم."
+      },
+      {
+        "id": 18,
+        "seconds": 46.4,
+        "endSeconds": 48.1,
+        "timeDisplay": "0:46",
+        "speaker": "Jenny",
+        "textEn": "You know, Barbara, my boss.",
+        "textFa": "می‌دونی، باربارا، رئیسم."
+      },
+      {
+        "id": 19,
+        "seconds": 48.8,
+        "endSeconds": 50.9,
+        "timeDisplay": "0:48",
+        "speaker": "Jenny",
+        "textEn": "She loves your articles too.",
+        "textFa": "او هم مقاله‌هایت را خیلی دوست دارد."
+      },
+      {
+        "id": 20,
+        "seconds": 51.3,
+        "endSeconds": 55.2,
+        "timeDisplay": "0:51",
+        "speaker": "Jenny",
+        "textEn": "So, would you like to come over to New York and work for us?",
+        "textFa": "پس، آیا دوست داری به نیویورک بیایی و برای ما کار کنی؟"
+      },
+      {
+        "id": 21,
+        "seconds": 56.1,
+        "endSeconds": 60.4,
+        "timeDisplay": "0:56",
+        "speaker": "Jenny",
+        "textEn": "Just for a month and write a column for New York 24/7.",
+        "textFa": "فقط برای یک ماه و نوشتن یک ستون برای مجله «نیویورک ۲۴/۷»."
+      },
+      {
+        "id": 22,
+        "seconds": 60.8,
+        "endSeconds": 62.6,
+        "timeDisplay": "1:00",
+        "speaker": "Jenny",
+        "textEn": "And maybe a daily blog?",
+        "textFa": "و شاید هم یک وبلاگ روزانه؟"
+      },
+      {
+        "id": 23,
+        "seconds": 63.4,
+        "endSeconds": 64.2,
+        "timeDisplay": "1:03",
+        "speaker": "Rob",
+        "textEn": "Wow.",
+        "textFa": "واو."
+      },
+      {
+        "id": 24,
+        "seconds": 64.7,
+        "endSeconds": 66.0,
+        "timeDisplay": "1:04",
+        "speaker": "Rob",
+        "textEn": "Sounds great.",
+        "textFa": "عالی به نظر می‌رسه."
+      },
+      {
+        "id": 25,
+        "seconds": 66.8,
+        "endSeconds": 68.3,
+        "timeDisplay": "1:06",
+        "speaker": "Rob",
+        "textEn": "What could I call it?",
+        "textFa": "چه اسمی می‌تونم براش بذارم؟"
+      },
+      {
+        "id": 26,
+        "seconds": 68.6,
+        "endSeconds": 70.2,
+        "timeDisplay": "1:08",
+        "speaker": "Rob",
+        "textEn": "An Englishman in New York.",
+        "textFa": "«یک مرد انگلیسی در نیویورک»."
+      },
+      {
+        "id": 27,
+        "seconds": 70.3,
+        "endSeconds": 71.5,
+        "timeDisplay": "1:10",
+        "speaker": "Jenny",
+        "textEn": "Why not?",
+        "textFa": "چرا که نه؟"
+      },
+      {
+        "id": 28,
+        "seconds": 72.2,
+        "endSeconds": 72.9,
+        "timeDisplay": "1:12",
+        "speaker": "Jenny",
+        "textEn": "Are you interested?",
+        "textFa": "علاقه‌مند هستی؟"
+      },
+      {
+        "id": 29,
+        "seconds": 73.3,
+        "endSeconds": 73.9,
+        "timeDisplay": "1:13",
+        "speaker": "Rob",
+        "textEn": "Yes.",
+        "textFa": "بله."
+      },
+      {
+        "id": 30,
+        "seconds": 74.3,
+        "endSeconds": 74.8,
+        "timeDisplay": "1:14",
+        "speaker": "Rob",
+        "textEn": "Very!",
+        "textFa": "خیلی زیاد!"
+      },
+      {
+        "id": 31,
+        "seconds": 75.2,
+        "endSeconds": 76.3,
+        "timeDisplay": "1:15",
+        "speaker": "Rob",
+        "textEn": "It's amazing.",
+        "textFa": "شگفت‌انگیزه."
+      },
+      {
+        "id": 32,
+        "seconds": 77.0,
+        "endSeconds": 78.8,
+        "timeDisplay": "1:17",
+        "speaker": "Rob",
+        "textEn": "But I need to think about it.",
+        "textFa": "اما باید درباره‌اش فکر کنم."
+      },
+      {
+        "id": 33,
+        "seconds": 79.2,
+        "endSeconds": 80.0,
+        "timeDisplay": "1:19",
+        "speaker": "Jenny",
+        "textEn": "Of course.",
+        "textFa": "البته."
+      },
+      {
+        "id": 34,
+        "seconds": 80.4,
+        "endSeconds": 81.9,
+        "timeDisplay": "1:20",
+        "speaker": "Rob",
+        "textEn": "When do I need to decide?",
+        "textFa": "تا کِی باید تصمیم بگیرم؟"
+      },
+      {
+        "id": 35,
+        "seconds": 82.5,
+        "endSeconds": 83.8,
+        "timeDisplay": "1:22",
+        "speaker": "Jenny",
+        "textEn": "Before the end of the week.",
+        "textFa": "تا قبل از پایان هفته."
+      },
+      {
+        "id": 36,
+        "seconds": 84.4,
+        "endSeconds": 84.9,
+        "timeDisplay": "1:24",
+        "speaker": "Rob",
+        "textEn": "Okay.",
+        "textFa": "باشه."
+      },
+      {
+        "id": 37,
+        "seconds": 85.2,
+        "endSeconds": 86.2,
+        "timeDisplay": "1:25",
+        "speaker": "Rob",
+        "textEn": "Great.",
+        "textFa": "عالیه."
+      },
+      {
+        "id": 38,
+        "seconds": 86.8,
+        "endSeconds": 88.2,
+        "timeDisplay": "1:26",
+        "speaker": "Rob",
+        "textEn": "Thank you.",
+        "textFa": "متشکرم."
+      },
+      {
+        "id": 39,
+        "seconds": 88.7,
+        "endSeconds": 90.8,
+        "timeDisplay": "1:28",
+        "speaker": "Jenny",
+        "textEn": "And now I really have to go.",
+        "textFa": "و حالا واقعاً باید بروم."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -4906,8 +5696,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v17",
     "level": "a1",
     "episodeNumber": 17,
-    "titleFa": "اپیزود ۶ · بخش ۲: حرکت در ترافیک شهر به سمت فرودگاه",
-    "titleEn": "Episode 6 · Part 2: Getting to the Airport in Traffic",
+    "titleFa": "اپیزود ۶ · بخش ۲: رفتن به فرودگاه، تاکسی و خرید بلیط قطار",
+    "titleEn": "Episode 6 · Part 2: Getting to the Airport (Taxi & Train Ticket)",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 6",
     "cefr": "A1",
@@ -4918,120 +5708,182 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #e11d48, #f43f5e)",
     "posterIcon": "🚕",
-    "summaryFa": "راب با یک تاکسی زرد در ترافیک سنگین منهتن به سوی فرودگاه می‌رود و با راننده درباره زمان پرواز و تاخیرها گفتگو می‌کند.",
-    "summaryEn": "Rob rides a yellow cab through heavy Manhattan traffic, chatting with the driver about travel times and flight departures.",
+    "summaryFa": "جنی برای عزیمت به فرودگاه هیترو آماده می‌شود. ابتدا از پذیرش هتل می‌خواهد یک تاکسی به ایستگاه پدینگتون خبر کند. در تاکسی کرایه ۱۳.۶۰ پوندی را با احتساب انعام، ۱۵ پوند پرداخت کرده و رسید دریافت می‌کند. سپس در باجه ایستگاه پدینگتون یک بلیط یک‌طرفه درجه عادی (استاندارد) به مقصد فرودگاه هیترو به قیمت ۱۸ پوند با کارت اعتباری خریداری می‌کند.",
+    "summaryEn": "Jenny prepares to head to Heathrow Airport. At the hotel reception, she asks for a taxi to Paddington Station. After arriving, she pays the driver 15 pounds (including tip on a £13.60 fare) and asks for a receipt. At Paddington Station, she purchases a single standard ticket to Heathrow Airport for £18 using her credit card.",
     "keyTopicsFa": [
-      "تاکسی‌های زرد نیویورک (Yellow cab)",
-      "ترافیک شهری (Heavy traffic)",
-      "مدت زمان مسیر (How long will it take?)",
-      "ترمینال‌های فرودگاه"
+      "درخواست تاکسی از پذیرش هتل (Could you call me a taxi, please? / Where to?)",
+      "تعیین زمان حضور تاکسی (When would you like it for? / Now, please)",
+      "پرسیدن کرایه تاکسی و پرداخت انعام (How much is that? / Make it 15 pounds)",
+      "درخواست رسید از راننده (Could I have a receipt?)",
+      "خرید بلیط قطار به فرودگاه (Could I have a ticket to Heathrow Airport, please?)",
+      "تعیین نوع بلیط (Single or return? / Standard or first class?)",
+      "پرداخت با کارت اعتباری (Can I pay by credit card? / Yes, of course)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 8,
-              "timeDisplay": "0:08",
-              "speaker": "Jenny",
-              "textEn": "Could you call me a taxi, please?",
-              "textFa": "می‌شود برای من یک تاکسی بگیرید، لطفاً؟"
+        "id": 1,
+        "seconds": 8.0,
+        "endSeconds": 10.0,
+        "timeDisplay": "0:08",
+        "speaker": "Jenny",
+        "textEn": "Could you call me a taxi, please?",
+        "textFa": "می‌شود لطفاً برای من یک تاکسی بگیرید؟"
       },
       {
-              "id": 2,
-              "seconds": 10,
-              "timeDisplay": "0:10",
-              "speaker": "Receptionist",
-              "textEn": "Yes, of course. Where to?",
-              "textFa": "بله، البته. به چه مقصدی؟"
+        "id": 2,
+        "seconds": 10.1,
+        "endSeconds": 12.0,
+        "timeDisplay": "0:10",
+        "speaker": "Receptionist",
+        "textEn": "Yes, of course. Where to?",
+        "textFa": "بله، البته. به چه مقصدی؟"
       },
       {
-              "id": 3,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Jenny",
-              "textEn": "To Paddington station.",
-              "textFa": "به ایستگاه پدینگتون."
+        "id": 3,
+        "seconds": 12.3,
+        "endSeconds": 13.5,
+        "timeDisplay": "0:12",
+        "speaker": "Jenny",
+        "textEn": "To Paddington Station.",
+        "textFa": "به ایستگاه پدینگتون."
       },
       {
-              "id": 4,
-              "seconds": 14,
-              "timeDisplay": "0:14",
-              "speaker": "Receptionist",
-              "textEn": "Right away, Ms. Zielinski.",
-              "textFa": "فوراً، خانم زیلینسکی."
+        "id": 4,
+        "seconds": 13.8,
+        "endSeconds": 15.1,
+        "timeDisplay": "0:13",
+        "speaker": "Receptionist",
+        "textEn": "And when would you like it for?",
+        "textFa": "و برای چه زمانی می‌خواهید؟"
       },
       {
-              "id": 5,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Receptionist",
-              "textEn": "The taxi is here.",
-              "textFa": "تاکسی رسید."
+        "id": 5,
+        "seconds": 15.4,
+        "endSeconds": 16.5,
+        "timeDisplay": "0:15",
+        "speaker": "Jenny",
+        "textEn": "Now, please.",
+        "textFa": "الان، لطفاً."
       },
       {
-              "id": 6,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Jenny",
-              "textEn": "Thank you. Goodbye!",
-              "textFa": "متشکرم. خداحافظ!"
+        "id": 6,
+        "seconds": 36.0,
+        "endSeconds": 37.5,
+        "timeDisplay": "0:36",
+        "speaker": "Jenny",
+        "textEn": "How much is that?",
+        "textFa": "کرایه‌اش چقدر می‌شود؟"
       },
       {
-              "id": 7,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Receptionist",
-              "textEn": "Have a safe flight!",
-              "textFa": "سفر بی‌خطر و پرواز خوبی داشته باشید!"
+        "id": 7,
+        "seconds": 37.9,
+        "endSeconds": 42.1,
+        "timeDisplay": "0:37",
+        "speaker": "Taxi driver",
+        "textEn": "That's 13.60, please.",
+        "textFa": "می‌شود ۱۳ پوند و ۶۰ پنس، لطفاً."
       },
       {
-              "id": 8,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Taxi driver",
-              "textEn": "Where to, love?",
-              "textFa": "کجا تشریف می‌برید، خانم؟"
+        "id": 8,
+        "seconds": 46.0,
+        "endSeconds": 48.0,
+        "timeDisplay": "0:46",
+        "speaker": "Jenny",
+        "textEn": "Make it 15 pounds.",
+        "textFa": "۱۵ پوند حساب کنید (بقیه‌اش انعام)."
       },
       {
-              "id": 9,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Jenny",
-              "textEn": "Paddington station, please. And I'm in a bit of a hurry.",
-              "textFa": "ایستگاه پدینگتون، لطفاً. و کمی هم عجله دارم."
+        "id": 9,
+        "seconds": 48.8,
+        "endSeconds": 49.8,
+        "timeDisplay": "0:48",
+        "speaker": "Jenny",
+        "textEn": "And could I have a receipt?",
+        "textFa": "و ممکن است یک رسید هم به من بدهید؟"
       },
       {
-              "id": 10,
-              "seconds": 65,
-              "timeDisplay": "1:05",
-              "speaker": "Taxi driver",
-              "textEn": "No worries. We'll be there in ten minutes.",
-              "textFa": "نگران نباشید. ده دقیقه‌ای آنجاییم."
+        "id": 10,
+        "seconds": 50.4,
+        "endSeconds": 51.5,
+        "timeDisplay": "0:50",
+        "speaker": "Taxi driver",
+        "textEn": "Thank you very much, madam.",
+        "textFa": "بسیار متشکرم، خانم."
       },
       {
-              "id": 11,
-              "seconds": 69,
-              "timeDisplay": "1:09",
-              "speaker": "Taxi driver",
-              "textEn": "Here we are, love. That'll be fourteen pounds.",
-              "textFa": "رسیدیم خانم. می‌شود ۱۴ پوند."
+        "id": 11,
+        "seconds": 61.8,
+        "endSeconds": 64.9,
+        "timeDisplay": "1:01",
+        "speaker": "Jenny",
+        "textEn": "Could I have a ticket to Heathrow Airport, please?",
+        "textFa": "می‌شود یک بلیط به مقصد فرودگاه هیترو به من بدهید، لطفاً؟"
       },
       {
-              "id": 12,
-              "seconds": 71,
-              "timeDisplay": "1:11",
-              "speaker": "Jenny",
-              "textEn": "Here's twenty pounds. Keep the change.",
-              "textFa": "این بیست پوندی خدمت شما. بقیه‌اش انعام خودتان."
+        "id": 12,
+        "seconds": 65.2,
+        "endSeconds": 66.4,
+        "timeDisplay": "1:05",
+        "speaker": "Ticket clerk",
+        "textEn": "Single or return?",
+        "textFa": "یک‌طرفه یا رفت و برگشت؟"
       },
       {
-              "id": 13,
-              "seconds": 73,
-              "timeDisplay": "1:13",
-              "speaker": "Taxi driver",
-              "textEn": "Thank you very much, love. Have a good trip.",
-              "textFa": "بسیار متشکرم خانم. سفر خوبی داشته باشید."
+        "id": 13,
+        "seconds": 67.0,
+        "endSeconds": 67.8,
+        "timeDisplay": "1:07",
+        "speaker": "Jenny",
+        "textEn": "Single, please.",
+        "textFa": "یک‌طرفه، لطفاً."
+      },
+      {
+        "id": 14,
+        "seconds": 68.3,
+        "endSeconds": 69.9,
+        "timeDisplay": "1:08",
+        "speaker": "Ticket clerk",
+        "textEn": "Standard or first class?",
+        "textFa": "عادی (استاندارد) یا درجه یک (فرست کلاس)؟"
+      },
+      {
+        "id": 15,
+        "seconds": 70.4,
+        "endSeconds": 71.3,
+        "timeDisplay": "1:10",
+        "speaker": "Jenny",
+        "textEn": "Standard, please.",
+        "textFa": "عادی، لطفاً."
+      },
+      {
+        "id": 16,
+        "seconds": 72.6,
+        "endSeconds": 74.1,
+        "timeDisplay": "1:12",
+        "speaker": "Ticket clerk",
+        "textEn": "That's 18 pounds.",
+        "textFa": "می‌شود ۱۸ پوند."
+      },
+      {
+        "id": 17,
+        "seconds": 74.7,
+        "endSeconds": 75.9,
+        "timeDisplay": "1:14",
+        "speaker": "Jenny",
+        "textEn": "Can I pay by credit card?",
+        "textFa": "می‌توانم با کارت اعتباری پرداخت کنم؟"
+      },
+      {
+        "id": 18,
+        "seconds": 76.1,
+        "endSeconds": 77.0,
+        "timeDisplay": "1:16",
+        "speaker": "Ticket clerk",
+        "textEn": "Yes, of course.",
+        "textFa": "بله، البته."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -5182,8 +6034,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a1-v18",
     "level": "a1",
     "episodeNumber": 18,
-    "titleFa": "اپیزود ۶ · بخش ۳: خداحافظی در فرودگاه و امید به دیدار دوباره",
-    "titleEn": "Episode 6 · Part 3: Saying Goodbye at the Departure Gate",
+    "titleFa": "اپیزود ۶ · بخش ۳: خداحافظی در فرودگاه و اعلام پذیرش پیشنهاد کار",
+    "titleEn": "Episode 6 · Part 3: Saying Goodbye at the Airport (The Lost Phone)",
     "bookLevel": "American English File 1 (3rd Edition)",
     "unit": "Practical English Episode 6",
     "cefr": "A1",
@@ -5194,152 +6046,226 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0f172a, #334155)",
     "posterIcon": "✈️",
-    "summaryFa": "جنی در گیت فرودگاه برای خداحافظی به راب می‌رسد، هدیه یادبودی به او می‌دهد و قول می‌دهند برای پروژه بعدی در تماس باشند.",
-    "summaryEn": "Jenny meets Rob at the airport gate to say goodbye, give him a farewell gift, and promise to stay in touch for their next joint project.",
+    "summaryFa": "جنی در فرودگاه متوجه می‌شود گوشی‌اش گم شده است که ناگهان راب از راه می‌رسد و گوشی جامانده او را تحویل می‌دهد. راب اعلام می‌کند که تصمیم گرفته پیشنهاد کار در نیویورک را بپذیرد که باعث خوشحالی هر دو می‌شود. راب از تماسی به نام «اِدی» می‌پرسد و نگران است که نکند نامزد جنی باشد، اما جنی با خنده توضیح می‌دهد که اِدی برادر ۱۹ ساله‌اش و دانشجو در کالیفرنیا است! پس از اعلام بلندگوی فرودگاه، جنی برای سوار شدن به هواپیما حرکت می‌کند و آن‌ها با امید دیدار در نیویورک با هم خداحافظی می‌کنند.",
+    "summaryEn": "At the airport, Jenny realizes she has lost her phone, but Rob suddenly appears to return it. He happily announces that he has decided to accept the job in New York. Rob also asks about a missed call from someone named Eddie, secretly worrying he might be a boyfriend, but Jenny clarifies that Eddie is just her 19-year-old brother who is a college student in California. As the boarding call sounds, Jenny rushes to her gate, and they say a warm goodbye, looking forward to meeting again in New York.",
     "keyTopicsFa": [
-      "اصطلاحات خداحافظی گرم (Have a safe flight!)",
-      "در تماس بودن (Keep in touch)",
-      "آرزوی موفقیت و سفر امن",
-      "پایان داستان فصل اول"
+      "یافتن شیء گمشده (Where is it? / Are you looking for this?)",
+      "قدردانی و تشکر ویژه (You're a hero, thank you so much / No problem)",
+      "پذیرش پیشنهاد کاری (I'd love to accept / Work in New York)",
+      "رفع سوءتفاهم درباره اشخاص (Does he teach there? / He's a student / Eddie's my brother)",
+      "پیام‌های صوتی فرودگاه (Flight ready for boarding)",
+      "خداحافظی و آرزوی سفر خوب (Have a good journey / See you in New York!)"
     ],
     "transcript": [
       {
-            "id": 1,
-            "seconds": 15,
-            "timeDisplay": "0:15",
-            "speaker": "Jenny",
-            "textEn": "Where is it? Where's my phone?!",
-            "textFa": "کجاست؟ گوشیم کجاست؟! "
+        "id": 1,
+        "seconds": 22.0,
+        "endSeconds": 27.5,
+        "timeDisplay": "0:22",
+        "speaker": "Jenny",
+        "textEn": "Where is it? Where's my phone?!",
+        "textFa": "کجاست؟ گوشیم کجاست؟!"
       },
       {
-            "id": 2,
-            "seconds": 19,
-            "timeDisplay": "0:19",
-            "speaker": "Rob",
-            "textEn": "Are you looking for this?",
-            "textFa": "دنبال این می‌گردی؟"
+        "id": 2,
+        "seconds": 28.0,
+        "endSeconds": 29.8,
+        "timeDisplay": "0:28",
+        "speaker": "Rob",
+        "textEn": "Are you looking for this?",
+        "textFa": "دنبال این می‌گردی؟"
       },
       {
-            "id": 3,
-            "seconds": 23,
-            "timeDisplay": "0:23",
-            "speaker": "Jenny",
-            "textEn": "Rob! I can't believe it! My phone! You're a hero, thank you so much.",
-            "textFa": "راب! باورم نمیشه! گوشیم! تو قهرمانی، واقعاً خیلی ممنونم."
+        "id": 3,
+        "seconds": 30.0,
+        "endSeconds": 35.0,
+        "timeDisplay": "0:30",
+        "speaker": "Jenny",
+        "textEn": "Rob! I can't believe it! My phone!",
+        "textFa": "راب! باورم نمیشه! گوشیم!"
       },
       {
-            "id": 4,
-            "seconds": 30,
-            "timeDisplay": "0:30",
-            "speaker": "Rob",
-            "textEn": "No problem. It gave me a chance to see you again. And I had more time to think about your offer.",
-            "textFa": "خواهش می‌کنم. فرصتی شد تا دوباره ببینمت. بعلاوه وقت بیشتری داشتم تا درباره پیشنهادت فکر کنم."
+        "id": 4,
+        "seconds": 35.8,
+        "endSeconds": 38.8,
+        "timeDisplay": "0:35",
+        "speaker": "Jenny",
+        "textEn": "You're a hero, thank you so much.",
+        "textFa": "تو یه قهرمانی، واقعاً خیلی ممنونم."
       },
       {
-            "id": 5,
-            "seconds": 38,
-            "timeDisplay": "0:38",
-            "speaker": "Jenny",
-            "textEn": "And?",
-            "textFa": "و نتیجه؟"
+        "id": 5,
+        "seconds": 39.0,
+        "endSeconds": 42.5,
+        "timeDisplay": "0:39",
+        "speaker": "Rob",
+        "textEn": "No problem. It gave me a chance to see you again.",
+        "textFa": "خواهش می‌کنم. فرصتی شد تا دوباره ببینمت."
       },
       {
-            "id": 6,
-            "seconds": 41,
-            "timeDisplay": "0:41",
-            "speaker": "Rob",
-            "textEn": "I'd love to accept. I really want to come and work in New York.",
-            "textFa": "با کمال میل می‌پذیرم. واقعاً دوست دارم بیام و در نیویورک کار کنم."
+        "id": 6,
+        "seconds": 43.4,
+        "endSeconds": 46.0,
+        "timeDisplay": "0:43",
+        "speaker": "Rob",
+        "textEn": "And I had more time to think about your offer.",
+        "textFa": "و فرصت بیشتری داشتم تا درباره پیشنهادت فکر کنم."
       },
       {
-            "id": 7,
-            "seconds": 48,
-            "timeDisplay": "0:48",
-            "speaker": "Jenny",
-            "textEn": "That's great, Rob! I'm so happy.",
-            "textFa": "فوق‌العاده است راب! خیلی خوشحالم."
+        "id": 7,
+        "seconds": 46.6,
+        "endSeconds": 47.4,
+        "timeDisplay": "0:46",
+        "speaker": "Jenny",
+        "textEn": "And?",
+        "textFa": "و نتیجه؟"
       },
       {
-            "id": 8,
-            "seconds": 53,
-            "timeDisplay": "0:53",
-            "speaker": "Rob",
-            "textEn": "Me too. Oh, you had a call from Eddie. I didn't answer it. Is he going to meet you at the airport?",
-            "textFa": "من هم همین‌طور. راستی، یه تماس از طرف ادی داشتی؛ جواب ندادم. قراره در فرودگاه بیاد پیشوازت؟"
+        "id": 8,
+        "seconds": 47.8,
+        "endSeconds": 51.4,
+        "timeDisplay": "0:47",
+        "speaker": "Rob",
+        "textEn": "I'd love to accept. I really want to come and work in New York.",
+        "textFa": "با کمال میل می‌پذیرم. واقعاً دوست دارم بیایم و در نیویورک کار کنم."
       },
       {
-            "id": 9,
-            "seconds": 62,
-            "timeDisplay": "1:02",
-            "speaker": "Jenny",
-            "textEn": "Eddie? No. He's at college in California.",
-            "textFa": "ادی؟ نه. اون در کالجی در کالیفرنیاست."
+        "id": 9,
+        "seconds": 51.5,
+        "endSeconds": 54.7,
+        "timeDisplay": "0:51",
+        "speaker": "Jenny",
+        "textEn": "Oh, that's great, Rob! I'm so happy.",
+        "textFa": "اوه، عالیه راب! خیلی خوشحالم."
       },
       {
-            "id": 10,
-            "seconds": 67,
-            "timeDisplay": "1:07",
-            "speaker": "Rob",
-            "textEn": "In California? Does he teach there?",
-            "textFa": "در کالیفرنیا؟ اونجا تدریس می‌کنه؟"
+        "id": 10,
+        "seconds": 55.1,
+        "endSeconds": 56.0,
+        "timeDisplay": "0:55",
+        "speaker": "Rob",
+        "textEn": "Me too.",
+        "textFa": "من هم همین‌طور."
       },
       {
-            "id": 11,
-            "seconds": 71,
-            "timeDisplay": "1:11",
-            "speaker": "Jenny",
-            "textEn": "Teach? No, he's a student.",
-            "textFa": "تدریس؟ نه، اون دانشجوئه."
+        "id": 11,
+        "seconds": 56.3,
+        "endSeconds": 59.5,
+        "timeDisplay": "0:56",
+        "speaker": "Rob",
+        "textEn": "Oh, you had a call from Eddie. I didn't answer it.",
+        "textFa": "راستی، تماسی از طرف اِدی داشتی؛ من جواب ندادم."
       },
       {
-            "id": 12,
-            "seconds": 75,
-            "timeDisplay": "1:15",
-            "speaker": "Rob",
-            "textEn": "A student?",
-            "textFa": "دانشجو؟"
+        "id": 12,
+        "seconds": 59.6,
+        "endSeconds": 62.2,
+        "timeDisplay": "0:59",
+        "speaker": "Rob",
+        "textEn": "Is he going to meet you at the airport?",
+        "textFa": "قراره در فرودگاه بیاد پیشوازت؟"
       },
       {
-            "id": 13,
-            "seconds": 77,
-            "timeDisplay": "1:17",
-            "speaker": "Jenny",
-            "textEn": "Well, he's only 19. Eddie's my brother.",
-            "textFa": "خب اون فقط نوزده سالشه. ادی برادرمه."
+        "id": 13,
+        "seconds": 63.0,
+        "endSeconds": 65.6,
+        "timeDisplay": "1:03",
+        "speaker": "Jenny",
+        "textEn": "Eddie? No. He's at college in California.",
+        "textFa": "اِدی؟ نه. اون در کالجی در کالیفرنیاست."
       },
       {
-            "id": 14,
-            "seconds": 83,
-            "timeDisplay": "1:23",
-            "speaker": "Jenny",
-            "textEn": "I need to go.",
-            "textFa": "من باید برم."
+        "id": 14,
+        "seconds": 66.2,
+        "endSeconds": 68.6,
+        "timeDisplay": "1:06",
+        "speaker": "Rob",
+        "textEn": "In California? Does he teach there?",
+        "textFa": "در کالیفرنیا؟ اونجا تدریس می‌کنه؟"
       },
       {
-            "id": 15,
-            "seconds": 86,
-            "timeDisplay": "1:26",
-            "speaker": "Rob",
-            "textEn": "Well, have a good journey.",
-            "textFa": "خب، سفرت بی‌خطر."
+        "id": 15,
+        "seconds": 69.3,
+        "endSeconds": 71.8,
+        "timeDisplay": "1:09",
+        "speaker": "Jenny",
+        "textEn": "Teach? No, he's a student.",
+        "textFa": "تدریس؟ نه، اون دانشجوئه."
       },
       {
-            "id": 16,
-            "seconds": 90,
-            "timeDisplay": "1:30",
-            "speaker": "Jenny",
-            "textEn": "Thanks, Rob. Bye.",
-            "textFa": "ممنون راب. خداحافظ."
+        "id": 16,
+        "seconds": 72.1,
+        "endSeconds": 73.0,
+        "timeDisplay": "1:12",
+        "speaker": "Rob",
+        "textEn": "A student?",
+        "textFa": "دانشجو؟"
       },
       {
-            "id": 17,
-            "seconds": 93,
-            "timeDisplay": "1:33",
-            "speaker": "Rob",
-            "textEn": "Bye. And see you in New York!",
-            "textFa": "خداحافظ. و در نیویورک می‌بینمت!"
+        "id": 17,
+        "seconds": 73.5,
+        "endSeconds": 79.5,
+        "timeDisplay": "1:13",
+        "speaker": "Jenny",
+        "textEn": "Well, he's only 19. Eddie's my brother.",
+        "textFa": "خب، اون فقط ۱۹ سالشه. اِدی برادرمه."
+      },
+      {
+        "id": 18,
+        "seconds": 82.5,
+        "endSeconds": 88.0,
+        "timeDisplay": "1:22",
+        "speaker": "Airport Announcement",
+        "textEn": "Flight 232 to New York is now ready for boarding.",
+        "textFa": "[بلندگوی فرودگاه]: پرواز شماره ۲۳۲ به مقصد نیویورک آماده مسافرگیری است."
+      },
+      {
+        "id": 19,
+        "seconds": 88.8,
+        "endSeconds": 91.2,
+        "timeDisplay": "1:28",
+        "speaker": "Jenny",
+        "textEn": "I need to go.",
+        "textFa": "من باید برم."
+      },
+      {
+        "id": 20,
+        "seconds": 92.1,
+        "endSeconds": 94.8,
+        "timeDisplay": "1:32",
+        "speaker": "Rob",
+        "textEn": "Well, have a good journey.",
+        "textFa": "خب، سفرت بی‌خطر."
+      },
+      {
+        "id": 21,
+        "seconds": 95.1,
+        "endSeconds": 96.5,
+        "timeDisplay": "1:35",
+        "speaker": "Jenny",
+        "textEn": "Thanks, Rob. Bye.",
+        "textFa": "ممنون، راب. خداحافظ."
+      },
+      {
+        "id": 22,
+        "seconds": 97.2,
+        "endSeconds": 98.2,
+        "timeDisplay": "1:37",
+        "speaker": "Rob",
+        "textEn": "Bye.",
+        "textFa": "خداحافظ."
+      },
+      {
+        "id": 23,
+        "seconds": 104.8,
+        "endSeconds": 106.8,
+        "timeDisplay": "1:44",
+        "speaker": "Rob",
+        "textEn": "And see you in New York!",
+        "textFa": "و در نیویورک می‌بینمت!"
       }
-],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -5490,8 +6416,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v01",
     "level": "a2",
     "episodeNumber": 1,
-    "titleFa": "اپیزود ۱ · بخش ۱: بازگشت راب به نیویورک",
-    "titleEn": "Episode 1 · Part 1: Rob Returns to New York",
+    "titleFa": "اپیزود ۱ · بخش ۱: معرفی جنی، مرور خاطرات لندن و ورود راب به نیویورک",
+    "titleEn": "Episode 1 · Part 1: Rob Comes to New York – Jenny's Introduction",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 1",
     "cefr": "A2",
@@ -5502,96 +6428,279 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0284c7, #06b6d4)",
     "posterIcon": "🗽",
-    "summaryFa": "راب برای ماموریت کاری دائمی در مجله به نیویورک بازگشته و مشتاق دیدار مجدد جنی و کار در آمریکاست.",
-    "summaryEn": "Rob is back in New York City on a permanent assignment for the magazine, excited to see Jenny again and work in the US.",
+    "summaryFa": "جنی زیلینسکی، دستیار سردبیر مجله New York 24/7، آغاز فصل جدید را روایت می‌کند. او خاطرات سفر کاری‌اش به لندن، ملاقات با مدیر دانیل اوکانر و دوستی نزدیکش با راب واکر (نویسنده مجله لندن) را مرور می‌کند. جنی توضیح می‌دهد که راب با وجود خوش‌قول نبودن، نویسنده‌ای تواناست و دعوت شده تا یک ماه در نیویورک کار کند؛ حالا راب در راه نیویورک است و جنی بسیار مشتاق دیدار دوباره اوست.",
+    "summaryEn": "Jenny Zielinski, assistant editor of New York 24/7, opens the new season by recapping her memorable business trip to London. She reflects on meeting manager Daniel O'Connor and spending quality time with British writer Rob Walker—drinking coffee, sightseeing at Tate Modern, and shopping for shirts. Explaining that Rob was invited for a one-month assignment in New York, Jenny expresses how thrilled she is that he is arriving.",
     "keyTopicsFa": [
-      "بازگشت به شهر جدید",
-      "اهداف کاری بلندمدت",
-      "لهجه و اصطلاحات آمریکایی",
-      "احوالپرسی دوستان قدیمی"
+      "معرفی شغل و محل زندگی (My name's Jenny / Assistant editor of New York 24/7)",
+      "روایت گذشته و تجربیات سفر (A few months ago, I visited our office in London)",
+      "توصیف شخصیت و ویژگی‌های افراد (Fun to be with / Not the most punctual / Great writer)",
+      "خاطرات گشت‌وگذار و قهوه (We had coffees together / We went sightseeing)",
+      "بیان اشتیاق و انتظار برای آینده (Rob's coming to New York / Great to see him again)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 9,
-              "timeDisplay": "0:09",
-              "speaker": "Jenny",
-              "textEn": "My name's Jenny Zielinski. I live and work in New York.",
-              "textFa": "نام من جنی زیلینسکی است. من در نیویورک زندگی و کار می‌کنم."
+        "id": 1,
+        "seconds": 8.9,
+        "endSeconds": 12.3,
+        "timeDisplay": "0:08",
+        "speaker": "Jenny",
+        "textEn": "My name's Jenny Zielinski.",
+        "textFa": "نام من جنی زیلینسکی است."
       },
       {
-              "id": 2,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Jenny",
-              "textEn": "I'm the assistant editor of a magazine called New York 24seven.",
-              "textFa": "من دستیار سردبیر مجله‌ای به نام New York 24seven هستم."
+        "id": 2,
+        "seconds": 15.4,
+        "endSeconds": 19.8,
+        "timeDisplay": "0:15",
+        "speaker": "Jenny",
+        "textEn": "I live and work in New York.",
+        "textFa": "من در نیویورک زندگی و کار می‌کنم."
       },
       {
-              "id": 3,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Jenny",
-              "textEn": "A few months ago, I visited our office in London to learn more about the company.",
-              "textFa": "چند ماه پیش، برای آشنایی بیشتر با شرکت از دفترمان در لندن بازدید کردم."
+        "id": 3,
+        "seconds": 24.5,
+        "endSeconds": 29.5,
+        "timeDisplay": "0:24",
+        "speaker": "Jenny",
+        "textEn": "I'm the assistant editor of a magazine called New York 24/7.",
+        "textFa": "من دستیار سردبیر مجله‌ای به نام New York 24/7 هستم."
       },
       {
-              "id": 4,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Jenny",
-              "textEn": "I met the manager, Daniel O'Connor. I had lots of meetings with him, of course. And a working dinner on my birthday...",
-              "textFa": "با مدیر، دنیل اوکانر، ملاقات کردم؛ البته جلسات کاری متعددی با او داشتم و در روز تولدم هم یک شام کاری با هم خوردیم..."
+        "id": 4,
+        "seconds": 32.6,
+        "endSeconds": 41.1,
+        "timeDisplay": "0:32",
+        "speaker": "Jenny",
+        "textEn": "A few months ago, I visited our office in London to learn more about the company.",
+        "textFa": "چند ماه پیش، برای آشنایی بیشتر با شرکت از دفترمان در لندن بازدید کردم."
       },
       {
-              "id": 5,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Jenny",
-              "textEn": "But I spent more time with Rob Walker. He's one of the writers on the London magazine.",
-              "textFa": "اما زمان بیشتری را با راب واکر گذراندم. او یکی از نویسندگان مجله لندن است."
+        "id": 5,
+        "seconds": 43.3,
+        "endSeconds": 44.1,
+        "timeDisplay": "0:43",
+        "speaker": "Daniel",
+        "textEn": "How nice to meet you.",
+        "textFa": "از دیدارتان بسیار خوش‌وقتم."
       },
       {
-              "id": 6,
-              "seconds": 67,
-              "timeDisplay": "1:07",
-              "speaker": "Jenny",
-              "textEn": "We had coffees together. We went sightseeing. I even helped Rob buy a shirt!",
-              "textFa": "با هم قهوه خوردیم، به دیدن جاهای دیدنی شهر رفتیم و حتی به راب کمک کردم یک پیراهن بخرد!"
+        "id": 6,
+        "seconds": 44.1,
+        "endSeconds": 46.8,
+        "timeDisplay": "0:44",
+        "speaker": "Jenny",
+        "textEn": "I met the manager, Daniel O'Connor.",
+        "textFa": "من با مدیر، دانیل اوکانر، ملاقات کردم."
       },
       {
-              "id": 7,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Jenny",
-              "textEn": "He was fun to be with. I liked him a lot. I think he liked me, too.",
-              "textFa": "بودن با او بسیار لذت‌بخش بود. خیلی از او خوشم آمد و فکر می‌کنم او هم از من خوشش آمد."
+        "id": 7,
+        "seconds": 46.8,
+        "endSeconds": 48.8,
+        "timeDisplay": "0:46",
+        "speaker": "Daniel",
+        "textEn": "Would you like something to drink? Tea, coffee?",
+        "textFa": "چیزی برای نوشیدن میل دارید؟ چای، قهوه؟"
       },
       {
-              "id": 8,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Jenny",
-              "textEn": "Rob isn't the most punctual person in the world, but he is a great writer.",
-              "textFa": "راب وقت‌شناس‌ترین فرد دنیا نیست، اما نویسنده‌ای فوق‌العاده است."
+        "id": 8,
+        "seconds": 48.8,
+        "endSeconds": 55.3,
+        "timeDisplay": "0:48",
+        "speaker": "Jenny",
+        "textEn": "I had lots of meetings with him, of course, and a working dinner on my birthday.",
+        "textFa": "البته جلسات کاری زیادی با او داشتم و در روز تولدم یک شام کاری با هم خوردیم."
       },
       {
-              "id": 9,
-              "seconds": 95,
-              "timeDisplay": "1:35",
-              "speaker": "Jenny",
-              "textEn": "We invited him to work for the New York magazine for a month... and he agreed!",
-              "textFa": "ما از او دعوت کردیم تا به مدت یک ماه برای مجله نیویورک کار کند... و او پذیرفت!"
+        "id": 9,
+        "seconds": 55.3,
+        "endSeconds": 56.5,
+        "timeDisplay": "0:55",
+        "speaker": "Daniel",
+        "textEn": "Would you like to go somewhere else?",
+        "textFa": "دوست داری جای دیگری برویم؟"
       },
       {
-              "id": 10,
-              "seconds": 107,
-              "timeDisplay": "1:47",
-              "speaker": "Jenny",
-              "textEn": "So now Rob's coming to New York. I know he's really excited about it. It's going to be great to see him again.",
-              "textFa": "بنابراین حالا راب در حال آمدن به نیویورک است. می‌دانم حسابی هیجان‌زده است و دیدار دوباره‌اش عالی خواهد بود."
+        "id": 10,
+        "seconds": 56.9,
+        "endSeconds": 59.9,
+        "timeDisplay": "0:56",
+        "speaker": "Jenny",
+        "textEn": "But I spent more time with Rob Walker.",
+        "textFa": "اما من زمان بیشتری را با راب واکر گذراندم."
+      },
+      {
+        "id": 11,
+        "seconds": 61.3,
+        "endSeconds": 64.0,
+        "timeDisplay": "1:01",
+        "speaker": "Jenny",
+        "textEn": "He's one of the writers on the London magazine.",
+        "textFa": "او یکی از نویسندگان مجله لندن است."
+      },
+      {
+        "id": 12,
+        "seconds": 64.8,
+        "endSeconds": 65.5,
+        "timeDisplay": "1:04",
+        "speaker": "Rob",
+        "textEn": "A double espresso.",
+        "textFa": "یک اسپرسوی دبل."
+      },
+      {
+        "id": 13,
+        "seconds": 66.2,
+        "endSeconds": 66.9,
+        "timeDisplay": "1:06",
+        "speaker": "Jenny",
+        "textEn": "Oh, wow.",
+        "textFa": "اوه، واو."
+      },
+      {
+        "id": 14,
+        "seconds": 67.1,
+        "endSeconds": 68.6,
+        "timeDisplay": "1:07",
+        "speaker": "Jenny",
+        "textEn": "We had coffees together.",
+        "textFa": "ما با هم قهوه خوردیم."
+      },
+      {
+        "id": 15,
+        "seconds": 69.5,
+        "endSeconds": 70.8,
+        "timeDisplay": "1:09",
+        "speaker": "Jenny",
+        "textEn": "We went sightseeing.",
+        "textFa": "به دیدن جاهای دیدنی شهر رفتیم."
+      },
+      {
+        "id": 16,
+        "seconds": 70.8,
+        "endSeconds": 73.5,
+        "timeDisplay": "1:10",
+        "speaker": "Rob",
+        "textEn": "Hey, let's go inside the Tate Modern right now.",
+        "textFa": "هی، بیا الان بریم داخل گالری تیت مدرن."
+      },
+      {
+        "id": 17,
+        "seconds": 74.4,
+        "endSeconds": 74.9,
+        "timeDisplay": "1:14",
+        "speaker": "Rob",
+        "textEn": "So, what do you think?",
+        "textFa": "خب، نظرت چیه؟"
+      },
+      {
+        "id": 18,
+        "seconds": 74.9,
+        "endSeconds": 77.2,
+        "timeDisplay": "1:14",
+        "speaker": "Jenny",
+        "textEn": "I even helped Rob buy a shirt.",
+        "textFa": "حتی به راب کمک کردم یک پیراهن بخرد."
+      },
+      {
+        "id": 19,
+        "seconds": 77.5,
+        "endSeconds": 77.9,
+        "timeDisplay": "1:17",
+        "speaker": "Shop Assistant",
+        "textEn": "OK.",
+        "textFa": "خیلی خب."
+      },
+      {
+        "id": 20,
+        "seconds": 78.4,
+        "endSeconds": 80.0,
+        "timeDisplay": "1:18",
+        "speaker": "Jenny",
+        "textEn": "He was fun to be with.",
+        "textFa": "بودن در کنار او خیلی لذت‌بخش بود."
+      },
+      {
+        "id": 21,
+        "seconds": 80.0,
+        "endSeconds": 80.5,
+        "timeDisplay": "1:20",
+        "speaker": "Rob",
+        "textEn": "Great.",
+        "textFa": "عالیه."
+      },
+      {
+        "id": 22,
+        "seconds": 80.6,
+        "endSeconds": 81.9,
+        "timeDisplay": "1:20",
+        "speaker": "Jenny",
+        "textEn": "I liked him a lot.",
+        "textFa": "من از او خیلی خوشم آمد."
+      },
+      {
+        "id": 23,
+        "seconds": 82.5,
+        "endSeconds": 85.5,
+        "timeDisplay": "1:22",
+        "speaker": "Jenny",
+        "textEn": "I think he liked me, too.",
+        "textFa": "فکر می‌کنم او هم از من خوشش آمد."
+      },
+      {
+        "id": 24,
+        "seconds": 86.8,
+        "endSeconds": 93.3,
+        "timeDisplay": "1:26",
+        "speaker": "Jenny",
+        "textEn": "Rob isn't the most punctual person in the world, but he is a great writer.",
+        "textFa": "راب وقت‌شناس‌ترین فرد دنیا نیست، اما نویسنده فوق‌العاده‌ای است."
+      },
+      {
+        "id": 25,
+        "seconds": 95.2,
+        "endSeconds": 100.3,
+        "timeDisplay": "1:35",
+        "speaker": "Jenny",
+        "textEn": "We invited him to work for the New York magazine for a month, and he agreed.",
+        "textFa": "ما از او دعوت کردیم تا به مدت یک ماه برای مجله نیویورک کار کند، و او پذیرفت."
+      },
+      {
+        "id": 26,
+        "seconds": 100.3,
+        "endSeconds": 101.8,
+        "timeDisplay": "1:40",
+        "speaker": "Rob",
+        "textEn": "See you in New York!",
+        "textFa": "در نیویورک می‌بینمت!"
+      },
+      {
+        "id": 27,
+        "seconds": 107.8,
+        "endSeconds": 110.2,
+        "timeDisplay": "1:47",
+        "speaker": "Jenny",
+        "textEn": "So now Rob's coming to New York.",
+        "textFa": "بنابراین حالا راب در حال آمدن به نیویورک است."
+      },
+      {
+        "id": 28,
+        "seconds": 112.4,
+        "endSeconds": 115.2,
+        "timeDisplay": "1:52",
+        "speaker": "Jenny",
+        "textEn": "I know he's really excited about it.",
+        "textFa": "می‌دانم که او واقعاً درباره‌اش هیجان‌زده است."
+      },
+      {
+        "id": 29,
+        "seconds": 115.9,
+        "endSeconds": 118.0,
+        "timeDisplay": "1:55",
+        "speaker": "Jenny",
+        "textEn": "It's going to be great to see him again.",
+        "textFa": "دیدار دوباره او بسیار عالی خواهد بود."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -5742,8 +6851,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v02",
     "level": "a2",
     "episodeNumber": 2,
-    "titleFa": "اپیزود ۱ · بخش ۲: تماس با پذیرش هتل برای حل مشکل",
-    "titleEn": "Episode 1 · Part 2: Calling Reception to Fix an Issue",
+    "titleFa": "اپیزود ۱ · بخش ۲: تماس با پذیرش هتل برای گزارش مشکل تهویه و وای‌فای",
+    "titleEn": "Episode 1 · Part 2: Calling Reception (Air Conditioning & Wi-Fi Issues)",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 1",
     "cefr": "A2",
@@ -5753,113 +6862,154 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=aef&level=a2&file=AEF3e_SB2_PE_Ep1_Calling _reception.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #059669, #10b981)",
-    "posterIcon": "🛎️",
-    "summaryFa": "راب از اتاقش با پذیرش هتل تماس می‌گیرد تا مشکل سیستم تهویه هوا و نیاز به حوله اضافی را گزارش دهد.",
-    "summaryEn": "Rob phones the hotel reception desk from his room to report a problem with the room's air conditioning and extra towels.",
+    "posterIcon": "☎️",
+    "summaryFa": "راب پس از رسیدن به هتل در نیویورک، در دو نوبت با پذیرش تماس می‌گیرد. در تماس اول گزارش می‌دهد که دستگاه تهویه مطبوع کار نمی‌کند و هوای اتاق ۶۱۳ بسیار گرم است که پذیرش بلافاصله قول اعزام نیروی فنی را می‌دهد. در تماس دوم، راب با عذرخواهی از مزاحمت مجدد گزارش می‌دهد که به اینترنت وای‌فای وصل نمی‌شود و سیگنال ندارد، که پذیرش او را مستقیماً به بخش فناوری اطلاعات (IT) متصل می‌کند.",
+    "summaryEn": "After checking into his New York hotel room (613), Rob makes two phone calls to reception to resolve room issues. First, he reports that the air conditioning isn't working and his room is excessively hot; the receptionist apologizes and promises to send someone up immediately. Later, Rob politely calls back to report that he cannot get a Wi-Fi signal, and the receptionist transfers his call directly to IT.",
     "keyTopicsFa": [
-      "گزارش مشکلات اتاق هتل (The air conditioning isn't working)",
-      "درخواست سرویس خدمات (Could you send someone?)",
-      "اصطلاحات مودبانه خدمات مشتریان",
-      "حل فوری مشکل"
+      "معرفی شماره اتاق در تماس با پذیرش (Hello, reception / This is room 613)",
+      "گزارش خرابی امکانات اتاق (There's a problem with the air conditioning / It isn't working)",
+      "ابراز عذرخواهی محترمانه از تماس مجدد (I'm sorry to bother you again)",
+      "گزارش مشکل اتصال به اینترنت (I have a problem with the Wi-Fi / I can't get a signal)",
+      "پاسخگویی و اتصال تماس به بخش مربوطه (I'll send somebody up / I'll put you through to IT)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 15,
-              "timeDisplay": "0:15",
-              "speaker": "Receptionist",
-              "textEn": "Hello, reception.",
-              "textFa": "الو، پذیرش در خدمت شماست."
+        "id": 1,
+        "seconds": 15.6,
+        "endSeconds": 16.9,
+        "timeDisplay": "0:15",
+        "speaker": "Receptionist",
+        "textEn": "Hello, reception.",
+        "textFa": "سلام، پذیرش هتل."
       },
       {
-              "id": 2,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Rob",
-              "textEn": "Hello. This is room 613.",
-              "textFa": "سلام. از اتاق ۶۱۳ تماس می‌گیرم."
+        "id": 2,
+        "seconds": 16.9,
+        "endSeconds": 19.5,
+        "timeDisplay": "0:16",
+        "speaker": "Rob",
+        "textEn": "Hello. This is room 613.",
+        "textFa": "سلام. از اتاق ۶۱۳ تماس می‌گیرم."
       },
       {
-              "id": 3,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Receptionist",
-              "textEn": "How can I help you?",
-              "textFa": "چطور می‌توانم کمکتان کنم؟"
+        "id": 3,
+        "seconds": 19.5,
+        "endSeconds": 21.3,
+        "timeDisplay": "0:19",
+        "speaker": "Receptionist",
+        "textEn": "How can I help you?",
+        "textFa": "چطور می‌توانم کمکتان کنم؟"
       },
       {
-              "id": 4,
-              "seconds": 21,
-              "timeDisplay": "0:21",
-              "speaker": "Rob",
-              "textEn": "There's a problem with the air conditioning. It isn't working, and it's very hot in my room.",
-              "textFa": "تهویه مطبوع مشکلی دارد؛ کار نمی‌کند و هوای اتاقم بسیار گرم است."
+        "id": 4,
+        "seconds": 21.5,
+        "endSeconds": 23.6,
+        "timeDisplay": "0:21",
+        "speaker": "Rob",
+        "textEn": "There's a problem with the air conditioning.",
+        "textFa": "تهویه مطبوع (کولر) مشکلی دارد."
       },
       {
-              "id": 5,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Receptionist",
-              "textEn": "I'm sorry, sir. I'll send somebody up to look at it right now.",
-              "textFa": "متاسفم قربان. همین الان کسی را می‌فرستم تا آن را بررسی کند."
+        "id": 5,
+        "seconds": 23.8,
+        "endSeconds": 26.6,
+        "timeDisplay": "0:23",
+        "speaker": "Rob",
+        "textEn": "It isn't working, and it's very hot in my room.",
+        "textFa": "کار نمی‌کند و هوای اتاقم بسیار گرم است."
       },
       {
-              "id": 6,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Rob",
-              "textEn": "Thank you.",
-              "textFa": "متشکرم."
+        "id": 6,
+        "seconds": 26.6,
+        "endSeconds": 30.2,
+        "timeDisplay": "0:26",
+        "speaker": "Receptionist",
+        "textEn": "I'm sorry, sir. I'll send somebody up to look at it right now.",
+        "textFa": "متاسفم قربان. همین الان کسی را می‌فرستم تا آن را بررسی کند."
       },
       {
-              "id": 7,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Receptionist",
-              "textEn": "Good evening, reception.",
-              "textFa": "عصر بخیر، پذیرش."
+        "id": 7,
+        "seconds": 30.2,
+        "endSeconds": 32.5,
+        "timeDisplay": "0:30",
+        "speaker": "Rob",
+        "textEn": "Thank you.",
+        "textFa": "متشکرم."
       },
       {
-              "id": 8,
-              "seconds": 40,
-              "timeDisplay": "0:40",
-              "speaker": "Rob",
-              "textEn": "Hello. I'm sorry to bother you again. This is room 613.",
-              "textFa": "سلام. ببخشید باز هم مزاحم شدم؛ از اتاق ۶۱۳ هستم."
+        "id": 8,
+        "seconds": 39.0,
+        "endSeconds": 40.6,
+        "timeDisplay": "0:39",
+        "speaker": "Receptionist",
+        "textEn": "Good evening, reception.",
+        "textFa": "عصر بخیر، پذیرش هتل."
       },
       {
-              "id": 9,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Receptionist",
-              "textEn": "How can I help you?",
-              "textFa": "چطور می‌توانم کمکتان کنم؟"
+        "id": 9,
+        "seconds": 40.6,
+        "endSeconds": 43.4,
+        "timeDisplay": "0:40",
+        "speaker": "Rob",
+        "textEn": "Hello. I'm sorry to bother you again.",
+        "textFa": "سلام. ببخشید باز هم مزاحم می‌شوم."
       },
       {
-              "id": 10,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Rob",
-              "textEn": "I have a problem with the wi-fi. I can't get a signal.",
-              "textFa": "با اینترنت وای‌فای مشکل دارم؛ سیگنالی دریافت نمی‌کنم."
+        "id": 10,
+        "seconds": 43.4,
+        "endSeconds": 45.3,
+        "timeDisplay": "0:43",
+        "speaker": "Rob",
+        "textEn": "This is room 613.",
+        "textFa": "از اتاق ۶۱۳ هستم."
       },
       {
-              "id": 11,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Receptionist",
-              "textEn": "I'm sorry sir. I'll put you through to IT.",
-              "textFa": "عذرخواهی می‌کنم قربان. شما را به بخش فناوری اطلاعات وصل می‌کنم."
+        "id": 11,
+        "seconds": 45.3,
+        "endSeconds": 46.7,
+        "timeDisplay": "0:45",
+        "speaker": "Receptionist",
+        "textEn": "How can I help you?",
+        "textFa": "چطور می‌توانم کمکتان کنم؟"
       },
       {
-              "id": 12,
-              "seconds": 53,
-              "timeDisplay": "0:53",
-              "speaker": "Rob",
-              "textEn": "Thanks.",
-              "textFa": "ممنون."
+        "id": 12,
+        "seconds": 46.7,
+        "endSeconds": 48.8,
+        "timeDisplay": "0:46",
+        "speaker": "Rob",
+        "textEn": "I have a problem with the Wi-Fi.",
+        "textFa": "با اینترنت وای‌فای مشکل دارم."
+      },
+      {
+        "id": 13,
+        "seconds": 48.8,
+        "endSeconds": 50.2,
+        "timeDisplay": "0:48",
+        "speaker": "Rob",
+        "textEn": "I can't get a signal.",
+        "textFa": "سیگنالی دریافت نمی‌کنم."
+      },
+      {
+        "id": 14,
+        "seconds": 50.2,
+        "endSeconds": 53.4,
+        "timeDisplay": "0:50",
+        "speaker": "Receptionist",
+        "textEn": "I'm sorry, sir. I'll put you through to IT.",
+        "textFa": "عذرخواهی می‌کنم قربان. شما را به بخش فناوری اطلاعات (IT) وصل می‌کنم."
+      },
+      {
+        "id": 15,
+        "seconds": 53.4,
+        "endSeconds": 54.2,
+        "timeDisplay": "0:53",
+        "speaker": "Rob",
+        "textEn": "Thanks.",
+        "textFa": "ممنون."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -6010,8 +7160,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v03",
     "level": "a2",
     "episodeNumber": 3,
-    "titleFa": "اپیزود ۱ · بخش ۳: تجدید دیدار جنی و راب در هتل",
-    "titleEn": "Episode 1 · Part 3: Jenny and Rob Meet Again",
+    "titleFa": "اپیزود ۱ · بخش ۳: تجدید دیدار جنی و راب در هتل و هماهنگی جلسه کاری",
+    "titleEn": "Episode 1 · Part 3: Jenny and Rob Meet Again (Catching Up & Jet Lag)",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 1",
     "cefr": "A2",
@@ -6022,224 +7172,342 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #4f46e5, #6366f1)",
     "posterIcon": "☕",
-    "summaryFa": "جنی به لابی هتل می‌آید تا به راب خوشامد بگوید، از احوال هم باخبر شوند و او را به شام خوشامدگویی با همکاران دعوت کند.",
-    "summaryEn": "Jenny arrives at the hotel lobby to welcome Rob, catch up on life, and invite him to a welcome dinner with colleagues.",
+    "summaryFa": "جنی و راب در کافه هتل برای یک نوشیدنی دیدار می‌کنند. جنی توضیح می‌دهد که فردا راب را به دفتر برده، به اعضای تیم و رئیسش باربارا معرفی خواهد کرد تا درباره ستون و وبلاگش همفکری کنند. راب به علت پرواز و اختلاف ساعت ۵ ساعته بین نیویورک و لندن دچار پرواززدگی (جت‌لگ) شدید است. جنی با دیدن خستگی او پیشنهاد می‌دهد نوشیدنی‌شان را تمام کنند تا راب زودتر استراحت کند و ساعت قرار فردا در دفتر را به ساعت ۱۱ صبح موکول می‌کند تا راب بتواند خوب بخوابد، اما با شوخی به او یادآوری می‌کند: «دیر نکنی‌ها!».",
+    "summaryEn": "Jenny meets Rob for drinks at his hotel bar. She outlines plans for tomorrow to show him around the office, introduce him to the team and her boss Barbara, and discuss his column and blog. Rob is noticeably exhausted from jet lag due to the 5-hour time difference (9 PM in New York is 2 AM in London). Noticing his fatigue, Jenny suggests finishing their drinks so he can get some sleep, scheduling their office meeting for 11:00 AM instead, with a cheerful reminder: 'Don't be late!'",
     "keyTopicsFa": [
-      "دیدار مجدد پس از مدت طولانی (Long time no see)",
-      "احوالپرسی صمیمانه",
-      "صحبت درباره استقرار در هتل",
-      "برنامه‌ریزی ملاقات کاری"
+      "احوالپرسی و صحبت درباره هتل (And how's your hotel? / Do you have a good view?)",
+      "برنامه‌ریزی بازدید از شرکت و معرفی به همکاران (Show you around the office / Introduce you to the team)",
+      "اختلاف زمانی و پرواززدگی (That's two o'clock in the morning for me / You must be really tired)",
+      "پیشنهاد استراحت و اتمام نوشیدنی (Let's finish our drinks / You need to go to bed)",
+      "هماهنگی ساعت ملاقات کاری فردا و یادآوری خوش‌قولی (See you in the office at eleven / Don't be late)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Jenny",
-              "textEn": "So, here you are in New York at last.",
-              "textFa": "خب، بالاخره به نیویورک رسیدی!"
+        "id": 1,
+        "seconds": 12.7,
+        "endSeconds": 16.3,
+        "timeDisplay": "0:12",
+        "speaker": "Jenny",
+        "textEn": "So, here you are in New York at last.",
+        "textFa": "خب، بالاخره اینجایی در نیویورک."
       },
       {
-              "id": 2,
-              "seconds": 16,
-              "timeDisplay": "0:16",
-              "speaker": "Rob",
-              "textEn": "Yeah, it's great to be here. It's really exciting.",
-              "textFa": "بله، عالیه که اینجام. واقعاً هیجان‌انگیزه."
+        "id": 2,
+        "seconds": 16.5,
+        "endSeconds": 18.5,
+        "timeDisplay": "0:16",
+        "speaker": "Rob",
+        "textEn": "Yeah, it's great to be here.",
+        "textFa": "بله، خیلی عالیه که اینجا هستم."
       },
       {
-              "id": 3,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Jenny",
-              "textEn": "And how's your hotel?",
-              "textFa": "هتل چطوره؟"
+        "id": 3,
+        "seconds": 18.7,
+        "endSeconds": 19.8,
+        "timeDisplay": "0:18",
+        "speaker": "Rob",
+        "textEn": "It's really exciting.",
+        "textFa": "واقعاً هیجان‌انگیزه."
       },
       {
-              "id": 4,
-              "seconds": 21,
-              "timeDisplay": "0:21",
-              "speaker": "Rob",
-              "textEn": "It's fine. My room is really... nice.",
-              "textFa": "خوبه. اتاقم واقعاً... قشنگه."
+        "id": 4,
+        "seconds": 20.0,
+        "endSeconds": 21.2,
+        "timeDisplay": "0:20",
+        "speaker": "Jenny",
+        "textEn": "And how's your hotel?",
+        "textFa": "و هتلت چطوره؟"
       },
       {
-              "id": 5,
-              "seconds": 25,
-              "timeDisplay": "0:25",
-              "speaker": "Jenny",
-              "textEn": "Do you have a good view from your room?",
-              "textFa": "منظره خوبی از اتاقت داری؟"
+        "id": 5,
+        "seconds": 21.6,
+        "endSeconds": 22.8,
+        "timeDisplay": "0:21",
+        "speaker": "Rob",
+        "textEn": "It's fine.",
+        "textFa": "خوبه."
       },
       {
-              "id": 6,
-              "seconds": 27,
-              "timeDisplay": "0:27",
-              "speaker": "Rob",
-              "textEn": "I can see lots of other buildings.",
-              "textFa": "می‌توانم کلی ساختمان‌های دیگر را ببینم."
+        "id": 6,
+        "seconds": 23.0,
+        "endSeconds": 24.8,
+        "timeDisplay": "0:23",
+        "speaker": "Rob",
+        "textEn": "My room is really nice.",
+        "textFa": "اتاقم واقعاً قشنگه."
       },
       {
-              "id": 7,
-              "seconds": 31,
-              "timeDisplay": "0:31",
-              "speaker": "Jenny",
-              "textEn": "Tomorrow I'm going to show you around the office and introduce you to the team.",
-              "textFa": "فردا قصد دارم دفتر را به تو نشان بدهم و تو را به بقیه اعضای تیم معرفی کنم."
+        "id": 7,
+        "seconds": 25.1,
+        "endSeconds": 27.2,
+        "timeDisplay": "0:25",
+        "speaker": "Jenny",
+        "textEn": "Do you have a good view from your room?",
+        "textFa": "از اتاقت منظره و دید خوبی داری؟"
       },
       {
-              "id": 8,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Jenny",
-              "textEn": "Barbara's looking forward to meeting you. You remember Barbara, my boss?",
-              "textFa": "باربارا بسیار مشتاق دیدار با توست؛ باربارا، رئیسم را که یادت هست؟"
+        "id": 8,
+        "seconds": 27.6,
+        "endSeconds": 29.6,
+        "timeDisplay": "0:27",
+        "speaker": "Rob",
+        "textEn": "I can see lots of other buildings.",
+        "textFa": "می‌توانم ساختمان‌های زیادی رو ببینم."
       },
       {
-              "id": 9,
-              "seconds": 43,
-              "timeDisplay": "0:43",
-              "speaker": "Rob",
-              "textEn": "Oh... yeah, sorry.",
-              "textFa": "اوه... بله، حواسم نبود."
+        "id": 9,
+        "seconds": 31.4,
+        "endSeconds": 35.6,
+        "timeDisplay": "0:31",
+        "speaker": "Jenny",
+        "textEn": "Tomorrow I'm going to show you around the office and introduce you to the team.",
+        "textFa": "فردا قرار است دفتر را بهت نشان بدهم و تو را به تیم معرفی کنم."
       },
       {
-              "id": 10,
-              "seconds": 46,
-              "timeDisplay": "0:46",
-              "speaker": "Jenny",
-              "textEn": "And then you can start thinking about your blog and the column. Have you got any ideas yet, Rob? ... Rob?",
-              "textFa": "و بعد می‌توانی به وبلاگ و ستون اختصاصی‌ات فکر کنی. تا الان ایده‌ای به ذهنت رسیده راب؟ ... راب؟"
+        "id": 10,
+        "seconds": 36.0,
+        "endSeconds": 38.5,
+        "timeDisplay": "0:36",
+        "speaker": "Jenny",
+        "textEn": "Barbara's looking forward to meeting you.",
+        "textFa": "باربارا بی‌صبرانه منتظر دیدنت است."
       },
       {
-              "id": 11,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Rob",
-              "textEn": "What? Sorry, Jenny.",
-              "textFa": "چی؟ ببخشید جنی، متوجه نشدم."
+        "id": 11,
+        "seconds": 39.2,
+        "endSeconds": 43.6,
+        "timeDisplay": "0:39",
+        "speaker": "Jenny",
+        "textEn": "You remember? Barbara, my boss?",
+        "textFa": "یادت می‌آید؟ باربارا، رئیسم؟"
       },
       {
-              "id": 12,
-              "seconds": 57,
-              "timeDisplay": "0:57",
-              "speaker": "Jenny",
-              "textEn": "You must be really tired.",
-              "textFa": "باید حسابی خسته باشی."
+        "id": 12,
+        "seconds": 43.7,
+        "endSeconds": 45.4,
+        "timeDisplay": "0:43",
+        "speaker": "Rob",
+        "textEn": "Oh, yeah. Sorry.",
+        "textFa": "اوه، بله. ببخشید."
       },
       {
-              "id": 13,
-              "seconds": 58,
-              "timeDisplay": "0:58",
-              "speaker": "Rob",
-              "textEn": "Yes, I am a bit. What time is it now?",
-              "textFa": "بله، کمی خسته‌ام. الان ساعت چنده؟"
+        "id": 13,
+        "seconds": 46.2,
+        "endSeconds": 49.3,
+        "timeDisplay": "0:46",
+        "speaker": "Jenny",
+        "textEn": "And then you can start thinking about your blog and the column.",
+        "textFa": "و بعد از آن می‌توانی در مورد وبلاگ و ستون روزنامه‌ات فکر کنی."
       },
       {
-              "id": 14,
-              "seconds": 64,
-              "timeDisplay": "1:04",
-              "speaker": "Jenny",
-              "textEn": "It's nine o'clock.",
-              "textFa": "ساعت ۹ شبه."
+        "id": 14,
+        "seconds": 50.1,
+        "endSeconds": 52.8,
+        "timeDisplay": "0:50",
+        "speaker": "Jenny",
+        "textEn": "Have you got any ideas yet, Rob? ... Rob?",
+        "textFa": "آیا ایده‌ای تا الان داری، راب؟ ... راب؟"
       },
       {
-              "id": 15,
-              "seconds": 66,
-              "timeDisplay": "1:06",
-              "speaker": "Rob",
-              "textEn": "Nine o'clock? That's two o'clock in the morning for me.",
-              "textFa": "ساعت ۹؟ این به وقت من یعنی ۲ نصفه شب!"
+        "id": 15,
+        "seconds": 53.0,
+        "endSeconds": 54.2,
+        "timeDisplay": "0:53",
+        "speaker": "Rob",
+        "textEn": "What?",
+        "textFa": "چی؟"
       },
       {
-              "id": 16,
-              "seconds": 69,
-              "timeDisplay": "1:09",
-              "speaker": "Jenny",
-              "textEn": "Let's finish our drinks. You need to go to bed.",
-              "textFa": "بیا نوشیدنی‌مان را تمام کنیم؛ باید بروی بخوابی."
+        "id": 16,
+        "seconds": 55.3,
+        "endSeconds": 56.6,
+        "timeDisplay": "0:55",
+        "speaker": "Rob",
+        "textEn": "Sorry, Jenny.",
+        "textFa": "ببخشید، جنی."
       },
       {
-              "id": 17,
-              "seconds": 72,
-              "timeDisplay": "1:12",
-              "speaker": "Rob",
-              "textEn": "I guess you're right.",
-              "textFa": "فکر کنم حق با توئه."
+        "id": 17,
+        "seconds": 57.0,
+        "endSeconds": 58.7,
+        "timeDisplay": "0:57",
+        "speaker": "Jenny",
+        "textEn": "You must be really tired.",
+        "textFa": "حتماً خیلی خسته‌ای."
       },
       {
-              "id": 18,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Jenny",
-              "textEn": "So, I'll see you in the office at eleven in the morning.",
-              "textFa": "پس فردا ساعت ۱۱ صبح در دفتر می‌بینمت."
+        "id": 18,
+        "seconds": 58.9,
+        "endSeconds": 60.8,
+        "timeDisplay": "0:58",
+        "speaker": "Rob",
+        "textEn": "Yes, I am a bit.",
+        "textFa": "بله، یک کم هستم."
       },
       {
-              "id": 19,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Rob",
-              "textEn": "At eleven?",
-              "textFa": "ساعت ۱۱؟"
+        "id": 19,
+        "seconds": 61.1,
+        "endSeconds": 62.8,
+        "timeDisplay": "1:01",
+        "speaker": "Rob",
+        "textEn": "What time is it now?",
+        "textFa": "الان ساعت چنده؟"
       },
       {
-              "id": 20,
-              "seconds": 79,
-              "timeDisplay": "1:19",
-              "speaker": "Jenny",
-              "textEn": "Is that OK?",
-              "textFa": "مناسبه؟"
+        "id": 20,
+        "seconds": 64.3,
+        "endSeconds": 66.0,
+        "timeDisplay": "1:04",
+        "speaker": "Jenny",
+        "textEn": "It's nine o'clock.",
+        "textFa": "ساعت نُه است."
       },
       {
-              "id": 21,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Rob",
-              "textEn": "It's perfect. Thanks, Jenny.",
-              "textFa": "عالیه، ممنون جنی."
+        "id": 21,
+        "seconds": 66.4,
+        "endSeconds": 67.3,
+        "timeDisplay": "1:06",
+        "speaker": "Rob",
+        "textEn": "Nine o'clock?",
+        "textFa": "ساعت نُه؟"
       },
       {
-              "id": 22,
-              "seconds": 83,
-              "timeDisplay": "1:23",
-              "speaker": "Jenny",
-              "textEn": "There's just one thing.",
-              "textFa": "فقط یک نکته هست."
+        "id": 22,
+        "seconds": 67.6,
+        "endSeconds": 69.6,
+        "timeDisplay": "1:07",
+        "speaker": "Rob",
+        "textEn": "That's two o'clock in the morning for me.",
+        "textFa": "این برای من یعنی ساعت دو صبح."
       },
       {
-              "id": 23,
-              "seconds": 84,
-              "timeDisplay": "1:24",
-              "speaker": "Rob",
-              "textEn": "What's that?",
-              "textFa": "چی؟"
+        "id": 23,
+        "seconds": 69.9,
+        "endSeconds": 71.3,
+        "timeDisplay": "1:09",
+        "speaker": "Jenny",
+        "textEn": "Let's finish our drinks.",
+        "textFa": "بیا نوشیدنی‌هایمان را تمام کنیم."
       },
       {
-              "id": 24,
-              "seconds": 85,
-              "timeDisplay": "1:25",
-              "speaker": "Jenny",
-              "textEn": "Don't be late.",
-              "textFa": "دیر نکن!"
+        "id": 24,
+        "seconds": 71.3,
+        "endSeconds": 72.3,
+        "timeDisplay": "1:11",
+        "speaker": "Jenny",
+        "textEn": "You need to go to bed.",
+        "textFa": "تو باید بروی بخوابی."
       },
       {
-              "id": 25,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Rob",
-              "textEn": "By the way. It's great to see you again.",
-              "textFa": "راستی، دیدن دوباره‌ات فوق‌العاده است."
+        "id": 25,
+        "seconds": 72.3,
+        "endSeconds": 73.5,
+        "timeDisplay": "1:12",
+        "speaker": "Rob",
+        "textEn": "I guess you're right.",
+        "textFa": "حدس می‌زنم حق با توئه."
       },
       {
-              "id": 26,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Jenny",
-              "textEn": "Yeah. It's great to see you, too.",
-              "textFa": "آره، من هم از دیدنت خیلی خوشحالم."
+        "id": 26,
+        "seconds": 74.6,
+        "endSeconds": 77.7,
+        "timeDisplay": "1:14",
+        "speaker": "Jenny",
+        "textEn": "So, I'll see you in the office at eleven in the morning.",
+        "textFa": "خب، پس در دفتر ساعت یازده صبح می‌بینمت."
+      },
+      {
+        "id": 27,
+        "seconds": 77.9,
+        "endSeconds": 78.6,
+        "timeDisplay": "1:17",
+        "speaker": "Rob",
+        "textEn": "At eleven?",
+        "textFa": "ساعت یازده؟"
+      },
+      {
+        "id": 28,
+        "seconds": 79.3,
+        "endSeconds": 79.8,
+        "timeDisplay": "1:19",
+        "speaker": "Jenny",
+        "textEn": "Is that OK?",
+        "textFa": "خوبه؟ مشکلی نیست؟"
+      },
+      {
+        "id": 29,
+        "seconds": 80.5,
+        "endSeconds": 81.6,
+        "timeDisplay": "1:20",
+        "speaker": "Rob",
+        "textEn": "It's perfect.",
+        "textFa": "عالیه."
+      },
+      {
+        "id": 30,
+        "seconds": 82.1,
+        "endSeconds": 82.6,
+        "timeDisplay": "1:22",
+        "speaker": "Rob",
+        "textEn": "Thanks, Jenny.",
+        "textFa": "ممنون، جنی."
+      },
+      {
+        "id": 31,
+        "seconds": 83.2,
+        "endSeconds": 84.3,
+        "timeDisplay": "1:23",
+        "speaker": "Jenny",
+        "textEn": "There's just one thing.",
+        "textFa": "فقط یک چیز هست."
+      },
+      {
+        "id": 32,
+        "seconds": 84.4,
+        "endSeconds": 85.6,
+        "timeDisplay": "1:24",
+        "speaker": "Rob",
+        "textEn": "What's that?",
+        "textFa": "چی؟"
+      },
+      {
+        "id": 33,
+        "seconds": 85.8,
+        "endSeconds": 87.0,
+        "timeDisplay": "1:25",
+        "speaker": "Jenny",
+        "textEn": "Don't be late.",
+        "textFa": "دیر نکنی‌ها."
+      },
+      {
+        "id": 34,
+        "seconds": 88.7,
+        "endSeconds": 90.9,
+        "timeDisplay": "1:28",
+        "speaker": "Rob",
+        "textEn": "By the way, it's great to see you again.",
+        "textFa": "راستی، خیلی خوشحالم که دوباره می‌بینمت."
+      },
+      {
+        "id": 35,
+        "seconds": 91.4,
+        "endSeconds": 92.1,
+        "timeDisplay": "1:31",
+        "speaker": "Jenny",
+        "textEn": "Yeah.",
+        "textFa": "آره."
+      },
+      {
+        "id": 36,
+        "seconds": 92.6,
+        "endSeconds": 94.0,
+        "timeDisplay": "1:32",
+        "speaker": "Jenny",
+        "textEn": "It's great to see you, too.",
+        "textFa": "من هم خیلی خوشحالم که می‌بینمت."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -6390,8 +7658,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v04",
     "level": "a2",
     "episodeNumber": 4,
-    "titleFa": "اپیزود ۲ · بخش ۱: حضور در دفتر نیویورک و آشنایی با هالی",
-    "titleEn": "Episode 2 · Part 1: In the New York Office with Holly",
+    "titleFa": "اپیزود ۲ · بخش ۱: حضور در دفتر نیویورک و آشنایی با باربارا و هالی",
+    "titleEn": "Episode 2 · Part 1: In the New York Office (Meeting Barbara & Holly)",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 2",
     "cefr": "A2",
@@ -6402,200 +7670,333 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #2563eb, #3b82f6)",
     "posterIcon": "🏢",
-    "summaryFa": "راب با هالی، یکی دیگر از نویسندگان بااستعداد مجله آشنا می‌شود و درباره مهلت‌های تحویل مقالات بحث می‌کنند.",
-    "summaryEn": "Rob is introduced to Holly, another talented staff writer at the magazine, and they discuss their upcoming editorial deadlines.",
+    "summaryFa": "جنی بخش‌های مختلف دفتر کار نیویورک را به راب نشان می‌دهد و او را با باربارا، سردبیر مجله، آشنا می‌کند. جنی به باربارا تعارف می‌کند که برای ناهار به آن‌ها ملحق شود، اما باربارا به دلیل جلسه‌ای در ساعت ۱ عذرخواهی کرده و قرار جلسه مشترکشان را به ساعت ۳ موکول می‌کند. در همین حین، هالی تایلر سر می‌رسد و خود را به‌عنوان عکاس اختصاصی مقالات راب معرفی می‌کند؛ سپس با اشتیاق پیشنهاد می‌دهد در زمان ناهار همراه آن‌ها باشد تا با راب بیشتر گفتگو کند.",
+    "summaryEn": "Jenny shows Rob around the New York office and introduces him to Barbara, the magazine's editor. Jenny invites Barbara to lunch, but Barbara declines due to a 1:00 PM meeting, confirming they will meet at 3:00 PM instead. Shortly after, Holly Tyler introduces herself as Rob's photographer and eagerly tags along to their lunch to get acquainted with Rob.",
     "keyTopicsFa": [
-      "آشنایی با همکاران جدید",
-      "وظایف تحریریه مجله",
-      "تقسیم کار در تیم",
-      "مکالمات رسمی اداری"
+      "آشنایی با محیط کار جدید و مقایسه با دفتر لندن (What do you think of the office? / Much bigger than our place)",
+      "معرفی رسمی مدیر و همکاران (This is Barbara, the editor of the magazine)",
+      "دعوت به ناهار و عذرخواهی محترمانه به دلیل تداخل جلسات (Would you like to come with us? / Unfortunately I have a meeting at one)",
+      "معرفی هالی به عنوان عکاس پروژه (I'm going to be Rob's photographer)",
+      "پیوستن به همکاران برای ناهار و گفتگو (I can come with you / Rob and I can talk / So let's go)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 15,
-              "timeDisplay": "0:15",
-              "speaker": "Jenny",
-              "textEn": "Well, I think that's everything. What do you think of the office?",
-              "textFa": "خب، فکر کنم همه‌چیز رو گفتم. نظرت درباره دفتر چیه؟"
+        "id": 1,
+        "seconds": 15.4,
+        "endSeconds": 17.8,
+        "timeDisplay": "0:15",
+        "speaker": "Jenny",
+        "textEn": "Well, I think that's everything.",
+        "textFa": "خب، فکر کنم همه‌چیز رو گفتم و نشونت دادم."
       },
       {
-              "id": 2,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Rob",
-              "textEn": "It's brilliant. Much bigger than our place in London.",
-              "textFa": "فوق‌العاده است؛ خیلی بزرگ‌تر از محل کار ما در لندنه."
+        "id": 2,
+        "seconds": 18.7,
+        "endSeconds": 19.8,
+        "timeDisplay": "0:18",
+        "speaker": "Jenny",
+        "textEn": "What do you think of the office?",
+        "textFa": "نظرت درباره دفتر چیه؟"
       },
       {
-              "id": 3,
-              "seconds": 24,
-              "timeDisplay": "0:24",
-              "speaker": "Jenny",
-              "textEn": "Oh, here's Barbara. Rob, this is Barbara, the editor of the magazine.",
-              "textFa": "اوه، باربارا آمد. راب، ایشان باربارا، سردبیر مجله هستند."
+        "id": 3,
+        "seconds": 20.2,
+        "endSeconds": 20.8,
+        "timeDisplay": "0:20",
+        "speaker": "Rob",
+        "textEn": "It's brilliant.",
+        "textFa": "فوق‌العاده است."
       },
       {
-              "id": 4,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Barbara",
-              "textEn": "It's good to finally meet you, Rob.",
-              "textFa": "خوشحالم که بالاخره از نزدیک می‌بینمت، راب."
+        "id": 4,
+        "seconds": 21.2,
+        "endSeconds": 23.1,
+        "timeDisplay": "0:21",
+        "speaker": "Rob",
+        "textEn": "And much bigger than our place in London.",
+        "textFa": "و خیلی بزرگ‌تر از محل کار ما در لندنه."
       },
       {
-              "id": 5,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Rob",
-              "textEn": "It's great to be here.",
-              "textFa": "بسیار باعث افتخاره که اینجام."
+        "id": 5,
+        "seconds": 24.5,
+        "endSeconds": 25.4,
+        "timeDisplay": "0:24",
+        "speaker": "Jenny",
+        "textEn": "Oh, here's Barbara.",
+        "textFa": "اوه، باربارا آمد."
       },
       {
-              "id": 6,
-              "seconds": 32,
-              "timeDisplay": "0:32",
-              "speaker": "Barbara",
-              "textEn": "Is this your first time in New York?",
-              "textFa": "اولین باره که به نیویورک می‌آیی؟"
+        "id": 6,
+        "seconds": 26.2,
+        "endSeconds": 28.7,
+        "timeDisplay": "0:26",
+        "speaker": "Jenny",
+        "textEn": "Rob, this is Barbara, the editor of the magazine.",
+        "textFa": "راب، ایشان باربارا، سردبیر مجله هستند."
       },
       {
-              "id": 7,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Rob",
-              "textEn": "No, I came here when I was eighteen. But only for a few days.",
-              "textFa": "خیر، وقتی هجده سالم بود آمدم؛ اما فقط برای چند روز."
+        "id": 7,
+        "seconds": 28.9,
+        "endSeconds": 30.5,
+        "timeDisplay": "0:28",
+        "speaker": "Barbara",
+        "textEn": "It's good to finally meet you, Rob.",
+        "textFa": "خوشحالم که بالاخره از نزدیک می‌بینمت، راب."
       },
       {
-              "id": 8,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Barbara",
-              "textEn": "Well, I hope you get to know New York much better this time!",
-              "textFa": "خب، امیدوارم این بار نیویورک را خیلی بهتر بشناسی!"
+        "id": 8,
+        "seconds": 30.5,
+        "endSeconds": 31.9,
+        "timeDisplay": "0:30",
+        "speaker": "Rob",
+        "textEn": "It's great to be here.",
+        "textFa": "خیلی عالیه که اینجا هستم."
       },
       {
-              "id": 9,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Jenny",
-              "textEn": "Barbara, I'm going to take Rob out for lunch. Would you like to come with us?",
-              "textFa": "باربارا، می‌خواهم راب را برای ناهار بیرون ببرم؛ مایلید همراه ما بیایید؟"
+        "id": 9,
+        "seconds": 32.2,
+        "endSeconds": 33.9,
+        "timeDisplay": "0:32",
+        "speaker": "Barbara",
+        "textEn": "Is this your first time in New York?",
+        "textFa": "اولین باره که به نیویورک می‌آیی؟"
       },
       {
-              "id": 10,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Barbara",
-              "textEn": "I'd love to, but unfortunately I have a meeting at one. So, I'll see you later. We're meeting at three, I think.",
-              "textFa": "خیلی دوست داشتم، اما متاسفانه ساعت یک جلسه دارم. پس بعداً می‌بینمتان؛ گمانم ساعت سه جلسه داریم."
+        "id": 10,
+        "seconds": 34.2,
+        "endSeconds": 36.3,
+        "timeDisplay": "0:34",
+        "speaker": "Rob",
+        "textEn": "No, I came here when I was eighteen.",
+        "textFa": "نه، وقتی هجده سالم بود آمدم اینجا."
       },
       {
-              "id": 11,
-              "seconds": 52,
-              "timeDisplay": "0:52",
-              "speaker": "Jenny",
-              "textEn": "That's right.",
-              "textFa": "درسته."
+        "id": 11,
+        "seconds": 36.5,
+        "endSeconds": 37.8,
+        "timeDisplay": "0:36",
+        "speaker": "Rob",
+        "textEn": "But only for a few days.",
+        "textFa": "اما فقط برای چند روز."
       },
       {
-              "id": 12,
-              "seconds": 53,
-              "timeDisplay": "0:53",
-              "speaker": "Barbara",
-              "textEn": "Have a nice lunch.",
-              "textFa": "ناهار خوبی داشته باشید."
+        "id": 12,
+        "seconds": 38.2,
+        "endSeconds": 41.3,
+        "timeDisplay": "0:38",
+        "speaker": "Barbara",
+        "textEn": "Well, I hope you get to know New York much better this time!",
+        "textFa": "خب، امیدوارم این بار نیویورک را خیلی بهتر بشناسی!"
       },
       {
-              "id": 13,
-              "seconds": 56,
-              "timeDisplay": "0:56",
-              "speaker": "Holly",
-              "textEn": "Hey, are you Rob Walker?",
-              "textFa": "سلام، شما راب واکر هستید؟"
+        "id": 13,
+        "seconds": 41.6,
+        "endSeconds": 44.0,
+        "timeDisplay": "0:41",
+        "speaker": "Jenny",
+        "textEn": "Barbara, I'm going to take Rob out for lunch.",
+        "textFa": "باربارا، می‌خواهم راب را برای ناهار بیرون ببرم."
       },
       {
-              "id": 14,
-              "seconds": 59,
-              "timeDisplay": "0:59",
-              "speaker": "Rob",
-              "textEn": "Yes.",
-              "textFa": "بله خودم هستم."
+        "id": 14,
+        "seconds": 44.3,
+        "endSeconds": 45.6,
+        "timeDisplay": "0:44",
+        "speaker": "Jenny",
+        "textEn": "Would you like to come with us?",
+        "textFa": "مایلید با ما بیایید؟"
       },
       {
-              "id": 15,
-              "seconds": 59,
-              "timeDisplay": "0:59",
-              "speaker": "Holly",
-              "textEn": "Hi, I'm Holly. Holly Tyler.",
-              "textFa": "سلام، من هالی هستم؛ هالی تایلر."
+        "id": 15,
+        "seconds": 45.5,
+        "endSeconds": 49.3,
+        "timeDisplay": "0:45",
+        "speaker": "Barbara",
+        "textEn": "I'd love to, but unfortunately, I have a meeting at one.",
+        "textFa": "خیلی دوست دارم، اما متاسفانه ساعت یک جلسه دارم."
       },
       {
-              "id": 16,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Rob",
-              "textEn": "Hello, Holly.",
-              "textFa": "سلام، هالی."
+        "id": 16,
+        "seconds": 49.4,
+        "endSeconds": 50.6,
+        "timeDisplay": "0:49",
+        "speaker": "Barbara",
+        "textEn": "So, I'll see you later.",
+        "textFa": "پس بعداً می‌بینمتان."
       },
       {
-              "id": 17,
-              "seconds": 63,
-              "timeDisplay": "1:03",
-              "speaker": "Holly",
-              "textEn": "We're going to be working together.",
-              "textFa": "قرار است با هم همکار باشیم."
+        "id": 17,
+        "seconds": 50.9,
+        "endSeconds": 52.5,
+        "timeDisplay": "0:50",
+        "speaker": "Barbara",
+        "textEn": "We're meeting at three, I think.",
+        "textFa": "فکر کنم ساعت سه با هم جلسه داریم."
       },
       {
-              "id": 18,
-              "seconds": 65,
-              "timeDisplay": "1:05",
-              "speaker": "Jenny",
-              "textEn": "Really?",
-              "textFa": "واقعاً؟"
+        "id": 18,
+        "seconds": 53.0,
+        "endSeconds": 53.5,
+        "timeDisplay": "0:53",
+        "speaker": "Jenny",
+        "textEn": "That's right.",
+        "textFa": "درسته."
       },
       {
-              "id": 19,
-              "seconds": 67,
-              "timeDisplay": "1:07",
-              "speaker": "Holly",
-              "textEn": "Didn't Barbara tell you? I'm going to be Rob's photographer!",
-              "textFa": "باربارا بهت نگفت؟ من عکاس پروژه‌های راب خواهم بود!"
+        "id": 19,
+        "seconds": 53.6,
+        "endSeconds": 54.4,
+        "timeDisplay": "0:53",
+        "speaker": "Barbara",
+        "textEn": "Have a nice lunch.",
+        "textFa": "ناهار خوبی داشته باشید."
       },
       {
-              "id": 20,
-              "seconds": 71,
-              "timeDisplay": "1:11",
-              "speaker": "Jenny",
-              "textEn": "Oh, well... We're just going for lunch.",
-              "textFa": "اوه، خب... ما تازه می‌خواستیم برویم ناهار."
+        "id": 20,
+        "seconds": 56.9,
+        "endSeconds": 58.7,
+        "timeDisplay": "0:56",
+        "speaker": "Holly",
+        "textEn": "Hey, are you Rob Walker?",
+        "textFa": "سلام، شما راب واکر هستید؟"
       },
       {
-              "id": 21,
-              "seconds": 75,
-              "timeDisplay": "1:15",
-              "speaker": "Holly",
-              "textEn": "Cool! I can come with you. I mean, I had a sandwich earlier, so I don't need to eat. But Rob and I can talk. Is that OK?",
-              "textFa": "عالیه! می‌توانم همراهتان بیایم. البته قبلاً یک ساندویچ خوردم و غذا نمی‌خواهم، اما من و راب می‌توانیم صحبت کنیم؛ مشکلی نیست؟"
+        "id": 21,
+        "seconds": 59.2,
+        "endSeconds": 59.6,
+        "timeDisplay": "0:59",
+        "speaker": "Rob",
+        "textEn": "Yes.",
+        "textFa": "بله."
       },
       {
-              "id": 22,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Jenny",
-              "textEn": "Sure.",
-              "textFa": "حتماً، مشکلی نیست."
+        "id": 22,
+        "seconds": 59.8,
+        "endSeconds": 61.6,
+        "timeDisplay": "0:59",
+        "speaker": "Holly",
+        "textEn": "Hi, I'm Holly. Holly Tyler.",
+        "textFa": "سلام، من هالی هستم. هالی تایلر."
       },
       {
-              "id": 23,
-              "seconds": 88,
-              "timeDisplay": "1:28",
-              "speaker": "Holly",
-              "textEn": "So, let's go.",
-              "textFa": "پس بزن بریم!"
+        "id": 23,
+        "seconds": 62.1,
+        "endSeconds": 63.0,
+        "timeDisplay": "1:02",
+        "speaker": "Rob",
+        "textEn": "Hello, Holly.",
+        "textFa": "سلام، هالی."
+      },
+      {
+        "id": 24,
+        "seconds": 63.5,
+        "endSeconds": 65.2,
+        "timeDisplay": "1:03",
+        "speaker": "Holly",
+        "textEn": "We're going to be working together.",
+        "textFa": "ما قرار است با هم کار کنیم."
+      },
+      {
+        "id": 25,
+        "seconds": 65.6,
+        "endSeconds": 66.2,
+        "timeDisplay": "1:05",
+        "speaker": "Jenny",
+        "textEn": "Really?",
+        "textFa": "واقعاً؟"
+      },
+      {
+        "id": 26,
+        "seconds": 67.0,
+        "endSeconds": 68.9,
+        "timeDisplay": "1:07",
+        "speaker": "Holly",
+        "textEn": "Didn't Barbara tell you?",
+        "textFa": "باربارا بهت نگفت؟"
+      },
+      {
+        "id": 27,
+        "seconds": 69.1,
+        "endSeconds": 70.8,
+        "timeDisplay": "1:09",
+        "speaker": "Holly",
+        "textEn": "I'm going to be Rob's photographer!",
+        "textFa": "من عکاس راب خواهم بود!"
+      },
+      {
+        "id": 28,
+        "seconds": 71.5,
+        "endSeconds": 75.1,
+        "timeDisplay": "1:11",
+        "speaker": "Jenny",
+        "textEn": "Oh, well... We're just going for lunch.",
+        "textFa": "اوه، خب... ما تازه می‌خواستیم برای ناهار برویم."
+      },
+      {
+        "id": 29,
+        "seconds": 75.0,
+        "endSeconds": 75.9,
+        "timeDisplay": "1:15",
+        "speaker": "Holly",
+        "textEn": "Cool!",
+        "textFa": "عالیه!"
+      },
+      {
+        "id": 30,
+        "seconds": 76.3,
+        "endSeconds": 77.6,
+        "timeDisplay": "1:16",
+        "speaker": "Holly",
+        "textEn": "I can come with you.",
+        "textFa": "من می‌توانم همراه شما بیایم."
+      },
+      {
+        "id": 31,
+        "seconds": 78.2,
+        "endSeconds": 82.3,
+        "timeDisplay": "1:18",
+        "speaker": "Holly",
+        "textEn": "I mean, I had a sandwich earlier, so I don't need to eat.",
+        "textFa": "یعنی قبلاً یک ساندویچ خوردم، بنابراین غذایی نمی‌خواهم بخورم."
+      },
+      {
+        "id": 32,
+        "seconds": 82.6,
+        "endSeconds": 84.8,
+        "timeDisplay": "1:22",
+        "speaker": "Holly",
+        "textEn": "But Rob and I can talk.",
+        "textFa": "اما من و راب می‌توانیم با هم صحبت کنیم."
+      },
+      {
+        "id": 33,
+        "seconds": 85.2,
+        "endSeconds": 85.9,
+        "timeDisplay": "1:25",
+        "speaker": "Holly",
+        "textEn": "Is that OK?",
+        "textFa": "مشکلی نیست؟"
+      },
+      {
+        "id": 34,
+        "seconds": 86.9,
+        "endSeconds": 87.2,
+        "timeDisplay": "1:26",
+        "speaker": "Jenny",
+        "textEn": "Sure.",
+        "textFa": "حتماً."
+      },
+      {
+        "id": 35,
+        "seconds": 88.5,
+        "endSeconds": 89.8,
+        "timeDisplay": "1:28",
+        "speaker": "Holly",
+        "textEn": "So, let's go.",
+        "textFa": "پس بزن بریم."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -6746,8 +8147,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v05",
     "level": "a2",
     "episodeNumber": 5,
-    "titleFa": "اپیزود ۲ · بخش ۲: صرف ناهار کاری در رستوران",
-    "titleEn": "Episode 2 · Part 2: At the Restaurant with the Team",
+    "titleFa": "اپیزود ۲ · بخش ۲: صرف ناهار در رستوران و سفارش غذا",
+    "titleEn": "Episode 2 · Part 2: At the Restaurant (Ordering & Meal Problems)",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 2",
     "cefr": "A2",
@@ -6758,192 +8159,261 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #0d9488, #14b8a6)",
     "posterIcon": "🥗",
-    "summaryFa": "راب، جنی و هالی در یک رستوران ناهار می‌خورند، ساندویچ‌های مخصوص سفارش می‌دهند و درباره سبک زندگی در منهتن صحبت می‌کنند.",
-    "summaryEn": "Rob, Jenny, and Holly enjoy lunch together at a restaurant, ordering specialty sandwiches and discussing Manhattan lifestyle.",
+    "summaryFa": "جنی، راب و هالی در رستوران برای ناهار می‌نشینند. جنی ماهی تن با سالاد سبزیجات و آب گازدار سفارش می‌دهد و راب استیک مغزپخت (Well done) همراه با سیب‌زمینی سرخ‌کرده می‌خواهد (هالی چون قبلاً ساندویچ خورده چیزی سفارش نمی‌دهد). اما پس از آوردن غذا دو مشکل پیش می‌آید: گارسون برای جنی به اشتباه به جای سالاد سبزیجات، سیب‌زمینی سرخ‌کرده آورده و استیک راب نیز به جای مغزپخت، کاملاً خام (Rare) است. آن‌ها با رعایت ادب موضوع را به گارسون اطلاع می‌دهند و گارسون ضمن عذرخواهی، سالاد جنی را تعویض کرده و استیک راب را به آشپزخانه برمی‌گرداند.",
+    "summaryEn": "Jenny, Rob, and Holly sit down for lunch at a restaurant. Jenny orders tuna with a green salad and sparkling water, while Rob orders well-done steak with fries (Holly doesn't order because she already ate earlier). When the food arrives, two mistakes occur: the waitress mistakenly brought fries instead of a green salad for Jenny, and Rob's steak is rare instead of well done. They politely bring the issues to the waitress's attention, and she apologizes, promising to change the salad and taking the steak back to the kitchen.",
     "keyTopicsFa": [
-      "سفارش غذا و مخلفات در رستوران",
-      "مکالمات سر میز غذا (Table talk)",
-      "بحث درباره رژیم غذایی",
-      "فرهنگ ناهار کاری در آمریکا"
+      "سفارش پیش‌غذا، غذای اصلی و نوشیدنی (Are you ready to order? / I'd like the tuna / I'll have the steak)",
+      "انتخاب مخلفات غذا و میزان پخت گوشت (Fries or baked potato / Rare, medium, or well done)",
+      "سفارش نوع آب در رستوران (Water, please / Still or sparkling?)",
+      "گزارش اشتباه در سفارش غذا با لحن محترمانه (I asked for a green salad, not fries / I asked for my steak well done and this is rare)",
+      "پاسخگویی مؤدبانه و جبران اشتباه توسط پرسنل رستوران (No problem, I'll change it / I'll take it back to the kitchen)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 17,
-              "timeDisplay": "0:17",
-              "speaker": "Waitress",
-              "textEn": "Are you ready to order?",
-              "textFa": "برای ثبت سفارش آماده‌اید؟"
+        "id": 1,
+        "seconds": 17.8,
+        "endSeconds": 18.8,
+        "timeDisplay": "0:17",
+        "speaker": "Waitress",
+        "textEn": "Are you ready to order?",
+        "textFa": "برای ثبت سفارش آماده‌اید؟"
       },
       {
-              "id": 2,
-              "seconds": 19,
-              "timeDisplay": "0:19",
-              "speaker": "Jenny",
-              "textEn": "Yes, please.",
-              "textFa": "بله، لطفاً."
+        "id": 2,
+        "seconds": 19.1,
+        "endSeconds": 20.0,
+        "timeDisplay": "0:19",
+        "speaker": "Jenny",
+        "textEn": "Yes, please.",
+        "textFa": "بله، لطفاً."
       },
       {
-              "id": 3,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Waitress",
-              "textEn": "Can I get you something to start with?",
-              "textFa": "برای پیش‌غذا چیزی میل دارید براتون بیاورم؟"
+        "id": 3,
+        "seconds": 20.2,
+        "endSeconds": 21.9,
+        "timeDisplay": "0:20",
+        "speaker": "Waitress",
+        "textEn": "Can I get you something to start with?",
+        "textFa": "برای پیش‌غذا چیزی میل دارید برایتان بیاورم؟"
       },
       {
-              "id": 4,
-              "seconds": 21,
-              "timeDisplay": "0:21",
-              "speaker": "Jenny",
-              "textEn": "No, thank you. I'd like the tuna with a green salad.",
-              "textFa": "خیر، متشکرم. من ماهی تن با سالاد سبزیجات می‌خواهم."
+        "id": 4,
+        "seconds": 22.0,
+        "endSeconds": 23.0,
+        "timeDisplay": "0:22",
+        "speaker": "Jenny",
+        "textEn": "No, thank you.",
+        "textFa": "خیر، متشکرم."
       },
       {
-              "id": 5,
-              "seconds": 28,
-              "timeDisplay": "0:28",
-              "speaker": "Waitress",
-              "textEn": "And for you, sir?",
-              "textFa": "و برای شما قربان؟"
+        "id": 5,
+        "seconds": 23.5,
+        "endSeconds": 27.7,
+        "timeDisplay": "0:23",
+        "speaker": "Jenny",
+        "textEn": "I'd like the tuna with a green salad.",
+        "textFa": "من ماهی تن با سالاد سبزیجات می‌خواهم."
       },
       {
-              "id": 6,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Rob",
-              "textEn": "I'll have the steak, please.",
-              "textFa": "من استیک میل دارم، لطفاً."
+        "id": 6,
+        "seconds": 28.8,
+        "endSeconds": 29.8,
+        "timeDisplay": "0:28",
+        "speaker": "Waitress",
+        "textEn": "And for you, sir?",
+        "textFa": "و برای شما قربان؟"
       },
       {
-              "id": 7,
-              "seconds": 33,
-              "timeDisplay": "0:33",
-              "speaker": "Waitress",
-              "textEn": "Would you like that with fries, or a baked potato?",
-              "textFa": "میل دارید همراه با سیب‌زمینی سرخ‌کرده باشد یا سیب‌زمینی تنوری؟"
+        "id": 7,
+        "seconds": 30.1,
+        "endSeconds": 32.4,
+        "timeDisplay": "0:30",
+        "speaker": "Rob",
+        "textEn": "I'll have the steak, please.",
+        "textFa": "من استیک میل دارم، لطفاً."
       },
       {
-              "id": 8,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Rob",
-              "textEn": "Fries, please.",
-              "textFa": "سیب‌زمینی سرخ‌کرده، لطفاً."
+        "id": 8,
+        "seconds": 33.1,
+        "endSeconds": 35.4,
+        "timeDisplay": "0:33",
+        "speaker": "Waitress",
+        "textEn": "Would you like that with fries, or a baked potato?",
+        "textFa": "میل دارید همراه با سیب‌زمینی سرخ‌کرده باشد یا سیب‌زمینی تنوری؟"
       },
       {
-              "id": 9,
-              "seconds": 37,
-              "timeDisplay": "0:37",
-              "speaker": "Waitress",
-              "textEn": "How would you like your steak? Rare, medium, or well done?",
-              "textFa": "استیکتان چطور پخته شود؟ آبدار (کم‌پخت)، متوسط، یا کاملاً مغزپخت؟"
+        "id": 9,
+        "seconds": 36.0,
+        "endSeconds": 36.6,
+        "timeDisplay": "0:36",
+        "speaker": "Rob",
+        "textEn": "Fries, please.",
+        "textFa": "سیب‌زمینی سرخ‌کرده، لطفاً."
       },
       {
-              "id": 10,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Rob",
-              "textEn": "Well done.",
-              "textFa": "کاملاً مغزپخت."
+        "id": 10,
+        "seconds": 37.5,
+        "endSeconds": 38.6,
+        "timeDisplay": "0:37",
+        "speaker": "Waitress",
+        "textEn": "How would you like your steak?",
+        "textFa": "استیکتان چطور پخته شود؟"
       },
       {
-              "id": 11,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Holly",
-              "textEn": "Nothing for me.",
-              "textFa": "برای من چیزی لازم نیست."
+        "id": 11,
+        "seconds": 39.1,
+        "endSeconds": 40.8,
+        "timeDisplay": "0:39",
+        "speaker": "Waitress",
+        "textEn": "Rare, medium, or well done?",
+        "textFa": "کم‌پخت (آبدار)، متوسط، یا کاملاً مغزپخت؟"
       },
       {
-              "id": 12,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Waitress",
-              "textEn": "OK. And to drink?",
-              "textFa": "بسیار خب. و برای نوشیدنی؟"
+        "id": 12,
+        "seconds": 41.6,
+        "endSeconds": 42.2,
+        "timeDisplay": "0:41",
+        "speaker": "Rob",
+        "textEn": "Well done.",
+        "textFa": "کاملاً مغزپخت."
       },
       {
-              "id": 13,
-              "seconds": 47,
-              "timeDisplay": "0:47",
-              "speaker": "Jenny",
-              "textEn": "Water, please.",
-              "textFa": "آب، لطفاً."
+        "id": 13,
+        "seconds": 44.0,
+        "endSeconds": 44.8,
+        "timeDisplay": "0:44",
+        "speaker": "Holly",
+        "textEn": "Nothing for me.",
+        "textFa": "برای من چیزی لازم نیست."
       },
       {
-              "id": 14,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Waitress",
-              "textEn": "Still or sparkling?",
-              "textFa": "آب معمولی یا گازدار؟"
+        "id": 14,
+        "seconds": 45.3,
+        "endSeconds": 45.8,
+        "timeDisplay": "0:45",
+        "speaker": "Waitress",
+        "textEn": "OK.",
+        "textFa": "بسیار خب."
       },
       {
-              "id": 15,
-              "seconds": 50,
-              "timeDisplay": "0:50",
-              "speaker": "Jenny",
-              "textEn": "Sparkling.",
-              "textFa": "گازدار."
+        "id": 15,
+        "seconds": 45.8,
+        "endSeconds": 46.7,
+        "timeDisplay": "0:45",
+        "speaker": "Waitress",
+        "textEn": "And to drink?",
+        "textFa": "و برای نوشیدنی؟"
       },
       {
-              "id": 16,
-              "seconds": 61,
-              "timeDisplay": "1:01",
-              "speaker": "Waitress",
-              "textEn": "The tuna for you ma'am, and the steak for you, sir.",
-              "textFa": "ماهی تن برای شما خانم، و استیک برای شما قربان."
+        "id": 16,
+        "seconds": 47.0,
+        "endSeconds": 48.0,
+        "timeDisplay": "0:47",
+        "speaker": "Jenny",
+        "textEn": "Water, please.",
+        "textFa": "آب، لطفاً."
       },
       {
-              "id": 17,
-              "seconds": 72,
-              "timeDisplay": "1:12",
-              "speaker": "Jenny",
-              "textEn": "I'm sorry, but I asked for a green salad, not fries.",
-              "textFa": "ببخشید، اما من سالاد سبزیجات خواسته بودم، نه سیب‌زمینی سرخ‌کرده."
+        "id": 17,
+        "seconds": 48.0,
+        "endSeconds": 49.0,
+        "timeDisplay": "0:48",
+        "speaker": "Waitress",
+        "textEn": "Still or sparkling?",
+        "textFa": "آب معمولی یا گازدار؟"
       },
       {
-              "id": 18,
-              "seconds": 74,
-              "timeDisplay": "1:14",
-              "speaker": "Waitress",
-              "textEn": "No problem. I'll change it.",
-              "textFa": "مشکلی نیست، عوضش می‌کنم."
+        "id": 18,
+        "seconds": 49.2,
+        "endSeconds": 49.7,
+        "timeDisplay": "0:49",
+        "speaker": "Jenny",
+        "textEn": "Sparkling.",
+        "textFa": "گازدار."
       },
       {
-              "id": 19,
-              "seconds": 76,
-              "timeDisplay": "1:16",
-              "speaker": "Rob",
-              "textEn": "Excuse me.",
-              "textFa": "ببخشید."
+        "id": 19,
+        "seconds": 58.8,
+        "endSeconds": 63.0,
+        "timeDisplay": "0:58",
+        "speaker": "Waitress",
+        "textEn": "The tuna for you ma'am, and the steak for you, sir.",
+        "textFa": "ماهی تن برای شما خانم، و استیک برای شما قربان."
       },
       {
-              "id": 20,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Waitress",
-              "textEn": "Yes, sir?",
-              "textFa": "بله قربان؟"
+        "id": 20,
+        "seconds": 63.5,
+        "endSeconds": 67.1,
+        "timeDisplay": "1:03",
+        "speaker": "Jenny",
+        "textEn": "I'm sorry, but I asked for a green salad, not fries.",
+        "textFa": "ببخشید، اما من سالاد سبزیجات خواسته بودم، نه سیب‌زمینی سرخ‌کرده."
       },
       {
-              "id": 21,
-              "seconds": 78,
-              "timeDisplay": "1:18",
-              "speaker": "Rob",
-              "textEn": "Sorry, I asked for my steak well done and this is rare.",
-              "textFa": "معذرت می‌خواهم، من استیک کاملاً مغزپخت خواسته بودم ولی این کاملاً خامه."
+        "id": 21,
+        "seconds": 67.7,
+        "endSeconds": 68.3,
+        "timeDisplay": "1:07",
+        "speaker": "Waitress",
+        "textEn": "No problem.",
+        "textFa": "مشکلی نیست."
       },
       {
-              "id": 22,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Waitress",
-              "textEn": "I'm really sorry. I'll take it back to the kitchen.",
-              "textFa": "واقعاً عذرخواهی می‌کنم؛ الان برمی‌گردانمش به آشپزخانه."
+        "id": 22,
+        "seconds": 68.9,
+        "endSeconds": 70.1,
+        "timeDisplay": "1:08",
+        "speaker": "Waitress",
+        "textEn": "I'll change it.",
+        "textFa": "عوضش می‌کنم."
+      },
+      {
+        "id": 23,
+        "seconds": 71.5,
+        "endSeconds": 72.1,
+        "timeDisplay": "1:11",
+        "speaker": "Rob",
+        "textEn": "Excuse me.",
+        "textFa": "ببخشید."
+      },
+      {
+        "id": 24,
+        "seconds": 72.5,
+        "endSeconds": 72.9,
+        "timeDisplay": "1:12",
+        "speaker": "Waitress",
+        "textEn": "Yes, sir?",
+        "textFa": "بله قربان؟"
+      },
+      {
+        "id": 25,
+        "seconds": 73.2,
+        "endSeconds": 77.1,
+        "timeDisplay": "1:13",
+        "speaker": "Rob",
+        "textEn": "Sorry, I asked for my steak well done and this is rare.",
+        "textFa": "معذرت می‌خواهم، من استیک کاملاً مغزپخت خواسته بودم ولی این خامه."
+      },
+      {
+        "id": 26,
+        "seconds": 77.6,
+        "endSeconds": 78.7,
+        "timeDisplay": "1:17",
+        "speaker": "Waitress",
+        "textEn": "I'm really sorry.",
+        "textFa": "واقعاً عذرخواهی می‌کنم."
+      },
+      {
+        "id": 27,
+        "seconds": 79.0,
+        "endSeconds": 80.1,
+        "timeDisplay": "1:19",
+        "speaker": "Waitress",
+        "textEn": "I'll take it back to the kitchen.",
+        "textFa": "الان برمی‌گردانمش به آشپزخانه."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -7094,8 +8564,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v06",
     "level": "a2",
     "episodeNumber": 6,
-    "titleFa": "اپیزود ۲ · بخش ۳: ایجاد دوستی و صمیمیت میان راب و هالی",
-    "titleEn": "Episode 2 · Part 3: Holly and Rob Make Friends",
+    "titleFa": "اپیزود ۲ · بخش ۳: ایجاد دوستی میان راب و هالی و تسویه‌حساب در رستوران",
+    "titleEn": "Episode 2 · Part 3: Holly and Rob Make Friends & The Restaurant Check",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 2",
     "cefr": "A2",
@@ -7106,176 +8576,307 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #7c3aed, #8b5cf6)",
     "posterIcon": "💬",
-    "summaryFa": "هالی و راب علایق مشترک موسیقیایی خود را کشف می‌کنند و باشگاه‌های کمدی و برنامه‌های فرهنگی شهر را به یکدیگر پیشنهاد می‌دهند.",
-    "summaryEn": "Holly and Rob discover common musical interests and recommend comedy clubs and cultural events around the city.",
+    "summaryFa": "هالی بر سر میز غذا از راب درباره موضوعات مقالاتش می‌پرسد. راب توضیح می‌دهد که قصد دارد درباره اولین برداشت‌هایش از نیویورک، زندگی شبانه و موسیقی بنویسد. هالی پیشنهاد می‌دهد او را با هنرمندان گروه‌های موسیقی، تئاتر و رقص مرتبط کند و حتی به تماشای نمایش بروند تا راب با بازیگران گفتگو کند. در ادامه، جنی درخواست صورت‌حساب می‌کند اما متوجه می‌شود ۳ بطری آب در فاکتور ثبت شده در حالی که ۲ بطری مصرف کرده بودند. گارسون عذرخواهی کرده و صورت‌حساب را اصلاح می‌کند. در پایان، جنی به راب یادآوری می‌کند که ساعت ۳ با باربارا جلسه دارد و باید به دفتر بازگردند.",
+    "summaryEn": "At lunch, Holly asks Rob about his planned articles for the magazine. Rob explains he wants to write about his first impressions of New York, including the nightlife and music scene. Holly suggests introducing him to musicians, theatre contacts, and dancers, proposing they see a show together so Rob can interview the actors. Afterward, Jenny asks for the check and notices an overcharge for three bottles of water instead of two. The waitress apologizes and brings a corrected bill. Finally, Jenny reminds Rob of his upcoming 3:00 PM meeting with Barbara, and they prepare to leave.",
     "keyTopicsFa": [
-      "کشف علایق مشترک (Do you like jazz?)",
-      "توصیه جاهای تفریحی (You should check out...)",
-      "اصطلاحات شوخ‌طبعی و صمیمیت",
-      "برنامه‌ریزی آخر هفته"
+      "گفتگو درباره ایده‌های نوشتن و سوژه‌های مقاله (What are you going to write about? / First impressions of New York)",
+      "پیشنهاد ارتباط با هنرمندان و اهالی تئاتر و موسیقی (Musicians / Contacts in theater and dance)",
+      "درخواست صورت‌حساب در رستوران (Could we have the check, please? / Here's your check)",
+      "اعتراض محترمانه به اشتباه در صورت‌حساب (I think there's a mistake / We had two bottles of water, not three)",
+      "عذرخواهی پرسنل و تعویض فاکتور (You're right / It's not my day today / I'll get you a new check)",
+      "مدیریت زمان و یادآوری جلسه کاری (Time to go / You have your meeting with Barbara at three)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 12,
-              "timeDisplay": "0:12",
-              "speaker": "Holly",
-              "textEn": "So tell me, Rob. What are you going to write about?",
-              "textFa": "خب برام بگو راب، قراره درباره چی بنویسی؟"
+        "id": 1,
+        "seconds": 12.3,
+        "endSeconds": 17.6,
+        "timeDisplay": "0:12",
+        "speaker": "Holly",
+        "textEn": "So tell me, Rob. What are you going to write about?",
+        "textFa": "خب برام بگو راب، قراره درباره چی بنویسی؟"
       },
       {
-              "id": 2,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Rob",
-              "textEn": "Well, to start with, my first impressions of New York. You know, the nightlife, the music, things like that.",
-              "textFa": "خب، برای شروع، اولین برداشت‌هایم از نیویورک: زندگی شبانه، موسیقی و چیزهایی مثل این."
+        "id": 2,
+        "seconds": 18.5,
+        "endSeconds": 21.8,
+        "timeDisplay": "0:18",
+        "speaker": "Rob",
+        "textEn": "Well, to start with, my first impressions of New York.",
+        "textFa": "خب، برای شروع، اولین برداشت‌هایم از نیویورک."
       },
       {
-              "id": 3,
-              "seconds": 26,
-              "timeDisplay": "0:26",
-              "speaker": "Holly",
-              "textEn": "Are you planning to do any interviews?",
-              "textFa": "برنامه‌ای برای انجام مصاحبه هم داری؟"
+        "id": 3,
+        "seconds": 22.0,
+        "endSeconds": 25.5,
+        "timeDisplay": "0:22",
+        "speaker": "Rob",
+        "textEn": "You know, the nightlife, the music, things like that.",
+        "textFa": "می‌دونی، زندگی شبانه، موسیقی و چیزهایی مثل این."
       },
       {
-              "id": 4,
-              "seconds": 29,
-              "timeDisplay": "0:29",
-              "speaker": "Rob",
-              "textEn": "I'd like to. Do you have any suggestions?",
-              "textFa": "خیلی دوست دارم. پیشنهادی داری؟"
+        "id": 4,
+        "seconds": 26.0,
+        "endSeconds": 28.1,
+        "timeDisplay": "0:26",
+        "speaker": "Holly",
+        "textEn": "Are you planning to do any interviews?",
+        "textFa": "برنامه‌ای برای انجام مصاحبه هم داری؟"
       },
       {
-              "id": 5,
-              "seconds": 34,
-              "timeDisplay": "0:34",
-              "speaker": "Holly",
-              "textEn": "Well, I know some great musicians.",
-              "textFa": "خب، چند تا موزیسین عالی و سرشناس می‌شناسم."
+        "id": 5,
+        "seconds": 28.7,
+        "endSeconds": 30.4,
+        "timeDisplay": "0:28",
+        "speaker": "Rob",
+        "textEn": "I'd like to.",
+        "textFa": "خیلی دوست دارم."
       },
       {
-              "id": 6,
-              "seconds": 36,
-              "timeDisplay": "0:36",
-              "speaker": "Rob",
-              "textEn": "Musicians?",
-              "textFa": "نوازنده‌ها؟"
+        "id": 6,
+        "seconds": 31.4,
+        "endSeconds": 32.8,
+        "timeDisplay": "0:31",
+        "speaker": "Rob",
+        "textEn": "Do you have any suggestions?",
+        "textFa": "پیشنهادی داری؟"
       },
       {
-              "id": 7,
-              "seconds": 38,
-              "timeDisplay": "0:38",
-              "speaker": "Holly",
-              "textEn": "You know, guys in bands. And I also have some contacts in the theater and dance.",
-              "textFa": "آره دیگه، بچه‌های گروه‌های موسیقی. تازه ارتباطاتی هم در تئاتر و رقص دارم."
+        "id": 7,
+        "seconds": 33.3,
+        "endSeconds": 36.3,
+        "timeDisplay": "0:33",
+        "speaker": "Holly",
+        "textEn": "Well, I know some great musicians.",
+        "textFa": "خب، چند تا موزیسین عالی می‌شناسم."
       },
       {
-              "id": 8,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Rob",
-              "textEn": "That would be great.",
-              "textFa": "فوق‌العاده خواهد بود."
+        "id": 8,
+        "seconds": 36.7,
+        "endSeconds": 37.1,
+        "timeDisplay": "0:36",
+        "speaker": "Rob",
+        "textEn": "Musicians?",
+        "textFa": "نوازنده‌ها؟"
       },
       {
-              "id": 9,
-              "seconds": 45,
-              "timeDisplay": "0:45",
-              "speaker": "Holly",
-              "textEn": "Maybe we could go to a show, and after you could talk to the actors.",
-              "textFa": "شاید بتوانیم با هم به یک نمایش برویم و بعدش بتوانی با بازیگران صحبت کنی."
+        "id": 9,
+        "seconds": 38.1,
+        "endSeconds": 39.8,
+        "timeDisplay": "0:38",
+        "speaker": "Holly",
+        "textEn": "You know, guys in bands.",
+        "textFa": "می‌دونی، بچه‌های گروه‌های موسیقی."
       },
       {
-              "id": 10,
-              "seconds": 51,
-              "timeDisplay": "0:51",
-              "speaker": "Rob",
-              "textEn": "I really like that idea.",
-              "textFa": "واقعاً از این ایده خوشم آمد."
+        "id": 10,
+        "seconds": 39.8,
+        "endSeconds": 43.9,
+        "timeDisplay": "0:39",
+        "speaker": "Holly",
+        "textEn": "And I also have some contacts in the theater and dance.",
+        "textFa": "و همچنین ارتباطاتی در تئاتر و رقص دارم."
       },
       {
-              "id": 11,
-              "seconds": 54,
-              "timeDisplay": "0:54",
-              "speaker": "Waitress",
-              "textEn": "Can I bring you anything else?",
-              "textFa": "چیز دیگری میل دارید براتون بیارم؟"
+        "id": 11,
+        "seconds": 44.1,
+        "endSeconds": 45.3,
+        "timeDisplay": "0:44",
+        "speaker": "Rob",
+        "textEn": "That would be great.",
+        "textFa": "فوق‌العاده خواهد بود."
       },
       {
-              "id": 12,
-              "seconds": 55,
-              "timeDisplay": "0:55",
-              "speaker": "Jenny",
-              "textEn": "Could we have the check, please?",
-              "textFa": "می‌توانید صورت‌حساب را بیاورید، لطفاً؟"
+        "id": 12,
+        "seconds": 45.7,
+        "endSeconds": 49.8,
+        "timeDisplay": "0:45",
+        "speaker": "Holly",
+        "textEn": "Maybe we could go to a show, and after you could talk to the actors.",
+        "textFa": "شاید بتوانیم با هم به یک نمایش برویم و بعدش بتوانی با بازیگران صحبت کنی."
       },
       {
-              "id": 13,
-              "seconds": 57,
-              "timeDisplay": "0:57",
-              "speaker": "Waitress",
-              "textEn": "Yes, ma'am. Here's your check.",
-              "textFa": "بله خانم، این صورت‌حساب شما."
+        "id": 13,
+        "seconds": 51.0,
+        "endSeconds": 52.6,
+        "timeDisplay": "0:51",
+        "speaker": "Rob",
+        "textEn": "I really like that idea.",
+        "textFa": "واقعاً از این ایده خوشم می‌آید."
       },
       {
-              "id": 14,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Jenny",
-              "textEn": "Thanks. Excuse me. I think there's a mistake. We had two bottles of water, not three.",
-              "textFa": "ممنون. ببخشید، فکر کنم اشتباهی شده؛ ما دو بطری آب داشتیم، نه سه تا."
+        "id": 14,
+        "seconds": 54.5,
+        "endSeconds": 56.0,
+        "timeDisplay": "0:54",
+        "speaker": "Waitress",
+        "textEn": "Can I bring you anything else?",
+        "textFa": "چیز دیگری میل دارید برایتان بیاورم؟"
       },
       {
-              "id": 15,
-              "seconds": 81,
-              "timeDisplay": "1:21",
-              "speaker": "Waitress",
-              "textEn": "You're right. I'm really sorry. It's not my day today! I'll get you a new check.",
-              "textFa": "حق با شماست، واقعاً شرمنده‌ام؛ امروز اصلاً روز من نیست! الان صورت‌حساب جدیدی می‌آورم."
+        "id": 15,
+        "seconds": 56.1,
+        "endSeconds": 57.2,
+        "timeDisplay": "0:56",
+        "speaker": "Jenny",
+        "textEn": "Could we have the check, please?",
+        "textFa": "می‌توانید صورت‌حساب را بیاورید، لطفاً؟"
       },
       {
-              "id": 16,
-              "seconds": 87,
-              "timeDisplay": "1:27",
-              "speaker": "Jenny",
-              "textEn": "Thank you.",
-              "textFa": "متشکرم."
+        "id": 16,
+        "seconds": 57.6,
+        "endSeconds": 58.6,
+        "timeDisplay": "0:57",
+        "speaker": "Waitress",
+        "textEn": "Yes, ma'am.",
+        "textFa": "بله خانم."
       },
       {
-              "id": 17,
-              "seconds": 89,
-              "timeDisplay": "1:29",
-              "speaker": "Holly",
-              "textEn": "We're going to have a fun month, Rob.",
-              "textFa": "ماه پر از تفریحی پیش رو خواهیم داشت، راب."
+        "id": 17,
+        "seconds": 70.2,
+        "endSeconds": 70.8,
+        "timeDisplay": "1:10",
+        "speaker": "Waitress",
+        "textEn": "Here's your check.",
+        "textFa": "این صورت‌حساب شما."
       },
       {
-              "id": 18,
-              "seconds": 92,
-              "timeDisplay": "1:32",
-              "speaker": "Rob",
-              "textEn": "Yeah, I think it's going to be fantastic.",
-              "textFa": "آره، منم فکر می‌کنم معرکه خواهد شد."
+        "id": 18,
+        "seconds": 71.1,
+        "endSeconds": 71.5,
+        "timeDisplay": "1:11",
+        "speaker": "Jenny",
+        "textEn": "Thanks.",
+        "textFa": "ممنون."
       },
       {
-              "id": 19,
-              "seconds": 96,
-              "timeDisplay": "1:36",
-              "speaker": "Jenny",
-              "textEn": "OK, time to go. You have your meeting with Barbara at three.",
-              "textFa": "خب، وقت رفتنه. ساعت ۳ با باربارا جلسه داری."
+        "id": 19,
+        "seconds": 76.1,
+        "endSeconds": 76.6,
+        "timeDisplay": "1:16",
+        "speaker": "Jenny",
+        "textEn": "Excuse me.",
+        "textFa": "ببخشید."
       },
       {
-              "id": 20,
-              "seconds": 101,
-              "timeDisplay": "1:41",
-              "speaker": "Rob",
-              "textEn": "Oh yeah, right.",
-              "textFa": "اوه آره، درسته."
+        "id": 20,
+        "seconds": 76.7,
+        "endSeconds": 77.8,
+        "timeDisplay": "1:16",
+        "speaker": "Jenny",
+        "textEn": "I think there's a mistake.",
+        "textFa": "فکر کنم اشتباهی شده است."
+      },
+      {
+        "id": 21,
+        "seconds": 78.5,
+        "endSeconds": 81.5,
+        "timeDisplay": "1:18",
+        "speaker": "Jenny",
+        "textEn": "We had two bottles of water, not three.",
+        "textFa": "ما دو بطری آب داشتیم، نه سه تا."
+      },
+      {
+        "id": 22,
+        "seconds": 81.8,
+        "endSeconds": 82.5,
+        "timeDisplay": "1:21",
+        "speaker": "Waitress",
+        "textEn": "You're right.",
+        "textFa": "حق با شماست."
+      },
+      {
+        "id": 23,
+        "seconds": 82.8,
+        "endSeconds": 84.0,
+        "timeDisplay": "1:22",
+        "speaker": "Waitress",
+        "textEn": "I'm really sorry.",
+        "textFa": "واقعاً عذرخواهی می‌کنم."
+      },
+      {
+        "id": 24,
+        "seconds": 84.0,
+        "endSeconds": 86.0,
+        "timeDisplay": "1:24",
+        "speaker": "Waitress",
+        "textEn": "It's not my day today!",
+        "textFa": "امروز اصلاً روز من نیست!"
+      },
+      {
+        "id": 25,
+        "seconds": 86.6,
+        "endSeconds": 87.5,
+        "timeDisplay": "1:26",
+        "speaker": "Waitress",
+        "textEn": "I'll get you a new check.",
+        "textFa": "الان یک صورت‌حساب جدید برایتان می‌آورم."
+      },
+      {
+        "id": 26,
+        "seconds": 87.9,
+        "endSeconds": 88.6,
+        "timeDisplay": "1:27",
+        "speaker": "Jenny",
+        "textEn": "Thank you.",
+        "textFa": "متشکرم."
+      },
+      {
+        "id": 27,
+        "seconds": 89.3,
+        "endSeconds": 91.8,
+        "timeDisplay": "1:29",
+        "speaker": "Holly",
+        "textEn": "We're going to have a fun month, Rob.",
+        "textFa": "ماه پر از لذت و تفریحی پیش رو خواهیم داشت، راب."
+      },
+      {
+        "id": 28,
+        "seconds": 92.4,
+        "endSeconds": 92.8,
+        "timeDisplay": "1:32",
+        "speaker": "Rob",
+        "textEn": "Yeah.",
+        "textFa": "آره."
+      },
+      {
+        "id": 29,
+        "seconds": 93.2,
+        "endSeconds": 94.7,
+        "timeDisplay": "1:33",
+        "speaker": "Rob",
+        "textEn": "I think it's going to be fantastic.",
+        "textFa": "من هم فکر می‌کنم فوق‌العاده خواهد بود."
+      },
+      {
+        "id": 30,
+        "seconds": 96.0,
+        "endSeconds": 97.5,
+        "timeDisplay": "1:36",
+        "speaker": "Jenny",
+        "textEn": "OK, time to go.",
+        "textFa": "خب، وقت رفتن است."
+      },
+      {
+        "id": 31,
+        "seconds": 98.2,
+        "endSeconds": 101.0,
+        "timeDisplay": "1:38",
+        "speaker": "Jenny",
+        "textEn": "You have your meeting with Barbara at three.",
+        "textFa": "ساعت سه با باربارا جلسه داری."
+      },
+      {
+        "id": 32,
+        "seconds": 101.2,
+        "endSeconds": 102.6,
+        "timeDisplay": "1:41",
+        "speaker": "Rob",
+        "textEn": "Oh, yeah. Right.",
+        "textFa": "اوه، آره. درسته."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -7426,8 +9027,8 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "id": "a2-v07",
     "level": "a2",
     "episodeNumber": 7,
-    "titleFa": "اپیزود ۳ · بخش ۱: مرجوع کردن کالا و تعویض در فروشگاه",
-    "titleEn": "Episode 3 · Part 1: Taking Something Back to a Store",
+    "titleFa": "اپیزود ۳ · بخش ۱: خرید کفش و تعویض آن در فروشگاه به دلیل تفاوت سایز",
+    "titleEn": "Episode 3 · Part 1: Taking Something Back to a Store (Shoe Sizes & Exchange)",
     "bookLevel": "American English File 2 (3rd Edition)",
     "unit": "Practical English Episode 3",
     "cefr": "A2",
@@ -7437,209 +9038,271 @@ export const AEF_LESSONS: AEFVideoLesson[] = [
     "videoUrl": "/api/videos/stream?series=aef&level=a2&file=AEF3e_SB2_PE_Ep3_Taking_something_back_to_a_store.mp4",
     "embedType": "direct",
     "posterGradient": "linear-gradient(135deg, #db2777, #f472b6)",
-    "posterIcon": "🔄",
-    "summaryFa": "راب یک شارژر معیوب را به فروشگاه لوازم الکترونیکی برمی‌گرداند، فاکتور خرید را ارائه داده و درخواست استرداد وجه یا تعویض می‌کند.",
-    "summaryEn": "Rob returns a defective electronic charger to an electronics shop, presenting his receipt and requesting a refund or replacement.",
+    "posterIcon": "👟",
+    "summaryFa": "راب به یک فروشگاه کفش می‌رود و یک جفت کفش سایز ۸ بدون پرو کردن می‌خرد و مبلغ را با احتساب ۱۵ درصد مالیات بر فروش پرداخت می‌کند. نیم‌ساعت بعد راب مجدداً به فروشگاه بازمی‌گردد زیرا متوجه می‌شود کفش‌ها برایش کوچک است؛ او سایز ۸ بریتانیا می‌پوشد که معادل سایز ۹ آمریکاست. فروشنده انبار را چک می‌کند اما سایز ۹ آن مدل را ندارد؛ بنابراین دو گزینه پیش روی راب می‌گذارد: دریافت وجه (Refund) یا انتخاب مدلی دیگر با همان قیمت. راب مدل جایگزین را انتخاب کرده و با ارائه رسید خرید، کفش را تعویض می‌کند.",
+    "summaryEn": "Rob visits a shoe store and buys a pair of size 8 shoes without trying them on, paying by card including a 15% sales tax. Half an hour later, he returns because they are too small; he wears a UK size 8, which corresponds to a US size 9. The salesperson checks stock but doesn't have that model in a US 9, offering either a full refund or an alternative pair at the same price. Rob accepts the alternative pair, presents his receipt, and completes the exchange.",
     "keyTopicsFa": [
-      "مرجوع کردن جنس (Return an item)",
-      "فاکتور خرید (Receipt)",
-      "استرداد وجه یا تعویض (Refund or exchange)",
-      "مشکلات کالای معیوب"
+      "پرسیدن موجودی سایز کفش و لباس (Do you have these in an eight?)",
+      "سوال درباره قیمت و اضافه شدن مالیات بر فروش (How much are they? / Added sales tax)",
+      "پرداخت با کارت اعتباری (Do you take Mastercard?)",
+      "تفاوت سایزبندی بریتانیا و آمریکا (A UK eight is a US nine)",
+      "مرجوع کردن کالا و گزینه‌های تعویض یا استرداد وجه (Exchange or refund / Do you have the receipt?)"
     ],
     "transcript": [
       {
-              "id": 1,
-              "seconds": 18,
-              "timeDisplay": "0:18",
-              "speaker": "Salesperson",
-              "textEn": "Can I help you, sir?",
-              "textFa": "می‌توانم کمکتان کنم قربان؟"
+        "id": 1,
+        "seconds": 18.7,
+        "endSeconds": 20.1,
+        "timeDisplay": "0:18",
+        "speaker": "Salesperson",
+        "textEn": "Can I help you, sir?",
+        "textFa": "می‌توانم کمکتان کنم قربان؟"
       },
       {
-              "id": 2,
-              "seconds": 20,
-              "timeDisplay": "0:20",
-              "speaker": "Rob",
-              "textEn": "Yes. Do you have these in an eight?",
-              "textFa": "بله. از این مدل سایز ۸ دارید؟"
+        "id": 2,
+        "seconds": 20.1,
+        "endSeconds": 23.0,
+        "timeDisplay": "0:20",
+        "speaker": "Rob",
+        "textEn": "Yes. Do you have these in an eight?",
+        "textFa": "بله. از این مدل سایز ۸ دارید؟"
       },
       {
-              "id": 3,
-              "seconds": 23,
-              "timeDisplay": "0:23",
-              "speaker": "Salesperson",
-              "textEn": "Just a minute, I'll go and check.",
-              "textFa": "یک لحظه صبر کنید، می‌روم چک کنم."
+        "id": 3,
+        "seconds": 23.0,
+        "endSeconds": 25.1,
+        "timeDisplay": "0:23",
+        "speaker": "Salesperson",
+        "textEn": "Just a minute, I'll go and check.",
+        "textFa": "یک لحظه صبر کنید، می‌روم بررسی کنم."
       },
       {
-              "id": 4,
-              "seconds": 30,
-              "timeDisplay": "0:30",
-              "speaker": "Salesperson",
-              "textEn": "Here you are, these are an eight. Do you want to try them on?",
-              "textFa": "بفرمایید، این‌ها سایز ۸ هستند. مایلید امتحانشان کنید؟"
+        "id": 4,
+        "seconds": 30.6,
+        "endSeconds": 33.0,
+        "timeDisplay": "0:30",
+        "speaker": "Salesperson",
+        "textEn": "Here you are, these are an eight.",
+        "textFa": "بفرمایید، این‌ها سایز ۸ هستند."
       },
       {
-              "id": 5,
-              "seconds": 35,
-              "timeDisplay": "0:35",
-              "speaker": "Rob",
-              "textEn": "No, thanks. I'm sure they'll be fine. How much are they?",
-              "textFa": "نه ممنون، مطمئنم اندازه‌اند. قیمتشون چقدره؟"
+        "id": 5,
+        "seconds": 33.3,
+        "endSeconds": 35.0,
+        "timeDisplay": "0:33",
+        "speaker": "Salesperson",
+        "textEn": "Do you want to try them on?",
+        "textFa": "مایلید پرو و امتحانشان کنید؟"
       },
       {
-              "id": 6,
-              "seconds": 39,
-              "timeDisplay": "0:39",
-              "speaker": "Salesperson",
-              "textEn": "They're $83.94.",
-              "textFa": "می‌شود ۸۳ دلار و ۹۴ سنت."
+        "id": 6,
+        "seconds": 35.1,
+        "endSeconds": 37.1,
+        "timeDisplay": "0:35",
+        "speaker": "Rob",
+        "textEn": "No, thanks. I'm sure they'll be fine.",
+        "textFa": "نه ممنون، مطمئنم اندازه‌اند."
       },
       {
-              "id": 7,
-              "seconds": 41,
-              "timeDisplay": "0:41",
-              "speaker": "Rob",
-              "textEn": "Oh, it says $72.99.",
-              "textFa": "اوه، ولی روی برچسب زده ۷۲ دلار و ۹۹ سنت."
+        "id": 7,
+        "seconds": 37.1,
+        "endSeconds": 39.2,
+        "timeDisplay": "0:37",
+        "speaker": "Rob",
+        "textEn": "How much are they?",
+        "textFa": "قیمتشان چقدر است؟"
       },
       {
-              "id": 8,
-              "seconds": 44,
-              "timeDisplay": "0:44",
-              "speaker": "Salesperson",
-              "textEn": "Yes, but there's an added sales tax of 15%.",
-              "textFa": "بله، اما ۱۵ درصد مالیات بر فروش به آن اضافه می‌شود."
+        "id": 8,
+        "seconds": 39.4,
+        "endSeconds": 40.9,
+        "timeDisplay": "0:39",
+        "speaker": "Salesperson",
+        "textEn": "They're $83.94.",
+        "textFa": "می‌شود ۸۳ دلار و ۹۴ سنت."
       },
       {
-              "id": 9,
-              "seconds": 48,
-              "timeDisplay": "0:48",
-              "speaker": "Rob",
-              "textEn": "Oh, OK. Do you take Mastercard?",
-              "textFa": "اوه، متوجه شدم. مسترکارت قبول می‌کنید؟"
+        "id": 9,
+        "seconds": 40.9,
+        "endSeconds": 44.4,
+        "timeDisplay": "0:40",
+        "speaker": "Rob",
+        "textEn": "Oh, it says $72.99.",
+        "textFa": "اوه، ولی روی برچسب زده ۷۲ دلار و ۹۹ سنت."
       },
       {
-              "id": 10,
-              "seconds": 51,
-              "timeDisplay": "0:51",
-              "speaker": "Salesperson",
-              "textEn": "Sure.",
-              "textFa": "حتماً."
+        "id": 10,
+        "seconds": 44.4,
+        "endSeconds": 48.3,
+        "timeDisplay": "0:44",
+        "speaker": "Salesperson",
+        "textEn": "Yes, but there's an added sales tax of 15%.",
+        "textFa": "بله، اما ۱۵ درصد مالیات بر فروش به آن اضافه می‌شود."
       },
       {
-              "id": 11,
-              "seconds": 60,
-              "timeDisplay": "1:00",
-              "speaker": "Salesperson",
-              "textEn": "Can I help you?",
-              "textFa": "می‌توانم کمکتان کنم؟"
+        "id": 11,
+        "seconds": 48.4,
+        "endSeconds": 51.2,
+        "timeDisplay": "0:48",
+        "speaker": "Rob",
+        "textEn": "Oh, OK. Do you take Mastercard?",
+        "textFa": "اوه، متوجه شدم. مسترکارت قبول می‌کنید؟"
       },
       {
-              "id": 12,
-              "seconds": 62,
-              "timeDisplay": "1:02",
-              "speaker": "Rob",
-              "textEn": "Yes, I bought these about half an hour ago.",
-              "textFa": "بله، من حدود نیم ساعت پیش این‌ها را خریدم."
+        "id": 12,
+        "seconds": 51.8,
+        "endSeconds": 52.4,
+        "timeDisplay": "0:51",
+        "speaker": "Salesperson",
+        "textEn": "Sure.",
+        "textFa": "حتماً."
       },
       {
-              "id": 13,
-              "seconds": 65,
-              "timeDisplay": "1:05",
-              "speaker": "Salesperson",
-              "textEn": "Yes, I remember. Is there a problem?",
-              "textFa": "بله یادم هست؛ مشکلی پیش آمده؟"
+        "id": 13,
+        "seconds": 60.3,
+        "endSeconds": 61.6,
+        "timeDisplay": "1:00",
+        "speaker": "Salesperson",
+        "textEn": "Can I help you?",
+        "textFa": "می‌توانم کمکتان کنم؟"
       },
       {
-              "id": 14,
-              "seconds": 68,
-              "timeDisplay": "1:08",
-              "speaker": "Rob",
-              "textEn": "Yes, I'm afraid they're too small.",
-              "textFa": "بله، متاسفانه برای پایم خیلی کوچکند."
+        "id": 14,
+        "seconds": 62.3,
+        "endSeconds": 65.2,
+        "timeDisplay": "1:02",
+        "speaker": "Rob",
+        "textEn": "Yes, I bought these about half an hour ago.",
+        "textFa": "بله، من حدود نیم ساعت پیش این‌ها را خریدم."
       },
       {
-              "id": 15,
-              "seconds": 70,
-              "timeDisplay": "1:10",
-              "speaker": "Salesperson",
-              "textEn": "What size are they?",
-              "textFa": "سایزشان چنده؟"
+        "id": 15,
+        "seconds": 65.3,
+        "endSeconds": 67.5,
+        "timeDisplay": "1:05",
+        "speaker": "Salesperson",
+        "textEn": "Yes, I remember. Is there a problem?",
+        "textFa": "بله یادم هست؛ مشکلی پیش آمده؟"
       },
       {
-              "id": 16,
-              "seconds": 71,
-              "timeDisplay": "1:11",
-              "speaker": "Rob",
-              "textEn": "They're an eight. But I take a UK eight.",
-              "textFa": "سایز ۸ هستند، اما من سایز ۸ بریتانیا هستم."
+        "id": 16,
+        "seconds": 68.1,
+        "endSeconds": 69.8,
+        "timeDisplay": "1:08",
+        "speaker": "Rob",
+        "textEn": "Yes, I'm afraid they're too small.",
+        "textFa": "بله، متاسفانه برای پایم خیلی کوچک هستند."
       },
       {
-              "id": 17,
-              "seconds": 75,
-              "timeDisplay": "1:15",
-              "speaker": "Salesperson",
-              "textEn": "Oh right. Yes, a UK eight is a US nine.",
-              "textFa": "اوه درسته! بله، سایز ۸ بریتانیا معادل سایز ۹ آمریکاست."
+        "id": 17,
+        "seconds": 70.2,
+        "endSeconds": 71.7,
+        "timeDisplay": "1:10",
+        "speaker": "Salesperson",
+        "textEn": "What size are they?",
+        "textFa": "سایزشان چنده؟"
       },
       {
-              "id": 18,
-              "seconds": 79,
-              "timeDisplay": "1:19",
-              "speaker": "Rob",
-              "textEn": "Do you have a pair?",
-              "textFa": "از آن سایز موجود دارید؟"
+        "id": 18,
+        "seconds": 71.9,
+        "endSeconds": 74.7,
+        "timeDisplay": "1:11",
+        "speaker": "Rob",
+        "textEn": "They're an eight. But I take a UK eight.",
+        "textFa": "سایز ۸ هستند، اما من سایز ۸ بریتانیا هستم."
       },
       {
-              "id": 19,
-              "seconds": 80,
-              "timeDisplay": "1:20",
-              "speaker": "Salesperson",
-              "textEn": "I'll go and check. Just a minute.",
-              "textFa": "می‌روم انبار را بررسی کنم، یک دقیقه."
+        "id": 19,
+        "seconds": 74.9,
+        "endSeconds": 78.6,
+        "timeDisplay": "1:14",
+        "speaker": "Salesperson",
+        "textEn": "Oh, right. Yes, a UK eight is a US nine.",
+        "textFa": "اوه درسته! بله، سایز ۸ بریتانیا معادل سایز ۹ آمریکاست."
       },
       {
-              "id": 20,
-              "seconds": 86,
-              "timeDisplay": "1:26",
-              "speaker": "Salesperson",
-              "textEn": "I'm sorry, but we don't have these in a nine. But we do have these and they're the same price. Or you can have a refund.",
-              "textFa": "متاسفم، این مدل سایز ۹ نداریم؛ اما این مدل دیگر را داریم که هم‌قیمت است، یا اینکه می‌توانید وجهتان را پس بگیرید."
+        "id": 20,
+        "seconds": 78.6,
+        "endSeconds": 80.4,
+        "timeDisplay": "1:18",
+        "speaker": "Rob",
+        "textEn": "Do you have a pair?",
+        "textFa": "از آن سایز موجود دارید؟"
       },
       {
-              "id": 21,
-              "seconds": 95,
-              "timeDisplay": "1:35",
-              "speaker": "Rob",
-              "textEn": "Uh... I'll take this pair then, please.",
-              "textFa": "اه... پس همین جفت را برمی‌دارم، لطفاً."
+        "id": 21,
+        "seconds": 80.4,
+        "endSeconds": 82.3,
+        "timeDisplay": "1:20",
+        "speaker": "Salesperson",
+        "textEn": "I'll go and check. Just a minute.",
+        "textFa": "می‌روم بررسی کنم، یک دقیقه."
       },
       {
-              "id": 22,
-              "seconds": 98,
-              "timeDisplay": "1:38",
-              "speaker": "Salesperson",
-              "textEn": "No problem. Do you have the receipt?",
-              "textFa": "مشکلی نیست. رسید خرید را همراه دارید؟"
+        "id": 22,
+        "seconds": 86.5,
+        "endSeconds": 89.6,
+        "timeDisplay": "1:26",
+        "speaker": "Salesperson",
+        "textEn": "I'm sorry, but we don't have these in a nine.",
+        "textFa": "متاسفم، این مدل سایز ۹ نداریم."
       },
       {
-              "id": 23,
-              "seconds": 102,
-              "timeDisplay": "1:42",
-              "speaker": "Rob",
-              "textEn": "Yes, here you are.",
-              "textFa": "بله، بفرمایید."
+        "id": 23,
+        "seconds": 90.0,
+        "endSeconds": 92.5,
+        "timeDisplay": "1:30",
+        "speaker": "Salesperson",
+        "textEn": "But we do have these and they're the same price.",
+        "textFa": "اما این مدل دیگر را داریم که دقیقاً هم‌قیمت هستند."
       },
       {
-              "id": 24,
-              "seconds": 104,
-              "timeDisplay": "1:44",
-              "speaker": "Salesperson",
-              "textEn": "Brilliant.",
-              "textFa": "عالیه."
+        "id": 24,
+        "seconds": 92.5,
+        "endSeconds": 94.1,
+        "timeDisplay": "1:32",
+        "speaker": "Salesperson",
+        "textEn": "Or you can have a refund.",
+        "textFa": "یا اینکه می‌توانید وجهتان را پس بگیرید."
+      },
+      {
+        "id": 25,
+        "seconds": 95.9,
+        "endSeconds": 98.3,
+        "timeDisplay": "1:35",
+        "speaker": "Rob",
+        "textEn": "Uh... I'll take this pair then, please.",
+        "textFa": "اه... پس همین جفت را برمی‌دارم، لطفاً."
+      },
+      {
+        "id": 26,
+        "seconds": 98.3,
+        "endSeconds": 100.7,
+        "timeDisplay": "1:38",
+        "speaker": "Salesperson",
+        "textEn": "No problem. Do you have the receipt?",
+        "textFa": "مشکلی نیست. رسید خرید را همراه دارید؟"
+      },
+      {
+        "id": 27,
+        "seconds": 101.5,
+        "endSeconds": 103.0,
+        "timeDisplay": "1:41",
+        "speaker": "Rob",
+        "textEn": "Yes, here you are.",
+        "textFa": "بله، بفرمایید."
+      },
+      {
+        "id": 28,
+        "seconds": 103.0,
+        "endSeconds": 103.5,
+        "timeDisplay": "1:43",
+        "speaker": "Salesperson",
+        "textEn": "Brilliant.",
+        "textFa": "عالیه."
       }
-    ],
+    ]
+  ,
     "questions": {
       "listening": {
         "skill": "listening",
@@ -26468,7 +28131,12 @@ export function getAEFLessonsByLevel(tier: string): AEFVideoLesson[] {
 
 export function getAEFLessonById(id: string): AEFVideoLesson | undefined {
   const targetId = id.toLowerCase();
-  return AEF_LESSONS.find((les) => les.id.toLowerCase() === targetId);
+  const normalizedId = targetId.replace(/-v0+(\d{2,})/, '-v$1');
+  const paddedId = targetId.replace(/-v(\d)$/, '-v0$1');
+  return AEF_LESSONS.find((les) => {
+    const lId = les.id.toLowerCase();
+    return lId === targetId || lId === normalizedId || lId === paddedId;
+  });
 }
 
 export function getNextAEFLesson(currentLessonId: string): AEFVideoLesson | null {
