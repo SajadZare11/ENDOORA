@@ -8,6 +8,7 @@ import type {
   PhonemeGOPResult
 } from '../../workers/gop-cnn-ctc.worker';
 import { sentenceToTargetWords } from '../../lib/phonetics/arpabet-g2p';
+import { syncPhoneticAssessment } from '../../lib/phonetics/phonetic-sync';
 import styles from './spectrogram-lab.module.css';
 
 export interface SpectrogramPronunciationLabProps {
@@ -38,6 +39,9 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
   const [assessment, setAssessment] = useState<GOPAssessmentPayload | null>(null);
   const [selectedPhoneme, setSelectedPhoneme] = useState<PhonemeGOPResult | null>(null);
   const [trackedWeakPhonemes, setTrackedWeakPhonemes] = useState<string[]>([]);
+  const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+
+  const audioInstanceRef = useRef<HTMLAudioElement | null>(null);
 
   // Automatically tokenize sentence into ARPAbet target words if not provided
   const targetWords = useMemo<TargetWordPhonemes[]>(() => {
@@ -126,6 +130,7 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
         setAssessment(result);
         setIsProcessing(false);
         persistPhonemeDiagnostics(result);
+        void syncPhoneticAssessment(result, moduleSource, sentenceText);
 
         // Auto-select first non-native phoneme for immediate diagnostic feedback
         for (const w of result.words) {
@@ -195,6 +200,67 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
     },
     []
   );
+
+  // Play Native English Reference Audio (Tier 1: prop url -> Tier 2: speech synthesis API -> Tier 3: Web Speech API)
+  const handleToggleReferenceAudio = useCallback(() => {
+    if (isPlayingAudio) {
+      if (audioInstanceRef.current) {
+        audioInstanceRef.current.pause();
+        audioInstanceRef.current.currentTime = 0;
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      setIsPlayingAudio(false);
+      return;
+    }
+
+    const fallbackToSpeechSynthesis = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(sentenceText);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        utterance.onend = () => setIsPlayingAudio(false);
+        utterance.onerror = () => setIsPlayingAudio(false);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setIsPlayingAudio(false);
+      }
+    };
+
+    const playUrl =
+      nativeAudioUrl ||
+      `/api/speech/synthesize?text=${encodeURIComponent(sentenceText)}&lang=en-US`;
+
+    const audio = new Audio(playUrl);
+    audioInstanceRef.current = audio;
+    setIsPlayingAudio(true);
+
+    audio.onended = () => {
+      setIsPlayingAudio(false);
+    };
+
+    audio.onerror = () => {
+      fallbackToSpeechSynthesis();
+    };
+
+    audio.play().catch(() => {
+      fallbackToSpeechSynthesis();
+    });
+  }, [isPlayingAudio, nativeAudioUrl, sentenceText]);
+
+  // Teardown audio when unmounting
+  useEffect(() => {
+    return () => {
+      if (audioInstanceRef.current) {
+        audioInstanceRef.current.pause();
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const startRecording = async () => {
     try {
@@ -400,18 +466,14 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
             </button>
           )}
 
-          {nativeAudioUrl && (
-            <button
-              type="button"
-              onClick={() => {
-                const aud = new Audio(nativeAudioUrl);
-                aud.play().catch((err) => console.warn('Audio play error:', err));
-              }}
-              className={styles.btnSecondary}
-            >
-              🔊 Play Native Audio
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={handleToggleReferenceAudio}
+            className={`${styles.btnSecondary} ${isPlayingAudio ? styles.btnPlayingAudio : ''}`}
+            title="Listen to authentic native pronunciation reference"
+          >
+            {isPlayingAudio ? '⏹️ Stop Reference' : '🔊 Play Native Reference'}
+          </button>
         </div>
 
         {assessment && (

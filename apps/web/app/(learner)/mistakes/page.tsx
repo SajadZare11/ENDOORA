@@ -147,40 +147,54 @@ export default function MistakesPage() {
     }
     void loadGenome();
 
+    const updatePatternsWithPhonemes = (weakList: string[]) => {
+      if (!Array.isArray(weakList) || weakList.length === 0) return;
+      const phoneticPatterns: MistakePatternItem[] = weakList.map((sym: string, idx: number) => ({
+        id: `phoneme_l1_${sym}_${idx}`,
+        tag: `pronunciation.l1_interference_${sym}`,
+        category: "pronunciation",
+        title_fa: `تداخل آواشناختی زبان فارسی در تلفظ واج /${sym}/`,
+        title_en: `L1 Persian Phonological Interference on /${sym}/`,
+        l1_interference_note_fa: `این واج در آزمایشگاه طیف‌نگاره (Neural GOP) ثبت شده و به دلیل تفاوت سازندهای صوتی نیازمند تمرین مداوم عضلات فک و زبان است.`,
+        l1_interference_note_en: `Client-side 2D-CNN forced alignment detected articulatory divergence for /${sym}/.`,
+        status: "recurring",
+        severity: "moderate",
+        evidence_count: 3,
+        example_wrong: `Inaccurate acoustic formant positioning for /${sym}/`,
+        example_correct: `Native-like spectral resonance for /${sym}/`,
+        quick_options: [`/${sym}/ (Standard Target)`, `Persian Substituted Sound`, `Glottalized Alternative`],
+        quick_correct_idx: 0,
+      }));
+
+      setPatterns((prev) => {
+        const existingTags = new Set(prev.map((p) => p.tag));
+        const newToAdd = phoneticPatterns.filter((p) => !existingTags.has(p.tag));
+        return [...newToAdd, ...prev];
+      });
+    };
+
     // Load Phoneme L1 Diagnostics from Neural GOP Lab
     try {
       const phonemeProfile = localStorage.getItem("endoora_phoneme_diagnostic_profile");
       if (phonemeProfile) {
         const parsed = JSON.parse(phonemeProfile);
-        const weakList = parsed.weakPhonemes || [];
-        if (Array.isArray(weakList) && weakList.length > 0) {
-          const phoneticPatterns: MistakePatternItem[] = weakList.map((sym: string, idx: number) => ({
-            id: `phoneme_l1_${sym}_${idx}`,
-            tag: `pronunciation.l1_interference_${sym}`,
-            category: "pronunciation",
-            title_fa: `تداخل آواشناختی زبان فارسی در تلفظ واج /${sym}/`,
-            title_en: `L1 Persian Phonological Interference on /${sym}/`,
-            l1_interference_note_fa: `این واج در آزمایشگاه طیف‌نگاره (Neural GOP) ثبت شده و به دلیل تفاوت سازندهای صوتی نیازمند تمرین مداوم عضلات فک و زبان است.`,
-            l1_interference_note_en: `Client-side 2D-CNN forced alignment detected articulatory divergence for /${sym}/.`,
-            status: "recurring",
-            severity: "moderate",
-            evidence_count: 3,
-            example_wrong: `Inaccurate acoustic formant positioning for /${sym}/`,
-            example_correct: `Native-like spectral resonance for /${sym}/`,
-            quick_options: [`/${sym}/ (Standard Target)`, `Persian Substituted Sound`, `Glottalized Alternative`],
-            quick_correct_idx: 0,
-          }));
-
-          setPatterns((prev) => {
-            const existingTags = new Set(prev.map((p) => p.tag));
-            const newToAdd = phoneticPatterns.filter((p) => !existingTags.has(p.tag));
-            return [...newToAdd, ...prev];
-          });
-        }
+        updatePatternsWithPhonemes(parsed.weakPhonemes || []);
       }
     } catch {
       // ignore local reading
     }
+
+    const handleProfileUpdated = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail?.weakPhonemes) {
+        updatePatternsWithPhonemes(customEvent.detail.weakPhonemes);
+      }
+    };
+
+    window.addEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
+    return () => {
+      window.removeEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
+    };
   }, []);
 
   // Filter patterns

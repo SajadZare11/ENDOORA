@@ -107,17 +107,35 @@ export default function LearnerTwinPage() {
   const [weakPhonemes, setWeakPhonemes] = useState<string[]>([]);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("endoora_phoneme_diagnostic_profile");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed.weakPhonemes)) {
-          setWeakPhonemes(parsed.weakPhonemes);
+    const readProfile = () => {
+      try {
+        const saved = localStorage.getItem("endoora_phoneme_diagnostic_profile");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed.weakPhonemes)) {
+            setWeakPhonemes(parsed.weakPhonemes);
+          }
         }
+      } catch {
+        // ignore
       }
-    } catch {
-      // ignore
-    }
+    };
+
+    readProfile();
+
+    const handleProfileUpdated = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (Array.isArray(customEvent.detail?.weakPhonemes)) {
+        setWeakPhonemes(customEvent.detail.weakPhonemes);
+      } else {
+        readProfile();
+      }
+    };
+
+    window.addEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
+    return () => {
+      window.removeEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
+    };
   }, []);
 
   const placementCompleted =

@@ -9,6 +9,42 @@ export interface TargetWordPhonemes {
   phonemes: string[]; // ARPAbet tokens e.g. ['DH', 'IH', 'S']
 }
 
+export interface PhonemeGOPResult {
+  phoneme: string;
+  ipaSymbol: string;
+  gopScore: number; // 0 to 100 normalized
+  rawLogRatio: number; // <= 0
+  detectedPhoneme: string;
+  startTimeMs: number;
+  endTimeMs: number;
+  status: 'native' | 'Needs_Work' | 'mispronounced';
+  diagnosticTipFa: string;
+  articulatoryRuleEn: string;
+}
+
+export interface WordGOPResult {
+  word: string;
+  ipa: string;
+  wordScore: number;
+  stressAccuracy: number;
+  phonemes: PhonemeGOPResult[];
+}
+
+export interface GOPAssessmentPayload {
+  overallScore: number;
+  ieltsBandEstimate: number | string;
+  fluencyScore: number;
+  intonationCorrelation?: number;
+  words: WordGOPResult[];
+  inferenceTimeMs: number;
+  executionBackend?: 'webgpu' | 'wasm' | 'acoustic-dsp-fallback' | string;
+  backend?: string;
+  totalPhonemes?: number;
+  weakPhonemes?: string[];
+  persianL1Flags?: string[];
+}
+
+
 export const PHONEME_VOCAB: string[] = [
   '<blank>', 'AA', 'AE', 'AH', 'AO', 'AW', 'AY', 'B', 'CH', 'D',
   'DH', 'EH', 'ER', 'EY', 'F', 'G', 'HH', 'IH', 'IY', 'JH',
@@ -412,19 +448,22 @@ export const CURATED_PRACTICE_UTTERANCES = {
       id: 'aef_hotel_checkin',
       titleFa: 'ورود به هتل و تحویل کلید',
       sentence: 'Good evening. I have a reservation for a single room with a bath.',
-      cefr: 'A2' as const
+      cefr: 'A2' as const,
+      audioUrl: '/audio/reference/aef_hotel_checkin.mp3'
     },
     {
       id: 'aef_cafe_order',
       titleFa: 'سفارش قهوه در کافه',
       sentence: 'Can I have a double espresso and a bottle of mineral water, please?',
-      cefr: 'A1' as const
+      cefr: 'A1' as const,
+      audioUrl: '/audio/reference/aef_cafe_order.mp3'
     },
     {
       id: 'aef_street_directions',
       titleFa: 'پرسیدن آدرس در خیابان',
       sentence: 'Excuse me, could you tell me where the nearest subway station is?',
-      cefr: 'B1' as const
+      cefr: 'B1' as const,
+      audioUrl: '/audio/reference/aef_street_directions.mp3'
     }
   ],
   Speakout_BBC: [
@@ -432,13 +471,15 @@ export const CURATED_PRACTICE_UTTERANCES = {
       id: 'speakout_city_life',
       titleFa: 'مصاحبه بی‌بی‌سی درباره زندگی شهری',
       sentence: 'Living in a bustling capital gives you endless cultural opportunities and events.',
-      cefr: 'B2' as const
+      cefr: 'B2' as const,
+      audioUrl: '/audio/reference/speakout_city_life.mp3'
     },
     {
       id: 'speakout_technology_interview',
       titleFa: 'دیدگاه شهروندان پیرامون هوش مصنوعی',
       sentence: 'I think modern technology will reshape how future generations work and communicate.',
-      cefr: 'C1' as const
+      cefr: 'C1' as const,
+      audioUrl: '/audio/reference/speakout_technology_interview.mp3'
     }
   ],
   IELTS_Speaking: [
@@ -446,19 +487,22 @@ export const CURATED_PRACTICE_UTTERANCES = {
       id: 'ielts_part1_hometown',
       titleFa: 'اسپیکینگ پارت ۱: توصیف زادگاه',
       sentence: 'My hometown is famous for its warm weather and friendly hospitable people.',
-      cefr: 'B2' as const
+      cefr: 'B2' as const,
+      audioUrl: '/audio/reference/ielts_part1_hometown.mp3'
     },
     {
       id: 'ielts_part2_challenge',
       titleFa: 'اسپیکینگ پارت ۲: تجربه غلبه بر چالش',
       sentence: 'That experience taught me how to stay calm and solve unexpected problems under pressure.',
-      cefr: 'B2' as const
+      cefr: 'B2' as const,
+      audioUrl: '/audio/reference/ielts_part2_challenge.mp3'
     },
     {
       id: 'ielts_part3_environment',
       titleFa: 'اسپیکینگ پارت ۳: حفاظت از محیط زیست',
       sentence: 'Governments should invest heavily in renewable energy to protect our vulnerable planet.',
-      cefr: 'C1' as const
+      cefr: 'C1' as const,
+      audioUrl: '/audio/reference/ielts_part3_environment.mp3'
     }
   ],
   Persian_L1_Contrasts: [
@@ -466,31 +510,36 @@ export const CURATED_PRACTICE_UTTERANCES = {
       id: 'p_th_voiceless',
       titleFa: 'تمایز /θ/ از /s/ و /t/',
       sentence: 'Think carefully about the three thin paths through the forest.',
-      cefr: 'B1' as const
+      cefr: 'B1' as const,
+      audioUrl: '/audio/reference/p_th_voiceless.mp3'
     },
     {
       id: 'p_dh_voiced',
       titleFa: 'تمایز /ð/ از /d/ و /z/',
       sentence: 'This smooth leather is better than that other coat over there.',
-      cefr: 'B1' as const
+      cefr: 'B1' as const,
+      audioUrl: '/audio/reference/p_dh_voiced.mp3'
     },
     {
       id: 'p_wv_contrast',
       titleFa: 'تمایز جفت /w/ و /v/',
       sentence: 'Be very wary of cold winter winds when visiting the west valley.',
-      cefr: 'A2' as const
+      cefr: 'A2' as const,
+      audioUrl: '/audio/reference/p_wv_contrast.mp3'
     },
     {
       id: 'p_clusters_sp_st',
       titleFa: 'خوشه صوتی ابتدایی بدون کسره (/sp/, /st/, /sk/)',
       sentence: 'Students start to speak Spanish and study special sport skills.',
-      cefr: 'A2' as const
+      cefr: 'A2' as const,
+      audioUrl: '/audio/reference/p_clusters_sp_st.mp3'
     },
     {
       id: 'p_ng_nasal',
       titleFa: 'صدای خیشومی /ŋ/ بدون رها کردن گ یا ک',
       sentence: 'The young singer is singing a charming English song this morning.',
-      cefr: 'B1' as const
+      cefr: 'B1' as const,
+      audioUrl: '/audio/reference/p_ng_nasal.mp3'
     }
   ]
 };
