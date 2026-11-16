@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getExamIntegrityData,
   sendLiveWarning,
@@ -35,6 +37,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -56,9 +63,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = sendLiveWarning(sessionId, message);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "LiveExamSession",
           target_pk: sessionId,
@@ -83,9 +90,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = suspendExamSession(sessionId, reason);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "LiveExamSession",
           target_pk: sessionId,
@@ -110,9 +117,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = resumeExamSession(sessionId);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "LiveExamSession",
           target_pk: sessionId,
@@ -137,9 +144,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = pardonViolation(sessionId, violationId, reason || "توضیحات مورد قبول واقع شد");
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "ProctoringViolationEvent",
           target_pk: violationId,
@@ -164,9 +171,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = grantCompensationTime(sessionId, Number(additionalMinutes));
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "LiveExamSession",
           target_pk: sessionId,
@@ -191,9 +198,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = invalidateExamSession(sessionId, reason);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "LiveExamSession",
           target_pk: sessionId,
@@ -223,9 +230,9 @@ export async function POST(req: NextRequest) {
           reviewedBy || "سرممیز آزمون‌های بین‌المللی"
         );
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "AiGradeAuditRecord",
           target_pk: auditId,
@@ -250,9 +257,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = confirmOriginalAiScore(auditId, reviewedBy || "سرممیز آزمون‌های بین‌المللی");
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "AiGradeAuditRecord",
           target_pk: auditId,
@@ -277,9 +284,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = quarantineQuestionItem(itemId, reason);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "QuestionPsychometricsItem",
           target_pk: itemId,
@@ -304,9 +311,9 @@ export async function POST(req: NextRequest) {
         }
         const updated = activateQuestionItem(itemId);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "QuestionPsychometricsItem",
           target_pk: itemId,
@@ -331,9 +338,9 @@ export async function POST(req: NextRequest) {
         }
         const result = regradeQuestionCompensation(itemId);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "QuestionPsychometricsItem",
           target_pk: itemId,
@@ -365,9 +372,9 @@ export async function POST(req: NextRequest) {
           adjudicatedBy
         );
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "GradeAppealCase",
           target_pk: appealId,
@@ -385,9 +392,9 @@ export async function POST(req: NextRequest) {
       case "reset_data": {
         resetExamIntegrityDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "exams",
           target_model: "ExamIntegrityHub",
           target_pk: "seed",

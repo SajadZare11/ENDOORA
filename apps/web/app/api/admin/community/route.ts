@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getCommunityModerationData,
   approveComment,
@@ -34,6 +36,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -56,9 +63,9 @@ export async function POST(req: NextRequest) {
         const result = approveComment(commentId, "مدیر ارشد نظارت");
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "CommunityComment",
             target_pk: commentId,
@@ -85,9 +92,9 @@ export async function POST(req: NextRequest) {
         const result = rejectComment(commentId, reason, "مدیر ارشد نظارت");
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "CommunityComment",
             target_pk: commentId,
@@ -114,9 +121,9 @@ export async function POST(req: NextRequest) {
         const result = postOfficialReply(commentId, replyText, staffName, staffRole);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "CommunityComment",
             target_pk: commentId,
@@ -143,9 +150,9 @@ export async function POST(req: NextRequest) {
         const result = toggleCommentPin(commentId, isPinned);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "CommunityComment",
             target_pk: commentId,
@@ -172,9 +179,9 @@ export async function POST(req: NextRequest) {
         const result = toggleCommentLock(commentId, isLocked);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "CommunityComment",
             target_pk: commentId,
@@ -206,9 +213,9 @@ export async function POST(req: NextRequest) {
         });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "BannedKeywordRule",
             target_pk: result.rule.id,
@@ -247,9 +254,9 @@ export async function POST(req: NextRequest) {
         const result = deleteBannedKeywordRule(ruleId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "BannedKeywordRule",
             target_pk: ruleId,
@@ -283,9 +290,9 @@ export async function POST(req: NextRequest) {
         });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "SanctionedUserRecord",
             target_pk: result.record.id,
@@ -312,9 +319,9 @@ export async function POST(req: NextRequest) {
         const result = liftUserSanction(sanctionId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "community",
             target_model: "SanctionedUserRecord",
             target_pk: sanctionId,
@@ -331,11 +338,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetCommunityModerationDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "community",
           target_model: "CommunitySeed",
           target_pk: "seed_payload",

@@ -8,20 +8,56 @@ export function AdminPageClient() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const session = localStorage.getItem("endoora_admin_session");
-    if (session && session.startsWith("authenticated_")) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
+    async function checkAdminSession() {
+      try {
+        const res = await fetch("/api/auth/me/", {
+          credentials: "include",
+          headers: { Accept: "application/json" },
+          cache: "no-store",
+        });
+        if (res.ok) {
+          const userData = await res.json();
+          if (
+            userData.role === "administrator" ||
+            Boolean(userData.is_staff) ||
+            Boolean(userData.is_superuser)
+          ) {
+            setIsAuthenticated(true);
+            return;
+          }
+        }
+        setIsAuthenticated(false);
+      } catch {
+        setIsAuthenticated(false);
+      }
     }
+    checkAdminSession();
   }, []);
 
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("endoora_admin_session");
+  const handleLogout = async () => {
+    try {
+      const csrfRes = await fetch("/api/auth/csrf/", {
+        credentials: "include",
+        headers: { Accept: "application/json" },
+      });
+      const csrfData = await csrfRes.json().catch(() => ({}));
+      const csrfToken = csrfData.csrf_token || "";
+
+      await fetch("/api/auth/logout/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken,
+        },
+      });
+    } catch {
+      // ignore network errors on logout
+    }
     setIsAuthenticated(false);
   };
 
@@ -37,8 +73,9 @@ export function AdminPageClient() {
           color: "#94a3b8",
           fontSize: "1rem",
         }}
+        dir="rtl"
       >
-        در حال بررسی مجوزهای امنیتی مدیر ارشد...
+        در حال بررسی مجوزهای نشست سرور مدیر ارشد...
       </div>
     );
   }

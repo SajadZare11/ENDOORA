@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getMarketingData,
   getMarketingStats,
@@ -20,6 +22,11 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") || searchParams.get("q");
     const couponStatus = searchParams.get("coupon_status");
@@ -77,6 +84,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action, actor } = body;
 
@@ -93,9 +105,9 @@ export async function POST(req: NextRequest) {
 
       try {
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: actor || "growth@endoora.ir",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           action: "create",
           target_app: "marketing",
           target_model: "Coupon",
@@ -129,9 +141,9 @@ export async function POST(req: NextRequest) {
 
       try {
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: actor || "growth@endoora.ir",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           action: "update",
           target_app: "marketing",
           target_model: "Coupon",
@@ -179,9 +191,9 @@ export async function POST(req: NextRequest) {
 
       try {
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: actor || "growth@endoora.ir",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           action: "create",
           target_app: "referral",
           target_model: "ReferralPartner",
@@ -229,6 +241,10 @@ export async function POST(req: NextRequest) {
 
     // 7. Reset Seed
     if (action === "reset_seed") {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
       saveMarketingDataToDisk({
         coupons: [...INITIAL_COUPONS],
         partners: [...INITIAL_REFERRAL_PARTNERS],

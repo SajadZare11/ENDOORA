@@ -3,41 +3,58 @@
 import React, { useState } from "react";
 import styles from "./admin-login-gate.module.css";
 
-const ADMIN_DEFAULT_EMAIL = "founder@endoora.ir";
-const ADMIN_DEFAULT_PASS = "admin2026!";
-
 export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void }) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
 
-    setTimeout(() => {
-      const normalizedEmail = email.trim().toLowerCase();
-      if (
-        (normalizedEmail === ADMIN_DEFAULT_EMAIL || normalizedEmail === "admin") &&
-        password === ADMIN_DEFAULT_PASS
-      ) {
-        localStorage.setItem("endoora_admin_session", "authenticated_" + Date.now());
-        onLoginSuccess();
-      } else {
-        setError("ایمیل یا رمز عبور وارد شده نادرست است. دسترسی به پنل مدیریت مجاز نیست.");
-        setIsLoading(false);
-      }
-    }, 400);
-  };
+    try {
+      // Fetch CSRF token from Django authoritative endpoint
+      const csrfRes = await fetch("/api/auth/csrf/", {
+        method: "GET",
+        credentials: "include",
+        headers: { Accept: "application/json" },
+      });
+      const csrfData = await csrfRes.json().catch(() => ({}));
+      const csrfToken = csrfData.csrf_token || "";
 
-  const handleQuickDevLogin = () => {
-    setEmail(ADMIN_DEFAULT_EMAIL);
-    setPassword(ADMIN_DEFAULT_PASS);
-    setError(null);
-    localStorage.setItem("endoora_admin_session", "authenticated_" + Date.now());
-    onLoginSuccess();
+      // Submit credentials to authoritative login endpoint
+      const res = await fetch("/api/auth/login/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-CSRFToken": csrfToken,
+        },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.message_fa || data.detail || "ایمیل یا رمز عبور وارد شده نادرست است.");
+        setIsLoading(false);
+        return;
+      }
+
+      const userData = await res.json();
+      if (userData.role !== "administrator" && !userData.is_staff && !userData.is_superuser) {
+        setError("این حساب کاربری دارای مجوز دسترسی به مرکز مدیریت کل نیست.");
+        setIsLoading(false);
+        return;
+      }
+
+      onLoginSuccess();
+    } catch {
+      setError("خطا در برقراری ارتباط با سرور احراز هویت.");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -47,7 +64,7 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           <div className={styles.brandLogo}>E</div>
           <h1 className={styles.gateTitle}>دروازه امن مدیریت ارشد (Admin Gate)</h1>
           <p className={styles.gateSubtitle}>
-            برای ورود به مرکز فرماندهی و تغییرات سراسری وبسایت، هویت مدیریتی خود را تایید کنید.
+            برای ورود به مرکز فرماندهی و مدیریت سامانه، هویت مدیریتی خود را با اطلاعات معتبر سرور تایید کنید.
           </p>
         </div>
 
@@ -62,9 +79,9 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           <div className={styles.fieldGroup}>
             <label className={styles.label}>ایمیل یا شناسه کاربری مدیر ارشد</label>
             <input
-              type="text"
+              type="email"
               className={styles.input}
-              placeholder="founder@endoora.ir"
+              placeholder="admin@endoora.ir"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -91,24 +108,8 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           </button>
         </form>
 
-        {/* Quick Dev Box for the developer/founder in local environment */}
-        <div className={styles.devQuickBox}>
-          <p className={styles.devTitle}>🛠️ اطلاعات ورود پیش‌فرض مدیر (محیط توسعه)</p>
-          <div className={styles.devCredentials}>
-            <div>ایمیل: {ADMIN_DEFAULT_EMAIL}</div>
-            <div>رمز عبور: {ADMIN_DEFAULT_PASS}</div>
-          </div>
-          <button
-            type="button"
-            className={styles.btnQuickDev}
-            onClick={handleQuickDevLogin}
-          >
-            ⚡ ورود سریع ۱ کلیکی (ویژه محیط لوکال)
-          </button>
-        </div>
-
         <p className={styles.footerNote}>
-          این درگاه صرفاً برای مدیر و سازنده وبسایت طراحی شده و در دسترس عموم قرار ندارد.
+          این درگاه صرفاً برای مدیران سیستم طراحی شده و تمامی ورودها به صورت رسمی در دفتر کل ثبت می‌شوند.
         </p>
       </div>
     </div>

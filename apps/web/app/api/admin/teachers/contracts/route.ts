@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getTeacherContractsData,
   createContract,
@@ -33,6 +35,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -61,9 +68,9 @@ export async function POST(req: NextRequest) {
         });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherContractItem",
             target_pk: result.contract.id,
@@ -102,9 +109,9 @@ export async function POST(req: NextRequest) {
         const result = signContractOtp({ contractId, otpCode, signerIp });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherContractItem",
             target_pk: contractId,
@@ -131,9 +138,9 @@ export async function POST(req: NextRequest) {
         const result = terminateContract(contractId, reason);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherContractItem",
             target_pk: contractId,
@@ -160,9 +167,9 @@ export async function POST(req: NextRequest) {
         const result = setCustomCommission({ teacherId, customPercent, reason });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherCommissionProfile",
             target_pk: teacherId,
@@ -189,9 +196,9 @@ export async function POST(req: NextRequest) {
         const result = evaluateTierPromotion(teacherId);
         if (result.success && result.promoted) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherCommissionProfile",
             target_pk: teacherId,
@@ -218,9 +225,9 @@ export async function POST(req: NextRequest) {
         const result = toggleLegalHold({ teacherId, isHoldActive, reason });
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "contracts",
             target_model: "TeacherCommissionProfile",
             target_pk: teacherId,
@@ -266,11 +273,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetTeacherContractsDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "contracts",
           target_model: "TeacherContractsSeed",
           target_pk: "seed_payload",

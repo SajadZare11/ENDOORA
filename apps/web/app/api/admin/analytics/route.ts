@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getPlatformAnalyticsData,
   getPlatformAnalyticsStats,
@@ -11,6 +13,11 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const { searchParams } = new URL(req.url);
     const timeframeParam = (searchParams.get("timeframe") || "30d") as AnalyticsTimeframe;
     const timeframe: AnalyticsTimeframe = ["7d", "30d", "90d", "1y"].includes(timeframeParam)
@@ -36,6 +43,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -59,9 +71,9 @@ export async function POST(req: NextRequest) {
         const result = sendAbandonedCartRecoveryCoupon(cartId, percent);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "analytics",
             target_model: "AbandonedCart",
             target_pk: cartId,
@@ -88,9 +100,9 @@ export async function POST(req: NextRequest) {
         const result = sendLearnerMotivationNudge(userId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "analytics",
             target_model: "AtRiskLearner",
             target_pk: userId,
@@ -107,11 +119,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetPlatformAnalyticsDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "analytics",
           target_model: "AnalyticsSeed",
           target_pk: "seed_data",

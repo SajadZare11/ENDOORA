@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   DEFAULT_SITE_CONTENT,
   discardDraftSiteContent,
@@ -31,6 +33,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const action = body.action as string;
     const user = body.user || "مدیر ارشد ایندورا";

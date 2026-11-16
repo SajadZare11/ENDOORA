@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getUsers360,
   getUserOperationsStats,
@@ -21,10 +23,45 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") || searchParams.get("q");
     const roleFilter = searchParams.get("role");
     const statusFilter = searchParams.get("status");
+
+    const backendUrl = (
+      process.env.ENDOORA_API_INTERNAL_URL ?? "http://127.0.0.1:8000"
+    ).replace(/\/+$/, "");
+
+    try {
+      const qs = searchParams.toString();
+      const djangoRes = await fetch(`${backendUrl}/api/admin-ops/users/?${qs}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Cookie: req.headers.get("cookie") || "",
+        },
+        cache: "no-store",
+      });
+      if (djangoRes.ok) {
+        const djangoData = await djangoRes.json();
+        if (djangoData.users && djangoData.users.length > 0) {
+          return NextResponse.json({
+            success: true,
+            users: djangoData.users,
+            stats: djangoData.stats || getUserOperationsStats(),
+            availableCourses: AVAILABLE_COURSES_CATALOG,
+            strikePresets: STRIKE_REASON_PRESETS,
+          });
+        }
+      }
+    } catch {
+      // Fallback to store
+    }
 
     let users = getUsers360();
 
@@ -70,11 +107,20 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const action = body.action as string;
-    const actor = body.actor || "مدیر ارشد ایندورا";
+    const actor = auth.user ? `${auth.user.first_name || ""} ${auth.user.last_name || ""}`.trim() || auth.user.email : "مدیر سامانه";
 
     if (action === "reset_seed") {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
       saveUsers360ToDisk([...INITIAL_USERS_360]);
       const stats = getUserOperationsStats();
       return NextResponse.json({
@@ -88,6 +134,49 @@ export async function POST(req: NextRequest) {
     const userId = body.userId as string;
     if (!userId) {
       return NextResponse.json({ success: false, error: "شناسه کاربر الزامی است." }, { status: 400 });
+    }
+
+    const backendUrl = (
+      process.env.ENDOORA_API_INTERNAL_URL ?? "http://127.0.0.1:8000"
+    ).replace(/\/+$/, "");
+
+    // Authoritative Django mutation
+    if (["adjust_wallet", "update_role", "toggle_active", "ban"].includes(action)) {
+      try {
+        const djangoRes = await fetch(`${backendUrl}/api/admin-ops/users/${userId}/action/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Cookie: req.headers.get("cookie") || "",
+            "X-CSRFToken": req.cookies.get("csrftoken")?.value || "",
+          },
+          body: JSON.stringify(body),
+        });
+        if (djangoRes.ok) {
+          const djangoData = await djangoRes.json();
+          if (action === "adjust_wallet") {
+            adjustUserWallet(userId, { amountToman: Number(body.amountToman), reasonCategory: body.reasonCategory, adminNote: body.adminNote, actor });
+          } else if (action === "update_role") {
+            updateUserRole(userId, body.role);
+          } else if (action === "toggle_active" || action === "ban") {
+            toggleUserActive(userId);
+          }
+          return NextResponse.json({
+            success: true,
+            ...djangoData,
+            stats: getUserOperationsStats(),
+          });
+        } else if (djangoRes.status !== 404) {
+          const errData = await djangoRes.json().catch(() => ({}));
+          return NextResponse.json(
+            { success: false, error: errData.error || "خطای پایگاه داده اصلی در ثبت تغییرات." },
+            { status: djangoRes.status }
+          );
+        }
+      } catch {
+        // Backend not directly reachable in isolated environment, proceed with local store
+      }
     }
 
     if (action === "adjust_wallet") {
@@ -112,9 +201,9 @@ export async function POST(req: NextRequest) {
       }
 
       recordAuditLog({
-        actor_id: "usr-admin-1",
-        actor_email: "founder@endoora.ir",
-        actor_role: "administrator",
+        actor_id: auth.user?.id || "admin",
+        actor_email: auth.user?.email || "admin@endoora.ir",
+        actor_role: auth.user?.role || "administrator",
         action: "update",
         target_app: "ledger",
         target_model: "UserWallet",
@@ -152,9 +241,9 @@ export async function POST(req: NextRequest) {
       }
 
       recordAuditLog({
-        actor_id: "usr-admin-1",
-        actor_email: "founder@endoora.ir",
-        actor_role: "administrator",
+        actor_id: auth.user?.id || "admin",
+        actor_email: auth.user?.email || "admin@endoora.ir",
+        actor_role: auth.user?.role || "administrator",
         action: "create",
         target_app: "moderation",
         target_model: "WarningStrike",
@@ -196,9 +285,9 @@ export async function POST(req: NextRequest) {
       }
 
       recordAuditLog({
-        actor_id: "usr-admin-1",
-        actor_email: "founder@endoora.ir",
-        actor_role: "administrator",
+        actor_id: auth.user?.id || "admin",
+        actor_email: auth.user?.email || "admin@endoora.ir",
+        actor_role: auth.user?.role || "administrator",
         action: "update",
         target_app: "moderation",
         target_model: "WarningStrike",
@@ -227,9 +316,9 @@ export async function POST(req: NextRequest) {
       }
 
       recordAuditLog({
-        actor_id: "usr-admin-1",
-        actor_email: "founder@endoora.ir",
-        actor_role: "administrator",
+        actor_id: auth.user?.id || "admin",
+        actor_email: auth.user?.email || "admin@endoora.ir",
+        actor_role: auth.user?.role || "administrator",
         action: "create",
         target_app: "courses",
         target_model: "CourseEnrollment",

@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getAiEngineData,
   updatePromptTemplate,
@@ -31,6 +33,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -53,9 +60,9 @@ export async function POST(req: NextRequest) {
         const result = updatePromptTemplate(promptId, updates, "مدیر ارشد هوش مصنوعی");
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "ai_engine",
             target_model: "AiPromptTemplate",
             target_pk: promptId,
@@ -82,9 +89,9 @@ export async function POST(req: NextRequest) {
         const result = updateRoutingRule(capabilityKey as AiCapabilityKey, updates);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "ai_engine",
             target_model: "AiModelRoutingRule",
             target_pk: capabilityKey,
@@ -110,9 +117,9 @@ export async function POST(req: NextRequest) {
         }
         const result = toggleGlobalKillSwitch(enabled, reason);
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "ai_engine",
           target_model: "AiSafetyAndBudgetConfig",
           target_pk: "global_kill_switch",
@@ -140,9 +147,9 @@ export async function POST(req: NextRequest) {
         const result = updateBudgetAndSafety(updates);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "ai_engine",
             target_model: "AiSafetyAndBudgetConfig",
             target_pk: "budget_settings",
@@ -169,9 +176,9 @@ export async function POST(req: NextRequest) {
         const result = deployPromptToProduction(promptId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "ai_engine",
             target_model: "AiPromptTemplate",
             target_pk: promptId,
@@ -218,11 +225,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetAiEngineDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "ai_engine",
           target_model: "AiSeedData",
           target_pk: "seed_payload",

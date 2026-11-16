@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getSecurityCommandData,
   getSecurityCommandStats,
@@ -17,6 +19,11 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") || searchParams.get("q");
     const roleFilter = searchParams.get("role");
@@ -85,6 +92,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -107,9 +119,9 @@ export async function POST(req: NextRequest) {
         const result = killSession(sessionId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "security_command",
             target_model: "LiveUserSession",
             target_pk: sessionId,
@@ -136,9 +148,9 @@ export async function POST(req: NextRequest) {
         const result = forceLogoutAllUserSessions(userId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "security_command",
             target_model: "UserActiveSessions",
             target_pk: userId,
@@ -171,9 +183,9 @@ export async function POST(req: NextRequest) {
           createdBy: "مدیر ارشد امنیت (پنل ادمین)",
         });
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "security_command",
           target_model: "IpFirewallRule",
           target_pk: ipAddress,
@@ -199,9 +211,9 @@ export async function POST(req: NextRequest) {
         const result = unblockIp(ruleId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "security_command",
             target_model: "IpFirewallRule",
             target_pk: ruleId,
@@ -231,9 +243,9 @@ export async function POST(req: NextRequest) {
           createdBy: "مدیر ارشد امنیت",
         });
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "security_command",
           target_model: "IpFirewallRule",
           target_pk: ipAddress,
@@ -266,9 +278,9 @@ export async function POST(req: NextRequest) {
           updatedBy: "مدیر ارشد ایندورا",
         });
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "security_command",
           target_model: "MaintenanceConfig",
           target_pk: "platform_maintenance",
@@ -297,9 +309,9 @@ export async function POST(req: NextRequest) {
           updatedBy: "مدیر ارشد ایندورا",
         });
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "security_command",
           target_model: "MaintenanceConfig",
           target_pk: "maintenance_config",
@@ -315,11 +327,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetSecurityCommandDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "security_command",
           target_model: "SecurityStorageSeed",
           target_pk: "seed_data",

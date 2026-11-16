@@ -162,3 +162,109 @@ class AdminDashboardTests(TestCase):
         resp_filtered = self.client.get("/api/admin-ops/audit/?target_app=content")
         self.assertEqual(resp_filtered.status_code, status.HTTP_200_OK)
         self.assertGreaterEqual(resp_filtered.data["count"], 1)
+
+
+class AdminUserManagementSecurityTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.learner = User.objects.create_user(
+            email="learner_test@endoora.ir",
+            password="test-password-123",
+            role=User.Role.LEARNER,
+        )
+        self.teacher = User.objects.create_user(
+            email="teacher_test@endoora.ir",
+            password="test-password-123",
+            role=User.Role.TEACHER,
+        )
+        self.admin = User.objects.create_user(
+            email="admin_test@endoora.ir",
+            password="test-password-123",
+            role=User.Role.ADMINISTRATOR,
+            is_staff=True,
+            is_superuser=True,
+        )
+
+    def test_anonymous_cannot_access_admin_users(self):
+        res = self.client.get("/api/admin-ops/users/")
+        self.assertIn(res.status_code, [status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN])
+
+    def test_learner_cannot_access_admin_users(self):
+        self.client.force_authenticate(user=self.learner)
+        res = self.client.get("/api/admin-ops/users/")
+        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_teacher_cannot_access_admin_users(self):
+        self.client.force_authenticate(user=self.teacher)
+        res = self.client.get("/api/admin-ops/users/")
+        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_admin_can_list_users(self):
+        self.client.force_authenticate(user=self.admin)
+        res = self.client.get("/api/admin-ops/users/")
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertTrue(res.data["success"])
+        self.assertGreaterEqual(len(res.data["users"]), 3)
+
+    def test_admin_wallet_adjustment_persists_atomically_with_audit(self):
+        from marketplace.models import UserWallet, WalletTransaction
+        self.client.force_authenticate(user=self.admin)
+        res = self.client.post(
+            f"/api/admin-ops/users/{self.learner.id}/action/",
+            data={
+                "action": "adjust_wallet",
+                "amountToman": 75000,
+                "reasonCategory": "promotional_grant",
+                "adminNote": "هدیه خوش‌آمدگویی مدیریت ارشد",
+            },
+            format="json",
+        )
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        wallet = UserWallet.objects.get(user=self.learner)
+        self.assertEqual(wallet.balance_toman, 75000)
+
+        # Audit log verified
+        audit = AuditEvent.objects.filter(target_pk=str(wallet.id), actor=self.admin).first()
+        self.assertIsNotNone(audit)
+        self.assertEqual(audit.actor, self.admin)
+
+    def test_admin_can_ban_and_unban_user(self):
+        self.client.force_authenticate(user=self.admin)
+        # Ban user
+        res = self.client.post(
+            f"/api/admin-ops/users/{self.learner.id}/action/",
+            data={"action": "ban"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.learner.refresh_from_db()
+        self.assertFalse(self.learner.is_active)
+
+        # Banned user cannot log in
+        login_res = self.client.post(
+            "/api/auth/login/",
+            {"email": self.learner.email, "password": "test-password-123"},
+            format="json",
+        )
+        self.assertEqual(login_res.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # Unban user
+        res2 = self.client.post(
+            f"/api/admin-ops/users/{self.learner.id}/action/",
+            data={"action": "ban"},
+            format="json",
+        )
+        self.assertEqual(res2.status_code, status.HTTP_200_OK)
+        self.learner.refresh_from_db()
+        self.assertTrue(self.learner.is_active)
+
+    def test_admin_can_update_role(self):
+        self.client.force_authenticate(user=self.admin)
+        res = self.client.post(
+            f"/api/admin-ops/users/{self.learner.id}/action/",
+            data={"action": "update_role", "role": "teacher"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.learner.refresh_from_db()
+        self.assertEqual(self.learner.role, "teacher")

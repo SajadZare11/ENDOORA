@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getSeoMetadataData,
   updatePageSeoMetadata,
@@ -29,6 +31,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const { action } = body;
 
@@ -51,9 +58,9 @@ export async function POST(req: NextRequest) {
         const result = updatePageSeoMetadata(pagePath, updates, "مدیر ارشد سئو");
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "seo",
             target_model: "PageSeoMetadata",
             target_pk: pagePath,
@@ -93,9 +100,9 @@ export async function POST(req: NextRequest) {
         }
 
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "seo",
           target_model: "UrlRedirectRule",
           target_pk: result.rule.id,
@@ -122,9 +129,9 @@ export async function POST(req: NextRequest) {
         const result = toggleRedirectRule(ruleId, isActive);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "seo",
             target_model: "UrlRedirectRule",
             target_pk: ruleId,
@@ -151,9 +158,9 @@ export async function POST(req: NextRequest) {
         const result = deleteRedirectRule(ruleId);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "seo",
             target_model: "UrlRedirectRule",
             target_pk: ruleId,
@@ -180,9 +187,9 @@ export async function POST(req: NextRequest) {
         const result = updateSchemaJsonLd(schemaId, jsonLdPayload);
         if (result.success) {
           recordAuditLog({
-            actor_id: "usr-admin-1",
+            actor_id: auth.user?.id || "admin",
             actor_email: "admin@endoora.com",
-            actor_role: "administrator",
+            actor_role: auth.user?.role || "administrator",
             target_app: "seo",
             target_model: "SchemaJsonLd",
             target_pk: schemaId,
@@ -199,11 +206,15 @@ export async function POST(req: NextRequest) {
       }
 
       case "reset_seed": {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
         resetSeoMetadataDataToInitial();
         recordAuditLog({
-          actor_id: "usr-admin-1",
+          actor_id: auth.user?.id || "admin",
           actor_email: "admin@endoora.com",
-          actor_role: "administrator",
+          actor_role: auth.user?.role || "administrator",
           target_app: "seo",
           target_model: "SeoSeed",
           target_pk: "seed_data",

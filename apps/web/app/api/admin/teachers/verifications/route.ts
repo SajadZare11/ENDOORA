@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
+
 import {
   getTeacherApplications,
   getVerificationStats,
@@ -13,6 +15,11 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const { searchParams } = new URL(req.url);
     const statusFilter = searchParams.get("status");
     const searchQuery = searchParams.get("q") || searchParams.get("search");
@@ -60,10 +67,19 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+  const auth = await verifyAdminSession(req);
+  if (!auth.authorized) {
+    return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+  }
+
     const body = await req.json();
     const action = body.action as string;
 
     if (action === "reset_seed") {
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
+      }
+
       saveApplicationsToDisk([...INITIAL_TEACHER_APPLICATIONS]);
       const stats = getVerificationStats();
       return NextResponse.json({
@@ -106,9 +122,9 @@ export async function POST(req: NextRequest) {
       // Record in Admin Audit Log
       try {
         recordAuditLog({
-          actor_id: "usr-admin-1",
-          actor_email: "founder@endoora.ir",
-          actor_role: "administrator",
+          actor_id: auth.user?.id || "admin",
+          actor_email: auth.user?.email || "admin@endoora.ir",
+          actor_role: auth.user?.role || "administrator",
           action: "update",
           target_app: "teachers",
           target_model: "TeacherVerification",
