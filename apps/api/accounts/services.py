@@ -74,7 +74,6 @@ def issue_otp(
     return record, debug_code
 
 
-@transaction.atomic
 def verify_otp(
     identifier: str,
     purpose: str,
@@ -84,35 +83,45 @@ def verify_otp(
 ) -> OneTimeCode:
     normalized = normalize_identifier(identifier)
 
-    record = (
-        OneTimeCode.objects.select_for_update()
-        .filter(
-            identifier=normalized,
-            purpose=purpose,
-            consumed_at__isnull=True,
+    record = None
+    is_valid = False
+
+    with transaction.atomic():
+        record = (
+            OneTimeCode.objects.select_for_update()
+            .filter(
+                identifier=normalized,
+                purpose=purpose,
+                consumed_at__isnull=True,
+            )
+            .order_by("-created_at")
+            .first()
         )
-        .order_by("-created_at")
-        .first()
-    )
-    if expected_user is not None and (
-        record is None or record.requested_by_id != expected_user.pk
-    ):
-        raise ValidationError("The code does not belong to this account.")
+        if record is None:
+            raise ValidationError("The code is invalid, expired, consumed, or has too many attempts.")
 
-    if record is None or not record.verify(raw_code):
+        if expected_user is not None and record.requested_by_id != expected_user.pk:
+            raise ValidationError("The code does not belong to this account.")
+
+        is_valid = record.verify(raw_code)
+
+        if is_valid:
+            if purpose == OneTimeCode.Purpose.PHONE_VERIFY and record.requested_by_id:
+                user = User.objects.select_for_update().get(pk=record.requested_by_id)
+                if user.phone == normalized:
+                    user.phone_verified_at = timezone.now()
+                    user.save(update_fields=["phone_verified_at"])
+
+            if purpose == OneTimeCode.Purpose.EMAIL_VERIFY and record.requested_by_id:
+                user = User.objects.select_for_update().get(pk=record.requested_by_id)
+                if user.email == normalized:
+                    user.email_verified_at = timezone.now()
+                    user.save(update_fields=["email_verified_at"])
+
+    # If verification failed (wrong code, expired, exhausted, etc.),
+    # the atomic block above has already committed the updated attempts count.
+    if not is_valid:
         raise ValidationError("The code is invalid, expired, consumed, or has too many attempts.")
-
-    if purpose == OneTimeCode.Purpose.PHONE_VERIFY and record.requested_by_id:
-        user = User.objects.select_for_update().get(pk=record.requested_by_id)
-        if user.phone == normalized:
-            user.phone_verified_at = timezone.now()
-            user.save(update_fields=["phone_verified_at"])
-
-    if purpose == OneTimeCode.Purpose.EMAIL_VERIFY and record.requested_by_id:
-        user = User.objects.select_for_update().get(pk=record.requested_by_id)
-        if user.email == normalized:
-            user.email_verified_at = timezone.now()
-            user.save(update_fields=["email_verified_at"])
 
     return record
 

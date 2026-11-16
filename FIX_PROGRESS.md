@@ -20,7 +20,7 @@
 | **F03** | Remove DEBUG login password replacement | COMPLETE | `apps/api/accounts/views.py`, `apps/api/accounts/management/commands/create_dev_user.py`, `apps/api/accounts/tests/test_api.py` | `DebugLoginRemovalSecurityTests` (4 tests pass), all 28 accounts tests pass |
 | **F04** | Repair online exam ownership and enrollment permissions | PENDING | | |
 | **F05** | Make grades and assessment state server-controlled | PENDING | | |
-| **F06** | Persist failed OTP attempts | PENDING | | |
+| **F06** | Persist failed OTP attempts | COMPLETE | `apps/api/accounts/services.py`, `apps/api/accounts/tests/test_api.py` | `OtpAttemptPersistenceSecurityTests` (6 tests pass), 34 accounts tests pass |
 | **F07** | Calculate booking prices on the server | PENDING | | |
 | **F08** | Enforce booking and payment state transitions | PENDING | | |
 | **F09** | Scope idempotency correctly | PENDING | | |

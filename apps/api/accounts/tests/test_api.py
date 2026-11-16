@@ -1,10 +1,15 @@
+from datetime import timedelta
+import concurrent.futures
 from django.core.cache import cache
-from django.test import override_settings
+from django.core.exceptions import ValidationError
+from django.db import connection
+from django.test import TransactionTestCase, override_settings
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 from accounts.models import ConsentRecord, OneTimeCode, User
-from accounts.services import issue_otp
+from accounts.services import issue_otp, verify_otp
 
 
 class AccountApiTests(APITestCase):
@@ -318,4 +323,230 @@ class DebugLoginRemovalSecurityTests(APITestCase):
         session_after = self.client.session.session_key
         self.assertIsNotNone(session_after)
         self.assertNotEqual(session_before, session_after)
+
+
+@override_settings(DEBUG=True, ENDOORA_OTP_PROVIDER="mock")
+class OtpAttemptPersistenceSecurityTests(TransactionTestCase):
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(
+            email="otp_victim@example.com",
+            password="OriginalPassword-123!",
+            phone="09121112233",
+            role=User.Role.LEARNER,
+        )
+
+    def tearDown(self):
+        cache.clear()
+
+    def test_wrong_codes_increment_persisted_counter(self):
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+        self.assertEqual(record.attempts, 0)
+
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                "000000",
+                expected_user=self.user,
+            )
+
+        record.refresh_from_db()
+        self.assertEqual(record.attempts, 1)
+
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                "111111",
+                expected_user=self.user,
+            )
+
+        record.refresh_from_db()
+        self.assertEqual(record.attempts, 2)
+
+    def test_verification_fails_after_configured_attempt_limit(self):
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+        record.max_attempts = 3
+        record.save(update_fields=["max_attempts"])
+
+        for _ in range(3):
+            with self.assertRaises(ValidationError):
+                verify_otp(
+                    self.user.email,
+                    OneTimeCode.Purpose.EMAIL_VERIFY,
+                    "999999",
+                    expected_user=self.user,
+                )
+
+        record.refresh_from_db()
+        self.assertEqual(record.attempts, 3)
+
+        # Further attempt fails
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                "999999",
+                expected_user=self.user,
+            )
+
+    def test_correct_code_cannot_bypass_exhausted_counter(self):
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+        record.max_attempts = 2
+        record.save(update_fields=["max_attempts"])
+
+        # Exhaust attempts
+        for _ in range(2):
+            with self.assertRaises(ValidationError):
+                verify_otp(
+                    self.user.email,
+                    OneTimeCode.Purpose.EMAIL_VERIFY,
+                    "000000",
+                    expected_user=self.user,
+                )
+
+        record.refresh_from_db()
+        self.assertEqual(record.attempts, 2)
+        self.assertIsNone(record.consumed_at)
+
+        # Now attempt with the actual correct code
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                code,
+                expected_user=self.user,
+            )
+
+        record.refresh_from_db()
+        self.assertIsNone(record.consumed_at)
+        self.user.refresh_from_db()
+        self.assertFalse(self.user.email_verified)
+
+    def test_expired_and_consumed_codes_fail(self):
+        # Expired code
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+        record.expires_at = timezone.now() - timedelta(seconds=10)
+        record.save(update_fields=["expires_at"])
+
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                code,
+                expected_user=self.user,
+            )
+
+        # Consumed code
+        fresh_record, fresh_code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+        verified = verify_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            fresh_code,
+            expected_user=self.user,
+        )
+        self.assertIsNotNone(verified.consumed_at)
+
+        # Attempt replay on consumed code fails
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                fresh_code,
+                expected_user=self.user,
+            )
+
+    def test_attempts_against_another_users_code_do_not_grant_access(self):
+        other_user = User.objects.create_user(
+            email="attacker@example.com",
+            password="StrongPass-999!",
+            phone="09129998877",
+            role=User.Role.LEARNER,
+        )
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                code,
+                expected_user=other_user,
+            )
+
+        other_user.refresh_from_db()
+        self.assertFalse(other_user.email_verified)
+        self.user.refresh_from_db()
+        self.assertFalse(self.user.email_verified)
+
+    def test_concurrent_verification_cannot_consume_code_twice(self):
+        record, code = issue_otp(
+            self.user.email,
+            OneTimeCode.Purpose.EMAIL_VERIFY,
+            requested_by=self.user,
+        )
+
+        successes = []
+        failures = []
+
+        def attempt_verify():
+            connection.close()
+            try:
+                verify_otp(
+                    self.user.email,
+                    OneTimeCode.Purpose.EMAIL_VERIFY,
+                    code,
+                    expected_user=self.user,
+                )
+                successes.append(True)
+            except (ValidationError, Exception) as exc:
+                failures.append(exc)
+            finally:
+                connection.close()
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+            f1 = executor.submit(attempt_verify)
+            f2 = executor.submit(attempt_verify)
+            f1.result()
+            f2.result()
+
+        # Exactly one verification can succeed
+        self.assertEqual(len(successes), 1)
+        self.assertEqual(len(failures), 1)
+        record.refresh_from_db()
+        self.assertIsNotNone(record.consumed_at)
+
+        # Subsequent attempts definitely fail with ValidationError
+        with self.assertRaises(ValidationError):
+            verify_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                code,
+                expected_user=self.user,
+            )
+
 
