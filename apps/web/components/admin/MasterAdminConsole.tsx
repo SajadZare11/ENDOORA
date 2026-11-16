@@ -16,6 +16,7 @@ import { SeoMetadataConsole } from "./SeoMetadataConsole";
 import { AiEngineConsole } from "./AiEngineConsole";
 import { CommunityModerationConsole } from "./CommunityModerationConsole";
 import { TeacherContractsConsole } from "./TeacherContractsConsole";
+import { ExamIntegrityConsole } from "./ExamIntegrityConsole";
 import { FeatureFlagsOperations } from "./FeatureFlagsOperations";
 import { AuditLogsOperations } from "./AuditLogsOperations";
 
@@ -26,6 +27,7 @@ export type AdminModuleTab =
   | "ai-engine"
   | "teacher-verifications"
   | "teacher-contracts"
+  | "exam-integrity"
   | "users"
   | "marketing"
   | "support"
@@ -187,6 +189,20 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
               <span>قراردادها و کارمزد اساتید</span>
               <span style={{ background: "#ede9fe", color: "#6b21a8", fontSize: "0.68rem", padding: "0.1rem 0.45rem", borderRadius: "999px", fontWeight: "bold" }}>
                 Legal
+              </span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className={`${styles.sidebarBtn} ${activeTab === "exam-integrity" ? styles.sidebarBtnActive : ""}`}
+            onClick={() => setActiveTab("exam-integrity")}
+          >
+            <span>🛡️</span>
+            <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+              <span>ممیزی آزمون‌ها و پروکتورینگ</span>
+              <span style={{ background: "#ccfbf1", color: "#0f766e", fontSize: "0.68rem", padding: "0.1rem 0.45rem", borderRadius: "999px", fontWeight: "bold" }}>
+                Integrity
               </span>
             </span>
           </button>
@@ -566,6 +582,26 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
                 <div className={styles.quickCard}>
                   <h3 className={styles.quickTitle}>
+                    <span>🛡️ مرکز ممیزی آزمون‌ها، تقلب‌یابی و سلامت سنجش</span>
+                  </h3>
+                  <p style={{ fontSize: "0.85rem", color: "#64748b", margin: 0 }}>
+                    پایش زنده جلسات آزمون آنلاین، اخطار و تعلیق پروکتورینگ، کالیبراسیون نمرات هوش مصنوعی، روان‌سنجی سوالات و داوری اعتراضات نمره
+                  </p>
+                  <div className={styles.quickLinkRow}>
+                    <button
+                      type="button"
+                      className={styles.quickLinkItem}
+                      onClick={() => setActiveTab("exam-integrity")}
+                      style={{ cursor: "pointer", border: "none", width: "100%", textAlign: "right" }}
+                    >
+                      <span>ورود به رصدخانه آزمون‌ها و ممیزی هوش مصنوعی</span>
+                      <span>←</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className={styles.quickCard}>
+                  <h3 className={styles.quickTitle}>
                     <span>🎓 آموزش و بانک سوالات</span>
                   </h3>
                   <p style={{ fontSize: "0.85rem", color: "#64748b", margin: 0 }}>
@@ -605,6 +641,9 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
           {/* TAB: TEACHER CONTRACTS & COMMISSION STUDIO */}
           {activeTab === "teacher-contracts" && <TeacherContractsConsole />}
+
+          {/* TAB: EXAM & PLACEMENT INTEGRITY HUB */}
+          {activeTab === "exam-integrity" && <ExamIntegrityConsole />}
 
           {/* TAB 3: USERS & TEACHERS */}
           {activeTab === "users" && <AdminUsersManager />}

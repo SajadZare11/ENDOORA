@@ -139,24 +139,24 @@
     ],
     "walletTransactions": [
       {
-        "id": "tx-1794767835633",
+        "id": "tx-1794778065476",
         "amountToman": 240000,
         "type": "credit_manual",
         "reasonCategory": "refund",
         "adminNote": "استرداد ۱۰۰٪ وجه کلاس بر اساس رأی داوری: استاد در جلسه حاضر نشد، ۱۰۰٪ مبلغ به کیف پول زبان‌آموز عودت داده شد.",
         "adminActor": "داوری پلتفرم ایندورا",
         "balanceAfterToman": 1560000,
-        "createdAt": "2026-11-15T18:37:15.633Z"
+        "createdAt": "2026-11-15T21:27:45.476Z"
       },
       {
-        "id": "tx-1794767835632",
+        "id": "tx-1794778065475",
         "amountToman": 120000,
         "type": "credit_manual",
         "reasonCategory": "compensation",
         "adminNote": "تسویه توافقی داوری (50٪ استرداد به دانشجو): به دلیل قطعی موقت در نیمی از زمان جلسه، ۵۰٪ مسترد و ۵۰٪ به استاد پرداخت شد.",
         "adminActor": "داوری پلتفرم ایندورا",
         "balanceAfterToman": 1320000,
-        "createdAt": "2026-11-15T18:37:15.632Z"
+        "createdAt": "2026-11-15T21:27:45.475Z"
       },
       {
         "id": "tx-003",
