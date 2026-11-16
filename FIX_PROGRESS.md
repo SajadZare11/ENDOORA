@@ -33,7 +33,7 @@
 | **F16** | Repair exam question, answer, and grading writes | PENDING | | |
 | **F17** | Align proctoring batch contract | PENDING | | |
 | **F18** | Implement expiring subscription entitlements | PENDING | | |
-| **F19** | Implement working OTP delivery | PENDING | | |
+| **F19** | Implement working OTP delivery | COMPLETE | `apps/api/accounts/providers.py`, `apps/api/accounts/services.py`, `apps/api/accounts/views.py`, `apps/api/endoora_api/settings/*.py`, `infra/docker-compose.prod.yml`, `.env.example`, `apps/api/accounts/tests/test_api.py` | `OtpDeliveryProviderSecurityTests` (7 tests pass), all 41 accounts tests pass |
 | **F20** | Enforce two-person payout approval | PENDING | | |
 | **F21** | Connect administrative operations to authoritative data | COMPLETE | `apps/api/admin_dashboard/views.py`, `apps/api/admin_dashboard/urls.py`, `apps/api/admin_dashboard/tests.py`, `apps/web/app/api/admin/users/route.ts` | `AdminUserManagementSecurityTests` (7 tests pass), authoritative DB transactions & audit log |
 | **F22** | Isolate browser storage by account | PENDING | | |

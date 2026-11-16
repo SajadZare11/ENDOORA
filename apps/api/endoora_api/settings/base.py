@@ -164,6 +164,22 @@ ENDOORA_ENV = os.getenv("ENDOORA_ENV", "development")
 ENDOORA_REDIS_URL = os.getenv("ENDOORA_REDIS_URL", "redis://127.0.0.1:6379/0")
 ENDOORA_OTP_PROVIDER = os.getenv("ENDOORA_OTP_PROVIDER", "mock")
 ENDOORA_OTP_TTL_SECONDS = int(os.getenv("ENDOORA_OTP_TTL_SECONDS", "300"))
+ENDOORA_KAVENEGAR_API_KEY = os.getenv("ENDOORA_KAVENEGAR_API_KEY", os.getenv("ENDOORA_SMS_API_KEY", ""))
+ENDOORA_KAVENEGAR_SENDER = os.getenv("ENDOORA_KAVENEGAR_SENDER", "")
+ENDOORA_KAVENEGAR_TIMEOUT_SECONDS = env_int("ENDOORA_KAVENEGAR_TIMEOUT_SECONDS", default=10)
+
+EMAIL_BACKEND = os.getenv(
+    "DJANGO_EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else "django.core.mail.backends.smtp.EmailBackend",
+)
+EMAIL_HOST = os.getenv("ENDOORA_EMAIL_HOST", "localhost")
+EMAIL_PORT = env_int("ENDOORA_EMAIL_PORT", default=587)
+EMAIL_HOST_USER = os.getenv("ENDOORA_EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("ENDOORA_EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = env_bool("ENDOORA_EMAIL_USE_TLS", default=True)
+DEFAULT_FROM_EMAIL = os.getenv("ENDOORA_DEFAULT_FROM_EMAIL", "no-reply@endoora.ir")
 ENDOORA_ACCOUNT_DELETE_DELAY_DAYS = int(
     os.getenv("ENDOORA_ACCOUNT_DELETE_DELAY_DAYS", "7")
 )

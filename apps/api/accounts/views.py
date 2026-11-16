@@ -5,7 +5,7 @@ from datetime import timedelta
 
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
-from django.core.exceptions import ValidationError as DjangoValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError as DjangoValidationError
 from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
 from django.utils import timezone
@@ -18,6 +18,7 @@ from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from .models import ConsentRecord, OneTimeCode, User
+from .providers import OtpDeliveryError
 from .serializers import (
     AccountSerializer,
     AccountUpdateSerializer,
@@ -239,6 +240,20 @@ class OtpRequestView(APIView):
                 "شماره موبایل یا ایمیل معتبر نیست.",
                 "The phone number or email is invalid.",
                 http_status=status.HTTP_400_BAD_REQUEST,
+            )
+        except OtpDeliveryError:
+            return bilingual_error(
+                "otp_delivery_failed",
+                "ارسال کد با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
+                "Failed to deliver verification code. Please try again.",
+                http_status=status.HTTP_502_BAD_GATEWAY,
+            )
+        except ImproperlyConfigured:
+            return bilingual_error(
+                "otp_service_misconfigured",
+                "سرویس ارسال پیام در حال حاضر در دسترس نیست.",
+                "Verification delivery service is misconfigured.",
+                http_status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
 
         payload = {

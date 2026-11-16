@@ -1,7 +1,9 @@
 from datetime import timedelta
 import concurrent.futures
+from unittest.mock import MagicMock, patch
+from django.core import mail
 from django.core.cache import cache
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.db import connection
 from django.test import TransactionTestCase, override_settings
 from django.utils import timezone
@@ -9,6 +11,13 @@ from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
 from accounts.models import ConsentRecord, OneTimeCode, User
+from accounts.providers import (
+    EmailOtpProvider,
+    KavenegarOtpProvider,
+    LocalMockOtpProvider,
+    OtpDeliveryError,
+    get_otp_provider,
+)
 from accounts.services import issue_otp, verify_otp
 
 
@@ -548,5 +557,129 @@ class OtpAttemptPersistenceSecurityTests(TransactionTestCase):
                 code,
                 expected_user=self.user,
             )
+
+
+class OtpDeliveryProviderSecurityTests(APITestCase):
+    def setUp(self):
+        cache.clear()
+        mail.outbox.clear()
+        self.user = User.objects.create_user(
+            email="delivery_user@example.com",
+            password="StrongPass-123!",
+            phone="09123456780",
+            role=User.Role.LEARNER,
+        )
+
+    def tearDown(self):
+        cache.clear()
+        mail.outbox.clear()
+
+    def test_kavenegar_provider_initialization_requires_api_key(self):
+        with override_settings(ENDOORA_KAVENEGAR_API_KEY="", ENDOORA_SMS_API_KEY=""):
+            with self.assertRaises(ImproperlyConfigured):
+                KavenegarOtpProvider()
+
+        provider = KavenegarOtpProvider(api_key="valid-dummy-api-key")
+        self.assertEqual(provider.name, "kavenegar")
+
+    def test_mock_provider_prohibited_in_production(self):
+        with override_settings(
+            ENDOORA_OTP_PROVIDER="mock",
+            DEBUG=False,
+            TESTING=False,
+            ENDOORA_ENV="production",
+        ):
+            with self.assertRaises(ImproperlyConfigured):
+                get_otp_provider()
+
+    def test_failed_delivery_rolls_back_newly_issued_code(self):
+        initial_codes = OneTimeCode.objects.filter(identifier=self.user.email).count()
+
+        with patch.object(EmailOtpProvider, "send", side_effect=OtpDeliveryError("Simulated provider failure")):
+            with override_settings(ENDOORA_OTP_PROVIDER="email"):
+                with self.assertRaises(OtpDeliveryError):
+                    issue_otp(
+                        self.user.email,
+                        OneTimeCode.Purpose.EMAIL_VERIFY,
+                        requested_by=self.user,
+                    )
+
+        # No new code should be saved in the database
+        after_codes = OneTimeCode.objects.filter(identifier=self.user.email).count()
+        self.assertEqual(initial_codes, after_codes)
+
+    def test_email_identifier_delivers_via_email_mechanism(self):
+        import re
+        with override_settings(
+            ENDOORA_OTP_PROVIDER="email",
+            EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
+        ):
+            record, debug_code = issue_otp(
+                self.user.email,
+                OneTimeCode.Purpose.EMAIL_VERIFY,
+                requested_by=self.user,
+            )
+            self.assertEqual(len(mail.outbox), 1)
+            sent_email = mail.outbox[0]
+            self.assertIn(self.user.email, sent_email.to)
+            self.assertIn("کد تأیید", sent_email.subject)
+            # Verify code delivered in email body
+            match = re.search(r"\b\d{6}\b", sent_email.body)
+            self.assertIsNotNone(match)
+            self.assertTrue(record.verify(match.group(0)))
+
+    def test_phone_identifier_calls_kavenegar_sms_api(self):
+        mock_response = MagicMock()
+        mock_response.read.return_value = (
+            b'{"return": {"status": 200, "message": "OK"}, "entries": [{"messageid": 12345}]}'
+        )
+        mock_response.__enter__.return_value = mock_response
+
+        with patch("urllib.request.urlopen", return_value=mock_response) as mock_urlopen:
+            with override_settings(
+                ENDOORA_OTP_PROVIDER="kavenegar",
+                ENDOORA_KAVENEGAR_API_KEY="test-kav-key-12345",
+            ):
+                record, _ = issue_otp(
+                    self.user.phone,
+                    OneTimeCode.Purpose.PHONE_VERIFY,
+                    requested_by=self.user,
+                )
+                self.assertTrue(mock_urlopen.called)
+                req = mock_urlopen.call_args[0][0]
+                self.assertIn("api.kavenegar.com", req.full_url)
+                self.assertIn("test-kav-key-12345", req.full_url)
+
+    def test_kavenegar_provider_failure_raises_controlled_otp_delivery_error(self):
+        import urllib.error
+        with patch("urllib.request.urlopen", side_effect=urllib.error.URLError("Connection timed out")):
+            provider = KavenegarOtpProvider(api_key="dummy-key")
+            with self.assertRaises(OtpDeliveryError):
+                provider.send("+989123456789", "123456", OneTimeCode.Purpose.PHONE_VERIFY)
+
+    def test_production_otp_request_endpoint_omits_debug_code_and_handles_provider_errors(self):
+        self.client.force_authenticate(self.user)
+
+        # 1. When delivery fails, returns 502 without traceback
+        with patch.object(LocalMockOtpProvider, "send", side_effect=OtpDeliveryError("Gateway unreachable")):
+            response = self.client.post(
+                "/api/auth/otp/request/",
+                {"identifier": self.user.email, "purpose": OneTimeCode.Purpose.EMAIL_VERIFY},
+                format="json",
+            )
+            self.assertEqual(response.status_code, status.HTTP_502_BAD_GATEWAY)
+            self.assertEqual(response.data["code"], "otp_delivery_failed")
+
+        # 2. In production (DEBUG=False), successful OTP response never contains debug_code
+        with override_settings(DEBUG=False):
+            response = self.client.post(
+                "/api/auth/otp/request/",
+                {"identifier": self.user.email, "purpose": OneTimeCode.Purpose.EMAIL_VERIFY},
+                format="json",
+            )
+            self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+            self.assertEqual(response.data["status"], "sent")
+            self.assertNotIn("debug_code", response.data)
+
 
 

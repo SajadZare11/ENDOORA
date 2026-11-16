@@ -6,6 +6,8 @@ DEBUG = False
 TESTING = True
 ZARINPAL_SANDBOX = True
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
+EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+ENDOORA_OTP_PROVIDER = "mock"
 
 if os.getenv("ENDOORA_TEST_DATABASE", "sqlite") == "sqlite":
     DATABASES = {

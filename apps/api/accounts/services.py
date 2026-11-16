@@ -11,7 +11,7 @@ from django.utils import timezone
 
 from .models import AccountDeletionRequest, OneTimeCode, User
 from .phone import normalize_iranian_mobile
-from .providers import get_otp_provider
+from .providers import OtpDeliveryError, get_otp_provider
 
 
 def normalize_identifier(identifier: str) -> str:
@@ -64,7 +64,9 @@ def issue_otp(
     )
 
     provider = get_otp_provider()
-    provider.send(normalized, raw_code, purpose)
+    delivery = provider.send(normalized, raw_code, purpose)
+    if not delivery or not delivery.accepted:
+        raise OtpDeliveryError("Failed to deliver verification code.")
 
     debug_code = (
         raw_code

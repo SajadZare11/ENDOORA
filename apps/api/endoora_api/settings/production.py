@@ -12,3 +12,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = "same-origin"
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
 X_FRAME_OPTIONS = "DENY"
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+if os.getenv("ENDOORA_OTP_PROVIDER", "kavenegar").strip().lower() == "mock":
+    raise ImproperlyConfigured("Mock OTP provider is forbidden in production.")
