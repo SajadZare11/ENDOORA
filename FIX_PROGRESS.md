@@ -17,7 +17,7 @@
 |---|---|---|---|---|
 | **F01** | Block sandbox payment selection in production | PENDING | | |
 | **F02** | Enforce server-side admin authorization | PENDING | | |
-| **F03** | Remove DEBUG login password replacement | PENDING | | |
+| **F03** | Remove DEBUG login password replacement | COMPLETE | `apps/api/accounts/views.py`, `apps/api/accounts/management/commands/create_dev_user.py`, `apps/api/accounts/tests/test_api.py` | `DebugLoginRemovalSecurityTests` (4 tests pass), all 28 accounts tests pass |
 | **F04** | Repair online exam ownership and enrollment permissions | PENDING | | |
 | **F05** | Make grades and assessment state server-controlled | PENDING | | |
 | **F06** | Persist failed OTP attempts | PENDING | | |

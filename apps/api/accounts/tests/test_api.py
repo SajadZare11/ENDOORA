@@ -256,3 +256,66 @@ class AccountApiTests(APITestCase):
             format="json",
         )
         self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)
+
+
+class DebugLoginRemovalSecurityTests(APITestCase):
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(
+            email="victim@example.com",
+            password="OriginalPassword-123!",
+            role=User.Role.LEARNER,
+        )
+        self.original_hash = self.user.password
+
+    def tearDown(self):
+        cache.clear()
+
+    @override_settings(DEBUG=True)
+    def test_incorrect_password_fails_under_debug_true(self):
+        response = self.client.post(
+            "/api/auth/login/",
+            {"email": self.user.email, "password": "WrongPassword-456!"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.password, self.original_hash)
+        self.assertTrue(self.user.check_password("OriginalPassword-123!"))
+        self.assertFalse(self.user.check_password("WrongPassword-456!"))
+
+    @override_settings(DEBUG=False)
+    def test_incorrect_password_fails_under_debug_false(self):
+        response = self.client.post(
+            "/api/auth/login/",
+            {"email": self.user.email, "password": "WrongPassword-456!"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.password, self.original_hash)
+        self.assertTrue(self.user.check_password("OriginalPassword-123!"))
+
+    @override_settings(DEBUG=True)
+    def test_unknown_user_is_not_auto_created_under_debug_true(self):
+        response = self.client.post(
+            "/api/auth/login/",
+            {"email": "doesnotexist@example.com", "password": "SomePassword-123!"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertFalse(User.objects.filter(email="doesnotexist@example.com").exists())
+
+    @override_settings(DEBUG=True)
+    def test_valid_login_still_works_and_rotates_session(self):
+        session_before = self.client.session.session_key
+        response = self.client.post(
+            "/api/auth/login/",
+            {"email": self.user.email, "password": "OriginalPassword-123!"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        session_after = self.client.session.session_key
+        self.assertIsNotNone(session_after)
+        self.assertNotEqual(session_before, session_after)
+
