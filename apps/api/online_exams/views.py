@@ -1,37 +1,56 @@
-from django.http import HttpResponse
-from django.utils import timezone
+from __future__ import annotations
+
+from datetime import timedelta
+from decimal import Decimal
+from django.db import models, transaction
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status, permissions
+from django.utils import timezone
+from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.exceptions import PermissionDenied, ValidationError
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
-from .models import OnlineExam, ExamQuestion, ExamSubmission, ExamAnswer, ProctoringLog
+from .models import ExamAnswer, ExamQuestion, ExamSubmission, OnlineExam, ProctoringLog
+from .permissions import (
+    IsEnrolledStudent,
+    IsSubmissionOwnerOrTeacher,
+    IsTeacherOrReadOnly,
+    IsTeacherOwner,
+)
 from .serializers import (
-    OnlineExamListSerializer,
-    OnlineExamDetailSerializer,
-    OnlineExamCreateUpdateSerializer,
-    ExamQuestionSerializer,
-    ExamSubmissionListSerializer,
-    ExamSubmissionDetailSerializer,
     ExamAnswerSerializer,
     ExamAnswerSubmitSerializer,
-    ProctoringLogBatchSerializer,
+    ExamQuestionSerializer,
     ExamStudentViewSerializer,
+    ExamSubmissionDetailSerializer,
+    ExamSubmissionListSerializer,
+    ExamTeacherGradingSerializer,
+    OnlineExamCreateUpdateSerializer,
+    OnlineExamDetailSerializer,
+    OnlineExamListSerializer,
+    ProctoringLogItemSerializer,
 )
-from .permissions import IsTeacherOwner, IsEnrolledStudent, IsTeacherOrReadOnly
 from .services.auto_grader import ExamAutoGrader
-from .services.integrity_calculator import IntegrityCalculator
 from .services.export_excel import ExamExcelExporter
 from .services.export_pdf import ExamPdfExporter
+from .services.integrity_calculator import IntegrityCalculator
+from teachers.models import TeacherLearnerLink
 
 
 class OnlineExamViewSet(viewsets.ModelViewSet):
     queryset = OnlineExam.objects.select_related('teacher', 'teacher_class')
 
     def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy', 'publish', 'close']:
+        if self.action in [
+            'create', 'update', 'partial_update', 'destroy',
+            'publish', 'close', 'export_excel', 'export_pdf_summary'
+        ]:
             return [permissions.IsAuthenticated(), IsTeacherOwner()]
+        if self.action in ['retrieve', 'student_view']:
+            return [permissions.IsAuthenticated(), IsEnrolledStudent()]
         return [permissions.IsAuthenticated()]
 
     def get_serializer_class(self):
@@ -43,9 +62,28 @@ class OnlineExamViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if self.action == 'list':
-            qs = qs.filter(teacher=self.request.user)
-        return qs
+        user = self.request.user
+        if not user.is_authenticated:
+            return qs.none()
+        if user.is_staff or user.is_superuser:
+            return qs
+
+        # Teachers see their own exams
+        if getattr(user, 'role', '') == 'teacher' or qs.filter(teacher=user).exists():
+            return qs.filter(teacher=user)
+
+        # Learners see published or closed exams where they are enrolled or have a submission
+        enrolled_class_ids = TeacherLearnerLink.objects.filter(
+            learner=user,
+            status='active',
+        ).values_list('teacher_class_id', flat=True)
+
+        return qs.filter(
+            status__in=[OnlineExam.ExamStatus.PUBLISHED, OnlineExam.ExamStatus.CLOSED]
+        ).filter(
+            models.Q(teacher_class_id__in=enrolled_class_ids) |
+            models.Q(submissions__student=user)
+        ).distinct()
 
     def perform_create(self, serializer):
         serializer.save(teacher=self.request.user)
@@ -55,14 +93,14 @@ class OnlineExamViewSet(viewsets.ModelViewSet):
         exam = self.get_object()
         exam.status = OnlineExam.ExamStatus.PUBLISHED
         exam.published_at = timezone.now()
-        exam.save()
+        exam.save(update_fields=['status', 'published_at', 'updated_at'])
         return Response({'status': 'published'})
 
     @action(detail=True, methods=['post'])
     def close(self, request, pk=None):
         exam = self.get_object()
         exam.status = OnlineExam.ExamStatus.CLOSED
-        exam.save()
+        exam.save(update_fields=['status', 'updated_at'])
         return Response({'status': 'closed'})
 
     @action(detail=True, methods=['get'])
@@ -73,19 +111,21 @@ class OnlineExamViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def export_excel(self, request, pk=None):
-        excel_buffer = ExamExcelExporter.generate(str(pk))
+        exam = self.get_object()  # checks IsTeacherOwner
+        excel_buffer = ExamExcelExporter.generate(str(exam.id))
         response = HttpResponse(
             excel_buffer.getvalue(),
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
-        response['Content-Disposition'] = f'attachment; filename="exam_{pk}_report.xlsx"'
+        response['Content-Disposition'] = f'attachment; filename="exam_{exam.id}_report.xlsx"'
         return response
 
     @action(detail=True, methods=['get'])
     def export_pdf_summary(self, request, pk=None):
-        pdf_buffer = ExamPdfExporter.generate_exam_summary(str(pk))
+        exam = self.get_object()  # checks IsTeacherOwner
+        pdf_buffer = ExamPdfExporter.generate_exam_summary(str(exam.id))
         response = HttpResponse(pdf_buffer.getvalue(), content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="exam_{pk}_summary.pdf"'
+        response['Content-Disposition'] = f'attachment; filename="exam_{exam.id}_summary.pdf"'
         return response
 
 
@@ -93,26 +133,45 @@ class ExamQuestionViewSet(viewsets.ModelViewSet):
     serializer_class = ExamQuestionSerializer
 
     def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy', 'reorder']:
+            return [permissions.IsAuthenticated(), IsTeacherOwner()]
         return [permissions.IsAuthenticated(), IsTeacherOrReadOnly()]
 
-    def get_queryset(self):
-        exam_id = self.kwargs.get('exam_id')
-        return ExamQuestion.objects.filter(exam_id=exam_id)
-
-    def perform_create(self, serializer):
+    def _get_exam(self):
         exam_id = self.kwargs.get('exam_id')
         exam = get_object_or_404(OnlineExam, id=exam_id)
+        if self.action in ['create', 'update', 'partial_update', 'destroy', 'reorder']:
+            if exam.teacher_id != self.request.user.id and not self.request.user.is_staff and not self.request.user.is_superuser:
+                raise PermissionDenied("فقط مدرس سازنده آزمون مجاز به ویرایش سوالات است.")
+        return exam
+
+    def get_queryset(self):
+        exam = self._get_exam()
+        return ExamQuestion.objects.filter(exam=exam)
+
+    def get_object(self):
+        exam = self._get_exam()
+        pk = self.kwargs.get('pk')
+        obj = get_object_or_404(ExamQuestion, id=pk, exam=exam)
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+    def perform_create(self, serializer):
+        exam = self._get_exam()
         serializer.save(exam=exam)
 
     @action(detail=False, methods=['post'])
     def reorder(self, request, exam_id=None):
+        exam = self._get_exam()
         data = request.data
+        if isinstance(data, dict) and 'items' in data:
+            data = data['items']
         if not isinstance(data, list):
             return Response({'error': 'Expected a list of objects.'}, status=status.HTTP_400_BAD_REQUEST)
-        
+
         exam_questions = self.get_queryset()
         question_map = {str(q.id): q for q in exam_questions}
-        
+
         for item in data:
             q_id = str(item.get('id'))
             order = item.get('order')
@@ -120,12 +179,16 @@ class ExamQuestionViewSet(viewsets.ModelViewSet):
                 q = question_map[q_id]
                 q.order = order
                 q.save(update_fields=['order'])
-                
+
         return Response({'status': 'reordered'})
 
 
 class ExamSubmissionViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
+        if self.action == 'create':
+            return [permissions.IsAuthenticated(), IsEnrolledStudent()]
+        if self.action in ['retrieve', 'export_pdf']:
+            return [permissions.IsAuthenticated(), IsSubmissionOwnerOrTeacher()]
         return [permissions.IsAuthenticated()]
 
     def get_serializer_class(self):
@@ -133,26 +196,92 @@ class ExamSubmissionViewSet(viewsets.ModelViewSet):
             return ExamSubmissionListSerializer
         return ExamSubmissionDetailSerializer
 
-    def get_queryset(self):
+    def _get_exam(self):
         exam_id = self.kwargs.get('exam_id')
-        qs = ExamSubmission.objects.filter(exam_id=exam_id)
-        
-        user = self.request.user
-        exam = get_object_or_404(OnlineExam, id=exam_id)
-        
-        if exam.teacher == user:
-            return qs
-        else:
-            return qs.filter(student=user)
+        return get_object_or_404(OnlineExam, id=exam_id)
 
-    def perform_create(self, serializer):
-        exam_id = self.kwargs.get('exam_id')
-        exam = get_object_or_404(OnlineExam, id=exam_id)
-        serializer.save(exam=exam, student=self.request.user)
+    def get_queryset(self):
+        exam = self._get_exam()
+        user = self.request.user
+        qs = ExamSubmission.objects.filter(exam=exam)
+
+        if exam.teacher_id == user.id or user.is_staff or user.is_superuser:
+            return qs
+        return qs.filter(student=user)
+
+    def get_object(self):
+        exam = self._get_exam()
+        pk = self.kwargs.get('pk')
+        obj = get_object_or_404(ExamSubmission, id=pk, exam=exam)
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+    def create(self, request, *args, **kwargs):
+        exam = self._get_exam()
+
+        # Enforce publication
+        if exam.status != OnlineExam.ExamStatus.PUBLISHED:
+            return Response(
+                {"error": "آزمون در وضعیت انتشار نیست و امکان شرکت در آن وجود ندارد."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Enforce availability window
+        now = timezone.now()
+        if exam.starts_at and now < exam.starts_at:
+            return Response(
+                {"error": "زمان شرکت در این آزمون هنوز آغاز نشده است."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if exam.ends_at and now > exam.ends_at:
+            return Response(
+                {"error": "مهلت شرکت در این آزمون به پایان رسیده است."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Enforce enrollment / access code
+        is_enrolled = IsEnrolledStudent()
+        if not is_enrolled.has_object_permission(request, self, exam):
+            raise PermissionDenied("شما مجوز شرکت در این آزمون را ندارید.")
+
+        # Concurrency-safe attempt limit check
+        with transaction.atomic():
+            existing_count = (
+                ExamSubmission.objects.select_for_update()
+                .filter(exam=exam, student=request.user)
+                .count()
+            )
+            if existing_count >= exam.max_attempts:
+                return Response(
+                    {"error": "سقف دفعات مجاز برای شرکت در این آزمون تکمیل شده است."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            max_possible_score = sum(
+                (q.points for q in exam.exam_questions.all()),
+                Decimal("0.00"),
+            )
+            time_limit = now + timedelta(minutes=exam.duration_minutes)
+
+            submission = ExamSubmission.objects.create(
+                exam=exam,
+                student=request.user,
+                attempt_number=existing_count + 1,
+                status=ExamSubmission.SubmissionStatus.IN_PROGRESS,
+                started_at=now,
+                time_limit_expires_at=time_limit,
+                max_possible_score=max_possible_score,
+            )
+
+        serializer = ExamSubmissionDetailSerializer(submission, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=True, methods=['post'])
     def submit(self, request, exam_id=None, pk=None):
         submission = self.get_object()
+        if submission.student_id != request.user.id and not request.user.is_staff and not request.user.is_superuser:
+            raise PermissionDenied("فقط زبان‌آموز شرکت‌کننده مجاز به ثبت نهایی پاسخنامه است.")
+
         if submission.status == ExamSubmission.SubmissionStatus.IN_PROGRESS:
             submission.status = ExamSubmission.SubmissionStatus.SUBMITTED
             submission.submitted_at = timezone.now()
@@ -178,9 +307,10 @@ class ExamSubmissionViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def export_pdf(self, request, exam_id=None, pk=None):
-        pdf_buffer = ExamPdfExporter.generate_student_report(str(pk))
+        submission = self.get_object()  # checks IsSubmissionOwnerOrTeacher
+        pdf_buffer = ExamPdfExporter.generate_student_report(str(submission.id))
         response = HttpResponse(pdf_buffer.getvalue(), content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="submission_{pk}_report.pdf"'
+        response['Content-Disposition'] = f'attachment; filename="submission_{submission.id}_report.pdf"'
         return response
 
 
@@ -193,30 +323,185 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
             return ExamAnswerSubmitSerializer
         return ExamAnswerSerializer
 
-    def get_queryset(self):
+    def _get_submission(self):
+        exam_id = self.kwargs.get('exam_id')
         submission_id = self.kwargs.get('submission_id')
-        return ExamAnswer.objects.filter(submission_id=submission_id)
+        exam = get_object_or_404(OnlineExam, id=exam_id)
+        # Relationship chain: submission belongs to exam
+        submission = get_object_or_404(ExamSubmission, id=submission_id, exam=exam)
+        return exam, submission
 
-    def perform_create(self, serializer):
-        submission_id = self.kwargs.get('submission_id')
-        submission = get_object_or_404(ExamSubmission, id=submission_id)
-        serializer.save(submission=submission)
+    def get_queryset(self):
+        exam, submission = self._get_submission()
+        user = self.request.user
+        if submission.student_id != user.id and exam.teacher_id != user.id and not user.is_staff and not user.is_superuser:
+            raise PermissionDenied("شما مجاز به مشاهده پاسخ‌های این آزمون نیستید.")
+        return ExamAnswer.objects.filter(submission=submission)
+
+    def get_object(self):
+        exam, submission = self._get_submission()
+        pk = self.kwargs.get('pk')
+        # Relationship chain: answer belongs to submission
+        answer = get_object_or_404(ExamAnswer, id=pk, submission=submission)
+        user = self.request.user
+
+        if self.action == 'destroy':
+            # Students cannot delete answers
+            raise PermissionDenied("حذف پاسخ‌های آزمون مجاز نمی‌باشد.")
+
+        if submission.student_id != user.id and exam.teacher_id != user.id and not user.is_staff and not user.is_superuser:
+            raise PermissionDenied("شما اجازه دسترسی به این پاسخ را ندارید.")
+
+        return answer
+
+    def create(self, request, *args, **kwargs):
+        exam, submission = self._get_submission()
+        user = request.user
+
+        # Only student can submit their own answers
+        if submission.student_id != user.id and not user.is_staff and not user.is_superuser:
+            raise PermissionDenied("فقط زبان‌آموز شرکت‌کننده مجاز به ارسال پاسخ است.")
+
+        if submission.status != ExamSubmission.SubmissionStatus.IN_PROGRESS:
+            return Response(
+                {"error": "امکان ثبت پاسخ برای آزمون ارسال شده وجود ندارد."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if submission.is_time_expired():
+            submission.status = ExamSubmission.SubmissionStatus.TIMED_OUT
+            submission.save(update_fields=["status", "updated_at"])
+            return Response(
+                {"error": "مهلت زمان پاسخ‌دهی به آزمون به پایان رسیده است."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        serializer = ExamAnswerSubmitSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        exam_question_id = serializer.validated_data["exam_question_id"]
+        # Cross-exam question reference validation:
+        # Question MUST belong to THIS exam!
+        try:
+            exam_question = ExamQuestion.objects.get(id=exam_question_id, exam=exam)
+        except ExamQuestion.DoesNotExist:
+            return Response(
+                {"error": "سوال انتخاب شده متعلق به این آزمون نیست."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        student_response = serializer.validated_data.get("student_response", {})
+        audio_recording_url = serializer.validated_data.get("audio_recording_url", "")
+
+        # Retry-safe / Idempotent answer save
+        answer, _created = ExamAnswer.objects.update_or_create(
+            submission=submission,
+            exam_question=exam_question,
+            defaults={
+                "student_response": student_response,
+                "audio_recording_url": audio_recording_url,
+            },
+        )
+
+        return Response(ExamAnswerSerializer(answer).data, status=status.HTTP_200_OK if not _created else status.HTTP_201_CREATED)
+
+    def partial_update(self, request, *args, **kwargs):
+        exam, submission = self._get_submission()
+        answer = self.get_object()
+        user = request.user
+
+        # Teacher manual grading
+        if exam.teacher_id == user.id or user.is_staff or user.is_superuser:
+            manual_score = request.data.get("manual_score")
+            feedback = request.data.get("teacher_feedback", answer.teacher_feedback)
+
+            if manual_score is not None:
+                try:
+                    score_dec = Decimal(str(manual_score))
+                except Exception:
+                    return Response({"error": "نمره نامعتبر است."}, status=status.HTTP_400_BAD_REQUEST)
+
+                if score_dec < Decimal("0.00") or score_dec > answer.exam_question.points:
+                    return Response(
+                        {"error": f"نمره باید بین ۰ و {answer.exam_question.points} باشد."},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                answer.manual_score = score_dec
+                answer.score_awarded = score_dec
+                answer.graded_by = user
+                answer.graded_at = timezone.now()
+
+            answer.teacher_feedback = feedback
+            answer.save()
+
+            # Recalculate assessment totals consistently
+            total = sum(
+                (a.score_awarded or Decimal("0.00") for a in submission.answers.all()),
+                Decimal("0.00"),
+            )
+            submission.total_score = total
+            if submission.max_possible_score and submission.max_possible_score > Decimal("0.00"):
+                submission.percentage = round((total / submission.max_possible_score) * Decimal("100.00"), 2)
+            submission.status = ExamSubmission.SubmissionStatus.MANUALLY_GRADED
+            submission.save(update_fields=["total_score", "percentage", "status", "updated_at"])
+
+            return Response(ExamAnswerSerializer(answer).data)
+
+        # Student updating in-progress answer
+        if submission.student_id == user.id:
+            if submission.status != ExamSubmission.SubmissionStatus.IN_PROGRESS or submission.is_time_expired():
+                return Response({"error": "آزمون به پایان رسیده است."}, status=status.HTTP_400_BAD_REQUEST)
+
+            student_response = request.data.get("student_response")
+            audio_url = request.data.get("audio_recording_url")
+            if student_response is not None:
+                answer.student_response = student_response
+            if audio_url is not None:
+                answer.audio_recording_url = audio_url
+            answer.save()
+            return Response(ExamAnswerSerializer(answer).data)
+
+        raise PermissionDenied("دسترسی غیرمجاز.")
 
 
 class ProctoringLogBatchView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "sensitive_endpoint"
 
     def post(self, request, exam_id, submission_id):
-        submission = get_object_or_404(ExamSubmission, id=submission_id, exam_id=exam_id)
-        serializer = ProctoringLogBatchSerializer(data=request.data, many=True)
-        if serializer.is_valid():
-            logs = [
-                ProctoringLog(submission=submission, **item)
-                for item in serializer.validated_data
-            ]
-            ProctoringLog.objects.bulk_create(logs)
-            return Response({'created': len(logs)}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        exam = get_object_or_404(OnlineExam, id=exam_id)
+        submission = get_object_or_404(ExamSubmission, id=submission_id, exam=exam)
+
+        # Reject events for other students' submissions
+        if submission.student_id != request.user.id and not request.user.is_staff and not request.user.is_superuser:
+            raise PermissionDenied("ارسال لاگ نظارت برای سایر زبان‌آموزان مجاز نیست.")
+
+        # Align payload shape: accepts {"events": [...]} or list directly
+        raw_events = request.data.get("events") if isinstance(request.data, dict) else request.data
+        if not isinstance(raw_events, list):
+            return Response(
+                {"error": "Payload must include an 'events' list."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if len(raw_events) > 500:
+            return Response(
+                {"error": "Batch size exceeds maximum limit of 500 events."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        serializer = ProctoringLogItemSerializer(data=raw_events, many=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        logs = [
+            ProctoringLog(submission=submission, **item)
+            for item in serializer.validated_data
+        ]
+        ProctoringLog.objects.bulk_create(logs)
+        return Response({"created": len(logs), "created_count": len(logs)}, status=status.HTTP_201_CREATED)
 
 
 class OnlineExamByCodeView(APIView):
@@ -224,5 +509,10 @@ class OnlineExamByCodeView(APIView):
 
     def get(self, request, access_code):
         exam = get_object_or_404(OnlineExam, access_code=access_code)
+        # Unrelated learners cannot read a draft exam by access code
+        if exam.status == OnlineExam.ExamStatus.DRAFT:
+            if exam.teacher_id != request.user.id and not request.user.is_staff and not request.user.is_superuser:
+                raise Http404("آزمون یافت نشد.")
+
         serializer = ExamStudentViewSerializer(exam, context={'request': request})
         return Response(serializer.data)

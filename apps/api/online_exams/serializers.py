@@ -1,9 +1,19 @@
+from __future__ import annotations
+
+from decimal import Decimal
 from rest_framework import serializers
 from django.utils.crypto import get_random_string
+from questions.models import QuestionVersion
 from .models import OnlineExam, ExamQuestion, ExamSubmission, ExamAnswer, ProctoringLog
 
 
 class ExamQuestionSerializer(serializers.ModelSerializer):
+    question_version = serializers.PrimaryKeyRelatedField(
+        queryset=QuestionVersion.objects.all(),
+        required=False,
+    )
+    question_version_id = serializers.UUIDField(write_only=True, required=False)
+
     question_slug = serializers.ReadOnlyField(source='question_version.question.slug')
     question_title_fa = serializers.ReadOnlyField(source='question_version.title_fa')
     question_title_en = serializers.ReadOnlyField(source='question_version.title_en')
@@ -15,11 +25,22 @@ class ExamQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExamQuestion
         fields = [
-            'id', 'exam_id', 'question_version_id', 'order', 'points',
+            'id', 'exam_id', 'question_version', 'question_version_id', 'order', 'points',
             'custom_instructions', 'listening_play_limit', 'speaking_time_limit_seconds',
             'question_slug', 'question_title_fa', 'question_title_en', 'question_type',
             'cefr_level', 'prompt_fa', 'prompt_en'
         ]
+
+    def validate(self, attrs):
+        version_id = attrs.pop('question_version_id', None)
+        if version_id:
+            try:
+                attrs['question_version'] = QuestionVersion.objects.get(id=version_id)
+            except QuestionVersion.DoesNotExist:
+                raise serializers.ValidationError({"question_version_id": "نسخه سوال مشخص شده یافت نشد."})
+        if 'question_version' not in attrs and not self.instance:
+            raise serializers.ValidationError({"question_version": "انتخاب نسخه سوال الزامی است."})
+        return attrs
 
 
 class OnlineExamListSerializer(serializers.ModelSerializer):
@@ -132,7 +153,7 @@ class ExamSubmissionListSerializer(serializers.ModelSerializer):
 
 
 class ExamSubmissionDetailSerializer(serializers.ModelSerializer):
-    answers = ExamAnswerSerializer(many=True, read_only=True)
+    answers = serializers.SerializerMethodField()
     student = serializers.SerializerMethodField()
 
     class Meta:
@@ -149,22 +170,56 @@ class ExamSubmissionDetailSerializer(serializers.ModelSerializer):
             }
         return None
 
+    def get_answers(self, obj):
+        request = self.context.get('request')
+        answers = obj.answers.all()
+        # Respect show_results_to_student: hide scores/feedback from student if False
+        if request and request.user == obj.student and not obj.exam.show_results_to_student:
+            results = []
+            for a in answers:
+                data = ExamAnswerSerializer(a).data
+                data['manual_score'] = None
+                data['auto_score'] = None
+                data['score_awarded'] = None
+                data['teacher_feedback'] = ""
+                results.append(data)
+            return results
+        return ExamAnswerSerializer(answers, many=True).data
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        request = self.context.get('request')
+        if request and request.user == instance.student and not instance.exam.show_results_to_student:
+            data['total_score'] = None
+            data['percentage'] = None
+        return data
+
 
 class ExamAnswerSubmitSerializer(serializers.Serializer):
     exam_question_id = serializers.UUIDField()
-    student_response = serializers.JSONField()
+    student_response = serializers.JSONField(required=False, default=dict)
     audio_recording_url = serializers.URLField(required=False, allow_blank=True)
 
 
-class ProctoringLogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProctoringLog
-        fields = ['event_type', 'duration_seconds', 'client_timestamp', 'metadata']
+class ExamTeacherGradingSerializer(serializers.Serializer):
+    manual_score = serializers.DecimalField(max_digits=5, decimal_places=2, required=True)
+    teacher_feedback = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class ProctoringLogItemSerializer(serializers.Serializer):
+    event_type = serializers.ChoiceField(choices=ProctoringLog.ProctoringEventType.choices)
+    duration_seconds = serializers.FloatField(required=False, allow_null=True)
+    client_timestamp = serializers.DateTimeField(required=False, allow_null=True)
+    metadata = serializers.JSONField(required=False, default=dict)
 
 
 class ProctoringLogBatchSerializer(serializers.Serializer):
-    events = ProctoringLogSerializer(many=True)
-    submission_id = serializers.UUIDField()
+    events = serializers.ListField(
+        child=ProctoringLogItemSerializer(),
+        max_length=500,
+        allow_empty=True,
+    )
+    submission_id = serializers.UUIDField(required=False)
 
 
 class ExamStudentViewSerializer(serializers.ModelSerializer):

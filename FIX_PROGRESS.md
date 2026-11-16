@@ -18,8 +18,8 @@
 | **F01** | Block sandbox payment selection in production | COMPLETE | `apps/api/marketplace/serializers.py`, `apps/api/marketplace/services.py`, `apps/api/marketplace/views.py`, `apps/api/marketplace/zarinpal.py`, `apps/api/endoora_api/settings/*.py`, `apps/api/marketplace/tests.py` | `SandboxPaymentSecurityTests` (6 tests pass), existing Day 42 tests pass |
 | **F02** | Enforce server-side admin authorization | COMPLETE | `apps/web/lib/admin-auth.ts`, `apps/web/components/admin/AdminLoginGate.tsx`, `apps/web/components/admin/AdminPageClient.tsx`, `apps/web/app/api/admin/**/route.ts`, `tests/unit/admin-auth-security.test.mjs` | `tests/unit/admin-auth-security.test.mjs` (4 tests pass), all 14 admin API routes protected |
 | **F03** | Remove DEBUG login password replacement | COMPLETE | `apps/api/accounts/views.py`, `apps/api/accounts/management/commands/create_dev_user.py`, `apps/api/accounts/tests/test_api.py` | `DebugLoginRemovalSecurityTests` (4 tests pass), all 28 accounts tests pass |
-| **F04** | Repair online exam ownership and enrollment permissions | PENDING | | |
-| **F05** | Make grades and assessment state server-controlled | PENDING | | |
+| **F04** | Repair online exam ownership and enrollment permissions | COMPLETE | `apps/api/online_exams/permissions.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ExamOwnershipAndEnrollmentSecurityTests` (5 tests pass), 27 online_exams tests pass |
+| **F05** | Make grades and assessment state server-controlled | COMPLETE | `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ExamGradesAndAssessmentSecurityTests` (5 tests pass), server-controlled score & attempts locking |
 | **F06** | Persist failed OTP attempts | COMPLETE | `apps/api/accounts/services.py`, `apps/api/accounts/tests/test_api.py` | `OtpAttemptPersistenceSecurityTests` (6 tests pass), 34 accounts tests pass |
 | **F07** | Calculate booking prices on the server | PENDING | | |
 | **F08** | Enforce booking and payment state transitions | PENDING | | |
@@ -30,8 +30,8 @@
 | **F13** | Replace synthetic backups with actual backups | PENDING | | |
 | **F14** | Replace unconditional production-readiness results | PENDING | | |
 | **F15** | Add missing disaster recovery migration | PENDING | | |
-| **F16** | Repair exam question, answer, and grading writes | PENDING | | |
-| **F17** | Align proctoring batch contract | PENDING | | |
+| **F16** | Repair exam question, answer, and grading writes | COMPLETE | `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ExamQuestionAnswerGradingWritesTests` (4 tests pass), retry-safe answers & total recalculation |
+| **F17** | Align proctoring batch contract | COMPLETE | `apps/api/online_exams/models.py`, `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ProctoringContractSecurityTests` (3 tests pass), aligned `{events: [...]}` contract |
 | **F18** | Implement expiring subscription entitlements | PENDING | | |
 | **F19** | Implement working OTP delivery | COMPLETE | `apps/api/accounts/providers.py`, `apps/api/accounts/services.py`, `apps/api/accounts/views.py`, `apps/api/endoora_api/settings/*.py`, `infra/docker-compose.prod.yml`, `.env.example`, `apps/api/accounts/tests/test_api.py` | `OtpDeliveryProviderSecurityTests` (7 tests pass), all 41 accounts tests pass |
 | **F20** | Enforce two-person payout approval | PENDING | | |
