@@ -1,6 +1,7 @@
 from .base import *  # noqa: F403
 
 DEBUG = True
+ZARINPAL_SANDBOX = env_bool("ZARINPAL_SANDBOX", default=True)
 
 if os.getenv("ENDOORA_USE_POSTGRES", "false").lower() not in {"1", "true", "yes"}:
     DATABASES = {

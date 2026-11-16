@@ -29,6 +29,27 @@ ZARINPAL_SANDBOX_VERIFY_URL = "https://sandbox.zarinpal.com/pg/v4/payment/verify
 ZARINPAL_SANDBOX_STARTPAY_URL = "https://sandbox.zarinpal.com/pg/StartPay/{authority}"
 
 
+def is_sandbox_mode_permitted() -> bool:
+    """
+    Check if sandbox payment gateway is permitted in the current runtime environment.
+    Must have settings.ZARINPAL_SANDBOX == True AND must not be running under strict production settings.
+    """
+    if not getattr(settings, "ZARINPAL_SANDBOX", False):
+        return False
+    if not getattr(settings, "DEBUG", False):
+        import sys
+        is_test = (
+            getattr(settings, "TESTING", False)
+            or "test" in sys.argv
+            or any("pytest" in mod for mod in sys.modules)
+            or any("unittest" in mod for mod in sys.modules)
+            or getattr(settings, "ENVIRONMENT", "") in ["development", "test", "testing"]
+        )
+        if not is_test:
+            return False
+    return True
+
+
 class PaymentGatewayError(Exception):
     """Raised when payment gateway request fails or returns an error."""
     def __init__(self, message: str, code: Optional[int] = None, details: Optional[Dict[str, Any]] = None):
@@ -65,10 +86,13 @@ class ZarinPalGateway:
         self.merchant_id = merchant_id or getattr(
             settings, "ZARINPAL_MERCHANT_ID", "00000000-0000-0000-0000-000000000000"
         )
+        permitted = is_sandbox_mode_permitted()
         if is_sandbox is not None:
-            self.is_sandbox = is_sandbox
+            if is_sandbox and not permitted:
+                raise PaymentGatewayError("درگاه پرداخت آزمایشی در این محیط مجاز نیست.")
+            self.is_sandbox = bool(is_sandbox) and permitted
         else:
-            self.is_sandbox = getattr(settings, "ZARINPAL_SANDBOX", True)
+            self.is_sandbox = permitted
 
     def request_payment(
         self,

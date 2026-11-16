@@ -1,3 +1,5 @@
+import logging
+logger = logging.getLogger(__name__)
 from datetime import datetime, time, date, timedelta, timezone as dt_timezone
 from decimal import Decimal
 from typing import Optional, List, Dict, Any, Tuple
@@ -2144,7 +2146,13 @@ def initiate_checkout(
             }
 
     # Gateway Payment (ZarinPal or Sandbox)
-    is_sandbox = (gateway_provider == PaymentGatewayProvider.SANDBOX) or getattr(settings, "ZARINPAL_SANDBOX", True)
+    from marketplace.zarinpal import is_sandbox_mode_permitted
+    if gateway_provider == PaymentGatewayProvider.SANDBOX and not is_sandbox_mode_permitted():
+        raise ValidationError("انتخاب درگاه آزمایشی در محیط عملیاتی مجاز نیست.")
+
+    is_sandbox = (gateway_provider == PaymentGatewayProvider.SANDBOX) and is_sandbox_mode_permitted()
+    if gateway_provider == PaymentGatewayProvider.ZARINPAL and is_sandbox_mode_permitted():
+        is_sandbox = True
     client = ZarinPalGateway(is_sandbox=is_sandbox)
     amount_rial = toman_to_rial(amount)
     cb_url = callback_url or "/checkout/callback"
@@ -2213,6 +2221,13 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
                 "already_verified": True,
             }
 
+        # Guard against sandbox callbacks in production
+        from marketplace.zarinpal import is_sandbox_mode_permitted
+        if tx.is_sandbox and not is_sandbox_mode_permitted():
+            tx.status = PaymentTransactionStatus.FAILED
+            tx.save(update_fields=["status", "updated_at"])
+            raise PaymentVerificationError("اعتبارسنجی تراکنش‌های آزمایشی در محیط عملیاتی غیرمجاز است.")
+
         # Check if user cancelled in gateway
         if status_param.upper() != "OK":
             tx.status = PaymentTransactionStatus.FAILED
@@ -2251,12 +2266,15 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
             create_booking_escrow(booking)
 
         elif tx.order_type == PaymentOrderType.WALLET_TOPUP:
-            deposit_to_wallet(
-                user=tx.user,
-                amount_toman=tx.amount_toman,
-                reference_id=ref_id,
-                description=f"شارژ آنلاین حساب کاربری با تراکنش شماره {ref_id}",
-            )
+            if tx.is_sandbox:
+                logger.warning("Sandbox payment topup: synthetic payments cannot credit real wallet balance.")
+            else:
+                deposit_to_wallet(
+                    user=tx.user,
+                    amount_toman=tx.amount_toman,
+                    reference_id=ref_id,
+                    description=f"شارژ آنلاین حساب کاربری با تراکنش شماره {ref_id}",
+                )
 
         return {
             "transaction_id": str(tx.id),

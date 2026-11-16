@@ -19,7 +19,7 @@ import zoneinfo
 
 from decimal import Decimal
 from datetime import timedelta
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient, APITestCase
 from accounts.models import User
@@ -1198,3 +1198,179 @@ class MarketplaceDay42Tests(APITestCase):
         self.teacher.wallet.refresh_from_db()
         self.assertEqual(self.teacher.wallet.balance_toman, 300000)
 
+
+
+class SandboxPaymentSecurityTests(APITestCase):
+    def setUp(self):
+        from accounts.models import User
+        from marketplace.models import (
+            PaymentGatewayProvider,
+            PaymentOrderType,
+            PaymentTransaction,
+            PaymentTransactionStatus,
+            SessionBooking,
+            UserWallet,
+        )
+        self.learner = User.objects.create_user(
+            email="learner_sec@example.com",
+            password="StrongPass-123!",
+            role=User.Role.LEARNER,
+        )
+        self.teacher = User.objects.create_user(
+            email="teacher_sec@example.com",
+            password="StrongPass-123!",
+            role=User.Role.TEACHER,
+        )
+        self.wallet, _ = UserWallet.objects.get_or_create(user=self.learner, defaults={"balance_toman": 0})
+        self.client.force_authenticate(user=self.learner)
+
+    @override_settings(ZARINPAL_SANDBOX=False, DEBUG=False, TESTING=False)
+    def test_sandbox_rejected_under_production_settings(self):
+        res = self.client.post(
+            "/api/marketplace/checkout/initiate/",
+            data={
+                "order_type": "wallet_topup",
+                "amount_toman": 50000,
+                "gateway_provider": "sandbox",
+            },
+            format="json",
+        )
+        self.assertEqual(res.status_code, 400)
+        self.assertIn("gateway_provider", res.data)
+
+    @override_settings(ZARINPAL_SANDBOX=False, DEBUG=False, TESTING=False)
+    def test_sandbox_simulate_endpoint_forbidden_under_production(self):
+        res = self.client.post(
+            "/api/marketplace/checkout/sandbox/simulate/",
+            data={"authority": "A0000000000000000000000000000123456", "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, 403)
+
+    @override_settings(ZARINPAL_SANDBOX=False, DEBUG=False, TESTING=False)
+    def test_sandbox_callback_rejected_under_production(self):
+        from marketplace.models import PaymentTransaction, PaymentTransactionStatus
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type="wallet_topup",
+            amount_toman=50000,
+            amount_rial=500000,
+            authority="A0000000000000000000000000000999999",
+            status=PaymentTransactionStatus.PENDING,
+            is_sandbox=True,
+        )
+        res = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": tx.authority, "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, 400)
+        self.wallet.refresh_from_db()
+        self.assertEqual(self.wallet.balance_toman, 0)
+
+    @override_settings(ZARINPAL_SANDBOX=True, DEBUG=True)
+    def test_sandbox_callback_cannot_credit_real_wallet(self):
+        from marketplace.models import PaymentTransaction, PaymentTransactionStatus
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type="wallet_topup",
+            amount_toman=50000,
+            amount_rial=500000,
+            authority="A0000000000000000000000000000888888",
+            status=PaymentTransactionStatus.PENDING,
+            is_sandbox=True,
+        )
+        initial_balance = self.wallet.balance_toman
+        res = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": tx.authority, "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, 200)
+        self.wallet.refresh_from_db()
+        # Synthetic sandbox payment must NEVER credit real wallet
+        self.assertEqual(self.wallet.balance_toman, initial_balance)
+
+    @override_settings(ZARINPAL_SANDBOX=True, DEBUG=True)
+    def test_failed_verification_leaves_financial_state_unchanged(self):
+        from datetime import timedelta
+        from django.utils import timezone
+        from marketplace.models import BookingEscrow, PaymentTransaction, PaymentTransactionStatus, SessionBooking
+        start = timezone.now() + timedelta(days=2)
+        end = start + timedelta(minutes=60)
+        booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=100000,
+            scheduled_start=start,
+            scheduled_end=end,
+            duration_minutes=60,
+        )
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type="booking_session",
+            booking=booking,
+            amount_toman=100000,
+            amount_rial=1000000,
+            authority="A0000000000000000000000000000777777",
+            status=PaymentTransactionStatus.PENDING,
+            is_sandbox=True,
+        )
+        res = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": tx.authority, "status": "NOK"},
+            format="json",
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.data["result"]["status"], PaymentTransactionStatus.FAILED)
+        booking.refresh_from_db()
+        self.assertFalse(booking.is_paid)
+        self.assertFalse(BookingEscrow.objects.filter(booking=booking).exists())
+
+    @override_settings(ZARINPAL_SANDBOX=True, DEBUG=True)
+    def test_duplicate_valid_callbacks_fulfill_order_exactly_once(self):
+        from datetime import timedelta
+        from django.utils import timezone
+        from marketplace.models import BookingEscrow, PaymentTransaction, PaymentTransactionStatus, SessionBooking
+        start = timezone.now() + timedelta(days=2)
+        end = start + timedelta(minutes=60)
+        booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            rate_toman=100000,
+            scheduled_start=start,
+            scheduled_end=end,
+            duration_minutes=60,
+        )
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type="booking_session",
+            booking=booking,
+            amount_toman=100000,
+            amount_rial=1000000,
+            authority="A0000000000000000000000000000666666",
+            status=PaymentTransactionStatus.PENDING,
+            is_sandbox=True,
+        )
+        # First verification
+        res1 = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": tx.authority, "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(res1.status_code, 200)
+        self.assertEqual(res1.data["result"]["status"], PaymentTransactionStatus.PAID)
+        self.assertEqual(BookingEscrow.objects.filter(booking=booking).count(), 1)
+
+        # Duplicate callback
+        res2 = self.client.post(
+            "/api/marketplace/checkout/verify/",
+            data={"authority": tx.authority, "status": "OK"},
+            format="json",
+        )
+        self.assertEqual(res2.status_code, 200)
+        self.assertTrue(res2.data["result"]["already_verified"])
+        # Still exactly 1 escrow
+        self.assertEqual(BookingEscrow.objects.filter(booking=booking).count(), 1)

@@ -15,7 +15,7 @@
 
 | ID | Finding Description | Status | Changed Files | Test Verification |
 |---|---|---|---|---|
-| **F01** | Block sandbox payment selection in production | PENDING | | |
+| **F01** | Block sandbox payment selection in production | COMPLETE | `apps/api/marketplace/serializers.py`, `apps/api/marketplace/services.py`, `apps/api/marketplace/views.py`, `apps/api/marketplace/zarinpal.py`, `apps/api/endoora_api/settings/*.py`, `apps/api/marketplace/tests.py` | `SandboxPaymentSecurityTests` (6 tests pass), existing Day 42 tests pass |
 | **F02** | Enforce server-side admin authorization | PENDING | | |
 | **F03** | Remove DEBUG login password replacement | COMPLETE | `apps/api/accounts/views.py`, `apps/api/accounts/management/commands/create_dev_user.py`, `apps/api/accounts/tests/test_api.py` | `DebugLoginRemovalSecurityTests` (4 tests pass), all 28 accounts tests pass |
 | **F04** | Repair online exam ownership and enrollment permissions | PENDING | | |

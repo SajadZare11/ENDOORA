@@ -967,8 +967,13 @@ def checkout_verify_view(request):
     if not authority:
         return Response({"detail": "شناسه پرداخت Authority الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
 
-    result = verify_checkout_payment(authority=authority, status_param=status_param)
-    return Response({"result": result}, status=status.HTTP_200_OK)
+    from marketplace.zarinpal import PaymentGatewayError, PaymentVerificationError
+    from rest_framework.exceptions import ValidationError
+    try:
+        result = verify_checkout_payment(authority=authority, status_param=status_param)
+        return Response({"result": result}, status=status.HTTP_200_OK)
+    except (ValidationError, PaymentVerificationError, PaymentGatewayError) as exc:
+        return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["POST"])
@@ -977,6 +982,12 @@ def checkout_sandbox_simulate_view(request):
     """
     Developer sandbox helper to simulate user completing or failing payment.
     """
+    from marketplace.zarinpal import is_sandbox_mode_permitted
+    if not is_sandbox_mode_permitted():
+        return Response(
+            {"detail": "شبیه‌ساز پرداخت آزمایشی در محیط عملیاتی غیرفعال است."},
+            status=status.HTTP_403_FORBIDDEN,
+        )
     from marketplace.services import verify_checkout_payment
 
     authority = request.data.get("authority")

@@ -831,6 +831,12 @@ class InitiateCheckoutInputSerializer(serializers.Serializer):
     callback_url = serializers.CharField(required=False, allow_blank=True, default="")
     idempotency_key = serializers.CharField(required=False, allow_blank=True, default="")
 
+    def validate_gateway_provider(self, value):
+        from marketplace.zarinpal import is_sandbox_mode_permitted
+        if value == "sandbox" and not is_sandbox_mode_permitted():
+            raise serializers.ValidationError("انتخاب درگاه آزمایشی در محیط عملیاتی مجاز نیست.")
+        return value
+
 
 class VerifyPaymentInputSerializer(serializers.Serializer):
     authority = serializers.CharField()
