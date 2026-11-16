@@ -13,6 +13,8 @@ import type {
   DktStoredState,
 } from "./types.ts";
 import { getDktWeights } from "./weights.ts";
+import { recordTwinGrammarInteraction } from '../ai/learner-twin-store.ts';
+import type { TwinPrediction } from '../ai/learner-twin-types.ts';
 
 const STORAGE_KEY = "endoora_dkt_state_v1";
 
@@ -100,12 +102,16 @@ export class DktEngine {
     isCorrect,
     isTrap = false,
     latencyMs,
+    twinContext,
   }: {
     conceptId: string;
     isCorrect: boolean;
     isTrap?: boolean;
     latencyMs: number;
+    twinContext?: { latencyMs?: number; prediction?: TwinPrediction; guessingFloor?: number; itemId?: string };
   }): DktPredictionResult {
+    // Fuse once per observed answer, before changing the independent DKT state.
+    recordTwinGrammarInteraction({ conceptId, isCorrect, latencyMs, ...twinContext });
     const concept = CONCEPT_MAP[conceptId] || AEF_60_CONCEPTS[0];
     const conceptIdx = AEF_60_CONCEPTS.findIndex((c) => c.id === concept.id);
     const now = Date.now();

@@ -20,6 +20,8 @@ import {
   fuseCognitiveContext,
 } from "./linucb-bandit-engine.ts";
 import { DktEngine } from "../dkt-engine/dkt-engine.ts";
+import { ensureTwinLearnerScope, getLearnerTwin, TWIN_CATALOG } from './learner-twin-store.ts';
+import type { TwinPrediction } from './learner-twin-types.ts';
 import type { HexEdgeOption } from "../../data/skills/games/types.ts";
 import enrichedQuestionsRaw from "../../data/distractors/enriched_adaptive_questions.json" with { type: "json" };
 
@@ -257,6 +259,8 @@ export function useAdaptiveQuestion(
   const [error, setError] = useState<Error | null>(null);
 
   const renderTimestampRef = useRef<number>(0);
+  const twinPredictionRef = useRef<TwinPrediction | undefined>(undefined);
+  useEffect(()=>{void ensureTwinLearnerScope();},[]);
 
   // Sync state if rawQuestionInput changes externally
   useEffect(() => {
@@ -391,6 +395,11 @@ export function useAdaptiveQuestion(
     return "a1-01";
   }, [explicitConceptId, resolvedPayload]);
 
+  useEffect(() => {
+    const id=TWIN_CATALOG.find(c=>c.id===effectiveConceptId)?.skillId;
+    twinPredictionRef.current=id===undefined?undefined:getLearnerTwin()?.predictOutcomeBeforeInteraction([id],0.25,Date.now(),{itemId:assembledQuestion?.questionId});
+  }, [assembledQuestion, effectiveConceptId]);
+
   // Selection Handler
   const selectOption = useCallback(
     (
@@ -461,6 +470,7 @@ export function useAdaptiveQuestion(
             isCorrect: isTargetCorrect,
             isTrap: !isTargetCorrect,
             latencyMs: elapsedLatency,
+            twinContext: { prediction:twinPredictionRef.current,itemId:assembledQuestion.questionId,guessingFloor:1/assembledQuestion.options.length },
           });
           dktUpdated = true;
         } catch {

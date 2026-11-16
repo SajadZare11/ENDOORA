@@ -23,6 +23,7 @@ import { recordSpeakingMissionCompletion } from "../../../lib/skills/game-storag
 import { soundSynth } from "../../../lib/skills/game-audio";
 import { playEnglishSpeech, stopEnglishSpeech } from "../../../lib/speech";
 import { useGazeCognitive } from "../../../lib/ai/useGazeCognitive.ts";
+import { beginTwinAssessment, finishTwinAssessment, type TwinAssessment } from '../../../lib/ai/learner-twin-store';
 
 interface Props {
   level: GameLevel;
@@ -95,6 +96,7 @@ export function SherlockSpeakingArena({
   // Active Task Speaking State
   const currentTask: DetectiveSpeakingTask = activeStage.tasks[currentTaskIndex] || activeStage.tasks[0];
   const [isListening, setIsListening] = useState<boolean>(false);
+  const twinAssessmentRef=useRef<TwinAssessment|null>(null);
   const [transcript, setTranscript] = useState<string>("");
   const [taskHasMistake, setTaskHasMistake] = useState<boolean>(false);
   const [isTaskSuccess, setIsTaskSuccess] = useState<boolean>(false);
@@ -215,6 +217,7 @@ export function SherlockSpeakingArena({
       };
 
       recognitionRef.current = recognition;
+      twinAssessmentRef.current=beginTwinAssessment('sherlock_deduction',currentTask.id);
       recognition.start();
       setIsListening(true);
     } catch {
@@ -248,6 +251,9 @@ export function SherlockSpeakingArena({
     // Rule: Must match the majority of keywords (or close to ideal response)
     const requiredMajority = Math.ceil(totalKeywords * 0.5);
     const isMajority = matchedKeywordsCount >= requiredMajority && matchedKeywordsCount >= 1;
+    // This is keyword evidence from Sherlock; it is not a BERT semantic score.
+    finishTwinAssessment(twinAssessmentRef.current,totalKeywords?matchedKeywordsCount/totalKeywords:0);
+    twinAssessmentRef.current=null;
 
     // Calculate accuracy: strictly proportional, 100% ONLY if ALL keywords are used on FIRST attempt!
     let taskAccuracy = Math.round((matchedKeywordsCount / totalKeywords) * 100);

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { ensureTwinLearnerScope, beginTwinAssessment, finishTwinAssessment, type TwinAssessment } from '../../lib/ai/learner-twin-store';
 import { useBertEvaluator } from "../../lib/bert-evaluator/useBertEvaluator";
 import type { BertEvaluationResult } from "../../lib/bert-evaluator/types";
 import styles from "./ielts-writing-evaluator.module.css";
@@ -23,6 +24,8 @@ export function IELTSWritingEvaluator({
   className = "",
 }: IELTSWritingEvaluatorProps) {
   const [essayText, setEssayText] = useState(initialText);
+  const twinAssessmentRef=useRef<TwinAssessment|null>(null);
+  useEffect(()=>{ let active=true; void ensureTwinLearnerScope().then(()=>{if(active)twinAssessmentRef.current=beginTwinAssessment('bert_writing');});return()=>{active=false;}; },[promptText]);
   const { status, progress, result, error, evaluateEssay, reset } = useBertEvaluator();
 
   const wordCount = essayText.trim() ? essayText.trim().split(/\s+/).length : 0;
@@ -32,6 +35,8 @@ export function IELTSWritingEvaluator({
     if (!essayText.trim() || status === "evaluating") return;
     try {
       const res = await evaluateEssay(essayText, promptText, targetWords);
+      finishTwinAssessment(twinAssessmentRef.current,(res.overallBand-1)/8);
+      twinAssessmentRef.current=beginTwinAssessment('bert_writing');
       if (onEvaluated) {
         onEvaluated(res);
       }

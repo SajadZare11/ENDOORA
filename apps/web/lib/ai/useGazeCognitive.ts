@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { GazeCognitiveEngine } from "./gaze-cognitive-engine.ts";
+import { ensureTwinLearnerScope } from './learner-twin-store.ts';
 import type { GazeCognitiveTelemetry } from "./gaze-cognitive-types.ts";
 
 export interface UseGazeCognitiveOptions {
@@ -13,6 +14,7 @@ export interface UseGazeCognitiveOptions {
 }
 
 export function useGazeCognitive(options: UseGazeCognitiveOptions = {}) {
+  useEffect(()=>{void ensureTwinLearnerScope();},[]);
   const {
     autoStart = false,
     useMouseFallback = true,

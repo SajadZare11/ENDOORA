@@ -25,11 +25,13 @@ export function useDktAdaptive() {
       isCorrect,
       isTrap = false,
       latencyMs,
+      twinContext,
     }: {
       conceptId: string;
       isCorrect: boolean;
       isTrap?: boolean;
       latencyMs: number;
+      twinContext?: Parameters<DktEngine['recordInteraction']>[0]['twinContext'];
     }) => {
       let updated;
       try {
@@ -39,6 +41,7 @@ export function useDktAdaptive() {
           isCorrect,
           isTrap,
           latencyMs,
+          twinContext,
         });
       } catch {
         updated = engine.recordInteraction({
@@ -46,6 +49,7 @@ export function useDktAdaptive() {
           isCorrect,
           isTrap,
           latencyMs,
+          twinContext,
         });
       }
       setPredictions(updated);

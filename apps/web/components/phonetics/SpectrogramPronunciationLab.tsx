@@ -9,6 +9,7 @@ import type {
 } from '../../workers/gop-cnn-ctc.worker';
 import { sentenceToTargetWords } from '../../lib/phonetics/arpabet-g2p';
 import { syncPhoneticAssessment } from '../../lib/phonetics/phonetic-sync';
+import { ensureTwinLearnerScope, beginTwinAssessment, finishTwinAssessment, type TwinAssessment } from '../../lib/ai/learner-twin-store';
 import styles from './spectrogram-lab.module.css';
 
 export interface SpectrogramPronunciationLabProps {
@@ -53,6 +54,8 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const workerRef = useRef<Worker | null>(null);
+  const twinAssessmentRef=useRef<TwinAssessment|null>(null);
+  useEffect(()=>{void ensureTwinLearnerScope();},[]);
   const audioContextRef = useRef<AudioContext | null>(null);
   const workletNodeRef = useRef<AudioWorkletNode | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
@@ -127,6 +130,8 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
         setBackendStatus(`2D-CNN + CTC (${backendName})`);
       } else if (type === 'ASSESSMENT_COMPLETE') {
         const result = payload as GOPAssessmentPayload;
+        finishTwinAssessment(twinAssessmentRef.current,result.overallScore/100);
+        twinAssessmentRef.current=null;
         setAssessment(result);
         setIsProcessing(false);
         persistPhonemeDiagnostics(result);
@@ -264,6 +269,7 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
 
   const startRecording = async () => {
     try {
+      twinAssessmentRef.current=beginTwinAssessment('cnn_pronunciation');
       setAssessment(null);
       setSelectedPhoneme(null);
       melChunksRef.current = [];

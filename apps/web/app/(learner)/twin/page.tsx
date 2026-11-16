@@ -1,412 +1,302 @@
 "use client";
-
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
-import { Button } from "@endoora/ui";
-import styles from "../learner-subpages.module.css";
-
-interface SkillEvidence {
-  id: string;
-  nameFa: string;
-  nameEn: string;
-  evidenceCount: number;
-  confidence: "high" | "medium" | "low";
-  lastVerifiedFa: string;
-  lastVerifiedEn: string;
-  detailsFa: string;
-  detailsEn: string;
-}
-
-const TWIN_SKILLS: SkillEvidence[] = [
-  {
-    id: "grammar",
-    nameFa: "دستور زبان (Grammar)",
-    nameEn: "Grammar & Structure",
-    evidenceCount: 14,
-    confidence: "high",
-    lastVerifiedFa: "۲ روز پیش در مأموریت روزانه",
-    lastVerifiedEn: "2 days ago in Daily Mission",
-    detailsFa: "پوشش زمان‌های گذشته استمراری، حال کامل، شرطی‌ها و مجهول",
-    detailsEn: "Past continuous, present perfect, conditionals, and passive voice",
-  },
-  {
-    id: "vocabulary",
-    nameFa: "واژگان و هم‌آیی (Vocabulary)",
-    nameEn: "Vocabulary & Collocations",
-    evidenceCount: 28,
-    confidence: "high",
-    lastVerifiedFa: "امروز در سیستم تکرار فاصله‌دار",
-    lastVerifiedEn: "Today in Spaced Repetition",
-    detailsFa: "تسلط بر واژگان دانشگاهی، اصطلاحات تجاری و ترکیب‌های همنشین",
-    detailsEn: "Academic word list, workplace phrases, and contextual collocations",
-  },
-  {
-    id: "reading",
-    nameFa: "درک مطلب (Reading)",
-    nameEn: "Reading Comprehension",
-    evidenceCount: 8,
-    confidence: "medium",
-    lastVerifiedFa: "در آزمون تعیین سطح",
-    lastVerifiedEn: "During Placement Test",
-    detailsFa: "استخراج ایده اصلی، جزییات صریح و استنباط پیام ضمنی",
-    detailsEn: "Gist extraction, explicit details, and contextual inference",
-  },
-  {
-    id: "listening",
-    nameFa: "شنیداری (Listening)",
-    nameEn: "Listening Comprehension",
-    evidenceCount: 6,
-    confidence: "medium",
-    lastVerifiedFa: "در بخش صوتی تعیین سطح",
-    lastVerifiedEn: "During Audio Placement",
-    detailsFa: "درک مکالمات روزمره فرودگاهی، ایستگاه قطار و سخنرانی‌های کوتاه",
-    detailsEn: "Announcements, workplace dialogues, and academic mini-lectures",
-  },
-  {
-    id: "speaking",
-    nameFa: "گفتاری (Speaking)",
-    nameEn: "Speaking & Articulation",
-    evidenceCount: 4,
-    confidence: "medium",
-    lastVerifiedFa: "در آزمایشگاه صدا و تبدیل گفتار به متن",
-    lastVerifiedEn: "During Voice STT Diagnostic",
-    detailsFa: "روان‌گویی کلامی، تنوع ساختاری و کفایت طول پاسخ شفاهی",
-    detailsEn: "Oral fluency, lexical variety, and spoken duration sufficiency",
-  },
-  {
-    id: "writing",
-    nameFa: "نگارش (Writing)",
-    nameEn: "Writing & Composition",
-    evidenceCount: 5,
-    confidence: "medium",
-    lastVerifiedFa: "در ویرایشگر مقاله‌نویسی",
-    lastVerifiedEn: "During Essay Diagnostic",
-    detailsFa: "انسجام پاراگراف، علائم نگارشی استاندارد و غنای واژگانی",
-    detailsEn: "Paragraph cohesion, formal punctuation, and lexical sophistication",
-  },
-  {
-    id: "pronunciation",
-    nameFa: "تلفظ و آواشناسی (Pronunciation)",
-    nameEn: "Pronunciation & Phonology",
-    evidenceCount: 7,
-    confidence: "medium",
-    lastVerifiedFa: "در جلسه کلاسی مدرس با سیستم TeacherOS",
-    lastVerifiedEn: "During TeacherOS Live Class Session",
-    detailsFa: "آهنگ کلامی، استرس واژگان، تلفظ فونتیک و وضوح لهجه معیار",
-    detailsEn: "Sentence intonation, lexical word stress, and phonetic clarity",
-  },
-];
-
+import { useTwin } from "../../../components/twin/useTwin";
+import {
+  getLearnerTwin,
+  resetLearnerTwin,
+} from "../../../lib/ai/learner-twin-store";
+import { IELTS_SKILLS } from "../../../lib/ai/learner-twin-types";
+import styles from "../../../components/twin/twin.module.css";
+const TwinConstellation = dynamic(
+  () => import("../../../components/twin/TwinConstellation"),
+);
+const TwinFuture = dynamic(() => import("../../../components/twin/TwinFuture"));
+const TwinMock = dynamic(() => import("../../../components/twin/TwinMock"));
+const TwinPipeline = dynamic(
+  () => import("../../../components/twin/TwinPipeline"),
+);
 export default function LearnerTwinPage() {
-  const { data, locale } = useLearnerHome();
-  const isFa = locale === "fa";
-
-  const [activeTab, setActiveTab] = useState<"skills" | "history" | "controls">("skills");
-  const [resetNotice, setResetNotice] = useState<string | null>(null);
-  const [weakPhonemes, setWeakPhonemes] = useState<string[]>([]);
-
-  useEffect(() => {
-    const readProfile = () => {
-      try {
-        const saved = localStorage.getItem("endoora_phoneme_diagnostic_profile");
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed.weakPhonemes)) {
-            setWeakPhonemes(parsed.weakPhonemes);
-          }
-        }
-      } catch {
-        // ignore
-      }
-    };
-
-    readProfile();
-
-    const handleProfileUpdated = (e: Event) => {
-      const customEvent = e as CustomEvent;
-      if (Array.isArray(customEvent.detail?.weakPhonemes)) {
-        setWeakPhonemes(customEvent.detail.weakPhonemes);
-      } else {
-        readProfile();
-      }
-    };
-
-    window.addEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
-    return () => {
-      window.removeEventListener("endoora_phoneme_profile_updated", handleProfileUpdated);
-    };
-  }, []);
-
-  const placementCompleted =
-    data.path_steps?.find((step) => step.id === "placement")?.state === "complete";
-
-  function handleResetEvidence() {
-    setResetNotice(
-      isFa
-        ? "درخواست بررسی شواهد ثبت شد. شواهد اولیه حفظ می‌شوند و ارزیابی مجدد پس از انجام تست جدید فعال خواهد شد."
-        : "Evidence recalibration requested. Historic evidence remains audit-safe while new diagnostics take precedence."
+  const { locale } = useLearnerHome(),
+    isFa = locale === "fa",
+    snapshot = useTwin();
+  const [tab, setTab] = useState("overview"),
+    [confirmReset, setConfirmReset] = useState(false);
+  const forecast = snapshot ? getLearnerTwin()?.getIELTSForecast() : null,
+    c = snapshot?.calibration;
+  function exportModel() {
+    if (!snapshot) return;
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(snapshot, null, 2)], {
+        type: "application/json",
+      }),
     );
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "endoora-learner-twin.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-
+  const tabs = isFa
+    ? [
+        ["overview", "دوقلوی من"],
+        ["future", "آینده من"],
+        ["mock", "آزمون دوقلو"],
+        ["pipeline", "درون مدل"],
+        ["evidence", "شواهد و کنترل‌ها"],
+      ]
+    : [
+        ["overview", "My Twin"],
+        ["future", "Future self"],
+        ["mock", "Mock autoplay"],
+        ["pipeline", "Inside the model"],
+        ["evidence", "Evidence & controls"],
+      ];
   return (
-    <div className={styles.container}>
-      <Link className={styles.backLink} href="/dashboard">
-        <span aria-hidden="true">{isFa ? "←" : "→"}</span>
-        {isFa ? "بازگشت به داشبورد" : "Back to dashboard"}
+    <div className={styles.dashboard}>
+      <Link href="/dashboard" className={styles.back}>
+        {isFa ? "← بازگشت به داشبورد" : "← Back to dashboard"}
       </Link>
-
-      <section className={styles.heroCard}>
-        <div className={styles.heroHeader}>
-          <div>
-            <h1 className={styles.heroTitle}>
-              {isFa ? "دوقلوی یادگیری (Learner Digital Twin)" : "Learner Digital Twin & Model"}
-            </h1>
-            <p className={styles.heroSubtitle}>
-              {isFa
-                ? "دوقلوی یادگیری Endoora تصویری زنده، قابل بازبینی و شفاف از تسلط زبانی شماست که صرفاً با شواهد واقعی تغذیه می‌شود؛ بدون حدس‌های روانشناختی یا برچسب‌زنی نامرئی."
-                : "The Endoora Learner Twin is an explainable, user-auditable digital profile reflecting your verified language competency strictly grounded in evidence."}
-            </p>
-          </div>
-          <span className={`${styles.heroBadge} ${styles.heroBadgeSuccess}`}>
-            {placementCompleted
-              ? isFa
-                ? "مدل فعال بر پایه شواهد"
-                : "Active Evidence Model"
-              : isFa
-              ? "نیازمند ارزیابی اولیه"
-              : "Calibrating"}
+      <header className={styles.hero}>
+        <div>
+          <span className={styles.eyebrow}>ENDOORA / LEARNER TWIN</span>
+          <h1>
+            {isFa
+              ? "نسخه‌ای از تو که با تو یاد می‌گیرد."
+              : "A Twin that learns with you."}
+          </h1>
+          <p>
+            {isFa
+              ? "تسلط، عدم قطعیت و مسیر آینده‌ات؛ بر پایه شواهد آموزشی خودت."
+              : "Your mastery, uncertainty, and possible futures — grounded in your learning evidence."}
+          </p>
+          <span className={styles.tag}>
+            {isFa
+              ? "پردازش محلی · بدون وزن عصبی تازه"
+              : "Local computation · no new neural weights"}
           </span>
         </div>
-
-        {/* Immersive Twin Orb Representation from Volume 1/4 */}
-        <div className={styles.twinOrbContainer}>
-          <div className={styles.twinOrb} aria-label={isFa ? "هسته هوشمند دوقلوی یادگیری" : "Twin Intelligence Core"}>
-            <span aria-hidden="true">✦</span>
-          </div>
+        <div className={styles.orb} aria-hidden="true">
+          <span>μ</span>
+          <i />
+          <i />
         </div>
-
-        <div className={styles.actionRow}>
-          <Link className={styles.buttonPrimary} href="/path">
-            {isFa ? "مشاهده مسیر یادگیری مبتنی بر دوقلو" : "View Personalized Path"}
-          </Link>
-          <Link className={styles.buttonSecondary} href="/placement/report">
-            {isFa ? "بررسی شواهد کارنامه" : "Inspect Diagnostic Evidence"}
-          </Link>
-          <Link className={styles.buttonSecondary} href="/today">
-            {isFa ? "تغذیه مدل با مأموریت امروز" : "Feed with Daily Mission"}
-          </Link>
-        </div>
-      </section>
-
-      {/* Tabs */}
-      <section className={styles.card}>
-        <div className={styles.filterBar} role="tablist">
-          <Button
-            type="button"
-            size="sm"
-            variant={activeTab === "skills" ? "primary" : "secondary"}
-            onClick={() => setActiveTab("skills")}
+      </header>
+      {!snapshot ? (
+        <p role="status">
+          {isFa ? "در حال آماده‌سازی مدل شخصی…" : "Preparing your local model…"}
+        </p>
+      ) : (
+        <>
+          <section
+            className={styles.metricGrid}
+            aria-label={isFa ? "کالیبراسیون زنده" : "Live calibration"}
           >
-            {isFa ? "شواهد ۶ مهارت اصلی" : "6-Skill Evidence Matrix"}
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            variant={activeTab === "history" ? "primary" : "secondary"}
-            onClick={() => setActiveTab("history")}
-          >
-            {isFa ? "تاریخچه ثبت شواهد" : "Calibration History"}
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            variant={activeTab === "controls" ? "primary" : "secondary"}
-            onClick={() => setActiveTab("controls")}
-          >
-            {isFa ? "کنترل‌ها و حریم خصوصی" : "Privacy & Evidence Controls"}
-          </Button>
-        </div>
-
-        {activeTab === "skills" && (
-          <div>
-            <h2 className={styles.cardTitle}>
-              {isFa ? "ماتریس شواهد مستند ۷ مهارت CEFR" : "Verified 7-Skill CEFR Evidence Matrix"}
-            </h2>
-            <p className={styles.cardDescription}>
-              {isFa
-                ? "هر مهارت فقط به میزانی که شواهد آموزشی معتبر دارد گزارش می‌شود. هیچ پیش‌فرضی بدون آزمون پذیرفته نیست."
-                : "Every skill confidence level correlates directly with empirical evidence volume gathered from diagnostics and exercises."}
-            </p>
-
-            <div className={styles.skillsGrid}>
-              {TWIN_SKILLS.map((item) => (
-                <article className={styles.skillCard} key={item.id}>
-                  <div className={styles.skillCardHeader}>
-                    <h3 className={styles.skillCardTitle}>{isFa ? item.nameFa : item.nameEn}</h3>
-                    <span
-                      style={{
-                        fontSize: "var(--font-size-meta)",
-                        fontWeight: 700,
-                        padding: "2px var(--space-2)",
-                        borderRadius: "var(--radius-pill)",
-                        background: "var(--color-info-bg)",
-                        color: "var(--color-info-text)",
-                      }}
-                    >
-                      {item.evidenceCount} {isFa ? "شاهد" : "evidence"}
-                    </span>
-                  </div>
-
-                  <p style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)", lineHeight: 1.6, marginBlock: "var(--space-2)" }}>
-                    {isFa ? item.detailsFa : item.detailsEn}
-                  </p>
-
-                  <div style={{ fontSize: "var(--font-size-meta)", color: "var(--color-text)", borderBlockStart: "1px solid var(--color-border)", paddingBlockStart: "var(--space-2)" }}>
-                    <span style={{ color: "var(--color-muted)" }}>{isFa ? "آخرین بازبینی: " : "Last verified: "}</span>
-                    <strong>{isFa ? item.lastVerifiedFa : item.lastVerifiedEn}</strong>
-                  </div>
-                </article>
-              ))}
+            <div>
+              <small>{isFa ? "امتیاز ۱۰۰ منهای MAE" : "100 − MAE score"}</small>
+              <strong>
+                {c?.totalInteractions
+                  ? `${((1 - c.rollingMAE) * 100).toFixed(1)}%`
+                  : "—"}
+              </strong>
+              <small>
+                {isFa
+                  ? "خطای واقعی پیش‌بینی؛ نه دقت اعتبارسنجی‌شده"
+                  : "Observed prediction error; not validated accuracy"}
+              </small>
             </div>
-
-            {/* Neural GOP Edge AI Phonetics Radar Section */}
-            <div style={{ marginBlockStart: "var(--space-6)", padding: "var(--space-4)", background: "rgba(9, 13, 22, 0.75)", border: "1px solid rgba(99, 102, 241, 0.3)", borderRadius: "var(--radius-card)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "var(--space-2)" }}>
-                <div>
-                  <h3 style={{ margin: 0, fontSize: "var(--font-size-card-title)", color: "#a5b4fc", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                    <span>🎙️</span>
-                    {isFa ? "رادار تشخیصی آواشناسی و واج‌های تداخلی L1 (Neural GOP)" : "Spectrogram Neural GOP Phonetic Diagnostic Radar"}
-                  </h3>
-                  <p style={{ margin: "var(--space-1) 0 0", fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
-                    {isFa
-                      ? "شواهد استخراج‌شده بلادرنگ از طیف‌نگاره صوتی با شبکه عصبی 2D-CNN و الگوریتم CTC"
-                      : "Real-time acoustic evidence extracted via 2D-CNN + CTC on 80-bin Log-Mel Spectrograms"}
-                  </p>
+            <div>
+              <small>
+                {isFa ? "خطای کالیبراسیون Brier" : "Brier calibration error"}
+              </small>
+              <strong>
+                {c?.totalInteractions ? c.rollingBrierError.toFixed(4) : "—"}
+              </strong>
+              <small>
+                {c?.totalInteractions ?? 0} {isFa ? "مشاهده" : "observations"}
+              </small>
+            </div>
+            <div>
+              <small>{isFa ? "سپر نویز کالمن" : "Kalman noise shield"}</small>
+              <strong>{c?.shieldedInteractions ?? 0}</strong>
+              <small>
+                {isFa
+                  ? "مشاهده با قابلیت اعتماد پایین مهار شد"
+                  : "Low-reliability observations attenuated"}
+              </small>
+            </div>
+          </section>
+          <nav
+            className={styles.tabs}
+            aria-label={isFa ? "بخش‌های دوقلو" : "Twin views"}
+          >
+            {tabs.map(([id, label]) => (
+              <button
+                key={id}
+                className={tab === id ? styles.selected : styles.button}
+                aria-pressed={tab === id}
+                onClick={() => setTab(id)}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+          {tab === "overview" && (
+            <>
+              <section className={styles.card}>
+                <div className={styles.sectionHead}>
+                  <div>
+                    <span className={styles.eyebrow}>IELTS / CEFR</span>
+                    <h2>
+                      {isFa
+                        ? "برآورد مهارت‌های چهارگانه"
+                        : "Four-skill IELTS outlook"}
+                    </h2>
+                  </div>
+                  <span className={styles.tag}>
+                    {isFa ? "برآورد آزمایشی" : "Experimental estimate"}
+                  </span>
                 </div>
-                <Link
-                  href="/pronunciation"
-                  className={styles.buttonPrimary}
-                  style={{ textDecoration: "none", fontSize: "var(--font-size-meta)" }}
+                <div className={styles.bandGrid}>
+                  {IELTS_SKILLS.map((skill) => {
+                    const b = forecast?.[skill],
+                      count = snapshot.modalityMastery[skill].evidenceCount;
+                    return (
+                      <div key={skill}>
+                        <small>{skill}</small>
+                        <strong>{count ? b?.band.toFixed(1) : "—"}</strong>
+                        <small>
+                          {count
+                            ? `95%: ${b?.ci95[0].toFixed(1)}–${b?.ci95[1].toFixed(1)}`
+                            : isFa
+                              ? "در انتظار شاهد"
+                              : "Awaiting evidence"}
+                        </small>
+                      </div>
+                    );
+                  })}
+                </div>
+                <p>
+                  {isFa ? "کلی" : "Overall"}:{" "}
+                  <strong>
+                    {IELTS_SKILLS.every(
+                      (k) => snapshot.modalityMastery[k].evidenceCount > 0,
+                    )
+                      ? `${forecast?.overall.band.toFixed(1)} · ${forecast?.predictedCEFR}`
+                      : isFa
+                        ? "برای هر چهار مهارت شاهد لازم است"
+                        : "Evidence needed in all four skills"}
+                  </strong>
+                </p>
+                <p className={styles.muted}>
+                  {isFa
+                    ? "رابطه تسلط با نمره آیلتس یک تقریب اولیه است. هدف خطای ۲٫۵٪ و ±۰٫۲۰ هنوز با داده واقعی سنجیده نشده است."
+                    : "The mastery-to-band mapping is provisional. The 2.5% mastery RMSE and ±0.20 band targets require held-out learner validation."}
+                </p>
+              </section>
+              <TwinConstellation snapshot={snapshot} isFa={isFa} />
+            </>
+          )}
+          {tab === "future" && <TwinFuture snapshot={snapshot} isFa={isFa} />}
+          {tab === "mock" && <TwinMock isFa={isFa} />}
+          {tab === "pipeline" && <TwinPipeline isFa={isFa} />}
+          {tab === "evidence" && (
+            <section className={styles.card}>
+              <h2>
+                {isFa ? "شواهد و اختیار مدل" : "Evidence and model controls"}
+              </h2>
+              <p>
+                {isFa
+                  ? "این مدل برای حساب تو در همین مرورگر ذخیره می‌شود. خروجی نسخه فعلی را پیش از بازنشانی نگه دار."
+                  : "This account’s model lives in this browser. Export a readable snapshot before resetting it."}
+              </p>
+              <div className={styles.controls}>
+                <button className={styles.button} onClick={exportModel}>
+                  {isFa ? "خروجی JSON" : "Export JSON snapshot"}
+                </button>
+                <button
+                  className={styles.button}
+                  onClick={() => setConfirmReset(true)}
                 >
-                  ⚡ {isFa ? "ورود به آزمایشگاه آواشناسی" : "Open Phonetics Lab"}
+                  {isFa ? "بازنشانی مدل محلی" : "Reset local model"}
+                </button>
+                <Link className={styles.button} href="/account/data-controls">
+                  {isFa ? "کنترل داده‌ها" : "Data controls"}
                 </Link>
               </div>
-
-              <div style={{ marginBlockStart: "var(--space-4)", display: "flex", flexWrap: "wrap", gap: "var(--space-3)", alignItems: "center" }}>
-                <span style={{ fontSize: "var(--font-size-meta)", fontWeight: 700, color: "var(--color-text)" }}>
-                  {isFa ? "واج‌های تحت تمرین و پایش مدل:" : "Tracked Phonetic Targets:"}
-                </span>
-                {weakPhonemes.length > 0 ? (
-                  weakPhonemes.map((sym, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        padding: "0.25rem 0.65rem",
-                        borderRadius: "var(--radius-pill)",
-                        background: "rgba(244, 63, 94, 0.15)",
-                        color: "#fda4af",
-                        border: "1px solid rgba(244, 63, 94, 0.3)",
-                        fontFamily: "ui-monospace, monospace",
-                        fontSize: "0.85rem",
-                        fontWeight: 700
-                      }}
-                    >
-                      /{sym}/
-                    </span>
-                  ))
-                ) : (
-                  <span style={{ fontSize: "var(--font-size-meta)", color: "#34d399" }}>
-                    ✓ {isFa ? "کلیه واج‌های پایه‌ای زبان انگلیسی در بازه استاندارد گوینده معیار قرار دارند." : "All calibrated phonemes are within target acoustic boundaries."}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "history" && (
-          <div>
-            <h2 className={styles.cardTitle}>{isFa ? "سوابق کالیبراسیون دوقلو" : "Calibration Log"}</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)", marginBlock: "var(--space-4)" }}>
-              {[
-                {
-                  dateFa: "امروز",
-                  dateEn: "Today",
-                  eventFa: "ثبت ۳ پاسخ موفق در تمرین مأموریت روزانه و به‌روزرسانی نمره گرامر",
-                  eventEn: "Recorded 3 correct steps in Daily Mission, updating grammar calibration",
-                },
-                {
-                  dateFa: "۳ روز پیش",
-                  dateEn: "3 days ago",
-                  eventFa: "تکمیل آزمون ۶ مهارته تعیین سطح با نمره معتبر و تولید اولین نسخه دوقلو",
-                  eventEn: "Completed 6-skill placement session, generating baseline twin model",
-                },
-                {
-                  dateFa: "۵ روز پیش",
-                  dateEn: "5 days ago",
-                  eventFa: "ایجاد حساب کاربری و تعیین اهداف یادگیری در فرآیند آنبوردینگ",
-                  eventEn: "Created account and configured learning targets during onboarding",
-                },
-              ].map((log, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: "var(--space-3) var(--space-4)",
-                    background: "var(--color-canvas)",
-                    border: "1px solid var(--color-border)",
-                    borderRadius: "var(--radius-control)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "var(--space-3)",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <span style={{ fontWeight: 600, color: "var(--color-text)" }}>
-                    {isFa ? log.eventFa : log.eventEn}
-                  </span>
-                  <span style={{ fontSize: "var(--font-size-meta)", color: "var(--color-muted)" }}>
-                    {isFa ? log.dateFa : log.dateEn}
-                  </span>
+              {confirmReset && (
+                <div className={styles.details}>
+                  <p>
+                    {isFa
+                      ? "همه شواهد و پارامترهای یادگرفته‌شده این دوقلوی محلی پاک شوند؟"
+                      : "Clear this local Twin’s evidence and learned parameters?"}
+                  </p>
+                  <button
+                    className={styles.selected}
+                    onClick={() => {
+                      resetLearnerTwin();
+                      setConfirmReset(false);
+                    }}
+                  >
+                    {isFa ? "بله، بازنشانی کن" : "Clear local model"}
+                  </button>{" "}
+                  <button
+                    className={styles.button}
+                    onClick={() => setConfirmReset(false)}
+                  >
+                    {isFa ? "انصراف" : "Cancel"}
+                  </button>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "controls" && (
-          <div>
-            <h2 className={styles.cardTitle}>{isFa ? "اختیارات و حریم خصوصی زبان‌آموز" : "Learner Privacy & Transparency"}</h2>
-            <p className={styles.cardDescription}>
-              {isFa
-                ? "بر طبق تعهدات حریم خصوصی Endoora، شما کنترل کامل بر داده‌های آموزشی خود دارید. اطلاعات شما هرگز فروخته نمی‌شود و بدون اجازه به اشتراک گذاشته نمی‌شود."
-                : "In adherence to Endoora privacy contracts, you hold complete sovereignty over your learning model. No personality profiling or hidden assessments."}
-            </p>
-
-            <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", marginBlock: "var(--space-4)" }}>
-              <Button type="button" variant="secondary" onClick={handleResetEvidence}>
-                {isFa ? "درخواست بازنگری و کالیبراسیون شواهد" : "Request Evidence Recalibration"}
-              </Button>
-              <Link className={styles.buttonSecondary} href="/account/data-controls">
-                {isFa ? "خروجی کامل داده‌ها (Data Export)" : "GDPR Data Controls"}
-              </Link>
-            </div>
-
-            {resetNotice && (
-              <div className={`${styles.feedbackBox} ${styles.feedbackBoxSuccess}`} role="status">
-                {resetNotice}
-              </div>
-            )}
-          </div>
-        )}
-
-        <footer className={styles.disclaimer}>
-          {isFa
-            ? "اصل شفافیت آموزشی (قانون شماره ۸ اساسنامه): دوقلوی یادگیری Endoora هرگز ادعای ارزیابی روانشناختی یا پیش‌بینی هوش نمی‌کند و صرفاً تسلط بر شواهد عینی زبان انگلیسی را مدل‌سازی می‌نماید."
-            : "Product Constitution Rule #8 Disclosure: The Endoora Learner Twin never generates psychological inferences or ungrounded IQ/cognitive metrics, focusing strictly on objective CEFR linguistic competencies."}
-        </footer>
-      </section>
+              )}
+              <h3>{isFa ? "آخرین ۶۴ مشاهده" : "Latest 64 observations"}</h3>
+              {snapshot.history.length ? (
+                <div className={styles.tableScroll}>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>{isFa ? "زمان" : "Time"}</th>
+                        <th>{isFa ? "منبع" : "Source"}</th>
+                        <th>ŷ → y</th>
+                        <th>{isFa ? "قابلیت اعتماد" : "Reliability"}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {snapshot.history.toReversed().map((e, i) => (
+                        <tr key={`${e.timestamp}-${i}`}>
+                          <td>
+                            {new Date(e.timestamp).toLocaleString(
+                              isFa ? "fa-IR" : "en-GB",
+                              { timeZone: "Asia/Tehran" },
+                            )}
+                          </td>
+                          <td>
+                            {e.modality}
+                            {e.itemId && (
+                              <small className={styles.block}>{e.itemId}</small>
+                            )}
+                          </td>
+                          <td>
+                            {e.prediction.toFixed(2)} → {e.score.toFixed(2)}
+                          </td>
+                          <td>{Math.round(e.reliability * 100)}%</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p>
+                  {isFa
+                    ? "هنوز مشاهده‌ای ثبت نشده. تمرین دستور، نوشتن یا تلفظ را شروع کن."
+                    : "No observations yet. Start a grammar, writing, or pronunciation activity."}
+                </p>
+              )}
+            </section>
+          )}
+        </>
+      )}
     </div>
   );
 }

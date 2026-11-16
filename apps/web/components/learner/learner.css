@@ -3174,6 +3174,8 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
 
   .learner-bottom-nav .learner-nav__item:hover { transform: none; }
 
+  .learner-bottom-nav .learner-nav__badge { display: none !important; }
+
   body:has(.learner-shell) .theme-toggle-global {
     inset-block-end: 5.5rem;
     transform: scale(0.88);
@@ -4167,7 +4169,7 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
 
 .learner-bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
@@ -4226,6 +4228,11 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
   box-shadow: 0 16px 36px -6px rgba(245, 158, 11, 0.25);
 }
 
+.learner-bento-card--twin:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 16px 36px -6px rgba(139, 92, 246, 0.3);
+}
+
 .learner-bento-card__top {
   display: flex;
   align-items: center;
@@ -4266,6 +4273,12 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
   border: 1px solid color-mix(in srgb, #f59e0b 30%, transparent);
 }
 
+.learner-bento-card__icon--indigo {
+  background: color-mix(in srgb, #6366f1 14%, var(--color-surface));
+  color: #6366f1;
+  border: 1px solid color-mix(in srgb, #6366f1 30%, transparent);
+}
+
 .learner-bento-card__badge {
   font-size: 0.775rem;
   font-weight: 750;
@@ -4274,6 +4287,19 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
   background: color-mix(in srgb, var(--color-surface) 90%, var(--color-canvas));
   border: 1px solid var(--color-border);
   color: var(--color-muted);
+}
+
+.learner-bento-card__badge--ai {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15)) !important;
+  color: #7c3aed !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.12);
+}
+
+[data-theme="dark"] .learner-bento-card__badge--ai,
+.dark .learner-bento-card__badge--ai {
+  color: #c084fc !important;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25)) !important;
 }
 
 .learner-bento-card__title {

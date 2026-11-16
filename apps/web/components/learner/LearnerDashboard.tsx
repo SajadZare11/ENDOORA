@@ -11,6 +11,8 @@ import { getRealLifeAllProgress } from "../../lib/real-life-progress";
 import { getRealLifeLessonById } from "../../lib/real-life-curriculum";
 import { getAEFAllProgress } from "../../lib/aef-progress";
 import { getAEFLessonById } from "../../lib/aef-curriculum";
+import { useTwin } from "../twin/useTwin";
+import { getLearnerTwin } from "../../lib/ai/learner-twin-store";
 
 type DashboardIconName =
   | "path"
@@ -89,6 +91,14 @@ const text = {
     card3NoStat: "جعبه لایتنر امروز خلوت است ✨",
     card3Action: "شروع مرور واژگان",
 
+    // Card 4: Learner Twin (AI)
+    cardTwinBadge: "هوش مصنوعی · زنده",
+    cardTwinTitle: "دوقلوی یادگیرنده شما (AI)",
+    cardTwinDesc: "مدل عصبی-بیزین شبیه‌ساز مغز یادگیرنده شما؛ برآورد زنده تسلط، شبیه‌سازی پیش‌بینی آیلتس و مهار نقاط فراموشی.",
+    cardTwinAction: "ورود به کاکپیت دوقلو",
+    cardTwinStatActive: "شواهد یادگیری ثبت‌شده",
+    cardTwinStatEmpty: "در انتظار اولین تمرین جهت کالیبراسیون هوشمند",
+
     // Progress & Mastery Panel
     momentumTitle: "تداوم و هدف مطالعه هفتگی",
     momentumDesc: "گزارش زنده زمان مطالعه و استریک تداوم ۷ روز اخیر",
@@ -158,6 +168,14 @@ const text = {
     card3NoStat: "Your Leitner box is clear ✨",
     card3Action: "Start Vocabulary Review",
 
+    // Card 4: Learner Twin (AI)
+    cardTwinBadge: "AI · Live",
+    cardTwinTitle: "Learner Twin (AI)",
+    cardTwinDesc: "Neuro-Bayesian personal learning model; live mastery estimation, IELTS band forecasts, and future simulations.",
+    cardTwinAction: "Open Twin Cockpit",
+    cardTwinStatActive: "learning evidence points",
+    cardTwinStatEmpty: "Awaiting first practice for smart calibration",
+
     // Progress & Mastery Panel
     momentumTitle: "Weekly Study Momentum",
     momentumDesc: "Live tracker of your study hours and 7-day consistency streak",
@@ -218,6 +236,11 @@ export function LearnerDashboard() {
   const [online, setOnline] = useState(true);
   const [assignments, setAssignments] = useState<LearnerAssignmentItem[]>([]);
   const [alertDismissed, setAlertDismissed] = useState(false);
+  const twinSnapshot = useTwin();
+  const twinForecast = useMemo(() => {
+    if (!twinSnapshot) return null;
+    return getLearnerTwin()?.getIELTSForecast() ?? null;
+  }, [twinSnapshot]);
   const [recentVideoInfo, setRecentVideoInfo] = useState<{
     title: string;
     level: string;
@@ -618,6 +641,31 @@ export function LearnerDashboard() {
               </span>
               <span className="learner-bento-card__cta">
                 <span>{t.card3Action}</span>
+                <span className="learner-bento-card__arrow" aria-hidden="true">
+                  {locale === "fa" ? "←" : "→"}
+                </span>
+              </span>
+            </div>
+          </Link>
+
+          {/* Card 4: Learner Twin (AI) */}
+          <Link href="/twin" className="learner-bento-card learner-bento-card--twin">
+            <div className="learner-bento-card__top">
+              <span className="learner-bento-card__icon learner-bento-card__icon--indigo" aria-hidden="true">
+                <DashboardIcon name="sparkles" />
+              </span>
+              <span className="learner-bento-card__badge learner-bento-card__badge--ai">{t.cardTwinBadge}</span>
+            </div>
+            <h3 className="learner-bento-card__title">{t.cardTwinTitle}</h3>
+            <p className="learner-bento-card__desc">{t.cardTwinDesc}</p>
+            <div className="learner-bento-card__footer">
+              <span className="learner-bento-card__stat">
+                {twinSnapshot && twinSnapshot.calibration.totalInteractions > 0
+                  ? `${twinSnapshot.calibration.totalInteractions} ${t.cardTwinStatActive}${twinForecast ? ` · Band ${twinForecast.overall.band.toFixed(1)} (${twinForecast.predictedCEFR})` : ""}`
+                  : t.cardTwinStatEmpty}
+              </span>
+              <span className="learner-bento-card__cta">
+                <span>{t.cardTwinAction}</span>
                 <span className="learner-bento-card__arrow" aria-hidden="true">
                   {locale === "fa" ? "←" : "→"}
                 </span>

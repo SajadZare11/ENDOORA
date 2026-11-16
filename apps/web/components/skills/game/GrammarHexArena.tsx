@@ -15,6 +15,8 @@ import type { AdaptiveQuestionPayload, RawAdaptiveQuestionPayload } from "../../
 import { NeuralCdmEngine } from "../../../lib/ai/neural-cdm-engine.ts";
 import type { CdmDiagnosticResult } from "../../../lib/ai/neural-cdm-types.ts";
 import { useGazeCognitive } from "../../../lib/ai/useGazeCognitive.ts";
+import { getLearnerTwin, TWIN_CATALOG } from '../../../lib/ai/learner-twin-store';
+import type { TwinPrediction } from '../../../lib/ai/learner-twin-types';
 
 interface Props {
   level: GameLevel;
@@ -134,6 +136,7 @@ export function GrammarHexArena({
   });
   const [showRadarModal, setShowRadarModal] = useState(false);
   const nodeEntryTimeRef = React.useRef<number>(Date.now());
+  const twinPredictionRef=React.useRef<TwinPrediction|undefined>(undefined);
 
   const activeCircuit: GrammarCircuitRound | null = useMemo(() => {
     if (!stageData?.circuits?.length) return null;
@@ -187,6 +190,12 @@ export function GrammarHexArena({
   const [lastCdmDiagnosis, setLastCdmDiagnosis] = useState<CdmDiagnosticResult | null>(null);
 
   const activeNode: HexCircuitNode | undefined = activeCircuit?.nodes.find((n) => n.id === currentNodeId);
+  useEffect(()=>{
+    const id=TWIN_CATALOG.find(c=>c.id===`${level.cefr.toLowerCase()}-${String(level.levelNumber).padStart(2,'0')}`)?.skillId;
+    const options=activeNode?.options??[];
+    const floor=options.length?options.filter(o=>o.isCorrect).length/options.length:0.25;
+    twinPredictionRef.current=id===undefined?undefined:getLearnerTwin()?.predictOutcomeBeforeInteraction([id],floor);
+  },[activeNode,level.cefr,level.levelNumber]);
 
   // Engine 6 LinUCB Adaptive Question Hook
   const adaptiveHook = useAdaptiveQuestion({
@@ -377,6 +386,7 @@ export function GrammarHexArena({
         isCorrect: option.isCorrect,
         isTrap: !!option.isTrap,
         latencyMs,
+        twinContext:{prediction:twinPredictionRef.current,itemId:activeCircuit?.id,guessingFloor:(activeNode?.options.filter(o=>o.isCorrect).length??1)/(activeNode?.options.length||4)},
       });
 
       // Defensively record telemetry to LinUCBBandit for static circuit traps

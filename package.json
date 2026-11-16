@@ -45,7 +45,10 @@
     "test:cdm": "node --experimental-strip-types scripts/test-neural-cdm.ts",
     "test:gaze": "node --experimental-strip-types scripts/test-gaze-cognitive.ts",
     "test:e2e:cognitive": "node --experimental-strip-types scripts/e2e-cognitive-smoke-test.ts",
-    "test:routes:smoke": "node scripts/smoke-live-routes.mjs"
+    "test:routes:smoke": "node scripts/smoke-live-routes.mjs",
+    "generate:twin": "node --experimental-strip-types scripts/generate-twin-assets.ts",
+    "test:twin": "node --experimental-strip-types --test scripts/test-learner-twin.ts",
+    "test:twin:browser": "node scripts/test-learner-twin-browser.mjs"
   },
   "engines": {
     "node": ">=24 <25",

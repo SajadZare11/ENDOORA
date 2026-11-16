@@ -1,3 +1,5 @@
+import { updateTwinVulnerability } from './learner-twin-store.ts';
+
 /**
  * EnDoora Disjoint LinUCB Bandit Engine
  * Engine 6: Client-Side Real-Time Adaptive Distractor Selection
@@ -699,6 +701,8 @@ export class EnDooraLinUCBBandit {
     arm.pulls += 1;
     arm.rewards += reward;
     this.totalInteractions += 1;
+    // The Twin owns per-account history; use this answer, not shared-browser arm totals.
+    updateTwinVulnerability(trapTriggered ? [...x] as Vector4 : [0, 0, 0, 0]);
 
     // Persist to localStorage
     this.saveState();

@@ -7,6 +7,8 @@ import { getIeltsExamById } from "@/data/ielts/index.ts";
 import { gradeExamModule, mapBandToCEFR } from "@/lib/ielts-grading.ts";
 import { useGazeCognitive } from "@/lib/ai/useGazeCognitive.ts";
 import { saveAttemptToStorage, loadAttemptFromStorage } from "@/lib/ielts-state.ts";
+import { ensureTwinLearnerScope, beginTwinMock, finishTwinMock } from '@/lib/ai/learner-twin-store';
+import type { TwinMock } from '@/lib/ai/learner-twin-types';
 import type {
   IeltsExam,
   IeltsModule,
@@ -33,6 +35,16 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   const [activeModule, setActiveModule] = useState<IeltsModule | null>(null);
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [activeQuestionNum, setActiveQuestionNum] = useState(1);
+  const twinMockRef=useRef<ReturnType<typeof beginTwinMock>>(null);
+  const twinLatenciesRef=useRef<Record<number,number>>({});
+  const questionEnteredRef=useRef(0);
+  useEffect(()=>{questionEnteredRef.current=performance.now();},[activeQuestionNum]);
+  useEffect(()=>{
+    if(!activeModule||!['listening','reading'].includes(activeSkill))return;
+    const controller=new AbortController();twinMockRef.current=null;twinLatenciesRef.current={};
+    void ensureTwinLearnerScope().then(()=>fetch(`/twin/mocks/${examId}-${activeSkill}.json`,{signal:controller.signal})).then(r=>{if(!r.ok)throw Error();return r.json();}).then((mock:TwinMock)=>{if(!controller.signal.aborted)twinMockRef.current=beginTwinMock(mock);}).catch(()=>{/* Mock grading still works when prediction metadata is unavailable. */});
+    return ()=>controller.abort();
+  },[examId,activeSkill,activeModule]);
 
   // User input states
   // Engine 5: Real-time Edge Proctoring & Cognitive Tracking (10 FPS, Zero Video Upload)
@@ -221,6 +233,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
 
   // Answer change
   const handleAnswerChange = (qNum: number, value: string | string[]) => {
+    if(twinLatenciesRef.current[qNum]===undefined)twinLatenciesRef.current[qNum]=Math.max(0,performance.now()-questionEnteredRef.current);
     setAnswers((prev) => ({
       ...prev,
       [qNum]: value,
@@ -272,6 +285,8 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     try {
       // Grade module client-side with official IELTS curve
       const graded = gradeExamModule(activeModule, answers, exam.category);
+      finishTwinMock(twinMockRef.current,graded.gradingResults,twinLatenciesRef.current);
+      twinMockRef.current=null;
       const cefr = mapBandToCEFR(graded.summary.band_score);
 
       const attemptId = `att_${exam.id}_${activeSkill}_${Date.now()}`;

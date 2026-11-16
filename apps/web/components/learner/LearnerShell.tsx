@@ -20,6 +20,7 @@ import {
   type Locale,
 } from "../../lib/learner-dashboard";
 import { PublicHeader } from "../marketing/PublicHeader";
+import { setTwinLearnerScope } from "../../lib/ai/learner-twin-store";
 import {
   getStoredAvatarId,
   getAvatarById,
@@ -33,7 +34,7 @@ type ContextValue = {
   setLocale: (locale: Locale) => void;
 };
 
-type IconName = "home" | "learn" | "video" | "practice" | "teachers" | "account" | "download" | "bell" | "logout" | "fire" | "zap" | "school";
+type IconName = "home" | "twin" | "learn" | "video" | "practice" | "teachers" | "account" | "download" | "bell" | "logout" | "fire" | "zap" | "school";
 
 const LearnerContext = createContext<ContextValue | null>(null);
 
@@ -46,6 +47,7 @@ export function useLearnerHome(): ContextValue {
 const labels = {
   fa: {
     home: "داشبورد و خانه",
+    twin: "دوقلوی یادگیرنده (AI)",
     learn: "یادگیری و دروس",
     videoCourses: "دوره‌های ویدیویی",
     practice: "جعبه لایتنر",
@@ -67,6 +69,7 @@ const labels = {
   },
   en: {
     home: "Dashboard & Home",
+    twin: "Learner Twin (AI)",
     learn: "Learn & Lessons",
     videoCourses: "Video Courses",
     practice: "Leitner Box",
@@ -116,6 +119,7 @@ const gateCopy = {
 function Icon({ name }: { name: IconName }) {
   const paths: Record<IconName, ReactNode> = {
     home: <><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10.5V20h13v-9.5M9.5 20v-5h5v5" /></>,
+    twin: <><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-5.04z" /><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-5.04z" /><circle cx="12" cy="12" r="1.5" /><path d="m19 4 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" /></>,
     learn: <><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v18H7.5A3.5 3.5 0 0 0 4 23.5Z" /><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v18h3.5a3.5 3.5 0 0 1 3.5 3.5Z" /></>,
     video: <><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></>,
     practice: <><rect x="3" y="4" width="18" height="16" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="10" y1="15" x2="14" y2="15" /></>,
@@ -202,11 +206,13 @@ function NavItem({
   label,
   icon,
   active,
+  badge,
 }: {
   href: string;
   label: string;
   icon: IconName;
   active: boolean;
+  badge?: string;
 }) {
   return (
     <Link
@@ -216,7 +222,30 @@ function NavItem({
       aria-current={active ? "page" : undefined}
     >
       <Icon name={icon} />
-      <span>{label}</span>
+      <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, gap: "0.35rem" }}>
+        <span>{label}</span>
+        {badge ? (
+          <span
+            className="learner-nav__badge"
+            style={{
+              fontSize: "0.62rem",
+              fontWeight: 800,
+              padding: "0.1rem 0.42rem",
+              borderRadius: "9999px",
+              background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%)",
+              color: "#ffffff",
+              letterSpacing: "0.04em",
+              boxShadow: "0 2px 8px rgba(139, 92, 246, 0.45)",
+              display: "inline-flex",
+              alignItems: "center",
+              lineHeight: 1.2,
+              flexShrink: 0,
+            }}
+          >
+            {badge}
+          </span>
+        ) : null}
+      </span>
     </Link>
   );
 }
@@ -235,6 +264,9 @@ const STANDALONE_PREFIXES = [
 ];
 
 function isLearnerRouteActive(currentPath: string, targetHref: string) {
+  if (targetHref === "/twin") {
+    return currentPath === "/twin" || currentPath.startsWith("/twin/");
+  }
   if (targetHref === "/dashboard") {
     if (currentPath.startsWith("/dashboard/classes")) return false;
     return (
@@ -382,6 +414,15 @@ export function LearnerShell({ children }: { children: ReactNode }) {
   const [activeAvatar, setActiveAvatar] = useState<StudentAvatar>(() => getAvatarById("owl"));
 
   useEffect(() => {
+    if (!isStandaloneRoute) return;
+    const controller=new AbortController();
+    void fetchLearnerHome(controller.signal).then(result=>{
+      if(!controller.signal.aborted) setTwinLearnerScope(result.user_id);
+    }).catch(()=>{ if(!controller.signal.aborted) setTwinLearnerScope(null); });
+    return ()=>controller.abort();
+  }, [isStandaloneRoute]);
+
+  useEffect(() => {
     setActiveAvatar(getAvatarById(getStoredAvatarId()));
     function handleAvatarChange() {
       setActiveAvatar(getAvatarById(getStoredAvatarId()));
@@ -430,6 +471,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
       try {
         const result = await fetchLearnerHome(controller.signal);
         if (!mounted) return;
+        setTwinLearnerScope(result.user_id);
         setData(result);
         setLocale(result.preferred_locale ?? "fa");
         setStatus("ready");
@@ -530,6 +572,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
     } catch {
       // Proceed with redirect regardless of network status
     } finally {
+      setTwinLearnerScope(null);
       window.location.href = "/auth/login";
     }
   }
@@ -541,6 +584,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
 
   const navItems = [
     { href: "/dashboard", label: t.home, icon: "home" as const },
+    { href: "/twin", label: t.twin, icon: "twin" as const, badge: "AI" },
     { href: "/learn", label: t.learn, icon: "learn" as const },
     { href: "/learn/video", label: t.videoCourses, icon: "video" as const },
     { href: "/leitner", label: t.practice, icon: "practice" as const },

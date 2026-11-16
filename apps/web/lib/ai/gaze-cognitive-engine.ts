@@ -12,6 +12,7 @@
  */
 
 import { DktEngine } from "../dkt-engine/dkt-engine.ts";
+import { updateTwinTelemetry } from './learner-twin-store.ts';
 import type {
   GazeCognitiveStoredState,
   GazeCognitiveTelemetry,
@@ -149,6 +150,7 @@ export class GazeCognitiveEngine {
   }
 
   private notifyTelemetry(t: GazeCognitiveTelemetry): void {
+    updateTwinTelemetry({ cognitiveLoadIndex:t.cognitiveLoadIndex, gazeDistractionIndex:t.backend==='mouse-multimodal-fallback'?0:t.proctoring.suspiciousScore, timestamp:t.timestamp });
     this.telemetrySubscribers.forEach((cb) => {
       try {
         cb(t);
@@ -299,11 +301,13 @@ export class GazeCognitiveEngine {
     isCorrect,
     latencyMs,
     isTrap = false,
+    twinContext,
   }: {
     conceptId: string;
     isCorrect: boolean;
     latencyMs: number;
     isTrap?: boolean;
+    twinContext?: Parameters<DktEngine['recordInteraction']>[0]['twinContext'];
   }): ReturnType<DktEngine["recordInteraction"]> {
     const dkt = DktEngine.getInstance();
     const t = this.lastTelemetry;
@@ -322,6 +326,7 @@ export class GazeCognitiveEngine {
       isCorrect,
       isTrap,
       latencyMs: effectiveLatency,
+      twinContext: { ...twinContext,latencyMs },
     });
   }
 
