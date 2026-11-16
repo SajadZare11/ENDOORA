@@ -43,7 +43,9 @@
     "test:dkt": "node --experimental-strip-types scripts/test-dkt-engine.ts",
     "test:bandit": "node --experimental-strip-types scripts/test-linucb-bandit.ts",
     "test:cdm": "node --experimental-strip-types scripts/test-neural-cdm.ts",
-    "test:gaze": "node --experimental-strip-types scripts/test-gaze-cognitive.ts"
+    "test:gaze": "node --experimental-strip-types scripts/test-gaze-cognitive.ts",
+    "test:e2e:cognitive": "node --experimental-strip-types scripts/e2e-cognitive-smoke-test.ts",
+    "test:routes:smoke": "node scripts/smoke-live-routes.mjs"
   },
   "engines": {
     "node": ">=24 <25",
