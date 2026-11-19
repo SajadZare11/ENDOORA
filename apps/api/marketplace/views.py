@@ -20,6 +20,7 @@ from .services import (
     cancel_session_booking,
     start_session_booking,
     complete_session_booking,
+    IdempotencyConflictError,
 )
 from .serializers import (
     TeacherFeedRequestSerializer,
@@ -256,6 +257,8 @@ def bookings_collection_view(request):
                 package=package,
                 offer=offer,
             )
+        except IdempotencyConflictError as e:
+            return Response({"detail": str(e.detail if hasattr(e, "detail") else e)}, status=status.HTTP_409_CONFLICT)
         except Exception as e:
             detail_msg = getattr(e, "detail", None) or getattr(e, "message", None) or str(e)
             return Response({"detail": detail_msg}, status=status.HTTP_400_BAD_REQUEST)
@@ -984,22 +987,28 @@ def checkout_initiate_view(request):
     Supports ZarinPal, Developer Sandbox, or instant 1-Click Wallet settlement.
     """
     from marketplace.serializers import InitiateCheckoutInputSerializer
-    from marketplace.services import initiate_checkout
+    from marketplace.services import initiate_checkout, IdempotencyConflictError
 
     ser = InitiateCheckoutInputSerializer(data=request.data)
     if not ser.is_valid():
         return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
 
     data = ser.validated_data
-    result = initiate_checkout(
-        user=request.user,
-        order_type=data["order_type"],
-        order_id=data.get("order_id"),
-        amount_toman=data.get("amount_toman"),
-        gateway_provider=data.get("gateway_provider", "zarinpal"),
-        callback_url=data.get("callback_url", ""),
-        idempotency_key=data.get("idempotency_key", ""),
-    )
+    try:
+        result = initiate_checkout(
+            user=request.user,
+            order_type=data["order_type"],
+            order_id=data.get("order_id"),
+            amount_toman=data.get("amount_toman"),
+            gateway_provider=data.get("gateway_provider", "zarinpal"),
+            callback_url=data.get("callback_url", ""),
+            idempotency_key=data.get("idempotency_key", ""),
+        )
+    except IdempotencyConflictError as e:
+        return Response({"detail": str(e.detail if hasattr(e, "detail") else e)}, status=status.HTTP_409_CONFLICT)
+    except Exception as e:
+        detail_msg = getattr(e, "detail", None) or getattr(e, "message", None) or str(e)
+        return Response({"detail": detail_msg}, status=status.HTTP_400_BAD_REQUEST)
     return Response({"checkout": result}, status=status.HTTP_201_CREATED)
 
 

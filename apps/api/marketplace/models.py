@@ -315,11 +315,16 @@ class SessionBooking(models.Model):
     )
     idempotency_key = models.CharField(
         max_length=128,
-        unique=True,
         null=True,
         blank=True,
         db_index=True,
-        help_text="کلید یکتایی برای جلوگیری از ثبت تکراری (unique_booking_idempotency)",
+        help_text="کلید یکتایی برای جلوگیری از ثبت تکراری",
+    )
+    payload_hash = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text="هش پارامترهای درخواست جهت اعتبارسنجی تکرار کلید",
     )
     meeting_url = models.CharField(max_length=512, blank=True, default="")
     is_paid = models.BooleanField(default=False, help_text="وضعیت پرداخت قطعی جلسه")
@@ -354,6 +359,13 @@ class SessionBooking(models.Model):
 
     class Meta:
         ordering = ["-scheduled_start"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["learner", "idempotency_key"],
+                condition=models.Q(idempotency_key__isnull=False),
+                name="unique_learner_booking_idempotency",
+            ),
+        ]
         indexes = [
             models.Index(fields=["status", "scheduled_start"]),
             models.Index(fields=["learner", "status"]),
@@ -1004,9 +1016,16 @@ class PaymentTransaction(models.Model):
     )
     idempotency_key = models.CharField(
         max_length=128,
-        unique=True,
+        null=True,
+        blank=True,
         db_index=True,
         help_text="کلید یکتایی پرداخت جهت جلوگیری از تراکنش تکراری",
+    )
+    payload_hash = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text="هش پارامترهای درخواست پرداخت جهت اعتبارسنجی تکرار کلید",
     )
     description = models.TextField(
         blank=True,
@@ -1028,6 +1047,13 @@ class PaymentTransaction(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "idempotency_key"],
+                condition=models.Q(idempotency_key__isnull=False),
+                name="unique_user_payment_idempotency",
+            ),
+        ]
         indexes = [
             models.Index(fields=["user", "status", "-created_at"]),
             models.Index(fields=["order_type", "status"]),
@@ -1172,3 +1198,31 @@ class TeacherPayoutRequest(models.Model):
     def __str__(self):
         return f"Payout {self.id} for {self.teacher.email} ({self.amount_toman} Toman) [{self.status}]"
 
+
+
+class IdempotencyRecord(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="idempotency_records",
+    )
+    operation = models.CharField(max_length=64, db_index=True)
+    idempotency_key = models.CharField(max_length=128, db_index=True)
+    payload_hash = models.CharField(max_length=64)
+    response_data = models.JSONField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "operation", "idempotency_key"],
+                name="unique_user_operation_idempotency",
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["user", "operation", "idempotency_key"]),
+        ]
+
+    def __str__(self):
+        return f"Idempotency {self.operation}:{self.idempotency_key} for {self.user_id}"

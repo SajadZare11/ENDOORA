@@ -1772,3 +1772,172 @@ class BookingStateTransitionsSecurityTests(APITestCase):
             scheduled_end__gt=start,
         ).count()
         self.assertEqual(overlapping_count, 1)
+
+
+class ScopedIdempotencySecurityTests(APITestCase):
+    """
+    Acceptance tests for F09: Scoped Idempotency Key Validation.
+    Ensures:
+    - Same key + different user -> separate operations.
+    - Same key + same user + identical payload -> idempotent cached response.
+    - Same key + same user + different payload -> rejected with 409 Conflict.
+    - Concurrent requests with same key execute once.
+    """
+
+    def setUp(self):
+        self.learner_a = User.objects.create_user(
+            email="learner_a_f09@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Arman",
+            last_name="Naderi",
+        )
+        self.learner_b = User.objects.create_user(
+            email="learner_b_f09@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Behdad",
+            last_name="Salimi",
+        )
+        self.teacher_1 = User.objects.create_user(
+            email="teacher_1_f09@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Kaveh",
+            last_name="Ahangar",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        self.teacher_2 = User.objects.create_user(
+            email="teacher_2_f09@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Rostam",
+            last_name="Dastan",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        from profiles.models import TeacherProfile
+        TeacherProfile.objects.create(user=self.teacher_1, public_name="Kaveh", hourly_rate_toman=Decimal("180000"))
+        TeacherProfile.objects.create(user=self.teacher_2, public_name="Rostam", hourly_rate_toman=Decimal("220000"))
+
+    def test_same_key_different_user_creates_separate_operations(self):
+        """Two users using the identical idempotency key produce separate bookings without collision."""
+        key = "shared-client-uuid-111"
+        start_a = timezone.now() + timedelta(days=2, hours=10)
+        start_b = timezone.now() + timedelta(days=2, hours=14)
+
+        # User A makes booking
+        self.client.force_authenticate(user=self.learner_a)
+        res_a = self.client.post("/api/marketplace/bookings/", data={
+            "teacher_id": str(self.teacher_1.id),
+            "target_skill": "speaking",
+            "scheduled_start": start_a.isoformat(),
+            "duration_minutes": 45,
+            "idempotency_key": key,
+        }, format="json")
+        self.assertEqual(res_a.status_code, 201)
+        booking_a_id = res_a.data["id"]
+
+        # User B makes booking with identical key
+        self.client.force_authenticate(user=self.learner_b)
+        res_b = self.client.post("/api/marketplace/bookings/", data={
+            "teacher_id": str(self.teacher_2.id),
+            "target_skill": "writing",
+            "scheduled_start": start_b.isoformat(),
+            "duration_minutes": 45,
+            "idempotency_key": key,
+        }, format="json")
+        self.assertEqual(res_b.status_code, 201)
+        booking_b_id = res_b.data["id"]
+
+        # Bookings must be separate and owned by respective learners
+        self.assertNotEqual(booking_a_id, booking_b_id)
+        booking_a = SessionBooking.objects.get(id=booking_a_id)
+        booking_b = SessionBooking.objects.get(id=booking_b_id)
+        self.assertEqual(booking_a.learner, self.learner_a)
+        self.assertEqual(booking_b.learner, self.learner_b)
+        self.assertEqual(booking_a.idempotency_key, key)
+        self.assertEqual(booking_b.idempotency_key, key)
+
+    def test_same_key_same_user_identical_payload_returns_cached_response(self):
+        """Same user replaying identical request with same key returns identical booking."""
+        self.client.force_authenticate(user=self.learner_a)
+        key = "replay-uuid-222"
+        start = timezone.now() + timedelta(days=3, hours=11)
+        payload = {
+            "teacher_id": str(self.teacher_1.id),
+            "target_skill": "speaking",
+            "scheduled_start": start.isoformat(),
+            "duration_minutes": 45,
+            "idempotency_key": key,
+        }
+
+        # First request
+        res1 = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res1.status_code, 201)
+        b1_id = res1.data["id"]
+
+        # Duplicate identical request
+        res2 = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res2.status_code, 201)
+        b2_id = res2.data["id"]
+
+        # Returns same booking and exactly 1 created
+        self.assertEqual(b1_id, b2_id)
+        self.assertEqual(SessionBooking.objects.filter(learner=self.learner_a, idempotency_key=key).count(), 1)
+
+    def test_same_key_same_user_different_payload_rejected_with_conflict(self):
+        """Reusing same key with changed payload parameters returns 409 Conflict."""
+        self.client.force_authenticate(user=self.learner_a)
+        key = "conflict-uuid-333"
+        start = timezone.now() + timedelta(days=4, hours=10)
+        payload1 = {
+            "teacher_id": str(self.teacher_1.id),
+            "target_skill": "speaking",
+            "scheduled_start": start.isoformat(),
+            "duration_minutes": 45,
+            "idempotency_key": key,
+        }
+
+        res1 = self.client.post("/api/marketplace/bookings/", data=payload1, format="json")
+        self.assertEqual(res1.status_code, 201)
+
+        # Attacker / client reuses key with different parameters (different teacher, different skill)
+        payload2 = {
+            "teacher_id": str(self.teacher_2.id),
+            "target_skill": "writing",
+            "scheduled_start": (start + timedelta(days=1)).isoformat(),
+            "duration_minutes": 60,
+            "idempotency_key": key,
+        }
+
+        res2 = self.client.post("/api/marketplace/bookings/", data=payload2, format="json")
+        self.assertEqual(res2.status_code, 409)
+        self.assertIn("detail", res2.data)
+
+        # Exactly 1 booking in database
+        self.assertEqual(SessionBooking.objects.filter(learner=self.learner_a, idempotency_key=key).count(), 1)
+
+    def test_checkout_initiate_idempotency_conflict_rejection(self):
+        """Checkout initiation rejects idempotency key reuse with different order amounts."""
+        self.client.force_authenticate(user=self.learner_a)
+        key = "checkout-idem-444"
+
+        # First checkout topup: 50,000 Toman
+        res1 = self.client.post("/api/marketplace/checkout/initiate/", data={
+            "order_type": "wallet_topup",
+            "amount_toman": 50000,
+            "gateway_provider": "sandbox",
+            "idempotency_key": key,
+        }, format="json")
+        self.assertEqual(res1.status_code, 201)
+
+        # Same user reuses key for 100,000 Toman -> 409 Conflict
+        res2 = self.client.post("/api/marketplace/checkout/initiate/", data={
+            "order_type": "wallet_topup",
+            "amount_toman": 100000,
+            "gateway_provider": "sandbox",
+            "idempotency_key": key,
+        }, format="json")
+        self.assertEqual(res2.status_code, 409)

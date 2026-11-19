@@ -67,6 +67,33 @@ def check_schedule_conflict(user: User, start_time, end_time, exclude_booking_id
     return qs.exists()
 
 
+class IdempotencyConflictError(ValidationError):
+    status_code = 409
+    default_detail = "کلید یکتایی (Idempotency Key) قبلاً با پارامترهای متفاوتی استفاده شده است."
+    default_code = "idempotency_conflict"
+
+
+def compute_payload_hash(payload: dict) -> str:
+    """Computes deterministic SHA-256 hash of canonicalized dictionary payload."""
+    import hashlib, json
+    excluded = {"idempotency_key", "csrfmiddlewaretoken", "format"}
+    canonical = {}
+    for k, v in payload.items():
+        if k in excluded:
+            continue
+        if isinstance(v, (datetime, date)):
+            canonical[k] = v.isoformat()
+        elif isinstance(v, Decimal):
+            canonical[k] = str(v)
+        elif isinstance(v, uuid.UUID):
+            canonical[k] = str(v)
+        else:
+            canonical[k] = str(v) if v is not None else ""
+    sorted_pairs = sorted(canonical.items())
+    dumped = json.dumps(sorted_pairs, sort_keys=True)
+    return hashlib.sha256(dumped.encode("utf-8")).hexdigest()
+
+
 def derive_booking_price(
     teacher: User,
     duration_minutes: int = 45,
@@ -127,10 +154,24 @@ def create_session_booking(
     if learner.id == teacher.id:
         raise ValidationError("امکان رزرو جلسه با خودتان وجود ندارد.")
 
-    # Idempotency check: if key already booked, return existing instance
+    # Scoped Idempotency check: strictly scoped by (learner, idempotency_key)
+    calculated_payload_hash = ""
     if idempotency_key:
-        existing = SessionBooking.objects.filter(idempotency_key=idempotency_key).first()
+        calculated_payload_hash = compute_payload_hash({
+            "teacher_id": str(teacher.id),
+            "target_skill": str(target_skill),
+            "target_subskill": str(target_subskill or ""),
+            "scheduled_start": scheduled_start.isoformat() if hasattr(scheduled_start, "isoformat") else str(scheduled_start),
+            "duration_minutes": str(duration_minutes),
+            "online_format": str(online_format),
+        })
+        existing = SessionBooking.objects.filter(
+            learner=learner,
+            idempotency_key=idempotency_key,
+        ).first()
         if existing:
+            if existing.payload_hash and existing.payload_hash != calculated_payload_hash:
+                raise IdempotencyConflictError("کلید یکتایی (Idempotency Key) قبلاً با پارامترهای متفاوتی استفاده شده است.")
             return existing
 
     # Validate package if supplied
@@ -208,6 +249,7 @@ def create_session_booking(
             status=BookingStatus.CONFIRMED,
             is_paid=True if (package is not None or calculated_rate == Decimal("0")) else False,
             idempotency_key=idempotency_key,
+            payload_hash=calculated_payload_hash,
             meeting_url=meeting_url,
         )
     return booking
@@ -2212,6 +2254,33 @@ def initiate_checkout(
         raise ValidationError("نوع سفارش نامعتبر است.")
 
     idem_key = idempotency_key or f"idem_{user.id}_{order_type}_{order_id or 'topup'}_{int(timezone.now().timestamp())}"
+    calculated_checkout_hash = compute_payload_hash({
+        "order_type": str(order_type),
+        "order_id": str(order_id or ""),
+        "gateway_provider": str(gateway_provider),
+        "amount_toman": str(amount),
+    })
+
+    if idempotency_key:
+        existing_tx = PaymentTransaction.objects.filter(
+            user=user,
+            idempotency_key=idempotency_key,
+        ).first()
+        if existing_tx:
+            if existing_tx.payload_hash and existing_tx.payload_hash != calculated_checkout_hash:
+                raise IdempotencyConflictError("کلید یکتایی پرداخت قبلاً با مشخصات سفارش متفاوتی ثبت شده است.")
+            return {
+                "transaction_id": str(existing_tx.id),
+                "order_type": existing_tx.order_type,
+                "authority": existing_tx.authority or "",
+                "payment_url": getattr(existing_tx, "payment_url", ""),
+                "amount_toman": int(existing_tx.amount_toman),
+                "amount_rial": int(existing_tx.amount_rial),
+                "status": existing_tx.status,
+                "is_sandbox": existing_tx.is_sandbox,
+                "paid_via_wallet": existing_tx.gateway_provider == PaymentGatewayProvider.WALLET,
+                "tracking_code": existing_tx.ref_id or "",
+            }
 
     # Wallet 1-Click Pay
     if gateway_provider == PaymentGatewayProvider.WALLET:
@@ -2235,6 +2304,7 @@ def initiate_checkout(
                 status=PaymentTransactionStatus.PAID,
                 ref_id=wallet_tx.tracking_code,
                 idempotency_key=idem_key,
+                payload_hash=calculated_checkout_hash,
                 description=description,
                 is_sandbox=False,
                 verified_at=timezone.now(),
@@ -2292,6 +2362,7 @@ def initiate_checkout(
         authority=authority,
         status=PaymentTransactionStatus.PENDING,
         idempotency_key=idem_key,
+        payload_hash=calculated_checkout_hash,
         description=description,
         gateway_callback_url=cb_url,
         is_sandbox=is_sandbox,

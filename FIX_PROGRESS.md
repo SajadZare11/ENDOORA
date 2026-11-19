@@ -23,7 +23,7 @@
 | **F06** | Persist failed OTP attempts | COMPLETE | `apps/api/accounts/services.py`, `apps/api/accounts/tests/test_api.py` | `OtpAttemptPersistenceSecurityTests` (6 tests pass), 34 accounts tests pass |
 | **F07** | Calculate booking prices on the server | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/serializers.py, pps/api/marketplace/views.py, pps/api/marketplace/services.py, pps/api/ledger/payouts.py, pps/api/marketplace/migrations/0007_learnersessionpackage_sessionbooking_package.py, pps/api/marketplace/tests.py | ServerSideBookingPricingSecurityTests (5 tests pass), MarketplaceDay38Tests (20 tests pass) |
 | **F08** | Enforce booking and payment state transitions | COMPLETE | pps/api/marketplace/serializers.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/tests.py | BookingStateTransitionsSecurityTests (4 tests pass), MarketplaceDay38Tests (20 tests pass) |
-| **F09** | Scope idempotency correctly | PENDING | | |
+| **F09** | Scope idempotency correctly | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/migrations/0008_idempotencyrecord_paymenttransaction_payload_hash_and_more.py, pps/api/marketplace/tests.py | ScopedIdempotencySecurityTests (4 tests pass), all 13 F07-F09 tests pass |
 | **F10** | Repair Docker application and data paths | PENDING | | |
 | **F11** | Configure trusted HTTPS proxy handling | PENDING | | |
 | **F12** | Resolve API and admin route ownership | PENDING | | |
