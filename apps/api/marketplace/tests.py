@@ -1941,3 +1941,154 @@ class ScopedIdempotencySecurityTests(APITestCase):
             "idempotency_key": key,
         }, format="json")
         self.assertEqual(res2.status_code, 409)
+
+
+class ExpiringSubscriptionSecurityTests(APITestCase):
+    """
+    Acceptance tests for F18: Expiring subscription entitlements.
+    Ensures:
+    - is_premium is True only within the active window.
+    - Expired subscriptions immediately lose premium access.
+    - Renewal extends active period from expires_at if currently active, or now if expired.
+    - Duplicate payment callbacks do not multiply subscription periods.
+    """
+
+    def setUp(self):
+        from marketplace.models import PlatformPricingPlan
+        self.learner = User.objects.create_user(
+            email="learner_f18@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Soheil",
+            last_name="Ghasemi",
+        )
+        self.plan = PlatformPricingPlan.objects.create(
+            code="test_premium_30d",
+            name_fa="اشتراک طلایی ۳۰ روزه",
+            name_en="Golden 30-Day",
+            duration_days=30,
+            price_toman=Decimal("150000"),
+            is_active=True,
+        )
+
+    def test_is_premium_active_window(self):
+        """is_premium is True only within active subscription window."""
+        from marketplace.models import UserSubscription, SubscriptionStatus
+        self.assertFalse(self.learner.is_premium)
+
+        now = timezone.now()
+        sub = UserSubscription.objects.create(
+            user=self.learner,
+            plan=self.plan,
+            tier="premium",
+            status=SubscriptionStatus.ACTIVE,
+            starts_at=now - timedelta(days=2),
+            expires_at=now + timedelta(days=28),
+        )
+        self.assertTrue(self.learner.is_premium)
+        self.assertTrue(self.learner.capabilities["is_premium"])
+
+    def test_expired_subscription_immediately_loses_premium(self):
+        """Expired subscriptions immediately return is_premium=False."""
+        from marketplace.models import UserSubscription, SubscriptionStatus
+        now = timezone.now()
+        # Expired 1 hour ago
+        UserSubscription.objects.create(
+            user=self.learner,
+            plan=self.plan,
+            tier="premium",
+            status=SubscriptionStatus.ACTIVE,
+            starts_at=now - timedelta(days=31),
+            expires_at=now - timedelta(hours=1),
+        )
+        self.assertFalse(self.learner.is_premium)
+        self.assertFalse(self.learner.capabilities["is_premium"])
+
+    def test_renewal_extends_from_current_expiration_if_active(self):
+        """Renewing while currently active extends expiration by plan duration."""
+        from marketplace.models import UserSubscription, SubscriptionStatus, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.services import fulfill_subscription_payment
+
+        now = timezone.now()
+        existing_sub = UserSubscription.objects.create(
+            user=self.learner,
+            plan=self.plan,
+            tier="premium",
+            status=SubscriptionStatus.ACTIVE,
+            starts_at=now - timedelta(days=20),
+            expires_at=now + timedelta(days=10),
+        )
+        old_expiry = existing_sub.expires_at
+
+        # Renewal payment
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+            plan=self.plan,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            idempotency_key="renewal_tx_1",
+        )
+
+        sub = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
+        existing_sub.refresh_from_db()
+        expected_expiry = old_expiry + timedelta(days=30)
+        self.assertEqual(existing_sub.expires_at.date(), expected_expiry.date())
+        self.assertTrue(self.learner.is_premium)
+
+    def test_renewal_starts_from_now_if_expired(self):
+        """Renewing after expiration sets active window from now, not old expiry."""
+        from marketplace.models import UserSubscription, SubscriptionStatus, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.services import fulfill_subscription_payment
+
+        now = timezone.now()
+        # Expired 10 days ago
+        UserSubscription.objects.create(
+            user=self.learner,
+            plan=self.plan,
+            tier="premium",
+            status=SubscriptionStatus.ACTIVE,
+            starts_at=now - timedelta(days=40),
+            expires_at=now - timedelta(days=10),
+        )
+
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+            plan=self.plan,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            idempotency_key="renewal_tx_2",
+        )
+
+        sub = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
+        self.assertEqual(sub.starts_at.date(), now.date())
+        self.assertEqual(sub.expires_at.date(), (now + timedelta(days=30)).date())
+        self.assertTrue(self.learner.is_premium)
+
+    def test_duplicate_payment_callback_does_not_multiply_subscription(self):
+        """Duplicate callback/webhook invocations for same tx do not extend subscription multiple times."""
+        from marketplace.models import PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.services import fulfill_subscription_payment
+
+        tx = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+            plan=self.plan,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            idempotency_key="single_callback_tx",
+        )
+
+        # First fulfillment
+        sub1 = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
+        first_expiry = sub1.expires_at
+
+        # Duplicate delivery of same tx
+        sub2 = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
+        sub1.refresh_from_db()
+        self.assertEqual(sub1.expires_at, first_expiry)
+        self.assertEqual(sub1.id, sub2.id)

@@ -70,11 +70,13 @@ class User(AbstractUser):
         if self.is_staff or self.is_superuser:
             return True
         try:
-            from marketplace.models import PaymentOrderType, PaymentTransaction, PaymentTransactionStatus
-            return PaymentTransaction.objects.filter(
+            from marketplace.models import UserSubscription, SubscriptionStatus
+            now = timezone.now()
+            return UserSubscription.objects.filter(
                 user=self,
-                order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
-                status=PaymentTransactionStatus.PAID,
+                status=SubscriptionStatus.ACTIVE,
+                starts_at__lte=now,
+                expires_at__gte=now,
             ).exists()
         except Exception:
             return False

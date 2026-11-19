@@ -2317,6 +2317,8 @@ def initiate_checkout(
                     booking.status = BookingStatus.CONFIRMED
                 booking.save(update_fields=["is_paid", "status", "updated_at"])
                 create_booking_escrow(booking)
+            elif order_type == PaymentOrderType.SUBSCRIPTION_PLAN and plan:
+                fulfill_subscription_payment(user=user, plan=plan, tx=tx)
 
             return {
                 "transaction_id": str(tx.id),
@@ -2378,6 +2380,51 @@ def initiate_checkout(
         "is_sandbox": is_sandbox,
         "paid_via_wallet": False,
     }
+
+
+def fulfill_subscription_payment(user: User, plan, tx: PaymentTransaction):
+    """
+    Fulfill subscription plan payment:
+    1. Idempotency guard: If tx already fulfilled a subscription, return without re-extending.
+    2. If user has active subscription (expires_at > now), extend from current expires_at.
+    3. If expired or new, start from now.
+    4. Link subscription to payment transaction.
+    """
+    from marketplace.models import UserSubscription, SubscriptionStatus
+
+    with transaction.atomic():
+        tx.refresh_from_db()
+        if tx.subscription_id:
+            return tx.subscription
+
+        duration_days = getattr(plan, "duration_days", 30) or 30
+        now = timezone.now()
+
+        latest_sub = (
+            UserSubscription.objects.select_for_update()
+            .filter(user=user, status=SubscriptionStatus.ACTIVE)
+            .order_by("-expires_at")
+            .first()
+        )
+
+        if latest_sub and latest_sub.expires_at > now:
+            new_expires_at = latest_sub.expires_at + timedelta(days=duration_days)
+            latest_sub.expires_at = new_expires_at
+            latest_sub.save(update_fields=["expires_at", "updated_at"])
+            sub = latest_sub
+        else:
+            sub = UserSubscription.objects.create(
+                user=user,
+                plan=plan,
+                tier=getattr(plan, "code", "premium"),
+                status=SubscriptionStatus.ACTIVE,
+                starts_at=now,
+                expires_at=now + timedelta(days=duration_days),
+            )
+
+        tx.subscription = sub
+        tx.save(update_fields=["subscription", "updated_at"])
+        return sub
 
 
 def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
@@ -2460,6 +2507,8 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
                     reference_id=ref_id,
                     description=f"شارژ آنلاین حساب کاربری با تراکنش شماره {ref_id}",
                 )
+        elif tx.order_type == PaymentOrderType.SUBSCRIPTION_PLAN and tx.plan:
+            fulfill_subscription_payment(user=tx.user, plan=tx.plan, tx=tx)
 
         return {
             "transaction_id": str(tx.id),

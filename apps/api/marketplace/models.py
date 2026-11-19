@@ -823,6 +823,53 @@ class PlatformPricingPlan(models.Model):
     def __str__(self):
         return f"{self.name_fa} ({self.price_toman} تومان / {self.duration_days} روز)"
 
+
+class SubscriptionStatus(models.TextChoices):
+    ACTIVE = "active", _("فعال")
+    EXPIRED = "expired", _("منقضی شده")
+    CANCELLED = "cancelled", _("لغو شده")
+
+
+class UserSubscription(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="subscriptions",
+    )
+    plan = models.ForeignKey(
+        "PlatformPricingPlan",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="subscriptions",
+    )
+    tier = models.CharField(max_length=64, default="premium", db_index=True)
+    status = models.CharField(
+        max_length=24,
+        choices=SubscriptionStatus.choices,
+        default=SubscriptionStatus.ACTIVE,
+        db_index=True,
+    )
+    starts_at = models.DateTimeField(default=timezone.now, db_index=True)
+    expires_at = models.DateTimeField(db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-expires_at"]
+        indexes = [
+            models.Index(fields=["user", "status", "expires_at"]),
+        ]
+
+    def __str__(self):
+        return f"Subscription {self.tier} for {self.user_id} ({self.status}) until {self.expires_at}"
+
+    def is_currently_active(self) -> bool:
+        now = timezone.now()
+        return self.status == SubscriptionStatus.ACTIVE and self.starts_at <= now <= self.expires_at
+
+
 # ---------------------------------------------------------------------------
 # Day 42: Payment Gateway, Wallet Balance & Escrow Settlement (MKT-008)
 # ---------------------------------------------------------------------------
@@ -967,6 +1014,13 @@ class PaymentTransaction(models.Model):
     )
     plan = models.ForeignKey(
         "PlatformPricingPlan",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="payment_transactions",
+    )
+    subscription = models.ForeignKey(
+        "UserSubscription",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
