@@ -204,7 +204,8 @@ class SessionBookingSerializer(serializers.ModelSerializer):
     can_start = serializers.SerializerMethodField()
     can_complete = serializers.SerializerMethodField()
     can_respond_reschedule = serializers.SerializerMethodField()
-    meeting_room_url = serializers.CharField(source="meeting_url", read_only=True)
+    meeting_url = serializers.SerializerMethodField()
+    meeting_room_url = serializers.SerializerMethodField()
     is_counterparty_reschedule = serializers.SerializerMethodField()
     in_session_window = serializers.SerializerMethodField()
 
@@ -275,17 +276,29 @@ class SessionBookingSerializer(serializers.ModelSerializer):
                 "verified": False,
             }
 
+    def get_meeting_url(self, obj) -> str:
+        if not obj.is_paid or obj.status in [
+            BookingStatus.PENDING_PAYMENT,
+            BookingStatus.CANCELLED_BY_LEARNER,
+            BookingStatus.CANCELLED_BY_TEACHER,
+        ]:
+            return ""
+        return obj.meeting_url or ""
+
+    def get_meeting_room_url(self, obj) -> str:
+        return self.get_meeting_url(obj)
+
     def get_can_cancel(self, obj) -> bool:
         return obj.status in [BookingStatus.CONFIRMED, BookingStatus.RESCHEDULE_REQUESTED]
 
     def get_can_reschedule(self, obj) -> bool:
-        return obj.status == BookingStatus.CONFIRMED
+        return bool(obj.is_paid and obj.status == BookingStatus.CONFIRMED)
 
     def get_can_start(self, obj) -> bool:
-        return obj.status in [BookingStatus.CONFIRMED, BookingStatus.IN_PROGRESS] and obj.is_in_session_window()
+        return bool(obj.is_paid and obj.status in [BookingStatus.CONFIRMED, BookingStatus.IN_PROGRESS] and obj.is_in_session_window())
 
     def get_can_complete(self, obj) -> bool:
-        return obj.status == BookingStatus.IN_PROGRESS
+        return bool(obj.is_paid and obj.status in [BookingStatus.IN_PROGRESS, BookingStatus.CONFIRMED])
 
     def get_can_respond_reschedule(self, obj) -> bool:
         return self.get_is_counterparty_reschedule(obj)

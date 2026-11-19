@@ -22,7 +22,7 @@
 | **F05** | Make grades and assessment state server-controlled | COMPLETE | `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ExamGradesAndAssessmentSecurityTests` (5 tests pass), server-controlled score & attempts locking |
 | **F06** | Persist failed OTP attempts | COMPLETE | `apps/api/accounts/services.py`, `apps/api/accounts/tests/test_api.py` | `OtpAttemptPersistenceSecurityTests` (6 tests pass), 34 accounts tests pass |
 | **F07** | Calculate booking prices on the server | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/serializers.py, pps/api/marketplace/views.py, pps/api/marketplace/services.py, pps/api/ledger/payouts.py, pps/api/marketplace/migrations/0007_learnersessionpackage_sessionbooking_package.py, pps/api/marketplace/tests.py | ServerSideBookingPricingSecurityTests (5 tests pass), MarketplaceDay38Tests (20 tests pass) |
-| **F08** | Enforce booking and payment state transitions | PENDING | | |
+| **F08** | Enforce booking and payment state transitions | COMPLETE | pps/api/marketplace/serializers.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/tests.py | BookingStateTransitionsSecurityTests (4 tests pass), MarketplaceDay38Tests (20 tests pass) |
 | **F09** | Scope idempotency correctly | PENDING | | |
 | **F10** | Repair Docker application and data paths | PENDING | | |
 | **F11** | Configure trusted HTTPS proxy handling | PENDING | | |

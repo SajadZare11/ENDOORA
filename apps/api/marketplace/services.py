@@ -174,17 +174,20 @@ def create_session_booking(
             calculated_rate = derive_booking_price(teacher=teacher, duration_minutes=duration_minutes)
 
     scheduled_end = scheduled_start + timedelta(minutes=duration_minutes)
-
-    # Double booking conflict check
-    if check_schedule_conflict(teacher, scheduled_start, scheduled_end):
-        raise ValidationError("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است.")
-
-    if check_schedule_conflict(learner, scheduled_start, scheduled_end):
-        raise ValidationError("شما در بازه زمانی انتخابی دارای جلسه دیگری هستید.")
-
     meeting_url = f"/room/{uuid_slug()}"
 
     with transaction.atomic():
+        # Prevent overlapping bookings under concurrency using ordered row-level locks
+        user_ids = sorted([teacher.id, learner.id])
+        list(User.objects.select_for_update().filter(id__in=user_ids).order_by("id"))
+
+        # Double booking conflict check inside row-level lock
+        if check_schedule_conflict(teacher, scheduled_start, scheduled_end):
+            raise ValidationError("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است.")
+
+        if check_schedule_conflict(learner, scheduled_start, scheduled_end):
+            raise ValidationError("شما در بازه زمانی انتخابی دارای جلسه دیگری هستید.")
+
         if package is not None:
             package.use_session()
 
@@ -537,6 +540,12 @@ def request_booking_reschedule(user: User, booking_id: str, new_start, note: str
     if user.id not in [booking.learner_id, booking.teacher_id]:
         raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
 
+    if not booking.is_paid or booking.status == BookingStatus.PENDING_PAYMENT:
+        raise ValidationError("جلسات پرداخت‌نشده امکان درخواست جابجایی زمان ندارند.")
+
+    if booking.status in [BookingStatus.COMPLETED, BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER]:
+        raise ValidationError("جلسات خاتمه‌یافته یا لغو شده امکان جابجایی زمان ندارند.")
+
     if booking.status != BookingStatus.CONFIRMED:
         raise ValidationError("تنها جلسات در وضعیت قطعی را می‌توان جابجا کرد.")
 
@@ -644,8 +653,11 @@ def cancel_session_booking(user: User, booking_id: str, reason: str = "") -> Ses
     if user.id not in [booking.learner_id, booking.teacher_id]:
         raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
 
-    if booking.status in [BookingStatus.COMPLETED, BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER]:
-        raise ValidationError("این جلسه قبلاً پایان یافته یا لغو شده است.")
+    if booking.status == BookingStatus.COMPLETED:
+        raise ValidationError("جلسه تکمیل‌شده و پایان‌یافته را نمی‌توان لغو کرد.")
+
+    if booking.status in [BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER]:
+        raise ValidationError("این جلسه قبلاً لغو شده است.")
 
     status = (
         BookingStatus.CANCELLED_BY_LEARNER
@@ -677,8 +689,14 @@ def start_session_booking(user: User, booking_id: str) -> SessionBooking:
     if user.id not in [booking.learner_id, booking.teacher_id]:
         raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
 
+    if not booking.is_paid or booking.status == BookingStatus.PENDING_PAYMENT:
+        raise ValidationError("جلسه پرداخت‌نشده امکان شروع، ورود یا برگزاری ندارد.")
+
+    if booking.status in [BookingStatus.COMPLETED, BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER]:
+        raise ValidationError(f"جلسه خاتمه‌یافته یا لغو شده امکان شروع ندارد (وضعیت فعلی: {booking.status}).")
+
     if booking.status not in [BookingStatus.CONFIRMED, BookingStatus.IN_PROGRESS]:
-        raise ValidationError("تنها جلسات تأییدشده را می‌توان شروع کرد.")
+        raise ValidationError(f"تنها جلسات تأییدشده را می‌توان شروع کرد (وضعیت فعلی: {booking.status}).")
 
     booking.status = BookingStatus.IN_PROGRESS
     if not booking.started_at:
@@ -697,8 +715,17 @@ def complete_session_booking(user: User, booking_id: str, session_notes: str = "
     if user.id not in [booking.learner_id, booking.teacher_id]:
         raise PermissionDenied("شما دسترسی لازم به این جلسه را ندارید.")
 
+    if not booking.is_paid or booking.status == BookingStatus.PENDING_PAYMENT:
+        raise ValidationError("امکان پایان دادن به جلسه‌ای که پرداخت نشده است وجود ندارد.")
+
     if booking.status == BookingStatus.COMPLETED:
         return booking
+
+    if booking.status in [BookingStatus.CANCELLED_BY_LEARNER, BookingStatus.CANCELLED_BY_TEACHER, BookingStatus.NO_SHOW, BookingStatus.NO_SHOW_LEARNER, BookingStatus.NO_SHOW_TEACHER]:
+        raise ValidationError("جلسه لغو شده امکان تکمیل ندارد.")
+
+    if booking.status not in [BookingStatus.IN_PROGRESS, BookingStatus.CONFIRMED]:
+        raise ValidationError(f"تنها جلسات در حال برگزاری یا تأییدشده را می‌توان تکمیل کرد (وضعیت فعلی: {booking.status}).")
 
     booking.status = BookingStatus.COMPLETED
     booking.completed_at = timezone.now()

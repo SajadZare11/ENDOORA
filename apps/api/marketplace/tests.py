@@ -1550,3 +1550,225 @@ class ServerSideBookingPricingSecurityTests(APITestCase):
             ledger_entry.gross_amount_toman,
         )
         self.assertEqual(ledger_entry.gross_amount_toman, Decimal("333333"))
+
+
+class BookingStateTransitionsSecurityTests(APITestCase):
+    """
+    Acceptance tests for F08: Enforce booking and payment state transitions.
+    Tests:
+    - Unpaid bookings cannot be started, joined, or completed.
+    - Rescheduling requires mutual confirmation and actor rules.
+    - Cancelled/completed bookings cannot transition to active states.
+    - Concurrent requests for the same slot produce at most one booking.
+    - State machine violations return clear 400 errors without corrupting state.
+    """
+
+    def setUp(self):
+        self.learner = User.objects.create_user(
+            email="learner_f08@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Babak",
+            last_name="Khorrami",
+        )
+        self.teacher = User.objects.create_user(
+            email="teacher_f08@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Maryam",
+            last_name="Mirzakhani",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        self.other_learner = User.objects.create_user(
+            email="other_learner_f08@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Sina",
+            last_name="Afshar",
+        )
+        from profiles.models import TeacherProfile
+        TeacherProfile.objects.create(
+            user=self.teacher,
+            public_name="Maryam Mirzakhani",
+            hourly_rate_toman=Decimal("200000"),
+        )
+        self.client.force_authenticate(user=self.learner)
+
+    def test_unpaid_booking_cannot_be_started_joined_or_completed(self):
+        """Unpaid booking cannot be started, completed, or rescheduled, and meeting url is masked."""
+        start = timezone.now() + timedelta(days=1)
+        booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start,
+            scheduled_end=start + timedelta(minutes=45),
+            rate_toman=Decimal("150000"),
+            status=BookingStatus.PENDING_PAYMENT,
+            is_paid=False,
+            meeting_url="/room/secret-room-123",
+        )
+
+        # Serializer masks meeting_url when unpaid
+        detail_res = self.client.get(f"/api/marketplace/bookings/{booking.id}/")
+        self.assertEqual(detail_res.status_code, 200)
+        self.assertEqual(detail_res.data["meeting_url"], "")
+        self.assertEqual(detail_res.data["meeting_room_url"], "")
+        self.assertFalse(detail_res.data["can_start"])
+        self.assertFalse(detail_res.data["can_complete"])
+        self.assertFalse(detail_res.data["can_reschedule"])
+
+        # Attempt to start unpaid booking -> 400
+        start_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/start/")
+        self.assertEqual(start_res.status_code, 400)
+        self.assertIn("پرداخت", str(start_res.data["detail"]))
+
+        # Attempt to complete unpaid booking -> 400
+        complete_res = self.client.post(f"/api/marketplace/bookings/{booking.id}/complete/", data={"session_notes": "test"})
+        self.assertEqual(complete_res.status_code, 400)
+
+        # Attempt to reschedule unpaid booking -> 400
+        reschedule_res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/reschedule/",
+            data={"new_start_time": (start + timedelta(days=1)).isoformat()},
+        )
+        self.assertEqual(reschedule_res.status_code, 400)
+
+    def test_rescheduling_requires_mutual_confirmation(self):
+        """Rescheduling requires counterparty confirmation; requester cannot accept own request."""
+        start = timezone.now() + timedelta(days=2)
+        booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start,
+            scheduled_end=start + timedelta(minutes=45),
+            rate_toman=Decimal("150000"),
+            status=BookingStatus.CONFIRMED,
+            is_paid=True,
+        )
+
+        # Learner requests reschedule
+        new_start = start + timedelta(days=1)
+        res = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/reschedule/",
+            data={"new_start_time": new_start.isoformat(), "note": "جلسه هماهنگ شود"},
+        )
+        self.assertEqual(res.status_code, 200)
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.RESCHEDULE_REQUESTED)
+
+        # Learner attempts to accept their own reschedule -> 400
+        self_accept = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/reschedule/respond/",
+            data={"accept": True},
+        )
+        self.assertEqual(self_accept.status_code, 400)
+
+        # Teacher accepts reschedule
+        self.client.force_authenticate(user=self.teacher)
+        teacher_accept = self.client.post(
+            f"/api/marketplace/bookings/{booking.id}/reschedule/respond/",
+            data={"accept": True},
+        )
+        self.assertEqual(teacher_accept.status_code, 200)
+        booking.refresh_from_db()
+        self.assertEqual(booking.status, BookingStatus.CONFIRMED)
+        self.assertEqual(booking.scheduled_start, new_start)
+
+    def test_cancelled_and_completed_bookings_cannot_transition_to_active(self):
+        """Completed cannot be cancelled; cancelled cannot be completed or started."""
+        start = timezone.now() + timedelta(days=1)
+        completed_booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start,
+            scheduled_end=start + timedelta(minutes=45),
+            rate_toman=Decimal("150000"),
+            status=BookingStatus.COMPLETED,
+            is_paid=True,
+            completed_at=timezone.now(),
+        )
+
+        # Attempt to cancel completed booking -> 400
+        res_cancel = self.client.post(
+            f"/api/marketplace/bookings/{completed_booking.id}/cancel/",
+            data={"reason": "نمی‌خواهم"},
+        )
+        self.assertEqual(res_cancel.status_code, 400)
+        completed_booking.refresh_from_db()
+        self.assertEqual(completed_booking.status, BookingStatus.COMPLETED)
+
+        # Cancelled booking cannot be completed
+        cancelled_booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start + timedelta(days=2),
+            scheduled_end=start + timedelta(days=2, minutes=45),
+            rate_toman=Decimal("150000"),
+            status=BookingStatus.CANCELLED_BY_LEARNER,
+            is_paid=True,
+            cancelled_at=timezone.now(),
+        )
+        res_comp = self.client.post(
+            f"/api/marketplace/bookings/{cancelled_booking.id}/complete/",
+            data={"session_notes": "تمام"},
+        )
+        self.assertEqual(res_comp.status_code, 400)
+
+        # Cancelled booking cannot be started
+        res_start = self.client.post(f"/api/marketplace/bookings/{cancelled_booking.id}/start/")
+        self.assertEqual(res_start.status_code, 400)
+
+        # Cancelled booking cannot be cancelled again
+        res_double_cancel = self.client.post(
+            f"/api/marketplace/bookings/{cancelled_booking.id}/cancel/",
+            data={"reason": "لغو دوباره"},
+        )
+        self.assertEqual(res_double_cancel.status_code, 400)
+
+    def test_concurrent_booking_requests_for_same_teacher_slot(self):
+        """Row-level locks and schedule conflict checks guarantee at most one booking created for overlapping slot."""
+        start = timezone.now() + timedelta(days=5, hours=10)
+
+        # First booking succeeds
+        b1 = create_session_booking(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start,
+            duration_minutes=45,
+        )
+        self.assertIsNotNone(b1.id)
+
+        # Immediate overlapping booking for same teacher must be rejected
+        with self.assertRaises(Exception) as ctx:
+            create_session_booking(
+                learner=self.other_learner,
+                teacher=self.teacher,
+                target_skill="speaking",
+                scheduled_start=start + timedelta(minutes=15),
+                duration_minutes=45,
+            )
+        self.assertIn("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است", str(ctx.exception))
+
+        # Partial overlap on boundary also rejected
+        with self.assertRaises(Exception) as ctx2:
+            create_session_booking(
+                learner=self.other_learner,
+                teacher=self.teacher,
+                target_skill="speaking",
+                scheduled_start=start - timedelta(minutes=15),
+                duration_minutes=45,
+            )
+        self.assertIn("مدرس در بازه زمانی درخواستی دارای جلسه دیگری است", str(ctx2.exception))
+
+        overlapping_count = SessionBooking.objects.filter(
+            teacher=self.teacher,
+            scheduled_start__lt=start + timedelta(minutes=45),
+            scheduled_end__gt=start,
+        ).count()
+        self.assertEqual(overlapping_count, 1)

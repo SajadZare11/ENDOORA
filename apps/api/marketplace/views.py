@@ -290,7 +290,12 @@ def cancel_booking_view(request, booking_id):
     serializer.is_valid(raise_exception=True)
     reason = serializer.validated_data["reason"]
 
-    cancelled = cancel_session_booking(request.user, booking_id, reason)
+    try:
+        cancelled = cancel_session_booking(request.user, booking_id, reason)
+    except Exception as exc:
+        msg = getattr(exc, "detail", None) or getattr(exc, "message", None) or str(exc)
+        return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
     return Response({
         "status": cancelled.status,
         "id": str(cancelled.id),
@@ -306,12 +311,17 @@ def request_reschedule_view(request, booking_id):
     serializer.is_valid(raise_exception=True)
     data = serializer.validated_data
 
-    updated = request_booking_reschedule(
-        user=request.user,
-        booking_id=booking_id,
-        new_start=data["new_start_time"],
-        note=data.get("note", ""),
-    )
+    try:
+        updated = request_booking_reschedule(
+            user=request.user,
+            booking_id=booking_id,
+            new_start=data["new_start_time"],
+            note=data.get("note", ""),
+        )
+    except Exception as exc:
+        msg = getattr(exc, "detail", None) or getattr(exc, "message", None) or str(exc)
+        return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
     return Response(SessionBookingSerializer(updated, context={"request": request}).data)
 
 
@@ -323,7 +333,12 @@ def respond_reschedule_view(request, booking_id):
     serializer.is_valid(raise_exception=True)
     accept = serializer.validated_data["accept"]
 
-    updated = respond_booking_reschedule(user=request.user, booking_id=booking_id, accept=accept)
+    try:
+        updated = respond_booking_reschedule(user=request.user, booking_id=booking_id, accept=accept)
+    except Exception as exc:
+        msg = getattr(exc, "detail", None) or getattr(exc, "message", None) or str(exc)
+        return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
     return Response(SessionBookingSerializer(updated, context={"request": request}).data)
 
 
@@ -331,7 +346,12 @@ def respond_reschedule_view(request, booking_id):
 @permission_classes([IsAuthenticated])
 def start_booking_session_view(request, booking_id):
     """Transition confirmed booking to in_progress within session time window."""
-    updated = start_session_booking(request.user, booking_id)
+    try:
+        updated = start_session_booking(request.user, booking_id)
+    except Exception as exc:
+        msg = getattr(exc, "detail", None) or getattr(exc, "message", None) or str(exc)
+        return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
     return Response({
         "status": updated.status,
         "meeting_url": updated.meeting_url,
@@ -347,7 +367,12 @@ def complete_booking_session_view(request, booking_id):
     serializer.is_valid(raise_exception=True)
     notes = serializer.validated_data.get("session_notes", "")
 
-    updated = complete_session_booking(request.user, booking_id, notes)
+    try:
+        updated = complete_session_booking(request.user, booking_id, notes)
+    except Exception as exc:
+        msg = getattr(exc, "detail", None) or getattr(exc, "message", None) or str(exc)
+        return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
+
     return Response({
         "status": updated.status,
         "message": "جلسه با موفقیت به پایان رسید و ثبت گردید.",
