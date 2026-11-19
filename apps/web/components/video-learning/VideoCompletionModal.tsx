@@ -2,13 +2,22 @@
 
 import React from "react";
 import Link from "next/link";
-import { SKILLS_META, SkillType } from "@/lib/video-learning";
-import { SkillQuizResults } from "./SixSkillQuiz";
 import styles from "./video-learning.module.css";
+
+export interface ModalResults {
+  scores?: {
+    phrase1?: number;
+    phrase2?: number;
+    speaking?: number;
+    [key: string]: number | undefined;
+  };
+  totalScore: number;
+  completedAt?: Date;
+}
 
 interface VideoCompletionModalProps {
   isOpen: boolean;
-  results: SkillQuizResults | null;
+  results: ModalResults | null;
   lesson: {
     id: string;
     titleFa: string;
@@ -20,15 +29,6 @@ interface VideoCompletionModalProps {
   onClose: () => void;
   watchPercentage?: number;
 }
-
-const ORDERED_SKILLS: SkillType[] = [
-  "listening",
-  "vocabulary",
-  "grammar",
-  "speaking",
-  "reading",
-  "writing",
-];
 
 export default function VideoCompletionModal({
   isOpen,
@@ -42,7 +42,11 @@ export default function VideoCompletionModal({
 }: VideoCompletionModalProps) {
   if (!isOpen || !results) return null;
 
-  const isPassed = results.totalScore >= 70 && watchPercentage >= 80;
+  const totalScore = results.totalScore ?? 0;
+  const isPassed = totalScore >= 70 && watchPercentage >= 80;
+
+  const phrase1Score = results.scores?.phrase1;
+  const phrase2Score = results.scores?.phrase2;
 
   return (
     <div className={styles.modalBackdrop} onClick={onClose} dir="rtl">
@@ -50,12 +54,12 @@ export default function VideoCompletionModal({
         <div className={styles.modalCelebrationIcon}>{isPassed ? "🎉" : "💡"}</div>
 
         <h2 className={styles.modalTitle}>
-          {isPassed ? "تبریک! ویدیوی آموزشی با موفقیت تکمیل شد" : "نیاز به تمرین و مرور مجدد"}
+          {isPassed ? "تبریک! ارزیابی مکالمه و تلفظ با موفقیت تکمیل شد" : "نیاز به تمرین و مرور مجدد اسپیکینگ"}
         </h2>
         <p className={styles.modalSubtitle}>
           {isPassed
-            ? `شما هر ۶ مهارت زبانی را بر اساس محتوای «${lesson.titleFa}» با موفقیت تمرین کردید و ویدیوی بعدی برای شما باز شد.`
-            : `برای باز شدن ویدیوی بعدی، حداقل نمره ۷۰٪ در آزمون و تماشای ۸۰٪ از ویدیو الزامی است. شما می‌توانید مجدداً تمرین کنید.`}
+            ? `شما ۲ اصطلاح مهم کاربردی ویدیوی «${lesson.titleFa}» را با دقت و تلفظ عالی تکرار کردید و ویدیوی بعدی برای شما باز شد.`
+            : `برای باز شدن ویدیوی بعدی، حداقل نمره ۷۰٪ در ارزیابی اسپیکینگ و تماشای حداقل ۸۰٪ از ویدیو الزامی است. شما می‌توانید مجدداً تمرین کنید.`}
         </p>
 
         {/* Score & Watch Percentage Banner */}
@@ -63,11 +67,11 @@ export default function VideoCompletionModal({
           <div className={styles.modalScoreItem}>
             <span
               className={styles.modalScoreVal}
-              style={{ color: results.totalScore >= 70 ? "#10b981" : "#ef4444" }}
+              style={{ color: totalScore >= 70 ? "#10b981" : "#ef4444" }}
             >
-              {results.totalScore}٪
+              {totalScore}٪
             </span>
-            <span className={styles.modalScoreSub}>میانگین نمره آزمون</span>
+            <span className={styles.modalScoreSub}>میانگین نمره اسپیکینگ</span>
           </div>
 
           <div style={{ width: "1px", height: "2.5rem", background: "#bfdbfe" }} />
@@ -92,29 +96,57 @@ export default function VideoCompletionModal({
           </div>
         </div>
 
-        {/* 6-Skill Breakdown */}
-        <div className={styles.skillsBreakdownGrid}>
-          {ORDERED_SKILLS.map((skill) => {
-            const meta = SKILLS_META[skill];
-            const score = results.scores[skill] ?? 0;
-            return (
-              <div key={skill} className={styles.skillResultPill}>
-                <span className={styles.skillResultTitle}>
-                  <span>{meta.icon}</span>
-                  <span>{meta.titleFa}</span>
-                </span>
-                <span
-                  className={styles.skillResultStatus}
-                  style={{
-                    color: score >= 70 ? "#10b981" : "#ef4444",
-                  }}
-                >
-                  {score}٪
-                </span>
+        {/* Speaking Phrases Breakdown */}
+        {phrase1Score !== undefined && phrase2Score !== undefined && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "0.75rem",
+              margin: "1rem 0 1.25rem",
+            }}
+          >
+            <div
+              style={{
+                background: "#f8fafc",
+                border: "1px solid #e2e8f0",
+                borderRadius: "12px",
+                padding: "0.75rem 1rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span>🗣️</span>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1e293b" }}>اصطلاح اول:</span>
               </div>
-            );
-          })}
-        </div>
+              <strong style={{ color: phrase1Score >= 70 ? "#15803d" : "#b91c1c", fontSize: "1rem" }}>
+                {phrase1Score}٪
+              </strong>
+            </div>
+
+            <div
+              style={{
+                background: "#f8fafc",
+                border: "1px solid #e2e8f0",
+                borderRadius: "12px",
+                padding: "0.75rem 1rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span>🗣️</span>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1e293b" }}>اصطلاح دوم:</span>
+              </div>
+              <strong style={{ color: phrase2Score >= 70 ? "#15803d" : "#b91c1c", fontSize: "1rem" }}>
+                {phrase2Score}٪
+              </strong>
+            </div>
+          </div>
+        )}
 
         {/* Actions */}
         <div className={styles.modalActionsRow}>
@@ -123,7 +155,7 @@ export default function VideoCompletionModal({
             className={styles.modalBtnSecondary}
             onClick={onRetry}
           >
-            ↺ آزمون مجدد
+            ↺ تمرین مجدد اسپیکینگ
           </button>
 
           {isPassed && (nextLessonHref || nextLessonId) ? (

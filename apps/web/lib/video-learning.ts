@@ -144,6 +144,7 @@ export interface VideoLesson {
   summaryEn: string;
   keyTopicsFa: string[];
   transcript: TranscriptLine[];
+  speakingPhrases?: SpeakingQuestion[];
   questions: {
     listening: ChoiceQuestion;
     vocabulary: ChoiceQuestion;

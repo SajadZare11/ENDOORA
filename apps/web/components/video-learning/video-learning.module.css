@@ -1478,3 +1478,549 @@
 .modalBtnPrimary:hover {
   background: #1d4ed8;
 }
+
+/* ==========================================================================
+   Modern Dedicated 2-Phrase Speaking Lab & Pronunciation Assessment Styles
+   ========================================================================== */
+
+.speakingLabContainer {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.speakingLabHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 1.25rem;
+}
+
+.speakingLabTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.speakingLabIconBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #fef3c7;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.15);
+}
+
+.speakingLabTitle {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 850;
+  color: #0f172a;
+}
+
+.speakingLabSubtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.speakingScorePill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+}
+
+/* Phrase Tabs (Phrase 1 / Phrase 2) */
+.phraseTabsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.phraseTab {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-align: right;
+}
+
+.phraseTab:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.phraseTabActive {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.12);
+}
+
+.phraseTabNumber {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.825rem;
+  font-weight: 800;
+}
+
+.phraseTabActive .phraseTabNumber {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.phraseTabLabel {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: #1e293b;
+}
+
+.phraseTabScore {
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* Active Phrase Card */
+.phraseCard {
+  background: #fafafa;
+  border-radius: 14px;
+  border: 1px solid #f1f5f9;
+  padding: 1.5rem;
+}
+
+.phraseCardTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.phraseBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.825rem;
+  font-weight: 800;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+}
+
+.jumpVideoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.jumpVideoBtn:hover {
+  background: #eff6ff;
+  border-color: #60a5fa;
+}
+
+/* Target Phrase Container */
+.targetPhraseContainer {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.targetPhraseEn {
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.phoneticGuide {
+  font-family: "SF Mono", Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.925rem;
+  color: #854d0e;
+  background: #fefce8;
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+}
+
+.targetPhraseFa {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Tips & Context */
+.tipsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .tipsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tipBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-size: 0.825rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.tipBox strong {
+  display: block;
+  color: #0f172a;
+  margin-bottom: 0.2rem;
+}
+
+.tipBox p {
+  margin: 0;
+}
+
+.tipIcon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Audio Action Controls */
+.audioActionRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  border: none;
+}
+
+.listenBtn {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+}
+
+.listenBtn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.listenBtnActive {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #b45309;
+}
+
+.recordBtn {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.recordBtn:hover {
+  background: #1d4ed8;
+}
+
+.recordBtnActive {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.25) !important;
+  animation: recordingPulse 1.4s infinite;
+}
+
+@keyframes recordingPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Recording Visualizer */
+.recordingVisualizerBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #fef2f2;
+  border: 1px dashed #fca5a5;
+  border-radius: 12px;
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.recordingLiveDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #dc2626;
+  animation: liveBlink 1s infinite alternate;
+}
+
+@keyframes liveBlink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.visualizerBars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 38px;
+}
+
+.visualizerBar {
+  width: 3.5px;
+  background: #ef4444;
+  border-radius: 9999px;
+  transition: height 0.1s ease;
+}
+
+/* Evaluation Result Card */
+.evalResultCard {
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid;
+}
+
+.evalCardPass {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.evalCardRetry {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.evalScoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.evalScoreTitle {
+  font-size: 1.05rem;
+  font-weight: 850;
+  color: #0f172a;
+  margin-bottom: 0.3rem;
+}
+
+.evalScoreSub {
+  font-size: 0.825rem;
+  color: #475569;
+  line-height: 1.5;
+  max-width: 28rem;
+}
+
+.scoreCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid currentColor;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.evalCardPass .scoreCircle {
+  color: #16a34a;
+}
+
+.evalCardRetry .scoreCircle {
+  color: #d97706;
+}
+
+.scoreNumber {
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.scoreUnit {
+  font-size: 0.7rem;
+  font-weight: 750;
+  opacity: 0.85;
+}
+
+/* Word-by-word Breakdown */
+.wordBreakdownBox {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.wordBreakdownLabel {
+  font-size: 0.775rem;
+  font-weight: 750;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.wordsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wordPill {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.wordMatch {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.wordClose {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.wordMiss {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Navigation Row */
+.phraseNavRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.nextPhraseBtn,
+.prevPhraseBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.nextPhraseBtn:hover,
+.prevPhraseBtn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.finishAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 12px;
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+  margin-right: auto;
+}
+
+.finishAllBtn:hover {
+  background: #047857;
+}
+

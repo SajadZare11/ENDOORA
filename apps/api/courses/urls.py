@@ -1,6 +1,9 @@
 from django.urls import path
 
 from .views import (
+    AdminGenerateQuizAIView,
+    AdminLearnerEnrollmentsView,
+    AdminOverrideProgressView,
     CourseEnrollView,
     CourseEditorDetailView,
     CourseEditorListCreateView,
@@ -26,6 +29,9 @@ urlpatterns = [
     path("editor/modules/<uuid:module_id>/lessons/", LessonEditorCreateView.as_view(), name="courses-editor-lesson-create"),
     path("editor/lessons/<uuid:lesson_id>/", LessonEditorDetailView.as_view(), name="courses-editor-lesson-detail"),
     path("editor/lessons/<uuid:lesson_id>/preview-redaction/", LessonRedactionPreviewView.as_view(), name="courses-editor-lesson-preview-redaction"),
+    path("editor/admin-enrollments/", AdminLearnerEnrollmentsView.as_view(), name="courses-editor-admin-enrollments"),
+    path("editor/admin-override-progress/", AdminOverrideProgressView.as_view(), name="courses-editor-admin-override"),
+    path("editor/admin-generate-quiz/", AdminGenerateQuizAIView.as_view(), name="courses-editor-admin-quiz-ai"),
 
     # Public / Learner Routes
     path("", CourseListView.as_view(), name="courses-list"),

@@ -66,6 +66,12 @@ services:
       ENDOORA_DEFAULT_FROM_EMAIL: ${ENDOORA_DEFAULT_FROM_EMAIL:-no-reply@endoora.ir}
       ZARINPAL_MERCHANT_ID: ${ZARINPAL_MERCHANT_ID}
       ZARINPAL_SANDBOX: ${ZARINPAL_SANDBOX:-0}
+      ENDOORA_STATIC_ROOT: /app/staticfiles
+      ENDOORA_MEDIA_ROOT: /app/media
+    volumes:
+      - endoora_prod_static:/app/staticfiles
+      - endoora_prod_media:/app/media
+      - endoora_prod_backups:/app/vault/backups
     depends_on:
       postgres:
         condition: service_healthy
@@ -101,6 +107,8 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./ssl:/etc/letsencrypt:ro
       - certbot_challenge:/var/www/certbot:ro
+      - endoora_prod_static:/var/www/endoora/static:ro
+      - endoora_prod_media:/var/www/endoora/media:ro
     depends_on:
       - web
       - api
@@ -114,4 +122,7 @@ networks:
 volumes:
   endoora_prod_pgdata:
   endoora_prod_redisdata:
+  endoora_prod_static:
+  endoora_prod_media:
+  endoora_prod_backups:
   certbot_challenge:

@@ -16,7 +16,7 @@ import {
   saveRealLifeQuizResults,
 } from "@/lib/real-life-progress";
 import VideoLessonPlayer from "@/components/video-learning/VideoLessonPlayer";
-import SixSkillQuiz, { SkillQuizResults } from "@/components/video-learning/SixSkillQuiz";
+import VideoSpeakingTrainer, { SpeakingAssessmentResults } from "@/components/video-learning/VideoSpeakingTrainer";
 import VideoCompletionModal from "@/components/video-learning/VideoCompletionModal";
 import styles from "@/components/video-learning/video-learning.module.css";
 
@@ -65,7 +65,7 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
 
   // Completion modal state
   const [modalOpen, setModalOpen] = useState(false);
-  const [quizResults, setQuizResults] = useState<SkillQuizResults | null>(null);
+  const [quizResults, setQuizResults] = useState<any | null>(null);
 
   // Load existing progress
   useEffect(() => {
@@ -94,9 +94,15 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
     setSeekTarget(seconds);
   };
 
-  const handleQuizComplete = (results: SkillQuizResults) => {
+  const handleQuizComplete = (results: SpeakingAssessmentResults) => {
     setQuizResults(results);
-    saveRealLifeQuizResults(lesson.id, rawLevel, lesson.episodeNumber, results.scores, results.totalScore);
+    saveRealLifeQuizResults(
+      lesson.id,
+      rawLevel,
+      lesson.episodeNumber,
+      { speaking: results.totalScore } as any,
+      results.totalScore
+    );
     setModalOpen(true);
   };
 
@@ -125,10 +131,10 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
         >
           <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }}>🔒</div>
           <h2 style={{ fontSize: "1.5rem", fontWeight: 850, color: "#0f172a", marginBottom: "0.5rem" }}>
-            این درس ویدیویی در حال حاضر قفل است
+            این درس ویدیویی Speakout در حال حاضر قفل است
           </h2>
           <p style={{ color: "#64748b", maxWidth: "32rem", margin: "0 auto 1.75rem", lineHeight: 1.6 }}>
-            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در آزمون ۶ مهارته آن نمره ۷۰٪ یا بیشتر کسب کنید.
+            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در ارزیابی اسپیکینگ آن نمره ۷۰٪ یا بیشتر کسب کنید.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <button
@@ -181,7 +187,7 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
         <span className={styles.breadcrumbSeparator}>/</span>
         <Link href="/learn/video">دوره‌های ویدیویی</Link>
         <span className={styles.breadcrumbSeparator}>/</span>
-        <Link href={`/learn/video/${rawLevel}`}>سطح {levelMeta.cefr} (دنیای واقعی)</Link>
+        <Link href={`/learn/video/${rawLevel}`}>سطح {levelMeta.cefr} (اسپیک‌اوت)</Link>
         <span className={styles.breadcrumbSeparator}>/</span>
         <span className={styles.breadcrumbCurrent}>درس {lesson.episodeNumber}</span>
       </nav>
@@ -203,14 +209,14 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
               style={{
                 fontSize: "0.75rem",
                 fontWeight: 800,
-                color: "#1e40af",
-                background: "#dbeafe",
-                border: "1px solid #bfdbfe",
+                color: "#92400e",
+                background: "#fef3c7",
+                border: "1px solid #fde68a",
                 padding: "0.15rem 0.6rem",
                 borderRadius: "6px",
               }}
             >
-              دنیای واقعی (Speakout & BBC) · {lesson.unit}
+              اسپیک‌اوت (Speakout) · {lesson.unit}
             </span>
             <span style={{ fontSize: "0.8rem", color: "#64748b" }}>
               سطح {levelMeta.cefr} · درس {lesson.episodeNumber}
@@ -263,7 +269,7 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
         allowForwardScrubbing={watchPercentage >= 80}
       />
 
-      {/* Watch Status & Quiz Qualification Banner */}
+      {/* Watch Status & Speaking Qualification Banner */}
       <div
         style={{
           marginTop: "1.5rem",
@@ -290,7 +296,7 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
             </div>
             <div style={{ fontSize: "0.825rem", opacity: 0.9, marginTop: "0.2rem" }}>
               {watchPercentage >= 80
-                ? "اکنون با پاسخ به سوالات ۶ مهارت زیر و کسب نمره حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
+                ? "اکنون با تلفظ ۲ اصطلاح کاربردی زیر و کسب میانگین حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
                 : "برای باز شدن ویدیوی بعدی، ویدیو را تا حداقل ۸۰٪ تماشا فرمایید (جلو زدن اسکرابر قفل است)."}
             </div>
           </div>
@@ -316,8 +322,8 @@ export default function SpeakoutStudyPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Six-Skill Interactive Assessment */}
-      <SixSkillQuiz
+      {/* Speaking & Pronunciation Lab */}
+      <VideoSpeakingTrainer
         lesson={lesson as any}
         onReplayTimestamp={handleReplayTimestamp}
         onComplete={handleQuizComplete}

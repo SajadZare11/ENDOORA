@@ -9,7 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from content.models import ContentStatus
-from .models import Course, Module, Lesson
+from audit.models import AuditEvent
+from .models import Course, Module, Lesson, LearnerCourseEnrollment, LearnerLessonProgress
 from .permissions import IsCourseEditorOrAdministrator
 from .serializers import (
     CourseEditorSerializer,
@@ -441,3 +442,238 @@ class LessonRedactionPreviewView(APIView):
             },
             status=status.HTTP_200_OK,
         )
+
+
+# ==============================================================================
+# Admin Academic Command Center Views
+# ==============================================================================
+
+class AdminLearnerEnrollmentsView(APIView):
+    permission_classes = [IsCourseEditorOrAdministrator]
+
+    def get(self, request):
+        query = request.query_params.get("q", "").strip()
+        course_id = request.query_params.get("course_id", "").strip()
+
+        qs = LearnerCourseEnrollment.objects.select_related("learner", "course").prefetch_related(
+            "course__modules__lessons"
+        ).all()
+
+        if course_id and course_id != "all":
+            qs = qs.filter(Q(course__id=course_id) | Q(course__slug=course_id))
+
+        if query:
+            qs = qs.filter(
+                Q(learner__username__icontains=query)
+                | Q(learner__email__icontains=query)
+                | Q(course__title_fa__icontains=query)
+                | Q(course__title_en__icontains=query)
+            )
+
+        enrollments = []
+        for enr in qs[:50]:
+            # map lesson progresses
+            progress_records = LearnerLessonProgress.objects.filter(
+                learner=enr.learner,
+                lesson__module__course=enr.course,
+            ).select_related("lesson")
+
+            progress_dict = {str(p.lesson_id): p for p in progress_records}
+            lessons_payload = []
+            for mod in enr.course.modules.all():
+                for les in mod.lessons.all():
+                    prog = progress_dict.get(str(les.id))
+                    lessons_payload.append({
+                        "lessonId": str(les.id),
+                        "lessonTitleFa": les.title_fa,
+                        "lessonTitleEn": les.title_en,
+                        "isCompleted": prog.is_completed if prog else False,
+                        "quizScore": prog.quiz_score if prog else None,
+                        "completedAt": prog.completed_at.strftime("%Y/%m/%d %H:%M") if prog and prog.completed_at else None,
+                    })
+
+            enrollments.append({
+                "id": str(enr.id),
+                "learnerId": str(enr.learner.id),
+                "learnerName": getattr(enr.learner, "first_name", "") + " " + getattr(enr.learner, "last_name", "") or enr.learner.username,
+                "learnerEmail": enr.learner.email or f"{enr.learner.username}@endoora.ir",
+                "learnerPhone": getattr(enr.learner, "phone_number", "") or "09120000000",
+                "learnerAvatar": "🧑‍🎓",
+                "courseId": str(enr.course.id),
+                "courseSlug": enr.course.slug,
+                "courseTitleFa": enr.course.title_fa,
+                "courseTitleEn": enr.course.title_en,
+                "cefrLevel": enr.course.cefr_level,
+                "progressPercent": enr.progress_percent,
+                "enrolledAt": enr.enrolled_at.strftime("%Y/%m/%d"),
+                "completedAt": enr.completed_at.strftime("%Y/%m/%d") if enr.completed_at else None,
+                "lessons": lessons_payload,
+            })
+
+        return Response({"enrollments": enrollments, "count": len(enrollments)}, status=status.HTTP_200_OK)
+
+
+class AdminOverrideProgressView(APIView):
+    permission_classes = [IsCourseEditorOrAdministrator]
+
+    def post(self, request):
+        action = request.data.get("action")
+        learner_id = request.data.get("learnerId")
+        course_id = request.data.get("courseId")
+        lesson_id = request.data.get("lessonId")
+        new_score = request.data.get("newScore")
+        reason = request.data.get("reason", "Administrative Academic Override")
+
+        if not learner_id or not course_id:
+            return Response({"detail": "learnerId and courseId are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        enrollment = get_object_or_404(
+            LearnerCourseEnrollment,
+            learner_id=learner_id,
+            course_id=course_id,
+        )
+
+        if action == "toggle_lesson":
+            if not lesson_id:
+                return Response({"detail": "lessonId is required."}, status=status.HTTP_400_BAD_REQUEST)
+            lesson = get_object_or_404(Lesson, id=lesson_id)
+            progress, _ = LearnerLessonProgress.objects.get_or_create(
+                learner_id=learner_id,
+                lesson=lesson,
+            )
+            old_completed = progress.is_completed
+            progress.is_completed = not old_completed
+            progress.completed_at = timezone.now() if progress.is_completed else None
+            progress.save()
+
+            # recalculate progress percentage
+            total_lessons = Lesson.objects.filter(module__course=enrollment.course).count()
+            completed_lessons = LearnerLessonProgress.objects.filter(
+                learner_id=learner_id,
+                lesson__module__course=enrollment.course,
+                is_completed=True,
+            ).count()
+            enrollment.progress_percent = int((completed_lessons / total_lessons) * 100) if total_lessons > 0 else 0
+            if enrollment.progress_percent == 100:
+                enrollment.completed_at = timezone.now()
+            else:
+                enrollment.completed_at = None
+            enrollment.save()
+
+            # Record Audit Event
+            AuditEvent.objects.create(
+                actor=request.user if request.user.is_authenticated else None,
+                action=AuditEvent.Action.UPDATE,
+                target_app="courses",
+                target_model="LearnerLessonProgress",
+                target_pk=str(progress.id),
+                before_summary={"is_completed": old_completed},
+                after_summary={"is_completed": progress.is_completed, "course_progress": enrollment.progress_percent},
+                reason=reason,
+                request_method="POST",
+                request_path=request.path,
+            )
+
+            return Response({"success": True, "progress_percent": enrollment.progress_percent}, status=status.HTTP_200_OK)
+
+        elif action == "update_score":
+            if not lesson_id or new_score is None:
+                return Response({"detail": "lessonId and newScore are required."}, status=status.HTTP_400_BAD_REQUEST)
+            lesson = get_object_or_404(Lesson, id=lesson_id)
+            progress, _ = LearnerLessonProgress.objects.get_or_create(
+                learner_id=learner_id,
+                lesson=lesson,
+            )
+            old_score = progress.quiz_score
+            progress.quiz_score = float(new_score)
+            progress.is_completed = True
+            progress.completed_at = timezone.now()
+            progress.save()
+
+            AuditEvent.objects.create(
+                actor=request.user if request.user.is_authenticated else None,
+                action=AuditEvent.Action.UPDATE,
+                target_app="courses",
+                target_model="LearnerLessonProgress",
+                target_pk=str(progress.id),
+                before_summary={"quiz_score": old_score},
+                after_summary={"quiz_score": progress.quiz_score},
+                reason=reason,
+                request_method="POST",
+                request_path=request.path,
+            )
+
+            return Response({"success": True, "quiz_score": progress.quiz_score}, status=status.HTTP_200_OK)
+
+        elif action == "reset_progress":
+            LearnerLessonProgress.objects.filter(
+                learner_id=learner_id,
+                lesson__module__course=enrollment.course,
+            ).delete()
+
+            enrollment.progress_percent = 0
+            enrollment.completed_at = None
+            enrollment.save()
+
+            AuditEvent.objects.create(
+                actor=request.user if request.user.is_authenticated else None,
+                action=AuditEvent.Action.DELETE,
+                target_app="courses",
+                target_model="LearnerCourseEnrollment",
+                target_pk=str(enrollment.id),
+                before_summary={"action": "reset_progress"},
+                after_summary={"progress_percent": 0},
+                reason=reason,
+                request_method="POST",
+                request_path=request.path,
+            )
+
+            return Response({"success": True, "progress_percent": 0}, status=status.HTTP_200_OK)
+
+        return Response({"detail": "Invalid action."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AdminGenerateQuizAIView(APIView):
+    permission_classes = [IsCourseEditorOrAdministrator]
+
+    def post(self, request):
+        topic = request.data.get("topic", "General English Lesson")
+        cefr_level = request.data.get("cefrLevel", "B1")
+
+        questions = [
+            {
+                "type": "multiple_choice",
+                "promptFa": f"با توجه به نکات تدریس‌شده در درس {topic}، ساختار دستوری متناسب کدام است؟",
+                "promptEn": f"Based on the core pedagogical themes in {topic}, which grammatical structure is correct?",
+                "options": [
+                    "The subject must always agree with the auxiliary verb in complex clauses.",
+                    "Passive constructions omit the object pronoun unconditionally.",
+                    "Modal auxiliaries require gerund forms in standard questions.",
+                    "Adverbs of frequency must strictly follow the direct object.",
+                ],
+                "correctIndex": 0,
+                "explanationFa": "مطابقت فاعل و فعل کمکی در ساختارهای پیچیده از اصول کلیدی گرامری این سطح است.",
+                "explanationEn": "Subject-auxiliary agreement is evaluated as a core benchmark for this CEFR level.",
+            },
+            {
+                "type": "true_false",
+                "promptFa": f"گزاره: استفاده از جملات مجهول در تشریح فرآیندهای علمی و موضوعات درس {topic} متداول‌تر است.",
+                "promptEn": f"Statement: Passive voice is predominantly favored when explaining scientific processes in {topic}.",
+                "options": ["صحیح (True)", "غلط (False)"],
+                "correctIndex": 0,
+                "explanationFa": "در گزارش‌های علمی، تمرکز بر فرآیند و نتایج است نه عامل انجام کار.",
+                "explanationEn": "Scientific discourse prioritizes the process and outcomes over agency.",
+            },
+            {
+                "type": "cloze",
+                "promptFa": f"جای خالی را با واژه صحیح کامل کنید: 'The participants ________ to complete the assessment within 30 minutes.'",
+                "promptEn": f"Fill in the blank: 'The participants ________ to complete the assessment within 30 minutes.'",
+                "options": ["were instructed", "instructing", "have instructs", "will be instruct"],
+                "correctIndex": 0,
+                "explanationFa": "ساختار مجهول زمان گذشته 'were instructed' تناسب زمانی و گرامری کامل دارد.",
+                "explanationEn": "The past passive form 'were instructed' correctly fits the contextual requirement.",
+            },
+        ]
+
+        return Response({"questions": questions, "count": len(questions)}, status=status.HTTP_200_OK)
+

@@ -28,7 +28,7 @@ import {
   saveRealLifeQuizResults,
 } from "@/lib/real-life-progress";
 import VideoLessonPlayer from "@/components/video-learning/VideoLessonPlayer";
-import SixSkillQuiz, { SkillQuizResults } from "@/components/video-learning/SixSkillQuiz";
+import VideoSpeakingTrainer, { SpeakingAssessmentResults } from "@/components/video-learning/VideoSpeakingTrainer";
 import VideoCompletionModal from "@/components/video-learning/VideoCompletionModal";
 import styles from "@/components/video-learning/video-learning.module.css";
 
@@ -75,7 +75,7 @@ export default function VideoStudyPage({ params }: PageProps) {
 
   // Completion modal state
   const [modalOpen, setModalOpen] = useState(false);
-  const [quizResults, setQuizResults] = useState<SkillQuizResults | null>(null);
+  const [quizResults, setQuizResults] = useState<any | null>(null);
 
   // Load existing progress
   useEffect(() => {
@@ -110,12 +110,24 @@ export default function VideoStudyPage({ params }: PageProps) {
     setSeekTarget(seconds);
   };
 
-  const handleQuizComplete = (results: SkillQuizResults) => {
+  const handleQuizComplete = (results: SpeakingAssessmentResults) => {
     setQuizResults(results);
     if (isRealLife) {
-      saveRealLifeQuizResults(lesson.id, rawLevel, lesson.episodeNumber, results.scores, results.totalScore);
+      saveRealLifeQuizResults(
+        lesson.id,
+        rawLevel,
+        lesson.episodeNumber,
+        { speaking: results.totalScore } as any,
+        results.totalScore
+      );
     } else {
-      saveAEFQuizResults(lesson.id, rawLevel, lesson.episodeNumber, results.scores, results.totalScore);
+      saveAEFQuizResults(
+        lesson.id,
+        rawLevel,
+        lesson.episodeNumber,
+        { speaking: results.totalScore } as any,
+        results.totalScore
+      );
     }
     setModalOpen(true);
   };
@@ -126,9 +138,10 @@ export default function VideoStudyPage({ params }: PageProps) {
     setSeekTarget(0);
   };
 
-  const nextLesson = isRealLife ? getNextRealLifeLesson(lesson.id) : getNextAEFLesson(lesson.id);
-  const trackFolder = isRealLife ? "speakout" : "aef";
-  const nextLessonHref = nextLesson ? `/learn/video/${rawLevel}/${trackFolder}/${nextLesson.id}` : undefined;
+  const nextLesson = isRealLife
+    ? getNextRealLifeLesson(lesson.id)
+    : getNextAEFLesson(lesson.id);
+  const nextLessonHref = nextLesson ? `/learn/video/${rawLevel}/${nextLesson.id}` : undefined;
 
   // If locked, show gate screen
   if (!isUnlocked) {
@@ -149,7 +162,7 @@ export default function VideoStudyPage({ params }: PageProps) {
             این درس ویدیویی در حال حاضر قفل است
           </h2>
           <p style={{ color: "#64748b", maxWidth: "32rem", margin: "0 auto 1.75rem", lineHeight: 1.6 }}>
-            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در آزمون ۶ مهارته آن نمره ۷۰٪ یا بیشتر کسب کنید.
+            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در ارزیابی اسپیکینگ آن نمره ۷۰٪ یا بیشتر کسب کنید.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <button
@@ -161,7 +174,7 @@ export default function VideoStudyPage({ params }: PageProps) {
                 gap: "0.5rem",
                 background: "#059669",
                 color: "#ffffff",
-                padding: "0.85rem 1.75rem",
+                padding: "0.75rem 1.5rem",
                 borderRadius: "12px",
                 fontWeight: 700,
                 border: "none",
@@ -178,14 +191,13 @@ export default function VideoStudyPage({ params }: PageProps) {
                 gap: "0.5rem",
                 background: "#2563eb",
                 color: "#ffffff",
-                fontWeight: 800,
-                padding: "0.85rem 1.75rem",
+                padding: "0.75rem 1.5rem",
                 borderRadius: "12px",
+                fontWeight: 700,
                 textDecoration: "none",
               }}
             >
-              <span>بازگشت به فهرست ویدیوهای سطح {levelMeta.cefr}</span>
-              <span>←</span>
+              ← بازگشت به فهرست ویدیوهای سطح {levelMeta.cefr}
             </Link>
           </div>
         </div>
@@ -195,38 +207,59 @@ export default function VideoStudyPage({ params }: PageProps) {
 
   return (
     <div className={styles.studyContainer} dir="rtl">
-      {/* Top Bar with Navigation & Title */}
-      <div className={styles.studyTopBar}>
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <Link href={`/learn/video/${rawLevel}`} className={styles.studyBackBtn}>
-            <span>→</span>
-            <span>فهرست ویدیوهای سطح {levelMeta.cefr}</span>
-          </Link>
+      {/* Breadcrumb Navigation */}
+      <nav className={styles.breadcrumb} aria-label="مسیر صفحه">
+        <Link href="/dashboard">داشبورد</Link>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <Link href="/learn?tab=video">یادگیری</Link>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <Link href="/learn/video">دوره‌های ویدیویی</Link>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <Link href={`/learn/video/${rawLevel}`}>سطح {levelMeta.cefr}</Link>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <span className={styles.breadcrumbCurrent}>درس {lesson.episodeNumber}</span>
+      </nav>
 
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: levelMeta.badgeColor,
-                  background: `${levelMeta.badgeColor}15`,
-                  border: `1px solid ${levelMeta.badgeColor}35`,
-                  padding: "0.2rem 0.5rem",
-                  borderRadius: "6px",
-                }}
-              >
-                {levelMeta.bookTitleFa} · ویدیو {lesson.episodeNumber} از ۲۰
-              </span>
-              <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{lesson.unit}</span>
-            </div>
-            <h1 className={styles.studyTitle}>
-              {lesson.titleFa} <span style={{ color: "#94a3b8", fontWeight: 400 }}>({lesson.titleEn})</span>
-            </h1>
+      {/* Lesson Header Banner */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "1rem",
+          margin: "1rem 0 1.5rem",
+        }}
+      >
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.35rem" }}>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: 800,
+                color: isRealLife ? "#92400e" : "#065f46",
+                background: isRealLife ? "#fef3c7" : "#d1fae5",
+                border: `1px solid ${isRealLife ? "#fde68a" : "#a7f3d0"}`,
+                padding: "0.15rem 0.6rem",
+                borderRadius: "6px",
+              }}
+            >
+              {isRealLife ? "اسپیک‌اوت (Speakout)" : "داستان‌های منهتن (AEF)"} · {lesson.unit}
+            </span>
+            <span style={{ fontSize: "0.8rem", color: "#64748b" }}>
+              سطح {levelMeta.cefr} · درس {lesson.episodeNumber}
+            </span>
           </div>
+
+          <h1 style={{ margin: "0 0 0.35rem", fontSize: "1.45rem", fontWeight: 850, color: "#0f172a" }}>
+            {lesson.titleFa}
+          </h1>
+          <p style={{ margin: 0, fontSize: "0.9rem", color: "#64748b" }}>
+            {lesson.titleEn}
+          </p>
         </div>
 
-        {/* Live Watch Progress Pill */}
+        {/* Watch Percentage Badge */}
         <div
           style={{
             display: "flex",
@@ -253,7 +286,7 @@ export default function VideoStudyPage({ params }: PageProps) {
 
       {/* Main Video Player with Anti-skipping & Subtitles */}
       <VideoLessonPlayer
-        lesson={lesson}
+        lesson={lesson as any}
         currentTime={currentTime}
         onTimeChange={handleTimeChange}
         seekTarget={seekTarget}
@@ -264,7 +297,7 @@ export default function VideoStudyPage({ params }: PageProps) {
         allowForwardScrubbing={watchPercentage >= 80}
       />
 
-      {/* Watch Status & Quiz Qualification Banner */}
+      {/* Watch Status & Speaking Qualification Banner */}
       <div
         style={{
           marginTop: "1.5rem",
@@ -291,7 +324,7 @@ export default function VideoStudyPage({ params }: PageProps) {
             </div>
             <div style={{ fontSize: "0.825rem", opacity: 0.9, marginTop: "0.2rem" }}>
               {watchPercentage >= 80
-                ? "اکنون با پاسخ به سوالات ۶ مهارت زیر و کسب نمره حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
+                ? "اکنون با تلفظ ۲ اصطلاح کاربردی زیر و کسب میانگین حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
                 : "برای باز شدن ویدیوی بعدی، ویدیو را تا حداقل ۸۰٪ تماشا فرمایید (جلو زدن اسکرابر قفل است)."}
             </div>
           </div>
@@ -317,8 +350,8 @@ export default function VideoStudyPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* 6-Skill Interactive Quiz */}
-      <SixSkillQuiz
+      {/* Speaking & Pronunciation Lab */}
+      <VideoSpeakingTrainer
         lesson={lesson as any}
         onReplayTimestamp={handleReplayTimestamp}
         onComplete={handleQuizComplete}

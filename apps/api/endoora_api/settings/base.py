@@ -157,7 +157,10 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 ENDOORA_DISPLAY_TIMEZONE = validated_timezone()
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = Path(os.getenv("ENDOORA_STATIC_ROOT", str(API_DIR / "staticfiles")))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = Path(os.getenv("ENDOORA_MEDIA_ROOT", str(API_DIR / "media")))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ENDOORA_ENV = os.getenv("ENDOORA_ENV", "development")

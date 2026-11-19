@@ -19,6 +19,7 @@ import { TeacherContractsConsole } from "./TeacherContractsConsole";
 import { ExamIntegrityConsole } from "./ExamIntegrityConsole";
 import { FeatureFlagsOperations } from "./FeatureFlagsOperations";
 import { AuditLogsOperations } from "./AuditLogsOperations";
+import { AcademicCommandConsole } from "./AcademicCommandConsole";
 
 export type AdminModuleTab =
   | "overview"
@@ -649,64 +650,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {activeTab === "users" && <AdminUsersManager />}
 
           {/* TAB 4: ACADEMICS & COURSES */}
-          {activeTab === "academics" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-              <div style={{ background: "#ffffff", padding: "1.5rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-                <h2 style={{ margin: "0 0 0.5rem 0", fontSize: "1.2rem", fontWeight: "800" }}>
-                  مدیریت آکادمیک، دوره‌ها و بانک سوالات
-                </h2>
-                <p style={{ margin: "0 0 1.5rem 0", fontSize: "0.875rem", color: "#64748b" }}>
-                  دسترسی مستقیم به سامانه‌های مدیریت دوره‌ها، بانک سوالات، پکیج‌های آیلتس و ساختار سرفصل‌ها
-                </p>
-
-                <div className={styles.quickGrid}>
-                  <div className={styles.quickCard}>
-                    <h3 className={styles.quickTitle}>📚 مدیریت دوره‌ها (Courses CMS)</h3>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b" }}>
-                      ایجاد، ویرایش، تایید سرفصل‌ها، ویدیوها و تعیین قیمت و مدرس دوره‌ها.
-                    </p>
-                    <Link href="/operations/courses" className={styles.quickLinkItem}>
-                      <span>ورود به سامانه مدیریت دوره‌ها</span>
-                      <span>←</span>
-                    </Link>
-                  </div>
-
-                  <div className={styles.quickCard}>
-                    <h3 className={styles.quickTitle}>❓ بانک سوالات و آزمون‌ها</h3>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b" }}>
-                      سوالات ۴ گزینه‌ای، تشریحی، شنیداری، ریدینگ و نمونه سوالات امتحانات نهایی.
-                    </p>
-                    <Link href="/operations/questions" className={styles.quickLinkItem}>
-                      <span>ورود به بانک سوالات</span>
-                      <span>←</span>
-                    </Link>
-                  </div>
-
-                  <div className={styles.quickCard}>
-                    <h3 className={styles.quickTitle}>🎯 محتوای آزمون آیلتس (IELTS CMS)</h3>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b" }}>
-                      ماک تست‌های ۴ مهارته، نمونه تاپیک‌های رایتینگ و اسپیکینگ با تصحیح هوش مصنوعی.
-                    </p>
-                    <Link href="/admin/ielts-content" className={styles.quickLinkItem}>
-                      <span>ورود به سامانه محتوای آیلتس</span>
-                      <span>←</span>
-                    </Link>
-                  </div>
-
-                  <div className={styles.quickCard}>
-                    <h3 className={styles.quickTitle}>🌳 درخت مهارت‌ها و اهداف یادگیری</h3>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b" }}>
-                      تعریف استاندارد CEFR از A1 تا C2، شایستگی‌ها و پیش‌نیازهای هر مهارت.
-                    </p>
-                    <Link href="/operations/taxonomy" className={styles.quickLinkItem}>
-                      <span>ورود به درخت مهارت‌ها</span>
-                      <span>←</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {activeTab === "academics" && <AcademicCommandConsole />}
 
           {/* TAB 4: MARKETING & GROWTH */}
           {activeTab === "marketing" && <MarketingGrowthConsole />}

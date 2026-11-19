@@ -16,7 +16,7 @@ import {
   saveAEFQuizResults,
 } from "@/lib/aef-progress";
 import VideoLessonPlayer from "@/components/video-learning/VideoLessonPlayer";
-import SixSkillQuiz, { SkillQuizResults } from "@/components/video-learning/SixSkillQuiz";
+import VideoSpeakingTrainer, { SpeakingAssessmentResults } from "@/components/video-learning/VideoSpeakingTrainer";
 import VideoCompletionModal from "@/components/video-learning/VideoCompletionModal";
 import styles from "@/components/video-learning/video-learning.module.css";
 
@@ -58,7 +58,7 @@ export default function AEFStudyPage({ params }: PageProps) {
 
   // Completion modal state
   const [modalOpen, setModalOpen] = useState(false);
-  const [quizResults, setQuizResults] = useState<SkillQuizResults | null>(null);
+  const [quizResults, setQuizResults] = useState<any | null>(null);
 
   // Load existing progress
   useEffect(() => {
@@ -87,9 +87,15 @@ export default function AEFStudyPage({ params }: PageProps) {
     setSeekTarget(seconds);
   };
 
-  const handleQuizComplete = (results: SkillQuizResults) => {
+  const handleQuizComplete = (results: SpeakingAssessmentResults) => {
     setQuizResults(results);
-    saveAEFQuizResults(lesson.id, rawLevel, lesson.episodeNumber, results.scores, results.totalScore);
+    saveAEFQuizResults(
+      lesson.id,
+      rawLevel,
+      lesson.episodeNumber,
+      { speaking: results.totalScore } as any,
+      results.totalScore
+    );
     setModalOpen(true);
   };
 
@@ -121,7 +127,7 @@ export default function AEFStudyPage({ params }: PageProps) {
             این درس داستانی AEF در حال حاضر قفل است
           </h2>
           <p style={{ color: "#64748b", maxWidth: "32rem", margin: "0 auto 1.75rem", lineHeight: 1.6 }}>
-            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در آزمون ۶ مهارته آن نمره ۷۰٪ یا بیشتر کسب کنید.
+            برای دسترسی به این ویدیو، ابتدا باید ویدیوی قبلی (شماره {lesson.episodeNumber - 1}) را حداقل ۸۰٪ تماشا کرده و در آزمون اسپیکینگ آن نمره ۷۰٪ یا بیشتر کسب کنید.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
             <button
@@ -256,7 +262,7 @@ export default function AEFStudyPage({ params }: PageProps) {
         allowForwardScrubbing={watchPercentage >= 80}
       />
 
-      {/* Watch Status & Quiz Qualification Banner */}
+      {/* Watch Status & Speaking Qualification Banner */}
       <div
         style={{
           marginTop: "1.5rem",
@@ -283,7 +289,7 @@ export default function AEFStudyPage({ params }: PageProps) {
             </div>
             <div style={{ fontSize: "0.825rem", opacity: 0.9, marginTop: "0.2rem" }}>
               {watchPercentage >= 80
-                ? "اکنون با پاسخ به سوالات ۶ مهارت زیر و کسب نمره حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
+                ? "اکنون با تلفظ ۲ اصطلاح کاربردی زیر و کسب میانگین حداقل ۷۰٪، ویدیوی بعدی به صورت خودکار باز خواهد شد."
                 : "برای باز شدن ویدیوی بعدی، ویدیو را تا حداقل ۸۰٪ تماشا فرمایید (جلو زدن اسکرابر قفل است)."}
             </div>
           </div>
@@ -309,8 +315,8 @@ export default function AEFStudyPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Six-Skill Interactive Assessment */}
-      <SixSkillQuiz
+      {/* Speaking & Pronunciation Lab */}
+      <VideoSpeakingTrainer
         lesson={lesson as any}
         onReplayTimestamp={handleReplayTimestamp}
         onComplete={handleQuizComplete}

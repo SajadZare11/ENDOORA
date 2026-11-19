@@ -22,7 +22,8 @@ RUN pip install --upgrade pip && \
 
 COPY apps/api/ ./
 
-RUN addgroup --system --gid 1001 django && \
+RUN mkdir -p /app/staticfiles /app/media /app/vault/backups && \
+    addgroup --system --gid 1001 django && \
     adduser --system --uid 1001 --ingroup django django && \
     chown -R django:django /app
 

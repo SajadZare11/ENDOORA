@@ -24,8 +24,8 @@
 | **F07** | Calculate booking prices on the server | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/serializers.py, pps/api/marketplace/views.py, pps/api/marketplace/services.py, pps/api/ledger/payouts.py, pps/api/marketplace/migrations/0007_learnersessionpackage_sessionbooking_package.py, pps/api/marketplace/tests.py | ServerSideBookingPricingSecurityTests (5 tests pass), MarketplaceDay38Tests (20 tests pass) |
 | **F08** | Enforce booking and payment state transitions | COMPLETE | pps/api/marketplace/serializers.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/tests.py | BookingStateTransitionsSecurityTests (4 tests pass), MarketplaceDay38Tests (20 tests pass) |
 | **F09** | Scope idempotency correctly | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/migrations/0008_idempotencyrecord_paymenttransaction_payload_hash_and_more.py, pps/api/marketplace/tests.py | ScopedIdempotencySecurityTests (4 tests pass), all 13 F07-F09 tests pass |
-| **F10** | Repair Docker application and data paths | PENDING | | |
-| **F11** | Configure trusted HTTPS proxy handling | PENDING | | |
+| **F10** | Repair Docker application and data paths | COMPLETE | `apps/api/Dockerfile`, `apps/web/Dockerfile`, `infra/docker-compose.prod.yml`, `infra/nginx/conf.d/endoora.conf`, `apps/api/endoora_api/settings/base.py`, `apps/api/core/tests.py` | `DockerAndStoragePathsConfigurationTests` passes, persistent volumes and standardized paths aligned |
+| **F11** | Configure trusted HTTPS proxy handling | COMPLETE | `apps/api/endoora_api/settings/production.py`, `infra/nginx/conf.d/endoora.conf`, `apps/api/core/tests.py` | `TrustedHttpsProxyHandlingTests` (3 tests pass), trusted proxy SSL header, host/port forwarding, no redirect loops |
 | **F12** | Resolve API and admin route ownership | PENDING | | |
 | **F13** | Replace synthetic backups with actual backups | PENDING | | |
 | **F14** | Replace unconditional production-readiness results | PENDING | | |
