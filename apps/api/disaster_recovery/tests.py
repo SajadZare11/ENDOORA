@@ -193,3 +193,68 @@ class DisasterRecoveryUnitTests(TestCase):
         data = json.loads(out.getvalue())
         self.assertEqual(data["cluster_health"], "OPTIMAL")
         self.assertEqual(len(data["nodes"]), 3)
+
+    def test_verification_detects_corrupted_file(self):
+        """Corrupted archive bytes fail cryptographic SHA-256 verification."""
+        from pathlib import Path
+        from django.conf import settings
+
+        snapshot = create_database_backup(operator=self.admin_user)
+        from disaster_recovery.services.backup_service import _resolve_backup_file_path
+        file_path = _resolve_backup_file_path(snapshot.storage_location)
+
+        # Tamper with the file contents
+        with open(file_path, "wb") as f:
+            f.write(b"CORRUPTED_BYTES_TAMPERED_CONTENT")
+
+        result = verify_backup_snapshot(snapshot.id, operator=self.admin_user)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("Checksum mismatch", result["error"])
+
+        snapshot.refresh_from_db()
+        self.assertEqual(snapshot.status, DatabaseBackupSnapshot.Status.FAILED)
+
+    def test_verification_detects_synthetic_unstructured_file(self):
+        """Synthetic or non-tar files fail structural catalog validation."""
+        import hashlib
+        from pathlib import Path
+        from django.conf import settings
+
+        snapshot = create_database_backup(operator=self.admin_user)
+        from disaster_recovery.services.backup_service import _resolve_backup_file_path
+        file_path = _resolve_backup_file_path(snapshot.storage_location)
+
+        # Write a non-tar synthetic string payload and update the hash to match
+        fake_content = b'{"synthetic": "mock_backup_not_real_tar_archive"}'
+        fake_hash = hashlib.sha256(fake_content).hexdigest()
+        with open(file_path, "wb") as f:
+            f.write(fake_content)
+
+        snapshot.checksum_sha256 = fake_hash
+        snapshot.save(update_fields=["checksum_sha256"])
+
+        result = verify_backup_snapshot(snapshot.id, operator=self.admin_user)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("Archive verification failed", result["error"])
+
+        snapshot.refresh_from_db()
+        self.assertEqual(snapshot.status, DatabaseBackupSnapshot.Status.FAILED)
+
+    def test_verification_detects_missing_file(self):
+        """Missing files on storage fail verification gracefully."""
+        from pathlib import Path
+        from django.conf import settings
+
+        snapshot = create_database_backup(operator=self.admin_user)
+        from disaster_recovery.services.backup_service import _resolve_backup_file_path
+        file_path = _resolve_backup_file_path(snapshot.storage_location)
+
+        if file_path.exists():
+            file_path.unlink()
+
+        result = verify_backup_snapshot(snapshot.id, operator=self.admin_user)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("not found on storage", result["error"])
+
+        snapshot.refresh_from_db()
+        self.assertEqual(snapshot.status, DatabaseBackupSnapshot.Status.FAILED)

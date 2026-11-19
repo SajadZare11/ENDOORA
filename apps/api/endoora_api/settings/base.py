@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from dotenv import load_dotenv
 
 API_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = API_DIR
 REPO_ROOT = API_DIR.parents[1]
 
 load_dotenv(REPO_ROOT / ".env")
