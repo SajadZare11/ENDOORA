@@ -29,7 +29,7 @@
 | **F12** | Resolve API and admin route ownership | PENDING | | |
 | **F13** | Replace synthetic backups with actual backups | PENDING | | |
 | **F14** | Replace unconditional production-readiness results | PENDING | | |
-| **F15** | Add missing disaster recovery migration | PENDING | | |
+| **F15** | Add missing disaster recovery migration | COMPLETE | `apps/api/disaster_recovery/migrations/0001_initial.py` | `manage.py showmigrations disaster_recovery` shows valid state, `disaster_recovery.tests` (14 tests pass cleanly on fresh DB) |
 | **F16** | Repair exam question, answer, and grading writes | COMPLETE | `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ExamQuestionAnswerGradingWritesTests` (4 tests pass), retry-safe answers & total recalculation |
 | **F17** | Align proctoring batch contract | COMPLETE | `apps/api/online_exams/models.py`, `apps/api/online_exams/serializers.py`, `apps/api/online_exams/views.py`, `apps/api/online_exams/tests.py` | `ProctoringContractSecurityTests` (3 tests pass), aligned `{events: [...]}` contract |
 | **F18** | Implement expiring subscription entitlements | COMPLETE | pps/api/accounts/models.py, pps/api/marketplace/models.py, pps/api/marketplace/services.py, pps/api/marketplace/migrations/0009_usersubscription_paymenttransaction_subscription_and_more.py, pps/api/marketplace/tests.py | ExpiringSubscriptionSecurityTests (5 tests pass) |
