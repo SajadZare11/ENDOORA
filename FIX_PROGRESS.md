@@ -26,7 +26,7 @@
 | **F09** | Scope idempotency correctly | COMPLETE | pps/api/marketplace/models.py, pps/api/marketplace/services.py, pps/api/marketplace/views.py, pps/api/marketplace/migrations/0008_idempotencyrecord_paymenttransaction_payload_hash_and_more.py, pps/api/marketplace/tests.py | ScopedIdempotencySecurityTests (4 tests pass), all 13 F07-F09 tests pass |
 | **F10** | Repair Docker application and data paths | COMPLETE | `apps/api/Dockerfile`, `apps/web/Dockerfile`, `infra/docker-compose.prod.yml`, `infra/nginx/conf.d/endoora.conf`, `apps/api/endoora_api/settings/base.py`, `apps/api/core/tests.py` | `DockerAndStoragePathsConfigurationTests` passes, persistent volumes and standardized paths aligned |
 | **F11** | Configure trusted HTTPS proxy handling | COMPLETE | `apps/api/endoora_api/settings/production.py`, `infra/nginx/conf.d/endoora.conf`, `apps/api/core/tests.py` | `TrustedHttpsProxyHandlingTests` (3 tests pass), trusted proxy SSL header, host/port forwarding, no redirect loops |
-| **F12** | Resolve API and admin route ownership | PENDING | | |
+| **F12** | Resolve API and admin route ownership | COMPLETE | `apps/web/next.config.ts`, `infra/nginx/conf.d/endoora.conf`, `apps/web/lib/endoora-api.ts` | Next.js rewrites exclude `/api/admin/`, Nginx explicitly delegates `/api/admin/` to Next.js and `/api/`, `/admin/`, `/backend/api/` to Django |
 | **F13** | Replace synthetic backups with actual backups | PENDING | | |
 | **F14** | Replace unconditional production-readiness results | PENDING | | |
 | **F15** | Add missing disaster recovery migration | COMPLETE | `apps/api/disaster_recovery/migrations/0001_initial.py` | `manage.py showmigrations disaster_recovery` shows valid state, `disaster_recovery.tests` (14 tests pass cleanly on fresh DB) |
