@@ -1235,6 +1235,15 @@ class TeacherPayoutRequest(models.Model):
         default="",
         help_text="دلیل رد درخواست واریز (مانند عدم تطابق شبا)",
     )
+    approved_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="approved_payouts",
+        help_text="مدیر تاییدکننده مرحله اول تسویه",
+    )
+    approved_at = models.DateTimeField(null=True, blank=True, help_text="زمان تایید مرحله اول")
     processed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,

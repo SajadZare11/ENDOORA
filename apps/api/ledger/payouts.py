@@ -466,6 +466,10 @@ def process_admin_payout_dual_control(
         except TeacherPayoutRequest.DoesNotExist:
             raise ValidationError("درخواست تسویه یافت نشد.")
 
+        # Guard: block self-approval by teachers who also hold administrative roles
+        if payout.teacher_id and payout.teacher_id == admin_user.id:
+            raise PermissionDenied("مدرس نمی‌تواند درخواست تسویه حساب متعلق به خود را بررسی، تایید یا پرداخت کند.")
+
         # Guard: cannot pay or modify already finalized payouts
         if payout.status in [TeacherPayoutStatus.PAID, TeacherPayoutStatus.REJECTED]:
             raise ValidationError("این درخواست قبلاً نهایی (پرداخت شده یا رد شده) شده است و قابل تغییر نیست.")
@@ -473,6 +477,8 @@ def process_admin_payout_dual_control(
         action_clean = action.strip().lower()
 
         if action_clean == "review":
+            if payout.status != TeacherPayoutStatus.PENDING:
+                raise ValidationError("تنها درخواست‌های در انتظار بررسی مجاز به بازبینی هستند.")
             PayoutAuditLog.objects.create(
                 payout_request=payout,
                 performed_by=admin_user,
@@ -481,8 +487,14 @@ def process_admin_payout_dual_control(
             )
 
         elif action_clean == "approve":
+            if payout.status != TeacherPayoutStatus.PENDING:
+                raise ValidationError("تنها درخواست‌های در انتظار بررسی مجاز به تایید هستند.")
             payout.status = TeacherPayoutStatus.APPROVED
-            payout.save(update_fields=["status", "updated_at"])
+            payout.approved_by = admin_user
+            payout.approved_at = timezone.now()
+            if notes:
+                payout.admin_notes = f"{payout.admin_notes}\n[تایید اولیه توسط {admin_user.email}]: {notes}".strip()
+            payout.save(update_fields=["status", "approved_by", "approved_at", "admin_notes", "updated_at"])
             PayoutAuditLog.objects.create(
                 payout_request=payout,
                 performed_by=admin_user,
@@ -493,6 +505,8 @@ def process_admin_payout_dual_control(
         elif action_clean == "dual_signoff":
             if payout.status != TeacherPayoutStatus.APPROVED:
                 raise ValidationError("برای امضای دوم، درخواست ابتدا باید در وضعیت تایید اولیه (Approved) باشد.")
+            if payout.approved_by_id and payout.approved_by_id == admin_user.id:
+                raise PermissionDenied("امضای دوم تایید نهایی باید توسط مدیر مالی متفاوتی نسبت به تاییدکننده مرحله اول انجام شود.")
             PayoutAuditLog.objects.create(
                 payout_request=payout,
                 performed_by=admin_user,
@@ -501,6 +515,23 @@ def process_admin_payout_dual_control(
             )
 
         elif action_clean == "pay":
+            # Disbursement requires prior approval
+            if payout.status != TeacherPayoutStatus.APPROVED:
+                raise ValidationError("درخواست تسویه ابتدا باید به تایید اولیه برسد و در وضعیت تأیید شده (Approved) باشد.")
+
+            # Dual-control segregation of duties: approver cannot mark disbursed
+            approver_id = payout.approved_by_id
+            if not approver_id:
+                approver_audit = PayoutAuditLog.objects.filter(
+                    payout_request=payout,
+                    action=PayoutAuditAction.APPROVED,
+                ).first()
+                if approver_audit:
+                    approver_id = approver_audit.performed_by_id
+
+            if approver_id and approver_id == admin_user.id:
+                raise PermissionDenied("مدیر تاییدکننده پرداخت نمی‌تواند به عنوان تسویه‌کننده حواله عمل کند (اصل تفکیک وظایف و کنترل دونفره).")
+
             # Strict double-payment prevention
             if not bank_transfer_reference or len(bank_transfer_reference.strip()) < 4:
                 raise ValidationError("ثبت کد یا شناسه پیگیری حواله پایا/ساتنا برای تسویه الزامی است.")
@@ -508,7 +539,7 @@ def process_admin_payout_dual_control(
             payout.status = TeacherPayoutStatus.PAID
             payout.processed_by = admin_user
             payout.processed_at = timezone.now()
-            payout.admin_notes = f"کد پیگیری پایا: {bank_transfer_reference.strip()} | {notes.strip()}"
+            payout.admin_notes = f"{payout.admin_notes}\n[تسویه توسط {admin_user.email}]: کد پیگیری پایا: {bank_transfer_reference.strip()} | {notes.strip()}".strip()
             payout.save(update_fields=["status", "processed_by", "processed_at", "admin_notes", "updated_at"])
 
             ref_code = f"PAY-DONE-{timezone.now().strftime('%Y%m%d')}-{uuid.uuid4().hex[:8].upper()}"

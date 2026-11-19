@@ -825,6 +825,8 @@ class TeacherPayoutRequestSerializer(serializers.ModelSerializer):
     teacher_id = serializers.UUIDField(source="teacher.id", read_only=True)
     teacher_email = serializers.EmailField(source="teacher.email", read_only=True)
     teacher_name = serializers.SerializerMethodField()
+    approved_by_name = serializers.SerializerMethodField()
+    approved_at = serializers.DateTimeField(read_only=True)
     processed_by_name = serializers.SerializerMethodField()
 
     class Meta:
@@ -843,6 +845,8 @@ class TeacherPayoutRequestSerializer(serializers.ModelSerializer):
             "status_display",
             "admin_notes",
             "rejection_reason",
+            "approved_by_name",
+            "approved_at",
             "processed_by_name",
             "processed_at",
             "created_at",
@@ -850,6 +854,12 @@ class TeacherPayoutRequestSerializer(serializers.ModelSerializer):
 
     def get_teacher_name(self, obj) -> str:
         u = obj.teacher
+        return f"{u.first_name} {u.last_name}".strip() or u.email
+
+    def get_approved_by_name(self, obj) -> str:
+        if not obj.approved_by:
+            return ""
+        u = obj.approved_by
         return f"{u.first_name} {u.last_name}".strip() or u.email
 
     def get_processed_by_name(self, obj) -> str:
@@ -890,4 +900,5 @@ class ProcessPayoutInputSerializer(serializers.Serializer):
     action = serializers.ChoiceField(choices=["approve", "pay", "reject"])
     admin_notes = serializers.CharField(required=False, allow_blank=True, default="")
     rejection_reason = serializers.CharField(required=False, allow_blank=True, default="")
+    bank_transfer_reference = serializers.CharField(required=False, allow_blank=True, default="")
 

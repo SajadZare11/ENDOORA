@@ -52,6 +52,13 @@ class LedgerFinancialOperationsTests(TestCase):
             first_name="Finance",
             last_name="Director",
         )
+        self.admin2 = User.objects.create_superuser(
+            email="disbursement_admin@endoora.com",
+            password="AdminPassword123!",
+            role=User.Role.ADMINISTRATOR,
+            first_name="Disbursement",
+            last_name="Officer",
+        )
         self.teacher = User.objects.create_user(
             email="reza_teacher@endoora.com",
             password="TeacherPassword123!",
@@ -210,9 +217,18 @@ class LedgerFinancialOperationsTests(TestCase):
         payout.refresh_from_db()
         self.assertEqual(payout.status, TeacherPayoutStatus.APPROVED)
 
-        # Admin pay (Step 2 disbursement)
+        # Approving admin cannot disburse (enforce segregation of duties)
+        with self.assertRaises(PermissionDenied):
+            process_admin_payout_dual_control(
+                self.admin,
+                str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-987654321",
+            )
+
+        # Distinct second admin disburses (Step 2 disbursement)
         process_admin_payout_dual_control(
-            self.admin,
+            self.admin2,
             str(payout.id),
             action="pay",
             bank_transfer_reference="PAYA-987654321",
@@ -224,7 +240,7 @@ class LedgerFinancialOperationsTests(TestCase):
         # Attempting to pay again must raise ValidationError
         with self.assertRaises(ValidationError):
             process_admin_payout_dual_control(
-                self.admin,
+                self.admin2,
                 str(payout.id),
                 action="pay",
                 bank_transfer_reference="PAYA-DUPLICATE",

@@ -1191,6 +1191,7 @@ def admin_payout_process_view(request, payout_id):
         action=data["action"],
         admin_notes=data.get("admin_notes", ""),
         rejection_reason=data.get("rejection_reason", ""),
+        bank_transfer_reference=data.get("bank_transfer_reference", ""),
     )
     return Response({
         "message": f"وضعیت درخواست تسویه به '{payout.get_status_display()}' تغییر یافت.",

@@ -20,6 +20,8 @@ import zoneinfo
 from decimal import Decimal
 from datetime import timedelta
 from django.test import TestCase, override_settings
+from django.core.exceptions import PermissionDenied, ValidationError
+from rest_framework.exceptions import PermissionDenied as DRFPermissionDenied, ValidationError as DRFValidationError
 from django.utils import timezone
 from rest_framework.test import APIClient, APITestCase
 from accounts.models import User
@@ -33,6 +35,7 @@ from marketplace.models import (
     RequestStatus,
     OfferStatus,
     BookingStatus,
+    TeacherPayoutStatus,
 )
 from profiles.models import TeacherProfile
 from marketplace.services import (
@@ -218,6 +221,9 @@ class MarketplaceDay37Tests(TestCase):
             scheduled_start=start,
             duration_minutes=45,
         )
+        booking.status = BookingStatus.CONFIRMED
+        booking.is_paid = True
+        booking.save(update_fields=["status", "is_paid"])
 
         # 1. Learner requests reschedule
         self.client.force_authenticate(user=self.learner)
@@ -274,6 +280,9 @@ class MarketplaceDay37Tests(TestCase):
             scheduled_start=start,
             duration_minutes=45,
         )
+        booking.status = BookingStatus.CONFIRMED
+        booking.is_paid = True
+        booking.save(update_fields=["status", "is_paid"])
 
         self.client.force_authenticate(user=self.verified_teacher)
         # Start session
@@ -2092,3 +2101,283 @@ class ExpiringSubscriptionSecurityTests(APITestCase):
         sub1.refresh_from_db()
         self.assertEqual(sub1.expires_at, first_expiry)
         self.assertEqual(sub1.id, sub2.id)
+
+
+
+class TwoPersonPayoutApprovalSecurityTests(TestCase):
+    """
+    F20 Security Tests:
+    - Teacher-admin cannot approve or pay their own payout request.
+    - Approving admin cannot mark payout disbursed (segregation of duties).
+    - Disbursement fails without prior approval.
+    - Two distinct administrators successfully approve and settle payout.
+    - Audit trail records both administrators and their respective actions.
+    - State transitions require valid prerequisite states.
+    """
+
+    def setUp(self):
+        self.client = APIClient()
+
+        # Admin 1 (Approver)
+        self.admin1 = User.objects.create_superuser(
+            email="approver_admin@endoora.com",
+            password="AdminPassword123!",
+            role=User.Role.ADMINISTRATOR,
+            first_name="First",
+            last_name="Approver",
+        )
+
+        # Admin 2 (Disburser / Settler)
+        self.admin2 = User.objects.create_superuser(
+            email="settler_admin@endoora.com",
+            password="AdminPassword123!",
+            role=User.Role.ADMINISTRATOR,
+            first_name="Second",
+            last_name="Disburser",
+        )
+
+        # Teacher who also has staff / admin privileges
+        self.teacher_admin = User.objects.create_user(
+            email="teacher_admin@endoora.com",
+            password="TeacherPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Dual",
+            last_name="RoleUser",
+            is_staff=True,
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+
+        # Regular teacher
+        self.teacher = User.objects.create_user(
+            email="standard_teacher@endoora.com",
+            password="TeacherPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Standard",
+            last_name="Teacher",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+
+        # Fund teacher wallets
+        from marketplace.services import deposit_to_wallet
+        deposit_to_wallet(self.teacher, amount_toman=500000)
+        deposit_to_wallet(self.teacher_admin, amount_toman=500000)
+
+    def test_teacher_admin_cannot_approve_or_pay_own_payout(self):
+        """A teacher with admin permissions cannot self-approve or disburse their own payout."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+        from ledger.payouts import process_admin_payout_dual_control
+
+        payout = request_teacher_payout(
+            teacher=self.teacher_admin,
+            amount_toman=100000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+
+        # 1. Direct service self-approval fails
+        with self.assertRaises((PermissionDenied, DRFPermissionDenied)):
+            process_teacher_payout_request(
+                admin_user=self.teacher_admin,
+                payout_id=str(payout.id),
+                action="approve",
+            )
+
+        with self.assertRaises((PermissionDenied, DRFPermissionDenied)):
+            process_admin_payout_dual_control(
+                admin_user=self.teacher_admin,
+                payout_id=str(payout.id),
+                action="approve",
+            )
+
+        # 2. REST API self-approval fails
+        self.client.force_authenticate(user=self.teacher_admin)
+        res = self.client.post(
+            f"/api/marketplace/admin/payouts/{payout.id}/process/",
+            data={"action": "approve"},
+            format="json",
+        )
+        self.assertIn(res.status_code, [403, 400])
+
+    def test_approving_admin_cannot_disburse_payout(self):
+        """The administrator who approves a payout cannot be the one who marks it disbursed."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+        from ledger.payouts import process_admin_payout_dual_control
+
+        payout = request_teacher_payout(
+            teacher=self.teacher,
+            amount_toman=100000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+
+        # Admin 1 approves
+        process_teacher_payout_request(
+            admin_user=self.admin1,
+            payout_id=str(payout.id),
+            action="approve",
+        )
+        payout.refresh_from_db()
+        self.assertEqual(payout.status, TeacherPayoutStatus.APPROVED)
+        self.assertEqual(payout.approved_by, self.admin1)
+
+        # Admin 1 attempts to pay -> blocked by segregation of duties
+        with self.assertRaises((PermissionDenied, DRFPermissionDenied)):
+            process_teacher_payout_request(
+                admin_user=self.admin1,
+                payout_id=str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-111222333",
+            )
+
+        # Same block applies via ledger dual control
+        with self.assertRaises((PermissionDenied, DRFPermissionDenied)):
+            process_admin_payout_dual_control(
+                admin_user=self.admin1,
+                payout_id=str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-111222333",
+            )
+
+    def test_disbursement_fails_without_prior_approval(self):
+        """Disbursement fails if the payout was not previously approved."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+        from ledger.payouts import process_admin_payout_dual_control
+
+        payout = request_teacher_payout(
+            teacher=self.teacher,
+            amount_toman=100000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+        self.assertEqual(payout.status, TeacherPayoutStatus.PENDING)
+
+        # Direct payment attempt by Admin 2 on pending payout fails
+        with self.assertRaises((ValidationError, DRFValidationError)):
+            process_teacher_payout_request(
+                admin_user=self.admin2,
+                payout_id=str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-UNAPPROVED",
+            )
+
+        with self.assertRaises((ValidationError, DRFValidationError)):
+            process_admin_payout_dual_control(
+                admin_user=self.admin2,
+                payout_id=str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-UNAPPROVED",
+            )
+
+    def test_two_distinct_admins_successful_approval_and_disbursement(self):
+        """Two distinct administrators successfully approve and settle a payout request."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+
+        payout = request_teacher_payout(
+            teacher=self.teacher,
+            amount_toman=120000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+
+        # Step 1: Admin 1 approves
+        self.client.force_authenticate(user=self.admin1)
+        res_approve = self.client.post(
+            f"/api/marketplace/admin/payouts/{payout.id}/process/",
+            data={"action": "approve", "admin_notes": "مدارک هویتی تایید شد."},
+            format="json",
+        )
+        self.assertEqual(res_approve.status_code, 200)
+        payout.refresh_from_db()
+        self.assertEqual(payout.status, TeacherPayoutStatus.APPROVED)
+        self.assertEqual(payout.approved_by, self.admin1)
+        self.assertIsNotNone(payout.approved_at)
+
+        # Step 2: Admin 2 disburses
+        self.client.force_authenticate(user=self.admin2)
+        res_pay = self.client.post(
+            f"/api/marketplace/admin/payouts/{payout.id}/process/",
+            data={
+                "action": "pay",
+                "bank_transfer_reference": "PAYA-888999111",
+                "admin_notes": "حواله پایا ارسال شد.",
+            },
+            format="json",
+        )
+        self.assertEqual(res_pay.status_code, 200)
+        payout.refresh_from_db()
+        self.assertEqual(payout.status, TeacherPayoutStatus.PAID)
+        self.assertEqual(payout.processed_by, self.admin2)
+        self.assertIsNotNone(payout.processed_at)
+
+    def test_audit_trail_records_both_administrators_and_actions(self):
+        """Audit trail records both administrators and their respective actions with timestamps."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+        from ledger.models import PayoutAuditLog, PayoutAuditAction
+
+        payout = request_teacher_payout(
+            teacher=self.teacher,
+            amount_toman=150000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+
+        # Admin 1 approves
+        process_teacher_payout_request(
+            admin_user=self.admin1,
+            payout_id=str(payout.id),
+            action="approve",
+            admin_notes="بررسی مدارک حساب",
+        )
+
+        # Admin 2 pays
+        process_teacher_payout_request(
+            admin_user=self.admin2,
+            payout_id=str(payout.id),
+            action="pay",
+            bank_transfer_reference="SATNA-555666777",
+            admin_notes="حواله ساتنا انجام شد",
+        )
+
+        logs = PayoutAuditLog.objects.filter(payout_request=payout).order_by("created_at")
+        actions = [(log.action, log.performed_by.id) for log in logs]
+        self.assertIn((PayoutAuditAction.APPROVED, self.admin1.id), actions)
+        self.assertIn((PayoutAuditAction.PAID, self.admin2.id), actions)
+
+        pay_log = logs.filter(action=PayoutAuditAction.PAID).first()
+        self.assertEqual(pay_log.bank_transfer_reference, "SATNA-555666777")
+        self.assertEqual(pay_log.performed_by, self.admin2)
+
+    def test_invalid_state_transitions_fail(self):
+        """Finalized payouts cannot be approved, paid again, or rejected."""
+        from marketplace.services import request_teacher_payout, process_teacher_payout_request
+
+        payout = request_teacher_payout(
+            teacher=self.teacher,
+            amount_toman=100000,
+            bank_shaba_number="IR120170000000109876543210",
+        )
+
+        process_teacher_payout_request(self.admin1, str(payout.id), action="approve")
+        process_teacher_payout_request(
+            self.admin2,
+            str(payout.id),
+            action="pay",
+            bank_transfer_reference="PAYA-000111222",
+        )
+        payout.refresh_from_db()
+        self.assertEqual(payout.status, TeacherPayoutStatus.PAID)
+
+        # Cannot pay again
+        with self.assertRaises((ValidationError, DRFValidationError)):
+            process_teacher_payout_request(
+                self.admin1,
+                str(payout.id),
+                action="pay",
+                bank_transfer_reference="PAYA-DUPLICATE",
+            )
+
+        # Cannot reject after paid
+        with self.assertRaises((ValidationError, DRFValidationError)):
+            process_teacher_payout_request(
+                self.admin1,
+                str(payout.id),
+                action="reject",
+                rejection_reason="دیرهنگام",
+            )

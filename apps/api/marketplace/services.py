@@ -2634,8 +2634,9 @@ def process_teacher_payout_request(
     action: str,
     admin_notes: str = "",
     rejection_reason: str = "",
+    bank_transfer_reference: str = "",
 ) -> TeacherPayoutRequest:
-    """Process or reject teacher payout request by financial administrator."""
+    """Process or reject teacher payout request by financial administrator with two-person dual control."""
     if not (admin_user.is_staff or getattr(admin_user, "role", "") == User.Role.ADMINISTRATOR):
         raise PermissionDenied("فقط مدیران و کارشناسان مالی مجاز به بررسی درخواست‌های تسویه هستند.")
 
@@ -2645,20 +2646,63 @@ def process_teacher_payout_request(
         except TeacherPayoutRequest.DoesNotExist:
             raise ValidationError("درخواست تسویه یافت نشد.")
 
+        # Guard: block self-approval by teachers who also hold administrative roles
+        if payout.teacher_id and payout.teacher_id == admin_user.id:
+            raise PermissionDenied("مدرس نمی‌تواند درخواست تسویه حساب متعلق به خود را بررسی، تایید یا پرداخت کند.")
+
         if payout.status in [TeacherPayoutStatus.PAID, TeacherPayoutStatus.REJECTED]:
             raise ValidationError("این درخواست قبلاً نهایی شده و قابل تغییر نیست.")
 
+        from ledger.models import PayoutAuditLog, PayoutAuditAction
+
         action_clean = action.strip().lower()
         if action_clean == "approve":
+            if payout.status != TeacherPayoutStatus.PENDING:
+                raise ValidationError("تنها درخواست‌های در انتظار بررسی مجاز به تایید هستند.")
             payout.status = TeacherPayoutStatus.APPROVED
+            payout.approved_by = admin_user
+            payout.approved_at = timezone.now()
             if admin_notes:
-                payout.admin_notes = admin_notes
+                payout.admin_notes = f"{payout.admin_notes}\n[تایید اولیه توسط {admin_user.email}]: {admin_notes}".strip()
+            payout.save(update_fields=["status", "approved_by", "approved_at", "admin_notes", "updated_at"])
+            PayoutAuditLog.objects.create(
+                payout_request=payout,
+                performed_by=admin_user,
+                action=PayoutAuditAction.APPROVED,
+                notes=admin_notes or "تایید مرحله اول کنترل داخلی انجام شد.",
+            )
         elif action_clean == "pay":
+            if payout.status != TeacherPayoutStatus.APPROVED:
+                raise ValidationError("درخواست تسویه ابتدا باید به تایید اولیه برسد و در وضعیت تأیید شده (Approved) باشد.")
+
+            # Dual-control segregation of duties: approver cannot mark disbursed
+            approver_id = payout.approved_by_id
+            if not approver_id:
+                approver_audit = PayoutAuditLog.objects.filter(
+                    payout_request=payout,
+                    action=PayoutAuditAction.APPROVED,
+                ).first()
+                if approver_audit:
+                    approver_id = approver_audit.performed_by_id
+
+            if approver_id and approver_id == admin_user.id:
+                raise PermissionDenied("مدیر تاییدکننده پرداخت نمی‌تواند به عنوان تسویه‌کننده حواله عمل کند (اصل تفکیک وظایف و کنترل دونفره).")
+
             payout.status = TeacherPayoutStatus.PAID
             payout.processed_by = admin_user
             payout.processed_at = timezone.now()
-            if admin_notes:
-                payout.admin_notes = admin_notes
+            ref_info = f"کد پیگیری پایا: {bank_transfer_reference.strip()}" if bank_transfer_reference else ""
+            full_note = f"{ref_info} | {admin_notes.strip()}".strip(" |")
+            if full_note:
+                payout.admin_notes = f"{payout.admin_notes}\n[تسویه توسط {admin_user.email}]: {full_note}".strip()
+            payout.save(update_fields=["status", "processed_by", "processed_at", "admin_notes", "updated_at"])
+            PayoutAuditLog.objects.create(
+                payout_request=payout,
+                performed_by=admin_user,
+                action=PayoutAuditAction.PAID,
+                bank_transfer_reference=bank_transfer_reference.strip(),
+                notes=admin_notes or "تسویه نهایی و واریز حواله انجام شد.",
+            )
         elif action_clean == "reject":
             if not rejection_reason or len(rejection_reason.strip()) < 5:
                 raise ValidationError("ثبت علت رد درخواست تسویه الزامی است.")
@@ -2674,9 +2718,14 @@ def process_teacher_payout_request(
                 reference_id=str(payout.id),
                 description=f"استرداد مبلغ تسویه رد شده: {rejection_reason}",
             )
+            payout.save(update_fields=["status", "rejection_reason", "processed_by", "processed_at", "updated_at"])
+            PayoutAuditLog.objects.create(
+                payout_request=payout,
+                performed_by=admin_user,
+                action=PayoutAuditAction.REJECTED,
+                notes=rejection_reason.strip(),
+            )
         else:
             raise ValidationError("عملیات نامعتبر است (گزینه‌ها: approve, pay, reject).")
 
-        payout.save()
         return payout
-
