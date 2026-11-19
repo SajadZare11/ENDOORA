@@ -1374,3 +1374,179 @@ class SandboxPaymentSecurityTests(APITestCase):
         self.assertTrue(res2.data["result"]["already_verified"])
         # Still exactly 1 escrow
         self.assertEqual(BookingEscrow.objects.filter(booking=booking).count(), 1)
+
+
+class ServerSideBookingPricingSecurityTests(APITestCase):
+    """
+    Acceptance tests for F07: Authoritative server-side booking and order price calculations.
+    Ensures client-supplied rates, discounts, and prices are ignored, offers use snapshots,
+    packages verify/decrement balances, and splits equal total price with Decimal precision.
+    """
+
+    def setUp(self):
+        self.learner = User.objects.create_user(
+            email="learner_f07@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.LEARNER,
+            first_name="Ali",
+            last_name="Rezaei",
+        )
+        self.teacher = User.objects.create_user(
+            email="teacher_f07@endoora.com",
+            password="StrongPassword123!",
+            role=User.Role.TEACHER,
+            first_name="Hassan",
+            last_name="Moradi",
+            is_teacher_verified=True,
+            marketplace_eligible=True,
+        )
+        from profiles.models import TeacherProfile
+        self.profile = TeacherProfile.objects.create(
+            user=self.teacher,
+            public_name="Hassan Moradi",
+            hourly_rate_toman=Decimal("240000"),
+        )
+        self.client.force_authenticate(user=self.learner)
+
+    def test_client_modified_rate_toman_ignored_in_direct_booking(self):
+        """Client attempting to tamper with rate_toman is charged the authoritative server rate."""
+        start_time = timezone.now() + timedelta(days=2, hours=10)
+        # Client tries to pass 1,000 Toman instead of 240,000 / 2 = 120,000 for 30 minutes
+        payload = {
+            "teacher_id": str(self.teacher.id),
+            "target_skill": "speaking",
+            "scheduled_start": start_time.isoformat(),
+            "duration_minutes": 30,
+            "rate_toman": 1000,
+            "price": 500,
+            "discount": 50000,
+            "total": 500,
+        }
+        res = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res.status_code, 201)
+        booking = SessionBooking.objects.get(id=res.data["id"])
+        # Authoritative: 240,000 * 30 / 60 = 120,000
+        self.assertEqual(booking.rate_toman, Decimal("120000"))
+        self.assertEqual(Decimal(str(res.data["rate_toman"])), Decimal("120000"))
+
+    def test_offer_based_booking_uses_snapshot_offer_price(self):
+        """Offer bookings use the agreed offer snapshot price, rejecting client overrides."""
+        req = create_learn_now_request(
+            learner=self.learner,
+            target_skill=RequestSkill.SPEAKING,
+            short_description="تمرین مکالمه فشرده",
+        )
+        offer = TeacherOffer.objects.create(
+            request=req,
+            teacher=self.teacher,
+            rate_toman=Decimal("350000"),
+            duration_minutes=60,
+            status=OfferStatus.PENDING,
+        )
+        start_time = timezone.now() + timedelta(days=2, hours=14)
+        payload = {
+            "teacher_id": str(self.teacher.id),
+            "target_skill": "speaking",
+            "scheduled_start": start_time.isoformat(),
+            "duration_minutes": 60,
+            "offer_id": str(offer.id),
+            "rate_toman": 20000,  # Attacker tries to override offer price
+        }
+        res = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res.status_code, 201)
+        booking = SessionBooking.objects.get(id=res.data["id"])
+        self.assertEqual(booking.rate_toman, Decimal("350000"))
+
+    def test_package_booking_verifies_and_decrements_sessions(self):
+        """Package bookings decrement session balance and charge 0 additional money."""
+        from marketplace.models import LearnerSessionPackage
+        pkg = LearnerSessionPackage.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            total_sessions=5,
+            remaining_sessions=3,
+            is_active=True,
+        )
+        start_time = timezone.now() + timedelta(days=3, hours=10)
+        payload = {
+            "teacher_id": str(self.teacher.id),
+            "target_skill": "speaking",
+            "scheduled_start": start_time.isoformat(),
+            "duration_minutes": 45,
+            "package_id": str(pkg.id),
+            "rate_toman": 999999,
+        }
+        res = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res.status_code, 201)
+        booking = SessionBooking.objects.get(id=res.data["id"])
+        self.assertEqual(booking.rate_toman, Decimal("0"))
+        self.assertTrue(booking.is_paid)
+        pkg.refresh_from_db()
+        self.assertEqual(pkg.remaining_sessions, 2)
+        self.assertTrue(pkg.is_active)
+
+    def test_exhausted_or_expired_package_rejected(self):
+        """Booking with exhausted or expired package fails with 400 Bad Request."""
+        from marketplace.models import LearnerSessionPackage
+        exhausted = LearnerSessionPackage.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            total_sessions=5,
+            remaining_sessions=0,
+            is_active=False,
+        )
+        start_time = timezone.now() + timedelta(days=3, hours=12)
+        payload = {
+            "teacher_id": str(self.teacher.id),
+            "target_skill": "speaking",
+            "scheduled_start": start_time.isoformat(),
+            "duration_minutes": 45,
+            "package_id": str(exhausted.id),
+        }
+        res = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res.status_code, 400)
+
+        # Expired package
+        expired = LearnerSessionPackage.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            total_sessions=5,
+            remaining_sessions=2,
+            is_active=True,
+            expires_at=timezone.now() - timedelta(days=1),
+        )
+        payload["package_id"] = str(expired.id)
+        res_expired = self.client.post("/api/marketplace/bookings/", data=payload, format="json")
+        self.assertEqual(res_expired.status_code, 400)
+
+    def test_commission_and_payout_splits_equal_total_booking_price(self):
+        """Platform commission + teacher net exactly equals total booking price."""
+        from marketplace.services import create_booking_escrow
+        from ledger.payouts import process_session_completion_ledger
+
+        start_time = timezone.now() + timedelta(days=4)
+        booking = SessionBooking.objects.create(
+            learner=self.learner,
+            teacher=self.teacher,
+            target_skill="speaking",
+            scheduled_start=start_time,
+            scheduled_end=start_time + timedelta(minutes=45),
+            rate_toman=Decimal("333333"),
+            status=BookingStatus.COMPLETED,
+            is_paid=True,
+        )
+
+        escrow = create_booking_escrow(booking, commission_rate=Decimal("0.15"))
+        self.assertEqual(
+            escrow.platform_commission_toman + escrow.teacher_net_toman,
+            escrow.total_amount_toman,
+        )
+        self.assertEqual(escrow.total_amount_toman, Decimal("333333"))
+
+        # In ledger entry
+        ledger_entry = process_session_completion_ledger(booking)
+        self.assertEqual(
+            ledger_entry.commission_amount_toman + ledger_entry.net_amount_toman,
+            ledger_entry.gross_amount_toman,
+        )
+        self.assertEqual(ledger_entry.gross_amount_toman, Decimal("333333"))

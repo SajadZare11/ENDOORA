@@ -214,6 +214,7 @@ class SessionBookingSerializer(serializers.ModelSerializer):
             "id",
             "request_id",
             "offer_id",
+            "package_id",
             "target_skill",
             "skill_display",
             "target_subskill",
@@ -324,12 +325,34 @@ class DirectCreateBookingSerializer(serializers.Serializer):
     teacher_id = serializers.UUIDField()
     target_skill = serializers.ChoiceField(choices=RequestSkill.choices)
     target_subskill = serializers.CharField(required=False, allow_blank=True, default="", max_length=128)
-    rate_toman = serializers.DecimalField(max_digits=10, decimal_places=0, min_value=10000)
+    rate_toman = serializers.DecimalField(max_digits=10, decimal_places=0, required=False, allow_null=True)
+    price = serializers.DecimalField(max_digits=10, decimal_places=0, required=False, allow_null=True)
+    discount = serializers.DecimalField(max_digits=10, decimal_places=0, required=False, allow_null=True)
+    total = serializers.DecimalField(max_digits=10, decimal_places=0, required=False, allow_null=True)
+    package_id = serializers.UUIDField(required=False, allow_null=True)
+    offer_id = serializers.UUIDField(required=False, allow_null=True)
     scheduled_start = serializers.DateTimeField()
     duration_minutes = serializers.ChoiceField(choices=[30, 45, 60], default=45)
     online_format = serializers.ChoiceField(choices=SessionFormat.choices, default=SessionFormat.VIDEO)
     timezone_name = serializers.CharField(required=False, default="Asia/Tehran", max_length=64)
     idempotency_key = serializers.CharField(required=False, allow_null=True, max_length=128)
+
+
+class LearnerSessionPackageSerializer(serializers.ModelSerializer):
+    class Meta:
+        from marketplace.models import LearnerSessionPackage
+        model = LearnerSessionPackage
+        fields = [
+            "id",
+            "learner_id",
+            "teacher_id",
+            "total_sessions",
+            "remaining_sessions",
+            "is_active",
+            "expires_at",
+            "created_at",
+            "updated_at",
+        ]
 
 
 class RescheduleBookingSerializer(serializers.Serializer):

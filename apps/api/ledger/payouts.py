@@ -240,9 +240,11 @@ def process_session_completion_ledger(
             booking_time=booking.scheduled_start,
         )
 
-        commission_pct = rule.rate_percentage / Decimal("100")
-        commission = (gross * commission_pct + rule.fixed_fee_toman).quantize(Decimal("1"))
-        net = max(Decimal("0"), gross - commission)
+        commission_pct = Decimal(str(rule.rate_percentage)) / Decimal("100")
+        commission = (gross * commission_pct + Decimal(str(rule.fixed_fee_toman))).quantize(Decimal("1"))
+        if commission > gross:
+            commission = gross
+        net = gross - commission
 
         dispute_window_ends = timezone.now() + timedelta(hours=dispute_window_hours)
         ref_code = f"LED-{timezone.now().strftime('%Y%m%d')}-{uuid.uuid4().hex[:8].upper()}"

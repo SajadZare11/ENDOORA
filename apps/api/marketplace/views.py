@@ -223,18 +223,43 @@ def bookings_collection_view(request):
         except User.DoesNotExist:
             return Response({"detail": "مدرس مورد نظر یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
 
-        booking = create_session_booking(
-            learner=request.user,
-            teacher=teacher,
-            target_skill=data["target_skill"],
-            target_subskill=data.get("target_subskill", ""),
-            rate_toman=data["rate_toman"],
-            scheduled_start=data["scheduled_start"],
-            duration_minutes=data.get("duration_minutes", 45),
-            online_format=data.get("online_format", "video"),
-            timezone_name=data.get("timezone_name", "Asia/Tehran"),
-            idempotency_key=data.get("idempotency_key"),
-        )
+        package = None
+        package_id = data.get("package_id")
+        if package_id:
+            try:
+                from marketplace.models import LearnerSessionPackage
+                package = LearnerSessionPackage.objects.get(id=package_id, learner=request.user)
+            except LearnerSessionPackage.DoesNotExist:
+                return Response({"detail": "بسته آموزشی یافت نشد یا متعلق به شما نیست."}, status=status.HTTP_400_BAD_REQUEST)
+
+        offer = None
+        offer_id = data.get("offer_id")
+        if offer_id:
+            try:
+                from marketplace.models import TeacherOffer
+                offer = TeacherOffer.objects.get(id=offer_id, teacher=teacher)
+            except TeacherOffer.DoesNotExist:
+                return Response({"detail": "پیشنهاد مورد نظر یافت نشد."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            booking = create_session_booking(
+                learner=request.user,
+                teacher=teacher,
+                target_skill=data["target_skill"],
+                target_subskill=data.get("target_subskill", ""),
+                rate_toman=None,  # Derive price authoritatively on server; ignore client-supplied rate_toman/price/discount/total
+                scheduled_start=data["scheduled_start"],
+                duration_minutes=data.get("duration_minutes", 45),
+                online_format=data.get("online_format", "video"),
+                timezone_name=data.get("timezone_name", "Asia/Tehran"),
+                idempotency_key=data.get("idempotency_key"),
+                package=package,
+                offer=offer,
+            )
+        except Exception as e:
+            detail_msg = getattr(e, "detail", None) or getattr(e, "message", None) or str(e)
+            return Response({"detail": detail_msg}, status=status.HTTP_400_BAD_REQUEST)
+
         return Response(
             SessionBookingSerializer(booking, context={"request": request}).data,
             status=status.HTTP_201_CREATED,

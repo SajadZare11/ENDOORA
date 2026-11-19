@@ -12,6 +12,7 @@ from .models import (
     MarketplaceRequest,
     TeacherOffer,
     SessionBooking,
+    LearnerSessionPackage,
     RequestStatus,
     OfferStatus,
     BookingStatus,
@@ -66,12 +67,49 @@ def check_schedule_conflict(user: User, start_time, end_time, exclude_booking_id
     return qs.exists()
 
 
+def derive_booking_price(
+    teacher: User,
+    duration_minutes: int = 45,
+    offer: Optional[TeacherOffer] = None,
+    package: Optional[LearnerSessionPackage] = None,
+) -> Decimal:
+    """
+    Authoritatively derive booking price on server using Decimal arithmetic.
+    Ignores client-supplied rate_toman, price, discount, and total.
+    1. If pre-paid package is used, price is 0.
+    2. If offer is used, price is the agreed offer.rate_toman snapshot.
+    3. Direct booking uses teacher profile hourly_rate_toman scaled to duration.
+    """
+    from django.conf import settings
+    if package is not None:
+        return Decimal("0")
+
+    if offer is not None:
+        return Decimal(str(offer.rate_toman))
+
+    hourly_rate = Decimal(str(getattr(settings, "DEFAULT_TEACHER_HOURLY_RATE_TOMAN", "150000")))
+    teacher_profile = getattr(teacher, "teacher_profile", None)
+    if teacher_profile is None:
+        try:
+            from profiles.models import TeacherProfile
+            teacher_profile = TeacherProfile.objects.filter(user=teacher).first()
+        except Exception:
+            teacher_profile = None
+
+    if teacher_profile and teacher_profile.hourly_rate_toman:
+        hourly_rate = Decimal(str(teacher_profile.hourly_rate_toman))
+
+    duration = Decimal(str(duration_minutes or 45))
+    price = (hourly_rate * duration / Decimal("60")).quantize(Decimal("1"))
+    return price
+
+
 def create_session_booking(
     learner: User,
     teacher: User,
     target_skill: str,
-    rate_toman: Decimal,
-    scheduled_start,
+    rate_toman: Optional[Decimal] = None,
+    scheduled_start=None,
     duration_minutes: int = 45,
     online_format: str = SessionFormat.VIDEO,
     target_subskill: str = "",
@@ -79,6 +117,7 @@ def create_session_booking(
     idempotency_key: str | None = None,
     request: MarketplaceRequest | None = None,
     offer: TeacherOffer | None = None,
+    package: Optional[LearnerSessionPackage] = None,
 ) -> SessionBooking:
     if not learner.is_authenticated:
         raise PermissionDenied("برای رزرو جلسه ابتدا باید وارد سیستم شوید.")
@@ -94,6 +133,46 @@ def create_session_booking(
         if existing:
             return existing
 
+    # Validate package if supplied
+    if package is not None:
+        if package.learner_id != learner.id:
+            raise PermissionDenied("بسته آموزشی متعلق به این زبان‌آموز نیست.")
+        if package.teacher_id and package.teacher_id != teacher.id:
+            raise ValidationError("این بسته آموزشی برای مدرس دیگری تعریف شده است.")
+        if not package.is_active or package.remaining_sessions <= 0:
+            raise ValidationError("بسته آموزشی دارای جلسه باقیمانده نیست.")
+        if package.expires_at and timezone.now() > package.expires_at:
+            raise ValidationError("بسته آموزشی منقضی شده است.")
+
+    # Validate offer if supplied
+    if offer is not None:
+        if offer.teacher_id != teacher.id:
+            raise ValidationError("پیشنهاد انتخاب شده متعلق به این مدرس نیست.")
+
+    # Authoritative server-side price calculation
+    if package is not None or offer is not None:
+        calculated_rate = derive_booking_price(
+            teacher=teacher,
+            duration_minutes=duration_minutes,
+            offer=offer,
+            package=package,
+        )
+    else:
+        teacher_profile = getattr(teacher, "teacher_profile", None)
+        if teacher_profile is None:
+            try:
+                from profiles.models import TeacherProfile
+                teacher_profile = TeacherProfile.objects.filter(user=teacher).first()
+            except Exception:
+                teacher_profile = None
+
+        if teacher_profile and teacher_profile.hourly_rate_toman:
+            calculated_rate = derive_booking_price(teacher=teacher, duration_minutes=duration_minutes)
+        elif rate_toman is not None:
+            calculated_rate = Decimal(str(rate_toman))
+        else:
+            calculated_rate = derive_booking_price(teacher=teacher, duration_minutes=duration_minutes)
+
     scheduled_end = scheduled_start + timedelta(minutes=duration_minutes)
 
     # Double booking conflict check
@@ -105,23 +184,29 @@ def create_session_booking(
 
     meeting_url = f"/room/{uuid_slug()}"
 
-    booking = SessionBooking.objects.create(
-        learner=learner,
-        teacher=teacher,
-        request=request,
-        offer=offer,
-        target_skill=target_skill,
-        target_subskill=target_subskill,
-        duration_minutes=duration_minutes,
-        online_format=online_format,
-        scheduled_start=scheduled_start,
-        scheduled_end=scheduled_end,
-        timezone_name=timezone_name,
-        rate_toman=rate_toman,
-        status=BookingStatus.CONFIRMED,
-        idempotency_key=idempotency_key,
-        meeting_url=meeting_url,
-    )
+    with transaction.atomic():
+        if package is not None:
+            package.use_session()
+
+        booking = SessionBooking.objects.create(
+            learner=learner,
+            teacher=teacher,
+            request=request,
+            offer=offer,
+            package=package,
+            target_skill=target_skill,
+            target_subskill=target_subskill,
+            duration_minutes=duration_minutes,
+            online_format=online_format,
+            scheduled_start=scheduled_start,
+            scheduled_end=scheduled_end,
+            timezone_name=timezone_name,
+            rate_toman=calculated_rate,
+            status=BookingStatus.CONFIRMED,
+            is_paid=True if (package is not None or calculated_rate == Decimal("0")) else False,
+            idempotency_key=idempotency_key,
+            meeting_url=meeting_url,
+        )
     return booking
 
 
@@ -1936,9 +2021,11 @@ def create_booking_escrow(
     if existing:
         return existing
 
-    rate = commission_rate or getattr(settings, "MARKETPLACE_COMMISSION_RATE", Decimal("0.15"))
-    total_amount = booking.rate_toman
+    rate = Decimal(str(commission_rate or getattr(settings, "MARKETPLACE_COMMISSION_RATE", Decimal("0.15"))))
+    total_amount = Decimal(str(booking.rate_toman))
     commission = (total_amount * rate).quantize(Decimal("1"))
+    if commission > total_amount:
+        commission = total_amount
     teacher_net = total_amount - commission
 
     escrow = BookingEscrow.objects.create(

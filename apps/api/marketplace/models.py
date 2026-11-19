@@ -3,6 +3,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -212,6 +213,44 @@ class TeacherOffer(models.Model):
         return f"Offer {self.id} by {self.teacher_id} for {self.request_id} ({self.status})"
 
 
+class LearnerSessionPackage(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    learner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="session_packages",
+    )
+    teacher = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="assigned_packages",
+    )
+    total_sessions = models.PositiveIntegerField(default=1)
+    remaining_sessions = models.PositiveIntegerField(default=1)
+    is_active = models.BooleanField(default=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Package {self.id} for {self.learner_id}: {self.remaining_sessions}/{self.total_sessions} left"
+
+    def use_session(self):
+        if not self.is_active or self.remaining_sessions <= 0:
+            raise ValidationError("بسته آموزشی دارای جلسه باقیمانده نیست.")
+        if self.expires_at and timezone.now() > self.expires_at:
+            raise ValidationError("بسته آموزشی منقضی شده است.")
+        self.remaining_sessions -= 1
+        if self.remaining_sessions == 0:
+            self.is_active = False
+        self.save(update_fields=["remaining_sessions", "is_active", "updated_at"])
+
+
 class SessionBooking(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     request = models.ForeignKey(
@@ -223,6 +262,13 @@ class SessionBooking(models.Model):
     )
     offer = models.ForeignKey(
         TeacherOffer,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="bookings",
+    )
+    package = models.ForeignKey(
+        LearnerSessionPackage,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
