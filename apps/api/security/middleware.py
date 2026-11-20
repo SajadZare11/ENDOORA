@@ -47,7 +47,7 @@ class InputSanitizationMiddleware:
         ]
 
     def __call__(self, request):
-        if request.path.startswith("/admin/"):
+        if request.path.startswith("/admin/") or request.path.startswith("/api/drafts/"):
             return self.get_response(request)
 
         if request.method in ["POST", "PUT", "PATCH"]:

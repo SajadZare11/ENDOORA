@@ -192,6 +192,43 @@ class OfflineSyncTests(APITestCase):
         self.assertNotIn("<script>", draft["title"])
         self.assertNotIn("<script>", str(draft["content_json"]))
 
+    def test_batch_sync_cannot_hijack_another_user_draft_id(self):
+        # other_user has an existing draft
+        other_draft = OfflineDraft.objects.create(
+            user=self.other_user,
+            draft_type=DraftType.WRITING_SUBMISSION,
+            title="Other User Essay",
+            content_json={"body": "Original private text"},
+            server_version=2,
+        )
+
+        # learner tries to send a draft with other_user's draft ID
+        self.client.force_authenticate(user=self.learner)
+        payload = {
+            "drafts": [
+                {
+                    "id": str(other_draft.id),
+                    "draft_type": DraftType.WRITING_SUBMISSION,
+                    "title": "Hacked Essay",
+                    "content_json": {"body": "Malicious takeover"},
+                    "client_version": 1,
+                }
+            ]
+        }
+        resp = self.client.post("/api/drafts/sync/", payload, format="json")
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+
+        # Verify other_user's draft was NOT modified or hijacked
+        other_draft.refresh_from_db()
+        self.assertEqual(other_draft.title, "Other User Essay")
+        self.assertEqual(other_draft.content_json["body"], "Original private text")
+        self.assertEqual(other_draft.user, self.other_user)
+
+        # Verify learner got a newly assigned draft ID
+        learner_synced = resp.data["drafts"][0]
+        self.assertNotEqual(str(learner_synced["id"]), str(other_draft.id))
+        self.assertEqual(learner_synced["title"], "Hacked Essay")
+
     def test_resolve_conflict_keep_server(self):
         self.client.force_authenticate(user=self.learner)
         draft = OfflineDraft.objects.create(

@@ -77,8 +77,12 @@ class SyncService:
                     existing_draft = OfflineDraft.objects.filter(
                         id=draft_id_str, user=user
                     ).first()
+                    # Prevent ID collision or cross-user draft hijacking
+                    if not existing_draft and OfflineDraft.objects.filter(id=draft_id_str).exists():
+                        draft_id_str = None
                 except Exception:
                     existing_draft = None
+                    draft_id_str = None
 
             if not existing_draft and resource_id:
                 existing_draft = OfflineDraft.objects.filter(

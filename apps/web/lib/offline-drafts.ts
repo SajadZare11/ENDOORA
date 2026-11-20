@@ -1,6 +1,7 @@
 "use client";
 
-import { endooraApi } from "./endoora-api";
+import { endooraApi } from "./endoora-api.ts";
+import { getActiveUserId, scopedLocalStorage } from "./client-storage.ts";
 
 export type DraftSyncStatus = "synced" | "pending" | "conflict" | "error";
 
@@ -20,8 +21,8 @@ export interface LocalDraftRecord {
   sync_status: DraftSyncStatus;
 }
 
-const STORAGE_INDEX_KEY = "endoora_draft_index_v1";
-const STORAGE_PREFIX = "endoora_draft_";
+const STORAGE_INDEX_KEY = "draft_index_v1";
+const STORAGE_PREFIX = "draft_";
 
 type Listener = () => void;
 const listeners = new Set<Listener>();
@@ -36,35 +37,20 @@ function notifyListeners() {
   });
 }
 
-function safeGetItem(key: string): string | null {
-  if (typeof window === "undefined" || !window.localStorage) return null;
-  try {
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
+function safeGetItem(key: string, userId?: string | null): string | null {
+  return scopedLocalStorage.getItem(key, userId);
 }
 
-function safeSetItem(key: string, value: string): void {
-  if (typeof window === "undefined" || !window.localStorage) return;
-  try {
-    window.localStorage.setItem(key, value);
-  } catch {
-    // ignore quota errors
-  }
+function safeSetItem(key: string, value: string, userId?: string | null): void {
+  scopedLocalStorage.setItem(key, value, userId);
 }
 
-function safeRemoveItem(key: string): void {
-  if (typeof window === "undefined" || !window.localStorage) return;
-  try {
-    window.localStorage.removeItem(key);
-  } catch {
-    // ignore
-  }
+function safeRemoveItem(key: string, userId?: string | null): void {
+  scopedLocalStorage.removeItem(key, userId);
 }
 
-function getStoredIndex(): string[] {
-  const raw = safeGetItem(STORAGE_INDEX_KEY);
+function getStoredIndex(userId?: string | null): string[] {
+  const raw = safeGetItem(STORAGE_INDEX_KEY, userId);
   if (!raw) return [];
   try {
     return JSON.parse(raw);
@@ -73,8 +59,8 @@ function getStoredIndex(): string[] {
   }
 }
 
-function setStoredIndex(ids: string[]): void {
-  safeSetItem(STORAGE_INDEX_KEY, JSON.stringify(Array.from(new Set(ids))));
+function setStoredIndex(ids: string[], userId?: string | null): void {
+  safeSetItem(STORAGE_INDEX_KEY, JSON.stringify(Array.from(new Set(ids))), userId);
 }
 
 export function computeLocalChecksum(data: unknown): string {
@@ -88,11 +74,11 @@ export function computeLocalChecksum(data: unknown): string {
   return "chk_" + Math.abs(hash).toString(16);
 }
 
-export function listLocalDrafts(): LocalDraftRecord[] {
-  const ids = getStoredIndex();
+export function listLocalDrafts(userId?: string | null): LocalDraftRecord[] {
+  const ids = getStoredIndex(userId);
   const drafts: LocalDraftRecord[] = [];
   for (const id of ids) {
-    const raw = safeGetItem(`${STORAGE_PREFIX}${id}`);
+    const raw = safeGetItem(`${STORAGE_PREFIX}${id}`, userId);
     if (raw) {
       try {
         drafts.push(JSON.parse(raw));
@@ -108,8 +94,8 @@ export function listLocalDrafts(): LocalDraftRecord[] {
   );
 }
 
-export function getLocalDraft(id: string): LocalDraftRecord | null {
-  const raw = safeGetItem(`${STORAGE_PREFIX}${id}`);
+export function getLocalDraft(id: string, userId?: string | null): LocalDraftRecord | null {
+  const raw = safeGetItem(`${STORAGE_PREFIX}${id}`, userId);
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -118,9 +104,14 @@ export function getLocalDraft(id: string): LocalDraftRecord | null {
   }
 }
 
-export function saveLocalDraft(draft: Partial<LocalDraftRecord>): LocalDraftRecord {
+export function saveLocalDraft(
+  draft: Partial<LocalDraftRecord>,
+  userId?: string | null
+): LocalDraftRecord {
+  const effectiveUserId =
+    userId !== undefined ? userId : getActiveUserId();
   const id = draft.id || `local_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-  const existing = getLocalDraft(id);
+  const existing = getLocalDraft(id, effectiveUserId);
 
   const nowIso = new Date().toISOString();
   const content = draft.content_json || existing?.content_json || {};
@@ -144,21 +135,23 @@ export function saveLocalDraft(draft: Partial<LocalDraftRecord>): LocalDraftReco
     sync_status: draft.sync_status || "pending",
   };
 
-  safeSetItem(`${STORAGE_PREFIX}${id}`, JSON.stringify(record));
+  safeSetItem(`${STORAGE_PREFIX}${id}`, JSON.stringify(record), effectiveUserId);
 
-  const currentIds = getStoredIndex();
+  const currentIds = getStoredIndex(effectiveUserId);
   if (!currentIds.includes(id)) {
-    setStoredIndex([...currentIds, id]);
+    setStoredIndex([...currentIds, id], effectiveUserId);
   }
 
   notifyListeners();
   return record;
 }
 
-export function deleteLocalDraft(id: string): void {
-  safeRemoveItem(`${STORAGE_PREFIX}${id}`);
-  const currentIds = getStoredIndex();
-  setStoredIndex(currentIds.filter((item) => item !== id));
+export function deleteLocalDraft(id: string, userId?: string | null): void {
+  const effectiveUserId =
+    userId !== undefined ? userId : getActiveUserId();
+  safeRemoveItem(`${STORAGE_PREFIX}${id}`, effectiveUserId);
+  const currentIds = getStoredIndex(effectiveUserId);
+  setStoredIndex(currentIds.filter((item) => item !== id), effectiveUserId);
   notifyListeners();
 }
 
@@ -169,7 +162,7 @@ export function subscribeToDrafts(listener: Listener): () => void {
   };
 }
 
-export async function syncPendingDrafts(): Promise<{
+export async function syncPendingDrafts(userId?: string | null): Promise<{
   synced: number;
   conflicts: number;
   errors: number;
@@ -178,7 +171,9 @@ export async function syncPendingDrafts(): Promise<{
     return { synced: 0, conflicts: 0, errors: 0 };
   }
 
-  const drafts = listLocalDrafts().filter(
+  const effectiveUserId =
+    userId !== undefined ? userId : getActiveUserId();
+  const drafts = listLocalDrafts(effectiveUserId).filter(
     (d) => d.sync_status === "pending" || d.sync_status === "error"
   );
   if (drafts.length === 0) {
@@ -241,7 +236,7 @@ export async function syncPendingDrafts(): Promise<{
           local.is_conflict = serverDraft.is_conflict;
           local.conflict_backup = serverDraft.conflict_backup;
           local.sync_status = serverDraft.is_conflict ? "conflict" : "synced";
-          safeSetItem(`${STORAGE_PREFIX}${local.id}`, JSON.stringify(local));
+          safeSetItem(`${STORAGE_PREFIX}${local.id}`, JSON.stringify(local), effectiveUserId);
 
           if (serverDraft.is_conflict) {
             conflicts++;
@@ -257,7 +252,7 @@ export async function syncPendingDrafts(): Promise<{
   } catch {
     for (const d of drafts) {
       d.sync_status = "error";
-      safeSetItem(`${STORAGE_PREFIX}${d.id}`, JSON.stringify(d));
+      safeSetItem(`${STORAGE_PREFIX}${d.id}`, JSON.stringify(d), effectiveUserId);
     }
     notifyListeners();
     return { synced: 0, conflicts: 0, errors: drafts.length };
