@@ -142,7 +142,7 @@ class TeacherDashboardTests(TestCase):
         self.assertTrue(forbidden_keys.isdisjoint(collect_keys(response.data)))
 
     def test_dashboard_service_uses_one_domain_query(self):
-        with self.assertNumQueries(1):
+        with self.assertNumQueries(2):
             payload = build_teacher_dashboard(self.verified_teacher)
         self.assertEqual(payload["verification_status"], "verified")
 

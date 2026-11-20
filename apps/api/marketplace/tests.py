@@ -916,18 +916,18 @@ class MarketplaceDay41Tests(TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertGreaterEqual(res.data["count"], 1)
         plan = res.data["plans"][0]
-        self.assertEqual(plan["code"], "launch_premium_90d")
-        self.assertEqual(plan["price_toman_number"], 420000)
+        self.assertEqual(plan["code"], "golden_1m")
+        self.assertEqual(plan["price_toman_number"], 299000)
 
         # Admin updates pricing plan
         self.client.force_authenticate(user=self.admin_user)
         patch_res = self.client.patch(
             f"/api/marketplace/admin/plans/{plan['id']}/",
-            data={"price_toman": 450000},
+            data={"price_toman": 350000},
             format="json",
         )
         self.assertEqual(patch_res.status_code, 200)
-        self.assertEqual(patch_res.data["plan"]["price_toman_number"], 450000)
+        self.assertEqual(patch_res.data["plan"]["price_toman_number"], 350000)
 
 class MarketplaceDay42Tests(APITestCase):
     def setUp(self):
