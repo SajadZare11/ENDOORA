@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
@@ -169,3 +169,60 @@ class ProductionLaunchBackendTests(TestCase):
         call_command("verify_production_launch_readiness")
         scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
         self.assertEqual(scorecard["score"], 100)
+
+
+class LaunchGateReadinessVerificationTests(TestCase):
+    def test_insecure_production_settings_fail_check_03(self):
+        from django.test import override_settings
+
+        with override_settings(ENDOORA_ENV="production", DEBUG=True):
+            scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
+            check_03 = next(c for c in scorecard["checks"] if c["id"] == "check_03_security_hardening")
+            self.assertEqual(check_03["status"], "FAIL")
+            self.assertIn("DEBUG", check_03["evidence"])
+            self.assertEqual(scorecard["status"], "ACTION_REQUIRED")
+            self.assertLess(scorecard["score"], 100)
+
+    def test_unapplied_migration_or_db_error_fails_check_01(self):
+        from unittest.mock import patch
+
+        with patch("production_launch.services.launch_gate_checklist.connection.cursor") as mock_cursor:
+            mock_cursor.side_effect = Exception("Database connection timeout")
+            scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
+            check_01 = next(c for c in scorecard["checks"] if c["id"] == "check_01_database_migrations")
+            self.assertEqual(check_01["status"], "FAIL")
+            self.assertIn("خطای اتصال", check_01["evidence"])
+            self.assertEqual(scorecard["status"], "ACTION_REQUIRED")
+
+    def test_cache_failure_fails_check_02(self):
+        from unittest.mock import patch
+
+        with patch("production_launch.services.launch_gate_checklist.cache.get", return_value=None):
+            scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
+            check_02 = next(c for c in scorecard["checks"] if c["id"] == "check_02_unit_tests")
+            self.assertEqual(check_02["status"], "FAIL")
+            self.assertEqual(scorecard["status"], "ACTION_REQUIRED")
+
+    def test_storage_probe_failure_fails_check_04(self):
+        from unittest.mock import patch
+
+        with patch("pathlib.Path.mkdir", side_effect=PermissionError("Read-only file system")):
+            scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
+            check_04 = next(c for c in scorecard["checks"] if c["id"] == "check_04_disaster_recovery")
+            self.assertEqual(check_04["status"], "FAIL")
+            self.assertEqual(scorecard["status"], "ACTION_REQUIRED")
+
+    def test_failed_golden_flow_fails_check_10(self):
+        # Create a failing rehearsal log
+        GoldenFlowVerificationLog.objects.create(
+            status=GoldenFlowStatus.FAIL,
+            score=45,
+            total_flows=7,
+            passed_flows=3,
+            duration_ms=120,
+        )
+        scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
+        check_10 = next(c for c in scorecard["checks"] if c["id"] == "check_10_golden_flows")
+        self.assertEqual(check_10["status"], "FAIL")
+        self.assertEqual(scorecard["status"], "ACTION_REQUIRED")
+
