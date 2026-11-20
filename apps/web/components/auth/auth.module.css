@@ -1,18 +1,13 @@
 .page {
   position: relative;
   min-block-size: calc(100vh - 5rem);
-  padding: clamp(var(--space-6), 4vw, var(--space-10)) clamp(var(--space-3), 2.5vw, var(--space-6));
+  padding: clamp(var(--space-4), 3vw, var(--space-8)) clamp(var(--space-3), 2.5vw, var(--space-6));
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background:
-    radial-gradient(circle at 12% 10%, rgba(124, 58, 237, 0.12), transparent 28rem),
-    radial-gradient(circle at 88% 90%, rgba(20, 184, 166, 0.12), transparent 28rem),
-    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.08), transparent 40rem),
-    var(--color-deep-space);
+  background-color: #ffffff;
   color: var(--color-text);
+  overflow-x: hidden;
 }
 
 .accountPage {
@@ -73,8 +68,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  inline-size: min(32rem, 100%);
-  max-inline-size: 32rem;
+  inline-size: min(28.5rem, 100%);
+  max-inline-size: 28.5rem;
   min-block-size: auto;
   margin-inline: auto;
   border: none;
@@ -92,17 +87,17 @@
   max-inline-size: 100%;
   max-block-size: none;
   margin: 0;
-  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  padding: clamp(var(--space-6), 4vw, var(--space-8)) clamp(var(--space-5), 3.5vw, var(--space-7));
   overflow: visible;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: clamp(1.25rem, 2vw, 1.85rem);
-  background: rgba(7, 20, 38, 0.72);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    0 28px 75px rgba(0, 0, 0, 0.55),
-    0 0 40px rgba(37, 99, 235, 0.08);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+    0 20px 45px -10px rgba(15, 23, 42, 0.08),
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
 }
 
 .workspace {
@@ -347,14 +342,22 @@
 .roleTitle { color: var(--color-text); font-weight: 800; }
 .roleDescription { color: var(--color-muted); font-size: var(--font-size-meta); line-height: var(--line-height-meta); }
 
+.form :global(.endoora-field__label) {
+  display: block;
+  margin-block-end: 0.4rem;
+  color: #334155 !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+}
+
 .form :global(.endoora-input) {
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid #cbd5e1 !important;
   border-radius: var(--radius-control) !important;
-  background: rgba(15, 23, 42, 0.65) !important;
-  color: #f8fafc !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.28) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  padding: 0.65rem 0.85rem !important;
+  font-size: 0.95rem !important;
   transition:
     border-color var(--motion-fast) var(--motion-ease),
     box-shadow var(--motion-fast) var(--motion-ease),
@@ -362,23 +365,24 @@
 }
 
 .form :global(.endoora-input:focus) {
-  border-color: rgba(96, 165, 250, 0.85) !important;
-  background: rgba(15, 23, 42, 0.85) !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.28), 0 0 22px rgba(56, 189, 248, 0.22) !important;
+  border-color: #2563eb !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16) !important;
   outline: none !important;
 }
 
-.actions { display: grid; gap: var(--space-3); margin-block-start: var(--space-2); }
+.actions { display: grid; gap: var(--space-3); margin-block-start: var(--space-3); }
 .actions :global(.endoora-button) {
   inline-size: 100%;
-  min-block-size: 2.95rem;
+  min-block-size: 2.85rem;
   font-size: 1rem;
   font-weight: 750;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border: 1px solid rgba(37, 99, 235, 0.9) !important;
   border-radius: var(--radius-control) !important;
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 55%, #0ea5e9 100%) !important;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   transition:
     transform var(--motion-fast) var(--motion-ease),
     box-shadow var(--motion-fast) var(--motion-ease),
@@ -386,32 +390,69 @@
 }
 
 .actions :global(.endoora-button:hover:not(:disabled)) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.62), 0 2px 8px rgba(124, 58, 237, 0.4) !important;
-  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45) !important;
+  filter: brightness(1.05);
 }
 
 .actions :global(.endoora-button:active:not(:disabled)) {
   transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3) !important;
 }
+
 .secondaryLinks {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-block-start: var(--space-1);
-  font-size: 0.9rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-3);
+  font-size: 0.875rem;
 }
+
+.secondaryLinks a,
+.footer a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.secondaryLinks a:hover,
+.footer a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.securityBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-block-start: var(--space-3);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: rgba(240, 253, 250, 0.9);
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  color: #0f766e;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.securityBadge svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
 .success { display: grid; gap: var(--space-3); }
 .success p { margin: 0; }
 .codeInput { letter-spacing: 0.5em; font-size: 1.25rem; font-weight: 800; text-align: center; }
 
 :global(html[data-theme="light"]) .page {
-  background:
-    radial-gradient(circle at 12% 4%, rgb(20 184 166 / 0.1), transparent 24rem),
-    radial-gradient(circle at 88% 94%, rgb(37 99 235 / 0.09), transparent 26rem),
-    var(--color-canvas);
+  background: #ffffff;
 }
 
 :global(html[data-theme="light"]) .stage {
@@ -427,11 +468,14 @@
 }
 
 :global(html[data-theme="light"]) .stageSingle .workspace {
-  border-color: var(--color-border);
-  background: rgb(255 255 255 / 0.94);
+  border-color: rgba(226, 232, 240, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow:
-    inset 0 1px rgb(255 255 255 / 0.9),
-    0 22px 54px rgb(15 23 42 / 0.12);
+    0 20px 45px -10px rgba(15, 23, 42, 0.08),
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  overflow: visible;
+  max-block-size: none;
 }
 
 :global(html[data-theme="light"]) .workspace {

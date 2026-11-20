@@ -29,6 +29,7 @@ const copy = {
     sceneBody:
       "ایندورا تمرین انگلیسی را به مسیری روشن برای تحصیل، کار و ارتباط مطمئن تبدیل می‌کند.",
     securityTitle: "امنیت حساب شما مهم است",
+    securityBadge: "ورود امن با رمزنگاری محافظت‌شده",
     trust: [
       "گذرواژه به‌صورت هش‌شده نگهداری می‌شود",
       "نشست ورود با کوکی محافظت‌شده مدیریت می‌شود",
@@ -42,6 +43,7 @@ const copy = {
     sceneBody:
       "Endoora turns English practice into a clear path toward study, work and confident global communication.",
     securityTitle: "Your account security matters",
+    securityBadge: "Protected session & encrypted sign-in",
     trust: [
       "Passwords are stored as one-way hashes",
       "Sign-in sessions use protected cookies",
@@ -150,15 +152,22 @@ export function AuthShell({
             <div className={styles.body}>{children}</div>
             {footer ? <footer className={styles.footer}>{footer}</footer> : null}
 
-            <aside className={styles.securityPanel} aria-label={t.securityTitle}>
-              <div className={styles.securityHeading}>
+            {!showScene ? (
+              <div className={styles.securityBadge}>
                 <ShieldIcon />
-                <strong>{t.securityTitle}</strong>
+                <span>{t.securityBadge}</span>
               </div>
-              <ul>
-                {t.trust.map((item) => <li key={item}>{item}</li>)}
-              </ul>
-            </aside>
+            ) : (
+              <aside className={styles.securityPanel} aria-label={t.securityTitle}>
+                <div className={styles.securityHeading}>
+                  <ShieldIcon />
+                  <strong>{t.securityTitle}</strong>
+                </div>
+                <ul>
+                  {t.trust.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </aside>
+            )}
           </section>
 
           {showScene ? (
