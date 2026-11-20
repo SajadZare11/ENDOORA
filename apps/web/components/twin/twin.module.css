@@ -1814,9 +1814,439 @@
 }
 
 /* --------------------------------------------------------------------------
+   Radar Chart & 6-Skill Power Hub
+   -------------------------------------------------------------------------- */
+.radarCard {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(99, 102, 241, 0.12), transparent 50%),
+    radial-gradient(ellipse at 85% 85%, rgba(6, 182, 212, 0.1), transparent 50%),
+    color-mix(in srgb, var(--color-surface, #ffffff) 96%, #f8fafc);
+  border: 1px solid color-mix(in srgb, #6366f1 22%, var(--color-border, #e2e8f0));
+  box-shadow: 0 16px 36px -10px rgba(99, 102, 241, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  overflow: hidden;
+}
+
+.radarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.radarPowerHubBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.12);
+}
+
+.radarPowerHubRing {
+  position: relative;
+  inline-size: 64px;
+  block-size: 64px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+  flex-shrink: 0;
+}
+
+.radarPowerHubScore {
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.radarPowerHubMax {
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.radarPowerHubText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.radarPowerHubText strong {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text, #0f172a);
+}
+
+.radarPowerHubText span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.radarMainLayout {
+  display: grid;
+  grid-template-columns: minmax(360px, 480px) 1fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.radarSvgCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: 100%;
+}
+
+.radarSvgWrapper {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 460px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.radarSvg {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 6px 16px rgba(99, 102, 241, 0.12));
+}
+
+.radarGuideCircle {
+  fill: none;
+  stroke: rgba(148, 163, 184, 0.35);
+  stroke-dasharray: 4 4;
+  stroke-width: 1.1px;
+}
+
+.radarGuideText {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--color-muted, #94a3b8);
+  user-select: none;
+}
+
+.radarAxisSpoke {
+  stroke: rgba(148, 163, 184, 0.32);
+  stroke-width: 1.2px;
+}
+
+.radarPolygon {
+  fill: url(#radarFillGrad);
+  stroke: #6366f1;
+  stroke-width: 2.75px;
+  stroke-linejoin: round;
+  transition: all 0.3s ease;
+}
+
+.radarVertexGroup {
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+.radarVertexGroup:hover .radarVertexDot {
+  transform: scale(1.2);
+}
+
+.radarVertexDot {
+  fill: #4f46e5;
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  transition: fill 0.2s ease, r 0.2s ease;
+  transform-origin: center;
+}
+
+.radarVertexHalo {
+  fill: rgba(99, 102, 241, 0.25);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.radarVertexActive .radarVertexDot {
+  fill: #06b6d4;
+  stroke: #ffffff;
+  stroke-width: 3px;
+}
+
+.radarVertexActive .radarVertexHalo {
+  opacity: 1;
+}
+
+.radarVertexBadgeText {
+  font-size: 11px;
+  font-weight: 800;
+  fill: #4338ca;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+.radarCornerBtn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-surface, #ffffff) 92%, #f1f5f9);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  color: var(--color-text, #0f172a);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.radarCornerBtn:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.2);
+}
+
+.radarCornerBtnActive {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  color: #ffffff !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35) !important;
+  transform: translate(-50%, -50%) scale(1.08) !important;
+}
+
+.radarCornerIcon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.radarCornerName {
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.radarCornerBand {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #4f46e5;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.radarCornerBtnActive .radarCornerBand {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.radarDetailCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.radarActiveCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--color-surface, #ffffff) 95%, #f8fafc);
+  border: 1.5px solid rgba(99, 102, 241, 0.28);
+  box-shadow: 0 8px 24px -6px rgba(99, 102, 241, 0.12);
+}
+
+.radarActiveHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.radarActiveIconBox {
+  font-size: 2rem;
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(168, 85, 247, 0.16));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  flex-shrink: 0;
+}
+
+.radarActiveCefrBadge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  background: #4f46e5;
+  color: #ffffff;
+  margin-block-end: 0.35rem;
+}
+
+.radarActiveTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text, #0f172a);
+}
+
+.radarActiveDesc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted, #64748b);
+  line-height: 1.55;
+}
+
+.radarActiveMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.radarMetricSmallBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--color-surface, #ffffff) 90%, #f1f5f9);
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+.radarMetricSmallBox span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-muted, #64748b);
+}
+
+.radarMetricSmallBox strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-text, #0f172a);
+}
+
+.radarBandHighlight {
+  color: #4f46e5 !important;
+}
+
+.radarBandHighlight small {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-muted, #64748b);
+}
+
+.radarActiveCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.28);
+  transition: all 0.2s ease;
+}
+
+.radarActiveCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.36);
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+}
+
+.radarSmartRecBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(245, 158, 11, 0.12), transparent 60%),
+    color-mix(in srgb, var(--color-surface, #ffffff) 96%, #fffbeb);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.radarSmartRecTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.radarSmartRecIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.radarSmartRecTitle {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #b45309;
+  margin-block-end: 0.25rem;
+}
+
+.radarSmartRecText {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--color-text, #334155);
+}
+
+.radarSmartRecBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: 9999px;
+  background: #f59e0b;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+  transition: all 0.2s ease;
+}
+
+.radarSmartRecBtn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
    12. Responsive Breakpoints
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
+  .radarMainLayout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .radarSvgWrapper {
+    max-inline-size: 400px;
+  }
   .treeMainLayout {
     grid-template-columns: 1fr;
   }
@@ -1832,6 +2262,23 @@
 }
 
 @media (max-width: 768px) {
+  .radarHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .radarPowerHubBadge {
+    inline-size: 100%;
+  }
+  .radarActiveMetrics {
+    grid-template-columns: 1fr;
+  }
+  .radarSvgWrapper {
+    max-inline-size: 330px;
+  }
+  .radarCornerBtn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
+  }
   .hero {
     flex-direction: column;
     align-items: flex-start;

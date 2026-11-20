@@ -15,6 +15,9 @@ import styles from "../../../components/twin/twin.module.css";
 const TwinConstellation = dynamic(
   () => import("../../../components/twin/TwinConstellation"),
 );
+const TwinRadarChart = dynamic(
+  () => import("../../../components/twin/TwinRadarChart"),
+);
 const TwinFuture = dynamic(() => import("../../../components/twin/TwinFuture"));
 const TwinMock = dynamic(() => import("../../../components/twin/TwinMock"));
 const TwinPipeline = dynamic(
@@ -209,6 +212,14 @@ export default function LearnerTwinPage() {
           {/* TAB 1: OVERVIEW */}
           {tab === "overview" && (
             <>
+              {/* 6-Skill Radar Chart & Overall Power Hub (IELTS 1-9 Scale) */}
+              <TwinRadarChart
+                snapshot={snapshot}
+                forecastBand={forecast?.overall.band}
+                forecastCefr={forecast?.predictedCEFR}
+                isFa={isFa}
+              />
+
               {/* 4-Skill Exam Forecast Section */}
               <section className={styles.card}>
                 <div className={styles.sectionHead}>
