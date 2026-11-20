@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
         destination: `${apiInternalUrl}/api/:path*`,
       },
       {
-        source: "/api/((?!admin/).*)",
+        source: "/api/((?!(?:admin|videos)/).*)",
         destination: `${apiInternalUrl}/api/$1`,
       },
     ];
@@ -78,7 +78,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' http://127.0.0.1:* http://localhost:* https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; font-src 'self' data:; media-src 'self' blob: data: https://github.com https://*.githubusercontent.com https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; connect-src 'self' http://127.0.0.1:* http://localhost:* https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; frame-ancestors 'none';",
           },
         ],
       },
