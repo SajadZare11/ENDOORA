@@ -88,7 +88,15 @@ class DataExportDownloadView(APIView):
         export_request = get_object_or_404(DataExportRequest, id=export_id, user=request.user)
         if export_request.status != DataExportRequest.Status.COMPLETED:
             return Response({"error": "Export is not completed yet."}, status=status.HTTP_400_BAD_REQUEST)
-            
+
+        # Enforce 48-hour temporary link expiry (F24)
+        from datetime import timedelta
+        if export_request.completed_at and timezone.now() > export_request.completed_at + timedelta(hours=48):
+            return Response(
+                {"error": "لینک دانلود منقضی شده است. لطفاً مجدداً درخواست استخراج ارسال کنید.", "code": "EXPORT_EXPIRED"},
+                status=status.HTTP_410_GONE,
+            )
+
         payload = process_data_export_request(export_request)  # this recompiles it or we could use stored data if it existed, but the prompt says "Compiles and returns JSON file attachment". We'll just recompile here since we didn't store the payload in the model.
         
         response = HttpResponse(

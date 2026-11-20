@@ -145,3 +145,112 @@ class DataProtectionTests(APITestCase):
         out = StringIO()
         call_command("purge_expired_data", "--dry-run", stdout=out)
         self.assertIn("Purge completed", out.getvalue())
+
+    def test_data_export_populates_real_user_records_across_domains(self):
+        from accounts.models import ConsentRecord
+        from marketplace.models import UserWallet, PaymentTransaction, SessionBooking
+        from online_exams.models import OnlineExam, ExamSubmission
+
+        # 1. Consent record
+        ConsentRecord.objects.create(
+            user=self.user,
+            consent_type=ConsentRecord.ConsentType.TERMS,
+            version="1.0",
+        )
+
+        # 2. Financial wallet and transaction
+        wallet = UserWallet.objects.create(user=self.user, balance_toman=500000)
+        PaymentTransaction.objects.create(
+            user=self.user,
+            order_type="wallet_topup",
+            amount_toman=500000,
+            amount_rial=5000000,
+            gateway_provider="zarinpal",
+            status="completed",
+            ref_id="ref_export_test_123",
+        )
+        start_time = timezone.now() + timedelta(days=2)
+        SessionBooking.objects.create(
+            learner=self.user,
+            teacher=self.admin,
+            scheduled_start=start_time,
+            scheduled_end=start_time + timedelta(minutes=60),
+            duration_minutes=60,
+            rate_toman=250000,
+            target_skill="speaking",
+            status="confirmed",
+        )
+
+        # 3. Exam submission
+        exam = OnlineExam.objects.create(
+            teacher=self.admin,
+            title="Export Diagnostic Exam",
+            status=OnlineExam.ExamStatus.PUBLISHED,
+            duration_minutes=60,
+        )
+        ExamSubmission.objects.create(
+            exam=exam,
+            student=self.user,
+            status="graded",
+            total_score=88,
+            percentage=88.0,
+        )
+
+        # Other user's records to ensure isolation
+        ConsentRecord.objects.create(
+            user=self.other_user,
+            consent_type=ConsentRecord.ConsentType.MARKETING,
+            version="1.0",
+        )
+        PaymentTransaction.objects.create(
+            user=self.other_user,
+            order_type="wallet_topup",
+            amount_toman=999999,
+            amount_rial=9999990,
+            ref_id="other_ref_secret",
+        )
+
+        # Compile export
+        export = compile_full_user_data_export(self.user)
+        self.assertEqual(export["user_id"], str(self.user.id))
+        self.assertIn("integrity_checksum_sha256", export)
+
+        # Verify populated consent
+        consents = export["data"]["consent_records"]
+        self.assertEqual(len(consents), 1)
+        self.assertEqual(consents[0]["consent_type"], "terms")
+
+        # Verify populated financial
+        fin = export["data"]["financial"]
+        self.assertIsNotNone(fin["wallet"])
+        self.assertEqual(fin["wallet"]["balance_toman"], 500000.0)
+        self.assertEqual(len(fin["transactions"]), 1)
+        self.assertEqual(fin["transactions"][0]["ref_id"], "ref_export_test_123")
+        self.assertEqual(fin["transactions"][0]["amount_toman"], 500000.0)
+        self.assertEqual(len(fin["bookings"]), 1)
+        self.assertEqual(fin["bookings"][0]["target_skill"], "speaking")
+        self.assertEqual(fin["bookings"][0]["rate_toman"], 250000.0)
+
+        # Verify populated exams
+        exams = export["data"]["learning"]["online_exam_submissions"]
+        self.assertEqual(len(exams), 1)
+        self.assertEqual(exams[0]["exam_title"], "Export Diagnostic Exam")
+        self.assertEqual(exams[0]["total_score"], 88.0)
+
+        # Verify isolation: other user's records NOT in export
+        raw_export_str = json.dumps(export)
+        self.assertNotIn("other_ref_secret", raw_export_str)
+        self.assertNotIn(str(self.other_user.id), raw_export_str)
+
+    def test_download_expired_export_link_fails_with_410(self):
+        req = DataExportRequest.objects.create(
+            user=self.user,
+            status=DataExportRequest.Status.COMPLETED,
+            completed_at=timezone.now() - timedelta(hours=50),
+        )
+        self.client.force_authenticate(user=self.user)
+        url = reverse("privacy-export-download", kwargs={"export_id": str(req.id)})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, status.HTTP_410_GONE)
+        self.assertEqual(res.data["code"], "EXPORT_EXPIRED")
+
