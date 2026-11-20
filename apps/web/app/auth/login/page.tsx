@@ -141,7 +141,7 @@ export default function LoginPage() {
         locale={locale}
         onLocaleChange={setLocale}
         title={t.successTitle}
-        showScene={false}
+        showScene={true}
         description={t.successBody}
         footer={
           <Link href="/dashboard">
@@ -167,7 +167,7 @@ export default function LoginPage() {
       locale={locale}
       onLocaleChange={setLocale}
       title={t.title}
-      showScene={false}
+      showScene={true}
       description={t.description}
       footer={
         <>

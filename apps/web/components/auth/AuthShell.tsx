@@ -6,6 +6,7 @@ import { useEffect, type ReactNode } from "react";
 
 import type { EndooraLocale } from "../../lib/endoora-api";
 import { PublicShell } from "../marketing/PublicShell";
+import { HexagonMeshBackground } from "./HexagonMeshBackground";
 import styles from "./auth.module.css";
 
 type AuthShellProps = {
@@ -127,6 +128,7 @@ export function AuthShell({
         lang={locale}
         dir={isPersian ? "rtl" : "ltr"}
       >
+        <HexagonMeshBackground />
         <div
           className={[
             styles.stage,

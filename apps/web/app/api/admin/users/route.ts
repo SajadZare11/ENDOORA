@@ -131,6 +131,25 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    if (action === "exit_impersonation") {
+      const backendUrl = (
+        process.env.ENDOORA_API_INTERNAL_URL ?? "http://127.0.0.1:8000"
+      ).replace(/\/+$/, "");
+      try {
+        await fetch(`${backendUrl}/api/admin-ops/users/impersonate/exit/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Cookie: req.headers.get("cookie") || "",
+          },
+        });
+      } catch {}
+      const resObj = NextResponse.json({ success: true, message: "خروج از حالت شبیه‌سازی با موفقیت انجام شد." });
+      resObj.cookies.delete("endoora_impersonation");
+      return resObj;
+    }
+
     const userId = body.userId as string;
     if (!userId) {
       return NextResponse.json({ success: false, error: "شناسه کاربر الزامی است." }, { status: 400 });
@@ -141,7 +160,7 @@ export async function POST(req: NextRequest) {
     ).replace(/\/+$/, "");
 
     // Authoritative Django mutation
-    if (["adjust_wallet", "update_role", "toggle_active", "ban"].includes(action)) {
+    if (["adjust_wallet", "update_role", "toggle_active", "ban", "impersonate", "kill_sessions", "grant_subscription"].includes(action)) {
       try {
         const djangoRes = await fetch(`${backendUrl}/api/admin-ops/users/${userId}/action/`, {
           method: "POST",
@@ -162,11 +181,27 @@ export async function POST(req: NextRequest) {
           } else if (action === "toggle_active" || action === "ban") {
             toggleUserActive(userId);
           }
-          return NextResponse.json({
+          const response = NextResponse.json({
             success: true,
             ...djangoData,
             stats: getUserOperationsStats(),
           });
+
+          if (action === "impersonate" && djangoData.impersonation) {
+            response.cookies.set("endoora_impersonation", JSON.stringify(djangoData.impersonation), {
+              path: "/",
+              maxAge: 3600,
+              httpOnly: false,
+              sameSite: "lax",
+            });
+          }
+
+          const setCookieHeaders = djangoRes.headers.getSetCookie?.() || [];
+          for (const cookieStr of setCookieHeaders) {
+            response.headers.append("Set-Cookie", cookieStr);
+          }
+
+          return response;
         } else if (djangoRes.status !== 404) {
           const errData = await djangoRes.json().catch(() => ({}));
           return NextResponse.json(

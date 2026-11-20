@@ -3,23 +3,18 @@ import "./globals.css";
 import "@endoora/ui/tokens.css";
 import "@endoora/ui/components.css";
 import { vazirmatn, inter } from "./fonts";
-import { ThemeToggle } from "../components/theme/ThemeToggle";
 import { NetworkBandwidthBanner } from "../components/pwa/NetworkBandwidthBanner";
 import { PWARegistration } from "../components/pwa/PWARegistration";
 import { LocaleProvider } from "../lib/locale-context";
 import { LanguageSwitcher } from "../components/layout/LanguageSwitcher";
+import { ImpersonationBanner } from "../components/admin/ImpersonationBanner";
 
 const themeBootstrap = `
 (function () {
   try {
-    var saved = window.localStorage.getItem("endoora-theme-v1");
-    var theme = saved === "dark" || saved === "light"
-      ? saved
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.dataset.theme = theme;
-  } catch (_) {
-    document.documentElement.dataset.theme = "light";
-  }
+    window.localStorage.removeItem("endoora-theme-v1");
+  } catch (_) {}
+  document.documentElement.dataset.theme = "light";
 })();`;
 
 const localeBootstrap = `
@@ -37,7 +32,7 @@ const localeBootstrap = `
 })();`;
 
 export const viewport: Viewport = {
-  themeColor: "#0B0F19",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -77,10 +72,10 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
       </head>
       <body>
         <LocaleProvider>
+          <ImpersonationBanner />
           <NetworkBandwidthBanner />
           <LanguageSwitcher pinned />
           {children}
-          <ThemeToggle />
           <PWARegistration />
         </LocaleProvider>
       </body>

@@ -13,8 +13,9 @@ import {
   INITIAL_ESCROW_RECORDS,
   INITIAL_REVENUE_STATS,
 } from "@/lib/treasury-content";
+import { FinancialRiskRefundHub } from "./FinancialRiskRefundHub";
 
-type ActiveDesk = "payouts" | "escrow" | "revenue";
+type ActiveDesk = "payouts" | "escrow" | "revenue" | "risk-refund";
 
 export default function TreasuryOperationsConsole() {
   const [activeDesk, setActiveDesk] = useState<ActiveDesk>("payouts");
@@ -434,6 +435,17 @@ export default function TreasuryOperationsConsole() {
         >
           <span>📊</span>
           دفتر کل درآمد و تفکیک محصولات
+        </button>
+
+        <button
+          className={`${styles.deskNavBtn} ${activeDesk === "risk-refund" ? styles.deskNavBtnActive : ""}`}
+          onClick={() => setActiveDesk("risk-refund")}
+        >
+          <span>🚨</span>
+          اتاق ریسک و استرداد وجه
+          <span className={styles.deskBadge} style={{ background: "#fee2e2", color: "#dc2626" }}>
+            Risk & Refund Room
+          </span>
         </button>
       </div>
 
@@ -923,6 +935,9 @@ export default function TreasuryOperationsConsole() {
           </div>
         </>
       )}
+
+      {/* DESK 4: FINANCIAL RISK & 1-CLICK REFUND ROOM */}
+      {activeDesk === "risk-refund" && <FinancialRiskRefundHub />}
 
       {/* MODAL: DISBURSE PAYOUT */}
       {disburseModalPayout && (

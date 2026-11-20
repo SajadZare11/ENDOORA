@@ -1,0 +1,29 @@
+.canvasContainer {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  contain: strict;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+.vignetteOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(3, 7, 18, 0.15) 0%, rgba(3, 7, 18, 0.55) 75%, rgba(3, 7, 18, 0.88) 100%),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.6) 0%, transparent 15%, transparent 85%, rgba(3, 7, 18, 0.75) 100%);
+  mix-blend-mode: multiply;
+}

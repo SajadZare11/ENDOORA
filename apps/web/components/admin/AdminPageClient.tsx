@@ -67,15 +67,34 @@ export function AdminPageClient() {
         style={{
           minHeight: "100vh",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#0f172a",
-          color: "#94a3b8",
+          backgroundColor: "#f8fafc",
+          color: "#475569",
           fontSize: "1rem",
+          gap: "1rem",
         }}
         dir="rtl"
       >
-        در حال بررسی مجوزهای نشست سرور مدیر ارشد...
+        <div
+          style={{
+            width: "48px",
+            height: "48px",
+            borderRadius: "50%",
+            border: "3px solid #e2e8f0",
+            borderTopColor: "#4f46e5",
+            animation: "spin 0.8s linear infinite",
+          }}
+        />
+        <span style={{ fontWeight: 700, color: "#1e293b" }}>
+          در حال بررسی دسترسی مدیریت... لطفاً شکیبا باشید ✨
+        </span>
+        <style>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     );
   }

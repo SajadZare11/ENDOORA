@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import styles from "./admin-users.module.css";
+import { AdminPinModal } from "./AdminPinModal";
 import {
   type AdminUser360Record,
   type UserOperationsStats,
@@ -47,6 +48,16 @@ export function AdminUsersManager() {
   // Tab 5: Issue strike form
   const [newStrikePreset, setNewStrikePreset] = useState<string>(STRIKE_REASON_PRESETS[0]?.labelFa || "");
   const [newStrikeDetail, setNewStrikeDetail] = useState<string>("");
+
+  // Impersonation & PIN State
+  const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
+  const [impersonatingUser, setImpersonatingUser] = useState<AdminUser360Record | null>(null);
+
+  // Grant Subscription Modal State
+  const [grantSubUser, setGrantSubUser] = useState<AdminUser360Record | null>(null);
+  const [subTier, setSubTier] = useState<string>("pro_vip");
+  const [subMonths, setSubMonths] = useState<number>(3);
+  const [subReason, setSubReason] = useState<string>("");
 
   const showToast = (text: string, type: "success" | "error" = "success") => {
     setToast({ text, type });
@@ -106,6 +117,76 @@ export function AdminUsersManager() {
 
   const handleCloseDossier = () => {
     setSelectedUser(null);
+  };
+
+  const handlePinSuccessForImpersonate = async (verifiedPin: string) => {
+    setIsPinModalOpen(false);
+    if (!impersonatingUser) return;
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "impersonate", userId: impersonatingUser.id, pin: verifiedPin }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(`ورود نیابتی به حساب ${impersonatingUser.name} با موفقیت انجام شد. انتقال به داشبورد...`);
+        setTimeout(() => {
+          window.location.href = impersonatingUser.role === "teacher" ? "/teacher/dashboard" : "/dashboard";
+        }, 800);
+      } else {
+        showToast(data.error || "خطا در ورود نیابتی", "error");
+      }
+    } catch {
+      showToast("خطا در برقراری ارتباط با سرور", "error");
+    }
+  };
+
+  const handleKillSessions = async (userId: string, userName: string) => {
+    if (!confirm(`آیا از قطع اجباری تمام نشست‌های فعال ${userName} اطمینان دارید؟ کاربر از کلیه دستگاه‌ها خارج خواهد شد.`)) return;
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "kill_sessions", userId }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(data.message || "نشست‌های فعال با موفقیت باطل شدند.");
+      } else {
+        showToast(data.error || "خطا در قطع نشست‌ها", "error");
+      }
+    } catch {
+      showToast("خطا در برقراری ارتباط با سرور", "error");
+    }
+  };
+
+  const handleGrantSubSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!grantSubUser) return;
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "grant_subscription",
+          userId: grantSubUser.id,
+          tier: subTier,
+          months: subMonths,
+          reason: subReason || "اعطای اشتراک مستقیم توسط مدیر ارشد",
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(data.message || "اشتراک ویژه با موفقیت اعطا شد.");
+        setGrantSubUser(null);
+        loadUsers();
+      } else {
+        showToast(data.error || "خطا در اعطای اشتراک", "error");
+      }
+    } catch {
+      showToast("خطا در برقراری ارتباط با سرور", "error");
+    }
   };
 
   const handleToggleActive = async (userId: string) => {
@@ -658,6 +739,37 @@ export function AdminUsersManager() {
                         <div className={styles.actionsCell}>
                           <button
                             type="button"
+                            className={styles.btnImpersonate}
+                            onClick={() => {
+                              setImpersonatingUser(u);
+                              setIsPinModalOpen(true);
+                            }}
+                            title="ورود نیابتی به حساب کاربر (Login As)"
+                          >
+                            <span>👤🔑</span>
+                            <span>ورود نیابتی</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            className={styles.btnGrantSub}
+                            onClick={() => setGrantSubUser(u)}
+                            title="اعطای مستقیم اشتراک ویژه (پلاس / طلایی)"
+                          >
+                            <span>⭐</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            className={styles.btnKillSession}
+                            onClick={() => handleKillSessions(u.id, u.name)}
+                            title="قطع اجباری کلیه نشست‌های فعال کاربر"
+                          >
+                            <span>⚡</span>
+                          </button>
+
+                          <button
+                            type="button"
                             className={styles.btnDossier}
                             onClick={() => handleOpenDossier(u, 1)}
                             title="مشاهده پرونده کامل ۳۶۰ درجه"
@@ -696,6 +808,113 @@ export function AdminUsersManager() {
           </table>
         </div>
       </div>
+
+      {/* Admin Security PIN Modal for Impersonation */}
+      <AdminPinModal
+        isOpen={isPinModalOpen}
+        title="تأیید پین امنیتی برای ورود نیابتی"
+        description={`شما در حال ورود نیابتی به حساب «${impersonatingUser?.name || ""}» هستید. برای امنیت، پین ۶ رقمی مدیر ارشد را وارد کنید.`}
+        onSuccess={handlePinSuccessForImpersonate}
+        onCancel={() => {
+          setIsPinModalOpen(false);
+          setImpersonatingUser(null);
+        }}
+      />
+
+      {/* Grant Subscription Modal */}
+      {grantSubUser && (
+        <div className={styles.modalBackdrop} onClick={() => setGrantSubUser(null)}>
+          <div className={styles.modalContent} style={{ maxWidth: 460 }} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h3 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800 }}>
+                ⭐ اعطای مستقیم اشتراک ویژه به {grantSubUser.name}
+              </h3>
+              <button type="button" className={styles.btnCloseModal} onClick={() => setGrantSubUser(null)}>
+                ×
+              </button>
+            </div>
+            <form onSubmit={handleGrantSubSubmit} style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div>
+                <label style={{ display: "block", marginBottom: "0.4rem", fontWeight: 700, fontSize: "0.85rem" }}>
+                  نوع پلن اشتراک:
+                </label>
+                <select
+                  value={subTier}
+                  onChange={(e) => setSubTier(e.target.value)}
+                  style={{ width: "100%", padding: "0.6rem", borderRadius: "8px", border: "1px solid #cbd5e1" }}
+                >
+                  <option value="plus">اشتراک پلاس (Plus)</option>
+                  <option value="pro_vip">اشتراک طلایی (VIP / Pro)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: "block", marginBottom: "0.4rem", fontWeight: 700, fontSize: "0.85rem" }}>
+                  مدت زمان اعتبار:
+                </label>
+                <select
+                  value={subMonths}
+                  onChange={(e) => setSubMonths(Number(e.target.value))}
+                  style={{ width: "100%", padding: "0.6rem", borderRadius: "8px", border: "1px solid #cbd5e1" }}
+                >
+                  <option value={1}>۱ ماه</option>
+                  <option value={3}>۳ ماه (فصلی)</option>
+                  <option value={6}>۶ ماه (نیم‌سال)</option>
+                  <option value={12}>۱۲ ماه (یک‌ساله)</option>
+                  <option value={24}>۲۴ ماه (دو ساله)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: "block", marginBottom: "0.4rem", fontWeight: 700, fontSize: "0.85rem" }}>
+                  دلیل اعطای اشتراک (ممیزی حسابداری):
+                </label>
+                <input
+                  type="text"
+                  value={subReason}
+                  onChange={(e) => setSubReason(e.target.value)}
+                  placeholder="مثال: جایزه مسابقه، جبران اختلال شبکه، کاربر ویژه"
+                  style={{ width: "100%", padding: "0.6rem", borderRadius: "8px", border: "1px solid #cbd5e1" }}
+                  required
+                />
+              </div>
+
+              <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
+                <button
+                  type="submit"
+                  style={{
+                    flex: 1,
+                    background: "#7e22ce",
+                    color: "#ffffff",
+                    border: "none",
+                    padding: "0.75rem",
+                    borderRadius: "8px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                  }}
+                >
+                  اعطای فوری اشتراک
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGrantSubUser(null)}
+                  style={{
+                    background: "#f1f5f9",
+                    color: "#475569",
+                    border: "none",
+                    padding: "0.75rem",
+                    borderRadius: "8px",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                >
+                  انصراف
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* 5. Full 5-Tab 360 Dossier Modal */}
       {selectedUser && (

@@ -534,4 +534,16 @@ class AdminUserActionView(APIView):
                 },
             }, status=status.HTTP_200_OK)
 
+        elif action == "impersonate":
+            from .views_godmode import AdminImpersonateView
+            return AdminImpersonateView().post(request, user_id=target_user.id)
+
+        elif action == "kill_sessions":
+            from .views_godmode import AdminKillSessionsView
+            return AdminKillSessionsView().post(request, user_id=target_user.id)
+
+        elif action == "grant_subscription":
+            from .views_godmode import AdminGrantSubscriptionView
+            return AdminGrantSubscriptionView().post(request, user_id=target_user.id)
+
         return Response({"success": False, "error": f"عملیات {action} پشتیبانی نمی‌شود."}, status=status.HTTP_400_BAD_REQUEST)

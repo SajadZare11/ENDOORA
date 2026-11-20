@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -9,6 +11,9 @@ import styles from "./public-shell.module.css";
 import { AnalyticsConsent } from "./AnalyticsConsent";
 import { DocumentLocaleSync } from "./DocumentLocaleSync";
 import { PublicHeader } from "./PublicHeader";
+import { FloatingPopupsContainer } from "./FloatingPopupsContainer";
+import { PromoAnnouncementBar } from "./PromoAnnouncementBar";
+import { useSiteContent } from "../../lib/use-site-content";
 // PublicHeader mounts: <AccountEntryLink locale={locale} />
 
 export function PublicShell({
@@ -23,13 +28,39 @@ export function PublicShell({
   children: ReactNode;
 }) {
   const isFa = locale === "fa";
+  const { content } = useSiteContent();
+
+  const footer = content?.footer;
+  const brandDesc = isFa
+    ? (footer?.brandDescFa || "سیستم خودمانی و هوشمند یادگیری زبان انگلیسی.")
+    : (footer?.brandDescEn || "A smart, friendly and Persian-first English learning platform.");
+
+  const copyrightText = isFa
+    ? (footer?.copyrightTextFa || "© 2026 Endoora · endoora.ir")
+    : "© 2026 Endoora · endoora.ir";
+
+  const telegramUrl = footer?.telegramLink || "https://t.me/endoora";
+  const instagramUrl = footer?.instagramLink || "https://instagram.com/endoora.ir";
+  const linkedinUrl = footer?.linkedinLink || "https://linkedin.com/company/endoora";
+  const emailAddr = footer?.email || "support@endoora.ir";
+
   return (
     <div className={styles.site} lang={locale} dir={isFa ? "rtl" : "ltr"}>
       <DocumentLocaleSync locale={locale} />
       <AnalyticsConsent locale={locale} />
+      <FloatingPopupsContainer currentPath={currentPath} />
+
+      {/* Dynamic Announcement Banner */}
+      <PromoAnnouncementBar
+        banner={content?.banner}
+        currentPath={currentPath}
+        locale={locale}
+      />
+
       <a className={styles.skipLink} href="#main-content">
         {isFa ? "رفتن به محتوای اصلی" : "Skip to main content"}
       </a>
+
       <PublicHeader
         locale={locale}
         currentPath={currentPath}
@@ -53,11 +84,7 @@ export function PublicShell({
               />
               <strong className={styles.footerBrand} dir="ltr">Endoora</strong>
             </div>
-            <p className={styles.footerText}>
-              {isFa
-                ? "سیستم خودمانی و هوشمند یادگیری زبان انگلیسی."
-                : "A smart, friendly and Persian-first English learning platform."}
-            </p>
+            <p className={styles.footerText}>{brandDesc}</p>
           </div>
 
           <div className={styles.footerCol}>
@@ -85,7 +112,7 @@ export function PublicShell({
 
         <div className={styles.footerBottom}>
           <div className={styles.footerMeta}>
-            <span className={styles.copyrightText}>© 2026 Endoora · <span dir="ltr">endoora.ir</span></span>
+            <span className={styles.copyrightText}>{copyrightText}</span>
             <span className={styles.metaDivider}>·</span>
             <Link href={localizedPath(locale, "/status")} className={styles.metaLink}>
               {isFa ? "وضعیت سرویس" : "Status"}
@@ -98,7 +125,7 @@ export function PublicShell({
 
           <div className={styles.socialGroup}>
             <a
-              href="https://t.me/endoora"
+              href={telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
@@ -111,7 +138,7 @@ export function PublicShell({
               </svg>
             </a>
             <a
-              href="https://instagram.com/endoora.ir"
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
@@ -125,7 +152,7 @@ export function PublicShell({
               </svg>
             </a>
             <a
-              href="https://linkedin.com/company/endoora"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialIcon}
@@ -139,10 +166,10 @@ export function PublicShell({
               </svg>
             </a>
             <a
-              href="mailto:support@endoora.ir"
+              href={`mailto:${emailAddr}`}
               className={styles.socialIcon}
               aria-label="Email"
-              title="Email: support@endoora.ir"
+              title={`Email: ${emailAddr}`}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect width="20" height="16" x="2" y="4" rx="2" />

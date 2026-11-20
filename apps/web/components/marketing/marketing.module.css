@@ -166,19 +166,116 @@
   will-change: filter;
 }
 
-.heroBrandWrap::before {
+/* Futuristic Hexagonal Halo & Wave System */
+.heroHexHalo {
   position: absolute;
-  inset: -0.06em -0.12em;
-  border-radius: inherit;
-  background: radial-gradient(
-    ellipse at 40% 50%,
-    rgba(6, 182, 212, 0.18) 0%,
-    rgba(14, 165, 233, 0.08) 50%,
-    transparent 80%
-  );
-  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: clamp(310px, 34vw, 440px);
+  block-size: clamp(170px, 19vw, 250px);
   pointer-events: none;
   z-index: 0;
+  -webkit-mask-image: radial-gradient(
+    ellipse 65% 65% at 50% 50%,
+    #000000 0%,
+    rgba(0, 0, 0, 0.72) 36%,
+    rgba(0, 0, 0, 0.22) 64%,
+    transparent 88%
+  );
+  mask-image: radial-gradient(
+    ellipse 65% 65% at 50% 50%,
+    #000000 0%,
+    rgba(0, 0, 0, 0.72) 36%,
+    rgba(0, 0, 0, 0.22) 64%,
+    transparent 88%
+  );
+}
+
+/* Soft diffuse ambient aura behind hexagons */
+.heroHexHaloGlow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(6, 182, 212, 0.2) 0%,
+    rgba(37, 99, 235, 0.08) 48%,
+    transparent 78%
+  );
+  filter: blur(14px);
+}
+
+:global([data-theme="dark"]) .heroHexHaloGlow {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(56, 189, 248, 0.26) 0%,
+    rgba(99, 102, 241, 0.12) 48%,
+    transparent 78%
+  );
+}
+
+.heroHexSvg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+
+/* Base subtle wireframe lines */
+.heroHexPathBase {
+  stroke: rgba(37, 99, 235, 0.36);
+  stroke-width: 0.85;
+  transition: stroke 0.4s ease;
+}
+
+:global([data-theme="dark"]) .heroHexPathBase {
+  stroke: rgba(56, 189, 248, 0.32);
+}
+
+.heroHexGridBase {
+  opacity: 0.42;
+}
+
+/* Wave flowing lines */
+.heroHexPathWave {
+  stroke: rgba(6, 182, 212, 0.95);
+  stroke-width: 1.05;
+  transition: stroke 0.4s ease;
+}
+
+:global([data-theme="dark"]) .heroHexPathWave {
+  stroke: rgba(129, 140, 248, 0.95);
+}
+
+.heroHexGridWave {
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(115deg, transparent 20%, #000000 50%, transparent 80%);
+  mask-image: linear-gradient(115deg, transparent 20%, #000000 50%, transparent 80%);
+  -webkit-mask-size: 260% 260%;
+  mask-size: 260% 260%;
+  animation: heroHexWaveSweep 8s ease-in-out infinite;
+}
+
+@keyframes heroHexWaveSweep {
+  0% {
+    -webkit-mask-position: 100% 100%;
+    mask-position: 100% 100%;
+  }
+  50% {
+    -webkit-mask-position: 0% 0%;
+    mask-position: 0% 0%;
+  }
+  100% {
+    -webkit-mask-position: 100% 100%;
+    mask-position: 100% 100%;
+  }
+}
+
+.micPulse {
+  display: inline-block;
+  animation: heroSparkPulse 2s ease-in-out infinite;
 }
 
 .heroSpark {
@@ -208,6 +305,7 @@
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 12px rgba(2, 132, 199, 0.22));
   display: inline-block;
 }
 
@@ -215,6 +313,7 @@
   background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #2dd4bf 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(56, 189, 248, 0.35));
 }
 
 :global([data-theme="dark"]) .heroBrandWrap {
@@ -247,62 +346,62 @@
 */
 @keyframes heroBrandColorCycle {
   0%, 8% {
-    filter: hue-rotate(0deg) saturate(125%) brightness(1.02) drop-shadow(0 2px 14px rgba(37, 99, 235, 0.35));
+    filter: hue-rotate(0deg) saturate(125%) brightness(1.02);
   }
   12.5%, 20.5% {
-    filter: hue-rotate(45deg) saturate(155%) brightness(1.05) drop-shadow(0 2px 14px rgba(109, 40, 217, 0.4));
+    filter: hue-rotate(45deg) saturate(140%) brightness(1.03);
   }
   25%, 33% {
-    filter: hue-rotate(135deg) saturate(165%) brightness(1.05) drop-shadow(0 2px 14px rgba(159, 18, 57, 0.42));
+    filter: hue-rotate(135deg) saturate(145%) brightness(1.04);
   }
   37.5%, 45.5% {
-    filter: hue-rotate(185deg) saturate(175%) brightness(1.08) drop-shadow(0 2px 14px rgba(234, 88, 12, 0.42));
+    filter: hue-rotate(185deg) saturate(150%) brightness(1.05);
   }
   50%, 58% {
-    filter: hue-rotate(200deg) saturate(160%) brightness(1.1) drop-shadow(0 2px 14px rgba(245, 158, 11, 0.45));
+    filter: hue-rotate(200deg) saturate(145%) brightness(1.05);
   }
   62.5%, 70.5% {
-    filter: hue-rotate(280deg) saturate(140%) brightness(1.05) drop-shadow(0 2px 14px rgba(4, 120, 87, 0.4));
+    filter: hue-rotate(280deg) saturate(135%) brightness(1.03);
   }
   75%, 83% {
-    filter: hue-rotate(314deg) saturate(145%) brightness(1) drop-shadow(0 2px 14px rgba(15, 118, 110, 0.4));
+    filter: hue-rotate(314deg) saturate(138%) brightness(1);
   }
   87.5%, 95.5% {
-    filter: hue-rotate(345deg) saturate(135%) brightness(1.05) drop-shadow(0 2px 14px rgba(20, 184, 166, 0.4));
+    filter: hue-rotate(345deg) saturate(130%) brightness(1.03);
   }
   100% {
-    filter: hue-rotate(360deg) saturate(125%) brightness(1.02) drop-shadow(0 2px 14px rgba(37, 99, 235, 0.35));
+    filter: hue-rotate(360deg) saturate(125%) brightness(1.02);
   }
 }
 
 /* Dark Theme Header Color Cycle: vibrant neon glow */
 @keyframes heroBrandColorCycleDark {
   0%, 8% {
-    filter: hue-rotate(0deg) saturate(140%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.45));
+    filter: hue-rotate(0deg) saturate(135%) brightness(1.12);
   }
   12.5%, 20.5% {
-    filter: hue-rotate(45deg) saturate(165%) brightness(1.15) drop-shadow(0 2px 16px rgba(168, 85, 247, 0.5));
+    filter: hue-rotate(45deg) saturate(150%) brightness(1.12);
   }
   25%, 33% {
-    filter: hue-rotate(135deg) saturate(175%) brightness(1.15) drop-shadow(0 2px 16px rgba(244, 63, 94, 0.5));
+    filter: hue-rotate(135deg) saturate(155%) brightness(1.14);
   }
   37.5%, 45.5% {
-    filter: hue-rotate(185deg) saturate(185%) brightness(1.18) drop-shadow(0 2px 16px rgba(251, 146, 60, 0.5));
+    filter: hue-rotate(185deg) saturate(160%) brightness(1.15);
   }
   50%, 58% {
-    filter: hue-rotate(200deg) saturate(170%) brightness(1.2) drop-shadow(0 2px 16px rgba(251, 191, 36, 0.5));
+    filter: hue-rotate(200deg) saturate(155%) brightness(1.16);
   }
   62.5%, 70.5% {
-    filter: hue-rotate(280deg) saturate(150%) brightness(1.15) drop-shadow(0 2px 16px rgba(52, 211, 153, 0.5));
+    filter: hue-rotate(280deg) saturate(140%) brightness(1.12);
   }
   75%, 83% {
-    filter: hue-rotate(314deg) saturate(155%) brightness(1.1) drop-shadow(0 2px 16px rgba(45, 212, 191, 0.5));
+    filter: hue-rotate(314deg) saturate(145%) brightness(1.1);
   }
   87.5%, 95.5% {
-    filter: hue-rotate(345deg) saturate(145%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.5));
+    filter: hue-rotate(345deg) saturate(135%) brightness(1.12);
   }
   100% {
-    filter: hue-rotate(360deg) saturate(140%) brightness(1.15) drop-shadow(0 2px 16px rgba(56, 189, 248, 0.45));
+    filter: hue-rotate(360deg) saturate(135%) brightness(1.12);
   }
 }
 
@@ -312,7 +411,8 @@
   .heroLine2,
   .heroLine3,
   .heroBrandWrap,
-  .heroSpark {
+  .heroSpark,
+  .heroHexGridWave {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

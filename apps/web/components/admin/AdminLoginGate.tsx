@@ -45,14 +45,14 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
 
       const userData = await res.json();
       if (userData.role !== "administrator" && !userData.is_staff && !userData.is_superuser) {
-        setError("این حساب کاربری دارای مجوز دسترسی به مرکز مدیریت کل نیست.");
+        setError("این حساب کاربری دارای مجوز دسترسی به پیشخوان مدیریت نیست.");
         setIsLoading(false);
         return;
       }
 
       onLoginSuccess();
     } catch {
-      setError("خطا در برقراری ارتباط با سرور احراز هویت.");
+      setError("خطا در برقراری ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی نمایید.");
       setIsLoading(false);
     }
   };
@@ -62,9 +62,9 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
       <div className={styles.gateCard}>
         <div className={styles.brandHeader}>
           <div className={styles.brandLogo}>E</div>
-          <h1 className={styles.gateTitle}>دروازه امن مدیریت ارشد (Admin Gate)</h1>
+          <h1 className={styles.gateTitle}>ورود به پیشخوان مدیریت ایندورا</h1>
           <p className={styles.gateSubtitle}>
-            برای ورود به مرکز فرماندهی و مدیریت سامانه، هویت مدیریتی خود را با اطلاعات معتبر سرور تایید کنید.
+            برای ورود و دسترسی به امکانات مدیریتی، لطفاً مشخصات حساب خود را وارد فرمایید.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>ایمیل یا شناسه کاربری مدیر ارشد</label>
+            <label className={styles.label}>ایمیل یا شماره موبایل مدیر</label>
             <input
               type="email"
               className={styles.input}
@@ -91,7 +91,7 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           </div>
 
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>رمز عبور امنیتی</label>
+            <label className={styles.label}>رمز عبور</label>
             <input
               type="password"
               className={styles.input}
@@ -104,12 +104,12 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           </div>
 
           <button type="submit" className={styles.btnSubmit} disabled={isLoading}>
-            {isLoading ? "در حال اعتبارسنجی..." : "ورود به مرکز مدیریت کل ←"}
+            {isLoading ? "در حال بررسی اطلاعات..." : "ورود به پیشخوان مدیریت ←"}
           </button>
         </form>
 
         <p className={styles.footerNote}>
-          این درگاه صرفاً برای مدیران سیستم طراحی شده و تمامی ورودها به صورت رسمی در دفتر کل ثبت می‌شوند.
+          این بخش اختصاصی مدیران است و تمامی نشست‌ها برای امنیت اطلاعات پلتفرم پایش می‌شوند.
         </p>
       </div>
     </div>

@@ -9205,70 +9205,231 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-        "id": 1,
-        "seconds": 10,
-        "timeDisplay": "0:10",
-        "speaker": "Narrator",
-        "textEn": "Last week on Arctic Academy, the teenagers finished their training and made the long journey to the Arctic.",
-        "textFa": "هفته گذشته در برنامه آکادمی قطب شمال، نوجوانان تمرینات خود را به پایان رساندند و سفر طولانی‌شان به قطب را آغاز کردند."
+            "id": 1,
+            "seconds": 10.8,
+            "endSeconds": 22.5,
+            "timeDisplay": "0:10",
+            "speaker": "Narrator",
+            "textEn": "Last week on Arctic Academy, the teenagers finished their training and made the long journey to the Arctic.",
+            "textFa": "هفته گذشته در برنامه آکادمی قطب شمال، نوجوانان آموزش‌های خود را به پایان رساندند و سفر طولانی‌شان به قطب را آغاز کردند."
       },
       {
-        "id": 2,
-        "seconds": 24,
-        "timeDisplay": "0:24",
-        "speaker": "Narrator",
-        "textEn": "This week, the teenagers are continuing their journey. Today is their first morning in the Arctic. The teenagers are waking up. For one of them, Kim, the day is starting badly. She's tired, and she wants to go home.",
-        "textFa": "این هفته به سفر ادامه می‌دهند؛ امروز نخستین صبح آن‌ها در قطب است. برای کیم روز خوبی آغاز نشده، خسته است و می‌خواهد به خانه برگردد."
+            "id": 2,
+            "seconds": 24.4,
+            "endSeconds": 30.8,
+            "timeDisplay": "0:24",
+            "speaker": "Narrator",
+            "textEn": "This week, the teenagers are continuing their journey.",
+            "textFa": "این هفته، نوجوانان در حال ادامه سفر خود هستند."
       },
       {
-        "id": 3,
-        "seconds": 66,
-        "timeDisplay": "1:06",
-        "speaker": "Craig",
-        "textEn": "So this morning we're going to go around, around that corner over there.",
-        "textFa": "خب بچه‌ها، امروز صبح قرار است از آن گوشه دور بزنیم و مسیر را پیش بگیریم."
+            "id": 3,
+            "seconds": 40.3,
+            "endSeconds": 48.5,
+            "timeDisplay": "0:40",
+            "speaker": "Narrator",
+            "textEn": "Today is their first morning in the Arctic. The teenagers are waking up.",
+            "textFa": "امروز اولین صبح آن‌ها در قطب شمال است. نوجوانان در حال بیدار شدن هستند."
       },
       {
-        "id": 4,
-        "seconds": 72,
-        "timeDisplay": "1:12",
-        "speaker": "Narrator",
-        "textEn": "Kim's listening but she isn't looking happy. Today the group is going to ski to the next camp. It's a difficult journey of eight kilometres, and it's going to take them eight hours.",
-        "textFa": "کیم گوش می‌دهد اما راضی نیست. امروز باید هشت کیلومتر تا کمپ بعدی اسکی کنند که هشت ساعت طاقت‌فرسا زمان می‌برد."
+            "id": 4,
+            "seconds": 49.1,
+            "endSeconds": 58.6,
+            "timeDisplay": "0:49",
+            "speaker": "Narrator",
+            "textEn": "For one of them, Kim, the day is starting badly. She's tired, and she wants to go home.",
+            "textFa": "برای یکی از آن‌ها، کیم، روز بد شروع می‌شود. او خسته است و می‌خواهد به خانه برگردد."
       },
       {
-        "id": 5,
-        "seconds": 89,
-        "timeDisplay": "1:29",
-        "speaker": "Narrator",
-        "textEn": "They can't go very fast. Each person is pulling 45 kilograms of equipment behind them. After one hour into the journey, Kim's having problems. One member of the group, Matthew, is trying to help. But Kim isn't happy.",
-        "textFa": "سرعت بالا ممکن نیست چون هر نفر ۴۵ کیلوگرم تجهیزات را یدک می‌کشد. پس از یک ساعت کیم دچار مشکل می‌شود؛ متیو تلاش می‌کند به او کمک کند."
+            "id": 5,
+            "seconds": 60.5,
+            "endSeconds": 65.8,
+            "timeDisplay": "1:00",
+            "speaker": "Narrator",
+            "textEn": "The teenagers are having a group meeting with their leader Craig Mathieson.",
+            "textFa": "نوجوانان در حال برگزاری یک جلسه گروهی با سرپرست خود، کریگ متیسن، هستند."
       },
       {
-        "id": 6,
-        "seconds": 91,
-        "timeDisplay": "1:31",
-        "speaker": "Kim",
-        "textEn": "I wanna go home.",
-        "textFa": "من می‌خواهم برگردم خانه."
+            "id": 6,
+            "seconds": 66.7,
+            "endSeconds": 71.5,
+            "timeDisplay": "1:06",
+            "speaker": "Craig",
+            "textEn": "So this morning we're going to go around, around that corner over there.",
+            "textFa": "خب بچه‌ها، امروز صبح می‌خواهیم از آن گوشه دور بزنیم و مسیر را پیش بگیریم."
       },
       {
-        "id": 7,
-        "seconds": 216,
-        "timeDisplay": "3:36",
-        "speaker": "Craig",
-        "textEn": "You do?",
-        "textFa": "واقعاً؟"
+            "id": 7,
+            "seconds": 72.1,
+            "endSeconds": 75.5,
+            "timeDisplay": "1:12",
+            "speaker": "Narrator",
+            "textEn": "Kim's listening but she isn't looking happy.",
+            "textFa": "کیم گوش می‌دهد اما به نظر خوشحال نمی‌رسد."
       },
       {
-        "id": 8,
-        "seconds": 218,
-        "timeDisplay": "3:38",
-        "speaker": "Narrator",
-        "textEn": "Craig needs to think about everyone in the group. They can't stop for just one person. The teenagers are working in pairs. Adam's working with Kim. He's helping her. Together they reach the finish line.",
-        "textFa": "کریگ باید صلاح کل گروه را در نظر بگیرد؛ نمی‌توان به خاطر یک نفر متوقف شد. نوجوانان دو به دو همیاری می‌کنند؛ ادام به کیم کمک می‌کند و سرانجام همگی به کمپ می‌رسند."
+            "id": 8,
+            "seconds": 76.9,
+            "endSeconds": 87.8,
+            "timeDisplay": "1:16",
+            "speaker": "Narrator",
+            "textEn": "Today the group is going to ski to the next camp. It's a difficult journey of eight kilometres, and it's going to take them eight hours.",
+            "textFa": "امروز گروه قصد دارد تا کمپ بعدی اسکی کند. این یک سفر دشوار هشت کیلومتری است که هشت ساعت طول خواهد کشید."
+      },
+      {
+            "id": 9,
+            "seconds": 88.8,
+            "endSeconds": 98.5,
+            "timeDisplay": "1:28",
+            "speaker": "Narrator",
+            "textEn": "They can't go very fast. Each person is pulling 45 kilograms of equipment behind them.",
+            "textFa": "آن‌ها نمی‌توانند خیلی سریع حرکت کنند. هر نفر ۴۵ کیلوگرم تجهیزات را پشت سر خود می‌کشد."
+      },
+      {
+            "id": 10,
+            "seconds": 100.8,
+            "endSeconds": 108.5,
+            "timeDisplay": "1:40",
+            "speaker": "Narrator",
+            "textEn": "After one hour into the journey, Kim's having problems.",
+            "textFa": "پس از یک ساعت از آغاز سفر، کیم دچار مشکل و سختی می‌شود."
+      },
+      {
+            "id": 11,
+            "seconds": 110.3,
+            "endSeconds": 116.8,
+            "timeDisplay": "1:50",
+            "speaker": "Narrator",
+            "textEn": "One member of the group, Matthew, is trying to help. But Kim isn't happy.",
+            "textFa": "یکی از اعضای گروه، متیو، تلاش می‌کند به او کمک کند. اما کیم خوشحال نیست."
+      },
+      {
+            "id": 12,
+            "seconds": 117.2,
+            "endSeconds": 118.8,
+            "timeDisplay": "1:57",
+            "speaker": "Kim",
+            "textEn": "I wanna go home.",
+            "textFa": "می‌خواهم برگردم خانه."
+      },
+      {
+            "id": 13,
+            "seconds": 118.9,
+            "endSeconds": 119.8,
+            "timeDisplay": "1:58",
+            "speaker": "Craig",
+            "textEn": "You do?",
+            "textFa": "واقعاً؟"
+      },
+      {
+            "id": 14,
+            "seconds": 120.1,
+            "endSeconds": 127.5,
+            "timeDisplay": "2:00",
+            "speaker": "Narrator",
+            "textEn": "Craig needs to think about everyone in the group. They can't stop for just one person.",
+            "textFa": "کریگ باید صلاح کل افراد گروه را در نظر بگیرد. آن‌ها نمی‌توانند تنها به خاطر یک نفر توقف کنند."
+      },
+      {
+            "id": 15,
+            "seconds": 129.9,
+            "endSeconds": 143.5,
+            "timeDisplay": "2:09",
+            "speaker": "Narrator",
+            "textEn": "The teenagers are working in pairs. It's very hard work for everyone. Adam's working with Kim. He's helping her.",
+            "textFa": "نوجوانان دو به دو با هم کار می‌کنند. این کار برای همه بسیار دشوار است. ادم با کیم همیاری می‌کند و به او کمک می‌رساند."
+      },
+      {
+            "id": 16,
+            "seconds": 145.7,
+            "endSeconds": 155.5,
+            "timeDisplay": "2:25",
+            "speaker": "Narrator",
+            "textEn": "After eight hours, they finally arrive at their next camp. Tomorrow they're going to the top of the mountain.",
+            "textFa": "پس از هشت ساعت، سرانجام به کمپ بعدی می‌رسند. فردا قرار است به قله کوه صعود کنند."
+      },
+      {
+            "id": 17,
+            "seconds": 158.4,
+            "endSeconds": 168.8,
+            "timeDisplay": "2:38",
+            "speaker": "Narrator",
+            "textEn": "The next day is cloudy and cold. The group has one goal today: to get to the top of the mountain.",
+            "textFa": "روز بعد هوا ابری و سرد است. گروه امروز تنها یک هدف دارد: رسیدن به قله کوه."
+      },
+      {
+            "id": 18,
+            "seconds": 173.6,
+            "endSeconds": 185.0,
+            "timeDisplay": "2:53",
+            "speaker": "Narrator",
+            "textEn": "It's really difficult to walk in the snow. This is a test for everyone in the group. They climb slowly.",
+            "textFa": "راه رفتن در برف واقعاً طاقت‌فرساست. این آزمونی برای تک‌تک افراد گروه است. آن‌ها آرام‌آرام بالا می‌روند."
+      },
+      {
+            "id": 19,
+            "seconds": 186.2,
+            "endSeconds": 197.0,
+            "timeDisplay": "3:06",
+            "speaker": "Narrator",
+            "textEn": "After three hours, the group finally reaches the top … and the view is amazing!",
+            "textFa": "پس از سه ساعت، گروه سرانجام به قله می‌رسد... و منظره فوق‌العاده است!"
+      },
+      {
+            "id": 20,
+            "seconds": 197.9,
+            "endSeconds": 205.4,
+            "timeDisplay": "3:17",
+            "speaker": "Narrator",
+            "textEn": "Now they can ski back down the mountain. This is much easier and a lot more fun!",
+            "textFa": "حالا می‌توانند از کوه به سمت پایین اسکی کنند. این کار بسیار آسان‌تر و به مراتب لذت‌بخش‌تر است!"
+      },
+      {
+            "id": 21,
+            "seconds": 205.8,
+            "endSeconds": 216.2,
+            "timeDisplay": "3:25",
+            "speaker": "Narrator",
+            "textEn": "Kim is like a new person. She's enjoying the experience, and she's got an amazing story to tell her family when she gets home.",
+            "textFa": "کیم انگار فرد دیگری شده است. او دارد از این تجربه لذت می‌برد و حالا داستانی شگفت‌انگیز دارد تا در بازگشت برای خانواده‌اش تعریف کند."
+      },
+      {
+            "id": 22,
+            "seconds": 216.3,
+            "endSeconds": 219.0,
+            "timeDisplay": "3:36",
+            "speaker": "Kim",
+            "textEn": "The best thing to do is just enjoy it.",
+            "textFa": "بهترین کاری که می‌شه کرد اینه که فقط ازش لذت ببری."
+      },
+      {
+            "id": 23,
+            "seconds": 219.3,
+            "endSeconds": 224.0,
+            "timeDisplay": "3:39",
+            "speaker": "Kim",
+            "textEn": "Um … I'll have like this amazing story to go home and like tell my family.",
+            "textFa": "امم... من این داستان فوق‌العاده رو خواهم داشت که برم خونه و برای خونوادم تعریف کنم."
+      },
+      {
+            "id": 24,
+            "seconds": 224.9,
+            "endSeconds": 228.6,
+            "timeDisplay": "3:44",
+            "speaker": "Narrator",
+            "textEn": "And at the end of the day, the group goes back to the camp.",
+            "textFa": "و در پایان روز، گروه به کمپ بازمی‌گردد."
+      },
+      {
+            "id": 25,
+            "seconds": 228.6,
+            "endSeconds": 234.0,
+            "timeDisplay": "3:48",
+            "speaker": "Narrator",
+            "textEn": "They arrive safely, tired but happy.",
+            "textFa": "آن‌ها با سلامت و امنیت می‌رسند؛ خسته اما خوشحال و راضی."
       }
-    ],
+],
     "questions": {
       "listening": {
         "skill": "listening",

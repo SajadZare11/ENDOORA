@@ -582,11 +582,11 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
 
   useEffect(() => {
     let ignore = false;
-    fetch("/api/admin/site-content")
+    fetch("/api/site-content")
       .then((res) => (res.ok ? res.json() : null))
       .then((json) => {
-        if (!ignore && json?.live) {
-          setCmsContent(json.live);
+        if (!ignore && (json?.content || json?.live)) {
+          setCmsContent(json.content || json.live);
         }
       })
       .catch(() => {});
@@ -619,6 +619,55 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
               <>
                 <span className={`${styles.heroLine} ${styles.heroLine1}`}>
                   <span className={styles.heroBrandWrap}>
+                    <span className={styles.heroHexHalo} aria-hidden="true">
+                      <span className={styles.heroHexHaloGlow} />
+                      <svg
+                        className={styles.heroHexSvg}
+                        viewBox="0 0 400 240"
+                        fill="none"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                      >
+                        <defs>
+                          <pattern
+                            id="endooraHexBase"
+                            width="22.517"
+                            height="39"
+                            patternUnits="userSpaceOnUse"
+                          >
+                            <path
+                              d="M 11.258 0 L 22.517 6.5 L 22.517 19.5 L 11.258 26 L 11.258 39 M 0 6.5 L 11.258 0 M 0 19.5 L 11.258 26"
+                              fill="none"
+                              className={styles.heroHexPathBase}
+                            />
+                          </pattern>
+                          <pattern
+                            id="endooraHexWave"
+                            width="22.517"
+                            height="39"
+                            patternUnits="userSpaceOnUse"
+                          >
+                            <path
+                              d="M 11.258 0 L 22.517 6.5 L 22.517 19.5 L 11.258 26 L 11.258 39 M 0 6.5 L 11.258 0 M 0 19.5 L 11.258 26"
+                              fill="none"
+                              className={styles.heroHexPathWave}
+                            />
+                          </pattern>
+                        </defs>
+                        <rect
+                          width="100%"
+                          height="100%"
+                          fill="url(#endooraHexBase)"
+                          className={styles.heroHexGridBase}
+                        />
+                        <rect
+                          width="100%"
+                          height="100%"
+                          fill="url(#endooraHexWave)"
+                          className={styles.heroHexGridWave}
+                        />
+                      </svg>
+                    </span>
                     <svg className={styles.heroSpark} viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M12 2C12 7.523 7.523 12 2 12C7.523 12 12 16.477 12 22C12 16.477 16.477 12 22 12C16.477 12 12 7.523 12 2Z"
@@ -646,7 +695,7 @@ export function HomePage({ locale }: { locale: PublicLocale }) {
           </h1>
           <p>{isFa ? (cmsContent.hero.subtitleFa || "توی چند دقیقه رایگان تعیین سطح شو، بهترین کتاب آموزشی متناسب با خودت رو بگیر و با کلاس‌های آنلاین و تمرین‌های روزانه ۱۰ دقیقه‌ای، راحت انگلیسی صحبت کن.") : "Endoora turns your level, goals, and learning patterns into one clear path—from placement to daily practice and teacher guidance."}</p>
                     <div className={styles.heroActions}>
-            <Link className={styles.primaryButton} href={localizedPath(locale, cmsContent.hero.primaryCtaHref || "/placement")}>
+            <Link className={styles.primaryButton} href={cmsContent.hero.primaryCtaHref ? localizedPath(locale, cmsContent.hero.primaryCtaHref) : localizedPath(locale, "/placement")}>
               <span>{isFa ? (cmsContent.hero.primaryCtaLabelFa || "شروع تعیین سطح رایگان") : "Start free placement"}</span><span aria-hidden="true">{isFa ? "←" : "→"}</span>
             </Link>
             <Link className={styles.secondaryButton} href={cmsContent.hero.secondaryCtaHref || "#how"}>

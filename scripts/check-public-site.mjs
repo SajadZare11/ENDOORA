@@ -148,7 +148,8 @@ for (const name of componentFiles) {
   }
 }
 
-const css = `${read("apps/web/components/marketing/marketing.module.css")}\n${read("apps/web/components/marketing/public-shell.module.css")}`;
+const cssFiles = fs.readdirSync(marketingDirectory).filter((name) => name.endsWith(".module.css"));
+const css = cssFiles.map((name) => read(`apps/web/components/marketing/${name}`)).join("\n");
 const definedClasses = new Set([...css.matchAll(/^\.([A-Za-z][A-Za-z0-9_-]*)/gm)].map((match) => match[1]));
 const missingClasses = [...usedClasses].filter((name) => !definedClasses.has(name));
 if (missingClasses.length) {
