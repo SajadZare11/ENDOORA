@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import {
   localizedPath,
+  alternatePath,
   type PublicLocale,
 } from "../../lib/public-site";
 import styles from "./public-shell.module.css";
@@ -127,6 +128,15 @@ export function PublicHeader({
         <div className={styles.actions}>
           {extraActions}
           <div className={styles.desktopAuthGroup}>
+            <Link
+              href={alternatePath(locale, currentPath)}
+              className={styles.secondaryCta}
+              aria-label={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
+              lang={isFa ? "en" : "fa"}
+              dir="ltr"
+            >
+              {isFa ? "EN" : "فا"}
+            </Link>
             <AccountActions
               locale={locale}
               primaryClassName={styles.primaryCta}
@@ -152,6 +162,15 @@ export function PublicHeader({
                 ))}
               </div>
               <div className={styles.mobileAuthSection}>
+                <Link
+                  href={alternatePath(locale, currentPath)}
+                  className={styles.mobileSecondaryCta}
+                  aria-label={isFa ? "Switch to English" : "تغییر زبان به فارسی"}
+                  lang={isFa ? "en" : "fa"}
+                  dir="ltr"
+                >
+                  {isFa ? "English (EN)" : "فارسی (FA)"}
+                </Link>
                 <AccountActions
                   locale={locale}
                   primaryClassName={styles.mobilePrimaryCta}

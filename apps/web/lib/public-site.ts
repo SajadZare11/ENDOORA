@@ -616,7 +616,13 @@ export const featureKeys = Object.keys(featurePages) as FeatureKey[];
 export const legalKeys = Object.keys(legalPages) as LegalKey[];
 
 export function localizedPath(locale: PublicLocale, path: string): string {
-  const normalized = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
+  let bare = path.trim();
+  if (bare === "/en" || bare === "/en/") {
+    bare = "/";
+  } else if (bare.startsWith("/en/")) {
+    bare = bare.slice(3);
+  }
+  const normalized = bare === "/" ? "" : bare.startsWith("/") ? bare : `/${bare}`;
   if (locale === "fa") return normalized || "/";
   return `/en${normalized}` || "/en";
 }
