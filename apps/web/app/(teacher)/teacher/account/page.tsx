@@ -12,6 +12,7 @@ import {
   upgradeTeacherPlan,
 } from "@/lib/teacheros-api";
 import { endooraApi } from "@/lib/endoora-api";
+import { clearActiveUser } from "@/lib/client-storage";
 import { FALLBACK_TEACHERS } from "@/lib/teachers-fallback-data";
 import type {
   TeacherAccountSummary,
@@ -150,6 +151,7 @@ export default function TeacherAccountPage() {
     } catch {
       // Proceed with redirect regardless of network status
     } finally {
+      clearActiveUser();
       window.location.href = "/auth/login";
     }
   };

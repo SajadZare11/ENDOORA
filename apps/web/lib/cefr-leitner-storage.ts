@@ -13,25 +13,25 @@ import {
   CEFR_LEVELS_META,
 } from "../data/cefr/types.ts";
 import { getVocabForLevel, getWordById } from "../data/cefr/index.ts";
+import { scopedLocalStorage } from "./client-storage.ts";
 export { getWordById };
 
-const STORAGE_KEY_PREFIX = "endoora_cefr_deck_v2_";
-const ACTIVE_LEVEL_KEY = "endoora_cefr_active_level_v2";
+const STORAGE_KEY_PREFIX = "cefr_deck_v2_";
+const ACTIVE_LEVEL_KEY = "cefr_active_level_v2";
 const EVENT_NAME = "endoora:cefr-leitner-updated";
 
 /**
  * Check if running in browser
  */
 function isClient(): boolean {
-  return typeof window !== "undefined" && typeof localStorage !== "undefined";
+  return typeof window !== "undefined";
 }
 
 /**
  * Get active CEFR level
  */
 export function getActiveCefrLevel(): CEFRLevel {
-  if (!isClient()) return "A1";
-  const stored = localStorage.getItem(ACTIVE_LEVEL_KEY) as CEFRLevel | null;
+  const stored = scopedLocalStorage.getItem(ACTIVE_LEVEL_KEY) as CEFRLevel | null;
   if (stored && ["A1", "A2", "B1", "B2", "C1", "C2"].includes(stored)) {
     return stored;
   }
@@ -42,8 +42,7 @@ export function getActiveCefrLevel(): CEFRLevel {
  * Set active CEFR level
  */
 export function setActiveCefrLevel(level: CEFRLevel): void {
-  if (!isClient()) return;
-  localStorage.setItem(ACTIVE_LEVEL_KEY, level);
+  scopedLocalStorage.setItem(ACTIVE_LEVEL_KEY, level);
   notifyUpdate(level);
 }
 
@@ -51,7 +50,7 @@ export function setActiveCefrLevel(level: CEFRLevel): void {
  * Helper to notify listeners of storage changes
  */
 function notifyUpdate(level: CEFRLevel): void {
-  if (!isClient()) return;
+  if (typeof window === "undefined") return;
   window.dispatchEvent(
     new CustomEvent(EVENT_NAME, {
       detail: { level, timestamp: Date.now() },
@@ -63,9 +62,8 @@ function notifyUpdate(level: CEFRLevel): void {
  * Get raw deck object for a given level: Record<wordId, CEFRCardState>
  */
 export function getLevelDeck(level: CEFRLevel): Record<string, CEFRCardState> {
-  if (!isClient()) return {};
   try {
-    const raw = localStorage.getItem(`${STORAGE_KEY_PREFIX}${level}`);
+    const raw = scopedLocalStorage.getItem(`${STORAGE_KEY_PREFIX}${level}`);
     if (!raw) return {};
     return JSON.parse(raw);
   } catch (err) {
@@ -78,9 +76,8 @@ export function getLevelDeck(level: CEFRLevel): Record<string, CEFRCardState> {
  * Save raw deck object for a given level
  */
 function saveLevelDeck(level: CEFRLevel, deck: Record<string, CEFRCardState>): void {
-  if (!isClient()) return;
   try {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}${level}`, JSON.stringify(deck));
+    scopedLocalStorage.setItem(`${STORAGE_KEY_PREFIX}${level}`, JSON.stringify(deck));
     notifyUpdate(level);
   } catch (err) {
     console.error(`Failed to save CEFR deck for ${level}:`, err);

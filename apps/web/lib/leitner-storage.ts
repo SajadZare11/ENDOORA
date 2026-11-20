@@ -1,3 +1,5 @@
+import { scopedLocalStorage } from "./client-storage.ts";
+
 export type LeitnerBoxLevel = 1 | 2 | 3 | 4 | 5;
 
 export interface LeitnerCard {
@@ -193,7 +195,7 @@ export function getLeitnerDeck(): LeitnerCard[] {
 
   let deck: LeitnerCard[] = [];
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = scopedLocalStorage.getItem(STORAGE_KEY);
     if (raw) {
       deck = JSON.parse(raw);
     } else {
@@ -206,7 +208,7 @@ export function getLeitnerDeck(): LeitnerCard[] {
 
   // Auto-sync any mistakes logged by Classroom Studio
   try {
-    const rawClassroom = localStorage.getItem(CLASSROOM_MISTAKES_KEY);
+    const rawClassroom = scopedLocalStorage.getItem(CLASSROOM_MISTAKES_KEY);
     if (rawClassroom) {
       const classroomMistakes = JSON.parse(rawClassroom);
       let addedCount = 0;
@@ -247,7 +249,7 @@ export function getLeitnerDeck(): LeitnerCard[] {
 export function saveLeitnerDeck(deck: LeitnerCard[]): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(deck));
+    scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(deck));
     window.dispatchEvent(new CustomEvent("endoora:leitner-updated"));
   } catch (err) {
     console.error("Failed to save Leitner deck:", err);

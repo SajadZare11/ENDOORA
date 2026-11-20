@@ -7,6 +7,7 @@ import { AuthShell } from "../../../components/auth/AuthShell";
 import { PasswordField } from "../../../components/auth/PasswordField";
 import { Button, Input } from "@endoora/ui";
 import styles from "../../../components/auth/auth.module.css";
+import { setActiveUserId } from "../../../lib/client-storage";
 import {
   apiErrorMessages,
   endooraApi,
@@ -120,6 +121,9 @@ export default function LoginPage() {
       );
 
       setLoggedIn(true);
+      if (response?.id) {
+        setActiveUserId(response.id);
+      }
       const destination = response?.role === "teacher" ? "/teacher" : "/dashboard";
       window.location.href = destination;
     } catch (error) {
