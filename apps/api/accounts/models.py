@@ -69,34 +69,14 @@ class User(AbstractUser):
     def is_premium(self) -> bool:
         if self.is_staff or self.is_superuser:
             return True
+        from marketplace.models import SubscriptionGrant
         now = timezone.now()
-        try:
-            from marketplace.models import SubscriptionGrant
-            grants = SubscriptionGrant.objects.filter(
-                payment__user=self,
-                payment__status="paid",
-                starts_at__lte=now,
-                ends_at__gt=now,
-                revoked_at=None,
-            )
-            from django.conf import settings
-            if not getattr(settings, "ZARINPAL_SANDBOX", False):
-                grants = grants.filter(payment__is_sandbox=False)
-            if grants.exists():
-                return True
-        except Exception:
-            pass
-
-        try:
-            from marketplace.models import UserSubscription, SubscriptionStatus
-            return UserSubscription.objects.filter(
-                user=self,
-                status=SubscriptionStatus.ACTIVE,
-                starts_at__lte=now,
-                expires_at__gte=now,
-            ).exists()
-        except Exception:
-            return False
+        grants = SubscriptionGrant.objects.filter(payment__user=self, payment__status="paid",
+                                                  starts_at__lte=now, ends_at__gt=now, revoked_at=None)
+        from django.conf import settings
+        if not settings.ZARINPAL_SANDBOX:
+            grants = grants.filter(payment__is_sandbox=False)
+        return grants.exists()
 
     @property
     def capabilities(self) -> dict[str, bool]:

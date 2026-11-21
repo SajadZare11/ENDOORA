@@ -10,9 +10,9 @@ class LegacySubscriptionMigrationTests(TransactionTestCase):
     def test_legacy_settlement_pending_and_unresolved(self):
         old = (
             "marketplace",
-            "0006_sessionbooking_is_paid_alter_sessionbooking_status_and_more",
+            "0010_teacherpayoutrequest_approved_at_and_more",
         )
-        new = ("marketplace", "0008_backfill_subscription_periods")
+        new = ("marketplace", "0012_backfill_subscription_periods")
         executor = MigrationExecutor(connection)
         executor.migrate([old])
         try:

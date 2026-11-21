@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('marketplace', '0006_sessionbooking_is_paid_alter_sessionbooking_status_and_more'),
+        ('marketplace', '0010_teacherpayoutrequest_approved_at_and_more'),
     ]
 
     operations = [

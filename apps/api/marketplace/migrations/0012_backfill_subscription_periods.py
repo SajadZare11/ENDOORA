@@ -22,5 +22,5 @@ def import_receipts(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [("marketplace", "0007_paymenttransaction_subscription_days_and_more")]
+    dependencies = [("marketplace", "0011_paymenttransaction_subscription_days_and_more")]
     operations = [migrations.RunPython(import_receipts, migrations.RunPython.noop)]

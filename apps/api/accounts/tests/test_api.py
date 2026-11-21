@@ -523,7 +523,8 @@ class OtpAttemptPersistenceSecurityTests(TransactionTestCase):
         failures = []
 
         def attempt_verify():
-            connection.close()
+            if connection.vendor != "sqlite":
+                connection.close()
             try:
                 verify_otp(
                     self.user.email,
@@ -535,7 +536,8 @@ class OtpAttemptPersistenceSecurityTests(TransactionTestCase):
             except (ValidationError, Exception) as exc:
                 failures.append(exc)
             finally:
-                connection.close()
+                if connection.vendor != "sqlite":
+                    connection.close()
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             f1 = executor.submit(attempt_verify)

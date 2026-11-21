@@ -1981,106 +1981,136 @@ class ExpiringSubscriptionSecurityTests(APITestCase):
 
     def test_is_premium_active_window(self):
         """is_premium is True only within active subscription window."""
-        from marketplace.models import UserSubscription, SubscriptionStatus
+        from marketplace.models import SubscriptionGrant, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
         self.assertFalse(self.learner.is_premium)
 
         now = timezone.now()
-        sub = UserSubscription.objects.create(
+        tx = PaymentTransaction.objects.create(
             user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
             plan=self.plan,
-            tier="premium",
-            status=SubscriptionStatus.ACTIVE,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            verified_at=now - timedelta(days=2),
+            subscription_days=30,
+            idempotency_key="active_win_tx",
+        )
+        SubscriptionGrant.objects.create(
+            payment=tx,
+            paid_at=tx.verified_at,
+            days=30,
             starts_at=now - timedelta(days=2),
-            expires_at=now + timedelta(days=28),
+            ends_at=now + timedelta(days=28),
         )
         self.assertTrue(self.learner.is_premium)
         self.assertTrue(self.learner.capabilities["is_premium"])
 
     def test_expired_subscription_immediately_loses_premium(self):
         """Expired subscriptions immediately return is_premium=False."""
-        from marketplace.models import UserSubscription, SubscriptionStatus
+        from marketplace.models import SubscriptionGrant, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
         now = timezone.now()
-        # Expired 1 hour ago
-        UserSubscription.objects.create(
+        tx = PaymentTransaction.objects.create(
             user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
             plan=self.plan,
-            tier="premium",
-            status=SubscriptionStatus.ACTIVE,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            verified_at=now - timedelta(days=31),
+            subscription_days=30,
+            idempotency_key="expired_tx",
+        )
+        SubscriptionGrant.objects.create(
+            payment=tx,
+            paid_at=tx.verified_at,
+            days=30,
             starts_at=now - timedelta(days=31),
-            expires_at=now - timedelta(hours=1),
+            ends_at=now - timedelta(hours=1),
         )
         self.assertFalse(self.learner.is_premium)
         self.assertFalse(self.learner.capabilities["is_premium"])
 
     def test_renewal_extends_from_current_expiration_if_active(self):
         """Renewing while currently active extends expiration by plan duration."""
-        from marketplace.models import UserSubscription, SubscriptionStatus, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
-        from marketplace.services import fulfill_subscription_payment
+        from marketplace.models import SubscriptionGrant, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.subscriptions import grant_purchase
 
         now = timezone.now()
-        existing_sub = UserSubscription.objects.create(
-            user=self.learner,
-            plan=self.plan,
-            tier="premium",
-            status=SubscriptionStatus.ACTIVE,
-            starts_at=now - timedelta(days=20),
-            expires_at=now + timedelta(days=10),
-        )
-        old_expiry = existing_sub.expires_at
-
-        # Renewal payment
-        tx = PaymentTransaction.objects.create(
+        tx1 = PaymentTransaction.objects.create(
             user=self.learner,
             order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
             plan=self.plan,
             amount_toman=self.plan.price_toman,
             amount_rial=self.plan.price_toman * 10,
             status=PaymentTransactionStatus.PAID,
+            verified_at=now - timedelta(days=20),
+            subscription_days=30,
+            idempotency_key="renewal_tx_0",
+        )
+        grant_purchase(tx1)
+
+        # Renewal payment
+        tx2 = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+            plan=self.plan,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            verified_at=now,
+            subscription_days=30,
             idempotency_key="renewal_tx_1",
         )
-
-        sub = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
-        existing_sub.refresh_from_db()
-        expected_expiry = old_expiry + timedelta(days=30)
-        self.assertEqual(existing_sub.expires_at.date(), expected_expiry.date())
+        grant_purchase(tx2)
+        grants = list(SubscriptionGrant.objects.filter(payment__user=self.learner).order_by("starts_at"))
+        self.assertEqual(len(grants), 2)
+        self.assertEqual(grants[0].ends_at, grants[1].starts_at)
+        self.assertEqual(grants[1].ends_at.date(), (now + timedelta(days=40)).date())
         self.assertTrue(self.learner.is_premium)
 
     def test_renewal_starts_from_now_if_expired(self):
         """Renewing after expiration sets active window from now, not old expiry."""
-        from marketplace.models import UserSubscription, SubscriptionStatus, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
-        from marketplace.services import fulfill_subscription_payment
+        from marketplace.models import SubscriptionGrant, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.subscriptions import grant_purchase
 
         now = timezone.now()
-        # Expired 10 days ago
-        UserSubscription.objects.create(
-            user=self.learner,
-            plan=self.plan,
-            tier="premium",
-            status=SubscriptionStatus.ACTIVE,
-            starts_at=now - timedelta(days=40),
-            expires_at=now - timedelta(days=10),
-        )
-
-        tx = PaymentTransaction.objects.create(
+        tx1 = PaymentTransaction.objects.create(
             user=self.learner,
             order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
             plan=self.plan,
             amount_toman=self.plan.price_toman,
             amount_rial=self.plan.price_toman * 10,
             status=PaymentTransactionStatus.PAID,
+            verified_at=now - timedelta(days=40),
+            subscription_days=30,
+            idempotency_key="old_tx_0",
+        )
+        grant_purchase(tx1)
+
+        tx2 = PaymentTransaction.objects.create(
+            user=self.learner,
+            order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
+            plan=self.plan,
+            amount_toman=self.plan.price_toman,
+            amount_rial=self.plan.price_toman * 10,
+            status=PaymentTransactionStatus.PAID,
+            verified_at=now,
+            subscription_days=30,
             idempotency_key="renewal_tx_2",
         )
-
-        sub = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
-        self.assertEqual(sub.starts_at.date(), now.date())
-        self.assertEqual(sub.expires_at.date(), (now + timedelta(days=30)).date())
+        grant_purchase(tx2)
+        grant2 = SubscriptionGrant.objects.get(payment=tx2)
+        self.assertEqual(grant2.starts_at.date(), now.date())
+        self.assertEqual(grant2.ends_at.date(), (now + timedelta(days=30)).date())
         self.assertTrue(self.learner.is_premium)
 
     def test_duplicate_payment_callback_does_not_multiply_subscription(self):
         """Duplicate callback/webhook invocations for same tx do not extend subscription multiple times."""
-        from marketplace.models import PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
-        from marketplace.services import fulfill_subscription_payment
+        from marketplace.models import SubscriptionGrant, PaymentTransaction, PaymentOrderType, PaymentTransactionStatus
+        from marketplace.subscriptions import grant_purchase
 
+        now = timezone.now()
         tx = PaymentTransaction.objects.create(
             user=self.learner,
             order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
@@ -2088,18 +2118,20 @@ class ExpiringSubscriptionSecurityTests(APITestCase):
             amount_toman=self.plan.price_toman,
             amount_rial=self.plan.price_toman * 10,
             status=PaymentTransactionStatus.PAID,
+            verified_at=now,
+            subscription_days=30,
             idempotency_key="single_callback_tx",
         )
 
         # First fulfillment
-        sub1 = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
-        first_expiry = sub1.expires_at
+        grant_purchase(tx)
+        count_before = SubscriptionGrant.objects.filter(payment=tx).count()
 
         # Duplicate delivery of same tx
-        sub2 = fulfill_subscription_payment(user=self.learner, plan=self.plan, tx=tx)
-        sub1.refresh_from_db()
-        self.assertEqual(sub1.expires_at, first_expiry)
-        self.assertEqual(sub1.id, sub2.id)
+        grant_purchase(tx)
+        count_after = SubscriptionGrant.objects.filter(payment=tx).count()
+        self.assertEqual(count_before, 1)
+        self.assertEqual(count_after, 1)
 
 
 
