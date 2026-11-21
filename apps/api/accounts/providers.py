@@ -188,4 +188,3 @@ def get_otp_provider() -> BaseOtpProvider:
         f"Unsupported ENDOORA_OTP_PROVIDER={provider_name!r}. "
         "Supported providers: 'mock', 'kavenegar', 'sms', 'email'."
     )
-    )

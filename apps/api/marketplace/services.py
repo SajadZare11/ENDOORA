@@ -2335,7 +2335,7 @@ def initiate_checkout(
             }
 
     # Gateway Payment (ZarinPal or Sandbox)
-from marketplace.zarinpal import is_sandbox_mode_permitted
+    from marketplace.zarinpal import is_sandbox_mode_permitted
     if gateway_provider == PaymentGatewayProvider.SANDBOX and not is_sandbox_mode_permitted():
         raise ValidationError("انتخاب درگاه آزمایشی در محیط عملیاتی مجاز نیست.")
 

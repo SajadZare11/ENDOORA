@@ -634,8 +634,9 @@ export function accountPath(
   return locale === "fa" ? path : `${path}?locale=en`;
 }
 
-export function alternatePath(_locale: PublicLocale, path: string): string {
-  return localizedPath("fa", path);
+export function alternatePath(locale: PublicLocale, path: string): string {
+  const targetLocale: PublicLocale = locale === "fa" ? "en" : "fa";
+  return localizedPath(targetLocale, path);
 }
 
 export function buildMetadata(
@@ -645,8 +646,9 @@ export function buildMetadata(
   description: string,
   options: { index?: boolean } = {},
 ): Metadata {
-  const current = `${PUBLIC_BASE_URL}${localizedPath("fa", path)}`;
+  const current = `${PUBLIC_BASE_URL}${localizedPath(locale, path)}`;
   const faUrl = `${PUBLIC_BASE_URL}${localizedPath("fa", path)}`;
+  const enUrl = `${PUBLIC_BASE_URL}${localizedPath("en", path)}`;
   const index = options.index ?? true;
 
   return {
@@ -656,6 +658,7 @@ export function buildMetadata(
       canonical: current,
       languages: {
         "fa-IR": faUrl,
+        "en": enUrl,
         "x-default": faUrl,
       },
     },
@@ -665,7 +668,8 @@ export function buildMetadata(
       title,
       description,
       url: current,
-      locale: "fa_IR",
+      locale: locale === "fa" ? "fa_IR" : "en_US",
+      alternateLocale: [locale === "fa" ? "en_US" : "fa_IR"],
     },
     twitter: {
       card: "summary_large_image",
