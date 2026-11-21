@@ -1,6 +1,6 @@
 // Endoora Progressive Web App (PWA) Service Worker - Production V1
 // Cache version and namespaces
-const CACHE_VERSION = "endoora-sw-v1";
+const CACHE_VERSION = "endoora-sw-v2";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGES_CACHE = `${CACHE_VERSION}-pages`;
 
@@ -16,6 +16,7 @@ const PRECACHE_ASSETS = [
 const NETWORK_ONLY_PREFIXES = [
   "/api/",
   "/backend/",
+  "/ielts/reading/",
   "/admin/",
   "/checkout/",
   "/bookings/",

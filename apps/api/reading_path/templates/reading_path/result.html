@@ -1,0 +1,6 @@
+{% extends "reading_path/base.html" %}{% block body %}<h1>نتیجهٔ {{ label }}</h1><p>{{ correct }} پاسخ درست از {{ results|length }}</p>
+{% if user.is_authenticated %}<a class="button" href="{% url 'reading_path:home' %}">پیشنهاد بعدی و زمان مرور</a>
+{% else %}<p>پاسخ‌ها موقتاً در نشست همین مرورگر نگهداری می‌شوند. برای انتقال به دفتر خطاها و دریافت تمرین بعدی وارد شوید.</p><a class="button" href="/auth/login?reading=1">ورود و ادامهٔ مسیر</a>{% endif %}
+{% for row in results %}<section><h2>سؤال {{ forloop.counter }} · {% if row.correct %}درست{% else %}نیاز به مرور{% endif %}</h2><p lang="en" dir="ltr">{{ row.item.prompt }}</p>
+<p>پاسخ شما: <bdi>{{ row.selected_text }}</bdi> · پاسخ کلیدی: <bdi>{{ row.expected_text }}</bdi></p><blockquote lang="en" dir="ltr">{{ row.item.evidence }}</blockquote><p>{{ row.explanation }}</p>
+<details><summary>دلیل هر گزینه</summary>{% for k,label,why in row.item.choices_with_reasons %}<p><bdi>{{ label }}</bdi> · {{ why }}</p>{% endfor %}</details></section>{% endfor %}{% endblock %}

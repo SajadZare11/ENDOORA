@@ -49,6 +49,7 @@ DEBUG = env_bool("ENDOORA_DEBUG", default=False)
 
 ALLOWED_HOSTS = env_list("ENDOORA_ALLOWED_HOSTS", "localhost,127.0.0.1")
 INSTALLED_APPS = [
+    "reading_path",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

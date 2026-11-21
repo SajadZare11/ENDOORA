@@ -21,6 +21,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/ielts/reading/:path*",
+        destination: `${apiInternalUrl}/ielts/reading/:path*/`,
+      },
+      {
         source: "/backend/api/:path*/",
         destination: `${apiInternalUrl}/api/:path*/`,
       },

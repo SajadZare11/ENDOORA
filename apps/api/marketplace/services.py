@@ -2208,9 +2208,57 @@ def initiate_checkout(
     callback_url: str = "",
     idempotency_key: Optional[str] = None,
 ) -> dict:
+    args = dict(user=user, order_type=order_type, order_id=order_id, amount_toman=amount_toman,
+                gateway_provider=gateway_provider, callback_url=callback_url, idempotency_key=idempotency_key)
+    if order_type != PaymentOrderType.SUBSCRIPTION_PLAN:
+        return _initiate_checkout_once(**args)
+    if not user.is_authenticated:
+        raise PermissionDenied("Sign in to purchase a subscription.")
+    if not getattr(settings, "ENDOORA_SUBSCRIPTION_SALES_OPEN", True):
+        raise ValidationError("فروش اشتراک فعلاً بسته است.")
+    if gateway_provider == PaymentGatewayProvider.SANDBOX and not settings.ZARINPAL_SANDBOX:
+        raise ValidationError("پرداخت آزمایشی در این محیط غیرفعال است.")
+    from marketplace.subscriptions import lock_account
+    from marketplace.zarinpal import ZARINPAL_STARTPAY_URL
+    with transaction.atomic():
+        lock_account(user.pk)
+        if idempotency_key:
+            old = PaymentTransaction.objects.filter(idempotency_key=idempotency_key).first()
+            if old:
+                if (old.user_id != user.pk or str(old.plan_id) != str(order_id) or
+                        old.gateway_provider != gateway_provider or old.order_type != order_type or
+                        old.is_sandbox != settings.ZARINPAL_SANDBOX or
+                        old.status not in [PaymentTransactionStatus.PAID, PaymentTransactionStatus.PENDING]):
+                    raise ValidationError("Checkout key is already in use. Start a fresh order.")
+                via_wallet = old.gateway_provider == PaymentGatewayProvider.WALLET
+                url = ""
+                if not via_wallet:
+                    if old.is_sandbox or old.status == PaymentTransactionStatus.PAID:
+                        url = f"/checkout/callback?Authority={old.authority}&Status=OK"
+                    else:
+                        url = ZARINPAL_STARTPAY_URL.format(authority=old.authority)
+                return {"transaction_id":str(old.pk),"order_type":order_type,"status":old.status,
+                        "amount_toman":int(old.amount_toman),"amount_rial":int(old.amount_rial),
+                        "paid_via_wallet":via_wallet,"authority":old.authority,"payment_url":url,
+                        "tracking_code":old.ref_id,"is_sandbox":old.is_sandbox}
+        if not idempotency_key:
+            args["idempotency_key"] = f"subscription-{uuid.uuid4().hex}"
+        return _initiate_checkout_once(**args)
+
+
+def _initiate_checkout_once(
+    user: User,
+    order_type: str,
+    order_id: Optional[str] = None,
+    amount_toman: Optional[Decimal | int | float] = None,
+    gateway_provider: str = PaymentGatewayProvider.ZARINPAL,
+    callback_url: str = "",
+    idempotency_key: Optional[str] = None,
+) -> dict:
     """
     Initialize checkout payment process via ZarinPal, Sandbox, or Internal Wallet.
     """
+    from marketplace.subscriptions import grant_purchase
     from marketplace.models import PlatformPricingPlan
 
     if not user.is_authenticated:
@@ -2245,6 +2293,8 @@ def initiate_checkout(
             plan = PlatformPricingPlan.objects.get(id=order_id, is_active=True)
         except PlatformPricingPlan.DoesNotExist:
             raise ValidationError("پلن اشتراک انتخابی معتبر نیست.")
+        if amount_toman is not None and Decimal(str(amount_toman)) != plan.price_toman:
+            raise ValidationError("The subscription price has changed. Reload the plan.")
         amount = plan.price_toman
         description = f"خرید {plan.name_fa} در ایندورا"
 
@@ -2301,6 +2351,7 @@ def initiate_checkout(
                 order_type=order_type,
                 booking=booking,
                 plan=plan,
+                subscription_days=plan.duration_days if plan else None,
                 gateway_provider=PaymentGatewayProvider.WALLET,
                 amount_toman=amount,
                 amount_rial=toman_to_rial(amount),
@@ -2309,9 +2360,12 @@ def initiate_checkout(
                 idempotency_key=idem_key,
                 payload_hash=calculated_checkout_hash,
                 description=description,
-                is_sandbox=False,
+                is_sandbox=settings.ZARINPAL_SANDBOX if plan else False,
                 verified_at=timezone.now(),
             )
+
+            if plan:
+                grant_purchase(tx)
 
             # Apply order fulfillment
             if order_type == PaymentOrderType.BOOKING_SESSION and booking:
@@ -2361,6 +2415,7 @@ def initiate_checkout(
         order_type=order_type,
         booking=booking,
         plan=plan,
+        subscription_days=plan.duration_days if plan else None,
         gateway_provider=gateway_provider,
         amount_toman=amount,
         amount_rial=amount_rial,
@@ -2443,6 +2498,9 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
         except PaymentTransaction.DoesNotExist:
             raise ValidationError("تراکنش مربوط به این شناسه پرداخت یافت نشد.")
 
+        if tx.status == PaymentTransactionStatus.REFUNDED:
+            raise ValidationError("This payment has already been refunded.")
+
         # Idempotent response if already verified
         if tx.status == PaymentTransactionStatus.PAID:
             return {
@@ -2492,6 +2550,10 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
         tx.card_pan = card_pan
         tx.verified_at = timezone.now()
         tx.save(update_fields=["status", "ref_id", "card_pan", "verified_at", "updated_at"])
+
+        if tx.order_type == PaymentOrderType.SUBSCRIPTION_PLAN:
+            from marketplace.subscriptions import grant_purchase
+            grant_purchase(tx)
 
         # Fulfillment
         if tx.order_type == PaymentOrderType.BOOKING_SESSION and tx.booking:

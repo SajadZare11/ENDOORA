@@ -17,57 +17,6 @@ import {
 } from "../../lib/marketplace";
 import { endooraApi } from "../../lib/endoora-api";
 
-const FALLBACK_GOLDEN_PLANS: Record<string, PlatformPricingPlan> = {
-  golden_1m: {
-    id: "golden_1m",
-    code: "golden_1m",
-    name_fa: "اشتراک طلایی ۱ ماهه",
-    name_en: "1-Month Golden Plan",
-    duration_days: 30,
-    price_toman: 299000,
-    price_toman_number: 299000,
-    is_active: true,
-    is_featured: false,
-    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم"],
-    note_fa: "دسترسی نامحدود ۳۰ روزه به تمام بخش‌های سایت",
-    note_en: "30-day full access to all platform features",
-    created_at: "2026-11-12T00:00:00Z",
-    updated_at: "2026-11-12T00:00:00Z",
-  },
-  golden_3m: {
-    id: "golden_3m",
-    code: "golden_3m",
-    name_fa: "اشتراک طلایی ۳ ماهه (پیشنهاد ویژه)",
-    name_en: "3-Month Golden Plan",
-    duration_days: 90,
-    price_toman: 799000,
-    price_toman_number: 799000,
-    is_active: true,
-    is_featured: true,
-    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم", "۱۱٪ صرفه‌جویی اقتصادی"],
-    note_fa: "محبوب‌ترین پلن با ۱۱٪ تخفیف",
-    note_en: "Most popular 90-day plan with 11% savings",
-    created_at: "2026-11-12T00:00:00Z",
-    updated_at: "2026-11-12T00:00:00Z",
-  },
-  golden_6m: {
-    id: "golden_6m",
-    code: "golden_6m",
-    name_fa: "اشتراک طلایی ۶ ماهه (بیشترین صرفه)",
-    name_en: "6-Month Golden Plan",
-    duration_days: 180,
-    price_toman: 1699000,
-    price_toman_number: 1699000,
-    is_active: true,
-    is_featured: false,
-    features_fa: ["دسترسی کامل و نامحدود به تمامی امکانات پلتفرم", "بیشترین صرفه اقتصادی"],
-    note_fa: "بیشترین صرفه اقتصادی با ۱۵٪ تخفیف کل دوره",
-    note_en: "Best value 180-day plan with 15% savings",
-    created_at: "2026-11-12T00:00:00Z",
-    updated_at: "2026-11-12T00:00:00Z",
-  },
-};
-
 function CheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -89,7 +38,7 @@ function CheckoutContent() {
   const [plan, setPlan] = useState<PlatformPricingPlan | null>(null);
   const [topupAmount, setTopupAmount] = useState<number>(initialAmount || 100000);
 
-  const [selectedGateway, setSelectedGateway] = useState<"wallet" | "zarinpal" | "sandbox">("sandbox");
+  const [selectedGateway, setSelectedGateway] = useState<"wallet" | "zarinpal">("zarinpal");
 
   // Coupon & Promo state
   const [couponCodeInput, setCouponCodeInput] = useState("");
@@ -126,19 +75,12 @@ function CheckoutContent() {
           try {
             const plansRes = await fetchPublicPricingPlans();
             const found = plansRes.plans.find((p) => p.id === planId || p.code === planId);
-            if (found) {
-              setPlan(found);
-            } else if (FALLBACK_GOLDEN_PLANS[planId]) {
-              setPlan(FALLBACK_GOLDEN_PLANS[planId]);
-            } else if (plansRes.plans.length > 0) {
-              setPlan(plansRes.plans[0]);
-            }
-          } catch {
-            if (FALLBACK_GOLDEN_PLANS[planId]) {
-              setPlan(FALLBACK_GOLDEN_PLANS[planId]);
-            } else {
-              setError("اطلاعات پلن اشتراک دریافت نشد.");
-            }
+            if (!plansRes.subscription_sales_open) throw new Error("فروش اشتراک فعلاً بسته است.");
+            if (!found) throw new Error("پلن مورد نظر یافت نشد.");
+            setPlan(found);
+          } catch (error) {
+            setPlan(null);
+            setError(error instanceof Error ? error.message : "اطلاعات پلن اشتراک دریافت نشد.");
           }
         }
       } catch (err: unknown) {
@@ -164,7 +106,7 @@ function CheckoutContent() {
       ? `زمان: ${formatTehranDateOnly(booking.scheduled_start)} ساعت ${formatTehranTimeOnly(booking.scheduled_start)}`
       : "";
   } else if (orderType === "subscription_plan") {
-    baseAmountToman = plan ? plan.price_toman_number : 420000;
+    baseAmountToman = plan?.price_toman_number ?? 0;
     itemName = plan ? plan.name_fa : "اشتراک پرمیوم پلتفرم";
     itemDescription = plan ? `${plan.duration_days} روز دسترسی نامحدود به تمامی امکانات هوشمند` : "";
   } else if (orderType === "wallet_topup") {
@@ -230,7 +172,11 @@ function CheckoutContent() {
     setCouponMessage(null);
   };
 
+  const [keys] = useState(() => new Map<string, string>());
   const handlePay = async () => {
+    if (orderType === "subscription_plan" && !plan) return;
+    const orderKey = [orderType, plan?.id ?? orderId, selectedGateway, payableAmountToman].join("/");
+    if (!keys.has(orderKey)) keys.set(orderKey, crypto.randomUUID());
     if (payableAmountToman <= 0) {
       setError("مبلغ قابل پرداخت معتبر نیست.");
       return;
@@ -245,6 +191,7 @@ function CheckoutContent() {
         order_id: orderType === "booking_session" ? orderId : orderType === "subscription_plan" ? (plan?.id || planId) : undefined,
         amount_toman: payableAmountToman,
         gateway_provider: selectedGateway,
+        idempotency_key: orderType === "subscription_plan" ? keys.get(orderKey) : undefined,
         callback_url: "/checkout/callback",
       });
 
@@ -259,9 +206,7 @@ function CheckoutContent() {
         // Redirect to gateway or sandbox callback
         window.location.assign(checkout.payment_url);
       } else {
-        router.push(
-          `/checkout/callback?Authority=${checkout.authority}&Status=OK&sandbox=true`
-        );
+        throw new Error("درگاه نشانی پرداخت معتبری برنگرداند. دوباره تلاش کنید.");
       }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "خطا در برقراری ارتباط با درگاه پرداخت.");
@@ -344,7 +289,7 @@ function CheckoutContent() {
           )}
 
           {/* Coupon Code Section */}
-          {orderType !== "wallet_topup" && (
+          {orderType === "booking_session" && (
             <div style={{ marginTop: "1rem", marginBottom: "1rem", padding: "1rem", background: "var(--color-bg-subtle, #f8fafc)", borderRadius: "10px", border: "1px dashed var(--color-border, #cbd5e1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
                 <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text, #0f172a)", display: "flex", alignItems: "center", gap: "0.35rem" }}>
@@ -497,30 +442,7 @@ function CheckoutContent() {
               </label>
             )}
 
-            {/* Sandbox Developer Gateway */}
-            <label
-              className={`${styles.methodCard} ${
-                selectedGateway === "sandbox" ? styles.methodCardSelected : ""
-              }`}
-            >
-              <Input
-                type="radio"
-                name="gateway"
-                value="sandbox"
-                checked={selectedGateway === "sandbox"}
-                onChange={() => setSelectedGateway("sandbox")}
-                className={styles.methodRadio}
-              />
-              <div className={styles.methodBody}>
-                <div className={styles.methodTitle}>
-                  <span>درگاه آزمایشی توسعه‌دهندگان (Sandbox)</span>
-                  <span className={styles.walletBadge}>تست فوری</span>
-                </div>
-                <p className={styles.methodDesc}>
-                  شبیه‌سازی کامل فرآیند خرید، پرداخت موفق و برگشت رسید شاپرک بدون کسر واقعی پول از حساب بانکی.
-                </p>
-              </div>
-            </label>
+
 
             {/* ZarinPal Gateway */}
             <label
@@ -548,7 +470,7 @@ function CheckoutContent() {
             </label>
           </div>
 
-          <Button type="button" variant="primary" loading={paying} onClick={handlePay} disabled={paying || payableAmountToman <= 0} className={styles.payButton}>
+          <Button type="button" variant="primary" loading={paying} onClick={handlePay} disabled={paying || payableAmountToman <= 0 || (orderType === "subscription_plan" && !plan)} className={styles.payButton}>
             {paying ? (
               <span>در حال اتصال به درگاه...</span>
             ) : selectedGateway === "wallet" ? (

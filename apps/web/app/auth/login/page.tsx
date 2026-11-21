@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useSyncExternalStore } from "react";
 
 import { AuthShell } from "../../../components/auth/AuthShell";
 import { PasswordField } from "../../../components/auth/PasswordField";
@@ -65,7 +65,10 @@ const copy = {
   },
 } as const;
 
+// Keep the form inert until React can handle a submit on a slow connection.
+const subscribeToHydration = () => () => {};
 export default function LoginPage() {
+  const interactive = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const [locale, setLocale] =
     useState<EndooraLocale>("fa");
 
@@ -125,7 +128,7 @@ export default function LoginPage() {
         setActiveUserId(response.id);
       }
       const destination = response?.role === "teacher" ? "/teacher" : "/dashboard";
-      window.location.href = destination;
+      window.location.href = new URLSearchParams(window.location.search).get("reading") === "1" ? "/ielts/reading/" : destination;
     } catch (error) {
       setErrors(
         apiErrorMessages(error, locale),
@@ -179,6 +182,7 @@ export default function LoginPage() {
       }
     >
       <form
+        method="post"
         className={styles.form}
         onSubmit={handleSubmit}
         noValidate
@@ -203,6 +207,7 @@ export default function LoginPage() {
           </div>
         ) : null}
 
+        <fieldset disabled={!interactive} style={{border: 0, padding: 0, margin: 0, minWidth: 0}}>
         <div className="endoora-field">
           <label
             className="endoora-field__label"
@@ -240,7 +245,7 @@ export default function LoginPage() {
             type="submit"
             variant="primary"
             loading={submitting}
-            disabled={submitting}
+            disabled={!interactive || submitting}
           >
             {submitting
               ? t.submitting
@@ -248,6 +253,7 @@ export default function LoginPage() {
           </Button>
         </div>
 
+        </fieldset>
         <div className={styles.secondaryLinks}>
           <Link href="/auth/forgot-password">
             {t.forgot}

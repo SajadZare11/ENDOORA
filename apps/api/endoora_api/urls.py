@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path("ielts/reading/", include("reading_path.urls")),
     path("admin/", admin.site.urls),
     path(
         "api/placement/",

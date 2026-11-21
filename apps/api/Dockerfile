@@ -25,6 +25,7 @@ COPY apps/api/search/requirements-local.txt ./requirements-local.txt
 RUN if [ "$ENDOORA_LOCAL_SEARCH" = "1" ]; then pip install -r requirements-local.txt; fi
 
 COPY apps/api/ ./
+RUN DJANGO_SETTINGS_MODULE=endoora_api.settings.test python manage.py collectstatic --noinput
 
 RUN mkdir -p /app/staticfiles /app/media /app/vault/backups && \
     addgroup --system --gid 1001 django && \

@@ -8,3 +8,5 @@ python-docx>=1.2.0
 reportlab>=5.0.1
 openpyxl>=3.1.0
 pyjwt>=2.8.0
+
+whitenoise==6.9.0

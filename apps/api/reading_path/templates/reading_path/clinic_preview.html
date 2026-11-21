@@ -1,0 +1,4 @@
+{% extends "reading_path/base.html" %}{% block body %}<a href="{% url 'admin:reading_path_clinicrevision_changelist' %}">Back to clinical practice revisions</a>
+{% if problem %}<p>{{ problem }}</p>{% else %}<h1 lang="en">{{ unit.title }}</h1>{% if unit.audio %}<audio controls src="{{ unit.audio }}"></audio><p dir="ltr" lang="en">{{ unit.transcript }}</p>{% else %}<p dir="ltr" lang="en">{{ unit.passage }}</p>{% endif %}
+{% for q in unit.questions %}<section><h2 dir="ltr" lang="en">{{ q.prompt }}</h2><p dir="ltr">{{ q.choices|join:" · " }}</p><p>کلید: <bdi>{{ q.answer }}</bdi></p><blockquote dir="ltr">{{ q.evidence }}</blockquote><p>{{ q.explanation }}</p>{% if unit.audio and q.end_ms %}<p dir="ltr">{{ q.start_ms }}–{{ q.end_ms }} ms</p>{% endif %}</section>{% endfor %}
+<details><summary>Compare with source version</summary><pre dir="ltr" style="white-space:pre-wrap">{{ diff }}</pre></details>{% endif %}{% endblock %}

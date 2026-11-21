@@ -108,7 +108,14 @@ class PaymentTransactionAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "order_type", "gateway_provider", "amount_toman", "status", "ref_id", "is_sandbox", "created_at")
     list_filter = ("order_type", "gateway_provider", "status", "is_sandbox", "created_at")
     search_fields = ("user__email", "authority", "ref_id", "idempotency_key", "card_pan")
-    readonly_fields = ("created_at", "updated_at", "verified_at")
+    readonly_fields = tuple(field.name for field in PaymentTransaction._meta.fields)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 
 @admin.register(BookingEscrow)
@@ -126,3 +133,5 @@ class TeacherPayoutRequestAdmin(admin.ModelAdmin):
     search_fields = ("teacher__email", "bank_shaba_number", "account_holder_name")
     readonly_fields = ("created_at", "updated_at", "processed_at")
 
+
+from . import subscription_admin  # noqa: F401  Register dated grants and the confirmed-refund form.

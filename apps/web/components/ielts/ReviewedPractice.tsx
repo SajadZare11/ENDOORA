@@ -6,7 +6,7 @@ import styles from "./reviewed-practice.module.css";
 
 type Question = { id: string; prompt: string; choices: string[] };
 type Unit = { title: string; instruction: string; passage?: string; audio?: string; questions: Question[] };
-type Result = { correct: number; total: number; transcript?: string; items: { id: string; correct: boolean; answer: string; explanation: string }[] };
+type Result = { correct: number; total: number; transcript?: string; items: { id: string; correct: boolean; answer: string; explanation: string; evidence?: string; choice_reasons?: Record<string,string>; start_ms?: number; end_ms?: number }[] };
 type State = { unit: Unit; answers: Record<string, string>; revision: number; owner: string | null; result: Result | null };
 const base = "/backend/api/ielts/units/";
 
@@ -40,6 +40,8 @@ export function PracticeIndex() {
   return <main className={styles.page} dir="rtl"><h1>تمرین آیلتس</h1><p>در هر تمرین کوتاه پاسخ خود را ثبت کنید و دلیل هر پاسخ را به فارسی بخوانید.</p>
     {error ? <p role="alert">{error} <button onClick={() => { setError(""); setRetry(x => x+1); }}>تلاش دوباره</button></p>
       : !units ? <p role="status">در حال دریافت…</p> : units.length === 0 ? <p>تمرین جدید پس از بازبینی منتشر می‌شود.</p> : <ul>{units.map(u => <li key={u.slug}><Link href={"/ielts/unit/"+u.slug} lang="en" dir="ltr">{u.title}</Link></li>)}</ul>}
+    {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Django serves full HTML documents for the reading path. */}
+    <h2>مسیر ریدینگ</h2><p><a href="/ielts/reading/false-not-given/">درس رایگان تفاوت False و Not Given</a> · <a href="/ielts/reading/">سنجش و دفتر خطاها</a></p>
     <h2>تمرین مهارت‌های تولیدی</h2><p>برای تمرین انفرادی، نوشته یا یادداشت گفتاری خود را با معیارهای راهنما مرور کنید.</p>
     <p><Link href="/ielts/workshop">کارگاه نوشتن و گفتار</Link></p><p><Link href="/ielts/history">سابقهٔ تمرین‌های نسخهٔ قبلی</Link></p></main>;
 }
@@ -82,7 +84,11 @@ export function ReviewedPractice({ slug }: { slug: string }) {
     <p>{state.owner ? "برای نگه‌داشتن پاسخ‌ها، ذخیرهٔ پیش‌نویس را بزنید." : "در حالت مهمان، با بستن صفحه پاسخ‌ها پاک می‌شوند."}</p>
     {unit.questions.map((q,i) => <fieldset key={q.id} disabled={busy || !!result} dir="ltr" lang="en"><legend>{i+1}. {q.prompt}</legend>
       {q.choices.map(c => <label key={c}><input type="radio" name={q.id} checked={answers[q.id]===c} onChange={() => {setState({...state, answers:{...answers,[q.id]:c}}); setMessage("");}} /> {c}</label>)}
-      {result && <p dir="rtl" lang="fa">{result.items[i].correct ? "درست" : "نیاز به مرور"} · <b lang="en">{result.items[i].answer}</b><br/>{result.items[i].explanation}</p>}</fieldset>)}
+      {result && <p dir="rtl" lang="fa">{result.items[i].correct ? "درست" : "نیاز به مرور"} · <b lang="en">{result.items[i].answer}</b><br/>{result.items[i].explanation}</p>}
+      {result?.items[i].evidence && <blockquote dir="ltr" lang="en">{result.items[i].evidence}</blockquote>}
+      {result?.items[i].choice_reasons && <details dir="rtl" lang="fa"><summary>دلیل هر گزینه</summary>{Object.entries(result.items[i].choice_reasons ?? {}).map(([choice,reason])=><p key={choice}><bdi>{choice}</bdi> · {reason}</p>)}</details>}
+      {result && unit.audio && result.items[i].end_ms !== undefined && <audio controls preload="none" aria-label={"شاهد صوتی سؤال "+(i+1)} src={unit.audio+"#t="+((result.items[i].start_ms ?? 0)/1000)+","+((result.items[i].end_ms ?? 0)/1000)}/>}
+      </fieldset>)}
     {!result && <div>{state.owner && <button disabled={busy} onClick={() => submit("save")}>ذخیرهٔ پیش‌نویس</button>}
       <button disabled={busy || Object.keys(answers).length !== unit.questions.length} onClick={() => submit("finish")}>پایان و بررسی پاسخ‌ها</button></div>}
     {result && <section><h2>نتیجهٔ این تمرین</h2><p>{result.correct} پاسخ درست از {result.total}</p>

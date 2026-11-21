@@ -1,0 +1,6 @@
+{% extends "reading_path/base.html" %}{% block body %}<a href="{% url 'admin:reading_path_edition_changelist' %}">Back to editions</a><h1>{{ edition }}</h1><p>Preview · {{ edition.state }}</p>
+{% for q,previous,changes in rows %}<section><small>{{ q.code }} · {{ q.get_stage_display }} · {{ q.get_skill_display }}</small><blockquote dir="ltr" lang="en">{{ q.passage }}</blockquote><p dir="ltr" lang="en">{{ q.prompt }}</p>
+{% for k,label,reason in q.choices_with_reasons %}<p><bdi>{{ label }}</bdi> {% if k == q.key %}✓{% endif %} · {{ reason }}</p>{% endfor %}<p>شاهد متن</p><blockquote dir="ltr">{{ q.evidence }}</blockquote>
+{% if edition.parent_id %}{% if not previous %}<p>New item</p>{% endif %}{% for field,old,new in changes %}<p><b>{{ field }}</b> <del>{{ old }}</del> · <ins>{{ new }}</ins></p>{% endfor %}{% endif %}
+{% if edition.state == 'draft' %}<a href="{% url 'admin:reading_path_item_change' q.pk %}">Edit question</a>{% endif %}</section>{% endfor %}
+{% for q in removed %}<p>Removed · {{ q.code }}</p>{% endfor %}{% endblock %}
