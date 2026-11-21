@@ -19,7 +19,9 @@ export interface AdminAuthResult {
 
 export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthResult> {
   const cookieHeader = req.headers.get("cookie") || "";
-  const sessionId = req.cookies.get("sessionid")?.value;
+  const sessionId =
+    req.cookies.get("endoora_sessionid")?.value ||
+    req.cookies.get("sessionid")?.value;
 
   if (!sessionId && !cookieHeader.includes("sessionid=")) {
     return {
@@ -32,7 +34,9 @@ export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthRes
   // Mutating requests must have valid CSRF protection
   const method = req.method.toUpperCase();
   if (["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
-    const csrfCookie = req.cookies.get("csrftoken")?.value;
+    const csrfCookie =
+      req.cookies.get("endoora_csrftoken")?.value ||
+      req.cookies.get("csrftoken")?.value;
     const csrfHeader =
       req.headers.get("x-csrftoken") ||
       req.headers.get("X-CSRFToken") ||

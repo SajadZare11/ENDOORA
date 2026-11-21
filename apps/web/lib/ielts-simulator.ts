@@ -419,9 +419,9 @@ export async function submitSession(sessionId: string): Promise<{
   } catch {
     return {
       session_id: sessionId,
-      status: "completed",
-      raw_score: 34,
-      scaled_band_score: 7.5,
+      status: "failed",
+      raw_score: 0,
+      scaled_band_score: 0,
       completed_at: new Date().toISOString(),
     };
   }

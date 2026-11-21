@@ -424,10 +424,33 @@ def evaluate_ielts_writing_submission(
     else:
         overall_band = Decimal("0.0")
 
+    total_words = (
+        t1_scores.get("metadata", {}).get("word_count", 0)
+        + t2_scores.get("metadata", {}).get("word_count", 0)
+    )
+
+    if total_words < 25 or (not has_t1 and not has_t2):
+        return {
+            "status": "insufficient_evidence",
+            "overall_band": None,
+            "overall_band_min": None,
+            "overall_band_max": None,
+            "confidence_score": 0.0,
+            "cefr_level": "A0",
+            "task1_scores": t1_scores,
+            "task2_scores": t2_scores,
+            "criteria_breakdown": {},
+            "annotations": all_annotations,
+            "pedagogical_advice": [
+                "تعداد واژگان متن نگارش‌شده برای ارزیابی رسمی بند آیلتس کافی نیست. لطفاً پاسخ مشروح‌تری ارائه دهید (حداقل ۱۵۰ کلمه برای تسک ۱ و ۲۵۰ کلمه برای تسک ۲)."
+            ],
+            "total_words": total_words,
+        }
+
     # Range and Uncertainty (Confidence Interval)
     band_min = max(Decimal("1.0"), overall_band - Decimal("0.5"))
-    band_max = min(Decimal("9.0"), overall_band + Decimal("0.5"))
-    confidence = Decimal("0.88")
+    band_max = min(Decimal("9.0"), max(band_min, overall_band + Decimal("0.5")))
+    confidence = min(Decimal("0.95"), max(Decimal("0.50"), Decimal(str(round(min(1.0, total_words / 350.0) * 0.90, 2)))))
 
     # CEFR mapping
     cefr_data = map_band_to_cefr(overall_band)

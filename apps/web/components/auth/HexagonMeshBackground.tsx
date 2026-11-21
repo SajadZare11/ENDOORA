@@ -14,26 +14,26 @@ const SECTION_COLORS = [
   { name: "pricing",  r: 217, g: 119, b: 6   }, // #d97706 Sunset Gold (Pricing)
   { name: "books",    r: 13,  g: 148, b: 136 }, // #0d9488 Teal (Books)
   { name: "brand",    r: 37,  g: 99,  b: 235 }, // #2563eb Endoora Blue
-  { name: "aurora",   r: 139, g: 92,  b: 246 }, // #8b5cf6 Purple
+  { name: "magenta",  r: 168, g: 85,  b: 247 }, // #a855f7 Vivid Purple
 ] as const;
 
 type ColorRGB = (typeof SECTION_COLORS)[number];
 
-// Fine, delicate micro-hexagons (radius 13px, width ~22.5px)
-const HEX_RADIUS = 13;
-const HEX_WIDTH = Math.sqrt(3) * HEX_RADIUS; // ~22.52px
-const HEX_HEIGHT = 1.5 * HEX_RADIUS; // 19.5px
+// Refined micro-hexagons (radius 15px, width ~26px)
+const HEX_RADIUS = 15;
+const HEX_WIDTH = Math.sqrt(3) * HEX_RADIUS; // ~25.98px
+const HEX_HEIGHT = 1.5 * HEX_RADIUS; // 22.5px
 
-interface EdgeTracer {
+interface GlowingHexagon {
   col: number;
   row: number;
-  edgeIndex: number; // 0..5
-  direction: 1 | -1;
+  cx: number;
+  cy: number;
   color: ColorRGB;
   progress: number; // 0..1
   speed: number;
-  alpha: number;
-  stepsRemaining: number;
+  maxAlpha: number;
+  hasTriggeredNeighbor: boolean;
 }
 
 // Calculate the 6 vertices of a pointy-topped hexagon
@@ -46,7 +46,7 @@ function getHexVertices(cx: number, cy: number, r: number): Array<[number, numbe
   return vertices;
 }
 
-function drawHexagonWireframe(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
+function drawHexagonOutline(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
   const v = getHexVertices(cx, cy, r);
   ctx.beginPath();
   ctx.moveTo(v[0][0], v[0][1]);
@@ -75,18 +75,47 @@ export function HexagonMeshBackground() {
     let cols = 0;
     let rows = 0;
 
-    // Active edge tracers
-    let tracers: EdgeTracer[] = [];
+    // Active illuminated hexagons (full 6-sided colored rings)
+    let glowingHexes: GlowingHexagon[] = [];
     let colorCounter = 0;
 
-    // Mouse tracking for reactive spark ripples
-    let lastMouseCol = -1;
-    let lastMouseRow = -1;
+    // Spatial lookup to prevent overlapping duplicate glowing hexes
+    const activeKeySet = new Set<string>();
+
+    // Interactive mouse tracking
+    let targetMouseX = -9999;
+    let targetMouseY = -9999;
+    let currentMouseX = -9999;
+    let currentMouseY = -9999;
+    let isMouseActive = false;
+    let mouseTimeout: number | undefined;
 
     function getHexCenter(col: number, row: number): [number, number] {
       const cx = (col + 0.5) * HEX_WIDTH + (row % 2 === 1 ? HEX_WIDTH / 2 : 0);
       const cy = (row + 0.7) * HEX_HEIGHT;
       return [cx, cy];
+    }
+
+    function getNeighbors(col: number, row: number): Array<[number, number]> {
+      const isOdd = row % 2 === 1;
+      if (isOdd) {
+        return [
+          [col + 1, row],
+          [col + 1, row - 1],
+          [col,     row - 1],
+          [col - 1, row],
+          [col,     row + 1],
+          [col + 1, row + 1],
+        ];
+      }
+      return [
+        [col + 1, row],
+        [col,     row - 1],
+        [col - 1, row - 1],
+        [col - 1, row],
+        [col - 1, row + 1],
+        [col,     row + 1],
+      ];
     }
 
     function createOffscreenGrid(w: number, h: number, pixelRatio: number) {
@@ -105,7 +134,7 @@ export function HexagonMeshBackground() {
       for (let r = -1; r <= rows + 1; r++) {
         for (let c = -1; c <= cols + 1; c++) {
           const [cx, cy] = getHexCenter(c, r);
-          drawHexagonWireframe(offCtx, cx, cy, HEX_RADIUS);
+          drawHexagonOutline(offCtx, cx, cy, HEX_RADIUS);
           offCtx.stroke();
         }
       }
@@ -113,26 +142,29 @@ export function HexagonMeshBackground() {
       return off;
     }
 
-    function spawnTracer(startCol?: number, startRow?: number, forcedColor?: ColorRGB) {
+    function spawnHexagon(col?: number, row?: number, forcedColor?: ColorRGB, initialProgress = 0) {
       if (cols <= 0 || rows <= 0) return;
-      const col = startCol ?? Math.floor(Math.random() * cols);
-      const row = startRow ?? Math.floor(Math.random() * rows);
-      const edgeIndex = Math.floor(Math.random() * 6);
-      const direction: 1 | -1 = Math.random() > 0.5 ? 1 : -1;
+      const c = col ?? Math.floor(Math.random() * cols);
+      const r = row ?? Math.floor(Math.random() * rows);
 
+      const key = `${c}_${r}`;
+      if (activeKeySet.has(key)) return;
+
+      const [cx, cy] = getHexCenter(c, r);
       const color = forcedColor ?? SECTION_COLORS[colorCounter % SECTION_COLORS.length];
       colorCounter++;
 
-      tracers.push({
-        col,
-        row,
-        edgeIndex,
-        direction,
+      activeKeySet.add(key);
+      glowingHexes.push({
+        col: c,
+        row: r,
+        cx,
+        cy,
         color,
-        progress: 0,
-        speed: 0.016 + Math.random() * 0.018,
-        alpha: 0.75 + Math.random() * 0.25,
-        stepsRemaining: 2 + Math.floor(Math.random() * 4), // 2 to 5 consecutive edge hops
+        progress: initialProgress,
+        speed: 0.007 + Math.random() * 0.008, // Smooth breathing cadence
+        maxAlpha: 0.78 + Math.random() * 0.2, // Rich, vibrant contrast on white
+        hasTriggeredNeighbor: false,
       });
     }
 
@@ -153,34 +185,44 @@ export function HexagonMeshBackground() {
 
       offscreenCanvas = createOffscreenGrid(width, height, dpr);
 
-      // Seed initial tracers
-      const targetCount = Math.max(20, Math.min(50, Math.floor((cols * rows) / 45)));
-      tracers = [];
+      // Populate an abundant, colorful spread of glowing hexagons across the screen
+      glowingHexes = [];
+      activeKeySet.clear();
+
+      // High density so the screen is lively, rich and colorful
+      const targetCount = Math.max(35, Math.min(75, Math.floor((cols * rows) / 25)));
       for (let i = 0; i < targetCount; i++) {
-        spawnTracer();
-        if (tracers[i]) {
-          tracers[i].progress = Math.random() * 0.9;
-        }
+        spawnHexagon(undefined, undefined, undefined, Math.random() * 0.85);
       }
     }
 
     function handlePointerMove(e: PointerEvent) {
       const rect = canvas?.getBoundingClientRect();
       if (!rect) return;
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
+      targetMouseX = e.clientX - rect.left;
+      targetMouseY = e.clientY - rect.top;
+      isMouseActive = true;
 
-      const col = Math.floor(mx / HEX_WIDTH);
-      const row = Math.floor(my / HEX_HEIGHT);
+      window.clearTimeout(mouseTimeout);
+      mouseTimeout = window.setTimeout(() => {
+        isMouseActive = false;
+      }, 1200);
 
-      if (col !== lastMouseCol || row !== lastMouseRow) {
-        lastMouseCol = col;
-        lastMouseRow = row;
+      // Light up nearby hexagons around cursor
+      const approxCol = Math.floor(targetMouseX / HEX_WIDTH);
+      const approxRow = Math.floor(targetMouseY / HEX_HEIGHT);
 
-        if (col >= 0 && col < cols && row >= 0 && row < rows) {
-          // Spawn 1-2 reactive tracers at cursor position
-          if (tracers.length < 65) {
-            spawnTracer(col, row);
+      for (let dr = -2; dr <= 2; dr++) {
+        for (let dc = -2; dc <= 2; dc++) {
+          const nc = approxCol + dc;
+          const nr = approxRow + dr;
+          if (nc >= 0 && nc < cols && nr >= 0 && nr < rows) {
+            const [cx, cy] = getHexCenter(nc, nr);
+            const dist = Math.hypot(cx - targetMouseX, cy - targetMouseY);
+            if (dist < 95 && Math.random() < 0.45) {
+              const hoverColor = SECTION_COLORS[(nc + nr * 2) % SECTION_COLORS.length];
+              spawnHexagon(nc, nr, hoverColor, 0.1);
+            }
           }
         }
       }
@@ -196,33 +238,52 @@ export function HexagonMeshBackground() {
       ctx.clearRect(0, 0, width * dpr, height * dpr);
       ctx.drawImage(offscreenCanvas, 0, 0);
 
-      // Render a few static decorative edge accents
       ctx.save();
       ctx.scale(dpr, dpr);
-      const sampleCount = Math.min(15, tracers.length);
-      for (let i = 0; i < sampleCount; i++) {
-        const t = tracers[i];
-        const [cx, cy] = getHexCenter(t.col, t.row);
-        const v = getHexVertices(cx, cy, HEX_RADIUS);
-        const v1 = v[t.edgeIndex];
-        const v2 = v[(t.edgeIndex + 1) % 6];
 
-        ctx.strokeStyle = `rgba(${t.color.r}, ${t.color.g}, ${t.color.b}, 0.8)`;
-        ctx.lineWidth = 1.4;
-        ctx.beginPath();
-        ctx.moveTo(v1[0], v1[1]);
-        ctx.lineTo(v2[0], v2[1]);
-        ctx.stroke();
+      // Render static decorative color rings
+      const sampleCount = Math.min(45, glowingHexes.length);
+      for (let i = 0; i < sampleCount; i++) {
+        const h = glowingHexes[i];
+        renderHexRing(ctx, h.cx, h.cy, h.color, 0.8);
       }
       ctx.restore();
+    }
+
+    function renderHexRing(c: CanvasRenderingContext2D, cx: number, cy: number, color: ColorRGB, alpha: number) {
+      // 1. Soft glowing outer neon aura along all 6 edges
+      c.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.38})`;
+      c.lineWidth = 4.2;
+      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
+      c.stroke();
+
+      // 2. Crisp, vibrant edge outline
+      c.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.95})`;
+      c.lineWidth = 1.75;
+      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
+      c.stroke();
+
+      // 3. Glowing corner gems at the 6 vertices
+      c.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.9})`;
+      const vertices = getHexVertices(cx, cy, HEX_RADIUS);
+      for (let j = 0; j < 6; j++) {
+        c.beginPath();
+        c.arc(vertices[j][0], vertices[j][1], 1.25, 0, Math.PI * 2);
+        c.fill();
+      }
+      // NO FILL INSIDE! Purely hollow and clean white interior!
     }
 
     function tick() {
       if (!isRunning || !ctx) return;
 
+      // Smooth mouse easing
+      currentMouseX += (targetMouseX - currentMouseX) * 0.12;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.12;
+
       ctx.clearRect(0, 0, width * dpr, height * dpr);
 
-      // 1. Draw cached silvery wireframe lattice
+      // 1. Draw cached wireframe grid
       if (offscreenCanvas) {
         ctx.drawImage(offscreenCanvas, 0, 0);
       }
@@ -230,90 +291,50 @@ export function HexagonMeshBackground() {
       ctx.save();
       ctx.scale(dpr, dpr);
 
-      // 2. Animate and draw edge tracers
-      const targetCount = Math.max(22, Math.min(48, Math.floor((cols * rows) / 45)));
+      // 2. Animate and draw glowing hexagon rings
+      const targetCount = Math.max(35, Math.min(75, Math.floor((cols * rows) / 25)));
 
-      for (let i = tracers.length - 1; i >= 0; i--) {
-        const t = tracers[i];
-        t.progress += t.speed;
+      for (let i = glowingHexes.length - 1; i >= 0; i--) {
+        const hex = glowingHexes[i];
+        hex.progress += hex.speed;
 
-        const [cx, cy] = getHexCenter(t.col, t.row);
-        const v = getHexVertices(cx, cy, HEX_RADIUS);
-        const startVertex = t.direction === 1 ? v[t.edgeIndex] : v[(t.edgeIndex + 1) % 6];
-        const endVertex = t.direction === 1 ? v[(t.edgeIndex + 1) % 6] : v[t.edgeIndex];
+        // Sine wave envelope for ultra-smooth breathing
+        const sineEnvelope = Math.sin(Math.min(1, hex.progress) * Math.PI);
+        const currentAlpha = hex.maxAlpha * Math.pow(sineEnvelope, 0.85);
 
-        const p = Math.min(1, t.progress);
-        const currentX = startVertex[0] + (endVertex[0] - startVertex[0]) * p;
-        const currentY = startVertex[1] + (endVertex[1] - startVertex[1]) * p;
-
-        // Tail calculation (trailing light beam along the edge)
-        const tailProgress = Math.max(0, p - 0.45);
-        const tailX = startVertex[0] + (endVertex[0] - startVertex[0]) * tailProgress;
-        const tailY = startVertex[1] + (endVertex[1] - startVertex[1]) * tailProgress;
-
-        // Calculate opacity envelope (fade in and fade out)
-        let drawAlpha = t.alpha;
-        if (p < 0.2) {
-          drawAlpha *= p / 0.2;
-        } else if (p > 0.8) {
-          drawAlpha *= (1 - p) / 0.2;
+        if (currentAlpha > 0.02) {
+          renderHexRing(ctx, hex.cx, hex.cy, hex.color, currentAlpha);
         }
 
-        if (drawAlpha > 0.01) {
-          // Soft glowing aura along the edge
-          ctx.strokeStyle = `rgba(${t.color.r}, ${t.color.g}, ${t.color.b}, ${drawAlpha * 0.35})`;
-          ctx.lineWidth = 3.2;
-          ctx.beginPath();
-          ctx.moveTo(tailX, tailY);
-          ctx.lineTo(currentX, currentY);
-          ctx.stroke();
-
-          // Crisp sharp center laser line
-          ctx.strokeStyle = `rgba(${t.color.r}, ${t.color.g}, ${t.color.b}, ${drawAlpha * 0.95})`;
-          ctx.lineWidth = 1.4;
-          ctx.beginPath();
-          ctx.moveTo(tailX, tailY);
-          ctx.lineTo(currentX, currentY);
-          ctx.stroke();
-
-          // Sparkling head spark
-          ctx.fillStyle = `rgba(${t.color.r}, ${t.color.g}, ${t.color.b}, ${drawAlpha})`;
-          ctx.beginPath();
-          ctx.arc(currentX, currentY, 1.4, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // When tracer reaches the end of the current edge
-        if (t.progress >= 1) {
-          if (t.stepsRemaining > 0) {
-            // Hop to an adjacent edge (next edge on this hex or an adjacent cell)
-            t.edgeIndex = (t.edgeIndex + (t.direction === 1 ? 1 : 5)) % 6;
-            t.progress = 0;
-            t.stepsRemaining -= 1;
-            // 35% chance to drift to a neighboring hexagon
-            if (Math.random() < 0.35) {
-              const dCol = (Math.random() > 0.5 ? 1 : -1);
-              const dRow = (Math.random() > 0.5 ? 1 : -1);
-              const nextC = t.col + dCol;
-              const nextR = t.row + dRow;
-              if (nextC >= 0 && nextC < cols && nextR >= 0 && nextR < rows) {
-                t.col = nextC;
-                t.row = nextR;
-              }
+        // Mid-life neighbor propagation (rippling effect)
+        if (!hex.hasTriggeredNeighbor && hex.progress > 0.45 && hex.progress < 0.65) {
+          hex.hasTriggeredNeighbor = true;
+          if (Math.random() < 0.42 && glowingHexes.length < targetCount + 10) {
+            const neighbors = getNeighbors(hex.col, hex.row).filter(
+              ([nc, nr]) => nc >= 0 && nc < cols && nr >= 0 && nr < rows,
+            );
+            if (neighbors.length > 0) {
+              const [nc, nr] = neighbors[Math.floor(Math.random() * neighbors.length)];
+              // Pick next color from the header palette
+              const neighborColor = SECTION_COLORS[(colorCounter++) % SECTION_COLORS.length];
+              spawnHexagon(nc, nr, neighborColor, 0);
             }
-          } else {
-            tracers.splice(i, 1);
           }
         }
+
+        // End of lifecycle
+        if (hex.progress >= 1) {
+          activeKeySet.delete(`${hex.col}_${hex.row}`);
+          glowingHexes.splice(i, 1);
+        }
+      }
+
+      // 3. Maintain vibrant count of colored hexagons across the canvas
+      if (glowingHexes.length < targetCount && Math.random() < 0.2) {
+        spawnHexagon();
       }
 
       ctx.restore();
-
-      // Maintain balanced pool count
-      if (tracers.length < targetCount && Math.random() < 0.12) {
-        spawnTracer();
-      }
-
       animationFrameId = requestAnimationFrame(tick);
     }
 
@@ -348,6 +369,7 @@ export function HexagonMeshBackground() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.clearTimeout(mouseTimeout);
     };
   }, []);
 

@@ -276,3 +276,5 @@ function renderBlock(blockWrapper: PageBlock, isFa: boolean) {
       return null;
   }
 }
+
+export default DynamicPageRenderer;

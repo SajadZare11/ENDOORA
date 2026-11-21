@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { evaluateAnswer } from "../apps/web/lib/tamrin20-data.ts";
 
 const root = process.cwd();
 const dataDir = path.join(root, "apps", "web", "data", "highschool", "tamrin20");
@@ -98,6 +99,13 @@ for (const lessonNum of lessons) {
           `Question ${q.id}: Non-MCQ question missing valid correctAnswer or acceptableAnswers`
         );
       }
+
+      // Production Grader acceptance validation
+      const evalResult = evaluateAnswer(q, q.correctAnswer);
+      assert(
+        evalResult.isCorrect,
+        `Question ${q.id}: Stored answer '${q.correctAnswer}' was rejected by production grader evaluateAnswer()`
+      );
 
       // Educational Explanation validation
       assert(q.explanation, `Question ${q.id}: Missing explanation object`);

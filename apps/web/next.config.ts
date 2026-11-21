@@ -21,12 +21,20 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/backend/api/:path*/",
+        destination: `${apiInternalUrl}/api/:path*/`,
+      },
+      {
         source: "/backend/api/:path*",
         destination: `${apiInternalUrl}/api/:path*`,
       },
       {
-        source: "/api/((?!(?:admin|videos)/).*)",
-        destination: `${apiInternalUrl}/api/$1`,
+        source: "/api/:path((?!admin(?:/|$)|videos(?:/|$)).*)/",
+        destination: `${apiInternalUrl}/api/:path/`,
+      },
+      {
+        source: "/api/:path((?!admin(?:/|$)|videos(?:/|$)).*)",
+        destination: `${apiInternalUrl}/api/:path`,
       },
     ];
   },

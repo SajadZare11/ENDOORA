@@ -1,7 +1,8 @@
 .page {
   position: relative;
   min-block-size: calc(100vh - 5rem);
-  padding: clamp(var(--space-4), 3vw, var(--space-8)) clamp(var(--space-3), 2.5vw, var(--space-6));
+  padding-block: clamp(3.5rem, 8vh, 6.5rem);
+  padding-inline: clamp(var(--space-4), 3vw, var(--space-6));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,14 +88,14 @@
   max-inline-size: 100%;
   max-block-size: none;
   margin: 0;
-  padding: clamp(var(--space-6), 4vw, var(--space-8)) clamp(var(--space-5), 3.5vw, var(--space-7));
+  padding: clamp(2.25rem, 4.5vw, 2.85rem) clamp(1.75rem, 3.5vw, 2.5rem);
   overflow: visible;
   border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow:
-    0 20px 45px -10px rgba(15, 23, 42, 0.08),
-    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 24px 50px -12px rgba(15, 23, 42, 0.09),
+    0 2px 6px rgba(15, 23, 42, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 1);
   backdrop-filter: blur(24px) saturate(140%);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
@@ -127,8 +128,9 @@
 .heading {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
   gap: var(--space-4);
+  margin-block-end: var(--space-2);
 }
 
 .securityIcon {
@@ -136,12 +138,11 @@
   place-items: center;
   inline-size: 2.75rem;
   block-size: 2.75rem;
-  border: 1px solid rgb(20 184 166 / 0.42);
-  border-radius: 0.9rem;
-  background: rgb(20 184 166 / 0.1);
-  color: var(--color-learning-teal);
-  box-shadow: 0 0 32px rgb(20 184 166 / 0.12);
-  margin-block-start: 0.15rem;
+  border: 1px solid rgba(20, 184, 166, 0.45);
+  border-radius: 0.85rem;
+  background: rgba(20, 184, 166, 0.08);
+  color: #0d9488;
+  box-shadow: 0 0 24px rgba(20, 184, 166, 0.12);
 }
 
 .securityIcon svg,
@@ -516,7 +517,7 @@
 }
 
 @media (max-width: 48rem) {
-  .page { padding: var(--space-3); }
+  .page { padding-block: clamp(2.5rem, 6vh, 4.5rem); padding-inline: var(--space-4); }
   .stage:not(.stageSingle),
   .stageWide {
     grid-template-columns: 1fr;

@@ -264,19 +264,40 @@ export function evaluateAnswer(
   let isCorrect = false;
 
   if (question.questionType === "multiple_choice") {
-    if (typeof userAnswer === "number") {
-      isCorrect = userAnswer === question.correctAnswer;
-    } else {
-      const parsedNum = Number.parseInt(normUser, 10);
-      if (!Number.isNaN(parsedNum) && parsedNum === question.correctAnswer) {
-        isCorrect = true;
-      } else if (Array.isArray(question.options)) {
-        // Check if user entered the option text directly
-        const correctOptionText = question.options[question.correctAnswer as number];
-        if (correctOptionText && normalizeAnswer(correctOptionText) === normUser) {
+    if (typeof question.correctAnswer === "number") {
+      if (typeof userAnswer === "number") {
+        isCorrect = userAnswer === question.correctAnswer;
+      } else {
+        const parsedNum = Number.parseInt(normUser, 10);
+        if (!Number.isNaN(parsedNum) && parsedNum === question.correctAnswer) {
           isCorrect = true;
+        } else if (Array.isArray(question.options)) {
+          // Check if user entered the option text directly
+          const correctOptionText = question.options[question.correctAnswer];
+          if (correctOptionText && normalizeAnswer(correctOptionText) === normUser) {
+            isCorrect = true;
+          }
         }
       }
+    } else {
+      // correctAnswer is a string (e.g. "Health")
+      const normCorrect = normalizeAnswer(question.correctAnswer);
+      if (normUser === normCorrect && normUser.length > 0) {
+        isCorrect = true;
+      } else if (typeof userAnswer === "number" && Array.isArray(question.options) && question.options[userAnswer]) {
+        isCorrect = normalizeAnswer(question.options[userAnswer]) === normCorrect;
+      } else if (Array.isArray(question.options)) {
+        const parsedNum = Number.parseInt(normUser, 10);
+        if (!Number.isNaN(parsedNum) && question.options[parsedNum]) {
+          isCorrect = normalizeAnswer(question.options[parsedNum]) === normCorrect;
+        }
+      }
+    }
+
+    if (!isCorrect && Array.isArray(question.acceptableAnswers)) {
+      isCorrect = question.acceptableAnswers.some(
+        (alt) => normalizeAnswer(alt) === normUser && normUser.length > 0
+      );
     }
   } else if (Array.isArray(question.options) && question.options.length > 0) {
     // Other question types that provide options (e.g. True/False or ABCD in listening/reading)

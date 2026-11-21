@@ -117,14 +117,19 @@ def count_spoken_words(text: str) -> int:
     return len(words)
 
 
-def calculate_speech_rate(word_count: int, duration_seconds: int) -> float:
+def calculate_speech_rate(word_count: int | float, duration_seconds: int | float | str) -> float:
     """
     Calculates Words Per Minute (WPM).
     Target conversational fluency range: 110 - 150 WPM.
     """
-    if duration_seconds <= 0 or word_count <= 0:
+    try:
+        dur = float(duration_seconds)
+        words = float(word_count)
+        if dur <= 0 or words <= 0:
+            return 0.0
+        return round((words / dur) * 60.0, 1)
+    except (ValueError, TypeError, ZeroDivisionError):
         return 0.0
-    return round((word_count / duration_seconds) * 60.0, 1)
 
 
 def analyze_speaking_part(
@@ -251,6 +256,49 @@ def evaluate_ielts_speaking_submission(
     total_duration = p1["duration_seconds"] + p2["duration_seconds"] + p3["duration_seconds"]
     composite_wpm = calculate_speech_rate(total_words, total_duration)
 
+    # Insufficient evidence guard for empty or near-empty submissions
+    if total_words < 15 or total_duration < 10:
+        return {
+            "status": "insufficient_evidence",
+            "overall_band": None,
+            "overall_band_min": None,
+            "overall_band_max": None,
+            "confidence_score": 0.0,
+            "cefr_level": "A0",
+            "fc_score": None,
+            "lr_score": None,
+            "gra_score": None,
+            "pr_score": None,
+            "criteria_breakdown": {},
+            "fluency_metrics": {
+                "composite_wpm": 0,
+                "total_words": total_words,
+                "total_duration_seconds": total_duration,
+                "hesitation_count": 0,
+                "hesitation_ratio": 0.0,
+                "discourse_markers_count": 0,
+                "discourse_markers_used": [],
+                "part1_wpm": p1["wpm"],
+                "part2_wpm": p2["wpm"],
+                "part3_wpm": p3["wpm"],
+            },
+            "pronunciation_diagnostics": {
+                "intelligibility_score": 0,
+                "pacing_stability": "Insufficient Audio",
+                "persian_phonological_flags": [],
+                "syllable_stress_note": "شواهد صوتی ضبط‌شده برای ارزیابی ریتم و تلفظ کافی نیست.",
+            },
+            "annotations": [],
+            "pedagogical_advice": [
+                "مدت زمان گفتار یا تعداد واژگان ضبط‌شده برای ارزیابی استاندارد مهارت گفتاری آیلتس کافی نیست. لطفاً پاسخ‌های کامل‌تری ارائه دهید."
+            ],
+            "parts_metadata": {
+                "part1": {"word_count": p1["word_count"], "duration_seconds": p1["duration_seconds"], "wpm": p1["wpm"]},
+                "part2": {"word_count": p2["word_count"], "duration_seconds": p2["duration_seconds"], "wpm": p2["wpm"]},
+                "part3": {"word_count": p3["word_count"], "duration_seconds": p3["duration_seconds"], "wpm": p3["wpm"]},
+            }
+        }
+
     all_annotations = p1["annotations"] + p2["annotations"] + p3["annotations"]
     all_discourse = set(p1["discourse_markers"] + p2["discourse_markers"] + p3["discourse_markers"])
     all_awl = set(p1["awl_words"] + p2["awl_words"] + p3["awl_words"])
@@ -364,8 +412,8 @@ def evaluate_ielts_speaking_submission(
     overall_band = round_to_ielts_half_band(composite_raw)
 
     band_min = max(Decimal("1.0"), overall_band - Decimal("0.5"))
-    band_max = min(Decimal("9.0"), overall_band + Decimal("0.5"))
-    confidence = Decimal("0.87")
+    band_max = min(Decimal("9.0"), max(band_min, overall_band + Decimal("0.5")))
+    confidence = min(Decimal("0.95"), max(Decimal("0.50"), Decimal(str(round(min(1.0, total_words / 200.0) * 0.90, 2)))))
 
     cefr_data = map_band_to_cefr(overall_band)
     cefr_level = cefr_data["level"]

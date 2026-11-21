@@ -228,10 +228,11 @@ def submit_session(
     band_components: list[Decimal] = []
     formatted_section_scores: dict[str, Any] = {}
 
+    test_category = getattr(session.test, "test_type", "academic")
     for sec_type, stats in section_scores.items():
         raw = stats["raw_earned"]
         cnt = stats["question_count"]
-        band = calculate_ielts_band(raw, cnt, sec_type)
+        band = calculate_ielts_band(raw, cnt, sec_type, category=test_category)
         if sec_type in [IELTSSectionType.LISTENING, IELTSSectionType.READING]:
             band_components.append(band)
 

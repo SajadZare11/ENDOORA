@@ -177,8 +177,8 @@ export function calculateIeltsBandScore(
   } else if (skill === "reading") {
     table = category === "General" ? GENERAL_READING_TABLE : ACADEMIC_READING_TABLE;
   } else {
-    // For writing/speaking default to proration
-    return 6.0;
+    // For writing/speaking, band requires rubric rating; practice returns 0 (requires rubric review)
+    return 0;
   }
 
   for (const [minScore, band] of table) {

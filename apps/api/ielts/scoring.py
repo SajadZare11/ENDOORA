@@ -22,6 +22,24 @@ READING_ACADEMIC_RAW_TO_BAND = [
     (0, Decimal("2.0")),
 ]
 
+READING_GENERAL_RAW_TO_BAND = [
+    (40, Decimal("9.0")),
+    (39, Decimal("8.5")),
+    (37, Decimal("8.0")),
+    (36, Decimal("7.5")),
+    (34, Decimal("7.0")),
+    (32, Decimal("6.5")),
+    (30, Decimal("6.0")),
+    (27, Decimal("5.5")),
+    (23, Decimal("5.0")),
+    (19, Decimal("4.5")),
+    (15, Decimal("4.0")),
+    (12, Decimal("3.5")),
+    (9, Decimal("3.0")),
+    (6, Decimal("2.5")),
+    (0, Decimal("2.0")),
+]
+
 LISTENING_RAW_TO_BAND = [
     (39, Decimal("9.0")),
     (37, Decimal("8.5")),
@@ -64,10 +82,19 @@ def round_to_ielts_half_band(band: Decimal | float) -> Decimal:
     return Decimal(f"{bounded:.1f}")
 
 
-def calculate_ielts_band(raw_score: Decimal | float, total_questions: int, skill: str) -> Decimal:
+SCORER_VERSION = "1.2.0"
+
+
+def calculate_ielts_band(
+    raw_score: Decimal | float,
+    total_questions: int,
+    skill: str,
+    category: str = "Academic",
+) -> Decimal:
     """
     Converts raw points to standard 1.0–9.0 IELTS Band score.
     Supports both full 40-item tests and pro-rated mini-tests.
+    Distinguishes Academic Reading vs General Training Reading per official IELTS scoring specifications.
     """
     if total_questions <= 0 or float(raw_score) <= 0:
         return Decimal("1.0")
@@ -75,7 +102,15 @@ def calculate_ielts_band(raw_score: Decimal | float, total_questions: int, skill
     # Normalize to 40-question benchmark
     normalized_40 = (float(raw_score) / float(total_questions)) * 40.0
 
-    table = LISTENING_RAW_TO_BAND if skill == IELTSSectionType.LISTENING else READING_ACADEMIC_RAW_TO_BAND
+    cat_norm = str(category).lower()
+    is_general = "gen" in cat_norm
+
+    if skill == IELTSSectionType.LISTENING or str(skill).lower() == "listening":
+        table = LISTENING_RAW_TO_BAND
+    elif is_general:
+        table = READING_GENERAL_RAW_TO_BAND
+    else:
+        table = READING_ACADEMIC_RAW_TO_BAND
 
     for min_raw, band in table:
         if normalized_40 >= min_raw:

@@ -318,3 +318,5 @@ export function FloatingPopupsContainer({ currentPath }: { currentPath: string }
     </>
   );
 }
+
+export default FloatingPopupsContainer;
