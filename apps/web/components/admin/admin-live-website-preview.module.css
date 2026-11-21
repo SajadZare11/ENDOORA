@@ -1,0 +1,540 @@
+.previewPane {
+  flex: 1.1;
+  min-width: 520px;
+  background: #ffffff;
+  border-right: 1.5px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+  position: sticky;
+  top: 72px;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.05);
+  z-index: 90;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  direction: rtl;
+}
+
+.previewExpanded {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 290px;
+  width: auto;
+  height: calc(100vh - 72px);
+  z-index: 999;
+}
+
+.collapsedFloatingBtn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 1000;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.collapsedFloatingBtn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+/* 1. Real Browser Header Toolbar */
+.browserHeader {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navBtn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.navBtn:hover {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+  color: #4338ca;
+}
+
+.addressForm {
+  flex: 1;
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.775rem;
+}
+
+.secureBadge {
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.domainPrefix {
+  color: #94a3b8;
+  font-family: monospace;
+  font-size: 0.75rem;
+  direction: ltr;
+}
+
+.addressInput {
+  border: none;
+  outline: none;
+  color: #0f172a;
+  direction: ltr;
+  text-align: left;
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.8rem;
+  background: transparent;
+}
+
+.btnExternal {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0 0.2rem;
+  transition: color 0.15s ease;
+}
+
+.btnExternal:hover {
+  color: #4f46e5;
+}
+
+.headerTools {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.modeToggleGroup {
+  display: flex;
+  align-items: center;
+  background: #e2e8f0;
+  border-radius: 6px;
+  padding: 0.15rem;
+  gap: 0.15rem;
+}
+
+.modeBtn {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.modeBtnActive {
+  background: #ffffff;
+  color: #4338ca;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.deviceSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.deviceBtn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.deviceBtnActive {
+  background: #4f46e5 !important;
+  color: #ffffff;
+  border-color: #4f46e5 !important;
+}
+
+.btnTool,
+.btnClose {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btnTool:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.btnClose:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+/* 2. Interactive Location Guidance Banner */
+.highlightBanner {
+  background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+  border-bottom: 1.5px solid #c7d2fe;
+  padding: 0.55rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.785rem;
+  animation: slideBanner 0.2s ease-out;
+}
+
+@keyframes slideBanner {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.highlightBannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.pulseDot {
+  width: 9px;
+  height: 9px;
+  background: #4f46e5;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4);
+  }
+}
+
+.highlightTitle {
+  color: #4338ca;
+  font-weight: 800;
+}
+
+.highlightLocation {
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+.btnGoToSection {
+  background: #ffffff;
+  border: 1px solid #c7d2fe;
+  color: #4338ca;
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.btnGoToSection:hover {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+
+/* 3. Main Frame Area */
+.frameWrapper {
+  flex: 1;
+  position: relative;
+  background: #f1f5f9;
+  overflow: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+}
+
+.desktopIframeWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.realSiteIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+  flex: 1;
+}
+
+/* Mobile Phone Frame Mockup */
+.mobilePhoneMockup {
+  width: 385px;
+  height: 94%;
+  margin: 1.25rem auto;
+  border: 10px solid #1e293b;
+  border-radius: 36px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.phoneSpeakerNotch {
+  width: 100%;
+  height: 24px;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cameraDot {
+  width: 8px;
+  height: 8px;
+  background: #0f172a;
+  border-radius: 50%;
+  border: 1px solid #334155;
+}
+
+.speakerPill {
+  width: 48px;
+  height: 4px;
+  background: #334155;
+  border-radius: 999px;
+}
+
+.iframeLoadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  z-index: 10;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Architecture Diagram */
+.architectureDiagram {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.diagHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+.diagIcon {
+  font-size: 1.75rem;
+}
+
+.diagTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.diagSubtitle {
+  margin: 0.15rem 0 0 0;
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+.nodesFlow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.diagNode {
+  width: 100%;
+  max-width: 460px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.95rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.nodeIcon {
+  font-size: 1.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.nodeName {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.nodeDesc {
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+.flowArrow {
+  font-size: 1.25rem;
+  color: #94a3b8;
+}
+
+.diagNodeActive {
+  border-color: #6366f1 !important;
+  background: #eef2ff !important;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2) !important;
+  transform: scale(1.02);
+}
+
+.securityNode {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.serverNode {
+  border-color: #c7d2fe;
+  background: #e0e7ff;
+}
+
+.dbNode {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.aiNode {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+}
+
+.diagFooterNote {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .previewPane {
+    min-width: 420px;
+  }
+}
+
+@media (max-width: 900px) {
+  .previewPane {
+    display: none;
+  }
+}

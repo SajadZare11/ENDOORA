@@ -9630,60 +9630,121 @@ export const REAL_LIFE_LESSONS: RealLifeVideoLesson[] = [
     ],
     "transcript": [
       {
-        "id": 1,
-        "seconds": 17,
-        "timeDisplay": "0:17",
-        "speaker": "Speaker 1",
-        "textEn": "I would most like to visit Tokyo because I love Japanese art, food and culture.",
-        "textFa": "بیش از هر جا دوست دارم از توکیو دیدن کنم، چون شیفته هنر، غذا و فرهنگ ژاپنی هستم."
+              "id": 1,
+              "seconds": 12.0,
+              "endSeconds": 17.5,
+              "timeDisplay": "0:12",
+              "speaker": "Question Card",
+              "textEn": "What place in the world would you most like to visit?",
+              "textFa": "کدام نقطه از جهان را بیشتر از همه دوست دارید ببینید؟"
       },
       {
-        "id": 2,
-        "seconds": 30,
-        "timeDisplay": "0:30",
-        "speaker": "Speaker 2",
-        "textEn": "I'd love to visit Costa Rica in South America, because from the pictures I've seen it looks beautiful, and I'd like to visit the wildlife.",
-        "textFa": "دوست دارم به کاستاریکا سفر کنم؛ از روی عکس‌ها بسیار چشم‌نواز است و حیات وحش بکری دارد."
+              "id": 2,
+              "seconds": 17.9,
+              "endSeconds": 23.8,
+              "timeDisplay": "0:18",
+              "speaker": "Speaker 1 (London, UK)",
+              "textEn": "I would most like to visit, probably, Tokyo...",
+              "textFa": "من احتمالاً بیشتر از همه دوست دارم از توکیو دیدن کنم..."
       },
       {
-        "id": 3,
-        "seconds": 41,
-        "timeDisplay": "0:41",
-        "speaker": "Speaker 3",
-        "textEn": "I'd love to visit Argentina because you can enjoy the beach, the mountains and most importantly the penguins.",
-        "textFa": "عاشق سفر به آرژانتینم چون می‌توان از ساحل، کوه‌ها و به ویژه تماشای پنگوئن‌ها لذت برد."
+              "id": 3,
+              "seconds": 23.9,
+              "endSeconds": 29.5,
+              "timeDisplay": "0:24",
+              "speaker": "Speaker 1 (London, UK)",
+              "textEn": "...because I love Japanese art, food and culture.",
+              "textFa": "...چون عاشق هنر، غذا و فرهنگ ژاپنی هستم."
       },
       {
-        "id": 4,
-        "seconds": 56,
-        "timeDisplay": "0:56",
-        "speaker": "Speaker 4",
-        "textEn": "If I had one place to visit, I would like to visit the pyramids in Egypt.",
-        "textFa": "اگر قرار بود فقط یک مکان را ببینم، مایل بودم از اهرام مصر دیدن کنم."
+              "id": 4,
+              "seconds": 30.0,
+              "endSeconds": 34.6,
+              "timeDisplay": "0:30",
+              "speaker": "Speaker 2 (Manchester, UK)",
+              "textEn": "I'd love to visit Costa Rica in South America...",
+              "textFa": "خیلی دوست دارم به کاستاریکا در آمریکای جنوبی سفر کنم..."
       },
       {
-        "id": 5,
-        "seconds": 67,
-        "timeDisplay": "1:07",
-        "speaker": "Speaker 5",
-        "textEn": "I really like travelling and there are a lot of places that I would love to visit, but my dream destination is probably Australia.",
-        "textFa": "سفر را خیلی دوست دارم؛ جاهای زیادی مد نظرم است اما مقصد رویایی‌ام احتمالاً استرالیاست."
+              "id": 5,
+              "seconds": 34.8,
+              "endSeconds": 40.2,
+              "timeDisplay": "0:35",
+              "speaker": "Speaker 2 (Manchester, UK)",
+              "textEn": "...because from the pictures I've seen it looks beautiful, and I'd like to visit the wildlife.",
+              "textFa": "...چون از عکس‌هایی که دیدم بسیار زیبا به نظر می‌رسه و دوست دارم حیات‌وحش آنجا را ببینم."
       },
       {
-        "id": 6,
-        "seconds": 76,
-        "timeDisplay": "1:16",
-        "speaker": "Speaker 6",
-        "textEn": "I'd love to go to Chile, because I'd love to walk up the Andes, do some mountain climbing and see some different scenery to Britain.",
-        "textFa": "دوست دارم به شیلی بروم تا در رشته‌کوه‌های آند کوهنوردی کنم و مناظری متفاوت با بریتانیا ببینم."
+              "id": 6,
+              "seconds": 41.2,
+              "endSeconds": 50.2,
+              "timeDisplay": "0:41",
+              "speaker": "Speaker 3 (Bristol, UK)",
+              "textEn": "I'd love to visit Argentina because you can enjoy the beach, the mountains and most importantly the penguins.",
+              "textFa": "دوست دارم از آرژانتین دیدن کنم چون می‌تونی از ساحل، کوه‌ها و مهم‌تر از همه از پنگوئن‌ها لذت ببری."
       },
       {
-        "id": 7,
-        "seconds": 86,
-        "timeDisplay": "1:26",
-        "speaker": "Speaker 7",
-        "textEn": "I don't need to go anywhere, I already live in the place I would most like to visit, Sintra in Portugal. It's so beautiful, there are old castles and wonderful cafés near the sea.",
-        "textFa": "نیازی به سفر ندارم؛ خودم در زیباترین نقطه یعنی سینترا در پرتغال زندگی می‌کنم؛ پر از قلعه‌های کهن و کافه‌های رویایی در نزدیکی دریاست."
+              "id": 7,
+              "seconds": 53.2,
+              "endSeconds": 60.5,
+              "timeDisplay": "0:53",
+              "speaker": "Speaker 4 (Bridgeport, USA)",
+              "textEn": "If I had one place to visit, I would like to visit the pyramids.",
+              "textFa": "اگر قرار بود یک جا را انتخاب کنم، دوست داشتم اهرام مصر را ببینم."
+      },
+      {
+              "id": 8,
+              "seconds": 63.4,
+              "endSeconds": 69.2,
+              "timeDisplay": "1:03",
+              "speaker": "Speaker 5 (Poznań, Poland)",
+              "textEn": "I really like travelling and there are a lot of places that I would love to visit...",
+              "textFa": "من سفر کردن رو واقعاً دوست دارم و جاهای زیادی هست که دلم می‌خواد برم..."
+      },
+      {
+              "id": 9,
+              "seconds": 69.8,
+              "endSeconds": 73.0,
+              "timeDisplay": "1:10",
+              "speaker": "Speaker 5 (Poznań, Poland)",
+              "textEn": "...but my dream destination is probably Australia.",
+              "textFa": "...اما مقصد رویایی من احتمالاً استرالیاست."
+      },
+      {
+              "id": 10,
+              "seconds": 74.0,
+              "endSeconds": 81.1,
+              "timeDisplay": "1:14",
+              "speaker": "Speaker 6 (Cambridge, UK)",
+              "textEn": "I'd love to go to Chile, because I'd love to walk up the Andes, do some mountain climbing and see some different scenery to Britain.",
+              "textFa": "خیلی دوست دارم به شیلی بروم، چون دوست دارم در رشته‌کوه آند پیاده‌روی کنم، کوهنوردی انجام بدم و مناظری متفاوت از بریتانیا را ببینم."
+      },
+      {
+              "id": 11,
+              "seconds": 82.8,
+              "endSeconds": 90.2,
+              "timeDisplay": "1:23",
+              "speaker": "Speaker 7 (Sintra, Portugal)",
+              "textEn": "I don't need to go anywhere, I already live in the place I would most like to visit, Sintra in Portugal.",
+              "textFa": "من نیازی ندارم جایی برم، من همین الان در جایی زندگی می‌کنم که بیش از هر جا دوست دارم ببینم، یعنی سینترا در پرتغال."
+      },
+      {
+              "id": 12,
+              "seconds": 90.8,
+              "endSeconds": 95.5,
+              "timeDisplay": "1:31",
+              "speaker": "Speaker 7 (Sintra, Portugal)",
+              "textEn": "Um, it's so beautiful, there's so many old buildings, castles...",
+              "textFa": "امم، اینجا فوق‌العاده زیباست، ساختمان‌های قدیمی و قلعه‌های بسیار زیادی داره..."
+      },
+      {
+              "id": 13,
+              "seconds": 95.8,
+              "endSeconds": 104.0,
+              "timeDisplay": "1:36",
+              "speaker": "Speaker 7 (Sintra, Portugal)",
+              "textEn": "...the views are wonderful and there's many beautiful cafés, and it's only five kilometres from the sea.",
+              "textFa": "...چشم‌اندازها بی‌نظیر هستند، کافه‌های بسیار زیبایی داره و تنها پنج کیلومتر با دریا فاصله داره."
       }
     ],
     "questions": {

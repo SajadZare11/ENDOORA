@@ -3,21 +3,8 @@
 import { useEffect, useRef } from "react";
 import styles from "./hexagon-mesh.module.css";
 
-// The 8 header section themes from Endoora + brand accents
-const SECTION_COLORS = [
-  { name: "school",   r: 109, g: 40,  b: 217 }, // #6d28d9 Royal Violet (School)
-  { name: "teachers", r: 234, g: 88,  b: 12  }, // #ea580c Warm Amber (Teachers)
-  { name: "classes",  r: 5,   g: 150, b: 105 }, // #059669 Emerald (Classes)
-  { name: "skills",   r: 2,   g: 132, b: 199 }, // #0284c7 Sky/Cyan (Skills)
-  { name: "learn",    r: 79,  g: 70,  b: 229 }, // #4f46e5 Electric Indigo (Learn)
-  { name: "ielts",    r: 225, g: 29,  b: 72  }, // #e11d48 Ruby Crimson (IELTS)
-  { name: "pricing",  r: 217, g: 119, b: 6   }, // #d97706 Sunset Gold (Pricing)
-  { name: "books",    r: 13,  g: 148, b: 136 }, // #0d9488 Teal (Books)
-  { name: "brand",    r: 37,  g: 99,  b: 235 }, // #2563eb Endoora Blue
-  { name: "magenta",  r: 168, g: 85,  b: 247 }, // #a855f7 Vivid Purple
-] as const;
-
-type ColorRGB = (typeof SECTION_COLORS)[number];
+// Uniform Sky Light Blue (#38bdf8 / rgb(56, 189, 248))
+const SKY_LIGHT_BLUE = { r: 56, g: 189, b: 248 } as const;
 
 // Refined micro-hexagons (radius 15px, width ~26px)
 const HEX_RADIUS = 15;
@@ -29,7 +16,6 @@ interface GlowingHexagon {
   row: number;
   cx: number;
   cy: number;
-  color: ColorRGB;
   progress: number; // 0..1
   speed: number;
   maxAlpha: number;
@@ -75,9 +61,8 @@ export function HexagonMeshBackground() {
     let cols = 0;
     let rows = 0;
 
-    // Active illuminated hexagons (full 6-sided colored rings)
+    // Active illuminated hexagons (full 6-sided light blue rings)
     let glowingHexes: GlowingHexagon[] = [];
-    let colorCounter = 0;
 
     // Spatial lookup to prevent overlapping duplicate glowing hexes
     const activeKeySet = new Set<string>();
@@ -87,7 +72,6 @@ export function HexagonMeshBackground() {
     let targetMouseY = -9999;
     let currentMouseX = -9999;
     let currentMouseY = -9999;
-    let isMouseActive = false;
     let mouseTimeout: number | undefined;
 
     function getHexCenter(col: number, row: number): [number, number] {
@@ -142,7 +126,7 @@ export function HexagonMeshBackground() {
       return off;
     }
 
-    function spawnHexagon(col?: number, row?: number, forcedColor?: ColorRGB, initialProgress = 0) {
+    function spawnHexagon(col?: number, row?: number, initialProgress = 0) {
       if (cols <= 0 || rows <= 0) return;
       const c = col ?? Math.floor(Math.random() * cols);
       const r = row ?? Math.floor(Math.random() * rows);
@@ -151,8 +135,6 @@ export function HexagonMeshBackground() {
       if (activeKeySet.has(key)) return;
 
       const [cx, cy] = getHexCenter(c, r);
-      const color = forcedColor ?? SECTION_COLORS[colorCounter % SECTION_COLORS.length];
-      colorCounter++;
 
       activeKeySet.add(key);
       glowingHexes.push({
@@ -160,10 +142,9 @@ export function HexagonMeshBackground() {
         row: r,
         cx,
         cy,
-        color,
         progress: initialProgress,
         speed: 0.007 + Math.random() * 0.008, // Smooth breathing cadence
-        maxAlpha: 0.78 + Math.random() * 0.2, // Rich, vibrant contrast on white
+        maxAlpha: 0.75 + Math.random() * 0.2, // Vibrant light blue visibility on white
         hasTriggeredNeighbor: false,
       });
     }
@@ -185,14 +166,13 @@ export function HexagonMeshBackground() {
 
       offscreenCanvas = createOffscreenGrid(width, height, dpr);
 
-      // Populate an abundant, colorful spread of glowing hexagons across the screen
+      // Populate a balanced spread of glowing light blue hexagons across the screen
       glowingHexes = [];
       activeKeySet.clear();
 
-      // High density so the screen is lively, rich and colorful
-      const targetCount = Math.max(35, Math.min(75, Math.floor((cols * rows) / 25)));
+      const targetCount = Math.max(30, Math.min(65, Math.floor((cols * rows) / 28)));
       for (let i = 0; i < targetCount; i++) {
-        spawnHexagon(undefined, undefined, undefined, Math.random() * 0.85);
+        spawnHexagon(undefined, undefined, Math.random() * 0.85);
       }
     }
 
@@ -201,14 +181,14 @@ export function HexagonMeshBackground() {
       if (!rect) return;
       targetMouseX = e.clientX - rect.left;
       targetMouseY = e.clientY - rect.top;
-      isMouseActive = true;
 
       window.clearTimeout(mouseTimeout);
       mouseTimeout = window.setTimeout(() => {
-        isMouseActive = false;
+        targetMouseX = -9999;
+        targetMouseY = -9999;
       }, 1200);
 
-      // Light up nearby hexagons around cursor
+      // Light up nearby hexagons around cursor in light blue
       const approxCol = Math.floor(targetMouseX / HEX_WIDTH);
       const approxRow = Math.floor(targetMouseY / HEX_HEIGHT);
 
@@ -220,8 +200,7 @@ export function HexagonMeshBackground() {
             const [cx, cy] = getHexCenter(nc, nr);
             const dist = Math.hypot(cx - targetMouseX, cy - targetMouseY);
             if (dist < 95 && Math.random() < 0.45) {
-              const hoverColor = SECTION_COLORS[(nc + nr * 2) % SECTION_COLORS.length];
-              spawnHexagon(nc, nr, hoverColor, 0.1);
+              spawnHexagon(nc, nr, 0.1);
             }
           }
         }
@@ -233,6 +212,32 @@ export function HexagonMeshBackground() {
     let animationFrameId: number;
     let isRunning = true;
 
+    function renderHexRing(c: CanvasRenderingContext2D, cx: number, cy: number, alpha: number) {
+      const { r, g, b } = SKY_LIGHT_BLUE;
+
+      // 1. Soft glowing outer neon aura along all 6 edges
+      c.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.35})`;
+      c.lineWidth = 4.0;
+      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
+      c.stroke();
+
+      // 2. Crisp, vibrant light blue edge outline
+      c.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.95})`;
+      c.lineWidth = 1.7;
+      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
+      c.stroke();
+
+      // 3. Glowing corner gems at the 6 vertices
+      c.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.9})`;
+      const vertices = getHexVertices(cx, cy, HEX_RADIUS);
+      for (let j = 0; j < 6; j++) {
+        c.beginPath();
+        c.arc(vertices[j][0], vertices[j][1], 1.25, 0, Math.PI * 2);
+        c.fill();
+      }
+      // NO FILL INSIDE: strictly hollow, preserving clean white interior
+    }
+
     function renderStaticGrid() {
       if (!ctx || !offscreenCanvas) return;
       ctx.clearRect(0, 0, width * dpr, height * dpr);
@@ -241,37 +246,13 @@ export function HexagonMeshBackground() {
       ctx.save();
       ctx.scale(dpr, dpr);
 
-      // Render static decorative color rings
-      const sampleCount = Math.min(45, glowingHexes.length);
+      // Render static decorative light blue rings
+      const sampleCount = Math.min(40, glowingHexes.length);
       for (let i = 0; i < sampleCount; i++) {
         const h = glowingHexes[i];
-        renderHexRing(ctx, h.cx, h.cy, h.color, 0.8);
+        renderHexRing(ctx, h.cx, h.cy, 0.8);
       }
       ctx.restore();
-    }
-
-    function renderHexRing(c: CanvasRenderingContext2D, cx: number, cy: number, color: ColorRGB, alpha: number) {
-      // 1. Soft glowing outer neon aura along all 6 edges
-      c.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.38})`;
-      c.lineWidth = 4.2;
-      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
-      c.stroke();
-
-      // 2. Crisp, vibrant edge outline
-      c.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.95})`;
-      c.lineWidth = 1.75;
-      drawHexagonOutline(c, cx, cy, HEX_RADIUS);
-      c.stroke();
-
-      // 3. Glowing corner gems at the 6 vertices
-      c.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha * 0.9})`;
-      const vertices = getHexVertices(cx, cy, HEX_RADIUS);
-      for (let j = 0; j < 6; j++) {
-        c.beginPath();
-        c.arc(vertices[j][0], vertices[j][1], 1.25, 0, Math.PI * 2);
-        c.fill();
-      }
-      // NO FILL INSIDE! Purely hollow and clean white interior!
     }
 
     function tick() {
@@ -291,8 +272,8 @@ export function HexagonMeshBackground() {
       ctx.save();
       ctx.scale(dpr, dpr);
 
-      // 2. Animate and draw glowing hexagon rings
-      const targetCount = Math.max(35, Math.min(75, Math.floor((cols * rows) / 25)));
+      // 2. Animate and draw glowing light blue hexagon rings
+      const targetCount = Math.max(30, Math.min(65, Math.floor((cols * rows) / 28)));
 
       for (let i = glowingHexes.length - 1; i >= 0; i--) {
         const hex = glowingHexes[i];
@@ -303,10 +284,10 @@ export function HexagonMeshBackground() {
         const currentAlpha = hex.maxAlpha * Math.pow(sineEnvelope, 0.85);
 
         if (currentAlpha > 0.02) {
-          renderHexRing(ctx, hex.cx, hex.cy, hex.color, currentAlpha);
+          renderHexRing(ctx, hex.cx, hex.cy, currentAlpha);
         }
 
-        // Mid-life neighbor propagation (rippling effect)
+        // Mid-life neighbor propagation (gentle ripple in light blue)
         if (!hex.hasTriggeredNeighbor && hex.progress > 0.45 && hex.progress < 0.65) {
           hex.hasTriggeredNeighbor = true;
           if (Math.random() < 0.42 && glowingHexes.length < targetCount + 10) {
@@ -315,9 +296,7 @@ export function HexagonMeshBackground() {
             );
             if (neighbors.length > 0) {
               const [nc, nr] = neighbors[Math.floor(Math.random() * neighbors.length)];
-              // Pick next color from the header palette
-              const neighborColor = SECTION_COLORS[(colorCounter++) % SECTION_COLORS.length];
-              spawnHexagon(nc, nr, neighborColor, 0);
+              spawnHexagon(nc, nr, 0);
             }
           }
         }
@@ -329,7 +308,7 @@ export function HexagonMeshBackground() {
         }
       }
 
-      // 3. Maintain vibrant count of colored hexagons across the canvas
+      // 3. Maintain continuous count of light blue hexagons across the canvas
       if (glowingHexes.length < targetCount && Math.random() < 0.2) {
         spawnHexagon();
       }

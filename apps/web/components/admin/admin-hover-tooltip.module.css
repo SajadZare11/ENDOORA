@@ -1,0 +1,111 @@
+.container {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.inline {
+  display: inline-block;
+  width: auto;
+}
+
+.tooltipCard {
+  width: 320px;
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.45), 0 0 0 1.5px rgba(255, 255, 255, 0.12);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  pointer-events: none;
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  animation: tooltipFade 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tooltipFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.lineIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.lineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.lineTitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.lineText {
+  color: #f1f5f9;
+  font-size: 0.825rem;
+  font-weight: 500;
+}
+
+.lineHighlight {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 0.825rem;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.sensitivityLine {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.45rem;
+}
+
+.badge {
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.badgeSafe {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badgeMedium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badgeCritical {
+  background: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}

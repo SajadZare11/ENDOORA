@@ -28,6 +28,9 @@ import { AdminHelpModal } from "./AdminHelpModal";
 import { AdminDangerConfirmModal } from "./AdminDangerConfirmModal";
 import { AdminPinModal } from "./AdminPinModal";
 import { AdminUndoToast } from "./AdminUndoToast";
+import { AdminHoverTooltip } from "./AdminHoverTooltip";
+import { AdminSafetyBox } from "./AdminSafetyBox";
+import { AdminLiveWebsitePreview } from "./AdminLiveWebsitePreview";
 
 export type AdminModuleTab =
   | "overview"
@@ -54,6 +57,7 @@ interface AdminItemDef {
   id: AdminModuleTab;
   title: string;
   shortDesc: string;
+  siteLocation: string;
   icon: string;
   badge?: { text: string; bg: string; color: string };
   isSensitive?: boolean;
@@ -77,30 +81,35 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "overview",
         title: "نمای کلی و کارهای امروز",
         shortDesc: "خلاصه وضعیت، پیام‌ها و کارهای منتظر",
+        siteLocation: "پیشخوان داشبورد و شاخص‌های کلیدی سایت",
         icon: "📊",
       },
       {
         id: "site-cms",
         title: "ویرایش متن‌ها و بنرها",
         shortDesc: "تغییر آنلاین بنرها، عناوین و قیمت‌های ویترین",
+        siteLocation: "صفحه اصلی سایت > نوار قرمز اعلان، هیرو، مهارت‌ها و قیمت‌ها",
         icon: "📝",
       },
       {
         id: "site-builder",
         title: "استودیو ساخت صفحات جدید",
         shortDesc: "طراحی صفحات جشنواره و لندینگ بدون کدنویسی",
+        siteLocation: "صفحات فرود و جشنواره‌ها (مثلاً /p/exam-cram-1403)",
         icon: "🎨",
       },
       {
         id: "forms-webhooks",
         title: "فرم‌ها و دریافت پیام‌ها",
         shortDesc: "فرم تماس، پیش‌ثبت‌نام همایش و پرسشنامه‌ها",
+        siteLocation: "صفحه تماس با ما و فرم‌های ثبت‌نامی سایت",
         icon: "📋",
       },
       {
         id: "seo",
         title: "تنظیمات گوگل و سئو",
         shortDesc: "بهینه‌سازی کلمات کلیدی، عنوان گوگل و ریدایرکت",
+        siteLocation: "نتایج جستجوی گوگل و نقشه سایت (sitemap.xml)",
         icon: "🌐",
       },
     ],
@@ -114,12 +123,14 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "academics",
         title: "دوره‌ها و بانک سوالات",
         shortDesc: "درس‌های پایه‌ها، کنکور، آیلتس و سوالات تستی",
+        siteLocation: "بخش مدرسه و پایه‌های دهم تا دوازدهم (/high-school)",
         icon: "🎓",
       },
       {
         id: "exam-integrity",
         title: "سلامت و نظارت بر آزمون‌ها",
         shortDesc: "مراقبت از آزمون، بررسی تقلب و بازبینی نمرات",
+        siteLocation: "اتاق برگزاری آزمون آنلاین و کارنامه زبان‌آموزان (/ielts)",
         icon: "🛡️",
       },
     ],
@@ -133,12 +144,14 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "users",
         title: "فهرست اعضا و دسترسی‌ها",
         shortDesc: "مدیریت زبان‌آموزان و نقش‌های کاربری",
+        siteLocation: "حساب‌های کاربری و پروفایل زبان‌آموزان (/profile)",
         icon: "👥",
       },
       {
         id: "teacher-verifications",
         title: "بررسی و تایید معلمان جدید",
         shortDesc: "مشاهده ویدیو و مدارک تدریس ارسالی مدرسان",
+        siteLocation: "ویترین عمومی اساتید و رزومه مدرسان (/teachers)",
         icon: "🧑‍🏫",
         badge: { text: "۳ در صف", bg: "#fee2e2", color: "#dc2626" },
       },
@@ -146,12 +159,14 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "teacher-contracts",
         title: "قراردادها و سهم معلمان",
         shortDesc: "تعیین درصد کارمزد تدریس و متن قراردادها",
+        siteLocation: "قراردادهای مالی و سهم تدریس در پنل اساتید (/teacher)",
         icon: "📜",
       },
       {
         id: "support",
         title: "تیکت‌ها و پیام‌های پشتیبانی",
         shortDesc: "پاسخ به سوالات و مشکلات زبان‌آموزان",
+        siteLocation: "بخش پشتیبانی و ارسال تیکت دانش‌آموزان (/support)",
         icon: "🎧",
         badge: { text: "۲ جدید", bg: "#fef3c7", color: "#d97706" },
       },
@@ -159,6 +174,7 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "community",
         title: "نظرات و تالار گفتگو",
         shortDesc: "تایید نظرات کاربران و جلوگیری از پیام نامناسب",
+        siteLocation: "تالار گفتگوی عمومی و نظرات زیر درس‌ها (/community)",
         icon: "💬",
       },
     ],
@@ -172,24 +188,28 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "finance",
         title: "درآمد و تسویه‌حساب",
         shortDesc: "گزارش فروش، فاکتورها و واریزی معلمان",
+        siteLocation: "جدول قیمت‌ها و درگاه پرداخت شاپرک (/pricing)",
         icon: "💳",
       },
       {
         id: "marketing",
         title: "کدهای تخفیف و جشنواره‌ها",
         shortDesc: "تعریف کوپن تخفیف و پیشنهادهای ویژه",
+        siteLocation: "کادر کد تخفیف در سبد خرید دوره (/checkout)",
         icon: "🚀",
       },
       {
         id: "broadcast",
         title: "ارسال پیامک و اعلانات",
         shortDesc: "پیامک گروهی و نوتیفیکیشن همگانی به کاربران",
+        siteLocation: "صندوق پیامک موبایل کاربران و اعلانات درون‌برنامه‌ای",
         icon: "📢",
       },
       {
         id: "analytics",
         title: "آمار بازدیدها و رشد سایت",
         shortDesc: "تعداد بازدیدهای امروز و رفتار کاربران",
+        siteLocation: "سیستم پایش آمار بازدیدکنندگان سایت",
         icon: "📈",
       },
     ],
@@ -204,6 +224,7 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "system-ops",
         title: "عملیات سرور و دیتابیس",
         shortDesc: "بک‌آپ کل سامانه، حالت تعمیرات و موتورخانه سرور",
+        siteLocation: "پشت‌صحنه فنی: سرور اصلی و پایگاه داده دیتابیس",
         icon: "⚙️",
         isSensitive: true,
       },
@@ -211,6 +232,7 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "ai-engine",
         title: "مغز هوش مصنوعی و ربات‌ها",
         shortDesc: "دستورات تصحیح آزمون و پرامپت‌های ربات معلم",
+        siteLocation: "مغز ربات هوش مصنوعی تصحیح گفتار و رایتینگ",
         icon: "🧠",
         isSensitive: true,
       },
@@ -218,6 +240,7 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         id: "security",
         title: "دیوار آتش و اتاق امنیت",
         shortDesc: "شناسایی حملات هکرها و مسدودسازی آی‌پی مزاحم",
+        siteLocation: "نگهبانی سرور و دیوار آتش فایروال ایندورا",
         icon: "🚨",
         isSensitive: true,
       },
@@ -228,6 +251,11 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
 export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {}) {
   const [activeTab, setActiveTab] = useState<AdminModuleTab>("overview");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Split Screen Live Preview State
+  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(true);
+  const [isPreviewExpanded, setIsPreviewExpanded] = useState<boolean>(false);
+  const [hoveredTarget, setHoveredTarget] = useState<string | null>(null);
 
   // Safety Lock State for Category 5 (Sensitive Zone)
   const [isTechnicalZoneUnlocked, setIsTechnicalZoneUnlocked] = useState<boolean>(false);
@@ -339,7 +367,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
               <span>سامانه مدیریت آسان ایندورا</span>
             </h1>
             <p className={styles.brandSubtitle}>
-              پیشخوان ساده، شفاف و دسته‌بندی‌شده برای مدیریت محتوا، کاربران و آموزش
+              پیشخوان ساده، شفاف و دسته‌بندی‌شده همراه با پیش‌نمایش زنده سایت و راهنمای لحظه‌ای
             </p>
           </div>
         </div>
@@ -368,6 +396,16 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
         {/* Header Controls */}
         <div className={styles.headerControls}>
+          {/* Split-Screen Live Preview Toggle Button */}
+          <button
+            type="button"
+            className={`${styles.btnSplitToggle} ${isPreviewOpen ? styles.btnSplitActive : ""}`}
+            onClick={() => setIsPreviewOpen(!isPreviewOpen)}
+            title="مشاهده همزمان پیش‌نمایش زنده سایت در سمت چپ"
+          >
+            <span>👁️ پیش‌نمایش سایت: {isPreviewOpen ? "روشن" : "خاموش"}</span>
+          </button>
+
           {/* System Live Status Pill */}
           <div className={styles.systemStatusPill} title="همه سرویس‌ها بدون نقص فعال هستند">
             <span>●</span>
@@ -382,7 +420,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
             title="راهنمای ساده و ۵ ساله برای این بخش"
           >
             <span>💡</span>
-            <span>راهنمای ساده این بخش</span>
+            <span>راهنمای ساده</span>
           </button>
 
           {/* Safety Zone Lock Toggle */}
@@ -409,7 +447,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
           {/* Visit Public Site */}
           <Link href="/" target="_blank" className={styles.btnVisitSite}>
-            <span>🌐 مشاهده سایت</span>
+            <span>🌐 سایت عمومی</span>
             <span style={{ fontSize: "0.7rem" }}>↗</span>
           </Link>
 
@@ -427,9 +465,9 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
         </div>
       </header>
 
-      {/* 2. Master Layout (Sidebar + Content View) */}
+      {/* 2. Master Layout: Sidebar + Main Content + Live Preview Pane */}
       <div className={styles.masterLayout}>
-        {/* 5-Category Modular Sidebar */}
+        {/* 5-Category Modular Sidebar (Right Side) */}
         <aside className={styles.sidebar} aria-label="دسته‌بندی امکانات مدیریت">
           {filteredCategories.map((category) => (
             <div
@@ -467,52 +505,61 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
                   return (
                     <div key={item.id} className={styles.sidebarItemWrapper}>
-                      <button
-                        type="button"
-                        className={`${styles.sidebarBtn} ${
-                          isActive
-                            ? isDanger
-                              ? styles.dangerSidebarBtnActive
-                              : styles.sidebarBtnActive
-                            : isDanger
-                            ? styles.dangerSidebarBtn
-                            : ""
-                        }`}
-                        onClick={() => handleSelectTab(item.id, item.isSensitive)}
+                      {/* Wrap Sidebar Button in 3-Line Hover Tooltip with Live Preview synchronization */}
+                      <AdminHoverTooltip
+                        whatIsIt={item.shortDesc}
+                        siteLocation={item.siteLocation}
+                        sensitivity={item.isSensitive ? "critical" : category.id === "content" ? "medium" : "safe"}
+                        highlightKey={item.id}
+                        onHoverTarget={setHoveredTarget}
                       >
-                        <div className={styles.sidebarBtnContent}>
-                          <span className={styles.sidebarItemIcon}>{item.icon}</span>
-                          <div className={styles.sidebarItemLabel}>
-                            <span className={styles.sidebarItemTitle}>{item.title}</span>
-                            <span className={styles.sidebarItemSubtitle}>
-                              {item.shortDesc}
-                            </span>
+                        <button
+                          type="button"
+                          className={`${styles.sidebarBtn} ${
+                            isActive
+                              ? isDanger
+                                ? styles.dangerSidebarBtnActive
+                                : styles.sidebarBtnActive
+                              : isDanger
+                              ? styles.dangerSidebarBtn
+                              : ""
+                          }`}
+                          onClick={() => handleSelectTab(item.id, item.isSensitive)}
+                        >
+                          <div className={styles.sidebarBtnContent}>
+                            <span className={styles.sidebarItemIcon}>{item.icon}</span>
+                            <div className={styles.sidebarItemLabel}>
+                              <span className={styles.sidebarItemTitle}>{item.title}</span>
+                              <span className={styles.sidebarItemSubtitle}>
+                                {item.shortDesc}
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        {item.badge && (
-                          <span
-                            style={{
-                              background: item.badge.bg,
-                              color: item.badge.color,
-                              fontSize: "0.68rem",
-                              fontWeight: "bold",
-                              padding: "0.15rem 0.5rem",
-                              borderRadius: "999px",
-                              whiteSpace: "nowrap",
-                            }}
-                          >
-                            {item.badge.text}
-                          </span>
-                        )}
-                      </button>
+                          {item.badge && (
+                            <span
+                              style={{
+                                background: item.badge.bg,
+                                color: item.badge.color,
+                                fontSize: "0.68rem",
+                                fontWeight: "bold",
+                                padding: "0.15rem 0.5rem",
+                                borderRadius: "999px",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {item.badge.text}
+                            </span>
+                          )}
+                        </button>
+                      </AdminHoverTooltip>
 
                       {/* Small (?) Help Popover Trigger */}
                       <button
                         type="button"
                         className={styles.btnItemHelp}
                         onClick={(e) => openHelp(item.id, e)}
-                        title={`راهنمای ساده ۵ ساله برای «${item.title}»`}
+                        title={`راهنمای ۵ ساله برای «${item.title}»`}
                       >
                         ؟
                       </button>
@@ -551,7 +598,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           </div>
         </aside>
 
-        {/* Dynamic Content View Area */}
+        {/* Dynamic Content View Area (Center) */}
         <main className={styles.mainContent}>
           {/* Sensitive Zone Banner if in category 5 */}
           {isCurrentTabSensitive && (
@@ -578,10 +625,19 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           )}
 
           {/* ==============================================================================
-              TAB 1: OVERVIEW (REDESIGNED)
+              TAB 1: OVERVIEW (REDESIGNED WITH SAFETY BOX & HOVER GUIDES)
               ============================================================================== */}
           {activeTab === "overview" && (
             <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+              {/* Peace-of-Mind Safety Box for Management */}
+              <AdminSafetyBox
+                title="🛡️ راهنمای ایمن مدیریت ایندورا (چطور بدون خرابکاری کار کنیم؟)"
+                impact="تمام بخش‌های سیستم به طور خودکار از اطلاعات نسخه پشتیبان تهیه می‌کنند و برای تغییرات حساس، تاییدیه دومرحله‌ای در نظر گرفته شده است."
+                howToStaySafe="با خیال راحت از منوی سمت راست استفاده کنید؛ هر جا علامت قفل یا حاشیه قرمز دیدید یعنی باید دقت بیشتری داشته باشید."
+                dangerLevel="safe"
+                liveSiteUrl="/"
+              />
+
               {/* 1. Welcome & Peace-of-Mind Status Banner */}
               <div className={styles.welcomeBanner}>
                 <div className={styles.welcomeLeft}>
@@ -622,71 +678,95 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
                 <div className={styles.actionGrid}>
                   {/* Task 1: Teacher verifications */}
-                  <div className={styles.actionCard}>
-                    <div className={styles.actionCardTop}>
-                      <div className={styles.actionCardIcon}>🧑‍🏫</div>
-                      <div className={styles.actionCardContent}>
-                        <h4 className={styles.actionCardTitle}>۳ معلم در صف تایید مدارک</h4>
-                        <p className={styles.actionCardDesc}>
-                          اساتید جدید ویدیو و مدارک تدریس ارسال کرده‌اند و منتظر تایید برای شروع کلاس هستند.
-                        </p>
+                  <AdminHoverTooltip
+                    whatIsIt="مشاهده رزومه و نمونه ویدیوهای تدریس اساتید متقاضی تدریس"
+                    siteLocation="صفحه معرفی اساتید سایت (/teachers)"
+                    sensitivity="safe"
+                    highlightKey="teachers"
+                    onHoverTarget={setHoveredTarget}
+                  >
+                    <div className={styles.actionCard}>
+                      <div className={styles.actionCardTop}>
+                        <div className={styles.actionCardIcon}>🧑‍🏫</div>
+                        <div className={styles.actionCardContent}>
+                          <h4 className={styles.actionCardTitle}>۳ معلم در صف تایید مدارک</h4>
+                          <p className={styles.actionCardDesc}>
+                            اساتید جدید ویدیو و مدارک تدریس ارسال کرده‌اند و منتظر تایید برای شروع کلاس هستند.
+                          </p>
+                        </div>
                       </div>
+                      <button
+                        type="button"
+                        className={styles.actionCardBtn}
+                        onClick={() => setActiveTab("teacher-verifications")}
+                      >
+                        <span>بررسی و تایید مدارک</span>
+                        <span>←</span>
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className={styles.actionCardBtn}
-                      onClick={() => setActiveTab("teacher-verifications")}
-                    >
-                      <span>بررسی و تایید مدارک</span>
-                      <span>←</span>
-                    </button>
-                  </div>
+                  </AdminHoverTooltip>
 
                   {/* Task 2: Support tickets */}
-                  <div className={styles.actionCard}>
-                    <div className={styles.actionCardTop}>
-                      <div className={styles.actionCardIcon}>🎧</div>
-                      <div className={styles.actionCardContent}>
-                        <h4 className={styles.actionCardTitle}>۲ پیام پشتیبانی بی‌پاسخ</h4>
-                        <p className={styles.actionCardDesc}>
-                          دانش‌آموزان در مورد ثبت‌نام دوره‌ها سوال پرسیده‌اند و منتظر راهنمایی شما هستند.
-                        </p>
+                  <AdminHoverTooltip
+                    whatIsIt="پاسخ به سوالات، تیکت‌ها و مشکلات دانش‌آموزان در ثبت‌نام دوره‌ها"
+                    siteLocation="بخش پشتیبانی و گفتگوی آنلاین سایت (/support)"
+                    sensitivity="safe"
+                    highlightKey="community"
+                    onHoverTarget={setHoveredTarget}
+                  >
+                    <div className={styles.actionCard}>
+                      <div className={styles.actionCardTop}>
+                        <div className={styles.actionCardIcon}>🎧</div>
+                        <div className={styles.actionCardContent}>
+                          <h4 className={styles.actionCardTitle}>۲ پیام پشتیبانی بی‌پاسخ</h4>
+                          <p className={styles.actionCardDesc}>
+                            دانش‌آموزان در مورد ثبت‌نام دوره‌ها سوال پرسیده‌اند و منتظر راهنمایی شما هستند.
+                          </p>
+                        </div>
                       </div>
+                      <button
+                        type="button"
+                        className={styles.actionCardBtn}
+                        onClick={() => setActiveTab("support")}
+                      >
+                        <span>پاسخگویی به پیام‌ها</span>
+                        <span>←</span>
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className={styles.actionCardBtn}
-                      onClick={() => setActiveTab("support")}
-                    >
-                      <span>پاسخگویی به پیام‌ها</span>
-                      <span>←</span>
-                    </button>
-                  </div>
+                  </AdminHoverTooltip>
 
                   {/* Task 3: Community moderation */}
-                  <div className={styles.actionCard}>
-                    <div className={styles.actionCardTop}>
-                      <div className={styles.actionCardIcon}>💬</div>
-                      <div className={styles.actionCardContent}>
-                        <h4 className={styles.actionCardTitle}>۴ نظر جدید در تالار گفتگو</h4>
-                        <p className={styles.actionCardDesc}>
-                          نظرات ارسالی کاربران زیر درس‌ها آماده بازبینی و انتشار در سایت هستند.
-                        </p>
+                  <AdminHoverTooltip
+                    whatIsIt="تایید نظرات ارسالی بچه‌ها زیر درس‌ها تا برای دیگران نمایش داده شود"
+                    siteLocation="تالار نظرات زیر درس‌ها در صفحه دوره‌ها (/community)"
+                    sensitivity="safe"
+                    highlightKey="community"
+                    onHoverTarget={setHoveredTarget}
+                  >
+                    <div className={styles.actionCard}>
+                      <div className={styles.actionCardTop}>
+                        <div className={styles.actionCardIcon}>💬</div>
+                        <div className={styles.actionCardContent}>
+                          <h4 className={styles.actionCardTitle}>۴ نظر جدید در تالار گفتگو</h4>
+                          <p className={styles.actionCardDesc}>
+                            نظرات ارسالی کاربران زیر درس‌ها آماده بازبینی و انتشار در سایت هستند.
+                          </p>
+                        </div>
                       </div>
+                      <button
+                        type="button"
+                        className={styles.actionCardBtn}
+                        onClick={() => setActiveTab("community")}
+                      >
+                        <span>مشاهده و تایید نظرات</span>
+                        <span>←</span>
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className={styles.actionCardBtn}
-                      onClick={() => setActiveTab("community")}
-                    >
-                      <span>مشاهده و تایید نظرات</span>
-                      <span>←</span>
-                    </button>
-                  </div>
+                  </AdminHoverTooltip>
                 </div>
               </div>
 
-              {/* 3. Daily Quick Shortcuts */}
+              {/* 3. Daily Quick Shortcuts with Hover Guidance */}
               <div className={styles.quickShortcutsSection}>
                 <div className={styles.sectionHeader}>
                   <h3 className={styles.sectionTitle}>
@@ -698,57 +778,89 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
                 </div>
 
                 <div className={styles.quickShortcutsGrid}>
-                  <div
-                    className={styles.shortcutCard}
-                    onClick={() => setActiveTab("site-cms")}
+                  <AdminHoverTooltip
+                    whatIsIt="تغییر تیتر اصلی، متن اعلان و تخفیف‌های بزرگ در ویترین صفحه اول"
+                    siteLocation="صفحه اول سایت > بالاترین بخش (هدر و بنر)"
+                    sensitivity="medium"
+                    highlightKey="banner"
+                    onHoverTarget={setHoveredTarget}
                   >
-                    <div className={styles.shortcutIcon} style={{ background: "#e0e7ff", color: "#4338ca" }}>
-                      📝
+                    <div
+                      className={styles.shortcutCard}
+                      onClick={() => setActiveTab("site-cms")}
+                    >
+                      <div className={styles.shortcutIcon} style={{ background: "#e0e7ff", color: "#4338ca" }}>
+                        📝
+                      </div>
+                      <div className={styles.shortcutText}>
+                        <span className={styles.shortcutTitle}>تغییر متن و بنر صفحه اول</span>
+                        <span className={styles.shortcutDesc}>ویرایش متن خوش‌آمدگویی یا قیمت‌ها</span>
+                      </div>
                     </div>
-                    <div className={styles.shortcutText}>
-                      <span className={styles.shortcutTitle}>تغییر متن و بنر صفحه اول</span>
-                      <span className={styles.shortcutDesc}>ویرایش متن خوش‌آمدگویی یا قیمت‌ها</span>
-                    </div>
-                  </div>
+                  </AdminHoverTooltip>
 
-                  <div
-                    className={styles.shortcutCard}
-                    onClick={() => setActiveTab("marketing")}
+                  <AdminHoverTooltip
+                    whatIsIt="ساخت کوپن تخفیف (مثلاً NOROOZ) برای کم کردن قیمت خرید کاربران"
+                    siteLocation="کادر کد تخفیف در مرحله پرداخت دوره (/checkout)"
+                    sensitivity="safe"
+                    highlightKey="pricing"
+                    onHoverTarget={setHoveredTarget}
                   >
-                    <div className={styles.shortcutIcon} style={{ background: "#fef3c7", color: "#b45309" }}>
-                      🎁
+                    <div
+                      className={styles.shortcutCard}
+                      onClick={() => setActiveTab("marketing")}
+                    >
+                      <div className={styles.shortcutIcon} style={{ background: "#fef3c7", color: "#b45309" }}>
+                        🎁
+                      </div>
+                      <div className={styles.shortcutText}>
+                        <span className={styles.shortcutTitle}>ایجاد کد تخفیف جدید</span>
+                        <span className={styles.shortcutDesc}>کوپن تخفیف برای کمپین‌ها و مناسبت‌ها</span>
+                      </div>
                     </div>
-                    <div className={styles.shortcutText}>
-                      <span className={styles.shortcutTitle}>ایجاد کد تخفیف جدید</span>
-                      <span className={styles.shortcutDesc}>کوپن تخفیف برای کمپین‌ها و مناسبت‌ها</span>
-                    </div>
-                  </div>
+                  </AdminHoverTooltip>
 
-                  <div
-                    className={styles.shortcutCard}
-                    onClick={() => setActiveTab("broadcast")}
+                  <AdminHoverTooltip
+                    whatIsIt="ارسال پیامک اطلاع‌رسانی یا تبریک به شماره موبایل دانش‌آموزان"
+                    siteLocation="پیامک مستقیم به گوشی موبایل کاربران"
+                    sensitivity="safe"
+                    highlightKey="users"
+                    onHoverTarget={setHoveredTarget}
                   >
-                    <div className={styles.shortcutIcon} style={{ background: "#fee2e2", color: "#b91c1c" }}>
-                      📢
+                    <div
+                      className={styles.shortcutCard}
+                      onClick={() => setActiveTab("broadcast")}
+                    >
+                      <div className={styles.shortcutIcon} style={{ background: "#fee2e2", color: "#b91c1c" }}>
+                        📢
+                      </div>
+                      <div className={styles.shortcutText}>
+                        <span className={styles.shortcutTitle}>ارسال پیامک به کاربران</span>
+                        <span className={styles.shortcutDesc}>اطلاع‌رسانی سریع به شماره موبایل بچه‌ها</span>
+                      </div>
                     </div>
-                    <div className={styles.shortcutText}>
-                      <span className={styles.shortcutTitle}>ارسال پیامک به کاربران</span>
-                      <span className={styles.shortcutDesc}>اطلاع‌رسانی سریع به شماره موبایل بچه‌ها</span>
-                    </div>
-                  </div>
+                  </AdminHoverTooltip>
 
-                  <div
-                    className={styles.shortcutCard}
-                    onClick={() => setActiveTab("academics")}
+                  <AdminHoverTooltip
+                    whatIsIt="اضافه کردن فایل صوتی، ویدیوی تدریس، یا سوالات تستی جدید به دوره‌ها"
+                    siteLocation="صفحه دوره‌ها و تمرین‌های آموزشی (/high-school)"
+                    sensitivity="medium"
+                    highlightKey="academics"
+                    onHoverTarget={setHoveredTarget}
                   >
-                    <div className={styles.shortcutIcon} style={{ background: "#dcfce7", color: "#15803d" }}>
-                      🎓
+                    <div
+                      className={styles.shortcutCard}
+                      onClick={() => setActiveTab("academics")}
+                    >
+                      <div className={styles.shortcutIcon} style={{ background: "#dcfce7", color: "#15803d" }}>
+                        🎓
+                      </div>
+                      <div className={styles.shortcutText}>
+                        <span className={styles.shortcutTitle}>افزودن درس یا آزمون جدید</span>
+                        <span className={styles.shortcutDesc}>مدیریت سوالات تستی و پکیج‌های آموزشی</span>
+                      </div>
                     </div>
-                    <div className={styles.shortcutText}>
-                      <span className={styles.shortcutTitle}>افزودن درس یا آزمون جدید</span>
-                      <span className={styles.shortcutDesc}>مدیریت سوالات تستی و پکیج‌های آموزشی</span>
-                    </div>
-                  </div>
+                  </AdminHoverTooltip>
                 </div>
               </div>
 
@@ -805,19 +917,66 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           )}
 
           {/* TAB 2: SITE CMS */}
-          {activeTab === "site-cms" && <SiteContentCMSEditor />}
+          {activeTab === "site-cms" && (
+            <div>
+              <AdminSafetyBox
+                title="🚨 راهنمای ویرایش متن‌ها و بنرهای ویترین سایت (بدون خرابکاری)"
+                impact="هر متنی که اینجا تایپ کنید یا قیمتی که تغییر دهید، پس از فشردن دکمه «انتشار عمومی» فوراً در صفحه اول سایت به همه نمایش داده می‌شود."
+                howToStaySafe="ابتدا تغییرات را در حالت «ذخیره پیش‌نویس» ذخیره نمایید و در تصویر زنده سمت چپ بررسی کنید، سپس دکمه انتشار عمومی را بزنید."
+                dangerLevel="medium"
+                thingsToAvoid={[
+                  "قیمت‌ها را با دقت بر حسب تومان وارد کنید تا اشتباهاً صفر اضافه یا کم نگذارید.",
+                  "قبل از حذف یک عنوان، متن جایگزین آن را آماده داشته باشید تا ظاهر سایت خالی نماند.",
+                ]}
+                liveSiteUrl="/"
+              />
+              <SiteContentCMSEditor />
+            </div>
+          )}
 
           {/* TAB: SITE BUILDER & DYNAMIC NAVIGATION STUDIO */}
-          {activeTab === "site-builder" && <SiteBuilderStudio />}
+          {activeTab === "site-builder" && (
+            <div>
+              <AdminSafetyBox
+                title="🎨 راهنمای استودیو ساخت صفحات و لندینگ پیج‌ها"
+                impact="ایجاد یا حذف صفحات جشنواره، فرم‌های پیش‌ثبت‌نام و لینک‌های منوی بالای سایت."
+                howToStaySafe="قبل از انتشار عمومی هر لندینگ‌پیج جدید، از پیش‌نمایش آن دیدن کنید تا مطمئن شوید چیدمان بلوک‌ها زیباست."
+                dangerLevel="medium"
+                liveSiteUrl="/p/exam-cram-1403"
+              />
+              <SiteBuilderStudio />
+            </div>
+          )}
 
           {/* TAB: DYNAMIC FORMS & WEBHOOKS STUDIO */}
           {activeTab === "forms-webhooks" && <DynamicFormsWebhooksStudio />}
 
           {/* TAB: SEO, METADATA & REDIRECTS STUDIO */}
-          {activeTab === "seo" && <SeoMetadataConsole />}
+          {activeTab === "seo" && (
+            <div>
+              <AdminSafetyBox
+                title="🌐 راهنمای سئو و تغییر آدرس‌های سایت"
+                impact="تغییر آدرس‌ها و عناوین گوگل بر نحوه نمایش سایت در نتایج جستجوی گوگل اثر می‌گذارد."
+                howToStaySafe="آدرس‌های صفحات مهم را بدون نیاز فنی تغییر ندهید تا رتبه گوگل سایت حفظ شود."
+                dangerLevel="medium"
+                liveSiteUrl="/sitemap.xml"
+              />
+              <SeoMetadataConsole />
+            </div>
+          )}
 
           {/* TAB: AI ENGINE & LLM OPS HUB */}
-          {activeTab === "ai-engine" && <AiEngineConsole />}
+          {activeTab === "ai-engine" && (
+            <div>
+              <AdminSafetyBox
+                title="🧠 راهنمای مغز هوش مصنوعی و ربات‌های ارزیاب"
+                impact="دستورات این بخش نحوه مکالمه ربات هوشمند با دانش‌آموز و شیوه تصحیح نمرات رایتینگ و اسپیکینگ را تعیین می‌کند."
+                howToStaySafe="پرامپت‌های ربات تست‌شده هستند؛ قبل از هر تغییر، یک کپی از متن قبلی بردارید تا در صورت نیاز به آن بازگردید."
+                dangerLevel="critical"
+              />
+              <AiEngineConsole />
+            </div>
+          )}
 
           {/* TAB: TEACHER VERIFICATIONS */}
           {activeTab === "teacher-verifications" && <TeacherVerificationHub />}
@@ -829,10 +988,35 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {activeTab === "exam-integrity" && <ExamIntegrityConsole />}
 
           {/* TAB 3: USERS & TEACHERS */}
-          {activeTab === "users" && <AdminUsersManager />}
+          {activeTab === "users" && (
+            <div>
+              <AdminSafetyBox
+                title="👥 راهنمای مدیریت کاربران و جلوگیری از دستکاری ناخواسته"
+                impact="تغییر نقش کاربری یا مسدودسازی حساب، بلافاصله روی امکان ورود دانش‌آموز یا معلم به سایت اثر می‌گذارد."
+                howToStaySafe="نقش مدیر ارشد را فقط به افراد مورد اعتماد اعطا کنید و هیچ حسابی را بدون بررسی مسدود ننمایید."
+                dangerLevel="medium"
+                thingsToAvoid={[
+                  "نقش مدیر ارشد حساب کاربری خودتان را تغییر ندهید.",
+                  "موجودی کیف پول کاربران را بدون ثبت دلیل اداری دستکاری نکنید.",
+                ]}
+              />
+              <AdminUsersManager />
+            </div>
+          )}
 
           {/* TAB 4: ACADEMICS & COURSES */}
-          {activeTab === "academics" && <AcademicCommandConsole />}
+          {activeTab === "academics" && (
+            <div>
+              <AdminSafetyBox
+                title="🎓 راهنمای مدیریت دوره‌ها و بانک سوالات"
+                impact="حذف یک دوره یا درس باعث قطع دسترسی زبان‌آموزانی می‌شود که آن را خریده‌اند."
+                howToStaySafe="به جای حذف دوره‌هایی که ثبت‌نامی دارند، از گزینه «غیرفعال‌سازی موقت ثبت‌نام جدید» استفاده کنید."
+                dangerLevel="medium"
+                liveSiteUrl="/high-school/grade-12/tamrin20"
+              />
+              <AcademicCommandConsole />
+            </div>
+          )}
 
           {/* TAB 4: MARKETING & GROWTH */}
           {activeTab === "marketing" && <MarketingGrowthConsole />}
@@ -844,7 +1028,17 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {activeTab === "community" && <CommunityModerationConsole />}
 
           {/* TAB: SECURITY & THREAT DEFENSE ROOM */}
-          {activeTab === "security" && <SecurityCommandConsole />}
+          {activeTab === "security" && (
+            <div>
+              <AdminSafetyBox
+                title="🚨 راهنمای اتاق امنیت و فایروال ایندورا"
+                impact="مسدودسازی اشتباهی یک آی‌پی ممکن است مانع ورود کاربران واقعی یا اتصال درگاه پرداخت شود."
+                howToStaySafe="تنها آی‌پی‌هایی را که سیستم امنیتی با نمره خطر بالای ۸۰٪ علامت زده مسدود کنید."
+                dangerLevel="critical"
+              />
+              <SecurityCommandConsole />
+            </div>
+          )}
 
           {/* TAB: PLATFORM ANALYTICS & FUNNEL INTELLIGENCE */}
           {activeTab === "analytics" && <PlatformAnalyticsConsole />}
@@ -858,6 +1052,16 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {/* TAB 6: SYSTEM OPS & GOD MODE */}
           {activeTab === "system-ops" && (
             <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+              <AdminSafetyBox
+                title="🛑 منطقه فوق‌العاده حساس: موتورخانه سرور و پایگاه داده"
+                impact="دستورات این بخش مستقیماً روی سرور فیزیکی، حافظه کش، و پایگاه داده اجرا می‌شوند و در صورت اشتباه ممکن است سایت موقتاً قطع شود."
+                howToStaySafe="اگر اطلاعات تخصصی سرور ندارید، به دکمه‌های این بخش دست نزنید. سیستم به شکل خودکار سالم کار می‌کند."
+                dangerLevel="critical"
+                thingsToAvoid={[
+                  "کلید حالت تعمیرات را بی‌دلیل روشن نکنید، چون سایت برای همه مردم مسدود می‌شود.",
+                  "دستورات حذف دیتابیس (DROP یا DELETE بدون شرط) را در کنسول SQL اجرا نکنید.",
+                ]}
+              />
               <ServerOperationsGodMode />
 
               <div
@@ -890,6 +1094,16 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
             </div>
           )}
         </main>
+
+        {/* 3. Interactive Split-Screen Live Preview (Left Side) */}
+        <AdminLiveWebsitePreview
+          activeTab={activeTab}
+          highlightTarget={hoveredTarget}
+          isOpen={isPreviewOpen}
+          onToggleOpen={() => setIsPreviewOpen((prev) => !prev)}
+          isExpanded={isPreviewExpanded}
+          onToggleExpand={() => setIsPreviewExpanded((prev) => !prev)}
+        />
       </div>
 
       {/* ==============================================================================

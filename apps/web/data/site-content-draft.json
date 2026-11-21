@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-11-21T14:54:40.179Z",
+  "updatedBy": "همگام‌سازی از پایگاه داده جنگو",
+  "banner": {
+    "enabled": false,
+    "textFa": "🎉 نسخه جدید ایندورا منتشر شد: سامانه تمرین تا ۲۰ و آمادگی امتحانات نهایی فعال شد!",
+    "textEn": "Endoora update: Exam Prep 20 and AI learning studio is live!",
+    "badgeFa": "ویژه",
+    "badgeEn": "New",
+    "actionLabelFa": "شروع رایگان",
+    "actionLabelEn": "Get Started",
+    "actionHref": "/high-school/grade-12/tamrin20",
+    "bgColor": "#4f46e5",
+    "textColor": "#ffffff"
+  },
+  "hero": {
+    "badgeFa": "پلتفرم پیشرو آموزش زبان با هوش مصنوعی",
+    "badgeEn": "AI-Powered English Learning",
+    "titleFa": "انگلیسی رو راحت، خودمانی و هوشمند یاد بگیر",
+    "titleEn": "Master English with Smart, Friendly Guidance",
+    "subtitleFa": "با تعیین سطح رایگان، دوره‌های استاندارد CEFR، پارتنر هوش مصنوعی و کلاس‌های اساتید برتر، مسیر یادگیری‌ات را بساز.",
+    "subtitleEn": "From CEFR foundation to native fluency with personalized AI feedback.",
+    "primaryCtaLabelFa": "تعیین سطح رایگان (۳ دقیقه)",
+    "primaryCtaLabelEn": "Free Placement Test",
+    "primaryCtaHref": "/placement",
+    "secondaryCtaLabelFa": "مشاهده کلاس‌ها و اساتید",
+    "secondaryCtaLabelEn": "Explore Teachers",
+    "secondaryCtaHref": "/teachers",
+    "trustPill1Fa": "بیش از ۱۵ هزار زبان‌آموز فعال",
+    "trustPill1En": "15,000+ Active Learners",
+    "trustPill2Fa": "اساتید تأیید صلاحیت‌شده",
+    "trustPill2En": "Verified Expert Teachers",
+    "trustPill3Fa": "پشتیبانی و بازخورد بلادرنگ AI",
+    "trustPill3En": "Real-time AI Feedback"
+  },
+  "learningSteps": [
+    {
+      "id": "step-1",
+      "number": "۰۱",
+      "icon": "🎯",
+      "titleFa": "تعیین سطح هوشمند و دقیق",
+      "titleEn": "Adaptive Placement Test",
+      "descFa": "در ۳ دقیقه مهارت واژگان، گرامر و شنیداری‌ات ممیزی می‌شود.",
+      "descEn": "Fast 3-minute diagnostic assessment.",
+      "actionLabelFa": "شروع تست",
+      "actionHref": "/placement"
+    },
+    {
+      "id": "step-2",
+      "number": "۰۲",
+      "icon": "🗺️",
+      "titleFa": "نقشه راه شخصی‌سازی‌شده",
+      "titleEn": "Personalized Roadmap",
+      "descFa": "بر اساس سطح CEFR و اهداف شغلی یا تحصیلی شما درس‌های روزانه چیده می‌شود.",
+      "descEn": "Curated lessons tailored to your CEFR level.",
+      "actionLabelFa": "مشاهده نقشه راه",
+      "actionHref": "/skills"
+    },
+    {
+      "id": "step-3",
+      "number": "۰۳",
+      "icon": "🤖",
+      "titleFa": "تمرین روزانه با پارتنر AI",
+      "titleEn": "Daily AI Practice",
+      "descFa": "مکالمه روان و تمرین لهجه بدون خجالت در هر ساعت از شبانه‌روز.",
+      "descEn": "Speak without hesitation with 24/7 AI conversation partner.",
+      "actionLabelFa": "ورود به لابراتوار صوتی",
+      "actionHref": "/learn"
+    },
+    {
+      "id": "step-4",
+      "number": "۰۴",
+      "icon": "🧑‍🏫",
+      "titleFa": "کلاس‌های آنلاین با مدرسین زبده",
+      "titleEn": "Live Teacher Sessions",
+      "descFa": "جلسات رفع اشکال خصوصی و گروهی با تضمین کیفیت ایندورا.",
+      "descEn": "1-on-1 and small group live classes.",
+      "actionLabelFa": "رزرو جلسه",
+      "actionHref": "/classes"
+    }
+  ],
+  "skillsHub": {
+    "badgeFa": "تنوع مهارت‌ها",
+    "titleFa": "مهارت‌های زبانی برای هر هدف و هر سلیقه",
+    "descriptionFa": "از امتحانات نهایی مدارس تا آزمون بین‌المللی آیلتس و مکالمه بازرگانی.",
+    "tamrin20SpotlightEnabled": true,
+    "tamrin20BadgeFa": "ویژه پایه دوازدهم",
+    "tamrin20TitleFa": "سامانه تمرین تا ۲۰ نهایی",
+    "tamrin20DescFa": "بانک جامع سوالات نهایی زبان دوازدهم با تحلیل گرامر و واژگان و تصحیح هوشمند.",
+    "smallTalkSpotlightEnabled": true,
+    "smallTalkBadgeFa": "مکالمه خودمانی",
+    "smallTalkTitleFa": "اسمال تاک و مکالمات کاربردی",
+    "smallTalkDescFa": "جملات پرتکرار و اصطلاحات روزمره برای سفرهای خارجی و مصاحبه‌ها."
+  },
+  "pricingPlans": [
+    {
+      "id": "free",
+      "nameFa": "رایگان و پایه",
+      "nameEn": "Free Starter",
+      "priceToman": 0,
+      "periodFa": "همیشگی",
+      "featuresFa": [
+        "تعیین سطح اولیه رایگان",
+        "دسترسی به مقالات و واژگان پایه",
+        "۵ تمرین هوش مصنوعی در روز"
+      ],
+      "ctaLabelFa": "شروع رایگان",
+      "ctaHref": "/auth/login",
+      "isPopular": false
+    },
+    {
+      "id": "plus",
+      "nameFa": "پلاس ماهانه",
+      "nameEn": "Monthly Plus",
+      "priceToman": 189000,
+      "periodFa": "ماهانه",
+      "badgeFa": "پیشنهاد زبان‌آموزان",
+      "featuresFa": [
+        "دسترسی نامحدود به پارتنر مکالمه هوش مصنوعی",
+        "بانک کامل سوالات امتحان نهایی دوازدهم",
+        "تصحیح گرامر و اسپیکینگ پیشرفته",
+        "۱۰٪ تخفیف در کلاس‌های خصوصی اساتید"
+      ],
+      "ctaLabelFa": "تهیه اشتراک پلاس",
+      "ctaHref": "/checkout?plan=plus",
+      "isPopular": true
+    },
+    {
+      "id": "vip",
+      "nameFa": "اشتراک طلایی (VIP)",
+      "nameEn": "VIP Annual",
+      "priceToman": 990000,
+      "periodFa": "سالانه",
+      "badgeFa": "بیشترین صرفه اقتصادی",
+      "featuresFa": [
+        "تمام امکانات نسخه پلاس به مدت یک سال",
+        "۲ جلسه رایگان مشاوره و برنامه‌ریزی اختصاصی",
+        "محیط اختصاصی شبیه‌ساز آزمون‌های نهایی و آیلتس",
+        "پشتیبانی اولویت‌دار اختصاصی"
+      ],
+      "ctaLabelFa": "خرید اشتراک طلایی",
+      "ctaHref": "/checkout?plan=vip",
+      "isPopular": false
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "questionFa": "آیا تعیین سطح اولیه ایندورا هزینه دارد؟",
+      "answerFa": "خیر، تعیین سطح هوشمند ایندورا کاملاً رایگان است و در کمتر از ۳ دقیقه سطح تقریبی CEFR شما را مشخص می‌کند.",
+      "category": "placement"
+    },
+    {
+      "id": "faq-2",
+      "questionFa": "تمرین تا ۲۰ پایه دوازدهم چگونه کار می‌کند؟",
+      "answerFa": "این بخش تمام نمونه سوالات امتحانات نهایی سال‌های اخیر را به صورت تفکیک‌شده طبقه‌بندی کرده و هوش مصنوعی پاسخ‌های نوشتاری شما را بر اساس کلید رسمی آموزش و پرورش نمره‌دهی می‌کند.",
+      "category": "general"
+    },
+    {
+      "id": "faq-3",
+      "questionFa": "کلاس‌های آنلاین با مدرسین چگونه برگزار می‌شوند؟",
+      "answerFa": "کلاس‌ها به صورت برخط و تعاملی برگزار شده و مدرس و زبان‌آموز در محیط اختصاصی ایندورا مکالمه و تمرین می‌کنند.",
+      "category": "classes"
+    }
+  ],
+  "footer": {
+    "brandDescFa": "سیستم خودمانی، علمی و هوشمند یادگیری زبان انگلیسی بر اساس استاندارد CEFR و نیازهای آموزشی بومی.",
+    "brandDescEn": "Smart, friendly English learning ecosystem powered by pedagogical AI.",
+    "phone": "۰۲۱-۸۸۸۸۰۰۰۰",
+    "email": "support@endoora.ir",
+    "addressFa": "تهران، میدان ونک، برج فناوری ایندورا",
+    "telegramLink": "https://t.me/endoora_ir",
+    "instagramLink": "https://instagram.com/endoora_ir",
+    "linkedinLink": "https://linkedin.com/company/endoora",
+    "copyrightTextFa": "© ۱۴۰۵ تمامی حقوق برای پلتفرم آموزش زبان ایندورا محفوظ است."
+  }
+}

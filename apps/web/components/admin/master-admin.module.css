@@ -69,8 +69,8 @@
 /* Header Search */
 .searchBox {
   position: relative;
-  min-width: 280px;
-  max-width: 380px;
+  min-width: 260px;
+  max-width: 360px;
   flex: 1;
 }
 
@@ -120,7 +120,7 @@
 .headerControls {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
 }
 
@@ -137,6 +137,35 @@
   border-radius: 999px;
 }
 
+.btnSplitToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+  padding: 0.425rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btnSplitToggle:hover {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+  color: #4338ca;
+}
+
+.btnSplitActive {
+  background: #e0e7ff !important;
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
 .btnHelpGlobal {
   display: flex;
   align-items: center;
@@ -144,9 +173,9 @@
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   color: #1d4ed8;
-  padding: 0.45rem 0.85rem;
+  padding: 0.425rem 0.85rem;
   border-radius: 10px;
-  font-size: 0.825rem;
+  font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -162,7 +191,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
+  padding: 0.425rem 0.85rem;
   border-radius: 10px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -204,9 +233,9 @@
   background: #ffffff;
   border: 1px solid #cbd5e1;
   color: #334155;
-  padding: 0.45rem 0.85rem;
+  padding: 0.425rem 0.85rem;
   border-radius: 10px;
-  font-size: 0.825rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.15s ease;
@@ -225,9 +254,9 @@
   background: #fff1f2;
   border: 1px solid #fecdd3;
   color: #e11d48;
-  padding: 0.45rem 0.85rem;
+  padding: 0.425rem 0.85rem;
   border-radius: 10px;
-  font-size: 0.825rem;
+  font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -239,10 +268,12 @@
   border-color: #fda4af;
 }
 
-/* Master Layout: Sidebar + Main Content */
+/* Master Layout: Sidebar + Main Content + Split Preview */
 .masterLayout {
   display: flex;
   flex: 1;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* Sidebar Styles */
@@ -432,9 +463,10 @@
 /* Main Content Area */
 .mainContent {
   flex: 1;
-  padding: 1.75rem 2.25rem;
+  padding: 1.75rem 2rem;
   overflow-y: auto;
   max-width: 1440px;
+  min-width: 0;
 }
 
 /* Danger Zone Warning Banner */
