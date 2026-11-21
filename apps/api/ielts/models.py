@@ -792,6 +792,7 @@ class IELTSSpeakingSubmission(models.Model):
 
 
 class PracticeRelease(models.Model):
+    content = models.JSONField(null=True, blank=True, editable=False)
     slug = models.SlugField(primary_key=True)
     digest = models.CharField(max_length=64)
     active = models.BooleanField(default=False)

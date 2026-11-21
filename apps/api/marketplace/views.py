@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -886,6 +887,7 @@ def public_pricing_plans_view(request):
 
     plans = get_active_pricing_plans()
     return Response({
+        "subscription_sales_open": getattr(settings, "ENDOORA_SUBSCRIPTION_SALES_OPEN", True),
         "plans": PlatformPricingPlanSerializer(plans, many=True).data,
         "count": len(plans),
     }, status=status.HTTP_200_OK)
@@ -947,10 +949,21 @@ def checkout_initiate_view(request):
         order_id=data.get("order_id"),
         amount_toman=data.get("amount_toman"),
         gateway_provider=data.get("gateway_provider", "zarinpal"),
-        callback_url=data.get("callback_url", ""),
+        callback_url=request.build_absolute_uri("/checkout/callback"),
         idempotency_key=data.get("idempotency_key", ""),
     )
     return Response({"checkout": result}, status=status.HTTP_201_CREATED)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def wallet_receipt_view(request, pk):
+    from django.shortcuts import get_object_or_404
+    from marketplace.models import PaymentTransaction
+    tx = get_object_or_404(PaymentTransaction, pk=pk, user=request.user, gateway_provider="wallet")
+    return Response({"result": {"transaction_id": str(tx.pk), "status": tx.status,
+                              "amount_toman": int(tx.amount_toman), "order_type": tx.order_type,
+                              "booking_id": str(tx.booking_id) if tx.booking_id else None, "already_verified": True}})
 
 
 @api_view(["POST", "GET"])

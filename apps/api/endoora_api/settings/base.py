@@ -48,6 +48,7 @@ DEBUG = env_bool("ENDOORA_DEBUG", default=False)
 
 ALLOWED_HOSTS = env_list("ENDOORA_ALLOWED_HOSTS", "localhost,127.0.0.1")
 INSTALLED_APPS = [
+    "reading_path",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -157,7 +158,8 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 ENDOORA_DISPLAY_TIMEZONE = validated_timezone()
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = API_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ENDOORA_ENV = os.getenv("ENDOORA_ENV", "development")

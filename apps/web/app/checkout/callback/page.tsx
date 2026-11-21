@@ -5,6 +5,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import styles from "./callback.module.css";
+import { endooraApi } from "../../../lib/endoora-api";
 import { verifyCheckoutPayment, CheckoutVerifyResult } from "../../../lib/marketplace";
 
 function CallbackContent() {
@@ -25,16 +26,14 @@ function CallbackContent() {
   useEffect(() => {
     async function verify() {
       if (isWallet) {
-        // Wallet payment already finalized server-side
-        setResult({
-          transaction_id: transactionId,
-          status: "paid",
-          amount_toman: 0,
-          order_type: orderType,
-          booking_id: bookingIdParam,
-          already_verified: true,
-        });
-        setLoading(false);
+        try {
+          const receipt = await endooraApi<{result: CheckoutVerifyResult}>(`/marketplace/checkout/wallet-receipt/${encodeURIComponent(transactionId)}/`);
+          setResult(receipt.result);
+        } catch {
+          setError("رسید تأییدشده در این حساب پیدا نشد.");
+        } finally {
+          setLoading(false);
+        }
         return;
       }
 

@@ -1,0 +1,8 @@
+{% extends "reading_path/base.html" %}{% block title %}{% if stage == 'sample' %}تفاوت False و Not Given در ریدینگ آیلتس{% else %}{{ label }}{% endif %}{% endblock %}
+{% block robots %}{% if stage != 'sample' %}{{ block.super }}{% endif %}{% endblock %}
+{% block body %}{% if stage == 'sample' %}<h1>تفاوت False و Not Given در ریدینگ آیلتس</h1><p dir="rtl"><b>False</b> یعنی متن شواهدی خلاف ادعا دارد. <b>Not Given</b> یعنی متن برای تصمیم‌گیری کافی نیست. به تفاوت «متن نمی‌گوید» و «متن رد می‌کند» دقت کنید.</p><p>سه سؤال رایگان · بدون نیاز به حساب</p>{% else %}<h1>{{ label }} · {{ skill|default:"ریدینگ" }}</h1>{% endif %}
+{% if tip %}<p>{{ tip }}</p>{% endif %}{% if error %}<p role="alert">{{ error }}</p>{% endif %}
+<form method="post" data-reading-form>{% csrf_token %}<input type="hidden" name="edition" value="{{ edition.pk }}"><input type="hidden" name="actor" value="{{ actor }}">
+{% for item in items %}<fieldset><legend>سؤال {{ forloop.counter }}</legend><blockquote dir="ltr" lang="en">{{ item.passage }}</blockquote>
+<p dir="ltr" lang="en"><strong>{{ item.prompt }}</strong></p>{% for k,label,reason in item.choices_with_reasons %}<label dir="ltr" lang="en"><input required type="radio" name="{{ item.code }}" value="{{ k }}"> {{ label }}</label>{% endfor %}</fieldset>{% endfor %}
+<button type="submit">ثبت و بررسی پاسخ‌ها</button><p aria-live="polite" role="status" data-reading-status></p></form>{% endblock %}

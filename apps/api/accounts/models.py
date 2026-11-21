@@ -69,15 +69,14 @@ class User(AbstractUser):
     def is_premium(self) -> bool:
         if self.is_staff or self.is_superuser:
             return True
-        try:
-            from marketplace.models import PaymentOrderType, PaymentTransaction, PaymentTransactionStatus
-            return PaymentTransaction.objects.filter(
-                user=self,
-                order_type=PaymentOrderType.SUBSCRIPTION_PLAN,
-                status=PaymentTransactionStatus.PAID,
-            ).exists()
-        except Exception:
-            return False
+        from marketplace.models import SubscriptionGrant
+        now = timezone.now()
+        grants = SubscriptionGrant.objects.filter(payment__user=self, payment__status="paid",
+                                                  starts_at__lte=now, ends_at__gt=now, revoked_at=None)
+        from django.conf import settings
+        if not settings.ZARINPAL_SANDBOX:
+            grants = grants.filter(payment__is_sandbox=False)
+        return grants.exists()
 
     @property
     def capabilities(self) -> dict[str, bool]:

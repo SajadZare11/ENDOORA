@@ -1,0 +1,4 @@
+{% extends "admin/base_site.html" %}{% block content %}
+<h1>Reconcile a completed full refund</h1><p>Payment {{ grant.payment_id }} · {{ grant.payment.user.email }} · {{ grant.payment.amount_toman }} toman</p>
+<p>This action records a refund receipt and adjusts access. Complete the financial refund with the payment provider or wallet first.</p>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Record confirmed refund</button></form>{% endblock %}

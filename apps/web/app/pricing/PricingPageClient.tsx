@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./pricing.module.css";
+
+import { fetchPublicPricingPlans } from "../../lib/marketplace";
 
 interface PlanOption {
   code: string;
@@ -17,39 +19,7 @@ interface PlanOption {
   isBestValue?: boolean;
 }
 
-const GOLDEN_PERIODS: PlanOption[] = [
-  {
-    code: "golden_1m",
-    name: "اشتراک طلایی ۱ ماهه",
-    durationLabel: "۱ ماهه (۳۰ روز)",
-    durationDays: 30,
-    priceNumber: 299000,
-    priceFormatted: "۲۹۹٬۰۰۰",
-    monthlyEquivalent: "۲۹۹٬۰۰۰ تومان در ماه",
-  },
-  {
-    code: "golden_3m",
-    name: "اشتراک طلایی ۳ ماهه",
-    durationLabel: "۳ ماهه (۹۰ روز)",
-    durationDays: 90,
-    priceNumber: 799000,
-    priceFormatted: "۷۹۹٬۰۰۰",
-    monthlyEquivalent: "معادل ۲۶۶٬۰۰۰ تومان در ماه",
-    discountBadge: "۱۱٪ تخفیف",
-    isPopular: true,
-  },
-  {
-    code: "golden_6m",
-    name: "اشتراک طلایی ۶ ماهه",
-    durationLabel: "۶ ماهه (۱۸۰ روز)",
-    durationDays: 180,
-    priceNumber: 1699000,
-    priceFormatted: "۱٬۶۹۹٬۰۰۰",
-    monthlyEquivalent: "معادل ۲۸۳٬۰۰۰ تومان در ماه",
-    discountBadge: "۱۵٪ تخفیف",
-    isBestValue: true,
-  },
-];
+
 
 interface FeatureRow {
   name: string;
@@ -108,10 +78,10 @@ const COMPARISON_DATA: FeatureCategory[] = [
       },
       {
         name: "بخش تخصصی و شبیه‌ساز آیلتس (IELTS)",
-        subDesc: "ماژول‌های آزمون آکادمیک و جنرال با ارزیابی معیارهای چهارگانه",
-        freeValue: "عدم دسترسی",
-        freeGranted: false,
-        goldenValue: "دسترسی کامل و نامحدود به تست‌ها و شبیه‌ساز آزمون",
+        subDesc: "تمرین‌های آموزشی با شاهد و توضیح فارسی",
+        freeValue: "تمرین‌های منتشرشده",
+        freeGranted: true,
+        goldenValue: "تمرین‌های منتشرشده",
         goldenGranted: true,
       },
     ],
@@ -151,8 +121,24 @@ export function PricingPageClient() {
   // Default selected plan is 3-month (index 1)
   const [selectedPeriodCode, setSelectedPeriodCode] = useState<string>("golden_3m");
 
-  const currentGolden =
-    GOLDEN_PERIODS.find((p) => p.code === selectedPeriodCode) || GOLDEN_PERIODS[1];
+  const [catalog, setCatalog] = useState<{plans: PlanOption[]; open: boolean} | null>(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let mounted = true;
+    fetchPublicPricingPlans().then(data => {
+      if (!mounted) return;
+      const plans = data.plans.map(p => ({
+        code: p.code, name: p.name_fa, durationLabel: p.duration_days.toLocaleString("fa-IR")+" روز",
+        durationDays: p.duration_days, priceNumber: p.price_toman_number,
+        priceFormatted: p.price_toman_number.toLocaleString("fa-IR"),
+        monthlyEquivalent: Math.round(p.price_toman_number*30/Math.max(1,p.duration_days)).toLocaleString("fa-IR")+" تومان در ۳۰ روز",
+      }));
+      setCatalog({plans, open: data.subscription_sales_open});
+    }).catch(() => { if (mounted) setFailed(true); });
+    return () => { mounted = false; };
+  }, []);
+  if (!catalog || !catalog.plans.length) return <main dir="rtl" className={styles.hero}><h1>اشتراک‌های ایندورا</h1><p role="status">{failed ? "دریافت قیمت‌ها ممکن نشد. صفحه را دوباره باز کنید." : catalog ? "پلنی برای فروش منتشر نشده است." : "در حال دریافت قیمت‌ها…"}</p></main>;
+  const currentGolden = catalog.plans.find(p => p.code === selectedPeriodCode) ?? catalog.plans[0];
 
   return (
     <div className={styles.container}>
@@ -178,8 +164,8 @@ export function PricingPageClient() {
           <span>مدت زمان اشتراک طلایی را انتخاب کنید:</span>
         </span>
         <div className={styles.segmentedControl} role="tablist" aria-label="مدت زمان اشتراک طلایی">
-          {GOLDEN_PERIODS.map((period) => {
-            const isActive = period.code === selectedPeriodCode;
+          {catalog.plans.map((period) => {
+            const isActive = period.code === currentGolden.code;
             return (
               <button
                 key={period.code}
@@ -551,12 +537,12 @@ export function PricingPageClient() {
             </li>
           </ul>
 
-          <Link
+          {catalog.open ? <Link
             href={`/checkout?order_type=subscription_plan&plan_id=${currentGolden.code}&amount=${currentGolden.priceNumber}`}
             className={`${styles.ctaBtn} ${styles.goldenCta}`}
           >
             تهیه اشتراک طلایی ({currentGolden.priceFormatted} تومان)
-          </Link>
+          </Link> : <p>فروش اشتراک فعلاً بسته است. <Link href="/ielts">تمرین‌های رایگان آیلتس</Link></p>}
         </article>
       </section>
 

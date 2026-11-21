@@ -1,0 +1,13 @@
+{% extends "reading_path/base.html" %}{% block robots %}{% endblock %}{% block body %}<h1>مسیر یادگیری ریدینگ</h1>
+{% if not edition %}<p>دورهٔ جدید در انتظار بازبینی است.</p>{% else %}
+<p><a href="{% url 'reading_path:sample' %}">درس رایگان · تفاوت False و Not Given</a></p>
+{% if not diagnosed %}<h2>از کجا شروع کنم؟</h2><p>با شش سؤال کوتاه سه مهارت را بررسی کنید. پیشنهاد تمرین بر اساس اولین پاسخ‌های شماست.</p>
+<a class="button" href="{% url 'reading_path:diagnostic' %}">شروع سنجش آغازین</a>
+{% else %}{% if next_lesson %}<h2>پیشنهاد بعدی شما</h2><p>{{ next_lesson.name }} · {% if next_lesson.misses %}{{ next_lesson.misses }} پاسخ نادرست از دو سؤال سنجش آغازین.{% else %}هر دو پاسخ اولیهٔ شما در این مهارت درست بود. برای بررسی بیشتر تمرین کنید.{% endif %}</p>
+<a class="button" href="{% url 'reading_path:step' 'lesson' next_lesson.key %}">شروع تمرین هدفمند</a>{% endif %}
+<h2>پیشرفت به تفکیک مهارت</h2><p>در مجموع به {{ total }} سؤال متفاوت پاسخ داده‌اید. هر نمونهٔ دو سؤالی فقط عملکرد همین تمرین را نشان می‌دهد.</p>
+{% for s in skills %}<section><h3>{{ s.name }}</h3><p>سنجش آغازین: {{ s.diagnostic_correct }} از ۲</p>
+{% if s.lesson_done %}{% if s.retest_done %}<p>مرور با سؤال تازه: {{ s.fresh_correct }} از {{ s.fresh_total }}</p><a href="{% url 'reading_path:step' 'retest' s.key %}">پاسخ‌های مرور</a>
+{% elif s.ready %}<a class="button" href="{% url 'reading_path:step' 'retest' s.key %}">مرور با دو سؤال تازه</a>{% else %}<p>مرور بعدی به وقت تهران: <time datetime="{{ s.due|date:'c' }}">{{ s.due|date:"Y-m-d H:i" }}</time></p>{% endif %}
+{% else %}<a href="{% url 'reading_path:step' 'lesson' s.key %}">تمرین این مهارت</a>{% endif %}</section>{% endfor %}
+{% endif %}{% endif %}{% endblock %}

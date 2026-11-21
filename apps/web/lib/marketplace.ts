@@ -1114,8 +1114,8 @@ export async function moderateAdminReview(
   );
 }
 
-export async function fetchPublicPricingPlans(): Promise<{ plans: PlatformPricingPlan[]; count: number }> {
-  return await endooraApi<{ plans: PlatformPricingPlan[]; count: number }>(
+export async function fetchPublicPricingPlans(): Promise<{ plans: PlatformPricingPlan[]; count: number; subscription_sales_open: boolean }> {
+  return await endooraApi<{ plans: PlatformPricingPlan[]; count: number; subscription_sales_open: boolean }>(
     "/api/marketplace/plans/"
   );
 }

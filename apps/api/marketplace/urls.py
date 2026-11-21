@@ -39,6 +39,7 @@ from .views import (
     public_pricing_plans_view,
     admin_pricing_plans_view,
     checkout_initiate_view,
+    wallet_receipt_view,
     checkout_verify_view,
     checkout_sandbox_simulate_view,
     user_wallet_view,
@@ -98,6 +99,7 @@ urlpatterns = [
     path("admin/plans/", admin_pricing_plans_view, name="marketplace_admin_plans"),
     path("admin/plans/<uuid:plan_id>/", admin_pricing_plans_view, name="marketplace_admin_plan_detail"),
     # Day 42: Payment Gateway, Wallet & Escrow Endpoints (MKT-008)
+    path("checkout/wallet-receipt/<uuid:pk>/", wallet_receipt_view),
     path("checkout/initiate/", checkout_initiate_view, name="marketplace_checkout_initiate"),
     path("checkout/verify/", checkout_verify_view, name="marketplace_checkout_verify"),
     path("checkout/sandbox/simulate/", checkout_sandbox_simulate_view, name="marketplace_checkout_sandbox_simulate"),

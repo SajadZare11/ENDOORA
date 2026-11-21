@@ -61,7 +61,7 @@ def public_unit(unit):
 
 
 def grade(unit, answers):
-    rows = [{**{k: q[k] for k in ("id", "answer", "explanation")},
+    rows = [{**{k: q[k] for k in ("id", "answer", "explanation", "evidence", "choice_reasons", "start_ms", "end_ms", "accepted") if k in q},
              "correct": answers.get(q["id"]) == q["answer"]} for q in unit["questions"]]
     result = dict(correct=sum(row["correct"] for row in rows), total=len(rows), items=rows)
     if "transcript" in unit:

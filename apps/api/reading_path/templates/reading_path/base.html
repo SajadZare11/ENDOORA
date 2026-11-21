@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}کارگاه ریدینگ آیلتس{% endblock %} | ایندورا</title>
+<meta name="description" content="تفاوت False و Not Given در ریدینگ آیلتس با سه سؤال رایگان، شاهد انگلیسی و توضیح فارسی.">
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+<link rel="stylesheet" href="/reading-path.css"><script defer src="/reading-path.js"></script></head>
+<body><main><nav><a href="/ielts">آیلتس ایندورا</a> · <a href="{% url 'reading_path:home' %}">مسیر یادگیری</a>{% if user.is_authenticated %} · <a href="{% url 'reading_path:notebook' %}">دفتر خطاها</a>{% endif %}</nav>
+{% block body %}{% endblock %}</main></body></html>

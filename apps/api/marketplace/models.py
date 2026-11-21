@@ -976,6 +976,7 @@ class PaymentTransaction(models.Model):
         default=True,
         help_text="آیا تراکنش در محیط آزمایشی سندباکس انجام شده است",
     )
+    subscription_days = models.PositiveIntegerField(null=True, blank=True, editable=False)
     verified_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -989,6 +990,16 @@ class PaymentTransaction(models.Model):
 
     def __str__(self):
         return f"Payment {self.id} ({self.amount_toman} Toman) - {self.status}"
+
+
+class SubscriptionGrant(models.Model):
+    payment = models.OneToOneField(PaymentTransaction, on_delete=models.CASCADE, related_name="subscription_grant")
+    days = models.PositiveIntegerField()
+    paid_at = models.DateTimeField()
+    starts_at = models.DateTimeField()
+    ends_at = models.DateTimeField(db_index=True)
+    revoked_at = models.DateTimeField(null=True, blank=True)
+    refund_reference = models.CharField(max_length=120, blank=True)
 
 
 class EscrowStatus(models.TextChoices):

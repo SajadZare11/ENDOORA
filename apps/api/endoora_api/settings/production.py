@@ -22,3 +22,8 @@ if SECRET_KEY == "unsafe-local-development-key":
     raise ImproperlyConfigured("Supply ENDOORA_DJANGO_SECRET_KEY in production.")
 if ENDOORA_OTP_PROVIDER == "mock":
     raise ImproperlyConfigured("Select a real OTP provider in production.")
+
+ENDOORA_SUBSCRIPTION_SALES_OPEN = env_bool("ENDOORA_SUBSCRIPTION_SALES_OPEN", default=False)
+
+MIDDLEWARE = list(MIDDLEWARE)
+MIDDLEWARE.insert(MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1, "whitenoise.middleware.WhiteNoiseMiddleware")

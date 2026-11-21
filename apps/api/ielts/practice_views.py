@@ -12,8 +12,12 @@ from .practice_content import UNITS, grade, public_unit, revision
 
 
 def visible_units():
-    approved = dict(PracticeRelease.objects.filter(active=True).values_list("slug", "digest"))
-    return {slug: unit for slug, unit in UNITS.items() if approved.get(slug) == revision(unit)}
+    visible = {}
+    for release in PracticeRelease.objects.filter(active=True):
+        unit = release.content or UNITS.get(release.slug)
+        if unit and release.digest == revision(unit):
+            visible[release.slug] = unit
+    return visible
 
 
 @method_decorator(never_cache, name="dispatch")
@@ -49,7 +53,7 @@ class PracticeUnit(APIView):
     def post(self, request, slug):
         # Serialize withdrawal and grading for the short, individually reviewed units.
         release = get_object_or_404(PracticeRelease.objects.select_for_update(), slug=slug, active=True)
-        unit = UNITS.get(slug)
+        unit = release.content or UNITS.get(slug)
         if not unit or release.digest != revision(unit):
             return Response(status=404)
         form = PracticeInput(data=request.data)
