@@ -33,9 +33,10 @@ coverage/
 Thumbs.db
 
 # User / production data
-media/
-uploads/
-backups/
+/media/
+/uploads/
+/backups/
+apps/api/vault/
 *.backup
 *.backup.*
 *.bak
