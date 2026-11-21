@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
     const actor = auth.user ? `${auth.user.first_name || ""} ${auth.user.last_name || ""}`.trim() || auth.user.email : "مدیر سامانه";
 
     if (action === "reset_seed") {
-      if (process.env.NODE_ENV === "production") {
+      if ((process.env.NODE_ENV as string) === "production") {
         return NextResponse.json({ success: false, error: "عملیات بازنشانی داده‌های کارخانه در محیط عملیاتی غیرمجاز است." }, { status: 403 });
       }
 
