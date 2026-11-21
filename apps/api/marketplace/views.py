@@ -979,11 +979,19 @@ def checkout_sandbox_simulate_view(request):
     """
     from marketplace.services import verify_checkout_payment
 
+    from django.conf import settings
+    from marketplace.models import PaymentTransaction
+
+    if not settings.ZARINPAL_SANDBOX:
+        return Response(status=status.HTTP_404_NOT_FOUND)
     authority = request.data.get("authority")
     status_param = request.data.get("status", "OK")
 
     if not authority:
         return Response({"detail": "شناسه Authority الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not PaymentTransaction.objects.filter(authority=authority, user=request.user, is_sandbox=True).exists():
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     result = verify_checkout_payment(authority=authority, status_param=status_param)
     return Response({"result": result}, status=status.HTTP_200_OK)

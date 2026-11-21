@@ -790,3 +790,33 @@ class IELTSSpeakingSubmission(models.Model):
 
 
 
+
+class PracticeRelease(models.Model):
+    slug = models.SlugField(primary_key=True)
+    digest = models.CharField(max_length=64)
+    active = models.BooleanField(default=False)
+    reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    reviewed_at = models.DateTimeField(auto_now=True)
+
+
+class PracticeProgress(models.Model):
+    release = models.ForeignKey(PracticeRelease, on_delete=models.PROTECT)
+    learner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    revision = models.PositiveIntegerField(default=0)
+    answers = models.JSONField(default=dict)
+    result = models.JSONField(null=True, blank=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["release", "learner"], name="practice_one_learner_unit")]
+
+
+class PracticeIssue(models.Model):
+    release = models.ForeignKey(PracticeRelease, on_delete=models.PROTECT)
+    learner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    question = models.CharField(max_length=32)
+    note = models.CharField(max_length=700)
+    resolved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["release", "learner", "question", "note"], name="practice_unique_issue")]

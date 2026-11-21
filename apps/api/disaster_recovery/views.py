@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from .demo import require_demo_operations
+
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -41,6 +43,7 @@ class DatabaseBackupListView(APIView):
     permission_classes = [IsAdministratorOrStaff]
 
     def get(self, request) -> Response:
+        require_demo_operations()
         snapshots = DatabaseBackupSnapshot.objects.all()
         serializer = DatabaseBackupSnapshotSerializer(snapshots, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

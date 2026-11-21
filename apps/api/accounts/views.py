@@ -17,6 +17,7 @@ from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
+from .sms import DeliveryUnavailable
 from .models import ConsentRecord, OneTimeCode, User
 from .serializers import (
     AccountSerializer,
@@ -251,6 +252,9 @@ class OtpRequestView(APIView):
                 purpose,
                 requested_by=requested_by,
             )
+        except DeliveryUnavailable:
+            return bilingual_error("otp_delivery_unavailable", "ارسال کد فعلاً ممکن نیست.",
+                                   "Code delivery is unavailable.", http_status=status.HTTP_503_SERVICE_UNAVAILABLE)
         except (ValueError, DjangoValidationError) as exc:
             return bilingual_error(
                 "invalid_identifier",

@@ -235,16 +235,7 @@ class PublicIELTSTestListView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        type_filter = request.query_params.get("test_type")
-        qs = IELTSTest.objects.filter(status=IELTSTestStatus.PUBLISHED).order_by("-created_at")
-        if type_filter:
-            qs = qs.filter(test_type=type_filter)
-
-        serializer = IELTSTestListSerializer(qs, many=True)
-        return Response({
-            "disclaimer": "IELTS-like practice — not official IELTS / تمرین شبیه‌ساز آیلتس — غیررسمی",
-            "results": serializer.data,
-        })
+        return Response({"results": [], "practice_url": "/ielts", "units_api": "/api/ielts/units/"})
 
 
 # ---------------------------------------------------------------------------
@@ -255,23 +246,9 @@ class LearnerStartSessionView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = StartSessionInputSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "This legacy assessment is retired.", "practice_url": "/ielts"},
+                        status=status.HTTP_410_GONE)
 
-        test_id = serializer.validated_data["test_id"]
-        mode = serializer.validated_data["mode"]
-
-        try:
-            session = start_or_resume_session(
-                learner=request.user,
-                test_id=str(test_id),
-                mode=mode,
-            )
-            return Response(LearnerActiveSessionSerializer(session).data, status=status.HTTP_201_CREATED)
-        except ValidationError as exc:
-            msg = exc.message if hasattr(exc, "message") else str(exc)
-            return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LearnerActiveSessionDetailView(APIView):
@@ -553,62 +530,9 @@ class IELTSWritingSubmitView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = IELTSWritingSubmitInputSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "This legacy assessment is retired.", "practice_url": "/ielts"},
+                        status=status.HTTP_410_GONE)
 
-        vd = serializer.validated_data
-        sub_id = vd.get("submission_id")
-        task1_text = vd.get("task1_text", "")
-        task2_text = vd.get("task2_text", "")
-        t1_time = vd.get("task1_time_seconds", 0)
-        t2_time = vd.get("task2_time_seconds", 0)
-
-        # Retrieve existing draft or create new
-        if sub_id:
-            submission = get_object_or_404(
-                IELTSWritingSubmission,
-                pk=sub_id,
-                learner=request.user,
-            )
-        else:
-            submission = IELTSWritingSubmission(learner=request.user)
-
-        submission.task1_prompt_title = vd.get("task1_prompt_title") or submission.task1_prompt_title or DEFAULT_TASK1_PROMPT["title"]
-        submission.task1_prompt_text = vd.get("task1_prompt_text") or submission.task1_prompt_text or DEFAULT_TASK1_PROMPT["content_text"]
-        submission.task1_image_url = vd.get("task1_image_url") or submission.task1_image_url or DEFAULT_TASK1_PROMPT["media_image_url"]
-        submission.task1_text = task1_text
-        submission.task1_word_count = count_words(task1_text)
-        submission.task1_time_seconds = t1_time
-
-        submission.task2_prompt_title = vd.get("task2_prompt_title") or submission.task2_prompt_title or DEFAULT_TASK2_PROMPT["title"]
-        submission.task2_prompt_text = vd.get("task2_prompt_text") or submission.task2_prompt_text or DEFAULT_TASK2_PROMPT["content_text"]
-        submission.task2_text = task2_text
-        submission.task2_word_count = count_words(task2_text)
-        submission.task2_time_seconds = t2_time
-
-        # Run AI Evaluation
-        eval_result = evaluate_ielts_writing_submission(
-            task1_text=task1_text,
-            task2_text=task2_text,
-            task1_time_seconds=t1_time,
-            task2_time_seconds=t2_time,
-        )
-
-        submission.status = IELTSWritingSubmissionStatus.EVALUATED
-        submission.overall_band = eval_result["overall_band"]
-        submission.overall_band_min = eval_result["overall_band_min"]
-        submission.overall_band_max = eval_result["overall_band_max"]
-        submission.confidence_score = eval_result["confidence_score"]
-        submission.cefr_level = eval_result["cefr_level"]
-        submission.task1_scores = eval_result["task1_scores"]
-        submission.task2_scores = eval_result["task2_scores"]
-        submission.criteria_breakdown = eval_result["criteria_breakdown"]
-        submission.annotations = eval_result["annotations"]
-        submission.pedagogical_advice = eval_result["pedagogical_advice"]
-        submission.save()
-
-        return Response(IELTSWritingReportSerializer(submission).data, status=status.HTTP_201_CREATED)
 
 
 class IELTSWritingReportView(APIView):
@@ -860,71 +784,9 @@ class IELTSSpeakingSubmitView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = IELTSSpeakingSubmitInputSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "This legacy assessment is retired.", "practice_url": "/ielts"},
+                        status=status.HTTP_410_GONE)
 
-        vd = serializer.validated_data
-        sub_id = vd.get("submission_id")
-
-        if sub_id:
-            submission = get_object_or_404(
-                IELTSSpeakingSubmission,
-                pk=sub_id,
-                learner=request.user,
-            )
-        else:
-            submission = IELTSSpeakingSubmission(learner=request.user)
-
-        submission.part1_prompt_title = vd.get("part1_prompt_title") or submission.part1_prompt_title or DEFAULT_SPEAKING_PROMPT["part1"]["title"]
-        submission.part1_questions = vd.get("part1_questions") or submission.part1_questions or DEFAULT_SPEAKING_PROMPT["part1"]["questions"]
-        submission.part1_recording_url = vd.get("part1_recording_url", submission.part1_recording_url)
-        submission.part1_transcript = vd.get("part1_transcript", submission.part1_transcript)
-        submission.part1_duration_seconds = vd.get("part1_duration_seconds", submission.part1_duration_seconds)
-
-        submission.part2_cue_card_title = vd.get("part2_cue_card_title") or submission.part2_cue_card_title or DEFAULT_SPEAKING_PROMPT["part2"]["title"]
-        submission.part2_cue_card_prompt = vd.get("part2_cue_card_prompt") or submission.part2_cue_card_prompt or DEFAULT_SPEAKING_PROMPT["part2"]["cue_card_prompt"]
-        submission.part2_bullet_points = vd.get("part2_bullet_points") or submission.part2_bullet_points or DEFAULT_SPEAKING_PROMPT["part2"]["bullet_points"]
-        submission.part2_prep_notes = vd.get("part2_prep_notes", submission.part2_prep_notes)
-        submission.part2_prep_time_seconds = vd.get("part2_prep_time_seconds", submission.part2_prep_time_seconds)
-        submission.part2_recording_url = vd.get("part2_recording_url", submission.part2_recording_url)
-        submission.part2_transcript = vd.get("part2_transcript", submission.part2_transcript)
-        submission.part2_duration_seconds = vd.get("part2_duration_seconds", submission.part2_duration_seconds)
-
-        submission.part3_prompt_title = vd.get("part3_prompt_title") or submission.part3_prompt_title or DEFAULT_SPEAKING_PROMPT["part3"]["title"]
-        submission.part3_questions = vd.get("part3_questions") or submission.part3_questions or DEFAULT_SPEAKING_PROMPT["part3"]["questions"]
-        submission.part3_recording_url = vd.get("part3_recording_url", submission.part3_recording_url)
-        submission.part3_transcript = vd.get("part3_transcript", submission.part3_transcript)
-        submission.part3_duration_seconds = vd.get("part3_duration_seconds", submission.part3_duration_seconds)
-
-        # Run multi-dimensional AI Speaking Evaluation
-        eval_result = evaluate_ielts_speaking_submission(
-            part1_transcript=submission.part1_transcript,
-            part1_duration_seconds=submission.part1_duration_seconds,
-            part2_transcript=submission.part2_transcript,
-            part2_duration_seconds=submission.part2_duration_seconds,
-            part3_transcript=submission.part3_transcript,
-            part3_duration_seconds=submission.part3_duration_seconds,
-        )
-
-        submission.status = IELTSSpeakingSubmissionStatus.EVALUATED
-        submission.fc_score = eval_result["fc_score"]
-        submission.lr_score = eval_result["lr_score"]
-        submission.gra_score = eval_result["gra_score"]
-        submission.pr_score = eval_result["pr_score"]
-        submission.overall_band = eval_result["overall_band"]
-        submission.overall_band_min = eval_result["overall_band_min"]
-        submission.overall_band_max = eval_result["overall_band_max"]
-        submission.confidence_score = eval_result["confidence_score"]
-        submission.cefr_level = eval_result["cefr_level"]
-        submission.criteria_breakdown = eval_result["criteria_breakdown"]
-        submission.fluency_metrics = eval_result["fluency_metrics"]
-        submission.pronunciation_diagnostics = eval_result["pronunciation_diagnostics"]
-        submission.annotations = eval_result["annotations"]
-        submission.pedagogical_advice = eval_result["pedagogical_advice"]
-        submission.save()
-
-        return Response(IELTSSpeakingReportSerializer(submission).data, status=status.HTTP_201_CREATED)
 
 
 class IELTSSpeakingReportView(APIView):

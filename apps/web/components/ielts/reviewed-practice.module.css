@@ -1,0 +1,11 @@
+.page { max-width: 52rem; padding: clamp(1rem,4vw,3rem); margin: auto; line-height: 1.85; }
+.page fieldset, .page blockquote { margin: 1.2rem 0; padding: 1rem; border: 1px solid #879ba4; border-radius: .5rem; }
+.page label { display: block; padding: .22rem; }
+.page textarea { display: block; width: 100%; min-height: 7rem; }
+.page button, .page select, .page a { font: inherit; }
+.page button { padding: .4rem .9rem; margin: .35rem; cursor: pointer; }
+.page button:disabled { opacity: .6; cursor: default; }
+.page audio { width: 100%; }
+.page a { text-decoration: underline; }
+.page summary { cursor: pointer; }
+.page :focus-visible { outline: 3px solid #147b8e; outline-offset: 2px; }

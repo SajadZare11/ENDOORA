@@ -2058,6 +2058,9 @@ def initiate_checkout(
     if not user.is_authenticated:
         raise PermissionDenied("کاربر وارد سیستم نشده است.")
 
+    if gateway_provider == PaymentGatewayProvider.SANDBOX and not settings.ZARINPAL_SANDBOX:
+        raise ValidationError('پرداخت آزمایشی در این محیط غیرفعال است.')
+
     booking = None
     plan = None
     amount = Decimal("0")
@@ -2144,7 +2147,7 @@ def initiate_checkout(
             }
 
     # Gateway Payment (ZarinPal or Sandbox)
-    is_sandbox = (gateway_provider == PaymentGatewayProvider.SANDBOX) or getattr(settings, "ZARINPAL_SANDBOX", True)
+    is_sandbox = settings.ZARINPAL_SANDBOX
     client = ZarinPalGateway(is_sandbox=is_sandbox)
     amount_rial = toman_to_rial(amount)
     cb_url = callback_url or "/checkout/callback"
@@ -2226,6 +2229,8 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
                 "booking_id": str(tx.booking_id) if tx.booking_id else None,
             }
 
+        if tx.is_sandbox and not settings.ZARINPAL_SANDBOX:
+            raise ValidationError('تأیید تراکنش آزمایشی در محیط واقعی مجاز نیست.')
         client = ZarinPalGateway(is_sandbox=tx.is_sandbox)
         verify_res = client.verify_payment(
             amount_rial=tx.amount_rial,

@@ -284,22 +284,14 @@ export async function fetchSpeakingPrompts(testId?: string): Promise<IELTSSpeaki
     }
   }
 
-  try {
-    const data = await endooraApi<IELTSSpeakingPrompt[]>("/api/ielts/speaking/prompts/");
-    return data && data.length > 0 ? data : [DEFAULT_SPEAKING_FALLBACK_PROMPT];
-  } catch {
-    return [DEFAULT_SPEAKING_FALLBACK_PROMPT];
-  }
+  const data = await endooraApi<IELTSSpeakingPrompt[]>("/api/ielts/speaking/prompts/");
+  return data && data.length > 0 ? data : [DEFAULT_SPEAKING_FALLBACK_PROMPT];
 }
 
 export async function fetchSpeakingDraft(submissionId?: string): Promise<IELTSSpeakingDraft | null> {
   const url = submissionId ? `/api/ielts/speaking/draft/${submissionId}/` : `/api/ielts/speaking/draft/`;
-  try {
-    const data = await endooraApi<IELTSSpeakingDraft>(url);
-    return data;
-  } catch {
-    return null;
-  }
+  const data = await endooraApi<IELTSSpeakingDraft>(url);
+  return data;
 }
 
 export async function saveSpeakingDraft(payload: {
@@ -323,168 +315,42 @@ export async function saveSpeakingDraft(payload: {
   part3_transcript?: string;
   part3_duration_seconds?: number;
 }): Promise<{ success: boolean; submission_id: string; status: string; updated_at: string }> {
-  try {
-    const data = await endooraApi<{
-      success: boolean;
-      submission_id: string;
-      status: string;
-      updated_at: string;
-    }>("/api/ielts/speaking/draft/", {
-      method: "POST",
-      json: payload,
-    });
-    return data;
-  } catch {
-    const mockId = payload.submission_id || "mock-sp-" + Date.now();
-    return {
-      success: true,
-      submission_id: mockId,
-      status: "draft",
-      updated_at: new Date().toISOString(),
-    };
-  }
+  const data = await endooraApi<{
+    success: boolean;
+    submission_id: string;
+    status: string;
+    updated_at: string;
+  }>("/api/ielts/speaking/draft/", {
+    method: "POST",
+    json: payload,
+  });
+  return data;
 }
 
 export async function submitSpeaking(payload: IELTSSpeakingSubmitPayload): Promise<IELTSSpeakingReport> {
-  try {
-    const data = await endooraApi<IELTSSpeakingReport>("/api/ielts/speaking/submit/", {
-      method: "POST",
-      json: payload,
-    });
-    return data;
-  } catch {
-    // Fallback simulation report
-    return {
-      id: payload.submission_id || "sp-sub-" + Date.now(),
-      learner: 1,
-      status: "evaluated",
-      part1_prompt_title: payload.part1_prompt_title || DEFAULT_SPEAKING_FALLBACK_PROMPT.part1.title,
-      part1_questions: payload.part1_questions || DEFAULT_SPEAKING_FALLBACK_PROMPT.part1.questions,
-      part1_transcript: payload.part1_transcript,
-      part1_duration_seconds: payload.part1_duration_seconds,
-      part2_cue_card_title: payload.part2_cue_card_title || DEFAULT_SPEAKING_FALLBACK_PROMPT.part2.title,
-      part2_cue_card_prompt: payload.part2_cue_card_prompt || DEFAULT_SPEAKING_FALLBACK_PROMPT.part2.cue_card_prompt,
-      part2_bullet_points: payload.part2_bullet_points || DEFAULT_SPEAKING_FALLBACK_PROMPT.part2.bullet_points,
-      part2_prep_notes: payload.part2_prep_notes || "",
-      part2_prep_time_seconds: payload.part2_prep_time_seconds || 60,
-      part2_transcript: payload.part2_transcript,
-      part2_duration_seconds: payload.part2_duration_seconds,
-      part3_prompt_title: payload.part3_prompt_title || DEFAULT_SPEAKING_FALLBACK_PROMPT.part3.title,
-      part3_questions: payload.part3_questions || DEFAULT_SPEAKING_FALLBACK_PROMPT.part3.questions,
-      part3_transcript: payload.part3_transcript,
-      part3_duration_seconds: payload.part3_duration_seconds,
-      fc_score: 7.0,
-      lr_score: 7.0,
-      gra_score: 6.5,
-      pr_score: 7.0,
-      overall_band: 7.0,
-      overall_band_min: 6.5,
-      overall_band_max: 7.5,
-      confidence_score: 0.88,
-      cefr_level: "C1",
-      criteria_breakdown: {
-        fluency_and_coherence: {
-          score: 7.0,
-          title_fa: "روانی و انسجام کلامی (FC)",
-          descriptor_en: "Speaks at length without noticeable effort or loss of coherence. Uses a range of connective markers.",
-          guidance_fa: "سخن گفتن روان با میانگین سرعت ۱۲۵ کلمه در دقیقه و بسط منطقی ایده‌ها.",
-        },
-        lexical_resource: {
-          score: 7.0,
-          title_fa: "دامنه واژگان و اصطلاحات (LR)",
-          descriptor_en: "Uses vocabulary resource flexibly to discuss a variety of topics and uses some less common and idiomatic words.",
-          guidance_fa: "تنوع مناسب لغات با استفاده از کالوکیشن‌های طبیعی نظیر state-of-the-art و hands-on experience.",
-        },
-        grammatical_range_and_accuracy: {
-          score: 6.5,
-          title_fa: "تنوع و صحت ساختارهای دستوری (GRA)",
-          descriptor_en: "Uses a mix of simple and complex structures with good grammatical control.",
-          guidance_fa: "ترکیب جملات مرکب و کاربرد مناسب افعال کمکی وجهی با حداقل خطای ساختاری.",
-        },
-        pronunciation: {
-          score: 7.0,
-          title_fa: "تلفظ، ریتم و وضوح کلامی (PR)",
-          descriptor_en: "Shows ability to be understood throughout with clear international intelligibility.",
-          guidance_fa: "وضوح کلامی بالا و رعایت ریتم طبیعی زبان بدون ایجاد ابهام.",
-        },
-      },
-      fluency_metrics: {
-        composite_wpm: 128.4,
-        total_words: 340,
-        total_duration_seconds: 160,
-        hesitation_count: 3,
-        hesitation_ratio: 0.009,
-        discourse_markers_count: 5,
-        discourse_markers_used: ["well", "to be honest", "furthermore", "on the other hand", "in particular"],
-        part1_wpm: 120.0,
-        part2_wpm: 132.5,
-        part3_wpm: 128.0,
-      },
-      pronunciation_diagnostics: {
-        intelligibility_score: 88,
-        pacing_stability: "Optimal",
-        persian_phonological_flags: [
-          {
-            sound: "/w/ vs /v/",
-            title_fa: "تمایز واج‌های /w/ و /v/",
-            guidance_fa: "در ادای واژگانی چون world، with و work لب‌ها کاملاً گرد شوند.",
-            sample_words: ["world", "work", "with"],
-          },
-        ],
-        syllable_stress_note: "رعایت تکیه هجایی کلمات چندبخشی جهت افزایش خوانایی بین‌المللی کلام.",
-      },
-      annotations: [],
-      pedagogical_advice: [
-        "سرعت گفتار شما (۱۲۸ کلمه در دقیقه) در بازه بهینه استاندارد آیلتس (۱۱۰ تا ۱۵۰ WPM) قرار دارد.",
-        "در بخش دوم (Cue Card) بیان پیوسته و پاسخ‌گویی به تمام ابعاد کارت نقطه قوت بارز عملکرد شما بود.",
-        "بررسی تمایز آوایی /w/ و /v/ در واژگان نمونه به شفافیت حداکثری تلفظ شما کمک خواهد کرد.",
-      ],
-      teacher_review_requested: false,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    };
-  }
+  const data = await endooraApi<IELTSSpeakingReport>("/api/ielts/speaking/submit/", {
+    method: "POST",
+    json: payload,
+  });
+  return data;
 }
 
 export async function fetchSpeakingReport(submissionId: string): Promise<IELTSSpeakingReport> {
-  try {
-    const data = await endooraApi<IELTSSpeakingReport>(`/api/ielts/speaking/report/${submissionId}/`);
-    return data;
-  } catch {
-    return submitSpeaking({
-      submission_id: submissionId,
-      part1_transcript: "Sample transcript for diagnostic report preview.",
-      part1_duration_seconds: 35,
-      part2_transcript: "Sample long turn transcript for cue card response.",
-      part2_duration_seconds: 90,
-      part3_transcript: "Sample abstract discussion response.",
-      part3_duration_seconds: 50,
-    });
-  }
+  const data = await endooraApi<IELTSSpeakingReport>(`/api/ielts/speaking/report/${submissionId}/`);
+  return data;
 }
 
 export async function fetchSpeakingHistory(): Promise<IELTSSpeakingHistoryItem[]> {
-  try {
-    const data = await endooraApi<IELTSSpeakingHistoryItem[]>("/api/ielts/speaking/history/");
-    return data;
-  } catch {
-    return [];
-  }
+  const data = await endooraApi<IELTSSpeakingHistoryItem[]>("/api/ielts/speaking/history/");
+  return data;
 }
 
 export async function requestTeacherSpeakingReview(submissionId: string): Promise<{ success: boolean; message: string }> {
-  try {
-    const data = await endooraApi<{ success: boolean; message: string }>(
-      `/api/ielts/speaking/${submissionId}/request-teacher-review/`,
-      { method: "POST" }
-    );
-    return data;
-  } catch {
-    return {
-      success: true,
-      message: "درخواست بازبینی اگزمینر رسمی به صورت موقت ثبت شد.",
-    };
-  }
+  const data = await endooraApi<{ success: boolean; message: string }>(
+    `/api/ielts/speaking/${submissionId}/request-teacher-review/`,
+    { method: "POST" }
+  );
+  return data;
 }
 
 export { MANDATORY_IELTS_DISCLAIMER_TEXT };

@@ -906,9 +906,8 @@ class MarketplaceDay41Tests(TestCase):
         res = self.client.get("/api/marketplace/plans/")
         self.assertEqual(res.status_code, 200)
         self.assertGreaterEqual(res.data["count"], 1)
-        plan = res.data["plans"][0]
-        self.assertEqual(plan["code"], "launch_premium_90d")
-        self.assertEqual(plan["price_toman_number"], 420000)
+        plan = next(plan for plan in res.data["plans"] if plan["code"] == "golden_1m")
+        self.assertEqual(plan["price_toman_number"], 299000)
 
         # Admin updates pricing plan
         self.client.force_authenticate(user=self.admin_user)

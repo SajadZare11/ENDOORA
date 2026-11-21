@@ -30,7 +30,12 @@ from ielts.views import (
     IELTSSpeakingTeacherReviewRequestView,
 )
 
+from .practice_views import PracticeCatalog, PracticeUnit, PracticeReport
+
 urlpatterns = [
+    path("units/", PracticeCatalog.as_view()),
+    path("units/<slug:slug>/", PracticeUnit.as_view()),
+    path("units/<slug:slug>/report/", PracticeReport.as_view()),
     # Admin / Editor Studio endpoints
     path("tests/", AdminIELTSTestListCreateView.as_view(), name="admin-ielts-tests-list"),
     path("tests/<uuid:test_id>/", AdminIELTSTestDetailView.as_view(), name="admin-ielts-test-detail"),

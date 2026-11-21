@@ -1,0 +1,11 @@
+# Optional extension to docker-compose.prod.yml
+services:
+  api:
+    build:
+      args:
+        ENDOORA_LOCAL_SEARCH: "1"
+    environment:
+      WEB_CONCURRENCY: ${ENDOORA_SEARCH_WORKERS:-1}
+      ENDOORA_SEARCH_MODEL_DIR: /models/minilm
+    volumes:
+      - ${ENDOORA_SEARCH_MODEL_HOST_DIR:?Set the absolute directory containing tokenizer.json and onnx/}:/models/minilm:ro

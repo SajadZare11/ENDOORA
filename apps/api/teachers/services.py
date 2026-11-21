@@ -442,7 +442,7 @@ class TeacherClassService:
                 TeachingHourAuditLog.objects.create(
                     ledger_entry=ledger,
                     actor=teacher,
-                    action=f"SESSION_STATUS_CHANGED_TO_{target_status.upper()}",
+                    action=f"SESSION_TO_{target_status.upper()}",
                     previous_hours=prev_hours,
                     new_hours=Decimal("0.00"),
                     reason=f"Session status changed to {target_status}.",

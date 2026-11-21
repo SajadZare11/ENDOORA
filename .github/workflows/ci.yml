@@ -18,6 +18,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+        env:
+          ONNXRUNTIME_NODE_INSTALL_CUDA: skip
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run check:design
@@ -58,6 +60,7 @@ jobs:
           --health-retries 10
     env:
       ENDOORA_ENV: test
+      ENDOORA_TEST_DATABASE: postgres
       ENDOORA_TIMEZONE: Asia/Tehran
       ENDOORA_DJANGO_SECRET_KEY: ci-only-not-a-production-secret
       ENDOORA_DEBUG: "0"

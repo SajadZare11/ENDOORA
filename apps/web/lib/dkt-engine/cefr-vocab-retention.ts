@@ -163,9 +163,10 @@ export function getCriticalDecayCardsForLevel(
     }
   }
 
-  // Sort by lowest recall first (highest risk of forgetting)
-  items.sort((a, b) => a.estimatedRecall - b.estimatedRecall);
-  return items;
+  const now = Date.now();
+  return items.filter(({ card }) => Date.parse(card.nextReviewAt) <= now)
+    .sort((a, b) => Date.parse(a.card.nextReviewAt) - Date.parse(b.card.nextReviewAt)
+      || a.card.wordId.localeCompare(b.card.wordId));
 }
 
 /**

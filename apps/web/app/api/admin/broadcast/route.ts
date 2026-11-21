@@ -12,6 +12,7 @@ import {
 import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
     const data = getBroadcastData();
     return NextResponse.json({
@@ -28,6 +29,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
     const body = await req.json();
     const { action } = body;

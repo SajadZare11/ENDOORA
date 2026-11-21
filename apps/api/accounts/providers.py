@@ -33,7 +33,11 @@ def get_otp_provider() -> BaseOtpProvider:
     if provider_name == "mock":
         return LocalMockOtpProvider()
 
+    if provider_name == "kavenegar":
+        from .sms import KavenegarProvider
+        return KavenegarProvider()
+
     raise ImproperlyConfigured(
         f"Unsupported ENDOORA_OTP_PROVIDER={provider_name!r}. "
-        "Only local mock mode is enabled on Day 07."
+        "Choose mock or kavenegar."
     )

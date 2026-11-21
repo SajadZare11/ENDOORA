@@ -12,6 +12,7 @@ import {
 } from "@/lib/site-cms-store";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
     const live = getLiveSiteContent();
     const draft = getDraftSiteContent();
@@ -30,6 +31,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
     const body = await req.json();
     const action = body.action as string;

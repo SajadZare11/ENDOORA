@@ -273,8 +273,8 @@ class IELTSContentModelTests(TestCase):
         anon_client = APIClient()
         resp = anon_client.get("/api/ielts/public/tests/")
         self.assertEqual(resp.status_code, 200)
-        self.assertIn("disclaimer", resp.data)
-        self.assertEqual(len(resp.data["results"]), 1)
+        self.assertEqual(resp.data["units_api"], "/api/ielts/units/")
+        self.assertEqual(resp.data["results"], [])
 
     def test_seed_ielts_mini_test_command(self):
         """Seed command generates 100% original Academic mini-test with 4 sections, 19 questions, and band descriptors."""
@@ -527,53 +527,17 @@ class IELTSWritingSimulationAndEvaluationTests(TestCase):
         self.assertEqual(resp_get.data["id"], sub_id)
         self.assertEqual(resp_get.data["task1_text"], "The chart illustrates renewable electricity generation.")
 
-    def test_writing_submit_and_report_api(self):
-        """POST /api/ielts/writing/submit/ evaluates and returns diagnostic report with band range."""
-        essay_t1 = (
-            "The bar chart illustrates the proportion of electricity from renewable sources. "
-            "Overall, Norway had the highest figures throughout the ten-year period."
-        )
-        essay_t2 = (
-            "In conclusion, artificial intelligence should be incorporated with careful guidance. "
-            "On the one hand it motivates students, but on the other hand teacher empathy is irreplaceable."
-        )
-
-        resp = self.client.post(
-            "/api/ielts/writing/submit/",
-            data={
-                "task1_text": essay_t1,
-                "task2_text": essay_t2,
-                "task1_time_seconds": 1000,
-                "task2_time_seconds": 1800,
-            },
-            format="json",
-        )
-        self.assertEqual(resp.status_code, 201)
-        sub_id = resp.data["id"]
-        self.assertEqual(resp.data["status"], "evaluated")
-        self.assertIn("overall_band", resp.data)
-        self.assertIn("criteria_breakdown", resp.data)
-
-        # GET Report
-        resp_rep = self.client.get(f"/api/ielts/writing/report/{sub_id}/")
-        self.assertEqual(resp_rep.status_code, 200)
-        self.assertEqual(resp_rep.data["id"], sub_id)
-        self.assertEqual(resp_rep.data["status"], "evaluated")
-
-        # GET History
-        resp_hist = self.client.get("/api/ielts/writing/history/")
-        self.assertEqual(resp_hist.status_code, 200)
-        self.assertGreaterEqual(len(resp_hist.data), 1)
+    def test_writing_legacy_band_submission_is_retired(self):
+        for payload in [{}, {"task2_text": "Example", "part1_transcript": "Example"}]:
+            response = self.client.post("/api/ielts/writing/submit/", payload, format="json")
+            self.assertEqual(response.status_code, 410)
+            self.assertNotIn("overall_band", response.data)
 
     def test_teacher_review_request_escalation_api(self):
         """POST /api/ielts/writing/<id>/request-teacher-review/ marks submission for teacher grading."""
         # Submit an essay
-        resp = self.client.post(
-            "/api/ielts/writing/submit/",
-            data={"task2_text": "Sample essay text for teacher review."},
-            format="json",
-        )
-        sub_id = resp.data["id"]
+        from ielts.models import IELTSWritingSubmission
+        sub_id = IELTSWritingSubmission.objects.create(learner=self.learner, status="evaluated").pk
 
         # Request teacher review
         resp_tr = self.client.post(f"/api/ielts/writing/{sub_id}/request-teacher-review/")
@@ -710,58 +674,16 @@ class IELTSSpeakingSimulationAndEvaluationTests(TestCase):
         self.assertEqual(resp_get.data["id"], sub_id)
         self.assertEqual(resp_get.data["part2_prep_notes"], "Skill: Python. Reason: Automation. Outcome: Success.")
 
-    def test_speaking_submit_and_report_api(self):
-        """POST /api/ielts/speaking/submit/ evaluates speaking attempt and returns diagnostic report."""
-        p1 = "To be honest, my hometown is dynamic and rich in cultural heritage."
-        p2 = (
-            "I would like to describe a practical skill I learned independently, namely digital illustration. "
-            "I utilized state-of-the-art tutorials and dedicated two hours daily. "
-            "In the long run, achieving proficiency played a vital role in my professional career."
-        )
-        p3 = "Furthermore, autonomous online education fosters crucial self-discipline in adults."
-
-        resp = self.client.post(
-            "/api/ielts/speaking/submit/",
-            data={
-                "part1_transcript": p1,
-                "part1_duration_seconds": 30,
-                "part2_transcript": p2,
-                "part2_duration_seconds": 85,
-                "part3_transcript": p3,
-                "part3_duration_seconds": 40,
-            },
-            format="json",
-        )
-        self.assertEqual(resp.status_code, 201)
-        sub_id = resp.data["id"]
-        self.assertEqual(resp.data["status"], "evaluated")
-        self.assertIn("overall_band", resp.data)
-        self.assertIn("fc_score", resp.data)
-        self.assertIn("lr_score", resp.data)
-        self.assertIn("gra_score", resp.data)
-        self.assertIn("pr_score", resp.data)
-        self.assertIn("criteria_breakdown", resp.data)
-        self.assertIn("fluency_metrics", resp.data)
-
-        # GET Report
-        resp_rep = self.client.get(f"/api/ielts/speaking/report/{sub_id}/")
-        self.assertEqual(resp_rep.status_code, 200)
-        self.assertEqual(resp_rep.data["id"], sub_id)
-        self.assertEqual(resp_rep.data["status"], "evaluated")
-
-        # GET History
-        resp_hist = self.client.get("/api/ielts/speaking/history/")
-        self.assertEqual(resp_hist.status_code, 200)
-        self.assertGreaterEqual(len(resp_hist.data), 1)
+    def test_speaking_legacy_band_submission_is_retired(self):
+        for payload in [{}, {"task2_text": "Example", "part1_transcript": "Example"}]:
+            response = self.client.post("/api/ielts/speaking/submit/", payload, format="json")
+            self.assertEqual(response.status_code, 410)
+            self.assertNotIn("overall_band", response.data)
 
     def test_speaking_teacher_review_escalation_api(self):
         """POST /api/ielts/speaking/<id>/request-teacher-review/ flags submission for human examiner review."""
-        resp = self.client.post(
-            "/api/ielts/speaking/submit/",
-            data={"part1_transcript": "A brief speaking test response."},
-            format="json",
-        )
-        sub_id = resp.data["id"]
+        from ielts.models import IELTSSpeakingSubmission
+        sub_id = IELTSSpeakingSubmission.objects.create(learner=self.learner, status="evaluated").pk
 
         resp_esc = self.client.post(f"/api/ielts/speaking/{sub_id}/request-teacher-review/")
         self.assertEqual(resp_esc.status_code, 200)

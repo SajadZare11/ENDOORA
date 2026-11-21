@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: ${ENDOORA_DB_NAME:-endoora}
       POSTGRES_USER: ${ENDOORA_DB_USER:-endoora}
-      POSTGRES_PASSWORD: ${ENDOORA_DB_PASSWORD:-endoora_secure_prod_password}
+      POSTGRES_PASSWORD: ${ENDOORA_DB_PASSWORD:?Set a database password}
     volumes:
       - endoora_prod_pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -42,18 +42,19 @@ services:
       ENDOORA_ENV: production
       DJANGO_SETTINGS_MODULE: endoora_api.settings.production
       ENDOORA_DEBUG: "0"
-      ENDOORA_DJANGO_SECRET_KEY: ${ENDOORA_DJANGO_SECRET_KEY}
+      ENDOORA_DJANGO_SECRET_KEY: ${ENDOORA_DJANGO_SECRET_KEY:?Set a Django secret}
       ENDOORA_TIMEZONE: Asia/Tehran
       ENDOORA_ALLOWED_HOSTS: endoora.ir,www.endoora.ir,api.endoora.ir,api,web,localhost,127.0.0.1
       ENDOORA_CORS_ALLOWED_ORIGINS: https://endoora.ir,https://www.endoora.ir
       ENDOORA_CSRF_TRUSTED_ORIGINS: https://endoora.ir,https://www.endoora.ir
       ENDOORA_DB_NAME: ${ENDOORA_DB_NAME:-endoora}
       ENDOORA_DB_USER: ${ENDOORA_DB_USER:-endoora}
-      ENDOORA_DB_PASSWORD: ${ENDOORA_DB_PASSWORD:-endoora_secure_prod_password}
+      ENDOORA_DB_PASSWORD: ${ENDOORA_DB_PASSWORD:?Set a database password}
       ENDOORA_DB_HOST: postgres
       ENDOORA_DB_PORT: "5432"
       ENDOORA_REDIS_URL: redis://redis:6379/0
       ENDOORA_OTP_PROVIDER: ${ENDOORA_OTP_PROVIDER:-kavenegar}
+      ENDOORA_SMS_TEMPLATE: ${ENDOORA_SMS_TEMPLATE}
       ENDOORA_SMS_API_KEY: ${ENDOORA_SMS_API_KEY}
       ZARINPAL_MERCHANT_ID: ${ZARINPAL_MERCHANT_ID}
       ZARINPAL_SANDBOX: ${ZARINPAL_SANDBOX:-0}

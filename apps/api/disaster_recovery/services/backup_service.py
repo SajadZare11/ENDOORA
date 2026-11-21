@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from disaster_recovery.demo import require_demo_operations
+
 import hashlib
 import json
 import time
@@ -39,6 +41,7 @@ def create_database_backup(
     Generates an encrypted database backup snapshot with SHA-256 cryptographic verification.
     Logs an immutable AuditEvent under OPS-004.
     """
+    require_demo_operations()
     inventory = _inspect_database_inventory()
     timestamp_str = timezone.now().isoformat()
     snapshot_uuid = uuid.uuid4()
@@ -111,6 +114,7 @@ def verify_backup_snapshot(snapshot_id: str | uuid.UUID, operator: Any = None) -
     Performs cryptographic SHA-256 hash verification and structural catalog validation.
     Marks snapshot as VERIFIED and records an immutable AuditEvent.
     """
+    require_demo_operations()
     start_time = time.time()
     snapshot = DatabaseBackupSnapshot.objects.get(id=snapshot_id)
 
@@ -163,6 +167,7 @@ def get_backup_statistics() -> dict[str, Any]:
     """
     Compiles aggregate backup operational statistics.
     """
+    require_demo_operations()
     snapshots = DatabaseBackupSnapshot.objects.all()
     total_count = snapshots.count()
     verified_count = snapshots.filter(status=DatabaseBackupSnapshot.Status.VERIFIED).count()

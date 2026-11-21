@@ -33,6 +33,15 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      ...["/ielts/results/:path*", "/ielts/practice/:sessionId/report", "/ielts/speaking/report", "/ielts/writing/report"].map(source => ({
+        source, destination: "/ielts/history", permanent: false,
+      })),
+      ...["/ielts/exam/:path*", "/ielts/practice/:path*"].map(source => ({
+        source, destination: "/ielts", permanent: false,
+      })),
+      ...["/ielts/writing/:path*", "/ielts/speaking/:path*"].map(source => ({
+        source, destination: "/ielts/workshop", permanent: false,
+      })),
       {
         source: "/downloads",
         destination: "/books",
