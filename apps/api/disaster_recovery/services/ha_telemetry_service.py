@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from disaster_recovery.demo import require_demo_operations
+
 import time
 from typing import Any
 from django.conf import settings
@@ -13,6 +15,7 @@ def get_or_initialize_nodes() -> list[ReplicationNodeStatus]:
     """
     Ensures standard PostgreSQL 16 HA cluster nodes exist in the database.
     """
+    require_demo_operations()
     cluster_name = getattr(settings, "ENDOORA_DR_CLUSTER_NAME", "pg16-ha-tehran")
     nodes_def = [
         {
@@ -86,6 +89,7 @@ def get_ha_cluster_telemetry() -> dict[str, Any]:
     """
     Compiles comprehensive high-availability cluster telemetry, RPO/RTO SLAs, and node topology.
     """
+    require_demo_operations()
     nodes = get_or_initialize_nodes()
     backup_stats = get_backup_statistics()
 
@@ -158,6 +162,7 @@ def get_failover_drill_checklist() -> dict[str, Any]:
     """
     Returns automated failover simulation drill runbook and SLA audit checklist.
     """
+    require_demo_operations()
     steps = [
         {
             "step_number": 1,

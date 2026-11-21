@@ -19,6 +19,7 @@ from search.models import (
     SearchContentType,
     SearchVisibility,
 )
+from search.local_rank import ranked_page
 from search.normalizer import normalize_text, tokenize
 
 
@@ -251,12 +252,12 @@ class SearchService:
                 default=models.Value(10),
                 output_field=models.IntegerField(),
             )
-        ).order_by("-exact_title_match", "-popularity_score", "-updated_at")
+        ).order_by("-exact_title_match", "-popularity_score", "-updated_at", "pk")
 
         total_count = annotated_qs.count()
         start = (page - 1) * page_size
         end = start + page_size
-        results = list(annotated_qs[start:end])
+        results = ranked_page(annotated_qs, norm_q, start, end)
 
         # 4. Log search query & track zero results
         is_zero = total_count == 0

@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='teacherclass',
             name='code',
-            field=models.CharField(blank=True, db_index=True, max_length=7, null=True, verbose_name='کد ۷ رقمی اختصاصی کلاس'),
+            field=models.CharField(blank=True, max_length=7, null=True, verbose_name='کد ۷ رقمی اختصاصی کلاس'),
         ),
         migrations.RunPython(
             backfill_class_codes,

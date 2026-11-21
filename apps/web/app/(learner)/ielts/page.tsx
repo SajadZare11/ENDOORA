@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PublicShell } from "../../../components/marketing/PublicShell";
-import { IELTSCatalog } from "../../../components/ielts/IELTSCatalog";
+import { PracticeIndex } from "../../../components/ielts/ReviewedPractice";
 import { buildMetadata, publicPages } from "../../../lib/public-site";
 
 export const metadata: Metadata = buildMetadata(
@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata(
 export default function IELTSPage() {
   return (
     <PublicShell locale="fa" currentPath="/ielts">
-      <IELTSCatalog />
+      <PracticeIndex />
     </PublicShell>
   );
 }

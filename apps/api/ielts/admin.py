@@ -141,3 +141,29 @@ class IELTSSpeakingSubmissionAdmin(admin.ModelAdmin):
 
 
 
+
+from .models import PracticeIssue, PracticeRelease
+
+
+@admin.register(PracticeIssue)
+class PracticeIssueAdmin(admin.ModelAdmin):
+    list_display = ("release_id", "question", "created_at", "resolved")
+    list_filter = ("resolved", "release")
+    readonly_fields = ("learner", "release", "question", "note", "created_at")
+
+
+@admin.register(PracticeRelease)
+class PracticeReleaseAdmin(admin.ModelAdmin):
+    list_display = ("slug", "active", "reviewed_at", "reviewed_by")
+    readonly_fields = ("slug", "digest", "active", "reviewed_at", "reviewed_by")
+    actions = ["withdraw"]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    @admin.action(description="Withdraw selected practice units")
+    def withdraw(self, request, queryset):
+        queryset.update(active=False)

@@ -268,22 +268,11 @@ export const DEFAULT_FALLBACK_TESTS: IELTSTestListItem[] = [
 export async function fetchPublicIELTSTests(params?: {
   test_type?: string;
 }): Promise<{ disclaimer: string; results: IELTSTestListItem[] }> {
-  try {
-    const query = new URLSearchParams();
-    if (params?.test_type) query.set("test_type", params.test_type);
+  const query = new URLSearchParams();
+  if (params?.test_type) query.set("test_type", params.test_type);
 
-    const qs = query.toString() ? `?${query.toString()}` : "";
-    return await endooraApi<{ disclaimer: string; results: IELTSTestListItem[] }>(
-      `/ielts/public/tests/${qs}`
-    );
-  } catch {
-    const filtered =
-      params?.test_type && params.test_type !== "all"
-        ? DEFAULT_FALLBACK_TESTS.filter((t) => t.test_type === params.test_type)
-        : DEFAULT_FALLBACK_TESTS;
-    return {
-      disclaimer: MANDATORY_IELTS_DISCLAIMER_TEXT,
-      results: filtered,
-    };
-  }
+  const qs = query.toString() ? `?${query.toString()}` : "";
+  return await endooraApi<{ disclaimer: string; results: IELTSTestListItem[] }>(
+    `/ielts/public/tests/${qs}`
+  );
 }

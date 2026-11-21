@@ -263,71 +263,20 @@ export function evaluateAnswer(
   const normUser = normalizeAnswer(userAnswer);
   let isCorrect = false;
 
-  if (question.questionType === "multiple_choice") {
-    if (typeof question.correctAnswer === "number") {
-      if (typeof userAnswer === "number") {
-        isCorrect = userAnswer === question.correctAnswer;
-      } else {
-        const parsedNum = Number.parseInt(normUser, 10);
-        if (!Number.isNaN(parsedNum) && parsedNum === question.correctAnswer) {
-          isCorrect = true;
-        } else if (Array.isArray(question.options)) {
-          // Check if user entered the option text directly
-          const correctOptionText = question.options[question.correctAnswer];
-          if (correctOptionText && normalizeAnswer(correctOptionText) === normUser) {
-            isCorrect = true;
-          }
-        }
-      }
-    } else {
-      // correctAnswer is a string (e.g. "Health")
-      const normCorrect = normalizeAnswer(question.correctAnswer);
-      if (normUser === normCorrect && normUser.length > 0) {
-        isCorrect = true;
-      } else if (typeof userAnswer === "number" && Array.isArray(question.options) && question.options[userAnswer]) {
-        isCorrect = normalizeAnswer(question.options[userAnswer]) === normCorrect;
-      } else if (Array.isArray(question.options)) {
-        const parsedNum = Number.parseInt(normUser, 10);
-        if (!Number.isNaN(parsedNum) && question.options[parsedNum]) {
-          isCorrect = normalizeAnswer(question.options[parsedNum]) === normCorrect;
-        }
-      }
-    }
-
-    if (!isCorrect && Array.isArray(question.acceptableAnswers)) {
-      isCorrect = question.acceptableAnswers.some(
-        (alt) => normalizeAnswer(alt) === normUser && normUser.length > 0
-      );
-    }
-  } else if (Array.isArray(question.options) && question.options.length > 0) {
-    // Other question types that provide options (e.g. True/False or ABCD in listening/reading)
-    if (typeof question.correctAnswer === "number") {
-      if (typeof userAnswer === "number") {
-        isCorrect = userAnswer === question.correctAnswer;
-      } else {
-        const parsedNum = Number.parseInt(normUser, 10);
-        if (!Number.isNaN(parsedNum) && parsedNum === question.correctAnswer) {
-          isCorrect = true;
-        } else {
-          const correctOptionText = question.options[question.correctAnswer];
-          if (correctOptionText && normalizeAnswer(correctOptionText) === normUser) {
-            isCorrect = true;
-          }
-        }
-      }
-    } else {
-      // correctAnswer is a string (like "True" or "False")
-      const normCorrect = normalizeAnswer(question.correctAnswer);
-      if (normUser === normCorrect && normUser.length > 0) {
-        isCorrect = true;
-      } else if (typeof userAnswer === "number" && question.options[userAnswer]) {
-        isCorrect = normalizeAnswer(question.options[userAnswer]) === normCorrect;
-      } else if (Array.isArray(question.acceptableAnswers)) {
-        isCorrect = question.acceptableAnswers.some(
-          (alt) => normalizeAnswer(alt) === normUser && normUser.length > 0
-        );
-      }
-    }
+  if (question.options?.length) {
+    const options = question.options;
+    const key = question.correctAnswer;
+    const expected = typeof key === "number" ? options[key] : key;
+    // Numeric keys refer to zero-based positions. The player sends a number
+    // for a click. Text submissions may also contain the literal option.
+    const index = typeof userAnswer === "number" ? userAnswer :
+      typeof key === "number" && /^\d+$/.test(normUser) ? Number(normUser) : -1;
+    const picked = Number.isInteger(index) && index >= 0 ? options[index] : undefined;
+    const accepted = [expected, ...(question.acceptableAnswers ?? [])]
+      .filter((value) => value !== undefined)
+      .map(normalizeAnswer);
+    isCorrect = (picked !== undefined && accepted.includes(normalizeAnswer(picked))) ||
+      (typeof userAnswer === "string" && normUser.length > 0 && accepted.includes(normUser));
   } else {
     // Free text, fill-in-the-blank, cloze, sentence combining, etc.
     const normCorrect = normalizeAnswer(question.correctAnswer);

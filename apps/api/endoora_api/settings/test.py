@@ -42,3 +42,6 @@ MIDDLEWARE = [
         "security.middleware.InputSanitizationMiddleware",
     )
 ]
+
+# Legacy operations fixtures deliberately exercise synthetic telemetry.
+ENDOORA_DEMO_OPERATIONS = True

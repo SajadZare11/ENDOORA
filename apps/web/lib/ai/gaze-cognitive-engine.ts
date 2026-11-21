@@ -46,7 +46,7 @@ export class GazeCognitiveEngine {
   private constructor() {
     this.lastTelemetry = this.getDefaultTelemetry();
     this.state = this.loadState();
-    this.initWorker();
+    if (process.env.NODE_ENV === "development") this.initWorker();
   }
 
   public static getInstance(): GazeCognitiveEngine {
@@ -184,7 +184,7 @@ export class GazeCognitiveEngine {
     videoElement?: HTMLVideoElement | null;
     useMouseFallback?: boolean;
   } = {}): void {
-    if (this.isTracking) return;
+    if (process.env.NODE_ENV !== "development" || this.isTracking) return;
     this.isTracking = true;
     this.activeVideoElement = videoElement || null;
 
@@ -310,23 +310,12 @@ export class GazeCognitiveEngine {
     twinContext?: Parameters<DktEngine['recordInteraction']>[0]['twinContext'];
   }): ReturnType<DktEngine["recordInteraction"]> {
     const dkt = DktEngine.getInstance();
-    const t = this.lastTelemetry;
-
-    let effectiveLatency = latencyMs;
-
-    // Amplify hesitation penalty if high cognitive load or eye regressions detected
-    if (isCorrect && t.isHighCognitiveLoad) {
-      effectiveLatency = Math.max(latencyMs, 4500 + Math.round(t.cognitiveLoadIndex * 3000));
-    } else if (isCorrect && t.saccadicRegressionRate > 0.60) {
-      effectiveLatency = Math.max(latencyMs, 3800 + Math.round(t.saccadicRegressionRate * 2500));
-    }
-
     return dkt.recordInteraction({
       conceptId,
       isCorrect,
       isTrap,
-      latencyMs: effectiveLatency,
-      twinContext: { ...twinContext,latencyMs },
+      latencyMs,
+      twinContext: { ...twinContext, latencyMs },
     });
   }
 

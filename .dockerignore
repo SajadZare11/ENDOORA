@@ -1,0 +1,14 @@
+.git
+**/node_modules
+**/.next
+**/__pycache__
+**/*.pyc
+**/.venv
+**/db.sqlite3*
+**/.env
+**/.env.*
+!**/.env.example
+PRIVATE_DO_NOT_COPY_TO_GIT
+infra/ssl
+**/*.dump
+.idea

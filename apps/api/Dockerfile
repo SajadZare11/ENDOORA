@@ -20,6 +20,10 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt && \
     pip install gunicorn uvicorn[standard]
 
+ARG ENDOORA_LOCAL_SEARCH=0
+COPY apps/api/search/requirements-local.txt ./requirements-local.txt
+RUN if [ "$ENDOORA_LOCAL_SEARCH" = "1" ]; then pip install -r requirements-local.txt; fi
+
 COPY apps/api/ ./
 
 RUN mkdir -p /app/staticfiles /app/media /app/vault/backups && \
@@ -32,5 +36,6 @@ USER django
 EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=endoora_api.settings.production
+ENV WEB_CONCURRENCY=4
 
-CMD ["gunicorn", "endoora_api.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "60"]
+CMD ["gunicorn", "endoora_api.wsgi:application", "--bind", "0.0.0.0:8000", "--timeout", "60"]

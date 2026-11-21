@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from disaster_recovery.demo import require_demo_operations
+
 import time
 import uuid
 from typing import Any, Dict, List, Optional
@@ -21,6 +23,7 @@ class GoldenFlowVerificationRunner:
 
     @classmethod
     def run_rehearsal(cls, operator: Optional[Any] = None) -> Dict[str, Any]:
+        require_demo_operations()
         start_time = time.time()
         flow_results: List[Dict[str, Any]] = []
 

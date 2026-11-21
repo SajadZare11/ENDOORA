@@ -105,12 +105,7 @@ def _teacher_profile(user) -> TeacherProfile | None:
 
 
 def build_teacher_dashboard(user) -> dict:
-    """Build the Day 10 teacher summary using only data that truly exists today.
-
-    The teacher profile lookup is intentionally the only domain query in this
-    service. Future class, assignment, marketplace, schedule, and finance
-    domains must replace their placeholders only when those real models exist.
-    """
+    """Load the teacher profile and current subscription capabilities."""
 
     profile = _teacher_profile(user)
     profile_completeness = profile.completeness_percent if profile else 0

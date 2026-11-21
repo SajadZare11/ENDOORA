@@ -168,30 +168,8 @@ export async function fetchWritingPrompts(examId?: string): Promise<IELTSWriting
     }
   }
 
-  try {
-    const data = await endooraApi<IELTSWritingPrompt[]>("/api/ielts/writing/prompts/");
-    return data;
-  } catch {
-    return [
-      {
-        id: "default-task1",
-        title: "Task 1: Renewable Energy Generation in Northern Europe",
-        content_text:
-          "The bar chart illustrates the proportion of domestic electricity generated from renewable sources (wind, hydro, and solar) across Denmark, Norway, and Sweden between 2015 and 2025.\n\nSummarise the information by selecting and reporting the main features, and make comparisons where relevant.\nWrite at least 150 words.",
-        media_image_url: "https://media.endoora.ir/diagrams/ielts/mini01_energy_chart.png",
-        word_count: 150,
-        task_type: "writing_task1_academic",
-      },
-      {
-        id: "default-task2",
-        title: "Task 2: Artificial Intelligence in Primary and Secondary Education",
-        content_text:
-          "Some educators assert that incorporating artificial intelligence tutors and adaptive learning platforms into schools substantially enhances student motivation and personalizes instruction. Others contend that algorithmic learning undermines critical inquiry and diminishes vital human empathy between students and classroom teachers.\n\nDiscuss both views and give your own opinion.\nGive reasons for your answer and include any relevant examples from your own knowledge or experience.\nWrite at least 250 words.",
-        word_count: 250,
-        task_type: "writing_task2_essay",
-      },
-    ];
-  }
+  const data = await endooraApi<IELTSWritingPrompt[]>("/api/ielts/writing/prompts/");
+  return data;
 }
 
 export async function saveWritingDraft(
@@ -229,11 +207,7 @@ export async function fetchWritingReport(submissionId: string): Promise<IELTSWri
 }
 
 export async function fetchWritingHistory(): Promise<IELTSWritingHistoryItem[]> {
-  try {
-    return await endooraApi<IELTSWritingHistoryItem[]>("/api/ielts/writing/history/");
-  } catch {
-    return [];
-  }
+  return await endooraApi<IELTSWritingHistoryItem[]>("/api/ielts/writing/history/");
 }
 
 export async function requestTeacherWritingReview(

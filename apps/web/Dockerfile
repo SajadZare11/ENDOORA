@@ -12,7 +12,7 @@ COPY apps/web/package.json ./apps/web/
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/contracts/package.json ./packages/contracts/
 
-RUN npm ci
+RUN ONNXRUNTIME_NODE_INSTALL_CUDA=skip npm ci
 
 FROM base AS builder
 WORKDIR /app

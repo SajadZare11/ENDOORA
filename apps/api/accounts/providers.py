@@ -172,12 +172,20 @@ def get_otp_provider() -> BaseOtpProvider:
         return LocalMockOtpProvider()
 
     if provider_name == "kavenegar":
+        if getattr(settings, "ENDOORA_SMS_TEMPLATE", None):
+            from .sms import KavenegarProvider
+            return KavenegarProvider()
         return KavenegarOtpProvider()
+
+    if provider_name == "sms":
+        from .sms import KavenegarProvider
+        return KavenegarProvider()
 
     if provider_name == "email":
         return EmailOtpProvider()
 
     raise ImproperlyConfigured(
         f"Unsupported ENDOORA_OTP_PROVIDER={provider_name!r}. "
-        "Supported providers: 'mock', 'kavenegar', 'email'."
+        "Supported providers: 'mock', 'kavenegar', 'sms', 'email'."
+    )
     )

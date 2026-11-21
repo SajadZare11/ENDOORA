@@ -2216,6 +2216,9 @@ def initiate_checkout(
     if not user.is_authenticated:
         raise PermissionDenied("کاربر وارد سیستم نشده است.")
 
+    if gateway_provider == PaymentGatewayProvider.SANDBOX and not settings.ZARINPAL_SANDBOX:
+        raise ValidationError('پرداخت آزمایشی در این محیط غیرفعال است.')
+
     booking = None
     plan = None
     amount = Decimal("0")
@@ -2332,7 +2335,7 @@ def initiate_checkout(
             }
 
     # Gateway Payment (ZarinPal or Sandbox)
-    from marketplace.zarinpal import is_sandbox_mode_permitted
+from marketplace.zarinpal import is_sandbox_mode_permitted
     if gateway_provider == PaymentGatewayProvider.SANDBOX and not is_sandbox_mode_permitted():
         raise ValidationError("انتخاب درگاه آزمایشی در محیط عملیاتی مجاز نیست.")
 
@@ -2473,6 +2476,8 @@ def verify_checkout_payment(authority: str, status_param: str = "OK") -> dict:
                 "booking_id": str(tx.booking_id) if tx.booking_id else None,
             }
 
+        if tx.is_sandbox and not settings.ZARINPAL_SANDBOX:
+            raise ValidationError('تأیید تراکنش آزمایشی در محیط واقعی مجاز نیست.')
         client = ZarinPalGateway(is_sandbox=tx.is_sandbox)
         verify_res = client.verify_payment(
             amount_rial=tx.amount_rial,
