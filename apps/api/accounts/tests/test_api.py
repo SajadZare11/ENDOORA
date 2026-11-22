@@ -1,5 +1,6 @@
 from datetime import timedelta
 import concurrent.futures
+from unittest import skipUnless
 from unittest.mock import MagicMock, patch
 from django.core import mail
 from django.core.cache import cache
@@ -45,6 +46,10 @@ class AccountApiTests(APITestCase):
         response = self.client.get("/api/auth/me/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["email"], self.user.email)
+        self.assertIn("is_staff", response.data)
+        self.assertIn("is_superuser", response.data)
+        self.assertEqual(response.data["is_staff"], False)
+        self.assertEqual(response.data["is_superuser"], False)
 
     def test_cookie_login_requires_csrf_and_logout_is_csrf_protected(self):
         csrf_client = APIClient(enforce_csrf_checks=True)
@@ -512,6 +517,7 @@ class OtpAttemptPersistenceSecurityTests(TransactionTestCase):
         self.user.refresh_from_db()
         self.assertFalse(self.user.email_verified)
 
+    @skipUnless(connection.vendor == "postgresql", "Checks PostgreSQL row locks.")
     def test_concurrent_verification_cannot_consume_code_twice(self):
         record, code = issue_otp(
             self.user.email,
