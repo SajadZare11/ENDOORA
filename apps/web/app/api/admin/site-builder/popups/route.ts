@@ -6,8 +6,13 @@ import {
   deleteSitePopup,
 } from "@/lib/admin-site-builder-store";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const auth = await verifyAdminSession(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const popups = getSitePopups();
     return NextResponse.json({ success: true, popups });
   } catch (err: any) {
@@ -21,6 +26,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const auth = await verifyAdminSession(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
     const adminUser = auth.user?.email || "مدیر ارشد ایندورا";
 
     const body = await req.json();

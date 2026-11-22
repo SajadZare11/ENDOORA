@@ -30,6 +30,8 @@ class AccountSerializer(serializers.ModelSerializer):
             "capabilities",
             "is_active",
             "is_premium",
+            "is_staff",
+            "is_superuser",
         )
         read_only_fields = (
             "id",
@@ -39,6 +41,8 @@ class AccountSerializer(serializers.ModelSerializer):
             "capabilities",
             "is_active",
             "is_premium",
+            "is_staff",
+            "is_superuser",
         )
 
 

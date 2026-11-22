@@ -1,4 +1,10 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Database Backup & SQL Query Studio Types
@@ -368,15 +374,64 @@ export const INITIAL_DICTIONARY: DictionaryItem[] = [
   { key: "lms_audio_recording", category: "lms", faText: "در حال ضبط پاسخ صوتی... واضح و رسا صحبت کنید", enText: "Recording audio response... Speak clearly", lastUpdatedAt: "1403/08/19", updatedBy: "مدیر ارشد" },
 ];
 
-let memoryBackups = [...INITIAL_BACKUPS];
-let memoryPolicy = { ...INITIAL_BACKUP_POLICY };
-let memoryIncidents = [...INITIAL_INCIDENTS];
-let memoryTasks = [...INITIAL_TASKS];
-let memoryTaskLogs: TaskExecutionLog[] = [
-  { id: "log-1", taskId: "task_backup_nightly", taskTitleFa: "پشتیبان‌گیری خودکار شبانه", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۳:۰۰", durationMs: 4200, status: "success", output: "بکاپ با موفقیت ایجاد و به S3 منتقل شد." },
-  { id: "log-2", taskId: "task_session_cleanup", taskTitleFa: "پاکسازی توکن‌های منقضی‌شده", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۴:۰۰", durationMs: 310, status: "success", output: "تعداد ۴۱۸ توکن پاکسازی شد." },
-];
-let memoryDictionary = [...INITIAL_DICTIONARY];
+// ==============================================================================
+// Persistent State & Store Accessors (autonomous-ops-operations.json)
+// ==============================================================================
+export interface AutonomousOpsStoragePayload {
+  backups: DatabaseBackupRecord[];
+  policy: BackupPolicyConfig;
+  incidents: ServerIncidentRecord[];
+  tasks: BackgroundTaskRecord[];
+  taskLogs: TaskExecutionLog[];
+  dictionary: DictionaryItem[];
+}
+
+let inMemoryAutonomousOps: AutonomousOpsStoragePayload | null = null;
+let lastAutonomousOpsMtime = 0;
+
+function getAutonomousOpsPath(): string {
+  return resolveStoragePath("autonomous-ops-operations.json");
+}
+
+export function getAutonomousOpsStorage(): AutonomousOpsStoragePayload {
+  const filePath = getAutonomousOpsPath();
+  if (inMemoryAutonomousOps && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastAutonomousOpsMtime) {
+      return inMemoryAutonomousOps;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<AutonomousOpsStoragePayload>(
+    filePath,
+    () => ({
+      backups: JSON.parse(JSON.stringify(INITIAL_BACKUPS)),
+      policy: JSON.parse(JSON.stringify(INITIAL_BACKUP_POLICY)),
+      incidents: JSON.parse(JSON.stringify(INITIAL_INCIDENTS)),
+      tasks: JSON.parse(JSON.stringify(INITIAL_TASKS)),
+      taskLogs: [
+        { id: "log-1", taskId: "task_backup_nightly", taskTitleFa: "پشتیبان‌گیری خودکار شبانه", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۳:۰۰", durationMs: 4200, status: "success", output: "بکاپ با موفقیت ایجاد و به S3 منتقل شد." },
+        { id: "log-2", taskId: "task_session_cleanup", taskTitleFa: "پاکسازی توکن‌های منقضی‌شده", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۴:۰۰", durationMs: 310, status: "success", output: "تعداد ۴۱۸ توکن پاکسازی شد." },
+      ],
+      dictionary: JSON.parse(JSON.stringify(INITIAL_DICTIONARY)),
+    }),
+    (p): p is AutonomousOpsStoragePayload =>
+      Array.isArray(p?.backups) && Array.isArray(p?.incidents) && Array.isArray(p?.tasks)
+  );
+
+  inMemoryAutonomousOps = data;
+  lastAutonomousOpsMtime = mtime;
+  return inMemoryAutonomousOps;
+}
+
+function persistAutonomousOps(): void {
+  if (!inMemoryAutonomousOps) return;
+  const filePath = getAutonomousOpsPath();
+  atomicWriteJsonSync(filePath, inMemoryAutonomousOps);
+  if (fs.existsSync(filePath)) {
+    lastAutonomousOpsMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ==============================================================================
 // Store Handlers
@@ -384,9 +439,10 @@ let memoryDictionary = [...INITIAL_DICTIONARY];
 
 // 1. Backups
 export function getBackupsList() {
+  const storage = getAutonomousOpsStorage();
   return {
-    backups: [...memoryBackups],
-    policy: { ...memoryPolicy },
+    backups: [...storage.backups],
+    policy: { ...storage.policy },
   };
 }
 
@@ -395,6 +451,7 @@ export function createDatabaseBackup(
   notes = "",
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; backup: DatabaseBackupRecord } {
+  const storage = getAutonomousOpsStorage();
   const timestamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 14);
   const ext = format === "json" ? "json" : "sql";
   const newBackup: DatabaseBackupRecord = {
@@ -405,7 +462,7 @@ export function createDatabaseBackup(
     tablesCount: format === "schema_only" ? 28 : 28,
     rowCount: format === "schema_only" ? 0 : 143200,
     status: "completed",
-    storageLocation: memoryPolicy.syncToS3 ? "both" : "local_disk",
+    storageLocation: storage.policy.syncToS3 ? "both" : "local_disk",
     isAutomatic: false,
     createdAt: new Date().toLocaleString("fa-IR"),
     createdIso: new Date().toISOString(),
@@ -414,7 +471,8 @@ export function createDatabaseBackup(
     downloadUrl: `/api/admin/autonomous-ops/backups?downloadId=bkp_${timestamp}`,
   };
 
-  memoryBackups.unshift(newBackup);
+  storage.backups.unshift(newBackup);
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -439,7 +497,8 @@ export function restoreDatabaseBackup(
   backupId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; message: string } {
-  const match = memoryBackups.find((b) => b.id === backupId);
+  const storage = getAutonomousOpsStorage();
+  const match = storage.backups.find((b) => b.id === backupId);
   if (!match) return { success: false, message: "فایل پشتیبان مورد نظر یافت نشد." };
 
   recordAuditLog({
@@ -468,7 +527,9 @@ export function updateBackupPolicy(
   policyUpdates: Partial<BackupPolicyConfig>,
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  memoryPolicy = { ...memoryPolicy, ...policyUpdates };
+  const storage = getAutonomousOpsStorage();
+  storage.policy = { ...storage.policy, ...policyUpdates };
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -479,14 +540,14 @@ export function updateBackupPolicy(
     target_model: "BackupPolicyConfig",
     target_pk: "active_policy",
     before_summary: {},
-    after_summary: memoryPolicy,
+    after_summary: { ...storage.policy } as unknown as Record<string, unknown>,
     reason: "به‌روزرسانی خط‌مشی پشتیبان‌گیری خودکار و فضای S3",
     request_method: "POST",
     request_path: "/api/admin/autonomous-ops/backups/policy",
     environment: "production",
   });
 
-  return { success: true, policy: memoryPolicy };
+  return { success: true, policy: storage.policy };
 }
 
 export function executeSafeSqlQuery(
@@ -569,7 +630,7 @@ export function executeSafeSqlQuery(
 
 // 2. Incidents & Errors
 export function getIncidentsList() {
-  return [...memoryIncidents];
+  return [...getAutonomousOpsStorage().incidents];
 }
 
 export function updateIncidentStatus(
@@ -578,7 +639,8 @@ export function updateIncidentStatus(
   resolutionNote = "",
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  const match = memoryIncidents.find((i) => i.id === incidentId);
+  const storage = getAutonomousOpsStorage();
+  const match = storage.incidents.find((i) => i.id === incidentId);
   if (!match) return { success: false, error: "حادثه مورد نظر یافت نشد." };
 
   const previousStatus = match.status;
@@ -588,6 +650,7 @@ export function updateIncidentStatus(
     match.resolvedBy = adminUser;
     match.resolutionNote = resolutionNote || "توسط مدیر ارشد علامت‌گذاری به عنوان برطرف شده";
   }
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -612,13 +675,15 @@ export function retryFailedIncident(
   incidentId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; message: string } {
-  const match = memoryIncidents.find((i) => i.id === incidentId);
+  const storage = getAutonomousOpsStorage();
+  const match = storage.incidents.find((i) => i.id === incidentId);
   if (!match) return { success: false, message: "خطای مورد نظر یافت نشد." };
 
   match.status = "resolved";
   match.resolvedAt = new Date().toLocaleString("fa-IR");
   match.resolvedBy = adminUser;
   match.resolutionNote = "تلاش مجدد تراکنش با موفقیت انجام و تاییدیه صادر شد.";
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -644,9 +709,10 @@ export function retryFailedIncident(
 
 // 3. Background Tasks & Cron
 export function getBackgroundTasksList() {
+  const storage = getAutonomousOpsStorage();
   return {
-    tasks: [...memoryTasks],
-    logs: [...memoryTaskLogs],
+    tasks: [...storage.tasks],
+    logs: [...storage.taskLogs],
   };
 }
 
@@ -654,7 +720,8 @@ export function runBackgroundTaskNow(
   taskId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; task: BackgroundTaskRecord; log: TaskExecutionLog } {
-  const match = memoryTasks.find((t) => t.id === taskId);
+  const storage = getAutonomousOpsStorage();
+  const match = storage.tasks.find((t) => t.id === taskId);
   if (!match) throw new Error("تسک مورد نظر یافت نشد.");
 
   const duration = Math.round(400 + Math.random() * 1200);
@@ -674,8 +741,9 @@ export function runBackgroundTaskNow(
     output: `تسک «${match.titleFa}» به صورت دستی توسط ${adminUser} با موفقیت در مدت ${duration}ms اجرا شد.`,
   };
 
-  memoryTaskLogs.unshift(newLog);
-  if (memoryTaskLogs.length > 30) memoryTaskLogs.pop();
+  storage.taskLogs.unshift(newLog);
+  if (storage.taskLogs.length > 30) storage.taskLogs.pop();
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -701,10 +769,12 @@ export function toggleTaskStatus(
   isEnabled: boolean,
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  const match = memoryTasks.find((t) => t.id === taskId);
+  const storage = getAutonomousOpsStorage();
+  const match = storage.tasks.find((t) => t.id === taskId);
   if (!match) return { success: false, error: "تسک یافت نشد." };
 
   match.isEnabled = isEnabled;
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -736,6 +806,7 @@ export function createCustomTask(
   },
   adminUser = "مدیر ارشد ایندورا"
 ) {
+  const storage = getAutonomousOpsStorage();
   const id = `task_custom_${Date.now()}`;
   const newTask: BackgroundTaskRecord = {
     id,
@@ -751,7 +822,8 @@ export function createCustomTask(
     lastOutputSummary: "تسک جدید ایجاد شد.",
   };
 
-  memoryTasks.push(newTask);
+  storage.tasks.push(newTask);
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -774,7 +846,8 @@ export function createCustomTask(
 
 // 4. Translation & UI Dictionary
 export function getDictionaryItems(search?: string, category?: string) {
-  let list = [...memoryDictionary];
+  const storage = getAutonomousOpsStorage();
+  let list = [...storage.dictionary];
   if (category && category !== "all") {
     list = list.filter((i) => i.category === category);
   }
@@ -796,7 +869,8 @@ export function updateDictionaryItem(
   enText: string,
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  const index = memoryDictionary.findIndex((i) => i.key === key);
+  const storage = getAutonomousOpsStorage();
+  const index = storage.dictionary.findIndex((i) => i.key === key);
   if (index === -1) {
     // create new custom key
     const newItem: DictionaryItem = {
@@ -808,18 +882,20 @@ export function updateDictionaryItem(
       updatedBy: adminUser,
       isCustom: true,
     };
-    memoryDictionary.push(newItem);
+    storage.dictionary.push(newItem);
+    persistAutonomousOps();
     return { success: true, item: newItem };
   }
 
-  const oldItem = { ...memoryDictionary[index] };
-  memoryDictionary[index] = {
+  const oldItem = { ...storage.dictionary[index] };
+  storage.dictionary[index] = {
     ...oldItem,
     faText,
     enText,
     lastUpdatedAt: new Date().toLocaleDateString("fa-IR"),
     updatedBy: adminUser,
   };
+  persistAutonomousOps();
 
   recordAuditLog({
     actor_id: null,
@@ -830,12 +906,12 @@ export function updateDictionaryItem(
     target_model: "DictionaryItem",
     target_pk: key,
     before_summary: { ...oldItem } as Record<string, unknown>,
-    after_summary: { ...memoryDictionary[index] } as Record<string, unknown>,
+    after_summary: { ...storage.dictionary[index] } as Record<string, unknown>,
     reason: `ویرایش عبارت متنی سایت برای کلید ${key}`,
     request_method: "POST",
     request_path: "/api/admin/autonomous-ops/dictionary",
     environment: "production",
   });
 
-  return { success: true, item: memoryDictionary[index] };
+  return { success: true, item: storage.dictionary[index] };
 }

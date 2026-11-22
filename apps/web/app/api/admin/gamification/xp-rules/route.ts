@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getLeaderboardData,
   updateXpRulesAction,
 } from "@/lib/admin-gamification-affiliates-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { rules } = getLeaderboardData();
     return NextResponse.json({ success: true, rules });
   } catch (err: any) {
@@ -16,8 +22,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { rules, adminUser } = body;
 
@@ -28,7 +39,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = updateXpRulesAction(rules, adminUser);
+    const result = updateXpRulesAction(rules, adminUser || auth.user?.email);
     return NextResponse.json({
       success: true,
       message: "ضرایب و قوانین امتیازدهی پلتفرم با موفقیت به‌روزرسانی شد.",

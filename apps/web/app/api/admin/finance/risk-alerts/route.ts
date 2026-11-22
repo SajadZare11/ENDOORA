@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getRiskAlertsList,
   mitigateRiskAlertAction,
 } from "@/lib/admin-financial-risk-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const alerts = getRiskAlertsList();
     return NextResponse.json({ success: true, alerts });
   } catch (err: any) {
@@ -16,8 +22,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, alertId, mitigationAction, adminUser } = body;
 
@@ -29,7 +40,7 @@ export async function POST(request: Request) {
         );
       }
 
-      const result = mitigateRiskAlertAction(alertId, mitigationAction, adminUser);
+      const result = mitigateRiskAlertAction(alertId, mitigationAction, adminUser || auth.user?.email);
       if (!result.success) {
         return NextResponse.json({ success: false, error: result.error }, { status: 400 });
       }

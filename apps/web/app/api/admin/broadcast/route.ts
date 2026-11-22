@@ -13,9 +13,12 @@ import {
 } from "@/lib/broadcast-notifications-store";
 import { recordAuditLog } from "@/lib/admin-ops";
 
-export async function GET() {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
+export async function GET(req: NextRequest) {
   try {
+    const auth = await verifyAdminSession(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
     const data = getBroadcastData();
     return NextResponse.json({
       success: true,
@@ -31,7 +34,6 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
   const auth = await verifyAdminSession(req);
   if (!auth.authorized) {

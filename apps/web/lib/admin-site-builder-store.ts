@@ -1,4 +1,10 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Block-Based Page Composer Types
@@ -547,25 +553,73 @@ export const INITIAL_GLOBAL_THEME: GlobalThemeConfig = {
 };
 
 // ==============================================================================
-// Memory State & Store Accessors
+// Persistent State & Store Accessors (site-builder-operations.json)
 // ==============================================================================
-let memoryPages: CustomDynamicPage[] = [...INITIAL_CUSTOM_PAGES];
-let memoryDraftMenu: NavigationMenuConfig = { ...INITIAL_NAVIGATION_CONFIG };
-let memoryLiveMenu: NavigationMenuConfig = { ...INITIAL_NAVIGATION_CONFIG };
-let memoryMenuHistory: NavigationMenuConfig[] = [{ ...INITIAL_NAVIGATION_CONFIG }];
-let memoryPopups: SitePopupConfig[] = [...INITIAL_SITE_POPUPS];
-let memoryTheme: GlobalThemeConfig = { ...INITIAL_GLOBAL_THEME };
+export interface SiteBuilderStoragePayload {
+  pages: CustomDynamicPage[];
+  draftMenu: NavigationMenuConfig;
+  liveMenu: NavigationMenuConfig;
+  menuHistory: NavigationMenuConfig[];
+  popups: SitePopupConfig[];
+  theme: GlobalThemeConfig;
+}
+
+let inMemorySiteBuilder: SiteBuilderStoragePayload | null = null;
+let lastLoadedMtime = 0;
+
+function getStoragePath(): string {
+  return resolveStoragePath("site-builder-operations.json");
+}
+
+export function getSiteBuilderStorage(): SiteBuilderStoragePayload {
+  const filePath = getStoragePath();
+  if (inMemorySiteBuilder && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastLoadedMtime) {
+      return inMemorySiteBuilder;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<SiteBuilderStoragePayload>(
+    filePath,
+    () => ({
+      pages: JSON.parse(JSON.stringify(INITIAL_CUSTOM_PAGES)),
+      draftMenu: JSON.parse(JSON.stringify(INITIAL_NAVIGATION_CONFIG)),
+      liveMenu: JSON.parse(JSON.stringify(INITIAL_NAVIGATION_CONFIG)),
+      menuHistory: [JSON.parse(JSON.stringify(INITIAL_NAVIGATION_CONFIG))],
+      popups: JSON.parse(JSON.stringify(INITIAL_SITE_POPUPS)),
+      theme: JSON.parse(JSON.stringify(INITIAL_GLOBAL_THEME)),
+    }),
+    (p): p is SiteBuilderStoragePayload =>
+      Array.isArray(p?.pages) && Array.isArray(p?.popups) && typeof p?.theme === "object"
+  );
+
+  inMemorySiteBuilder = data;
+  lastLoadedMtime = mtime;
+  return inMemorySiteBuilder;
+}
+
+function persistStorage(): void {
+  if (!inMemorySiteBuilder) return;
+  const filePath = getStoragePath();
+  atomicWriteJsonSync(filePath, inMemorySiteBuilder);
+  if (fs.existsSync(filePath)) {
+    lastLoadedMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ----------------- PAGES OPERATIONS -----------------
 export function getCustomPages(): CustomDynamicPage[] {
-  return [...memoryPages];
+  return [...getSiteBuilderStorage().pages];
 }
 
 export function getCustomPageBySlug(slug: string): CustomDynamicPage | null {
+  const storage = getSiteBuilderStorage();
   const clean = slug.replace(/^\/+/, "");
-  const found = memoryPages.find((p) => p.slug === clean && p.status === "published");
+  const found = storage.pages.find((p) => p.slug === clean && p.status === "published");
   if (found) {
     found.viewsCount = (found.viewsCount || 0) + 1;
+    persistStorage();
     return found;
   }
   return null;
@@ -579,13 +633,14 @@ export function saveCustomPage(
     return { success: false, error: "عنوان فارسی و آدرس یکتا (Slug) الزامی است." };
   }
 
+  const storage = getSiteBuilderStorage();
   const cleanSlug = pageData.slug.trim().toLowerCase().replace(/^\/+/, "").replace(/\s+/g, "-");
 
-  const existingIdx = memoryPages.findIndex((p) => p.id === pageData.id || p.slug === cleanSlug);
+  const existingIdx = storage.pages.findIndex((p) => p.id === pageData.id || p.slug === cleanSlug);
 
   if (existingIdx >= 0) {
     const updated: CustomDynamicPage = {
-      ...memoryPages[existingIdx],
+      ...storage.pages[existingIdx],
       ...pageData,
       slug: cleanSlug,
       updatedAt: new Date().toLocaleDateString("fa-IR"),
@@ -593,7 +648,8 @@ export function saveCustomPage(
     if (pageData.status === "published" && !updated.publishedAt) {
       updated.publishedAt = new Date().toLocaleDateString("fa-IR");
     }
-    memoryPages[existingIdx] = updated;
+    storage.pages[existingIdx] = updated;
+    persistStorage();
 
     recordAuditLog({
       actor_id: null,
@@ -624,10 +680,11 @@ export function saveCustomPage(
       createdAt: new Date().toLocaleDateString("fa-IR"),
       updatedAt: new Date().toLocaleDateString("fa-IR"),
       publishedAt: pageData.status === "published" ? new Date().toLocaleDateString("fa-IR") : null,
-      viewsCount: 0,
+      viewsCount: pageData.viewsCount ?? 0,
       blocks: pageData.blocks || [],
     };
-    memoryPages.unshift(newPage);
+    storage.pages.unshift(newPage);
+    persistStorage();
 
     recordAuditLog({
       actor_id: null,
@@ -653,13 +710,15 @@ export function deleteCustomPage(
   pageId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; error?: string } {
-  const index = memoryPages.findIndex((p) => p.id === pageId);
+  const storage = getSiteBuilderStorage();
+  const index = storage.pages.findIndex((p) => p.id === pageId);
   if (index === -1) {
     return { success: false, error: "برگه مورد نظر یافت نشد." };
   }
 
-  const removed = memoryPages[index];
-  memoryPages.splice(index, 1);
+  const removed = storage.pages[index];
+  storage.pages.splice(index, 1);
+  persistStorage();
 
   recordAuditLog({
     actor_id: null,
@@ -686,10 +745,11 @@ export function getNavigationConfig(): {
   live: NavigationMenuConfig;
   history: NavigationMenuConfig[];
 } {
+  const storage = getSiteBuilderStorage();
   return {
-    draft: memoryDraftMenu,
-    live: memoryLiveMenu,
-    history: memoryMenuHistory,
+    draft: storage.draftMenu,
+    live: storage.liveMenu,
+    history: storage.menuHistory,
   };
 }
 
@@ -697,31 +757,35 @@ export function saveDraftNavigation(
   config: Partial<NavigationMenuConfig>,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; draft: NavigationMenuConfig } {
-  memoryDraftMenu = {
-    ...memoryDraftMenu,
+  const storage = getSiteBuilderStorage();
+  storage.draftMenu = {
+    ...storage.draftMenu,
     ...config,
     updatedAt: new Date().toLocaleDateString("fa-IR"),
     updatedBy: adminUser,
   };
-  return { success: true, draft: memoryDraftMenu };
+  persistStorage();
+  return { success: true, draft: storage.draftMenu };
 }
 
 export function publishLiveNavigation(
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; live: NavigationMenuConfig } {
-  const newVersion = (memoryLiveMenu.version || 1) + 1;
+  const storage = getSiteBuilderStorage();
+  const newVersion = (storage.liveMenu.version || 1) + 1;
   const published: NavigationMenuConfig = {
-    ...memoryDraftMenu,
+    ...storage.draftMenu,
     version: newVersion,
     publishedAt: new Date().toLocaleDateString("fa-IR"),
     updatedAt: new Date().toLocaleDateString("fa-IR"),
     updatedBy: adminUser,
   };
 
-  memoryLiveMenu = published;
-  memoryDraftMenu = { ...published };
-  memoryMenuHistory.unshift(published);
-  if (memoryMenuHistory.length > 10) memoryMenuHistory.pop();
+  storage.liveMenu = published;
+  storage.draftMenu = { ...published };
+  storage.menuHistory.unshift(published);
+  if (storage.menuHistory.length > 10) storage.menuHistory.pop();
+  persistStorage();
 
   recordAuditLog({
     actor_id: null,
@@ -746,13 +810,15 @@ export function rollbackNavigation(
   targetVersion: number,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; live?: NavigationMenuConfig; error?: string } {
-  const match = memoryMenuHistory.find((m) => m.version === targetVersion);
+  const storage = getSiteBuilderStorage();
+  const match = storage.menuHistory.find((m) => m.version === targetVersion);
   if (!match) {
     return { success: false, error: `نسخه منوی ${targetVersion} در تاریخچه موجود نیست.` };
   }
 
-  memoryLiveMenu = { ...match, updatedAt: new Date().toLocaleDateString("fa-IR"), updatedBy: adminUser };
-  memoryDraftMenu = { ...memoryLiveMenu };
+  storage.liveMenu = { ...match, updatedAt: new Date().toLocaleDateString("fa-IR"), updatedBy: adminUser };
+  storage.draftMenu = { ...storage.liveMenu };
+  persistStorage();
 
   recordAuditLog({
     actor_id: null,
@@ -770,16 +836,17 @@ export function rollbackNavigation(
     environment: "production",
   });
 
-  return { success: true, live: memoryLiveMenu };
+  return { success: true, live: storage.liveMenu };
 }
 
 // ----------------- POPUPS OPERATIONS -----------------
 export function getSitePopups(): SitePopupConfig[] {
-  return [...memoryPopups];
+  return [...getSiteBuilderStorage().popups];
 }
 
 export function getActivePublicPopups(currentPath: string): SitePopupConfig[] {
-  return memoryPopups.filter((p) => {
+  const storage = getSiteBuilderStorage();
+  return storage.popups.filter((p) => {
     if (!p.isActive) return false;
     if (p.targetPaths.includes("*")) return true;
     return p.targetPaths.some((tp) => currentPath.startsWith(tp));
@@ -794,15 +861,17 @@ export function saveSitePopup(
     return { success: false, error: "عنوان و پیام پاپ‌آپ الزامی است." };
   }
 
-  const existingIdx = memoryPopups.findIndex((p) => p.id === popupData.id);
+  const storage = getSiteBuilderStorage();
+  const existingIdx = storage.popups.findIndex((p) => p.id === popupData.id);
 
   if (existingIdx >= 0) {
     const updated: SitePopupConfig = {
-      ...memoryPopups[existingIdx],
+      ...storage.popups[existingIdx],
       ...popupData,
       updatedAt: new Date().toLocaleDateString("fa-IR"),
     };
-    memoryPopups[existingIdx] = updated;
+    storage.popups[existingIdx] = updated;
+    persistStorage();
 
     recordAuditLog({
       actor_id: null,
@@ -846,7 +915,8 @@ export function saveSitePopup(
       createdAt: new Date().toLocaleDateString("fa-IR"),
       updatedAt: new Date().toLocaleDateString("fa-IR"),
     };
-    memoryPopups.unshift(newPopup);
+    storage.popups.unshift(newPopup);
+    persistStorage();
 
     recordAuditLog({
       actor_id: null,
@@ -872,13 +942,15 @@ export function deleteSitePopup(
   popupId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; error?: string } {
-  const index = memoryPopups.findIndex((p) => p.id === popupId);
+  const storage = getSiteBuilderStorage();
+  const index = storage.popups.findIndex((p) => p.id === popupId);
   if (index === -1) {
     return { success: false, error: "پاپ‌آپ مورد نظر یافت نشد." };
   }
 
-  const removed = memoryPopups[index];
-  memoryPopups.splice(index, 1);
+  const removed = storage.popups[index];
+  storage.popups.splice(index, 1);
+  persistStorage();
 
   recordAuditLog({
     actor_id: null,
@@ -901,19 +973,21 @@ export function deleteSitePopup(
 
 // ----------------- THEME & BRANDING OPERATIONS -----------------
 export function getGlobalThemeConfig(): GlobalThemeConfig {
-  return { ...memoryTheme };
+  return { ...getSiteBuilderStorage().theme };
 }
 
 export function saveGlobalThemeConfig(
   themeData: Partial<GlobalThemeConfig>,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; theme: GlobalThemeConfig } {
-  memoryTheme = {
-    ...memoryTheme,
+  const storage = getSiteBuilderStorage();
+  storage.theme = {
+    ...storage.theme,
     ...themeData,
     updatedAt: new Date().toLocaleDateString("fa-IR"),
     updatedBy: adminUser,
   };
+  persistStorage();
 
   recordAuditLog({
     actor_id: null,
@@ -925,9 +999,9 @@ export function saveGlobalThemeConfig(
     target_pk: "global_branding",
     before_summary: {},
     after_summary: {
-      brandPrimaryColor: memoryTheme.brandPrimaryColor,
-      persianFontFamily: memoryTheme.persianFontFamily,
-      customCssEnabled: memoryTheme.customCssEnabled,
+      brandPrimaryColor: storage.theme.brandPrimaryColor,
+      persianFontFamily: storage.theme.persianFontFamily,
+      customCssEnabled: storage.theme.customCssEnabled,
     },
     reason: "شخصی‌سازی تم سراسری، فونت‌ها و رنگ سازمانی سایت",
     request_method: "POST",
@@ -935,5 +1009,5 @@ export function saveGlobalThemeConfig(
     environment: "production",
   });
 
-  return { success: true, theme: memoryTheme };
+  return { success: true, theme: storage.theme };
 }

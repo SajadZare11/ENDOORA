@@ -47,6 +47,16 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { adminUser, ...configUpdates } = body;
 
+    // Extract PIN from body or header - NO DEFAULT FALLBACK
+    const pin = (body.pin || req.headers.get("x-admin-pin") || "").toString().trim();
+
+    if (!pin || !/^\d{6}$/.test(pin)) {
+      return NextResponse.json(
+        { success: false, error: "تأیید پین امنیتی ۶ رقمی مدیر ارشد برای تغییر وضعیت حالت تعمیرات الزامی است." },
+        { status: 403 }
+      );
+    }
+
     const backendUrl = (
       process.env.ENDOORA_API_INTERNAL_URL ?? "http://127.0.0.1:8000"
     ).replace(/\/+$/, "");
@@ -58,10 +68,11 @@ export async function POST(req: NextRequest) {
           "Content-Type": "application/json",
           Accept: "application/json",
           Cookie: req.headers.get("cookie") || "",
+          "X-Admin-PIN": pin,
         },
         body: JSON.stringify({
           isEnabled: Boolean(configUpdates.isEnabled),
-          pin: body.pin || "123456",
+          pin,
         }),
       });
 

@@ -1,4 +1,11 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import net from "net";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Server Telemetry & Process Health Types
@@ -297,44 +304,89 @@ export const INITIAL_API_INTEGRATIONS: ApiIntegrationStatus[] = [
   },
 ];
 
-// Sample table records for the database inspector
-let sampleTableData: Record<DatabaseTableId, any[]> = {
-  users: [
-    { id: "usr_01", username: "sara_m", email: "sara.mohammadi@example.com", role: "learner", is_active: true, date_joined: "1403/07/15", wallet_balance_toman: 250000 },
-    { id: "usr_02", username: "ali_r", email: "ali.rezaei@example.com", role: "learner", is_active: true, date_joined: "1403/08/01", wallet_balance_toman: 0 },
-    { id: "usr_03", username: "dr_watson", email: "watson@endoora.ir", role: "teacher", is_active: true, date_joined: "1403/06/10", wallet_balance_toman: 18500000 },
-    { id: "usr_04", username: "niloofar_k", email: "niloofar.karimi@example.com", role: "learner", is_active: true, date_joined: "1403/08/10", wallet_balance_toman: 120000 },
-    { id: "usr_05", username: "super_admin", email: "admin@endoora.ir", role: "administrator", is_active: true, date_joined: "1403/01/01", wallet_balance_toman: 0 },
-  ],
-  courses: [
-    { id: "crs_01", slug: "grade-12-tamrin20", title_fa: "تمرین تا ۲۰ (انگلیسی دوازدهم نهایی)", cefr_level: "School", status: "published", is_premium: true, estimated_hours: 15 },
-    { id: "crs_02", slug: "speakout-b1-mastery", title_fa: "دوره مکالمه و گرامر جامع (Speakout B1)", cefr_level: "B1", status: "published", is_premium: true, estimated_hours: 30 },
-    { id: "crs_03", slug: "ielts-speaking-mastery", title_fa: "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)", cefr_level: "B2", status: "published", is_premium: true, estimated_hours: 25 },
-  ],
-  enrollments: [
-    { id: "enr_01", learner_id: "usr_01", course_id: "crs_03", progress_percent: 75, enrolled_at: "1403/07/15", completed_at: null },
-    { id: "enr_02", learner_id: "usr_02", course_id: "crs_01", progress_percent: 100, enrolled_at: "1403/08/01", completed_at: "1403/08/25" },
-    { id: "enr_03", learner_id: "usr_04", course_id: "crs_02", progress_percent: 33, enrolled_at: "1403/08/10", completed_at: null },
-  ],
-  ledger: [
-    { id: "led_01", reference_id: "tx_9812", entry_type: "COURSE_COMMISSION", amount_toman: 420000, status: "settled", created_at: "1403/08/18 14:20" },
-    { id: "led_02", reference_id: "tx_9813", entry_type: "TEACHER_PAYOUT", amount_toman: 2850000, status: "settled", created_at: "1403/08/19 10:15" },
-    { id: "led_03", reference_id: "tx_9814", entry_type: "SUBSCRIPTION_REVENUE", amount_toman: 790000, status: "pending", created_at: "1403/08/20 16:00" },
-  ],
-  audit_logs: [
-    { id: "aud_01", actor_email: "admin@endoora.ir", action: "update", target_model: "LearnerLessonProgress", target_pk: "l-v12-01", reason: "اورراید نمره آزمونک", occurred_at: "1403/08/20 14:15" },
-    { id: "aud_02", actor_email: "admin@endoora.ir", action: "create", target_model: "CustomDynamicPage", target_pk: "exam-cram-1403", reason: "انتشار لندینگ پیج جدید", occurred_at: "1403/08/20 11:30" },
-  ],
-  feature_flags: [
-    { key: "ai_tutor_realtime", enabled: true, rollout_percentage: 100, owner: "AI Platform Team", rationale: "دوقلوی هوش مصنوعی", kill_switch_behavior: "REVIEWED_FALLBACK" },
-    { key: "konkur_exam_simulators", enabled: true, rollout_percentage: 100, owner: "Curriculum Team", rationale: "شبیه‌ساز امتحان نهایی", kill_switch_behavior: "READ_ONLY" },
-    { key: "marketplace_instant_booking", enabled: false, rollout_percentage: 0, owner: "Marketplace Team", rationale: "رزرو فوری کلاس بدون تایید مدرس", kill_switch_behavior: "DISABLE" },
-  ],
-};
+// ==============================================================================
+// Persistent State & Store Accessors (server-ops-operations.json)
+// ==============================================================================
+export interface ServerOpsStoragePayload {
+  maintenance: MaintenanceModeConfig;
+  cacheTelemetry: CacheTelemetry;
+  apiIntegrations: ApiIntegrationStatus[];
+  sampleTableData: Record<DatabaseTableId, any[]>;
+}
 
-let memoryMaintenance: MaintenanceModeConfig = { ...INITIAL_MAINTENANCE_CONFIG };
-let memoryCacheTelemetry: CacheTelemetry = { ...INITIAL_CACHE_TELEMETRY };
-let memoryApiIntegrations: ApiIntegrationStatus[] = [...INITIAL_API_INTEGRATIONS];
+let inMemoryServerOps: ServerOpsStoragePayload | null = null;
+let lastServerOpsMtime = 0;
+
+function getServerOpsPath(): string {
+  return resolveStoragePath("server-ops-operations.json");
+}
+
+export function getServerOpsStorage(): ServerOpsStoragePayload {
+  const filePath = getServerOpsPath();
+  if (inMemoryServerOps && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastServerOpsMtime) {
+      return inMemoryServerOps;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<ServerOpsStoragePayload>(
+    filePath,
+    () => ({
+      maintenance: JSON.parse(JSON.stringify(INITIAL_MAINTENANCE_CONFIG)),
+      cacheTelemetry: JSON.parse(JSON.stringify(INITIAL_CACHE_TELEMETRY)),
+      apiIntegrations: JSON.parse(JSON.stringify(INITIAL_API_INTEGRATIONS)),
+      sampleTableData: {
+        users: [
+          { id: "usr_01", username: "sara_m", email: "sara.mohammadi@example.com", role: "learner", is_active: true, date_joined: "1403/07/15", wallet_balance_toman: 250000 },
+          { id: "usr_02", username: "ali_r", email: "ali.rezaei@example.com", role: "learner", is_active: true, date_joined: "1403/08/01", wallet_balance_toman: 0 },
+          { id: "usr_03", username: "dr_watson", email: "watson@endoora.ir", role: "teacher", is_active: true, date_joined: "1403/06/10", wallet_balance_toman: 18500000 },
+          { id: "usr_04", username: "niloofar_k", email: "niloofar.karimi@example.com", role: "learner", is_active: true, date_joined: "1403/08/10", wallet_balance_toman: 120000 },
+          { id: "usr_05", username: "super_admin", email: "admin@endoora.ir", role: "administrator", is_active: true, date_joined: "1403/01/01", wallet_balance_toman: 0 },
+        ],
+        courses: [
+          { id: "crs_01", slug: "grade-12-tamrin20", title_fa: "تمرین تا ۲۰ (انگلیسی دوازدهم نهایی)", cefr_level: "School", status: "published", is_premium: true, estimated_hours: 15 },
+          { id: "crs_02", slug: "speakout-b1-mastery", title_fa: "دوره مکالمه و گرامر جامع (Speakout B1)", cefr_level: "B1", status: "published", is_premium: true, estimated_hours: 30 },
+          { id: "crs_03", slug: "ielts-speaking-mastery", title_fa: "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)", cefr_level: "B2", status: "published", is_premium: true, estimated_hours: 25 },
+        ],
+        enrollments: [
+          { id: "enr_01", learner_id: "usr_01", course_id: "crs_03", progress_percent: 75, enrolled_at: "1403/07/15", completed_at: null },
+          { id: "enr_02", learner_id: "usr_02", course_id: "crs_01", progress_percent: 100, enrolled_at: "1403/08/01", completed_at: "1403/08/25" },
+          { id: "enr_03", learner_id: "usr_04", course_id: "crs_02", progress_percent: 33, enrolled_at: "1403/08/10", completed_at: null },
+        ],
+        ledger: [
+          { id: "led_01", reference_id: "tx_9812", entry_type: "COURSE_COMMISSION", amount_toman: 420000, status: "settled", created_at: "1403/08/18 14:20" },
+          { id: "led_02", reference_id: "tx_9813", entry_type: "TEACHER_PAYOUT", amount_toman: 2850000, status: "settled", created_at: "1403/08/19 10:15" },
+          { id: "led_03", reference_id: "tx_9814", entry_type: "SUBSCRIPTION_REVENUE", amount_toman: 790000, status: "pending", created_at: "1403/08/20 16:00" },
+        ],
+        audit_logs: [
+          { id: "aud_01", actor_email: "admin@endoora.ir", action: "update", target_model: "LearnerLessonProgress", target_pk: "l-v12-01", reason: "اورراید نمره آزمونک", occurred_at: "1403/08/20 14:15" },
+          { id: "aud_02", actor_email: "admin@endoora.ir", action: "create", target_model: "CustomDynamicPage", target_pk: "exam-cram-1403", reason: "انتشار لندینگ پیج جدید", occurred_at: "1403/08/20 11:30" },
+        ],
+        feature_flags: [
+          { key: "ai_tutor_realtime", enabled: true, rollout_percentage: 100, owner: "AI Platform Team", rationale: "دوقلوی هوش مصنوعی", kill_switch_behavior: "REVIEWED_FALLBACK" },
+          { key: "konkur_exam_simulators", enabled: true, rollout_percentage: 100, owner: "Curriculum Team", rationale: "شبیه‌ساز امتحان نهایی", kill_switch_behavior: "READ_ONLY" },
+          { key: "marketplace_instant_booking", enabled: false, rollout_percentage: 0, owner: "Marketplace Team", rationale: "رزرو فوری کلاس بدون تایید مدرس", kill_switch_behavior: "DISABLE" },
+        ],
+      },
+    }),
+    (p): p is ServerOpsStoragePayload =>
+      typeof p?.maintenance === "object" && Array.isArray(p?.apiIntegrations) && typeof p?.sampleTableData === "object"
+  );
+
+  inMemoryServerOps = data;
+  lastServerOpsMtime = mtime;
+  return inMemoryServerOps;
+}
+
+export function persistServerOps(): void {
+  if (!inMemoryServerOps) return;
+  const filePath = getServerOpsPath();
+  atomicWriteJsonSync(filePath, inMemoryServerOps);
+  if (fs.existsSync(filePath)) {
+    lastServerOpsMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ==============================================================================
 // Store Accessors & Handlers
@@ -375,8 +427,9 @@ export function getDatabaseTableData(
   tableId: DatabaseTableId,
   search?: string
 ): { meta: DatabaseTableMeta; rows: any[] } {
+  const storage = getServerOpsStorage();
   const meta = INITIAL_TABLES_META.find((t) => t.id === tableId) || INITIAL_TABLES_META[0];
-  let rows = [...(sampleTableData[tableId] || [])];
+  let rows = [...(storage.sampleTableData[tableId] || [])];
 
   if (search && search.trim()) {
     const q = search.trim().toLowerCase();
@@ -395,7 +448,8 @@ export function mutateDatabaseRow(
   reason: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; row?: any; error?: string } {
-  const rows = sampleTableData[tableId];
+  const storage = getServerOpsStorage();
+  const rows = storage.sampleTableData[tableId];
   if (!rows) return { success: false, error: "جدول مورد نظر یافت نشد." };
 
   const meta = INITIAL_TABLES_META.find((t) => t.id === tableId);
@@ -407,6 +461,7 @@ export function mutateDatabaseRow(
   const oldRow = { ...rows[index] };
   const updatedRow = { ...oldRow, ...updates };
   rows[index] = updatedRow;
+  persistServerOps();
 
   recordAuditLog({
     actor_id: null,
@@ -429,7 +484,7 @@ export function mutateDatabaseRow(
 
 // 3. Cache Purge
 export function getCacheTelemetry(): CacheTelemetry {
-  return { ...memoryCacheTelemetry };
+  return { ...getServerOpsStorage().cacheTelemetry };
 }
 
 export function purgeCache(
@@ -437,6 +492,7 @@ export function purgeCache(
   namespaceOrPath = "",
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; event: CachePurgeEvent } {
+  const storage = getServerOpsStorage();
   const newEvent: CachePurgeEvent = {
     id: `purge-${Date.now()}`,
     target,
@@ -447,11 +503,12 @@ export function purgeCache(
     status: "success",
   };
 
-  memoryCacheTelemetry.recentPurgeEvents.unshift(newEvent);
-  memoryCacheTelemetry.lastPurgeTimestamp = newEvent.occurredAt;
-  if (memoryCacheTelemetry.recentPurgeEvents.length > 20) {
-    memoryCacheTelemetry.recentPurgeEvents.pop();
+  storage.cacheTelemetry.recentPurgeEvents.unshift(newEvent);
+  storage.cacheTelemetry.lastPurgeTimestamp = newEvent.occurredAt;
+  if (storage.cacheTelemetry.recentPurgeEvents.length > 20) {
+    storage.cacheTelemetry.recentPurgeEvents.pop();
   }
+  persistServerOps();
 
   recordAuditLog({
     actor_id: null,
@@ -474,20 +531,22 @@ export function purgeCache(
 
 // 4. Maintenance Gateway
 export function getMaintenanceConfig(): MaintenanceModeConfig {
-  return { ...memoryMaintenance };
+  return { ...getServerOpsStorage().maintenance };
 }
 
 export function saveMaintenanceConfig(
   config: Partial<MaintenanceModeConfig>,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; config: MaintenanceModeConfig } {
-  const previousState = memoryMaintenance.isEnabled;
-  memoryMaintenance = {
-    ...memoryMaintenance,
+  const storage = getServerOpsStorage();
+  const previousState = storage.maintenance.isEnabled;
+  storage.maintenance = {
+    ...storage.maintenance,
     ...config,
     updatedAt: new Date().toLocaleString("fa-IR"),
     updatedBy: adminUser,
   };
+  persistServerOps();
 
   recordAuditLog({
     actor_id: null,
@@ -498,30 +557,124 @@ export function saveMaintenanceConfig(
     target_model: "MaintenanceModeConfig",
     target_pk: "emergency_lock",
     before_summary: { isEnabled: previousState },
-    after_summary: { isEnabled: memoryMaintenance.isEnabled },
-    reason: memoryMaintenance.isEnabled ? "فعال‌سازی حالت تعمیرات و قفل اضطراری کل سایت" : "غیرفعال‌سازی حالت تعمیرات و بازگشایی عمومی سایت",
+    after_summary: { isEnabled: storage.maintenance.isEnabled },
+    reason: storage.maintenance.isEnabled ? "فعال‌سازی حالت تعمیرات و قفل اضطراری کل سایت" : "غیرفعال‌سازی حالت تعمیرات و بازگشایی عمومی سایت",
     request_method: "POST",
     request_path: "/api/admin/server-ops/maintenance",
     environment: "production",
   });
 
-  return { success: true, config: memoryMaintenance };
+  return { success: true, config: storage.maintenance };
 }
 
 // 5. API Vault
 export function getApiIntegrations(): ApiIntegrationStatus[] {
-  return [...memoryApiIntegrations];
+  return [...getServerOpsStorage().apiIntegrations];
 }
 
-export function pingApiIntegration(
+export async function pingApiIntegration(
   serviceId: ApiIntegrationServiceId
-): { success: boolean; service: ApiIntegrationStatus } {
-  const match = memoryApiIntegrations.find((s) => s.id === serviceId);
+): Promise<{ success: boolean; service: ApiIntegrationStatus }> {
+  const storage = getServerOpsStorage();
+  const match = storage.apiIntegrations.find((s) => s.id === serviceId);
   if (!match) throw new Error("Service not found");
 
-  match.lastPingAt = "هم‌اکنون";
-  match.latencyMs = Math.round(match.latencyMs * (0.85 + Math.random() * 0.3));
-  match.status = "connected";
+  const start = performance.now();
+  match.lastPingAt = new Date().toLocaleTimeString("fa-IR");
 
+  if (serviceId === "postgres_db") {
+    // Probe TCP port 5432 or Django fallback
+    const tcpResult = await new Promise<{ ok: boolean; latency: number }>((resolve) => {
+      const socket = new net.Socket();
+      socket.setTimeout(2500);
+
+      socket.on("connect", () => {
+        const latency = Math.round(performance.now() - start);
+        socket.destroy();
+        resolve({ ok: true, latency });
+      });
+
+      socket.on("timeout", () => {
+        socket.destroy();
+        resolve({ ok: false, latency: 2500 });
+      });
+
+      socket.on("error", () => {
+        socket.destroy();
+        resolve({ ok: false, latency: Math.round(performance.now() - start) });
+      });
+
+      socket.connect(5432, "127.0.0.1");
+    });
+
+    if (tcpResult.ok) {
+      match.status = "connected";
+      match.latencyMs = Math.max(1, tcpResult.latency);
+      match.details = { ...match.details, socketStatus: "TCP port 5432 open" };
+    } else {
+      // Check Django HTTP health
+      try {
+        const dStart = performance.now();
+        const dRes = await fetch("http://127.0.0.1:8000/api/health/", {
+          signal: AbortSignal.timeout(1500),
+        }).catch(() => null);
+        if (dRes && dRes.status < 500) {
+          match.status = "degraded";
+          match.latencyMs = Math.round(performance.now() - dStart);
+          match.details = { ...match.details, socketStatus: "Postgres offline, Django SQLite active" };
+        } else {
+          match.status = "offline";
+          match.latencyMs = tcpResult.latency;
+          match.details = { ...match.details, socketStatus: "Postgres 5432 refused and Django offline" };
+        }
+      } catch {
+        match.status = "offline";
+        match.latencyMs = tcpResult.latency;
+      }
+    }
+  } else {
+    // HTTP/HTTPS endpoint ping (HEAD with GET fallback)
+    try {
+      const url = match.endpointUrl.startsWith("http")
+        ? match.endpointUrl
+        : `https://${match.endpointUrl}`;
+
+      let res: Response | null = null;
+      try {
+        res = await fetch(url, {
+          method: "HEAD",
+          signal: AbortSignal.timeout(3500),
+          headers: { "User-Agent": "Endoora-HealthProbe/1.0" },
+        });
+      } catch {
+        // Fallback to minimal GET with byte range if HEAD fails or is rejected
+        res = await fetch(url, {
+          method: "GET",
+          headers: { Range: "bytes=0-0", "User-Agent": "Endoora-HealthProbe/1.0" },
+          signal: AbortSignal.timeout(3500),
+        }).catch(() => null);
+      }
+
+      const elapsed = Math.round(performance.now() - start);
+      if (res && res.status < 500) {
+        // Any HTTP status code below 500 (even 401/403/404) proves server reachability
+        match.status = elapsed > 2000 ? "degraded" : "connected";
+        match.latencyMs = Math.max(1, elapsed);
+        match.details = { ...match.details, httpStatus: res.status };
+      } else if (res && res.status >= 500) {
+        match.status = "degraded";
+        match.latencyMs = elapsed;
+        match.details = { ...match.details, httpStatus: res.status };
+      } else {
+        match.status = "offline";
+        match.latencyMs = Math.max(1, elapsed);
+      }
+    } catch {
+      match.status = "offline";
+      match.latencyMs = Math.round(performance.now() - start);
+    }
+  }
+
+  persistServerOps();
   return { success: true, service: match };
 }

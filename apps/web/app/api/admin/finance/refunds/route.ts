@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getRefundsList,
   issueOneClickRefund,
 } from "@/lib/admin-financial-risk-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const data = getRefundsList();
     return NextResponse.json({ success: true, ...data });
   } catch (err: any) {
@@ -16,8 +22,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, transactionId, refundMethod, customAmountToman, reason, adminUser } = body;
 
@@ -36,7 +47,7 @@ export async function POST(request: Request) {
           customAmountToman,
           reason,
         },
-        adminUser
+        adminUser || auth.user?.email
       );
 
       if (!result.success) {

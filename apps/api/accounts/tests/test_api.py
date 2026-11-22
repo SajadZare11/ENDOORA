@@ -45,6 +45,10 @@ class AccountApiTests(APITestCase):
         response = self.client.get("/api/auth/me/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["email"], self.user.email)
+        self.assertIn("is_staff", response.data)
+        self.assertIn("is_superuser", response.data)
+        self.assertEqual(response.data["is_staff"], False)
+        self.assertEqual(response.data["is_superuser"], False)
 
     def test_cookie_login_requires_csrf_and_logout_is_csrf_protected(self):
         csrf_client = APIClient(enforce_csrf_checks=True)

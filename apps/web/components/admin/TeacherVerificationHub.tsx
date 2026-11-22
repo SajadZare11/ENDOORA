@@ -998,7 +998,7 @@ export function TeacherVerificationHub() {
                                 <input
                                   type="checkbox"
                                   checked={isAssigned}
-                                  onChange={() => {}}
+                                  onChange={() => handleToggleBadge(badge.key)}
                                   aria-label={badge.titleFa}
                                   style={{ accentColor: "#2563eb" }}
                                 />

@@ -1,4 +1,11 @@
-import { CourseEditorItem, LessonEditorItem, ModuleEditorItem, QuizItem } from "./courses-cms";
+import fs from "fs";
+import type { CourseEditorItem, LessonEditorItem, ModuleEditorItem, QuizItem } from "./courses-cms.ts";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 export interface LearnerLessonProgressRecord {
   lessonId: string;
@@ -75,8 +82,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "A1",
     titleFa: "درس ۱: سلام و احوال‌پرسی بین‌المللی",
     titleEn: "Unit 1: Welcome & Introductions (BBC Video)",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-so-a1/1.1.BBC.Interviews.What.s.your.name.mp4",
+    audioUrl: "/audio/skills/lesson-01.mp3",
     durationMinutes: 12,
     transcriptSample: [
       { time: "00:05", speaker: "Host", textEn: "Hello everyone, my name is David.", textFa: "سلام به همگی، نام من دیوید است." },
@@ -85,8 +92,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
       { time: "00:45", speaker: "Maria", textEn: "I'm from Madrid, Spain. Pleased to be here.", textFa: "من اهل مادرید اسپانیا هستم. از حضور در اینجا خوشحالم." },
     ],
     downloadables: [
-      { title: "Speakout A1 Unit 1 Worksheet (PDF)", url: "/downloads/speakout_a1_u1.pdf", size: "1.4 MB", type: "pdf" },
-      { title: "Unit 1 Vocabulary & Audio Script", url: "/downloads/speakout_a1_vocab.pdf", size: "820 KB", type: "pdf" },
+      { title: "کتاب اصلی Speakout A1 (Student's Book PDF)", url: "https://dl.endoora.ir/books/speakout/Speakout-A1.pdf", size: "74 MB", type: "pdf" },
+      { title: "آرشیو کامل دوره اسپیک‌اوت ویرایش سوم (ZIP)", url: "https://github.com/SajadZare11/ENDOORA/releases/download/media-so-b1/Speakout-3rd-Collection.zip", size: "850 MB", type: "zip" },
     ],
   },
   {
@@ -96,8 +103,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "B1",
     titleFa: "درس ۴: تصمیم‌گیری‌های شغلی و مصاحبه کاری",
     titleEn: "Unit 4: Career Choices & Workplace Dialogue",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-so-a1/1.1.BBC.Interviews.What.s.your.name.mp4",
+    audioUrl: "/audio/ielts/c10-acad-t1_listening.mp3",
     durationMinutes: 18,
     transcriptSample: [
       { time: "00:10", speaker: "Interviewer", textEn: "Can you describe a challenging project you managed successfully?", textFa: "می‌توانید پروژه چالش‌برانگیزی را که با موفقیت مدیریت کردید شرح دهید؟" },
@@ -105,7 +112,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
       { time: "01:05", speaker: "Interviewer", textEn: "How did you overcome the tight deadlines?", textFa: "چگونه بر ضرب‌الاجل‌های فشرده فائق آمدید؟" },
     ],
     downloadables: [
-      { title: "Workplace Interview Phrases Cheat Sheet", url: "/downloads/workplace_phrases.pdf", size: "2.1 MB", type: "pdf" },
+      { title: "کتاب اصلی Speakout B1 (Student's Book PDF)", url: "https://dl.endoora.ir/books/speakout/Speakout-B1.pdf", size: "89 MB", type: "pdf" },
+      { title: "راهنمای عبارات مکالمات اداری و تجاری", url: "https://dl.endoora.ir/books/workplace_phrases.pdf", size: "2.1 MB", type: "pdf" },
     ],
   },
   {
@@ -115,8 +123,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "A2",
     titleFa: "انگلیسی کاربردی: رزرو هتل و سفارش در رستوران",
     titleEn: "Practical English: Hotel Check-in & Ordering Food",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-aef-a1/1.10.Practical.English.Episode.1.Calling.Reception.mp4",
+    audioUrl: "/audio/ielts/c11-acad-t1_listening.mp3",
     durationMinutes: 15,
     transcriptSample: [
       { time: "00:08", speaker: "Receptionist", textEn: "Good afternoon. Do you have a reservation?", textFa: "عصر بخیر. آیا از قبل رزرو انجام داده‌اید؟" },
@@ -124,7 +132,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
       { time: "00:42", speaker: "Receptionist", textEn: "Perfect. May I see your ID card and credit card?", textFa: "عالی است. ممکن است کارت شناسایی و کارت اعتباری‌تان را ببینم؟" },
     ],
     downloadables: [
-      { title: "AEF 2 Practical English Dialogue Guide", url: "/downloads/aef2_dialogue.pdf", size: "1.8 MB", type: "pdf" },
+      { title: "کتاب دانش‌آموز AEF 2 ویرایش سوم", url: "https://dl.endoora.ir/books/aef/AEF2-SB-3rd.pdf", size: "91 MB", type: "pdf" },
+      { title: "جزوه مکالمات کاربردی رزرو و سفر", url: "https://dl.endoora.ir/books/aef2_dialogue.pdf", size: "1.8 MB", type: "pdf" },
     ],
   },
   {
@@ -134,15 +143,16 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "B2",
     titleFa: "گفتگوهای عامیانه و اصطلاحات روزمره آمریکایی",
     titleEn: "Colloquial English: Talking About Technology Trends",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-aef-a1/1.10.Practical.English.Episode.1.Calling.Reception.mp4",
+    audioUrl: "/audio/ielts/c12-acad-t1_listening.mp3",
     durationMinutes: 20,
     transcriptSample: [
       { time: "00:12", speaker: "Host", textEn: "Today we have Dr. Aris discussing artificial intelligence in daily routines.", textFa: "امروز دکتر آریس را همراه داریم که در مورد هوش مصنوعی در برنامه‌های روزمره صحبت می‌کند." },
       { time: "00:40", speaker: "Guest", textEn: "AI is no longer science fiction; it is shaping pedagogy and automation.", textFa: "هوش مصنوعی دیگر علمی-تخیلی نیست؛ بلکه در حال دگرگونی آموزش و اتوماسیون است." },
     ],
     downloadables: [
-      { title: "AEF B2 Advanced Vocabulary Builder", url: "/downloads/aef_b2_vocab.pdf", size: "3.2 MB", type: "pdf" },
+      { title: "کتاب ۵۰۴ واژه تعاملی", url: "https://dl.endoora.ir/books/504_essential_words_enhanced.pdf", size: "18 MB", type: "pdf" },
+      { title: "مجموعه واژگان پیشرفته B2", url: "https://dl.endoora.ir/books/aef_b2_vocab.pdf", size: "3.2 MB", type: "pdf" },
     ],
   },
   {
@@ -152,8 +162,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "School",
     titleFa: "درس ۱: حس قدردانی و احترام به بزرگان (امتحان نهایی)",
     titleEn: "Lesson 1: Sense of Appreciation & Helping Others",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-skills/reading-workshop.mp4",
+    audioUrl: "/audio/highschool/grade12/khordad-1403.mp3",
     durationMinutes: 25,
     transcriptSample: [
       { time: "00:04", speaker: "Teacher", textEn: "In Lesson 1, we learn about Dr. Mohammad Gharib and dedicating life to society.", textFa: "در درس ۱، ما درباره دکتر محمد قریب و وقف زندگی برای خدمت به جامعه می‌آموزیم." },
@@ -161,8 +171,8 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
       { time: "01:10", speaker: "Teacher", textEn: "We form passive sentences using appropriate form of 'to be' plus past participle.", textFa: "جملات مجهول را با استفاده از شکل مناسب 'to be' به همراه اسم مفعول (P.P) می‌سازیم." },
     ],
     downloadables: [
-      { title: "سوالات نهایی زبان انگلیسی دوازدهم درس ۱ (با پاسخ تشریحی)", url: "/downloads/vision3_lesson1_final_exam.pdf", size: "4.5 MB", type: "pdf" },
-      { title: "فایل صوتی شنیداری کل کتاب دوازدهم", url: "/downloads/vision3_audio_pack.zip", size: "18.2 MB", type: "zip" },
+      { title: "سوالات نهایی دوازدهم خرداد ۱۴۰۳ با کلید", url: "/scratch/exams/12th-Khordad-1403.pdf", size: "588 KB", type: "pdf" },
+      { title: "پکیج تست‌های درس ۱ دوازدهم", url: "/scratch/exams/Vision3_Lesson1.pdf", size: "1.2 MB", type: "pdf" },
     ],
   },
   {
@@ -172,15 +182,16 @@ export const MEDIA_PRESET_ASSETS: MediaPresetAsset[] = [
     level: "School",
     titleFa: "درس ۲: نگاه به آینده و فناوری‌های نو",
     titleEn: "Lesson 2: Look at the Future & Space Exploration",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    videoUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-skills/reading-workshop.mp4",
+    audioUrl: "/audio/highschool/grade12/dey-1403.mp3",
     durationMinutes: 22,
     transcriptSample: [
       { time: "00:06", speaker: "Teacher", textEn: "Look at the stars. Humanity has always wondered what lies beyond.", textFa: "به ستارگان نگاه کنید. بشر همواره کنجکاو بوده چه چیزی در ماورای آن قرار دارد." },
       { time: "00:45", speaker: "Student", textEn: "How do modal auxiliaries express future possibility?", textFa: "افعال کمکی چگونه احتمال آینده را بیان می‌کنند؟" },
     ],
     downloadables: [
-      { title: "بانک تست کنکور سراسری درس ۲ زبان دوازدهم", url: "/downloads/vision3_lesson2_konkur.pdf", size: "3.1 MB", type: "pdf" },
+      { title: "سوالات نهایی دوازدهم دی ۱۴۰۳ با کلید", url: "/scratch/exams/12th-Dey-1403.pdf", size: "872 KB", type: "pdf" },
+      { title: "بانک تست گرامر آینده و افعال معین", url: "/scratch/exams/Vision3_Lesson2.pdf", size: "1.5 MB", type: "pdf" },
     ],
   },
 ];
@@ -364,18 +375,137 @@ export const INITIAL_ACADEMIC_AUDIT_LOGS: AcademicOverrideAuditRecord[] = [
   },
 ];
 
-// In-Memory Global State
-let memoryEnrollments: LearnerEnrollmentRecord[] = [...INITIAL_LEARNER_ENROLLMENTS];
-let memoryAuditLogs: AcademicOverrideAuditRecord[] = [...INITIAL_ACADEMIC_AUDIT_LOGS];
+// ==============================================================================
+// Persistent State & Store Accessors
+// ==============================================================================
+
+function getEnrollmentsPath(): string {
+  return resolveStoragePath("admin/academics-enrollments.json");
+}
+
+function getAuditLogsPath(): string {
+  return resolveStoragePath("admin/academics-audit-logs.json");
+}
+
+function getQuizzesPath(): string {
+  return resolveStoragePath("admin/academics-quizzes.json");
+}
+
+let memoryEnrollments: LearnerEnrollmentRecord[] | null = null;
+let lastEnrollmentsMtime = 0;
+
+let memoryAuditLogs: AcademicOverrideAuditRecord[] | null = null;
+let lastAuditLogsMtime = 0;
+
+let memoryQuizzes: Record<string, QuizItem[]> | null = null;
+let lastQuizzesMtime = 0;
+
+export function getEnrollmentsStorage(): LearnerEnrollmentRecord[] {
+  const filePath = getEnrollmentsPath();
+  if (memoryEnrollments && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastEnrollmentsMtime) {
+      return memoryEnrollments;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<LearnerEnrollmentRecord[]>(
+    filePath,
+    () => JSON.parse(JSON.stringify(INITIAL_LEARNER_ENROLLMENTS)),
+    (p): p is LearnerEnrollmentRecord[] => Array.isArray(p)
+  );
+
+  memoryEnrollments = data;
+  lastEnrollmentsMtime = mtime;
+  return memoryEnrollments;
+}
+
+export function persistEnrollments(): void {
+  if (!memoryEnrollments) return;
+  const filePath = getEnrollmentsPath();
+  atomicWriteJsonSync(filePath, memoryEnrollments);
+  if (fs.existsSync(filePath)) {
+    lastEnrollmentsMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
+
+export function getAuditLogsStorage(): AcademicOverrideAuditRecord[] {
+  const filePath = getAuditLogsPath();
+  if (memoryAuditLogs && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastAuditLogsMtime) {
+      return memoryAuditLogs;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<AcademicOverrideAuditRecord[]>(
+    filePath,
+    () => JSON.parse(JSON.stringify(INITIAL_ACADEMIC_AUDIT_LOGS)),
+    (p): p is AcademicOverrideAuditRecord[] => Array.isArray(p)
+  );
+
+  memoryAuditLogs = data;
+  lastAuditLogsMtime = mtime;
+  return memoryAuditLogs;
+}
+
+export function persistAuditLogs(): void {
+  if (!memoryAuditLogs) return;
+  const filePath = getAuditLogsPath();
+  atomicWriteJsonSync(filePath, memoryAuditLogs);
+  if (fs.existsSync(filePath)) {
+    lastAuditLogsMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
+
+export function getQuizzesStorage(): Record<string, QuizItem[]> {
+  const filePath = getQuizzesPath();
+  if (memoryQuizzes && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastQuizzesMtime) {
+      return memoryQuizzes;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<Record<string, QuizItem[]>>(
+    filePath,
+    () => ({}),
+    (p): p is Record<string, QuizItem[]> => typeof p === "object" && p !== null && !Array.isArray(p)
+  );
+
+  memoryQuizzes = data;
+  lastQuizzesMtime = mtime;
+  return memoryQuizzes;
+}
+
+export function persistQuizzes(): void {
+  if (!memoryQuizzes) return;
+  const filePath = getQuizzesPath();
+  atomicWriteJsonSync(filePath, memoryQuizzes);
+  if (fs.existsSync(filePath)) {
+    lastQuizzesMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
+
+export function saveLessonQuiz(lessonId: string, questions: QuizItem[]): void {
+  const storage = getQuizzesStorage();
+  storage[lessonId] = questions;
+  persistQuizzes();
+}
+
+export function getLessonQuiz(lessonId: string): QuizItem[] {
+  const storage = getQuizzesStorage();
+  return storage[lessonId] || [];
+}
 
 export function getLearnerEnrollments(filters?: { query?: string; courseId?: string }): LearnerEnrollmentRecord[] {
-  let list = [...memoryEnrollments];
+  const list = [...getEnrollmentsStorage()];
   if (filters?.courseId && filters.courseId !== "all") {
-    list = list.filter((e) => e.courseId === filters.courseId || e.courseSlug === filters.courseId);
+    return list.filter((e) => e.courseId === filters.courseId || e.courseSlug === filters.courseId);
   }
   if (filters?.query && filters.query.trim()) {
     const q = filters.query.trim().toLowerCase();
-    list = list.filter(
+    return list.filter(
       (e) =>
         e.learnerName.toLowerCase().includes(q) ||
         e.learnerEmail.toLowerCase().includes(q) ||
@@ -393,7 +523,8 @@ export function toggleLessonCompletionState(
   adminUser = "مدیر ارشد ایندورا",
   reason = "تغییر وضعیت دستی توسط ادمین"
 ): { success: boolean; enrollment?: LearnerEnrollmentRecord; error?: string } {
-  const enrollment = memoryEnrollments.find(
+  const storage = getEnrollmentsStorage();
+  const enrollment = storage.find(
     (e) => e.learnerId === learnerId && (e.courseId === courseId || e.courseSlug === courseId)
   );
   if (!enrollment) {
@@ -431,7 +562,11 @@ export function toggleLessonCompletionState(
     reason,
     occurredAt: new Date().toLocaleString("fa-IR"),
   };
-  memoryAuditLogs.unshift(auditEvent);
+  const auditLogs = getAuditLogsStorage();
+  auditLogs.unshift(auditEvent);
+
+  persistEnrollments();
+  persistAuditLogs();
 
   return { success: true, enrollment };
 }
@@ -444,7 +579,8 @@ export function updateLessonQuizScore(
   adminUser = "مدیر ارشد ایندورا",
   reason = "بازنگری نمره آزمونک توسط ادمین"
 ): { success: boolean; enrollment?: LearnerEnrollmentRecord; error?: string } {
-  const enrollment = memoryEnrollments.find(
+  const storage = getEnrollmentsStorage();
+  const enrollment = storage.find(
     (e) => e.learnerId === learnerId && (e.courseId === courseId || e.courseSlug === courseId)
   );
   if (!enrollment) {
@@ -467,6 +603,11 @@ export function updateLessonQuizScore(
   const total = enrollment.lessons.length;
   const completedCount = enrollment.lessons.filter((l) => l.isCompleted).length;
   enrollment.progressPercent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+  if (enrollment.progressPercent === 100) {
+    enrollment.completedAt = new Date().toISOString();
+  } else {
+    enrollment.completedAt = null;
+  }
 
   // Record Audit
   const auditEvent: AcademicOverrideAuditRecord = {
@@ -481,7 +622,11 @@ export function updateLessonQuizScore(
     reason,
     occurredAt: new Date().toLocaleString("fa-IR"),
   };
-  memoryAuditLogs.unshift(auditEvent);
+  const auditLogs = getAuditLogsStorage();
+  auditLogs.unshift(auditEvent);
+
+  persistEnrollments();
+  persistAuditLogs();
 
   return { success: true, enrollment };
 }
@@ -492,7 +637,8 @@ export function resetCourseProgress(
   adminUser = "مدیر ارشد ایندورا",
   reason = "درخواست بازنشانی دوره توسط دانش‌آموز"
 ): { success: boolean; enrollment?: LearnerEnrollmentRecord; error?: string } {
-  const enrollment = memoryEnrollments.find(
+  const storage = getEnrollmentsStorage();
+  const enrollment = storage.find(
     (e) => e.learnerId === learnerId && (e.courseId === courseId || e.courseSlug === courseId)
   );
   if (!enrollment) {
@@ -520,7 +666,11 @@ export function resetCourseProgress(
     reason,
     occurredAt: new Date().toLocaleString("fa-IR"),
   };
-  memoryAuditLogs.unshift(auditEvent);
+  const auditLogs = getAuditLogsStorage();
+  auditLogs.unshift(auditEvent);
+
+  persistEnrollments();
+  persistAuditLogs();
 
   return { success: true, enrollment };
 }
@@ -537,6 +687,7 @@ export function grantCourseEnrollment(
   adminUser = "مدیر ارشد ایندورا",
   reason = "اعطای دسترسی مستقیم توسط مدیریت"
 ): { success: boolean; enrollment: LearnerEnrollmentRecord } {
+  const storage = getEnrollmentsStorage();
   const newEnrollment: LearnerEnrollmentRecord = {
     id: `enr-${Date.now()}`,
     learnerId: `user-${Math.floor(100 + Math.random() * 900)}`,
@@ -582,7 +733,7 @@ export function grantCourseEnrollment(
           ],
   };
 
-  memoryEnrollments.unshift(newEnrollment);
+  storage.unshift(newEnrollment);
 
   // Record Audit
   const auditEvent: AcademicOverrideAuditRecord = {
@@ -597,7 +748,11 @@ export function grantCourseEnrollment(
     reason,
     occurredAt: new Date().toLocaleString("fa-IR"),
   };
-  memoryAuditLogs.unshift(auditEvent);
+  const auditLogs = getAuditLogsStorage();
+  auditLogs.unshift(auditEvent);
+
+  persistEnrollments();
+  persistAuditLogs();
 
   return { success: true, enrollment: newEnrollment };
 }
@@ -607,13 +762,14 @@ export function revokeCourseEnrollment(
   adminUser = "مدیر ارشد ایندورا",
   reason = "لغو ثبت‌نام توسط مدیریت"
 ): { success: boolean; error?: string } {
-  const index = memoryEnrollments.findIndex((e) => e.id === enrollmentId);
+  const storage = getEnrollmentsStorage();
+  const index = storage.findIndex((e) => e.id === enrollmentId);
   if (index === -1) {
     return { success: false, error: "ثبت‌نام مورد نظر یافت نشد." };
   }
 
-  const removed = memoryEnrollments[index];
-  memoryEnrollments.splice(index, 1);
+  const removed = storage[index];
+  storage.splice(index, 1);
 
   // Record Audit
   const auditEvent: AcademicOverrideAuditRecord = {
@@ -628,13 +784,17 @@ export function revokeCourseEnrollment(
     reason,
     occurredAt: new Date().toLocaleString("fa-IR"),
   };
-  memoryAuditLogs.unshift(auditEvent);
+  const auditLogs = getAuditLogsStorage();
+  auditLogs.unshift(auditEvent);
+
+  persistEnrollments();
+  persistAuditLogs();
 
   return { success: true };
 }
 
 export function getAcademicAuditLogs(): AcademicOverrideAuditRecord[] {
-  return [...memoryAuditLogs];
+  return [...getAuditLogsStorage()];
 }
 
 // ==============================================================================

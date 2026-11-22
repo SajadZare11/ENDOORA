@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getBackupsList,
   createDatabaseBackup,
@@ -8,9 +9,13 @@ import {
   type DatabaseBackupRecord,
 } from "@/lib/admin-autonomous-ops-store";
 
-export async function GET(request: Request) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(request.url);
     const downloadId = searchParams.get("downloadId");
 
@@ -76,11 +81,32 @@ SET row_security = off;
   }
 }
 
-export async function POST(request: Request) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, format, notes, backupId, policyUpdates, query, isDryRun, adminUser } = body;
+    const pin = (body.pin || request.headers.get("x-admin-pin") || "").toString().trim();
+
+    // Sensitive mutating actions require PIN validation
+    const isMutatingSql =
+      action === "sql" &&
+      !isDryRun &&
+      query &&
+      /^\s*(UPDATE|DELETE|INSERT|DROP|ALTER|TRUNCATE)\b/i.test(query);
+
+    if (action === "restore" || isMutatingSql) {
+      if (!pin || !/^\d{6}$/.test(pin)) {
+        return NextResponse.json(
+          { success: false, error: "تأیید پین امنیتی ۶ رقمی مدیر ارشد برای انجام این عملیات الزامی است." },
+          { status: 403 }
+        );
+      }
+    }
 
     if (action === "create") {
       const result = createDatabaseBackup(format, notes, adminUser);
@@ -124,11 +150,12 @@ export async function POST(request: Request) {
             "Content-Type": "application/json",
             Accept: "application/json",
             Cookie: request.headers.get("cookie") || "",
+            "X-Admin-PIN": pin,
           },
           body: JSON.stringify({
             query,
             is_dry_run: Boolean(isDryRun),
-            pin: body.pin || "123456",
+            pin, // Explicit pin only - NO "123456" fallback
           }),
         });
 

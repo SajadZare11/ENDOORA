@@ -1,12 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getIncidentsList,
   updateIncidentStatus,
   retryFailedIncident,
 } from "@/lib/admin-autonomous-ops-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const incidents = getIncidentsList();
     return NextResponse.json({ success: true, incidents });
   } catch (err: any) {
@@ -17,8 +23,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, incidentId, status, resolutionNote, adminUser } = body;
 
@@ -27,12 +38,12 @@ export async function POST(request: Request) {
     }
 
     if (action === "update_status") {
-      const result = updateIncidentStatus(incidentId, status, resolutionNote, adminUser);
+      const result = updateIncidentStatus(incidentId, status, resolutionNote, adminUser || auth.user?.email);
       return NextResponse.json(result);
     }
 
     if (action === "retry") {
-      const result = retryFailedIncident(incidentId, adminUser);
+      const result = retryFailedIncident(incidentId, adminUser || auth.user?.email);
       return NextResponse.json(result);
     }
 

@@ -1,4 +1,10 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Gamification & Leaderboard Types
@@ -368,12 +374,61 @@ export const INITIAL_CONVERSION_LOGS: ReferralConversionLog[] = [
   },
 ];
 
-let memoryBadges = [...INITIAL_BADGES];
-let memoryLearners = [...INITIAL_LEARNERS_GAMIFICATION];
-let memoryXpRules = { ...INITIAL_XP_RULES };
-let memoryAffiliates = [...INITIAL_AFFILIATES];
-let memoryPayoutRequests = [...INITIAL_PAYOUT_REQUESTS];
-let memoryConversionLogs = [...INITIAL_CONVERSION_LOGS];
+// ==============================================================================
+// Persistent State & Store Accessors (gamification-affiliates-operations.json)
+// ==============================================================================
+export interface GamificationAffiliatesStoragePayload {
+  badges: BadgeRecord[];
+  learners: LearnerGamificationProfile[];
+  xpRules: XpRuleConfig;
+  affiliates: AffiliatePartner[];
+  payoutRequests: AffiliatePayoutRequest[];
+  conversionLogs: ReferralConversionLog[];
+}
+
+let inMemoryGamification: GamificationAffiliatesStoragePayload | null = null;
+let lastGamificationMtime = 0;
+
+function getGamificationPath(): string {
+  return resolveStoragePath("gamification-affiliates-operations.json");
+}
+
+export function getGamificationStorage(): GamificationAffiliatesStoragePayload {
+  const filePath = getGamificationPath();
+  if (inMemoryGamification && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastGamificationMtime) {
+      return inMemoryGamification;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<GamificationAffiliatesStoragePayload>(
+    filePath,
+    () => ({
+      badges: JSON.parse(JSON.stringify(INITIAL_BADGES)),
+      learners: JSON.parse(JSON.stringify(INITIAL_LEARNERS_GAMIFICATION)),
+      xpRules: JSON.parse(JSON.stringify(INITIAL_XP_RULES)),
+      affiliates: JSON.parse(JSON.stringify(INITIAL_AFFILIATES)),
+      payoutRequests: JSON.parse(JSON.stringify(INITIAL_PAYOUT_REQUESTS)),
+      conversionLogs: JSON.parse(JSON.stringify(INITIAL_CONVERSION_LOGS)),
+    }),
+    (p): p is GamificationAffiliatesStoragePayload =>
+      Array.isArray(p?.badges) && Array.isArray(p?.affiliates) && Array.isArray(p?.payoutRequests)
+  );
+
+  inMemoryGamification = data;
+  lastGamificationMtime = mtime;
+  return inMemoryGamification;
+}
+
+export function persistGamification(): void {
+  if (!inMemoryGamification) return;
+  const filePath = getGamificationPath();
+  atomicWriteJsonSync(filePath, inMemoryGamification);
+  if (fs.existsSync(filePath)) {
+    lastGamificationMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ==============================================================================
 // 4. Store Handlers
@@ -381,7 +436,8 @@ let memoryConversionLogs = [...INITIAL_CONVERSION_LOGS];
 
 // 1. Leaderboard & Gamification Profile Handlers
 export function getLeaderboardData(period: "weekly" | "monthly" | "all_time" = "all_time") {
-  const sorted = [...memoryLearners].sort((a, b) => {
+  const storage = getGamificationStorage();
+  const sorted = [...storage.learners].sort((a, b) => {
     if (period === "weekly") return b.weeklyXp - a.weeklyXp;
     if (period === "monthly") return b.monthlyXp - a.monthlyXp;
     return b.totalXp - a.totalXp;
@@ -389,8 +445,8 @@ export function getLeaderboardData(period: "weekly" | "monthly" | "all_time" = "
 
   return {
     learners: sorted.map((l, idx) => ({ ...l, rank: idx + 1 })),
-    badges: [...memoryBadges],
-    rules: { ...memoryXpRules },
+    badges: [...storage.badges],
+    rules: { ...storage.xpRules },
   };
 }
 
@@ -400,7 +456,8 @@ export function adjustLearnerXpAction(
   reason: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; learner?: LearnerGamificationProfile; error?: string } {
-  const match = memoryLearners.find((l) => l.userId === userId);
+  const storage = getGamificationStorage();
+  const match = storage.learners.find((l) => l.userId === userId);
   if (!match) return { success: false, error: "زبان‌آموز مورد نظر یافت نشد." };
 
   const oldXp = match.totalXp;
@@ -414,6 +471,8 @@ export function adjustLearnerXpAction(
   else if (match.totalXp >= 1500) match.league = "gold";
   else if (match.totalXp >= 500) match.league = "silver";
   else match.league = "bronze";
+
+  persistGamification();
 
   recordAuditLog({
     actor_id: null,
@@ -439,8 +498,9 @@ export function awardBadgeToLearnerAction(
   badgeId: string,
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; learner?: LearnerGamificationProfile; error?: string } {
-  const learner = memoryLearners.find((l) => l.userId === userId);
-  const badge = memoryBadges.find((b) => b.id === badgeId);
+  const storage = getGamificationStorage();
+  const learner = storage.learners.find((l) => l.userId === userId);
+  const badge = storage.badges.find((b) => b.id === badgeId);
 
   if (!learner || !badge) return { success: false, error: "کاربر یا نشان افتخار یافت نشد." };
   if (learner.badges.includes(badgeId)) {
@@ -450,6 +510,7 @@ export function awardBadgeToLearnerAction(
   learner.badges.push(badgeId);
   badge.awardedCount += 1;
   learner.totalXp += badge.xpBonus;
+  persistGamification();
 
   recordAuditLog({
     actor_id: null,
@@ -474,7 +535,9 @@ export function updateXpRulesAction(
   rulesUpdates: Partial<XpRuleConfig>,
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  memoryXpRules = { ...memoryXpRules, ...rulesUpdates };
+  const storage = getGamificationStorage();
+  storage.xpRules = { ...storage.xpRules, ...rulesUpdates };
+  persistGamification();
 
   recordAuditLog({
     actor_id: null,
@@ -485,28 +548,29 @@ export function updateXpRulesAction(
     target_model: "XpRuleConfig",
     target_pk: "active_rules",
     before_summary: {},
-    after_summary: { ...memoryXpRules } as Record<string, unknown>,
+    after_summary: { ...storage.xpRules } as Record<string, unknown>,
     reason: "به‌روزرسانی ضرایب و قوانین کسب امتیاز پلتفرم",
     request_method: "POST",
     request_path: "/api/admin/gamification/xp-rules",
     environment: "production",
   });
 
-  return { success: true, rules: memoryXpRules };
+  return { success: true, rules: storage.xpRules };
 }
 
 // 2. Affiliate & Referral Handlers
 export function getAffiliatesData() {
-  const totalSales = memoryAffiliates.reduce((acc, a) => acc + a.totalSalesVolumeToman, 0);
-  const totalCommission = memoryAffiliates.reduce((acc, a) => acc + a.totalCommissionEarnedToman, 0);
-  const pendingPayouts = memoryPayoutRequests.filter((p) => p.status === "pending");
+  const storage = getGamificationStorage();
+  const totalSales = storage.affiliates.reduce((acc, a) => acc + a.totalSalesVolumeToman, 0);
+  const totalCommission = storage.affiliates.reduce((acc, a) => acc + a.totalCommissionEarnedToman, 0);
+  const pendingPayouts = storage.payoutRequests.filter((p) => p.status === "pending");
 
   return {
-    affiliates: [...memoryAffiliates],
-    payoutRequests: [...memoryPayoutRequests],
-    conversionLogs: [...memoryConversionLogs],
+    affiliates: [...storage.affiliates],
+    payoutRequests: [...storage.payoutRequests],
+    conversionLogs: [...storage.conversionLogs],
     stats: {
-      totalAffiliatesCount: memoryAffiliates.length,
+      totalAffiliatesCount: storage.affiliates.length,
       totalSalesVolumeToman: totalSales,
       totalCommissionEarnedToman: totalCommission,
       pendingPayoutsCount: pendingPayouts.length,
@@ -527,7 +591,8 @@ export function saveAffiliatePartnerAction(
   },
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  const existing = memoryAffiliates.find(
+  const storage = getGamificationStorage();
+  const existing = storage.affiliates.find(
     (a) => a.referralCode.toLowerCase() === partnerData.referralCode.toLowerCase()
   );
   if (existing) {
@@ -550,7 +615,8 @@ export function saveAffiliatePartnerAction(
     joinedAt: new Date().toLocaleDateString("fa-IR"),
   };
 
-  memoryAffiliates.unshift(newPartner);
+  storage.affiliates.unshift(newPartner);
+  persistGamification();
 
   recordAuditLog({
     actor_id: null,
@@ -577,10 +643,11 @@ export function processAffiliatePayoutAction(
   details?: { bankTrackingCode?: string; rejectionReason?: string },
   adminUser = "مدیر ارشد ایندورا"
 ) {
-  const payout = memoryPayoutRequests.find((p) => p.id === payoutId);
+  const storage = getGamificationStorage();
+  const payout = storage.payoutRequests.find((p) => p.id === payoutId);
   if (!payout) return { success: false, error: "درخواست تسویه یافت نشد." };
 
-  const affiliate = memoryAffiliates.find((a) => a.id === payout.affiliateId);
+  const affiliate = storage.affiliates.find((a) => a.id === payout.affiliateId);
 
   if (action === "approve_bank") {
     payout.status = "approved_bank";
@@ -608,6 +675,8 @@ export function processAffiliatePayoutAction(
     payout.processedAt = new Date().toLocaleString("fa-IR");
     payout.processedBy = adminUser;
   }
+
+  persistGamification();
 
   recordAuditLog({
     actor_id: null,

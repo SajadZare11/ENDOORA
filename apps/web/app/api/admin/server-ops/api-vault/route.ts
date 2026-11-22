@@ -1,12 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getApiIntegrations,
   pingApiIntegration,
   ApiIntegrationServiceId,
 } from "@/lib/admin-server-ops-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const services = getApiIntegrations();
     return NextResponse.json({ success: true, services });
   } catch (err: any) {
@@ -17,8 +23,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { serviceId } = body;
 
@@ -29,7 +40,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = pingApiIntegration(serviceId as ApiIntegrationServiceId);
+    const result = await pingApiIntegration(serviceId as ApiIntegrationServiceId);
 
     return NextResponse.json({
       success: true,

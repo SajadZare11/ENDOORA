@@ -22,6 +22,7 @@ import { AuditLogsOperations } from "./AuditLogsOperations";
 import { AcademicCommandConsole } from "./AcademicCommandConsole";
 import { SiteBuilderStudio } from "./SiteBuilderStudio";
 import { DynamicFormsWebhooksStudio } from "./DynamicFormsWebhooksStudio";
+import { GamificationAffiliatesHub } from "./GamificationAffiliatesHub";
 import ServerOperationsGodMode from "./ServerOperationsGodMode";
 
 import { AdminHelpModal } from "./AdminHelpModal";
@@ -51,6 +52,7 @@ export type AdminModuleTab =
   | "broadcast"
   | "academics"
   | "finance"
+  | "gamification-affiliates"
   | "system-ops";
 
 interface AdminItemDef {
@@ -204,6 +206,13 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
         shortDesc: "پیامک گروهی و نوتیفیکیشن همگانی به کاربران",
         siteLocation: "صندوق پیامک موبایل کاربران و اعلانات درون‌برنامه‌ای",
         icon: "📢",
+      },
+      {
+        id: "gamification-affiliates",
+        title: "همکاری در فروش و گیمیفیکیشن",
+        shortDesc: "امتیازها، لیگ‌های رقابتی و بازاریابان معرف",
+        siteLocation: "باشگاه مشتریان و سیستم معرفی به دوستان (/club)",
+        icon: "🏆",
       },
       {
         id: "analytics",
@@ -1048,6 +1057,9 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
           {/* TAB 6: FINANCE & TREASURY */}
           {activeTab === "finance" && <TreasuryOperationsConsole />}
+
+          {/* TAB: GAMIFICATION & AFFILIATES HUB */}
+          {activeTab === "gamification-affiliates" && <GamificationAffiliatesHub />}
 
           {/* TAB 6: SYSTEM OPS & GOD MODE */}
           {activeTab === "system-ops" && (

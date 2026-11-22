@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getAffiliatesData,
   processAffiliatePayoutAction,
 } from "@/lib/admin-gamification-affiliates-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { payoutRequests, conversionLogs } = getAffiliatesData();
     return NextResponse.json({ success: true, payoutRequests, conversionLogs });
   } catch (err: any) {
@@ -16,8 +22,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, payoutId, bankTrackingCode, rejectionReason, adminUser } = body;
 
@@ -32,7 +43,7 @@ export async function POST(request: Request) {
       payoutId,
       action,
       { bankTrackingCode, rejectionReason },
-      adminUser
+      adminUser || auth.user?.email
     );
 
     if (!result.success) {

@@ -1,11 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getDictionaryItems,
   updateDictionaryItem,
 } from "@/lib/admin-autonomous-ops-store";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(request.url);
     const search = searchParams.get("q") || undefined;
     const category = searchParams.get("category") || undefined;
@@ -20,8 +26,13 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, key, faText, enText, items, adminUser } = body;
 
@@ -29,7 +40,7 @@ export async function POST(request: Request) {
       if (!key) {
         return NextResponse.json({ success: false, error: "کلید عبارت الزامی است." }, { status: 400 });
       }
-      const result = updateDictionaryItem(key, faText ?? "", enText ?? "", adminUser);
+      const result = updateDictionaryItem(key, faText ?? "", enText ?? "", adminUser || auth.user?.email);
       return NextResponse.json({
         success: true,
         message: `عبارت مربوط به کلید «${key}» با موفقیت به‌روزرسانی شد.`,
@@ -40,7 +51,7 @@ export async function POST(request: Request) {
     if (action === "bulk_import" && Array.isArray(items)) {
       for (const item of items) {
         if (item.key) {
-          updateDictionaryItem(item.key, item.faText || "", item.enText || "", adminUser);
+          updateDictionaryItem(item.key, item.faText || "", item.enText || "", adminUser || auth.user?.email);
         }
       }
       return NextResponse.json({

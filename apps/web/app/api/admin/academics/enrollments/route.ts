@@ -11,6 +11,11 @@ import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
   try {
+    const auth = await verifyAdminSession(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("q") || searchParams.get("query") || undefined;
     const courseId = searchParams.get("course_id") || undefined;
@@ -63,7 +68,9 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const auth = await verifyAdminSession(req);
-    // Allow dev mode fallback if not strictly authenticated
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
     const adminUser = auth.user?.email || "مدیر ارشد ایندورا";
 
     const body = await req.json();

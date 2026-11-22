@@ -1,0 +1,74 @@
+{
+  "test-lesson-persisted": [
+    {
+      "prompt_fa": "تست گرامر زمان گذشته کامل",
+      "prompt_en": "Past perfect tense diagnostic question",
+      "options": [
+        "had completed",
+        "has completed",
+        "was completing",
+        "will complete"
+      ],
+      "correct_index": 0,
+      "explanation_fa": "برای عملی که قبل از عمل دیگری در گذشته رخ داده از Past Perfect استفاده می‌شود."
+    }
+  ],
+  "quiz_stress_1795290860692": [
+    {
+      "prompt_fa": "کدام گزینه بیانگر ساختار شرطی نوع دوم است؟",
+      "prompt_en": "Which sentence exemplifies the second conditional?",
+      "options": [
+        "If I study, I pass.",
+        "If I won the lottery, I would travel the world.",
+        "If it rains, we will cancel.",
+        "If I had known, I would have told you."
+      ],
+      "correct_index": 1,
+      "explanation_fa": "شرطی نوع دوم از ترکیب زمان گذشته ساده در If-clause و Would + Verb در main clause تشکیل می‌شود."
+    }
+  ],
+  "quiz_stress_1795290920909": [
+    {
+      "prompt_fa": "کدام گزینه بیانگر ساختار شرطی نوع دوم است؟",
+      "prompt_en": "Which sentence exemplifies the second conditional?",
+      "options": [
+        "If I study, I pass.",
+        "If I won the lottery, I would travel the world.",
+        "If it rains, we will cancel.",
+        "If I had known, I would have told you."
+      ],
+      "correct_index": 1,
+      "explanation_fa": "شرطی نوع دوم از ترکیب زمان گذشته ساده در If-clause و Would + Verb در main clause تشکیل می‌شود."
+    }
+  ],
+  "quiz_stress_1795351440131": [
+    {
+      "prompt_fa": "کدام گزینه بیانگر ساختار شرطی نوع دوم است؟",
+      "prompt_en": "Which sentence exemplifies the second conditional?",
+      "options": [
+        "If I study, I pass.",
+        "If I won the lottery, I would travel the world.",
+        "If it rains, we will cancel.",
+        "If I had known, I would have told you."
+      ],
+      "correct_index": 1,
+      "explanation_fa": "شرطی نوع دوم از ترکیب زمان گذشته ساده در If-clause و Would + Verb در main clause تشکیل می‌شود."
+    }
+  ],
+  "lesson-test-1": [
+    {
+      "id": "q1",
+      "question_fa": "تست گرامر",
+      "question_en": "Grammar test",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "correct_answer": "A",
+      "explanation_fa": "توضیح پاسخ",
+      "explanation_en": "Answer explanation"
+    }
+  ]
+}

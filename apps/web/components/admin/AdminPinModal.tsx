@@ -102,12 +102,8 @@ export function AdminPinModal({
         setError(data.error || "پین امنیتی اشتباه است.");
       }
     } catch {
-      // Fallback: If backend verify is offline, check standard default fallback
-      if (pin === "123456") {
-        onSuccess(pin);
-      } else {
-        setError("خطا در برقراری ارتباط با سرور. پین پیش‌فرض ۱۲۳۴۵۶ می‌باشد.");
-      }
+      // Backend verify is offline or unreachable - FAIL CLOSED securely
+      setError("خطا در برقراری ارتباط با سرور امنیتی. امکان احراز هویت در حالت آفلاین وجود ندارد.");
     } finally {
       setIsVerifying(false);
     }

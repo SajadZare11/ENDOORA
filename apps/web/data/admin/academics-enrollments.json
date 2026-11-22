@@ -1,0 +1,884 @@
+[
+  {
+    "id": "enr-1795356004390",
+    "learnerId": "user-942",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795356004389@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795356004425",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795356004425",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795355980078",
+    "learnerId": "user-583",
+    "learnerName": "امیر حسینی",
+    "learnerEmail": "amir-1795355980077@test.ir",
+    "learnerPhone": "09350000000",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "c-ielts-master",
+    "courseSlug": "c-ielts-master",
+    "courseTitleFa": "دوره جامع آیلتس آکادمیک",
+    "courseTitleEn": "IELTS Masterclass",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795355980078",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795355980078",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795355781214",
+    "learnerId": "user-673",
+    "learnerName": "امیر حسینی",
+    "learnerEmail": "amir-1795355781214@test.ir",
+    "learnerPhone": "09350000000",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "c-ielts-master",
+    "courseSlug": "c-ielts-master",
+    "courseTitleFa": "دوره جامع آیلتس آکادمیک",
+    "courseTitleEn": "IELTS Masterclass",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795355781214",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795355781214",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795355699161",
+    "learnerId": "user-677",
+    "learnerName": "امیر حسینی",
+    "learnerEmail": "amir-1795355699160@test.ir",
+    "learnerPhone": "09350000000",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "c-ielts-master",
+    "courseSlug": "c-ielts-master",
+    "courseTitleFa": "دوره جامع آیلتس آکادمیک",
+    "courseTitleEn": "IELTS Masterclass",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795355699161",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795355699161",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795355497042",
+    "learnerId": "user-968",
+    "learnerName": "امیر حسینی",
+    "learnerEmail": "amir-1795355497041@test.ir",
+    "learnerPhone": "09350000000",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "c-ielts-master",
+    "courseSlug": "c-ielts-master",
+    "courseTitleFa": "دوره جامع آیلتس آکادمیک",
+    "courseTitleEn": "IELTS Masterclass",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795355497042",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795355497042",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795351440125",
+    "learnerId": "user-423",
+    "learnerName": "زبان‌آموز آزمایشی استرس",
+    "learnerEmail": "stress.learner.1795351440125@endoora.ir",
+    "learnerPhone": "09120001122",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "دوره جامع آیلتس",
+    "courseTitleEn": "IELTS Comprehensive",
+    "cefrLevel": "B2",
+    "progressPercent": 50,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795351440125",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": true,
+        "quizScore": 96,
+        "completedAt": "2026-11-22T12:44:00.128Z"
+      },
+      {
+        "lessonId": "l-main-1795351440125",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795351415852",
+    "learnerId": "user-722",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795351415823@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۹/۱",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795351415875",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795351415875",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290920891",
+    "learnerId": "user-289",
+    "learnerName": "زبان‌آموز آزمایشی استرس",
+    "learnerEmail": "stress.learner.1795290920890@endoora.ir",
+    "learnerPhone": "09120001122",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "دوره جامع آیلتس",
+    "courseTitleEn": "IELTS Comprehensive",
+    "cefrLevel": "B2",
+    "progressPercent": 50,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290920891",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": true,
+        "quizScore": 96,
+        "completedAt": "2026-11-21T19:55:20.896Z"
+      },
+      {
+        "lessonId": "l-main-1795290920891",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290917276",
+    "learnerId": "user-504",
+    "learnerName": "Test",
+    "learnerEmail": "test@test.com",
+    "learnerPhone": "123",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "Title",
+    "courseTitleEn": "TitleEn",
+    "cefrLevel": "B2",
+    "progressPercent": 50,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290917348",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": true,
+        "quizScore": 96,
+        "completedAt": "2026-11-21T19:55:17.362Z"
+      },
+      {
+        "lessonId": "l-main-1795290917348",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290916941",
+    "learnerId": "user-831",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795290916940@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290916987",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795290916987",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290860684",
+    "learnerId": "user-222",
+    "learnerName": "زبان‌آموز آزمایشی استرس",
+    "learnerEmail": "stress.learner.1795290860682@endoora.ir",
+    "learnerPhone": "09120001122",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "دوره جامع آیلتس",
+    "courseTitleEn": "IELTS Comprehensive",
+    "cefrLevel": "B2",
+    "progressPercent": 50,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290860684",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": true,
+        "quizScore": 96,
+        "completedAt": "2026-11-21T19:54:20.688Z"
+      },
+      {
+        "lessonId": "l-main-1795290860684",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290830946",
+    "learnerId": "user-978",
+    "learnerName": "زبان‌آموز آزمایشی استرس",
+    "learnerEmail": "stress.learner.1795290830896@endoora.ir",
+    "learnerPhone": "09120001122",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "دوره جامع آیلتس",
+    "courseTitleEn": "IELTS Comprehensive",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290830946",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795290830946",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290787862",
+    "learnerId": "user-722",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795290787860@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290787911",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795290787911",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795290753005",
+    "learnerId": "user-372",
+    "learnerName": "زبان‌آموز آزمایشی استرس",
+    "learnerEmail": "stress.learner.1795290753003@endoora.ir",
+    "learnerPhone": "09120001122",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "course-ielts-b2",
+    "courseTitleFa": "دوره جامع آیلتس",
+    "courseTitleEn": "IELTS Comprehensive",
+    "cefrLevel": "B2",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795290753005",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795290753005",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795289458983",
+    "learnerId": "user-942",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795289458981@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795289459032",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795289459032",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795289346467",
+    "learnerId": "user-868",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795289346465@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795289346503",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795289346503",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795289334432",
+    "learnerId": "user-335",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795289334428@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795289334490",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795289334490",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795289330861",
+    "learnerId": "user-849",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795289330859@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795289330901",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795289330901",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795289139418",
+    "learnerId": "user-847",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795289139416@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795289139471",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795289139471",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795288920540",
+    "learnerId": "user-482",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795288920539@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795288920588",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795288920588",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795288585491",
+    "learnerId": "user-657",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795288585489@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795288585531",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795288585531",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-1795288181599",
+    "learnerId": "user-891",
+    "learnerName": "دانش‌آموز آزمایشی ماندگاری",
+    "learnerEmail": "test.student.1795288181598@endoora.ir",
+    "learnerPhone": "09129998877",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "course-grade12-tamrin20",
+    "courseTitleFa": "دوره دوازدهم نهایی",
+    "courseTitleEn": "Grade 12 Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 0,
+    "enrolledAt": "۱۴۰۵/۸/۳۰",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-intro-1795288181645",
+        "lessonTitleFa": "درس ۱: آشنایی اولیه و اهداف آموزشی",
+        "lessonTitleEn": "Lesson 1: Introduction & Learning Goals",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-main-1795288181645",
+        "lessonTitleFa": "درس ۲: مهارت‌های کلیدی و تمرین هدایت‌شده",
+        "lessonTitleEn": "Lesson 2: Core Competencies & Guided Practice",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  },
+  {
+    "id": "enr-001",
+    "learnerId": "user-101",
+    "learnerName": "سارا محمدی",
+    "learnerEmail": "sara.mohammadi@example.com",
+    "learnerPhone": "09121112233",
+    "learnerAvatar": "👩‍🎓",
+    "courseId": "course-ielts-b2",
+    "courseSlug": "ielts-speaking-mastery",
+    "courseTitleFa": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+    "courseTitleEn": "IELTS Speaking Mastery (Band 7.5+)",
+    "cefrLevel": "B2",
+    "progressPercent": 100,
+    "enrolledAt": "1403/07/15",
+    "completedAt": "2026-11-22T14:00:04.433Z",
+    "lessons": [
+      {
+        "lessonId": "l-ielts-01",
+        "lessonTitleFa": "اصول تسلط در بخش اول آزمون (Part 1 Fluency)",
+        "lessonTitleEn": "Mastering Part 1 Fluency & Coherence",
+        "isCompleted": true,
+        "quizScore": 92,
+        "completedAt": "1403/07/20 14:30"
+      },
+      {
+        "lessonId": "l-ielts-02",
+        "lessonTitleFa": "تکنیک کارت‌های صحبت دو دقیقه‌ای (Cue Card Framework)",
+        "lessonTitleEn": "2-Minute Cue Card Framework",
+        "isCompleted": true,
+        "quizScore": 85,
+        "completedAt": "1403/07/28 18:15"
+      },
+      {
+        "lessonId": "l-ielts-03",
+        "lessonTitleFa": "تحلیل و استدلال انتزاعی در بخش سوم (Part 3 Discussion)",
+        "lessonTitleEn": "Abstract Reasoning in Part 3 Discussion",
+        "isCompleted": true,
+        "quizScore": 78,
+        "completedAt": "1403/08/05 11:20"
+      },
+      {
+        "lessonId": "l-ielts-04",
+        "lessonTitleFa": "کالوکیشن‌های پیشرفته و گرامر پیچیده",
+        "lessonTitleEn": "Advanced Collocations & Complex Grammatical Range",
+        "isCompleted": true,
+        "quizScore": 95,
+        "completedAt": "2026-11-21T19:09:41.653Z"
+      }
+    ]
+  },
+  {
+    "id": "enr-002",
+    "learnerId": "user-102",
+    "learnerName": "علی رضایی",
+    "learnerEmail": "ali.rezaei@example.com",
+    "learnerPhone": "09124445566",
+    "learnerAvatar": "🧑‍🎓",
+    "courseId": "course-grade12-tamrin20",
+    "courseSlug": "grade12-tamrin20-complete",
+    "courseTitleFa": "بسته طلایی تمرین تا ۲۰ (انگلیسی دوازدهم نهایی)",
+    "courseTitleEn": "Grade 12 Vision 3: Final Exam Mastery",
+    "cefrLevel": "School",
+    "progressPercent": 100,
+    "enrolledAt": "1403/08/01",
+    "completedAt": "1403/08/25",
+    "lessons": [
+      {
+        "lessonId": "l-v12-01",
+        "lessonTitleFa": "گرامر مجهول و واژگان درس ۱ (دکتر قریب)",
+        "lessonTitleEn": "Passive Voice & Vocabulary Unit 1",
+        "isCompleted": true,
+        "quizScore": 100,
+        "completedAt": "1403/08/07 19:10"
+      },
+      {
+        "lessonId": "l-v12-02",
+        "lessonTitleFa": "ریدینگ و لیسنینگ درس ۲ (فضا و آینده)",
+        "lessonTitleEn": "Reading & Listening Skills Unit 2",
+        "isCompleted": true,
+        "quizScore": 95,
+        "completedAt": "1403/08/15 16:45"
+      },
+      {
+        "lessonId": "l-v12-03",
+        "lessonTitleFa": "شبیه‌ساز امتحان نهایی هماهنگ کشوری (خرداد)",
+        "lessonTitleEn": "Nationwide Mock Final Exam Simulation",
+        "isCompleted": true,
+        "quizScore": 98,
+        "completedAt": "1403/08/25 21:00"
+      }
+    ]
+  },
+  {
+    "id": "enr-003",
+    "learnerId": "user-103",
+    "learnerName": "نیلوفر کریمی",
+    "learnerEmail": "niloofar.karimi@example.com",
+    "learnerPhone": "09127778899",
+    "learnerAvatar": "👩‍💼",
+    "courseId": "course-speakout-b1",
+    "courseSlug": "speakout-b1-intermediate",
+    "courseTitleFa": "مکالمه جامع انگلیسی بر اساس Speakout B1",
+    "courseTitleEn": "Comprehensive Conversational English (Speakout B1)",
+    "cefrLevel": "B1",
+    "progressPercent": 33,
+    "enrolledAt": "1403/08/10",
+    "completedAt": null,
+    "lessons": [
+      {
+        "lessonId": "l-spb1-01",
+        "lessonTitleFa": "روابط اجتماعی و معرفی سبک زندگی",
+        "lessonTitleEn": "Identity, Relationships & Lifestyle",
+        "isCompleted": true,
+        "quizScore": 88,
+        "completedAt": "1403/08/16 20:00"
+      },
+      {
+        "lessonId": "l-spb1-02",
+        "lessonTitleFa": "داستان‌سرایی و زمان‌های گذشته در مکالمه",
+        "lessonTitleEn": "Storytelling & Narrative Past Tenses",
+        "isCompleted": false,
+        "quizScore": 40,
+        "completedAt": null
+      },
+      {
+        "lessonId": "l-spb1-03",
+        "lessonTitleFa": "برنامه‌ریزی آینده و مسافرت بین‌المللی",
+        "lessonTitleEn": "Future Arrangements & Travel Realities",
+        "isCompleted": false,
+        "quizScore": null,
+        "completedAt": null
+      }
+    ]
+  }
+]

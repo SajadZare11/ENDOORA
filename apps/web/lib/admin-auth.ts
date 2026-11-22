@@ -38,6 +38,8 @@ export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthRes
       req.cookies.get("endoora_csrftoken")?.value ||
       req.cookies.get("csrftoken")?.value;
     const csrfHeader =
+      req.headers.get("x-admin-csrf") ||
+      req.headers.get("X-Admin-CSRF") ||
       req.headers.get("x-csrftoken") ||
       req.headers.get("X-CSRFToken") ||
       req.headers.get("x-csrf-token");

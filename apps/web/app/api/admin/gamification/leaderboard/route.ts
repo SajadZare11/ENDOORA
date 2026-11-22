@@ -1,12 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getLeaderboardData,
   adjustLearnerXpAction,
   awardBadgeToLearnerAction,
 } from "@/lib/admin-gamification-affiliates-store";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(request.url);
     const period = (searchParams.get("period") || "all_time") as "weekly" | "monthly" | "all_time";
 
@@ -20,8 +26,13 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, userId, deltaXp, reason, badgeId, adminUser } = body;
 
@@ -32,7 +43,7 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-      const result = adjustLearnerXpAction(userId, Number(deltaXp), reason || "", adminUser);
+      const result = adjustLearnerXpAction(userId, Number(deltaXp), reason || "", adminUser || auth.user?.email);
       if (!result.success) {
         return NextResponse.json({ success: false, error: result.error }, { status: 400 });
       }
@@ -50,7 +61,7 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-      const result = awardBadgeToLearnerAction(userId, badgeId, adminUser);
+      const result = awardBadgeToLearnerAction(userId, badgeId, adminUser || auth.user?.email);
       if (!result.success) {
         return NextResponse.json({ success: false, error: result.error }, { status: 400 });
       }

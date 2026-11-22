@@ -1,0 +1,256 @@
+{
+  "refunds": [
+    {
+      "id": "REF-20261122-4347",
+      "transactionId": "tx_9822",
+      "learnerId": "usr_09",
+      "learnerName": "حسام اشتراکی (اکانت پرخطر)",
+      "learnerPhone": "09129998877",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "refundMethod": "wallet_credit",
+      "bonusAmountToman": 92500,
+      "reason": "درخواست کاربر در موعد قانونی ۷ روزه",
+      "status": "completed",
+      "teacherCommissionReversedToman": 1295000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-8773",
+      "createdAt": "۱۴۰۵/۹/۱, ۱۷:۲۹:۴۰",
+      "createdIso": "2026-11-22T13:59:40.000Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "REF-20261122-6705",
+      "transactionId": "tx_9821",
+      "learnerId": "usr_04",
+      "learnerName": "نیلوفر کریمی",
+      "learnerPhone": "09351112233",
+      "courseId": "crs_02",
+      "courseTitle": "دوره مکالمه و گرامر جامع (Speakout B1)",
+      "amountToman": 790000,
+      "refundMethod": "wallet_credit",
+      "bonusAmountToman": 39500,
+      "reason": "درخواست کاربر در موعد قانونی ۷ روزه",
+      "status": "completed",
+      "teacherCommissionReversedToman": 553000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-6047",
+      "createdAt": "۱۴۰۵/۹/۱, ۱۷:۲۶:۲۱",
+      "createdIso": "2026-11-22T13:56:21.127Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "REF-20261122-7525",
+      "transactionId": "tx_9820",
+      "learnerId": "usr_01",
+      "learnerName": "سارا محمدی",
+      "learnerPhone": "09121112233",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "refundMethod": "wallet_credit",
+      "bonusAmountToman": 92500,
+      "reason": "درخواست کاربر در موعد قانونی ۷ روزه",
+      "status": "completed",
+      "teacherCommissionReversedToman": 1295000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-2801",
+      "createdAt": "۱۴۰۵/۹/۱, ۱۷:۲۴:۵۹",
+      "createdIso": "2026-11-22T13:54:59.096Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "REF-20261121-8248",
+      "transactionId": "tx_9820",
+      "learnerId": "usr_01",
+      "learnerName": "سارا محمدی",
+      "learnerPhone": "09121112233",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "refundMethod": "wallet_credit",
+      "bonusAmountToman": 92500,
+      "reason": "انصراف کاربر در بازه گارانتی ۷ روزه رضایت",
+      "status": "completed",
+      "teacherCommissionReversedToman": 1295000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-9276",
+      "createdAt": "۱۴۰۵/۸/۳۰, ۲۲:۴۵:۰۹",
+      "createdIso": "2026-11-21T19:15:09.819Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "REF-20261119-1042",
+      "transactionId": "tx_9799",
+      "learnerId": "usr_02",
+      "learnerName": "علی رضایی",
+      "learnerPhone": "09124445566",
+      "courseId": "crs_01",
+      "courseTitle": "تمرین تا ۲۰ (انگلیسی دوازدهم نهایی)",
+      "amountToman": 420000,
+      "refundMethod": "wallet_credit",
+      "bonusAmountToman": 21000,
+      "reason": "ثبت‌نام اشتباه توسط کاربر و انتقال به دوره مکالمه جامع",
+      "status": "completed",
+      "teacherCommissionReversedToman": 294000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-9081",
+      "createdAt": "۱۴۰۳/۰۸/۱۹ ۱۶:۳۰",
+      "createdIso": "2026-11-19T16:30:00Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "REF-20261118-0915",
+      "transactionId": "tx_9750",
+      "learnerId": "usr_04",
+      "learnerName": "نیلوفر کریمی",
+      "learnerPhone": "09351112233",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "refundMethod": "shaparak_card_reversal",
+      "bonusAmountToman": 0,
+      "reason": "تراکنش ناموفق درگاه که از حساب کاربر کسر شده بود و ریورس شاپرک صادر شد",
+      "status": "completed",
+      "teacherCommissionReversedToman": 1295000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "taxVoucherCode": "REV-TAX-1403-8820",
+      "createdAt": "۱۴۰۳/۰۸/۱۸ ۰۹:۱۵",
+      "createdIso": "2026-11-18T09:15:00Z",
+      "issuedBy": "مدیر ارشد ایندورا"
+    }
+  ],
+  "riskAlerts": [
+    {
+      "id": "risk-001",
+      "riskType": "multi_ip_sharing",
+      "severity": "critical",
+      "userId": "usr_09",
+      "userEmail": "hesam.sharing@example.com",
+      "userPhone": "09129998877",
+      "descriptionFa": "شناسایی ورود همزمان فعال از ۳ شهر مجزا در بازه کمتر از ۴۵ دقیقه (اشتراک غیرمجاز اکانت و ویدیوها)",
+      "detectedAt": "۱۴۰۳/۰۸/۲۰ ۱۶:۱۵",
+      "status": "active",
+      "indicators": {
+        "concurrentIps": [
+          "5.127.18.90 (تهران)",
+          "89.198.40.12 (شیراز)",
+          "188.253.11.4 (مشهد)"
+        ],
+        "cities": [
+          "تهران",
+          "شیراز",
+          "مشهد"
+        ],
+        "deviceFingerprints": [
+          "Windows 11 / Chrome 130",
+          "Android 14 / Samsung",
+          "iPhone 15 Pro / Safari"
+        ],
+        "associatedCourse": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)"
+      },
+      "mitigationActionTaken": "",
+      "mitigatedAt": "۱۴۰۵/۹/۱, ۱۷:۲۹:۴۰",
+      "mitigatedBy": "مدیر ارشد ایندورا"
+    },
+    {
+      "id": "risk-002",
+      "riskType": "card_velocity_abuse",
+      "severity": "high",
+      "userId": "usr_14",
+      "userEmail": "unknown.carder@proton.me",
+      "userPhone": "09301110099",
+      "descriptionFa": "تلاش‌های متوالی ناموفق برای خرید دوره با ۶ کارت بانکی مختلف در کمتر از ۳ دقیقه (مشکوک به حمله کارتینگ)",
+      "detectedAt": "۱۴۰۳/۰۸/۲۰ ۱۵:۰۵",
+      "status": "active",
+      "indicators": {
+        "concurrentIps": [
+          "185.165.241.10 (DataCenter IP)"
+        ],
+        "failedAttemptsCount": 6,
+        "associatedCourse": "تمرین تا ۲۰ (انگلیسی دوازدهم نهایی)"
+      }
+    },
+    {
+      "id": "risk-003",
+      "riskType": "abnormal_geo_jump",
+      "severity": "medium",
+      "userId": "usr_01",
+      "userEmail": "sara.mohammadi@example.com",
+      "userPhone": "09121112233",
+      "descriptionFa": "تغییر سریع IP از اتصال همراه اول به سرور VPN آلمان حین تماشای آزمونک",
+      "detectedAt": "۱۴۰۳/۰۸/۱۹ ۲۰:۴۰",
+      "status": "mitigated",
+      "indicators": {
+        "concurrentIps": [
+          "2.188.10.42 (ایرانسل تهران)",
+          "194.26.29.112 (Frankfurt VPN)"
+        ],
+        "cities": [
+          "تهران",
+          "Frankfurt"
+        ]
+      },
+      "mitigationActionTaken": "بررسی شد و تایید گردید کاربر از ابزار دورزدن تحریم برای بارگذاری تسک اسپیکینگ استفاده کرده است.",
+      "mitigatedAt": "۱۴۰۳/۰۸/۱۹ ۲۱:۰۰",
+      "mitigatedBy": "مدیر پشتیبانی ایندورا"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx_9820",
+      "trackingCode": "SHP-4829104",
+      "learnerId": "usr_01",
+      "learnerName": "سارا محمدی",
+      "learnerPhone": "09121112233",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "teacherCommissionToman": 1295000,
+      "paidAt": "۱۴۰۳/۰۸/۲۰ ۱۰:۰۰",
+      "paidVia": "شاپرک (کارت به کارت درگاه)",
+      "isRefunded": false
+    },
+    {
+      "id": "tx_9821",
+      "trackingCode": "SHP-4829105",
+      "learnerId": "usr_04",
+      "learnerName": "نیلوفر کریمی",
+      "learnerPhone": "09351112233",
+      "courseId": "crs_02",
+      "courseTitle": "دوره مکالمه و گرامر جامع (Speakout B1)",
+      "amountToman": 790000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "teacherCommissionToman": 553000,
+      "paidAt": "۱۴۰۳/۰۸/۲۰ ۱۲:۳۰",
+      "paidVia": "زرین‌پال شتابی",
+      "isRefunded": true
+    },
+    {
+      "id": "tx_9822",
+      "trackingCode": "SHP-4829106",
+      "learnerId": "usr_09",
+      "learnerName": "حسام اشتراکی (اکانت پرخطر)",
+      "learnerPhone": "09129998877",
+      "courseId": "crs_03",
+      "courseTitle": "دوره جامع مستری اسپیکینگ آیلتس (Band 7.5+)",
+      "amountToman": 1850000,
+      "teacherId": "dr_watson",
+      "teacherName": "دکتر مسعود رضایی",
+      "teacherCommissionToman": 1295000,
+      "paidAt": "۱۴۰۳/۰۸/۱۹ ۱۸:۰۰",
+      "paidVia": "زرین‌پال شتابی",
+      "isRefunded": true
+    }
+  ]
+}

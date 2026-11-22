@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getCustomFormsList,
   getCustomFormById,
@@ -7,8 +8,13 @@ import {
   deleteCustomForm,
 } from "@/lib/admin-forms-webhooks-store";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     const slug = searchParams.get("slug");
@@ -35,8 +41,13 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, form, id, adminUser } = body;
 
@@ -47,7 +58,7 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-      const result = saveCustomForm(form, adminUser);
+      const result = saveCustomForm(form, adminUser || auth.user?.email);
       return NextResponse.json({
         success: true,
         message: "فرم پویا با موفقیت ذخیره و منتشر گردید.",
@@ -59,7 +70,7 @@ export async function POST(request: Request) {
       if (!id) {
         return NextResponse.json({ success: false, error: "شناسه فرم الزامی است." }, { status: 400 });
       }
-      const result = deleteCustomForm(id, adminUser);
+      const result = deleteCustomForm(id, adminUser || auth.user?.email);
       return NextResponse.json({
         success: result.success,
         message: result.success ? "فرم با موفقیت حذف شد." : "فرم یافت نشد.",

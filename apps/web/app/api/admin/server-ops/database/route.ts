@@ -75,7 +75,17 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { table, rowId, updates, reason, adminUser, pin } = body;
+    const { table, rowId, updates, reason, adminUser } = body;
+
+    // Extract PIN from body or header - NO DEFAULT FALLBACK
+    const pin = (body.pin || req.headers.get("x-admin-pin") || "").toString().trim();
+
+    if (!pin || !/^\d{6}$/.test(pin)) {
+      return NextResponse.json(
+        { success: false, error: "وارد کردن پین امنیتی ۶ رقمی مدیر ارشد (Master PIN) الزامی است." },
+        { status: 403 }
+      );
+    }
 
     if (!table || !rowId || !updates) {
       return NextResponse.json(
@@ -95,13 +105,14 @@ export async function POST(req: NextRequest) {
           "Content-Type": "application/json",
           Accept: "application/json",
           Cookie: req.headers.get("cookie") || "",
+          "X-Admin-PIN": pin,
         },
         body: JSON.stringify({
           table,
           row_id: rowId,
           updates,
           reason: reason || "ویرایش مستقیم سطر توسط مدیر ارشد",
-          pin: pin || "123456",
+          pin,
         }),
       });
 

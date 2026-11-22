@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSession } from "@/lib/admin-auth";
 import {
   getBackgroundTasksList,
   runBackgroundTaskNow,
@@ -6,8 +7,13 @@ import {
   createCustomTask,
 } from "@/lib/admin-autonomous-ops-store";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const data = getBackgroundTasksList();
     return NextResponse.json({ success: true, ...data });
   } catch (err: any) {
@@ -18,8 +24,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await verifyAdminSession(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
+
     const body = await request.json();
     const { action, taskId, isEnabled, taskData, adminUser } = body;
 
@@ -27,7 +38,7 @@ export async function POST(request: Request) {
       if (!taskId) {
         return NextResponse.json({ success: false, error: "شناسه تسک الزامی است." }, { status: 400 });
       }
-      const result = runBackgroundTaskNow(taskId, adminUser);
+      const result = runBackgroundTaskNow(taskId, adminUser || auth.user?.email);
       return NextResponse.json({
         success: true,
         message: `تسک با موفقیت اجرا شد (${result.log.durationMs}ms).`,
@@ -40,7 +51,7 @@ export async function POST(request: Request) {
       if (!taskId) {
         return NextResponse.json({ success: false, error: "شناسه تسک الزامی است." }, { status: 400 });
       }
-      const result = toggleTaskStatus(taskId, Boolean(isEnabled), adminUser);
+      const result = toggleTaskStatus(taskId, Boolean(isEnabled), adminUser || auth.user?.email);
       return NextResponse.json(result);
     }
 
@@ -51,7 +62,7 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-      const result = createCustomTask(taskData, adminUser);
+      const result = createCustomTask(taskData, adminUser || auth.user?.email);
       return NextResponse.json({
         success: true,
         message: "تسک خودکار جدید با موفقیت به زمان‌بند اضافه شد.",

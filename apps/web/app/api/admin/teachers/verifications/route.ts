@@ -14,7 +14,6 @@ import {
 import { recordAuditLog } from "@/lib/admin-ops";
 
 export async function GET(req: NextRequest) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
   const auth = await verifyAdminSession(req);
   if (!auth.authorized) {
@@ -67,7 +66,6 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
   const auth = await verifyAdminSession(req);
   if (!auth.authorized) {

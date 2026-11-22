@@ -1,4 +1,10 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Data Models & Types
@@ -73,7 +79,7 @@ export interface FormSubmissionRecord {
   respondentEmail?: string;
   respondentPhone?: string;
   answers: Record<string, any>; // fieldId -> value
-  webhookStatus: "success" | "failed" | "skipped";
+  webhookStatus: "pending" | "success" | "failed" | "skipped";
   telegramStatus: "sent" | "failed" | "skipped";
   smsStatus: "sent" | "failed" | "skipped";
 }
@@ -381,24 +387,69 @@ export const INITIAL_SUBMISSIONS: FormSubmissionRecord[] = [
   },
 ];
 
-let memoryForms: CustomDynamicForm[] = [...INITIAL_FORMS];
-let memorySubmissions: FormSubmissionRecord[] = [...INITIAL_SUBMISSIONS];
+// ==============================================================================
+// 3. Persistent State & Store Accessors (forms-webhooks-operations.json)
+// ==============================================================================
+export interface FormsWebhooksStoragePayload {
+  forms: CustomDynamicForm[];
+  submissions: FormSubmissionRecord[];
+}
+
+let inMemoryFormsWebhooks: FormsWebhooksStoragePayload | null = null;
+let lastFormsWebhooksMtime = 0;
+
+function getFormsWebhooksPath(): string {
+  return resolveStoragePath("forms-webhooks-operations.json");
+}
+
+export function getFormsWebhooksStorage(): FormsWebhooksStoragePayload {
+  const filePath = getFormsWebhooksPath();
+  if (inMemoryFormsWebhooks && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastFormsWebhooksMtime) {
+      return inMemoryFormsWebhooks;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<FormsWebhooksStoragePayload>(
+    filePath,
+    () => ({
+      forms: JSON.parse(JSON.stringify(INITIAL_FORMS)),
+      submissions: JSON.parse(JSON.stringify(INITIAL_SUBMISSIONS)),
+    }),
+    (p): p is FormsWebhooksStoragePayload =>
+      Array.isArray(p?.forms) && Array.isArray(p?.submissions)
+  );
+
+  inMemoryFormsWebhooks = data;
+  lastFormsWebhooksMtime = mtime;
+  return inMemoryFormsWebhooks;
+}
+
+export function persistFormsWebhooks(): void {
+  if (!inMemoryFormsWebhooks) return;
+  const filePath = getFormsWebhooksPath();
+  atomicWriteJsonSync(filePath, inMemoryFormsWebhooks);
+  if (fs.existsSync(filePath)) {
+    lastFormsWebhooksMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ==============================================================================
-// 3. Store Handlers & Operations
+// Store Handlers & Operations
 // ==============================================================================
 
 // 1. Get Forms
 export function getCustomFormsList(): CustomDynamicForm[] {
-  return [...memoryForms];
+  return [...getFormsWebhooksStorage().forms];
 }
 
 export function getCustomFormBySlug(slug: string): CustomDynamicForm | undefined {
-  return memoryForms.find((f) => f.slug === slug);
+  return getFormsWebhooksStorage().forms.find((f) => f.slug === slug);
 }
 
 export function getCustomFormById(id: string): CustomDynamicForm | undefined {
-  return memoryForms.find((f) => f.id === id);
+  return getFormsWebhooksStorage().forms.find((f) => f.id === id);
 }
 
 // 2. Save / Create Form
@@ -406,10 +457,11 @@ export function saveCustomForm(
   formData: Partial<CustomDynamicForm> & { titleFa: string; slug: string },
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; form: CustomDynamicForm } {
-  const existingIndex = memoryForms.findIndex((f) => f.id === formData.id || f.slug === formData.slug);
+  const storage = getFormsWebhooksStorage();
+  const existingIndex = storage.forms.findIndex((f) => f.id === formData.id || f.slug === formData.slug);
 
   if (existingIndex !== -1) {
-    const oldForm = memoryForms[existingIndex];
+    const oldForm = storage.forms[existingIndex];
     const updatedForm: CustomDynamicForm = {
       ...oldForm,
       ...formData,
@@ -417,7 +469,8 @@ export function saveCustomForm(
       automations: formData.automations || oldForm.automations,
       updatedAt: new Date().toLocaleDateString("fa-IR"),
     };
-    memoryForms[existingIndex] = updatedForm;
+    storage.forms[existingIndex] = updatedForm;
+    persistFormsWebhooks();
 
     recordAuditLog({
       actor_id: null,
@@ -466,7 +519,8 @@ export function saveCustomForm(
     createdBy: adminUser,
   };
 
-  memoryForms.unshift(newForm);
+  storage.forms.unshift(newForm);
+  persistFormsWebhooks();
 
   recordAuditLog({
     actor_id: null,
@@ -489,10 +543,12 @@ export function saveCustomForm(
 
 // 3. Delete Form
 export function deleteCustomForm(formId: string, adminUser = "مدیر ارشد ایندورا"): { success: boolean } {
-  const index = memoryForms.findIndex((f) => f.id === formId);
+  const storage = getFormsWebhooksStorage();
+  const index = storage.forms.findIndex((f) => f.id === formId);
   if (index === -1) return { success: false };
 
-  const [removed] = memoryForms.splice(index, 1);
+  const [removed] = storage.forms.splice(index, 1);
+  persistFormsWebhooks();
 
   recordAuditLog({
     actor_id: null,
@@ -515,10 +571,11 @@ export function deleteCustomForm(formId: string, adminUser = "مدیر ارشد 
 
 // 4. Submissions Explorer
 export function getFormSubmissions(formIdOrSlug?: string): FormSubmissionRecord[] {
+  const storage = getFormsWebhooksStorage();
   if (!formIdOrSlug || formIdOrSlug === "all") {
-    return [...memorySubmissions];
+    return [...storage.submissions];
   }
-  return memorySubmissions.filter(
+  return storage.submissions.filter(
     (s) => s.formId === formIdOrSlug || s.formSlug === formIdOrSlug
   );
 }
@@ -529,7 +586,8 @@ export function submitPublicFormResponse(
   clientIp = "127.0.0.1",
   userAgent = "Mozilla/5.0"
 ): { success: boolean; submission?: FormSubmissionRecord; messageFa?: string; error?: string } {
-  const form = memoryForms.find((f) => f.slug === slug);
+  const storage = getFormsWebhooksStorage();
+  const form = storage.forms.find((f) => f.slug === slug);
   if (!form) return { success: false, error: "فرم مورد نظر یافت نشد." };
   if (form.status === "closed") return { success: false, error: "مهلت ثبت پاسخ در این فرم به پایان رسیده است." };
 
@@ -556,14 +614,27 @@ export function submitPublicFormResponse(
     smsStatus: form.automations.smsEnabled ? "sent" : "skipped",
   };
 
-  memorySubmissions.unshift(submission);
+  storage.submissions.unshift(submission);
   form.submissionCount += 1;
+  persistFormsWebhooks();
 
   return {
     success: true,
     submission,
     messageFa: form.successMessageFa || "پاسخ شما با موفقیت ثبت شد.",
   };
+}
+
+export function updateSubmissionWebhookStatus(
+  submissionId: string,
+  status: "pending" | "success" | "failed" | "skipped"
+): boolean {
+  const storage = getFormsWebhooksStorage();
+  const sub = storage.submissions.find((s) => s.id === submissionId);
+  if (!sub) return false;
+  sub.webhookStatus = status;
+  persistFormsWebhooks();
+  return true;
 }
 
 // 5. Test Webhook Ping
@@ -583,25 +654,41 @@ export async function testWebhookEndpoint(
 
     const res = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Endoora-Webhook-Test": "true" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Endoora-Webhook-Test": "true",
+        "User-Agent": "Endoora-Webhook-Verification/1.0",
+      },
       body: JSON.stringify(payload),
+      redirect: "error", // Prevent SSRF via 3xx redirects
+      signal: AbortSignal.timeout(5000), // Enforce 5-second timeout
     });
 
     const latencyMs = Date.now() - start;
-    const text = await res.text();
+
+    // Safely read up to 2KB of response to avoid memory exhaustion
+    let responseSnippet = "OK (بدون بادی)";
+    if (res.body) {
+      const reader = res.body.getReader();
+      const { value } = await reader.read();
+      if (value) {
+        responseSnippet = new TextDecoder().decode(value).slice(0, 150);
+      }
+      await reader.cancel();
+    }
 
     return {
       success: res.ok,
       latencyMs,
       statusCode: res.status,
-      responseSnippet: text.slice(0, 150) || "OK (بدون بادی)",
+      responseSnippet: responseSnippet || `کد وضعیت HTTP: ${res.status}`,
     };
   } catch (err: any) {
     return {
       success: false,
       latencyMs: Date.now() - start,
       statusCode: 0,
-      responseSnippet: `خطا در اتصال: ${err?.message || "عدم دسترسی به سرور مقصد"}`,
+      responseSnippet: `خطا در اتصال: ${err?.name === "TimeoutError" ? "مهلت زمانی ارتباط به پایان رسید (Timeout 5s)" : err?.message || "عدم دسترسی به سرور مقصد"}`,
     };
   }
 }

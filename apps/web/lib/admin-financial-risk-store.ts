@@ -1,4 +1,10 @@
-import { recordAuditLog } from "./admin-ops";
+import fs from "fs";
+import { recordAuditLog } from "./admin-ops.ts";
+import {
+  resolveStoragePath,
+  atomicWriteJsonSync,
+  readJsonWithFallback,
+} from "./admin-storage-engine.ts";
 
 // ==============================================================================
 // 1. Data Models & Types
@@ -227,9 +233,55 @@ export const INITIAL_TRANSACTIONS: EligibleTransaction[] = [
   },
 ];
 
-let memoryRefunds: RefundRecord[] = [...INITIAL_REFUNDS];
-let memoryRiskAlerts: RiskAlertRecord[] = [...INITIAL_RISK_ALERTS];
-let memoryTransactions: EligibleTransaction[] = [...INITIAL_TRANSACTIONS];
+// ==============================================================================
+// Persistent State & Store Accessors (financial-risk-operations.json)
+// ==============================================================================
+export interface FinancialRiskStoragePayload {
+  refunds: RefundRecord[];
+  riskAlerts: RiskAlertRecord[];
+  transactions: EligibleTransaction[];
+}
+
+let inMemoryFinancialRisk: FinancialRiskStoragePayload | null = null;
+let lastFinancialRiskMtime = 0;
+
+function getFinancialRiskPath(): string {
+  return resolveStoragePath("financial-risk-operations.json");
+}
+
+export function getFinancialRiskStorage(): FinancialRiskStoragePayload {
+  const filePath = getFinancialRiskPath();
+  if (inMemoryFinancialRisk && fs.existsSync(filePath)) {
+    const stats = fs.statSync(filePath);
+    if (stats.mtimeMs <= lastFinancialRiskMtime) {
+      return inMemoryFinancialRisk;
+    }
+  }
+
+  const { data, mtime } = readJsonWithFallback<FinancialRiskStoragePayload>(
+    filePath,
+    () => ({
+      refunds: JSON.parse(JSON.stringify(INITIAL_REFUNDS)),
+      riskAlerts: JSON.parse(JSON.stringify(INITIAL_RISK_ALERTS)),
+      transactions: JSON.parse(JSON.stringify(INITIAL_TRANSACTIONS)),
+    }),
+    (p): p is FinancialRiskStoragePayload =>
+      Array.isArray(p?.refunds) && Array.isArray(p?.riskAlerts) && Array.isArray(p?.transactions)
+  );
+
+  inMemoryFinancialRisk = data;
+  lastFinancialRiskMtime = mtime;
+  return inMemoryFinancialRisk;
+}
+
+export function persistFinancialRisk(): void {
+  if (!inMemoryFinancialRisk) return;
+  const filePath = getFinancialRiskPath();
+  atomicWriteJsonSync(filePath, inMemoryFinancialRisk);
+  if (fs.existsSync(filePath)) {
+    lastFinancialRiskMtime = fs.statSync(filePath).mtimeMs;
+  }
+}
 
 // ==============================================================================
 // 3. Store Handlers
@@ -237,9 +289,10 @@ let memoryTransactions: EligibleTransaction[] = [...INITIAL_TRANSACTIONS];
 
 // 1. Get Refunds List
 export function getRefundsList(): { refunds: RefundRecord[]; eligibleTransactions: EligibleTransaction[] } {
+  const storage = getFinancialRiskStorage();
   return {
-    refunds: [...memoryRefunds],
-    eligibleTransactions: memoryTransactions.filter((t) => !t.isRefunded),
+    refunds: [...storage.refunds],
+    eligibleTransactions: storage.transactions.filter((t) => !t.isRefunded),
   };
 }
 
@@ -253,7 +306,8 @@ export function issueOneClickRefund(
   },
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; refund?: RefundRecord; error?: string } {
-  const tx = memoryTransactions.find((t) => t.id === params.transactionId);
+  const storage = getFinancialRiskStorage();
+  const tx = storage.transactions.find((t) => t.id === params.transactionId);
   if (!tx) return { success: false, error: "تراکنش مورد نظر یافت نشد." };
   if (tx.isRefunded) return { success: false, error: "این تراکنش قبلاً استرداد شده است." };
 
@@ -293,8 +347,9 @@ export function issueOneClickRefund(
     issuedBy: adminUser,
   };
 
-  memoryRefunds.unshift(newRefund);
+  storage.refunds.unshift(newRefund);
   tx.isRefunded = true;
+  persistFinancialRisk();
 
   recordAuditLog({
     actor_id: null,
@@ -324,7 +379,7 @@ export function issueOneClickRefund(
 
 // 3. Get Risk Alerts List
 export function getRiskAlertsList(): RiskAlertRecord[] {
-  return [...memoryRiskAlerts];
+  return [...getFinancialRiskStorage().riskAlerts];
 }
 
 // 4. Mitigate Risk Alert
@@ -333,7 +388,8 @@ export function mitigateRiskAlertAction(
   action: "force_logout" | "freeze_account" | "revoke_enrollment" | "blacklist_ip" | "whitelist",
   adminUser = "مدیر ارشد ایندورا"
 ): { success: boolean; alert?: RiskAlertRecord; messageFa?: string; error?: string } {
-  const alert = memoryRiskAlerts.find((a) => a.id === alertId);
+  const storage = getFinancialRiskStorage();
+  const alert = storage.riskAlerts.find((a) => a.id === alertId);
   if (!alert) return { success: false, error: "هشدار امنیتی یافت نشد." };
 
   let actionSummaryFa = "";
@@ -357,6 +413,7 @@ export function mitigateRiskAlertAction(
   alert.mitigationActionTaken = actionSummaryFa;
   alert.mitigatedAt = new Date().toLocaleString("fa-IR");
   alert.mitigatedBy = adminUser;
+  persistFinancialRisk();
 
   recordAuditLog({
     actor_id: null,

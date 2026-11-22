@@ -13,8 +13,11 @@ import {
 } from "@/lib/site-cms-store";
 
 export async function GET(req: NextRequest) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
+    const auth = await verifyAdminSession(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: auth.status });
+    }
     const backendUrl = (
       process.env.ENDOORA_API_INTERNAL_URL ?? "http://127.0.0.1:8000"
     ).replace(/\/+$/, "");
@@ -65,7 +68,6 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (process.env.NODE_ENV === "production") return new Response(null, { status: 404 });
   try {
     const auth = await verifyAdminSession(req);
     if (!auth.authorized) {
