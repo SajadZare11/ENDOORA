@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getDictionaryItems,
@@ -12,9 +13,9 @@ export async function GET(request: Request) {
 
     const items = getDictionaryItems(search, category);
     return NextResponse.json({ success: true, items, count: items.length });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی دیکشنری متون سایت" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی دیکشنری متون سایت" },
       { status: 500 }
     );
   }
@@ -51,9 +52,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در به‌روزرسانی دیکشنری" },
+      { success: false, error: errorMessage(err) || "خطا در به‌روزرسانی دیکشنری" },
       { status: 500 }
     );
   }

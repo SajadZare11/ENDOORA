@@ -14,7 +14,10 @@
   "dependencies": {
     "@endoora/ui": "0.4.0",
     "@huggingface/transformers": "^4.3.2",
-    "next": "16.3.1",
+    "@livekit/components-react": "^2.9.26",
+    "@livekit/components-styles": "^1.2.0",
+    "livekit-client": "^2.25.0",
+    "next": "16.4.6",
     "onnxruntime-web": "^1.31.0-dev.20260914-8d85527a0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
@@ -24,7 +27,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.1",
+    "eslint-config-next": "16.4.6",
     "typescript": "5.9.3"
   }
 }

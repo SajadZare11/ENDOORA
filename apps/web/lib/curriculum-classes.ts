@@ -1,3 +1,4 @@
+import { errorMessage } from "./error-message.ts";
 export interface SampleUnit {
   unit: number;
   title: string;
@@ -153,8 +154,8 @@ export async function submitClassEnrollmentRequest(payload: {
       return { success: false, error: data.detail || data.error || "خطا در ثبت درخواست" };
     }
     return { success: true, message_fa: data.message_fa };
-  } catch (err: any) {
-    return { success: false, error: err.message || "خطای ارتباط با سرور" };
+  } catch (err: unknown) {
+    return { success: false, error: errorMessage(err) || "خطای ارتباط با سرور" };
   }
 }
 
@@ -206,8 +207,8 @@ export async function claimTeacherCohort(payload: {
       return { success: false, error: data.error || data.detail || "خطا در تشکیل کلاس" };
     }
     return { success: true, cohort_id: data.cohort_id, message_fa: data.message_fa };
-  } catch (err: any) {
-    return { success: false, error: err.message || "خطای ارتباط با سرور" };
+  } catch (err: unknown) {
+    return { success: false, error: errorMessage(err) || "خطای ارتباط با سرور" };
   }
 }
 
@@ -235,7 +236,7 @@ export async function logTeacherSession(payload: {
       return { success: false, error: data.error || data.detail || "خطا در ثبت گزارش جلسه" };
     }
     return { success: true, log_id: data.log_id, message_fa: data.message_fa };
-  } catch (err: any) {
-    return { success: false, error: err.message || "خطای ارتباط با سرور" };
+  } catch (err: unknown) {
+    return { success: false, error: errorMessage(err) || "خطای ارتباط با سرور" };
   }
 }

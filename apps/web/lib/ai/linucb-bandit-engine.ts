@@ -542,7 +542,7 @@ export class EnDooraLinUCBBandit {
     const promptText = payload.prompt || payload.question || "";
     const promptFaText = payload.promptFa || payload.prompt_fa;
     const answerText = payload.correctAnswer || payload.correct_option || "";
-    const candidates = payload.distractorPool || (payload as any).distractor_pool || [];
+    const candidates = payload.distractorPool || payload.distractor_pool || [];
 
     // 2. Score candidates
     const scoredCandidates: Array<{

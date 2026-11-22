@@ -2,8 +2,8 @@
 
 import { Button } from "@endoora/ui";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { endooraApi } from "@/lib/endoora-api";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
+import { endooraApi, EndooraApiError } from "@/lib/endoora-api";
 import EndooraBackground from "@/components/design/EndooraBackground";
 import GlassCard from "@/components/design/GlassCard";
 import { AudioWaveformPlayer } from "./AudioWaveformPlayer";
@@ -60,6 +60,8 @@ interface PlacementSessionData {
   status: "active" | "submitted" | "expired";
   current_section: string;
   started_at: string;
+  section_started_at: string;
+  section_time_remaining_sec: number;
   updated_at: string;
   expires_at: string;
   is_expired: boolean;
@@ -125,14 +127,14 @@ const t = {
     authedNoticeDesc: "پاسخ‌های شما با مهر زمانی سرور در پروفایلتان ذخیره می‌شوند و کارنامه نهایی به داشبورد شما اضافه خواهد شد.",
     startTestBtn: "شروع آزمون انطباقی تعیین سطح (۵۰ سوال)",
     unauthedTitle: "برای ذخیره نتایج آزمون در پروفایل، ابتدا وارد شوید یا ثبت‌نام کنید",
-    unauthedDesc: "این آزمون انطباقی سطح دقیق شما را در شاخص اختصاصی ۰ تا ۱۰۰ اندورا محاسبه می‌کند. برای ثبت دائمی در پروفایل و دریافت برنامه یادگیری اختصاصی، پیشنهاد می‌کنیم وارد شوید.",
+    unauthedDesc: "این آزمون انطباقی سطح شما را به‌صورت تقریبی در شاخص اختصاصی ۰ تا ۱۰۰ اندورا محاسبه می‌کند. برای ثبت دائمی در پروفایل و دریافت برنامه یادگیری اختصاصی، پیشنهاد می‌کنیم وارد شوید.",
     signInBtn: "ورود به حساب کاربری",
     registerBtn: "ثبت‌نام سریع و رایگان",
     guestBtn: "ادامه به عنوان مهمان (آزمون آزمایشی)",
     guestPillNotice: "حالت آزمایشی (مهمان): نتایج در حافظه موقت مرورگر ذخیره می‌شوند.",
     guestPillAction: "ورود یا ثبت‌نام برای ذخیره‌سازی دائمی",
-    unauthedSubmittedDesc: "آزمون با موفقیت به پایان رسید! برای ذخیره دائمی این کارنامه در پروفایل و دسترسی به برنامه مطالعاتی، ثبت‌نام کنید یا وارد شوید.",
-    registerSaveBtn: "ثبت‌نام و ذخیره کارنامه در پروفایل",
+    unauthedSubmittedDesc: "نتیجه مهمان در همین زبانه قابل مشاهده است. برای شروع آزمونی که در حساب ذخیره می‌شود وارد شوید.",
+    registerSaveBtn: "ثبت‌نام برای آزمون حساب کاربری",
     adaptiveLevelLabel: "سطح انطباقی جاری:",
     endooraIndexEstLabel: "شاخص سنجش اندورا:",
     sectionTimeRemaining: "زمان باقی‌مانده این بخش:",
@@ -180,14 +182,14 @@ const t = {
     authedNoticeDesc: "Your responses are securely autosaved to your profile, and your comprehensive diagnostic report will be accessible in your dashboard.",
     startTestBtn: "Start Adaptive Placement Test (50 Items)",
     unauthedTitle: "Sign in or register to save your results to your profile",
-    unauthedDesc: "This comprehensive test calculates your precise 0-100 Endoora Placement Index. To save your results and personalized roadmap in your profile, please sign in or create an account.",
+    unauthedDesc: "This comprehensive test estimates your 0-100 Endoora Placement Index. To save your results and personalized roadmap in your profile, please sign in or create an account.",
     signInBtn: "Sign in to account",
     registerBtn: "Create free account",
     guestBtn: "Continue as guest (Practice Mode)",
     guestPillNotice: "Guest mode: results are saved in local browser storage.",
     guestPillAction: "Sign in / Register to save permanently",
-    unauthedSubmittedDesc: "Assessment completed! To permanently save this diagnostic report to your profile and launch your adaptive curriculum, create an account or sign in.",
-    registerSaveBtn: "Register & save report to profile",
+    unauthedSubmittedDesc: "Assessment completed! Your guest report is available in this browser tab. Sign in to start a saved assessment.",
+    registerSaveBtn: "Register for an account assessment",
     adaptiveLevelLabel: "Current Adaptive Level:",
     endooraIndexEstLabel: "Endoora Index Est.:",
     sectionTimeRemaining: "Section Time Remaining:",
@@ -195,11 +197,14 @@ const t = {
   },
 };
 
-function generateIdempotencyKey(): string {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-  return "idem-" + Math.random().toString(36).substring(2, 15);
+function evaluate(items: AdaptiveItem[], values: Record<string,string>) {
+  return items.reduce((state,item) => {
+    const value = values[item.id];
+    if (!value) return state;
+    const isCorrect = isItemCorrect(item,value);
+    return updateAdaptiveState(state, {itemId:item.id, section:item.section, cefrLevel:(item.cefr_level || "B1") as CefrLevel,
+      isCorrect, scorePercentage:isCorrect ? 100 : 0});
+  },createInitialAdaptiveState());
 }
 
 function formatTimer(seconds: number): string {
@@ -229,6 +234,10 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   // Section countdown timer based on section durations (Grammar 15m, Vocab 15m, Reading 12m, Listening 10m, Speaking 10m, Writing 10m)
   const [sectionTimeRemaining, setSectionTimeRemaining] = useState(SECTION_DURATIONS.grammar || 900);
 
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const working = useRef(false);
+  const accountResolved = useRef(false);
   const copy = t[locale];
   const currentSection = SECTIONS_ORDER[currentSectionIndex] || "grammar";
   const question: AdaptiveItem = activeQuestions[currentIndex] || DEFAULT_ITEMS_BANK[0];
@@ -245,83 +254,63 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   useEffect(() => {
     let isMounted = true;
 
-    // 0. Verify learner authentication
-    endooraApi<SessionAccount>("/auth/me/")
-      .then((account) => {
-        if (isMounted) setAuthState({ account, kind: "authenticated" });
-      })
-      .catch(() => {
-        if (isMounted) setAuthState({ kind: "anonymous" });
-      });
-
-    // Check query params for immediate start or guest mode
-    if (typeof window !== "undefined") {
-      const sp = new URLSearchParams(window.location.search);
-      if (sp.get("start") === "1" || sp.get("guest") === "1" || sp.get("guest") === "true") {
-        setHasStarted(true);
-      }
-    }
-
     async function initSession() {
+      const params = new URLSearchParams(window.location.search);
+      const immediate = params.get("start") === "1" || ["1","true"].includes(params.get("guest") || "");
       try {
-        const res = await fetch("/api/placement/sessions/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (res.ok) {
-          const sessionData: PlacementSessionData = await res.json();
-          if (!isMounted) return;
-          setSession(sessionData);
-
-          if (sessionData.status === "submitted") {
-            setIsSubmitted(true);
-          } else if (sessionData.is_expired || sessionData.status === "expired") {
-            setIsExpired(true);
-          }
-
-          // Restore existing saved answers
-          if (sessionData.answers && Array.isArray(sessionData.answers) && sessionData.answers.length > 0) {
-            const restored: Record<string, string> = {};
-            sessionData.answers.forEach((ans) => {
-              if (ans.answer_value?.selected_option) {
-                restored[ans.question_key] = String(ans.answer_value.selected_option);
-              } else if (ans.answer_value?.spoken_text) {
-                restored[ans.question_key] = String(ans.answer_value.spoken_text);
-              } else if (ans.answer_value?.written_text) {
-                restored[ans.question_key] = String(ans.answer_value.written_text);
-              }
-            });
-            setAnswers((prev) => ({ ...restored, ...prev }));
-            setHasStarted(true);
-          }
+        const account = await endooraApi<SessionAccount>("/auth/me/");
+        if (!isMounted) return;
+        accountResolved.current = true;
+        setAuthState({kind:"authenticated",account});
+        const [data, items] = await Promise.all([
+          endooraApi<PlacementSessionData>("/placement/sessions/", {method:"POST"}),
+          endooraApi<AdaptiveItem[]>("/placement/questions/"),
+        ]);
+        if (!isMounted) return;
+        const pool = [...DEFAULT_ITEMS_BANK, ...items.filter(i => !DEFAULT_ITEMS_BANK.some(d => d.id === i.id))];
+        setAllQuestionsPool(pool);
+        setSession(data);
+        const restored: Record<string,string> = {};
+        const history: AdaptiveItem[] = [];
+        for (const answer of [...data.answers].sort((a,b) => a.created_at.localeCompare(b.created_at))) {
+          const item = pool.find(q => q.id === answer.question_key);
+          if (!item) continue;
+          const value = answer.answer_value;
+          restored[item.id] = value.selected_option || value.spoken_text || value.written_text || "";
+          history.push(item);
         }
-      } catch {
-        // Fallback for offline or local preview
-      }
-
-      // Fetch server-sanitized questions if available
-      try {
-        const qRes = await fetch("/api/placement/questions/");
-        if (qRes.ok) {
-          const fetchedItems: AdaptiveItem[] = await qRes.json();
-          if (isMounted && fetchedItems.length > 0) {
-            // Merge with local items bank to ensure complete coverage
-            const merged = [...fetchedItems];
-            DEFAULT_ITEMS_BANK.forEach((defItem) => {
-              if (!merged.some((m) => m.id === defItem.id)) {
-                merged.push(defItem);
-              }
-            });
-            setAllQuestionsPool(merged);
-          }
+        const section = SECTIONS_ORDER.findIndex(sec => sec === data.current_section);
+        setCurrentSectionIndex(Math.max(0,section));
+        if (data.section_started_at) setSectionTimeRemaining(Math.max(1, data.section_time_remaining_sec -
+          Math.floor((Date.now() - Date.parse(data.section_started_at))/1000)));
+        const used = new Set(history.map(item => item.id));
+        if (history.length && history.at(-1)?.section !== data.current_section) {
+          const item = selectNextAdaptiveItem(pool.filter(q => q.section === data.current_section),used,evaluate(history,restored).currentCefr);
+          if(item) {history.push(item); used.add(item.id);}
         }
-      } catch {
-        // Keep default questions
+        setAnswers(restored); setActiveQuestions(history); setAskedItemIds(used);
+        setAdaptiveState(evaluate(history,restored)); setCurrentIndex(Math.max(0,history.length-1));
+        setHasStarted(immediate || history.length > 0);
+      } catch (e) {
+        if (!isMounted) return;
+        if (e instanceof EndooraApiError && [401,403].includes(e.status) && !accountResolved.current) {
+          setAuthState({kind:"anonymous"});
+          try {
+            const draft = JSON.parse(sessionStorage.getItem("endoora_guest__placement_draft") || "null");
+            if (draft && Array.isArray(draft.ids) && draft.answers && Date.now() < draft.expires) {
+              const items = draft.ids.map((id:string) => DEFAULT_ITEMS_BANK.find(q => q.id === id)).filter(Boolean) as AdaptiveItem[];
+              setAnswers(draft.answers); setActiveQuestions(items); setAskedItemIds(new Set(items.map(i => i.id)));
+              setAdaptiveState(evaluate(items,draft.answers)); setCurrentIndex(Math.max(0,Math.min(items.length-1,Number(draft.index) || 0)));
+              setCurrentSectionIndex(Math.max(0,SECTIONS_ORDER.indexOf((items.at(-1)?.section || "grammar") as SectionType)));
+              setSectionTimeRemaining(Math.max(1,Math.round((draft.deadline-Date.now())/1000)));
+              setHasStarted(true); return;
+            }
+          } catch { /* A new guest session can start when browser storage is unavailable. */ }
+          setHasStarted(immediate);
+        } else setError("دریافت نشست انجام نشد. صفحه را دوباره بارگیری کنید.");
       }
     }
-
-    initSession();
+    void initSession();
 
     function handleOnline() {
       setIsOffline(false);
@@ -340,22 +329,15 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     };
   }, []);
 
-  // Section countdown timer ticker with automatic section auto-advance on timeout
+  const onSectionTimeout = useEffectEvent(async () => {
+    if (!working.current) await handleTimeout();
+  });
   useEffect(() => {
     if (!hasStarted || isSubmitted || isExpired) return;
-
-    const timer = setInterval(() => {
-      setSectionTimeRemaining((prev) => {
-        if (prev <= 1) {
-          handleTimeout();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [hasStarted, isSubmitted, isExpired, currentSectionIndex]);
+    if (sectionTimeRemaining === 0) { void onSectionTimeout(); return; }
+    const timer = window.setTimeout(() => setSectionTimeRemaining(value => Math.max(0,value-1)),1000);
+    return () => window.clearTimeout(timer);
+  }, [hasStarted,isSubmitted,isExpired,sectionTimeRemaining,currentSectionIndex]);
 
   // Initialize initial adaptive question when test starts
   useEffect(() => {
@@ -372,128 +354,43 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     }
   }, [hasStarted, activeQuestions.length, allQuestionsPool]);
 
-  // Save an answer idempotently and adaptively evaluate
-  async function handleSelectOption(option: string) {
-    if (isSubmitted || isExpired) return;
-
-    setAnswers((prev) => ({ ...prev, [question.id]: option }));
-
-    // Real-time CAT ability calibration using strict answer verification
-    const isCorrect = isItemCorrect(question, option);
-    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
-
-    const nextState = updateAdaptiveState(adaptiveState, {
-      itemId: question.id,
-      section: question.section,
-      cefrLevel: itemCefr,
-      isCorrect,
-      scorePercentage: isCorrect ? 100 : 0,
-    });
-    setAdaptiveState(nextState);
-
-    // Persist to server if active session exists
-    if (!session || !session.id) return;
-
+  useEffect(() => {
+    if (authState.kind !== "anonymous" || !hasStarted || !activeQuestions.length || isSubmitted) return;
     try {
-      const idempotencyKey = generateIdempotencyKey();
-      const res = await fetch(`/api/placement/sessions/${session.id}/answers/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idempotency_key: idempotencyKey,
-          question_key: question.id,
-          question_version_id: question.question_version_id || null,
-          answer_value: { selected_option: option },
-        }),
-      });
+      sessionStorage.setItem("endoora_guest__placement_draft",JSON.stringify({
+        ids:activeQuestions.map(i => i.id), answers, index:currentIndex,
+        expires:Date.now()+24*3600000, deadline:Date.now()+sectionTimeRemaining*1000,
+      }));
+    } catch { /* Guests can continue in this tab without browser storage. */ }
+  },[authState.kind,hasStarted,activeQuestions,answers,currentIndex,isSubmitted,sectionTimeRemaining]);
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        if (errData.code === "session_expired" || errData.code === "session_inactive") {
-          setIsExpired(true);
-        }
+  async function saveAnswer(key: string, value: string) {
+    if (working.current || isExpired || isSubmitted || authState.kind === "checking") return;
+    working.current = true; setSaving(true); setError("");
+    try {
+      if(authState.kind === "authenticated") {
+        if (!session) throw new Error("session unavailable");
+        await endooraApi("/placement/sessions/"+session.id+"/answers/", {method:"POST",json:{
+          question_key:question.id, question_version_id:question.question_version_id || null,
+          answer_value:{[key]:value},
+        }});
       }
-    } catch {
-      setIsOffline(true);
-    }
+      const next = {...answers,[question.id]:value};
+      setAnswers(next); setAdaptiveState(evaluate(activeQuestions,next));
+    } catch {setError("پاسخ ذخیره نشد. دوباره تلاش کنید.");}
+    finally {working.current = false; setSaving(false);}
   }
+  const handleSelectOption = (value:string) => saveAnswer("selected_option",value);
+  const handleSaveSpokenAnswer = (value:string) => saveAnswer("spoken_text",value);
+  const handleSaveWrittenAnswer = (value:string) => saveAnswer("written_text",value);
 
-  // Save a speaking answer idempotently
-  async function handleSaveSpokenAnswer(spokenText: string) {
-    if (isSubmitted || isExpired) return;
-
-    setAnswers((prev) => ({ ...prev, [question.id]: spokenText }));
-
-    const minWords = question.min_words_expected || 10;
-    const words = spokenText.trim().split(/\s+/).filter(Boolean).length;
-    const isCorrect = isItemCorrect(question, spokenText);
-    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
-
-    const nextState = updateAdaptiveState(adaptiveState, {
-      itemId: question.id,
-      section: question.section,
-      cefrLevel: itemCefr,
-      isCorrect,
-      scorePercentage: Math.min(100, Math.round((words / minWords) * 100)),
-    });
-    setAdaptiveState(nextState);
-
-    if (!session || !session.id) return;
-
+  async function advanceSection(section: SectionType) {
+    if (authState.kind !== "authenticated") return true;
     try {
-      const idempotencyKey = generateIdempotencyKey();
-      await fetch(`/api/placement/sessions/${session.id}/answers/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idempotency_key: idempotencyKey,
-          question_key: question.id,
-          question_version_id: question.question_version_id || null,
-          answer_value: { spoken_text: spokenText },
-        }),
-      });
-    } catch {
-      setIsOffline(true);
-    }
-  }
-
-  // Save a writing answer idempotently
-  async function handleSaveWrittenAnswer(writtenText: string) {
-    if (isSubmitted || isExpired) return;
-
-    setAnswers((prev) => ({ ...prev, [question.id]: writtenText }));
-
-    const minWords = question.min_words_expected || 15;
-    const words = writtenText.trim().split(/\s+/).filter(Boolean).length;
-    const isCorrect = isItemCorrect(question, writtenText);
-    const itemCefr = (question.cefr_level || "B1").toUpperCase() as CefrLevel;
-
-    const nextState = updateAdaptiveState(adaptiveState, {
-      itemId: question.id,
-      section: question.section,
-      cefrLevel: itemCefr,
-      isCorrect,
-      scorePercentage: Math.min(100, Math.round((words / minWords) * 100)),
-    });
-    setAdaptiveState(nextState);
-
-    if (!session || !session.id) return;
-
-    try {
-      const idempotencyKey = generateIdempotencyKey();
-      await fetch(`/api/placement/sessions/${session.id}/answers/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idempotency_key: idempotencyKey,
-          question_key: question.id,
-          question_version_id: question.question_version_id || null,
-          answer_value: { written_text: writtenText },
-        }),
-      });
-    } catch {
-      setIsOffline(true);
-    }
+      if (!session) throw new Error("session unavailable");
+      await endooraApi("/placement/sessions/"+session.id+"/advance/", {method:"POST",json:{section}});
+      setError(""); return true;
+    } catch {setError("بخش آزمون تغییر نکرد. دوباره تلاش کنید."); return false;}
   }
 
   // Automatic Section Advance on Timer Timeout (autoAdvance / handleTimeout)
@@ -507,20 +404,10 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
     if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
       const nextSecIdx = currentSectionIndex + 1;
       const nextSec = SECTIONS_ORDER[nextSecIdx];
+      if (!(await advanceSection(nextSec))) return;
       setCurrentSectionIndex(nextSecIdx);
       setSectionTimeRemaining(SECTION_DURATIONS[nextSec] || 600);
 
-      if (session && session.id) {
-        try {
-          await fetch(`/api/placement/sessions/${session.id}/advance/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ section: nextSec, action: "timeout" }),
-          });
-        } catch {
-          // Non-blocking
-        }
-      }
 
       const secPool = allQuestionsPool.filter((q) => q.section === nextSec);
       const targetCefr = adaptiveState.currentCefr;
@@ -566,20 +453,10 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
       if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
         nextSecIdx = currentSectionIndex + 1;
         nextSec = SECTIONS_ORDER[nextSecIdx];
-        setCurrentSectionIndex(nextSecIdx);
+        if (!(await advanceSection(nextSec))) return;
+      setCurrentSectionIndex(nextSecIdx);
         setSectionTimeRemaining(SECTION_DURATIONS[nextSec] || 600); // Reset timer for new section
 
-        if (session && session.id) {
-          try {
-            await fetch(`/api/placement/sessions/${session.id}/advance/`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ section: nextSec }),
-            });
-          } catch {
-            // Non-blocking
-          }
-        }
       } else {
         // All sections completed! Trigger submission
         handleSubmit();
@@ -608,8 +485,9 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
       // If pool exhausted in this section, transition to next section
       if (currentSectionIndex < SECTIONS_ORDER.length - 1) {
         const nextNextSecIdx = currentSectionIndex + 1;
-        setCurrentSectionIndex(nextNextSecIdx);
         const nextNextSec = SECTIONS_ORDER[nextNextSecIdx];
+        if (!(await advanceSection(nextNextSec))) return;
+        setCurrentSectionIndex(nextNextSecIdx);
         setSectionTimeRemaining(SECTION_DURATIONS[nextNextSec] || 600);
         const nextSecPool = allQuestionsPool.filter((q) => q.section === nextNextSec);
         const fallbackItem = selectNextAdaptiveItem(nextSecPool, askedItemIds, targetCefr, null) || nextSecPool[0];
@@ -635,71 +513,22 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
 
   // Final Submission
   async function handleSubmit() {
-    setIsSubmitting(true);
-
-    // Save evaluated report into localStorage using exact skill arithmetic averaging
-    if (typeof window !== "undefined") {
-      const guestSummary = calculatePlacementSummary(activeQuestions, answers, session?.id);
-      try {
-        localStorage.setItem("endoora_placement_guest_summary", JSON.stringify(guestSummary));
-      } catch {
-        // Quota safety
-      }
-    }
-
-    if (!session || !session.id) {
-      setIsSubmitted(true);
-      setIsSubmitting(false);
-      return;
-    }
-
+    if (working.current || authState.kind === "checking") return;
+    working.current = true; setIsSubmitting(true); setError("");
     try {
-      const res = await fetch(`/api/placement/sessions/${session.id}/submit/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (res.ok) {
-        setIsSubmitted(true);
+      if (authState.kind === "authenticated") {
+        if (!session) throw new Error("session unavailable");
+        await endooraApi("/placement/sessions/"+session.id+"/submit/", {method:"POST"});
       } else {
-        const errData = await res.json().catch(() => ({}));
-        if (errData.code === "session_expired") {
-          setIsExpired(true);
-        } else {
-          setIsSubmitted(true);
-        }
+        sessionStorage.setItem("endoora_guest__placement_summary",JSON.stringify(calculatePlacementSummary(activeQuestions,answers)));
+        sessionStorage.removeItem("endoora_guest__placement_draft");
       }
-    } catch {
       setIsSubmitted(true);
-    } finally {
-      setIsSubmitting(false);
-    }
+    } catch {setError("ثبت نتیجه انجام نشد. دوباره تلاش کنید.");}
+    finally {working.current = false; setIsSubmitting(false);}
   }
 
-  // Restart session if expired
-  async function handleRestartSession() {
-    setIsExpired(false);
-    setIsSubmitted(false);
-    setAnswers({});
-    setActiveQuestions([]);
-    setCurrentIndex(0);
-    setCurrentSectionIndex(0);
-    setAdaptiveState(createInitialAdaptiveState());
-    setAskedItemIds(new Set());
-
-    try {
-      const res = await fetch("/api/placement/sessions/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (res.ok) {
-        const data: PlacementSessionData = await res.json();
-        setSession(data);
-      }
-    } catch {
-      // Handled
-    }
-  }
+  function handleRestartSession() {window.location.reload();}
 
   const totalEstimatedQuestions = TOTAL_ADMINISTERED_ITEMS;
   const isLastQuestion =
@@ -709,6 +538,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
   return (
     <EndooraBackground>
       <div className={styles.container} dir={locale === "fa" ? "rtl" : "ltr"}>
+        {error && <p role="alert">{error}</p>}
         {/* Status Alerts */}
         {isOffline && <div className={`${styles.alert} ${styles.alertWarning}`}>{copy.offlineWarning}</div>}
 
@@ -846,7 +676,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                 <h3 className={styles.authGateTitle}>{copy.authedNoticeTitle}</h3>
                 <p className={styles.authGateDesc}>{copy.authedNoticeDesc}</p>
                 <div className={styles.authGateActions}>
-                  <Button type="button" className={styles.btnPrimary} onClick={() => setHasStarted(true)}>
+                  <Button type="button" className={styles.btnPrimary} disabled={!session} onClick={() => setHasStarted(true)}>
                     {copy.startTestBtn} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                   </Button>
                 </div>
@@ -907,16 +737,16 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginBlockStart: "var(--space-4)" }}>
               {authState.kind === "anonymous" ? (
                 <>
-                  <Link href="/placement/report" className={styles.btnPrimary}>
+                  <Link href={session ? "/placement/report?session="+session.id : "/placement/report"} className={styles.btnPrimary}>
                     {copy.viewReport} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                   </Link>
-                  <Link href="/auth/register?next=/placement/report" className={styles.btnSecondary}>
+                  <Link href="/auth/register?next=/placement/demo?start=1" className={styles.btnSecondary}>
                     {copy.registerSaveBtn}
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link href="/placement/report" className={styles.btnPrimary}>
+                  <Link href={session ? "/placement/report?session="+session.id : "/placement/report"} className={styles.btnPrimary}>
                     {copy.viewReport} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                   </Link>
                   <Link href="/dashboard" className={styles.btnSecondary}>
@@ -1063,6 +893,8 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                                 key={opt}
                                 type="button"
                                 dir="ltr"
+                                aria-pressed={isSelected}
+                                disabled={saving}
                                 className={`${styles.option} ${isSelected ? styles.optionActive : ""}`}
                                 onClick={() => handleSelectOption(opt)}
                               >
@@ -1119,6 +951,8 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                                 key={opt}
                                 type="button"
                                 dir="ltr"
+                                aria-pressed={isSelected}
+                                disabled={saving}
                                 className={`${styles.option} ${isSelected ? styles.optionActive : ""}`}
                                 onClick={() => handleSelectOption(opt)}
                               >
@@ -1137,13 +971,13 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                       type="button"
                       className={styles.btnSecondary}
                       onClick={handlePrev}
-                      disabled={currentIndex === 0}
+                      disabled={currentIndex === 0 || saving}
                     >
                       {copy.prev}
                     </Button>
 
                     {!isLastQuestion ? (
-                      <Button type="button" className={styles.btnPrimary} onClick={handleNext}>
+                      <Button type="button" className={styles.btnPrimary} onClick={handleNext} disabled={saving || !selectedOption}>
                         {copy.next} <span aria-hidden="true">{locale === "fa" ? "←" : "→"}</span>
                       </Button>
                     ) : (
@@ -1151,7 +985,7 @@ export function PlacementRunner({ initialLocale = "fa" }: { initialLocale?: Loca
                         type="button"
                         className={styles.btnPrimary}
                         onClick={handleSubmit}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || saving || !selectedOption}
                       >
                         {isSubmitting ? copy.submitting : copy.submit}
                       </Button>

@@ -13,6 +13,7 @@ from .views import (
     DeactivateAccountView,
     LoginView,
     LogoutView,
+    PasswordChangeView,
     MeView,
     OtpRequestView,
     OtpVerifyView,
@@ -21,6 +22,7 @@ from .views import (
 app_name = "accounts"
 
 urlpatterns = [
+    path("password/change/", PasswordChangeView.as_view(), name="password-change"),
     path(
         "csrf/",
         CsrfTokenView.as_view(),

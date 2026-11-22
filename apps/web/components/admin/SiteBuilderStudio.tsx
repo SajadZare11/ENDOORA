@@ -200,7 +200,7 @@ export function SiteBuilderStudio() {
   // Add block to current page form
   const handleAddBlockToPage = (type: PageBlockType) => {
     const newBlockId = `b-${type}-${Date.now()}`;
-    let newBlockPayload: any;
+    let newBlockPayload: PageBlock["block"];
 
     if (type === "hero") {
       newBlockPayload = {
@@ -1174,7 +1174,7 @@ export function SiteBuilderStudio() {
                   <select
                     className={styles.selectInput}
                     value={themeConfig.persianFontFamily}
-                    onChange={(e) => setThemeConfig({ ...themeConfig, persianFontFamily: e.target.value as any })}
+                    onChange={(e) => setThemeConfig({ ...themeConfig, persianFontFamily: e.target.value as typeof themeConfig.persianFontFamily })}
                   >
                     <option value="Vazirmatn">وزیرمتن (Vazirmatn) - پیش‌فرض</option>
                     <option value="Shabnam">شبنم (Shabnam)</option>
@@ -1189,7 +1189,7 @@ export function SiteBuilderStudio() {
                   <select
                     className={styles.selectInput}
                     value={themeConfig.englishFontFamily}
-                    onChange={(e) => setThemeConfig({ ...themeConfig, englishFontFamily: e.target.value as any })}
+                    onChange={(e) => setThemeConfig({ ...themeConfig, englishFontFamily: e.target.value as typeof themeConfig.englishFontFamily })}
                   >
                     <option value="Inter">اینتر (Inter) - مدرن</option>
                     <option value="Roboto">روبوتو (Roboto)</option>
@@ -1203,7 +1203,7 @@ export function SiteBuilderStudio() {
                 <select
                   className={styles.selectInput}
                   value={themeConfig.borderRadiusScale}
-                  onChange={(e) => setThemeConfig({ ...themeConfig, borderRadiusScale: e.target.value as any })}
+                  onChange={(e) => setThemeConfig({ ...themeConfig, borderRadiusScale: e.target.value as typeof themeConfig.borderRadiusScale })}
                 >
                   <option value="sharp">گوشه‌های تیز (Sharp - 0px)</option>
                   <option value="moderate">متوسط (Moderate - 6px)</option>
@@ -1326,7 +1326,7 @@ export function SiteBuilderStudio() {
                     <select
                       className={styles.selectInput}
                       value={pageFormData.status || "draft"}
-                      onChange={(e) => setPageFormData({ ...pageFormData, status: e.target.value as any })}
+                      onChange={(e) => setPageFormData({ ...pageFormData, status: e.target.value as typeof pageFormData.status })}
                     >
                       <option value="draft">پیش‌نویس (عدم نمایش عمومی)</option>
                       <option value="published">انتشار زنده (نمایش در /p/[slug])</option>
@@ -1376,7 +1376,7 @@ export function SiteBuilderStudio() {
                               {b.block.type.toUpperCase()}
                             </span>
                             <strong style={{ fontSize: "0.88rem" }}>
-                              {(b.block as any).data.headlineFa || (b.block as any).data.titleFa || "بلوک محتوا"}
+                              {"headlineFa" in b.block.data ? b.block.data.headlineFa : "titleFa" in b.block.data && typeof b.block.data.titleFa === "string" ? b.block.data.titleFa : "بلوک محتوا"}
                             </strong>
                           </div>
 
@@ -1434,7 +1434,7 @@ export function SiteBuilderStudio() {
                 <select
                   className={styles.selectInput}
                   value={selectedBlockType}
-                  onChange={(e) => setSelectedBlockType(e.target.value as any)}
+                  onChange={(e) => setSelectedBlockType(e.target.value as typeof selectedBlockType)}
                 >
                   <option value="hero">🌟 بنر بالایی و هدر (Hero Banner)</option>
                   <option value="features">🚀 شبکه کارت‌های ویژگی‌ها (Features Grid)</option>
@@ -1583,7 +1583,7 @@ export function SiteBuilderStudio() {
                     <select
                       className={styles.selectInput}
                       value={popupFormData.type || "center_modal"}
-                      onChange={(e) => setPopupFormData({ ...popupFormData, type: e.target.value as any })}
+                      onChange={(e) => setPopupFormData({ ...popupFormData, type: e.target.value as typeof popupFormData.type })}
                     >
                       <option value="center_modal">🪟 مدال سنتر (Center Modal)</option>
                       <option value="top_countdown_ribbon">⏱️ نوار شمارش معکوس بالا (Top Ribbon)</option>
@@ -1632,7 +1632,7 @@ export function SiteBuilderStudio() {
                     <select
                       className={styles.selectInput}
                       value={popupFormData.triggerType || "time_delay"}
-                      onChange={(e) => setPopupFormData({ ...popupFormData, triggerType: e.target.value as any })}
+                      onChange={(e) => setPopupFormData({ ...popupFormData, triggerType: e.target.value as typeof popupFormData.triggerType })}
                     >
                       <option value="time_delay">⏱️ تاخیر زمانی (Time Delay)</option>
                       <option value="exit_intent">🚪 خروج کاربر (Exit Intent)</option>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { PublicShell } from "@/components/marketing/PublicShell";
 import { GameHubArcade } from "@/components/skills/game/GameHubArcade";
@@ -16,6 +17,12 @@ export default function SkillsHubPage() {
     <PublicShell locale="fa" currentPath="/skills">
       <div className={styles.container} dir="rtl">
         {/* Interactive Skills Games & CEFR Arcade */}
+        <nav aria-label="مهارت‌های زبان" className="account-panel">
+          <Link href="/skills/listening">شنیداری</Link> · <Link href="/skills/speaking">گفتاری</Link> ·
+          <Link href="/skills/reading">خواندن</Link> · <Link href="/skills/writing">نوشتن</Link> ·
+          <Link href="/skills/vocabulary">واژگان</Link> · <Link href="/skills/grammar">گرامر</Link> ·
+          <Link href="/skills/culture">فرهنگ و روابط اجتماعی</Link>
+        </nav>
         <GameHubArcade />
       </div>
     </PublicShell>

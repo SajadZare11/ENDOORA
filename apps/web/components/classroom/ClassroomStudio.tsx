@@ -618,7 +618,7 @@ export function ClassroomStudio({
                       {v.ipa && <div className={styles.vocabIpa}>{v.ipa}</div>}
                       <div className={styles.vocabMeaningFa}>{v.meaningFa}</div>
                       {v.exampleSentenceEn && (
-                        <div className={styles.vocabExampleEn}>"{v.exampleSentenceEn}"</div>
+                        <div className={styles.vocabExampleEn}>&quot;{v.exampleSentenceEn}&quot;</div>
                       )}
                     </article>
                   ))}

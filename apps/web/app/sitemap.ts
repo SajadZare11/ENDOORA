@@ -16,6 +16,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [entry("/", 1)];
   for (const key of publicPageKeys) pages.push(entry(`/${key}`, key === "placement" ? 0.9 : 0.7));
   for (const key of featureKeys) pages.push(entry(`/features/${key}`, 0.65));
-  pages.push({url: PUBLIC_BASE_URL + "/ielts/reading/false-not-given/", changeFrequency: "monthly", priority: 0.8});
   return pages;
 }

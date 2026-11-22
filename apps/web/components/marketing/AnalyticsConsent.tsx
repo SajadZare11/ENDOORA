@@ -1,5 +1,6 @@
 "use client";
 
+import { endooraApi } from "../../lib/endoora-api";
 import { Button } from "@endoora/ui";
 
 import { useSyncExternalStore } from "react";
@@ -61,6 +62,8 @@ export function AnalyticsConsent({ locale }: { locale: PublicLocale }) {
   function save(value: Exclude<ConsentChoice, null>) {
     window.localStorage.setItem(STORAGE_KEY, value);
     window.dispatchEvent(new Event(CONSENT_EVENT));
+    void endooraApi("/auth/me/").then(() => endooraApi("/privacy/preferences/", {method:"PUT",json:{analytics_processing:value === "accepted"}})).catch(() => {});
+    if(value === "accepted") void endooraApi("/analytics/track/", {method:"POST",json:{event_name:"route_view_landing",optional_consent:true,locale}}).catch(() => {});
   }
 
   return (
@@ -73,20 +76,20 @@ export function AnalyticsConsent({ locale }: { locale: PublicLocale }) {
       <div>
         <strong>
           {isFa
-            ? "تحلیل اختیاری هنوز فعال نیست"
-            : "Optional analytics are not active yet"}
+            ? "اندازه‌گیری اختیاری استفاده از سایت"
+            : "Optional usage analytics"}
         </strong>
 
         <p>
           {locale === "fa"
-            ? "Endoora هیچ اسکریپت رهگیری شخص ثالثی بارگیری نمی‌کند. این انتخاب فقط در مرورگر شما ذخیره می‌شود تا حفظ حریم خصوصی از ابتدا شفاف و تضمین‌شده باشد."
-            : "Endoora loads no third-party analytics scripts. This preference is stored only in your browser so the consent path is explicit from the start."}
+            ? "Endoora هیچ اسکریپت رهگیری شخص ثالثی بارگیری نمی‌کند. می‌توانید ثبت رویدادهای استفاده را بپذیرید یا رد کنید."
+            : "Endoora loads no third-party analytics scripts. Choose whether Endoora may record optional usage events."}
         </p>
       </div>
 
       <div className={styles.consentActions}>
         <Button type="button" onClick={() => save("accepted")}>
-          {isFa ? "اجازه در آینده" : "Allow in future"}
+          {isFa ? "اجازه ثبت رویدادها" : "Allow analytics"}
         </Button>
 
         <Button type="button" onClick={() => save("declined")}>

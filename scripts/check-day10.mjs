@@ -55,12 +55,12 @@ requireText("apps/web/components/teacher/TeacherShell.tsx", 'href: "/teacher/acc
 requireText("apps/web/components/teacher/TeacherShell.tsx", 'const [locale, setLocale] = useState<TeacherLocale>("fa")', "Persian-first locale");
 requireText("apps/web/components/teacher/TeacherShell.tsx", "persistPreferredLocale", "Persistent bilingual preference");
 requireText("apps/web/components/teacher/TeacherShell.tsx", "TeacherIcon", "Accessible teacher navigation icons");
-requireText("apps/web/components/teacher/TeacherDashboard.tsx", "/images/teacher/teacher-verification.png", "Purpose-built verification artwork");
-requireText("apps/web/components/teacher/TeacherDashboard.tsx", "teacher-profile-progress", "Real teacher profile completeness");
-requireText("apps/web/components/teacher/TeacherDashboard.tsx", "teacher-account-rail", "Finance and settings Account destination");
+requireText("apps/web/components/teacher/TeacherDashboard.tsx", 'href="/teacher/verification"', "Verification action");
+requireText("apps/web/components/teacher/TeacherDashboard.tsx", "data.profile_completeness_percent", "Real teacher profile completeness");
+requireText("apps/web/components/teacher/TeacherShell.tsx", 'href: "/teacher/account"', "Finance and settings Account destination");
 requireText("apps/api/teachers/dashboard.py", '"amount_toman": None', "No invented earnings");
 requireText("apps/api/teachers/dashboard.py", '"count": None', "No invented future-domain counts");
-requireText("apps/api/teachers/tests.py", "assertNumQueries(1)", "Bounded dashboard query test");
+requireText("apps/api/teachers/tests.py", "assertNumQueries(2)", "Bounded dashboard query test");
 requireText("apps/api/teachers/tests.py", "forbidden_keys", "Sensitive learner-content regression test");
 
 const serializer = read("apps/api/teachers/serializers.py");

@@ -298,7 +298,7 @@ export const INITIAL_API_INTEGRATIONS: ApiIntegrationStatus[] = [
 ];
 
 // Sample table records for the database inspector
-let sampleTableData: Record<DatabaseTableId, any[]> = {
+const sampleTableData: Record<DatabaseTableId, any[]> = {
   users: [
     { id: "usr_01", username: "sara_m", email: "sara.mohammadi@example.com", role: "learner", is_active: true, date_joined: "1403/07/15", wallet_balance_toman: 250000 },
     { id: "usr_02", username: "ali_r", email: "ali.rezaei@example.com", role: "learner", is_active: true, date_joined: "1403/08/01", wallet_balance_toman: 0 },
@@ -333,8 +333,8 @@ let sampleTableData: Record<DatabaseTableId, any[]> = {
 };
 
 let memoryMaintenance: MaintenanceModeConfig = { ...INITIAL_MAINTENANCE_CONFIG };
-let memoryCacheTelemetry: CacheTelemetry = { ...INITIAL_CACHE_TELEMETRY };
-let memoryApiIntegrations: ApiIntegrationStatus[] = [...INITIAL_API_INTEGRATIONS];
+const memoryCacheTelemetry: CacheTelemetry = { ...INITIAL_CACHE_TELEMETRY };
+const memoryApiIntegrations: ApiIntegrationStatus[] = [...INITIAL_API_INTEGRATIONS];
 
 // ==============================================================================
 // Store Accessors & Handlers

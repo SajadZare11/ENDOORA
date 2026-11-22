@@ -1,4 +1,6 @@
 .site {
+  overflow-x: clip;
+  min-inline-size: 0;
   min-height: 100vh;
   background: var(--color-canvas);
   color: var(--color-text);

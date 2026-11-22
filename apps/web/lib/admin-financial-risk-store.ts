@@ -227,9 +227,9 @@ export const INITIAL_TRANSACTIONS: EligibleTransaction[] = [
   },
 ];
 
-let memoryRefunds: RefundRecord[] = [...INITIAL_REFUNDS];
-let memoryRiskAlerts: RiskAlertRecord[] = [...INITIAL_RISK_ALERTS];
-let memoryTransactions: EligibleTransaction[] = [...INITIAL_TRANSACTIONS];
+const memoryRefunds: RefundRecord[] = [...INITIAL_REFUNDS];
+const memoryRiskAlerts: RiskAlertRecord[] = [...INITIAL_RISK_ALERTS];
+const memoryTransactions: EligibleTransaction[] = [...INITIAL_TRANSACTIONS];
 
 // ==============================================================================
 // 3. Store Handlers

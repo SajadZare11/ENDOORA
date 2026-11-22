@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import { getMaintenanceConfig } from "@/lib/admin-server-ops-store";
 
@@ -28,9 +29,9 @@ export async function GET(request: Request) {
       contactSupportUrl: config.contactSupportUrl,
       updatedAt: config.updatedAt,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در بررسی وضعیت نگهداری" },
+      { success: false, error: errorMessage(err) || "خطا در بررسی وضعیت نگهداری" },
       { status: 500 }
     );
   }

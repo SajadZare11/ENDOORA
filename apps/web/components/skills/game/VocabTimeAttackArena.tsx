@@ -772,7 +772,7 @@ export function VocabTimeAttackArena({ level, onClose, onNextLevel, onOpenLeader
                     textAlign: "left",
                   }}
                 >
-                  "{currentQuestion.speakerA.text}"
+                  &quot;{currentQuestion.speakerA.text}&quot;
                 </div>
 
                 <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#475569", fontWeight: 700 }}>

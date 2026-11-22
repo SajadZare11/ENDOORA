@@ -21,7 +21,7 @@
     "titleEn": "Master English with Smart, Friendly Guidance",
     "subtitleFa": "با تعیین سطح رایگان، دوره‌های استاندارد CEFR، پارتنر هوش مصنوعی و کلاس‌های اساتید برتر، مسیر یادگیری‌ات را بساز.",
     "subtitleEn": "From CEFR foundation to native fluency with personalized AI feedback.",
-    "primaryCtaLabelFa": "تعیین سطح رایگان (۳ دقیقه)",
+    "primaryCtaLabelFa": "تعیین سطح رایگان (۵۰ پرسش)",
     "primaryCtaLabelEn": "Free Placement Test",
     "primaryCtaHref": "/placement",
     "secondaryCtaLabelFa": "مشاهده کلاس‌ها و اساتید",
@@ -41,8 +41,8 @@
       "icon": "🎯",
       "titleFa": "تعیین سطح هوشمند و دقیق",
       "titleEn": "Adaptive Placement Test",
-      "descFa": "در ۳ دقیقه مهارت واژگان، گرامر و شنیداری‌ات ممیزی می‌شود.",
-      "descEn": "Fast 3-minute diagnostic assessment.",
+      "descFa": "در شش بخش، سطح مهارت‌های زبانی‌ات را برآورد کن.",
+      "descEn": "Estimate your level across six skill areas.",
       "actionLabelFa": "شروع تست",
       "actionHref": "/placement"
     },
@@ -148,7 +148,7 @@
     {
       "id": "faq-1",
       "questionFa": "آیا تعیین سطح اولیه ایندورا هزینه دارد؟",
-      "answerFa": "خیر، تعیین سطح هوشمند ایندورا کاملاً رایگان است و در کمتر از ۳ دقیقه سطح تقریبی CEFR شما را مشخص می‌کند.",
+      "answerFa": "خیر، تعیین سطح هوشمند ایندورا کاملاً رایگان است و پس از تکمیل شش بخش سطح تقریبی CEFR شما را مشخص می‌کند.",
       "category": "placement"
     },
     {

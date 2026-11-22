@@ -1,3 +1,4 @@
+import { errorMessage } from "./error-message.ts";
 import { recordAuditLog } from "./admin-ops";
 
 // ==============================================================================
@@ -381,8 +382,8 @@ export const INITIAL_SUBMISSIONS: FormSubmissionRecord[] = [
   },
 ];
 
-let memoryForms: CustomDynamicForm[] = [...INITIAL_FORMS];
-let memorySubmissions: FormSubmissionRecord[] = [...INITIAL_SUBMISSIONS];
+const memoryForms: CustomDynamicForm[] = [...INITIAL_FORMS];
+const memorySubmissions: FormSubmissionRecord[] = [...INITIAL_SUBMISSIONS];
 
 // ==============================================================================
 // 3. Store Handlers & Operations
@@ -596,12 +597,12 @@ export async function testWebhookEndpoint(
       statusCode: res.status,
       responseSnippet: text.slice(0, 150) || "OK (بدون بادی)",
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     return {
       success: false,
       latencyMs: Date.now() - start,
       statusCode: 0,
-      responseSnippet: `خطا در اتصال: ${err?.message || "عدم دسترسی به سرور مقصد"}`,
+      responseSnippet: `خطا در اتصال: ${errorMessage(err) || "عدم دسترسی به سرور مقصد"}`,
     };
   }
 }

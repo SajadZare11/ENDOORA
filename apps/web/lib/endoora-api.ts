@@ -2,7 +2,7 @@ export type EndooraLocale = "fa" | "en";
 
 type JsonObject = Record<string, unknown>;
 
-type ApiRequestOptions = Omit<RequestInit, "body"> & {
+type ApiRequestOptions = RequestInit & {
   json?: unknown;
 };
 
@@ -59,16 +59,16 @@ function isMutatingMethod(method: string): boolean {
   return !["GET", "HEAD", "OPTIONS"].includes(method);
 }
 
-export async function endooraApi<T>(
+export async function endooraFetch(
   path: string,
   options: ApiRequestOptions = {},
-): Promise<T> {
+): Promise<Response> {
   const method = (options.method ?? "GET").toUpperCase();
 
   const headers = new Headers(options.headers);
   headers.set("Accept", "application/json");
 
-  let body: BodyInit | undefined;
+  let body = options.body;
 
   if (options.json !== undefined) {
     headers.set("Content-Type", "application/json");
@@ -86,7 +86,7 @@ export async function endooraApi<T>(
       ? path
       : `/${path}`;
 
-  const response = await fetch(`/backend/api${normalizedPath}`, {
+  return fetch(`/backend/api${normalizedPath}`, {
     ...options,
     method,
     headers,
@@ -95,6 +95,10 @@ export async function endooraApi<T>(
     cache: "no-store",
   });
 
+}
+
+export async function endooraApi<T>(path: string, options: ApiRequestOptions = {}): Promise<T> {
+  const response = await endooraFetch(path, options);
   const data = await parseResponse(response);
 
   if (!response.ok) {

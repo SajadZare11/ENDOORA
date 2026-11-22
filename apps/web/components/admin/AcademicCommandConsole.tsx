@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useEffect, useState } from "react";
 import styles from "./academic-command.module.css";
 import {
@@ -366,8 +367,8 @@ export function AcademicCommandConsole() {
       setIsCourseModalOpen(false);
       setEditingCourse(null);
       loadCourses();
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ذخیره دوره", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ذخیره دوره", "error");
     }
   };
 
@@ -386,8 +387,8 @@ export function AcademicCommandConsole() {
       setIsModuleModalOpen(false);
       setEditingModule(null);
       loadCourses();
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ذخیره فصل", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ذخیره فصل", "error");
     }
   };
 
@@ -406,8 +407,8 @@ export function AcademicCommandConsole() {
       setIsLessonModalOpen(false);
       setEditingLesson(null);
       loadCourses();
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ذخیره درس", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ذخیره درس", "error");
     }
   };
 
@@ -1344,7 +1345,7 @@ export function AcademicCommandConsole() {
                     <select
                       className={styles.selectInput}
                       value={qType}
-                      onChange={(e) => setQType(e.target.value as any)}
+                      onChange={(e) => setQType(e.target.value as typeof qType)}
                     >
                       <option value="multiple_choice">چهار گزینه‌ای (Multiple Choice)</option>
                       <option value="true_false">صحیح / غلط (True/False)</option>
@@ -2015,7 +2016,7 @@ export function AcademicCommandConsole() {
                     <select
                       className={styles.selectInput}
                       value={courseFormData.cefr_level || "B1"}
-                      onChange={(e) => setCourseFormData({ ...courseFormData, cefr_level: e.target.value as any })}
+                      onChange={(e) => setCourseFormData({ ...courseFormData, cefr_level: e.target.value as typeof courseFormData.cefr_level })}
                     >
                       <option value="A1">A1 (ابتدایی)</option>
                       <option value="A2">A2 (مقدماتی)</option>
@@ -2033,7 +2034,7 @@ export function AcademicCommandConsole() {
                     <select
                       className={styles.selectInput}
                       value={courseFormData.skill_category || "listening"}
-                      onChange={(e) => setCourseFormData({ ...courseFormData, skill_category: e.target.value as any })}
+                      onChange={(e) => setCourseFormData({ ...courseFormData, skill_category: e.target.value as typeof courseFormData.skill_category })}
                     >
                       <option value="listening">شنیداری (Listening)</option>
                       <option value="speaking">گفتاری (Speaking)</option>
@@ -2050,7 +2051,7 @@ export function AcademicCommandConsole() {
                     <select
                       className={styles.selectInput}
                       value={courseFormData.target_audience || "general"}
-                      onChange={(e) => setCourseFormData({ ...courseFormData, target_audience: e.target.value as any })}
+                      onChange={(e) => setCourseFormData({ ...courseFormData, target_audience: e.target.value as typeof courseFormData.target_audience })}
                     >
                       <option value="general">زبان‌آموزان عمومی</option>
                       <option value="school_konkur">دبیرستان و کنکور</option>

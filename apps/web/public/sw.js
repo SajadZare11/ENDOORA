@@ -1,6 +1,6 @@
 // Endoora Progressive Web App (PWA) Service Worker - Production V1
 // Cache version and namespaces
-const CACHE_VERSION = "endoora-sw-v2";
+const CACHE_VERSION = "endoora-sw-v3";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGES_CACHE = `${CACHE_VERSION}-pages`;
 
@@ -38,7 +38,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys.map((key) => {
-            if (!key.startsWith(CACHE_VERSION)) {
+            if (key.startsWith("endoora-sw-") && !key.startsWith(CACHE_VERSION)) {
               return caches.delete(key);
             }
           })
@@ -64,6 +64,8 @@ self.addEventListener("fetch", (event) => {
 
   // 1. Navigation Requests (HTML pages): Network-first with offline fallback
   if (request.mode === "navigate") {
+    const publicPages = ["/", "/en", "/offline", "/about", "/help", "/how-it-works"];
+    if (url.origin !== self.location.origin || url.search || !publicPages.includes(url.pathname)) return;
     event.respondWith(
       fetch(request)
         .then((response) => {
@@ -97,15 +99,8 @@ self.addEventListener("fetch", (event) => {
   }
 
   // 2. Static Assets (CSS, JS, WebFonts, Images, Icons): Stale-While-Revalidate
-  const isStaticAsset =
-    url.pathname.startsWith("/icons/") ||
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.endsWith(".css") ||
-    url.pathname.endsWith(".js") ||
-    url.pathname.endsWith(".woff2") ||
-    url.pathname.endsWith(".png") ||
-    url.pathname.endsWith(".svg") ||
-    url.pathname.endsWith(".ico");
+  const isStaticAsset = url.origin === self.location.origin && !url.search &&
+    ["/icons/", "/_next/static/", "/images/", "/fonts/"].some(prefix => url.pathname.startsWith(prefix));
 
   if (isStaticAsset) {
     event.respondWith(

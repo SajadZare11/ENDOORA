@@ -43,18 +43,15 @@ def compile_full_user_data_export(user: User) -> dict:
 
     # Consent Audit Records
     consent_items = []
-    try:
-        for c in ConsentRecord.objects.filter(user=user).order_by("-accepted_at")[:100]:
-            consent_items.append({
-                "id": str(c.id),
-                "consent_type": c.consent_type,
-                "version": c.version,
-                "locale": c.locale,
-                "source": c.source,
-                "accepted_at": c.accepted_at.isoformat() if c.accepted_at else None,
-            })
-    except Exception:
-        pass
+    for c in ConsentRecord.objects.filter(user=user).order_by("-accepted_at"):
+        consent_items.append({
+            "id": str(c.id),
+            "consent_type": c.consent_type,
+            "version": c.version,
+            "locale": c.locale,
+            "source": c.source,
+            "accepted_at": c.accepted_at.isoformat() if c.accepted_at else None,
+        })
     data["consent_records"] = consent_items
 
     # 3. User Profiles
@@ -87,83 +84,65 @@ def compile_full_user_data_export(user: User) -> dict:
     }
 
     # Placement Sessions
-    try:
-        from placement.models import PlacementSession
-        for ps in PlacementSession.objects.filter(user=user).order_by("-created_at")[:50]:
-            learning_data["placement_sessions"].append({
-                "session_id": str(ps.id),
-                "status": ps.status,
-                "current_step": ps.current_step,
-                "recommended_level": getattr(ps, "recommended_level", ""),
-                "started_at": ps.created_at.isoformat() if ps.created_at else None,
-                "completed_at": ps.completed_at.isoformat() if ps.completed_at else None,
-            })
-    except Exception:
-        pass
+    from placement.models import PlacementSession
+    for ps in PlacementSession.objects.filter(user=user).select_related("result").order_by("-started_at"):
+        learning_data["placement_sessions"].append({
+            "session_id": str(ps.id),
+            "status": ps.status,
+            "current_step": ps.current_section,
+            "recommended_level": getattr(getattr(ps, "result", None), "cefr_level", ""),
+            "started_at": ps.started_at.isoformat() if ps.started_at else None,
+            "completed_at": ps.completed_at.isoformat() if ps.completed_at else None,
+        })
 
     # Online Exam Submissions
-    try:
-        from online_exams.models import ExamSubmission
-        for es in ExamSubmission.objects.filter(student=user).select_related("exam").order_by("-started_at")[:50]:
-            learning_data["online_exam_submissions"].append({
-                "submission_id": str(es.id),
-                "exam_id": str(es.exam_id),
-                "exam_title": es.exam.title if es.exam else "",
-                "status": es.status,
-                "total_score": float(es.total_score) if es.total_score is not None else None,
-                "percentage": float(es.percentage) if es.percentage is not None else None,
-                "started_at": es.started_at.isoformat() if es.started_at else None,
-                "submitted_at": es.submitted_at.isoformat() if es.submitted_at else None,
-            })
-    except Exception:
-        pass
+    from online_exams.models import ExamSubmission
+    for es in ExamSubmission.objects.filter(student=user).select_related("exam").order_by("-started_at"):
+        learning_data["online_exam_submissions"].append({
+            "submission_id": str(es.id),
+            "exam_id": str(es.exam_id),
+            "exam_title": es.exam.title if es.exam else "",
+            "status": es.status,
+            "total_score": float(es.total_score) if es.total_score is not None else None,
+            "percentage": float(es.percentage) if es.percentage is not None else None,
+            "started_at": es.started_at.isoformat() if es.started_at else None,
+            "submitted_at": es.submitted_at.isoformat() if es.submitted_at else None,
+        })
 
     # IELTS Submissions
-    try:
-        from ielts.models import IELTSWritingSubmission, IELTSSpeakingSubmission, IELTSTestSession
-        for ws in IELTSWritingSubmission.objects.filter(user=user).order_by("-created_at")[:30]:
-            learning_data["ielts_writing_submissions"].append({
-                "submission_id": str(ws.id),
-                "task_type": getattr(ws, "task_type", ""),
-                "status": getattr(ws, "status", ""),
-                "band_score": float(ws.band_score) if getattr(ws, "band_score", None) is not None else None,
-                "created_at": ws.created_at.isoformat() if ws.created_at else None,
-            })
-        for ss in IELTSSpeakingSubmission.objects.filter(user=user).order_by("-created_at")[:30]:
-            learning_data["ielts_speaking_submissions"].append({
-                "submission_id": str(ss.id),
-                "status": getattr(ss, "status", ""),
-                "band_score": float(ss.band_score) if getattr(ss, "band_score", None) is not None else None,
-                "created_at": ss.created_at.isoformat() if ss.created_at else None,
-            })
-        for ts in IELTSTestSession.objects.filter(user=user).order_by("-started_at")[:30]:
-            learning_data["ielts_test_sessions"].append({
-                "session_id": str(ts.id),
-                "status": getattr(ts, "status", ""),
-                "overall_band": float(ts.overall_band) if getattr(ts, "overall_band", None) is not None else None,
-                "started_at": ts.started_at.isoformat() if ts.started_at else None,
-            })
-    except Exception:
-        pass
+    from ielts.models import IELTSWritingSubmission, IELTSSpeakingSubmission, IELTSTestSession
+    for ws in IELTSWritingSubmission.objects.filter(learner=user).order_by("-created_at"):
+        learning_data["ielts_writing_submissions"].append({
+            "submission_id": str(ws.id),
+            "task_type": getattr(ws, "task_type", ""),
+            "status": getattr(ws, "status", ""),
+            "band_score": float(ws.overall_band) if getattr(ws, "overall_band", None) is not None else None,
+            "created_at": ws.created_at.isoformat() if ws.created_at else None,
+        })
+    for ss in IELTSSpeakingSubmission.objects.filter(learner=user).order_by("-created_at"):
+        learning_data["ielts_speaking_submissions"].append({
+            "submission_id": str(ss.id),
+            "status": getattr(ss, "status", ""),
+            "band_score": float(ss.overall_band) if getattr(ss, "overall_band", None) is not None else None,
+            "created_at": ss.created_at.isoformat() if ss.created_at else None,
+        })
+    for ts in IELTSTestSession.objects.filter(learner=user).order_by("-started_at"):
+        learning_data["ielts_test_sessions"].append({
+            "session_id": str(ts.id),
+            "status": getattr(ts, "status", ""),
+            "overall_band": float(ts.scaled_band_score) if getattr(ts, "scaled_band_score", None) is not None else None,
+            "started_at": ts.started_at.isoformat() if ts.started_at else None,
+        })
 
     # Missions & SRS
-    try:
-        from missions.models import DailyMission
-        learning_data["missions_completed_count"] = DailyMission.objects.filter(user=user, status="completed").count()
-    except Exception:
-        pass
+    from missions.models import DailyMission
+    learning_data["missions_completed_count"] = DailyMission.objects.filter(user=user, status="completed").count()
 
-    try:
-        from srs.models import SRSItem
-        learning_data["srs_cards_count"] = SRSItem.objects.filter(user=user).count()
-    except Exception:
-        pass
+    from srs.models import SrsItem
+    learning_data["srs_cards_count"] = SrsItem.objects.filter(learner=user).count()
 
-    try:
-        from mistake_genome.models import MistakeInstance
-        learning_data["tracked_mistakes_count"] = MistakeInstance.objects.filter(user=user).count()
-    except Exception:
-        pass
+    from mistake_genome.models import LearnerMistakePattern
+    learning_data["tracked_mistakes_count"] = LearnerMistakePattern.objects.filter(learner=user).count()
 
     data["learning"] = learning_data
 
@@ -175,48 +154,45 @@ def compile_full_user_data_export(user: User) -> dict:
         "subscriptions": [],
     }
 
-    try:
-        from marketplace.models import UserWallet, PaymentTransaction, SessionBooking, UserSubscription
-        wallet = UserWallet.objects.filter(user=user).first()
-        if wallet:
-            financial_data["wallet"] = {
-                "balance_toman": float(wallet.balance_toman),
-                "locked_toman": float(wallet.locked_toman),
-                "created_at": wallet.created_at.isoformat() if wallet.created_at else None,
-            }
+    from marketplace.models import UserWallet, PaymentTransaction, SessionBooking, UserSubscription
+    wallet = UserWallet.objects.filter(user=user).first()
+    if wallet:
+        financial_data["wallet"] = {
+            "balance_toman": float(wallet.balance_toman),
+            "locked_toman": float(wallet.locked_toman),
+            "created_at": wallet.created_at.isoformat() if wallet.created_at else None,
+        }
 
-        for tx in PaymentTransaction.objects.filter(user=user).order_by("-created_at")[:50]:
-            financial_data["transactions"].append({
-                "transaction_id": str(tx.id),
-                "order_type": tx.order_type,
-                "amount_toman": float(tx.amount_toman),
-                "gateway_provider": tx.gateway_provider,
-                "status": tx.status,
-                "ref_id": getattr(tx, "ref_id", ""),
-                "created_at": tx.created_at.isoformat() if tx.created_at else None,
-            })
+    for tx in PaymentTransaction.objects.filter(user=user).order_by("-created_at"):
+        financial_data["transactions"].append({
+            "transaction_id": str(tx.id),
+            "order_type": tx.order_type,
+            "amount_toman": float(tx.amount_toman),
+            "gateway_provider": tx.gateway_provider,
+            "status": tx.status,
+            "ref_id": getattr(tx, "ref_id", ""),
+            "created_at": tx.created_at.isoformat() if tx.created_at else None,
+        })
 
-        for bk in SessionBooking.objects.filter(Q(learner=user) | Q(teacher=user)).order_by("-created_at")[:50]:
-            financial_data["bookings"].append({
-                "booking_id": str(bk.id),
-                "status": bk.status,
-                "target_skill": getattr(bk, "target_skill", ""),
-                "duration_minutes": getattr(bk, "duration_minutes", 45),
-                "scheduled_start": bk.scheduled_start.isoformat() if getattr(bk, "scheduled_start", None) else None,
-                "rate_toman": float(bk.rate_toman) if getattr(bk, "rate_toman", None) is not None else None,
-                "is_paid": getattr(bk, "is_paid", False),
-            })
+    for bk in SessionBooking.objects.filter(Q(learner=user) | Q(teacher=user)).order_by("-created_at"):
+        financial_data["bookings"].append({
+            "booking_id": str(bk.id),
+            "status": bk.status,
+            "target_skill": getattr(bk, "target_skill", ""),
+            "duration_minutes": getattr(bk, "duration_minutes", 45),
+            "scheduled_start": bk.scheduled_start.isoformat() if getattr(bk, "scheduled_start", None) else None,
+            "rate_toman": float(bk.rate_toman) if getattr(bk, "rate_toman", None) is not None else None,
+            "is_paid": getattr(bk, "is_paid", False),
+        })
 
-        for sub in UserSubscription.objects.filter(user=user).order_by("-created_at")[:20]:
-            financial_data["subscriptions"].append({
-                "subscription_id": str(sub.id),
-                "plan_id": getattr(sub, "plan_id", ""),
-                "is_active": sub.is_active,
-                "started_at": sub.started_at.isoformat() if sub.started_at else None,
-                "expires_at": sub.expires_at.isoformat() if sub.expires_at else None,
-            })
-    except Exception:
-        pass
+    for sub in UserSubscription.objects.filter(user=user).order_by("-created_at"):
+        financial_data["subscriptions"].append({
+            "subscription_id": str(sub.id),
+            "plan_id": str(sub.plan_id) if sub.plan_id else None,
+            "is_active": sub.is_currently_active(),
+            "started_at": sub.starts_at.isoformat() if sub.starts_at else None,
+            "expires_at": sub.expires_at.isoformat() if sub.expires_at else None,
+        })
 
     data["financial"] = financial_data
 
@@ -225,12 +201,9 @@ def compile_full_user_data_export(user: User) -> dict:
         "posts_count": 0,
         "comments_count": 0,
     }
-    try:
-        from community.models import CommunityPost, PostComment
-        community_data["posts_count"] = CommunityPost.objects.filter(author=user).count()
-        community_data["comments_count"] = PostComment.objects.filter(author=user).count()
-    except Exception:
-        pass
+    from community.models import CommunityPost, PostComment
+    community_data["posts_count"] = CommunityPost.objects.filter(author=user).count()
+    community_data["comments_count"] = PostComment.objects.filter(author=user).count()
     data["community"] = community_data
 
     # Calculate deterministic SHA-256 integrity checksum over the formatted JSON data

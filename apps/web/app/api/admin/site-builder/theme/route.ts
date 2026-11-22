@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -9,9 +10,9 @@ export async function GET() {
   try {
     const theme = getGlobalThemeConfig();
     return NextResponse.json({ success: true, theme });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی تم و برندینگ" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی تم و برندینگ" },
       { status: 500 }
     );
   }
@@ -31,9 +32,9 @@ export async function POST(req: NextRequest) {
 
     const res = saveGlobalThemeConfig(themeData, adminUser);
     return NextResponse.json({ success: true, theme: res.theme });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در ذخیره تم و برندینگ" },
+      { success: false, error: errorMessage(err) || "خطا در ذخیره تم و برندینگ" },
       { status: 500 }
     );
   }

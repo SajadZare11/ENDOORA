@@ -3123,7 +3123,7 @@ body:has(.learner-shell) .theme-toggle-global { inset-block-end: var(--space-4);
     inset-block-end: 0;
     z-index: 50;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0.25rem;
     padding: 0.45rem max(0.5rem, env(safe-area-inset-right)) max(0.45rem, env(safe-area-inset-bottom)) max(0.5rem, env(safe-area-inset-left));
     border-block-start: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);

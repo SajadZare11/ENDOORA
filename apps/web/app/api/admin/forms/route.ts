@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getCustomFormsList,
@@ -27,9 +28,9 @@ export async function GET(request: Request) {
 
     const forms = getCustomFormsList();
     return NextResponse.json({ success: true, forms, count: forms.length });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی فرم‌ها" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی فرم‌ها" },
       { status: 500 }
     );
   }
@@ -67,9 +68,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در ذخیره‌سازی فرم" },
+      { success: false, error: errorMessage(err) || "خطا در ذخیره‌سازی فرم" },
       { status: 500 }
     );
   }

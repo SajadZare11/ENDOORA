@@ -488,7 +488,7 @@ export function SpeedDialogueArena({
                             textAlign: "left",
                           }}
                         >
-                          💬 "{turn.partnerPrompt}"
+                          💬 &quot;{turn.partnerPrompt}&quot;
                         </div>
                         <div
                           style={{
@@ -500,7 +500,7 @@ export function SpeedDialogueArena({
                             textAlign: "left",
                           }}
                         >
-                          ⚡ Comeback: "{turn.correctComeback}"
+                          ⚡ Comeback: &quot;{turn.correctComeback}&quot;
                         </div>
                       </div>
                       <span

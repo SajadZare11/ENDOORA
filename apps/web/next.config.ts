@@ -7,6 +7,7 @@ const apiInternalUrl = (
 const nextConfig: NextConfig = {
   turbopack: {},
   output: "standalone",
+  outputFileTracingExcludes: { "/*": ["./public/**/*", "../../.git/**/*"] },
   transpilePackages: ["@endoora/ui"],
   poweredByHeader: false,
 
@@ -45,6 +46,7 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      { source: "/courses/interactive", destination: "/courses", permanent: true },
       ...["/ielts/results/:path*", "/ielts/practice/:sessionId/report", "/ielts/speaking/report", "/ielts/writing/report"].map(source => ({
         source, destination: "/ielts/history", permanent: false,
       })),
@@ -54,16 +56,6 @@ const nextConfig: NextConfig = {
       ...["/ielts/writing/:path*", "/ielts/speaking/:path*"].map(source => ({
         source, destination: "/ielts/workshop", permanent: false,
       })),
-      {
-        source: "/en",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/en/:path*",
-        destination: "/:path*",
-        permanent: true,
-      },
       {
         source: "/downloads",
         destination: "/books",

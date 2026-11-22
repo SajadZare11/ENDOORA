@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, use, useCallback } from "react";
+import React, { useEffect, useState, use, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import styles from "@/components/exam/exam.module.css";
 import { Button } from "@endoora/ui";
@@ -12,6 +12,7 @@ import { ExamQuestionRenderer } from "@/components/exam/ExamQuestionRenderer";
 import { ExamWatermark } from "@/components/exam/ExamWatermark";
 import {
   getExamByAccessCode,
+  getExamSubmissionDetail,
   saveExamAnswer,
   submitExamAttempt,
   type StudentExamView,
@@ -41,6 +42,11 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
   const [submitting, setSubmitting] = useState(false);
   const [lastSaved, setLastSaved] = useState<string | null>(null);
 
+  const dirtyAnswers = useRef<Record<string, Record<string, unknown>>>({});
+  const pendingSave = useRef(Promise.resolve());
+  const [saveError, setSaveError] = useState("");
+  const [loadFailed, setLoadFailed] = useState(false);
+
   // Load exam, apply Fisher-Yates shuffling, restore answers from localStorage
   useEffect(() => {
     async function init() {
@@ -60,18 +66,23 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
           return;
         }
 
+        const attempt = await getExamSubmissionDetail(examData.id, savedSubId);
+        if (attempt.status !== "in_progress") {
+          router.replace(`/exam/${accessCode}/results`);
+          return;
+        }
         setSubmissionId(savedSubId);
 
         let processedQuestions = [...(examData.questions || [])];
 
         // 6. Question Shuffling (Fisher-Yates with session persistence)
         const shouldShuffleQuestions =
-          (examData as unknown as { shuffle_questions?: boolean }).shuffle_questions ?? true;
+          examData.shuffle_questions;
 
         if (shouldShuffleQuestions) {
           const cachedOrder =
             typeof window !== "undefined"
-              ? window.sessionStorage.getItem(`exam_${examData.id}_q_order`)
+              ? window.sessionStorage.getItem(`exam_${savedSubId}_q_order`)
               : null;
 
           if (cachedOrder) {
@@ -84,7 +95,7 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
               } else {
                 processedQuestions = shuffleArray(processedQuestions);
                 window.sessionStorage.setItem(
-                  `exam_${examData.id}_q_order`,
+                  `exam_${savedSubId}_q_order`,
                   JSON.stringify(processedQuestions.map((q) => q.id))
                 );
               }
@@ -95,7 +106,7 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
             processedQuestions = shuffleArray(processedQuestions);
             if (typeof window !== "undefined") {
               window.sessionStorage.setItem(
-                `exam_${examData.id}_q_order`,
+                `exam_${savedSubId}_q_order`,
                 JSON.stringify(processedQuestions.map((q) => q.id))
               );
             }
@@ -104,13 +115,13 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
 
         // 6. Choices / Options Shuffling (Fisher-Yates)
         const shouldShuffleChoices =
-          (examData as unknown as { shuffle_choices?: boolean }).shuffle_choices ?? true;
+          examData.shuffle_choices;
 
         if (shouldShuffleChoices) {
           processedQuestions = processedQuestions.map((q) => {
             const payload = q.learner_payload as { options?: unknown[] } | undefined;
             if (payload && Array.isArray(payload.options)) {
-              const cachedOptionsKey = `exam_${examData.id}_q_${q.id}_opts`;
+              const cachedOptionsKey = `exam_${savedSubId}_q_${q.id}_opts`;
               const cachedOptions =
                 typeof window !== "undefined" ? window.sessionStorage.getItem(cachedOptionsKey) : null;
               let shuffledOptions = payload.options;
@@ -143,23 +154,17 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
           questions: processedQuestions,
         });
 
-        // 8. Auto-Save Resilience: Restore answers from localStorage
-        const LOCAL_STORAGE_KEY = `exam_${examData.id}_answers`;
-        const cachedLocalAnswers =
-          typeof window !== "undefined" ? window.localStorage.getItem(LOCAL_STORAGE_KEY) : null;
-
-        if (cachedLocalAnswers) {
-          try {
-            const parsed = JSON.parse(cachedLocalAnswers) as Record<string, Record<string, unknown>>;
-            if (parsed && typeof parsed === "object") {
-              setAnswers(parsed);
-            }
-          } catch (err) {
-            console.warn("Failed to parse cached answers:", err);
-          }
+        const restored = Object.fromEntries(attempt.answers.map(answer => [answer.exam_question, answer.student_response]));
+        const raw = window.sessionStorage.getItem(`exam_${savedSubId}_draft`);
+        let drafts: Record<string, Record<string, unknown>> = {};
+        if (raw) {
+          try { drafts = JSON.parse(raw) ?? {}; } catch { /* The server copy is still available. */ }
         }
-      } catch (err) {
-        console.error("Failed to load exam runner:", err);
+        dirtyAnswers.current = drafts;
+        setAnswers({ ...restored, ...drafts });
+        if (Object.keys(drafts).length) setSaveError("پاسخ‌های محلی در انتظار ذخیره هستند.");
+      } catch {
+        setLoadFailed(true);
       } finally {
         setLoading(false);
       }
@@ -167,13 +172,23 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
     void init();
   }, [accessCode, router]);
 
-  // Clean local answer caches
-  const clearLocalCaches = useCallback((examId: string) => {
-    if (typeof window !== "undefined") {
-      window.localStorage.removeItem(`exam_${examId}_answers`);
-      window.sessionStorage.removeItem(`exam_sub_${examId}`);
-      window.sessionStorage.removeItem(`exam_${examId}_q_order`);
-    }
+  const clearLocalCaches = useCallback((examId: string, attemptId: string) => {
+    window.sessionStorage.removeItem(`exam_${attemptId}_draft`);
+    window.sessionStorage.removeItem(`exam_sub_${examId}`);
+    window.sessionStorage.removeItem(`exam_${attemptId}_q_order`);
+  }, []);
+
+  const flushAnswers = useCallback(async (examId: string, attemptId: string) => {
+    const run = async () => {
+      for (const [question, answer] of Object.entries(dirtyAnswers.current)) {
+        await saveExamAnswer(examId, attemptId, { exam_question_id: question, student_response: answer });
+        if (dirtyAnswers.current[question] === answer) delete dirtyAnswers.current[question];
+      }
+      window.sessionStorage.setItem(`exam_${attemptId}_draft`, JSON.stringify(dirtyAnswers.current));
+    };
+    const save = pendingSave.current.then(run);
+    pendingSave.current = save.catch(() => {});
+    await save;
   }, []);
 
   // 9. Forced Auto-Submit without user confirmation (Timer 0 or violations threshold)
@@ -183,14 +198,16 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
 
       try {
         setSubmitting(true);
-        clearLocalCaches(exam.id);
+        await flushAnswers(exam.id, submissionId);
         await submitExamAttempt(exam.id, submissionId);
+        clearLocalCaches(exam.id, submissionId);
         router.push(`/exam/${accessCode}/results?forced=1&reason=${encodeURIComponent(reason)}`);
       } catch {
-        router.push(`/exam/${accessCode}/results`);
+        setSaveError("پاسخ‌ها ثبت نهایی نشدند. دوباره تلاش کنید.");
+        setSubmitting(false);
       }
     },
-    [exam, submissionId, submitting, clearLocalCaches, accessCode, router]
+    [exam, submissionId, submitting, clearLocalCaches, flushAnswers, accessCode, router]
   );
 
   // Manual final submission
@@ -202,14 +219,15 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
 
     try {
       setSubmitting(true);
-      clearLocalCaches(exam.id);
+      await flushAnswers(exam.id, submissionId);
       await submitExamAttempt(exam.id, submissionId);
+      clearLocalCaches(exam.id, submissionId);
       router.push(`/exam/${accessCode}/results`);
     } catch {
       alert("خطا در ثبت نهایی آزمون.");
       setSubmitting(false);
     }
-  }, [exam, submissionId, submitting, clearLocalCaches, accessCode, router]);
+  }, [exam, submissionId, submitting, clearLocalCaches, flushAnswers, accessCode, router]);
 
   // Anti-Cheat Hook
   const proctoring = useProctoring({
@@ -234,33 +252,18 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
   const currentQuestion = exam?.questions?.[currentIndex];
 
   const handleResponseChange = (newResp: Record<string, unknown>) => {
-    if (!currentQuestion || !exam) return;
-
-    const qId = currentQuestion.id;
-
-    // 1. Update state & immediate localStorage save
-    setAnswers((prev) => {
-      const updated = {
-        ...prev,
-        [qId]: newResp,
-      };
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(`exam_${exam.id}_answers`, JSON.stringify(updated));
-      }
-      return updated;
-    });
-
-    // 2. Persist to backend
-    if (submissionId) {
-      void saveExamAnswer(exam.id, submissionId, {
-        exam_question_id: qId,
-        student_response: newResp,
-      }).then(() => {
-        setLastSaved(new Date().toLocaleTimeString("fa-IR"));
-      });
-    }
+    if (!currentQuestion || !exam || !submissionId || submitting) return;
+    const question = currentQuestion.id;
+    setAnswers(previous => ({ ...previous, [question]: newResp }));
+    dirtyAnswers.current[question] = newResp;
+    window.sessionStorage.setItem(`exam_${submissionId}_draft`, JSON.stringify(dirtyAnswers.current));
+    void flushAnswers(exam.id, submissionId).then(() => {
+      setLastSaved(new Date().toLocaleTimeString("fa-IR"));
+      setSaveError("");
+    }).catch(() => setSaveError("ارتباط برقرار نشد. پاسخ تا ذخیره بعدی در این زبانه می‌ماند."));
   };
 
+  if (loadFailed) return <p role="alert">بارگذاری آزمون انجام نشد. <a href={`/exam/${accessCode}`}>بازگشت به آزمون</a></p>;
   if (loading || !exam || !submissionId) {
     return (
       <div className={styles.examContainer} style={{ textAlign: "center", padding: "5rem" }}>
@@ -321,6 +324,7 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
           <h1 className={styles.examTitle}>{exam.title}</h1>
           <p className={styles.examSubtitle}>
             سوال {currentIndex + 1} از {exam.questions.length}
+            {saveError && <span role="alert">{saveError}</span>}
             {lastSaved && ` (آخرین ذخیره خودکار: ${lastSaved})`}
           </p>
         </div>
@@ -355,6 +359,10 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
         <div>
           {currentQuestion && (
             <ExamQuestionRenderer
+              key={currentQuestion.id}
+              disabled={submitting}
+              examId={exam.id}
+              submissionId={submissionId}
               question={currentQuestion}
               questionNumber={currentIndex + 1}
               totalQuestions={exam.questions.length}

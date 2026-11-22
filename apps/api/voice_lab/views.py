@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -19,7 +19,10 @@ class UploadTicketView(APIView):
     def post(self, request):
         filename = request.data.get("filename", "recording.webm")
         content_type = request.data.get("content_type", "audio/webm")
-        file_size = int(request.data.get("file_size", 0))
+        try:
+            file_size = int(request.data.get("file_size", 0))
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid numeric field."}, status=400)
         session_id = request.data.get("session_id", "")
         scenario_id = request.data.get("scenario_id", "")
         retention_policy = request.data.get("retention_policy")
@@ -38,8 +41,8 @@ class UploadTicketView(APIView):
             return Response(ticket, status=status.HTTP_201_CREATED)
         except ValueError as exc:
             return Response({"error": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as exc:
-            return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except OSError:
+            return Response({"error": "Recording storage unavailable."}, status=503)
 
 
 class RecordingListCreateView(APIView):
@@ -56,7 +59,10 @@ class RecordingListCreateView(APIView):
 
     def post(self, request):
         audio_file = request.FILES.get("audio_file")
-        duration = float(request.data.get("duration_seconds", 0.0))
+        try:
+            duration = float(request.data.get("duration_seconds", 0.0))
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid numeric field."}, status=400)
         stt_hint = request.data.get("stt_hint", "")
         session_id = request.data.get("session_id", "")
         scenario_id = request.data.get("scenario_id", "")
@@ -85,8 +91,8 @@ class RecordingListCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValueError as exc:
             return Response({"error": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as exc:
-            return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except OSError:
+            return Response({"error": "Recording storage unavailable."}, status=503)
 
 
 class RecordingUploadAudioView(APIView):
@@ -98,7 +104,10 @@ class RecordingUploadAudioView(APIView):
 
     def post(self, request, recording_id):
         audio_file = request.FILES.get("audio_file")
-        duration = float(request.data.get("duration_seconds", 0.0))
+        try:
+            duration = float(request.data.get("duration_seconds", 0.0))
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid numeric field."}, status=400)
         stt_hint = request.data.get("stt_hint", "")
 
         try:
@@ -116,8 +125,8 @@ class RecordingUploadAudioView(APIView):
             return Response({"error": "Recording ticket not found."}, status=status.HTTP_404_NOT_FOUND)
         except ValueError as exc:
             return Response({"error": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as exc:
-            return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except OSError:
+            return Response({"error": "Recording storage unavailable."}, status=503)
 
 
 class RecordingDetailView(APIView):
@@ -176,7 +185,10 @@ class TTSView(APIView):
     def post(self, request):
         text = request.data.get("text", "").strip()
         accent = request.data.get("accent", "US")
-        speed = float(request.data.get("speed", 1.0))
+        try:
+            speed = float(request.data.get("speed", 1.0))
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid numeric field."}, status=400)
 
         if not text:
             return Response({"error": "Text cannot be blank."}, status=status.HTTP_400_BAD_REQUEST)
@@ -212,7 +224,7 @@ class CleanupExpiredAudioView(APIView):
     """
     Internal maintenance trigger for purging expired voice recordings according to retention policy.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminUser]
 
     def post(self, request):
         service = VoicePipelineService()

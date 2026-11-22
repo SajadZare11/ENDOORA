@@ -1,5 +1,7 @@
 "use client";
 
+import { getReturnPath } from "@/lib/return-path";
+import { setActiveUserId } from "@/lib/client-storage";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -175,7 +177,7 @@ export default function RegisterPage() {
     setSubmitting(true);
 
     try {
-      await endooraApi<AccountResponse>(
+      const account = await endooraApi<AccountResponse>(
         "/auth/register/",
         {
           method: "POST",
@@ -190,7 +192,10 @@ export default function RegisterPage() {
         },
       );
 
-      setCreated(true);
+      setActiveUserId(account.id);
+      const returnPath = getReturnPath("");
+      if (returnPath) window.location.assign(returnPath);
+      else setCreated(true);
     } catch (error) {
       setServerErrors(
         apiErrorMessages(error, locale),

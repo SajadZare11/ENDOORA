@@ -15,6 +15,14 @@ import {
 type FinanceRiskTab = "refunds" | "anti-fraud" | "reversal-ledger";
 
 export function FinancialRiskRefundHub() {
+  if (process.env.NODE_ENV === "production") return <main className="account-panel" dir="rtl">
+    <h1>تطبیق استرداد وجه اشتراک</h1><p>پس از تأیید بازپرداخت کامل در درگاه، رسید را برای همان پرداخت ثبت کنید.</p>
+    <a href="/admin/marketplace/subscriptiongrant/">مشاهده پرداخت‌ها در مدیریت مالی</a>
+  </main>;
+  return <PreviewHub />;
+}
+
+function PreviewHub() {
   const [activeTab, setActiveTab] = useState<FinanceRiskTab>("refunds");
   const [statusMessage, setStatusMessage] = useState<{ text: string; isError?: boolean } | null>(null);
 

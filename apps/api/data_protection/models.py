@@ -12,8 +12,8 @@ class PrivacyConsentPreference(models.Model):
         related_name="privacy_preferences",
     )
     functional_storage = models.BooleanField(default=True, editable=False)
-    analytics_processing = models.BooleanField(default=True)
-    ai_model_training_telemetry = models.BooleanField(default=True)
+    analytics_processing = models.BooleanField(default=False)
+    ai_model_training_telemetry = models.BooleanField(default=False)
     marketing_communications = models.BooleanField(default=False)
     locale = models.CharField(max_length=2, default="fa")
     policy_version = models.CharField(max_length=32, default="day52-2026-09-15")

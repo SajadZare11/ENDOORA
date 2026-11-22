@@ -148,7 +148,7 @@ def ingest_event(
     client_ip: str | None = None,
     user_agent: str | None = None,
     locale: str = "fa",
-) -> ProductAnalyticsEvent:
+) -> ProductAnalyticsEvent | None:
     """
     Ingests and persists a product analytics event according to SEC-002 privacy rules.
     """
@@ -163,9 +163,8 @@ def ingest_event(
     effective_user = user
     if user and getattr(user, "is_authenticated", False):
         prefs = getattr(user, "privacy_preferences", None)
-        if prefs and not getattr(prefs, "analytics_processing", True):
-            # User opted out of analytics processing: detach user identity
-            effective_user = None
+        if not prefs or not prefs.analytics_processing:
+            return None
 
     sanitized_props = sanitize_event_properties(properties)
     ip_hash = hash_client_ip(client_ip)

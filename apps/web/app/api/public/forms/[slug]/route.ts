@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getCustomFormBySlug,
@@ -36,9 +37,9 @@ export async function GET(
         redirectUrl: form.redirectUrl,
       },
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی فرم" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی فرم" },
       { status: 500 }
     );
   }
@@ -67,9 +68,9 @@ export async function POST(
       message: result.messageFa,
       submissionId: result.submission?.id,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در ثبت پاسخ‌های فرم" },
+      { success: false, error: errorMessage(err) || "خطا در ثبت پاسخ‌های فرم" },
       { status: 500 }
     );
   }

@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getAffiliatesData,
@@ -8,9 +9,9 @@ export async function GET() {
   try {
     const data = getAffiliatesData();
     return NextResponse.json({ success: true, ...data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی همکاران بازاریابی" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی همکاران بازاریابی" },
       { status: 500 }
     );
   }
@@ -42,9 +43,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در ثبت همکار بازاریابی" },
+      { success: false, error: errorMessage(err) || "خطا در ثبت همکار بازاریابی" },
       { status: 500 }
     );
   }

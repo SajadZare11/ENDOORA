@@ -34,3 +34,9 @@ ENDOORA_SUBSCRIPTION_SALES_OPEN = env_bool("ENDOORA_SUBSCRIPTION_SALES_OPEN", de
 
 MIDDLEWARE = list(MIDDLEWARE)
 MIDDLEWARE.insert(MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+# Enable registration after publishing the corresponding approved legal text.
+ENDOORA_REQUIRE_APPROVED_POLICIES = True
+ENDOORA_APPROVED_POLICY_VERSIONS = os.getenv("ENDOORA_APPROVED_POLICY_VERSIONS", "")
+
+ENDOORA_COMMUNITY_CLOSED = True

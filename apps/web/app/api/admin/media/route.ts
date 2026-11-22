@@ -17,6 +17,8 @@ export async function GET(req: NextRequest) {
       headers: {
         Accept: "application/json",
         Cookie: req.headers.get("cookie") || "",
+        "X-Forwarded-Proto": process.env.NODE_ENV === "production" ? "https" : "http",
+        "X-CSRFToken": req.headers.get("x-csrftoken") || "",
       },
       cache: "no-store",
     });
@@ -45,6 +47,8 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: {
         Cookie: req.headers.get("cookie") || "",
+        "X-Forwarded-Proto": process.env.NODE_ENV === "production" ? "https" : "http",
+        "X-CSRFToken": req.headers.get("x-csrftoken") || "",
       },
       body: formData,
     });

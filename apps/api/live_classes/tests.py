@@ -39,6 +39,7 @@ class LiveClassesAndCurriculumTests(TestCase):
             email="teacher1@endoora.ir",
             password="StrongPassword123!",
             role="teacher",
+            is_teacher_verified=True,
         )
         self.client = APIClient()
 

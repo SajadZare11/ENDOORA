@@ -49,6 +49,8 @@ class PlacementSessionSerializer(serializers.ModelSerializer):
             "id",
             "status",
             "current_section",
+            "section_started_at",
+            "section_time_remaining_sec",
             "started_at",
             "updated_at",
             "expires_at",

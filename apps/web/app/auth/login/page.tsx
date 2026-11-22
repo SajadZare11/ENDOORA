@@ -1,5 +1,6 @@
 "use client";
 
+import { getReturnPath } from "@/lib/return-path";
 import Link from "next/link";
 import { FormEvent, useState, useSyncExternalStore } from "react";
 
@@ -128,7 +129,7 @@ export default function LoginPage() {
         setActiveUserId(response.id);
       }
       const destination = response?.role === "teacher" ? "/teacher" : "/dashboard";
-      window.location.href = new URLSearchParams(window.location.search).get("reading") === "1" ? "/ielts/reading/" : destination;
+      window.location.href = getReturnPath(destination);
     } catch (error) {
       setErrors(
         apiErrorMessages(error, locale),

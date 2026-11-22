@@ -699,7 +699,7 @@ export function LearnerShell({ children }: { children: ReactNode }) {
 
         {/* Mobile Floating Bottom Navigation Dock */}
         <nav className="learner-bottom-nav" aria-label={locale === "fa" ? "ناوبری سریع موبایل" : "Mobile quick navigation"}>
-          {navItems.map((item) => (
+          {navItems.filter(item => ["/dashboard","/learn","/leitner","/dashboard/classes","/account"].includes(item.href)).map((item) => (
             <NavItem
               key={item.href}
               {...item}

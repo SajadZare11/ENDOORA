@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect } from "react";
 import styles from "./community-moderation.module.css";
 import {
@@ -103,8 +104,8 @@ export function CommunityModerationConsole() {
       } else {
         alert("خطا: " + (data.error || "تایید نشد"));
       }
-    } catch (err: any) {
-      alert("خطای ارتباط: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط: " + errorMessage(err));
     }
   };
 
@@ -133,8 +134,8 @@ export function CommunityModerationConsole() {
       } else {
         alert("خطا: " + (data.error || "رد نشد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -165,8 +166,8 @@ export function CommunityModerationConsole() {
       } else {
         alert("خطا: " + (data.error || "ارسال نشد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -187,8 +188,8 @@ export function CommunityModerationConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در پین دیدگاه: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در پین دیدگاه: " + errorMessage(err));
     }
   };
 
@@ -209,8 +210,8 @@ export function CommunityModerationConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در قفل تاپیک: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در قفل تاپیک: " + errorMessage(err));
     }
   };
 
@@ -240,8 +241,8 @@ export function CommunityModerationConsole() {
       } else {
         alert("خطا: " + (data.error || "ثبت نشد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -259,8 +260,8 @@ export function CommunityModerationConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در حذف قانون: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در حذف قانون: " + errorMessage(err));
     }
   };
 
@@ -291,8 +292,8 @@ export function CommunityModerationConsole() {
       } else {
         alert("خطا: " + (data.error || "ثبت نشد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -310,8 +311,8 @@ export function CommunityModerationConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در لغو محدودیت: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در لغو محدودیت: " + errorMessage(err));
     }
   };
 
@@ -329,8 +330,8 @@ export function CommunityModerationConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در بازنشانی داده‌ها: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در بازنشانی داده‌ها: " + errorMessage(err));
     }
   };
 
@@ -971,7 +972,7 @@ export function CommunityModerationConsole() {
                 <label style={{ fontSize: "0.8rem", color: "#cbd5e1" }}>نوع تطابق:</label>
                 <select
                   value={newMatchType}
-                  onChange={(e) => setNewMatchType(e.target.value as any)}
+                  onChange={(e) => setNewMatchType(e.target.value as typeof newMatchType)}
                   className={styles.searchInput}
                   style={{ width: "100%", marginTop: "0.25rem" }}
                 >
@@ -985,7 +986,7 @@ export function CommunityModerationConsole() {
                 <label style={{ fontSize: "0.8rem", color: "#cbd5e1" }}>اقدام سیستمی:</label>
                 <select
                   value={newWordAction}
-                  onChange={(e) => setNewWordAction(e.target.value as any)}
+                  onChange={(e) => setNewWordAction(e.target.value as typeof newWordAction)}
                   className={styles.searchInput}
                   style={{ width: "100%", marginTop: "0.25rem" }}
                 >

@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./security-command.module.css";
 import {
@@ -82,8 +83,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(json.error || "خطا در واکشی داده‌های امنیتی", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای غیرمنتظره ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای غیرمنتظره ارتباط با سرور", "error");
     } finally {
       setLoading(false);
     }
@@ -111,8 +112,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || data.message || "خطا در ابطال نشست", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ابطال نشست", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ابطال نشست", "error");
     }
   };
 
@@ -133,8 +134,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || data.message || "خطا در خروج اجباری کاربر", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در خروج کاربر", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در خروج کاربر", "error");
     }
   };
 
@@ -174,8 +175,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در مسدودسازی IP", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ثبت فایروال", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ثبت فایروال", "error");
     }
   };
 
@@ -196,8 +197,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در رفع انسداد", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ارتباط با سرور", "error");
     }
   };
 
@@ -225,8 +226,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در ثبت وایت‌لیست", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ثبت وایت‌لیست", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ثبت وایت‌لیست", "error");
     }
   };
 
@@ -254,8 +255,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در تغییر وضعیت قرنطینه", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     }
   };
 
@@ -285,8 +286,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در ذخیره تنظیمات", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ذخیره تنظیمات", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ذخیره تنظیمات", "error");
     }
   };
 
@@ -307,8 +308,8 @@ export function SecurityCommandConsole() {
       } else {
         showToast(data.error || "خطا در بازنشانی داده‌ها", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در بازنشانی", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در بازنشانی", "error");
     }
   };
 
@@ -994,7 +995,7 @@ export function SecurityCommandConsole() {
                   <select
                     className={styles.selectInput}
                     value={blockDuration}
-                    onChange={(e) => setBlockDuration(e.target.value as any)}
+                    onChange={(e) => setBlockDuration(e.target.value as typeof blockDuration)}
                   >
                     <option value="24_hours">۲۴ ساعت</option>
                     <option value="7_days">۷ روز</option>

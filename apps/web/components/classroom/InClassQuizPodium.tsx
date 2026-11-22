@@ -238,7 +238,7 @@ export function InClassQuizPodium({
               </label>
               <select
                 value={quizType}
-                onChange={(e) => setQuizType(e.target.value as any)}
+                onChange={(e) => setQuizType(e.target.value as typeof quizType)}
                 style={{
                   width: '100%',
                   backgroundColor: '#1e293b',

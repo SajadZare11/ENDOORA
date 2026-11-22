@@ -536,7 +536,7 @@ export function ChatPingPongArena({ level, onClose, onNextLevel, onOpenLeaderboa
                               textAlign: "left",
                             }}
                           >
-                            💬 "{pair.english}"
+                            💬 &quot;{pair.english}&quot;
                           </div>
                           <div
                             style={{
@@ -548,7 +548,7 @@ export function ChatPingPongArena({ level, onClose, onNextLevel, onOpenLeaderboa
                               textAlign: "left",
                             }}
                           >
-                            ⚡ Comeback: "{pair.match}"
+                            ⚡ Comeback: &quot;{pair.match}&quot;
                           </div>
                         </div>
                       </div>

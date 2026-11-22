@@ -109,7 +109,7 @@
     "city": "شیراز",
     "avatarUrl": "/images/skills/speaking/sherlock_stage5_telegraph_officer.jpg",
     "nationalId": "0489632581",
-    "walletBalanceToman": 1200000,
+    "walletBalanceToman": 1560000,
     "enrolledCourses": [
       {
         "id": "crs-tamrin20",
@@ -138,6 +138,26 @@
       }
     ],
     "walletTransactions": [
+      {
+        "id": "tx-1795338003982",
+        "amountToman": 240000,
+        "type": "credit_manual",
+        "reasonCategory": "refund",
+        "adminNote": "استرداد ۱۰۰٪ وجه کلاس بر اساس رأی داوری: استاد در جلسه حاضر نشد، ۱۰۰٪ مبلغ به کیف پول زبان‌آموز عودت داده شد.",
+        "adminActor": "داوری پلتفرم ایندورا",
+        "balanceAfterToman": 1560000,
+        "createdAt": "2026-11-22T09:00:03.982Z"
+      },
+      {
+        "id": "tx-1795338003982",
+        "amountToman": 120000,
+        "type": "credit_manual",
+        "reasonCategory": "compensation",
+        "adminNote": "تسویه توافقی داوری (50٪ استرداد به دانشجو): به دلیل قطعی موقت در نیمی از زمان جلسه، ۵۰٪ مسترد و ۵۰٪ به استاد پرداخت شد.",
+        "adminActor": "داوری پلتفرم ایندورا",
+        "balanceAfterToman": 1320000,
+        "createdAt": "2026-11-22T09:00:03.982Z"
+      },
       {
         "id": "tx-003",
         "amountToman": 1200000,

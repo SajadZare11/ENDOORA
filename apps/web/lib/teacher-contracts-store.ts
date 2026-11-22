@@ -123,12 +123,12 @@ export function createContract(params: {
   contractTitle: string;
   termsSummary: string;
   commissionPercent?: number;
-}): { success: boolean; contract: TeacherContractItem; message: string } {
+}): ({ success: true; contract: TeacherContractItem; message: string } | { success: false; contract: null; message: string }) {
   const storage = getTeacherContractsStorage();
   const profile = storage.profiles.find((p) => p.teacherId === params.teacherId);
 
   if (!profile) {
-    return { success: false, contract: null as any, message: "پروفایل مدرس مورد نظر یافت نشد." };
+    return { success: false, contract: null, message: "پروفایل مدرس مورد نظر یافت نشد." };
   }
 
   const newContract: TeacherContractItem = {

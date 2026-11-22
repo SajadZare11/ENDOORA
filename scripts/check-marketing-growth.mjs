@@ -110,19 +110,9 @@ const checkoutContent = fs.readFileSync(
   path.resolve(process.cwd(), "apps/web/app/checkout/page.tsx"),
   "utf-8"
 );
-assert.ok(
-  checkoutContent.includes("/api/marketing/coupons/validate"),
-  "Checkout page missing coupon validation API call"
-);
-assert.ok(
-  checkoutContent.includes("appliedCoupon"),
-  "Checkout page missing appliedCoupon state tracking"
-);
-assert.ok(
-  checkoutContent.includes("handleApplyCoupon"),
-  "Checkout page missing handleApplyCoupon handler"
-);
-console.log("✅ Checkout page coupon & discount integration verified.");
+assert.ok(checkoutContent.includes("const payableAmountToman = baseAmountToman"), "Display must use the full server order amount");
+assert.ok(checkoutContent.includes("amount_toman: payableAmountToman"), "Payment request must match the order total");
+assert.ok(!checkoutContent.includes("appliedCoupon"), "Client-side discounts cannot alter a server-priced order");
 
 // 6. Dynamic Testing of Marketing Store & Calculation Logic
 import("../apps/web/lib/marketing-store.ts").then((marketingStore) => {

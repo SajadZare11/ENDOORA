@@ -13,22 +13,16 @@ import {
   fetchAnalyticsOverview,
   fetchFunnelDetail,
   fetchRetentionCohorts,
-  MOCK_ANALYTICS_OVERVIEW,
-  MOCK_FUNNEL_DETAILS,
-  MOCK_RECENT_EVENTS,
-  MOCK_RETENTION_COHORTS,
   trackProductEvent,
 } from "../../lib/analytics-ops";
 import styles from "./product-analytics.module.css";
 
 export function ProductAnalyticsOperationsDashboard() {
-  const [overview, setOverview] = useState<AnalyticsOverviewData>(MOCK_ANALYTICS_OVERVIEW);
+  const [overview, setOverview] = useState<AnalyticsOverviewData | null>(null);
   const [activeFunnelSlug, setActiveFunnelSlug] = useState<string>("onboarding-funnel");
-  const [funnelDetail, setFunnelDetail] = useState<FunnelDetail>(
-    MOCK_FUNNEL_DETAILS["onboarding-funnel"]
-  );
-  const [cohorts, setCohorts] = useState<RetentionCohort[]>(MOCK_RETENTION_COHORTS);
-  const [events, setEvents] = useState<AnalyticsEventRecord[]>(MOCK_RECENT_EVENTS);
+  const [funnelDetail, setFunnelDetail] = useState<FunnelDetail | null>(null);
+  const [cohorts, setCohorts] = useState<RetentionCohort[]>([]);
+  const [events, setEvents] = useState<AnalyticsEventRecord[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [timeWindowDays, setTimeWindowDays] = useState<number>(30);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -76,14 +70,11 @@ export function ProductAnalyticsOperationsDashboard() {
 
   const handleTriggerTestTelemetry = async () => {
     setDrillSuccessMsg("در حال ارسال سیگنال آزمایشی تلمتری محصول...");
-    await trackProductEvent("route_view_ops_007", {
-      source: "ops_console_drill",
-      timestamp: new Date().toISOString(),
-    });
-    // Refresh event stream
-    const freshEvents = await fetchAnalyticsEvents({ category: selectedCategory, limit: 10 });
-    setEvents(freshEvents);
-    setDrillSuccessMsg("سیگنال تلمتری با موفقیت در صف امن رویدادها ثبت شد.");
+    try {
+      await trackProductEvent("route_view_landing",{source:"ops_console_drill"});
+      setEvents(await fetchAnalyticsEvents({category:selectedCategory,limit:10}));
+      setDrillSuccessMsg("درخواست ارسال شد.");
+    } catch {setDrillSuccessMsg("ثبت رویداد انجام نشد.");}
     setTimeout(() => setDrillSuccessMsg(null), 4000);
   };
 
@@ -111,6 +102,7 @@ export function ProductAnalyticsOperationsDashboard() {
     }
   };
 
+  if (!overview || !funnelDetail) return <p role="status">{isLoading ? "در حال دریافت آمار…" : "آمار یا تنظیمات قیف در دسترس نیست."}</p>;
   const kpis = overview.kpis;
 
   return (

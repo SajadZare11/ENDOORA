@@ -1,3 +1,4 @@
+import { scopedLocalStorage } from "./client-storage.ts";
 export type CohortCategory =
   | "ielts"
   | "fluency"
@@ -337,11 +338,11 @@ export function getLiveCohorts(): LiveClassCohort[] {
   }
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = scopedLocalStorage.getItem(STORAGE_KEY);
     if (raw) {
       return JSON.parse(raw);
     }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_COHORTS));
+    scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_COHORTS));
     return INITIAL_COHORTS;
   } catch {
     return INITIAL_COHORTS;
@@ -351,7 +352,7 @@ export function getLiveCohorts(): LiveClassCohort[] {
 export function saveLiveCohorts(cohorts: LiveClassCohort[]): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cohorts));
+    scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(cohorts));
   } catch (err) {
     console.error("Failed to save live cohorts:", err);
   }

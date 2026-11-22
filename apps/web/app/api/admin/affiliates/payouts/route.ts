@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getAffiliatesData,
@@ -8,9 +9,9 @@ export async function GET() {
   try {
     const { payoutRequests, conversionLogs } = getAffiliatesData();
     return NextResponse.json({ success: true, payoutRequests, conversionLogs });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی درخواست‌های تسویه" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی درخواست‌های تسویه" },
       { status: 500 }
     );
   }
@@ -49,9 +50,9 @@ export async function POST(request: Request) {
           : "درخواست تسویه رد گردید.",
       payout: result.payout,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش تسویه کمیسیون" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش تسویه کمیسیون" },
       { status: 500 }
     );
   }

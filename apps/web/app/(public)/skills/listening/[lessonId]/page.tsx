@@ -525,7 +525,7 @@ export default function ListeningLessonPage({ params }: LessonPageProps) {
                     <div style={{ background: "#ffffff", padding: "0.75rem", borderRadius: "8px", border: "1px solid #cbd5e1" }}>
                       <span style={{ fontSize: "0.8rem", color: "#2563eb", fontWeight: 700 }}>الگوی پیشنهادی برای بیان: </span>
                       <div style={{ direction: "ltr", color: "#0f172a", fontSize: "0.9rem", marginTop: "0.2rem" }}>
-                        "{lesson.postListening.suggestedPhrasesEn[0]}"
+                        &quot;{lesson.postListening.suggestedPhrasesEn[0]}&quot;
                       </div>
                     </div>
                   )}

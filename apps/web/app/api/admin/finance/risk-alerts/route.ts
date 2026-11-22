@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getRiskAlertsList,
@@ -8,9 +9,9 @@ export async function GET() {
   try {
     const alerts = getRiskAlertsList();
     return NextResponse.json({ success: true, alerts });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی هشدارهای ریسک مالی" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی هشدارهای ریسک مالی" },
       { status: 500 }
     );
   }
@@ -42,9 +43,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در اجرای اقدام واکنشی ریسک" },
+      { success: false, error: errorMessage(err) || "خطا در اجرای اقدام واکنشی ریسک" },
       { status: 500 }
     );
   }

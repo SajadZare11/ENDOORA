@@ -123,12 +123,12 @@ export function updatePageSeoMetadata(
   pagePath: string,
   updates: Partial<PageSeoMetadata>,
   updatedBy: string = "مدیر ارشد سئو"
-): { success: boolean; page: PageSeoMetadata; message: string } {
+): ({ success: true; page: PageSeoMetadata; message: string } | { success: false; page: null; message: string }) {
   const storage = getSeoMetadataStorage();
   const page = storage.pages.find((p) => p.pagePath === pagePath);
 
   if (!page) {
-    return { success: false, page: null as any, message: "صفحه مورد نظر یافت نشد." };
+    return { success: false, page: null, message: "صفحه مورد نظر یافت نشد." };
   }
 
   Object.assign(page, updates, {
@@ -145,7 +145,7 @@ export function createRedirectRule(params: {
   destinationPath: string;
   redirectType?: RedirectType;
   notes?: string;
-}): { success: boolean; rule: UrlRedirectRule; error?: string } {
+}): ({ success: true; rule: UrlRedirectRule; error?: string } | { success: false; rule: null; error?: string }) {
   const storage = getSeoMetadataStorage();
   let src = params.sourcePath.trim();
   let dest = params.destinationPath.trim();
@@ -157,7 +157,7 @@ export function createRedirectRule(params: {
   if (src === dest) {
     return {
       success: false,
-      rule: null as any,
+      rule: null,
       error: "مسیر مبدا و مقصد نمی‌توانند یکسان باشند (ایجاد حلقه بی‌پایان).",
     };
   }
@@ -169,7 +169,7 @@ export function createRedirectRule(params: {
   if (circularRule) {
     return {
       success: false,
-      rule: null as any,
+      rule: null,
       error: `این تغییر مسیر باعث ایجاد یک حلقه متقابل با قاعده موجود (${dest} ← ${src}) خواهد شد.`,
     };
   }
@@ -234,7 +234,7 @@ export function deleteRedirectRule(ruleId: string): { success: boolean; message:
 
 export function updateSchemaJsonLd(
   schemaId: string,
-  jsonLdPayload: Record<string, any>
+  jsonLdPayload: Record<string, unknown>
 ): { success: boolean; schema?: SchemaJsonLdItem; message: string } {
   const storage = getSeoMetadataStorage();
   const schema = storage.schemas.find((s) => s.id === schemaId);

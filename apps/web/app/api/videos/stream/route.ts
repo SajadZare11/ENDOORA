@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server.js";
 import fs from "fs";
 import path from "path";
@@ -277,9 +278,9 @@ export async function GET(request: NextRequest) {
     // Fallback to Domestic CDN / S3 / GitHub Release
     const fallbackUrl = getVideoDeliveryUrl(isAef, rawLevel, sanitizedFileName);
     return NextResponse.redirect(fallbackUrl, 307);
-  } catch (globalErr: any) {
+  } catch (globalErr: unknown) {
     console.error("[VIDEO_STREAM_API] Global unhandled error:", globalErr);
-    return new NextResponse(`Streaming error: ${globalErr?.message || globalErr}`, {
+    return new NextResponse(`Streaming error: ${errorMessage(globalErr) || globalErr}`, {
       status: 500,
     });
   }

@@ -1,4 +1,8 @@
 import io
+import tempfile
+from unittest.mock import patch
+from django.test import override_settings
+from data_protection.services.erasure_service import execute_account_erasure
 from datetime import timedelta
 
 from django.contrib.auth import get_user_model
@@ -242,3 +246,30 @@ class VoicePipelineTests(TestCase):
         # Client 2 attempts DELETE
         resp_del = self.client2.delete(f"/api/voice/recordings/{rec.id}/")
         self.assertEqual(resp_del.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_erasure_removes_stored_audio_and_transcripts(self):
+        with tempfile.TemporaryDirectory() as media, override_settings(MEDIA_ROOT=media):
+            ticket = self.service.create_upload_ticket(self.user1, "practice.webm", retention_policy="7_days")
+            rec = self.service.process_audio_upload(self.user1, ticket["recording_id"],
+                SimpleUploadedFile("practice.webm", b"fixture", content_type="audio/webm"), stt_hint="Practice")
+            storage, name = rec.audio_file.storage, rec.audio_file.name
+            self.assertTrue(storage.exists(name))
+            with patch.object(storage, "delete", side_effect=OSError("Storage unavailable")):
+                with self.assertRaises(OSError):
+                    execute_account_erasure(self.user1)
+            rec.refresh_from_db()
+            self.assertEqual(rec.audio_file.name, name)
+            self.user1.refresh_from_db()
+            self.assertTrue(self.user1.is_active)
+            execute_account_erasure(self.user1)
+            rec.refresh_from_db()
+            self.assertFalse(storage.exists(name))
+            self.assertTrue(rec.is_deleted)
+            self.assertEqual(rec.final_transcript, "")
+
+    def test_immediate_retention_does_not_store_raw_audio(self):
+        ticket = self.service.create_upload_ticket(self.user1, "voice.webm", retention_policy="immediate")
+        rec = self.service.process_audio_upload(self.user1, ticket["recording_id"],
+            SimpleUploadedFile("voice.webm", b"fixture", content_type="audio/webm"))
+        self.assertFalse(rec.audio_file)
+        self.assertEqual(rec.final_transcript, "")

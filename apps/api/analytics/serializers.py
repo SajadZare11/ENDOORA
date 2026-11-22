@@ -7,6 +7,7 @@ from analytics.services.event_service import BOUNDED_EVENT_CHOICES
 
 
 class TrackEventInputSerializer(serializers.Serializer):
+    optional_consent = serializers.BooleanField(default=False)
     event_name = serializers.CharField(max_length=64)
     session_id = serializers.CharField(max_length=64, required=False, default="", allow_blank=True)
     properties = serializers.DictField(required=False, default=dict)

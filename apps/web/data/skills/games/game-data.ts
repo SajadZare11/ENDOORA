@@ -18,7 +18,7 @@ import {
 import { getTierLevels } from "./levels-b2-c1-c2.ts";
 import { A1_ENHANCED_VOCAB_LEVELS } from "./vocab-curriculum.ts";
 import { SPEAKING_MISSIONS_BY_TIER } from "./speaking-missions.ts";
-import { A1_SHERLOCK_CASE, A2_SHERLOCK_CASE, B1_SHERLOCK_CASE, B2_SHERLOCK_CASE, C1_SHERLOCK_CASE, C2_SHERLOCK_CASE } from "./sherlock-detective-curriculum.ts";
+import { getSherlockStage, A1_SHERLOCK_CASE, A2_SHERLOCK_CASE, B1_SHERLOCK_CASE, B2_SHERLOCK_CASE, C1_SHERLOCK_CASE, C2_SHERLOCK_CASE } from "./sherlock-detective-curriculum.ts";
 
 // ==========================================
 // VOCABULARY: VOCAB BLITZ (A1 Levels 1-10)
@@ -2509,7 +2509,7 @@ function sherlockStageToGameLevel(s: (typeof A1_SHERLOCK_CASE)[0]): GameLevel {
     xpReward: 150,
     timeLimitSeconds: 75,
     stageFocus: "dialogues",
-    questions: s.tasks.map((t) => ({
+    questions: getSherlockStage(s.levelNumber,s.cefr).tasks.map((t) => ({
       id: t.id,
       type: "dialogue-reply",
       prompt: t.speakerPromptEn,

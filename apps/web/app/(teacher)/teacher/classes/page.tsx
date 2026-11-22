@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { Button, Input, Table } from "@endoora/ui";
 
 import React, { useState, useEffect, useId } from "react";
@@ -299,8 +300,8 @@ export default function TeacherClassesPage() {
       } else {
         alert(res.error || (isFa ? "خطا در تشکیل کلاس" : "Failed to claim cohort"));
       }
-    } catch (err: any) {
-      alert(err.message || (isFa ? "خطا در تشکیل کلاس" : "Failed to claim cohort"));
+    } catch (err: unknown) {
+      alert(errorMessage(err) || (isFa ? "خطا در تشکیل کلاس" : "Failed to claim cohort"));
     } finally {
       setClaiming(false);
     }
@@ -339,8 +340,8 @@ export default function TeacherClassesPage() {
       } else {
         alert(res.error || (isFa ? "خطا در ثبت گزارش جلسه" : "Failed to log session"));
       }
-    } catch (err: any) {
-      alert(err.message || (isFa ? "خطا در ثبت گزارش جلسه" : "Failed to log session"));
+    } catch (err: unknown) {
+      alert(errorMessage(err) || (isFa ? "خطا در ثبت گزارش جلسه" : "Failed to log session"));
     } finally {
       setLoggingSession(false);
     }
@@ -1628,7 +1629,7 @@ export default function TeacherClassesPage() {
             initialClassId={selectedClassId || activeClass?.id || (classes[0]?.id ?? "")}
             initialLearnerId={selectedLearnerForReport}
             classes={classes}
-            locale={locale as any}
+            locale={locale === "en" ? "en" : "fa"}
           />
         </section>
       ) : null}
@@ -2641,7 +2642,7 @@ export default function TeacherClassesPage() {
           adobeConnectUrl={launcherClass.adobe_connect_url}
           adobeConnectAppUrl={launcherClass.adobe_connect_app_url}
           isTeacher={true}
-          locale={locale as any}
+          locale={locale === "en" ? "en" : "fa"}
           onMeetingUrlUpdated={(newUrl) => {
             setClasses((prev) =>
               prev.map((c) =>

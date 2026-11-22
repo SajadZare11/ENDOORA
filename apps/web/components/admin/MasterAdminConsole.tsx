@@ -149,7 +149,7 @@ const ADMIN_CATEGORIES: AdminCategoryDef[] = [
       },
       {
         id: "teacher-verifications",
-        title: "بررسی و تایید معلمان جدید",
+        title: "بررسی و احراز اساتید",
         shortDesc: "مشاهده ویدیو و مدارک تدریس ارسالی مدرسان",
         siteLocation: "ویترین عمومی اساتید و رزومه مدرسان (/teachers)",
         icon: "🧑‍🏫",

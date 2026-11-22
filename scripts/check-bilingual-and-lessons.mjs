@@ -37,7 +37,7 @@ assert(fontsTs.includes("--font-vazirmatn"), "fonts.ts must declare --font-vazir
 assert(fontsTs.includes("--font-inter"), "fonts.ts must declare --font-inter");
 assert(layoutTsx.includes('dir="rtl"'), "Root layout default direction must be dir='rtl'");
 assert(layoutTsx.includes('lang="fa"'), "Root layout default language must be lang='fa'");
-assert(layoutTsx.includes("endoora_ui_locale"), "Root layout must bootstrap from endoora_ui_locale localStorage key");
+assert(layoutTsx.includes("location.pathname"), "Root layout must bootstrap the language of the requested URL");
 assert(layoutTsx.includes("LanguageSwitcher"), "Root layout must include LanguageSwitcher");
 
 // 4. Check BidiText component
@@ -49,8 +49,8 @@ assert(bidiTextTsx.includes("isolate-ltr"), "BidiText must include isolate-ltr c
 
 // 5. Check LanguageSwitcher component
 const switcherTsx = fs.readFileSync(path.join(root, "apps/web/components/layout/LanguageSwitcher.tsx"), "utf8");
-assert(switcherTsx.includes("toggleLocale"), "LanguageSwitcher must support toggling locale");
-assert(switcherTsx.includes("endoora_ui_locale"), "Language context must persist to endoora_ui_locale");
+assert(switcherTsx.includes("alternatePath("), "LanguageSwitcher must support toggling locale");
+assert(fs.readFileSync(path.join(root,"apps/web/lib/locale-context.tsx"),"utf8").includes("endoora_ui_locale"), "Language context must persist to endoora_ui_locale");
 
 // 6. Check LessonData strict schema in JSON files
 const lessonsDir = path.join(root, "apps/web/data/lessons");

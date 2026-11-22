@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -10,9 +11,9 @@ export async function GET() {
   try {
     const popups = getSitePopups();
     return NextResponse.json({ success: true, popups });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی پاپ‌آپ‌ها" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی پاپ‌آپ‌ها" },
       { status: 500 }
     );
   }
@@ -49,9 +50,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در ذخیره پاپ‌آپ" },
+      { success: false, error: errorMessage(err) || "خطا در ذخیره پاپ‌آپ" },
       { status: 500 }
     );
   }

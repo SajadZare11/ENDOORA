@@ -13,6 +13,8 @@ import { EssayEditor } from "./EssayEditor";
 
 interface ExamQuestionRendererProps {
   question: ExamQuestionItem;
+  examId: string;
+  submissionId: string;
   questionNumber: number;
   totalQuestions: number;
   response: Record<string, unknown> | undefined;
@@ -21,7 +23,7 @@ interface ExamQuestionRendererProps {
 }
 
 export function ExamQuestionRenderer({
-  question,
+  question, examId, submissionId,
   questionNumber,
   totalQuestions,
   response = {},
@@ -138,13 +140,10 @@ export function ExamQuestionRenderer({
       {qType === "speaking" && (
         <SpeakingRecorder
           timeLimitSeconds={question.speaking_time_limit_seconds || 60}
-          audioBlob={null}
-          onRecordingComplete={(_blob) => {
-            onResponseChange({
-              audio_recorded: true,
-              recorded_at: new Date().toISOString(),
-            });
-          }}
+          submissionId={submissionId}
+          questionId={question.id}
+          storedUrl={response.recording_id ? `/backend/api/online-exams/${examId}/submissions/${submissionId}/questions/${question.id}/audio/` : undefined}
+          onRecordingComplete={recordingId => onResponseChange({ recording_id: recordingId, audio_recorded: true })}
           disabled={disabled}
         />
       )}

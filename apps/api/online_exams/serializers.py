@@ -228,7 +228,8 @@ class ExamStudentViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = OnlineExam
         fields = [
-            'id', 'title', 'description', 'instructions', 'duration_minutes', 'questions'
+            'id', 'title', 'description', 'instructions', 'duration_minutes', 'questions',
+            'shuffle_questions', 'shuffle_choices', 'anti_cheat_config'
         ]
 
     def get_questions(self, obj):

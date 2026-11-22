@@ -1,4 +1,11 @@
 import json
+import base64
+import hashlib
+import os
+import time
+from unittest.mock import patch
+
+import jwt
 from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -6,6 +13,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from .models import (
+    LiveClassCohort,
     AttendanceRecord,
     AttendanceStatus,
     LiveClassQuiz,
@@ -28,10 +36,15 @@ User = get_user_model()
 
 class LiveClassroomBackendTests(TestCase):
     def setUp(self):
+        provider = patch.dict(os.environ, LIVEKIT_API_KEY="fixture", LIVEKIT_API_SECRET="x" * 32, LIVEKIT_URL="wss://fixture.invalid")
+        provider.start()
+        self.addCleanup(provider.stop)
         self.client = APIClient()
         self.teacher = User.objects.create_user(
             email="teacher@endoora.ir",
             password="password123",
+            role=User.Role.TEACHER,
+            is_teacher_verified=True,
             first_name="دبیر",
             last_name="شایسته",
         )
@@ -47,7 +60,9 @@ class LiveClassroomBackendTests(TestCase):
             first_name="سارا",
             last_name="محمدی",
         )
-        self.session_id = "session-test-room-101"
+        self.cohort = LiveClassCohort.objects.create(teacher=self.teacher, title="Language practice")
+        self.cohort.students.add(self.student1)
+        self.session_id = str(self.cohort.pk)
 
     def test_livekit_token_generation(self):
         token_info = create_livekit_token(
@@ -138,14 +153,15 @@ class LiveClassroomBackendTests(TestCase):
         self.assertTrue(closed_quiz.is_results_published)
 
     def test_api_endpoints(self):
+        self.client.force_authenticate(user=self.teacher)
         # Token endpoint
-        res = self.client.post("/api/live-classes/token/", {"session_id": "math-101", "role": "student"})
+        res = self.client.post("/api/live-classes/token/", {"session_id": self.session_id, "role": "student"})
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertIn("token", res.data)
 
         # Quiz Launch endpoint
         res = self.client.post("/api/live-classes/quizzes/launch/", {
-            "session_id": "math-101",
+            "session_id": self.session_id,
             "prompt": "کدام گزینه صحیح است؟",
             "options": ["الف", "ب"],
             "correct_option_index": 0,
@@ -161,6 +177,7 @@ class LiveClassroomBackendTests(TestCase):
         })
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
+        self.client.force_authenticate(user=self.teacher)
         # Analytics endpoint
         res = self.client.get(f"/api/live-classes/quizzes/{quiz_id}/analytics/")
         self.assertEqual(res.status_code, status.HTTP_200_OK)
@@ -169,3 +186,26 @@ class LiveClassroomBackendTests(TestCase):
         # Attendance summary endpoint
         res = self.client.get(f"/api/live-classes/{self.session_id}/attendance/")
         self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+
+    def test_room_membership_and_role_from_enrollment(self):
+        self.client.force_authenticate(user=self.student1)
+        response = self.client.post("/api/live-classes/token/", {"session_id": self.session_id, "role": "teacher"})
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.data["is_teacher"])
+        self.client.force_authenticate(user=self.student2)
+        self.assertEqual(self.client.get(f"/api/live-classes/{self.session_id}/attendance/").status_code, 404)
+
+    def test_signed_room_finished_event(self):
+        payload = json.dumps({"id": "evt-fixture", "event": "room_finished", "room": {"name": self.session_id}}).encode()
+        token = jwt.encode({"iss": "fixture", "exp": int(time.time()) + 60,
+                            "sha256": base64.b64encode(hashlib.sha256(payload).digest()).decode()},
+                           os.environ["LIVEKIT_API_SECRET"], algorithm="HS256")
+        with patch("live_classes.views.finalize_session_attendance") as finalize:
+            res = self.client.generic("POST", "/api/live-classes/webhooks/livekit/", data=payload,
+                                      content_type="application/webhook+json", HTTP_AUTHORIZATION=token)
+            self.assertEqual(res.status_code, 200)
+            repeated = self.client.generic("POST", "/api/live-classes/webhooks/livekit/", data=payload,
+                                           content_type="application/webhook+json", HTTP_AUTHORIZATION=token)
+            self.assertEqual(repeated.status_code, 200)
+            finalize.assert_called_once_with(session_id=self.session_id)

@@ -47,6 +47,12 @@ class RegisterView(APIView):
     throttle_scope = "auth_login"
 
     def post(self, request):
+        if getattr(settings, "ENDOORA_REQUIRE_APPROVED_POLICIES", False):
+            versions = f"{settings.ENDOORA_TERMS_VERSION},{settings.ENDOORA_PRIVACY_VERSION}"
+            if (not settings.ENDOORA_TERMS_VERSION or not settings.ENDOORA_PRIVACY_VERSION
+                    or settings.ENDOORA_APPROVED_POLICY_VERSIONS != versions or "day07" in versions):
+                return bilingual_error("registration_paused", "ثبت‌نام تا انتشار شرایط تأییدشده متوقف است.",
+                                       "Registration is paused pending publication of approved policies.", http_status=503)
         serializer = RegisterSerializer(data=request.data)
 
         if not serializer.is_valid():

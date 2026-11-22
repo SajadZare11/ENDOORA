@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { generateAiQuizForLesson } from "@/lib/admin-academics-store";
 
@@ -26,9 +27,9 @@ export async function POST(req: NextRequest) {
       generatedCount: questions.length,
       modelUsed: "Endoora Pedagogical AI v3.2",
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در تولید آزمونک هوشمند" },
+      { success: false, error: errorMessage(err) || "خطا در تولید آزمونک هوشمند" },
       { status: 500 }
     );
   }

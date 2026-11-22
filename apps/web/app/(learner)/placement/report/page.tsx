@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { scopedLocalStorage, setActiveUserId } from "@/lib/client-storage";
+import { endooraFetch } from "@/lib/endoora-api";
 import { useEffect, useState } from "react";
 import { Button } from "@endoora/ui";
 import { PublicShell } from "@/components/marketing/PublicShell";
@@ -129,43 +131,34 @@ export default function PlacementReportPage() {
 
     async function loadSummary() {
       try {
-        // 1. Try to fetch from server for authenticated user
-        const resCurr = await fetch("/api/placement/sessions/current/");
-        if (resCurr.ok) {
-          const sessData = await resCurr.json();
-          if (sessData && sessData.id) {
-            const sumRes = await fetch(`/api/placement/sessions/${sessData.id}/summary/`);
-            if (sumRes.ok) {
-              const sumData: SessionSummaryData = await sumRes.json();
-              if (isMounted) {
-                setSummary(sumData);
-                setLoading(false);
-                return;
+        const auth = await endooraFetch("/auth/me/");
+        if(auth.ok) {
+          const user = await auth.json();
+          setActiveUserId(user.id);
+          const response = await endooraFetch("/placement/sessions/");
+          if (!response.ok) throw new Error("Session list unavailable");
+          const rows: {id:string;status:string;started_at:string}[] = await response.json();
+          const requested = new URLSearchParams(location.search).get("session");
+          const session = rows.filter(r => r.status === "submitted" && (!requested || r.id === requested))
+            .sort((a,b) => b.started_at.localeCompare(a.started_at))[0];
+          if(session) {
+            const report = await endooraFetch("/placement/sessions/"+session.id+"/summary/");
+            if (!report.ok) throw new Error("Report unavailable");
+            const data = await report.json();
+            if (isMounted) {
+              setSummary(data);
+              if (data.estimated_cefr_level) {
+                scopedLocalStorage.setItem("endoora_placement_v1",JSON.stringify({cefr_level:data.estimated_cefr_level}));
+                const path = await import("@/lib/learning-path-storage");
+                if (isMounted) path.saveLearnerPathProgress(path.applyPlacementSync(path.getInitialProgress(),data.estimated_cefr_level));
               }
             }
           }
+        } else if([401,403].includes(auth.status)) {
+          const data = JSON.parse(sessionStorage.getItem("endoora_guest__placement_summary") || "null");
+          if (isMounted && data?.is_submitted) setSummary(data);
         }
-      } catch {
-        // Fallback to local guest storage
-      }
-
-      // 2. Fallback to localStorage guest report if user completed as guest
-      if (typeof window !== "undefined") {
-        const guestReportRaw = localStorage.getItem("endoora_placement_guest_summary");
-        if (guestReportRaw) {
-          try {
-            const parsed: SessionSummaryData = JSON.parse(guestReportRaw);
-            if (isMounted && parsed && parsed.is_submitted) {
-              setSummary(parsed);
-              setLoading(false);
-              return;
-            }
-          } catch {
-            // Handled
-          }
-        }
-      }
-
+      } catch { /* The empty report state offers a return path. */ }
       if (isMounted) setLoading(false);
     }
 
@@ -175,25 +168,9 @@ export default function PlacementReportPage() {
     };
   }, []);
 
-  // Compute authentic average across all 6 skills as the ultimate source of truth
-  const ALL_SECTIONS = ["grammar", "vocabulary", "reading", "listening", "speaking", "writing"];
-  let computedAverage: number | null = null;
-  if (summary?.sections) {
-    const scores = ALL_SECTIONS.map((s) => {
-      const secData = summary.sections[s];
-      return typeof secData?.score_percentage === "number" ? secData.score_percentage : 0;
-    });
-    computedAverage = Math.round(scores.reduce((sum, v) => sum + v, 0) / scores.length);
-  }
-
-  const endooraIndex =
-    computedAverage !== null
-      ? computedAverage
-      : (summary?.endoora_index ?? summary?.overall_percentage ?? 50);
-
-  const currentCefr: CefrLevel = summary
-    ? endooraIndexToCefr(endooraIndex)
-    : "B1";
+  const endooraIndex = summary?.endoora_index ?? summary?.overall_percentage ?? 0;
+  const level = summary?.estimated_cefr_level as CefrLevel | undefined;
+  const currentCefr = level && Object.hasOwn(CEFR_DESCRIPTIONS,level) ? level : endooraIndexToCefr(endooraIndex);
   const cefrInfo = CEFR_DESCRIPTIONS[currentCefr];
 
   // Synthesize answers map for LearnerTwinPreview

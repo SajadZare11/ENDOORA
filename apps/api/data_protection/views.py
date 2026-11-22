@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 from admin_dashboard.permissions import IsAdministratorOrStaff
 from data_protection.models import PrivacyConsentPreference, DataPurgeLog
 from data_protection.serializers import PrivacyConsentPreferenceSerializer, DataPurgeLogSerializer, PrivacyTelemetrySerializer
-from data_protection.services.export_service import process_data_export_request
+from data_protection.services.export_service import compile_full_user_data_export, process_data_export_request
 from data_protection.services.retention_service import run_retention_purge
 from profiles.models import DataExportRequest
 from accounts.models import AccountDeletionRequest
@@ -97,7 +97,7 @@ class DataExportDownloadView(APIView):
                 status=status.HTTP_410_GONE,
             )
 
-        payload = process_data_export_request(export_request)  # this recompiles it or we could use stored data if it existed, but the prompt says "Compiles and returns JSON file attachment". We'll just recompile here since we didn't store the payload in the model.
+        payload = compile_full_user_data_export(request.user)
         
         response = HttpResponse(
             json.dumps(payload, indent=2),
@@ -138,12 +138,7 @@ class AdminPrivacyTelemetryView(APIView):
                 {"category": "Export Links", "period": "48 Hours"},
             ],
             "recent_purge_logs": DataPurgeLogSerializer(recent_logs, many=True).data,
-            "compliance_scorecard": {
-                "gdpr_article_15": "100%",
-                "gdpr_article_17": "100%",
-                "gdpr_article_20": "100%",
-                "iran_data_protection_act": "100%"
-            }
+            "compliance_scorecard": {}
         }
         
         serializer = PrivacyTelemetrySerializer(data=data)

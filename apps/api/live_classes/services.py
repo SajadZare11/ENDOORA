@@ -517,9 +517,9 @@ def create_livekit_token(
     """
     Generates a secure LiveKit JWT access token for room authentication.
     """
-    api_key = os.getenv("LIVEKIT_API_KEY", "devkey")
-    api_secret = os.getenv("LIVEKIT_API_SECRET", "secret_dev_key_for_endoora_local_development_only_123456789")
-    livekit_url = os.getenv("LIVEKIT_URL", "ws://127.0.0.1:7880")
+    api_key = os.environ["LIVEKIT_API_KEY"]
+    api_secret = os.environ["LIVEKIT_API_SECRET"]
+    livekit_url = os.environ["LIVEKIT_URL"]
     
     identity = str(user.id)
     display_name = getattr(user, "get_full_name", lambda: "")() or getattr(user, "email", "کاربر")
@@ -670,9 +670,11 @@ def teacher_override_attendance(
     return record
 
 
-def get_session_attendance_summary(session_id: str) -> list[dict[str, Any]]:
+def get_session_attendance_summary(session_id: str, student_id=None) -> list[dict[str, Any]]:
     """Returns the attendance sheet for a given session."""
     records = AttendanceRecord.objects.filter(session_id=str(session_id)).select_related("student")
+    if student_id is not None:
+        records = records.filter(student_id=student_id)
     return [
         {
             "id": str(rec.id),
@@ -736,6 +738,8 @@ def submit_in_class_quiz_response(
     if not quiz.is_active:
         raise ValueError("این کوییز به پایان رسیده است و امکان ثبت پاسخ وجود ندارد.")
 
+    if not 0 <= selected_option_index < len(quiz.options):
+        raise ValueError("Invalid answer option.")
     response, created = LiveClassQuizResponse.objects.update_or_create(
         quiz=quiz,
         student=student,

@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getIncidentsList,
@@ -9,9 +10,9 @@ export async function GET() {
   try {
     const incidents = getIncidentsList();
     return NextResponse.json({ success: true, incidents });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی لیست حوادث و خطاهای سرور" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی لیست حوادث و خطاهای سرور" },
       { status: 500 }
     );
   }
@@ -37,9 +38,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات مشخص شده نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش درخواست حادثه" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش درخواست حادثه" },
       { status: 500 }
     );
   }

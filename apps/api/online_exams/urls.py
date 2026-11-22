@@ -33,6 +33,8 @@ urlpatterns = [
     path('<uuid:exam_id>/submissions/<uuid:pk>/submit/', exam_submission_submit, name='exam-submission-submit'),
     path('<uuid:exam_id>/submissions/<uuid:pk>/export_pdf/', exam_submission_export, name='exam-submission-export'),
     
+    path('<uuid:exam_id>/submissions/<uuid:submission_id>/questions/<uuid:question_id>/audio/',
+         ExamAnswerViewSet.as_view({'get': 'speaking_audio'}), name='exam-speaking-playback'),
     path('<uuid:exam_id>/submissions/<uuid:submission_id>/answers/', exam_answer_list, name='exam-answer-list'),
     path('<uuid:exam_id>/submissions/<uuid:submission_id>/answers/<uuid:pk>/', exam_answer_detail, name='exam-answer-detail'),
     

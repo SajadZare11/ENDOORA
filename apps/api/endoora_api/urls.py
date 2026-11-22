@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
@@ -181,3 +182,7 @@ urlpatterns = [
     ),
 ]
 
+
+# Community publication stays closed on production until moderation is released.
+if getattr(settings, "ENDOORA_COMMUNITY_CLOSED", False):
+    urlpatterns = [pattern for pattern in urlpatterns if str(pattern.pattern) != "api/community/"]

@@ -6,28 +6,25 @@ import { vazirmatn, inter } from "./fonts";
 import { NetworkBandwidthBanner } from "../components/pwa/NetworkBandwidthBanner";
 import { PWARegistration } from "../components/pwa/PWARegistration";
 import { LocaleProvider } from "../lib/locale-context";
+import { ThemeToggle } from "../components/theme/ThemeToggle";
 import { LanguageSwitcher } from "../components/layout/LanguageSwitcher";
 import { ImpersonationBanner } from "../components/admin/ImpersonationBanner";
 
 const themeBootstrap = `
 (function () {
   try {
-    window.localStorage.removeItem("endoora-theme-v1");
+    document.documentElement.dataset.theme = window.localStorage.getItem("endoora-theme-v1") === "dark" ? "dark" : "light";
   } catch (_) {}
-  document.documentElement.dataset.theme = "light";
+
 })();`;
 
 const localeBootstrap = `
 (function () {
   try {
-    var savedLocale = window.localStorage.getItem("endoora_ui_locale");
-    if (savedLocale === "en") {
-      window.localStorage.removeItem("endoora_ui_locale");
-    }
-    document.documentElement.lang = "fa";
-    document.documentElement.dir = "rtl";
-    document.documentElement.setAttribute("data-locale", "fa");
-    document.documentElement.style.setProperty("--font-family-body", "var(--font-family-persian)");
+    var locale = /^\\/en(?:\\/|$)/.test(location.pathname) ? "en" : "fa";
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === "en" ? "ltr" : "rtl";
+    document.documentElement.dataset.locale = locale;
   } catch (_) {}
 })();`;
 
@@ -74,6 +71,7 @@ export default function RootLayout({children}:{children:React.ReactNode}) {
         <LocaleProvider>
           <ImpersonationBanner />
           <NetworkBandwidthBanner />
+          <ThemeToggle />
           <LanguageSwitcher pinned />
           {children}
           <PWARegistration />

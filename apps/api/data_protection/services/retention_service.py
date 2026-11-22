@@ -6,6 +6,7 @@ from data_protection.models import DataPurgeLog
 from data_protection.services.erasure_service import execute_account_erasure
 from accounts.models import AccountDeletionRequest, OneTimeCode
 from voice_lab.models import VoiceRecording
+from voice_lab.services import VoicePipelineService
 from profiles.models import DataExportRequest
 
 def run_retention_purge(dry_run: bool = False, operator=None, trigger: str = "automated_cron") -> dict:
@@ -24,19 +25,11 @@ def run_retention_purge(dry_run: bool = False, operator=None, trigger: str = "au
             execute_account_erasure(item.user, reason="Scheduled deletion grace period elapsed", operator=operator)
             
     # 2. Expired Audio Recordings
-    expired_audio = VoiceRecording.objects.filter(
-        expires_at__lte=timezone.now()
-    ).exclude(status="purged")
-    audio_purged_count = expired_audio.count()
-    if not dry_run:
-        for rec in expired_audio:
-            # Note: might need to physically delete file if using local storage, but requirements say "clear audio_file"
-            if rec.audio_file:
-                rec.audio_file.delete(save=False)
-            rec.audio_file = None
-            rec.status = "purged"
-            rec.save(update_fields=['audio_file', 'status'])
-            
+    if dry_run:
+        audio_purged_count = VoiceRecording.objects.filter(is_deleted=False, expires_at__lte=timezone.now()).count()
+    else:
+        audio_purged_count = VoicePipelineService().delete_expired_audio()
+
     # 3. Stale OTP Codes
     # created > 30 days ago or consumed > 7 days ago
     # OneTimeCode has 'created_at' and 'consumed_at'? Let's assume these fields exist.

@@ -32,7 +32,7 @@ export interface SchemaJsonLdItem {
   pagePath: string;
   schemaType: SchemaType;
   title: string;
-  jsonLdPayload: Record<string, any>;
+  jsonLdPayload: Record<string, unknown>;
   updatedAt: string;
 }
 

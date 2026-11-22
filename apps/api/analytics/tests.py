@@ -40,6 +40,7 @@ class ProductAnalyticsDay57Tests(TestCase):
         )
 
     def test_bounded_event_ingestion_success(self):
+        PrivacyConsentPreference.objects.create(user=self.learner_user, analytics_processing=True)
         event = ingest_event(
             event_name="auth_signup_attempt",
             user=self.learner_user,
@@ -76,6 +77,7 @@ class ProductAnalyticsDay57Tests(TestCase):
             {
                 "event_name": "route_view_landing",
                 "session_id": "client_session_abc",
+                "optional_consent": True,
                 "properties": {"referrer": "direct"},
                 "locale": "fa",
             },
@@ -131,9 +133,8 @@ class ProductAnalyticsDay57Tests(TestCase):
             session_id="opt_out_session",
             properties={"mission_type": "speaking"},
         )
-        # Verify user identity is detached
-        self.assertIsNone(event.user)
-        self.assertEqual(event.event_name, "mission_started")
+        self.assertIsNone(event)
+        self.assertFalse(ProductAnalyticsEvent.objects.filter(session_id="opt_out_session").exists())
 
     def test_funnel_metrics_calculation(self):
         funnel = FunnelDefinition.objects.create(

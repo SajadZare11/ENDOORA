@@ -7,9 +7,9 @@ import { fetchTeacherClassDetail, type TeacherClass } from "../../../../../../li
 export default function TeacherClassLivePage({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const unwrappedParams = React.use(params as any) as { id: string };
+  const unwrappedParams = use(params);
   const classId = unwrappedParams.id;
   const [cls, setCls] = useState<TeacherClass | null>(null);
 

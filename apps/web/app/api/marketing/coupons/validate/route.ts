@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { validateCouponForBasket, type ProductScope } from "@/lib/marketing-store";
 
 export async function POST(req: NextRequest) {
+  if (process.env.NODE_ENV === "production") return NextResponse.json({valid:false,error:"تخفیف در پرداخت فعلی فعال نیست."},{status:503});
   try {
     const body = await req.json();
     const { code, basketAmountToman, scope, userPhone } = body;

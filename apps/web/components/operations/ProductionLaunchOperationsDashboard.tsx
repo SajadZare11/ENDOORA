@@ -12,8 +12,6 @@ import {
   GoldenFlowRehearsalResult,
   LaunchCheckItem,
   LaunchStatusScorecard,
-  MOCK_GOLDEN_FLOWS,
-  MOCK_LAUNCH_SCORECARD,
   submitProductionSignoff,
   triggerGoldenFlowRehearsal,
 } from "../../lib/launch-ops";
@@ -40,8 +38,8 @@ const OPERATIONS_TABS = [
 ];
 
 export function ProductionLaunchOperationsDashboard() {
-  const [scorecard, setScorecard] = useState<LaunchStatusScorecard>(MOCK_LAUNCH_SCORECARD);
-  const [flows, setflows] = useState<GoldenFlowItem[]>(MOCK_GOLDEN_FLOWS);
+  const [scorecard, setScorecard] = useState<LaunchStatusScorecard | null>(null);
+  const [flows, setflows] = useState<GoldenFlowItem[]>([]);
   const [history, setHistory] = useState<GoldenFlowLogSummary[]>([]);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [isRehearsing, setIsRehearsing] = useState<boolean>(false);
@@ -49,7 +47,7 @@ export function ProductionLaunchOperationsDashboard() {
   const [feedback, setFeedback] = useState<string | null>(null);
 
   // Signoff form state
-  const [engineerName, setEngineerName] = useState<string>("سجاد زارع");
+  const [engineerName, setEngineerName] = useState<string>("");
   const [engineerRole, setEngineerRole] = useState<string>("Principal Launch Architect");
   const [signoffNotes, setSignoffNotes] = useState<string>(
     "تأییدیه نهایی آمادگی کامل پلتفرم برای بهره‌برداری تجاری و رونمایی عمومی."
@@ -63,7 +61,7 @@ export function ProductionLaunchOperationsDashboard() {
         setScorecard(sc);
         setHistory(hist);
       }
-    });
+    }).catch(() => { if (mounted) setFeedback("دریافت شواهد انتشار انجام نشد."); });
     return () => {
       mounted = false;
     };
@@ -123,6 +121,8 @@ export function ProductionLaunchOperationsDashboard() {
       setIsSigning(false);
     }
   };
+
+  if (!scorecard) return <main role="status">{feedback || "در حال دریافت وضعیت انتشار…"} {feedback && <button onClick={() => window.location.reload()}>تلاش دوباره</button>}</main>;
 
   return (
     <div className={styles.container}>
@@ -255,7 +255,7 @@ export function ProductionLaunchOperationsDashboard() {
         <div className={styles.kpiCard}>
           <span className={styles.kpiLabel}>مسیرهای طلایی پاس‌شده</span>
           <span className={styles.kpiValue} style={{ color: "var(--color-success-text)" }}>
-            {scorecard.latest_rehearsal?.passed_flows || 7} / {scorecard.latest_rehearsal?.total_flows || 7}
+            {scorecard.latest_rehearsal?.passed_flows ?? 0} / {scorecard.latest_rehearsal?.total_flows ?? 0}
           </span>
           <span className={styles.kpiMeta}>پوشش ۱۰۰٪ چرخه حیات محصول</span>
         </div>
@@ -263,7 +263,7 @@ export function ProductionLaunchOperationsDashboard() {
         <div className={styles.kpiCard}>
           <span className={styles.kpiLabel}>مدت‌زمان مانور شبیه‌سازی</span>
           <span className={styles.kpiValue}>
-            {scorecard.latest_rehearsal?.duration_ms || 245} <span style={{ fontSize: "14px" }}>ms</span>
+            {scorecard.latest_rehearsal?.duration_ms ?? 0} <span style={{ fontSize: "14px" }}>ms</span>
           </span>
           <span className={styles.kpiMeta}>میانگین زمان اجرای هر مسیر: ۳۵ میلی‌ثانیه</span>
         </div>
@@ -271,7 +271,7 @@ export function ProductionLaunchOperationsDashboard() {
         <div className={styles.kpiCard}>
           <span className={styles.kpiLabel}>امضای مهندسی لید</span>
           <span className={styles.kpiValue} style={{ fontSize: "18px" }}>
-            {scorecard.latest_signoff?.engineer_name || "سجاد زارع"}
+            {scorecard.latest_signoff?.engineer_name || ""}
           </span>
           <span className={styles.kpiMeta}>
             وضعیت: {scorecard.latest_signoff?.status === "APPROVED" ? "✅ تأیید شده" : "در انتظار"}

@@ -368,12 +368,12 @@ export const INITIAL_CONVERSION_LOGS: ReferralConversionLog[] = [
   },
 ];
 
-let memoryBadges = [...INITIAL_BADGES];
-let memoryLearners = [...INITIAL_LEARNERS_GAMIFICATION];
+const memoryBadges = [...INITIAL_BADGES];
+const memoryLearners = [...INITIAL_LEARNERS_GAMIFICATION];
 let memoryXpRules = { ...INITIAL_XP_RULES };
-let memoryAffiliates = [...INITIAL_AFFILIATES];
-let memoryPayoutRequests = [...INITIAL_PAYOUT_REQUESTS];
-let memoryConversionLogs = [...INITIAL_CONVERSION_LOGS];
+const memoryAffiliates = [...INITIAL_AFFILIATES];
+const memoryPayoutRequests = [...INITIAL_PAYOUT_REQUESTS];
+const memoryConversionLogs = [...INITIAL_CONVERSION_LOGS];
 
 // ==============================================================================
 // 4. Store Handlers

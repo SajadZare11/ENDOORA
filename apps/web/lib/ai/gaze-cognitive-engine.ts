@@ -30,7 +30,7 @@ export class GazeCognitiveEngine {
   private worker: Worker | null = null;
   private isWorkerReady = false;
   private isTracking = false;
-  private trackingIntervalId: any = null;
+  private trackingIntervalId: ReturnType<typeof setInterval> | null = null;
 
   private telemetrySubscribers: Set<(t: GazeCognitiveTelemetry) => void> = new Set();
   private watsonHintSubscribers: Set<(t: GazeCognitiveTelemetry) => void> = new Set();
@@ -40,8 +40,8 @@ export class GazeCognitiveEngine {
 
   // Video / Canvas refs
   private activeVideoElement: HTMLVideoElement | null = null;
-  private offscreenCanvas: any = null;
-  private offscreenCtx: any = null;
+  private offscreenCanvas: OffscreenCanvas | null = null;
+  private offscreenCtx: OffscreenCanvasRenderingContext2D | null = null;
 
   private constructor() {
     this.lastTelemetry = this.getDefaultTelemetry();
@@ -218,7 +218,7 @@ export class GazeCognitiveEngine {
   private sampleTick(): void {
     if (!this.worker || !this.isTracking) return;
 
-    if (this.activeVideoElement && this.offscreenCtx) {
+    if (this.activeVideoElement && this.offscreenCanvas && this.offscreenCtx) {
       try {
         this.offscreenCtx.drawImage(this.activeVideoElement, 0, 0, 64, 64);
         const bitmap = this.offscreenCanvas.transferToImageBitmap();

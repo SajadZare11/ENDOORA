@@ -30,7 +30,7 @@ class DataProtectionTests(APITestCase):
         # GET creates default
         res = self.client.get(url)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertTrue(res.data["analytics_processing"])
+        self.assertFalse(res.data["analytics_processing"])
         
         # PUT updates toggles
         res = self.client.put(url, {"analytics_processing": False, "marketing_communications": True})

@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 
@@ -82,10 +83,10 @@ export async function GET(req: NextRequest) {
       maintenanceConfig: data.maintenanceConfig,
       stats,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in GET /api/admin/security:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در واکشی داده‌های امنیتی" },
+      { success: false, error: errorMessage(error) || "خطای سرور در واکشی داده‌های امنیتی" },
       { status: 500 }
     );
   }
@@ -361,10 +362,10 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in POST /api/admin/security:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای پردازش عملیات امنیتی" },
+      { success: false, error: errorMessage(error) || "خطای پردازش عملیات امنیتی" },
       { status: 500 }
     );
   }

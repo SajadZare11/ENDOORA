@@ -38,21 +38,41 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
-  // Clean up resources on unmount
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop());
-      }
-      if (audioContextRef.current && audioContextRef.current.state !== "closed") {
-        void audioContextRef.current.close();
-      }
-    };
+  const activeRequest = useRef(0);
+  const starting = useRef(false);
+  const blobUrl = useRef<string | null>(null);
+
+  const releaseResources = useCallback(() => {
+    if (timerRef.current !== null) clearInterval(timerRef.current);
+    if (animationFrameRef.current !== null) cancelAnimationFrame(animationFrameRef.current);
+    timerRef.current = null;
+    animationFrameRef.current = null;
+    streamRef.current?.getTracks().forEach((track) => track.stop());
+    streamRef.current = null;
+    const context = audioContextRef.current;
+    if (context && context.state !== "closed") void context.close().catch(() => {});
+    audioContextRef.current = null;
+    analyserRef.current = null;
   }, []);
 
-  const updateWaveform = useCallback(() => {
+  const discard = useCallback(() => {
+    activeRequest.current += 1;
+    starting.current = false;
+    const recorder = mediaRecorderRef.current;
+    if (recorder) {
+      recorder.onstop = null;
+      recorder.ondataavailable = null;
+      if (recorder.state !== "inactive") recorder.stop();
+    }
+    mediaRecorderRef.current = null;
+    releaseResources();
+    if (blobUrl.current) URL.revokeObjectURL(blobUrl.current);
+    blobUrl.current = null;
+  }, [releaseResources]);
+
+  useEffect(() => discard, [discard]);
+
+  const updateWaveform = useCallback(function drawWaveform() {
     if (!analyserRef.current || !mediaRecorderRef.current || mediaRecorderRef.current.state !== "recording") {
       return;
     }
@@ -76,15 +96,23 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
     }
 
     setState((prev) => ({ ...prev, waveformData: bars }));
-    animationFrameRef.current = requestAnimationFrame(updateWaveform);
+    animationFrameRef.current = requestAnimationFrame(drawWaveform);
   }, []);
 
   const startRecording = useCallback(async () => {
+    if (starting.current || mediaRecorderRef.current) return;
+    discard();
+    starting.current = true;
+    const request = activeRequest.current;
     try {
       setState((prev) => ({ ...prev, error: null, audioBlob: null, audioUrl: null }));
       chunksRef.current = [];
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (request !== activeRequest.current) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
       streamRef.current = stream;
 
       // Audio analysis for waveform visualizer
@@ -97,13 +125,8 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
       const source = audioCtx.createMediaStreamSource(stream);
       source.connect(analyser);
 
-      const mimeType = MediaRecorder.isTypeSupported("audio/webm")
-        ? "audio/webm"
-        : MediaRecorder.isTypeSupported("audio/mp4")
-          ? "audio/mp4"
-          : "audio/ogg";
-
-      const mediaRecorder = new MediaRecorder(stream, { mimeType });
+      const mimeType = ["audio/webm", "audio/mp4", "audio/ogg"].find((type) => MediaRecorder.isTypeSupported(type));
+      const mediaRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       mediaRecorderRef.current = mediaRecorder;
 
       mediaRecorder.ondataavailable = (event) => {
@@ -113,8 +136,11 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
       };
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: mimeType });
+        const blob = new Blob(chunksRef.current, { type: mediaRecorder.mimeType });
+        releaseResources();
+        mediaRecorderRef.current = null;
         const url = URL.createObjectURL(blob);
+        blobUrl.current = url;
         setState((prev) => ({
           ...prev,
           isRecording: false,
@@ -122,9 +148,6 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
           audioUrl: url,
         }));
 
-        if (streamRef.current) {
-          streamRef.current.getTracks().forEach((track) => track.stop());
-        }
       };
 
       mediaRecorder.start(250); // Collect data every 250ms
@@ -148,10 +171,14 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
       // Start waveform loop
       animationFrameRef.current = requestAnimationFrame(updateWaveform);
     } catch (err: unknown) {
+      if (request !== activeRequest.current) return;
+      discard();
       const msg = err instanceof Error ? err.message : "دسترسی به میکروفون با خطا مواجه شد.";
       setState((prev) => ({ ...prev, error: msg, isRecording: false }));
+    } finally {
+      if (request === activeRequest.current) starting.current = false;
     }
-  }, [timeLimitSeconds, onTimeLimitReached, updateWaveform]);
+  }, [discard, releaseResources, timeLimitSeconds, onTimeLimitReached, updateWaveform]);
 
   const stopRecording = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -163,10 +190,7 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
   }, []);
 
   const resetRecording = useCallback(() => {
-    stopRecording();
-    if (state.audioUrl) {
-      URL.revokeObjectURL(state.audioUrl);
-    }
+    discard();
     setState({
       isRecording: false,
       isPaused: false,
@@ -176,7 +200,7 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}) {
       waveformData: new Array(24).fill(0.1),
       error: null,
     });
-  }, [stopRecording, state.audioUrl]);
+  }, [discard]);
 
   return {
     ...state,

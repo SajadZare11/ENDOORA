@@ -25,8 +25,8 @@ let activeBackend: "webgpu" | "wasm" | "mouse-multimodal-fallback" = "wasm";
 
 // Circular buffer for temporal feature sequences [SEQ_LEN, FEATURE_DIM]
 const featureBuffer: Float32Array[] = [];
-let prevGazeX = 0;
-let prevGazeY = 0;
+const prevGazeX = 0;
+const prevGazeY = 0;
 let fixationCount = 0;
 let regressionCount = 0;
 

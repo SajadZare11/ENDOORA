@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect } from "react";
 import styles from "./ai-engine.module.css";
 import {
@@ -140,8 +141,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || "ذخیره نشد"));
       }
-    } catch (err: any) {
-      alert("خطای ارتباط با سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط با سرور: " + errorMessage(err));
     }
   };
 
@@ -164,8 +165,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || "استقرار انجام نشد"));
       }
-    } catch (err: any) {
-      alert("خطای ارتباط با سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط با سرور: " + errorMessage(err));
     }
   };
 
@@ -193,8 +194,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || "خطا در تغییر روتینگ"));
       }
-    } catch (err: any) {
-      alert("خطا در ارتباط: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در ارتباط: " + errorMessage(err));
     }
   };
 
@@ -224,8 +225,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || "خطا در تغییر وضعیت"));
       }
-    } catch (err: any) {
-      alert("خطای ارتباط با سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط با سرور: " + errorMessage(err));
     }
   };
 
@@ -256,8 +257,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || data.message));
       }
-    } catch (err: any) {
-      alert("خطا در اجرای تست: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در اجرای تست: " + errorMessage(err));
     } finally {
       setIsPlaying(false);
     }
@@ -282,8 +283,8 @@ export function AiEngineConsole() {
       } else {
         alert("خطا: " + (data.error || "خطا در اجرای بنچمارک"));
       }
-    } catch (err: any) {
-      alert("خطا در اجرای بنچمارک: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در اجرای بنچمارک: " + errorMessage(err));
     } finally {
       setRunningBenchmarkId(null);
     }
@@ -303,8 +304,8 @@ export function AiEngineConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در بازنشانی داده‌ها: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در بازنشانی داده‌ها: " + errorMessage(err));
     }
   };
 
@@ -713,7 +714,7 @@ export function AiEngineConsole() {
                 <select
                   value={safetyBudget.safetyLevel}
                   onChange={(e) =>
-                    setSafetyBudget({ ...safetyBudget, safetyLevel: e.target.value as any })
+                    setSafetyBudget({ ...safetyBudget, safetyLevel: e.target.value as typeof safetyBudget.safetyLevel })
                   }
                   className={styles.selectInput}
                 >

@@ -13,6 +13,11 @@ import {
 } from "../../data/downloads";
 
 export default function DownloadsPage() {
+  if (!DOWNLOAD_ITEMS.length) return <main dir="rtl" className="account-panel"><h1>کتابخانه</h1><p>در حال حاضر منبع تأییدشده‌ای برای دانلود منتشر نشده است.</p><Link href="/courses">مشاهده دوره‌ها</Link></main>;
+  return <Catalogue />;
+}
+
+function Catalogue() {
   const [selectedCategory, setSelectedCategory] = useState<DownloadCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLevel, setSelectedLevel] = useState<string>("all");

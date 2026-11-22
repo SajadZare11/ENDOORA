@@ -4,6 +4,7 @@ from django.utils import timezone
 from accounts.models import User, OneTimeCode
 from audit.models import AuditEvent
 from accounts.models import AccountDeletionRequest
+from voice_lab.services import VoicePipelineService
 
 @transaction.atomic
 def execute_account_erasure(user: User, reason: str = "", operator: User | None = None) -> dict:
@@ -33,11 +34,11 @@ def execute_account_erasure(user: User, reason: str = "", operator: User | None 
         user.teacher_profile.certificates = []
         user.teacher_profile.save()
         
-    # Purge personal audio records
-    # If voice_lab has VoiceRecording
-    if hasattr(user, 'voice_recordings'):
-        user.voice_recordings.all().update(status="purged", audio_file=None)
-        
+    voice = VoicePipelineService()
+    for recording_id in user.voice_recordings.values_list("pk", flat=True).iterator():
+        voice.delete_recording(user, recording_id)
+    user.voice_recordings.update(stt_transcript="", corrected_transcript="", scenario_id="", session_id="")
+
     # Purge pending one-time codes
     OneTimeCode.objects.filter(requested_by=user).delete()
     

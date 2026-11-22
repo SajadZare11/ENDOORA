@@ -1,5 +1,5 @@
 .topRightUtility {
-  display: none !important;
+  display: inline-flex;
   position: fixed;
   inset-block-start: var(--space-3);
   z-index: 9999;

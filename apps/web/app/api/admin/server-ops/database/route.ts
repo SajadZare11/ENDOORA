@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -59,9 +60,9 @@ export async function GET(req: NextRequest) {
       totalCount: rows.length,
       source: "local",
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی رکوردهای پایگاه داده" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی رکوردهای پایگاه داده" },
       { status: 500 }
     );
   }
@@ -140,9 +141,9 @@ export async function POST(req: NextRequest) {
       message: "رکورد با موفقیت به‌روزرسانی و در لاگ ممیزی ثبت گردید.",
       row: result.row,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در اعمال تغییرات در رکورد" },
+      { success: false, error: errorMessage(err) || "خطا در اعمال تغییرات در رکورد" },
       { status: 500 }
     );
   }

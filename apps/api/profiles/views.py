@@ -427,6 +427,7 @@ class AccountSummaryView(APIView):
                     "role": request.user.role,
                     "preferred_locale": request.user.preferred_locale,
                     "capabilities": request.user.capabilities,
+                    "is_premium": request.user.is_premium,
                 },
                 "profile": profile_payload,
                 "profile_completeness": profile_completeness,

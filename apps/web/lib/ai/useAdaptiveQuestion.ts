@@ -256,25 +256,23 @@ export function useAdaptiveQuestion(
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [latencyMs, setLatencyMs] = useState<number | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [previousInput, setPreviousInput] = useState(rawQuestionInput);
 
   const renderTimestampRef = useRef<number>(0);
   const twinPredictionRef = useRef<TwinPrediction | undefined>(undefined);
   useEffect(()=>{void ensureTwinLearnerScope();},[]);
 
-  // Sync state if rawQuestionInput changes externally
-  useEffect(() => {
+  if (previousInput !== rawQuestionInput) {
+    setPreviousInput(rawQuestionInput);
     setCurrentQuestionInput(rawQuestionInput);
     setSelectedOptionIndex(null);
     setIsAnswered(false);
     setIsCorrect(null);
     setLatencyMs(null);
-    setError(null);
-  }, [rawQuestionInput]);
+  }
 
-  // Resolve normalized payload
-  const resolvedPayload: AdaptiveQuestionPayload | null = useMemo(() => {
-    if (!currentQuestionInput) return null;
+  const { payload: resolvedPayload, error: payloadError } = useMemo(() => {
+    if (!currentQuestionInput) return { payload: null, error: null };
     try {
       if (typeof currentQuestionInput === "string") {
         const found = getAdaptiveQuestionById(currentQuestionInput);
@@ -283,12 +281,11 @@ export function useAdaptiveQuestion(
             `Adaptive question ID '${currentQuestionInput}' not found in question bank`
           );
         }
-        return found;
+        return { payload: found, error: null };
       }
-      return normalizeAdaptiveQuestionPayload(currentQuestionInput);
+      return { payload: normalizeAdaptiveQuestionPayload(currentQuestionInput), error: null };
     } catch (err) {
-      setError(err instanceof Error ? err : new Error(String(err)));
-      return null;
+      return { payload: null, error: err instanceof Error ? err : new Error(String(err)) };
     }
   }, [currentQuestionInput]);
 
@@ -296,9 +293,9 @@ export function useAdaptiveQuestion(
   const resolvedTelemetry: EnDooraTriModalTelemetry = useMemo(() => {
     let t: EnDooraTriModalTelemetry = {};
     if (typeof telemetryInput === "function") {
-      t = telemetryInput();
+      t = { ...telemetryInput() };
     } else if (telemetryInput) {
-      t = telemetryInput;
+      t = { ...telemetryInput };
     }
 
     // Auto-enrich DKT metrics if not provided
@@ -315,19 +312,21 @@ export function useAdaptiveQuestion(
   }, [telemetryInput, dkt]);
 
   // Assemble question via LinUCB bandit
-  const assembledQuestion: AssembledQuestion | null = useMemo(() => {
-    if (!resolvedPayload) return null;
+  const { question: assembledQuestion, error: assemblyError } = useMemo(() => {
+    if (!resolvedPayload) return { question: null, error: null };
     try {
-      return bandit.assembleAdaptiveQuestion(
+      const question = bandit.assembleAdaptiveQuestion(
         resolvedPayload,
         resolvedTelemetry,
         { alpha }
       );
+      return { question, error: null };
     } catch (err) {
-      setError(err instanceof Error ? err : new Error(String(err)));
-      return null;
+      return { question: null, error: err instanceof Error ? err : new Error(String(err)) };
     }
   }, [resolvedPayload, resolvedTelemetry, bandit, alpha]);
+
+  const error = payloadError ?? assemblyError;
 
   // Reset timestamp when assembled question becomes active
   useEffect(() => {
@@ -528,7 +527,6 @@ export function useAdaptiveQuestion(
       setIsAnswered(false);
       setIsCorrect(null);
       setLatencyMs(null);
-      setError(null);
       renderTimestampRef.current =
         typeof performance !== "undefined" ? performance.now() : Date.now();
     },

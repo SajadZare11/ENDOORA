@@ -365,8 +365,8 @@ export const INITIAL_ACADEMIC_AUDIT_LOGS: AcademicOverrideAuditRecord[] = [
 ];
 
 // In-Memory Global State
-let memoryEnrollments: LearnerEnrollmentRecord[] = [...INITIAL_LEARNER_ENROLLMENTS];
-let memoryAuditLogs: AcademicOverrideAuditRecord[] = [...INITIAL_ACADEMIC_AUDIT_LOGS];
+const memoryEnrollments: LearnerEnrollmentRecord[] = [...INITIAL_LEARNER_ENROLLMENTS];
+const memoryAuditLogs: AcademicOverrideAuditRecord[] = [...INITIAL_ACADEMIC_AUDIT_LOGS];
 
 export function getLearnerEnrollments(filters?: { query?: string; courseId?: string }): LearnerEnrollmentRecord[] {
   let list = [...memoryEnrollments];

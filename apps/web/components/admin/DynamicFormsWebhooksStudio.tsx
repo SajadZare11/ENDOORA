@@ -862,7 +862,7 @@ export function DynamicFormsWebhooksStudio() {
                   <select
                     className={styles.formSelect}
                     value={editingForm.status}
-                    onChange={(e) => setEditingForm({ ...editingForm, status: e.target.value as any })}
+                    onChange={(e) => setEditingForm({ ...editingForm, status: e.target.value as typeof editingForm.status })}
                   >
                     <option value="published">منتشر شده (Published)</option>
                     <option value="draft">پیش‌نویس (Draft)</option>

@@ -1659,16 +1659,38 @@ import { C1_SHERLOCK_CASE } from "./sherlock-case-c1.ts";
 import { C2_SHERLOCK_CASE } from "./sherlock-case-c2.ts";
 export { A2_SHERLOCK_CASE, B1_SHERLOCK_CASE, B2_SHERLOCK_CASE, C1_SHERLOCK_CASE, C2_SHERLOCK_CASE };
 
+// Short scenes use their authored alternative translations for oral recall and paraphrase practice.
+function speakingPractice(tasks: DetectiveSpeakingTask[]): DetectiveSpeakingTask[] {
+  if (tasks.length >= 3 || tasks.length === 0) return tasks;
+  const source = tasks[tasks.length - 1];
+  const prompts = source.alternativeResponsesEn.slice(0, 3 - tasks.length);
+  return [...tasks, ...prompts.map((line, index) => ({
+    ...source,
+    id: source.id + "-recall-" + index,
+    titleFa: index === 0 ? "ترجمه شفاهی" : "بازگویی",
+    speakerPromptEn: index === 0 ? "Translate the Persian line into English." : "Express the same idea another way.",
+    speakerPromptFa: line.translationFa,
+    taskInstructionFa: line.translationFa,
+    idealVoiceResponseEn: line.phraseEn,
+    alternativeResponsesEn: [],
+    targetKeywords: [{phrase:line.phraseEn, synonyms:[], weight:100, hintFa:line.translationFa}],
+    fallbackChoices: [line.phraseEn, ...source.fallbackChoices.slice(1)],
+    whiteHintFa: line.translationFa,
+    npcResponse: undefined,
+  }))];
+}
+
+const CASES = {A1:A1_SHERLOCK_CASE,A2:A2_SHERLOCK_CASE,B1:B1_SHERLOCK_CASE,
+  B2:B2_SHERLOCK_CASE,C1:C1_SHERLOCK_CASE,C2:C2_SHERLOCK_CASE};
+const practiceCases = Object.fromEntries(Object.entries(CASES).map(([tier, stages]) => [tier,
+  stages.map(stage => ({...stage, tasks:speakingPractice(stage.tasks),
+    branchVariants:stage.branchVariants?.map(branch => ({...branch,tasks:speakingPractice(branch.tasks)})),
+  })),
+])) as Record<CefrLevel,DetectiveStage[]>;
+
 export function getSherlockStage(levelNum: number, cefr: CefrLevel = "A1"): DetectiveStage {
-  let caseList = A1_SHERLOCK_CASE;
-  if (cefr === "A2") caseList = A2_SHERLOCK_CASE;
-  else if (cefr === "B1") caseList = B1_SHERLOCK_CASE;
-  else if (cefr === "B2") caseList = B2_SHERLOCK_CASE;
-  else if (cefr === "C1") caseList = C1_SHERLOCK_CASE;
-  else if (cefr === "C2") caseList = C2_SHERLOCK_CASE;
-  const found = caseList.find((s) => s.levelNumber === levelNum);
-  if (found) return found;
-  return caseList[0];
+  const stages = practiceCases[cefr] || practiceCases.A1;
+  return stages.find(stage => stage.levelNumber === levelNum) || stages[0];
 }
 
 export const A1_DECISION_SCORES: Record<string, number> = {

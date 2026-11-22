@@ -444,7 +444,7 @@ export function ReadingOdysseyArena({
             <div className={`${styles.feedbackBanner} ${styles.feedbackWrong}`}>
               <span>💔 ای وای! یکی از قلب‌هات پرید! به کلمات زرد رنگ قصه نگاه کن و دوباره حدس بزن:</span>
               <span style={{ fontStyle: "italic", direction: "ltr" }}>
-                "{story.speedGate.evidenceSnippet}"
+                &quot;{story.speedGate.evidenceSnippet}&quot;
               </span>
             </div>
           )}

@@ -1,3 +1,17 @@
+import base64
+import hashlib
+import hmac
+import os
+
+import jwt
+from django.db import transaction
+from django.http import FileResponse
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.parsers import JSONParser
+from permissions.base import IsVerifiedTeacher
+from .access import classroom_role
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -7,6 +21,7 @@ from .models import (
     AttendanceRecord,
     LiveClassCohort,
     LiveClassQuiz,
+    LiveKitEventReceipt,
     SessionAiRecap,
     SessionWhiteboardExport,
 )
@@ -110,7 +125,7 @@ class TeacherOpenRequestsView(APIView):
     GET /api/teacher/open-requests/
     Lists open student enrollment requests with algorithmic cohort matching suggestions.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsVerifiedTeacher]
 
     def get(self, request):
         data = get_open_class_requests_for_teachers()
@@ -122,7 +137,7 @@ class TeacherClaimCohortView(APIView):
     POST /api/teacher/classes/claim/
     Teacher claims 1 to 4 matching student requests to form an active cohort.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsVerifiedTeacher]
 
     def post(self, request):
         serializer = ClaimCohortInputSerializer(data=request.data)
@@ -158,7 +173,7 @@ class TeacherLogSessionView(APIView):
     POST /api/teacher/sessions/log/
     Teacher records session units, grammar, vocab, homework, and next session time.
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsVerifiedTeacher]
 
     def post(self, request):
         serializer = TeacherSessionLogInputSerializer(data=request.data)
@@ -200,35 +215,16 @@ class LiveClassTokenView(APIView):
     POST /api/live-classes/token/
     Generates a LiveKit JWT token for connecting to the classroom WebRTC room.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = LiveClassTokenInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         session_id = serializer.validated_data["session_id"]
-        role = serializer.validated_data["role"]
-
-        user = request.user if request.user.is_authenticated else None
-        if not user:
-            guest_email = f"guest_{request.session.session_key or 'demo'}@endoora.ir"
-            user, _ = User.objects.get_or_create(
-                email=guest_email,
-                defaults={"first_name": "کاربر", "last_name": "میهمان"},
-            )
-
-        is_teacher = role == "teacher" or getattr(user, "is_staff", False)
-        # Check if the session is managed by this teacher
-        class_session = None
-        try:
-            import uuid
-            uuid.UUID(str(session_id))
-            from teachers.models import ClassSession
-            class_session = ClassSession.objects.filter(id=session_id).select_related("teacher_class__teacher").first()
-        except Exception:
-            class_session = None
-
-        if class_session and class_session.teacher_class.teacher == user:
-            is_teacher = True
+        user = request.user
+        is_teacher = classroom_role(user, session_id) == "teacher"
+        if not all(os.getenv(key) for key in ("LIVEKIT_API_KEY", "LIVEKIT_API_SECRET", "LIVEKIT_URL")):
+            return Response({"detail": "Classroom provider unavailable."}, status=503)
 
         token_info = create_livekit_token(
             room_name=session_id,
@@ -243,14 +239,29 @@ class LiveClassTokenView(APIView):
 # LiveKit Webhook (Attendance Tracking)
 # ==============================================================================
 
-class LiveKitWebhookView(APIView):
-    """
-    POST /api/live-classes/webhooks/livekit/
-    Receives participant events (joined, left, room_finished) from LiveKit server.
-    """
-    permission_classes = [AllowAny]
+class LiveKitJSONParser(JSONParser):
+    media_type = "application/webhook+json"
 
+
+class LiveKitWebhookView(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    parser_classes = [LiveKitJSONParser, JSONParser]
+
+    @transaction.atomic
     def post(self, request):
+        key, secret = os.getenv("LIVEKIT_API_KEY"), os.getenv("LIVEKIT_API_SECRET")
+        if not key or not secret:
+            return Response({"detail": "Classroom provider unavailable."}, status=503)
+        token = request.headers.get("Authorization", "").removeprefix("Bearer ")
+        try:
+            claims = jwt.decode(token, secret, algorithms=["HS256"], issuer=key,
+                                options={"require": ["exp", "iss", "sha256"]})
+        except jwt.InvalidTokenError:
+            raise PermissionDenied("Invalid provider signature.")
+        digest = base64.b64encode(hashlib.sha256(request.body).digest()).decode("ascii")
+        if not isinstance(claims["sha256"], str) or not hmac.compare_digest(claims["sha256"], digest):
+            raise PermissionDenied("Invalid event body.")
         payload = request.data
         event = payload.get("event", "")
         room = payload.get("room", {})
@@ -258,8 +269,15 @@ class LiveKitWebhookView(APIView):
         participant = payload.get("participant", {})
         identity = participant.get("identity")
 
-        if not room_name or not identity:
+        if not room_name or (event != "room_finished" and not identity):
             return Response({"status": "ignored", "reason": "missing room or identity"}, status=status.HTTP_200_OK)
+
+        event_id = payload.get("id")
+        if not isinstance(event_id, str) or not event_id or len(event_id) > 128:
+            return Response({"detail": "Event ID is required."}, status=400)
+        _, created = LiveKitEventReceipt.objects.get_or_create(event_id=event_id)
+        if not created:
+            return Response({"status": "already processed"})
 
         if event == "participant_joined":
             record_livekit_attendance_event(
@@ -268,7 +286,12 @@ class LiveKitWebhookView(APIView):
                 event_type="participant_joined",
             )
         elif event == "participant_left":
-            duration = participant.get("duration", 0)
+            duration = participant.get("duration")
+            if duration is None:
+                try:
+                    duration = max(0, int(payload["createdAt"]) - int(participant["joinedAt"]))
+                except (KeyError, TypeError, ValueError):
+                    duration = 0
             record_livekit_attendance_event(
                 session_id=room_name,
                 user_identity=identity,
@@ -291,13 +314,15 @@ class SessionAttendanceView(APIView):
     POST /api/live-classes/<session_id>/attendance/
     Lists attendance records or applies teacher overrides / manual finalization.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, session_id):
-        summary = get_session_attendance_summary(str(session_id))
+        role = classroom_role(request.user, session_id)
+        summary = get_session_attendance_summary(str(session_id), None if role == "teacher" else request.user.pk)
         return Response({"session_id": str(session_id), "attendance": summary}, status=status.HTTP_200_OK)
 
     def post(self, request, session_id):
+        classroom_role(request.user, session_id, teacher_only=True)
         action = request.data.get("action", "finalize")
         if action == "override":
             serializer = TeacherAttendanceOverrideInputSerializer(data=request.data)
@@ -326,13 +351,14 @@ class LiveClassQuizLaunchView(APIView):
     POST /api/live-classes/quizzes/launch/
     Teacher launches an instant multiple-choice poll or pre-made quiz question.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = LaunchQuizInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         d = serializer.validated_data
 
+        classroom_role(request.user, d["session_id"], teacher_only=True)
         quiz = launch_in_class_quiz(
             session_id=d["session_id"],
             prompt=d.get("prompt", ""),
@@ -362,20 +388,16 @@ class LiveClassQuizResponseView(APIView):
     POST /api/live-classes/quizzes/<quiz_id>/respond/
     Student submits their selected answer option.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, quiz_id):
         serializer = SubmitQuizResponseInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         d = serializer.validated_data
 
-        user = request.user if request.user.is_authenticated else None
-        if not user:
-            guest_email = f"student_{request.session.session_key or 'demo'}@endoora.ir"
-            user, _ = User.objects.get_or_create(
-                email=guest_email,
-                defaults={"first_name": "دانش‌آموز", "last_name": "میهمان"},
-            )
+        quiz = get_object_or_404(LiveClassQuiz, pk=quiz_id)
+        classroom_role(request.user, quiz.session_id)
+        user = request.user
 
         try:
             resp = submit_in_class_quiz_response(
@@ -403,13 +425,17 @@ class LiveClassQuizAnalyticsView(APIView):
     POST /api/live-classes/quizzes/<quiz_id>/publish/
     Retrieves real-time voting distribution chart or publishes answer to students.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, quiz_id):
+        quiz = get_object_or_404(LiveClassQuiz, pk=quiz_id)
+        classroom_role(request.user, quiz.session_id, teacher_only=not quiz.is_results_published)
         summary = get_quiz_summary(str(quiz_id))
         return Response(summary, status=status.HTTP_200_OK)
 
     def post(self, request, quiz_id):
+        quiz = get_object_or_404(LiveClassQuiz, pk=quiz_id)
+        classroom_role(request.user, quiz.session_id, teacher_only=True)
         quiz = publish_quiz_results(str(quiz_id))
         summary = get_quiz_summary(str(quiz.id))
         return Response(summary, status=status.HTTP_200_OK)
@@ -425,27 +451,37 @@ class SessionWhiteboardExportView(APIView):
     POST /api/live-classes/<session_id>/whiteboard-pdf/
     Uploads or retrieves the exported multi-page whiteboard PDF handout.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, session_id):
+        classroom_role(request.user, session_id)
         export = SessionWhiteboardExport.objects.filter(session_id=str(session_id)).first()
         if not export or not export.pdf_file:
             return Response({"available": False, "message": "جزوه هنوز تولید یا آپلود نشده است."}, status=status.HTTP_404_NOT_FOUND)
+        if request.query_params.get("download") == "1":
+            response = FileResponse(export.pdf_file.open("rb"), as_attachment=True,
+                                    filename="classroom-handout.pdf", content_type="application/pdf")
+            response["Cache-Control"] = "private, no-store"
+            return response
         return Response({
             "available": True,
             "session_id": export.session_id,
-            "pdf_url": export.pdf_file.url,
+            "pdf_url": reverse("whiteboard_pdf", args=[session_id]) + "?download=1",
             "page_count": export.page_count,
             "file_size_bytes": export.file_size_bytes,
             "created_at": export.created_at.isoformat(),
         })
 
     def post(self, request, session_id):
-        pdf_file = request.FILES.get("pdf_file")
-        if not pdf_file:
-            return Response({"error": "فایل PDF الزامی است."}, status=status.HTTP_400_BAD_REQUEST)
-
-        page_count = int(request.data.get("page_count", 1))
+        classroom_role(request.user, session_id, teacher_only=True)
+        serializer = WhiteboardPdfUploadSerializer(data={**request.FILES.dict(), "session_id": session_id,
+                                                        "page_count": request.data.get("page_count", 1)})
+        serializer.is_valid(raise_exception=True)
+        pdf_file = serializer.validated_data["pdf_file"]
+        if pdf_file.size > 10 * 1024 * 1024 or pdf_file.read(5) != b"%PDF-":
+            raise ValidationError({"pdf_file": "A PDF of up to 10 MB is required."})
+        pdf_file.seek(0)
+        page_count = serializer.validated_data["page_count"]
         export = save_whiteboard_export(
             session_id=str(session_id),
             pdf_file=pdf_file,
@@ -454,7 +490,7 @@ class SessionWhiteboardExportView(APIView):
         return Response({
             "success": True,
             "session_id": export.session_id,
-            "pdf_url": export.pdf_file.url,
+            "pdf_url": reverse("whiteboard_pdf", args=[session_id]) + "?download=1",
             "page_count": export.page_count,
             "file_size_bytes": export.file_size_bytes,
         }, status=status.HTTP_201_CREATED)
@@ -470,9 +506,10 @@ class SessionAiRecapView(APIView):
     POST /api/live-classes/<session_id>/recap/
     Retrieves or triggers intelligent session recap via Gemini AI.
     """
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, session_id):
+        classroom_role(request.user, session_id)
         recap = SessionAiRecap.objects.filter(session_id=str(session_id)).first()
         if not recap:
             return Response({"available": False, "message": "خلاصه هوشمند هنوز تولید نشده است."}, status=status.HTTP_404_NOT_FOUND)
@@ -488,7 +525,8 @@ class SessionAiRecapView(APIView):
         })
 
     def post(self, request, session_id):
-        serializer = GenerateAiRecapInputSerializer(data=request.data)
+        classroom_role(request.user, session_id, teacher_only=True)
+        serializer = GenerateAiRecapInputSerializer(data={**request.data, "session_id": session_id})
         serializer.is_valid(raise_exception=True)
         d = serializer.validated_data
 

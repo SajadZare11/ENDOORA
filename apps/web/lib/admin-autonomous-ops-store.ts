@@ -368,15 +368,15 @@ export const INITIAL_DICTIONARY: DictionaryItem[] = [
   { key: "lms_audio_recording", category: "lms", faText: "در حال ضبط پاسخ صوتی... واضح و رسا صحبت کنید", enText: "Recording audio response... Speak clearly", lastUpdatedAt: "1403/08/19", updatedBy: "مدیر ارشد" },
 ];
 
-let memoryBackups = [...INITIAL_BACKUPS];
+const memoryBackups = [...INITIAL_BACKUPS];
 let memoryPolicy = { ...INITIAL_BACKUP_POLICY };
-let memoryIncidents = [...INITIAL_INCIDENTS];
-let memoryTasks = [...INITIAL_TASKS];
-let memoryTaskLogs: TaskExecutionLog[] = [
+const memoryIncidents = [...INITIAL_INCIDENTS];
+const memoryTasks = [...INITIAL_TASKS];
+const memoryTaskLogs: TaskExecutionLog[] = [
   { id: "log-1", taskId: "task_backup_nightly", taskTitleFa: "پشتیبان‌گیری خودکار شبانه", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۳:۰۰", durationMs: 4200, status: "success", output: "بکاپ با موفقیت ایجاد و به S3 منتقل شد." },
   { id: "log-2", taskId: "task_session_cleanup", taskTitleFa: "پاکسازی توکن‌های منقضی‌شده", triggeredBy: "cron_scheduler", startedAt: "۱۴۰۳/۰۸/۲۰ ۰۴:۰۰", durationMs: 310, status: "success", output: "تعداد ۴۱۸ توکن پاکسازی شد." },
 ];
-let memoryDictionary = [...INITIAL_DICTIONARY];
+const memoryDictionary = [...INITIAL_DICTIONARY];
 
 // ==============================================================================
 // Store Handlers

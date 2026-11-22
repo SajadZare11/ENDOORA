@@ -1,3 +1,4 @@
+import { scopedLocalStorage } from "./client-storage.ts";
 export type CEFRTier = "A1" | "A2" | "B1" | "B2" | "C1";
 
 export type PathNodeType = "concept" | "receptive" | "speaking" | "leitner" | "boss" | "side_quest";
@@ -2142,7 +2143,7 @@ export function getInitialProgress(): LearnerPathProgress {
     unlockedUnitIds: ["unit-1"],
     nodeStars: {},
     totalXp: 0,
-    currentStreak: 1,
+    currentStreak: 0,
     lastActiveDate: new Date().toISOString(),
   };
 
@@ -2151,26 +2152,26 @@ export function getInitialProgress(): LearnerPathProgress {
   }
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = scopedLocalStorage.getItem(STORAGE_KEY);
     if (raw) {
       return JSON.parse(raw);
     }
 
     // Auto-sync with Placement Test if completed!
-    const rawPlacement = localStorage.getItem(PLACEMENT_KEY);
+    const rawPlacement = scopedLocalStorage.getItem(PLACEMENT_KEY);
     if (rawPlacement) {
       try {
         const placementData = JSON.parse(rawPlacement);
         const cefr = placementData.estimatedLevel || placementData.cefr_level || "A1";
         const synced = applyPlacementSync(defaultProgress, cefr);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(synced));
+        scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(synced));
         return synced;
       } catch {
         // ignore placement parse error
       }
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultProgress));
+    scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(defaultProgress));
     return defaultProgress;
   } catch {
     return defaultProgress;
@@ -2201,6 +2202,7 @@ export function applyPlacementSync(
       // Completed by placement bypass
       unlockedUnitIds.add(unit.id);
       for (const node of unit.nodes) {
+        if (completedNodeIds.has(node.id)) continue;
         completedNodeIds.add(node.id);
         nodeStars[node.id] = 3;
         addedXp += node.xpReward;
@@ -2223,7 +2225,7 @@ export function applyPlacementSync(
 export function saveLearnerPathProgress(progress: LearnerPathProgress): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    scopedLocalStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   } catch (err) {
     console.error("Failed to save learning path progress:", err);
   }
@@ -2383,7 +2385,7 @@ export function resetLearnerPathProgress(): LearnerPathProgress {
     unlockedUnitIds: ["unit-1"],
     nodeStars: {},
     totalXp: 0,
-    currentStreak: 1,
+    currentStreak: 0,
     lastActiveDate: new Date().toISOString(),
   };
   saveLearnerPathProgress(defaultProgress);

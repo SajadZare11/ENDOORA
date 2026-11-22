@@ -249,7 +249,7 @@ export const ListeningExerciseEngine: React.FC<ListeningExerciseEngineProps> = (
                 </div>
                 {ex.explanation.targetQuoteEn && (
                   <div className={styles.targetQuote}>
-                    <strong>نقل قول صوتی در متن: </strong>"{ex.explanation.targetQuoteEn}"
+                    <strong>نقل قول صوتی در متن: </strong>&quot;{ex.explanation.targetQuoteEn}&quot;
                   </div>
                 )}
               </div>

@@ -173,3 +173,22 @@ code {
     padding-block: var(--space-8);
   }
 }
+
+.account-panel {
+  box-sizing: border-box;
+  width: min(100%, 52rem);
+  margin: 2rem auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  color: var(--color-text);
+  background: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+.account-panel nav, .account-panel form { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1rem; }
+.account-panel form { flex-direction: column; align-items: start; }
+.account-panel label { display: grid; gap: .4rem; max-width: 100%; }
+.account-panel :is(button, input, textarea, select, nav a) { min-height: 44px; max-width: 100%; padding: .5rem .8rem; font: inherit; }
+.account-panel a { text-decoration: underline; }
+.account-panel a[aria-current] { font-weight: bold; }
+.account-panel article, .account-panel section { margin-block: 1.5rem; }
+
+.theme-toggle { position: fixed; inset-block-end: max(5rem, 12vh); inset-inline-end: .5rem; z-index: 25; min-width: 44px; min-height: 44px; border-radius: 50%; color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); }

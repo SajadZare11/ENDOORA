@@ -21,6 +21,8 @@ export async function DELETE(
       headers: {
         Accept: "application/json",
         Cookie: req.headers.get("cookie") || "",
+        "X-Forwarded-Proto": process.env.NODE_ENV === "production" ? "https" : "http",
+        "X-CSRFToken": req.headers.get("x-csrftoken") || "",
       },
     });
 

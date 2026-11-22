@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 
@@ -26,10 +27,10 @@ export async function GET() {
       success: true,
       data,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in GET /api/admin/community:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در واکشی داده‌های نظارت بر کامیونیتی" },
+      { success: false, error: errorMessage(error) || "خطای سرور در واکشی داده‌های نظارت بر کامیونیتی" },
       { status: 500 }
     );
   }
@@ -372,10 +373,10 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in POST /api/admin/community:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای پردازش عملیات نظارت بر کامیونیتی" },
+      { success: false, error: errorMessage(error) || "خطای پردازش عملیات نظارت بر کامیونیتی" },
       { status: 500 }
     );
   }

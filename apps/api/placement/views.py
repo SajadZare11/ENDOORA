@@ -712,6 +712,7 @@ class PlacementSessionSummaryView(APIView):
                 "discrimination_a": float(itm.get("discrimination_a", 1.0)),
             })
             evidence_list.append({
+                "has_answered": True,
                 "item_id": q_key,
                 "section": itm.get("section", "grammar"),
                 "is_correct": is_corr,
@@ -772,8 +773,6 @@ class PlacementSessionSummaryView(APIView):
         total_answered = len(answers_map)
         if is_sub:
             avg_score = round(sum(sec_scores) / len(sec_scores), 1) if sec_scores else 0.0
-            endoora_idx = round(avg_score)
-            cefr = endoora_index_to_cefr(endoora_idx)
             overall_pct = avg_score
         else:
             overall_pct = None

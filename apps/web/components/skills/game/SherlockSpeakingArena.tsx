@@ -295,7 +295,7 @@ export function SherlockSpeakingArena({
 
   // User chooses a fallback multiple-choice option (available only after mistake)
   const handleSelectFallback = (choice: string) => {
-    if (choice === currentTask.fallbackChoices[0] || choice.length > 25) {
+    if (choice === currentTask.fallbackChoices[0]) {
       setAccuracyHistory((prev) => [...prev, 50]); // Fallback capped at 50%
       triggerTaskSuccess(choice);
     } else {

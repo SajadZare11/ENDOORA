@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -29,9 +30,9 @@ export async function GET(req: NextRequest) {
 
     const config = getMaintenanceConfig();
     return NextResponse.json({ success: true, config });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی وضعیت حالت تعمیرات" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی وضعیت حالت تعمیرات" },
       { status: 500 }
     );
   }
@@ -91,9 +92,9 @@ export async function POST(req: NextRequest) {
         : "حالت تعمیرات غیرفعال شد و دسترسی عمومی بازگردانی گردید.",
       config: result.config,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در به‌روزرسانی تنظیمات حالت تعمیرات" },
+      { success: false, error: errorMessage(err) || "خطا در به‌روزرسانی تنظیمات حالت تعمیرات" },
       { status: 500 }
     );
   }

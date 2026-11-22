@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
-import { useLocale } from "../../lib/locale-context";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { alternatePath, hasEnglishPage } from "../../lib/public-site";
 import styles from "./language-switcher.module.css";
 
 export interface LanguageSwitcherProps {
@@ -26,7 +27,11 @@ export interface LanguageSwitcherProps {
  *   and minimum touch target of 44px (var(--target-min)).
  */
 export function LanguageSwitcher({ pinned = false, className = "", variant = "toggle" }: LanguageSwitcherProps) {
-  // Website language is strictly Persian; language switcher toggleLocale is disabled and removed.
-  // Preserved for endoora_ui_locale compatibility.
-  return null;
+  const pathname = usePathname();
+  const english = /^\/en(?:\/|$)/.test(pathname);
+  const bare = english ? pathname.slice(3) || "/" : pathname;
+  if (!hasEnglishPage(bare)) return null;
+  return <Link href={alternatePath(english ? "en" : "fa",bare)} lang={english ? "fa" : "en"}
+    className={[styles.switcherBtn,pinned ? styles.topRightUtility : "",className].join(" ")}
+    data-variant={variant}>{english ? "فارسی" : "English"}</Link>;
 }

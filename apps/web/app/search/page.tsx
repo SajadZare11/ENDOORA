@@ -2,7 +2,8 @@
 
 
 import { Button, Input } from "@endoora/ui";
-import { useState, useMemo, useEffect, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { endooraApi } from "@/lib/endoora-api";
 import Link from "next/link";
 import { PublicShell } from "@/components/marketing/PublicShell";
 import { lookupClassByCode, type TeacherClass } from "@/lib/teacher-classes";
@@ -24,105 +25,17 @@ interface SearchResultItem {
   updatedAt: string;
 }
 
-const SAMPLE_DOCUMENTS: SearchResultItem[] = [
-  {
-    id: "doc-1",
-    title: "دوره جامع آمادگی آزمون آیلتس آکادمیک (IELTS Academic)",
-    content: "مسیر گام‌به‌گام برای تقویت مهارت‌های اسپیکینگ، ریدینگ، رایتینگ و لیسنینگ آیلتس با تمرین‌های تعاملی و اصلاح خطای اختصاصی ژنوم.",
-    contentType: "course",
-    contentTypeDisplay: "دوره آموزشی",
-    visibility: "public",
-    visibilityDisplay: "عمومی",
-    targetUrl: "/courses/ielts-academic-speaking-and-writing-mastery",
-    tags: ["آیلتس", "آکادمیک", "تقویت نمره"],
-    popularityScore: 98,
-    updatedAt: "۱۴۰۳/۰۶/۱۵",
-  },
-  {
-    id: "doc-2",
-    title: "استاد سارا رادمنش — متخصص آیلتس و تصحیح رایتینگ",
-    content: "مدرس ارشد زبان انگلیسی، دارای مدرک CELTA با بیش از ۱۰ سال سابقه آموزش داوطلبان آزمون‌های بین‌المللی و کارگاه‌های نگارش پیشرفته.",
-    contentType: "teacher",
-    contentTypeDisplay: "مدرس تایید شده",
-    visibility: "public",
-    visibilityDisplay: "عمومی",
-    targetUrl: "/teachers",
-    tags: ["مدرس برتر", "CELTA", "رایتینگ"],
-    popularityScore: 86,
-    updatedAt: "۱۴۰۳/۰۶/۱۲",
-  },
-  {
-    id: "doc-3",
-    title: "طرح درس جامع گرامر زمان‌های کامل (Present Perfect & Past Perfect)",
-    content: "طرح درس استاندارد کلاسی مناسب دوره متوسطه و پیشرفته به همراه ورک‌شیت تمرین و فایل صوتی راهنما با مجوز CC-BY-SA.",
-    contentType: "lesson_plan",
-    contentTypeDisplay: "طرح درس",
-    visibility: "public",
-    visibilityDisplay: "عمومی",
-    targetUrl: "/community",
-    tags: ["طرح درس", "گرامر", "B2-C1"],
-    popularityScore: 74,
-    updatedAt: "۱۴۰۳/۰۶/۱۰",
-  },
-  {
-    id: "doc-4",
-    title: "آزمون تعیین سطح هوشمند ایندورا چگونه کار می‌کند؟",
-    content: "تعیین سطح ایندورا با رویکرد تطبیقی سوالات را بر مبنای پاسخ‌های پیشین تنظیم کرده و کارنامه تفصیلی به همراه مسیر یادگیری صادر می‌کند.",
-    contentType: "faq",
-    contentTypeDisplay: "سوال متداول",
-    visibility: "public",
-    visibilityDisplay: "عمومی",
-    targetUrl: "/support#faq-placement",
-    tags: ["تعیین سطح", "راهنما", "کارنامه"],
-    popularityScore: 92,
-    updatedAt: "۱۴۰۳/۰۶/۰۱",
-  },
-  {
-    id: "doc-5",
-    title: "تجربه تدریس تلفظ صحیح اصوات دشوار /θ/ و /ð/ برای فارسی‌زبانان",
-    content: "تکنیک‌های زبان‌شناختی کاربردی برای حل چالش تداخل واجی بین زبان فارسی و انگلیسی در کلاس‌های تعاملی با فیدبک هوش مصنوعی.",
-    contentType: "community_post",
-    contentTypeDisplay: "تجربه اساتید",
-    visibility: "public",
-    visibilityDisplay: "عمومی",
-    targetUrl: "/community",
-    tags: ["تلفظ", "واج‌شناسی", "تجربه"],
-    popularityScore: 68,
-    updatedAt: "۱۴۰۳/۰۶/۰۸",
-  },
-  {
-    id: "doc-6",
-    title: "تکلیف اختصاصی شما: نگارش پاراگراف مقدمه رایتینگ تسک ۲",
-    content: "تمرین کلاسی ثبت شده در کلاس استاد رادمنش؛ مهلت تحویل تا پایان هفته جاری با سیستم بازخورد هوشمند منتور نگارش.",
-    contentType: "assignment",
-    contentTypeDisplay: "تکلیف کلاسی",
-    visibility: "private_owner",
-    visibilityDisplay: "اختصاصی شما",
-    targetUrl: "/dashboard",
-    tags: ["تکلیف کلاسی", "انحصاری"],
-    popularityScore: 10,
-    updatedAt: "۱۴۰۳/۰۶/۱۴",
-  },
-];
-
-const POPULAR_SEARCH_TERMS = [
-    "تعیین سطح",
-    "آیلتس آکادمیک",
-    "گرامر زمان‌ها",
-    "طرح درس",
-    "مکالمه روزمره",
-    "واژگان کنکور",
-];
+type SearchDocument = {id:string;title:string;content:string;content_type:CategoryFilter;content_type_display:string;
+  visibility:SearchResultItem["visibility"];visibility_display:string;target_url:string;tags:string[];popularity_score:number;updated_at:string};
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [recentSearches, setRecentSearches] = useState<string[]>([
-    "آزمون تعیین سطح",
-    "گرامر پیشرفته",
-    "استاد رادمنش",
-  ]);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [filteredResults,setResults] = useState<SearchResultItem[]>([]);
+  const [popular,setPopular] = useState<string[]>([]);
+  const [searchError,setSearchError] = useState("");
 
   const [lookedUpClass, setLookedUpClass] = useState<(TeacherClass & { teacher_name?: string; enrolled_count?: number }) | null>(null);
   const [lookupLoading, setLookupLoading] = useState(false);
@@ -177,26 +90,26 @@ export default function SearchPage() {
     }
   };
 
-  const handleClearHistory = () => {
-    setRecentSearches([]);
+  const handleClearHistory = async () => {
+    try {await endooraApi("/search/recent/",{method:"DELETE"}); setRecentSearches([]);} catch {setSearchError("پاک کردن تاریخچه انجام نشد.");}
   };
 
-  // Filtered and normalized search results
-  const filteredResults = useMemo(() => {
-    const q = activeQuery.toLowerCase().trim();
-    return SAMPLE_DOCUMENTS.filter((item) => {
-      // Category match
-      if (selectedCategory !== "all" && item.contentType !== selectedCategory) {
-        return false;
-      }
-      // Text query match
-      if (!q) return true;
-      const matchTitle = item.title.toLowerCase().includes(q);
-      const matchContent = item.content.toLowerCase().includes(q);
-      const matchTags = item.tags.some((t) => t.toLowerCase().includes(q));
-      return matchTitle || matchContent || matchTags;
-    });
-  }, [activeQuery, selectedCategory]);
+  useEffect(() => {
+    let active = true;
+    const params = new URLSearchParams({q:activeQuery});
+    if(selectedCategory !== "all") params.set("category",selectedCategory);
+    endooraApi<{results:SearchDocument[];popular_searches:string[];recent_searches:string[]}>("/search/?"+params)
+      .then(data => {
+        if (!active) return;
+        setSearchError(""); setPopular(data.popular_searches); setRecentSearches(data.recent_searches);
+        setResults(data.results.filter(d => /^\/(?![/\\])/.test(d.target_url)).map(d => ({
+          id:d.id,title:d.title,content:d.content,contentType:d.content_type,contentTypeDisplay:d.content_type_display,
+          visibility:d.visibility,visibilityDisplay:d.visibility_display,targetUrl:d.target_url,tags:d.tags,
+          popularityScore:d.popularity_score,updatedAt:d.updated_at,
+        })));
+      }).catch(() => {if(active) {setResults([]); setSearchError("جستجو در دسترس نیست.");}});
+    return () => {active = false;};
+  }, [activeQuery,selectedCategory]);
 
   return (
     <PublicShell locale="fa" currentPath="/search">
@@ -253,7 +166,7 @@ export default function SearchPage() {
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
               <span className={styles.tagsLabel}>بیشترین جستجوها:</span>
               <div className={styles.tagChips}>
-                {POPULAR_SEARCH_TERMS.map((term) => (
+                {popular.map((term) => (
                   <Button key={term} type="button" variant="secondary" size="sm" className={styles.tagChip} onClick={() => handleTagClick(term)}>
                     🔍 {term}
                   </Button>
@@ -272,7 +185,7 @@ export default function SearchPage() {
             className={`${styles.tabBtn} ${selectedCategory === "all" ? styles.tabBtnActive : ""}`}
             onClick={() => setSelectedCategory("all")}
           >
-            همه منابع ({activeQuery ? filteredResults.length : SAMPLE_DOCUMENTS.length})
+            همه منابع ({filteredResults.length})
           </Button>
           <Button
             type="button"
@@ -332,6 +245,7 @@ export default function SearchPage() {
 
         {/* Results List */}
         <section aria-label="نتایج جستجو">
+          {searchError && <p role="alert">{searchError}</p>}
           <div className={styles.resultsHeader}>
             <span>
               {activeQuery
@@ -477,7 +391,7 @@ export default function SearchPage() {
               <div className={styles.zeroSuggestions}>
                 <span className={styles.tagsLabel}>پیشنهادهای مرتبط:</span>
                 <div className={styles.tagChips}>
-                  {POPULAR_SEARCH_TERMS.slice(0, 4).map((term) => (
+                  {popular.slice(0, 4).map((term) => (
                     <Button key={term} type="button" variant="secondary" size="sm" className={styles.tagChip} onClick={() => handleTagClick(term)}>
                       {term}
                     </Button>

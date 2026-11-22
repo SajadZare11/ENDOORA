@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getApiIntegrations,
@@ -9,9 +10,9 @@ export async function GET() {
   try {
     const services = getApiIntegrations();
     return NextResponse.json({ success: true, services });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی وضعیت درگاه‌های کلید و API" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی وضعیت درگاه‌های کلید و API" },
       { status: 500 }
     );
   }
@@ -36,9 +37,9 @@ export async function POST(request: Request) {
       message: `تست اتصال و پینگ سرویس ${result.service.nameFa} با موفقیت انجام شد.`,
       service: result.service,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در انجام تست اتصال سرویس" },
+      { success: false, error: errorMessage(err) || "خطا در انجام تست اتصال سرویس" },
       { status: 500 }
     );
   }

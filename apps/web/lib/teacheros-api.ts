@@ -718,9 +718,9 @@ export interface StudentAcademicPortfolio {
     email: string;
     name: string;
     cefr_level: string;
-    cefr_skills: Record<string, any>;
-    target_goals: Record<string, any>;
-    learning_preferences: Record<string, any>;
+    cefr_skills: Record<string, unknown>;
+    target_goals: Record<string, unknown>;
+    learning_preferences: Record<string, unknown>;
     strengths: string[];
     areas_for_development: string[];
     coursebook: string;

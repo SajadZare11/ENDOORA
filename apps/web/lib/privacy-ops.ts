@@ -1,3 +1,4 @@
+import { endooraApi } from "./endoora-api";
 export interface PrivacyConsentPreference {
   functional_storage: boolean;
   analytics_processing: boolean;
@@ -47,46 +48,14 @@ export interface PrivacyTelemetry {
   evaluated_at: string;
 }
 
-export async function fetchPrivacyPreferences(): Promise<PrivacyConsentPreference> {
-  return {
-    functional_storage: true,
-    analytics_processing: false,
-    ai_model_training_telemetry: false,
-    marketing_communications: false,
-    locale: "fa",
-    policy_version: "v2.1",
-    updated_at: new Date().toISOString()
-  };
+export function fetchPrivacyPreferences() {return endooraApi<PrivacyConsentPreference>("/privacy/preferences/");}
+export function updatePrivacyPreferences(prefs: Partial<PrivacyConsentPreference>) {
+  return endooraApi<PrivacyConsentPreference>("/privacy/preferences/",{method:"PUT",json:prefs});
 }
-
-export async function updatePrivacyPreferences(prefs: Partial<PrivacyConsentPreference>): Promise<PrivacyConsentPreference> {
-  return { ...await fetchPrivacyPreferences(), ...prefs, updated_at: new Date().toISOString() };
-}
-
-export async function fetchPrivacyTelemetry(): Promise<PrivacyTelemetry> {
-  return {
-    deletion_stats: { pending: 12, completed: 85, cancelled: 3, total: 100 },
-    export_stats: { total: 45, completed: 42, in_progress: 3 },
-    retention_schedules: [
-      { data_category: "voice_recordings", category_fa: "فایل‌های صوتی ضبط شده", retention_period: "7-30 days", legal_basis: "Consent", action_on_expiry: "Purge" },
-      { data_category: "account_deletion", category_fa: "حذف حساب کاربری", retention_period: "7 days grace", legal_basis: "GDPR Art. 17", action_on_expiry: "Hard Delete" },
-      { data_category: "financial_ledgers", category_fa: "سوابق مالی", retention_period: "7 years", legal_basis: "Statutory", action_on_expiry: "Archive" },
-      { data_category: "stale_otps", category_fa: "کدهای تایید منقضی شده", retention_period: "30 days", legal_basis: "Security", action_on_expiry: "Purge" },
-      { data_category: "export_bundles", category_fa: "فایل‌های خروجی کاربران", retention_period: "48 hours", legal_basis: "Data Minimization", action_on_expiry: "Purge" }
-    ],
-    recent_purge_logs: [
-      { id: "P-101", trigger: "cron", operator_email: null, accounts_erased: 5, audio_files_purged: 120, stale_otps_purged: 450, stale_exports_purged: 12, duration_ms: 1250, status: "completed", executed_at: new Date().toISOString() }
-    ],
-    compliance_scorecard: {
-      right_to_access: 100,
-      right_to_erasure: 100,
-      right_to_portability: 95,
-      purpose_limitation: 90,
-      consent_granularity: 100,
-      audit_traceability: 98
-    },
-    evaluated_at: new Date().toISOString()
-  };
+export async function fetchPrivacyTelemetry() {
+  const data = await endooraApi<{deletion_stats:PrivacyTelemetry["deletion_stats"];export_stats:{completed_count:number};
+    retention_schedules:{category:string;period:string}[]; recent_purge_logs:DataPurgeLogRecord[]}>("/privacy/ops/telemetry/");
+  return {...data,export_stats:{completed:data.export_stats.completed_count}};
 }
 
 export interface RetentionPurgeResult {
@@ -96,7 +65,8 @@ export interface RetentionPurgeResult {
 }
 
 export async function triggerRetentionPurge(dryRun: boolean): Promise<RetentionPurgeResult> {
-  return { success: true, dryRun, message: "Purge triggered successfully." };
+  const result = await endooraApi<{dry_run:boolean;status:string}>("/privacy/ops/trigger-purge/",{method:"POST",json:{dry_run:dryRun}});
+  return {success:true,dryRun:result.dry_run,message:result.status};
 }
 
 export interface DataExportTriggerResult {
@@ -107,5 +77,6 @@ export interface DataExportTriggerResult {
 }
 
 export async function triggerDataExport(): Promise<DataExportTriggerResult> {
-  return { success: true, id: "EXP-888", status: "completed", message: "Data export ready." };
+  const data = await endooraApi<{export_id:string;status:string}>("/privacy/export/",{method:"POST"});
+  return {success:true,id:data.export_id,status:data.status,message:"Data export ready."};
 }

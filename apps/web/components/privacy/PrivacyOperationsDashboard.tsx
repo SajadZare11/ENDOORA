@@ -12,12 +12,12 @@ import {
 } from "../../lib/privacy-ops";
 
 export function PrivacyOperationsDashboard() {
-  const [telemetry, setTelemetry] = useState<PrivacyTelemetry | null>(null);
+  const [telemetry, setTelemetry] = useState<Awaited<ReturnType<typeof fetchPrivacyTelemetry>> | null>(null);
   const [dryRun, setDryRun] = useState(true);
   const [purgeStatus, setPurgeStatus] = useState<string>("");
 
   useEffect(() => {
-    fetchPrivacyTelemetry().then(setTelemetry).catch(console.error);
+    fetchPrivacyTelemetry().then(setTelemetry).catch(() => setPurgeStatus("دریافت داده‌ها انجام نشد."));
   }, []);
 
   const handlePurge = async () => {
@@ -30,7 +30,7 @@ export function PrivacyOperationsDashboard() {
     }
   };
 
-  if (!telemetry) return <div dir="rtl" className={styles.container}>در حال بارگذاری...</div>;
+  if (!telemetry) return <div dir="rtl" className={styles.container}>{purgeStatus || "در حال بارگذاری…"}</div>;
 
   return (
     <div className={styles.container} dir="rtl">
@@ -88,15 +88,13 @@ export function PrivacyOperationsDashboard() {
             <tr className={styles.tr}>
               <th className={styles.th}>دسته‌بندی (Data Category)</th>
               <th className={styles.th}>دوره نگهداری (Retention Period)</th>
-              <th className={styles.th}>اقدام پس از انقضا (Action on Expiry)</th>
             </tr>
           </thead>
           <tbody>
             {telemetry.retention_schedules.map((item, idx) => (
               <tr key={idx} className={styles.tr}>
-                <td className={styles.td}>{item.category_fa} ({item.data_category})</td>
-                <td className={styles.td}><span className={styles.badge}>{item.retention_period}</span></td>
-                <td className={styles.td}>{item.action_on_expiry}</td>
+                <td className={styles.td}>{item.category}</td>
+                <td className={styles.td}><span className={styles.badge}>{item.period}</span></td>
               </tr>
             ))}
           </tbody>
@@ -141,17 +139,6 @@ export function PrivacyOperationsDashboard() {
         </Table>
       </div>
 
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>چک‌لیست انطباق حقوق قانونی (Statutory Rights Compliance Checklist)</h2>
-        <div className={styles.kpiGrid}>
-          {Object.entries(telemetry.compliance_scorecard).map(([key, val]) => (
-            <div key={key} className={styles.kpiCard} style={{ padding: 'var(--spacing-md)' }}>
-              <div className={styles.kpiLabel}>{key}</div>
-              <div className={styles.kpiValue} style={{ fontSize: 'var(--font-size-xl)' }}>{val}%</div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

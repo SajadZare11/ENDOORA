@@ -331,7 +331,7 @@ export function SpeakingMissionArena({
     setReactionTimes((prev: number[]) => [...prev, reactTime]);
 
     // Calculate turn score
-    let turnPoints = 200; // Base points per turn
+    const turnPoints = 200; // Base points per turn
     const timeBonus = Math.max(0, turnSecondsLeft * 15);
     let keywordBonus = 0;
 
@@ -633,7 +633,7 @@ export function SpeakingMissionArena({
                   {/* Live Speech Recognition Transcript */}
                   <div className={styles.liveTranscriptCard}>
                     {transcript ? (
-                      <span className={styles.transcriptText}>"{transcript}"</span>
+                      <span className={styles.transcriptText}>&quot;{transcript}&quot;</span>
                     ) : (
                       <span className={styles.transcriptPlaceholder}>
                         (جمله خود را به انگلیسی بیان کنید؛ امواج صدا اینجا ظاهر می‌شوند)

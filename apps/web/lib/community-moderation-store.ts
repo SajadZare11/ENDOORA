@@ -116,12 +116,12 @@ export function getCommunityModerationData() {
 export function approveComment(
   commentId: string,
   moderator: string = "مدیر ارشد نظارت"
-): { success: boolean; comment: CommunityCommentItem; message: string } {
+): ({ success: true; comment: CommunityCommentItem; message: string } | { success: false; comment: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const comment = storage.comments.find((c) => c.id === commentId);
 
   if (!comment) {
-    return { success: false, comment: null as any, message: "دیدگاه مورد نظر یافت نشد." };
+    return { success: false, comment: null, message: "دیدگاه مورد نظر یافت نشد." };
   }
 
   comment.status = "approved";
@@ -141,12 +141,12 @@ export function rejectComment(
   commentId: string,
   reason: string,
   moderator: string = "مدیر ارشد نظارت"
-): { success: boolean; comment: CommunityCommentItem; message: string } {
+): ({ success: true; comment: CommunityCommentItem; message: string } | { success: false; comment: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const comment = storage.comments.find((c) => c.id === commentId);
 
   if (!comment) {
-    return { success: false, comment: null as any, message: "دیدگاه مورد نظر یافت نشد." };
+    return { success: false, comment: null, message: "دیدگاه مورد نظر یافت نشد." };
   }
 
   comment.status = "rejected";
@@ -167,12 +167,12 @@ export function postOfficialReply(
   replyText: string,
   staffName: string = "تیم آموزش ایندورا",
   staffRole: string = "پاسخ رسمی پشتیبانی آموزشی"
-): { success: boolean; comment: CommunityCommentItem; message: string } {
+): ({ success: true; comment: CommunityCommentItem; message: string } | { success: false; comment: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const comment = storage.comments.find((c) => c.id === commentId);
 
   if (!comment) {
-    return { success: false, comment: null as any, message: "دیدگاه مورد نظر یافت نشد." };
+    return { success: false, comment: null, message: "دیدگاه مورد نظر یافت نشد." };
   }
 
   comment.officialReply = {
@@ -200,12 +200,12 @@ export function postOfficialReply(
 export function toggleCommentPin(
   commentId: string,
   isPinned: boolean
-): { success: boolean; comment: CommunityCommentItem; message: string } {
+): ({ success: true; comment: CommunityCommentItem; message: string } | { success: false; comment: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const comment = storage.comments.find((c) => c.id === commentId);
 
   if (!comment) {
-    return { success: false, comment: null as any, message: "دیدگاه مورد نظر یافت نشد." };
+    return { success: false, comment: null, message: "دیدگاه مورد نظر یافت نشد." };
   }
 
   comment.isPinned = isPinned;
@@ -223,12 +223,12 @@ export function toggleCommentPin(
 export function toggleCommentLock(
   commentId: string,
   isLocked: boolean
-): { success: boolean; comment: CommunityCommentItem; message: string } {
+): ({ success: true; comment: CommunityCommentItem; message: string } | { success: false; comment: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const comment = storage.comments.find((c) => c.id === commentId);
 
   if (!comment) {
-    return { success: false, comment: null as any, message: "دیدگاه مورد نظر یافت نشد." };
+    return { success: false, comment: null, message: "دیدگاه مورد نظر یافت نشد." };
   }
 
   comment.isLocked = isLocked;
@@ -248,12 +248,12 @@ export function addBannedKeywordRule(params: {
   matchType?: "exact" | "contains" | "regex";
   severity?: "high" | "medium" | "low";
   action?: "quarantine" | "mask" | "reject";
-}): { success: boolean; rule: BannedKeywordRule; message: string } {
+}): ({ success: true; rule: BannedKeywordRule; message: string } | { success: false; rule: null; message: string }) {
   const storage = getCommunityModerationStorage();
   const pattern = params.pattern.trim();
 
   if (!pattern) {
-    return { success: false, rule: null as any, message: "الگوی کلمه نمی‌تواند خالی باشد." };
+    return { success: false, rule: null, message: "الگوی کلمه نمی‌تواند خالی باشد." };
   }
 
   const newRule: BannedKeywordRule = {

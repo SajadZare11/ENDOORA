@@ -1,5 +1,6 @@
 "use client";
 
+import { endooraApi } from "@/lib/endoora-api";
 import { Button, Input } from "@endoora/ui";
 
 import { useEffect, useRef, useState } from "react";
@@ -40,6 +41,7 @@ export function VoiceRecorder({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fallbackText, setFallbackText] = useState<string>("");
 
+  const uploadTicket = useRef<number | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
@@ -292,6 +294,7 @@ export function VoiceRecorder({
 
   // Discard and record again
   const handleReset = () => {
+    uploadTicket.current = null;
     handleStopRecording();
     if (audioUrl) URL.revokeObjectURL(audioUrl);
     setAudioUrl(null);
@@ -307,7 +310,7 @@ export function VoiceRecorder({
   // Confirm and upload audio attempt
   const handleConfirmAndSubmit = async () => {
     const finalSpoken = editedTranscript.trim() || transcript.trim();
-    if (!finalSpoken && !audioBlob) {
+    if (!finalSpoken) {
       setErrorMessage(
         isFa
           ? "هیچ گفتاری شناسایی نشد. لطفاً دوباره ضبط کنید یا متن پاسخ را وارد کنید."
@@ -323,51 +326,32 @@ export function VoiceRecorder({
       let recordingId: number | undefined;
 
       if (audioBlob) {
-        // Step 1: Request signed upload ticket
-        const ticketRes = await fetch("/api/voice/upload-ticket/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            filename: "roleplay_turn.webm",
-            content_type: audioBlob.type || "audio/webm",
-            file_size: audioBlob.size,
-            scenario_id: scenarioId,
-            session_id: sessionId,
-          }),
-        });
-
-        if (ticketRes.ok) {
-          const ticket = await ticketRes.json();
-          recordingId = ticket.recording_id;
-
-          // Step 2: Upload audio binary
-          const formData = new FormData();
-          formData.append("audio_file", audioBlob, "roleplay_turn.webm");
-          formData.append("duration_seconds", String(duration));
-          formData.append("stt_hint", finalSpoken);
-
-          await fetch(`/api/voice/recordings/${recordingId}/upload/`, {
+        if (uploadTicket.current === null) {
+          const ticket = await endooraApi<{ recording_id: number }>("/voice/upload-ticket/", {
             method: "POST",
-            body: formData,
+            json: { filename: "roleplay_turn.webm", content_type: audioBlob.type || "audio/webm",
+                    file_size: audioBlob.size, scenario_id: scenarioId, session_id: sessionId },
           });
-
-          // Step 3: If transcript was edited, sync correction
-          if (isEditingTranscript && editedTranscript.trim()) {
-            await fetch(`/api/voice/recordings/${recordingId}/transcript/`, {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ corrected_transcript: editedTranscript.trim() }),
-            });
-          }
+          uploadTicket.current = ticket.recording_id;
+        }
+        recordingId = uploadTicket.current;
+        const formData = new FormData();
+        formData.append("audio_file", audioBlob, "roleplay_turn.webm");
+        formData.append("duration_seconds", String(duration));
+        formData.append("stt_hint", transcript.trim() || finalSpoken);
+        await endooraApi(`/voice/recordings/${recordingId}/upload/`, { method: "POST", body: formData });
+        if (isEditingTranscript && editedTranscript.trim()) {
+          await endooraApi(`/voice/recordings/${recordingId}/transcript/`, {
+            method: "PATCH", json: { corrected_transcript: editedTranscript.trim() },
+          });
         }
       }
 
       onConfirmTranscript(finalSpoken, recordingId);
       handleReset();
     } catch {
-      // Fallback submit gracefully without blocking
-      onConfirmTranscript(finalSpoken);
-      handleReset();
+      setRecordingState("recorded");
+      setErrorMessage(isFa ? "ذخیره نشد. دوباره تلاش کنید." : "Your recording could not be saved. Please try again.");
     }
   };
 

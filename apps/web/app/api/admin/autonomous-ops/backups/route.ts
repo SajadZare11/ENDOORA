@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getBackupsList,
@@ -68,9 +69,9 @@ SET row_security = off;
     }
 
     return NextResponse.json({ success: true, ...data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی اطلاعات فایل‌های پشتیبان" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی اطلاعات فایل‌های پشتیبان" },
       { status: 500 }
     );
   }
@@ -162,9 +163,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش عملیات پشتیبان‌گیری و دیتابیس" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش عملیات پشتیبان‌گیری و دیتابیس" },
       { status: 500 }
     );
   }

@@ -9,7 +9,9 @@ const REQUIRED_FILES = [
   "apps/web/lib/support-content.ts",
   "apps/web/lib/support-store.ts",
   "apps/web/app/api/admin/support/route.ts",
-  "apps/web/app/api/support/tickets/route.ts",
+  "apps/api/support/views.py",
+  "apps/api/support/urls.py",
+  "apps/web/app/support/page.tsx",
   "apps/web/components/admin/support-helpdesk.module.css",
   "apps/web/components/admin/SupportHelpdeskConsole.tsx",
 ];

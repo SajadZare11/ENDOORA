@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 
@@ -27,10 +28,10 @@ export async function GET() {
       success: true,
       data,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in GET /api/admin/exams/integrity:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در واکشی داده‌های مرکز ممیزی آزمون‌ها" },
+      { success: false, error: errorMessage(error) || "خطای سرور در واکشی داده‌های مرکز ممیزی آزمون‌ها" },
       { status: 500 }
     );
   }
@@ -417,10 +418,10 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in POST /api/admin/exams/integrity:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در انجام عملیات مرکز ممیزی آزمون‌ها" },
+      { success: false, error: errorMessage(error) || "خطای سرور در انجام عملیات مرکز ممیزی آزمون‌ها" },
       { status: 500 }
     );
   }

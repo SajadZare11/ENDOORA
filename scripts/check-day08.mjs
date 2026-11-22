@@ -34,11 +34,11 @@ const assertions = [
   ["apps/web/app/onboarding/page.tsx", "autosaveReady", "onboarding autosave"],
   ["apps/web/app/onboarding/page.tsx", "persistPreferredLocale", "onboarding locale persistence"],
   ["apps/web/app/onboarding/page.tsx", 'isLearner ? "/dashboard" : "/teacher"', "role-specific completion destination"],
-  ["apps/web/app/account/page.tsx", 'href: "/account/profile"', "Account profile destination"],
-  ["apps/web/app/account/page.tsx", 'href: "/account/sessions"', "Account sessions destination"],
-  ["apps/web/app/account/page.tsx", 'href: "/account/data-controls"', "Account data-controls destination"],
-  ["apps/web/app/account/data-controls/page.tsx", 'confirmation !== "DELETE"', "guarded deletion confirmation"],
-  ["apps/web/app/account/sessions/page.tsx", '"/auth/logout/"', "current-session sign-out"],
+  ["apps/web/app/account/page.tsx", 'profile: "پروفایل"', "Account profile destination"],
+  ["apps/web/app/account/page.tsx", 'security: "امنیت و نشست"', "Account sessions destination"],
+  ["apps/web/app/account/page.tsx", 'data: "داده‌های من"', "Account data-controls destination"],
+  ["apps/web/app/account/page.tsx", 'pattern={pendingDelete ? "KEEP" : "DELETE"}', "guarded deletion confirmation"],
+  ["apps/web/app/account/page.tsx", '"/auth/logout/"', "current-session sign-out"],
 ];
 
 const failures = [];

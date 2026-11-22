@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getLeaderboardData,
@@ -12,9 +13,9 @@ export async function GET(request: Request) {
 
     const data = getLeaderboardData(period);
     return NextResponse.json({ success: true, ...data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی اطلاعات لیدربورد" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی اطلاعات لیدربورد" },
       { status: 500 }
     );
   }
@@ -62,9 +63,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش درخواست گیمیفیکیشن" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش درخواست گیمیفیکیشن" },
       { status: 500 }
     );
   }

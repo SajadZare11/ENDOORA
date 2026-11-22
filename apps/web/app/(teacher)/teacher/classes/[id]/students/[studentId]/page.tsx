@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../../../../../../lib/error-message.ts";
 import { Button, Input } from "@endoora/ui";
 import React, { useState, useEffect, use } from "react";
 import Link from "next/link";
@@ -248,8 +249,8 @@ export default function StudentDossierPage({
       );
       setMasteryNotes("");
       setRefreshKey((k) => k + 1);
-    } catch (err: any) {
-      alert(err.message || (isFa ? "خطا در ثبت میزان یادگیری." : "Failed to record mastery."));
+    } catch (err: unknown) {
+      alert(errorMessage(err) || (isFa ? "خطا در ثبت میزان یادگیری." : "Failed to record mastery."));
     } finally {
       setSubmittingMastery(false);
     }
@@ -287,8 +288,8 @@ export default function StudentDossierPage({
           : `🚀 10-Question Pack for '${homeworkSubcategory.title_en}' successfully dispatched to student panel.`
       );
       setRefreshKey((k) => k + 1);
-    } catch (err: any) {
-      alert(err.message || (isFa ? "خطا در ارسال تکلیف ۱۰ سوالی." : "Failed to dispatch homework."));
+    } catch (err: unknown) {
+      alert(errorMessage(err) || (isFa ? "خطا در ارسال تکلیف ۱۰ سوالی." : "Failed to dispatch homework."));
     } finally {
       setSubmittingHomework(false);
     }
@@ -1323,7 +1324,7 @@ export default function StudentDossierPage({
                     <label>🧩 {isFa ? "۴. نوع سوالات انتخابی:" : "4. Question Type / Format:"}</label>
                     <select
                       value={homeworkQuestionFormat}
-                      onChange={(e) => setHomeworkQuestionFormat(e.target.value as any)}
+                      onChange={(e) => setHomeworkQuestionFormat(e.target.value as typeof homeworkQuestionFormat)}
                       style={{ fontSize: "0.95rem", fontWeight: 600 }}
                     >
                       <option value="mcq">{isFa ? "تستی و چهارگزینه‌ای (MCQ)" : "Multiple Choice (MCQ)"}</option>
@@ -1496,7 +1497,7 @@ export default function StudentDossierPage({
 
               <div className={styles.formGroup}>
                 <label>{isFa ? "تکرار:" : "Frequency:"}</label>
-                <select value={errorFrequency} onChange={(e) => setErrorFrequency(e.target.value as any)}>
+                <select value={errorFrequency} onChange={(e) => setErrorFrequency(e.target.value as typeof errorFrequency)}>
                   <option value="low">{isFa ? "کم (Low)" : "Low"}</option>
                   <option value="medium">{isFa ? "متوسط (Medium)" : "Medium"}</option>
                   <option value="high">{isFa ? "زیاد (High)" : "High"}</option>

@@ -40,16 +40,6 @@ function CheckoutContent() {
 
   const [selectedGateway, setSelectedGateway] = useState<"wallet" | "zarinpal">("zarinpal");
 
-  // Coupon & Promo state
-  const [couponCodeInput, setCouponCodeInput] = useState("");
-  const [couponLoading, setCouponLoading] = useState(false);
-  const [appliedCoupon, setAppliedCoupon] = useState<{
-    code: string;
-    discountAmountToman: number;
-    description?: string;
-  } | null>(null);
-  const [couponMessage, setCouponMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
-
   useEffect(() => {
     async function loadData() {
       setLoading(true);
@@ -115,62 +105,10 @@ function CheckoutContent() {
     itemDescription = "مبلغ بلافاصله پس از پرداخت به موجودی حساب شما افزوده می‌شود.";
   }
 
-  const discountAmountToman = appliedCoupon ? appliedCoupon.discountAmountToman : 0;
-  const payableAmountToman = Math.max(0, baseAmountToman - discountAmountToman);
+  const payableAmountToman = baseAmountToman;
   const payableAmountRial = payableAmountToman * 10;
-  const walletBalance = wallet ? wallet.available_balance_toman : 0;
-  const hasSufficientWallet = walletBalance >= payableAmountToman && payableAmountToman > 0;
-
-  const handleApplyCoupon = async () => {
-    if (!couponCodeInput.trim()) return;
-    setCouponLoading(true);
-    setCouponMessage(null);
-    try {
-      const scope =
-        orderType === "subscription_plan"
-          ? "subscription"
-          : orderType === "booking_session"
-          ? "session_1on1"
-          : "all";
-      const res = await fetch("/api/marketing/coupons/validate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code: couponCodeInput.trim(),
-          basketAmountToman: baseAmountToman,
-          scope,
-          userPhone: (wallet as { phone?: string })?.phone || undefined,
-        }),
-      });
-      const json = await res.json();
-      if (json.valid) {
-        setAppliedCoupon({
-          code: json.couponCode,
-          discountAmountToman: json.discountAmountToman,
-          description: json.description,
-        });
-        setCouponMessage({
-          type: "success",
-          text: `کد تخفیف ${json.couponCode} با موفقیت اعمال شد (${json.discountAmountToman.toLocaleString(
-            "fa-IR"
-          )} تومان تخفیف)`,
-        });
-      } else {
-        setAppliedCoupon(null);
-        setCouponMessage({ type: "error", text: json.error || "کد تخفیف وارد شده نامعتبر است." });
-      }
-    } catch {
-      setCouponMessage({ type: "error", text: "خطا در برقراری ارتباط با سامانه اعتبارسنجی تخفیف." });
-    } finally {
-      setCouponLoading(false);
-    }
-  };
-
-  const handleRemoveCoupon = () => {
-    setAppliedCoupon(null);
-    setCouponCodeInput("");
-    setCouponMessage(null);
-  };
+  const walletBalance = wallet?.available_balance_toman ?? 0;
+  const hasSufficientWallet = payableAmountToman > 0 && walletBalance >= payableAmountToman;
 
   const [keys] = useState(() => new Map<string, string>());
   const handlePay = async () => {
@@ -288,82 +226,12 @@ function CheckoutContent() {
             </div>
           )}
 
-          {/* Coupon Code Section */}
-          {orderType === "booking_session" && (
-            <div style={{ marginTop: "1rem", marginBottom: "1rem", padding: "1rem", background: "var(--color-bg-subtle, #f8fafc)", borderRadius: "10px", border: "1px dashed var(--color-border, #cbd5e1)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-text, #0f172a)", display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                  <span>🎟️</span> کد تخفیف یا معرف دارید؟
-                </span>
-                {appliedCoupon && (
-                  <button
-                    type="button"
-                    onClick={handleRemoveCoupon}
-                    style={{ background: "transparent", border: "none", color: "#b91c1c", fontSize: "0.75rem", cursor: "pointer", fontWeight: 700 }}
-                  >
-                    ✕ حذف کوپن
-                  </button>
-                )}
-              </div>
-
-              {!appliedCoupon ? (
-                <div style={{ display: "flex", gap: "0.5rem" }}>
-                  <input
-                    type="text"
-                    value={couponCodeInput}
-                    onChange={(e) => setCouponCodeInput(e.target.value)}
-                    placeholder="مثال: GOLDEN30 یا ALI-FRIEND"
-                    dir="ltr"
-                    style={{
-                      flex: 1,
-                      padding: "0.5rem 0.75rem",
-                      borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
-                      fontSize: "0.85rem",
-                      fontFamily: "inherit",
-                    }}
-                  />
-                  <Button
-                    type="button"
-                    variant="primary"
-                    size="sm"
-                    disabled={couponLoading || !couponCodeInput.trim()}
-                    onClick={handleApplyCoupon}
-                  >
-                    {couponLoading ? "بررسی..." : "اعمال کد"}
-                  </Button>
-                </div>
-              ) : (
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#ecfdf5", border: "1px solid #a7f3d0", padding: "0.5rem 0.75rem", borderRadius: "8px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                    <span style={{ color: "#047857", fontWeight: 800 }}>✓ کد {appliedCoupon.code}</span>
-                    <span style={{ fontSize: "0.75rem", color: "#065f46" }}>({appliedCoupon.discountAmountToman.toLocaleString("fa-IR")} تومان کسر شد)</span>
-                  </div>
-                </div>
-              )}
-
-              {couponMessage && (
-                <p style={{ margin: "0.4rem 0 0 0", fontSize: "0.75rem", color: couponMessage.type === "success" ? "#047857" : "#b91c1c", fontWeight: 600 }}>
-                  {couponMessage.text}
-                </p>
-              )}
-            </div>
-          )}
-
           <div className={styles.priceBreakdown}>
             <div className={styles.priceRow}>
               <span>مبلغ پایه سفارش:</span>
               <span className={styles.priceValue}>{baseAmountToman.toLocaleString("fa-IR")} تومان</span>
             </div>
 
-            {appliedCoupon && (
-              <div className={styles.priceRow} style={{ color: "#047857" }}>
-                <span>تخفیف اعمال‌شده ({appliedCoupon.code}):</span>
-                <span className={styles.priceValue} style={{ color: "#047857", fontWeight: 700 }}>
-                  -{appliedCoupon.discountAmountToman.toLocaleString("fa-IR")} تومان
-                </span>
-              </div>
-            )}
 
             <div className={styles.priceRow}>
               <span>معادل ریالی درگاه شاپرک:</span>

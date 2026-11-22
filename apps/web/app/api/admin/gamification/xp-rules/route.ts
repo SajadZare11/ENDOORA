@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getLeaderboardData,
@@ -8,9 +9,9 @@ export async function GET() {
   try {
     const { rules } = getLeaderboardData();
     return NextResponse.json({ success: true, rules });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی قوانین امتیاز" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی قوانین امتیاز" },
       { status: 500 }
     );
   }
@@ -34,9 +35,9 @@ export async function POST(request: Request) {
       message: "ضرایب و قوانین امتیازدهی پلتفرم با موفقیت به‌روزرسانی شد.",
       rules: result.rules,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در به‌روزرسانی قوانین" },
+      { success: false, error: errorMessage(err) || "خطا در به‌روزرسانی قوانین" },
       { status: 500 }
     );
   }

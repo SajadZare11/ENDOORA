@@ -111,7 +111,7 @@ export const ListeningVocabularyList: React.FC<ListeningVocabularyListProps> = (
               }}
             >
               <div style={{ direction: "ltr", color: "#0f172a", fontWeight: 500, marginBottom: "0.2rem" }}>
-                "{vocab.exampleSentenceEn}"
+                &quot;{vocab.exampleSentenceEn}&quot;
               </div>
               <div style={{ color: "#64748b", fontSize: "0.8rem" }}>{vocab.exampleSentenceFa}</div>
             </div>

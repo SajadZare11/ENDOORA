@@ -39,6 +39,9 @@ class TrackEventView(APIView):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
+        if not request.user.is_authenticated and not data.get("optional_consent"):
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
         client_ip = get_client_ip(request)
         user_agent = request.META.get("HTTP_USER_AGENT", "")
 

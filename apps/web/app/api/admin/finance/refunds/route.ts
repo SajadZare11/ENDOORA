@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getRefundsList,
@@ -8,9 +9,9 @@ export async function GET() {
   try {
     const data = getRefundsList();
     return NextResponse.json({ success: true, ...data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی لیست استردادها" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی لیست استردادها" },
       { status: 500 }
     );
   }
@@ -51,9 +52,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش استرداد وجه" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش استرداد وجه" },
       { status: 500 }
     );
   }

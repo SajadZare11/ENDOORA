@@ -286,7 +286,7 @@ export default function TeachersDirectoryPage() {
         {!loading && !error && teachers.length > 0 && (
           <section className={styles.teacherGrid} aria-label="لیست مدرسین">
             {teachers.map((teacher) => {
-              const rating = teacher.social_proof?.average_rating || 5.0;
+              const rating = teacher.social_proof?.average_rating;
               const reviewCount = teacher.social_proof?.review_count || 0;
               const completedCount = teacher.social_proof?.completed_sessions || 0;
               const initial = (teacher.name || "اس").slice(5, 7) || "اس";
@@ -333,7 +333,7 @@ export default function TeachersDirectoryPage() {
                     <div className={styles.socialProofBar}>
                       <span className={styles.ratingBadge}>
                         <span className={styles.ratingStar} aria-hidden="true">★</span>
-                        {toPersianDigits(rating.toFixed(1))}
+                        {reviewCount && rating != null ? toPersianDigits(rating.toFixed(1)) : "بدون امتیاز"}
                         <span className={styles.reviewCount}>
                           ({toPersianDigits(reviewCount)} نظر)
                         </span>

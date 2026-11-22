@@ -549,11 +549,11 @@ export const INITIAL_GLOBAL_THEME: GlobalThemeConfig = {
 // ==============================================================================
 // Memory State & Store Accessors
 // ==============================================================================
-let memoryPages: CustomDynamicPage[] = [...INITIAL_CUSTOM_PAGES];
+const memoryPages: CustomDynamicPage[] = [...INITIAL_CUSTOM_PAGES];
 let memoryDraftMenu: NavigationMenuConfig = { ...INITIAL_NAVIGATION_CONFIG };
 let memoryLiveMenu: NavigationMenuConfig = { ...INITIAL_NAVIGATION_CONFIG };
-let memoryMenuHistory: NavigationMenuConfig[] = [{ ...INITIAL_NAVIGATION_CONFIG }];
-let memoryPopups: SitePopupConfig[] = [...INITIAL_SITE_POPUPS];
+const memoryMenuHistory: NavigationMenuConfig[] = [{ ...INITIAL_NAVIGATION_CONFIG }];
+const memoryPopups: SitePopupConfig[] = [...INITIAL_SITE_POPUPS];
 let memoryTheme: GlobalThemeConfig = { ...INITIAL_GLOBAL_THEME };
 
 // ----------------- PAGES OPERATIONS -----------------

@@ -12,3 +12,6 @@ PRIVATE_DO_NOT_COPY_TO_GIT
 infra/ssl
 **/*.dump
 .idea
+
+apps/api/media/
+apps/api/staticfiles/

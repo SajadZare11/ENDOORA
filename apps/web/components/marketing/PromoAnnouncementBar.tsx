@@ -75,7 +75,7 @@ export function PromoAnnouncementBar({
     }
   }, [banner, currentPath]);
 
-  if (isDismissed || !banner || !banner.enabled) {
+  if (isDismissed || !banner || !banner.enabled || !banner.type || banner.type === "sale" || (banner.countdownEnd && Date.parse(banner.countdownEnd) <= Date.now())) {
     return null;
   }
 

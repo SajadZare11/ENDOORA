@@ -102,6 +102,35 @@ class OnlineExamsIntegrationTestCase(TestCase):
             points=Decimal('20.00'),
         )
 
+    def test_teacher_can_play_submitted_speaking_answer(self):
+        import tempfile
+        from django.test import override_settings
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        from rest_framework.test import APIClient
+        from voice_lab.services import VoicePipelineService
+
+        self.qv.question_type = "speaking"
+        self.qv.save(update_fields=["question_type"])
+        sub = ExamSubmission.objects.create(exam=self.exam, student=self.student, started_at=timezone.now())
+        client = APIClient()
+        client.force_authenticate(self.student)
+        with tempfile.TemporaryDirectory() as media, override_settings(MEDIA_ROOT=media):
+            voice = VoicePipelineService()
+            ticket = voice.create_upload_ticket(self.student, "answer.webm", session_id=str(sub.id),
+                                                scenario_id=str(self.eq.id), retention_policy="7_days")
+            rec = voice.process_audio_upload(self.student, ticket["recording_id"],
+                SimpleUploadedFile("answer.webm", b"audio fixture", content_type="audio/webm"))
+            base = f"/api/online-exams/{self.exam.id}/submissions/{sub.id}"
+            saved = client.post(f"{base}/answers/", {"exam_question_id": str(self.eq.id),
+                                "student_response": {"recording_id": rec.pk}}, format="json")
+            self.assertEqual(saved.status_code, 201, saved.data)
+            client.force_authenticate(self.teacher)
+            playback = client.get(f"{base}/questions/{self.eq.id}/audio/")
+            self.assertEqual(playback.status_code, 200)
+            self.assertEqual(b"".join(playback.streaming_content), b"audio fixture")
+            voice.delete_recording(self.student, rec.pk)
+            self.assertEqual(client.get(f"{base}/questions/{self.eq.id}/audio/").status_code, 404)
+
     def test_submission_lifecycle_and_integrity(self):
         submission = ExamSubmission.objects.create(
             exam=self.exam,

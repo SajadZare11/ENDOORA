@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import {
   getBackgroundTasksList,
@@ -10,9 +11,9 @@ export async function GET() {
   try {
     const data = getBackgroundTasksList();
     return NextResponse.json({ success: true, ...data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی تسک‌های پس‌زمینه" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی تسک‌های پس‌زمینه" },
       { status: 500 }
     );
   }
@@ -60,9 +61,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش عملیات تسک" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش عملیات تسک" },
       { status: 500 }
     );
   }

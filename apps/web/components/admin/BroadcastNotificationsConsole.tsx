@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./broadcast-notifications.module.css";
 import {
@@ -54,8 +55,8 @@ export function BroadcastNotificationsConsole() {
       } else {
         showToast(json.error || "خطا در واکشی داده‌های مرکز اعلان", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     } finally {
       setLoading(false);
     }
@@ -118,8 +119,8 @@ export function BroadcastNotificationsConsole() {
       } else {
         showToast(data.error || "خطا در ارسال تست", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ارسال پیام تست", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ارسال پیام تست", "error");
     }
   };
 
@@ -164,8 +165,8 @@ export function BroadcastNotificationsConsole() {
       } else {
         showToast(data.error || "خطا در ارسال کمپین", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     }
   };
 
@@ -186,8 +187,8 @@ export function BroadcastNotificationsConsole() {
       } else {
         showToast(data.error || "خطا در لغو کمپین", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     }
   };
 
@@ -208,8 +209,8 @@ export function BroadcastNotificationsConsole() {
       } else {
         showToast(data.error || "خطا در بازنشانی", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در بازنشانی داده‌ها", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در بازنشانی داده‌ها", "error");
     }
   };
 

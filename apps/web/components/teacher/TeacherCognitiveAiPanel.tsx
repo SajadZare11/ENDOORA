@@ -240,7 +240,7 @@ export function TeacherCognitiveAiPanel({ isFa = true }: Props) {
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.6rem" }}>
               <div style={{ background: "rgba(30, 41, 59, 0.6)", padding: "0.75rem", borderRadius: "8px", border: "1px solid rgba(239, 68, 68, 0.3)" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#fca5a5" }}>Phrasal Verbs with 'Get' & 'Take'</div>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#fca5a5" }}>Phrasal Verbs with &apos;Get&apos; & &apos;Take&apos;</div>
                 <div style={{ fontSize: "0.75rem", color: "#94a3b8" }}>{isFa ? "احتمال یادآوری فعلی: ۴۸٪ | سقوط پیش‌بینی: ۳۲٪" : "Current: 48% | 7-day Decay: 32%"}</div>
               </div>
               <div style={{ background: "rgba(30, 41, 59, 0.6)", padding: "0.75rem", borderRadius: "8px", border: "1px solid rgba(245, 158, 11, 0.3)" }}>

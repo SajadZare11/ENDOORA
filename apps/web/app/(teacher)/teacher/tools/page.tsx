@@ -41,7 +41,7 @@ export default function TeacherToolsPage() {
       <ProgressReportCardStudio
         initialClassId={activeClass?.id}
         classes={classesList as any}
-        locale={locale as any}
+        locale={locale === "en" ? "en" : "fa"}
       />
     </div>
   );

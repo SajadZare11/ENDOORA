@@ -4,7 +4,9 @@ import hashlib
 from datetime import timedelta
 
 from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.password_validation import validate_password
+from django.db import transaction
 from django.core.exceptions import ImproperlyConfigured, ValidationError as DjangoValidationError
 from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
@@ -91,6 +93,31 @@ class LoginView(APIView):
         login(request, user)
         request.session.cycle_key()
         return Response(AccountSerializer(user).data)
+
+
+class PasswordChangeView(APIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth_login"
+
+    @transaction.atomic
+    def post(self, request):
+        user = User.objects.select_for_update().get(pk=request.user.pk)
+        current = request.data.get("current_password")
+        password = request.data.get("new_password")
+        if not isinstance(current, str) or not user.check_password(current):
+            return bilingual_error("incorrect_password", "رمز فعلی صحیح نیست.", "Current password is incorrect.", http_status=400)
+        if not isinstance(password, str) or not password or password == current or len(password) > 256:
+            return Response({"new_password": ["Choose a different password of up to 256 characters."]}, status=400)
+        try:
+            validate_password(password, user)
+        except DjangoValidationError as error:
+            return Response({"new_password": error.messages}, status=400)
+        user.set_password(password)
+        user.save(update_fields=["password"])
+        update_session_auth_hash(request, user)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class LogoutView(APIView):

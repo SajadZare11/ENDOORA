@@ -6,4 +6,4 @@
 import rawItems from "@/data/placement/core-items.json";
 import { AdaptiveItem, normalizeItem } from "./adaptive-engine";
 
-export const FULL_CALIBRATED_ITEMS_BANK: AdaptiveItem[] = (rawItems as any[]).map(normalizeItem);
+export const FULL_CALIBRATED_ITEMS_BANK: AdaptiveItem[] = rawItems.map(normalizeItem);

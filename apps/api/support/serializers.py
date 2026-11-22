@@ -77,7 +77,15 @@ class SupportTicketListSerializer(serializers.ModelSerializer):
 class SupportTicketDetailSerializer(serializers.ModelSerializer):
     category_display = serializers.CharField(source="get_category_display", read_only=True)
     status_display = serializers.CharField(source="get_status_display", read_only=True)
-    messages = TicketMessageSerializer(many=True, read_only=True)
+    messages = serializers.SerializerMethodField()
+
+    def get_messages(self, obj):
+        messages = obj.messages.all()
+        request = self.context.get("request")
+        if not request or not request.user.is_staff:
+            messages = messages.filter(is_internal=False)
+        return TicketMessageSerializer(messages, many=True).data
+
     attachments = TicketAttachmentSerializer(many=True, read_only=True)
     cited_faq_detail = FAQItemSerializer(source="cited_faq", read_only=True)
 

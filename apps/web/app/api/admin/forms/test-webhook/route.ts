@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import { testWebhookEndpoint } from "@/lib/admin-forms-webhooks-store";
 
@@ -23,9 +24,9 @@ export async function POST(request: Request) {
         ? `تست وب‌هوک با موفقیت انجام شد (کد وضعیت: ${result.statusCode}، تاخیر: ${result.latencyMs}ms).`
         : `تست وب‌هوک ناموفق بود (کد وضعیت: ${result.statusCode}).`,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در تست اتصال وب‌هوک" },
+      { success: false, error: errorMessage(err) || "خطا در تست اتصال وب‌هوک" },
       { status: 500 }
     );
   }

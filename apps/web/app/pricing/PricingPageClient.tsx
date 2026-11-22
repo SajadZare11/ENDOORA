@@ -557,7 +557,7 @@ export function PricingPageClient() {
           </p>
         </div>
 
-        <div className={styles.tableScrollWrap}>
+        <div className={styles.tableScrollWrap} role="region" aria-labelledby="matrix-title" tabIndex={0}>
           <table className={styles.comparisonTable}>
             <thead>
               <tr>
@@ -578,12 +578,12 @@ export function PricingPageClient() {
                   </tr>
                   {cat.rows.map((row) => (
                     <tr key={row.name}>
-                      <td className={styles.featureNameCell}>
+                      <th scope="row" className={styles.featureNameCell}>
                         {row.name}
                         {row.subDesc ? (
                           <span className={styles.featureSubDesc}>{row.subDesc}</span>
                         ) : null}
-                      </td>
+                      </th>
                       <td className={styles.valueCell}>
                         {row.freeGranted ? (
                           <span className={styles.checkBadge}>

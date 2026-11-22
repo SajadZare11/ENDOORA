@@ -3,7 +3,9 @@ from __future__ import annotations
 from datetime import timedelta
 from decimal import Decimal
 from django.db import models, transaction
-from django.http import Http404, HttpResponse
+from django.http import FileResponse, Http404, HttpResponse
+from django.urls import reverse
+from voice_lab.models import VoiceRecording
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import permissions, status, viewsets
@@ -246,9 +248,9 @@ class ExamSubmissionViewSet(viewsets.ModelViewSet):
 
         # Concurrency-safe attempt limit check
         with transaction.atomic():
+            OnlineExam.objects.select_for_update().get(pk=exam.pk)
             existing_count = (
-                ExamSubmission.objects.select_for_update()
-                .filter(exam=exam, student=request.user)
+                ExamSubmission.objects.filter(exam=exam, student=request.user)
                 .count()
             )
             if existing_count >= exam.max_attempts:
@@ -277,8 +279,10 @@ class ExamSubmissionViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @action(detail=True, methods=['post'])
+    @transaction.atomic
     def submit(self, request, exam_id=None, pk=None):
         submission = self.get_object()
+        submission = ExamSubmission.objects.select_for_update().get(pk=submission.pk)
         if submission.student_id != request.user.id and not request.user.is_staff and not request.user.is_superuser:
             raise PermissionDenied("فقط زبان‌آموز شرکت‌کننده مجاز به ثبت نهایی پاسخنامه است.")
 
@@ -318,17 +322,21 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         return [permissions.IsAuthenticated()]
 
+    def update(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
             return ExamAnswerSubmitSerializer
         return ExamAnswerSerializer
 
-    def _get_submission(self):
+    def _get_submission(self, *, for_update=False):
         exam_id = self.kwargs.get('exam_id')
         submission_id = self.kwargs.get('submission_id')
         exam = get_object_or_404(OnlineExam, id=exam_id)
         # Relationship chain: submission belongs to exam
-        submission = get_object_or_404(ExamSubmission, id=submission_id, exam=exam)
+        submissions = ExamSubmission.objects.select_for_update() if for_update else ExamSubmission.objects.all()
+        submission = get_object_or_404(submissions, id=submission_id, exam=exam)
         return exam, submission
 
     def get_queryset(self):
@@ -354,8 +362,9 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
 
         return answer
 
+    @transaction.atomic
     def create(self, request, *args, **kwargs):
-        exam, submission = self._get_submission()
+        exam, submission = self._get_submission(for_update=True)
         user = request.user
 
         # Only student can submit their own answers
@@ -393,6 +402,10 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
         student_response = serializer.validated_data.get("student_response", {})
         audio_recording_url = serializer.validated_data.get("audio_recording_url", "")
 
+        student_response, audio_recording_url = self._validated_answer(
+            request, exam, submission, exam_question, student_response, audio_recording_url
+        )
+
         # Retry-safe / Idempotent answer save
         answer, _created = ExamAnswer.objects.update_or_create(
             submission=submission,
@@ -405,8 +418,38 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
 
         return Response(ExamAnswerSerializer(answer).data, status=status.HTTP_200_OK if not _created else status.HTTP_201_CREATED)
 
+    @staticmethod
+    def _validated_answer(request, exam, submission, exam_question, student_response, audio_recording_url):
+        if exam_question.question_version.question_type == "speaking":
+            if not isinstance(student_response, dict):
+                raise ValidationError("A speaking answer requires a saved recording.")
+            recording_id = student_response.get("recording_id")
+            if type(recording_id) is not int:
+                raise ValidationError("A speaking answer requires a saved recording.")
+            recording = get_object_or_404(VoiceRecording, pk=recording_id, learner_id=submission.student_id,
+                                          session_id=str(submission.pk), scenario_id=str(exam_question.pk), is_deleted=False)
+            if not recording.audio_file or (recording.expires_at and recording.expires_at <= timezone.now()):
+                raise ValidationError("This recording is unavailable.")
+            audio_recording_url = request.build_absolute_uri(reverse("exam-speaking-playback",
+                args=[exam.id, submission.pk, exam_question.pk]))
+            student_response = {"recording_id": recording.pk, "audio_recorded": True}
+
+        return student_response, audio_recording_url
+
+    def speaking_audio(self, request, exam_id, submission_id, question_id):
+        answer = get_object_or_404(self.get_queryset().select_related("submission"), exam_question_id=question_id)
+        recording_id = (answer.student_response or {}).get("recording_id")
+        recording = get_object_or_404(VoiceRecording, pk=recording_id, learner_id=answer.submission.student_id,
+                                      session_id=str(submission_id), scenario_id=str(question_id), is_deleted=False)
+        if not recording.audio_file or (recording.expires_at and recording.expires_at <= timezone.now()):
+            raise Http404
+        response = FileResponse(recording.audio_file.open("rb"), content_type=recording.mime_type)
+        response["Cache-Control"] = "private, no-store"
+        return response
+
+    @transaction.atomic
     def partial_update(self, request, *args, **kwargs):
-        exam, submission = self._get_submission()
+        exam, submission = self._get_submission(for_update=True)
         answer = self.get_object()
         user = request.user
 
@@ -421,7 +464,7 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
                 except Exception:
                     return Response({"error": "نمره نامعتبر است."}, status=status.HTTP_400_BAD_REQUEST)
 
-                if score_dec < Decimal("0.00") or score_dec > answer.exam_question.points:
+                if not score_dec.is_finite() or score_dec < Decimal("0.00") or score_dec > answer.exam_question.points:
                     return Response(
                         {"error": f"نمره باید بین ۰ و {answer.exam_question.points} باشد."},
                         status=status.HTTP_400_BAD_REQUEST,
@@ -453,12 +496,11 @@ class ExamAnswerViewSet(viewsets.ModelViewSet):
             if submission.status != ExamSubmission.SubmissionStatus.IN_PROGRESS or submission.is_time_expired():
                 return Response({"error": "آزمون به پایان رسیده است."}, status=status.HTTP_400_BAD_REQUEST)
 
-            student_response = request.data.get("student_response")
-            audio_url = request.data.get("audio_recording_url")
-            if student_response is not None:
-                answer.student_response = student_response
-            if audio_url is not None:
-                answer.audio_recording_url = audio_url
+            answer.student_response, answer.audio_recording_url = self._validated_answer(
+                request, exam, submission, answer.exam_question,
+                request.data.get("student_response", answer.student_response),
+                request.data.get("audio_recording_url", answer.audio_recording_url),
+            )
             answer.save()
             return Response(ExamAnswerSerializer(answer).data)
 

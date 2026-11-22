@@ -479,7 +479,7 @@ export default function MyTeachersPage() {
           adobeConnectUrl={selectedClassForLauncher.adobe_connect_url}
           adobeConnectAppUrl={selectedClassForLauncher.adobe_connect_app_url}
           isTeacher={false}
-          locale={locale as any}
+          locale={locale === "en" ? "en" : "fa"}
         />
       ) : null}
     </div>

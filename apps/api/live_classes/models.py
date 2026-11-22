@@ -458,3 +458,8 @@ class SessionAiRecap(models.Model):
     def __str__(self):
         return f"AI Recap for {self.session_id} ({len(self.key_points)} key points)"
 
+
+
+class LiveKitEventReceipt(models.Model):
+    event_id = models.CharField(primary_key=True, max_length=128)
+    received_at = models.DateTimeField(auto_now_add=True, db_index=True)

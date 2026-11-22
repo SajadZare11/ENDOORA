@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -52,9 +53,9 @@ export async function GET(req: NextRequest) {
       mediaPresets: MEDIA_PRESET_ASSETS,
       source: "local-store",
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در بارگذاری پرونده‌های ثبت‌نام زبان‌آموزان" },
+      { success: false, error: errorMessage(err) || "خطا در بارگذاری پرونده‌های ثبت‌نام زبان‌آموزان" },
       { status: 500 }
     );
   }
@@ -135,9 +136,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش درخواست ثبت‌نام" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش درخواست ثبت‌نام" },
       { status: 500 }
     );
   }

@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextResponse } from "next/server";
 import { getFormSubmissions } from "@/lib/admin-forms-webhooks-store";
 
@@ -8,9 +9,9 @@ export async function GET(request: Request) {
 
     const submissions = getFormSubmissions(formId);
     return NextResponse.json({ success: true, submissions, count: submissions.length });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی پاسخ‌های فرم" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی پاسخ‌های فرم" },
       { status: 500 }
     );
   }
@@ -29,9 +30,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در پردازش عملیات پاسخ‌ها" },
+      { success: false, error: errorMessage(err) || "خطا در پردازش عملیات پاسخ‌ها" },
       { status: 500 }
     );
   }

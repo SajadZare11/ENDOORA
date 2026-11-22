@@ -491,7 +491,7 @@ export default function DashboardClassesPage() {
           meetingUrl={selectedClassForModal.meeting_url}
           adobeConnectUrl={selectedClassForModal.adobe_connect_url}
           adobeConnectAppUrl={selectedClassForModal.adobe_connect_app_url}
-          locale={locale as any}
+          locale={locale === "en" ? "en" : "fa"}
         />
       ) : null}
     </div>

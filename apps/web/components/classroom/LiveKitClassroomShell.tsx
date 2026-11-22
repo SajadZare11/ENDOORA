@@ -8,6 +8,7 @@ import { StudentQuizOverlay } from './StudentQuizOverlay';
 import { ClassroomAttendeesPanel, type ParticipantInfo } from './ClassroomAttendeesPanel';
 import { ClassroomChatPanel, type ChatMessage } from './ClassroomChatPanel';
 import { SessionRecapModal, type AttendanceRow, type AiRecapData } from './SessionRecapModal';
+import { LiveClassroom } from './LiveClassroom';
 import { StudioVideoStage } from './StudioVideoStage';
 
 interface LiveKitClassroomShellProps {
@@ -17,7 +18,14 @@ interface LiveKitClassroomShellProps {
   teacherName?: string;
 }
 
-export function LiveKitClassroomShell({
+export function LiveKitClassroomShell(props: LiveKitClassroomShellProps) {
+  if (process.env.NODE_ENV === "production") {
+    return <LiveClassroom key={props.sessionId} sessionId={props.sessionId} title={props.classTitle} />;
+  }
+  return <ClassroomPreview {...props} />;
+}
+
+function ClassroomPreview({
   sessionId,
   initialRole = 'student',
   classTitle,

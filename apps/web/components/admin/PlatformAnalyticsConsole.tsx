@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./platform-analytics.module.css";
 import {
@@ -49,8 +50,8 @@ export function PlatformAnalyticsConsole() {
       } else {
         showToast(json.error || "خطا در واکشی داده‌های تحلیلی", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     } finally {
       setLoading(false);
     }
@@ -81,8 +82,8 @@ export function PlatformAnalyticsConsole() {
       } else {
         showToast(data.error || "خطا در ارسال کوپن نجات", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ارسال کوپن", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ارسال کوپن", "error");
     }
   };
 
@@ -103,8 +104,8 @@ export function PlatformAnalyticsConsole() {
       } else {
         showToast(data.error || "خطا در ارسال تلنگر", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ارتباط با سرور", "error");
     }
   };
 
@@ -132,7 +133,7 @@ export function PlatformAnalyticsConsole() {
       link.click();
       document.body.removeChild(link);
       showToast("فایل خروجی اکسل/CSV با موفقیت ذخیره گردید.", "success");
-    } catch (err: any) {
+    } catch (err: unknown) {
       showToast("خطا در ایجاد فایل گزارش CSV", "error");
     }
   };
@@ -154,8 +155,8 @@ export function PlatformAnalyticsConsole() {
       } else {
         showToast(data.error || "خطا در بازنشانی داده‌ها", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در ارتباط با سرور", "error");
     }
   };
 

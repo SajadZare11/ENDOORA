@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect } from "react";
 import styles from "./teacher-contracts.module.css";
 import {
@@ -110,8 +111,8 @@ export function TeacherContractsConsole() {
       } else {
         alert("خطا: " + (data.error || "ذخیره نشد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -133,8 +134,8 @@ export function TeacherContractsConsole() {
       } else {
         alert("خطا: " + (data.error || "خطا در ارزیابی سطح"));
       }
-    } catch (err: any) {
-      alert("خطای ارتباط: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط: " + errorMessage(err));
     }
   };
 
@@ -167,8 +168,8 @@ export function TeacherContractsConsole() {
       } else {
         alert("خطا: " + (data.error || "صدور قرارداد با خطا مواجه شد"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -188,8 +189,8 @@ export function TeacherContractsConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطای ارتباط: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای ارتباط: " + errorMessage(err));
     }
   };
 
@@ -215,8 +216,8 @@ export function TeacherContractsConsole() {
       } else {
         alert("خطا: " + (data.error || "امضا ناموفق بود"));
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -239,8 +240,8 @@ export function TeacherContractsConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطا در فسخ قرارداد: " + err.message);
+    } catch (err: unknown) {
+      alert("خطا در فسخ قرارداد: " + errorMessage(err));
     }
   };
 
@@ -269,8 +270,8 @@ export function TeacherContractsConsole() {
         setLegalHoldReason("");
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -293,8 +294,8 @@ export function TeacherContractsConsole() {
         setTaxModalTeacher(null);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 
@@ -312,8 +313,8 @@ export function TeacherContractsConsole() {
         showToast(data.message);
         fetchData();
       }
-    } catch (err: any) {
-      alert("خطای سرور: " + err.message);
+    } catch (err: unknown) {
+      alert("خطای سرور: " + errorMessage(err));
     }
   };
 

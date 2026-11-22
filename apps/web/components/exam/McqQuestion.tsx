@@ -13,7 +13,6 @@ interface McqOption {
 interface McqQuestionProps {
   isMultiSelect?: boolean;
   options: McqOption[];
-  shuffleOptions?: boolean;
   value: string | string[] | undefined;
   onChange: (val: string | string[]) => void;
   disabled?: boolean;
@@ -22,17 +21,11 @@ interface McqQuestionProps {
 export function McqQuestion({
   isMultiSelect = false,
   options = [],
-  shuffleOptions = false,
   value,
   onChange,
   disabled = false,
 }: McqQuestionProps) {
-  // Deterministic or randomized options
-  const displayOptions = useMemo(() => {
-    if (!shuffleOptions) return options;
-    return [...options].sort(() => Math.random() - 0.5);
-  }, [options, shuffleOptions]);
-
+  const groupName = React.useId();
   const selectedList = useMemo(() => {
     if (Array.isArray(value)) return value;
     if (typeof value === "string" && value) return [value];
@@ -53,36 +46,26 @@ export function McqQuestion({
   };
 
   return (
-    <div className={styles.optionsList} role="radiogroup">
-      {displayOptions.map((opt) => {
+    <div className={styles.optionsList} role={isMultiSelect ? "group" : "radiogroup"}>
+      {options.map((opt) => {
         const isSelected = selectedList.includes(opt.id);
         const labelText = opt.text || opt.text_fa || opt.text_en || opt.id;
 
         return (
-          <div
+          <label
             key={opt.id}
             className={`${styles.optionItem} ${isSelected ? styles.optionSelected : ""}`}
-            onClick={() => handleSelect(opt.id)}
-            role={isMultiSelect ? "checkbox" : "radio"}
-            aria-checked={isSelected}
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === " " || e.key === "Enter") {
-                e.preventDefault();
-                handleSelect(opt.id);
-              }
-            }}
           >
             <input
               type={isMultiSelect ? "checkbox" : "radio"}
+              name={groupName}
               checked={isSelected}
               onChange={() => handleSelect(opt.id)}
               disabled={disabled}
               className={styles.optionRadio}
-              tabIndex={-1}
             />
             <span style={{ fontSize: "1rem", flex: 1 }}>{labelText}</span>
-          </div>
+          </label>
         );
       })}
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { errorMessage } from "../../lib/error-message.ts";
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./seo-metadata.module.css";
 import {
@@ -76,8 +77,8 @@ export function SeoMetadataConsole() {
       } else {
         showToast(json.error || "خطا در واکشی داده‌های سئو", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     } finally {
       setLoading(false);
     }
@@ -132,8 +133,8 @@ export function SeoMetadataConsole() {
       } else {
         showToast(data.error || "خطا در ذخیره متادیتا", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در برقراری ارتباط", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در برقراری ارتباط", "error");
     }
   };
 
@@ -165,8 +166,8 @@ export function SeoMetadataConsole() {
       } else {
         showToast(data.error || "خطا در ایجاد ریدایرکت", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط با سرور", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط با سرور", "error");
     }
   };
 
@@ -184,8 +185,8 @@ export function SeoMetadataConsole() {
       } else {
         showToast(data.error || "خطا در تغییر وضعیت", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط", "error");
     }
   };
 
@@ -206,12 +207,12 @@ export function SeoMetadataConsole() {
       } else {
         showToast(data.error || "خطا در حذف", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطای ارتباط", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطای ارتباط", "error");
     }
   };
 
-  const handleCopyJson = (payload: any) => {
+  const handleCopyJson = (payload: unknown) => {
     try {
       navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
       showToast("کد اسکیما JSON-LD در کلیپ‌بورد کپی شد.", "success");
@@ -237,8 +238,8 @@ export function SeoMetadataConsole() {
       } else {
         showToast(data.error || "خطا در بازنشانی", "error");
       }
-    } catch (err: any) {
-      showToast(err?.message || "خطا در بازنشانی داده‌ها", "error");
+    } catch (err: unknown) {
+      showToast(errorMessage(err) || "خطا در بازنشانی داده‌ها", "error");
     }
   };
 

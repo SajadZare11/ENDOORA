@@ -1,9 +1,11 @@
 import logging
+import math
 from datetime import timedelta
 from typing import Any, Dict, Optional
 
 from django.conf import settings
 from django.utils import timezone
+from django.db import transaction
 
 from .models import VoicePreference, VoiceRecording
 
@@ -55,6 +57,8 @@ class VoicePipelineService:
         Creates an upload ticket with hard size caps before accepting binary payloads.
         Never proxies large audio blindly through frontend server workers.
         """
+        if file_size < 0 or content_type.split(";", 1)[0].lower() not in self.ALLOWED_MIME_TYPES:
+            raise ValueError("Unsupported audio upload.")
         if file_size > self.MAX_FILE_SIZE_BYTES:
             raise ValueError(
                 f"Audio file size ({file_size} bytes) exceeds the hard limit of 10 MB."
@@ -63,6 +67,8 @@ class VoicePipelineService:
         pref = self.get_or_create_preference(learner)
         policy = retention_policy or pref.default_retention
 
+        if policy not in dict(VoiceRecording.RETENTION_CHOICES):
+            raise ValueError("Unknown retention policy.")
         # Calculate retention expiry
         now = timezone.now()
         if policy == "immediate":
@@ -95,6 +101,7 @@ class VoicePipelineService:
             "expires_at": expires_at.isoformat() if expires_at else None,
         }
 
+    @transaction.atomic
     def process_audio_upload(
         self,
         learner,
@@ -106,8 +113,13 @@ class VoicePipelineService:
         """
         Stores recorded audio, checks duration limit, and transcribes spoken speech.
         """
-        recording = VoiceRecording.objects.get(id=recording_id, learner=learner)
-
+        recording = VoiceRecording.objects.select_for_update().get(id=recording_id, learner=learner)
+        if recording.is_deleted or (recording.expires_at and recording.expires_at <= timezone.now()):
+            raise ValueError("Recording ticket expired.")
+        if recording.audio_file or recording.status == "transcribed":
+            return recording
+        if not math.isfinite(duration_seconds) or duration_seconds < 0:
+            raise ValueError("Invalid recording duration.")
         if duration_seconds > self.MAX_AUDIO_DURATION_SEC:
             recording.status = "failed"
             recording.save(update_fields=["status"])
@@ -120,7 +132,10 @@ class VoicePipelineService:
                 recording.status = "failed"
                 recording.save(update_fields=["status"])
                 raise ValueError("Uploaded file exceeds 10 MB limit.")
-            recording.audio_file = audio_file
+            if audio_file.content_type.split(";", 1)[0].lower() not in self.ALLOWED_MIME_TYPES:
+                raise ValueError("Unsupported audio type.")
+            if recording.retention_policy != "immediate":
+                recording.audio_file = audio_file
             recording.file_size_bytes = audio_file.size
 
         recording.duration_seconds = max(0.0, duration_seconds)
@@ -128,7 +143,7 @@ class VoicePipelineService:
         # Transcribe speech
         transcript = self.transcribe_audio(recording, stt_hint=stt_hint)
         recording.stt_transcript = transcript
-        recording.status = "transcribed"
+        recording.status = "transcribed" if transcript else "pending"
 
         recording.save(update_fields=[
             "audio_file",
@@ -154,10 +169,7 @@ class VoicePipelineService:
         if clean_hint:
             return clean_hint
 
-        # Fallback transcription heuristic based on scenario or duration
-        if recording.duration_seconds > 0:
-            return "Good morning. I would like to confirm my travel reservation."
-        return "I am practicing my spoken English in the Voice Lab."
+        return ""
 
     def update_corrected_transcript(
         self,
@@ -210,29 +222,21 @@ class VoicePipelineService:
         )
 
         count = 0
-        for rec in expired_recordings:
-            if rec.audio_file:
-                try:
-                    rec.audio_file.delete(save=False)
-                except Exception as exc:
-                    logger.warning("Error deleting audio file for #%s: %s", rec.id, exc)
-            rec.audio_file = None
-            rec.is_deleted = True
-            rec.status = "deleted"
-            rec.save(update_fields=["audio_file", "is_deleted", "status", "updated_at"])
+        for record in expired_recordings.iterator():
+            try:
+                self.delete_recording(record.learner, record.pk)
+            except OSError:
+                logger.exception("Audio storage deletion failed for recording %s", record.pk)
+                continue
             count += 1
-
-        logger.info("Purged %d expired voice recordings according to learner retention policy.", count)
         return count
 
+    @transaction.atomic
     def delete_recording(self, learner, recording_id: int) -> VoiceRecording:
-        """Explicit learner-requested audio deletion."""
-        recording = VoiceRecording.objects.get(id=recording_id, learner=learner)
+        """Keep a retryable reference until the storage backend confirms deletion."""
+        recording = VoiceRecording.objects.select_for_update().get(id=recording_id, learner=learner)
         if recording.audio_file:
-            try:
-                recording.audio_file.delete(save=False)
-            except Exception as exc:
-                logger.warning("Error deleting audio file #%s: %s", recording.id, exc)
+            recording.audio_file.delete(save=False)
         recording.audio_file = None
         recording.is_deleted = True
         recording.status = "deleted"

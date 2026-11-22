@@ -191,6 +191,8 @@ export type ProctoringEvent = {
 };
 
 export type StudentExamView = {
+  shuffle_questions: boolean;
+  shuffle_choices: boolean;
   id: string;
   title: string;
   description: string;

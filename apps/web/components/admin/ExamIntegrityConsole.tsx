@@ -1130,7 +1130,7 @@ export function ExamIntegrityConsole() {
                       </td>
                       <td className={styles.td} style={{ maxWidth: "260px" }}>
                         <div style={{ fontSize: "0.78rem", color: "#cbd5e1", lineHeight: 1.5 }}>
-                          "{appeal.studentStatement}"
+                          &quot;{appeal.studentStatement}&quot;
                         </div>
                         {appeal.decisionNotes && (
                           <div
@@ -1590,7 +1590,7 @@ export function ExamIntegrityConsole() {
                 <div><strong>آزمون:</strong> {adjudicatingAppeal.examTitle}</div>
                 <div><strong>مهارت:</strong> {adjudicatingAppeal.skill}</div>
                 <div><strong>نمره اولیه:</strong> باند {adjudicatingAppeal.originalBand}</div>
-                <div><strong>شرح داوطلب:</strong> "{adjudicatingAppeal.studentStatement}"</div>
+                <div><strong>شرح داوطلب:</strong> &quot;{adjudicatingAppeal.studentStatement}&quot;</div>
               </div>
 
               <div className={styles.formGroup}>

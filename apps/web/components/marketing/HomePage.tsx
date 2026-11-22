@@ -267,6 +267,7 @@ function FeatureVisual({ type, locale }: { type: string; locale: PublicLocale })
     return (
       <div className={styles.featureVisual} aria-label={isFa ? "پیش‌نمایش وضعیت مهارت‌های تو" : "Learner Twin evidence preview"}>
         <div className={styles.visualHeading}><span className={styles.visualMark}>E</span><strong>Learner Twin</strong></div>
+        <small>{isFa ? "پیش‌نمایش · داده زبان‌آموز بعد از آزمون نمایش داده می‌شود" : "Preview · no invented learner data"}</small>
         {["Vocabulary", "Grammar", "Listening"].map((skill) => (
           <div className={styles.evidenceRow} key={skill}><span lang="en" dir="ltr">{skill}</span><small>{isFa ? "منتظر تعیین سطح" : "Awaiting assessment"}</small></div>
         ))}

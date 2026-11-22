@@ -963,7 +963,7 @@ export function GrammarHexArena({
                 <div className={styles.goalTerminalIcon}>🏁 ⚡ 🎉</div>
                 <h3 className={styles.goalTerminalTitle}>پایانه مدار با موفقیت متصل شد!</h3>
                 <div className={styles.goalCompletedSentence}>
-                  "{accumulatedWords.join(" ")}"
+                  &quot;{accumulatedWords.join(" ")}&quot;
                 </div>
                 {activeCircuit && (
                   <div className={styles.goalTranslation}>

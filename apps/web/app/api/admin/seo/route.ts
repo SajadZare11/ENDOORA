@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 
@@ -21,10 +22,10 @@ export async function GET() {
       success: true,
       data,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in GET /api/admin/seo:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در واکشی داده‌های سئو" },
+      { success: false, error: errorMessage(error) || "خطای سرور در واکشی داده‌های سئو" },
       { status: 500 }
     );
   }
@@ -240,10 +241,10 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in POST /api/admin/seo:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای پردازش عملیات سئو" },
+      { success: false, error: errorMessage(error) || "خطای پردازش عملیات سئو" },
       { status: 500 }
     );
   }

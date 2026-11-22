@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 
@@ -33,10 +34,10 @@ export async function GET(req: NextRequest) {
       data,
       stats,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in GET /api/admin/analytics:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای سرور در واکشی داده‌های تحلیلی پلتفرم" },
+      { success: false, error: errorMessage(error) || "خطای سرور در واکشی داده‌های تحلیلی پلتفرم" },
       { status: 500 }
     );
   }
@@ -153,10 +154,10 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in POST /api/admin/analytics:", error);
     return NextResponse.json(
-      { success: false, error: error?.message || "خطای پردازش عملیات هوش تجاری" },
+      { success: false, error: errorMessage(error) || "خطای پردازش عملیات هوش تجاری" },
       { status: 500 }
     );
   }

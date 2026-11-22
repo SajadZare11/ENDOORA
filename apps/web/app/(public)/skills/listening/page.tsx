@@ -199,7 +199,7 @@ export default function ListeningLibraryPage() {
             {/* Topic Filter */}
             <select
               value={selectedTopic}
-              onChange={(e) => setSelectedTopic(e.target.value as any)}
+              onChange={(e) => setSelectedTopic(e.target.value as typeof selectedTopic)}
               className={styles.selectDropdown}
               aria-label="فیلتر بر اساس موضوع"
             >
@@ -219,7 +219,7 @@ export default function ListeningLibraryPage() {
             {/* Accent Filter */}
             <select
               value={selectedAccent}
-              onChange={(e) => setSelectedAccent(e.target.value as any)}
+              onChange={(e) => setSelectedAccent(e.target.value as typeof selectedAccent)}
               className={styles.selectDropdown}
               aria-label="فیلتر بر اساس لهجه"
             >
@@ -234,7 +234,7 @@ export default function ListeningLibraryPage() {
             {/* Content Type Filter */}
             <select
               value={selectedContentType}
-              onChange={(e) => setSelectedContentType(e.target.value as any)}
+              onChange={(e) => setSelectedContentType(e.target.value as typeof selectedContentType)}
               className={styles.selectDropdown}
               aria-label="فیلتر نوع محتوا"
             >

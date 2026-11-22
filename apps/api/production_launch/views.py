@@ -1,6 +1,5 @@
 ﻿from __future__ import annotations
 
-import hashlib
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -54,8 +53,8 @@ class ProductionSignoffView(APIView):
 
         scorecard = LaunchGateChecklistEvaluator.evaluate_readiness()
         confirmation_hash = scorecard.get("confirmation_hash", "")
-        if not confirmation_hash:
-            confirmation_hash = hashlib.sha256(b"endoora-v1.0-certified-launch").hexdigest()
+        if not confirmation_hash or scorecard.get("status") != "READY_FOR_PRODUCTION" or scorecard.get("score") != 100:
+            return Response({"detail": "Launch evidence is incomplete."}, status=status.HTTP_409_CONFLICT)
 
         signoff = ProductionLaunchSignoff.objects.create(
             authorized_by=request.user if request.user.is_authenticated else None,
@@ -63,7 +62,7 @@ class ProductionSignoffView(APIView):
             role=serializer.validated_data.get("role", "Principal Launch Architect"),
             checklist_version="day60-launch-v1.0",
             status=ProductionLaunchSignoff.Status.APPROVED,
-            verification_score=scorecard.get("score", 100),
+            verification_score=scorecard["score"],
             confirmation_hash=confirmation_hash,
             notes=serializer.validated_data.get("notes", ""),
         )

@@ -49,7 +49,7 @@ export interface DownloadItem {
   subFiles?: DownloadSubFile[];
 }
 
-export const DOWNLOAD_CATEGORIES: { id: DownloadCategory; labelFa: string; icon: string; count: number; description: string }[] = [
+const categories: { id: DownloadCategory; labelFa: string; icon: string; count: number; description: string }[] = [
   { id: "all", labelFa: "تمامی منابع", icon: "🌐", count: 26, description: "آرشیو کامل کتب، امتحانات، رمان‌ها و مدیا" },
   { id: "coursebooks", labelFa: "کتب آموزشی بین‌المللی", icon: "📚", count: 7, description: "دوره‌های American English File و Speakout ویرایش سوم" },
   { id: "final_exams", labelFa: "آرشیو امتحانات نهایی", icon: "📑", count: 7, description: "دفترچه سوالات رسمی خرداد و شهریور همراه با پاسخ‌نامه کلیدی" },
@@ -58,7 +58,7 @@ export const DOWNLOAD_CATEGORIES: { id: DownloadCategory; labelFa: string; icon:
   { id: "videos", labelFa: "دوره‌ها و ویدیوهای مستند", icon: "🎬", count: 3, description: "آرشیو ویدیوهای مستند BBC و سریال آموزشی Practical English" },
 ];
 
-export const DOWNLOAD_ITEMS: DownloadItem[] = [
+const catalogue: DownloadItem[] = [
   // ===========================================================================
   // 1. Final Exams (دفترچه سوالات و پاسخ‌نامه‌های رسمی امتحانات نهایی دوازدهم)
   // ===========================================================================
@@ -926,3 +926,11 @@ export const DOWNLOAD_ITEMS: DownloadItem[] = [
     downloadCount: 3950,
   },
 ];
+
+// Editorial review must cover every file, mirror and preview in an entry.
+const approvedIds = new Set<string>([]);
+export const DOWNLOAD_ITEMS = catalogue.filter(item => approvedIds.has(item.id));
+export const DOWNLOAD_CATEGORIES = categories.map(category => ({
+  ...category,
+  count: DOWNLOAD_ITEMS.filter(item => category.id === "all" || category.id === item.category).length,
+}));

@@ -615,6 +615,12 @@ export const publicPageKeys = Object.keys(publicPages) as PublicPageKey[];
 export const featureKeys = Object.keys(featurePages) as FeatureKey[];
 export const legalKeys = Object.keys(legalPages) as LegalKey[];
 
+export function hasEnglishPage(path: string) {
+  const parts = path.split("/").filter(Boolean);
+  return !parts.length || (parts.length === 1 && (parts[0] === "features" || publicPageKeys.includes(parts[0] as PublicPageKey)))
+    || (parts.length === 2 && (parts[0] === "features" || (parts[0] === "legal" && legalKeys.includes(parts[1] as LegalKey))));
+}
+
 export function localizedPath(locale: PublicLocale, path: string): string {
   let bare = path.trim();
   if (bare === "/en" || bare === "/en/") {
@@ -624,7 +630,7 @@ export function localizedPath(locale: PublicLocale, path: string): string {
   }
   const normalized = bare === "/" ? "" : bare.startsWith("/") ? bare : `/${bare}`;
   if (locale === "fa") return normalized || "/";
-  return `/en${normalized}` || "/en";
+  return hasEnglishPage(normalized) ? `/en${normalized}` : normalized || "/";
 }
 
 export function accountPath(

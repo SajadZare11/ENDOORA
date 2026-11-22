@@ -2,7 +2,8 @@ import uuid
 from datetime import timedelta
 
 from django.conf import settings
-from django.db import models
+from django.contrib.auth import get_user_model
+from django.db import models, transaction
 from django.utils import timezone
 
 
@@ -125,10 +126,12 @@ class PlacementSession(models.Model):
         self.save(update_fields=["status", "completed_at", "updated_at"])
 
     @classmethod
+    @transaction.atomic
     def get_or_create_active_session(cls, user, expiration_hours: int = DEFAULT_EXPIRATION_HOURS) -> tuple["PlacementSession", bool]:
         """
         Retrieves current active unexpired session for user, or creates a new one.
         """
+        get_user_model().objects.select_for_update().get(pk=user.pk)
         now = timezone.now()
         active_sessions = cls.objects.filter(user=user, status=cls.Status.ACTIVE).order_by("-started_at")
         for sess in active_sessions:

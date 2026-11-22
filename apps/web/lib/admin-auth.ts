@@ -17,6 +17,13 @@ export interface AdminAuthResult {
   user?: AdminUser;
 }
 
+const csrfChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+function csrfSecret(value: string) {
+  if (value.length !== 64) return value;
+  const mask = value.slice(0,32);
+  return Array.from(value.slice(32),(c,i) => csrfChars[(csrfChars.indexOf(c)-csrfChars.indexOf(mask[i])+62)%62]).join("");
+}
+
 export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthResult> {
   const cookieHeader = req.headers.get("cookie") || "";
   const sessionId =
@@ -42,7 +49,7 @@ export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthRes
       req.headers.get("X-CSRFToken") ||
       req.headers.get("x-csrf-token");
 
-    if (!csrfCookie || !csrfHeader || csrfCookie !== csrfHeader) {
+    if (!csrfCookie || !csrfHeader || csrfSecret(csrfCookie) !== csrfSecret(csrfHeader)) {
       return {
         authorized: false,
         status: 403,
@@ -61,6 +68,7 @@ export async function verifyAdminSession(req: NextRequest): Promise<AdminAuthRes
       headers: {
         Accept: "application/json",
         Cookie: cookieHeader,
+        "X-Forwarded-Proto": process.env.NODE_ENV === "production" ? "https" : "http",
       },
       cache: "no-store",
     });

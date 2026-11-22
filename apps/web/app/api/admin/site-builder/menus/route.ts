@@ -1,3 +1,4 @@
+import { errorMessage } from "../../../../../lib/error-message.ts";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminSession } from "@/lib/admin-auth";
 import {
@@ -11,9 +12,9 @@ export async function GET() {
   try {
     const config = getNavigationConfig();
     return NextResponse.json({ success: true, ...config });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در واکشی تنظیمات منوها" },
+      { success: false, error: errorMessage(err) || "خطا در واکشی تنظیمات منوها" },
       { status: 500 }
     );
   }
@@ -49,9 +50,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: false, error: "عملیات منو نامعتبر است." }, { status: 400 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: err?.message || "خطا در مدیریت منوها" },
+      { success: false, error: errorMessage(err) || "خطا در مدیریت منوها" },
       { status: 500 }
     );
   }

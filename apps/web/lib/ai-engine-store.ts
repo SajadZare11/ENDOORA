@@ -122,12 +122,12 @@ export function updatePromptTemplate(
   promptId: string,
   updates: Partial<AiPromptTemplate>,
   updatedBy: string = "مدیر ارشد هوش مصنوعی"
-): { success: boolean; prompt: AiPromptTemplate; message: string } {
+): ({ success: true; prompt: AiPromptTemplate; message: string } | { success: false; prompt: null; message: string }) {
   const storage = getAiEngineStorage();
   const prompt = storage.prompts.find((p) => p.id === promptId);
 
   if (!prompt) {
-    return { success: false, prompt: null as any, message: "پرامپت مورد نظر یافت نشد." };
+    return { success: false, prompt: null, message: "پرامپت مورد نظر یافت نشد." };
   }
 
   // Preserve ID and capabilityKey
@@ -150,12 +150,12 @@ export function updatePromptTemplate(
 export function updateRoutingRule(
   capabilityKey: AiCapabilityKey,
   updates: Partial<AiModelRoutingRule>
-): { success: boolean; rule: AiModelRoutingRule; message: string } {
+): ({ success: true; rule: AiModelRoutingRule; message: string } | { success: false; rule: null; message: string }) {
   const storage = getAiEngineStorage();
   const rule = storage.routingRules.find((r) => r.capabilityKey === capabilityKey);
 
   if (!rule) {
-    return { success: false, rule: null as any, message: "قاعده روتینگ برای این قابلیت یافت نشد." };
+    return { success: false, rule: null, message: "قاعده روتینگ برای این قابلیت یافت نشد." };
   }
 
   delete updates.capabilityKey;
@@ -201,16 +201,12 @@ export function updateBudgetAndSafety(
   };
 }
 
-export function deployPromptToProduction(promptId: string): {
-  success: boolean;
-  prompt: AiPromptTemplate;
-  message: string;
-} {
+export function deployPromptToProduction(promptId: string): ({ success: true; prompt: AiPromptTemplate; message: string } | { success: false; prompt: null; message: string }) {
   const storage = getAiEngineStorage();
   const prompt = storage.prompts.find((p) => p.id === promptId);
 
   if (!prompt) {
-    return { success: false, prompt: null as any, message: "پرامپت مورد نظر یافت نشد." };
+    return { success: false, prompt: null, message: "پرامپت مورد نظر یافت نشد." };
   }
 
   prompt.isDeployed = true;
@@ -336,16 +332,12 @@ export function runPlaygroundTest(params: {
   };
 }
 
-export function runBenchmarkTest(benchmarkId: string): {
-  success: boolean;
-  benchmarkCase: AiBenchmarkCase;
-  message: string;
-} {
+export function runBenchmarkTest(benchmarkId: string): ({ success: true; benchmarkCase: AiBenchmarkCase; message: string } | { success: false; benchmarkCase: null; message: string }) {
   const storage = getAiEngineStorage();
   const bm = storage.benchmarkCases.find((b) => b.id === benchmarkId);
 
   if (!bm) {
-    return { success: false, benchmarkCase: null as any, message: "کیس بنچمارک یافت نشد." };
+    return { success: false, benchmarkCase: null, message: "کیس بنچمارک یافت نشد." };
   }
 
   const assignedBand = bm.targetBand; // calibrated target

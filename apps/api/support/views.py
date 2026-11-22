@@ -65,7 +65,7 @@ class SupportTicketListCreateView(APIView):
             description=serializer.validated_data["description"],
             attachments=serializer.validated_data.get("attachments", []),
         )
-        detail_serializer = SupportTicketDetailSerializer(ticket)
+        detail_serializer = SupportTicketDetailSerializer(ticket, context={"request": request})
         return Response(detail_serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -81,7 +81,7 @@ class SupportTicketDetailView(APIView):
         except SupportTicket.DoesNotExist:
             return Response({"error": "Ticket not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = SupportTicketDetailSerializer(ticket)
+        serializer = SupportTicketDetailSerializer(ticket, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -105,7 +105,7 @@ class SupportTicketMessageCreateView(APIView):
             ticket_id=str(ticket.id),
             sender_user=request.user,
             body=body,
-            is_internal=request.data.get("is_internal", False),
+            is_internal=request.user.is_staff and request.data.get("is_internal") is True,
         )
         serializer = TicketMessageSerializer(msg)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -127,5 +127,5 @@ class SupportTicketEscalateView(APIView):
         except PermissionError as e:
             return Response({"error": str(e)}, status=status.HTTP_403_FORBIDDEN)
 
-        serializer = SupportTicketDetailSerializer(ticket)
+        serializer = SupportTicketDetailSerializer(ticket, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)

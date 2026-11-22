@@ -92,12 +92,12 @@ export function PublicHeader({
         <Link
           className={styles.brand}
           href={localizedPath(locale, "/")}
-          aria-label={isFa ? "صفحه اصلی ایندورا" : "Endoora home"}
+          aria-label={isFa ? "Endoora — A new door to your English — صفحه اصلی ایندورا" : "Endoora — A new door to your English — Home"}
         >
           <Image
             className={styles.brandLogo}
             src="/images/endoora-mark.png"
-            alt="Endoora"
+            alt=""
             width={38}
             height={45}
             priority

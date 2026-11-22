@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 
 import React, { createContext, useContext, useEffect, useState, useTransition } from "react";
 
@@ -42,6 +43,7 @@ export const CHROME_STRINGS: Record<string, { fa: string; en: string }> = {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [locale, setLocaleState] = useState<Locale>("fa");
   const [, startTransition] = useTransition();
 
@@ -69,17 +71,10 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem("endoora_ui_locale") as Locale | null;
-      if (saved === "en") {
-        window.localStorage.removeItem("endoora_ui_locale");
-      }
-    } catch {
-      // ignore storage errors
-    }
-    setLocaleState("fa");
-    applyLocaleToDom("fa");
-  }, []);
+    const pathLocale = /^\/en(?:\/|$)/.test(pathname) ? "en" : "fa";
+    setLocaleState(pathLocale);
+    applyLocaleToDom(pathLocale);
+  }, [pathname]);
 
   const setLocale = (newLocale: Locale) => {
     startTransition(() => {
