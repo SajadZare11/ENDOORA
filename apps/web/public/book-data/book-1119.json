@@ -1,0 +1,37 @@
+{
+  "id": "book-1119",
+  "titleFa": "کتاب The Five Dysfunctions of a Team: A Leadership Fable",
+  "titleEn": "The Five Dysfunctions of a Team: A Leadership Fable",
+  "author": "Patrick Lencioni",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «The Five Dysfunctions of a Team: A Leadership Fable» نوشته Patrick Lencioni یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Five Dysfunctions of a Team: A Leadership Fable»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-business/1119.-.The.Five.Dysfunctions.of.a.Team.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "The Five Dysfunctions of a Team: A Leadership Fable Details: • Patrick M. Lencioni Once again using an astutely written fictional tale to unambiguously but painlessly deliver some hard truths about critical business procedures, Patrick Lencioni targets group behavior in the final entry of his trilogy of corporate fables. And like those preceding it, <I>The Five Dysfunctions of a Team</I> is an entertaining, quick read filled with useful information that will prove easy to digest and implement.This time, Lencioni weaves his lessons around the story of a troubled Silicon Valley firm and its unexpected choice for a new CEO: an old-school manager who had retired from a traditional manufacturing company two years earlier at age 55. Showing exactly how existing personnel failed to function as a unit, and precisely how the new boss worked to reestablish that essential conduct, the book's first part colorfully illustrates the ways that teamwork can elude even the most dedicated individuals--and be restored by an insightful leader. A second part offers details on Lencioni's \"five dysfunctions\" (absence of trust, fear of conflict, lack of commitment, avoidance of accountability, and inattention to results), along with a questionnaire for readers to use in evaluating their own teams and specifics to help them understand and overcome these common shortcomings. Like the author's previous books, <I>The Five Temptations of a CEO</I> and <I>Obsessions of an Extraordinary Executive</I>, this is highly recommended. <I>--Howard Rothman</I> The Five Dysfunctions of a Team: A Leadership Fable"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "extractedFromLocalFile": true,
+  "publishYear": "2005"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "book-1023",
+  "titleFa": "کتاب The Happiness Hypothesis: Finding Modern Truth in Ancient Wisdom",
+  "titleEn": "The Happiness Hypothesis: Finding Modern Truth in Ancient Wisdom",
+  "author": "Jonathan Haidt",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «The Happiness Hypothesis: Finding Modern Truth in Ancient Wisdom» نوشته Jonathan Haidt یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Happiness Hypothesis: Finding Modern Truth in Ancient Wisdom»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-psychology/1023.-.The.Happiness.Hypothesis.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "on bad psychology because it is only based on human rationality—the rider—and has nothing to do with human emotions—the elephant. Moral education, for instance in our treatment of animals, will be more effective if it is supported by emotions. Meaning is another important issue in Haidt’s work; not as a linguistic problem of ﬁnding a deﬁnition or metaphor, but as a question of purpose in life. Haidt makes a distinction between two questions: 1. What is meaning or the purpose of life? 2. What is meaning or the purpose within life? The ﬁrst question looks at life from the outside, it looks at people—and every- thing else—as objects. This question is properly addressed by theologians, physicists and biologists. The second question looks at life from the inside, from the living subject’s point of view. According to Haidt this second question is empirical and can be examined by scientiﬁc means; this question is properly addressed by theologians, philosophers and psychologists. Haidt ignores the ﬁrst question and tries to answer the second one. At that point he returns to the external conditions C in his happiness formula. Love and work—at the borderline between internal needs and external opportunities!—are in his vision the most important conditions for a meaningful and happy life. Meaning and happiness are obviously closely connected in Haidt’s vision. Haidt’s book is obviously an excellent piece of work. Perhaps we can make just two critical comments. Haidt’s argument that ‘‘an ethics of virtue’’ is important for individual happiness as a type of practical wisdom is convincing. There is much to be said in favor of stimulating such wisdom in schools and otherwise; even if schools and people prioritize different virtues. However, a broader interpretation of morality to incorporate such ‘‘ethics of virtue’’, is debatable. Modern morality and ethics are indeed about speciﬁc dilemmas in human relations and seek rational and socially acceptable solutions. There is nothing wrong with that. The real problem appears to be the lack of implementation of morality. Discrepancies between rationality and emotions—or the rider and the elephant—contribute to this failure, but a broader interpretation of morality would only disguise this problem, without offering a solution. A broader interpretation could also create serious conceptual problems, because the distinctions between morality, social values and individual virtues would become unruly. A second critical remark concerns Haidt’s vision on meaning within life. He believes that theologians, philosophers and psychologists can ﬁnd meaning in life by scientiﬁc research, since meaning is a suitable object for empirical research. This is also debatable. People can only create their own meaning, as individuals or collectivities, by the attribution of values to anything they choose. This attribution is a nice object for social research but this research will never provide us with any answers about the meaning within life as such. We must always make our own decisions about values and meaning within our own life! Book Review 301 123"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "extractedFromLocalFile": true,
+  "publishYear": "2007"
+}

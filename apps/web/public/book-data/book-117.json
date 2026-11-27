@@ -1,0 +1,86 @@
+{
+  "id": "book-117",
+  "titleFa": "کتاب Huckleberry Finn",
+  "titleEn": "Huckleberry Finn",
+  "author": "Mark Twain (Retold by Diane Mowat)",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B1",
+  "introFa": "کتاب «Huckleberry Finn» نوشته Mark Twain (Retold by Diane Mowat) یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Huckleberry Finn»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-skills/117.-.Huckleberry.Finn.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 8,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Welcome to Saddleback’s Illustrated Classics™ We are proud to welcome you to Saddleback’s Illustrated Classics™. Saddleback’s Illustrated Classics™ was designed specifically for the classroom to introduce readers to many of the great classics in literature. Each text, written and adapted by teachers and researchers, has been edited using the Dale-Chall vocabulary system. In addition, much time and effort has been spent to ensure that these high-interest stories retain all of the excitement, intrigue, and adventure of the original books. With these graphically Illustrated Classics™, you learn what happens in the story in a number of different ways. One way is by reading the words a character says. Another way is by looking at the drawings of the character. The artist can tell you what kind of person a character is and what he or she is thinking or feeling. This series will help you to develop confidence and a sense of accomplishment as you finish each novel. The stories in Saddleback’s Illustrated Classics™ are fun to read. And remember, fun motivates!"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Overview Everyone deserves to read the best literature our language has to offer. Saddleback’s Illustrated Classics™ was designed to acquaint readers with the most famous stories from the world’s greatest authors, while teaching essential skills. You will learn how to: • Establish a purpose for reading • Use prior knowledge • Evaluate your reading • Listen to the language as it is written • Extend literary and language appreciation through discussion and writing activities Reading is one of the most important skills you will ever learn. It provides the key to all kinds of information. By reading the Illustrated Classics™, you will develop confidence and the self-satisfaction that comes from accomplishment— a solid foundation for any reader."
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "Step-By-Step The following is a simple guide to using and enjoying each of your Illustrated Classics™. To maximize your use of the learning activities provided, we suggest that you follow these steps: 1. Listen! We suggest that you listen to the read-along. (At this time, please ignore the beeps.) You will enjoy this wonderfully dramatized presentation. 2. Pre-reading Activities. After listening to the audio presentation, the pre-reading activities in the Activity Book prepare you for reading the story by setting the scene, introducing more difficult vocabulary words, and providing some short exercises. 3. Reading Activities. Now turn to the “While you are reading” portion of the Activity Book, which directs you to make a list of story-related facts. Read-along while listening to the audio presentation. (This time pay attention to the beeps, as they indicate when each page should be turned.) 4. Post-reading Activities. You have successfully read the story and listened to the audio presentation. Now answer the multiple-choice questions and other activities in the Activity Book."
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 4,
+          "content": [
+            "Remember, “Today’s readers are tomorrow’s leaders.”"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 5,
+          "content": [
+            "Samuel Clemens Samuel Langhorne Clemens, an American novelist, wrote under the pen name of Mark Twain. He is known as one of the major authors of American fiction and the greatest humorist in American literature. He was born in 1835 in Florida, Missouri. His family moved to Hannibal, Missouri, a village on the Mississippi River in 1839. His father died in debt in 1847, and Samuel Clemens went to work for a newspaper and printing firm. He had little formal education, learning what he needed to know while working in the printing business. In 1857, Clemens decided to become a riverboat pilot. His pen name, Mark Twain, comes from a riverboat term meaning two fathoms (a depth of 12 feet, or 3.7 meters). In 1861, the Civil War stopped commercial boat traffic on the Mississippi, and Clemens left the river. He wrote many books including The Prince and the Pauper and A Connecticut Yankee in King Arthurʼs Court. The Adventures of Huckleberry Finn tells the story of two runaways—young Huck Finn and a slave named Jim. The book is a sequel to The Adventures of Tom Sawyer. Samuel Clemens died in 1910."
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 6,
+          "content": [
+            "Saddleback’s Illustrated Classics™ THE ADVENTURES OF MARK TWAIN THE MAIN CHARACTERS"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 7,
+          "content": [
+            "Then I climbed a tree. But after two hours..."
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 8,
+          "content": [
+            "Three Watson Irvine, CA 92618-2767 Website: www.sdlback.com Saddleback eBook"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 8,
+  "extractedFromLocalFile": true,
+  "publishYear": "2006"
+}

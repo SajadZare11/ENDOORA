@@ -1,0 +1,36 @@
+{
+  "id": "book-1018",
+  "titleFa": "کتاب Awakenings",
+  "titleEn": "Awakenings",
+  "author": "Oliver Sacks",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «Awakenings» نوشته Oliver Sacks یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Awakenings»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-psychology/1018.-.Awakenings.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Book Reviews this comparison is not made here but a comparative study of the two drugs would make a most interesting investigation. One is also reminded ofRauwolfia from Ancient India which turned out to have a hypotensive action. The author has written a very interesting and useful book, but it is a pity that the documentation is rather limited. HANS FLOCK, Medicinal plants, translated by J. M. Rowson, London, W. Foul- sham, 1976, 8vo, pp. 188, illus., £2.95. F. MITTON and V. MITTON, Mitton's practical modern herbal, London, W. Foulsham, 1976, 8vo, pp. 134, illus., £2.95. There has of late been a resurgence of interest in \"natural\" methods of medication by diet and herbs, and no doubt these books are products of it. Each lists herbal remedies and the first describes each plant in turn alphabetically, with information on its appearance, the parts used, habitat and collection, constituents and actions, and usage. It also has a brief section on ailments and their treatment. The second is much the same, but with less information on the herbs themselves, and more errors. The historian of medicine will be interested in comparing the herbal remedies suggested here with very similar therapy practised millennia ago. Without doubt some of them have pharmacological actions, but it is always dangerous to encourage the layman to treat himself and so obscure or delay the recognition of diseases successfully treatable only by modern means. OLIVER W. SACKS, Awakenings, Harmondsworth, Middx., Penguin Books, 1976, 8vo, pp. 344, illus., £1.00 (paperback). The author is a neurologist and he describes the victims of encephalitis lethargica who survived this disease fifty years ago and now, through the agency of a new drug L-Dopa, have \"awakened\". After an introduction he gives a series of twenty extended case histories of his patients, followed by essays on perspectives, awakening, tribula- tion and accommodation. Throughout, he writes with great sensitivity and subtlety concerning the patient as well as his specific disease, and the accounts of the patients are brilliant depictions. First published in 1973, the present edition has additional material in the form of footnotes. This includes further clinical observations and reflections which together constitute a third of the book. The basic structure of the book is therefore undis- turbed. The first edition was greeted enthusiastically and this one adds to the original qualities. It is a moving contribution to the history of a devastating epidemic, a tragic aftermath, and of a remarkable drug. In addition to Dr. Sacks' concern with a particu- lar disease he also writes shrewdly on disease as a process so that this book will also be of value to historians of other disorders, as well as to clinicians. RICHARD SAUNDERS, Poor Richard; the almanacks for the years 1733-1758.... New York and London, Paddington Press, 1976, 4to, pp. xiii, 300, illus., £7.95. Of Benjamin Franklin's multifarious publications none was more popular than his classic of American letters, Poor Richard's almanacks. In colonial America they had a wide readership, as was also the case in France. They were full of useful information, much like the many other almanacks available then and still published today. The 346"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "1973"
+}

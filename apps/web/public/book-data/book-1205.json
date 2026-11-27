@@ -1,0 +1,36 @@
+{
+  "id": "book-1205",
+  "titleFa": "کتاب The Character of Physical Law",
+  "titleEn": "The Character of Physical Law",
+  "author": "Richard P. Feynman",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «The Character of Physical Law» نوشته Richard P. Feynman یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Character of Physical Law»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-science/1205.-.The.Character.of.Physical.Law.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "BOOK AND FILM REVIEWS: The Character of Physical Law Richard P. Feynman, and Elmer Hutchisson Citation: The Physics Teacher 6, 89 (1968); doi: 10.1119/1.2351260 View online: http://dx.doi.org/10.1119/1.2351260 View Table of Contents: http://aapt.scitation.org/toc/pte/6/2 Published by the American Association of Physics Teachers"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "2017"
+}
