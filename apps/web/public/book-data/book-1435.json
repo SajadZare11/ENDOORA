@@ -1,0 +1,44 @@
+{
+  "id": "book-1435",
+  "titleFa": "کتاب The Problems of Philosophy",
+  "titleEn": "The Problems of Philosophy",
+  "author": "Bertrand Russell",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «The Problems of Philosophy» نوشته Bertrand Russell یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Problems of Philosophy»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-philosophy/1435.-.The.Problems.of.Philosophy.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "University of Hawai'i Press is collaborating with JSTOR to digitize, preserve and extend access to Philosophy East and West. http://www.jstor.org Review Source: Philosophy East and West, Vol. 49, No. 1 (Jan., 1999), p. 96 Published by: University of Hawai'i Press Stable URL: http://www.jstor.org/stable/1400126 Accessed: 13-12-2015 07:14 UTC Your use of the JSTOR archive indicates your acceptance of the Terms & Conditions of Use, available at http://www.jstor.org/page/ info/about/policies/terms.jsp JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide range of content in a trusted digital archive. We use information technology and tools to increase productivity and facilitate new forms of scholarship. For more information about JSTOR, please contact support@jstor.org. All use subject to JSTOR Terms and Conditions"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "The Problems of Philosophy. By Bertrand Russell. New York: Oxford University Press, 1997. $8.95. Commemorating the 125th anniversary of his birth, this new edition of Russell's classic introduction to philosophy (originally published in 1912) contains a new, twenty-page introduction by John Perry. The introduction begins with some brief biographical remarks, then proceeds to present in outline the main ideas put forth by Russell in this work, providing a little bit of background along the way. It also here and there attempts to place these ideas within the context of Russell's philosophical development. It is quite obviously aimed at the general reader who may have little or no knowledge of philosophy, though it would by no means be redundant for anyone not well-acquainted with Russell's work. The 155 pages of main text consist of fifteen chapters, each devoted to a partic- ular problem. In selecting the problems to be dealt with, Russell confined himself- we are told in the preface-\"to those problems in regard to which I thought it possible to say something positive and constructive....\" Thus, theory of knowledge is emphasized over metaphysics, and some historically important topics are hardly dealt with at all. The chapters are arranged in somewhat of a sequential order. Although refer- ences to previous chapters are not copious, each takes up a problem suggested or led into by the last. For example, the opening chapter on \"Appearance and Reality\" is followed by \"The Existence of Matter,\" then \"The Nature of Matter,\" which leads into a chapter on \"Idealism.\" Other topics emphasized include Russell's distinction between knowledge by acquaintance and knowledge by description, induction, general principles and a priori knowledge, universals, the nature of truth (Russell here defends his version of the correspondence theory), and the criteria and limits of knowledge. Russell concludes with a chapter devoted to \"The Value of Philosophy.\" The main text is followed by Russell's own bibliographical note, a list of works by and about Russell, and an index. A Comparative History of World Philosophy. By Ben-Ami Scharfstein. New York: State University of New York Press, 1998. Pp. 685. Paper $29.95. In A Comparative History of World Philosophy, Ben-Ami Scharfstein successfully guides his readers through the world's three foremost philosophical traditions, the European, the Chinese, and the Indian, in a unique way. Basing his work on the argument that the three traditions should be studied together from the beginning of one's philosophical education, Scharfstein divides the book into chapters that focus on particular issues in the history of philosophy. Yet rather than confine himself to the standard practice of merely compiling an anthology, the author not only takes problems central to philosophy and arranges them chronologically in a comparative perspective, but also adds a critical edge to the comparative enterprise by contributing a \"Discussion\" at the end of each chap- 96 Philosophy East & West All use subject to JSTOR Terms and Conditions"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "1912"
+}

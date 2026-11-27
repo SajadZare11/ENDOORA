@@ -1,0 +1,36 @@
+{
+  "id": "book-1286",
+  "titleFa": "کتاب Sync: How Order Emerges from Chaos in the Universe, Nature, and Daily Life",
+  "titleEn": "Sync: How Order Emerges from Chaos in the Universe, Nature, and Daily Life",
+  "author": "Steven Strogatz",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «Sync: How Order Emerges from Chaos in the Universe, Nature, and Daily Life» نوشته Steven Strogatz یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Sync: How Order Emerges from Chaos in the Universe, Nature, and Daily Life»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-science/1286.-.Sync.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "T he title means what the author claims: Mathematics is a key technology of our future. It permeates more and more our everyday life. Nevertheless, the number of students of mathematics and of subjects with a strong mathematical background is decreasing--at least in Germany. How can we change this develop- ment? The intended readership consists of high school graduates, high school teachers, and freshmen in subjects with a strong mathematical \"flavour\" or \"vein.\" But people from all profes- sions with a sufficient interest in math- ematics will profit considerably from this book. I give a sketch of the contents. 9 John Bernoulli's problem of the brachistochrone (1696) and the Fer- mat Principle. The isoperimetric problem and its roots in antiquity. More generally: Calculus of varia- tions, its origin and development. 9 Problems of optimal control. Pontr- jagin's Maximum Principle. Differen- tial Games. The key role of modern numerical mathematics in solving control problems. 9 Problems and methods of Optimal Control and Numerical Analysis in connection with the development of the ISS (International Space Sta- tion). Return of a space shuttle into the at- mosphere. Experiments in space; the Genesis mission. Lagrange points in gravita- tional fields. 9 Automatic steering of aircraft. Com- pensation, or avoiding of \"micro- bursts.\" 9 Optimal planning of robots. Optimal control of chemical processes. Con- trol problems in economics. Computation in real time. Features of this book are an abun- dance of solid historical information, and very informative sections on tech- nical problems involved. The text is supported by very instructive high- quality illustrations. For readers who do not skip the for- mulas, the author offers carefully se- lected (non-trivial) problems. The author is a professor of engi- neering mathematics in the University of Bayreuth (Germany). The book be- longs to a series of textbooks for fu- ture engineers and scientists. A translation of this work into Eng- lish would be desirable. Furtbrunnen 17 71093 Weil im SchOnbuch Germany e-mail: Gerhard,Betsch@t-online.de Sync-How Order Emerges from Chaos in the Universe, Nature, and Daily Life Steven St~vgatz QG, NEW YORK, HYPERION BOOKS, 2004, $US 14 95 ISBN' 0786887214 REVIEWED BY A. W. F. EDWARDS ~ ~eing obliged to stay in my room B.,Ffor several days, wrote the feverish Christiaan Huygens in Febru- ary 1665, \"I have noticed all admirable effect which no-one could ever have imagined. It is that my two newly-made [pendulum] clocks hanging next to each other and separated by one or two feet keep an agreement so exact that the pendulums always oscillate to- gether without variation. After admir- ing this for a while I finally realised that it occurs through a kind of sympathy: mixing up the swings of the pendulums I found that within half an hour they al- ways retm~ to consonance.\" A third of a millennium later the de- signers of London's new Millennium Bridge for pedestrians--claimed as the world's flattest suspension bridge-- were treated to another \"admirable ef- fect\" which perhaps they should have imagined. As the enthusiastic crowd crossed it on opening day its impercep- tible swaying motion caused walkers to adopt an unconscious sailor's roll so as to keep their balance. But of course they did so all together and, as with a child on a swing, positive feedback did the rest. The bridge was closed. Brian Josephson, Nobel Laureate in Physics in 1973, was first with the explanation. Both these stories, and many more, are relayed in Sync, an eloquent grand tour of synchronous behaviour in physical, biological, and human sys- tems. Divided into three parts, Living Sync, Discovering Sync, and Explor- ing Sync, it would have been easier reading if Discovering Sync had come first. Sympathetic pendulums and swaying bridges are more accessible images than firing brain cells and cou- pled oscillators. The physical chapters in Discover- ing Sync are particularly rewarding, partly because they are lighter on au- tobiographical detail. Strogatz almost makes quantum theory and Josephson junctions comprehensible. Living Sync is burdened with a som- niferous chapter \"Sleep and the daily struggle for sync\" about circadian rhythms and experiments in which people spent long periods isolated from any information about the pas- sage of time (but no mention of the Po- lar Eskimos and their dayless winters). In Exploring Sync the author dwells on the inappropriateness of linear models in human affairs--hardly a new thought, but one which needs constant repetition at a time when universities, at least in Europe, are increasingly af- flicted by intervention based on the bureaucratic assumption that each is merely the sum of its parts. A penultimate chapter, \"Small world networks,\" is an interesting account of the properties of communication net- works and how their structure--vary- ing between regular and random--in- fluences the path-lengths between typical nodes. One almost expects a further digression into population ge- nealogies and Bayesian probability net- works, but it is hard to fit network sto- ries into a book on synchrony. There is no mathematics. \"To con- vey the vitality of mathematics to a broad spectrum of readers, I've avoided equations altogether, and rely instead on metaphors and images from everyday life to illustrate the key ideas.\" With considerable success. Gonville and Caius College Cambridge CB2 1TA, U.K. e-mail: awfe@cam.ac.uk \u000e9 2005 Springer Science+Business Media, Inc . Volume 27, Number 1, 2005 89"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "2008"
+}

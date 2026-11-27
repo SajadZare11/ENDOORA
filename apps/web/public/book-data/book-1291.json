@@ -1,0 +1,44 @@
+{
+  "id": "book-1291",
+  "titleFa": "کتاب The Fractal Geometry of Nature",
+  "titleEn": "The Fractal Geometry of Nature",
+  "author": "Benoit B. Mandelbrot",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C2",
+  "introFa": "کتاب «The Fractal Geometry of Nature» نوشته Benoit B. Mandelbrot یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Fractal Geometry of Nature»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-science/1291.-.The.Fractal.Geometry.of.Nature.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "This article is copyrighted as indicated in the article. Reuse of AAPT content is subject to the terms at: http://scitation.aip.org/termsconditions. Downloaded to IP: 155.33.16.124 On: Sun, 30 Nov 2014 20:50:37"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "This article is copyrighted as indicated in the article. Reuse of AAPT content is subject to the terms at: http://scitation.aip.org/termsconditions. Downloaded to IP: 155.33.16.124 On: Sun, 30 Nov 2014 20:50:37"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2014"
+}

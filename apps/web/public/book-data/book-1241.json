@@ -1,0 +1,44 @@
+{
+  "id": "book-1241",
+  "titleFa": "کتاب Sociobiology: The New Synthesis",
+  "titleEn": "Sociobiology: The New Synthesis",
+  "author": "Edward O. Wilson",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C2",
+  "introFa": "کتاب «Sociobiology: The New Synthesis» نوشته Edward O. Wilson یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Sociobiology: The New Synthesis»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-science/1241.-.Sociobiology.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Book Review Experimental Behavioral Ecology and Sociobiology In: Memoriam Karl von Frisch 1886-1982. Edited by Bert HGlldobler and Martin Lindauer. Sunderland, MA: Sinauer Associates, Inc., 1985, 488 pp., $30.00, paperback, $55.00, hardback. Throughout his long and productive career, the Nobel prize-winning ethologist Karl von Frisch combined a physiologist’s love of experiment with a persistent interest in the adaptive func- tions of the mechanisms thus elucidated. This commemorative volume, featuring work by von Frisch’s students and their students and their students, provides continued testimony to the power of evolutionary thinking in directing ex- perimental analyses. The book is based on a symposium held in October 1983 at Mainz. After two brief acco- lades to von Frisch by the editors, the book con- sists of 26 chapters divided into 5 sections: I. Orientation, Learning, Foraging II. The Analysis of Communication Signals III. Communication and Reproductive Behav- ior IV. Social Organization V. Physiology and Societies Most of the authors are well-known researchers. Some concentrate on reviewing their own work, but most range more broadly. A few struggle with English (as did the typesetter). Fifteen chapters review research on social in- sects, while five focus on vertebrates. Another live discuss theoretical topics of broad taxo- nomic relevance, namely optimal foraging the- ory (Cheverton, Kacelnik, and Krebs), infor- mation and manipulation in communication (Ma&), male display and female choice (Brad- bury), kin recognition (Sherman and Holmes), and animal cognition (Griffin). In the remaining chapter, K. E. Linsenmair reviews his engaging research on individual and family recognition in desert woodlice. For readers whose knowledge of social insect research is still based on E. 0. Wilson’s (1971) Insect Societies, the reviews of recent research are mind-boggling. An enormous amount has been discovered about the dance language, about perceptual processing, about mechanisms of social influence, about reproductive behavior, learning, foraging, and much much more in the past 15 years. We especially enjoyed Wehner and Rossel’s account of the honeybee’s problem in navigating by noisy, incomplete polarized light information, Holldobler and Bartz’s cate- gorization and discussion of the mating systems of different species of ants, Roseler’s elucidation of mechanisms of female competition in paper wasps, and Thome’s analysis of the costs and benefits of nest-sharing by queen termites. Re- peatedly, we are led to ponder afresh the rela- tionship between individual and society. In one fine chapter, for example, Bemd Heinrich pro- poses that colony thermoregulation by honey- bees is best understood as the result of individ- uals regulating their own temperatures, and that the concept of colony as “superorganism” has been a distraction. On the other hand, E. 0. Wil- son persuasively applies optimality principles to the analysis of an ant colony’s caste composition and division of labor and advances a theory of 271 0162-3095/85/$03.30 Ethology and Sociobiology 6:271-272 (1985) 8 Elsevier Science Publishing Co., Inc., 1985 52 Vanderbilt Ave., New York, New York 10017"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "212 Book Review “adaptive demography”; the view of colony as “superorganism” is thus vindicated. Readers of Ethology and Sociobiology may be daunted by a book with fifteen dense chapters on social insects, but those who expend the ef- fort will find much food for thought about the mutual relevance of selection theory and me- chanistic analyses, and they may even derive practical inspiration for their own research. Early enthusiasts for the sociobiological revo- lution often disparaged analyses of “mere prox- imate causes,” while favoring the seemingly more profound question of “ultimate causa- tion.” The contributors to this volume exhibit no such parochialism, appreciating that proxi- mate and ultimate analyses are mutually edifying (as, of course, did von Frisch, Tinbergen, and other pioneers of ethology). This point is nicely illustrated by the first two sentences of Chev- et-ton et al’s chapter on optimal foraging: In order to construct an optimality model of be- haviour, one has to identify constraints, and to identify constraints one has to know something about the mechanisms controlling behaviour. Thus optimality modelling implies a knowledge of mech- anisms. Sherman and Holmes’s review of kin recognition research reflects the same swing from purely “strategic” theorizing to the empirical analysis of nuts and bolts; their emphasis upon adaptively specialized learning mechanisms should help those still mired in nature-vs.-nurture confusion. In the book’s final chapter (called an “epi- logue”), Donald Griffin continues his promotion of “cognitive ethology.” Agreeing that a cog- nitive level of analysis is needed in animal be- havior, we wanted to like his chapter, but couldn’t. As in his books, Griflin caricatures psychologists as uninterested in psychology, and he continues to confuse the issue of the util- ity of mentalistic theoretical constructs with the quite separate matter of “consciousness” (which is assuredly not a prerequisite for effec- tive, intelligent cognitive processing, as witness the machinations of the human unconscious!). But while Griffin fruitlessly ponders what ho- neybees might be thinking as they dance, a much more rigorous and satisfying cognitive ethology is proceeding apace, as this fine book amply tes- tifies. Martin Daly and Margo Wilson Department of Psychology McMaster University Hamilton, Ontario, Canada LBS 4Kl"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2002"
+}

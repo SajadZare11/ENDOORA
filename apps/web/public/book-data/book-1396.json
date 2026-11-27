@@ -1,0 +1,44 @@
+{
+  "id": "book-1396",
+  "titleFa": "کتاب Shah of Shahs",
+  "titleEn": "Shah of Shahs",
+  "author": "Ryszard Kapuściński",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «Shah of Shahs» نوشته Ryszard Kapuściński یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Shah of Shahs»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-history/1396.-.Shah.of.Shahs.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Middle East Research and Information Project, Inc. (MERIP) is collaborating with JSTOR to digitize, preserve and extend access to MERIP Middle East Report. http://www.jstor.org Middle East Research and Information Project, Inc. (MERIP) Review Source: MERIP Middle East Report, No. 141, Hidden Wars (Jul. - Aug., 1986), p. 43 Published by: Middle East Research and Information Project, Inc. (MERIP) Stable URL: http://www.jstor.org/stable/3011930 Accessed: 26-10-2015 20:10 UTC Your use of the JSTOR archive indicates your acceptance of the Terms & Conditions of Use, available at http://www.jstor.org/page/ info/about/policies/terms.jsp JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide range of content in a trusted digital archive. We use information technology and tools to increase productivity and facilitate new forms of scholarship. For more information about JSTOR, please contact support@jstor.org. All use subject to JSTOR Terms and Conditions"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "All use subject to JSTOR Terms and Conditions"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2015"
+}
