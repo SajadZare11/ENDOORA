@@ -1,0 +1,36 @@
+{
+  "id": "book-392",
+  "titleFa": "کتاب Zero to One: Notes on Startups, or How to Build the Future",
+  "titleEn": "Zero to One: Notes on Startups, or How to Build the Future",
+  "author": "Peter Thiel & Blake Masters",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «Zero to One: Notes on Startups, or How to Build the Future» نوشته Peter Thiel & Blake Masters یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Zero to One: Notes on Startups, or How to Build the Future»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-modern/392.-.Zero.to.One.Notes.on.Startups.or.How.to.Build.the.Future.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "90 Digital Design from Zero to One: J. D. DANIELS (J. Wiley, 1996, 616 pp., £18.99) A number of good text books on Digital Electronic Design are available, each of which covers the basic fundamentals with emphasis on one or two modern topics. This book is no exception, it covers the theory and design of combi- national and sequential circuits in parts one and two before going to part three with the unusual title of 'mastering design'. Part one consists of four chapters covering number systems, gates, truth tables, boolean algebra, map and tubular minimisation techniques and pro- grammable logic devices. Brief sections are thrown in on present hot topics such as fuzzy logic and evolutionary algorithms. Part two deals with flip flops, shift registers, synchronous counters and synchronous finite state machines. Good examples and a section on micro- programmed sequencing are given, but asynchronous circuits are left out. Part three covers memory, digital communications and serial transmission, arithmetic hardware and register transfer logic. I agree with the authors that this is better than a brief introduction of microprocessors. All chapters conclude with a set of exercises, but no solutions are given, though there is a mention in the preface of a solution manual and a lab manual which I have not seen. Generally, this is a useful book for most undergraduate courses on Electronic and Computer Engineering. A. ALMAINI Professor of Electrical and Electronic Engineering, Napier University Edinburgh Understanding Smart Sensors: R. FRANK (Archtech House, 1996,269 pp., £57 hardback) In a recent issue of this journal (33/1, January 1996), I reviewed the book: Microsensors - Principles and Applications: J. W. GARDNER (J. Wiley, 1994, 331 pp., £19.95 paperback). In that book, Gardner explains that, by using silicon-processing technology (micromachining), it is possible to integrate miniature sensors (microsensors) into integrated-circuit (Ie) chips which will eventually capture world markets in IC measurement systems (micro-instru- ments). It was then explained that smart sensors are IC devices that incorporate both miniature transducers and their signal processors. This, then, is essentially what Frank's book is all about; he deals with smart sensors in great detail. Randy Frank is the Technical Marketing Manager for Motorola's Semi- conductor Products Sector in Phoenix, Arizona. He is also an application specialist in silicon IC sensor-technology. His book is a highly specialised treatise on smart sensors which are currently at the very forefront of IC semiconductor technology. It is not a book for undergraduates, but a book for those engineers and postgraduates who wish to know about the very latest developments in microminiaturisation, its technology, and its diverse possi- bilities."
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "2016"
+}

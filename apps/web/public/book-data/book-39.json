@@ -1,0 +1,65 @@
+{
+  "id": "book-39",
+  "titleFa": "کتاب English Idioms in Use Intermediate",
+  "titleEn": "English Idioms in Use Intermediate",
+  "author": "Michael McCarthy & Felicity O'Dell",
+  "genre": "مهارت‌ها، گرامر و واژگان",
+  "level": "B2",
+  "introFa": "کتاب «English Idioms in Use Intermediate» نوشته Michael McCarthy & Felicity O'Dell یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «English Idioms in Use Intermediate»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-coursebooks/039.-.English.Idioms.in.Use.Intermediate.epub",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 5,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Document Outline • Page_001 • Page_002 • Page_003 • Page_004 • Page_005 • Page_006 • Page_007 • Page_008 • Page_009 • Page_010 • Page_011 • Page_012 • Page_013 • Page_014 • Page_015 • Page_016 • Page_017 • Page_018 • Page_019 • Page_020 • Page_021 • Page_022 • Page_023 • Page_024 • Page_025 • Page_026 • Page_027 • Page_028 • Page_029 • Page_030 • Page_031 • Page_032 • Page_033 • Page_034 • Page_035 • Page_036 • Page_037 • Page_038 • Page_039 • Page_040 • Page_041"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "• Page_042 • Page_043 • Page_044 • Page_045 • Page_046 • Page_047 • Page_048 • Page_049 • Page_050 • Page_051 • Page_052 • Page_053 • Page_054 • Page_055 • Page_056 • Page_057 • Page_058 • Page_059 • Page_060 • Page_061 • Page_062 • Page_063 • Page_064 • Page_065 • Page_066 • Page_067 • Page_068 • Page_069 • Page_070 • Page_071 • Page_072 • Page_073 • Page_074 • Page_075 • Page_076 • Page_077 • Page_078 • Page_079 • Page_080 • Page_081 • Page_082 • Page_083 • Page_084 • Page_085"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "• Page_086 • Page_087 • Page_088 • Page_089 • Page_090 • Page_091 • Page_092 • Page_093 • Page_094 • Page_095 • Page_096 • Page_097 • Page_098 • Page_099 • Page_100 • Page_101 • Page_102 • Page_103 • Page_104 • Page_105 • Page_106 • Page_107 • Page_108 • Page_109 • Page_110 • Page_111 • Page_112 • Page_113 • Page_114 • Page_115 • Page_116 • Page_117 • Page_118 • Page_119 • Page_120 • Page_121 • Page_122 • Page_123 • Page_124 • Page_125 • Page_126 • Page_127 • Page_128 • Page_129"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 4,
+          "content": [
+            "• Page_130 • Page_131 • Page_132 • Page_133 • Page_134 • Page_135 • Page_136 • Page_137 • Page_138 • Page_139 • Page_140 • Page_141 • Page_142 • Page_143 • Page_144 • Page_145 • Page_146 • Page_147 • Page_148 • Page_149 • Page_150 • Page_151 • Page_152 • Page_153 • Page_154 • Page_155 • Page_156 • Page_157 • Page_158 • Page_159 • Page_160 • Page_161 • Page_162 • Page_163 • Page_164 • Page_165 • Page_166 • Page_167 • Page_168 • Page_169 • Page_170 • Page_171 • Page_172 • Page_173"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 5,
+          "content": [
+            "• Page_174 • Page_175 • Page_176 • Page_177 • Page_178 • Page_179 • Page_180 • Page_181 • Page_182"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 5,
+  "extractedFromLocalFile": true,
+  "publishYear": null
+}

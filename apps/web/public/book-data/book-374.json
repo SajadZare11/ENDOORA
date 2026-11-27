@@ -1,0 +1,44 @@
+{
+  "id": "book-374",
+  "titleFa": "کتاب The Selfish Gene",
+  "titleEn": "The Selfish Gene",
+  "author": "Richard Dawkins",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «The Selfish Gene» نوشته Richard Dawkins یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The Selfish Gene»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-modern/374.-.The.Selfish.Gene.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "AGGRESSIVE BEHAVIOR Volume 3, pages 393-394 @ 1977 Alan R. Liss. Inc. Book Review THE SELFISH GENE, by Richard Dawkins. Oxford University Press: London, 1976, pp. ix + 224. This is the book of the gene games. The rules are simple. Consider one of Dawkins’ examples, the fate of the whisker-flickering gene. Sup- pose that in a contest for survival whisker-flickering is a reliable sign that one contestant is about to give up the fight. The whisker-flickerer would be at a dis- advantage, natural selection would penalize whisker-flickering and, says Dawkins, “The poker face would evolve.” This book has much more in a similar vein, all aimed at an explanation of the evolution of human social behavior in which genes are the sufficient determinants. Shades of Social Darwinism. In the beginning, argues Dawkins, the primeval self-replicating molecules must have competed with others of their own kind. Groups of replicating molecules would further their individual interests by forming coalitions in survival ma- chines, that is, in bodies. There are no limits to what genes can make survival machines do to further their own ends. Points obtained by the survival machines in their struggles with each other (that is, in the gene games) are directly conver- tible into the currency of gene survival. Survival machines enable the genes to survive; genes want to survive, they are selfish. altruism (including those subtle reciprocal tendencies), aggression, family planning, and sexual selection. His gene games are about the parental, sexual. and aggressive interactions between survival machines of the same species. Such games were played by Galton and Darwin. Later, in formulating theories of population genetics, Fisher, Haldane, and Wright made judicious use of similar games. Their mathematical modeling was necessary: Little was known of the re- lationship between genotype and phenotype; and identified genes could rarely be monitored in natural populations. In their models, unlike Dawkins’ games, it was unnecessary to ascribe anything other than a fitness value to an allele at a chromosome locus, in order to investigate the effects of particular circumstances. One such model was designed to examine a situation that had puzzled Darwin: how instances of (apparent) sacrifice of individual benefit for (apparent) group advantage evolve by the mechanism of natural selection. The dictionary defines an altruistic act not by the consequences to the actor but by the actor’s inten- tions. The evolution of altruistic behavior becomes a puzzle if the altruism is From this base Dawkins’ declared aim is to examine the biology of selfishness, 3Y3"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "394 Book Review detrimental to the actor, that is, if it lowers the actor’s fitness. So models have been developed in which the genetic consequences of such self-injurious behavior are examined. But it was unnecessary for the modelers to defend examples of altruistic behavior; their models required only a quantitative change in the fitness values of the alleles specified in the models. mination of each trait he discusses. He has genes for selfishness, genes for sharp meat-eating teeth, a gene for dying of old age, a gene for celibacy, and, of course, genes for altruistic behaviour. Indeed he argues that it is perfectly proper to speak of “a gene for behaviour so-and-so.” Yet on the previous page he asks whether there is any experimental evidence for the genetic inheritance of altruistic be- havior and answers with a firm “No, but that is hardly surprising, since little work has been done on the genetics of any behaviour.” Another argument in this book (in which Dawkins disagrees with E.O. Wilson) is that natural selection acts always on individuals, never on groups. Champion- ing this belief leads him into a self-admitted circular argument in attempting to explain sexual reproduction; here his concept of the selfish gene fails. The individual phenotype can be considered the unit of selection except in out- breeding species, where the population is the unit for exploiting genetical varia- tion; the individual is incomplete. It is interesting to contrast Dawkins’ extreme selectionist viewpoint, which he promulgates in most of this book, with the caution current amongst most popu- lation geneticists. The debate on the role of chance in evolution has led to an in- creased awareness of the ways in which cultural and biological evolution are intimately interwoven; and in the last chapter, the best in the book, Dawkins leaves extreme selectionism to speculate on a unit of cultural transmission, the meme, or unit of imitation. This is an imaginative book that might stimulate some biologists and will infuriate many. The danger, and it is a real danger, is that these gene games will be taken seriously as relevant to the human condition. Readers should take to heart (and ignore subsequent disclaimers) Dawkins’ first sentence (slightly edited): “This book should be read as though it were science fiction.” Dawkins uses this method, but extends it by assuming complete genetic deter- John Gibson Professorial Fellow Research School of Biological Sciences Australian National University Canberra"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2005"
+}

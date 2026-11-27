@@ -1,0 +1,44 @@
+{
+  "id": "book-480",
+  "titleFa": "کتاب Einstein: His Life and Universe",
+  "titleEn": "Einstein: His Life and Universe",
+  "author": "Walter Isaacson",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «Einstein: His Life and Universe» نوشته Walter Isaacson یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Einstein: His Life and Universe»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-science/0480.-.Einstein.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Index | Comments and Contributions | Index Jokes with Famous Scientists Albert Einstein Albert Einstein (1879-1955), German-Swiss physicist, developed the special and general relativity theory. He received the Nobel prize in physics in 1921 for the explanation of the photo-electric effect. • laws of mathematics and reality quotation • Why did Einstein cross the road? • A Brief history of Gravity • Relativity (poem) • Stein limerick • Pope & Squire poem/quotation • The Einstein and the Eddington • Schroedinger, Erwin! Professor of physics! (poem) • no energy from the atom • silly theory • Sorry for the lord • Malicious? • simple and difficult tasks (quote) • not stupid • Relative pun • Einstein in Mexico (pun) • Einstein on the toilet • A beer for my friend • Einstein and Heisenberg walking • Einstein in a train • Why did the chicken cross the road? • Einstein and relatives • Constant and Einstein • tongue(picture) • picture • Hide-n-seek • Invitation to a scientists' ball • At the Scientists Party • Scientists at a bar • Einstein limerick"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "• Einstein in Heaven • stand-up comedy • Mimosa and lion • Research • Einstein feeling gloomy • Einstein quotes • rather be a plumber • God does not play dice • tamed metaphysicist • Einstein's profession • Einstein as a violinist • German music • co-ed college • beans • Formal occasions • Still alive • Wheels • rejected by many • Einstein never has to dress well • Exam answers • Marilyn Monroe • words • Einstein's driver • Mrs. Einstein in an American lab • Einstein's second greatest contribution • Cheering Einstein and Chaplin Index | Comments and Contributions"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": null
+}

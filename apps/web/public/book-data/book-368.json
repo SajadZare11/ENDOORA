@@ -1,0 +1,37 @@
+{
+  "id": "book-368",
+  "titleFa": "کتاب A Brief History of Time",
+  "titleEn": "A Brief History of Time",
+  "author": "Stephen Hawking",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «A Brief History of Time» نوشته Stephen Hawking یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «A Brief History of Time»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-modern/368.-.A.Brief.History.of.Time.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "4°8 Book Reviews (p. 22I). The 'very essence of this book' is said to be encapsulated in the statement: A universe, which science shows to be real and specifically so, will not fail to point beyond its specific phases to an origin which has to be a factor metaphysically beyond the universe. The altern- ative is to be trapped in regress to infinity and to use the word universe without meaning by it the very validity of consistently interacting things (p. 52). Overkill is characteristic ofJ aki's method. Immensely learned, he exhibits no sympathy with those whose views deviate in the slightest degree from his own. They are arrogantly condemned (including, in a footnote or two, this reviewer), though G. K. Chesterton (not everyone's example of an exact thinker) is commended. The most interesting chapter is the one in whichJaki argues that Godel's proof of the incompleteness of mathematics invalidates the attempt of mathematical physicists to argue for a necessary theory. His forte is denunciation rather than construction. Jaki is severely critical of conventional quantum theory, without indicating what empirically adequate theory he would put in its place. Altogether an interesting and infuriating book. JOHN POLKINGHORNE Queens) College, Cambridge JudaisDl and its Social Metaphors: Israel in the History of Jewish Thought By JACOB NEUSNER Cambridge University Press I g8g xiii + 258 pp. £25 hlb It is in the nature of religious systems to create, in respect of their devotees, social entities which transcend the natural links of family, nation or race and to use metaphor (for example Christians as 'the body of Christ') to describe such abstract entities. Fundamental to Judaism's self-identity is the conviction that all true Jews constitute an 'Israel' in continuity with the ancient Israel of which its received Scriptures speak. The purpose of this new book by Professor Jacob Neusner, Ungerleider Distinguished Scholar ofJudaic Studies and Co-Director of the Program in Judaic Studies of Brown University, is to examine this notion. He investigates the variety of meanings given to the category 'Israel' by Jewish sages, considers the underly- ing metaphors used to define 'Israel' and elucidates the social and political circumstances in which particular metaphors (for example 'Israel' as the extended family of the patriarchs, as chosen people or nation in relation to other nations, as a supernatural entity and sui generis) were employed. Neusner's study limits itself to only one form of Judaism, the Judaism of the dual Torah (written and oral) that took shape in the first six centuries of our era. It was a Judaism which emerged, at Oakland University on June 5, 2016 tjx.sagepub.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "extractedFromLocalFile": true,
+  "publishYear": "2010"
+}

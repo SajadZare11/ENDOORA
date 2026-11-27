@@ -1,0 +1,36 @@
+{
+  "id": "book-483",
+  "titleFa": "کتاب When Breath Becomes Air",
+  "titleEn": "When Breath Becomes Air",
+  "author": "Paul Kalanithi",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «When Breath Becomes Air» نوشته Paul Kalanithi یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «When Breath Becomes Air»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-science/0483.-.When.Breath.Becomes.Air.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "34 / 8 March 2017 / volume 31 number 28 nursingstandard.com Excellent  Very good  Good  Average  Poor  opini n / reviews People in North Wales who need treatment for an injury can now obtain up-to-the minute information on waiting times at the region’s minor injuries units and emergency departments. Betsi Cadwaladr University Health Board has teamed up with the University Hospitals of North Midlands NHS Trust to develop a smartphone app that shows how many people are waiting at different hospitals, as well as waiting times for patients needing non-urgent treatment. The app helps users choose an emergency department or walk-in centre. It gives opening times, contact details, directions to different units, and outlines of the care they provide. Making this information easily available is intended to help people choose the best place to receive help. However, the app only covers parts of Staffordshire and Wales. Requires iOS 8.1 or later. Compatible with iPhone, iPad, and iPod touch. Also available on Android. Reviewed by Layla Haidrani, RCNi editorial assistant Live Wait Times  When Breath Becomes Air  Paul Kalanithi died from lung cancer in March 2015, aged 37, while working on this memoir. The book is largely a reflection on one question: what makes life meaningful and virtuous? Drawing on much-loved literature, Kalanithi explores possible answers at each stage of his life: as a medical student, promising neurosurgeon, patient and new father. Beautifully written, in a calm, matter-of-fact style, the author does not allow for any self- pity and there is a spiritual quality to his musings on life and death. There is much that resonates here. Recalling a young patient who was terrified by brain surgery, Kalanithi opted not to launch into a ‘detached spiel’, detailing the risks and complications, but to discuss the options with the patient and her family. She chose surgery and it was successful: ‘I had met her in a space where she was a person,’ he says, ‘instead of a problem to be solved.’ Paul Kalanithi | The Bodley Head | £12.99 | 256pp | ISBN: 9781847923677 hardback Reviewed by Lisa Berry, editor, Nursing Older People Perioperative Practice Case Book  This book is a welcome addition to the field of perioperative practice, and enhances current knowledge of patient-centred care. Although primarily aimed at operating department practitioners, the content is also relevant to nurses working in anaesthetics and post-anaesthetic care. In addition, the holistic approach towards the patient undergoing surgery is informative for nurses who care for patients before and after an operation. It allows insight into the field for nurses who have not had experience of perioperative practice. The introductory chapter on perioperative care explains the speciality well, and describes different roles. The subsequent chapters describe individual cases that have a focus, with an enquiring style that encourages a reflective approach. Each case is outlined with an introduction and learning outcomes to take away. The ‘stop and think’ sections detail areas of wider learning and application to practice. The complexity of the cases increase as the book progresses, and although they are useful for readers who are new to the specialty, it does not mean they must be read in order. The text is supported by comprehensive references and further reading that is current and from a variety of sources, providing additional opportunity for evidence-based knowledge. Hannah Abbott and Stephen Wordsworth | Open University Press | 288pp | £24.99 | ISBN: 9780335263462 Reviewed by Tracey Radcliffe, clinical governance lead nurse, Ysbyty Glan Clwyd, Betsi Cadwaladr University Health Board Downloaded from RCNi.com by ${individualUser.displayName} on Apr 06, 2017. For personal use only. No other uses without permission. Copyright © 2017 RCNi Ltd. All rights reserved."
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "2017"
+}

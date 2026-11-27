@@ -1,0 +1,54 @@
+{
+  "id": "book-55",
+  "titleFa": "کتاب Collins COBUILD Advanced Learner's Dictionary",
+  "titleEn": "Collins COBUILD Advanced Learner's Dictionary",
+  "author": "HarperCollins Publishers",
+  "genre": "مهارت‌ها، گرامر و واژگان",
+  "level": "C2",
+  "introFa": "کتاب «Collins COBUILD Advanced Learner's Dictionary» نوشته HarperCollins Publishers یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Collins COBUILD Advanced Learner's Dictionary»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-skills/055.-.Collins.COBUILD.Advanced.Learner.s.Dictionary.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 3,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "دیکشنری کالینز کوبیلد (Collins COBUILD) یکی از معتبرترین فرهنگ‌های لغت بر پایه پیکره زبانی (Corpus) برای زبان‌آموزان پیشرفته است.",
+            "این مرجع ارزشمند شامل بیش از ۱۰۰,۰۰۰ واژه، اصطلاح، ساختار گرامری و همایند (Collocation) در زبان انگلیسی معاصر است.",
+            "در این سامانه می‌توانید ساختار مدخل‌ها و تعاریف توضیحی با جملات کامل (Full-sentence definitions) را مطالعه فرمایید."
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "برای استفاده آفلاین کامل از کلیه ۱۰۷۰ صفحه و جستجوی واژگان، فایل مرجع کامل از دکمه «📄 نسخه اصل فایل» و پنل ضمیمه‌ها قابل دریافت است."
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "سیستم بسامد ستاره‌دار کالینز: واژگان با علامت‌های ۱ تا ۵ الماس درجه‌بندی شده‌اند تا مهم‌ترین لغات پرکاربرد مشخص شوند.",
+            "علائم فونتیک IPA دقیق بریتانیایی و آمریکایی برای هر مدخل درج شده است.",
+            "کادرهای کاربردی Word Web و Word Partnership برای تقویت مهارت اسپیکینگ و رایتینگ آکادمیک."
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 3,
+  "publishYear": null
+}
