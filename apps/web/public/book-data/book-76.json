@@ -1,0 +1,79 @@
+{
+  "id": "book-76",
+  "titleFa": "کتاب Cambridge IELTS Practice Tests 16 (Academic)",
+  "titleEn": "Cambridge IELTS Practice Tests 16 (Academic)",
+  "author": "Cambridge English",
+  "genre": "مهارت‌ها، گرامر و واژگان",
+  "level": "C1",
+  "introFa": "کتاب «Cambridge IELTS Practice Tests 16 (Academic)» نوشته Cambridge English یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Cambridge IELTS Practice Tests 16 (Academic)»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-skills/0076.-.Cambridge.IELTS.Practice.Tests.16.Academic.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 7,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Link Library"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Link Library Link_Library Click Join us for FREE"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "Link_Library Link Library"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 4,
+          "content": [
+            "Shared By Aykhan Quliyev TDV-BTL <3 Link Library"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 5,
+          "content": [
+            "Link_Library Link Library Join us for FREE Mateials Click"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 6,
+          "content": [
+            "Link_Library"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 7,
+          "content": [
+            "Link_Library"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 7,
+  "extractedFromLocalFile": true,
+  "publishYear": "2020"
+}

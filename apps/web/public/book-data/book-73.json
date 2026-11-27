@@ -1,0 +1,37 @@
+{
+  "id": "book-73",
+  "titleFa": "کتاب Strategic Reading 1, 2, 3",
+  "titleEn": "Strategic Reading 1, 2, 3",
+  "author": "Jack C. Richards & Samuela Eckstut-Didier",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «Strategic Reading 1, 2, 3» نوشته Jack C. Richards & Samuela Eckstut-Didier یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Strategic Reading 1, 2, 3»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-skills/073.-.Strategic.Reading.1.2.3.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "The Australian Library Journal 189 MAY 2005 Book reviews information formats offer new options for preservation and wider accessibility but also present new challenges for effective collection management and control. The symposium participants bring a variety of expertise to their presentations. They include university librarians, museum directors, FBI and security agents, historians and digitisation experts, as well as risk management and emergency preparedness consultants. Examining ways in which institutions can effectively provide steward- ship in its broadest sense to ensure that the accumulated knowledge of the past is available to future generations, these people are united by a vision of collaborative partnerships for sharing information which will result in national and international preservation and access programs. The book is well indexed, and each paper has a well-constructed summary, together with a list of keywords which identify themes presented in each. Additional footnotes suggest further reading directly addressing stewardship concerns. The Strategic Stewardship of Cultural Resources will make a valuable addition to the libraries of those responsible for developing strategic plans for heritage conservation. It will provide guidance in making informed choices for librarians, museum directors, security professionals, archivists and people in related fields. Helen Dunford, TAFE Tasmania Into the maze Norman, Sandy Practical copyright for information professionals: the CILIP handbook London: Facet Publishing, 2004. 208p £24.95 soft ISBN 1856044904 Padfield, Tim Copyright for archivists and users of archives 2nd ed London: Facet Publishing, 2004. 280p £24.95 soft ISBN 1856045129 F inding practical ways to manage copyright has become an information access issue familiar to those dealing with intellectual property and associated rights and responsibilities, and especially the intricacies of unpublished work. These two books by Norman and Padfield can be viewed as a set. Padfield’s work, first published in 2001 and now in its second edition, incorporates changes in legislation. Had they been condensed into one book, the result would have been a definitive handbook for copyright compliance for information professionals working with a range of published and unpublished copyright material. This approach might be considered for any further editions. Both books contain related information presented in a similar order, are clearly set out for locating information, but use a different style of presentation. Norman commences each chapter will a list of points covered in that chapter and concludes each with a summary list of points to remember. She includes a glossary of acronyms and selected terms, an appendix of sample forms, contact details of organisations and an index. Her book ends with case studies and frequently asked questions and suggestions for further reading and sources of copyright information. By comparison, …these two books will quickly find their way onto office and library bookshelves. Downloaded by [163.172.152.231] at 06:04 07 June 2016"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "extractedFromLocalFile": true,
+  "publishYear": "2001"
+}

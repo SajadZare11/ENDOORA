@@ -1,0 +1,36 @@
+{
+  "id": "book-627",
+  "titleFa": "کتاب Presumed Innocent",
+  "titleEn": "Presumed Innocent",
+  "author": "Scott Turow",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «Presumed Innocent» نوشته Scott Turow یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Presumed Innocent»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v2-thriller/627.-.Presumed.Innocent.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "EDITORIAL NOVEMBER 2005 VOL 2 NO 11 NATURE CLINICAL PRACTICE GASTROENTEROLOGY & HEPATOLOGY 493 www.nature.com/clinicalpractice/gasthep At the World Congress of Gastroenterology in September, I had the opportunity to debate the benefits of a ‘top-down’ approach to the treat- ment of Crohn’s disease, beginning with bio- logic (anti-tumor necrosis factor [TNF]) therapy, versus our current ‘step-up’ algorithms, which initiate treatment with conventional agents and defer biologic therapy until patients declare themselves refractory to aminosalicylates, corticosteroids or immunosuppressants. I took an evidence-based approach to the data and made several proposals. First, that the natural history of Crohn’s disease and its evolution to strictures or fistulae necessitating surgical resection has not been altered by con- ventional treatment. Second, that anti-TNF therapy is effective even when the disease is refractory to conventional approaches. Third, that the primary costs related to hospitaliza- tion and surgery are reduced when patients are given anti-TNF therapy. Finally, I proposed that there are fewer adverse events with anti-TNF therapy than with corticosteroids. Evidence from rheumatoid arthritis studies supports early intervention with biologic thera- pies, showing that it can prevent the appear- ance or progression of joint erosions. Studies are now underway to evaluate the earlier introduction of biologic anti-TNF therapy for Crohn’s disease. The argument for reversing our current thera- peutic pyramids for both Crohn’s disease and ulcerative colitis seems to be compel- ling. Despite the ‘evidence’, however, I don’t really believe that we are ready to accept an in discriminate top-down approach. There are two conceptual reasons why we should hesi- tate to reverse the therapeutic pyramids for the treatment of inflammatory bowel disease. The first reason is the need to provide evi- dence of real ‘disease modification’. Our rheumatology colleagues have the advantage of demonstrating radiographic evidence for prevention or progression of joint erosions. We have no such ‘end-points’ for Crohn’s disease. We are currently relying on the surrogate effects of ‘mucosal healing’ (which is still ill-defined) on hospitalization, surgery and quality-of-life end- points over 1 year, while strictures and fistulae can evolve over decades. The second reason, and one that is very important, is that of patient selection. While we can describe the average evolution of Crohn’s disease from inflammatory changes to transmural complications, these do not pro- gress in all patients. Indeed, excluding patients seen in tertiary referral centers, less than half of patients with Crohn’s disease ever require corticosteroid therapy; a group one would, therefore, be hesitant to initiate on biologic therapy without more evidence of its safety and efficacy. In an era of evidence-based medicine we must therefore be able to apply the data (using a col- league’s phrase) to where the “rubber meets the road”. In other words, we must be able to apply the evidence to specific patient subgroups, or better still, individual patients. Unfortunately, our evidence base is often in sufficient to allow such discrimination. Even in relatively large clinical tri- als in inflammatory bowel disease, the hetero- geneity of the disease, limitations of our current end-points, and insufficient sample sizes for subgroup analyses preclude the application of data to many disease scenarios, including patients with mild disease. At present, therefore, if we presume inno- cence—mild, non-progressive disease—we should hold off on a top-down approach. If, however, we presume guilt—refractory or pro- gressive disease—a more aggressive attempt at disease modification is warranted. For these reasons, we should focus our attention on definitions of disease modification and the identification of predictive factors of disease progression. Top-down versus step-up approaches to chronic inflammatory bowel disease: presumed innocent or presumed guilty Stephen B Hanauer I don’t really believe that we are ready to accept an indiscriminate top-down approach SB Hanauer is Editor- in-Chief of Nature Clinical Practice Gastroenterology & Hepatology. Competing interests The author declared competing interests; go to the article online for details. www.nature.com/clinicalpractice doi:10.1038/ncpgasthep0318 Nature Publishing Group © 2005"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "publishYear": "2005"
+}

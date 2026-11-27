@@ -1,0 +1,52 @@
+{
+  "id": "book-653",
+  "titleFa": "کتاب All That Remains",
+  "titleEn": "All That Remains",
+  "author": "Patricia Cornwell",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B2",
+  "introFa": "کتاب «All That Remains» نوشته Patricia Cornwell یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «All That Remains»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v2-thriller/653.-.All.That.Remains.epub",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 3,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "The Air That I Breathe Words and Music by Philip Labonte, Oliver Herbert, Mike Martin and Jeanne Sagan"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Empty Inside Words and Music by Philip Labonte, Oliver Herbert, Mike Martin and Jeanne Sagan"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "Indictment Words and Music by Philip Labonte, Oliver Herbert, Mike Martin and Jeanne Sagan",
+            "Guitar Notation Legend Guitar music can be notated three different ways: on a musical staff, in tablature, and in rhythm slashes. Definitions for Special Guitar Notation",
+            "Additional Musical Definitions"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 3,
+  "publishYear": null
+}
