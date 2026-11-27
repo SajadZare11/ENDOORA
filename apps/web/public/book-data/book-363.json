@@ -1,0 +1,44 @@
+{
+  "id": "book-363",
+  "titleFa": "کتاب Flow: The Psychology of Optimal Experience",
+  "titleEn": "Flow: The Psychology of Optimal Experience",
+  "author": "Mihaly Csikszentmihalyi",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «Flow: The Psychology of Optimal Experience» نوشته Mihaly Csikszentmihalyi یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Flow: The Psychology of Optimal Experience»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-modern/363.-.Flow.The.Psychology.of.Optimal.Experience.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Tome 16 (2015) – No 1 Leveed and ﬁngered deposit of a bi-disperse mixture of spherical (white) glass ballotini (75–150 μm) and irregular (brown) carborundum grains (315–350 μm) on a chute inclined at 27◦and made of a monolayer of (turquoise) glass ballotini (750–1000 μm). The photo shows an oblique head-on view, with the depth of ﬁeld used to give an impression of distance; regions far away or close to the camera are out of focus. The ﬂow direction is from top to bottom. Each ﬁnger consists of a coarse-rich (brown) levee on either side, lined with an almost pure layer of more mobile ﬁnes (white). This relatively low friction channel lining is progressively revealed as the channel ﬂow (speckled in centre) drains down and stops. This ﬂow self-organization signiﬁcantly enhances the run-out; the formation of ﬁngers and lateral levees prevents the ﬂow from spreading laterally while the ﬁnes lining in the channel reduces basal friction (video). For further details, see J.M.N.T. Gray et al., this issue, pp. 73–85. DOSSIER Granular physics / Physique des milieux granulaires Coordinators / Coordinateurs : Alexandre Valance, Michel Louge • Granular physics Alexandre Valance, Michel Louge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1 • Modeling force transmission in granular materials Farhang Radjai . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3 • Jamming in granular materials Robert P. Behringer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10 • Strain localisation in granular media Jacques Desrues, Edward Andò . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26 • Slow granular ﬂows: The dominant role of tiny ﬂuctuations Martin van Hecke . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37 Continued on the next page"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Contents (continued) • Precursors and triggering mechanisms of granular avalanches Renaud Delannay, Mickaël Duranteau, Vincent Tournat . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45 • Kinetic theory for sheared granular ﬂows Viswanathan Kumaran . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51 • Rheological properties of dense granular ﬂows Pierre Jop . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62 • Particle-size segregation in dense granular avalanches John Mark Nicholas Timm Gray, Parmesh Gajjar, Peter Kokelaar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73 • Debris ﬂows: Experiments and modelling Barbara Turnbull, Elisabeth T. Bowman, Jim N. McElwaine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 86 • The structure of powder snow avalanches Betty Sovilla, Jim N. McElwaine, Michel Y. Louge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 97 • The physics of Aeolian sand transport Alexandre Valance, Keld Rømer Rasmussen, Ahmed Ould El Moctar, Pascal Dupont . . . . . . . . . . . . . . . . . . . . . . . . . . 105 • Dune morphodynamics Sylvain Courrech du Pont . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2015"
+}

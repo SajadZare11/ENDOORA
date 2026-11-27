@@ -1,0 +1,51 @@
+{
+  "id": "book-162",
+  "titleFa": "کتاب A Beautiful Mind (Adapted Reader)",
+  "titleEn": "A Beautiful Mind (Adapted Reader)",
+  "author": "Sylvia Nasar",
+  "genre": "مهارت‌ها، گرامر و واژگان",
+  "level": "B2",
+  "introFa": "کتاب «A Beautiful Mind (Adapted Reader)» نوشته Sylvia Nasar یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «A Beautiful Mind (Adapted Reader)»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-exams/162.-.A.Beautiful.Mind.Adapted.Reader.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 3,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "skilfully done with, from my inexpert point of view, brilliant performances by Russell Crowe as Nash and Jennifer Connelly as Alicia Nash, an excellent script by Akiva Goldsman, and outstanding direction from Ron Howard. I have no quarrel with the Academy Award for best picture or with the various other awards the movie received. I do have a problem with the major inaccuracies and omissions of the movie. Most of these omissions have been dealt with in many other movie reviews of A Beautiful Mind. Notable such omissions include Nash’s alleged homosexual interests and activities, the (heterosexual) affair that led to the birth of Nash’s first son, the fact that Alicia Nash divorced John Nash in 1963, the actual nature of Nash’s delusions, and many negative aspects of Nash’s life. In the movie Nash is a very sympathetic and likeable figure, whereas the real Nash, before becoming dysfunctionally delusional, was cruel, insensitive, and very hard to like. The overall plot ‘arc’ of the movie was transformed into the standard ‘love conquers all’ Hollywood theme, highlighted by the following conclusion to Nash’s movie-version Nobel acceptance speech: ‘What truly is logic? Who decides reason? My quest has taken me to the physical, the metaphysical, the delusional, and back. I have made the most important discovery of my career – the most important discovery of my life. It is only in the mysterious equations of love that any logic or reason can be found. I am only here tonight because of you [looking at and speaking to Alicia]. You are the only reason I am. You are all my reasons. Thank you. [End of speech. Applause from audience.]’ This is a very moving end to an acceptance speech. However, it seems to have been completely invented for the movie. According to the book (p. 380) Nash was not asked to give the customary Nobel Lecture in Stockholm (although he did give an associated research lecture at the University of Uppsala). This movie version of the acceptance speech is pure Hollywood. Love might be a wonderful thing but it seems like nothing more than unthinking sentimentality to assert that logic and reason can be found ‘only in the mysterious equations of love.’ The one inaccuracy in the movie that has not been discussed in standard movie reviews but is central to an economist’s assessment of the movie relates to Nash’s primary intellectual contribution – the Nash equilibrium. I have to give the director and scriptwriter credit for actually attempting to convey the concept, but I am disappointed they could not get it right. The crucial passage occurs fairly early in the movie. The graduate student Nash and some male friends are having drinks in a bar when a group of attractive women walk in. One of the women is a particularly attractive blonde. I apologize in advance for the crudely sexist nature of the dialogue but obviously the director understands that it is easier to sell an intellectual message by mixing it with sex. (And, in all honesty, the scene probably is a fairly accurate depiction of the way male graduate students might have talked in the 1950s while having a beer.) In a quote taken directly from the movie, Nash speaks as follows: 256 J.A. Brander"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "‘Adam Smith needs revision . . . If we all go after the blonde we block each other. Not a single one of us is going to get her. So then we go for her friends. They will all give us the cold shoulder because nobody likes to be second choice. What if no one goes for the blonde and we don’t insult the other girls? That’s the only way we win. That’s the only way we all get laid . . . ‘Adam Smith said that the best result comes from everyone in the group doing what’s best for himself. Incomplete . . . The best result would come from everyone in the group doing what’s best for himself and the group . . . Govern- ing dynamics, gentlemen, governing dynamics . . . Adam Smith was wrong.’ The first paragraph seems intended to convey the central notion of the Nash equilibrium. Unfortunately it is obviously wrong. Given the strategies of the other young men (going after the less attractive women), it is clearly not a best strategy for any one young man to also go after one of the less attractive women. The young man in question would be better off going for the blonde, since he would have a clear field. There is a set of asymmetric Nash equilibria in which one man goes after the blonde and the others go after the less attractive women, and, of course, there is a symmetric mixed strategy equilib- rium as well. In any case, the movie gets the Nash equilibrium concept precisely wrong. It was alarming to hear more than one student at UBC remark that he or she finally understood the Nash equilibrium after seeing the movie! I am not sure what the intent of the second paragraph might be. If the first paragraph had been correct, it might have made the point that the Nash equilibrium often fails to maximize some notion of group welfare (and the real Nash did do early experimental work on the Prisoner’s Dilemma). However, it seems to me that it is an attempt to somehow merge Nash’s three main game theory contributions – the Nash equilibrium, the Nash bargaining solution, and the Nash program – but, like trying to merge three separate melodies, the result is just noise. A very interesting aspect of the book and the movie that I do not have space to write much about is the depiction of schizophrenia and its treatment. For many people, this will be the most interesting and important element of the story. The book handles this very well. As for the movie, it is probably impossible to convey the subjective experience of a schizophrenic in a coherent movie, but the movie adopts a very interesting approach that demonstrates originality and skill, although at the cost of significant inaccuracy. Specifically, the movie presents Nash’s delusions as a coherent alternative reality (with a cold war theme), whereas actual schizophrenic delusions tend to be fragmented and incoherent – and, as it happens, Nash was quite the opposite of a cold warrior and even fought (unsuccessfully) to have his American citizenship revoked. Regrettably, schizophrenia remains a poorly understood disorder that is hard to treat – with many schizophrenics living out lonely and often abbreviated A Beautiful Mind 257"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "lives as homeless people on the streets of major cities (especially in the United States) or in other settings. However, medications are much better than they were in the past, and other aspects of treatment have also improved. Nash himself has many interesting comments to make about schizophrenia. In an oft-quoted response to the question of how he could believe that aliens were sending him coded messages, Nash observed that ‘the ideas I had about supernatural beings came to me the same way that my mathematical ideas did. So I took them seriously.’ And his Nobel Prize autobiographical statement contains the poignant remark that ‘at the present time I seem to be thinking rationally again in the style that is characteristic of scientists. However this is not entirely a matter of joy.’ Both the book and the movie offer a fascinating account of intellectual creativity, schizophrenic delusion, and personal courage and commitment – especially on the part of Alicia Nash. Even after their divorce in 1963 she continued to support and help Nash. As his delusions waned many years later, they resumed an essentially normal married life, which included caring for their only son, John Charles Martin Nash, who also suffers from schizophrenia. Overall, while I take the movie as an essentially fictionalized account and the book as essentially accurate, both are very fine pieces of work that will easily repay the hours a reader or viewer invests in them. 258 J.A. Brander"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 3,
+  "extractedFromLocalFile": true,
+  "publishYear": "2003"
+}

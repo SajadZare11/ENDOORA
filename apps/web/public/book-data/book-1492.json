@@ -1,0 +1,44 @@
+{
+  "id": "book-1492",
+  "titleFa": "کتاب The World of Yesterday: Memoirs of a European",
+  "titleEn": "The World of Yesterday: Memoirs of a European",
+  "author": "Stefan Zweig",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "C1",
+  "introFa": "کتاب «The World of Yesterday: Memoirs of a European» نوشته Stefan Zweig یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح C1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «The World of Yesterday: Memoirs of a European»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v3-philosophy/1492.-.The.World.of.Yesterday.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 2,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Wiley and Royal Institute of International Affairs are collaborating with JSTOR to digitize, preserve and extend access to International Affairs (Royal Institute of International Affairs 1944-). http://www.jstor.org Review Author(s): A. G. A. W. Review by: A. G. A. W. Source: International Affairs (Royal Institute of International Affairs 1944-), Vol. 20, No. 2 (Apr., 1944), p. 270 Published by: on behalf of the Wiley Royal Institute of International Affairs Stable URL: http://www.jstor.org/stable/3018115 Accessed: 03-03-2015 15:27 UTC Your use of the JSTOR archive indicates your acceptance of the Terms & Conditions of Use, available at http://www.jstor.org/page/info/about/policies/terms.jsp JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide range of content in a trusted digital archive. We use information technology and tools to increase productivity and facilitate new forms of scholarship. For more information about JSTOR, please contact support@jstor.org. All use subject to JSTOR Terms and Conditions"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "All use subject to JSTOR Terms and Conditions"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 2,
+  "extractedFromLocalFile": true,
+  "publishYear": "2015"
+}

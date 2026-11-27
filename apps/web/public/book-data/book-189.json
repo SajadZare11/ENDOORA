@@ -1,0 +1,65 @@
+{
+  "id": "book-189",
+  "titleFa": "کتاب A Christmas Carol",
+  "titleEn": "A Christmas Carol",
+  "author": "Charles Dickens (Retold by Clare West)",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "B1",
+  "introFa": "کتاب «A Christmas Carol» نوشته Charles Dickens (Retold by Clare West) یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B1 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «A Christmas Carol»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-readers/0189.-.A.Christmas.Carol.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 5,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Welcome to Saddleback’s Illustrated Classics™ We are proud to welcome you to Saddleback’s Illustrated Classics™. Saddleback’s Illustrated Classics™ was designed specifically for the classroom to introduce readers to many of the great classics in literature. Each text, written and adapted by teachers and researchers, has been edited using the Dale-Chall vocabulary system. In addition, much time and effort has been spent to ensure that these high-interest stories retain all of the excitement, intrigue, and adventure of the original books. With these graphically Illustrated Classics™, you learn what happens in the story in a number of different ways. One way is by reading the words a character says. Another way is by looking at the drawings of the character. The artist can tell you what kind of person a character is and what he or she is thinking or feeling. This series will help you to develop confidence and a sense of accomplishment as you finish each novel. The stories in Saddleback’s Illustrated Classics™ are fun to read. And remember, fun motivates!"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Overview Everyone deserves to read the best literature our language has to offer. Saddleback’s Illustrated Classics™ was designed to acquaint readers with the most famous stories from the world’s greatest authors, while teaching essential skills. You will learn how to: • Establish a purpose for reading • Use prior knowledge • Evaluate your reading • Listen to the language as it is written • Extend literary and language appreciation through discussion and writing activities Reading is one of the most important skills you will ever learn. It provides the key to all kinds of information. By reading the Illustrated Classics™, you will develop confidence and the self-satisfaction that comes from accomplishment— a solid foundation for any reader."
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "Step-By-Step The following is a simple guide to using and enjoying each of your Illustrated Classics™. To maximize your use of the learning activities provided, we suggest that you follow these steps: 1. Listen! We suggest that you listen to the read-along. (At this time, please ignore the beeps.) You will enjoy this wonderfully dramatized presentation. 2. Pre-reading Activities. After listening to the audio presentation, the pre-reading activities in the Activity Book prepare you for reading the story by setting the scene, introducing more difficult vocabulary words, and providing some short exercises. 3. Reading Activities. Now turn to the “While you are reading” portion of the Activity Book, which directs you to make a list of story-related facts. Read-along while listening to the audio presentation. (This time pay attention to the beeps, as they indicate when each page should be turned.) 4. Post-reading Activities. You have successfully read the story and listened to the audio presentation. Now answer the multiple-choice questions and other activities in the Activity Book."
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 4,
+          "content": [
+            "Saddleback’s Illustrated Classics™"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 5,
+          "content": [
+            "Three Watson Irvine, CA 92618-2767 Website: www.sdlback.com Saddleback eBook"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 5,
+  "extractedFromLocalFile": true,
+  "publishYear": "2006"
+}

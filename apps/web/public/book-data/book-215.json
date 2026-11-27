@@ -1,0 +1,479 @@
+{
+  "id": "book-215",
+  "titleFa": "کتاب Treasure Island",
+  "titleEn": "Treasure Island",
+  "author": "Robert Louis Stevenson",
+  "genre": "ادبیات داستانی و ناداستان",
+  "level": "A2",
+  "introFa": "کتاب «Treasure Island» نوشته Robert Louis Stevenson یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح A2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Treasure Island»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-readers/0215.-.Treasure.Island.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل 1",
+      "titleEn": "Chapter 1",
+      "startPage": 1,
+      "endPage": 10,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "Welcome to Saddleback’s Illustrated Classics™ We are proud to welcome you to Saddleback’s Illustrated Classics™. Saddleback’s Illustrated Classics™ was designed specifically for the classroom to introduce readers to many of the great classics in literature. Each text, written and adapted by teachers and researchers, has been edited using the Dale-Chall vocabulary system. In addition, much time and effort has been spent to ensure that these high-interest stories retain all of the excitement, intrigue, and adventure of the original books. With these graphically Illustrated Classics™, you learn what happens in the story in a number of different ways. One way is by reading the words a character says. Another way is by looking at the drawings of the character. The artist can tell you what kind of person a character is and what he or she is thinking or feeling. This series will help you to develop confidence and a sense of accomplishment as you finish each novel. The stories in Saddleback’s Illustrated Classics™ are fun to read. And remember, fun motivates!"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 2,
+          "content": [
+            "Overview Everyone deserves to read the best literature our language has to offer. Saddleback’s Illustrated Classics™ was designed to acquaint readers with the most famous stories from the world’s greatest authors, while teaching essential skills. You will learn how to: • Establish a purpose for reading • Use prior knowledge • Evaluate your reading • Listen to the language as it is written • Extend literary and language appreciation through discussion and writing activities Reading is one of the most important skills you will ever learn. It provides the key to all kinds of information. By reading the Illustrated Classics™, you will develop confidence and the self-satisfaction that comes from accomplishment— a solid foundation for any reader."
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 3,
+          "content": [
+            "Step-By-Step The following is a simple guide to using and enjoying each of your Illustrated Classics™. To maximize your use of the learning activities provided, we suggest that you follow these steps: 1. Listen! We suggest that you listen to the read-along. (At this time, please ignore the beeps.) You will enjoy this wonderfully dramatized presentation. 2. Pre-reading Activities. After listening to the audio presentation, the pre-reading activities in the Activity Book prepare you for reading the story by setting the scene, introducing more difficult vocabulary words, and providing some short exercises. 3. Reading Activities. Now turn to the “While you are reading” portion of the Activity Book, which directs you to make a list of story-related facts. Read-along while listening to the audio presentation. (This time pay attention to the beeps, as they indicate when each page should be turned.) 4. Post-reading Activities. You have successfully read the story and listened to the audio presentation. Now answer the multiple-choice questions and other activities in the Activity Book."
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 4,
+          "content": [
+            "Saddleback’s Illustrated Classics™"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 5,
+          "content": [
+            "Treasure Island 7"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 6,
+          "content": [
+            "8"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 7,
+          "content": [
+            "Treasure Island 9"
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 8,
+          "content": [
+            "10"
+          ]
+        },
+        {
+          "pageNumber": 9,
+          "bookPageNumber": 9,
+          "content": [
+            "Treasure Island 11"
+          ]
+        },
+        {
+          "pageNumber": 10,
+          "bookPageNumber": 10,
+          "content": [
+            "12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-2",
+      "number": 2,
+      "titleFa": "فصل 2",
+      "titleEn": "Chapter 2",
+      "startPage": 11,
+      "endPage": 20,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 11,
+          "content": [
+            "Treasure Island 13"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 12,
+          "content": [
+            "14"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 13,
+          "content": [
+            "16"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 14,
+          "content": [
+            "Treasure Island 17"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 15,
+          "content": [
+            "18"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 16,
+          "content": [
+            "Treasure Island 19"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 17,
+          "content": [
+            "20"
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 18,
+          "content": [
+            "Treasure Island 21"
+          ]
+        },
+        {
+          "pageNumber": 9,
+          "bookPageNumber": 19,
+          "content": [
+            "22"
+          ]
+        },
+        {
+          "pageNumber": 10,
+          "bookPageNumber": 20,
+          "content": [
+            "Treasure Island 23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-3",
+      "number": 3,
+      "titleFa": "فصل 3",
+      "titleEn": "Chapter 3",
+      "startPage": 21,
+      "endPage": 30,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 21,
+          "content": [
+            "24"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 22,
+          "content": [
+            "Treasure Island 25"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 23,
+          "content": [
+            "26"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 24,
+          "content": [
+            "Treasure Island 27"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 25,
+          "content": [
+            "28"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 26,
+          "content": [
+            "Treasure Island 31"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 27,
+          "content": [
+            "30"
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 28,
+          "content": [
+            "Treasure Island 29"
+          ]
+        },
+        {
+          "pageNumber": 9,
+          "bookPageNumber": 29,
+          "content": [
+            "Treasure Island 33"
+          ]
+        },
+        {
+          "pageNumber": 10,
+          "bookPageNumber": 30,
+          "content": [
+            "34"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-4",
+      "number": 4,
+      "titleFa": "فصل 4",
+      "titleEn": "Chapter 4",
+      "startPage": 31,
+      "endPage": 40,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 31,
+          "content": [
+            "Treasure Island 35"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 32,
+          "content": [
+            "36"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 33,
+          "content": [
+            "Treasure Island 37"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 34,
+          "content": [
+            "38"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 35,
+          "content": [
+            "Treasure Island 39"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 36,
+          "content": [
+            "40"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 37,
+          "content": [
+            "Treasure Island 41"
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 38,
+          "content": [
+            "42"
+          ]
+        },
+        {
+          "pageNumber": 9,
+          "bookPageNumber": 39,
+          "content": [
+            "Treasure Island 43"
+          ]
+        },
+        {
+          "pageNumber": 10,
+          "bookPageNumber": 40,
+          "content": [
+            "Treasure Island 45"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-5",
+      "number": 5,
+      "titleFa": "فصل 5",
+      "titleEn": "Chapter 5",
+      "startPage": 41,
+      "endPage": 50,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 41,
+          "content": [
+            "46"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 42,
+          "content": [
+            "Treasure Island 47"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 43,
+          "content": [
+            "48"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 44,
+          "content": [
+            "Treasure Island 49"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 45,
+          "content": [
+            "50"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 46,
+          "content": [
+            "Treasure Island 51"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 47,
+          "content": [
+            "52"
+          ]
+        },
+        {
+          "pageNumber": 8,
+          "bookPageNumber": 48,
+          "content": [
+            "Treasure Island 53"
+          ]
+        },
+        {
+          "pageNumber": 9,
+          "bookPageNumber": 49,
+          "content": [
+            "54"
+          ]
+        },
+        {
+          "pageNumber": 10,
+          "bookPageNumber": 50,
+          "content": [
+            "Treasure Island 55"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-6",
+      "number": 6,
+      "titleFa": "فصل 6",
+      "titleEn": "Chapter 6",
+      "startPage": 51,
+      "endPage": 57,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 51,
+          "content": [
+            "56"
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "bookPageNumber": 52,
+          "content": [
+            "Treasure Island 57"
+          ]
+        },
+        {
+          "pageNumber": 3,
+          "bookPageNumber": 53,
+          "content": [
+            "58"
+          ]
+        },
+        {
+          "pageNumber": 4,
+          "bookPageNumber": 54,
+          "content": [
+            "Treasure Island 59"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "bookPageNumber": 55,
+          "content": [
+            "60"
+          ]
+        },
+        {
+          "pageNumber": 6,
+          "bookPageNumber": 56,
+          "content": [
+            "Treasure Island 61"
+          ]
+        },
+        {
+          "pageNumber": 7,
+          "bookPageNumber": 57,
+          "content": [
+            "Three Watson Irvine, CA 92618-2767 Website: www.sdlback.com Saddleback eBook"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 57,
+  "extractedFromLocalFile": true,
+  "publishYear": "2006"
+}

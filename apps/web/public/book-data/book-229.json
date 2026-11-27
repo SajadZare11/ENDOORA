@@ -1,0 +1,39 @@
+{
+  "id": "book-229",
+  "titleFa": "کتاب Life of Pi (Adapted Reader)",
+  "titleEn": "Life of Pi (Adapted Reader)",
+  "author": "Yann Martel",
+  "genre": "مهارت‌ها، گرامر و واژگان",
+  "level": "B2",
+  "introFa": "کتاب «Life of Pi (Adapted Reader)» نوشته Yann Martel یکی از منابع ارزشمند و معتبر برای یادگیری زبان انگلیسی در سطح B2 است. این اثر با ساختاری منسجم و غنی، شما را در تسلط بر واژگان و درک مطلب یاری می‌کند.",
+  "readingTipsFa": [
+    "پیش از مطالعه هر بخش از کتاب «Life of Pi (Adapted Reader)»، نگاهی سریع به تیترها و ساختار آن بیندازید.",
+    "واژگان و اصطلاحات جدید را در زمینه و بافت جمله یادداشت کنید تا در حافظه بلندمدت تثبیت شوند.",
+    "پس از پایان هر فصل، نکات کلیدی و آموخته‌های خود را مرور کرده و به زبان خود خلاصه کنید."
+  ],
+  "pdfUrl": "https://github.com/SajadZare11/ENDOORA/releases/download/books-v1-readers/0229.-.Life.of.Pi.pdf",
+  "chapters": [
+    {
+      "id": "ch-1",
+      "number": 1,
+      "titleFa": "فصل ۱: متن و محتوای کتاب",
+      "titleEn": "Chapter 1: Book Content",
+      "startPage": 1,
+      "endPage": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "bookPageNumber": 1,
+          "content": [
+            "کتاب «Life of Pi (Adapted Reader)» یک منبع آموزشی تصویری با چیدمان چندرسانه‌ای و تمرین‌های تعاملی است.",
+            "به دلیل ساختار تمام‌صفحه و طراحی گرافیکی این اثر، مطالعه آن از طریق فایل اصلی کیفیت بسیار بالاتری دارد.",
+            "می‌توانید نسخه اصلی کامل را همراه با تمامی ضمائم از بخش دانلود دریافت نمایید."
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPages": 1,
+  "extractedFromLocalFile": true,
+  "publishYear": "2001"
+}
