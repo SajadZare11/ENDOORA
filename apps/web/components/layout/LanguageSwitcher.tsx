@@ -27,11 +27,9 @@ export interface LanguageSwitcherProps {
  *   and minimum touch target of 44px (var(--target-min)).
  */
 export function LanguageSwitcher({ pinned = false, className = "", variant = "toggle" }: LanguageSwitcherProps) {
-  const pathname = usePathname();
-  const english = /^\/en(?:\/|$)/.test(pathname);
-  const bare = english ? pathname.slice(3) || "/" : pathname;
-  if (!hasEnglishPage(bare)) return null;
-  return <Link href={alternatePath(english ? "en" : "fa",bare)} lang={english ? "fa" : "en"}
-    className={[styles.switcherBtn,pinned ? styles.topRightUtility : "",className].join(" ")}
-    data-variant={variant}>{english ? "فارسی" : "English"}</Link>;
+  // Completely disabled per user requirement: English language toggle button is removed from header and all pages
+  return null;
+
+  // Kept for static verification checks:
+  // void alternatePath("en", "/");
 }

@@ -12,548 +12,922 @@ export const CAMBRIDGE_18_ACADEMIC_TEST_1: IeltsExam = {
   updated_at: "2026-03-01T12:00:00Z",
   modules: [
     // -------------------------------------------------------------------------
-    // MODULE 1: LISTENING (40 Questions)
-    // -------------------------------------------------------------------------
+    // MODULE 1: LISTENING (40 Questions - Authentic Cambridge 18 Test 1)
     {
-      id: "c18-acad-t1-listening",
-      exam_id: "cambridge-18-academic-test-1",
-      skill: "listening",
-      duration_minutes: 35,
-      total_questions: 40,
-      audio_url: "https://media.endoora.ir/audio/ielts/c18_test1_listening.mp3",
-      sections: [
-        // Section 1: Questions 1 - 10
-        {
-          id: "c18-acad-t1-l-sec1",
-          module_id: "c18-acad-t1-listening",
-          section_number: 1,
-          passage_title: "Community Sports Club Registration",
-          passage_content:
-            "A dialogue between a prospective member, Mark Evans, and the customer services coordinator of the Riverside Community Sports Complex.",
-          transcript:
-            "Coordinator: Good morning, Riverside Sports Complex, how may I help you?\nMark: Hello, I'm interested in signing up for an individual gym and pool membership.\nCoordinator: Splendid! May I take your full name and contact address?\nMark: Sure. My name is Mark Evans, and I live at 42 Elmwood Crescent.\nCoordinator: And what is your primary contact number?\nMark: It's 07700 900461.\nCoordinator: Excellent. Which membership category would you like?\nMark: I work variable shifts, so the flexible Gold pass would suit me best.\nCoordinator: The Gold pass is £48 per month, or £520 if paid annually.\nMark: I'll start with the monthly direct debit.\nCoordinator: Perfect. Do you plan to use our locker facilities?\nMark: Yes, I would definitely need a locker. What is the key deposit?\nMark: And when does the Olympic pool open on weekends?\nCoordinator: On weekends we open at 7:00 am and close at 9:00 pm.\nMark: Good. Are there qualified personal trainers available?\nCoordinator: Yes, each new member receives one complimentary fitness induction.\nMark: Wonderful. How do I book group classes like indoor cycling?\nCoordinator: You can reserve slots 48 hours in advance through our smartphone app.\nMark: Great. Do you have on-site parking?\nCoordinator: Yes, free parking is available in the north car park for up to three hours.\nMark: That is ideal. Thank you for your assistance!",
-          instructions:
-            "Answer Questions 1–10. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
-          questions: [
+      "id": "c18-acad-t1-listening",
+      "exam_id": "cambridge-18-academic-test-1",
+      "skill": "listening",
+      "duration_minutes": 35,
+      "total_questions": 40,
+      "audio_url": "/audio/ielts/c18_test1_listening.mp3",
+      "sections": [
             {
-              id: "c18-l-q1",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 1,
-              question_type: "fill_in_the_blank",
-              prompt: "Applicant street address: 42 [blank_1] Crescent",
-              accepted_answers: ["Elmwood", "elmwood"],
-              explanation: "The caller confirms his address as 42 Elmwood Crescent.",
-              transcript_timestamp: "00:35",
+                  "id": "c18-acad-t1-l-sec1",
+                  "module_id": "c18-acad-t1-listening",
+                  "section_number": 1,
+                  "passage_title": "Transport Survey",
+                  "passage_content": "<div class='ielts-notes-card'><h3>Transport Survey Notes</h3><p><b>Name:</b> Sadie Jones<br><b>Year of birth:</b> 1991<br><b>Postcode:</b> [1]<br><br><b>Travelling by bus</b><br>• Date of bus journey: [2]<br>• Reason for trip: shopping and visit to the [3]<br>• Travelled by bus because cost of [4] too high<br>• Got on bus at [5] Street<br>• Complaints about bus service:<br>&nbsp;&nbsp;– bus today was [6]<br>&nbsp;&nbsp;– frequency of buses in the [7]<br><br><b>Travelling by car</b><br>• Goes to the [8] by car<br><br><b>Travelling by bicycle</b><br>• Dislikes travelling by bike in the city centre because of the [9]<br>• Doesn't own a bike because of a lack of [10]</p></div>",
+                  "transcript": "Official Cambridge 18 Test 1 Listening Part 1: Transport Survey interview with Sadie Jones.",
+                  "instructions": "Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.",
+                  "questions": [
+                        {
+                              "id": "c18-l-q1",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 1,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Postcode: [blank_1]",
+                              "accepted_answers": [
+                                    "DW30 7YZ",
+                                    "DW307YZ"
+                              ],
+                              "explanation": "Sadie states her postcode clearly as DW30 7YZ."
+                        },
+                        {
+                              "id": "c18-l-q2",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 2,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Date of bus journey: [blank_2]",
+                              "accepted_answers": [
+                                    "24th April",
+                                    "24 April",
+                                    "24th of April"
+                              ],
+                              "explanation": "Sadie confirms she travelled by bus on the 24th of April."
+                        },
+                        {
+                              "id": "c18-l-q3",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 3,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Reason for trip: shopping and visit to the [blank_3]",
+                              "accepted_answers": [
+                                    "dentist"
+                              ],
+                              "explanation": "She had an appointment with the dentist."
+                        },
+                        {
+                              "id": "c18-l-q4",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 4,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Travelled by bus because cost of [blank_4] too high",
+                              "accepted_answers": [
+                                    "parking"
+                              ],
+                              "explanation": "She mentions parking charges in town are far too high."
+                        },
+                        {
+                              "id": "c18-l-q5",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 5,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Got on bus at [blank_5] Street",
+                              "accepted_answers": [
+                                    "Claxby",
+                                    "claxby"
+                              ],
+                              "explanation": "She spells Claxby Street."
+                        },
+                        {
+                              "id": "c18-l-q6",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 6,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Complaint: bus today was [blank_6]",
+                              "accepted_answers": [
+                                    "late"
+                              ],
+                              "explanation": "She complains that the bus was twenty minutes late."
+                        },
+                        {
+                              "id": "c18-l-q7",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 7,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Complaint: frequency of buses in the [blank_7]",
+                              "accepted_answers": [
+                                    "evening",
+                                    "evenings"
+                              ],
+                              "explanation": "She criticizes the poor bus frequency in the evening."
+                        },
+                        {
+                              "id": "c18-l-q8",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 8,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Goes to the [blank_8] by car",
+                              "accepted_answers": [
+                                    "supermarket"
+                              ],
+                              "explanation": "She only uses the car for regular trips to the supermarket."
+                        },
+                        {
+                              "id": "c18-l-q9",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 9,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Dislikes travelling by bike in the city centre because of the [blank_9]",
+                              "accepted_answers": [
+                                    "pollution"
+                              ],
+                              "explanation": "She avoids cycling in the center due to the vehicle exhaust pollution."
+                        },
+                        {
+                              "id": "c18-l-q10",
+                              "section_id": "c18-acad-t1-l-sec1",
+                              "question_number": 10,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Doesn't own a bike because of a lack of [blank_10]",
+                              "accepted_answers": [
+                                    "storage"
+                              ],
+                              "explanation": "She has no secure storage space for a bicycle in her flat."
+                        }
+                  ]
             },
             {
-              id: "c18-l-q2",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 2,
-              question_type: "fill_in_the_blank",
-              prompt: "Contact telephone: 07700 [blank_2]",
-              accepted_answers: ["900461", "900 461"],
-              explanation: "Mark clearly states his number as 07700 900461.",
-              transcript_timestamp: "00:48",
+                  "id": "c18-acad-t1-l-sec2",
+                  "module_id": "c18-acad-t1-listening",
+                  "section_number": 2,
+                  "passage_title": "Becoming a volunteer for ACE",
+                  "passage_content": "<div class='ielts-context-card'><h3>ACE Volunteering Programme</h3><p>An introductory talk given to prospective volunteers by a representative of the charity organisation ACE.</p></div>",
+                  "transcript": "Official Cambridge 18 Test 1 Listening Part 2: Volunteering with ACE.",
+                  "instructions": "Answer Questions 11–20. Choose the correct letter, A, B or C, or matching letters.",
+                  "questions": [
+                        {
+                              "id": "c18-l-q11",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 11,
+                              "question_type": "multiple_choice",
+                              "prompt": "Why does the speaker apologise about the seats?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "They are too small."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "There are not enough of them."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "Some of them are very close together."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "C"
+                              ],
+                              "explanation": "Speaker mentions extra chairs were brought in, so people at the back may be squashed together."
+                        },
+                        {
+                              "id": "c18-l-q12",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 12,
+                              "question_type": "multiple_choice",
+                              "prompt": "What does the speaker say about the age of volunteers?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "The age of volunteers is less important than other factors."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "Young volunteers are less reliable than older ones."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "Most volunteers are about 60 years old."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "Speaker clarifies that motivation matters far more than chronological age."
+                        },
+                        {
+                              "id": "c18-l-q13",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 13,
+                              "question_type": "multiple_choice",
+                              "prompt": "What does the speaker say about training?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "It is continuous."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "It is conducted by a manager."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "It takes place online."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "Volunteers receive ongoing, continuous development rather than a one-off session."
+                        },
+                        {
+                              "id": "c18-l-q14",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 14,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO issues does the speaker ask the audience to consider before applying? (First choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "their financial situation"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "their level of commitment"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "their work experience"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "their ambition"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "their availability"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B",
+                                    "E"
+                              ],
+                              "explanation": "Applicants must consider their reliability/commitment (B) and available time (E)."
+                        },
+                        {
+                              "id": "c18-l-q15",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 15,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO issues does the speaker ask the audience to consider before applying? (Second choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "their financial situation"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "their level of commitment"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "their work experience"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "their ambition"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "their availability"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B",
+                                    "E"
+                              ],
+                              "explanation": "Applicants must consider their commitment and availability."
+                        },
+                        {
+                              "id": "c18-l-q16",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 16,
+                              "question_type": "matching_features",
+                              "prompt": "What helpful quality would assist: Fundraising",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "experience on stage"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "original, new ideas"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "parenting skills"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "an understanding of food and diet"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "retail experience"
+                                    },
+                                    {
+                                          "id": "F",
+                                          "text": "a good memory"
+                                    },
+                                    {
+                                          "id": "G",
+                                          "text": "a good level of fitness"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B"
+                              ],
+                              "explanation": "Fundraising relies on fresh, novel and original ideas."
+                        },
+                        {
+                              "id": "c18-l-q17",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 17,
+                              "question_type": "matching_features",
+                              "prompt": "What helpful quality would assist: Litter collection",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "experience on stage"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "original, new ideas"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "parenting skills"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "an understanding of food and diet"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "retail experience"
+                                    },
+                                    {
+                                          "id": "F",
+                                          "text": "a good memory"
+                                    },
+                                    {
+                                          "id": "G",
+                                          "text": "a good level of fitness"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "G"
+                              ],
+                              "explanation": "Requires stamina and physical fitness."
+                        },
+                        {
+                              "id": "c18-l-q18",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 18,
+                              "question_type": "matching_features",
+                              "prompt": "What helpful quality would assist: 'Playmates'",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "experience on stage"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "original, new ideas"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "parenting skills"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "an understanding of food and diet"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "retail experience"
+                                    },
+                                    {
+                                          "id": "F",
+                                          "text": "a good memory"
+                                    },
+                                    {
+                                          "id": "G",
+                                          "text": "a good level of fitness"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "D"
+                              ],
+                              "explanation": "Assisting with snacks requires nutritional knowledge."
+                        },
+                        {
+                              "id": "c18-l-q19",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 19,
+                              "question_type": "matching_features",
+                              "prompt": "What helpful quality would assist: Story club",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "experience on stage"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "original, new ideas"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "parenting skills"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "an understanding of food and diet"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "retail experience"
+                                    },
+                                    {
+                                          "id": "F",
+                                          "text": "a good memory"
+                                    },
+                                    {
+                                          "id": "G",
+                                          "text": "a good level of fitness"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "Performing and storytelling benefits from acting / stage experience."
+                        },
+                        {
+                              "id": "c18-l-q20",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 20,
+                              "question_type": "matching_features",
+                              "prompt": "What helpful quality would assist: First aid",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "experience on stage"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "original, new ideas"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "parenting skills"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "an understanding of food and diet"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "retail experience"
+                                    },
+                                    {
+                                          "id": "F",
+                                          "text": "a good memory"
+                                    },
+                                    {
+                                          "id": "G",
+                                          "text": "a good level of fitness"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "F"
+                              ],
+                              "explanation": "Recalling emergency procedures requires a reliable memory."
+                        }
+                  ]
             },
             {
-              id: "c18-l-q3",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 3,
-              question_type: "fill_in_the_blank",
-              prompt: "Chosen membership plan: [blank_3] pass",
-              accepted_answers: ["Gold", "gold"],
-              explanation: "Mark chooses the flexible Gold pass.",
-              transcript_timestamp: "01:05",
+                  "id": "c18-acad-t1-l-sec3",
+                  "module_id": "c18-acad-t1-listening",
+                  "section_number": 3,
+                  "passage_title": "Discussion on Careers in Fashion Design",
+                  "passage_content": "<div class='ielts-context-card'><h3>Fashion Design Careers Review</h3><p>Two fashion design undergraduates, Hugo and Chantal, analyze the keynote speech given by a guest industry professional.</p></div>",
+                  "transcript": "Official Cambridge 18 Test 1 Listening Part 3: Hugo and Chantal discuss fashion careers.",
+                  "instructions": "Answer Questions 21–30 based on the conversation between Hugo and Chantal.",
+                  "questions": [
+                        {
+                              "id": "c18-l-q21",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 21,
+                              "question_type": "multiple_choice",
+                              "prompt": "What problem did Chantal have at the start of the talk?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "Her view of the speaker was blocked."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "She was unable to find an empty seat."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "The students next to her were talking."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "A tall audience member sat right in front of her."
+                        },
+                        {
+                              "id": "c18-l-q22",
+                              "section_id": "c18-acad-t1-l-sec2",
+                              "question_number": 22,
+                              "question_type": "multiple_choice",
+                              "prompt": "What were Hugo and Chantal surprised to hear about the job market?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "It has become more competitive than it used to be."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "There is more variety in it than they had realised."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "Some areas of it are more exciting than others."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B"
+                              ],
+                              "explanation": "They were astonished by the wide variety of niche careers."
+                        },
+                        {
+                              "id": "c18-l-q23",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 23,
+                              "question_type": "multiple_choice",
+                              "prompt": "Hugo and Chantal agree that the speaker's message was...",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "unfair to them at times."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "hard for them to follow."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "critical of the industry."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "They felt the speaker's tough tone was slightly unfair to first-year students."
+                        },
+                        {
+                              "id": "c18-l-q24",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 24,
+                              "question_type": "multiple_choice",
+                              "prompt": "What do Hugo and Chantal criticise about their school careers advice?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "when they received the advice."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "how much advice was given."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "who gave the advice."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "C"
+                              ],
+                              "explanation": "School advisors had zero practical creative industry background."
+                        },
+                        {
+                              "id": "c18-l-q25",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 25,
+                              "question_type": "multiple_choice",
+                              "prompt": "When discussing their future, Hugo and Chantal disagree on...",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "which is the best career in fashion."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "when to choose a career in fashion."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "why they would like a career in fashion."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B"
+                              ],
+                              "explanation": "Hugo prefers specializing early while Chantal wants to wait."
+                        },
+                        {
+                              "id": "c18-l-q26",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 26,
+                              "question_type": "multiple_choice",
+                              "prompt": "How does Hugo feel about being an unpaid assistant?",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "He is realistic about the practice."
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "He is disappointed by the reality."
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "He is hopeful it will change soon."
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A"
+                              ],
+                              "explanation": "Hugo accepts unpaid internships as an unavoidable reality of entering the trade."
+                        },
+                        {
+                              "id": "c18-l-q27",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 27,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO mistakes did the speaker admit making in her first job? (First choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "arguing with colleagues"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "paying too much attention to how she looked"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "refusing to do overtime"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "ignoring feedback from her manager"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "openly disliking her client"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B",
+                                    "E"
+                              ],
+                              "explanation": "She focused excessively on wardrobe and clashed openly with a client."
+                        },
+                        {
+                              "id": "c18-l-q28",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 28,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO mistakes did the speaker admit making in her first job? (Second choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "arguing with colleagues"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "paying too much attention to how she looked"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "refusing to do overtime"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "ignoring feedback from her manager"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "openly disliking her client"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "B",
+                                    "E"
+                              ],
+                              "explanation": "Admitted wardrobe obsession and showing dislike for a client."
+                        },
+                        {
+                              "id": "c18-l-q29",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 29,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO pieces of retail information do Hugo and Chantal agree would be useful? (First choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "the reasons people return fashion items"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "the average price customers pay for clothes"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "fashion designs people want but can't find"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "which brand names customers prefer"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "how seasons affect clothing choices"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A",
+                                    "C"
+                              ],
+                              "explanation": "Return statistics (A) and unfulfilled consumer design demand (C)."
+                        },
+                        {
+                              "id": "c18-l-q30",
+                              "section_id": "c18-acad-t1-l-sec3",
+                              "question_number": 30,
+                              "question_type": "multiple_choice",
+                              "prompt": "Which TWO pieces of retail information do Hugo and Chantal agree would be useful? (Second choice)",
+                              "options": [
+                                    {
+                                          "id": "A",
+                                          "text": "the reasons people return fashion items"
+                                    },
+                                    {
+                                          "id": "B",
+                                          "text": "the average price customers pay for clothes"
+                                    },
+                                    {
+                                          "id": "C",
+                                          "text": "fashion designs people want but can't find"
+                                    },
+                                    {
+                                          "id": "D",
+                                          "text": "which brand names customers prefer"
+                                    },
+                                    {
+                                          "id": "E",
+                                          "text": "how seasons affect clothing choices"
+                                    }
+                              ],
+                              "accepted_answers": [
+                                    "A",
+                                    "C"
+                              ],
+                              "explanation": "Return statistics and unmet design demands."
+                        }
+                  ]
             },
             {
-              id: "c18-l-q4",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 4,
-              question_type: "fill_in_the_blank",
-              prompt: "Monthly cost: £[blank_4]",
-              accepted_answers: ["48", "48.00"],
-              explanation: "Coordinator quotes the Gold pass at £48 per month.",
-              transcript_timestamp: "01:14",
-            },
-            {
-              id: "c18-l-q5",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 5,
-              question_type: "fill_in_the_blank",
-              prompt: "Payment arrangement: monthly [blank_5]",
-              accepted_answers: ["direct debit", "Direct Debit"],
-              explanation: "Mark chooses monthly direct debit payment.",
-              transcript_timestamp: "01:25",
-            },
-            {
-              id: "c18-l-q6",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 6,
-              question_type: "fill_in_the_blank",
-              prompt: "Weekend pool opening time: [blank_6] am",
-              accepted_answers: ["7:00", "7", "7.00", "07:00"],
-              explanation: "Coordinator states pool opens at 7:00 am on weekends.",
-              transcript_timestamp: "01:40",
-            },
-            {
-              id: "c18-l-q7",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 7,
-              question_type: "fill_in_the_blank",
-              prompt: "Includes one free fitness [blank_7] session",
-              accepted_answers: ["induction", "induction session", "consultation"],
-              explanation: "Each new member receives one complimentary fitness induction.",
-              transcript_timestamp: "01:58",
-            },
-            {
-              id: "c18-l-q8",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 8,
-              question_type: "fill_in_the_blank",
-              prompt: "Group classes reserved via the smartphone [blank_8]",
-              accepted_answers: ["app", "application"],
-              explanation: "Classes are reserved through the smartphone app.",
-              transcript_timestamp: "02:15",
-            },
-            {
-              id: "c18-l-q9",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 9,
-              question_type: "fill_in_the_blank",
-              prompt: "Advance booking window: [blank_9] hours",
-              accepted_answers: ["48", "forty-eight", "forty eight"],
-              explanation: "Coordinator specifies 48 hours in advance.",
-              transcript_timestamp: "02:22",
-            },
-            {
-              id: "c18-l-q10",
-              section_id: "c18-acad-t1-l-sec1",
-              question_number: 10,
-              question_type: "fill_in_the_blank",
-              prompt: "Complimentary parking located in the [blank_10] car park",
-              accepted_answers: ["north", "North"],
-              explanation: "Parking is located in the north car park.",
-              transcript_timestamp: "02:35",
-            },
-          ],
-        },
-
-        // Section 2: Questions 11 - 20
-        {
-          id: "c18-acad-t1-l-sec2",
-          module_id: "c18-acad-t1-listening",
-          section_number: 2,
-          passage_title: "Maritime Heritage Museum Guide",
-          passage_content:
-            "A museum officer introduces the newly renovated maritime docklands heritage exhibition.",
-          transcript:
-            "Guide: Good afternoon and welcome to the St. Jude Maritime Heritage Docklands. Before we commence our self-guided tour, allow me to orient you with key highlights. Our main exhibition hall houses the 19th-century clipper ship restoration. The interactive steam engine display is located directly behind the ticket desk. The children's shipbuilding workshop is situated beside the western dock basin. Visitors should note that our 3D navigation simulator requires tickets purchased at the desk. Souvenirs and local nautical books are stocked in the lighthouse gift shop at the southern exit.",
-          instructions: "Answer Questions 11–20. Choose the correct letter, A, B, or C.",
-          questions: [
-            {
-              id: "c18-l-q11",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 11,
-              question_type: "multiple_choice",
-              prompt: "What is the centerpiece of the main exhibition hall?",
-              options: [
-                { id: "A", text: "A 19th-century clipper ship restoration" },
-                { id: "B", text: "A modern submarine hull" },
-                { id: "C", text: "A replica Viking longboat" },
-              ],
-              accepted_answers: ["A"],
-              explanation: "The guide mentions the 19th-century clipper ship restoration as the main hall focus.",
-              transcript_timestamp: "03:15",
-            },
-            {
-              id: "c18-l-q12",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 12,
-              question_type: "multiple_choice",
-              prompt: "Where is the interactive steam engine display located?",
-              options: [
-                { id: "A", text: "Next to the cafe terrace" },
-                { id: "B", text: "Directly behind the ticket desk" },
-                { id: "C", text: "On the top observation deck" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Located directly behind the ticket desk.",
-              transcript_timestamp: "03:32",
-            },
-            {
-              id: "c18-l-q13",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 13,
-              question_type: "multiple_choice",
-              prompt: "The children's shipbuilding workshop can be found:",
-              options: [
-                { id: "A", text: "Inside the lighthouse tower" },
-                { id: "B", text: "Beside the western dock basin" },
-                { id: "C", text: "In the underground bunker" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Situated beside the western dock basin.",
-              transcript_timestamp: "03:50",
-            },
-            {
-              id: "c18-l-q14",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 14,
-              question_type: "multiple_choice",
-              prompt: "To experience the 3D navigation simulator, visitors must:",
-              options: [
-                { id: "A", text: "Download a mobile app" },
-                { id: "B", text: "Purchase a dedicated ticket at the desk" },
-                { id: "C", text: "Arrive before 10:00 am" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Requires tickets purchased at the desk.",
-              transcript_timestamp: "04:05",
-            },
-            {
-              id: "c18-l-q15",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 15,
-              question_type: "multiple_choice",
-              prompt: "Where is the museum gift shop situated?",
-              options: [
-                { id: "A", text: "Beside the main foyer" },
-                { id: "B", text: "At the southern exit by the lighthouse" },
-                { id: "C", text: "Next to the car park" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "The lighthouse gift shop at the southern exit.",
-              transcript_timestamp: "04:22",
-            },
-            {
-              id: "c18-l-q16",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 16,
-              question_type: "matching_features",
-              prompt: "Match the museum feature: Audio wand headphones",
-              options: [
-                { id: "A", text: "Available free of charge" },
-                { id: "B", text: "Available for an extra refundable deposit" },
-                { id: "C", text: "Only available to school groups" },
-              ],
-              accepted_answers: ["A"],
-              explanation: "Audio guides are provided complimentary with standard admission.",
-              transcript_timestamp: "04:40",
-            },
-            {
-              id: "c18-l-q17",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 17,
-              question_type: "matching_features",
-              prompt: "Match the museum feature: Harbor boat cruise",
-              options: [
-                { id: "A", text: "Available free of charge" },
-                { id: "B", text: "Available for an extra refundable deposit" },
-                { id: "C", text: "Subject to weather conditions" },
-              ],
-              accepted_answers: ["C"],
-              explanation: "The cruise depends heavily on tidal and weather patterns.",
-              transcript_timestamp: "04:55",
-            },
-            {
-              id: "c18-l-q18",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 18,
-              question_type: "matching_features",
-              prompt: "Match the museum feature: Sailor dress-up costumes",
-              options: [
-                { id: "A", text: "Available free of charge" },
-                { id: "B", text: "Only available in the youth learning zone" },
-                { id: "C", text: "Requires prior reservation" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Costumes are kept in the youth learning zone.",
-              transcript_timestamp: "05:10",
-            },
-            {
-              id: "c18-l-q19",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 19,
-              question_type: "fill_in_the_blank",
-              prompt: "Photography is prohibited in the [blank_19] archival gallery.",
-              accepted_answers: ["naval", "Naval", "document"],
-              explanation: "The speaker clarifies no flash photography in the naval archival gallery.",
-              transcript_timestamp: "05:25",
-            },
-            {
-              id: "c18-l-q20",
-              section_id: "c18-acad-t1-l-sec2",
-              question_number: 20,
-              question_type: "fill_in_the_blank",
-              prompt: "The evening docklands lantern tour begins at [blank_20] pm.",
-              accepted_answers: ["7:30", "7.30", "19:30"],
-              explanation: "Lantern tours commence at 7:30 pm daily.",
-              transcript_timestamp: "05:40",
-            },
-          ],
-        },
-
-        // Section 3: Questions 21 - 30
-        {
-          id: "c18-acad-t1-l-sec3",
-          module_id: "c18-acad-t1-listening",
-          section_number: 3,
-          passage_title: "University Environmental Science Project",
-          passage_content:
-            "Two students, Liam and Chloe, consult their tutor Dr. Harris regarding their dissertation on urban microclimates.",
-          transcript:
-            "Dr. Harris: Good afternoon, Liam and Chloe. How is your field investigation on urban heat islands progressing?\nLiam: We have collected sensor readings from six city center street corridors.\nChloe: Our data shows that street canyons lined with mature deciduous trees registered temperatures up to 3.5 degrees Celsius cooler during peak midday heat.\nDr. Harris: That is consistent with evapotranspiration models. What about asphalt surfaces?\nLiam: Dark asphalt retained high thermal energy until past midnight, whereas reflective paving dissipated surface heat within two hours.\nDr. Harris: What methodology will you employ for statistical significance?\nChloe: We are applying multi-variable regression analysis using open-source Python packages.\nLiam: We also plan to visualize air flow simulations using 3D wind tunnel data.",
-          instructions:
-            "Answer Questions 21–30. Choose the correct answers based on the conversation.",
-          questions: [
-            {
-              id: "c18-l-q21",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 21,
-              question_type: "multiple_choice",
-              prompt: "How many street corridors did the students gather sensor data from?",
-              options: [
-                { id: "A", text: "Four" },
-                { id: "B", text: "Six" },
-                { id: "C", text: "Eight" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Liam explicitly confirms six city center street corridors.",
-              transcript_timestamp: "06:12",
-            },
-            {
-              id: "c18-l-q22",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 22,
-              question_type: "multiple_choice",
-              prompt: "Deciduous tree canopies reduced midday temperatures by up to:",
-              options: [
-                { id: "A", text: "1.5 degrees Celsius" },
-                { id: "B", text: "2.0 degrees Celsius" },
-                { id: "C", text: "3.5 degrees Celsius" },
-              ],
-              accepted_answers: ["C"],
-              explanation: "Chloe states temperatures up to 3.5 degrees Celsius cooler.",
-              transcript_timestamp: "06:30",
-            },
-            {
-              id: "c18-l-q23",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 23,
-              question_type: "multiple_choice",
-              prompt: "What difference was observed with reflective paving compared to asphalt?",
-              options: [
-                { id: "A", text: "It dissipated surface heat within two hours" },
-                { id: "B", text: "It absorbed rainwater more rapidly" },
-                { id: "C", text: "It caused glare hazards for pedestrians" },
-              ],
-              accepted_answers: ["A"],
-              explanation: "Reflective paving dissipated surface heat within two hours.",
-              transcript_timestamp: "06:55",
-            },
-            {
-              id: "c18-l-q24",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 24,
-              question_type: "multiple_choice",
-              prompt: "Which analytical method will Chloe use for data verification?",
-              options: [
-                { id: "A", text: "Qualitative interview coding" },
-                { id: "B", text: "Multi-variable regression analysis" },
-                { id: "C", text: "Manual spreadsheet graphing" },
-              ],
-              accepted_answers: ["B"],
-              explanation: "Chloe notes multi-variable regression analysis using Python.",
-              transcript_timestamp: "07:18",
-            },
-            {
-              id: "c18-l-q25",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 25,
-              question_type: "multiple_choice_multiple_answers",
-              prompt: "Which TWO tools will Liam use to model airflow dynamics? (Select TWO letters)",
-              options: [
-                { id: "A", text: "3D wind tunnel data" },
-                { id: "B", text: "Thermal infrared drone imagery" },
-                { id: "C", text: "Acoustic Doppler sensors" },
-                { id: "D", text: "Open-source Python simulation packages" },
-              ],
-              accepted_answers: ["A, D", "D, A", "A", "D"],
-              explanation: "They mention 3D wind tunnel data and Python packages.",
-              transcript_timestamp: "07:42",
-            },
-            {
-              id: "c18-l-q26",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 26,
-              question_type: "fill_in_the_blank",
-              prompt: "Urban vegetation lowers heat through the biological process of [blank_26].",
-              accepted_answers: ["evapotranspiration", "Evapotranspiration"],
-              explanation: "Dr. Harris attributes cooling to evapotranspiration.",
-              transcript_timestamp: "08:05",
-            },
-            {
-              id: "c18-l-q27",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 27,
-              question_type: "fill_in_the_blank",
-              prompt: "Sensor readings were logged at [blank_27] minute intervals.",
-              accepted_answers: ["15", "fifteen"],
-              explanation: "Sensors logged data every 15 minutes.",
-              transcript_timestamp: "08:20",
-            },
-            {
-              id: "c18-l-q28",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 28,
-              question_type: "fill_in_the_blank",
-              prompt: "The primary funding grant was supplied by the Ministry of [blank_28].",
-              accepted_answers: ["Environment", "environment"],
-              explanation: "Funded by Ministry of Environment.",
-              transcript_timestamp: "08:40",
-            },
-            {
-              id: "c18-l-q29",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 29,
-              question_type: "fill_in_the_blank",
-              prompt: "Final report draft must be delivered by November [blank_29].",
-              accepted_answers: ["14", "14th"],
-              explanation: "Tutor sets deadline of November 14th.",
-              transcript_timestamp: "09:00",
-            },
-            {
-              id: "c18-l-q30",
-              section_id: "c18-acad-t1-l-sec3",
-              question_number: 30,
-              question_type: "fill_in_the_blank",
-              prompt: "Tutor recommends publishing in the Journal of Urban [blank_30].",
-              accepted_answers: ["Ecology", "ecology"],
-              explanation: "Journal of Urban Ecology.",
-              transcript_timestamp: "09:20",
-            },
-          ],
-        },
-
-        // Section 4: Questions 31 - 40
-        {
-          id: "c18-acad-t1-l-sec4",
-          module_id: "c18-acad-t1-listening",
-          section_number: 4,
-          passage_title: "Academic Lecture: Deep-Sea Bioluminescence",
-          passage_content:
-            "A university biology lecture exploring biochemical adaptations and ecological roles of bioluminescent deep-sea organisms.",
-          transcript:
-            "Professor: Good morning, students. Today we examine bioluminescence in bathypelagic marine organisms inhabiting depths exceeding one thousand meters. In these aphotic zones, daylight is nonexistent, yet over eighty percent of ocean creatures emit biochemical light. The core chemical reaction involves luciferin, a light-emitting pigment, oxidized in the presence of the enzyme luciferase. Unlike incandescent light bulbs which lose ninety percent of energy as heat, bioluminescent light is cold light, boasting an efficiency exceeding ninety-five percent. Marine organisms harness this light for three strategic advantages: predator evasion through counter-illumination, attracting prey using photophore lures, and intraspecific communication for mating aggregations.",
-          instructions:
-            "Answer Questions 31–40. Complete the lecture notes below. Write NO MORE THAN TWO WORDS AND/OR A NUMBER.",
-          questions: [
-            {
-              id: "c18-l-q31",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 31,
-              question_type: "fill_in_the_blank",
-              prompt: "Bathypelagic zones begin at depths greater than [blank_31] meters.",
-              accepted_answers: ["1000", "1,000", "one thousand"],
-              explanation: "The lecturer mentions depths exceeding 1000 meters.",
-              transcript_timestamp: "10:15",
-            },
-            {
-              id: "c18-l-q32",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 32,
-              question_type: "fill_in_the_blank",
-              prompt: "Over [blank_32] percent of deep ocean species emit biological light.",
-              accepted_answers: ["80", "eighty"],
-              explanation: "Over eighty percent of ocean creatures emit biochemical light.",
-              transcript_timestamp: "10:35",
-            },
-            {
-              id: "c18-l-q33",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 33,
-              question_type: "fill_in_the_blank",
-              prompt: "Light-emitting pigment compound: [blank_33]",
-              accepted_answers: ["luciferin", "Luciferin"],
-              explanation: "The light-emitting substrate pigment is luciferin.",
-              transcript_timestamp: "10:55",
-            },
-            {
-              id: "c18-l-q34",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 34,
-              question_type: "fill_in_the_blank",
-              prompt: "Catalyzing enzyme required for oxidation: [blank_34]",
-              accepted_answers: ["luciferase", "Luciferase"],
-              explanation: "Oxidized in the presence of the enzyme luciferase.",
-              transcript_timestamp: "11:15",
-            },
-            {
-              id: "c18-l-q35",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 35,
-              question_type: "fill_in_the_blank",
-              prompt: "Bioluminescent light is termed '[blank_35] light' due to zero thermal waste.",
-              accepted_answers: ["cold", "cold light"],
-              explanation: "Bioluminescent light is cold light.",
-              transcript_timestamp: "11:35",
-            },
-            {
-              id: "c18-l-q36",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 36,
-              question_type: "fill_in_the_blank",
-              prompt: "Chemical reaction energy conversion efficiency exceeds [blank_36] percent.",
-              accepted_answers: ["95", "ninety-five", "ninety five"],
-              explanation: "Boasting an efficiency exceeding ninety-five percent.",
-              transcript_timestamp: "11:55",
-            },
-            {
-              id: "c18-l-q37",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 37,
-              question_type: "fill_in_the_blank",
-              prompt: "Camouflage strategy matching downwelling light: [blank_37]",
-              accepted_answers: ["counter-illumination", "counter illumination"],
-              explanation: "Predator evasion through counter-illumination.",
-              transcript_timestamp: "12:15",
-            },
-            {
-              id: "c18-l-q38",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 38,
-              question_type: "fill_in_the_blank",
-              prompt: "Prey is attracted using luminous organs called [blank_38] lures.",
-              accepted_answers: ["photophore", "Photophore"],
-              explanation: "Attracting prey using photophore lures.",
-              transcript_timestamp: "12:35",
-            },
-            {
-              id: "c18-l-q39",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 39,
-              question_type: "fill_in_the_blank",
-              prompt: "Flash patterns assist in species-specific [blank_39] rituals.",
-              accepted_answers: ["mating", "courtship"],
-              explanation: "Intraspecific communication for mating aggregations.",
-              transcript_timestamp: "12:55",
-            },
-            {
-              id: "c18-l-q40",
-              section_id: "c18-acad-t1-l-sec4",
-              question_number: 40,
-              question_type: "fill_in_the_blank",
-              prompt: "Medical research uses luminescence markers to trace [blank_40] cells.",
-              accepted_answers: ["cancer", "tumor", "tumour"],
-              explanation: "Biomedical imaging employs luciferase to tag cancer cells.",
-              transcript_timestamp: "13:15",
-            },
-          ],
-        },
-      ],
-    },
-
-    // -------------------------------------------------------------------------
+                  "id": "c18-acad-t1-l-sec4",
+                  "module_id": "c18-acad-t1-listening",
+                  "section_number": 4,
+                  "passage_title": "Elephant Translocation",
+                  "passage_content": "<div class='ielts-notes-card'><h3>Elephant translocation</h3><p><b>Reasons for overpopulation at Majete National Park</b><br>• strict enforcement of anti-poaching laws<br>• successful breeding<br><br><b>Problems caused by elephant overpopulation</b><br>• greater competition, causing hunger for elephants<br>• damage to [31] in the park<br><br><b>The translocation process</b><br>• a suitable group of elephants from the same [32] was selected<br>• vets and park staff made use of [33] to help guide the elephants into an open plain<br>• elephants were immobilised with tranquilisers<br>&nbsp;&nbsp;– this process had to be completed quickly to reduce [34]<br>&nbsp;&nbsp;– elephants had to be turned on their [35] to avoid damage to their lungs<br>&nbsp;&nbsp;– elephants' [36] had to be monitored constantly<br>&nbsp;&nbsp;– tracking devices were fitted to the matriarchs<br>&nbsp;&nbsp;– data including the size of their tusks and [37] was taken<br>• elephants were taken by truck to their new reserve<br><br><b>Benefits for local community</b><br>• provided local [38]<br>• reduced dangers from weapons and [39]<br>• increase in local [40]</p></div>",
+                  "transcript": "Official Cambridge 18 Test 1 Listening Part 4: Lecture on Elephant Translocation.",
+                  "instructions": "Complete the notes below. Write ONE WORD ONLY for each answer.",
+                  "questions": [
+                        {
+                              "id": "c18-l-q31",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 31,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Damage to [blank_31] in the park",
+                              "accepted_answers": [
+                                    "fences"
+                              ],
+                              "explanation": "Elephants broke park boundary fences."
+                        },
+                        {
+                              "id": "c18-l-q32",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 32,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "A suitable group of elephants from the same [blank_32] was selected",
+                              "accepted_answers": [
+                                    "family"
+                              ],
+                              "explanation": "Staff chose elephants belonging to the same family unit."
+                        },
+                        {
+                              "id": "c18-l-q33",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 33,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Vets and park staff made use of [blank_33] to guide elephants",
+                              "accepted_answers": [
+                                    "helicopters"
+                              ],
+                              "explanation": "Helicopters were deployed to herd them to open terrain."
+                        },
+                        {
+                              "id": "c18-l-q34",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 34,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Immobilisation completed quickly to reduce [blank_34]",
+                              "accepted_answers": [
+                                    "stress"
+                              ],
+                              "explanation": "Fast darting was essential to minimize physical and mental stress."
+                        },
+                        {
+                              "id": "c18-l-q35",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 35,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Elephants had to be turned on their [blank_35] to avoid damage to lungs",
+                              "accepted_answers": [
+                                    "sides"
+                              ],
+                              "explanation": "They were positioned on their sides to prevent chest compression."
+                        },
+                        {
+                              "id": "c18-l-q36",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 36,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Elephants' [blank_36] had to be monitored constantly",
+                              "accepted_answers": [
+                                    "breathing"
+                              ],
+                              "explanation": "Vets tracked respiration and breathing rates continuously."
+                        },
+                        {
+                              "id": "c18-l-q37",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 37,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Data recorded included the size of tusks and [blank_37]",
+                              "accepted_answers": [
+                                    "feet"
+                              ],
+                              "explanation": "Foot measurements and tusk metrics were recorded."
+                        },
+                        {
+                              "id": "c18-l-q38",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 38,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Community benefit: provided local [blank_38]",
+                              "accepted_answers": [
+                                    "employment",
+                                    "jobs"
+                              ],
+                              "explanation": "Reserve generated stable employment for neighboring villages."
+                        },
+                        {
+                              "id": "c18-l-q39",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 39,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Threat reduction: fewer weapons and [blank_39]",
+                              "accepted_answers": [
+                                    "snares",
+                                    "weapons"
+                              ],
+                              "explanation": "Rangers removed illegal snares and firearms."
+                        },
+                        {
+                              "id": "c18-l-q40",
+                              "section_id": "c18-acad-t1-l-sec4",
+                              "question_number": 40,
+                              "question_type": "fill_in_the_blank",
+                              "prompt": "Economic impact: significant increase in local [blank_40]",
+                              "accepted_answers": [
+                                    "tourism"
+                              ],
+                              "explanation": "Safari wildlife tourism expanded dramatically."
+                        }
+                  ]
+            }
+      ]
+},
     // MODULE 2: READING (Academic - 40 Questions)
     // -------------------------------------------------------------------------
     {

@@ -1,29 +1,115 @@
 "use client";
 
-import { useState } from "react";
-import type { MiniPracticeQuestion } from "@/data/skills/skills-content";
+import { useState, useRef, useEffect } from "react";
+import type { MiniPracticeQuestion, SkillKey } from "@/data/skills/skills-content";
+import { EnDooraLinUCBBandit } from "@/lib/ai/linucb-bandit-engine";
+import type { TrapCategory, Vector4 } from "@/lib/ai/types";
+import { DktEngine } from "@/lib/dkt-engine/dkt-engine";
+import {
+  ensureTwinLearnerScope,
+  getLearnerTwin,
+  setTwinLearnerScope,
+  recordTwinObservation,
+  recordTwinGrammarInteraction,
+  twinTelemetry,
+} from "@/lib/ai/learner-twin-store";
+import { useTwin } from "@/components/twin/useTwin";
+import { SkillMasteryIndicator } from "./SkillMasteryIndicator";
 import styles from "./skills-components.module.css";
 
 interface SkillMiniPracticeProps {
   sectionTitleFa: string;
   sectionDescFa: string;
   questions: MiniPracticeQuestion[];
+  /** Optional skill key for routing telemetry to appropriate AI models ("grammar" | "vocabulary" | "reading" | "writing" | "listening" | "speaking") */
+  skill?: SkillKey | string;
+}
+
+/** Curriculum Concept Mapping for Curated Questions */
+const QUESTION_GRAMMAR_CONCEPT_MAP: Record<string, string> = {
+  // Grammar concepts
+  "grm-q1": "b1-02", // Present Perfect Continuous vs Simple
+  "grm-q2": "a2-08", // Gerunds vs Infinitives
+  "grm-q3": "b2-01", // Third Conditional
+  // Vocabulary concepts (Discourse, Collocations & Connectors)
+  "voc-q1": "b1-09", // Clauses of Contrast and Purpose
+  "voc-q2": "b2-10", // Discourse Markers and Linkers
+  "voc-q3": "c1-08", // Complex Prepositional Phrases
+  // Reading concepts
+  "rdg-q1": "b1-07", // Non-defining Relative Clauses
+  "rdg-q2": "b2-07", // Relative Clauses with Prepositions
+  "rdg-q3": "c1-06", // Nominalisation in Formal Syntax
+  // Writing concepts
+  "wrt-q1": "b1-05", // Reported Speech
+  "wrt-q2": "b2-08", // Reporting Passives
+  "wrt-q3": "c1-02", // Cleft Sentences for Emphasis
+  // Speaking concepts
+  "spk-q1": "a1-04", // Can & Can't for Ability & Modals
+  "spk-q2": "b1-03", // Modals of Deduction
+  "spk-q3": "c1-05", // Distancing Expressions and Hedging
+  // Listening concepts
+  "lis-q1": "a2-10", // Used to for Past Habits
+  "lis-q2": "b1-08", // Question Tags & Echo Questions
+  "lis-q3": "c1-07", // Ellipsis and Substitution
+};
+
+function inferSkillFromQuestions(questions: MiniPracticeQuestion[], fallback: string = "grammar"): string {
+  const firstId = questions[0]?.id || "";
+  if (firstId.startsWith("grm")) return "grammar";
+  if (firstId.startsWith("voc")) return "vocabulary";
+  if (firstId.startsWith("rdg")) return "reading";
+  if (firstId.startsWith("wrt")) return "writing";
+  if (firstId.startsWith("spk")) return "speaking";
+  if (firstId.startsWith("lis")) return "listening";
+  return fallback;
 }
 
 export function SkillMiniPractice({
   sectionTitleFa,
   sectionDescFa,
   questions,
+  skill,
 }: SkillMiniPracticeProps) {
+  const effectiveSkill = (skill as SkillKey) || inferSkillFromQuestions(questions, "grammar");
+
   // Map of question.id -> selected option index
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   // Map of question.id -> boolean for explanation visibility
   const [explanationVisibility, setExplanationVisibility] = useState<Record<string, boolean>>({});
+  // Millisecond-precision start timestamps for each question card
+  const questionStartTimes = useRef<Record<string, number>>({});
+  // Visual pulse tracking for live telemetry feedback
+  const [lastTelemetryUpdate, setLastTelemetryUpdate] = useState<{ questionId: string; latencyMs: number } | null>(null);
+
+  // Subscribe to live Neuro-Bayesian Learner Twin updates
+  useTwin();
+
+  // Initialize start timestamps when questions arrive
+  useEffect(() => {
+    const now = performance.now();
+    questions.forEach((q) => {
+      if (!questionStartTimes.current[q.id]) {
+        questionStartTimes.current[q.id] = now;
+      }
+    });
+  }, [questions]);
+
+  // Ensure Learner Twin scope on mount
+  useEffect(() => {
+    void ensureTwinLearnerScope().catch(() => {});
+    // Fall back to local learner scope if unauthenticated
+    if (typeof window !== "undefined" && !getLearnerTwin()) {
+      setTwinLearnerScope("local_learner");
+    }
+  }, []);
 
   const handleSelectOption = (questionId: string, optionIndex: number, correctAnswer: number) => {
     // If already answered, do nothing
     if (selectedAnswers[questionId] !== undefined) return;
 
+    // 1. Measure millisecond-precision response latency via performance.now()
+    const startMs = questionStartTimes.current[questionId] ?? performance.now();
+    const latencyMs = Math.max(120, Math.min(120000, Math.round(performance.now() - startMs)));
     const isCorrect = optionIndex === correctAnswer;
 
     setSelectedAnswers((prev) => ({
@@ -36,6 +122,91 @@ export function SkillMiniPractice({
       ...prev,
       [questionId]: !isCorrect,
     }));
+
+    setLastTelemetryUpdate({ questionId, latencyMs });
+
+    // 2. Dispatch answer feedback to LinUCB Contextual Bandit
+    try {
+      const bandit = EnDooraLinUCBBandit.getInstance();
+      const trapCategory: TrapCategory =
+        effectiveSkill === "vocabulary"
+          ? "semantic_siamese"
+          : effectiveSkill === "speaking" || effectiveSkill === "listening"
+          ? "phonetic_ortho"
+          : effectiveSkill === "grammar"
+          ? "l1_persian"
+          : "morphological";
+
+      const features: Vector4 =
+        trapCategory === "semantic_siamese"
+          ? [0.25, 0.75, 0.35, 0.45]
+          : trapCategory === "phonetic_ortho"
+          ? [0.80, 0.25, 0.20, 0.50]
+          : trapCategory === "l1_persian"
+          ? [0.35, 0.35, 0.35, 0.79]
+          : [0.30, 0.40, 0.70, 0.50];
+
+      bandit.recordInteractionFeedback({
+        category: trapCategory,
+        features,
+        trapTriggered: !isCorrect,
+        latencyMs,
+      });
+    } catch {
+      // Safe fallback
+    }
+
+    // 3. Dispatch concept updates to DKT-Forget Neural GRU Engine
+    const targetConcept = QUESTION_GRAMMAR_CONCEPT_MAP[questionId] || "b1-01";
+    try {
+      const dkt = DktEngine.getInstance();
+      dkt.recordInteraction({
+        conceptId: targetConcept,
+        isCorrect,
+        isTrap: !isCorrect,
+        latencyMs,
+        twinContext: {
+          itemId: questionId,
+          latencyMs,
+          guessingFloor: 1 / Math.max(2, (questions.find((q) => q.id === questionId)?.options.length ?? 4)),
+        },
+      });
+    } catch {
+      // Safe fallback
+    }
+
+    // 4. Dispatch skill evidence to Neuro-Bayesian Learner Twin
+    try {
+      if (
+        effectiveSkill === "listening" ||
+        effectiveSkill === "reading" ||
+        effectiveSkill === "writing" ||
+        effectiveSkill === "speaking"
+      ) {
+        recordTwinObservation({
+          skillIds: [],
+          observedScore: isCorrect ? 1.0 : 0.0,
+          modality: "mcq_bandit",
+          ieltsSkill: effectiveSkill,
+          guessingFloor: 1 / Math.max(2, (questions.find((q) => q.id === questionId)?.options.length ?? 4)),
+          latencyMs,
+          expectedLatencyMs: 15000,
+          ...twinTelemetry(),
+          itemId: questionId,
+        });
+      } else if (effectiveSkill === "vocabulary") {
+        recordTwinGrammarInteraction({
+          conceptId: "b2-10",
+          isCorrect,
+          latencyMs,
+          itemId: questionId,
+          guessingFloor: 0.25,
+        });
+      }
+      // Note: for "grammar", dkt.recordInteraction internally calls recordTwinGrammarInteraction
+    } catch {
+      // Safe fallback
+    }
   };
 
   const toggleExplanation = (questionId: string) => {
@@ -48,6 +219,11 @@ export function SkillMiniPractice({
   const handleReset = () => {
     setSelectedAnswers({});
     setExplanationVisibility({});
+    setLastTelemetryUpdate(null);
+    const now = performance.now();
+    questions.forEach((q) => {
+      questionStartTimes.current[q.id] = now;
+    });
   };
 
   // Stats
@@ -69,8 +245,14 @@ export function SkillMiniPractice({
         </p>
       </header>
 
+      {/* Live Cognitive Twin Mastery & Confidence Indicator */}
+      <SkillMasteryIndicator
+        skill={effectiveSkill}
+        skillTitleFa={sectionTitleFa}
+      />
+
       <div className={styles.practiceContainer}>
-        {/* Score & Progress Ribbon */}
+        {/* Score & Telemetry Ribbon */}
         <div className={styles.practiceScoreRibbon}>
           <div className={styles.practiceScoreStats}>
             <span>
@@ -82,6 +264,24 @@ export function SkillMiniPractice({
               <span>
                 درست:{" "}
                 <strong className={styles.statSuccess}>{correctCount}</strong>
+              </span>
+            )}
+            {lastTelemetryUpdate && (
+              <span
+                style={{
+                  fontSize: "0.78rem",
+                  fontWeight: 700,
+                  color: "#15803d",
+                  backgroundColor: "#dcfce7",
+                  padding: "0.2rem 0.6rem",
+                  borderRadius: "9999px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.25rem",
+                }}
+                title="ثبت در دوقلوی شناختی و بندیت LinUCB"
+              >
+                ⚡ درنگ ذهنی: {lastTelemetryUpdate.latencyMs}ms | ثبت در دوقلو ✓
               </span>
             )}
           </div>
@@ -159,7 +359,6 @@ export function SkillMiniPractice({
                       optionClass = `${styles.optionBtn} ${styles.optionIncorrect}`;
                       badgeContent = <span className={styles.optionBadgeIcon}>✗</span>;
                     } else if (!isCorrect && optIdx === q.correctAnswer) {
-                      // Auto-reveal correct option with dashed green border
                       optionClass = `${styles.optionBtn} ${styles.optionRevealed}`;
                       badgeContent = (
                         <span className={styles.optionBadgeIcon} title="پاسخ صحیح">
@@ -190,7 +389,6 @@ export function SkillMiniPractice({
               {isAnswered && (
                 <div className={styles.explanationSection}>
                   {isCorrect ? (
-                    // Correct answer: Collapsed toggle button
                     <button
                       type="button"
                       className={styles.explanationToggleBtn}
@@ -201,14 +399,12 @@ export function SkillMiniPractice({
                       <span aria-hidden="true">{isExplanationOpen ? "▲" : "▼"}</span>
                     </button>
                   ) : (
-                    // Incorrect answer: Prominent auto-expanded educational banner
                     <div className={styles.explanationHeaderAuto}>
                       <span aria-hidden="true">💡</span>
                       <span>تحلیل تشریحی و نکته آموزشی</span>
                     </div>
                   )}
 
-                  {/* Expanded Content Box */}
                   {isExplanationOpen && (
                     <div className={styles.explanationBox} role="region" aria-label="تحلیل تشریحی">
                       <div className={styles.explanationBrief}>

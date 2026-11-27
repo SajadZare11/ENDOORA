@@ -20,7 +20,7 @@ export const CAMBRIDGE_17_ACADEMIC_TEST_1: IeltsExam = {
       skill: "listening",
       duration_minutes: 32,
       total_questions: 40,
-      audio_url: "https://media.endoora.ir/audio/ielts/c17_test1_listening.mp3",
+      audio_url: "/audio/ielts/c17_test1_listening.mp3",
       sections: [
         // Section 1: Questions 1 - 10
         {

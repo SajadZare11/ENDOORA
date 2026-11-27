@@ -133,7 +133,7 @@ export async function HEAD(request: NextRequest) {
   const localPath = locateLocalVideoFile(isAef, targetSubFolder, sanitizedFileName);
   if (localPath) {
     try {
-      const stat = fs.statSync(localPath);
+      const stat = fs.statSync(/*turbopackIgnore: true*/ localPath);
       const isWebm = sanitizedFileName.endsWith(".webm");
       return new NextResponse(null, {
         status: 200,
@@ -188,7 +188,7 @@ export async function GET(request: NextRequest) {
     // If file exists locally on disk or volume, stream with HTTP 206 Range support
     if (localFilePath) {
       try {
-        const stat = fs.statSync(localFilePath);
+        const stat = fs.statSync(/*turbopackIgnore: true*/ localFilePath);
         const fileSize = stat.size;
         const rangeHeader = request.headers.get("range");
 
@@ -222,7 +222,7 @@ export async function GET(request: NextRequest) {
             }
 
             const chunkSize = end - start + 1;
-            const fileStream = fs.createReadStream(localFilePath, { start, end });
+            const fileStream = fs.createReadStream(/*turbopackIgnore: true*/ localFilePath, { start, end });
 
             const webStream = new ReadableStream({
               start(controller) {
@@ -249,7 +249,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Full content delivery (HTTP 200) with Accept-Ranges declared
-        const fileStream = fs.createReadStream(localFilePath);
+        const fileStream = fs.createReadStream(/*turbopackIgnore: true*/ localFilePath);
         const webStream = new ReadableStream({
           start(controller) {
             fileStream.on("data", (chunk) => controller.enqueue(chunk));

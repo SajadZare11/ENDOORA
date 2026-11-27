@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { type ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 
 import {
   trackTeacherAction,
@@ -26,7 +26,9 @@ type DashboardIconName =
   | "arrow"
   | "check"
   | "alert"
-  | "liveStudio";
+  | "liveStudio"
+  | "brain"
+  | "planning";
 
 const iconPaths: Record<DashboardIconName, ReactNode> = {
   classes: (
@@ -121,6 +123,23 @@ const iconPaths: Record<DashboardIconName, ReactNode> = {
       <circle cx="8" cy="12" r="2.5" />
     </>
   ),
+  brain: (
+    <>
+      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-5.04z" />
+      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-5.04z" />
+      <circle cx="12" cy="12" r="1.5" />
+      <path d="m19 4 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" />
+    </>
+  ),
+  planning: (
+    <>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </>
+  ),
 };
 
 function Icon({ name }: { name: DashboardIconName }) {
@@ -158,6 +177,7 @@ function actionLabel(locale: Locale, actionId: TeacherPrimaryActionId): string {
 
 export function TeacherDashboard() {
   const { data, locale, online, activeClass, classesList } = useTeacherHome();
+  const fa = locale === "fa";
 
   const action = data.primary_action;
   const isVerified = data.capabilities.teacher_verified;
@@ -169,7 +189,7 @@ export function TeacherDashboard() {
   const gradingCount = data.pending_grading.count ?? 0;
   const earningsFormatted =
     data.earnings.available && data.earnings.amount_toman !== null
-      ? `${data.earnings.amount_toman.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")} ${localText(locale, "تومان", "Toman")}`
+      ? `${data.earnings.amount_toman.toLocaleString(fa ? "fa-IR" : "en-US")} ${localText(locale, "تومان", "Toman")}`
       : localText(locale, "کیف‌پول من", "My Wallet");
 
   // Determine Live Room Link
@@ -179,9 +199,210 @@ export function TeacherDashboard() {
     ? `/teacher/classes/${classesList[0].id}/live`
     : "/teacher/classes";
 
+  // Dynamic time-of-day greeting
+  const greetingTimeText = useMemo(() => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return localText(locale, "صبح بخیر", "Good morning");
+    if (hour >= 12 && hour < 17) return localText(locale, "عصر بخیر", "Good afternoon");
+    return localText(locale, "شب بخیر", "Good evening");
+  }, [locale]);
+
+  // Floating KPI Cards Configuration
+  const kpiCards = useMemo(() => [
+    {
+      href: "/teacher/classes",
+      labelFa: "کلاس‌های فعال",
+      labelEn: "Active Classes",
+      count: classesCount.toLocaleString(fa ? "fa-IR" : "en-US"),
+      subFa: "کلاس ترمیک",
+      subEn: "Cohorts",
+      icon: "classes" as const,
+      iconClass: "teacher-kpi-card__icon--blue",
+    },
+    {
+      href: "/teacher/students",
+      labelFa: "زبان‌آموزان",
+      labelEn: "Learners",
+      count: studentsCount.toLocaleString(fa ? "fa-IR" : "en-US"),
+      subFa: "شاگرد فعال",
+      subEn: "Enrolled",
+      icon: "students" as const,
+      iconClass: "teacher-kpi-card__icon--cyan",
+    },
+    {
+      href: "/teacher/grading",
+      labelFa: "در صف تصحیح",
+      labelEn: "Pending Grading",
+      count: gradingCount.toLocaleString(fa ? "fa-IR" : "en-US"),
+      badgeFa: gradingCount > 0 ? "بررسی فوری ⚡" : "به‌روز ✨",
+      badgeEn: gradingCount > 0 ? "Action Needed ⚡" : "All Checked ✨",
+      badgeClass: gradingCount > 0 ? "teacher-kpi-card__badge--amber" : "teacher-kpi-card__badge--green",
+      isUrgent: gradingCount > 0,
+      icon: "grading" as const,
+      iconClass: "teacher-kpi-card__icon--amber",
+    },
+    {
+      href: "/marketplace/requests",
+      labelFa: "درخواست‌های تدریس",
+      labelEn: "Tutoring Requests",
+      count: requestsCount.toLocaleString(fa ? "fa-IR" : "en-US"),
+      subFa: "درخواست جدید",
+      subEn: "New Requests",
+      icon: "requests" as const,
+      iconClass: "teacher-kpi-card__icon--purple",
+    },
+    {
+      href: "/teacher/earnings",
+      labelFa: "کیف‌پول و درآمد",
+      labelEn: "Wallet & Earnings",
+      customValue: earningsFormatted,
+      badgeFa: "تسویه ماهانه",
+      badgeEn: "Monthly Payout",
+      badgeClass: "teacher-kpi-card__badge--green",
+      icon: "wallet" as const,
+      iconClass: "teacher-kpi-card__icon--emerald",
+    },
+  ], [classesCount, studentsCount, gradingCount, requestsCount, earningsFormatted, fa]);
+
+  // Tool Clusters
+  const assessmentTools = [
+    {
+      href: "/teacher/classes",
+      icon: "classes" as const,
+      accent: "#0284c7",
+      iconBg: "linear-gradient(135deg, rgba(2, 132, 199, 0.18), rgba(3, 105, 161, 0.28))",
+      badgeFa: `${classesCount} کلاس فعال`,
+      badgeEn: `${classesCount} Cohorts`,
+      titleFa: "کلاس‌ها و دوره‌های آموزشی",
+      titleEn: "Classes & Cohorts",
+      descFa: "مدیریت تقویم کلاس‌ها، اسامی و مشخصات زبان‌آموزان و ورود مستقیم به وب‌کلاس.",
+      descEn: "Manage course schedules, student rosters, and launch virtual classrooms.",
+      actionFa: "مدیریت کلاس‌ها",
+      actionEn: "Manage Classes",
+    },
+    {
+      href: "/teacher/online-exams",
+      icon: "exam" as const,
+      accent: "#0d9488",
+      iconBg: "linear-gradient(135deg, rgba(13, 148, 136, 0.18), rgba(15, 118, 110, 0.28))",
+      badgeFa: "سامانه آزمون",
+      badgeEn: "Exam Engine",
+      titleFa: "آزمون‌های آنلاین و زمان‌دار",
+      titleEn: "Online Timed Exams",
+      descFa: "ساخت آزمون‌های زمان‌بندی‌شده تستی و تشریحی با تصحیح خودکار و گزارش تراز.",
+      descEn: "Create objective and essay mock exams with auto-grading and analytics.",
+      actionFa: "مدیریت آزمون‌ها",
+      actionEn: "Manage Exams",
+    },
+    {
+      href: "/teacher/grading",
+      icon: "grading" as const,
+      accent: "#d97706",
+      iconBg: "linear-gradient(135deg, rgba(217, 119, 6, 0.18), rgba(180, 83, 9, 0.28))",
+      badgeFa: gradingCount > 0 ? `${gradingCount} برگه منتظر` : "همه تصحیح شد ✨",
+      badgeEn: gradingCount > 0 ? `${gradingCount} Pending` : "All Checked ✨",
+      titleFa: "صف تصحیح و استودیوی بازخورد",
+      titleEn: "Grading & Writing Studio",
+      descFa: "بررسی تکالیف ارسالی، نمره‌دهی تفکیکی مهارتی و ثبت فیدبک تحلیلی گرامر و واژگان با قلم دیجیتال.",
+      descEn: "Review student writing, score CEFR rubrics, and deliver targeted corrections.",
+      actionFa: "ورود به صف تصحیح",
+      actionEn: "Open Queue",
+    },
+    {
+      href: "/teacher/gradebook",
+      icon: "chart" as const,
+      accent: "#ec4899",
+      iconBg: "linear-gradient(135deg, rgba(236, 72, 153, 0.18), rgba(190, 24, 93, 0.28))",
+      badgeFa: "دفتر نمرات توصیفی",
+      badgeEn: "Competency Ledger",
+      titleFa: "دفتر نمرات و استودیوی کارنامه",
+      titleEn: "Gradebook & Progress Reports",
+      descFa: "ثبت نمرات کلاسی، رصد پیشرفت تحصیلی زبان‌آموزان و صدور کارنامه شکیل دوره‌ای A4 منطبق بر شیوه‌نامه.",
+      descEn: "Continuous competency matrices, growth tracking, and printable A4 report cards.",
+      actionFa: "مشاهده دفتر نمرات",
+      actionEn: "Open Gradebook",
+    },
+  ];
+
+  const aiAndContentTools = [
+    {
+      href: "/teacher/interventions",
+      icon: "brain" as const,
+      accent: "#6366f1",
+      iconBg: "linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(79, 70, 229, 0.28))",
+      badgeFa: "هوش شناختی زنده ✨",
+      badgeEn: "Live Cognitive AI",
+      titleFa: "مرکز پایش شناختی و تحلیل کلاس",
+      titleEn: "Cognitive AI Diagnostics",
+      descFa: "مبتنی بر ۶ موتور یکپارچه Edge AI: تفکیک علّی بی‌دقتی از ضعف پیش‌نیازها و تحلیل زوال حافظه DKT.",
+      descEn: "Edge AI diagnostics: Causal prerequisite modeling, memory decay radar, and proctoring.",
+      actionFa: "پایش شناختی کلاس",
+      actionEn: "Open AI Center",
+    },
+    {
+      href: "/teacher/planning",
+      icon: "planning" as const,
+      accent: "#8b5cf6",
+      iconBg: "linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(124, 58, 237, 0.28))",
+      badgeFa: "دستیار تدریس AI",
+      badgeEn: "Lesson Assistant",
+      titleFa: "طرح درس و محتواساز هوشمند",
+      titleEn: "AI Lesson Planner & Studio",
+      descFa: "تولید خودکار طرح درس استاندارد CEFR، کاربرگ‌های تعاملی و تمرین‌های هدفمند با هوش مصنوعی.",
+      descEn: "Automated CEFR lesson plan generation, interactive worksheets, and adaptive drills.",
+      actionFa: "استودیوی طرح درس",
+      actionEn: "Plan Lessons",
+    },
+    {
+      href: "/teacher/question-bank",
+      icon: "question" as const,
+      accent: "#4338ca",
+      iconBg: "linear-gradient(135deg, rgba(67, 56, 202, 0.18), rgba(55, 48, 163, 0.28))",
+      badgeFa: "بانک متمرکز",
+      badgeEn: "Item Bank",
+      titleFa: "بانک سؤالات متمرکز و استاندارد",
+      titleEn: "Centralized Question Bank",
+      descFa: "مخزن طبقه‌بندی‌شده سوالات استاندارد به تفکیک سطح CEFR جهت تخصیص سریع به عنوان تکلیف کلاسی.",
+      descEn: "Browse CEFR-aligned objective and essay items to assign directly to students.",
+      actionFa: "مشاهده بانک سوالات",
+      actionEn: "Browse Bank",
+    },
+  ];
+
+  const growthAndResourceTools = [
+    {
+      href: "/marketplace/requests",
+      icon: "schedule" as const,
+      accent: "#10b981",
+      iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(4, 120, 87, 0.28))",
+      badgeFa: `${requestsCount} درخواست فعال`,
+      badgeEn: `${requestsCount} Active`,
+      titleFa: "بازارچه تدریس خصوصی (Learn Now)",
+      titleEn: "Tutoring Marketplace",
+      descFa: "درخواست‌های جلسات فوری رفع اشکال (Learn Now) و کلاس‌های اختصاصی زبان‌آموزان.",
+      descEn: "View and accept 1-on-1 tutoring sessions and instant diagnostic requests.",
+      actionFa: "بررسی بازارچه",
+      actionEn: "View Requests",
+    },
+    {
+      href: "/teacher/resources",
+      icon: "book" as const,
+      accent: "#64748b",
+      iconBg: "linear-gradient(135deg, rgba(100, 116, 139, 0.18), rgba(71, 85, 105, 0.28))",
+      badgeFa: "کتابخانه و اسناد",
+      badgeEn: "Official Docs",
+      titleFa: "کتابخانه و استانداردهای تدریس",
+      titleEn: "Curriculum & Standards",
+      descFa: "شیوه‌نامه‌های رسمی سنجش مهارت‌های شش‌گانه، راهنماهای تداخل زبانی و سرفصل‌های مصوب.",
+      descEn: "Official 6-skill CEFR assessment rubrics, pedagogical blueprints and curricula.",
+      actionFa: "مشاهده منابع",
+      actionEn: "Explore Library",
+    },
+  ];
+
   return (
-    <div className="teacher-dashboard-v2">
-      {!online ? (
+    <div className="teacher-dashboard-container" dir={fa ? "rtl" : "ltr"}>
+      {!online && (
         <div className="teacher-offline-banner" role="status">
           {localText(
             locale,
@@ -189,189 +410,131 @@ export function TeacherDashboard() {
             "You are offline; showing last cached information."
           )}
         </div>
-      ) : null}
+      )}
 
-      {/* 1. Stripe-Style Integrated Fintech Hero Banner */}
-      <header className="teacher-fintech-hero">
-        <div className="teacher-fintech-hero__glow-orb" aria-hidden="true" />
+      {/* 1. Executive Welcome Banner */}
+      <header className="teacher-executive-banner" aria-label={localText(locale, "میزکار مدرس", "Educator Workspace")}>
+        <div className="teacher-executive-banner__glow" aria-hidden="true" />
 
-        {/* Top bar with greeting & quick actions */}
-        <div className="teacher-fintech-hero__top">
-          <div className="teacher-fintech-hero__info">
-            <div className="teacher-fintech-hero__greeting-row">
-              <h1>
-                {localText(locale, `سلام استاد ${data.greeting_name} عزیز`, `Welcome back, Teacher ${data.greeting_name}`)}
-              </h1>
-              <span className={`teacher-v2-pill ${isVerified ? "teacher-v2-pill--verified" : "teacher-v2-pill--warning"}`}>
-                <span className="teacher-v2-pill__dot" aria-hidden="true" />
+        <div className="teacher-executive-banner__main">
+          <div className="teacher-executive-banner__info">
+            <div className="teacher-executive-banner__meta-row">
+              <span className={`teacher-verified-badge ${isVerified ? "" : "teacher-verified-badge--warning"}`}>
+                <span className="teacher-verified-badge__dot" aria-hidden="true" />
                 {isVerified
-                  ? localText(locale, "مدرس تأییدشده ✓", "Verified Teacher ✓")
-                  : localText(locale, "احراز هویت در انتظار", "Verification Pending")}
+                  ? localText(locale, "مدرس تأییدشده ایندورا ✓", "Verified Educator ✓")
+                  : localText(locale, "احراز هویت در انتظار تکمیل", "Verification Pending")}
+              </span>
+              <span style={{ fontSize: "0.825rem", color: "var(--color-muted)", fontWeight: 700 }}>
+                {greetingTimeText}
               </span>
             </div>
-            <p className="teacher-fintech-hero__desc">
-              {activeClass
-                ? localText(
-                    locale,
-                    `کلاس فعال جاری: ${activeClass.title} (${activeClass.level}) • آماده برگزاری جلسه زنده`,
-                    `Active Cohort: ${activeClass.title} (${activeClass.level}) • Ready for live session`
-                  )
-                : localText(
-                    locale,
-                    "میز کار یکپارچه تدریس، رصد پیشرفت زبان‌آموزان و ابزارهای استودیویی ایندورا",
-                    "Integrated educator workspace, student mastery analytics and live studio tools"
-                  )}
+
+            <h1 className="teacher-executive-greeting">
+              {localText(locale, `سلام استاد ${data.greeting_name} عزیز، روزتان پربار`, `Welcome back, Professor ${data.greeting_name}`)}
+            </h1>
+
+            <p className="teacher-executive-desc">
+              {activeClass ? (
+                <>
+                  {localText(locale, "کلاس فعال جاری: ", "Active Cohort: ")}
+                  <strong>{activeClass.title} ({activeClass.level})</strong>
+                  {" • "}
+                  {localText(locale, "آماده ورود و برگزاری جلسه تعاملی زنده", "Ready for live interactive session")}
+                </>
+              ) : (
+                localText(
+                  locale,
+                  "میزکار یکپارچه تدریس، رصد پیشرفت شناختی زبان‌آموزان و ابزارهای استودیویی ایندورا",
+                  "Integrated educator workspace, student mastery analytics, and live studio tools"
+                )
+              )}
             </p>
           </div>
 
-          <div className="teacher-fintech-hero__actions">
-            <Link href={liveUrl} className="teacher-fintech-btn teacher-fintech-btn--live">
+          <div className="teacher-executive-banner__actions">
+            <Link href={liveUrl} className="teacher-action-btn teacher-action-btn--live">
               <span className="teacher-live-pulse-ring" aria-hidden="true">
                 <span className="teacher-live-pulse-dot" />
               </span>
-              <span>{localText(locale, "ورود به کلاس زنده ایندورا", "Enter Live Studio")}</span>
+              <span>{localText(locale, "ورود به کلاس زنده ایندورا", "Launch Live Studio")}</span>
+              <span aria-hidden="true">{fa ? "←" : "→"}</span>
             </Link>
-            <Link href="/teacher/fixed-classes/new" className="teacher-fintech-btn teacher-fintech-btn--secondary">
-              <span>+ {localText(locale, "کلاس جدید", "New Class")}</span>
+
+            <Link href="/teacher/fixed-classes/new" className="teacher-action-btn teacher-action-btn--secondary">
+              <span>+ {localText(locale, "تعریف کلاس جدید", "New Cohort")}</span>
             </Link>
           </div>
-        </div>
-
-        {/* Integrated KPI Metrics Row inside Hero */}
-        <div className="teacher-fintech-hero__kpis" aria-label={localText(locale, "شاخص‌های کلیدی", "Key Metrics")}>
-          {/* KPI 1: Classes */}
-          <Link href="/teacher/classes" className="teacher-fintech-kpi">
-            <div className="teacher-fintech-kpi__header">
-              <span className="teacher-fintech-kpi__label">{localText(locale, "کلاس‌های فعال", "Active Classes")}</span>
-              <div className="teacher-fintech-kpi__icon teacher-fintech-kpi__icon--blue">
-                <Icon name="classes" />
-              </div>
-            </div>
-            <div className="teacher-fintech-kpi__value-row">
-              <strong className="teacher-fintech-kpi__value">
-                {classesCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <span className="teacher-fintech-kpi__sub">
-                {localText(locale, "کلاس ترمیک", "Cohorts")}
-              </span>
-            </div>
-          </Link>
-
-          {/* KPI 2: Students */}
-          <Link href="/teacher/students" className="teacher-fintech-kpi">
-            <div className="teacher-fintech-kpi__header">
-              <span className="teacher-fintech-kpi__label">{localText(locale, "زبان‌آموزان", "Learners")}</span>
-              <div className="teacher-fintech-kpi__icon teacher-fintech-kpi__icon--cyan">
-                <Icon name="students" />
-              </div>
-            </div>
-            <div className="teacher-fintech-kpi__value-row">
-              <strong className="teacher-fintech-kpi__value">
-                {studentsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <span className="teacher-fintech-kpi__sub">
-                {localText(locale, "شاگرد فعال", "Enrolled")}
-              </span>
-            </div>
-          </Link>
-
-          {/* KPI 3: Grading Queue */}
-          <Link
-            href="/teacher/grading"
-            className={`teacher-fintech-kpi ${gradingCount > 0 ? "teacher-fintech-kpi--urgent" : ""}`}
-          >
-            <div className="teacher-fintech-kpi__header">
-              <span className="teacher-fintech-kpi__label">{localText(locale, "در صف تصحیح", "Pending Grading")}</span>
-              <div className="teacher-fintech-kpi__icon teacher-fintech-kpi__icon--amber">
-                <Icon name="grading" />
-              </div>
-            </div>
-            <div className="teacher-fintech-kpi__value-row">
-              <strong className="teacher-fintech-kpi__value">
-                {gradingCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <span
-                className={`teacher-fintech-kpi__badge ${
-                  gradingCount > 0 ? "teacher-fintech-kpi__badge--amber" : "teacher-fintech-kpi__badge--green"
-                }`}
-              >
-                {gradingCount > 0
-                  ? localText(locale, "بررسی فوری ⚡", "Action Needed ⚡")
-                  : localText(locale, "به‌روز ✨", "Done ✨")}
-              </span>
-            </div>
-          </Link>
-
-          {/* KPI 4: Requests */}
-          <Link href="/marketplace/requests" className="teacher-fintech-kpi">
-            <div className="teacher-fintech-kpi__header">
-              <span className="teacher-fintech-kpi__label">{localText(locale, "درخواست‌های تدریس", "Tutoring Requests")}</span>
-              <div className="teacher-fintech-kpi__icon teacher-fintech-kpi__icon--purple">
-                <Icon name="requests" />
-              </div>
-            </div>
-            <div className="teacher-fintech-kpi__value-row">
-              <strong className="teacher-fintech-kpi__value">
-                {requestsCount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US")}
-              </strong>
-              <span className="teacher-fintech-kpi__sub">
-                {localText(locale, "درخواست جدید", "New")}
-              </span>
-            </div>
-          </Link>
-
-          {/* KPI 5: Earnings */}
-          <Link href="/teacher/earnings" className="teacher-fintech-kpi">
-            <div className="teacher-fintech-kpi__header">
-              <span className="teacher-fintech-kpi__label">{localText(locale, "کیف‌پول و درآمد", "Wallet & Earnings")}</span>
-              <div className="teacher-fintech-kpi__icon teacher-fintech-kpi__icon--emerald">
-                <Icon name="wallet" />
-              </div>
-            </div>
-            <div className="teacher-fintech-kpi__value-row">
-              <strong className="teacher-fintech-kpi__value teacher-fintech-kpi__value--sm">
-                {earningsFormatted}
-              </strong>
-              <span className="teacher-fintech-kpi__badge teacher-fintech-kpi__badge--green">
-                {localText(locale, "تسویه ماهانه", "Wallet")}
-              </span>
-            </div>
-          </Link>
         </div>
       </header>
 
-      {/* 2. Priority Action Strip (Glassmorphism Smart Bar) */}
-      <section className="teacher-smart-priority-strip" aria-label={localText(locale, "اقدام اولویت‌دار", "Priority Action")}>
-        <div className="teacher-smart-priority-strip__left">
-          <div className="teacher-smart-priority-strip__badge">
+      {/* 2. Floating Standalone KPI Cards Grid */}
+      <section className="teacher-kpis-grid" aria-label={localText(locale, "شاخص‌های کلیدی عملکرد", "Key Performance Indicators")}>
+        {kpiCards.map((kpi, index) => (
+          <Link
+            key={index}
+            href={kpi.href}
+            className={`teacher-kpi-card ${kpi.isUrgent ? "teacher-kpi-card--urgent" : ""}`}
+          >
+            <div className="teacher-kpi-card__head">
+              <span className="teacher-kpi-card__label">
+                {fa ? kpi.labelFa : kpi.labelEn}
+              </span>
+              <div className={`teacher-kpi-card__icon ${kpi.iconClass}`} aria-hidden="true">
+                <Icon name={kpi.icon} />
+              </div>
+            </div>
+
+            <div className="teacher-kpi-card__value-row">
+              <strong className={`teacher-kpi-card__value ${kpi.customValue ? "teacher-kpi-card__value--sm" : ""}`}>
+                {kpi.customValue ?? kpi.count}
+              </strong>
+
+              {kpi.badgeFa ? (
+                <span className={`teacher-kpi-card__badge ${kpi.badgeClass}`}>
+                  {fa ? kpi.badgeFa : kpi.badgeEn}
+                </span>
+              ) : (
+                <span className="teacher-kpi-card__sub">
+                  {fa ? kpi.subFa : kpi.subEn}
+                </span>
+              )}
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      {/* 3. Slim Priority Action Strip */}
+      <section className="teacher-slim-priority-strip" aria-label={localText(locale, "اقدام اولویت‌دار روز", "Daily Priority Focus")}>
+        <div className="teacher-slim-priority-strip__left">
+          <span className="teacher-slim-priority-strip__tag">
             <Icon name="sparkles" />
             <span>{localText(locale, "اولویت روز", "Focus")}</span>
-          </div>
-          <div className="teacher-smart-priority-strip__text">
-            <strong>{localText(locale, action.title_fa, action.title_en)}</strong>
+          </span>
+
+          <div className="teacher-slim-priority-strip__text">
+            <strong>{localText(locale, action.title_fa, action.title_en)}:</strong>
             <p>{localText(locale, action.description_fa, action.description_en)}</p>
           </div>
         </div>
 
-        <div className="teacher-smart-priority-strip__right">
-          <Link
-            href={action.href}
-            className="teacher-smart-priority-btn"
-            onClick={() => void trackTeacherAction("primary_cta_click", action.id)}
-          >
-            <span>{actionLabel(locale, action.id)}</span>
-            <span className="teacher-smart-priority-btn__arrow" aria-hidden="true">
-              {locale === "fa" ? "←" : "→"}
-            </span>
-          </Link>
-        </div>
+        <Link
+          href={action.href}
+          className="teacher-slim-priority-btn"
+          onClick={() => { void trackTeacherAction("primary_cta_click", action.id); }}
+        >
+          <span>{actionLabel(locale, action.id)}</span>
+          <span className="teacher-slim-priority-btn__arrow" aria-hidden="true">
+            {fa ? "←" : "→"}
+          </span>
+        </Link>
       </section>
 
       {/* Profile Completeness Bar (if < 100%) */}
-      {data.profile_completeness_percent < 100 ? (
-        <div className="teacher-profile-banner">
+      {data.profile_completeness_percent < 100 && (
+        <div className="teacher-profile-banner" role="status">
           <div className="teacher-profile-banner__info">
-            <span>{localText(locale, "تکمیل مدارک و مشخصات مدرسی", "Educator profile completion")}</span>
+            <span>{localText(locale, "تکمیل مدارک و پروفایل مدرسی:", "Educator verification & profile:")}</span>
             <strong>{data.profile_completeness_percent}%</strong>
           </div>
           <div className="teacher-profile-banner__track" aria-hidden="true">
@@ -381,235 +544,183 @@ export function TeacherDashboard() {
             />
           </div>
           <Link href="/teacher/verification" className="teacher-profile-banner__link">
-            {localText(locale, "تکمیل پروفایل", "Complete Profile")} &rarr;
+            {localText(locale, "تکمیل مشخصات", "Complete Profile")} &rarr;
           </Link>
         </div>
-      ) : null}
+      )}
 
-      {/* 3. Sleek 8-Card Bento Grid */}
-      <section className="teacher-bento-grid" aria-label={localText(locale, "ابزارهای تدریس", "Teaching Tools")}>
-        {/* Card 1: Flagship Live Studio */}
-        <Link href={liveUrl} className="teacher-bento-card teacher-bento-card--flagship">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--live">
-              <Icon name="liveStudio" />
-            </div>
-            <span className="teacher-bento-card__meta teacher-bento-card__meta--live">
-              <span className="teacher-bento-card__meta-pulse" aria-hidden="true" />
-              {localText(locale, "زنده و تعاملی", "Live & Interactive")}
-            </span>
+      {/* 4. Flagship Live Studio Bento Card */}
+      <Link href={liveUrl} className="teacher-flagship-card">
+        <div className="teacher-flagship-card__top">
+          <div className="teacher-flagship-card__icon-box" aria-hidden="true">
+            <Icon name="liveStudio" />
           </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "استودیوی تدریس زنده ایندورا", "Endoora Live Studio")}</h3>
-            <p>
-              {localText(
-                locale,
-                "برگزاری کلاس آنلاین تحت وب با تخته هوشمند Canvas، وب‌کم، اشتراک دسکتاپ، کوئیز آنی و حضور و غیاب تل‌متری.",
-                "Web-based virtual classroom with interactive canvas whiteboard, video podium, screen share and instant quiz."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action teacher-bento-card__action--live">
-              {localText(locale, "ورود مستقیم به کلاس آنلاین", "Launch Live Studio")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+          <span className="teacher-flagship-badge">
+            <span className="teacher-bento-card__meta-pulse" aria-hidden="true" />
+            <span>{localText(locale, "استودیوی تدریس زنده و تعاملی", "Live & Interactive Studio")}</span>
+          </span>
+        </div>
 
-        {/* Card 2: Classes Hub */}
-        <Link href="/teacher/classes" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--blue">
-              <Icon name="classes" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, `${classesCount} کلاس فعال`, `${classesCount} Cohorts`)}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "کلاس‌ها و دوره‌های آموزشی", "Classes & Cohorts")}</h3>
-            <p>
-              {localText(
-                locale,
-                "مدیریت تقویم کلاس‌ها، مشخصات و نوبت زبان‌آموزان و لینک مستقیم به فضای کلاس آنلاین ادوبی کانکت.",
-                "Manage schedule, student roster and one-click entry to live virtual classrooms."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "مشاهده و مدیریت کلاس‌ها", "Open Class Hub")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+        <div className="teacher-flagship-card__body">
+          <h3>{localText(locale, "استودیوی تدریس زنده ایندورا (Endoora Live Studio)", "Endoora Live Studio")}</h3>
+          <p>
+            {localText(
+              locale,
+              "برگزاری کلاس آنلاین تحت وب با تخته هوشمند چندلایه Canvas، پودیوم ویدیویی، اشتراک دسکتاپ، آزمونک آنی و مانیتورینگ حضور و غیاب تل‌متری.",
+              "Web-based virtual classroom with interactive canvas whiteboard, video podium, screen share, instant quiz, and real-time attendance telemetry."
+            )}
+          </p>
+        </div>
 
-        {/* Card 3: Grading Queue */}
-        <Link href="/teacher/grading" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--amber">
-              <Icon name="grading" />
-            </div>
-            <span
-              className={`teacher-bento-card__meta ${
-                gradingCount > 0 ? "teacher-bento-card__meta--amber" : ""
-              }`}
+        <div className="teacher-flagship-card__foot">
+          <span>{localText(locale, "ورود مستقیم به کلاس آنلاین", "Launch Live Studio")}</span>
+          <span aria-hidden="true">{fa ? "←" : "→"}</span>
+        </div>
+      </Link>
+
+      {/* 5. Tool Clusters Bento Grid */}
+      {/* Cluster 1: Classes & Assessment */}
+      <section className="teacher-tools-cluster" aria-label={localText(locale, "کلاس‌ها و سنجش", "Classes & Assessment")}>
+        <h2 className="teacher-cluster-title">
+          <span>🎓</span>
+          <span>{localText(locale, "کلاس‌ها، سنجش و نمرات", "Classes, Assessment & Ledger")}</span>
+        </h2>
+
+        <div className="teacher-tool-grid">
+          {assessmentTools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="teacher-bento-tool-card"
+              style={{ "--tool-accent": tool.accent } as React.CSSProperties}
             >
-              {gradingCount > 0
-                ? localText(locale, `${gradingCount} برگه منتظر تصحیح`, `${gradingCount} Pending`)
-                : localText(locale, "همه تصحیح شد", "All Checked")}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "صف تصحیح و استودیوی بازخورد", "Grading & Writing Studio")}</h3>
-            <p>
-              {localText(
-                locale,
-                "بررسی تکالیف ارسالی، نمره‌دهی تفکیکی مهارتی و ثبت فیدبک تحلیلی گرامر و واژگان با قلم دیجیتال.",
-                "Review student writing, score CEFR rubrics, and deliver targeted corrections."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "ورود به صف تصحیح", "Open Grading Queue")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+              <div className="teacher-bento-tool-card__top">
+                <div
+                  className="teacher-bento-tool-card__icon-box"
+                  style={{ background: tool.iconBg, color: tool.accent }}
+                  aria-hidden="true"
+                >
+                  <Icon name={tool.icon} />
+                </div>
+                <span className="teacher-bento-tool-card__badge">
+                  {fa ? tool.badgeFa : tool.badgeEn}
+                </span>
+              </div>
 
-        {/* Card 4: Online Exams */}
-        <Link href="/teacher/online-exams" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--teal">
-              <Icon name="exam" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, "سامانه آزمون", "Exam Engine")}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "آزمون‌های آنلاین و زمان‌دار", "Online Exams")}</h3>
-            <p>
-              {localText(
-                locale,
-                "ساخت آزمون‌های زمان‌بندی‌شده تستی و تشریحی با تصحیح خودکار و گزارش تحلیلی نمرات و تراز.",
-                "Create timed quizzes and mock exams with auto-grading and mastery analytics."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "مدیریت آزمون‌ها", "Manage Exams")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+              <div className="teacher-bento-tool-card__body">
+                <h3 className="teacher-bento-tool-card__title">
+                  {fa ? tool.titleFa : tool.titleEn}
+                </h3>
+                <p className="teacher-bento-tool-card__desc">
+                  {fa ? tool.descFa : tool.descEn}
+                </p>
+              </div>
 
-        {/* Card 5: Question Bank */}
-        <Link href="/teacher/question-bank" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--indigo">
-              <Icon name="question" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, "بانک سوالات", "Question Bank")}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "بانک سؤالات متمرکز", "Question Bank")}</h3>
-            <p>
-              {localText(
-                locale,
-                "مخزن طبقه‌بندی‌شده سوالات استاندارد به تفکیک سطح CEFR جهت تخصیص سریع به عنوان تکلیف کلاسی.",
-                "Browse CEFR-aligned objective and essay items to assign directly to students."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "مشاهده بانک سوالات", "Browse Bank")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+              <div className="teacher-bento-tool-card__footer">
+                <span>{fa ? tool.actionFa : tool.actionEn}</span>
+                <span className="teacher-bento-tool-card__arrow" aria-hidden="true">
+                  {fa ? "←" : "→"}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-        {/* Card 6: Gradebook & Analytics */}
-        <Link href="/teacher/gradebook" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--purple">
-              <Icon name="chart" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, "دفتر نمرات", "Gradebook")}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "دفتر نمرات و استودیوی کارنامه", "Gradebook & Progress Reports")}</h3>
-            <p>
-              {localText(
-                locale,
-                "ثبت نمرات کلاسی، رصد پیشرفت تحصیلی زبان‌آموزان و صدور کارنامه شکیل دوره‌ای منطبق بر شیوه‌نامه.",
-                "Continuous assessment matrices, competency records and official progress cards."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "مشاهده نمرات و کارنامه‌ها", "Open Gradebook")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+      {/* Cluster 2: AI & Curriculum Tools */}
+      <section className="teacher-tools-cluster" aria-label={localText(locale, "ابزارهای هوش مصنوعی و محتوا", "AI & Curriculum")}>
+        <h2 className="teacher-cluster-title">
+          <span>🧠</span>
+          <span>{localText(locale, "ابزارهای هوش مصنوعی، پایش شناختی و محتوا", "AI Diagnostics, Planning & Content")}</span>
+        </h2>
 
-        {/* Card 7: Marketplace Tutoring */}
-        <Link href="/marketplace/requests" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--green">
-              <Icon name="schedule" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, `${requestsCount} درخواست فعال`, `${requestsCount} Active`)}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "بازارچه درخواست‌های تدریس", "Tutoring Marketplace")}</h3>
-            <p>
-              {localText(
-                locale,
-                "درخواست‌های جلسات فوری رفع اشکال (Learn Now) و کلاس‌های اختصاصی زبان‌آموزان.",
-                "View and accept 1-on-1 tutoring sessions and instant diagnostic requests."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "بررسی بازارچه درخواست‌ها", "View Requests")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+        <div className="teacher-tool-grid">
+          {aiAndContentTools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="teacher-bento-tool-card"
+              style={{ "--tool-accent": tool.accent } as React.CSSProperties}
+            >
+              <div className="teacher-bento-tool-card__top">
+                <div
+                  className="teacher-bento-tool-card__icon-box"
+                  style={{ background: tool.iconBg, color: tool.accent }}
+                  aria-hidden="true"
+                >
+                  <Icon name={tool.icon} />
+                </div>
+                <span className="teacher-bento-tool-card__badge">
+                  {fa ? tool.badgeFa : tool.badgeEn}
+                </span>
+              </div>
 
-        {/* Card 8: Teaching Resources */}
-        <Link href="/teacher/resources" className="teacher-bento-card">
-          <div className="teacher-bento-card__head">
-            <div className="teacher-bento-card__icon-box teacher-bento-card__icon-box--slate">
-              <Icon name="book" />
-            </div>
-            <span className="teacher-bento-card__meta">
-              {localText(locale, "کتابخانه منابع", "Resources")}
-            </span>
-          </div>
-          <div className="teacher-bento-card__body">
-            <h3>{localText(locale, "کتابخانه و استانداردهای تدریس", "Curriculum & Standards")}</h3>
-            <p>
-              {localText(
-                locale,
-                "شیوه‌نامه‌های رسمی سنجش مهارت‌های شش‌گانه، راهنماهای تداخل زبانی و سرفصل‌های مصوب.",
-                "Official 6-skill CEFR assessment rubrics, pedagogical blueprints and curricula."
-              )}
-            </p>
-          </div>
-          <div className="teacher-bento-card__foot">
-            <span className="teacher-bento-card__action">
-              {localText(locale, "مشاهده منابع آموزشی", "Explore Resources")} {locale === "fa" ? "←" : "→"}
-            </span>
-          </div>
-        </Link>
+              <div className="teacher-bento-tool-card__body">
+                <h3 className="teacher-bento-tool-card__title">
+                  {fa ? tool.titleFa : tool.titleEn}
+                </h3>
+                <p className="teacher-bento-tool-card__desc">
+                  {fa ? tool.descFa : tool.descEn}
+                </p>
+              </div>
+
+              <div className="teacher-bento-tool-card__footer">
+                <span>{fa ? tool.actionFa : tool.actionEn}</span>
+                <span className="teacher-bento-tool-card__arrow" aria-hidden="true">
+                  {fa ? "←" : "→"}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Cluster 3: Growth & Resources */}
+      <section className="teacher-tools-cluster" aria-label={localText(locale, "توسعه، بازارچه و منابع", "Growth & Resources")}>
+        <h2 className="teacher-cluster-title">
+          <span>💼</span>
+          <span>{localText(locale, "توسعه شغلی، بازارچه تدریس و منابع", "Career Growth, Marketplace & Library")}</span>
+        </h2>
+
+        <div className="teacher-tool-grid">
+          {growthAndResourceTools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="teacher-bento-tool-card"
+              style={{ "--tool-accent": tool.accent } as React.CSSProperties}
+            >
+              <div className="teacher-bento-tool-card__top">
+                <div
+                  className="teacher-bento-tool-card__icon-box"
+                  style={{ background: tool.iconBg, color: tool.accent }}
+                  aria-hidden="true"
+                >
+                  <Icon name={tool.icon} />
+                </div>
+                <span className="teacher-bento-tool-card__badge">
+                  {fa ? tool.badgeFa : tool.badgeEn}
+                </span>
+              </div>
+
+              <div className="teacher-bento-tool-card__body">
+                <h3 className="teacher-bento-tool-card__title">
+                  {fa ? tool.titleFa : tool.titleEn}
+                </h3>
+                <p className="teacher-bento-tool-card__desc">
+                  {fa ? tool.descFa : tool.descEn}
+                </p>
+              </div>
+
+              <div className="teacher-bento-tool-card__footer">
+                <span>{fa ? tool.actionFa : tool.actionEn}</span>
+                <span className="teacher-bento-tool-card__arrow" aria-hidden="true">
+                  {fa ? "←" : "→"}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   );

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "./financial-risk-hub.module.css";
@@ -17,7 +18,7 @@ type FinanceRiskTab = "refunds" | "anti-fraud" | "reversal-ledger";
 export function FinancialRiskRefundHub() {
   if (process.env.NODE_ENV === "production") return <main className="account-panel" dir="rtl">
     <h1>تطبیق استرداد وجه اشتراک</h1><p>پس از تأیید بازپرداخت کامل در درگاه، رسید را برای همان پرداخت ثبت کنید.</p>
-    <a href="/admin/marketplace/subscriptiongrant/">مشاهده پرداخت‌ها در مدیریت مالی</a>
+    <Link href="/admin/marketplace/subscriptiongrant/">مشاهده پرداخت‌ها در مدیریت مالی</Link>
   </main>;
   return <PreviewHub />;
 }

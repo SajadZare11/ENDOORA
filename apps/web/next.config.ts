@@ -47,15 +47,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/courses/interactive", destination: "/courses", permanent: true },
-      ...["/ielts/results/:path*", "/ielts/practice/:sessionId/report", "/ielts/speaking/report", "/ielts/writing/report"].map(source => ({
-        source, destination: "/ielts/history", permanent: false,
-      })),
-      ...["/ielts/exam/:path*", "/ielts/practice/:path*"].map(source => ({
-        source, destination: "/ielts", permanent: false,
-      })),
-      ...["/ielts/writing/:path*", "/ielts/speaking/:path*"].map(source => ({
-        source, destination: "/ielts/workshop", permanent: false,
-      })),
       {
         source: "/downloads",
         destination: "/books",
@@ -85,7 +76,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "X-Frame-Options",
-            value: "DENY",
+            value: "SAMEORIGIN",
           },
           {
             key: "X-XSS-Protection",
@@ -101,7 +92,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; font-src 'self' data:; media-src 'self' blob: data: https://github.com https://*.githubusercontent.com https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; connect-src 'self' http://127.0.0.1:* http://localhost:* https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; frame-ancestors 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; font-src 'self' data:; media-src 'self' blob: data: https://github.com https://*.githubusercontent.com https://cdn.jsdelivr.net https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; connect-src 'self' http://127.0.0.1:* http://localhost:* https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://*.hf.co https://raw.githubusercontent.com https://cdn.jsdelivr.net https://*.arvanstorage.ir https://*.parspack.com https://*.endoora.ir; frame-ancestors 'self';",
           },
         ],
       },

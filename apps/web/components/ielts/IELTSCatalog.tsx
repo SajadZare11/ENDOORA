@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ALL_IELTS_EXAMS } from "../../data/ielts/index.ts";
 import { listAttemptsFromStorage } from "../../lib/ielts-state.ts";
 import type {
@@ -13,6 +14,7 @@ import type {
 import styles from "./ielts-catalog.module.css";
 
 export function IELTSCatalog() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"catalog" | "results">("catalog");
   const [selectedSkill, setSelectedSkill] = useState<IeltsSkill | "all">("all");
   const [selectedCategory, setSelectedCategory] = useState<IeltsExamCategory | "all">("all");
@@ -20,6 +22,10 @@ export function IELTSCatalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [recentAttempts, setRecentAttempts] = useState<ExamAttempt[]>([]);
   const [expandedExamIds, setExpandedExamIds] = useState<Set<string>>(new Set());
+  const [setupModalExam, setSetupModalExam] = useState<IeltsExam | null>(null);
+  const [selectedExamMode, setSelectedExamMode] = useState<
+    "full" | "listening" | "reading" | "writing" | "speaking"
+  >("full");
 
   useEffect(() => {
     // Load local storage attempts on mount
@@ -397,14 +403,18 @@ export function IELTSCatalog() {
 
                       {/* Actions Row */}
                       <div className={styles.drawerActionsRow}>
-                        <Link
-                          href={`/ielts/exam/${exam.id}`}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSetupModalExam(exam);
+                            setSelectedExamMode("full");
+                          }}
                           className={styles.primaryStartExamBtn}
                         >
                           <span>🚀</span>
                           <span>شروع شبیه‌ساز کامل کامپیوتری (Computer-Delivered)</span>
                           <span aria-hidden="true">←</span>
-                        </Link>
+                        </button>
 
                         <div className={styles.skillPracticeGroup}>
                           <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#64748b" }}>
@@ -567,6 +577,223 @@ export function IELTSCatalog() {
           انجام می‌شود.
         </p>
       </footer>
+
+      {/* Pre-Exam Setup Modal */}
+      {setupModalExam && (
+        <div
+          className={styles.modalBackdrop}
+          onClick={() => setSetupModalExam(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="setup-modal-title"
+        >
+          <div
+            className={styles.modalCard}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className={styles.modalHeader}>
+              <div>
+                <span className={styles.cambridgeBadge}>
+                  {setupModalExam.source.toUpperCase()} • {setupModalExam.category}
+                </span>
+                <h2 id="setup-modal-title" className={styles.modalHeaderTitle}>
+                  آماده‌سازی شبیه‌ساز رسمی: {setupModalExam.title}
+                </h2>
+                <p className={styles.modalSubtitle}>
+                  پیکربندی حالت آزمون و بررسی آمادگی پیش از ورود به محیط کامپیوتری (CD-IELTS)
+                </p>
+              </div>
+              <button
+                type="button"
+                className={styles.modalCloseBtn}
+                onClick={() => setSetupModalExam(null)}
+                aria-label="بستن"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className={styles.modalBody}>
+              {/* Exam Mode Selector */}
+              <div className={styles.modeOptionGroup} role="radiogroup" aria-label="انتخاب نحوه شرکت در آزمون">
+                <span className={styles.modeOptionLabel}>نحوه شرکت در آزمون را انتخاب کنید:</span>
+
+                {/* Option 1: Full Simulation */}
+                <div
+                  className={`${styles.modeOptionCard} ${
+                    selectedExamMode === "full" ? styles.modeOptionCardActive : ""
+                  }`}
+                  onClick={() => setSelectedExamMode("full")}
+                  role="radio"
+                  aria-checked={selectedExamMode === "full"}
+                  tabIndex={0}
+                >
+                  <div className={styles.modeOptionLeft}>
+                    <span className={styles.modeOptionIcon}>🚀</span>
+                    <div>
+                      <h3 className={styles.modeOptionTitle}>شبیه‌ساز کامل کامپیوتری (Full Simulation)</h3>
+                      <p className={styles.modeOptionDuration}>
+                        تمام بخش‌های استاندارد آزمون با زمان‌بندی رسمی {setupModalExam.total_duration_minutes} دقیقه
+                      </p>
+                    </div>
+                  </div>
+                  <span style={{ fontSize: "1.1rem" }}>{selectedExamMode === "full" ? "🔘" : "⚪"}</span>
+                </div>
+
+                {/* Option 2: Reading only */}
+                {setupModalExam.modules.some((m) => m.skill === "reading") && (
+                  <div
+                    className={`${styles.modeOptionCard} ${
+                      selectedExamMode === "reading" ? styles.modeOptionCardActive : ""
+                    }`}
+                    onClick={() => setSelectedExamMode("reading")}
+                    role="radio"
+                    aria-checked={selectedExamMode === "reading"}
+                    tabIndex={0}
+                  >
+                    <div className={styles.modeOptionLeft}>
+                      <span className={styles.modeOptionIcon}>📖</span>
+                      <div>
+                        <h3 className={styles.modeOptionTitle}>فقط درک مطلب (Reading Focus)</h3>
+                        <p className={styles.modeOptionDuration}>
+                          ۴۰ سوال در ۳ متن تحلیلی رسمی کمبریج • ۶۰ دقیقه
+                        </p>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: "1.1rem" }}>{selectedExamMode === "reading" ? "🔘" : "⚪"}</span>
+                  </div>
+                )}
+
+                {/* Option 3: Listening only */}
+                {setupModalExam.modules.some((m) => m.skill === "listening") && (
+                  <div
+                    className={`${styles.modeOptionCard} ${
+                      selectedExamMode === "listening" ? styles.modeOptionCardActive : ""
+                    }`}
+                    onClick={() => setSelectedExamMode("listening")}
+                    role="radio"
+                    aria-checked={selectedExamMode === "listening"}
+                    tabIndex={0}
+                  >
+                    <div className={styles.modeOptionLeft}>
+                      <span className={styles.modeOptionIcon}>🎧</span>
+                      <div>
+                        <h3 className={styles.modeOptionTitle}>فقط شنیداری (Listening Focus)</h3>
+                        <p className={styles.modeOptionDuration}>
+                          ۴۰ سوال در ۴ بخش صوتی • ۳۰ دقیقه زمان آزمون
+                        </p>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: "1.1rem" }}>{selectedExamMode === "listening" ? "🔘" : "⚪"}</span>
+                  </div>
+                )}
+
+                {/* Option 4: Writing only */}
+                {setupModalExam.modules.some((m) => m.skill === "writing") && (
+                  <div
+                    className={`${styles.modeOptionCard} ${
+                      selectedExamMode === "writing" ? styles.modeOptionCardActive : ""
+                    }`}
+                    onClick={() => setSelectedExamMode("writing")}
+                    role="radio"
+                    aria-checked={selectedExamMode === "writing"}
+                    tabIndex={0}
+                  >
+                    <div className={styles.modeOptionLeft}>
+                      <span className={styles.modeOptionIcon}>✍️</span>
+                      <div>
+                        <h3 className={styles.modeOptionTitle}>فقط نگارش (Writing Focus)</h3>
+                        <p className={styles.modeOptionDuration}>
+                          تسک ۱ و تسک ۲ با تایمر ۶۰ دقیقه‌ای و ارزیابی هوشمند معیارها
+                        </p>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: "1.1rem" }}>{selectedExamMode === "writing" ? "🔘" : "⚪"}</span>
+                  </div>
+                )}
+
+                {/* Option 5: Speaking only */}
+                {setupModalExam.modules.some((m) => m.skill === "speaking") && (
+                  <div
+                    className={`${styles.modeOptionCard} ${
+                      selectedExamMode === "speaking" ? styles.modeOptionCardActive : ""
+                    }`}
+                    onClick={() => setSelectedExamMode("speaking")}
+                    role="radio"
+                    aria-checked={selectedExamMode === "speaking"}
+                    tabIndex={0}
+                  >
+                    <div className={styles.modeOptionLeft}>
+                      <span className={styles.modeOptionIcon}>🎙️</span>
+                      <div>
+                        <h3 className={styles.modeOptionTitle}>فقط گفتار (Speaking Focus)</h3>
+                        <p className={styles.modeOptionDuration}>
+                          مصاحبه کامل پارت‌های ۱ تا ۳ با کیوکارت و تحلیل روانی کلام
+                        </p>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: "1.1rem" }}>{selectedExamMode === "speaking" ? "🔘" : "⚪"}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Exam Rules & Instructions */}
+              <div className={styles.instructionsBox}>
+                <strong>📌 نکات و قوانین شبیه‌ساز رسمی CD-IELTS:</strong>
+                <ul className={styles.instructionsList}>
+                  <li>
+                    محیط آزمون دارای صفحه دو تکه (پاساژ و سوالات) با امکان جابجایی خط جداکننده، هایلایتر متن و تغییر اندازه قلم است.
+                  </li>
+                  <li>
+                    تایمر آزمون در بالای صفحه فعال بوده و در دقایق ۱۰ و ۵ هشدار رسمی نمایش داده خواهد شد.
+                  </li>
+                  <li>
+                    پاسخ‌های شما به صورت خودکار و پایدار در مرورگر ذخیره می‌شوند تا در صورت قطع ارتباط مشکلی ایجاد نشود.
+                  </li>
+                  <li>
+                    بلافاصله پس از ثبت آزمون، کارنامه تحلیلی کامل با نمره Band Score ۱ تا ۹ کمبریج و بررسی تک‌تک سوالات صادر می‌شود.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className={styles.modalFooter}>
+              <button
+                type="button"
+                className={styles.modalCancelBtn}
+                onClick={() => setSetupModalExam(null)}
+              >
+                انصراف
+              </button>
+              <button
+                type="button"
+                className={styles.modalConfirmBtn}
+                onClick={() => {
+                  const examId = setupModalExam.id;
+                  setSetupModalExam(null);
+                  if (selectedExamMode === "full") {
+                    router.push(`/ielts/exam/${examId}`);
+                  } else if (selectedExamMode === "reading") {
+                    router.push(`/ielts/exam/${examId}?skill=reading`);
+                  } else if (selectedExamMode === "listening") {
+                    router.push(`/ielts/exam/${examId}?skill=listening`);
+                  } else if (selectedExamMode === "writing") {
+                    router.push(`/ielts/writing?examId=${examId}`);
+                  } else if (selectedExamMode === "speaking") {
+                    router.push(`/ielts/speaking?examId=${examId}`);
+                  }
+                }}
+              >
+                <span>ورود به اتاق آزمون</span>
+                <span aria-hidden="true">➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

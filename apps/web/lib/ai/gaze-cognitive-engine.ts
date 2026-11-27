@@ -31,6 +31,7 @@ export class GazeCognitiveEngine {
   private isWorkerReady = false;
   private isTracking = false;
   private trackingIntervalId: ReturnType<typeof setInterval> | null = null;
+  private mouseHandler: ((e: MouseEvent) => void) | null = null;
 
   private telemetrySubscribers: Set<(t: GazeCognitiveTelemetry) => void> = new Set();
   private watsonHintSubscribers: Set<(t: GazeCognitiveTelemetry) => void> = new Set();
@@ -46,7 +47,9 @@ export class GazeCognitiveEngine {
   private constructor() {
     this.lastTelemetry = this.getDefaultTelemetry();
     this.state = this.loadState();
-    if (process.env.NODE_ENV === "development") this.initWorker();
+    if (typeof window !== "undefined") {
+      this.initWorker();
+    }
   }
 
   public static getInstance(): GazeCognitiveEngine {
@@ -115,9 +118,17 @@ export class GazeCognitiveEngine {
 
   private initWorker(): void {
     if (typeof window === "undefined" || typeof Worker === "undefined") return;
+    if (this.worker) return;
 
     try {
       this.worker = new Worker(WORKER_URL);
+      this.worker.onerror = (err: ErrorEvent) => {
+        console.warn(
+          "[GazeCognitiveEngine] Worker error encountered, falling back to mouse/synthetic mode:",
+          err.message || err
+        );
+        this.isWorkerReady = false;
+      };
       this.worker.onmessage = (e: MessageEvent<GazeWorkerOutboundMessage>) => {
         const msg = e.data;
         if (msg.type === "MODEL_READY") {
@@ -127,6 +138,8 @@ export class GazeCognitiveEngine {
           this.notifyTelemetry(msg.telemetry);
         } else if (msg.type === "WATSON_HINT_TRIGGERED" && msg.telemetry) {
           this.notifyWatsonHint(msg.telemetry);
+        } else if (msg.type === "ERROR") {
+          console.warn("[GazeCognitiveEngine] Worker reported error:", msg.error);
         }
       };
 
@@ -184,26 +197,27 @@ export class GazeCognitiveEngine {
     videoElement?: HTMLVideoElement | null;
     useMouseFallback?: boolean;
   } = {}): void {
-    if (process.env.NODE_ENV !== "development" || this.isTracking) return;
+    if (typeof window === "undefined" || this.isTracking) return;
+    if (!this.worker) {
+      this.initWorker();
+    }
     this.isTracking = true;
     this.activeVideoElement = videoElement || null;
 
-    if (typeof window !== "undefined") {
-      // 1. OffscreenCanvas setup for video frame downsampling
-      if (this.activeVideoElement && typeof OffscreenCanvas !== "undefined") {
-        this.offscreenCanvas = new OffscreenCanvas(64, 64);
-        this.offscreenCtx = this.offscreenCanvas.getContext("2d");
-      }
+    // 1. OffscreenCanvas setup for video frame downsampling
+    if (this.activeVideoElement && typeof OffscreenCanvas !== "undefined") {
+      this.offscreenCanvas = new OffscreenCanvas(64, 64);
+      this.offscreenCtx = this.offscreenCanvas.getContext("2d");
+    }
 
-      // 2. Sample at 10 frames per second (every 100 ms)
-      this.trackingIntervalId = setInterval(() => {
-        this.sampleTick();
-      }, 100);
+    // 2. Sample at 10 frames per second (every 100 ms)
+    this.trackingIntervalId = setInterval(() => {
+      this.sampleTick();
+    }, 100);
 
-      // 3. Attach mouse dynamics tracking as multimodal complement / fallback
-      if (useMouseFallback) {
-        this.setupMouseTracking();
-      }
+    // 3. Attach mouse dynamics tracking as multimodal complement / fallback
+    if (useMouseFallback) {
+      this.setupMouseTracking();
     }
   }
 
@@ -212,6 +226,42 @@ export class GazeCognitiveEngine {
     if (this.trackingIntervalId) {
       clearInterval(this.trackingIntervalId);
       this.trackingIntervalId = null;
+    }
+    if (typeof window !== "undefined" && this.mouseHandler) {
+      window.removeEventListener("mousemove", this.mouseHandler);
+      this.mouseHandler = null;
+    }
+  }
+
+  /**
+   * Cleanly terminates the Web Worker, stops tracking, and releases resources.
+   * Can be re-initialized if startTracking() is called again.
+   */
+  public terminate(): void {
+    this.stopTracking();
+    if (this.worker) {
+      try {
+        this.worker.terminate();
+      } catch {
+        // Safe termination
+      }
+      this.worker = null;
+    }
+    this.isWorkerReady = false;
+    this.activeVideoElement = null;
+    this.offscreenCanvas = null;
+    this.offscreenCtx = null;
+  }
+
+  /**
+   * Full teardown of the engine instance, clearing subscribers and singleton ref.
+   */
+  public destroy(): void {
+    this.terminate();
+    this.telemetrySubscribers.clear();
+    this.watsonHintSubscribers.clear();
+    if (GazeCognitiveEngine.instance === this) {
+      GazeCognitiveEngine.instance = null;
     }
   }
 
@@ -253,11 +303,16 @@ export class GazeCognitiveEngine {
   private setupMouseTracking(): void {
     if (typeof window === "undefined") return;
 
+    if (this.mouseHandler) {
+      window.removeEventListener("mousemove", this.mouseHandler);
+      this.mouseHandler = null;
+    }
+
     let prevX = 0;
     let prevY = 0;
     let prevTime = Date.now();
 
-    const mouseHandler = (e: MouseEvent) => {
+    this.mouseHandler = (e: MouseEvent) => {
       const now = Date.now();
       const dt = Math.max(1, now - prevTime);
       const dx = e.clientX - prevX;
@@ -284,7 +339,7 @@ export class GazeCognitiveEngine {
       }
     };
 
-    window.addEventListener("mousemove", mouseHandler, { passive: true });
+    window.addEventListener("mousemove", this.mouseHandler, { passive: true });
   }
 
   /**

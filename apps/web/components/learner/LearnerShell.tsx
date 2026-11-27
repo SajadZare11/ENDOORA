@@ -164,9 +164,6 @@ function Gate({
       <section className="learner-gate__card" aria-live="polite">
         <div className="learner-gate__header">
           <EndooraWordmark />
-          <Button className="learner-language" type="button" onClick={onLocaleChange}>
-            {copy.switch}
-          </Button>
         </div>
         <span className="learner-gate__symbol" aria-hidden="true">E</span>
         <h1>{content[0]}</h1>

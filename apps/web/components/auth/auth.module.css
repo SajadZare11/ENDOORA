@@ -290,13 +290,21 @@
   text-align: left;
 }
 
-.passwordWrap { position: relative; }
-.passwordWrap input { padding-inline-end: 3.25rem; }
+.passwordWrap {
+  position: relative;
+  direction: ltr;
+}
+
+.passwordWrap input {
+  padding-right: 3.25rem;
+  padding-left: var(--space-3);
+}
 
 .passwordToggle {
   position: absolute;
-  inset-block-start: 50%;
-  inset-inline-end: 0.25rem;
+  top: 50%;
+  right: 0.25rem;
+  left: auto;
   display: grid;
   place-items: center;
   inline-size: var(--target-min);
@@ -307,6 +315,7 @@
   color: var(--color-muted);
   cursor: pointer;
   transform: translateY(-50%);
+  z-index: 2;
 }
 
 .passwordToggle:hover { background: rgb(255 255 255 / 0.07); color: var(--color-text); }

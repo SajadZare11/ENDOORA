@@ -44,6 +44,10 @@ export interface EnDooraTriModalTelemetry {
   gopPhonemeErrorRate?: number;
   /** Backward-compatible alias for semanticDeficit */
   bertSemanticDeficit?: number;
+  /** Optional Cognitive Load Index from Gaze tracking */
+  cognitiveLoadIndex?: number;
+  /** Optional Saccadic Regression Rate from Gaze tracking */
+  saccadicRegressionRate?: number;
 }
 
 export interface DistractorCandidate {

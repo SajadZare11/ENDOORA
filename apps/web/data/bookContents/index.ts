@@ -7,6 +7,13 @@ export interface BookVocabularyItem {
   example?: string;
 }
 
+export interface BookPage {
+  pageNumber: number; // Page index within the chapter (1, 2, 3...)
+  bookPageNumber: number; // Physical PDF / book page number (e.g. 14, 15...)
+  content: string[]; // Paragraphs belonging to this page
+  subtitle?: string;
+}
+
 export interface BookChapter {
   id: string;
   number: number | string;
@@ -15,6 +22,9 @@ export interface BookChapter {
   subtitle?: string;
   audioTimestamp?: string;
   content: string[];
+  pages?: BookPage[];
+  startPage?: number;
+  endPage?: number;
   vocabulary?: BookVocabularyItem[];
   keyTakeawaysFa?: string[];
   notesFa?: string;
@@ -31,6 +41,8 @@ export interface BookContentData {
   readingTipsFa: string[];
   pdfUrl?: string;
   audioCompanionUrl?: string;
+  totalPages?: number;
+  publishYear?: string | number;
   chapters: BookChapter[];
 }
 
@@ -54,6 +66,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
     ],
     pdfUrl: "https://dl.endoora.ir/novels/sherlock_hound_of_the_baskervilles_audio_pdf.zip",
     audioCompanionUrl: "https://dl.endoora.ir/audio/novels/sherlock_hound_ch1.mp3",
+    publishYear: "1902",
     chapters: [
       {
         id: "ch-1",
@@ -183,6 +196,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
       "تلفظ صحیح فونتیک هر واژه را با صدای بلند تکرار کنید.",
     ],
     pdfUrl: "https://dl.endoora.ir/books/504_essential_words_enhanced.pdf",
+    publishYear: "2020",
     chapters: [
       {
         id: "lesson-1",
@@ -266,6 +280,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
       "دیالوگ‌ها را با صدای رسا بخوانید تا ریتم گفتگوی خودمانی را حس کنید.",
     ],
     pdfUrl: "https://dl.endoora.ir/books/speak_english_like_an_american_full.zip",
+    publishYear: "2013",
     chapters: [
       {
         id: "lesson-1",
@@ -313,6 +328,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
       "به نکات مقایسه‌ای (Contrast) بین زمان‌های گذشته، حال ساده و استمراری بسیار توجه داشته باشید.",
     ],
     pdfUrl: "https://dl.endoora.ir/books/English_Grammar_in_Use_5th.pdf",
+    publishYear: "2019",
     chapters: [
       {
         id: "unit-1",
@@ -379,6 +395,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
       "قلم فیتزجرالد دارای ریتمی شاعرانه و غنی از صفات تماشایی است.",
     ],
     pdfUrl: "https://dl.endoora.ir/novels/the_great_gatsby_b2_audiobook.zip",
+    publishYear: "1925",
     chapters: [
       {
         id: "ch-1",
@@ -419,6 +436,7 @@ export const BOOK_CONTENTS: Record<string, BookContentData> = {
       "فایل‌های کتاب کار (Workbook) و صوت‌های همراه را از منوی ضمیمه دریافت نمایید.",
     ],
     pdfUrl: "https://github.com/SajadZare11/ENDOORA/releases/download/media-aef-starter/AEF-Starter-3rd-Complete.zip",
+    publishYear: "2020",
     chapters: [
       {
         id: "unit-1",
@@ -568,8 +586,8 @@ export function getBookContent(itemId: string): BookContentData {
     chapters: [
       {
         id: "overview",
-        number: 1,
-        titleFa: "معرفی و نمای کلی کتاب",
+        number: "راهنما",
+        titleFa: "معرفی و راهنمای جامع مطالعه",
         titleEn: "Overview & Study Guide",
         subtitle: found.titleEn,
         content: [

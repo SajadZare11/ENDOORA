@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from disaster_recovery.demo import require_demo_operations
 
 import hashlib
 import uuid
@@ -25,7 +24,6 @@ class LaunchGateChecklistEvaluator:
 
     @classmethod
     def evaluate_readiness(cls) -> Dict[str, Any]:
-        require_demo_operations()
         now = timezone.now()
 
         # Check latest Golden Flow rehearsal or trigger one if not present

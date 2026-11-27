@@ -14,6 +14,7 @@ import { EnDooraLinUCBBandit } from "../../../lib/ai/linucb-bandit-engine";
 import type { AdaptiveQuestionPayload, RawAdaptiveQuestionPayload } from "../../../lib/ai/types";
 import { NeuralCdmEngine } from "../../../lib/ai/neural-cdm-engine.ts";
 import type { CdmDiagnosticResult } from "../../../lib/ai/neural-cdm-types.ts";
+import { NeuralCdmDiagnosticPanel } from "./NeuralCdmDiagnosticPanel";
 import { useGazeCognitive } from "../../../lib/ai/useGazeCognitive.ts";
 import { getLearnerTwin, TWIN_CATALOG } from '../../../lib/ai/learner-twin-store';
 import type { TwinPrediction } from '../../../lib/ai/learner-twin-types';
@@ -135,6 +136,7 @@ export function GrammarHexArena({
     useMouseFallback: true,
   });
   const [showRadarModal, setShowRadarModal] = useState(false);
+  const [showCdmReviewModal, setShowCdmReviewModal] = useState(false);
   const nodeEntryTimeRef = React.useRef<number>(Date.now());
   const twinPredictionRef=React.useRef<TwinPrediction|undefined>(undefined);
 
@@ -657,6 +659,66 @@ export function GrammarHexArena({
         </div>
       )}
 
+      {showCdmReviewModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.85)",
+            backdropFilter: "blur(10px)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+          onClick={() => {
+            setShowCdmReviewModal(false);
+            if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+              setIsTimerRunning(true);
+            }
+          }}
+        >
+          <div
+            style={{ maxWidth: "860px", width: "100%", maxHeight: "90vh", overflowY: "auto" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "8px" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowCdmReviewModal(false);
+                  if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+                    setIsTimerRunning(true);
+                  }
+                }}
+                style={{
+                  background: "#1e293b",
+                  border: "1px solid #475569",
+                  color: "#f1f5f9",
+                  borderRadius: "8px",
+                  padding: "6px 14px",
+                  fontSize: "0.85rem",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                ✕ بستن پنل تشخیصی
+              </button>
+            </div>
+            <NeuralCdmDiagnosticPanel
+              activeDiagnosis={lastCdmDiagnosis}
+              onClose={() => {
+                setShowCdmReviewModal(false);
+                if (!isGameOver && !isAtGoalTerminal && !isBriefingOpen) {
+                  setIsTimerRunning(true);
+                }
+              }}
+            />
+          </div>
+        </div>
+      )}
+
       <div className={styles.arenaCard}>
         {/* HUD Top Bar */}
         <div className={styles.hudBar}>
@@ -708,6 +770,23 @@ export function GrammarHexArena({
               title="مشاهده وضعیت زوال حافظه و تسلط شناختی DKT"
             >
               🧠 رادار DKT
+            </button>
+            <button
+              type="button"
+              className={styles.metricBadge}
+              style={{
+                background: "rgba(168, 85, 247, 0.15)",
+                border: "1px solid rgba(168, 85, 247, 0.4)",
+                color: "#c084fc",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setIsTimerRunning(false);
+                setShowCdmReviewModal(true);
+              }}
+              title="مرکز تحلیل علّی و ریشه‌یابی خطاهای گرامر (NeuralCDM)"
+            >
+              🎯 تحلیل علّی CDM
             </button>
             <button className={styles.closeBtn} onClick={onClose} title="بستن بازی" type="button">
               ✕
@@ -994,15 +1073,43 @@ export function GrammarHexArena({
                     >
                       🏆 مشاهده کارنامه
                     </button>
+                    <button
+                      className={styles.goalContinueBtn}
+                      style={{
+                        background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
+                        marginTop: "0.5rem",
+                      }}
+                      onClick={() => {
+                        setShowCdmReviewModal(true);
+                      }}
+                      type="button"
+                    >
+                      🎯 تحلیل شناختی مدار (NeuralCDM)
+                    </button>
                   </>
                 ) : (
-                  <button
-                    className={styles.goalNextLevelBtn}
-                    onClick={handleStageVictory}
-                    type="button"
-                  >
-                    🏆 مشاهده کارنامه و پایان سطح
-                  </button>
+                  <>
+                    <button
+                      className={styles.goalNextLevelBtn}
+                      onClick={handleStageVictory}
+                      type="button"
+                    >
+                      🏆 مشاهده کارنامه و پایان سطح
+                    </button>
+                    <button
+                      className={styles.goalContinueBtn}
+                      style={{
+                        background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
+                        marginTop: "0.5rem",
+                      }}
+                      onClick={() => {
+                        setShowCdmReviewModal(true);
+                      }}
+                      type="button"
+                    >
+                      🎯 تحلیل شناختی مدار (NeuralCDM)
+                    </button>
+                  </>
                 )}
               </div>
             )}
@@ -1053,19 +1160,23 @@ export function GrammarHexArena({
                   : "برای عبور از این مرحله دوباره تلاش کن و مسیر درست رو با دقت سیم‌کشی کن!"}
               </p>
 
-              {!stagePassed && lastCdmDiagnosis && (
-                <div style={{ background: "rgba(239, 68, 68, 0.12)", border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: "8px", padding: "10px 14px", margin: "12px 0", textAlign: "right" }}>
-                  <div style={{ fontWeight: "bold", fontSize: "0.9rem", color: "#f87171", marginBottom: "4px" }}>
-                    {lastCdmDiagnosis.diagnosis === "PREREQUISITE_DEFICIT" ? "🎯 ریشه‌یابی علّی شکست (NeuralCDM)" : "⚡ لغزش تصادفی شناسایی شد"}
-                  </div>
-                  <p style={{ fontSize: "0.82rem", margin: 0, color: "#e2e8f0", lineHeight: 1.6 }}>
-                    {lastCdmDiagnosis.remediationFa}
-                  </p>
-                  {lastCdmDiagnosis.rootDeficit && (
-                    <div style={{ fontSize: "0.78rem", color: "#fbbf24", marginTop: "6px" }}>
-                      پیش‌نیاز ریشه‌ای: {lastCdmDiagnosis.rootDeficit.titleFa} ({lastCdmDiagnosis.rootDeficit.titleEn} - سطح {lastCdmDiagnosis.rootDeficit.cefr})
-                    </div>
-                  )}
+              {!stagePassed && (
+                <div style={{ width: "100%", margin: "14px 0" }}>
+                  <NeuralCdmDiagnosticPanel
+                    activeDiagnosis={lastCdmDiagnosis}
+                    compact={true}
+                    stagePassed={false}
+                  />
+                </div>
+              )}
+
+              {stagePassed && (
+                <div style={{ width: "100%", margin: "12px 0" }}>
+                  <NeuralCdmDiagnosticPanel
+                    activeDiagnosis={lastCdmDiagnosis}
+                    compact={true}
+                    stagePassed={true}
+                  />
                 </div>
               )}
 
@@ -1110,6 +1221,13 @@ export function GrammarHexArena({
                     🏆 مشاهده لیدربرد
                   </button>
                 )}
+                <button
+                  className={styles.tabBtn}
+                  onClick={() => setShowCdmReviewModal(true)}
+                  type="button"
+                >
+                  🎯 تحلیل علّی و ریشه‌یابی خطاها
+                </button>
                 <button className={styles.secondaryBtn} onClick={onClose} type="button">
                   بازگشت به نقشه
                 </button>

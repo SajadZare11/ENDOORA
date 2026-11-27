@@ -41,6 +41,7 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
   const [selectedPhoneme, setSelectedPhoneme] = useState<PhonemeGOPResult | null>(null);
   const [trackedWeakPhonemes, setTrackedWeakPhonemes] = useState<string[]>([]);
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+  const [workerError, setWorkerError] = useState<string | null>(null);
 
   const audioInstanceRef = useRef<HTMLAudioElement | null>(null);
 
@@ -111,51 +112,88 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
     }
   }, []);
 
-  // Initialize Web Worker with fallback
+  // Initialize Web Worker with fallback and comprehensive error handling
   useEffect(() => {
-    let worker: Worker;
+    let worker: Worker | null = null;
+    let isTerminated = false;
+
+    const handleWorkerError = (errorMessage: string) => {
+      if (isTerminated) return;
+      console.error('[SpectrogramPronunciationLab] Worker error:', errorMessage);
+      setIsProcessing(false);
+      setIsRecording(false);
+      setBackendStatus('Edge AI Error');
+      twinAssessmentRef.current = null;
+      setWorkerError(errorMessage);
+    };
+
     try {
-      worker = new Worker(
-        new URL('../../workers/gop-cnn-ctc.worker.ts', import.meta.url),
-        { type: 'module' }
-      );
+      try {
+        worker = new Worker(
+          new URL('../../workers/gop-cnn-ctc.worker.ts', import.meta.url),
+          { type: 'module' }
+        );
+      } catch {
+        worker = new Worker('/workers/gop-cnn-ctc.worker.js', { type: 'module' });
+      }
+
+      worker.onmessage = (e: MessageEvent) => {
+        if (isTerminated) return;
+        const { type, backend, payload } = e.data;
+
+        if (type === 'MODEL_READY') {
+          const backendName = backend === 'webgpu' ? 'WebGPU' : backend === 'wasm' ? 'WASM' : 'Acoustic DSP';
+          setBackendStatus(`2D-CNN + CTC (${backendName})`);
+          setWorkerError(null);
+        } else if (type === 'ASSESSMENT_COMPLETE') {
+          const result = payload as GOPAssessmentPayload;
+          finishTwinAssessment(twinAssessmentRef.current, result.overallScore / 100);
+          twinAssessmentRef.current = null;
+          setAssessment(result);
+          setIsProcessing(false);
+          setWorkerError(null);
+          persistPhonemeDiagnostics(result);
+          void syncPhoneticAssessment(result, moduleSource, sentenceText);
+
+          // Auto-select first non-native phoneme for immediate diagnostic feedback
+          for (const w of result.words) {
+            const weak = w.phonemes.find((p: PhonemeGOPResult) => p.status !== 'native');
+            if (weak) {
+              setSelectedPhoneme(weak);
+              break;
+            }
+          }
+          onAssessmentComplete?.(result);
+        } else if (type === 'ERROR') {
+          handleWorkerError(
+            payload?.message || 'خطا در ارزیابی و استنتاج مدل واج‌شناسی هوش مصنوعی.'
+          );
+        }
+      };
+
+      worker.onerror = (e: ErrorEvent) => {
+        const errorDetails = e.message || 'Worker runtime error';
+        handleWorkerError(
+          `خطا در بارگذاری یا پردازش مدل هوش مصنوعی صوت: ${errorDetails}`
+        );
+      };
+
+      worker.postMessage({ type: 'INIT_MODEL' });
+      workerRef.current = worker;
     } catch {
-      worker = new Worker('/workers/gop-cnn-ctc.worker.js', { type: 'module' });
+      handleWorkerError(
+        'مرورگر شما از وب‌ورکرها یا پردازش صوت در سمت کاربر پشتیبانی نمی‌کند.'
+      );
     }
 
-    worker.onmessage = (e: MessageEvent) => {
-      const { type, backend, payload } = e.data;
-      if (type === 'MODEL_READY') {
-        const backendName = backend === 'webgpu' ? 'WebGPU' : backend === 'wasm' ? 'WASM' : 'Acoustic DSP';
-        setBackendStatus(`2D-CNN + CTC (${backendName})`);
-      } else if (type === 'ASSESSMENT_COMPLETE') {
-        const result = payload as GOPAssessmentPayload;
-        finishTwinAssessment(twinAssessmentRef.current,result.overallScore/100);
-        twinAssessmentRef.current=null;
-        setAssessment(result);
-        setIsProcessing(false);
-        persistPhonemeDiagnostics(result);
-        void syncPhoneticAssessment(result, moduleSource, sentenceText);
-
-        // Auto-select first non-native phoneme for immediate diagnostic feedback
-        for (const w of result.words) {
-          const weak = w.phonemes.find((p: PhonemeGOPResult) => p.status !== 'native');
-          if (weak) {
-            setSelectedPhoneme(weak);
-            break;
-          }
-        }
-        onAssessmentComplete?.(result);
-      }
-    };
-
-    worker.postMessage({ type: 'INIT_MODEL' });
-    workerRef.current = worker;
-
     return () => {
-      worker.terminate();
+      isTerminated = true;
+      if (worker) {
+        worker.terminate();
+      }
+      workerRef.current = null;
     };
-  }, [onAssessmentComplete, persistPhonemeDiagnostics]);
+  }, [moduleSource, onAssessmentComplete, persistPhonemeDiagnostics, sentenceText]);
 
   // Real-time 80-Bin Mel-Spectrogram + F0 Pitch Contour Canvas Renderer (60 FPS)
   const drawSpectrogramChunk = useCallback(
@@ -269,6 +307,7 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
 
   const startRecording = async () => {
     try {
+      setWorkerError(null);
       twinAssessmentRef.current=beginTwinAssessment('cnn_pronunciation');
       setAssessment(null);
       setSelectedPhoneme(null);
@@ -359,20 +398,26 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
       frameOffset += pitchChunksRef.current[i].length;
     }
 
-    workerRef.current.postMessage(
-      {
-        type: 'EVALUATE_UTTERANCE',
-        payload: {
-          melSpectrogram: fullMel,
-          pitchFrames: fullPitch,
-          rmsFrames: fullRms,
-          numFrames,
-          numBins,
-          targetWords
-        }
-      },
-      [fullMel.buffer, fullPitch.buffer, fullRms.buffer]
-    );
+    try {
+      workerRef.current.postMessage(
+        {
+          type: 'EVALUATE_UTTERANCE',
+          payload: {
+            melSpectrogram: fullMel,
+            pitchFrames: fullPitch,
+            rmsFrames: fullRms,
+            numFrames,
+            numBins,
+            targetWords
+          }
+        },
+        [fullMel.buffer, fullPitch.buffer, fullRms.buffer]
+      );
+    } catch (postErr) {
+      console.error('Failed to dispatch audio buffers to worker:', postErr);
+      setIsProcessing(false);
+      setWorkerError('خطا در ارسال داده‌های صوتی به ورکر پردازش واج.');
+    }
   };
 
   return (
@@ -449,6 +494,27 @@ export const SpectrogramPronunciationLab: React.FC<SpectrogramPronunciationLabPr
           </span>
         </div>
       </div>
+
+      {/* Worker Error Notification Banner */}
+      {workerError && (
+        <div
+          className="p-3.5 bg-rose-950/50 border border-rose-800/80 rounded-xl text-rose-200 text-sm flex items-center justify-between gap-3 shadow-lg transition-all"
+          role="alert"
+          dir="rtl"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="text-rose-400 text-lg leading-none">⚠️</span>
+            <span className="font-medium">{workerError}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setWorkerError(null)}
+            className="text-xs text-rose-300 hover:text-white px-2.5 py-1 rounded-md bg-rose-900/60 hover:bg-rose-800 border border-rose-700/60 transition-colors"
+          >
+            بستن
+          </button>
+        </div>
+      )}
 
       {/* Controls & Metrics Row */}
       <div className={styles.controlsRow}>

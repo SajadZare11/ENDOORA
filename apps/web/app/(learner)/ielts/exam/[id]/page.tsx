@@ -7,8 +7,19 @@ import { getIeltsExamById } from "@/data/ielts/index.ts";
 import { gradeExamModule, mapBandToCEFR } from "@/lib/ielts-grading.ts";
 import { useGazeCognitive } from "@/lib/ai/useGazeCognitive.ts";
 import { saveAttemptToStorage, loadAttemptFromStorage } from "@/lib/ielts-state.ts";
-import { ensureTwinLearnerScope, beginTwinMock, finishTwinMock } from '@/lib/ai/learner-twin-store';
+import {
+  ensureTwinLearnerScope,
+  beginTwinMock,
+  finishTwinMock,
+  updateTwinVulnerability,
+  recordTwinObservation,
+  getLearnerTwin,
+} from '@/lib/ai/learner-twin-store';
 import type { TwinMock } from '@/lib/ai/learner-twin-types';
+import { EnDooraLinUCBBandit } from "@/lib/ai/linucb-bandit-engine.ts";
+import { getAdaptiveQuestionForIelts } from "@/lib/ai/useAdaptiveQuestion.ts";
+import { DktEngine } from "@/lib/dkt-engine/dkt-engine.ts";
+import type { AssembledQuestion, EnDooraTriModalTelemetry } from "@/lib/ai/types.ts";
 import type {
   IeltsExam,
   IeltsModule,
@@ -31,6 +42,7 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   const skillQuery = searchParams.get("skill") as IeltsSkill | null;
 
   const [exam, setExam] = useState<IeltsExam | null>(null);
+  const [notFound, setNotFound] = useState(false);
   const [activeSkill, setActiveSkill] = useState<IeltsSkill>("reading");
   const [activeModule, setActiveModule] = useState<IeltsModule | null>(null);
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
@@ -46,7 +58,6 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     return ()=>controller.abort();
   },[examId,activeSkill,activeModule]);
 
-  // User input states
   // Engine 5: Real-time Edge Proctoring & Cognitive Tracking (10 FPS, Zero Video Upload)
   const {
     telemetry: gazeTelemetry,
@@ -56,6 +67,75 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     useMouseFallback: true,
   });
 
+  // Engine 6: LinUCB Contextual Bandit Dynamic Distractor Assembly
+  const banditRef = useRef<EnDooraLinUCBBandit | null>(null);
+  const assembledQuestionsMapRef = useRef<Record<number, AssembledQuestion>>({});
+
+  useEffect(() => {
+    banditRef.current = EnDooraLinUCBBandit.getInstance(0.5);
+  }, []);
+
+  const buildExamCognitiveTelemetry = useCallback((
+    latencyMs: number,
+    gazeLoad: number = 0.5,
+    gazeSuspicious: number = 0
+  ): EnDooraTriModalTelemetry => {
+    const twin = getLearnerTwin();
+    const snapshot = twin?.getSnapshot();
+    const speakingMean = snapshot?.modalityMastery?.speaking?.mean ?? 0.65;
+    const phonemeErrorRate = Math.max(0, Math.min(1, 1.0 - speakingMean));
+
+    const writingMean = snapshot?.modalityMastery?.writing?.mean ?? 0.65;
+    const semanticDeficit = Math.max(0, Math.min(1, 1.0 - writingMean));
+
+    let dktDeficit = 0.5;
+    try {
+      const dkt = DktEngine.getInstance();
+      const preds = dkt.getPredictions();
+      dktDeficit = Math.max(0, Math.min(1, 1.0 - (preds.overallRetentionIndex / 100)));
+    } catch {
+      // fallback
+    }
+
+    return {
+      phonemeErrorRate,
+      semanticDeficit,
+      dktGrammarDeficit: dktDeficit,
+      latencyMs,
+      cognitiveLoadIndex: gazeLoad,
+      saccadicRegressionRate: gazeSuspicious,
+    };
+  }, []);
+
+  const getOrAssembleAdaptiveQuestion = useCallback((q: IeltsQuestion): AssembledQuestion | null => {
+    if (q.question_type !== "multiple_choice") return null;
+    if (assembledQuestionsMapRef.current[q.question_number]) {
+      return assembledQuestionsMapRef.current[q.question_number];
+    }
+    const payload = getAdaptiveQuestionForIelts(activeSkill, q.question_number, "B2");
+    if (!payload) return null;
+
+    const latency = twinLatenciesRef.current[q.question_number] || 1500;
+    const telemetry = buildExamCognitiveTelemetry(
+      latency,
+      gazeTelemetry.cognitiveLoadIndex,
+      gazeProctoring.suspiciousScore
+    );
+
+    const bandit = banditRef.current || EnDooraLinUCBBandit.getInstance(0.5);
+    const assembled = bandit.assembleAdaptiveQuestion(payload, telemetry, { alpha: 0.5 });
+    
+    // Ensure accepted_answers aligns with assembled.correctOptionIndex for accurate scoring
+    const correctLetter = ["A", "B", "C", "D"][assembled.correctOptionIndex];
+    if (correctLetter) {
+      q.accepted_answers = [correctLetter];
+    }
+
+    assembledQuestionsMapRef.current[q.question_number] = assembled;
+    return assembled;
+  }, [activeSkill, buildExamCognitiveTelemetry, gazeTelemetry.cognitiveLoadIndex, gazeProctoring.suspiciousScore]);
+
+  // User input states
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({});
   const [flagged, setFlagged] = useState<number[]>([]);
 
@@ -75,6 +155,8 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   // Audio player state for listening
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const [audioLoading, setAudioLoading] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
   const [audioCurrentTime, setAudioCurrentTime] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
   const [audioVolume, setAudioVolume] = useState(1.0);
@@ -90,8 +172,10 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
   useEffect(() => {
     const foundExam = getIeltsExamById(examId);
     if (!foundExam) {
+      setNotFound(true);
       return;
     }
+    setNotFound(false);
     setExam(foundExam);
 
     const initialSkill: IeltsSkill =
@@ -206,14 +290,76 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
     };
   }, [isDraggingResizer]);
 
-  // Audio Playback
+  // Guaranteed authentic audio source based on module or exam fallback
+  const computedAudioUrl = useMemo(() => {
+    if (activeSkill !== "listening") return null;
+    if (activeModule?.audio_url && activeModule.audio_url.startsWith("/audio/ielts/")) {
+      return activeModule.audio_url;
+    }
+    const idLower = examId.toLowerCase();
+    if (idLower.includes("18") && idLower.includes("gen")) return "/audio/ielts/c18_gen_test1_listening.mp3";
+    if (idLower.includes("18")) return "/audio/ielts/c18_test1_listening.mp3";
+    if (idLower.includes("17")) return "/audio/ielts/c17_test1_listening.mp3";
+    if (idLower.includes("16")) return "/audio/ielts/c16_test1_listening.mp3";
+    if (idLower.includes("15")) return "/audio/ielts/c15_test1_listening.mp3";
+    if (idLower.includes("14")) return "/audio/ielts/c14_test1_listening.mp3";
+    if (idLower.includes("13")) return "/audio/ielts/c13_test1_listening.mp3";
+    if (idLower.includes("12")) return "/audio/ielts/c12_test1_listening.mp3";
+    return "/audio/ielts/c18_test1_listening.mp3";
+  }, [activeSkill, activeModule, examId]);
+
+  // Audio Playback with Automatic Multi-Source Fallback (Local + GitHub Releases / CDN)
   const togglePlayAudio = () => {
     if (!audioRef.current) return;
     if (audioPlaying) {
       audioRef.current.pause();
       setAudioPlaying(false);
+      setAudioLoading(false);
     } else {
-      audioRef.current.play().then(() => setAudioPlaying(true)).catch(() => {});
+      setAudioLoading(true);
+      setAudioError(null);
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setAudioPlaying(true);
+            setAudioLoading(false);
+          })
+          .catch((err) => {
+            console.warn("Primary audio play failed, attempting GitHub CDN/Release fallback...", err);
+            const el = audioRef.current;
+            if (!el) {
+              setAudioLoading(false);
+              return;
+            }
+            const filename =
+              (computedAudioUrl || activeModule?.audio_url || "c18_test1_listening.mp3")
+                .split("/")
+                .pop() || "c18_test1_listening.mp3";
+
+            const rawGithubUrl = `https://raw.githubusercontent.com/SajadZare11/ielts-listening/main/audio/${filename}`;
+
+            if (!el.src.includes("raw.githubusercontent.com")) {
+              el.src = rawGithubUrl;
+              el.load();
+              el.play()
+                .then(() => {
+                  setAudioPlaying(true);
+                  setAudioLoading(false);
+                })
+                .catch((err2) => {
+                  console.error("GitHub audio stream fallback failed:", err2);
+                  setAudioLoading(false);
+                  setAudioPlaying(false);
+                  setAudioError("خطا در بارگذاری فایل صوتی. لطفاً ارتباط اینترنت را بررسی کنید.");
+                });
+            } else {
+              setAudioLoading(false);
+              setAudioPlaying(false);
+              setAudioError("خطا در بارگذاری منبع صوتی. لطفاً ارتباط اینترنت را بررسی کنید.");
+            }
+          });
+      }
     }
   };
 
@@ -287,6 +433,72 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       const graded = gradeExamModule(activeModule, answers, exam.category);
       finishTwinMock(twinMockRef.current,graded.gradingResults,twinLatenciesRef.current);
       twinMockRef.current=null;
+
+      // Engine 6: Dispatch LinUCB Bandit Interaction Feedback and Learner Twin Observations
+      allQuestions.forEach((q) => {
+        const assembled = assembledQuestionsMapRef.current[q.question_number];
+        if (!assembled) return;
+
+        const userAns = answers[q.question_number];
+        const latency = twinLatenciesRef.current[q.question_number] || 1500;
+        const correctLetter = ["A", "B", "C", "D"][assembled.correctOptionIndex];
+        const isCorrect = userAns === correctLetter;
+
+        if (!isCorrect && typeof userAns === "string") {
+          const chosenLetter = userAns.toUpperCase();
+          const chosenIdx = ["A", "B", "C", "D"].indexOf(chosenLetter);
+          const chosenText = chosenIdx >= 0 ? assembled.options[chosenIdx] : null;
+          const chosenDistractor = assembled.selectedDistractors.find(
+            (d) => d.text === chosenText
+          ) || assembled.selectedDistractors[0];
+
+          if (chosenDistractor) {
+            banditRef.current?.recordInteractionFeedback({
+              category: chosenDistractor.category,
+              features: chosenDistractor.features,
+              trapTriggered: true,
+              latencyMs: latency,
+            });
+            updateTwinVulnerability(chosenDistractor.features);
+            recordTwinObservation({
+              skillIds: [0],
+              observedScore: 0,
+              modality: "mcq_bandit",
+              guessingFloor: 0.25,
+              latencyMs: latency,
+              expectedLatencyMs: 3000,
+              gazeDistractionIndex: gazeProctoring.suspiciousScore,
+              cognitiveLoadIndex: gazeTelemetry.cognitiveLoadIndex,
+              trapVulnerabilityVector: chosenDistractor.features,
+              ieltsSkill: activeSkill,
+              itemId: assembled.questionId,
+            });
+          }
+        } else if (isCorrect) {
+          const topDistractor = assembled.selectedDistractors[0];
+          if (topDistractor) {
+            banditRef.current?.recordInteractionFeedback({
+              category: topDistractor.category,
+              features: topDistractor.features,
+              trapTriggered: false,
+              latencyMs: latency,
+            });
+            recordTwinObservation({
+              skillIds: [0],
+              observedScore: 1,
+              modality: "mcq_bandit",
+              guessingFloor: 0.25,
+              latencyMs: latency,
+              expectedLatencyMs: 3000,
+              gazeDistractionIndex: gazeProctoring.suspiciousScore,
+              cognitiveLoadIndex: gazeTelemetry.cognitiveLoadIndex,
+              ieltsSkill: activeSkill,
+              itemId: assembled.questionId,
+            });
+          }
+        }
+      });
+
       const cefr = mapBandToCEFR(graded.summary.band_score);
 
       const attemptId = `att_${exam.id}_${activeSkill}_${Date.now()}`;
@@ -336,9 +548,20 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
         },
       };
 
-      // Save to client-side localStorage history
+      // Dual storage: resilient client-side localStorage history + optional server sync
       saveAttemptToStorage(attemptRecord);
       localStorage.removeItem(storageAttemptKey);
+      try {
+        fetch("/api/ielts/attempts/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(attemptRecord),
+        }).catch(() => {
+          // Non-blocking server sync fallback
+        });
+      } catch {
+        // Fallback silently to client storage
+      }
 
       // Route to results analytics page
       router.push(`/ielts/results/${attemptId}`);
@@ -362,6 +585,38 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       handleSubmitExam();
     }
   }, [secondsRemaining, submitting, handleSubmitExam]);
+
+  if (notFound) {
+    return (
+      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem", direction: "rtl", textAlign: "center", background: "#f8fafc" }}>
+        <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }}>🔍</div>
+        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#881337", marginBottom: "0.5rem" }}>
+          آزمون آیلتس مورد نظر یافت نشد
+        </h2>
+        <p style={{ color: "#64748b", maxWidth: "480px", marginBottom: "1.5rem", lineHeight: 1.6 }}>
+          شناسه آزمون &quot;{examId}&quot; در بانک آزمون‌های رسمی ایندورا یافت نشد یا ممکن است تغییر یافته باشد.
+        </p>
+        <Link
+          href="/ielts"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            padding: "0.75rem 1.5rem",
+            background: "linear-gradient(135deg, #be123c, #881337)",
+            color: "#fff",
+            borderRadius: "10px",
+            fontWeight: 700,
+            textDecoration: "none",
+            boxShadow: "0 4px 12px rgba(190, 18, 60, 0.25)"
+          }}
+        >
+          <span>بازگشت به بانک آزمون‌های آیلتس</span>
+          <span aria-hidden="true">←</span>
+        </Link>
+      </div>
+    );
+  }
 
   if (!exam || !activeModule) {
     return (
@@ -493,31 +748,58 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
       {/* Listening Audio Banner */}
       {activeSkill === "listening" && (
         <section className={styles.audioBanner} aria-label="Audio Controls">
-          {activeModule.audio_url && (
-            <audio
-              ref={audioRef}
-              src={activeModule.audio_url}
-              onTimeUpdate={() => {
-                if (audioRef.current) {
-                  setAudioCurrentTime(audioRef.current.currentTime);
-                }
-              }}
-              onLoadedMetadata={() => {
-                if (audioRef.current) {
-                  setAudioDuration(audioRef.current.duration);
-                }
-              }}
-              onEnded={() => setAudioPlaying(false)}
-            />
-          )}
+          <audio
+            ref={audioRef}
+            src={computedAudioUrl || activeModule.audio_url || "/audio/ielts/c18_test1_listening.mp3"}
+            preload="metadata"
+            onTimeUpdate={() => {
+              if (audioRef.current) {
+                setAudioCurrentTime(audioRef.current.currentTime);
+              }
+            }}
+            onLoadedMetadata={() => {
+              if (audioRef.current) {
+                setAudioDuration(audioRef.current.duration);
+              }
+              setAudioLoading(false);
+            }}
+            onWaiting={() => setAudioLoading(true)}
+            onPlaying={() => {
+              setAudioLoading(false);
+              setAudioPlaying(true);
+            }}
+            onError={() => {
+              const el = audioRef.current;
+              if (!el) return;
+              const filename =
+                (computedAudioUrl || activeModule?.audio_url || "c18_test1_listening.mp3")
+                  .split("/")
+                  .pop() || "c18_test1_listening.mp3";
+              const githubUrl = `https://raw.githubusercontent.com/SajadZare11/ielts-listening/main/audio/${filename}`;
+              if (!el.src.includes("raw.githubusercontent.com")) {
+                el.src = githubUrl;
+                el.load();
+              } else {
+                setAudioLoading(false);
+                setAudioPlaying(false);
+                setAudioError("خطا در بارگذاری منبع صوتی.");
+              }
+            }}
+            onEnded={() => setAudioPlaying(false)}
+          />
 
           <div className={styles.audioControlsGroup}>
             <button
               type="button"
               className={styles.audioPlayBtn}
               onClick={togglePlayAudio}
+              disabled={audioLoading}
             >
-              {audioPlaying ? "⏸ Pause Audio" : "▶ Play Audio"}
+              {audioLoading
+                ? "⏳ در حال بارگذاری صوت..."
+                : audioPlaying
+                ? "⏸ توقف صوت (Pause)"
+                : "▶ پخش صوت شنیداری (Play Audio)"}
             </button>
 
             <span className={styles.audioTimeText}>
@@ -576,14 +858,30 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
           onMouseUp={() => {
             if (highlighterActive) {
               const selection = window.getSelection();
-              if (selection && selection.toString().trim() !== "") {
-                // Highlighter visual tool feedback
+              if (selection && selection.rangeCount > 0 && !selection.isCollapsed) {
+                const range = selection.getRangeAt(0);
+                const passageEl = document.getElementById("ielts-passage-body");
+                if (passageEl && passageEl.contains(range.commonAncestorContainer)) {
+                  try {
+                    const mark = document.createElement("mark");
+                    mark.style.backgroundColor = "#fef08a";
+                    mark.style.color = "#1e293b";
+                    mark.style.padding = "2px 4px";
+                    mark.style.borderRadius = "3px";
+                    mark.className = "ielts-user-highlight";
+                    range.surroundContents(mark);
+                    selection.removeAllRanges();
+                  } catch {
+                    // Cross-node selection fallback
+                  }
+                }
               }
             }
           }}
         >
           <h2 className={styles.passageTitle}>{currentSection.passage_title}</h2>
           <div
+            id="ielts-passage-body"
             className={styles.passageBody}
             dangerouslySetInnerHTML={{ __html: currentSection.passage_content }}
           />
@@ -662,34 +960,49 @@ export default function IELTSExamRoomPage({ params }: PageProps) {
                 </div>
 
                 {/* Interactive Answer Inputs by Type */}
-                {q.question_type === "multiple_choice" && q.options && (
-                  <div className={styles.optionsList}>
-                    {q.options.map((opt) => {
-                      const optId = typeof opt === "string" ? opt : opt.id;
-                      const optText = typeof opt === "string" ? opt : opt.text;
-                      const isSelected = userAns === optId;
+                {q.question_type === "multiple_choice" && (
+                  (() => {
+                    const assembled = getOrAssembleAdaptiveQuestion(q);
+                    const renderOptions = assembled
+                      ? assembled.options.map((optText, idx) => ({
+                          id: ["A", "B", "C", "D"][idx],
+                          text: optText,
+                        }))
+                      : (q.options || []).map((opt) => ({
+                          id: typeof opt === "string" ? (opt.includes(")") ? opt.split(")")[0].trim() : opt.slice(0, 1)) : opt.id,
+                          text: typeof opt === "string" ? (opt.includes(")") ? opt.split(")").slice(1).join(")").trim() : opt) : opt.text,
+                        }));
 
-                      return (
-                        <label
-                          key={optId}
-                          className={`${styles.optionLabel} ${
-                            isSelected ? styles.optionLabelSelected : ""
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name={`q_${q.question_number}`}
-                            value={optId}
-                            checked={isSelected}
-                            onChange={() => handleAnswerChange(q.question_number, optId)}
-                          />
-                          <span>
-                            <strong>{optId}.</strong> {optText}
-                          </span>
-                        </label>
-                      );
-                    })}
-                  </div>
+                    return (
+                      <div className={styles.optionsList}>
+                        {renderOptions.map((opt) => {
+                          const optId = opt.id;
+                          const optText = opt.text;
+                          const isSelected = userAns === optId;
+
+                          return (
+                            <label
+                              key={optId}
+                              className={`${styles.optionLabel} ${
+                                isSelected ? styles.optionLabelSelected : ""
+                              }`}
+                            >
+                              <input
+                                type="radio"
+                                name={`q_${q.question_number}`}
+                                value={optId}
+                                checked={isSelected}
+                                onChange={() => handleAnswerChange(q.question_number, optId)}
+                              />
+                              <span>
+                                <strong>{optId}.</strong> {optText}
+                              </span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()
                 )}
 
                 {q.question_type === "multiple_choice_multiple_answers" && q.options && (

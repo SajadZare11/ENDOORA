@@ -6,6 +6,12 @@ import {
   predictFromState,
   stepDktGru,
 } from "./gru-cell.ts";
+export type {
+  DktDomainId,
+  DktDomainMastery,
+  DktPredictionResult,
+  DktStoredState,
+} from "./types.ts";
 import type {
   DktDomainId,
   DktDomainMastery,
@@ -65,7 +71,8 @@ export class DktEngine {
       if (
         !parsed ||
         !Array.isArray(parsed.hiddenState) ||
-        parsed.hiddenState.length !== HIDDEN_DIM
+        parsed.hiddenState.length !== HIDDEN_DIM ||
+        !parsed.hiddenState.every(Number.isFinite)
       ) {
         return this.getInitialState();
       }
@@ -222,8 +229,10 @@ export class DktEngine {
     for (const dKey of Object.keys(DKT_DOMAINS) as DktDomainId[]) {
       const meta = DKT_DOMAINS[dKey];
       const acc = domainAccumulators[dKey];
-      const avgCurrent = acc.count > 0 ? acc.currentSum / acc.count : 0.5;
-      const avgFuture = acc.count > 0 ? acc.futureSum / acc.count : 0.4;
+      const rawCurrent = acc.count > 0 ? acc.currentSum / acc.count : 0.5;
+      const rawFuture = acc.count > 0 ? acc.futureSum / acc.count : 0.4;
+      const avgCurrent = Number.isFinite(rawCurrent) ? rawCurrent : 0.5;
+      const avgFuture = Number.isFinite(rawFuture) ? rawFuture : 0.4;
 
       let status: DktDomainMastery["status"] = "spaced_retrieval_zpd";
       if (avgCurrent >= 0.72) status = "mastered";
@@ -243,9 +252,9 @@ export class DktEngine {
       totalDomainCount += 1;
     }
 
-    const overallRetentionIndex = Math.round(
-      (totalScoreSum / Math.max(1, totalDomainCount)) * 100
-    );
+    const overallRetentionIndex = Number.isFinite(totalScoreSum)
+      ? Math.round((totalScoreSum / Math.max(1, totalDomainCount)) * 100)
+      : 50;
 
     return {
       conceptMastery,

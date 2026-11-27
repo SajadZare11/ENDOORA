@@ -10,3 +10,5 @@ if os.getenv("ENDOORA_USE_POSTGRES", "false").lower() not in {"1", "true", "yes"
             "NAME": API_DIR / "db.sqlite3",
         }
     }
+
+ENDOORA_DEMO_OPERATIONS = True

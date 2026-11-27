@@ -484,51 +484,7 @@ export const INITIAL_NAVIGATION_CONFIG: NavigationMenuConfig = {
   updatedBy: "مدیر ارشد ایندورا",
 };
 
-export const INITIAL_SITE_POPUPS: SitePopupConfig[] = [
-  {
-    id: "pop-countdown-banner",
-    titleFa: "نوار شمارش معکوس تخفیف ویژه بالای صفحه",
-    titleEn: "Top Countdown Flash Ribbon",
-    type: "top_countdown_ribbon",
-    isActive: true,
-    messageFa: "⚡ تخفیف ۵۰٪ ویژه اشتراک دوره‌های امتحان نهایی و آیلتس تا پایان امشب:",
-    messageEn: "50% Flash Sale on Final Exam and IELTS courses expires tonight:",
-    couponCode: "FINAL20",
-    ctaTextFa: "خرید با تخفیف",
-    ctaTextEn: "Claim Deal",
-    ctaUrl: "/pricing?coupon=FINAL20",
-    countdownTargetIso: new Date(Date.now() + 86400000 * 2).toISOString(),
-    triggerType: "time_delay",
-    triggerDelaySeconds: 1,
-    targetPaths: ["*"],
-    frequencyCap: "every_time",
-    impressionsCount: 14200,
-    clicksCount: 940,
-    createdAt: "1403/08/18",
-    updatedAt: "1403/08/20",
-  },
-  {
-    id: "pop-center-modal-lead",
-    titleFa: "پاپ‌آپ مدال جذب زبان‌آموز با دانلود رایگان",
-    titleEn: "Center Lead Magnet Modal (Exam Cram Pack)",
-    type: "center_modal",
-    isActive: true,
-    messageFa: "آیا برای امتحان نهایی دوازدهم آماده‌اید؟ جزوه ۲۵ صفحه‌ای تست‌های طلایی کشوری را رایگان دریافت کنید!",
-    messageEn: "Get the Grade 12 Vision 3 Golden Exam pack for free!",
-    couponCode: "VISION100",
-    ctaTextFa: "دانلود رایگان جزوه PDF",
-    ctaTextEn: "Download PDF Free",
-    ctaUrl: "/downloads/vision3_final_exam.pdf",
-    imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=80",
-    triggerType: "exit_intent",
-    targetPaths: ["/skills/school", "/p/exam-cram-1403"],
-    frequencyCap: "once_per_session",
-    impressionsCount: 2310,
-    clicksCount: 420,
-    createdAt: "1403/08/19",
-    updatedAt: "1403/08/20",
-  },
-];
+export const INITIAL_SITE_POPUPS: SitePopupConfig[] = [];
 
 export const INITIAL_GLOBAL_THEME: GlobalThemeConfig = {
   brandPrimaryColor: "#2563eb",

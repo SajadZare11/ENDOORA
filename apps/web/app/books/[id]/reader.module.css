@@ -86,9 +86,28 @@
    Top App Bar & Reading Toolbar
    --------------------------------------------------------------------------- */
 
-.topBar {
+/* Reading Progress Bar (Fixed across the very top) */
+.readingProgressBarTrack {
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: var(--reader-border);
+  z-index: 50;
+  overflow: hidden;
+}
+
+.readingProgressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--reader-accent), #38bdf8);
+  box-shadow: 0 0 8px var(--reader-accent);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topBar {
+  position: sticky;
+  top: 3.5px;
   z-index: 40;
   background-color: var(--reader-surface);
   border-bottom: 1.5px solid var(--reader-border);
@@ -168,6 +187,16 @@
   border-radius: 9999px;
   font-weight: 700;
   border: 1px solid var(--reader-border);
+}
+
+.badgeProgress {
+  background-color: var(--reader-surface-card);
+  color: var(--reader-accent);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: 1px solid var(--reader-accent);
+  font-size: 0.72rem;
 }
 
 /* Top Toolbar Controls */
@@ -364,6 +393,14 @@
   max-width: 1080px;
 }
 
+.readerContentWrapperWithSidebar {
+  max-width: 1240px;
+}
+
+.readerContentWrapperCollapsed {
+  max-width: 960px;
+}
+
 /* Book Cover Hero Banner inside Reader */
 .bookHeroBanner {
   background-color: var(--reader-surface);
@@ -464,45 +501,573 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Chapter Selector Tabs
+   Two-Column Reader Layout (Right Chapter Sidebar + Main Reading Column)
    --------------------------------------------------------------------------- */
 
-.chapterTabsBar {
+.readerLayoutTwoCol {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 6px 2px 14px;
-  margin-bottom: 24px;
-  scrollbar-width: thin;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
 }
 
-.chapterTabBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 12px;
-  background-color: var(--reader-surface);
+.readerLayoutTwoColCollapsed {
+  gap: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+   Right Sticky Chapter Sidebar
+   --------------------------------------------------------------------------- */
+
+.chapterSidebar {
+  width: 310px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 78px;
+  z-index: 25;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chapterSidebarCollapsed {
+  width: 52px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 78px;
+  z-index: 25;
+}
+
+.sidebarExpandRailBtn {
+  width: 100%;
+  min-height: 220px;
+  background: var(--reader-surface-card);
   border: 1.5px solid var(--reader-border);
-  color: var(--reader-text-muted);
-  font-size: 0.86rem;
-  font-weight: 700;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 4px;
   cursor: pointer;
-  white-space: nowrap;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  color: var(--reader-text-primary);
   transition: all 0.2s ease;
 }
 
-.chapterTabBtn:hover {
+.sidebarExpandRailBtn:hover {
   border-color: var(--reader-accent);
+  transform: translateX(-2px);
+  box-shadow: 0 6px 20px var(--reader-accent-subtle);
+}
+
+.sidebarRailIcon {
+  font-size: 1.25rem;
+}
+
+.sidebarRailVerticalText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+  letter-spacing: 0.05em;
+}
+
+.sidebarRailCountBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  padding: 2px 6px;
+  border-radius: 9999px;
+  border: 1px solid var(--reader-border);
+}
+
+.chapterSidebarCard {
+  background: var(--reader-surface-card);
+  border: 1.5px solid var(--reader-border);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 100px);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--reader-border);
+  background-color: var(--reader-surface);
+}
+
+.sidebarTitleBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebarHeaderIcon {
+  font-size: 1.05rem;
+}
+
+.sidebarHeaderTitle {
+  font-size: 0.94rem;
+  font-weight: 800;
   color: var(--reader-text-primary);
 }
 
-.chapterTabBtnActive {
-  background-color: var(--reader-surface-card);
+.sidebarChapterCountBadge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background-color: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  border: 1px solid var(--reader-border);
+}
+
+.sidebarCollapseBtn {
+  background: var(--reader-surface-card);
+  border: 1px solid var(--reader-border);
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--reader-text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.18s ease;
+}
+
+.sidebarCollapseBtn:hover {
   border-color: var(--reader-accent);
   color: var(--reader-accent);
-  box-shadow: 0 2px 8px var(--reader-accent-subtle);
+  background: var(--reader-surface);
+}
+
+/* ---------------------------------------------------------------------------
+   Sleek Minimal 3-Line Page Controller inside Sidebar & Drawer
+   --------------------------------------------------------------------------- */
+
+.sidebarPageController {
+  padding: 14px 16px;
+  background: var(--reader-surface);
+  border-bottom: 1.5px solid var(--reader-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebarPageMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sidebarPageNumberText {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+}
+
+.sidebarBookPageBadge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--reader-accent);
+  background: var(--reader-surface-card);
+  border: 1px solid var(--reader-border);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.sidebarSliderWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.sidebarMinimalSlider {
+  width: 100%;
+  height: 4.5px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--reader-border-strong);
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebarMinimalSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--reader-accent);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  border: 2px solid var(--reader-surface-card);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.sidebarMinimalSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.sidebarMinimalSlider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--reader-accent);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  border: 2px solid var(--reader-surface-card);
+}
+
+.sidebarQuickJumpForm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidebarJumpInput {
+  flex: 1;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--reader-border);
+  background: var(--reader-surface-card);
+  color: var(--reader-text-primary);
+  font-size: 0.78rem;
+  font-family: inherit;
+  outline: none;
+  direction: rtl;
+  transition: border-color 0.18s ease;
+}
+
+.sidebarJumpInput:focus {
+  border-color: var(--reader-accent);
+}
+
+.sidebarJumpBtn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--reader-accent);
+  color: #ffffff;
+  border: none;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: all 0.18s ease;
+}
+
+.sidebarJumpBtn:hover {
+  background: var(--reader-accent-hover);
+  transform: translateY(-1px);
+}
+
+.sidebarSearchWrapper {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--reader-border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--reader-surface-card);
+}
+
+.sidebarSearchIcon {
+  position: absolute;
+  right: 22px;
+  font-size: 0.85rem;
+  color: var(--reader-text-muted);
+  pointer-events: none;
+}
+
+.sidebarSearchInput {
+  width: 100%;
+  height: 36px;
+  padding: 0 34px 0 30px;
+  border-radius: 10px;
+  border: 1.5px solid var(--reader-border);
+  background: var(--reader-surface);
+  color: var(--reader-text-primary);
+  font-size: 0.82rem;
+  font-family: inherit;
+  outline: none;
+  direction: rtl;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebarSearchInput:focus {
+  border-color: var(--reader-accent);
+  box-shadow: 0 0 0 2px var(--reader-accent-subtle);
+}
+
+.sidebarSearchClearBtn {
+  position: absolute;
+  left: 22px;
+  background: transparent;
+  border: none;
+  color: var(--reader-text-muted);
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.sidebarSearchClearBtn:hover {
+  color: var(--reader-text-primary);
+}
+
+.sidebarLoadingState {
+  padding: 8px 14px;
+  text-align: center;
+  border-bottom: 1px dashed var(--reader-border);
+}
+
+.sidebarListScrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--reader-border-strong) transparent;
+}
+
+.sidebarListScrollable::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebarListScrollable::-webkit-scrollbar-thumb {
+  background-color: var(--reader-border-strong);
+  border-radius: 4px;
+}
+
+.sidebarChapterItem {
+  width: 100%;
+  text-align: right;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--reader-text-primary);
+  font-family: inherit;
+}
+
+.sidebarChapterItem:hover {
+  background: var(--reader-surface);
+  border-color: var(--reader-border);
+  transform: translateX(-2px);
+}
+
+.sidebarChapterItemActive {
+  background-color: var(--reader-accent-subtle) !important;
+  border-color: var(--reader-accent) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.sidebarItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.sidebarChapterBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background-color: var(--reader-surface);
+  color: var(--reader-text-muted);
+  border: 1px solid var(--reader-border);
+}
+
+.sidebarChapterBadgeOverview {
+  background-color: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  border-color: var(--reader-accent);
+}
+
+.sidebarPageCountBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background-color: var(--reader-surface-card);
+  color: var(--reader-text-muted);
+  border: 1px solid var(--reader-border);
+}
+
+.sidebarActivePill {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--reader-accent);
+  background: var(--reader-surface-card);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--reader-accent);
+}
+
+.sidebarItemTitleFa {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--reader-text-primary);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.sidebarItemTitleEn {
+  font-size: 0.74rem;
+  color: var(--reader-text-muted);
+  font-family: var(--reader-english-font);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: ltr;
+  text-align: right;
+}
+
+.sidebarEmptyNotice {
+  padding: 28px 16px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--reader-text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Main Reading Column inside Two-Column Layout
+   --------------------------------------------------------------------------- */
+
+.readingMainColumn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile Chapter Bar & Trigger
+   --------------------------------------------------------------------------- */
+
+.mobileChapterBar {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.mobileChapterTriggerBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--reader-surface);
+  border: 1.5px solid var(--reader-border);
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--reader-text-primary);
+  font-family: inherit;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.mobileChapterTriggerBtn:hover {
+  border-color: var(--reader-accent);
+}
+
+.mobileChapterTriggerInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mobileChapterTriggerIcon {
+  font-size: 1.1rem;
+}
+
+.mobileChapterTriggerTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobileChapterTriggerBadge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  white-space: nowrap;
+}
+
+/* Mobile Chapter Drawer Specifics */
+.chapterDrawerPanel {
+  width: 360px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerSearchWrapper {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--reader-border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--reader-surface-card);
+}
+
+/* Fallback badge animation */
+.loadingChaptersBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background-color: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px dashed var(--reader-accent);
+  white-space: nowrap;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
 }
 
 /* ---------------------------------------------------------------------------
@@ -525,15 +1090,100 @@
   margin-bottom: 30px;
 }
 
+.chapterHeaderTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
 .chapterNumberPill {
   display: inline-block;
   background-color: var(--reader-accent-subtle);
   color: var(--reader-accent);
   font-size: 0.82rem;
   font-weight: 800;
-  padding: 3px 12px;
+  padding: 4px 14px;
   border-radius: 9999px;
-  margin-bottom: 10px;
+  border: 1px solid var(--reader-border);
+}
+
+.pageTrackerPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--reader-surface);
+  color: var(--reader-text-primary);
+  border: 1px solid var(--reader-border-strong);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.physicalPageBadge {
+  color: var(--reader-accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.bookHeaderMetaCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 16px;
+}
+
+.bookHeaderMetaTitle {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+  direction: ltr;
+  max-width: min(520px, 100%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.bookHeaderMetaSub {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: var(--reader-text-muted);
+  direction: ltr;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 3px;
+}
+
+.bookHeaderMetaAuthor {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookHeaderMetaDot {
+  opacity: 0.5;
+  font-size: 0.72rem;
+}
+
+.bookHeaderMetaYear {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--reader-accent);
 }
 
 .chapterTitleFa {
@@ -566,6 +1216,40 @@
   direction: ltr;
   text-align: left;
   letter-spacing: 0.01em;
+}
+
+/* Persian / RTL Content & Study Guide */
+.readingBodyRtl {
+  font-family: inherit !important;
+  direction: rtl !important;
+  text-align: right !important;
+  letter-spacing: normal !important;
+}
+
+.readingBodyRtl .readerParagraph {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: inherit !important;
+  line-height: 2 !important;
+}
+
+.readingBodyRtl .readerParagraph:first-letter {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+}
+
+.readerParagraphRtl {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: inherit !important;
+  line-height: 2 !important;
+}
+
+.readerParagraphRtl:first-letter {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
 }
 
 /* Font Size variations */
@@ -606,6 +1290,110 @@
   font-size: 1.35em;
   font-weight: 700;
   color: var(--reader-accent);
+}
+
+.clickableWord {
+  display: inline;
+  border-radius: 4px;
+  padding: 1px 2px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.clickableWord:hover {
+  background-color: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  text-decoration: underline;
+}
+
+/* Word Pronunciation / Lookup Mini Popover */
+.wordPopover {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  background-color: var(--reader-surface-card);
+  border: 1.5px solid var(--reader-accent);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+  animation: popoverFadeIn 0.18s ease-out;
+}
+
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+.wordPopoverHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--reader-border);
+  padding-bottom: 4px;
+}
+
+.popoverWordText {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--reader-accent);
+  font-family: var(--reader-english-font);
+  direction: ltr;
+}
+
+.popoverCloseBtn {
+  background: transparent;
+  border: none;
+  color: var(--reader-text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.popoverCloseBtn:hover {
+  color: var(--reader-text-primary);
+}
+
+.wordPopoverActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.popoverActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.popoverActionBtn:hover {
+  border-color: var(--reader-accent);
+  color: var(--reader-accent);
+}
+
+.popoverActionBtnActive {
+  background-color: var(--reader-accent) !important;
+  color: #ffffff !important;
 }
 
 /* Persian notes inside reading canvas */
@@ -741,8 +1529,11 @@
   color: var(--reader-text-primary);
 }
 
-/* Chapter Bottom Navigation */
-.chapterNavFooter {
+/* ---------------------------------------------------------------------------
+   Sticky Page Bottom Navigator & Slider
+   --------------------------------------------------------------------------- */
+
+.pageNavigatorBottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -750,127 +1541,646 @@
   margin-top: 40px;
   padding-top: 24px;
   border-top: 1.5px solid var(--reader-border);
+  flex-wrap: wrap;
 }
 
-.chapterNavBtn {
+.pageNavBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 12px;
   background-color: var(--reader-surface);
   border: 1.5px solid var(--reader-border);
   color: var(--reader-text-primary);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.chapterNavBtn:hover:not(:disabled) {
+.pageNavBtn:hover:not(:disabled) {
   border-color: var(--reader-accent);
   color: var(--reader-accent);
   background-color: var(--reader-accent-subtle);
   transform: translateY(-1px);
 }
 
-.chapterNavBtn:disabled {
-  opacity: 0.4;
+.pageNavBtn:disabled {
+  opacity: 0.38;
   cursor: not-allowed;
 }
 
+.pageNavBtnPrimary {
+  background-color: var(--reader-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--reader-accent) !important;
+  box-shadow: 0 4px 14px var(--reader-accent-subtle);
+}
+
+.pageNavBtnPrimary:hover:not(:disabled) {
+  background-color: var(--reader-accent-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.bottomPageIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.bottomPageIndicatorSub {
+  font-size: 0.8rem;
+  color: var(--reader-accent);
+  font-weight: 700;
+}
+
+.pageCenterController {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.pageCounterText {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+}
+
+.pageCounterSub {
+  font-size: 0.8rem;
+  color: var(--reader-accent);
+  font-weight: 700;
+}
+
+.pageSlider {
+  width: 100%;
+  max-width: 280px;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--reader-border);
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pageSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--reader-accent);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease;
+}
+
+.pageSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.quickJumpForm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quickJumpInput {
+  width: 72px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--reader-border-strong);
+  background: var(--reader-surface);
+  color: var(--reader-text-primary);
+  font-size: 0.8rem;
+  font-family: inherit;
+  outline: none;
+  text-align: center;
+}
+
+.quickJumpInput:focus {
+  border-color: var(--reader-accent);
+}
+
+.quickJumpBtn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quickJumpBtn:hover {
+  background: var(--reader-accent);
+  color: #ffffff;
+}
+
+.keyboardHintText {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--reader-text-muted);
+}
+
+.readerEmptyState {
+  padding: 60px 24px;
+  text-align: center;
+  background-color: var(--reader-surface-card);
+  border: 1px solid var(--reader-border);
+  border-radius: 20px;
+}
+
+.readerEmptyIcon {
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+}
+
 /* ---------------------------------------------------------------------------
-   Original PDF Viewer Mode
+   MODE 2: Dedicated High-Speed Download Hub (نسخه اصلی فایل)
    --------------------------------------------------------------------------- */
 
-.pdfViewerContainer {
+.downloadHubContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.downloadHeroCard {
   background-color: var(--reader-surface-card);
   border: 1.5px solid var(--reader-border);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 36px 40px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.downloadHeroHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.downloadHeroThumb {
+  width: 90px;
+  height: 110px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--reader-surface), var(--reader-surface-card));
+  border: 1.5px solid var(--reader-border-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.downloadThumbIcon {
+  font-size: 2.4rem;
+}
+
+.downloadFormatBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--reader-accent);
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.downloadHeroContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.downloadBadgesRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.hubBadgeLevel {
+  background: var(--reader-accent-subtle);
+  color: var(--reader-accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--reader-border);
+}
+
+.hubBadgeCategory {
+  background: var(--reader-surface);
+  color: var(--reader-text-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--reader-border);
+}
+
+.hubBadgeHot {
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 9999px;
+}
+
+.hubBadgeNew {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 9999px;
+}
+
+.downloadHeroTitleFa {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--reader-text-primary);
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.downloadHeroTitleEn {
+  font-size: 1.12rem;
+  color: var(--reader-text-muted);
+  font-family: var(--reader-english-font);
+  direction: ltr;
+  text-align: right;
+  margin: 0 0 12px;
+}
+
+.downloadHeroIntro {
+  font-size: 0.95rem;
+  color: var(--reader-text-primary);
+  line-height: 1.75;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Specs Grid */
+.downloadSpecsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  border-radius: 16px;
+  padding: 18px 22px;
+}
+
+.downloadSpecItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.specLabel {
+  color: var(--reader-text-muted);
+  font-weight: 700;
+}
+
+.specValue {
+  color: var(--reader-text-primary);
+  font-weight: 800;
+}
+
+/* Action CTA Bar */
+.downloadActionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1.5px solid var(--reader-border);
+}
+
+.downloadPrimaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--reader-accent), var(--reader-accent-hover));
+  color: #ffffff;
+  text-decoration: none;
+  font-family: inherit;
+  box-shadow: 0 6px 20px var(--reader-accent-subtle);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.downloadPrimaryCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+}
+
+.dlBtnIcon {
+  font-size: 1.8rem;
+}
+
+.dlBtnTexts {
   display: flex;
   flex-direction: column;
 }
 
-.pdfTopBar {
-  background-color: var(--reader-surface);
-  border-bottom: 1.5px solid var(--reader-border);
-  padding: 12px 20px;
+.dlBtnTitle {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.dlBtnSubtitle {
+  font-size: 0.78rem;
+  opacity: 0.88;
+}
+
+.downloadUnavailableNotice {
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: var(--reader-surface);
+  border: 1px dashed var(--reader-border-strong);
+  color: var(--reader-text-muted);
+  font-size: 0.9rem;
+}
+
+.downloadSecondaryButtons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-.pdfTitleInfo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--reader-text-primary);
-}
-
-.pdfActionBtns {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.pdfActionBtn {
+.downloadSecBtn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: 8px;
-  background-color: var(--reader-surface-card);
-  border: 1px solid var(--reader-border);
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: var(--reader-surface);
+  border: 1.5px solid var(--reader-border);
   color: var(--reader-text-primary);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.18s ease;
 }
 
-.pdfActionBtn:hover {
+.downloadSecBtn:hover {
   border-color: var(--reader-accent);
+  color: var(--reader-accent);
+  background-color: var(--reader-accent-subtle);
+  transform: translateY(-1px);
+}
+
+/* Attachments & Subfiles Section */
+.attachmentsSection {
+  background-color: var(--reader-surface-card);
+  border: 1.5px solid var(--reader-border);
+  border-radius: 24px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.sectionHeadingBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sectionHeadingIcon {
+  font-size: 2rem;
+}
+
+.sectionHeadingTitle {
+  font-size: 1.28rem;
+  font-weight: 900;
+  color: var(--reader-text-primary);
+  margin: 0 0 4px;
+}
+
+.sectionHeadingSubtitle {
+  font-size: 0.88rem;
+  color: var(--reader-text-muted);
+  margin: 0;
+}
+
+.attachmentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.attachmentCard {
+  background: var(--reader-surface);
+  border: 1.5px solid var(--reader-border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.attachmentCard:hover {
+  border-color: var(--reader-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.attachmentCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attachmentIcon {
+  font-size: 1.4rem;
+}
+
+.attachmentFormatBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--reader-surface-card);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text-muted);
+}
+
+.attachmentCustomBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
   color: var(--reader-accent);
 }
 
-.pdfFrame {
-  width: 100%;
-  height: 85vh;
-  border: none;
-  background-color: #525659;
-}
-
-.pdfFallbackCard {
-  padding: 48px 24px;
-  text-align: center;
-  background-color: var(--reader-surface-card);
-}
-
-.pdfFallbackIcon {
-  font-size: 3rem;
-  margin-bottom: 14px;
-}
-
-.pdfFallbackTitle {
-  font-size: 1.25rem;
+.attachmentTitleFa {
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--reader-text-primary);
-  margin: 0 0 10px;
+  margin: 0;
+  line-height: 1.4;
 }
 
-.pdfFallbackText {
-  font-size: 0.92rem;
+.attachmentTitleEn {
+  font-size: 0.78rem;
   color: var(--reader-text-muted);
-  max-width: 520px;
-  margin: 0 auto 24px;
-  line-height: 1.7;
+  font-family: var(--reader-english-font);
+  direction: ltr;
+  text-align: right;
+}
+
+.attachmentMetaRow {
+  font-size: 0.8rem;
+  color: var(--reader-text-muted);
+  font-weight: 700;
+}
+
+.attachmentDownloadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--reader-accent);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.attachmentDownloadBtn:hover {
+  background: var(--reader-accent-hover);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Device Reading Guide */
+.deviceGuideSection {
+  background-color: var(--reader-surface-card);
+  border: 1.5px solid var(--reader-border);
+  border-radius: 24px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.guideSectionTitle {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--reader-text-primary);
+  margin: 0 0 20px;
+}
+
+.guideCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.guideCard {
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guideCardIcon {
+  font-size: 1.8rem;
+}
+
+.guideCardTitle {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--reader-text-primary);
+  margin: 0;
+}
+
+.guideCardDesc {
+  font-size: 0.86rem;
+  color: var(--reader-text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.guideCardDesc strong {
+  color: var(--reader-accent);
+}
+
+/* Floating Toast Notification */
+.floatingToast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1138,7 +2448,39 @@
    Mobile & Tablet Responsiveness
    --------------------------------------------------------------------------- */
 
+@media (max-width: 1024px) {
+  .chapterSidebar,
+  .chapterSidebarCollapsed {
+    display: none !important;
+  }
+
+  .mobileChapterBar {
+    display: block;
+  }
+
+  .readerLayoutTwoCol {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
+  .chapterHeaderTopRow {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bookHeaderMetaCenter {
+    order: -1;
+    width: 100%;
+    padding: 0 0 6px 0;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed var(--reader-border);
+  }
+
+  .bookHeaderMetaTitle {
+    font-size: 0.88rem;
+  }
+
   .topBar {
     padding: 8px 12px;
     flex-direction: column;
@@ -1181,6 +2523,59 @@
   }
 
   .audioNativePlayer {
+    max-width: 100%;
+  }
+
+  .downloadHeroCard {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .downloadHeroHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .downloadHeroTitleFa {
+    font-size: 1.35rem;
+  }
+
+  .downloadHeroTitleEn {
+    text-align: center;
+  }
+
+  .downloadActionBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .downloadPrimaryCta {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .downloadSecondaryButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .downloadSecBtn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pageNavigatorBottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .pageCenterController {
+    width: 100%;
+  }
+
+  .pageSlider {
     max-width: 100%;
   }
 }

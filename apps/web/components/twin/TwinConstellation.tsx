@@ -316,10 +316,10 @@ export default function TwinConstellation({
                   </span>
                 </div>
 
-                <h3 className={styles.treeDetailMainTitle}>
-                  {isFa ? selectedSkill.titleFa : selectedSkill.titleEn}
+                <h3 className={styles.treeDetailMainTitle} dir="auto">
+                  <bdi>{isFa ? selectedSkill.titleFa : selectedSkill.titleEn}</bdi>
                 </h3>
-                <p className={styles.treeDetailEnglishSub}>
+                <p className={styles.treeDetailEnglishSub} dir="ltr">
                   {isFa ? selectedSkill.titleEn : selectedSkill.titleFa}
                 </p>
 
@@ -371,8 +371,8 @@ export default function TwinConstellation({
                   <div className={styles.treePrereqList}>
                     <p className={styles.treePrereqDesc}>
                       {isFa
-                        ? "برای اینکه این درس رو عمیق و سریع یاد بگیری، دوقلوی تو پیشنهاد می‌کنه اول این درس‌های پایه رو بررسی کنی:"
-                        : "To build a rock-solid understanding of this lesson, make sure you are confident in these foundation topics:"}
+                        ? "پیش‌نیازهای پایه‌ای برای یادگیری عمیق این مبحث:"
+                        : "Foundations to master before this lesson:"}
                     </p>
 
                     {prerequisiteSkills.map((prereq) => {
@@ -460,11 +460,11 @@ export default function TwinConstellation({
               <div className={styles.treeDetailActions}>
                 <Link href="/leitner" className={styles.treeActionBtnPrimary}>
                   <span>📚</span>
-                  <span>{isFa ? "مرور واژگان و گرامر در لایتنر" : "Practice in Leitner Box"}</span>
+                  <span>{isFa ? "تمرین در لایتنر" : "Practice in Leitner"}</span>
                 </Link>
                 <Link href="/learn" className={styles.treeActionBtnSecondary}>
                   <span>🎯</span>
-                  <span>{isFa ? "مشاهده جلسات آموزشی مرتبط" : "View Lesson Videos"}</span>
+                  <span>{isFa ? "جلسات مرتبط" : "View Lessons"}</span>
                 </Link>
               </div>
             </div>

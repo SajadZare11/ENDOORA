@@ -385,31 +385,11 @@ export default function LearningPathPage() {
   return (
     <main dir={locale === "fa" ? "rtl" : "ltr"} className={styles.page}>
       <div className={styles.container}>
-        {/* Top Navigation & Language Switcher */}
+        {/* Top Navigation */}
         <div className={styles.topBar}>
           <Link href="/dashboard" className={styles.secondaryButton}>
             ← {t.dashboardBtn}
           </Link>
-          <div className={styles.localeSwitcher} role="group" aria-label="Language selection">
-            <Button
-              type="button"
-              variant={locale === "fa" ? "primary" : "secondary"}
-              size="sm"
-              className={`${styles.localeButton} ${locale === "fa" ? styles.localeButtonActive : ""}`}
-              onClick={() => setLocale("fa")}
-            >
-              فارسی
-            </Button>
-            <Button
-              type="button"
-              variant={locale === "en" ? "primary" : "secondary"}
-              size="sm"
-              className={`${styles.localeButton} ${locale === "en" ? styles.localeButtonActive : ""}`}
-              onClick={() => setLocale("en")}
-            >
-              English
-            </Button>
-          </div>
         </div>
 
         {/* View Mode Toggle: Interactive Winding Tree vs Curriculum/Classes */}

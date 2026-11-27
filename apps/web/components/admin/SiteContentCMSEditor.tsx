@@ -28,6 +28,9 @@ export function SiteContentCMSEditor() {
   const [versions, setVersions] = useState<SiteContentVersionRecord[]>([]);
   const [activeTab, setActiveTab] = useState<CmsTab>("banner");
   const [showLivePreview, setShowLivePreview] = useState<boolean>(true);
+  const [previewViewMode, setPreviewViewMode] = useState<"realSite" | "draftCards">("realSite");
+  const [previewDevice, setPreviewDevice] = useState<"desktop" | "mobile">("desktop");
+  const [iframeKey, setIframeKey] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [statusMessage, setStatusMessage] = useState<{ text: string; type: "success" | "error" | "info" } | null>(null);
@@ -1103,100 +1106,269 @@ export function SiteContentCMSEditor() {
           <aside className={styles.previewBox} aria-label="پیش‌نمایش زنده درجا">
             <div className={styles.previewHeader}>
               <div className={styles.previewTitle}>
-                <span>👁️ شبیه‌ساز پیش‌نمایش زنده در سایت</span>
+                <span>👁️ پیش‌نمایش زنده و دقیق وب‌سایت</span>
               </div>
               <span className={styles.previewBadge}>
-                {hasDraft ? "پیش‌نمایش تغییرات اعمالی" : `نسخه زنده ${liveVersion}`}
+                {hasDraft ? "پیش‌نویس ذخیره‌نشده" : `نسخه زنده ${liveVersion}`}
               </span>
             </div>
 
-            {/* Banner Preview */}
-            {content.banner.enabled && (
-              <div
-                style={{
-                  background: content.banner.bgColor || "linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%)",
-                  color: content.banner.textColor || "#ffffff",
-                  padding: "0.6rem 0.85rem",
-                  borderRadius: "6px",
-                  fontSize: "0.78rem",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                }}
-              >
-                <span>{content.banner.textFa}</span>
-                {content.banner.actionLabelFa && (
-                  <span style={{ textDecoration: "underline", fontWeight: "700", whiteSpace: "nowrap" }}>
-                    {content.banner.actionLabelFa} ←
-                  </span>
+            {/* Preview Controls Toolbar */}
+            <div className={styles.previewToolbar}>
+              <div className={styles.previewModeGroup}>
+                <button
+                  type="button"
+                  className={`${styles.previewModeBtn} ${
+                    previewViewMode === "realSite" ? styles.previewModeBtnActive : ""
+                  }`}
+                  onClick={() => setPreviewViewMode("realSite")}
+                  title="مشاهده سایت واقعی، آنلاین و دقیق"
+                >
+                  🌐 سایت واقعی (زنده)
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.previewModeBtn} ${
+                    previewViewMode === "draftCards" ? styles.previewModeBtnActive : ""
+                  }`}
+                  onClick={() => setPreviewViewMode("draftCards")}
+                  title="پیش‌نمایش تغییرات فرم در حال ویرایش"
+                >
+                  🎨 تغییرات فرم (پیش‌نویس)
+                </button>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                <div className={styles.previewModeGroup}>
+                  <button
+                    type="button"
+                    className={`${styles.previewModeBtn} ${
+                      previewDevice === "desktop" ? styles.previewModeBtnActive : ""
+                    }`}
+                    onClick={() => setPreviewDevice("desktop")}
+                    title="نمای دسکتاپ"
+                  >
+                    💻
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.previewModeBtn} ${
+                      previewDevice === "mobile" ? styles.previewModeBtnActive : ""
+                    }`}
+                    onClick={() => setPreviewDevice("mobile")}
+                    title="نمای موبایل"
+                  >
+                    📱
+                  </button>
+                </div>
+
+                {previewViewMode === "realSite" && (
+                  <button
+                    type="button"
+                    className={styles.previewControlBtn}
+                    onClick={() => setIframeKey((k) => k + 1)}
+                    title="بارگذاری مجدد پیش‌نمایش زنده"
+                  >
+                    🔄
+                  </button>
                 )}
+
+                <a
+                  href="/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.previewControlBtn}
+                  title="باز کردن صفحه سایت در پنجره جدید"
+                >
+                  ↗️
+                </a>
+              </div>
+            </div>
+
+            {/* Main Preview Content */}
+            {previewViewMode === "realSite" ? (
+              <div
+                className={
+                  previewDevice === "mobile"
+                    ? styles.iframeWrapperMobile
+                    : styles.iframeWrapperDesktop
+                }
+              >
+                <iframe
+                  key={iframeKey}
+                  src="/"
+                  className={styles.liveIframe}
+                  title="صفحه واقعی و زنده وب‌سایت ایندورا"
+                />
+              </div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                {/* Banner Preview */}
+                {content.banner.enabled && (
+                  <div
+                    style={{
+                      background: content.banner.bgColor || "linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%)",
+                      color: content.banner.textColor || "#ffffff",
+                      padding: "0.65rem 0.95rem",
+                      borderRadius: "8px",
+                      fontSize: "0.8rem",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      boxShadow: "0 2px 8px rgba(79, 70, 229, 0.2)",
+                    }}
+                  >
+                    <span>{content.banner.textFa}</span>
+                    {content.banner.actionLabelFa && (
+                      <span style={{ textDecoration: "underline", fontWeight: "700", whiteSpace: "nowrap" }}>
+                        {content.banner.actionLabelFa} ←
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Hero Preview with Authentic Styling */}
+                <div
+                  style={{
+                    background: "linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: "12px",
+                    padding: "1.5rem 1rem",
+                    textAlign: "center",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "inline-block",
+                      background: "#f3e8ff",
+                      color: "#7e22ce",
+                      fontSize: "0.75rem",
+                      fontWeight: 800,
+                      padding: "0.25rem 0.85rem",
+                      borderRadius: "999px",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    {content.hero.badgeFa}
+                  </div>
+                  <h2
+                    style={{
+                      fontSize: "1.25rem",
+                      fontWeight: 900,
+                      color: "#0f172a",
+                      margin: "0 0 0.6rem 0",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {content.hero.titleFa}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "#475569",
+                      margin: "0 0 1.1rem 0",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {content.hero.subtitleFa}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "0.6rem",
+                      flexWrap: "wrap",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <span
+                      style={{
+                        background: "#4f46e5",
+                        color: "#fff",
+                        fontWeight: 700,
+                        fontSize: "0.8rem",
+                        padding: "0.5rem 1.1rem",
+                        borderRadius: "8px",
+                        boxShadow: "0 2px 8px rgba(79, 70, 229, 0.25)",
+                      }}
+                    >
+                      {content.hero.primaryCtaLabelFa}
+                    </span>
+                    <span
+                      style={{
+                        background: "#f1f5f9",
+                        color: "#334155",
+                        fontWeight: 700,
+                        fontSize: "0.8rem",
+                        padding: "0.5rem 1.1rem",
+                        borderRadius: "8px",
+                        border: "1px solid #cbd5e1",
+                      }}
+                    >
+                      {content.hero.secondaryCtaLabelFa}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "0.45rem",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span className={styles.mockPill}>{content.hero.trustPill1Fa}</span>
+                    <span className={styles.mockPill}>{content.hero.trustPill2Fa}</span>
+                    <span className={styles.mockPill}>{content.hero.trustPill3Fa}</span>
+                  </div>
+                </div>
+
+                {/* Spotlights Preview */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                  {content.skillsHub.tamrin20SpotlightEnabled && (
+                    <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "8px", padding: "0.75rem", fontSize: "0.75rem" }}>
+                      <span style={{ background: "#2563eb", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "4px", fontSize: "0.65rem", fontWeight: "700" }}>
+                        {content.skillsHub.tamrin20BadgeFa}
+                      </span>
+                      <div style={{ fontWeight: "700", marginTop: "0.35rem", color: "#1e3a8a" }}>{content.skillsHub.tamrin20TitleFa}</div>
+                      <div style={{ color: "#475569", marginTop: "0.2rem" }}>{content.skillsHub.tamrin20DescFa}</div>
+                    </div>
+                  )}
+                  {content.skillsHub.smallTalkSpotlightEnabled && (
+                    <div style={{ background: "#fdf4ff", border: "1px solid #f0abfc", borderRadius: "8px", padding: "0.75rem", fontSize: "0.75rem" }}>
+                      <span style={{ background: "#c026d3", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "4px", fontSize: "0.65rem", fontWeight: "700" }}>
+                        {content.skillsHub.smallTalkBadgeFa}
+                      </span>
+                      <div style={{ fontWeight: "700", marginTop: "0.35rem", color: "#701a75" }}>{content.skillsHub.smallTalkTitleFa}</div>
+                      <div style={{ color: "#475569", marginTop: "0.2rem" }}>{content.skillsHub.smallTalkDescFa}</div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Pricing Preview */}
+                <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "0.75rem" }}>
+                  <div style={{ fontSize: "0.8rem", fontWeight: "700", marginBottom: "0.5rem" }}>💳 پلن‌های اشتراک فعال</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                    {content.pricingPlans.map((p) => (
+                      <div key={p.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", borderBottom: "1px dashed #f1f5f9", paddingBottom: "0.25rem" }}>
+                        <span>{p.nameFa} {p.badgeFa && `(${p.badgeFa})`}</span>
+                        <strong style={{ color: "#4f46e5" }}>
+                          {p.priceToman === 0 ? "رایگان" : `${p.priceToman.toLocaleString("fa-IR")} ت`}
+                        </strong>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer Preview */}
+                <div style={{ background: "#1e293b", color: "#e2e8f0", borderRadius: "8px", padding: "0.75rem", fontSize: "0.72rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                  <div style={{ fontWeight: "700", color: "#fff" }}>📞 اطلاعات تماس و فوتر</div>
+                  <div>تلفن: {content.footer.phone} | ایمیل: {content.footer.email}</div>
+                  <div style={{ color: "#94a3b8" }}>{content.footer.copyrightTextFa}</div>
+                </div>
               </div>
             )}
-
-            {/* Mock Hero Preview */}
-            <div className={styles.mockHero}>
-              <div className={styles.mockHeroBadge}>{content.hero.badgeFa}</div>
-              <h2 className={styles.mockHeroTitle}>{content.hero.titleFa}</h2>
-              <p className={styles.mockHeroSubtitle}>{content.hero.subtitleFa}</p>
-              <div className={styles.mockHeroCtas}>
-                <span className={styles.btnPrimary} style={{ fontSize: "0.78rem", padding: "0.4rem 0.8rem" }}>
-                  {content.hero.primaryCtaLabelFa}
-                </span>
-                <span className={styles.btnSecondary} style={{ fontSize: "0.78rem", padding: "0.4rem 0.8rem" }}>
-                  {content.hero.secondaryCtaLabelFa}
-                </span>
-              </div>
-              <div className={styles.mockHeroPillRow}>
-                <span className={styles.mockPill}>{content.hero.trustPill1Fa}</span>
-                <span className={styles.mockPill}>{content.hero.trustPill2Fa}</span>
-                <span className={styles.mockPill}>{content.hero.trustPill3Fa}</span>
-              </div>
-            </div>
-
-            {/* Mock Spotlights Preview */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
-              {content.skillsHub.tamrin20SpotlightEnabled && (
-                <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "8px", padding: "0.75rem", fontSize: "0.75rem" }}>
-                  <span style={{ background: "#2563eb", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "4px", fontSize: "0.65rem", fontWeight: "700" }}>
-                    {content.skillsHub.tamrin20BadgeFa}
-                  </span>
-                  <div style={{ fontWeight: "700", marginTop: "0.35rem", color: "#1e3a8a" }}>{content.skillsHub.tamrin20TitleFa}</div>
-                  <div style={{ color: "#475569", marginTop: "0.2rem" }}>{content.skillsHub.tamrin20DescFa}</div>
-                </div>
-              )}
-              {content.skillsHub.smallTalkSpotlightEnabled && (
-                <div style={{ background: "#fdf4ff", border: "1px solid #f0abfc", borderRadius: "8px", padding: "0.75rem", fontSize: "0.75rem" }}>
-                  <span style={{ background: "#c026d3", color: "#fff", padding: "0.15rem 0.4rem", borderRadius: "4px", fontSize: "0.65rem", fontWeight: "700" }}>
-                    {content.skillsHub.smallTalkBadgeFa}
-                  </span>
-                  <div style={{ fontWeight: "700", marginTop: "0.35rem", color: "#701a75" }}>{content.skillsHub.smallTalkTitleFa}</div>
-                  <div style={{ color: "#475569", marginTop: "0.2rem" }}>{content.skillsHub.smallTalkDescFa}</div>
-                </div>
-              )}
-            </div>
-
-            {/* Mock Pricing Preview */}
-            <div style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "0.75rem" }}>
-              <div style={{ fontSize: "0.8rem", fontWeight: "700", marginBottom: "0.5rem" }}>💳 پلن‌های اشتراک فعال</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                {content.pricingPlans.map((p) => (
-                  <div key={p.id} style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", borderBottom: "1px dashed #f1f5f9", paddingBottom: "0.25rem" }}>
-                    <span>{p.nameFa} {p.badgeFa && `(${p.badgeFa})`}</span>
-                    <strong style={{ color: "#4f46e5" }}>
-                      {p.priceToman === 0 ? "رایگان" : `${p.priceToman.toLocaleString("fa-IR")} ت`}
-                    </strong>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mock Footer Preview */}
-            <div style={{ background: "#1e293b", color: "#e2e8f0", borderRadius: "8px", padding: "0.75rem", fontSize: "0.72rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-              <div style={{ fontWeight: "700", color: "#fff" }}>📞 اطلاعات تماس و فوتر</div>
-              <div>تلفن: {content.footer.phone} | ایمیل: {content.footer.email}</div>
-              <div style={{ color: "#94a3b8" }}>{content.footer.copyrightTextFa}</div>
-            </div>
           </aside>
         )}
       </div>

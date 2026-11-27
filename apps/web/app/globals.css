@@ -34,6 +34,28 @@ html[lang="en"],
 html[lang="fa"],
 [data-locale="fa"] {
   --font-family-body: var(--font-family-persian);
+  letter-spacing: normal;
+}
+
+:root[dir="rtl"] h1,
+:root[dir="rtl"] h2,
+:root[dir="rtl"] h3,
+:root[dir="rtl"] h4,
+:root[dir="rtl"] h5,
+:root[dir="rtl"] h6,
+:root[dir="rtl"] button,
+:root[dir="rtl"] a.btn,
+:root[dir="rtl"] nav a,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] button,
+[dir="rtl"] a.btn,
+[dir="rtl"] nav a {
+  letter-spacing: normal;
 }
 
 html[lang="en"] body,

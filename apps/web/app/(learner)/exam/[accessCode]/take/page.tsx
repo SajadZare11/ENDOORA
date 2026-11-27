@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, use, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "@/components/exam/exam.module.css";
 import { Button } from "@endoora/ui";
 import { useProctoring } from "@/lib/use-proctoring";
@@ -263,7 +264,7 @@ export default function ExamRunnerPage({ params }: { params: Promise<{ accessCod
     }).catch(() => setSaveError("ارتباط برقرار نشد. پاسخ تا ذخیره بعدی در این زبانه می‌ماند."));
   };
 
-  if (loadFailed) return <p role="alert">بارگذاری آزمون انجام نشد. <a href={`/exam/${accessCode}`}>بازگشت به آزمون</a></p>;
+  if (loadFailed) return <p role="alert">بارگذاری آزمون انجام نشد. <Link href={`/exam/${accessCode}`}>بازگشت به آزمون</Link></p>;
   if (loading || !exam || !submissionId) {
     return (
       <div className={styles.examContainer} style={{ textAlign: "center", padding: "5rem" }}>

@@ -147,6 +147,31 @@ export const TARGET_DESCRIPTIONS: Record<
   },
 };
 
+function getInitialPathForTab(tab: AdminModuleTab): string {
+  switch (tab) {
+    case "site-builder":
+      return "/p/exam-cram-1403";
+    case "seo":
+      return "/sitemap.xml";
+    case "academics":
+      return "/high-school/grade-12/tamrin20";
+    case "exam-integrity":
+      return "/placement";
+    case "teacher-verifications":
+    case "teacher-contracts":
+    case "users":
+      return "/teachers";
+    case "support":
+    case "community":
+      return "/community";
+    case "finance":
+    case "marketing":
+      return "/pricing";
+    default:
+      return "/";
+  }
+}
+
 export function AdminLiveWebsitePreview({
   activeTab,
   highlightTarget,
@@ -156,66 +181,25 @@ export function AdminLiveWebsitePreview({
   onToggleExpand,
 }: AdminLiveWebsitePreviewProps) {
   const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
-  const [currentPath, setCurrentPath] = useState<string>("/");
-  const [addressBarInput, setAddressBarInput] = useState<string>("/");
-  const [viewMode, setViewMode] = useState<"iframe" | "diagram">("iframe");
+  const [currentPath, setCurrentPath] = useState<string>(() => getInitialPathForTab(activeTab));
+  const [addressBarInput, setAddressBarInput] = useState<string>(() => getInitialPathForTab(activeTab));
+  const [viewModeOverride, setViewModeOverride] = useState<"iframe" | "diagram" | null>(null);
+  const [prevTab, setPrevTab] = useState<AdminModuleTab>(activeTab);
   const [isLoadingIframe, setIsLoadingIframe] = useState<boolean>(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const isTechnicalZone = ["system-ops", "ai-engine", "security"].includes(activeTab);
+  const viewMode = viewModeOverride ?? (isTechnicalZone ? "diagram" : "iframe");
+  const setViewMode = (mode: "iframe" | "diagram") => setViewModeOverride(mode);
 
-  // Synchronize target path when activeTab changes
-  useEffect(() => {
-    let target = "/";
-    switch (activeTab) {
-      case "site-cms":
-      case "overview":
-        target = "/";
-        break;
-      case "site-builder":
-        target = "/p/exam-cram-1403";
-        break;
-      case "seo":
-        target = "/sitemap.xml";
-        break;
-      case "academics":
-        target = "/high-school/grade-12/tamrin20";
-        break;
-      case "exam-integrity":
-        target = "/placement";
-        break;
-      case "teacher-verifications":
-      case "teacher-contracts":
-      case "users":
-        target = "/teachers";
-        break;
-      case "support":
-      case "community":
-        target = "/community";
-        break;
-      case "finance":
-      case "marketing":
-        target = "/pricing";
-        break;
-      case "system-ops":
-      case "ai-engine":
-      case "security":
-        target = "/";
-        setViewMode("diagram");
-        break;
-      default:
-        target = "/";
-        break;
-    }
-
-    if (!isTechnicalZone) {
-      setViewMode("iframe");
-    }
-
-    setCurrentPath(target);
-    setAddressBarInput(target);
+  if (prevTab !== activeTab) {
+    setPrevTab(activeTab);
+    const newPath = getInitialPathForTab(activeTab);
+    setCurrentPath(newPath);
+    setAddressBarInput(newPath);
     setIsLoadingIframe(true);
-  }, [activeTab, isTechnicalZone]);
+    setViewModeOverride(null);
+  }
 
   // Attempt smart in-frame highlight / scroll on same-origin iframe
   useEffect(() => {
@@ -290,10 +274,16 @@ export function AdminLiveWebsitePreview({
   const activeTargetInfo = highlightTarget ? TARGET_DESCRIPTIONS[highlightTarget] : null;
 
   return (
-    <div
-      className={`${styles.previewPane} ${isExpanded ? styles.previewExpanded : ""}`}
-      dir="rtl"
-    >
+    <>
+      <div
+        className={styles.previewDrawerBackdrop}
+        onClick={onToggleOpen}
+        aria-hidden="true"
+      />
+      <div
+        className={`${styles.previewPane} ${isExpanded ? styles.previewExpanded : ""}`}
+        dir="rtl"
+      >
       {/* 1. Real Browser Header Toolbar */}
       <div className={styles.browserHeader}>
         {/* Navigation Buttons: Back, Forward, Reload */}
@@ -552,5 +542,6 @@ export function AdminLiveWebsitePreview({
         )}
       </div>
     </div>
+    </>
   );
 }

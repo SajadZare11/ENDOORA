@@ -69,46 +69,221 @@
   margin-block-end: var(--space-6);
 }
 
-/* Quick-Action Navigation Pills */
+/* =====================================================================
+   Bottom Skills Hub Navigation & Learning Modules Section
+   ===================================================================== */
+.skillsNavSection {
+  margin-block-start: var(--space-12);
+  margin-block-end: var(--space-8);
+  padding: clamp(var(--space-5), 4vw, var(--space-8));
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card, 1.5rem);
+  box-shadow: var(--shadow-subtle);
+  letter-spacing: normal;
+}
+
+.skillsNavHeader {
+  margin-block-end: var(--space-6);
+  text-align: center;
+}
+
+.skillsNavBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: var(--space-4);
+  padding-block: 0.35rem;
+  background: var(--color-info-bg);
+  color: var(--color-action);
+  border: 1px solid color-mix(in srgb, var(--color-action) 22%, transparent);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-meta, 0.875rem);
+  font-weight: 750;
+  margin-block-end: var(--space-2);
+}
+
+.skillsNavTitle {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 850;
+  color: var(--color-text);
+  margin: 0;
+  margin-block-end: var(--space-2);
+  letter-spacing: normal;
+}
+
+.skillsNavSubtitle {
+  font-size: var(--font-size-meta, 0.875rem);
+  color: var(--color-muted);
+  margin: 0;
+  line-height: var(--line-height-body-persian);
+  letter-spacing: normal;
+}
+
+.skillsButtonsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .skillsButtonsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skillsButtonsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+.skillButtonCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-canvas);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-card, 1rem);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  letter-spacing: normal !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skillButtonCard:hover {
+  background: var(--color-surface);
+  border-color: var(--color-action);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(4, 120, 87, 0.12);
+}
+
+.skillButtonIconBox {
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  min-inline-size: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background: var(--color-info-bg);
+  border-radius: var(--radius-control, 0.75rem);
+  border: 1px solid color-mix(in srgb, var(--color-action) 18%, transparent);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.skillButtonCard:hover .skillButtonIconBox {
+  transform: scale(1.08);
+  background: color-mix(in srgb, var(--color-action) 15%, transparent);
+}
+
+.skillButtonText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex-grow: 1;
+  min-inline-size: 0;
+}
+
+.skillButtonTitleFa {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: normal !important;
+}
+
+.skillButtonTitleEn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  font-family: var(--font-family-latin);
+  letter-spacing: normal;
+}
+
+.skillButtonArrow {
+  font-size: 1rem;
+  color: var(--color-muted);
+  opacity: 0.6;
+  margin-inline-start: auto;
+  transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.skillButtonCard:hover .skillButtonArrow {
+  color: var(--color-action);
+  opacity: 1;
+}
+
+:global([dir="rtl"]) .skillButtonCard:hover .skillButtonArrow {
+  transform: translateX(-4px);
+}
+
+:global([dir="ltr"]) .skillButtonCard:hover .skillButtonArrow {
+  transform: translateX(4px);
+}
+
+/* Quick-Action Navigation Pills (Legacy Support) */
 .quickPillsNav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-block-start: var(--space-2);
-  margin-block-end: var(--space-2);
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 .quickPill {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding-inline: var(--space-4);
-  padding-block: 0.5rem;
-  background: var(--color-surface);
+  gap: 0.35rem;
+  padding-inline: 0.75rem;
+  padding-block: 0.4rem;
+  background: var(--color-canvas);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  font-size: var(--font-size-meta);
+  font-size: var(--font-size-meta, 0.875rem);
   font-weight: 750;
   color: var(--color-text);
   text-decoration: none;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  letter-spacing: normal !important;
   transition: all var(--motion-fast) ease;
 }
 
 .quickPill:hover {
-  background: var(--color-action);
-  color: var(--color-white, #ffffff);
-  border-color: var(--color-action);
+  background: var(--color-action, #047857);
+  color: #ffffff;
+  border-color: var(--color-action, #047857);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-raised);
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.18);
+}
+
+.quickPill:hover .quickPillEn {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.quickPillIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.quickPillTitle {
+  letter-spacing: normal !important;
 }
 
 .quickPillEn {
-  font-size: var(--font-size-small);
+  font-size: 0.7rem;
   opacity: 0.75;
   font-family: var(--font-family-latin);
+  letter-spacing: normal;
 }
 
 /* =====================================================================

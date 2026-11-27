@@ -8,6 +8,8 @@ import { Button } from "@endoora/ui";
 import { PublicShell } from "@/components/marketing/PublicShell";
 import { CEFR_DESCRIPTIONS, CefrLevel, endooraIndexToCefr } from "@/lib/adaptive-engine";
 import LearnerTwinPreview from "@/components/placement/LearnerTwinPreview";
+import MultiSkillRadar from "@/components/placement/MultiSkillRadar";
+import { ensureTwinLearnerScope, getLearnerTwin, recordTwinObservation, twinTelemetry } from "@/lib/ai/learner-twin-store";
 import styles from "../placement.module.css";
 
 type Locale = "fa" | "en";
@@ -129,6 +131,62 @@ export default function PlacementReportPage() {
   useEffect(() => {
     let isMounted = true;
 
+    const assimilateEvidenceIntoTwin = (data: SessionSummaryData) => {
+      void ensureTwinLearnerScope().then(() => {
+        const twin = getLearnerTwin();
+        if (twin && data.sections) {
+          if (data.sections.listening?.score_percentage !== undefined) {
+            recordTwinObservation({
+              skillIds: [],
+              observedScore: data.sections.listening.score_percentage / 100,
+              modality: "mcq_bandit",
+              ieltsSkill: "listening",
+              guessingFloor: 0.25,
+              latencyMs: 15000,
+              expectedLatencyMs: 30000,
+              ...twinTelemetry(),
+            });
+          }
+          if (data.sections.reading?.score_percentage !== undefined) {
+            recordTwinObservation({
+              skillIds: [],
+              observedScore: data.sections.reading.score_percentage / 100,
+              modality: "sherlock_deduction",
+              ieltsSkill: "reading",
+              guessingFloor: 0.25,
+              latencyMs: 25000,
+              expectedLatencyMs: 35000,
+              ...twinTelemetry(),
+            });
+          }
+          if (data.sections.speaking?.score_percentage !== undefined) {
+            recordTwinObservation({
+              skillIds: [],
+              observedScore: data.sections.speaking.score_percentage / 100,
+              modality: "cnn_pronunciation",
+              ieltsSkill: "speaking",
+              guessingFloor: 0.1,
+              latencyMs: 20000,
+              expectedLatencyMs: 20000,
+              ...twinTelemetry(),
+            });
+          }
+          if (data.sections.writing?.score_percentage !== undefined) {
+            recordTwinObservation({
+              skillIds: [],
+              observedScore: data.sections.writing.score_percentage / 100,
+              modality: "bert_writing",
+              ieltsSkill: "writing",
+              guessingFloor: 0.02,
+              latencyMs: 60000,
+              expectedLatencyMs: 120000,
+              ...twinTelemetry(),
+            });
+          }
+        }
+      });
+    };
+
     async function loadSummary() {
       try {
         const auth = await endooraFetch("/auth/me/");
@@ -147,6 +205,7 @@ export default function PlacementReportPage() {
             const data = await report.json();
             if (isMounted) {
               setSummary(data);
+              assimilateEvidenceIntoTwin(data);
               if (data.estimated_cefr_level) {
                 scopedLocalStorage.setItem("endoora_placement_v1",JSON.stringify({cefr_level:data.estimated_cefr_level}));
                 const path = await import("@/lib/learning-path-storage");
@@ -156,7 +215,10 @@ export default function PlacementReportPage() {
           }
         } else if([401,403].includes(auth.status)) {
           const data = JSON.parse(sessionStorage.getItem("endoora_guest__placement_summary") || "null");
-          if (isMounted && data?.is_submitted) setSummary(data);
+          if (isMounted && data?.is_submitted) {
+            setSummary(data);
+            assimilateEvidenceIntoTwin(data);
+          }
         }
       } catch { /* The empty report state offers a return path. */ }
       if (isMounted) setLoading(false);
@@ -200,37 +262,6 @@ export default function PlacementReportPage() {
     <PublicShell locale={locale} currentPath="/placement/report">
       <main className={styles.page} dir={locale === "fa" ? "rtl" : "ltr"}>
         <div className={styles.container}>
-          {/* Language switch */}
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBlockEnd: "var(--space-4)" }}>
-            <div
-              style={{
-                display: "inline-flex",
-                gap: "var(--space-1)",
-                background: "var(--color-surface)",
-                padding: "var(--space-1)",
-                borderRadius: "var(--radius-control)",
-                border: "1px solid var(--color-border)",
-              }}
-            >
-              <Button
-                type="button"
-                size="sm"
-                variant={locale === "fa" ? "primary" : "tertiary"}
-                onClick={() => setLocale("fa")}
-              >
-                فارسی
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                variant={locale === "en" ? "primary" : "tertiary"}
-                onClick={() => setLocale("en")}
-              >
-                English
-              </Button>
-            </div>
-          </div>
-
           {/* Hero Section */}
           <section className={styles.hero}>
             <div className={styles.heroTag}>
@@ -536,6 +567,18 @@ export default function PlacementReportPage() {
                 </div>
               </div>
 
+              {/* 6-Skill Polygonal Radar Chart */}
+              <div className={styles.card} style={{ marginBlock: "var(--space-6)", textAlign: "center" }}>
+                <h3 style={{ fontSize: "1.15rem", fontWeight: 800, marginBlockEnd: "var(--space-4)" }}>
+                  🧭 {locale === "fa" ? "نمودار راداری ۶ مهارت اصلی آزمون" : "6-Skill Placement Radar Chart"}
+                </h3>
+                <MultiSkillRadar
+                  sections={summary.sections}
+                  locale={locale}
+                  size={400}
+                />
+              </div>
+
               {/* Verified Learner Twin Diagnostic Profile */}
               <div style={{ marginBlock: "var(--space-6)" }}>
                 <LearnerTwinPreview
@@ -544,7 +587,9 @@ export default function PlacementReportPage() {
                   totalQuestions={summary.total_questions || 50}
                   answeredCount={summary.total_answered || 50}
                   answers={twinAnswers}
+                  sectionsSummary={summary.sections}
                   locale={locale}
+                  level={currentCefr}
                 />
               </div>
 

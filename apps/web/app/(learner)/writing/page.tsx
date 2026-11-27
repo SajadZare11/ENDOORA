@@ -5,6 +5,15 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@endoora/ui";
 import { useLearnerHome } from "../../../components/learner/LearnerShell";
 import { WritingEditor } from "../../../components/placement/WritingEditor";
+import { IELTSWritingEvaluator } from "../../../components/ielts/IELTSWritingEvaluator";
+import { useBertEvaluator } from "../../../lib/bert-evaluator/useBertEvaluator";
+import type { BertEvaluationResult } from "../../../lib/bert-evaluator/types";
+import {
+  ensureTwinLearnerScope,
+  beginTwinAssessment,
+  finishTwinAssessment,
+  type TwinAssessment,
+} from "../../../lib/ai/learner-twin-store";
 import styles from "./writing.module.css";
 
 interface PromptOption {
@@ -157,6 +166,28 @@ export default function WritingMentorPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  // Learner Twin Assessment Scope
+  const twinAssessmentRef = useRef<TwinAssessment | null>(null);
+  useEffect(() => {
+    let active = true;
+    void ensureTwinLearnerScope().then(() => {
+      if (active) twinAssessmentRef.current = beginTwinAssessment('bert_writing');
+    });
+    return () => { active = false; };
+  }, [selectedPrompt]);
+
+  // Engine 1: Multi-Scale Distilled BERT Semantics Evaluator Hook
+  const {
+    status: bertStatus,
+    progress: bertProgress,
+    result: bertResult,
+    error: bertError,
+    evaluateEssay: evaluateWithBert,
+    reset: resetBert,
+  } = useBertEvaluator({ autoInit: false });
+
+  const [writingTabMode, setWritingTabMode] = useState<"mentor" | "bert_evaluator">("mentor");
+
   // UI tabs
   const [activeRewriteTab, setActiveRewriteTab] = useState<"a2" | "b2" | "c2">("b2");
   const [errorCategoryFilter, setErrorCategoryFilter] = useState<"all" | "grammar" | "style" | "collocation">("all");
@@ -218,135 +249,111 @@ export default function WritingMentorPage() {
     };
   }, [essayText]);
 
-  // Execute Analysis
+  // Execute Analysis via Live Web Worker BERT Semantics Evaluator
   async function handleConfirmAnalysis() {
     setShowConfirmModal(false);
     setIsAnalyzing(true);
 
     try {
-      const response = await fetch(`/api/writing/drafts/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          draft_id: draftId,
-          prompt_id: selectedPrompt.id,
-          prompt_title: selectedPrompt.title_en,
-          prompt_text: selectedPrompt.prompt_en,
-          target_cefr: selectedPrompt.level,
-          mode: selectedPrompt.mode,
-          text: essayText,
-          time_spent_seconds: timeSeconds,
-        }),
-      });
-
-      if (response.ok) {
-        const savedDraft = await response.json();
-        setDraftId(savedDraft.id);
-        setDraftVersion(savedDraft.version);
-
-        const analyzeRes = await fetch(`/api/writing/drafts/${savedDraft.id}/analyze/`, {
+      let savedDraftId = draftId;
+      try {
+        const response = await fetch(`/api/writing/drafts/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            draft_id: draftId,
+            prompt_id: selectedPrompt.id,
+            prompt_title: selectedPrompt.title_en,
+            prompt_text: selectedPrompt.prompt_en,
+            target_cefr: selectedPrompt.level,
+            mode: selectedPrompt.mode,
+            text: essayText,
+            time_spent_seconds: timeSeconds,
+          }),
         });
 
-        if (analyzeRes.ok) {
-          const analysisResult = await analyzeRes.json();
-          setAnalysis(analysisResult);
+        if (response.ok) {
+          const savedDraft = await response.json();
+          savedDraftId = savedDraft.id;
+          setDraftId(savedDraft.id);
+          setDraftVersion(savedDraft.version);
+
+          const analyzeRes = await fetch(`/api/writing/drafts/${savedDraft.id}/analyze/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (analyzeRes.ok) {
+            const analysisResult = await analyzeRes.json();
+            setAnalysis(analysisResult);
+            return;
+          }
         }
+      } catch {
+        // Edge AI mode active: perform client-side BERT evaluation
       }
-    } catch {
-      // Fallback local pedagogical analysis
-      runLocalAnalysis();
+
+      // Live Web Worker Multi-Scale BERT Semantics Inference
+      const bertEvaluation = await evaluateWithBert(
+        essayText,
+        selectedPrompt.prompt_en,
+        selectedPrompt.min_words
+      );
+
+      // Sync to Learner Twin
+      finishTwinAssessment(twinAssessmentRef.current, (bertEvaluation.overallBand - 1) / 8);
+      twinAssessmentRef.current = beginTwinAssessment('bert_writing');
+
+      mapBertResultToAnalysis(bertEvaluation, savedDraftId);
+    } catch (err: unknown) {
+      console.error("BERT Evaluation failed:", err);
     } finally {
       setIsAnalyzing(false);
     }
   }
 
-  function runLocalAnalysis() {
-    const isAgreeErr = /\bam agree\b/i.test(essayText);
-    const isDiscussErr = /\bdiscuss about\b/i.test(essayText);
-    const isGoodStyle = /\bvery good\b/i.test(essayText);
-
-    const localErrors: ErrorAnnotation[] = [];
-    if (isDiscussErr) {
-      localErrors.push({
-        id: "err_prep_discuss",
-        category: "grammar",
-        mistake_tag: "preposition_unnecessary",
-        original_snippet: "discuss about",
-        suggested_fix: "discuss",
-        explanation_en: "The verb 'discuss' is transitive in English and takes a direct object without 'about'.",
-        explanation_fa: "فعل discuss در انگلیسی متعدی است و نیازی به حرف اضافه about ندارد (تداخل زبان فارسی).",
-        is_style_only: false,
-      });
-    }
-    if (isAgreeErr) {
-      localErrors.push({
-        id: "err_agree_verb",
-        category: "grammar",
-        mistake_tag: "verb_form_confusion",
-        original_snippet: "am agree",
-        suggested_fix: "agree",
-        explanation_en: "'Agree' is a main verb, not an adjective. Say 'I agree' rather than 'I am agree'.",
-        explanation_fa: "کلمه agree در انگلیسی فعل است نه صفت؛ نیازی به فعل to be ندارد.",
-        is_style_only: false,
-      });
-    }
-    if (isGoodStyle) {
-      localErrors.push({
-        id: "style_lexical_precision",
-        category: "style",
-        mistake_tag: "lexical_precision",
-        original_snippet: "very good",
-        suggested_fix: "beneficial / advantageous",
-        explanation_en: "Stylistic enhancement: Replace generic modifiers with precise academic adjectives.",
-        explanation_fa: "پیشنهاد سبکی: جایگزینی صفت عمومی very good با واژگان آکادمیک دقیق‌تر.",
-        is_style_only: true,
-      });
-    }
-
+  function mapBertResultToAnalysis(res: BertEvaluationResult, draftNum: number | null) {
     setAnalysis({
-      estimated_cefr_range: wordCount >= 120 ? "B2 – B2+" : "B1 – B2",
+      id: draftNum ?? undefined,
+      estimated_cefr_range: res.cefrLevel,
       ielts_scores: {
-        overall_band_range: wordCount >= 150 ? "6.0 – 6.5" : "5.0 – 5.5",
+        overall_band_range: `Band ${res.overallBand.toFixed(1)}`,
         task_achievement: {
-          band_min: 6.0,
-          band_max: 6.5,
-          feedback_en: "Addresses the main prompt ideas with relevant supporting points.",
-          feedback_fa: "دیدگاه‌های اصلی موضوع با استدلال‌های مرتبط بیان شده‌اند.",
+          band_min: res.criteria.taskResponse.band,
+          band_max: res.criteria.taskResponse.band,
+          feedback_en: res.criteria.taskResponse.descriptorEn,
+          feedback_fa: res.criteria.taskResponse.guidanceFa,
         },
         coherence_cohesion: {
-          band_min: 5.5,
-          band_max: 6.0,
-          feedback_en: "Ideas are logically organized; adding subordinating conjunctions enriches paragraph flow.",
-          feedback_fa: "ترتیب منطقی جملات مطلوب است؛ استفاده از حروف ربط متنوع‌تر پیوستگی متن را بهبود می‌دهد.",
+          band_min: res.criteria.coherenceCohesion.band,
+          band_max: res.criteria.coherenceCohesion.band,
+          feedback_en: res.criteria.coherenceCohesion.descriptorEn,
+          feedback_fa: res.criteria.coherenceCohesion.guidanceFa,
         },
         lexical_resource: {
-          band_min: 6.0,
-          band_max: 6.5,
-          feedback_en: "Good functional vocabulary with opportunities to employ less common academic collocations.",
-          feedback_fa: "دایره واژگان کاربردی مناسب است؛ بهره‌گیری از اصطلاحات آکادمیک توصیه می‌شود.",
+          band_min: res.criteria.lexicalResource.band,
+          band_max: res.criteria.lexicalResource.band,
+          feedback_en: res.criteria.lexicalResource.descriptorEn,
+          feedback_fa: res.criteria.lexicalResource.guidanceFa,
         },
         grammatical_accuracy: {
-          band_min: 5.5,
-          band_max: 6.0,
-          feedback_en: "Effective control of basic sentence patterns with minor prepositional slips.",
-          feedback_fa: "تسلط بر جملات پایه مناسب است؛ توجه به حروف اضافه افعال به صحت ساختار کمک می‌کند.",
+          band_min: res.criteria.grammaticalAccuracy.band,
+          band_max: res.criteria.grammaticalAccuracy.band,
+          feedback_en: res.criteria.grammaticalAccuracy.descriptorEn,
+          feedback_fa: res.criteria.grammaticalAccuracy.guidanceFa,
         },
       },
-      strengths_summary_fa: `متن شما با ${wordCount} کلمه و ${sentenceCount} جمله، تسلط قابل قبولی بر انتقال ایده اصلی نشان می‌دهد.`,
-      strengths_summary_en: `Your text (${wordCount} words, ${sentenceCount} sentences) successfully communicates its central thesis.`,
-      top_priorities_fa: [
-        "افزایش تنوع واژگانی با جایگزینی صفات عمومی با ترکیبات آکادمیک.",
-        "بهبود انسجام بین پاراگراف‌ها با استفاده از کلمات ربط علّی (consequently, furthermore).",
-        "رفع خطاهای تداخل زبان فارسی در حروف اضافه افعال متعدی.",
+      strengths_summary_fa: `متن شما با ${res.wordCount} کلمه و ${res.uniqueTokenCount} واژه متمایز، به میزان ${res.promptAlignmentScore}٪ با صورت‌سؤال تطابق معنایی داشته و میانگین انسجام بین‌پاراگرافی آن ${res.averageParagraphCohesion}٪ است.`,
+      strengths_summary_en: `Your essay (${res.wordCount} words, ${res.uniqueTokenCount} unique tokens) achieves ${res.promptAlignmentScore}% semantic prompt alignment with an average paragraph cohesion score of ${res.averageParagraphCohesion}%.`,
+      top_priorities_fa: res.improvementsFa.length > 0 ? res.improvementsFa : [
+        "تقویت پیوستگی میان جملات با واژگان ربط‌دهنده آکادمیک.",
+        "افزایش تنوع واژگانی با جایگزینی لغات پرتکرار.",
       ],
       top_priorities_en: [
-        "Upgrade high-frequency descriptors with precise academic collocations.",
-        "Strengthen paragraph coherence using logical connectors.",
-        "Refine transitive verb prepositions to eliminate L1 Persian transfer slips.",
+        "Enhance sentence-to-sentence semantic cohesion with transitional phrases.",
+        "Expand lexical richness by upgrading high-frequency synonyms.",
       ],
-      error_annotations: localErrors,
+      error_annotations: [],
       graduated_rewrites: {
         disclaimer_en: "Reference Example for Learning — Not a replacement for your voice",
         disclaimer_fa: "نمونه بازنویسی برای یادگیری الگوها — نه جایگزین صدای شما",
@@ -389,8 +396,8 @@ export default function WritingMentorPage() {
           completed: false,
         },
       ],
-      disclaimer_fa: "اصل شفافیت آموزشی (قانون شماره ۸ اساسنامه): نمره و سطح تخمینی برای هدایت فرآیند بازنویسی بوده و مدرک رسمی آزمون آیلتس محسوب نمی‌شود.",
-      disclaimer_en: "Product Constitution Rule #8 Disclosure: Estimated band ranges and CEFR levels are formative coaching indicators and do not constitute an official IELTS certificate.",
+      disclaimer_fa: "اصل شفافیت هوش مصنوعی (قانون شماره ۸ اساسنامه): نمرات معیارهای چهارگانه آیلتس با مدل DeBERTa/MiniLM به صورت محلی در مرورگر پردازش شده‌اند.",
+      disclaimer_en: "AI Transparency: Cambridge IELTS rubric criteria evaluated via in-browser distilled BERT multi-scale inference.",
     });
   }
 
@@ -495,6 +502,41 @@ export default function WritingMentorPage() {
           </Link>
         </div>
       </section>
+
+      {/* Dual Workbench Mode Selector */}
+      <div style={{ display: "flex", gap: "var(--space-2)", marginBlockEnd: "var(--space-4)" }}>
+        <Button
+          type="button"
+          size="sm"
+          variant={writingTabMode === "mentor" ? "primary" : "secondary"}
+          onClick={() => setWritingTabMode("mentor")}
+        >
+          ✍️ {isFa ? "کارگاه تعاملی نگارش و منتورینگ" : "Interactive Writing Studio & Mentor"}
+        </Button>
+        <Button
+          type="button"
+          size="sm"
+          variant={writingTabMode === "bert_evaluator" ? "primary" : "secondary"}
+          onClick={() => setWritingTabMode("bert_evaluator")}
+        >
+          ⚡ {isFa ? "موتور ارزیابی چندمقیاسه برخط (Edge AI BERT Evaluator)" : "Edge AI BERT Evaluator"}
+        </Button>
+      </div>
+
+      {writingTabMode === "bert_evaluator" && (
+        <section className={styles.card} style={{ marginBlockEnd: "var(--space-4)" }}>
+          <IELTSWritingEvaluator
+            key={selectedPrompt.id}
+            promptText={selectedPrompt.prompt_en}
+            initialText={essayText}
+            targetWords={selectedPrompt.min_words}
+            taskType={selectedPrompt.mode.includes("task1") ? "task1" : "task2"}
+            onEvaluated={(res) => {
+              mapBertResultToAnalysis(res, draftId);
+            }}
+          />
+        </section>
+      )}
 
       {/* Mode & Prompt Selection */}
       <section className={styles.heroCard}>
@@ -754,6 +796,182 @@ export default function WritingMentorPage() {
               </ul>
             </div>
           </div>
+
+          {/* Sentence Cohesion Attention Heatmap */}
+          {bertResult && bertResult.sentenceHeatmap && bertResult.sentenceHeatmap.length > 0 && (
+            <div
+              style={{
+                marginBlock: "var(--space-4)",
+                padding: "var(--space-4)",
+                background: "var(--color-surface-subtle)",
+                borderRadius: "var(--radius-control)",
+                border: "1px solid var(--color-border)",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBlockEnd: "var(--space-2)",
+                  flexWrap: "wrap",
+                  gap: "var(--space-2)",
+                }}
+              >
+                <h4
+                  style={{
+                    margin: 0,
+                    fontWeight: 800,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span>🔥</span>
+                  {isFa
+                    ? "نقشه حرارتی انسجام جمله به جمله (Cohesion Attention Heatmap):"
+                    : "Sentence-Level Cohesion Attention Heatmap:"}
+                </h4>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "var(--space-3)",
+                    fontSize: "0.78rem",
+                  }}
+                >
+                  <span style={{ color: "#10b981", fontWeight: 700 }}>
+                    ● {isFa ? "جریان قوی (≥ 0.65)" : "Strong (≥ 0.65)"}
+                  </span>
+                  <span style={{ color: "#f59e0b", fontWeight: 700 }}>
+                    ● {isFa ? "تغییر معتدل (0.42 - 0.65)" : "Moderate (0.42 - 0.65)"}
+                  </span>
+                  <span style={{ color: "#ef4444", fontWeight: 700 }}>
+                    ● {isFa ? "افت پیوستگی (< 0.42)" : "Abrupt Drop (< 0.42)"}
+                  </span>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  lineHeight: 2.1,
+                  padding: "var(--space-3)",
+                  background: "var(--color-canvas)",
+                  borderRadius: "6px",
+                  border: "1px solid var(--color-border)",
+                }}
+                dir="ltr"
+              >
+                {bertResult.sentenceHeatmap.map((item, idx) => {
+                  const color =
+                    item.flowStatus === "strong"
+                      ? "#10b981"
+                      : item.flowStatus === "moderate"
+                      ? "#f59e0b"
+                      : "#ef4444";
+                  const bg =
+                    item.flowStatus === "strong"
+                      ? "rgba(16, 185, 129, 0.12)"
+                      : item.flowStatus === "moderate"
+                      ? "rgba(245, 158, 11, 0.12)"
+                      : "rgba(239, 68, 68, 0.15)";
+                  const tooltipText =
+                    item.similarityWithPrevious !== null
+                      ? `جمله ${idx + 1} | تشابه با قبل: ${(
+                          item.similarityWithPrevious * 100
+                        ).toFixed(0)}٪ | ${item.feedbackFa}`
+                      : `جمله ۱ (آغاز پاراگراف) | ${item.feedbackFa}`;
+
+                  return (
+                    <span
+                      key={idx}
+                      style={{
+                        display: "inline",
+                        padding: "3px 6px",
+                        margin: "0 2px",
+                        borderRadius: "4px",
+                        borderBottom: `2.5px solid ${color}`,
+                        backgroundColor: bg,
+                        cursor: "help",
+                        fontFamily: "var(--font-family-latin)",
+                        fontSize: "0.95rem",
+                      }}
+                      title={tooltipText}
+                    >
+                      {item.sentence}{" "}
+                    </span>
+                  );
+                })}
+              </div>
+
+              {bertResult.paragraphs &&
+                bertResult.paragraphs.some((p) => p.cosineWithNext !== null) && (
+                  <div
+                    style={{
+                      marginBlockStart: "var(--space-3)",
+                      borderTop: "1px dashed var(--color-border)",
+                      paddingTop: "var(--space-3)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        color: "var(--color-muted)",
+                        display: "block",
+                        marginBlockEnd: "var(--space-1)",
+                      }}
+                    >
+                      {isFa
+                        ? "انتقال بین پاراگراف‌ها (Paragraph Transitions):"
+                        : "Paragraph Transitions:"}
+                    </span>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "var(--space-2)",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {bertResult.paragraphs
+                        .filter((p) => p.cosineWithNext !== null)
+                        .map((p, idx) => (
+                          <span
+                            key={p.paragraphIndex ?? idx}
+                            style={{
+                              fontSize: "0.76rem",
+                              padding: "2px 8px",
+                              borderRadius: "4px",
+                              background:
+                                p.flowQuality === "high"
+                                  ? "rgba(16, 185, 129, 0.15)"
+                                  : p.flowQuality === "moderate"
+                                  ? "rgba(245, 158, 11, 0.15)"
+                                  : "rgba(239, 68, 68, 0.15)",
+                              border: `1px solid ${
+                                p.flowQuality === "high"
+                                  ? "#10b981"
+                                  : p.flowQuality === "moderate"
+                                  ? "#f59e0b"
+                                  : "#ef4444"
+                              }`,
+                              color:
+                                p.flowQuality === "high"
+                                  ? "#10b981"
+                                  : p.flowQuality === "moderate"
+                                  ? "#f59e0b"
+                                  : "#ef4444",
+                              fontWeight: 600,
+                            }}
+                          >
+                            پاراگراف {p.paragraphIndex + 1} ➔ {p.paragraphIndex + 2}:{" "}
+                            {((p.cosineWithNext ?? 0) * 100).toFixed(0)}٪ ({p.diagnosticFeedbackFa})
+                          </span>
+                        ))}
+                    </div>
+                  </div>
+                )}
+            </div>
+          )}
 
           {/* IELTS 4 Criteria Grid */}
           <div>

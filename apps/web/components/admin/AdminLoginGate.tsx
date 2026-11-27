@@ -108,6 +108,47 @@ export function AdminLoginGate({ onLoginSuccess }: { onLoginSuccess: () => void 
           </button>
         </form>
 
+        <div
+          style={{
+            marginTop: "0.5rem",
+            padding: "0.75rem",
+            background: "rgba(99, 102, 241, 0.12)",
+            border: "1px dashed rgba(99, 102, 241, 0.4)",
+            borderRadius: "8px",
+            textAlign: "center",
+            fontSize: "0.8rem",
+            color: "#cbd5e1",
+          }}
+        >
+          <div>حساب مدیر پیش‌فرض (محیط توسعه):</div>
+          <div style={{ margin: "4px 0", direction: "ltr" }}>
+            <code style={{ color: "#a5b4fc", fontWeight: "bold" }}>founder@endoora.ir</code>
+            <span style={{ margin: "0 6px", color: "#64748b" }}>|</span>
+            <code style={{ color: "#a5b4fc", fontWeight: "bold" }}>12345678</code>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setEmail("founder@endoora.ir");
+              setPassword("12345678");
+              setError(null);
+            }}
+            style={{
+              marginTop: "6px",
+              background: "rgba(99, 102, 241, 0.3)",
+              border: "1px solid rgba(165, 180, 252, 0.35)",
+              color: "#e0e7ff",
+              borderRadius: "6px",
+              padding: "5px 12px",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+            }}
+          >
+            ⚡ پر کردن خودکار اطلاعات مدیر
+          </button>
+        </div>
+
         <p className={styles.footerNote}>
           این بخش اختصاصی مدیران است و تمامی نشست‌ها برای امنیت اطلاعات پلتفرم پایش می‌شوند.
         </p>

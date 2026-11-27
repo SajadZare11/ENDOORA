@@ -934,3 +934,270 @@
   border-color: #3b141c;
   color: #a88a91;
 }
+
+/* =============================================================================
+   PRE-EXAM SETUP MODAL
+   ============================================================================= */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 640px;
+  background: var(--color-surface, #ffffff);
+  border-radius: 20px;
+  border: 1px solid var(--ielts-paper-border-strong, #e2cecc);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(190, 18, 60, 0.1);
+  overflow: hidden;
+  direction: rtl;
+  color: var(--color-text-primary, #0f172a);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:global(.dark) .modalCard {
+  background: #190a0e;
+  border-color: #4a1521;
+  color: #f1f5f9;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalHeader {
+  padding: 1.5rem 1.75rem 1rem;
+  background: linear-gradient(135deg, rgba(159, 18, 57, 0.05), transparent);
+  border-bottom: 1px solid var(--ielts-paper-border, #f1e5e4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+:global(.dark) .modalHeader {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.1), transparent);
+  border-color: #3b141c;
+}
+
+.modalHeaderTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ielts-crimson-800, #881337);
+  margin: 0.35rem 0 0.25rem;
+}
+
+:global(.dark) .modalHeaderTitle {
+  color: #fb7185;
+}
+
+.modalSubtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+:global(.dark) .modalSubtitle {
+  color: #94a3b8;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.modalCloseBtn:hover {
+  color: var(--ielts-crimson-700, #9f1239);
+  background: rgba(159, 18, 57, 0.08);
+}
+
+.modalBody {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.modeOptionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modeOptionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+:global(.dark) .modeOptionLabel {
+  color: #cbd5e1;
+}
+
+.modeOptionCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--ielts-paper-border, #e2e8f0);
+  background: var(--ielts-paper-surface, #ffffff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: right;
+}
+
+:global(.dark) .modeOptionCard {
+  background: #14070a;
+  border-color: #3b141c;
+}
+
+.modeOptionCard:hover {
+  border-color: var(--ielts-crimson-400, #fb7185);
+  transform: translateY(-1px);
+}
+
+.modeOptionCardActive {
+  border-color: var(--ielts-crimson-600, #be123c) !important;
+  background: rgba(190, 18, 60, 0.04) !important;
+  box-shadow: 0 0 0 1px var(--ielts-crimson-600, #be123c);
+}
+
+:global(.dark) .modeOptionCardActive {
+  background: rgba(225, 29, 72, 0.12) !important;
+}
+
+.modeOptionLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modeOptionIcon {
+  font-size: 1.4rem;
+}
+
+.modeOptionTitle {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--color-text-primary, #0f172a);
+}
+
+:global(.dark) .modeOptionTitle {
+  color: #f8fafc;
+}
+
+.modeOptionDuration {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0.15rem 0 0;
+}
+
+.instructionsBox {
+  background: var(--ielts-paper-subtle, #fbf7f4);
+  border: 1px solid var(--ielts-paper-border, #e2cecc);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: 0.825rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+:global(.dark) .instructionsBox {
+  background: #1f0c12;
+  border-color: #3b141c;
+  color: #cbd5e1;
+}
+
+.instructionsList {
+  margin: 0.5rem 0 0;
+  padding-inline-start: 1.25rem;
+}
+
+.instructionsList li {
+  margin-block-end: 0.35rem;
+}
+
+.modalFooter {
+  padding: 1rem 1.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  border-top: 1px solid var(--ielts-paper-border, #f1e5e4);
+}
+
+:global(.dark) .modalFooter {
+  border-color: #3b141c;
+}
+
+.modalCancelBtn {
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--ielts-paper-border-strong, #cbd5e1);
+  background: transparent;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+:global(.dark) .modalCancelBtn {
+  border-color: #475569;
+  color: #94a3b8;
+}
+
+.modalConfirmBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--ielts-crimson-600, #be123c), var(--ielts-crimson-800, #881337));
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--ielts-crimson-glow, rgba(190, 18, 60, 0.35));
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalConfirmBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--ielts-crimson-glow, rgba(190, 18, 60, 0.45));
+}

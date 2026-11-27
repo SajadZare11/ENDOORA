@@ -1,8 +1,43 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./master-admin.module.css";
+import {
+  IconOverview,
+  IconCMS,
+  IconSiteBuilder,
+  IconForms,
+  IconSEO,
+  IconAcademics,
+  IconExamIntegrity,
+  IconUsers,
+  IconTeachers,
+  IconContracts,
+  IconSupport,
+  IconCommunity,
+  IconFinance,
+  IconMarketing,
+  IconBroadcast,
+  IconAnalytics,
+  IconSystemOps,
+  IconAiEngine,
+  IconSecurity,
+  IconSidebarToggle,
+  IconSearch,
+  IconEye,
+  IconLock,
+  IconUnlock,
+  IconHelp,
+  IconExternalLink,
+  IconLogout,
+  IconChevronDown,
+  IconArrowLeft,
+  IconTrendingUp,
+  IconClock,
+  IconCheckCircle,
+} from "./AdminIcons";
+
 import { SiteContentCMSEditor } from "./SiteContentCMSEditor";
 import { AdminUsersManager } from "./AdminUsersManager";
 import { TeacherVerificationHub } from "./TeacherVerificationHub";
@@ -29,7 +64,6 @@ import { AdminDangerConfirmModal } from "./AdminDangerConfirmModal";
 import { AdminPinModal } from "./AdminPinModal";
 import { AdminUndoToast } from "./AdminUndoToast";
 import { AdminHoverTooltip } from "./AdminHoverTooltip";
-import { AdminSafetyBox } from "./AdminSafetyBox";
 import { AdminLiveWebsitePreview } from "./AdminLiveWebsitePreview";
 
 export type AdminModuleTab =
@@ -58,7 +92,6 @@ interface AdminItemDef {
   title: string;
   shortDesc: string;
   siteLocation: string;
-  icon: string;
   badge?: { text: string; bg: string; color: string };
   isSensitive?: boolean;
 }
@@ -66,7 +99,6 @@ interface AdminItemDef {
 interface AdminCategoryDef {
   id: string;
   title: string;
-  emoji: string;
   isDangerZone?: boolean;
   items: AdminItemDef[];
 }
@@ -74,186 +106,216 @@ interface AdminCategoryDef {
 const ADMIN_CATEGORIES: AdminCategoryDef[] = [
   {
     id: "content",
-    title: "۱. ظاهر و نوشته‌های سایت",
-    emoji: "🌐",
+    title: "محتوا و ظاهر سایت",
     items: [
       {
         id: "overview",
-        title: "نمای کلی و کارهای امروز",
-        shortDesc: "خلاصه وضعیت، پیام‌ها و کارهای منتظر",
+        title: "پیشخوان و نمای کلی",
+        shortDesc: "خلاصه وضعیت، صف تاییدها و شاخص‌های کلیدی",
         siteLocation: "پیشخوان داشبورد و شاخص‌های کلیدی سایت",
-        icon: "📊",
       },
       {
         id: "site-cms",
-        title: "ویرایش متن‌ها و بنرها",
+        title: "ویرایشگر متن‌ها و بنرها",
         shortDesc: "تغییر آنلاین بنرها، عناوین و قیمت‌های ویترین",
-        siteLocation: "صفحه اصلی سایت > نوار قرمز اعلان، هیرو، مهارت‌ها و قیمت‌ها",
-        icon: "📝",
+        siteLocation: "صفحه اصلی سایت > نوار اعلان، هیرو، مهارت‌ها و قیمت‌ها",
       },
       {
         id: "site-builder",
-        title: "استودیو ساخت صفحات جدید",
-        shortDesc: "طراحی صفحات جشنواره و لندینگ بدون کدنویسی",
-        siteLocation: "صفحات فرود و جشنواره‌ها (مثلاً /p/exam-cram-1403)",
-        icon: "🎨",
+        title: "استودیو ساخت لندینگ‌پیج",
+        shortDesc: "طراحی صفحات جدید و جشنواره‌ها بدون کدنویسی",
+        siteLocation: "صفحات فرود و کمپین‌ها (مانند /p/exam-cram-1403)",
       },
       {
         id: "forms-webhooks",
         title: "فرم‌ها و دریافت پیام‌ها",
         shortDesc: "فرم تماس، پیش‌ثبت‌نام همایش و پرسشنامه‌ها",
         siteLocation: "صفحه تماس با ما و فرم‌های ثبت‌نامی سایت",
-        icon: "📋",
       },
       {
         id: "seo",
         title: "تنظیمات گوگل و سئو",
         shortDesc: "بهینه‌سازی کلمات کلیدی، عنوان گوگل و ریدایرکت",
         siteLocation: "نتایج جستجوی گوگل و نقشه سایت (sitemap.xml)",
-        icon: "🌐",
       },
     ],
   },
   {
     id: "academics",
-    title: "۲. مدرسه و آزمون‌ها",
-    emoji: "🎓",
+    title: "مدرسه و آزمون‌ها",
     items: [
       {
         id: "academics",
         title: "دوره‌ها و بانک سوالات",
         shortDesc: "درس‌های پایه‌ها، کنکور، آیلتس و سوالات تستی",
         siteLocation: "بخش مدرسه و پایه‌های دهم تا دوازدهم (/high-school)",
-        icon: "🎓",
       },
       {
         id: "exam-integrity",
-        title: "سلامت و نظارت بر آزمون‌ها",
+        title: "نظارت بر آزمون و سنجش",
         shortDesc: "مراقبت از آزمون، بررسی تقلب و بازبینی نمرات",
         siteLocation: "اتاق برگزاری آزمون آنلاین و کارنامه زبان‌آموزان (/ielts)",
-        icon: "🛡️",
+        badge: { text: "۱ بازبینی", bg: "#fdf4ff", color: "#9333ea" },
       },
     ],
   },
   {
     id: "users",
-    title: "۳. کاربران و پشتیبانی",
-    emoji: "👥",
+    title: "کاربران و پشتیبانی",
     items: [
       {
         id: "users",
         title: "فهرست اعضا و دسترسی‌ها",
-        shortDesc: "مدیریت زبان‌آموزان و نقش‌های کاربری",
+        shortDesc: "مدیریت کاربران، زبان‌آموزان و نقش‌ها",
         siteLocation: "حساب‌های کاربری و پروفایل زبان‌آموزان (/profile)",
-        icon: "👥",
       },
       {
         id: "teacher-verifications",
         title: "بررسی و احراز اساتید",
-        shortDesc: "مشاهده ویدیو و مدارک تدریس ارسالی مدرسان",
+        shortDesc: "مشاهده نمونه ویدیو و مدارک تدریس ارسالی مدرسان",
         siteLocation: "ویترین عمومی اساتید و رزومه مدرسان (/teachers)",
-        icon: "🧑‍🏫",
-        badge: { text: "۳ در صف", bg: "#fee2e2", color: "#dc2626" },
+        badge: { text: "۳ در صف", bg: "#fef2f2", color: "#dc2626" },
       },
       {
         id: "teacher-contracts",
-        title: "قراردادها و سهم معلمان",
+        title: "قراردادها و کارمزد تدریس",
         shortDesc: "تعیین درصد کارمزد تدریس و متن قراردادها",
         siteLocation: "قراردادهای مالی و سهم تدریس در پنل اساتید (/teacher)",
-        icon: "📜",
       },
       {
         id: "support",
-        title: "تیکت‌ها و پیام‌های پشتیبانی",
+        title: "تیکت‌های پشتیبانی",
         shortDesc: "پاسخ به سوالات و مشکلات زبان‌آموزان",
         siteLocation: "بخش پشتیبانی و ارسال تیکت دانش‌آموزان (/support)",
-        icon: "🎧",
-        badge: { text: "۲ جدید", bg: "#fef3c7", color: "#d97706" },
+        badge: { text: "۲ جدید", bg: "#fffbeb", color: "#b45309" },
       },
       {
         id: "community",
         title: "نظرات و تالار گفتگو",
         shortDesc: "تایید نظرات کاربران و جلوگیری از پیام نامناسب",
         siteLocation: "تالار گفتگوی عمومی و نظرات زیر درس‌ها (/community)",
-        icon: "💬",
+        badge: { text: "۴ نظر", bg: "#eff6ff", color: "#2563eb" },
       },
     ],
   },
   {
     id: "growth",
-    title: "۴. فروش و تبلیغات",
-    emoji: "📈",
+    title: "فروش و بازاریابی",
     items: [
       {
         id: "finance",
-        title: "درآمد و تسویه‌حساب",
-        shortDesc: "گزارش فروش، فاکتورها و واریزی معلمان",
+        title: "درآمد و خزانه‌داری",
+        shortDesc: "گزارش فروش، فاکتورها و تسویه‌حساب معلمان",
         siteLocation: "جدول قیمت‌ها و درگاه پرداخت شاپرک (/pricing)",
-        icon: "💳",
       },
       {
         id: "marketing",
-        title: "کدهای تخفیف و جشنواره‌ها",
+        title: "کدهای تخفیف و کمپین",
         shortDesc: "تعریف کوپن تخفیف و پیشنهادهای ویژه",
         siteLocation: "کادر کد تخفیف در سبد خرید دوره (/checkout)",
-        icon: "🚀",
       },
       {
         id: "broadcast",
         title: "ارسال پیامک و اعلانات",
         shortDesc: "پیامک گروهی و نوتیفیکیشن همگانی به کاربران",
         siteLocation: "صندوق پیامک موبایل کاربران و اعلانات درون‌برنامه‌ای",
-        icon: "📢",
       },
       {
         id: "analytics",
-        title: "آمار بازدیدها و رشد سایت",
+        title: "آمار و رشد پلتفرم",
         shortDesc: "تعداد بازدیدهای امروز و رفتار کاربران",
         siteLocation: "سیستم پایش آمار بازدیدکنندگان سایت",
-        icon: "📈",
       },
     ],
   },
   {
     id: "danger_zone",
-    title: "۵. منطقه حساس و فنی (با احتیاط)",
-    emoji: "🛑",
+    title: "تنظیمات زیرساخت و سرور",
     isDangerZone: true,
     items: [
       {
         id: "system-ops",
         title: "عملیات سرور و دیتابیس",
         shortDesc: "بک‌آپ کل سامانه، حالت تعمیرات و موتورخانه سرور",
-        siteLocation: "پشت‌صحنه فنی: سرور اصلی و پایگاه داده دیتابیس",
-        icon: "⚙️",
+        siteLocation: "سرور اصلی، حافظه کش و پایگاه داده",
         isSensitive: true,
       },
       {
         id: "ai-engine",
-        title: "مغز هوش مصنوعی و ربات‌ها",
-        shortDesc: "دستورات تصحیح آزمون و پرامپت‌های ربات معلم",
-        siteLocation: "مغز ربات هوش مصنوعی تصحیح گفتار و رایتینگ",
-        icon: "🧠",
+        title: "موتور هوش مصنوعی و پرامپت‌ها",
+        shortDesc: "دستورات تصحیح آزمون و تنظیمات مدل‌های زبانی",
+        siteLocation: "موتور هوش مصنوعی تصحیح گفتار و رایتینگ",
         isSensitive: true,
       },
       {
         id: "security",
-        title: "دیوار آتش و اتاق امنیت",
-        shortDesc: "شناسایی حملات هکرها و مسدودسازی آی‌پی مزاحم",
-        siteLocation: "نگهبانی سرور و دیوار آتش فایروال ایندورا",
-        icon: "🚨",
+        title: "امنیت و دیوار آتش (Firewall)",
+        shortDesc: "شناسایی حملات و مسدودسازی آی‌پی مزاحم",
+        siteLocation: "دیوار آتش و سیستم نگهبانی سرور",
         isSensitive: true,
       },
     ],
   },
 ];
 
+function renderItemIcon(tabId: AdminModuleTab, size = 18) {
+  switch (tabId) {
+    case "overview":
+      return <IconOverview size={size} />;
+    case "site-cms":
+      return <IconCMS size={size} />;
+    case "site-builder":
+      return <IconSiteBuilder size={size} />;
+    case "forms-webhooks":
+      return <IconForms size={size} />;
+    case "seo":
+      return <IconSEO size={size} />;
+    case "academics":
+      return <IconAcademics size={size} />;
+    case "exam-integrity":
+      return <IconExamIntegrity size={size} />;
+    case "users":
+      return <IconUsers size={size} />;
+    case "teacher-verifications":
+      return <IconTeachers size={size} />;
+    case "teacher-contracts":
+      return <IconContracts size={size} />;
+    case "support":
+      return <IconSupport size={size} />;
+    case "community":
+      return <IconCommunity size={size} />;
+    case "finance":
+      return <IconFinance size={size} />;
+    case "marketing":
+      return <IconMarketing size={size} />;
+    case "broadcast":
+      return <IconBroadcast size={size} />;
+    case "analytics":
+      return <IconAnalytics size={size} />;
+    case "system-ops":
+      return <IconSystemOps size={size} />;
+    case "ai-engine":
+      return <IconAiEngine size={size} />;
+    case "security":
+      return <IconSecurity size={size} />;
+    default:
+      return <IconOverview size={size} />;
+  }
+}
+
 export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {}) {
   const [activeTab, setActiveTab] = useState<AdminModuleTab>("overview");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Split Screen Live Preview State
-  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(true);
+  // Sidebar Collapse state (Expanded = true, Collapsed = false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
+
+  // Category Accordion State (all open by default)
+  const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
+
+  // Slide-over Live Preview Drawer State (closed by default for spacious workspace)
+  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false);
   const [isPreviewExpanded, setIsPreviewExpanded] = useState<boolean>(false);
   const [hoveredTarget, setHoveredTarget] = useState<string | null>(null);
 
@@ -262,7 +324,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
   const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
   const [pendingSensitiveTab, setPendingSensitiveTab] = useState<AdminModuleTab | null>(null);
 
-  // Help Modal State ("Explain Like I'm 5")
+  // Help Modal State
   const [helpTab, setHelpTab] = useState<AdminModuleTab | null>(null);
   const [isHelpOpen, setIsHelpOpen] = useState<boolean>(false);
 
@@ -291,14 +353,24 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
     isVisible: false,
   });
 
-  // Open Help Modal
+  // Global Keyboard Shortcut: Ctrl+K or Cmd+K to focus search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const openHelp = (tab: AdminModuleTab, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setHelpTab(tab);
     setIsHelpOpen(true);
   };
 
-  // Trigger Navigation with Safety Check
   const handleSelectTab = (tab: AdminModuleTab, isSensitive?: boolean) => {
     if (isSensitive && !isTechnicalZoneUnlocked) {
       setPendingSensitiveTab(tab);
@@ -308,12 +380,11 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
     setActiveTab(tab);
   };
 
-  // On PIN success
   const handlePinSuccess = () => {
     setIsPinModalOpen(false);
     setIsTechnicalZoneUnlocked(true);
     setToast({
-      message: "🔓 قفل منطقه حساس با موفقیت باز شد.",
+      message: "🔓 قفل تنظیمات زیرساخت با موفقیت باز شد.",
       isVisible: true,
     });
     if (pendingSensitiveTab) {
@@ -322,16 +393,22 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
     }
   };
 
-  // Lock sensitive zone again
   const handleLockZone = () => {
     setIsTechnicalZoneUnlocked(false);
     if (["system-ops", "ai-engine", "security"].includes(activeTab)) {
       setActiveTab("overview");
     }
     setToast({
-      message: "🔒 منطقه حساس مجدداً قفل شد و در حالت امن قرار گرفت.",
+      message: "🔒 بخش‌های حساس مجدداً در حالت امن قفل شدند.",
       isVisible: true,
     });
+  };
+
+  const toggleCategory = (catId: string) => {
+    setCollapsedCategories((prev) => ({
+      ...prev,
+      [catId]: !prev[catId],
+    }));
   };
 
   // Filter items based on search query
@@ -352,82 +429,101 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
     }).filter((cat) => cat.items.length > 0);
   }, [searchQuery]);
 
-  // Check if current tab is in danger zone
   const isCurrentTabSensitive = ["system-ops", "ai-engine", "security"].includes(activeTab);
 
   return (
     <div className={styles.adminWrapper} dir="rtl">
-      {/* 1. Master Top Header */}
+      {/* 1. Compact Top Bar (54px) */}
       <header className={styles.masterHeader}>
-        {/* Brand Area */}
+        {/* Right side: Brand & Sidebar toggle */}
         <div className={styles.brandArea}>
+          <button
+            type="button"
+            className={styles.btnSidebarToggle}
+            onClick={() => setIsSidebarCollapsed((prev) => !prev)}
+            title={isSidebarCollapsed ? "باز کردن سایدبار" : "جمع کردن سایدبار"}
+            aria-label="تاگل سایدبار"
+          >
+            <IconSidebarToggle isCollapsed={isSidebarCollapsed} size={18} />
+          </button>
+
           <div className={styles.brandLogo}>E</div>
-          <div className={styles.brandInfo}>
-            <h1 className={styles.brandTitle}>
-              <span>سامانه مدیریت آسان ایندورا</span>
-            </h1>
-            <p className={styles.brandSubtitle}>
-              پیشخوان ساده، شفاف و دسته‌بندی‌شده همراه با پیش‌نمایش زنده سایت و راهنمای لحظه‌ای
-            </p>
+
+          <div className={styles.brandTitle}>
+            <span>ایندورا</span>
+            <span className={styles.brandTag}>مدیریت</span>
           </div>
         </div>
 
-        {/* Realtime Search Bar */}
+        {/* Center: Sleek Quick Search Bar */}
         <div className={styles.searchBox}>
-          <span className={styles.searchIcon}>🔍</span>
+          <span className={styles.searchIcon}>
+            <IconSearch size={15} />
+          </span>
           <input
+            ref={searchInputRef}
             type="text"
             className={styles.searchInput}
-            placeholder="جستجوی سریع در امکانات (مثلاً بنر، تخفیف، معلم، پیامک)..."
+            placeholder="جستجوی سریع امکانات..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+          {!searchQuery && <span className={styles.searchKbd}>Ctrl+K</span>}
           {searchQuery && (
             <button
               type="button"
               className={styles.searchClear}
               onClick={() => setSearchQuery("")}
-              title="پاک کردن جستجو"
+              title="پاک کردن"
             >
               ✕
             </button>
           )}
         </div>
 
-        {/* Header Controls */}
+        {/* Left side: System status & action controls */}
         <div className={styles.headerControls}>
-          {/* Split-Screen Live Preview Toggle Button */}
-          <button
-            type="button"
-            className={`${styles.btnSplitToggle} ${isPreviewOpen ? styles.btnSplitActive : ""}`}
-            onClick={() => setIsPreviewOpen(!isPreviewOpen)}
-            title="مشاهده همزمان پیش‌نمایش زنده سایت در سمت چپ"
-          >
-            <span>👁️ پیش‌نمایش سایت: {isPreviewOpen ? "روشن" : "خاموش"}</span>
-          </button>
-
-          {/* System Live Status Pill */}
-          <div className={styles.systemStatusPill} title="همه سرویس‌ها بدون نقص فعال هستند">
-            <span>●</span>
-            <span>سامانه فعال و پایدار</span>
+          {/* Subtle System Status Pill */}
+          <div className={styles.statusPill} title="همه سرویس‌ها با ضریب ۱۰۰٪ فعال هستند">
+            <span className={styles.statusDot} />
+            <span>سامانه ۱۰۰٪ پایدار</span>
           </div>
 
-          {/* Quick Help Button */}
+          {/* Admin Profile Badge */}
+          <div className={styles.adminProfileBadge} title="مدیر ارشد سامانه ایندورا">
+            <div className={styles.adminAvatar}>A</div>
+            <span className={styles.adminProfileName}>مدیر ارشد</span>
+          </div>
+
+          {/* Live Preview Toggle Button */}
           <button
             type="button"
-            className={styles.btnHelpGlobal}
-            onClick={() => openHelp(activeTab)}
-            title="راهنمای ساده و ۵ ساله برای این بخش"
+            className={`${styles.btnHeaderAction} ${
+              isPreviewOpen ? styles.btnHeaderActionActive : ""
+            }`}
+            onClick={() => setIsPreviewOpen((prev) => !prev)}
+            title="مشاهده پیش‌نمایش زنده دراور سایت"
           >
-            <span>💡</span>
-            <span>راهنمای ساده</span>
+            <IconEye size={16} />
+            <span>پیش‌نمایش سایت</span>
           </button>
 
-          {/* Safety Zone Lock Toggle */}
+          {/* Quick Help Modal Trigger */}
           <button
             type="button"
-            className={`${styles.btnSafetyStatus} ${
-              isTechnicalZoneUnlocked ? styles.safetyUnlocked : styles.safetyLocked
+            className={styles.btnHeaderAction}
+            onClick={() => openHelp(activeTab)}
+            title="راهنمای ساده این بخش"
+          >
+            <IconHelp size={16} />
+            <span>راهنما</span>
+          </button>
+
+          {/* Sensitive Zone PIN Lock Toggle */}
+          <button
+            type="button"
+            className={`${styles.btnSafety} ${
+              isTechnicalZoneUnlocked ? styles.btnSafetyUnlocked : ""
             }`}
             onClick={() => {
               if (isTechnicalZoneUnlocked) {
@@ -438,112 +534,105 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
             }}
             title={
               isTechnicalZoneUnlocked
-                ? "قفل منطقه حساس باز است. برای ایمنی کلیک کنید تا قفل شود."
-                : "منطقه حساس قفل است تا از خرابکاری جلوگیری شود."
+                ? "قفل منطقه فنی باز است. برای ایمنی کلیک کنید تا قفل شود."
+                : "بخش‌های حساس سرور و هوش مصنوعی قفل محافظ دارند."
             }
           >
-            <span>{isTechnicalZoneUnlocked ? "🔓 منطقه حساس باز" : "🔒 قفل محافظ فعال"}</span>
+            {isTechnicalZoneUnlocked ? <IconUnlock size={15} /> : <IconLock size={15} />}
+            <span>{isTechnicalZoneUnlocked ? "زیرساخت باز" : "محافظ فعال"}</span>
           </button>
 
           {/* Visit Public Site */}
-          <Link href="/" target="_blank" className={styles.btnVisitSite}>
-            <span>🌐 سایت عمومی</span>
-            <span style={{ fontSize: "0.7rem" }}>↗</span>
+          <Link
+            href="/"
+            target="_blank"
+            className={styles.btnVisit}
+            title="مشاهده وب‌سایت عمومی در تب جدید"
+          >
+            <span>سایت</span>
+            <IconExternalLink size={13} />
           </Link>
 
-          {/* Safe Logout */}
+          {/* Logout Button */}
           {onLogout && (
             <button
               type="button"
               className={styles.btnLogout}
               onClick={onLogout}
-              title="خروج امن از پنل مدیریت"
+              title="خروج امن از پنل"
             >
+              <IconLogout size={14} />
               <span>خروج</span>
             </button>
           )}
         </div>
       </header>
 
-      {/* 2. Master Layout: Sidebar + Main Content + Live Preview Pane */}
+      {/* 2. Master Layout: Sidebar + Main Content */}
       <div className={styles.masterLayout}>
-        {/* 5-Category Modular Sidebar (Right Side) */}
-        <aside className={styles.sidebar} aria-label="دسته‌بندی امکانات مدیریت">
-          {filteredCategories.map((category) => (
-            <div
-              key={category.id}
-              className={`${styles.categoryGroup} ${
-                category.isDangerZone ? styles.dangerCategoryGroup : ""
-              }`}
-            >
-              {/* Category Header */}
-              <div className={styles.categoryHeader}>
-                <div className={styles.categoryHeaderLeft}>
-                  <span className={styles.categoryEmoji}>{category.emoji}</span>
-                  <span
-                    className={`${styles.categoryTitle} ${
-                      category.isDangerZone ? styles.dangerCategoryTitle : ""
-                    }`}
+        {/* Modern Collapsible Sidebar */}
+        <aside
+          className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ""}`}
+          aria-label="منوی بخش‌های مدیریت"
+        >
+          {filteredCategories.map((category) => {
+            const isCatCollapsed = Boolean(collapsedCategories[category.id]);
+
+            return (
+              <div key={category.id} className={styles.categoryGroup}>
+                {/* Category Header (Accordion) - only shown when sidebar is expanded */}
+                {!isSidebarCollapsed && (
+                  <div
+                    className={styles.categoryHeader}
+                    onClick={() => toggleCategory(category.id)}
                   >
-                    {category.title}
-                  </span>
-                </div>
-                <span
-                  className={`${styles.categoryCountBadge} ${
-                    category.isDangerZone ? styles.dangerCategoryCountBadge : ""
-                  }`}
-                >
-                  {category.items.length}
-                </span>
-              </div>
-
-              {/* Category Items */}
-              <div className={styles.categoryList}>
-                {category.items.map((item) => {
-                  const isActive = activeTab === item.id;
-                  const isDanger = Boolean(item.isSensitive || category.isDangerZone);
-
-                  return (
-                    <div key={item.id} className={styles.sidebarItemWrapper}>
-                      {/* Wrap Sidebar Button in 3-Line Hover Tooltip with Live Preview synchronization */}
-                      <AdminHoverTooltip
-                        whatIsIt={item.shortDesc}
-                        siteLocation={item.siteLocation}
-                        sensitivity={item.isSensitive ? "critical" : category.id === "content" ? "medium" : "safe"}
-                        highlightKey={item.id}
-                        onHoverTarget={setHoveredTarget}
+                    <span className={styles.categoryTitle}>{category.title}</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                      <span className={styles.categoryBadge}>{category.items.length}</span>
+                      <span
+                        className={`${styles.categoryChevron} ${
+                          isCatCollapsed
+                            ? styles.categoryChevronClosed
+                            : styles.categoryChevronOpen
+                        }`}
                       >
+                        <IconChevronDown size={13} />
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Items in Category */}
+                {(!isCatCollapsed || isSidebarCollapsed) && (
+                  <div className={styles.categoryList}>
+                    {category.items.map((item) => {
+                      const isActive = activeTab === item.id;
+
+                      const buttonElement = (
                         <button
                           type="button"
                           className={`${styles.sidebarBtn} ${
-                            isActive
-                              ? isDanger
-                                ? styles.dangerSidebarBtnActive
-                                : styles.sidebarBtnActive
-                              : isDanger
-                              ? styles.dangerSidebarBtn
-                              : ""
-                          }`}
+                            isActive ? styles.sidebarBtnActive : ""
+                          } ${isSidebarCollapsed ? styles.sidebarBtnCollapsed : ""}`}
                           onClick={() => handleSelectTab(item.id, item.isSensitive)}
                         >
                           <div className={styles.sidebarBtnContent}>
-                            <span className={styles.sidebarItemIcon}>{item.icon}</span>
-                            <div className={styles.sidebarItemLabel}>
+                            <span className={styles.sidebarItemIcon}>
+                              {renderItemIcon(item.id, isSidebarCollapsed ? 19 : 17)}
+                            </span>
+                            {!isSidebarCollapsed && (
                               <span className={styles.sidebarItemTitle}>{item.title}</span>
-                              <span className={styles.sidebarItemSubtitle}>
-                                {item.shortDesc}
-                              </span>
-                            </div>
+                            )}
                           </div>
 
-                          {item.badge && (
+                          {!isSidebarCollapsed && item.badge && (
                             <span
                               style={{
                                 background: item.badge.bg,
                                 color: item.badge.color,
-                                fontSize: "0.68rem",
+                                fontSize: "0.65rem",
                                 fontWeight: "bold",
-                                padding: "0.15rem 0.5rem",
+                                padding: "0.1rem 0.45rem",
                                 borderRadius: "999px",
                                 whiteSpace: "nowrap",
                               }}
@@ -552,364 +641,501 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
                             </span>
                           )}
                         </button>
-                      </AdminHoverTooltip>
+                      );
 
-                      {/* Small (?) Help Popover Trigger */}
-                      <button
-                        type="button"
-                        className={styles.btnItemHelp}
-                        onClick={(e) => openHelp(item.id, e)}
-                        title={`راهنمای ۵ ساله برای «${item.title}»`}
-                      >
-                        ؟
-                      </button>
-                    </div>
-                  );
-                })}
+                      return (
+                        <div key={item.id} className={styles.sidebarItemWrapper}>
+                          <AdminHoverTooltip
+                            itemTitle={item.title}
+                            whatIsIt={item.shortDesc}
+                            siteLocation={item.siteLocation}
+                            sensitivity={
+                              item.isSensitive
+                                ? "critical"
+                                : category.id === "content"
+                                ? "medium"
+                                : "safe"
+                            }
+                            highlightKey={item.id}
+                            isCollapsed={isSidebarCollapsed}
+                            onHoverTarget={setHoveredTarget}
+                          >
+                            {buttonElement}
+                          </AdminHoverTooltip>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
 
-          {/* Quick Shortcuts in Sidebar footer */}
-          <div style={{ marginTop: "auto", borderTop: "1px solid #f1f5f9", paddingTop: "0.85rem" }}>
-            <span style={{ fontSize: "0.75rem", color: "#94a3b8", fontWeight: 700 }}>
-              لینک‌های کاربردی آموزش:
-            </span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem", marginTop: "0.35rem" }}>
+          {/* Quick Link Footer */}
+          {!isSidebarCollapsed && (
+            <div className={styles.sidebarFooter}>
               <Link
                 href="/high-school/grade-12/tamrin20"
                 target="_blank"
-                className={styles.sidebarBtn}
-                style={{ fontSize: "0.775rem", color: "#64748b" }}
+                className={styles.sidebarFooterLink}
               >
-                <span>🎯</span>
-                <span>تمرین تا ۲۰ (پایه دوازدهم)</span>
-              </Link>
-              <Link
-                href="/skills"
-                target="_blank"
-                className={styles.sidebarBtn}
-                style={{ fontSize: "0.775rem", color: "#64748b" }}
-              >
-                <span>⚡</span>
-                <span>هاب ۶ مهارت انگلیسی</span>
+                <IconAcademics size={14} />
+                <span>تمرین تا ۲۰ (دوازدهم)</span>
               </Link>
             </div>
-          </div>
+          )}
         </aside>
 
-        {/* Dynamic Content View Area (Center) */}
+        {/* Dynamic Main Workspace */}
         <main className={styles.mainContent}>
-          {/* Sensitive Zone Banner if in category 5 */}
+          {/* Subtle Sensitive Zone Notice */}
           {isCurrentTabSensitive && (
-            <div className={styles.dangerZoneBanner}>
-              <div className={styles.dangerBannerLeft}>
-                <div className={styles.dangerBannerIcon}>🚨</div>
-                <div>
-                  <h3 className={styles.dangerBannerTitle}>
-                    منطقه حساس و فنی (زیرساخت و سرور)
-                  </h3>
-                  <p className={styles.dangerBannerSub}>
-                    دستکاری در این بخش مستقیماً روی سرور، دیتابیس یا نمرات اثر می‌گذارد. لطفاً فقط در صورت اطمینان کامل تغییرات را ذخیره نمایید.
-                  </p>
-                </div>
+            <div className={styles.subtleDangerNotice}>
+              <div className={styles.subtleDangerLeft}>
+                <IconLock size={16} />
+                <span>منطقه حساس و فنی: تغییرات مستقیماً بر عملکرد سرور و دیتابیس اثر می‌گذارد.</span>
               </div>
               <button
                 type="button"
-                className={styles.btnLockZone}
+                className={styles.btnLockInline}
                 onClick={handleLockZone}
               >
-                🔒 قفل کردن این بخش
+                قفل کردن این بخش
               </button>
             </div>
           )}
 
           {/* ==============================================================================
-              TAB 1: OVERVIEW (REDESIGNED WITH SAFETY BOX & HOVER GUIDES)
+              TAB: OVERVIEW (HIGH-DENSITY MODERN 4-KPI + 2-COLUMN DASHBOARD)
               ============================================================================== */}
           {activeTab === "overview" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
-              {/* Peace-of-Mind Safety Box for Management */}
-              <AdminSafetyBox
-                title="🛡️ راهنمای ایمن مدیریت ایندورا (چطور بدون خرابکاری کار کنیم؟)"
-                impact="تمام بخش‌های سیستم به طور خودکار از اطلاعات نسخه پشتیبان تهیه می‌کنند و برای تغییرات حساس، تاییدیه دومرحله‌ای در نظر گرفته شده است."
-                howToStaySafe="با خیال راحت از منوی سمت راست استفاده کنید؛ هر جا علامت قفل یا حاشیه قرمز دیدید یعنی باید دقت بیشتری داشته باشید."
-                dangerLevel="safe"
-                liveSiteUrl="/"
-              />
-
-              {/* 1. Welcome & Peace-of-Mind Status Banner */}
-              <div className={styles.welcomeBanner}>
-                <div className={styles.welcomeLeft}>
-                  <h2 className={styles.welcomeGreeting}>
-                    سلام مدیر عزیز، روزتان بخیر 👋
-                  </h2>
-                  <p className={styles.welcomeDesc}>
-                    تمامی بخش‌های وب‌سایت در این لحظه پایدار هستند و هیچ اختلالی گزارش نشده است.
-                  </p>
-                </div>
-
-                <div className={styles.systemHealthCards}>
-                  <div className={styles.healthCard}>
-                    <span className={styles.healthDot} />
-                    <span>سرور و سایت: ۱۰۰٪ آنلاین</span>
-                  </div>
-                  <div className={styles.healthCard}>
-                    <span className={styles.healthDot} />
-                    <span>دیتابیس: پشتیبان‌گیری شده</span>
-                  </div>
-                  <div className={styles.healthCard}>
-                    <span className={styles.healthDot} />
-                    <span>درگاه پرداخت: فعال</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2. Action Center: Pending Tasks Waiting for Admin */}
-              <div className={styles.actionCenterSection}>
-                <div className={styles.sectionHeader}>
-                  <h3 className={styles.sectionTitle}>
-                    <span>📋 جعبه کارهای فوری منتظر من</span>
-                  </h3>
-                  <span className={styles.sectionSubtitle}>
-                    مواردی که نیاز به تصمیم‌گیری یا تایید شما دارند
-                  </span>
-                </div>
-
-                <div className={styles.actionGrid}>
-                  {/* Task 1: Teacher verifications */}
-                  <AdminHoverTooltip
-                    whatIsIt="مشاهده رزومه و نمونه ویدیوهای تدریس اساتید متقاضی تدریس"
-                    siteLocation="صفحه معرفی اساتید سایت (/teachers)"
-                    sensitivity="safe"
-                    highlightKey="teachers"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div className={styles.actionCard}>
-                      <div className={styles.actionCardTop}>
-                        <div className={styles.actionCardIcon}>🧑‍🏫</div>
-                        <div className={styles.actionCardContent}>
-                          <h4 className={styles.actionCardTitle}>۳ معلم در صف تایید مدارک</h4>
-                          <p className={styles.actionCardDesc}>
-                            اساتید جدید ویدیو و مدارک تدریس ارسال کرده‌اند و منتظر تایید برای شروع کلاس هستند.
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        className={styles.actionCardBtn}
-                        onClick={() => setActiveTab("teacher-verifications")}
-                      >
-                        <span>بررسی و تایید مدارک</span>
-                        <span>←</span>
-                      </button>
-                    </div>
-                  </AdminHoverTooltip>
-
-                  {/* Task 2: Support tickets */}
-                  <AdminHoverTooltip
-                    whatIsIt="پاسخ به سوالات، تیکت‌ها و مشکلات دانش‌آموزان در ثبت‌نام دوره‌ها"
-                    siteLocation="بخش پشتیبانی و گفتگوی آنلاین سایت (/support)"
-                    sensitivity="safe"
-                    highlightKey="community"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div className={styles.actionCard}>
-                      <div className={styles.actionCardTop}>
-                        <div className={styles.actionCardIcon}>🎧</div>
-                        <div className={styles.actionCardContent}>
-                          <h4 className={styles.actionCardTitle}>۲ پیام پشتیبانی بی‌پاسخ</h4>
-                          <p className={styles.actionCardDesc}>
-                            دانش‌آموزان در مورد ثبت‌نام دوره‌ها سوال پرسیده‌اند و منتظر راهنمایی شما هستند.
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        className={styles.actionCardBtn}
-                        onClick={() => setActiveTab("support")}
-                      >
-                        <span>پاسخگویی به پیام‌ها</span>
-                        <span>←</span>
-                      </button>
-                    </div>
-                  </AdminHoverTooltip>
-
-                  {/* Task 3: Community moderation */}
-                  <AdminHoverTooltip
-                    whatIsIt="تایید نظرات ارسالی بچه‌ها زیر درس‌ها تا برای دیگران نمایش داده شود"
-                    siteLocation="تالار نظرات زیر درس‌ها در صفحه دوره‌ها (/community)"
-                    sensitivity="safe"
-                    highlightKey="community"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div className={styles.actionCard}>
-                      <div className={styles.actionCardTop}>
-                        <div className={styles.actionCardIcon}>💬</div>
-                        <div className={styles.actionCardContent}>
-                          <h4 className={styles.actionCardTitle}>۴ نظر جدید در تالار گفتگو</h4>
-                          <p className={styles.actionCardDesc}>
-                            نظرات ارسالی کاربران زیر درس‌ها آماده بازبینی و انتشار در سایت هستند.
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        className={styles.actionCardBtn}
-                        onClick={() => setActiveTab("community")}
-                      >
-                        <span>مشاهده و تایید نظرات</span>
-                        <span>←</span>
-                      </button>
-                    </div>
-                  </AdminHoverTooltip>
-                </div>
-              </div>
-
-              {/* 3. Daily Quick Shortcuts with Hover Guidance */}
-              <div className={styles.quickShortcutsSection}>
-                <div className={styles.sectionHeader}>
-                  <h3 className={styles.sectionTitle}>
-                    <span>⚡ کارهای پرکاربرد روزمره</span>
-                  </h3>
-                  <span className={styles.sectionSubtitle}>
-                    دسترسی سریع به صفحاتی که هر روز با آنها سر و کار دارید
-                  </span>
-                </div>
-
-                <div className={styles.quickShortcutsGrid}>
-                  <AdminHoverTooltip
-                    whatIsIt="تغییر تیتر اصلی، متن اعلان و تخفیف‌های بزرگ در ویترین صفحه اول"
-                    siteLocation="صفحه اول سایت > بالاترین بخش (هدر و بنر)"
-                    sensitivity="medium"
-                    highlightKey="banner"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div
-                      className={styles.shortcutCard}
-                      onClick={() => setActiveTab("site-cms")}
-                    >
-                      <div className={styles.shortcutIcon} style={{ background: "#e0e7ff", color: "#4338ca" }}>
-                        📝
-                      </div>
-                      <div className={styles.shortcutText}>
-                        <span className={styles.shortcutTitle}>تغییر متن و بنر صفحه اول</span>
-                        <span className={styles.shortcutDesc}>ویرایش متن خوش‌آمدگویی یا قیمت‌ها</span>
-                      </div>
-                    </div>
-                  </AdminHoverTooltip>
-
-                  <AdminHoverTooltip
-                    whatIsIt="ساخت کوپن تخفیف (مثلاً NOROOZ) برای کم کردن قیمت خرید کاربران"
-                    siteLocation="کادر کد تخفیف در مرحله پرداخت دوره (/checkout)"
-                    sensitivity="safe"
-                    highlightKey="pricing"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div
-                      className={styles.shortcutCard}
-                      onClick={() => setActiveTab("marketing")}
-                    >
-                      <div className={styles.shortcutIcon} style={{ background: "#fef3c7", color: "#b45309" }}>
-                        🎁
-                      </div>
-                      <div className={styles.shortcutText}>
-                        <span className={styles.shortcutTitle}>ایجاد کد تخفیف جدید</span>
-                        <span className={styles.shortcutDesc}>کوپن تخفیف برای کمپین‌ها و مناسبت‌ها</span>
-                      </div>
-                    </div>
-                  </AdminHoverTooltip>
-
-                  <AdminHoverTooltip
-                    whatIsIt="ارسال پیامک اطلاع‌رسانی یا تبریک به شماره موبایل دانش‌آموزان"
-                    siteLocation="پیامک مستقیم به گوشی موبایل کاربران"
-                    sensitivity="safe"
-                    highlightKey="users"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div
-                      className={styles.shortcutCard}
-                      onClick={() => setActiveTab("broadcast")}
-                    >
-                      <div className={styles.shortcutIcon} style={{ background: "#fee2e2", color: "#b91c1c" }}>
-                        📢
-                      </div>
-                      <div className={styles.shortcutText}>
-                        <span className={styles.shortcutTitle}>ارسال پیامک به کاربران</span>
-                        <span className={styles.shortcutDesc}>اطلاع‌رسانی سریع به شماره موبایل بچه‌ها</span>
-                      </div>
-                    </div>
-                  </AdminHoverTooltip>
-
-                  <AdminHoverTooltip
-                    whatIsIt="اضافه کردن فایل صوتی، ویدیوی تدریس، یا سوالات تستی جدید به دوره‌ها"
-                    siteLocation="صفحه دوره‌ها و تمرین‌های آموزشی (/high-school)"
-                    sensitivity="medium"
-                    highlightKey="academics"
-                    onHoverTarget={setHoveredTarget}
-                  >
-                    <div
-                      className={styles.shortcutCard}
-                      onClick={() => setActiveTab("academics")}
-                    >
-                      <div className={styles.shortcutIcon} style={{ background: "#dcfce7", color: "#15803d" }}>
-                        🎓
-                      </div>
-                      <div className={styles.shortcutText}>
-                        <span className={styles.shortcutTitle}>افزودن درس یا آزمون جدید</span>
-                        <span className={styles.shortcutDesc}>مدیریت سوالات تستی و پکیج‌های آموزشی</span>
-                      </div>
-                    </div>
-                  </AdminHoverTooltip>
-                </div>
-              </div>
-
-              {/* 4. Simple Key Metrics (KPIs) */}
+            <div className={styles.overviewContainer}>
+              {/* Row 1: 4 Key Metric Cards (KPIs - Luxury Bento Grid) */}
               <div className={styles.kpiGrid}>
+                {/* KPI 1: Users */}
                 <div className={styles.kpiCard}>
                   <div className={styles.kpiTop}>
                     <span className={styles.kpiTitle}>کل زبان‌آموزان ثبت‌نامی</span>
-                    <span className={styles.kpiIcon}>👥</span>
+                    <div
+                      className={styles.kpiIconWrapper}
+                      style={{
+                        background: "linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)",
+                        color: "#4338ca",
+                      }}
+                    >
+                      <IconUsers size={18} />
+                    </div>
                   </div>
                   <div className={styles.kpiValue}>۱٬۴۲۰</div>
-                  <div className={styles.kpiSub}>+۱۲٪ رشد در ماه جاری</div>
+                  <div className={styles.kpiBottom}>
+                    <span className={styles.kpiTrendUp}>
+                      <IconTrendingUp size={13} /> +۱۲٪
+                    </span>
+                    <span style={{ color: "#64748b" }}>رشد اعضا در ماه جاری</span>
+                  </div>
                 </div>
 
+                {/* KPI 2: Teachers (Interactive) */}
                 <div
                   className={styles.kpiCard}
                   onClick={() => setActiveTab("teacher-verifications")}
                   style={{ cursor: "pointer" }}
-                  title="کلیک برای بررسی معلمان"
+                  title="کلیک برای مشاهده اساتید منتظر تایید"
                 >
                   <div className={styles.kpiTop}>
                     <span className={styles.kpiTitle}>اساتید فعال پلتفرم</span>
-                    <span className={styles.kpiIcon}>🧑‍🏫</span>
+                    <div
+                      className={styles.kpiIconWrapper}
+                      style={{
+                        background: "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)",
+                        color: "#b45309",
+                      }}
+                    >
+                      <IconTeachers size={18} />
+                    </div>
                   </div>
                   <div className={styles.kpiValue}>۳۸</div>
-                  <div className={styles.kpiSub} style={{ color: "#dc2626" }}>
-                    ۳ متقاضی جدید در صف بررسی ←
+                  <div className={styles.kpiBottom}>
+                    <span className={styles.kpiTrendWarning}>
+                      <span>۳ متقاضی جدید در صف</span>
+                      <IconArrowLeft size={11} />
+                    </span>
                   </div>
                 </div>
 
-                <div className={styles.kpiCard}>
+                {/* KPI 3: Academics & Courses (Interactive) */}
+                <div
+                  className={styles.kpiCard}
+                  onClick={() => setActiveTab("academics")}
+                  style={{ cursor: "pointer" }}
+                  title="کلیک برای مشاهده لیست دوره‌ها و پایه‌ها"
+                >
                   <div className={styles.kpiTop}>
                     <span className={styles.kpiTitle}>دوره‌ها و بسته‌های فعال</span>
-                    <span className={styles.kpiIcon}>📚</span>
+                    <div
+                      className={styles.kpiIconWrapper}
+                      style={{
+                        background: "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+                        color: "#047857",
+                      }}
+                    >
+                      <IconAcademics size={18} />
+                    </div>
                   </div>
                   <div className={styles.kpiValue}>۲۴</div>
-                  <div className={styles.kpiSub}>شامل آیلتس، کنکور و مکالمه</div>
+                  <div className={styles.kpiBottom}>
+                    <span className={styles.kpiTrendNeutral}>
+                      <span>پایه‌ها، آیلتس و مکالمه</span>
+                      <IconArrowLeft size={11} />
+                    </span>
+                  </div>
                 </div>
 
+                {/* KPI 4: Security & Stability */}
                 <div className={styles.kpiCard}>
                   <div className={styles.kpiTop}>
-                    <span className={styles.kpiTitle}>ضریب ایمنی سامانه</span>
-                    <span className={styles.kpiIcon}>🛡️</span>
+                    <span className={styles.kpiTitle}>ضریب پایداری و امنیت سرور</span>
+                    <div
+                      className={styles.kpiIconWrapper}
+                      style={{
+                        background: "linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)",
+                        color: "#15803d",
+                      }}
+                    >
+                      <IconCheckCircle size={18} />
+                    </div>
                   </div>
-                  <div className={styles.kpiValue} style={{ color: "#16a34a" }}>
-                    ۱۰۰٪ امن
+                  <div className={styles.kpiValue} style={{ color: "#059669" }}>
+                    ۱۰۰٪
                   </div>
-                  <div className={styles.kpiSub} style={{ color: "#2563eb" }}>
-                    پایش ۲۴ ساعته تهدیدات
+                  <div className={styles.kpiBottom}>
+                    <span className={styles.kpiTrendUp}>
+                      <span className={styles.statusDot} style={{ width: 6, height: 6 }} />
+                      <span>پایش ۲۴ ساعته تهدیدات</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 2: Balanced 2-Column Section */}
+              <div className={styles.twoColLayout}>
+                {/* Column 1: Action Task Queue (Smart Priority Triage Deck) */}
+                <div className={styles.panelCard}>
+                  <div className={styles.panelHeader}>
+                    <h3 className={styles.panelTitle}>
+                      <IconClock size={17} style={{ color: "#4f46e5" }} />
+                      <span>کارهای فوری منتظر اقدام</span>
+                    </h3>
+                    <span className={styles.panelCount}>۴ مورد معلق</span>
+                  </div>
+
+                  <div className={styles.taskQueueList}>
+                    {/* Task 1: Teacher Verification */}
+                    <div className={`${styles.taskQueueItem} ${styles.taskQueueItemAmber}`}>
+                      <div className={styles.taskInfo}>
+                        <div
+                          className={styles.taskIconBox}
+                          style={{
+                            color: "#d97706",
+                            borderColor: "#fde68a",
+                            background: "#fffbeb",
+                          }}
+                        >
+                          <IconTeachers size={18} />
+                        </div>
+                        <div className={styles.taskTexts}>
+                          <div className={styles.taskMetaRow}>
+                            <span
+                              className={styles.taskPriorityBadge}
+                              style={{ background: "#fef3c7", color: "#b45309" }}
+                            >
+                              فوری - ارزیابی اساتید
+                            </span>
+                            <span className={styles.taskTimeTag}>۱۰ دقیقه پیش</span>
+                          </div>
+                          <span className={styles.taskTitle}>۳ متقاضی تدریس جدید در صف احراز صلاحیت</span>
+                          <span className={styles.taskDesc}>
+                            نمونه ویدیوهای تدریس ارسالی اساتید نیازمند بررسی کیفی و تایید صلاحیت هستند.
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className={styles.taskActionBtn}
+                        onClick={() => setActiveTab("teacher-verifications")}
+                      >
+                        <span>بررسی مدارک</span>
+                        <IconArrowLeft size={13} />
+                      </button>
+                    </div>
+
+                    {/* Task 2: Support Tickets */}
+                    <div className={`${styles.taskQueueItem} ${styles.taskQueueItemRose}`}>
+                      <div className={styles.taskInfo}>
+                        <div
+                          className={styles.taskIconBox}
+                          style={{
+                            color: "#dc2626",
+                            borderColor: "#fecdd3",
+                            background: "#fff1f2",
+                          }}
+                        >
+                          <IconSupport size={18} />
+                        </div>
+                        <div className={styles.taskTexts}>
+                          <div className={styles.taskMetaRow}>
+                            <span
+                              className={styles.taskPriorityBadge}
+                              style={{ background: "#fee2e2", color: "#dc2626" }}
+                            >
+                              پشتیبانی و ثبت‌نام
+                            </span>
+                            <span className={styles.taskTimeTag}>۲۵ دقیقه پیش</span>
+                          </div>
+                          <span className={styles.taskTitle}>۲ پیام پشتیبانی پاسخ‌داده‌نشده</span>
+                          <span className={styles.taskDesc}>
+                            دانش‌آموزان در مورد اتصال درگاه و دسترسی به ویدیوهای درس سوال دارند.
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className={styles.taskActionBtn}
+                        onClick={() => setActiveTab("support")}
+                      >
+                        <span>پاسخگویی</span>
+                        <IconArrowLeft size={13} />
+                      </button>
+                    </div>
+
+                    {/* Task 3: Community Comments */}
+                    <div className={`${styles.taskQueueItem} ${styles.taskQueueItemBlue}`}>
+                      <div className={styles.taskInfo}>
+                        <div
+                          className={styles.taskIconBox}
+                          style={{
+                            color: "#2563eb",
+                            borderColor: "#bfdbfe",
+                            background: "#eff6ff",
+                          }}
+                        >
+                          <IconCommunity size={18} />
+                        </div>
+                        <div className={styles.taskTexts}>
+                          <div className={styles.taskMetaRow}>
+                            <span
+                              className={styles.taskPriorityBadge}
+                              style={{ background: "#dbeafe", color: "#1d4ed8" }}
+                            >
+                              تالار گفتگو و تعامل
+                            </span>
+                            <span className={styles.taskTimeTag}>۱ ساعت پیش</span>
+                          </div>
+                          <span className={styles.taskTitle}>۴ نظر جدید در تالار گفتگو</span>
+                          <span className={styles.taskDesc}>
+                            نظرات ارسالی زیر درس‌های دوازدهم برای حفظ کیفیت گفتگو منتظر تاییدند.
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className={styles.taskActionBtn}
+                        onClick={() => setActiveTab("community")}
+                      >
+                        <span>تایید نظرات</span>
+                        <IconArrowLeft size={13} />
+                      </button>
+                    </div>
+
+                    {/* Task 4: Exam Integrity */}
+                    <div className={`${styles.taskQueueItem} ${styles.taskQueueItemPurple}`}>
+                      <div className={styles.taskInfo}>
+                        <div
+                          className={styles.taskIconBox}
+                          style={{
+                            color: "#7c3aed",
+                            borderColor: "#ddd6fe",
+                            background: "#f5f3ff",
+                          }}
+                        >
+                          <IconExamIntegrity size={18} />
+                        </div>
+                        <div className={styles.taskTexts}>
+                          <div className={styles.taskMetaRow}>
+                            <span
+                              className={styles.taskPriorityBadge}
+                              style={{ background: "#ede9fe", color: "#6d28d9" }}
+                            >
+                              سنجش و نمره‌دهی
+                            </span>
+                            <span className={styles.taskTimeTag}>۲ ساعت پیش</span>
+                          </div>
+                          <span className={styles.taskTitle}>درخواست بازبینی نمره رایتینگ آیلتس</span>
+                          <span className={styles.taskDesc}>
+                            زبان‌آموز درخواست بازنگری تحلیل هوش مصنوعی توسط سرگروه آموزشی دارد.
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className={styles.taskActionBtn}
+                        onClick={() => setActiveTab("exam-integrity")}
+                      >
+                        <span>بازبینی کارنامه</span>
+                        <IconArrowLeft size={13} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Column 2: Quick Shortcuts & Realtime Telemetry (Right) */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                  {/* Shortcuts Card */}
+                  <div className={styles.panelCard}>
+                    <div className={styles.panelHeader}>
+                      <h3 className={styles.panelTitle}>
+                        <span>دسترسی‌های سریع</span>
+                      </h3>
+                      <span style={{ fontSize: "0.725rem", color: "#94a3b8", fontWeight: 600 }}>
+                        پرتکرارترین‌ها
+                      </span>
+                    </div>
+
+                    <div className={styles.shortcutGrid}>
+                      <div
+                        className={styles.shortcutBtn}
+                        onClick={() => setActiveTab("site-cms")}
+                        title="ویرایش متون، عناوین و بنرهای صفحه نخست"
+                      >
+                        <div
+                          className={styles.shortcutIconWrap}
+                          style={{ background: "#eef2ff", color: "#4f46e5" }}
+                        >
+                          <IconCMS size={18} />
+                        </div>
+                        <div className={styles.shortcutInfo}>
+                          <span className={styles.shortcutTitle}>ویرایش متن و بنر</span>
+                          <span className={styles.shortcutDesc}>صفحه اصلی سایت</span>
+                        </div>
+                      </div>
+
+                      <div
+                        className={styles.shortcutBtn}
+                        onClick={() => setActiveTab("marketing")}
+                        title="تعریف کدهای تخفیف، کمپین‌ها و جشنواره‌ها"
+                      >
+                        <div
+                          className={styles.shortcutIconWrap}
+                          style={{ background: "#fffbeb", color: "#d97706" }}
+                        >
+                          <IconMarketing size={18} />
+                        </div>
+                        <div className={styles.shortcutInfo}>
+                          <span className={styles.shortcutTitle}>کد تخفیف جدید</span>
+                          <span className={styles.shortcutDesc}>کمپین و جشنواره</span>
+                        </div>
+                      </div>
+
+                      <div
+                        className={styles.shortcutBtn}
+                        onClick={() => setActiveTab("broadcast")}
+                        title="ارسال پیامک انبوه و اعلانات درون‌برنامه‌ای"
+                      >
+                        <div
+                          className={styles.shortcutIconWrap}
+                          style={{ background: "#fef2f2", color: "#dc2626" }}
+                        >
+                          <IconBroadcast size={18} />
+                        </div>
+                        <div className={styles.shortcutInfo}>
+                          <span className={styles.shortcutTitle}>ارسال پیامک و اعلان</span>
+                          <span className={styles.shortcutDesc}>اطلاع‌رسانی همگانی</span>
+                        </div>
+                      </div>
+
+                      <div
+                        className={styles.shortcutBtn}
+                        onClick={() => setActiveTab("academics")}
+                        title="ایجاد درس، آپلود جزوه و بانک تست جدید"
+                      >
+                        <div
+                          className={styles.shortcutIconWrap}
+                          style={{ background: "#ecfdf5", color: "#059669" }}
+                        >
+                          <IconAcademics size={18} />
+                        </div>
+                        <div className={styles.shortcutInfo}>
+                          <span className={styles.shortcutTitle}>مدیریت دوره‌ها و تست</span>
+                          <span className={styles.shortcutDesc}>پایه‌ها و بانک تست</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Realtime Infrastructure Telemetry Card */}
+                  <div className={styles.panelCard}>
+                    <div className={styles.panelHeader}>
+                      <h3 className={styles.panelTitle}>
+                        <IconCheckCircle size={17} style={{ color: "#10b981" }} />
+                        <span>پایش سلامت زیرساخت</span>
+                      </h3>
+                      <span style={{ fontSize: "0.725rem", color: "#059669", fontWeight: 700 }}>
+                        آپ‌تایم ۹۹.۹۸٪
+                      </span>
+                    </div>
+
+                    <div className={styles.systemHealthList}>
+                      <div className={styles.systemHealthRow}>
+                        <div className={styles.healthItemLeft}>
+                          <IconSystemOps size={15} style={{ color: "#4f46e5" }} />
+                          <span>سرور و هسته وب‌سایت</span>
+                        </div>
+                        <div className={styles.healthItemStatus}>
+                          <span className={styles.healthLatencyChip}>24ms</span>
+                          <span className={styles.statusDot} />
+                          <span>۱۰۰٪ آنلاین</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.systemHealthRow}>
+                        <div className={styles.healthItemLeft}>
+                          <IconCheckCircle size={15} style={{ color: "#0284c7" }} />
+                          <span>پشتیبان‌گیری دیتابیس</span>
+                        </div>
+                        <div className={styles.healthItemStatus}>
+                          <span className={styles.healthFreshnessChip}>موفق (امروز ۰۴:۰۰)</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.systemHealthRow}>
+                        <div className={styles.healthItemLeft}>
+                          <IconFinance size={15} style={{ color: "#059669" }} />
+                          <span>درگاه پرداخت شاپرک</span>
+                        </div>
+                        <div className={styles.healthItemStatus}>
+                          <span className={styles.healthLatencyChip}>۹۹.۴٪ موفق</span>
+                          <span className={styles.statusDot} />
+                          <span>متصل و پایدار</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.systemHealthRow}>
+                        <div className={styles.healthItemLeft}>
+                          <IconAiEngine size={15} style={{ color: "#7c3aed" }} />
+                          <span>موتور هوش مصنوعی تصحیح</span>
+                        </div>
+                        <div className={styles.healthItemStatus}>
+                          <span
+                            className={styles.healthFreshnessChip}
+                            style={{ color: "#6d28d9", background: "#f5f3ff", borderColor: "#ddd6fe" }}
+                          >
+                            ۰ در صف انتظار
+                          </span>
+                          <span className={styles.statusDot} />
+                          <span>آماده پردازش</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -917,66 +1143,19 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           )}
 
           {/* TAB 2: SITE CMS */}
-          {activeTab === "site-cms" && (
-            <div>
-              <AdminSafetyBox
-                title="🚨 راهنمای ویرایش متن‌ها و بنرهای ویترین سایت (بدون خرابکاری)"
-                impact="هر متنی که اینجا تایپ کنید یا قیمتی که تغییر دهید، پس از فشردن دکمه «انتشار عمومی» فوراً در صفحه اول سایت به همه نمایش داده می‌شود."
-                howToStaySafe="ابتدا تغییرات را در حالت «ذخیره پیش‌نویس» ذخیره نمایید و در تصویر زنده سمت چپ بررسی کنید، سپس دکمه انتشار عمومی را بزنید."
-                dangerLevel="medium"
-                thingsToAvoid={[
-                  "قیمت‌ها را با دقت بر حسب تومان وارد کنید تا اشتباهاً صفر اضافه یا کم نگذارید.",
-                  "قبل از حذف یک عنوان، متن جایگزین آن را آماده داشته باشید تا ظاهر سایت خالی نماند.",
-                ]}
-                liveSiteUrl="/"
-              />
-              <SiteContentCMSEditor />
-            </div>
-          )}
+          {activeTab === "site-cms" && <SiteContentCMSEditor />}
 
           {/* TAB: SITE BUILDER & DYNAMIC NAVIGATION STUDIO */}
-          {activeTab === "site-builder" && (
-            <div>
-              <AdminSafetyBox
-                title="🎨 راهنمای استودیو ساخت صفحات و لندینگ پیج‌ها"
-                impact="ایجاد یا حذف صفحات جشنواره، فرم‌های پیش‌ثبت‌نام و لینک‌های منوی بالای سایت."
-                howToStaySafe="قبل از انتشار عمومی هر لندینگ‌پیج جدید، از پیش‌نمایش آن دیدن کنید تا مطمئن شوید چیدمان بلوک‌ها زیباست."
-                dangerLevel="medium"
-                liveSiteUrl="/p/exam-cram-1403"
-              />
-              <SiteBuilderStudio />
-            </div>
-          )}
+          {activeTab === "site-builder" && <SiteBuilderStudio />}
 
           {/* TAB: DYNAMIC FORMS & WEBHOOKS STUDIO */}
           {activeTab === "forms-webhooks" && <DynamicFormsWebhooksStudio />}
 
           {/* TAB: SEO, METADATA & REDIRECTS STUDIO */}
-          {activeTab === "seo" && (
-            <div>
-              <AdminSafetyBox
-                title="🌐 راهنمای سئو و تغییر آدرس‌های سایت"
-                impact="تغییر آدرس‌ها و عناوین گوگل بر نحوه نمایش سایت در نتایج جستجوی گوگل اثر می‌گذارد."
-                howToStaySafe="آدرس‌های صفحات مهم را بدون نیاز فنی تغییر ندهید تا رتبه گوگل سایت حفظ شود."
-                dangerLevel="medium"
-                liveSiteUrl="/sitemap.xml"
-              />
-              <SeoMetadataConsole />
-            </div>
-          )}
+          {activeTab === "seo" && <SeoMetadataConsole />}
 
           {/* TAB: AI ENGINE & LLM OPS HUB */}
-          {activeTab === "ai-engine" && (
-            <div>
-              <AdminSafetyBox
-                title="🧠 راهنمای مغز هوش مصنوعی و ربات‌های ارزیاب"
-                impact="دستورات این بخش نحوه مکالمه ربات هوشمند با دانش‌آموز و شیوه تصحیح نمرات رایتینگ و اسپیکینگ را تعیین می‌کند."
-                howToStaySafe="پرامپت‌های ربات تست‌شده هستند؛ قبل از هر تغییر، یک کپی از متن قبلی بردارید تا در صورت نیاز به آن بازگردید."
-                dangerLevel="critical"
-              />
-              <AiEngineConsole />
-            </div>
-          )}
+          {activeTab === "ai-engine" && <AiEngineConsole />}
 
           {/* TAB: TEACHER VERIFICATIONS */}
           {activeTab === "teacher-verifications" && <TeacherVerificationHub />}
@@ -988,35 +1167,10 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {activeTab === "exam-integrity" && <ExamIntegrityConsole />}
 
           {/* TAB 3: USERS & TEACHERS */}
-          {activeTab === "users" && (
-            <div>
-              <AdminSafetyBox
-                title="👥 راهنمای مدیریت کاربران و جلوگیری از دستکاری ناخواسته"
-                impact="تغییر نقش کاربری یا مسدودسازی حساب، بلافاصله روی امکان ورود دانش‌آموز یا معلم به سایت اثر می‌گذارد."
-                howToStaySafe="نقش مدیر ارشد را فقط به افراد مورد اعتماد اعطا کنید و هیچ حسابی را بدون بررسی مسدود ننمایید."
-                dangerLevel="medium"
-                thingsToAvoid={[
-                  "نقش مدیر ارشد حساب کاربری خودتان را تغییر ندهید.",
-                  "موجودی کیف پول کاربران را بدون ثبت دلیل اداری دستکاری نکنید.",
-                ]}
-              />
-              <AdminUsersManager />
-            </div>
-          )}
+          {activeTab === "users" && <AdminUsersManager />}
 
           {/* TAB 4: ACADEMICS & COURSES */}
-          {activeTab === "academics" && (
-            <div>
-              <AdminSafetyBox
-                title="🎓 راهنمای مدیریت دوره‌ها و بانک سوالات"
-                impact="حذف یک دوره یا درس باعث قطع دسترسی زبان‌آموزانی می‌شود که آن را خریده‌اند."
-                howToStaySafe="به جای حذف دوره‌هایی که ثبت‌نامی دارند، از گزینه «غیرفعال‌سازی موقت ثبت‌نام جدید» استفاده کنید."
-                dangerLevel="medium"
-                liveSiteUrl="/high-school/grade-12/tamrin20"
-              />
-              <AcademicCommandConsole />
-            </div>
-          )}
+          {activeTab === "academics" && <AcademicCommandConsole />}
 
           {/* TAB 4: MARKETING & GROWTH */}
           {activeTab === "marketing" && <MarketingGrowthConsole />}
@@ -1028,17 +1182,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
           {activeTab === "community" && <CommunityModerationConsole />}
 
           {/* TAB: SECURITY & THREAT DEFENSE ROOM */}
-          {activeTab === "security" && (
-            <div>
-              <AdminSafetyBox
-                title="🚨 راهنمای اتاق امنیت و فایروال ایندورا"
-                impact="مسدودسازی اشتباهی یک آی‌پی ممکن است مانع ورود کاربران واقعی یا اتصال درگاه پرداخت شود."
-                howToStaySafe="تنها آی‌پی‌هایی را که سیستم امنیتی با نمره خطر بالای ۸۰٪ علامت زده مسدود کنید."
-                dangerLevel="critical"
-              />
-              <SecurityCommandConsole />
-            </div>
-          )}
+          {activeTab === "security" && <SecurityCommandConsole />}
 
           {/* TAB: PLATFORM ANALYTICS & FUNNEL INTELLIGENCE */}
           {activeTab === "analytics" && <PlatformAnalyticsConsole />}
@@ -1051,42 +1195,38 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
 
           {/* TAB 6: SYSTEM OPS & GOD MODE */}
           {activeTab === "system-ops" && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-              <AdminSafetyBox
-                title="🛑 منطقه فوق‌العاده حساس: موتورخانه سرور و پایگاه داده"
-                impact="دستورات این بخش مستقیماً روی سرور فیزیکی، حافظه کش، و پایگاه داده اجرا می‌شوند و در صورت اشتباه ممکن است سایت موقتاً قطع شود."
-                howToStaySafe="اگر اطلاعات تخصصی سرور ندارید، به دکمه‌های این بخش دست نزنید. سیستم به شکل خودکار سالم کار می‌کند."
-                dangerLevel="critical"
-                thingsToAvoid={[
-                  "کلید حالت تعمیرات را بی‌دلیل روشن نکنید، چون سایت برای همه مردم مسدود می‌شود.",
-                  "دستورات حذف دیتابیس (DROP یا DELETE بدون شرط) را در کنسول SQL اجرا نکنید.",
-                ]}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               <ServerOperationsGodMode />
 
               <div
                 style={{
                   background: "#ffffff",
-                  padding: "1.5rem",
-                  borderRadius: "16px",
+                  padding: "1.25rem",
+                  borderRadius: "12px",
                   border: "1px solid #e2e8f0",
                 }}
               >
                 <h3
                   style={{
-                    margin: "0 0 0.5rem 0",
-                    fontSize: "1.15rem",
+                    margin: "0 0 0.4rem 0",
+                    fontSize: "1rem",
                     fontWeight: "800",
                     color: "#0f172a",
                   }}
                 >
                   مدیریت کلیدهای ویژگی (Feature Flags) و لاگ‌های ممیزی
                 </h3>
-                <p style={{ margin: "0 0 1.5rem 0", fontSize: "0.875rem", color: "#64748b" }}>
+                <p
+                  style={{
+                    margin: "0 0 1.25rem 0",
+                    fontSize: "0.8rem",
+                    color: "#64748b",
+                  }}
+                >
                   تنظیمات پیشرفته ویژگی‌های سامانه و ثبت وقایع ممیزی برای مدیران فنی
                 </p>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                   <FeatureFlagsOperations />
                   <AuditLogsOperations />
                 </div>
@@ -1094,34 +1234,30 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
             </div>
           )}
         </main>
-
-        {/* 3. Interactive Split-Screen Live Preview (Left Side) */}
-        <AdminLiveWebsitePreview
-          activeTab={activeTab}
-          highlightTarget={hoveredTarget}
-          isOpen={isPreviewOpen}
-          onToggleOpen={() => setIsPreviewOpen((prev) => !prev)}
-          isExpanded={isPreviewExpanded}
-          onToggleExpand={() => setIsPreviewExpanded((prev) => !prev)}
-        />
       </div>
 
-      {/* ==============================================================================
-          MODALS & OVERLAYS
-          ============================================================================== */}
+      {/* 3. Interactive Split-Screen Live Preview Drawer */}
+      <AdminLiveWebsitePreview
+        activeTab={activeTab}
+        highlightTarget={hoveredTarget}
+        isOpen={isPreviewOpen}
+        onToggleOpen={() => setIsPreviewOpen((prev) => !prev)}
+        isExpanded={isPreviewExpanded}
+        onToggleExpand={() => setIsPreviewExpanded((prev) => !prev)}
+      />
 
-      {/* 1. "Explain Like I'm 5" Help Modal */}
+      {/* 4. "Explain Like I'm 5" Help Modal */}
       <AdminHelpModal
         tab={helpTab}
         isOpen={isHelpOpen}
         onClose={() => setIsHelpOpen(false)}
       />
 
-      {/* 2. Security PIN Modal for unlocking Danger Zone */}
+      {/* 5. Security PIN Modal for unlocking Danger Zone */}
       <AdminPinModal
         isOpen={isPinModalOpen}
-        title="🔒 تأیید هویت برای ورود به منطقه حساس و فنی"
-        description="این بخش شامل تنظیمات حیاتی سرور، پایگاه داده و هوش مصنوعی است. جهت جلوگیری از بروز اشتباه، لطفاً پین امنیتی مدیر ارشد (پیش‌فرض: ۱۲۳۴۵۶) را وارد نمایید."
+        title="تأیید هویت مدیر ارشد"
+        description="جهت دسترسی به تنظیمات فنی سرور، پایگاه داده و هوش مصنوعی، لطفاً پین امنیتی مدیر ارشد (پیش‌فرض: ۱۲۳۴۵۶) را وارد نمایید."
         onSuccess={handlePinSuccess}
         onCancel={() => {
           setIsPinModalOpen(false);
@@ -1129,7 +1265,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
         }}
       />
 
-      {/* 3. Two-Step Danger Confirmation Modal */}
+      {/* 6. Two-Step Danger Confirmation Modal */}
       <AdminDangerConfirmModal
         isOpen={dangerModalConfig.isOpen}
         title={dangerModalConfig.title}
@@ -1142,7 +1278,7 @@ export function MasterAdminConsole({ onLogout }: { onLogout?: () => void } = {})
         onCancel={() => setDangerModalConfig((prev) => ({ ...prev, isOpen: false }))}
       />
 
-      {/* 4. Undo Toast Notification */}
+      {/* 7. Undo Toast Notification */}
       <AdminUndoToast
         message={toast.message}
         isVisible={toast.isVisible}

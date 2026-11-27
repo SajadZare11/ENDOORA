@@ -164,6 +164,35 @@ export function getAdaptiveQuestionById(
 }
 
 /**
+ * Resolves an adaptive question payload for an IELTS module question from enriched_adaptive_questions.json.
+ */
+export function getAdaptiveQuestionForIelts(
+  skill: string,
+  questionNumber: number,
+  preferredLevel: string = "B2"
+): AdaptiveQuestionPayload | undefined {
+  const bank = loadStaticQuestionBank();
+  const skillKey = skill.toLowerCase();
+  const levelKey = preferredLevel.toLowerCase();
+  const itemIndex = ((questionNumber - 1) % 7) + 1;
+  const targetId = `${skillKey}-${levelKey}-${String(itemIndex).padStart(3, "0")}`;
+  if (bank.has(targetId)) {
+    return bank.get(targetId);
+  }
+  for (const item of bank.values()) {
+    if (item.section === skillKey && item.id.includes(levelKey)) {
+      return item;
+    }
+  }
+  for (const item of bank.values()) {
+    if (item.section === skillKey) {
+      return item;
+    }
+  }
+  return undefined;
+}
+
+/**
  * Maps an AssembledQuestion into HexEdgeOption[] compatible with GrammarHexArena
  * and standard hexagon geometry slots.
  */

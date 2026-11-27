@@ -1,53 +1,71 @@
+.previewDrawerBackdrop {
+  position: fixed;
+  inset: 0;
+  top: 54px;
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 120;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .previewPane {
-  flex: 1.1;
-  min-width: 520px;
+  position: fixed;
+  top: 54px;
+  bottom: 0;
+  left: 0;
+  width: min(640px, 94vw);
   background: #ffffff;
-  border-right: 1.5px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 72px);
-  position: sticky;
-  top: 72px;
-  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.05);
-  z-index: 90;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 12px 0 36px rgba(0, 0, 0, 0.15);
+  z-index: 130;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   direction: rtl;
+  animation: slideInLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 .previewExpanded {
-  position: fixed;
-  top: 72px;
-  left: 0;
-  right: 290px;
-  width: auto;
-  height: calc(100vh - 72px);
-  z-index: 999;
+  width: min(1140px, 98vw);
 }
 
 .collapsedFloatingBtn {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  z-index: 1000;
-  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-  color: #ffffff;
-  border: none;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  background: #ffffff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
   border-radius: 999px;
-  padding: 0.75rem 1.4rem;
-  font-size: 0.875rem;
-  font-weight: 800;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.775rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.15);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .collapsedFloatingBtn:hover {
-  background: #4338ca;
-  transform: translateY(-2px);
+  background: #eef2ff;
+  border-color: #818cf8;
+  color: #3730a3;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.2);
 }
 
 /* 1. Real Browser Header Toolbar */

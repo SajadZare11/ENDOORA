@@ -248,30 +248,12 @@ export default function TodayPage() {
   return (
     <div className={styles.page} dir={isFa ? "rtl" : "ltr"}>
       <div className={styles.container}>
-        {/* Top Navigation & Locale Switcher */}
+        {/* Top Navigation */}
         <header className={styles.topBar}>
           <Link className={styles.backLink} href="/dashboard">
             <span aria-hidden="true">{isFa ? "→" : "←"}</span>
             <span>{isFa ? "بازگشت به خانه یادگیری" : "Back to Learning Home"}</span>
           </Link>
-          <div className={styles.localeSwitcher} role="group" aria-label="Language selector">
-            <Button
-              type="button"
-              size="sm"
-              variant={isFa ? "primary" : "tertiary"}
-              onClick={() => setLocale("fa")}
-            >
-              فارسی
-            </Button>
-            <Button
-              type="button"
-              size="sm"
-              variant={!isFa ? "primary" : "tertiary"}
-              onClick={() => setLocale("en")}
-            >
-              English
-            </Button>
-          </div>
         </header>
 
         {/* Loading State */}

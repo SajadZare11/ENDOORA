@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./admin-hover-tooltip.module.css";
 
 export interface AdminHoverTooltipProps {
@@ -8,6 +8,8 @@ export interface AdminHoverTooltipProps {
   siteLocation: string;
   sensitivity: "safe" | "medium" | "critical";
   highlightKey?: string;
+  itemTitle?: string;
+  isCollapsed?: boolean;
   onHoverTarget?: (target: string | null) => void;
   children: React.ReactNode;
   inline?: boolean;
@@ -18,18 +20,21 @@ export function AdminHoverTooltip({
   siteLocation,
   sensitivity,
   highlightKey,
+  itemTitle,
+  isCollapsed = false,
   onHoverTarget,
   children,
   inline = false,
 }: AdminHoverTooltipProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [coords, setCoords] = useState<{ top: number; left: number; position: "top" | "bottom" }>({
+  const [isOpen, setIsOpen] = useState(false);
+  const [coords, setCoords] = useState<{ top: number; left: number }>({
     top: 0,
     left: 0,
-    position: "bottom",
   });
+
   const containerRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   const getSensitivityDetails = () => {
     switch (sensitivity) {
@@ -51,70 +56,152 @@ export function AdminHoverTooltip({
     }
   };
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        const spaceBelow = window.innerHeight - rect.bottom;
-        const position = spaceBelow < 170 ? "top" : "bottom";
-        
-        setCoords({
-          top: position === "bottom" ? rect.bottom + 8 : rect.top - 8,
-          left: Math.max(10, Math.min(window.innerWidth - 320, rect.left + rect.width / 2 - 150)),
-          position,
-        });
-        setIsVisible(true);
-      }
-      if (highlightKey && onHoverTarget) {
-        onHoverTarget(highlightKey);
-      }
-    }, 120);
+  const updatePosition = useCallback(() => {
+    if (!triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    const tooltipWidth = 330;
+
+    // In RTL layout, sidebar is on the right side of the screen.
+    // Position the tooltip card to the left of the question button.
+    let left = rect.left - tooltipWidth - 12;
+    if (left < 16) {
+      // If not enough room to the left, fallback within viewport bounds
+      left = Math.max(16, Math.min(window.innerWidth - tooltipWidth - 16, rect.left));
+    }
+
+    const top = Math.max(16, Math.min(window.innerHeight - 260, rect.top - 18));
+    setCoords({ top, left });
+  }, []);
+
+  const handleOpen = () => {
+    updatePosition();
+    setIsOpen(true);
+    if (highlightKey && onHoverTarget) {
+      onHoverTarget(highlightKey);
+    }
   };
 
-  const handleMouseLeave = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setIsVisible(false);
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
     if (highlightKey && onHoverTarget) {
       onHoverTarget(null);
+    }
+  }, [highlightKey, onHoverTarget]);
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isOpen) {
+      handleClose();
+    } else {
+      handleOpen();
     }
   };
 
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (!isOpen) return;
+
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(target) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(target)
+      ) {
+        handleClose();
+      }
     };
-  }, []);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+
+    const handleReposition = () => {
+      updatePosition();
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleReposition, true);
+    window.addEventListener("resize", handleReposition);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleReposition, true);
+      window.removeEventListener("resize", handleReposition);
+    };
+  }, [isOpen, handleClose, updatePosition]);
 
   const { label: sensitivityText, badgeClass } = getSensitivityDetails();
+
+  if (isCollapsed) {
+    return <div className={styles.collapsedWrapper}>{children}</div>;
+  }
 
   return (
     <div
       ref={containerRef}
-      className={`${styles.container} ${inline ? styles.inline : ""}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={`${styles.wrapper} ${inline ? styles.inline : ""}`}
     >
-      {children}
+      <div className={styles.mainItem}>{children}</div>
 
-      {isVisible && (
+      <button
+        ref={triggerRef}
+        type="button"
+        className={`${styles.questionBtn} ${isOpen ? styles.questionBtnActive : ""}`}
+        onClick={handleToggle}
+        title={`راهنما و توضیحات ${itemTitle || ""}`}
+        aria-label={`توضیحات و راهنمای ${itemTitle || whatIsIt}`}
+        aria-expanded={isOpen}
+      >
+        ?
+      </button>
+
+      {isOpen && (
         <div
-          className={`${styles.tooltipCard} ${
-            coords.position === "top" ? styles.positionTop : styles.positionBottom
-          }`}
+          ref={tooltipRef}
+          className={styles.tooltipCard}
           style={{
             position: "fixed",
-            top: coords.position === "top" ? undefined : `${coords.top}px`,
-            bottom: coords.position === "top" ? `${window.innerHeight - coords.top}px` : undefined,
+            top: `${coords.top}px`,
             left: `${coords.left}px`,
           }}
           dir="rtl"
         >
-          {/* Line 1: What is it? (5-year-old explanation) */}
+          {/* Header */}
+          <div className={styles.tooltipHeader}>
+            <div className={styles.tooltipHeaderTitleRow}>
+              <span className={styles.tooltipHeaderIcon}>💡</span>
+              <strong className={styles.tooltipHeaderTitle}>
+                {itemTitle ? `راهنمای «${itemTitle}»` : "راهنما و توضیحات بخش"}
+              </strong>
+            </div>
+            <button
+              type="button"
+              className={styles.tooltipCloseBtn}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleClose();
+              }}
+              title="بستن توضیحات"
+              aria-label="بستن"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Line 1: What is it? */}
           <div className={styles.line}>
-            <span className={styles.lineIcon}>💡</span>
+            <span className={styles.lineIcon}>ℹ️</span>
             <div className={styles.lineContent}>
-              <strong className={styles.lineTitle}>این چیه؟:</strong>
+              <strong className={styles.lineTitle}>این بخش چیه؟:</strong>
               <span className={styles.lineText}>{whatIsIt}</span>
             </div>
           </div>
